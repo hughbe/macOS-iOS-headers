@@ -19,6 +19,7 @@
 - (bool)hasReservationHolderName;
 - (bool)hasReservationNumber;
 - (bool)hasReservationStatus;
+- (bool)hasUrl;
 - (_INPBDataString *)itemReference;
 - (NSString *)reservationHolderName;
 - (NSString *)reservationNumber;
@@ -31,5 +32,7 @@
 - (void)setReservationHolderName:(NSString *)arg1;
 - (void)setReservationNumber:(NSString *)arg1;
 - (void)setReservationStatus:(int)arg1;
+- (void)setUrl:(_INPBURLValue *)arg1;
+- (_INPBURLValue *)url;
 
 @end

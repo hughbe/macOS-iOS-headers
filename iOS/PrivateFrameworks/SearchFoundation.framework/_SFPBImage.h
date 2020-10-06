@@ -8,6 +8,7 @@
     _SFPBContactImage * _contactImage;
     NSString * _contentType;
     _SFPBGraphicalFloat * _cornerRadius;
+    int  _cornerRoundingStyle;
     NSString * _identifier;
     NSData * _imageData;
     bool  _isTemplate;
@@ -19,6 +20,7 @@
     bool  _shouldCropToCircle;
     _SFPBPointSize * _size;
     int  _source;
+    _SFPBSymbolImage * _symbolImage;
     int  _type;
     _SFPBURLImage * _urlImage;
 }
@@ -28,6 +30,7 @@
 @property (nonatomic, retain) _SFPBContactImage *contactImage;
 @property (nonatomic, copy) NSString *contentType;
 @property (nonatomic, retain) _SFPBGraphicalFloat *cornerRadius;
+@property (nonatomic) int cornerRoundingStyle;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -44,8 +47,11 @@
 @property (nonatomic, retain) _SFPBPointSize *size;
 @property (nonatomic) int source;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) _SFPBSymbolImage *symbolImage;
 @property (nonatomic) int type;
 @property (nonatomic, retain) _SFPBURLImage *urlImage;
+
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
 
 - (void).cxx_destruct;
 - (id)appIconImage;
@@ -53,6 +59,7 @@
 - (id)contactImage;
 - (id)contentType;
 - (id)cornerRadius;
+- (int)cornerRoundingStyle;
 - (id)dictionaryRepresentation;
 - (unsigned long long)hash;
 - (id)identifier;
@@ -74,6 +81,7 @@
 - (void)setContactImage:(id)arg1;
 - (void)setContentType:(id)arg1;
 - (void)setCornerRadius:(id)arg1;
+- (void)setCornerRoundingStyle:(int)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setImageData:(id)arg1;
 - (void)setIsTemplate:(bool)arg1;
@@ -85,13 +93,19 @@
 - (void)setShouldCropToCircle:(bool)arg1;
 - (void)setSize:(id)arg1;
 - (void)setSource:(int)arg1;
+- (void)setSymbolImage:(id)arg1;
 - (void)setType:(int)arg1;
 - (void)setUrlImage:(id)arg1;
 - (bool)shouldCropToCircle;
 - (id)size;
 - (int)source;
+- (id)symbolImage;
 - (int)type;
 - (id)urlImage;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
++ (id)imageWithData:(id)arg1;
 
 @end

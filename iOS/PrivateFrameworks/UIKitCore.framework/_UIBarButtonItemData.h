@@ -4,18 +4,20 @@
 
 @interface _UIBarButtonItemData : _UIBarAppearanceData <_UIBarButtonItemDataFallback> {
     UIImage * _backIndicatorImage;
+    UIImageSymbolConfiguration * _backIndicatorSymbolConfiguration;
     UIImage * _backIndicatorTransitionMaskImage;
     UIImage * _backgroundImage;
     struct UIOffset { 
         double horizontal; 
         double vertical; 
     }  _backgroundImagePositionAdjustment;
-    UIImageSymbolConfiguration * _compactPreferredSymbolConfiguration;
+    UIImageSymbolConfiguration * _compactBackIndicatorSymbolConfiguration;
+    UIImageSymbolConfiguration * _compactImageSymbolConfiguration;
     struct { 
         unsigned int isBackButtonData : 1; 
     }  _dataFlags;
     <_UIBarButtonItemDataFallback> * _fallback;
-    UIImageSymbolConfiguration * _preferredSymbolConfiguration;
+    UIImageSymbolConfiguration * _imageSymbolConfiguration;
     struct { 
         unsigned int hasUserFont : 1; 
         unsigned int hasUserColor : 1; 
@@ -32,16 +34,20 @@
 }
 
 @property (nonatomic, readonly) UIImage *backIndicatorImage;
+@property (nonatomic, readonly) UIImageSymbolConfiguration *backIndicatorSymbolConfiguration;
 @property (nonatomic, readonly) UIImage *backIndicatorTransitionMaskImage;
+@property (nonatomic, readonly) UIImageSymbolConfiguration *backIndicatorTransitionMaskSymbolConfiguration;
 @property (nonatomic, readonly) UIImage *compactBackIndicatorImage;
+@property (nonatomic, readonly) UIImageSymbolConfiguration *compactBackIndicatorSymbolConfiguration;
 @property (nonatomic, readonly) UIImage *compactBackIndicatorTransitionMaskImage;
-@property (nonatomic, readonly) UIImageSymbolConfiguration *compactPreferredSymbolConfiguration;
+@property (nonatomic, readonly) UIImageSymbolConfiguration *compactBackIndicatorTransitionMaskSymbolConfiguration;
+@property (nonatomic, readonly) UIImageSymbolConfiguration *compactImageSymbolConfiguration;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) <_UIBarButtonItemDataFallback> *fallback;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) UIImageSymbolConfiguration *imageSymbolConfiguration;
 @property (nonatomic, readonly) bool isBackButtonData;
-@property (nonatomic, readonly) UIImageSymbolConfiguration *preferredSymbolConfiguration;
 @property (nonatomic, readonly) long long style;
 @property (readonly) Class superclass;
 
@@ -57,7 +63,9 @@
 - (id)_fallbackColorForState:(long long)arg1;
 - (id)_fallbackFontForState:(long long)arg1;
 - (id)backIndicatorImage;
+- (id)backIndicatorSymbolConfiguration;
 - (id)backIndicatorTransitionMaskImage;
+- (id)backIndicatorTransitionMaskSymbolConfiguration;
 - (id)backgroundImageForState:(long long)arg1;
 - (id)backgroundImageForState:(long long)arg1 style:(long long)arg2;
 - (struct UIOffset { double x1; double x2; })backgroundImagePositionAdjustmentForState:(long long)arg1;
@@ -65,8 +73,10 @@
 - (bool)checkEqualTo:(id)arg1;
 - (id)colorForState:(long long)arg1 style:(long long)arg2;
 - (id)compactBackIndicatorImage;
+- (id)compactBackIndicatorSymbolConfiguration;
 - (id)compactBackIndicatorTransitionMaskImage;
-- (id)compactPreferredSymbolConfiguration;
+- (id)compactBackIndicatorTransitionMaskSymbolConfiguration;
+- (id)compactImageSymbolConfiguration;
 - (id)copyAsBackButtonDataWithIndicatorsAndFallbackFrom:(id)arg1;
 - (id)dataWithNewFallback:(id)arg1;
 - (void)describeInto:(id)arg1;
@@ -74,9 +84,9 @@
 - (id)fallback;
 - (id)fontForState:(long long)arg1 style:(long long)arg2;
 - (long long)hashInto:(long long)arg1;
+- (id)imageSymbolConfiguration;
 - (id)initWithStyle:(long long)arg1;
 - (bool)isBackButtonData;
-- (id)preferredSymbolConfiguration;
 - (id)replicate;
 - (void)resetBackIndicatorImages;
 - (void)setBackIndicatorImage:(id)arg1 transitionMaskImage:(id)arg2;

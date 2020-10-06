@@ -12,6 +12,8 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
++ (void)_cancelTouchesWithIdentifiers:(id)arg1 forDisplayWithIdentity:(id)arg2;
++ (id)_sharedInstanceIfExists;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;

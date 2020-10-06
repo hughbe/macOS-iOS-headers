@@ -9,9 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_disambiguationLabels : 1; 
         unsigned int read_displayMapRegion : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_disambiguationLabels : 1; 
-        unsigned int wrote_displayMapRegion : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -31,9 +29,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsDisambiguationLabel:(id)arg1;
-- (void)_readDisambiguationLabels;
-- (void)_readDisplayMapRegion;
 - (void)addDisambiguationLabel:(id)arg1;
 - (void)clearDisambiguationLabels;
 - (void)clearUnknownFields:(bool)arg1;
@@ -49,7 +44,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

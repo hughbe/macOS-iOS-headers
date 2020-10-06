@@ -40,4 +40,23 @@
 - (double)tolerance;
 - (id)userInfo;
 
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (void)blockInvoke:(id)arg1;
++ (id)pu_scheduledTimerWithTimeInterval:(double)arg1 repeats:(bool)arg2 block:(id /* block */)arg3;
++ (id)pu_scheduledTimerWithTimeInterval:(double)arg1 weakTarget:(id)arg2 selector:(SEL)arg3 userInfo:(id)arg4 repeats:(bool)arg5;
++ (id)pu_timerWithFireDate:(id)arg1 interval:(double)arg2 repeats:(bool)arg3 block:(id /* block */)arg4;
+
+// Image: /System/Library/PrivateFrameworks/MapsSupport.framework/MapsSupport
+
++ (id)_maps_scheduledTimerWithFireDate:(id)arg1 block:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (void)blockInvoke:(id)arg1;
++ (id)px_scheduledTimerWithTimeInterval:(double)arg1 repeats:(bool)arg2 block:(id /* block */)arg3;
++ (id)px_scheduledTimerWithTimeInterval:(double)arg1 weakTarget:(id)arg2 selector:(SEL)arg3 userInfo:(id)arg4 repeats:(bool)arg5;
++ (id)px_timerWithFireDate:(id)arg1 interval:(double)arg2 repeats:(bool)arg3 block:(id /* block */)arg4;
++ (id)px_timerWithTimeInterval:(double)arg1 weakTarget:(id)arg2 selector:(SEL)arg3 userInfo:(id)arg4 repeats:(bool)arg5;
+
 @end

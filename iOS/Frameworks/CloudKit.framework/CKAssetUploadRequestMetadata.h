@@ -8,8 +8,8 @@
     NSData * _referenceSignature;
 }
 
-@property (nonatomic, readonly) NSData *fileSignature;
-@property (nonatomic) long long listIndex;
+@property (nonatomic, readonly, copy) NSData *fileSignature;
+@property (nonatomic, readonly) long long listIndex;
 @property (nonatomic, readonly) NSData *referenceSignature;
 
 + (bool)supportsSecureCoding;
@@ -23,9 +23,9 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRepairZoneRecordID:(id)arg1 databaseScope:(long long)arg2 recordID:(id)arg3 recordType:(id)arg4 fieldName:(id)arg5;
 - (id)initWithRepairZoneRecordID:(id)arg1 databaseScope:(long long)arg2 recordID:(id)arg3 recordType:(id)arg4 fieldName:(id)arg5 fileSignature:(id)arg6 referenceSignature:(id)arg7;
+- (id)initWithRepairZoneRecordID:(id)arg1 databaseScope:(long long)arg2 recordID:(id)arg3 recordType:(id)arg4 fieldName:(id)arg5 fileSignature:(id)arg6 referenceSignature:(id)arg7 listIndex:(long long)arg8;
 - (bool)isEqual:(id)arg1;
 - (long long)listIndex;
 - (id)referenceSignature;
-- (void)setListIndex:(long long)arg1;
 
 @end

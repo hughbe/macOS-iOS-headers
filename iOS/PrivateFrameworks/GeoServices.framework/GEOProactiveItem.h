@@ -53,7 +53,10 @@
 - (bool)hasTimeSinceStart;
 - (bool)hasVisible;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (int)proactiveItemType;
 - (id)proactiveItemTypeAsString:(int)arg1;

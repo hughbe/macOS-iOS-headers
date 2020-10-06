@@ -13,6 +13,5 @@
 @property (readonly) Class superclass;
 
 - (id)description;
-- (id)initWithDomain:(int)arg1 code:(int)arg2;
 
 @end

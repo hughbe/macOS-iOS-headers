@@ -4,6 +4,7 @@
 
 @interface SATimerObject : SADomainObject
 
+@property (nonatomic, retain) SADataSourceInfo *dataSourceInfo;
 @property (nonatomic, copy) NSNumber *isFiring;
 @property (nonatomic, copy) NSString *state;
 @property (nonatomic, copy) NSNumber *timerValue;
@@ -13,9 +14,11 @@
 + (id)object;
 + (id)objectWithDictionary:(id)arg1 context:(id)arg2;
 
+- (id)dataSourceInfo;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)isFiring;
+- (void)setDataSourceInfo:(id)arg1;
 - (void)setIsFiring:(id)arg1;
 - (void)setState:(id)arg1;
 - (void)setTimerValue:(id)arg1;

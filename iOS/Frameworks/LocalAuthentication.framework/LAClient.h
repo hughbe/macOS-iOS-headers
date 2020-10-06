@@ -19,7 +19,7 @@
 }
 
 @property (retain) LACachedExternalizedContext *cachedExternalizedContext;
-@property (nonatomic) LAContext *context;
+@property (nonatomic, readonly) LAContext *context;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) NSData *existingContext;
@@ -57,6 +57,7 @@
 - (id)_updateOptions:(id)arg1;
 - (void)allowTransferToProcess:(int)arg1 receiverAuditTokenData:(id)arg2 reply:(id /* block */)arg3;
 - (void)authMethodWithReply:(id /* block */)arg1;
+- (void)bootstrapServiceType:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)cachedExternalizedContext;
 - (id)context;
 - (void)dealloc;
@@ -68,15 +69,15 @@
 - (id)externalizedContext;
 - (void)externalizedContextWithReply:(id /* block */)arg1;
 - (void)failProcessedEvent:(long long)arg1 failureError:(id)arg2 reply:(id /* block */)arg3;
-- (id)initWithExistingContext:(id)arg1;
-- (id)initWithExistingContext:(id)arg1 userSession:(unsigned int*)arg2;
-- (id)initWithUUID:(id)arg1 token:(id)arg2 senderAuditTokenData:(id)arg3;
+- (id)initWithExternalizedContext:(id)arg1 userSession:(unsigned int*)arg2 context:(id)arg3;
+- (id)initWithUUID:(id)arg1 token:(id)arg2 senderAuditTokenData:(id)arg3 context:(id)arg4;
 - (void)invalidateWithMessage:(id)arg1;
 - (void)invalidateWithReply:(id /* block */)arg1;
 - (void)invalidatedWithError:(id)arg1;
 - (id)invalidations;
 - (void)isCredentialSet:(long long)arg1 reply:(id /* block */)arg2;
 - (void)notifyEvent:(long long)arg1 options:(id)arg2 reply:(id /* block */)arg3;
+- (void)optionsForInternalOperation:(long long)arg1 reply:(id /* block */)arg2;
 - (id)permanentError;
 - (void)prearmTouchIdWithReply:(id /* block */)arg1;
 - (id)remoteContext;
@@ -87,10 +88,10 @@
 - (id)serverPropertyForOption:(long long)arg1 error:(id*)arg2;
 - (void)serverPropertyForOption:(long long)arg1 reply:(id /* block */)arg2;
 - (void)setCachedExternalizedContext:(id)arg1;
-- (void)setContext:(id)arg1;
 - (void)setCredential:(id)arg1 forProcessedEvent:(long long)arg2 credentialType:(long long)arg3 reply:(id /* block */)arg4;
 - (void)setCredential:(id)arg1 type:(long long)arg2 reply:(id /* block */)arg3;
 - (void)setExistingContext:(id)arg1;
+- (void)setOptions:(id)arg1 forInternalOperation:(long long)arg2 reply:(id /* block */)arg3;
 - (void)setPermanentError:(id)arg1;
 - (void)setRemoteContext:(id)arg1;
 - (bool)setServerPropertyForOption:(long long)arg1 value:(id)arg2 error:(id*)arg3;

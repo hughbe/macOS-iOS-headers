@@ -8,16 +8,11 @@
 
 @property (nonatomic) NSObject *inspectedObject;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (Class)_classForTableSection:(long long)arg1;
 - (id)_classHierarchyForInspectedObject;
 - (id)_ivarForIndexPath:(id)arg1;
 - (id)_ivarsForInspectedObjectInClass:(Class)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)init;
 - (id)inspectedObject;
 - (long long)numberOfSectionsInTableView:(id)arg1;

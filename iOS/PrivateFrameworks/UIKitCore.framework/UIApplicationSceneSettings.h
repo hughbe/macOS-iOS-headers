@@ -4,7 +4,8 @@
 
 @interface UIApplicationSceneSettings : FBSSceneSettings <UIApplicationSceneSettings, _UIDisplayInfoProviding>
 
-@property (nonatomic) unsigned long long artworkSubtype;
+@property (nonatomic, readonly) long long accessibilityContrast;
+@property (nonatomic, readonly) unsigned long long artworkSubtype;
 @property (nonatomic, readonly) bool canShowAlerts;
 @property (nonatomic, readonly) BSCornerRadiusConfiguration *cornerRadiusConfiguration;
 @property (nonatomic, readonly) unsigned long long deactivationReasons;
@@ -12,7 +13,7 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) long long deviceOrientation;
 @property (nonatomic, readonly) bool deviceOrientationEventsEnabled;
-@property (nonatomic, retain) FBSDisplayConfiguration *displayConfiguration;
+@property (nonatomic, readonly) FBSDisplayConfiguration *displayConfiguration;
 @property (nonatomic, readonly) bool forcedStatusBarForegroundTransparent;
 @property (nonatomic, readonly) NSNumber *forcedStatusBarStyle;
 @property (readonly) unsigned long long hash;
@@ -21,6 +22,7 @@
 @property (nonatomic, readonly) bool idleModeEnabled;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } peripheryInsets;
 @property (nonatomic, readonly) NSString *persistenceIdentifier;
+@property (nonatomic, readonly) long long pointerLockStatus;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } safeAreaInsetsLandscapeLeft;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } safeAreaInsetsLandscapeRight;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } safeAreaInsetsPortrait;
@@ -36,6 +38,7 @@
 @property (nonatomic, readonly) bool underLock;
 @property (nonatomic, readonly) long long userInterfaceStyle;
 
+- (long long)accessibilityContrast;
 - (unsigned long long)artworkSubtype;
 - (bool)canShowAlerts;
 - (id)cornerRadiusConfiguration;
@@ -53,6 +56,7 @@
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })peripheryInsets;
 - (id)persistenceIdentifier;
+- (long long)pointerLockStatus;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsLandscapeLeft;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsLandscapeRight;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsPortrait;

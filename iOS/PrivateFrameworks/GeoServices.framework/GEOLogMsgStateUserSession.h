@@ -52,7 +52,10 @@
 - (bool)hasSequenceNumber;
 - (bool)hasSessionId;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (struct GEOSessionID { unsigned long long x1; unsigned long long x2; })navSessionId;
 - (double)navSessionRelativeTimestamp;

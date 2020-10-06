@@ -18,6 +18,8 @@
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSURL *url;
 
+// Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
+
 + (id)actionWithIdentifier:(id)arg1 title:(id)arg2 options:(unsigned long long)arg3;
 + (id)actionWithIdentifier:(id)arg1 title:(id)arg2 url:(id)arg3;
 + (id)actionWithIdentifier:(id)arg1 title:(id)arg2 url:(id)arg3 options:(unsigned long long)arg4;
@@ -38,5 +40,9 @@
 - (id)textInputPlaceholder;
 - (id)title;
 - (id)url;
+
+// Image: /System/Library/PrivateFrameworks/HealthMenstrualCycles.framework/HealthMenstrualCycles
+
++ (id)hkmc_actionWithIdentifier:(id)arg1;
 
 @end

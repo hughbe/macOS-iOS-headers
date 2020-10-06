@@ -31,5 +31,6 @@
 - (void)updateLastUsedInputMode:(NSString *)arg1;
 - (void)updateLastUsedKeyboards:(NSDictionary *)arg1;
 - (void)updateLastUsedLayout:(NSString *)arg1;
+- (void)updateVisceral:(NSNumber *)arg1;
 
 @end

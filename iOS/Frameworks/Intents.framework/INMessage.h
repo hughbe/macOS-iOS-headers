@@ -45,6 +45,8 @@
 @property (nonatomic, readonly, copy) NSString *serviceName;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -92,5 +94,9 @@
 - (void)setPaymentAmount:(id)arg1;
 - (void)setRecipients:(id)arg1;
 - (void)setSender:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IMAssistantCore.framework/IMAssistantCore
+
+- (id)debugLogString;
 
 @end

@@ -4,6 +4,7 @@
 
 @interface _UIKeyCommandDiscoverabilityHUDWindow : UIWindow
 
+- (double)_adjustedWindowLevelFromLevel:(double)arg1;
 - (bool)_shouldCreateContextAsSecure;
 
 @end

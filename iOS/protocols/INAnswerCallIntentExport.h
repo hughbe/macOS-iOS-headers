@@ -5,6 +5,8 @@
 
 @required
 
+- (long long)audioRoute;
 - (id)init;
+- (void)setAudioRoute:(long long)arg1;
 
 @end

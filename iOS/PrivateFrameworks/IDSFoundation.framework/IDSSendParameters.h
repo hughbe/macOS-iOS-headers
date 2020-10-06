@@ -62,6 +62,7 @@
 @property (nonatomic, retain) NSString *peerResponseIdentifier;
 @property (nonatomic) long long priority;
 @property (nonatomic, retain) NSDictionary *protobuf;
+@property (nonatomic, retain) NSNumber *pushPriority;
 @property (nonatomic, retain) NSString *queueOneIdentifier;
 @property (nonatomic, retain) NSArray *requireAllRegistrationProperties;
 @property (nonatomic) bool requireBluetooth;
@@ -144,6 +145,7 @@
 - (id)peerResponseIdentifier;
 - (long long)priority;
 - (id)protobuf;
+- (id)pushPriority;
 - (id)queueOneIdentifier;
 - (id)requireAllRegistrationProperties;
 - (bool)requireBluetooth;
@@ -207,6 +209,7 @@
 - (void)setPeerResponseIdentifier:(id)arg1;
 - (void)setPriority:(long long)arg1;
 - (void)setProtobuf:(id)arg1;
+- (void)setPushPriority:(id)arg1;
 - (void)setQueueOneIdentifier:(id)arg1;
 - (void)setRequireAllRegistrationProperties:(id)arg1;
 - (void)setRequireBluetooth:(bool)arg1;

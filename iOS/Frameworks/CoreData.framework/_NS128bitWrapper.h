@@ -13,7 +13,6 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (unsigned long long)hash;
-- (id)initWithBytes:(char *)arg1;
 - (bool)isEqual:(id)arg1;
 
 @end

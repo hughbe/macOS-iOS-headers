@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSetTaskAttributeIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBSetTaskAttributeIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     _INPBTask * _modifiedTask;
     struct { 
@@ -13,7 +12,6 @@
     }  _warnings;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasModifiedTask;
@@ -27,8 +25,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsWarnings:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addWarnings:(int)arg1;
 - (void)clearWarnings;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

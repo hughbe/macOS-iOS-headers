@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchNotificationChangesOperation : CKOperation {
+@interface CKFetchNotificationChangesOperation : CKOperation <CKFetchNotificationChangesOperationCallbacks> {
     id /* block */  _fetchNotificationChangesCompletionBlock;
     bool  _moreComing;
     id /* block */  _notificationChangedBlock;
@@ -11,21 +11,26 @@
     unsigned long long  _resultsLimit;
 }
 
+@property (nonatomic, readonly) <CKFetchNotificationChangesOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) id /* block */ fetchNotificationChangesCompletionBlock;
 @property (nonatomic) bool moreComing;
 @property (nonatomic, copy) id /* block */ notificationChangedBlock;
+@property (nonatomic, readonly) CKFetchNotificationChangesOperationInfo *operationInfo;
 @property (nonatomic, copy) CKServerChangeToken *previousServerChangeToken;
 @property (nonatomic, retain) CKServerChangeToken *resultServerChangeToken;
 @property (nonatomic) unsigned long long resultsLimit;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
++ (SEL)daemonCallbackCompletionSelector;
+
 - (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleCompletionCallback:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id /* block */)fetchNotificationChangesCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleChangedNotification:(id)arg1;
+- (void)handleOperationDidCompleteWithServerChangeToken:(id)arg1 moreComing:(bool)arg2 metrics:(id)arg3 error:(id)arg4;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithPreviousServerChangeToken:(id)arg1;

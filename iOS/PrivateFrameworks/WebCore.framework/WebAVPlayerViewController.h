@@ -6,11 +6,17 @@
     struct RetainPtr<AVPlayerViewController> { 
         void *m_ptr; 
     }  _avPlayerViewController;
+    struct RetainPtr<AVObservationController> { 
+        void *m_ptr; 
+    }  _avPlayerViewControllerObservationController;
     <AVPlayerViewControllerDelegate_WebKitOnly> * _delegate;
-    struct VideoFullscreenInterfaceAVKit { int (**x1)(); int (**x2)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_3_1_1; } x3; struct Mode { unsigned int x_4_1_1; } x4; struct Mode { unsigned int x_5_1_1; } x5; struct Ref<WebCore::PlaybackSessionInterfaceAVKit, WTF::DumbPtrTraits<WebCore::PlaybackSessionInterfaceAVKit> > { struct PlaybackSessionInterfaceAVKit {} *x_6_1_1; } x6; struct RetainPtr<WebAVPlayerViewControllerDelegate> { void *x_7_1_1; } x7; struct RetainPtr<WebAVPlayerViewController> { void *x_8_1_1; } x8; struct VideoFullscreenModel {} *x9; struct VideoFullscreenChangeObserver {} *x10; struct RetainPtr<UIWindow> { void *x_11_1_1; } x11; struct RetainPtr<UIViewController> { void *x_12_1_1; } x12; struct RetainPtr<UIView> { void *x_13_1_1; } x13; struct RetainPtr<UIView> { void *x_14_1_1; } x14; struct RetainPtr<UIWindow> { void *x_15_1_1; } x15; struct RetainPtr<WebAVPlayerLayerView> { void *x_16_1_1; } x16; struct Function<void (bool)>={unique_ptr<WTF::Detail::CallableWrapperBase<void, bool>, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, bool> > >={__compressed_pair<WTF::Detail::CallableWrapperBase<void, bool> *, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, bool> > >=^{CallableWrapperBase<void, bool> {} x17; } * _fullscreenInterface;
+    struct VideoFullscreenInterfaceAVKit { int (**x1)(); int (**x2)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_3_1_1; } x3; struct WeakPtrFactory<WebCore::VideoFullscreenInterfaceAVKit, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_4_1_1; } x4; struct Mode { unsigned int x_5_1_1; } x5; struct Mode { unsigned int x_6_1_1; } x6; struct Ref<WebCore::PlaybackSessionInterfaceAVKit, WTF::DumbPtrTraits<WebCore::PlaybackSessionInterfaceAVKit> > { struct PlaybackSessionInterfaceAVKit {} *x_7_1_1; } x7; struct RetainPtr<WebAVPlayerViewControllerDelegate> { void *x_8_1_1; } x8; struct RetainPtr<WebAVPlayerViewController> { void *x_9_1_1; } x9; struct VideoFullscreenModel {} *x10; struct VideoFullscreenChangeObserver {} *x11; struct RetainPtr<UIWindow> { void *x_12_1_1; } x12; struct RetainPtr<UIViewController> { void *x_13_1_1; } x13; } * _fullscreenInterface;
     struct RetainPtr<UIViewController> { 
         void *m_ptr; 
     }  _presentingViewController;
+    struct RetainPtr<NSTimer> { 
+        void *m_ptr; 
+    }  _startPictureInPictureTimer;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -21,9 +27,10 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)avPlayerViewController;
+- (void)dealloc;
 - (void)enterFullScreenAnimated:(bool)arg1 completionHandler:(id /* block */)arg2;
 - (void)exitFullScreenAnimated:(bool)arg1 completionHandler:(id /* block */)arg2;
-- (id)initWithFullscreenInterface:(struct VideoFullscreenInterfaceAVKit { int (**x1)(); int (**x2)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_3_1_1; } x3; struct Mode { unsigned int x_4_1_1; } x4; struct Mode { unsigned int x_5_1_1; } x5; struct Ref<WebCore::PlaybackSessionInterfaceAVKit, WTF::DumbPtrTraits<WebCore::PlaybackSessionInterfaceAVKit> > { struct PlaybackSessionInterfaceAVKit {} *x_6_1_1; } x6; struct RetainPtr<WebAVPlayerViewControllerDelegate> { void *x_7_1_1; } x7; struct RetainPtr<WebAVPlayerViewController> { void *x_8_1_1; } x8; struct VideoFullscreenModel {} *x9; struct VideoFullscreenChangeObserver {} *x10; struct RetainPtr<UIWindow> { void *x_11_1_1; } x11; struct RetainPtr<UIViewController> { void *x_12_1_1; } x12; struct RetainPtr<UIView> { void *x_13_1_1; } x13; struct RetainPtr<UIView> { void *x_14_1_1; } x14; struct RetainPtr<UIWindow> { void *x_15_1_1; } x15; struct RetainPtr<WebAVPlayerLayerView> { void *x_16_1_1; } x16; struct Function<void (bool)>={unique_ptr<WTF::Detail::CallableWrapperBase<void, bool>, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, bool> > >={__compressed_pair<WTF::Detail::CallableWrapperBase<void, bool> *, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, bool> > >=^{CallableWrapperBase<void, bool> {} x17; }*)arg1;
+- (id)initWithFullscreenInterface:(struct VideoFullscreenInterfaceAVKit { int (**x1)(); int (**x2)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_3_1_1; } x3; struct WeakPtrFactory<WebCore::VideoFullscreenInterfaceAVKit, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_4_1_1; } x4; struct Mode { unsigned int x_5_1_1; } x5; struct Mode { unsigned int x_6_1_1; } x6; struct Ref<WebCore::PlaybackSessionInterfaceAVKit, WTF::DumbPtrTraits<WebCore::PlaybackSessionInterfaceAVKit> > { struct PlaybackSessionInterfaceAVKit {} *x_7_1_1; } x7; struct RetainPtr<WebAVPlayerViewControllerDelegate> { void *x_8_1_1; } x8; struct RetainPtr<WebAVPlayerViewController> { void *x_9_1_1; } x9; struct VideoFullscreenModel {} *x10; struct VideoFullscreenChangeObserver {} *x11; struct RetainPtr<UIWindow> { void *x_12_1_1; } x12; struct RetainPtr<UIViewController> { void *x_13_1_1; } x13; }*)arg1;
 - (bool)isPictureInPictureActive;
 - (bool)isPictureInPicturePossible;
 - (bool)pictureInPictureActive;
@@ -38,6 +45,7 @@
 - (bool)showsPlaybackControls;
 - (void)startPictureInPicture;
 - (void)stopPictureInPicture;
+- (void)tryToStartPictureInPicture;
 - (id)view;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKModifyRecordsOperation : CKDatabaseOperation {
+@interface CKModifyRecordsOperation : CKDatabaseOperation <CKModifyRecordsOperationCallbacks> {
     NSDictionary * _assetUUIDToExpectedProperties;
     NSMutableDictionary * _assetsByRecordIDAndRecordKey;
     bool  _atomic;
@@ -32,10 +32,12 @@
 @property (nonatomic, retain) NSMutableDictionary *assetsByRecordIDAndRecordKey;
 @property (nonatomic) bool atomic;
 @property (nonatomic, copy) NSData *clientChangeTokenData;
-@property (nonatomic, retain) NSDictionary *conflictLosersToResolveByRecordID;
+@property (nonatomic, readonly) <CKModifyRecordsOperationCallbacks> *clientOperationCallbackProxy;
+@property (nonatomic, copy) NSDictionary *conflictLosersToResolveByRecordID;
 @property (nonatomic, retain) NSMutableArray *deletedRecordIDs;
 @property (nonatomic) bool markAsParticipantNeedsNewInvitationToken;
 @property (nonatomic, copy) id /* block */ modifyRecordsCompletionBlock;
+@property (nonatomic, readonly) CKModifyRecordsOperationInfo *operationInfo;
 @property (nonatomic, copy) NSDictionary *packageUUIDToExpectedProperties;
 @property (nonatomic, retain) NSMutableSet *packagesToDestroy;
 @property (nonatomic, copy) id /* block */ perRecordCompletionBlock;
@@ -52,10 +54,13 @@
 @property (nonatomic) bool shouldOnlySaveAssetContent;
 @property (nonatomic) bool shouldReportRecordsInFlight;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (void)_trackAssetsToUpload;
 - (id)activityCreate;
 - (id)assetUUIDToExpectedProperties;
@@ -70,6 +75,11 @@
 - (void)destroyPackagesInRecords:(id)arg1;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleDeleteForRecordID:(id)arg1 error:(id)arg2;
+- (void)handleRecordIDsInFlight:(id)arg1 reply:(id /* block */)arg2;
+- (void)handleRecordModificationForRecordID:(id)arg1 didProgress:(double)arg2;
+- (void)handleRecordUploadForRecordID:(id)arg1 recordKey:(id)arg2 arrayIndex:(long long)arg3 signature:(id)arg4 size:(unsigned long long)arg5 paddedFileSize:(unsigned long long)arg6 uploaded:(bool)arg7 uploadReceipt:(id)arg8 uploadReceiptExpiration:(double)arg9 wrappedAssetKey:(id)arg10 clearAssetKey:(id)arg11 referenceSignature:(id)arg12;
+- (void)handleSaveForRecordID:(id)arg1 etag:(id)arg2 creationDate:(id)arg3 modificationDate:(id)arg4 serverRecord:(id)arg5 protectionData:(id)arg6 pcsKeyID:(id)arg7 allPCSKeyIDs:(id)arg8 zoneishKeyID:(id)arg9 error:(id)arg10;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordsToSave:(id)arg1 recordIDsToDelete:(id)arg2;
@@ -114,5 +124,9 @@
 - (void)setShouldReportRecordsInFlight:(bool)arg1;
 - (bool)shouldOnlySaveAssetContent;
 - (bool)shouldReportRecordsInFlight;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (void)ic_removeAllCompletionBlocks;
 
 @end

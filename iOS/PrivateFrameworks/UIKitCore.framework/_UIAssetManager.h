@@ -28,7 +28,6 @@
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _runtimeCatalogCreationLock;
-    NSDictionary * _systemSymbolNameAliases;
 }
 
 @property (nonatomic, readonly) NSBundle *bundle;
@@ -79,7 +78,6 @@
 - (bool)_managingUIKitAssets;
 - (void)_performBlockWithAssetLock:(id /* block */)arg1;
 - (id)_starkAssetManager;
-- (id)_symbolNameAliasForName:(id)arg1;
 - (id)_translateAppearanceNameToNative:(id)arg1;
 - (id)bundle;
 - (id)carFileName;

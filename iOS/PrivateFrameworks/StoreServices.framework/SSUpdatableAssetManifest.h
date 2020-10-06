@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@interface SSUpdatableAssetManifest : NSObject {
+@interface SSUpdatableAssetManifest : NSObject <SKUIExternalResourceManager> {
     NSArray * _assets;
     NSDictionary * _assetsByName;
     SSUpdatableAsset * _bootstrapAsset;
@@ -20,13 +20,19 @@
 @property (setter=_setAssets:, nonatomic, copy) NSArray *assets;
 @property (setter=_setBootstrapAsset:, nonatomic, retain) SSUpdatableAsset *bootstrapAsset;
 @property (setter=_setCacheURL:, nonatomic, retain) NSURL *cacheURL;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (setter=_setExtraInfo:, nonatomic, copy) NSDictionary *extraInfo;
+@property (readonly) unsigned long long hash;
 @property (setter=_setLastModifiedTimestamp:, nonatomic) double lastModifiedTimestamp;
 @property (setter=_setName:, nonatomic, copy) NSString *name;
 @property (setter=_setPollInterval:, nonatomic) double pollInterval;
 @property (setter=_setReloadUrgencyType:, nonatomic) long long reloadUrgencyType;
 @property (setter=_setServerURL:, nonatomic, retain) NSURL *serverURL;
+@property (readonly) Class superclass;
 @property (setter=_setVersion:, nonatomic, copy) NSString *version;
+
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
 + (id)_osVersionString;
 
@@ -52,5 +58,11 @@
 - (long long)reloadUrgencyType;
 - (id)serverURL;
 - (id)version;
+
+// Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
+
++ (unsigned long long)_scaleDefinedByPath:(id)arg1;
+
+- (id)imageForResourceName:(id)arg1;
 
 @end

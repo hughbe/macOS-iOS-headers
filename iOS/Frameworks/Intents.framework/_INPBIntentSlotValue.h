@@ -3,7 +3,6 @@
  */
 
 @interface _INPBIntentSlotValue : PBCodable <NSCopying, NSSecureCoding, _INPBIntentSlotValue> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int type : 1; 
     }  _has;
@@ -14,6 +13,23 @@
     }  _payloadAccountTypes;
     NSArray * _payloadActivities;
     NSArray * _payloadActivityLists;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadAlarmPeriods;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadAlarmRepeatSchedules;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadAlarmSearchTypes;
+    NSArray * _payloadAlarmSearchs;
+    NSArray * _payloadAlarms;
     NSArray * _payloadAppIdentifiers;
     NSArray * _payloadArchivedObjects;
     struct { 
@@ -32,6 +48,16 @@
         int *list; 
         unsigned long long count; 
         unsigned long long size; 
+    }  _payloadBinarySettingValues;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadBoundedSettingValues;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
     }  _payloadCallAudioRoutes;
     struct { 
         int *list; 
@@ -43,11 +69,13 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _payloadCallDestinationTypes;
+    NSArray * _payloadCallRecordFilters;
     struct { 
         int *list; 
         unsigned long long count; 
         unsigned long long size; 
     }  _payloadCallRecordTypes;
+    NSArray * _payloadCallRecordValues;
     struct { 
         int *list; 
         unsigned long long count; 
@@ -73,6 +101,12 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _payloadCarSignalIdentifiers;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadChangeAlarmStatusOperations;
+    NSArray * _payloadChargingConnectorTypes;
     NSArray * _payloadContactEventTriggers;
     NSArray * _payloadContactLists;
     NSArray * _payloadContactValues;
@@ -94,6 +128,7 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _payloadDeviceTypes;
+    NSArray * _payloadDevices;
     NSArray * _payloadDialingContacts;
     NSArray * _payloadDistanceLists;
     NSArray * _payloadDistanceValues;
@@ -139,6 +174,7 @@
     NSArray * _payloadFinancialAccountValues;
     NSArray * _payloadGeographicalFeatureLists;
     NSArray * _payloadGeographicalFeatures;
+    NSArray * _payloadGetSettingResponseDatas;
     struct { 
         int *list; 
         unsigned long long count; 
@@ -202,6 +238,8 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _payloadMessageTypes;
+    NSArray * _payloadModifyNicknames;
+    NSArray * _payloadModifyRelationships;
     NSArray * _payloadNoteContents;
     struct { 
         int *list; 
@@ -209,6 +247,17 @@
         unsigned long long size; 
     }  _payloadNotebookItemTypes;
     NSArray * _payloadNotes;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadNumericSettingUnits;
+    NSArray * _payloadNumericSettingValues;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadOutgoingMessageTypes;
     struct { 
         int *list; 
         unsigned long long count; 
@@ -254,11 +303,20 @@
     NSArray * _payloadPrimitiveInts;
     NSArray * _payloadPrimitiveLongs;
     NSArray * _payloadPrimitiveStrings;
+    NSArray * _payloadPrivateAddMediaIntentDatas;
+    NSArray * _payloadPrivatePlayMediaIntentDatas;
+    NSArray * _payloadPrivateSearchForMediaIntentDatas;
+    NSArray * _payloadPrivateUpdateMediaAffinityIntentDatas;
     struct { 
         int *list; 
         unsigned long long count; 
         unsigned long long size; 
     }  _payloadRadioTypes;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadReadActionTypes;
     struct { 
         int *list; 
         unsigned long long count; 
@@ -270,7 +328,14 @@
         unsigned long long size; 
     }  _payloadRelativeSettings;
     NSArray * _payloadSendMessageAttachments;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _payloadSettingActions;
+    NSArray * _payloadSettingMetadatas;
     NSArray * _payloadShareDestinations;
+    NSArray * _payloadSleepAlarmAttributes;
     NSArray * _payloadSpatialEventTriggers;
     NSArray * _payloadSpeedValues;
     NSArray * _payloadStringLists;
@@ -316,6 +381,11 @@
         int *list; 
         unsigned long long count; 
         unsigned long long size; 
+    }  _payloadUpdateAlarmOperations;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
     }  _payloadVisualCodeTypes;
     NSArray * _payloadVoiceCommandDeviceInformations;
     NSArray * _payloadVolumeValues;
@@ -351,7 +421,6 @@
     int  _type;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasType;
@@ -362,6 +431,16 @@
 @property (nonatomic, readonly) unsigned long long payloadActivitiesCount;
 @property (nonatomic, copy) NSArray *payloadActivityLists;
 @property (nonatomic, readonly) unsigned long long payloadActivityListsCount;
+@property (nonatomic, readonly) int*payloadAlarmPeriods;
+@property (nonatomic, readonly) unsigned long long payloadAlarmPeriodsCount;
+@property (nonatomic, readonly) int*payloadAlarmRepeatSchedules;
+@property (nonatomic, readonly) unsigned long long payloadAlarmRepeatSchedulesCount;
+@property (nonatomic, readonly) int*payloadAlarmSearchTypes;
+@property (nonatomic, readonly) unsigned long long payloadAlarmSearchTypesCount;
+@property (nonatomic, copy) NSArray *payloadAlarmSearchs;
+@property (nonatomic, readonly) unsigned long long payloadAlarmSearchsCount;
+@property (nonatomic, copy) NSArray *payloadAlarms;
+@property (nonatomic, readonly) unsigned long long payloadAlarmsCount;
 @property (nonatomic, copy) NSArray *payloadAppIdentifiers;
 @property (nonatomic, readonly) unsigned long long payloadAppIdentifiersCount;
 @property (nonatomic, copy) NSArray *payloadArchivedObjects;
@@ -374,14 +453,22 @@
 @property (nonatomic, readonly) unsigned long long payloadBillPayeeValuesCount;
 @property (nonatomic, readonly) int*payloadBillTypes;
 @property (nonatomic, readonly) unsigned long long payloadBillTypesCount;
+@property (nonatomic, readonly) int*payloadBinarySettingValues;
+@property (nonatomic, readonly) unsigned long long payloadBinarySettingValuesCount;
+@property (nonatomic, readonly) int*payloadBoundedSettingValues;
+@property (nonatomic, readonly) unsigned long long payloadBoundedSettingValuesCount;
 @property (nonatomic, readonly) int*payloadCallAudioRoutes;
 @property (nonatomic, readonly) unsigned long long payloadCallAudioRoutesCount;
 @property (nonatomic, readonly) int*payloadCallCapabilities;
 @property (nonatomic, readonly) unsigned long long payloadCallCapabilitiesCount;
 @property (nonatomic, readonly) int*payloadCallDestinationTypes;
 @property (nonatomic, readonly) unsigned long long payloadCallDestinationTypesCount;
+@property (nonatomic, copy) NSArray *payloadCallRecordFilters;
+@property (nonatomic, readonly) unsigned long long payloadCallRecordFiltersCount;
 @property (nonatomic, readonly) int*payloadCallRecordTypes;
 @property (nonatomic, readonly) unsigned long long payloadCallRecordTypesCount;
+@property (nonatomic, copy) NSArray *payloadCallRecordValues;
+@property (nonatomic, readonly) unsigned long long payloadCallRecordValuesCount;
 @property (nonatomic, readonly) int*payloadCarAirCirculationModes;
 @property (nonatomic, readonly) unsigned long long payloadCarAirCirculationModesCount;
 @property (nonatomic, readonly) int*payloadCarAudioSources;
@@ -392,6 +479,10 @@
 @property (nonatomic, readonly) unsigned long long payloadCarSeatsCount;
 @property (nonatomic, readonly) int*payloadCarSignalIdentifiers;
 @property (nonatomic, readonly) unsigned long long payloadCarSignalIdentifiersCount;
+@property (nonatomic, readonly) int*payloadChangeAlarmStatusOperations;
+@property (nonatomic, readonly) unsigned long long payloadChangeAlarmStatusOperationsCount;
+@property (nonatomic, copy) NSArray *payloadChargingConnectorTypes;
+@property (nonatomic, readonly) unsigned long long payloadChargingConnectorTypesCount;
 @property (nonatomic, copy) NSArray *payloadContactEventTriggers;
 @property (nonatomic, readonly) unsigned long long payloadContactEventTriggersCount;
 @property (nonatomic, copy) NSArray *payloadContactLists;
@@ -418,6 +509,8 @@
 @property (nonatomic, readonly) unsigned long long payloadDeviceDetailsCount;
 @property (nonatomic, readonly) int*payloadDeviceTypes;
 @property (nonatomic, readonly) unsigned long long payloadDeviceTypesCount;
+@property (nonatomic, copy) NSArray *payloadDevices;
+@property (nonatomic, readonly) unsigned long long payloadDevicesCount;
 @property (nonatomic, copy) NSArray *payloadDialingContacts;
 @property (nonatomic, readonly) unsigned long long payloadDialingContactsCount;
 @property (nonatomic, copy) NSArray *payloadDistanceLists;
@@ -460,6 +553,8 @@
 @property (nonatomic, readonly) unsigned long long payloadGeographicalFeatureListsCount;
 @property (nonatomic, copy) NSArray *payloadGeographicalFeatures;
 @property (nonatomic, readonly) unsigned long long payloadGeographicalFeaturesCount;
+@property (nonatomic, copy) NSArray *payloadGetSettingResponseDatas;
+@property (nonatomic, readonly) unsigned long long payloadGetSettingResponseDatasCount;
 @property (nonatomic, readonly) int*payloadHomeAttributeTypes;
 @property (nonatomic, readonly) unsigned long long payloadHomeAttributeTypesCount;
 @property (nonatomic, readonly) int*payloadHomeAttributeValueTypes;
@@ -514,12 +609,22 @@
 @property (nonatomic, readonly) unsigned long long payloadMessageEffectsCount;
 @property (nonatomic, readonly) int*payloadMessageTypes;
 @property (nonatomic, readonly) unsigned long long payloadMessageTypesCount;
+@property (nonatomic, copy) NSArray *payloadModifyNicknames;
+@property (nonatomic, readonly) unsigned long long payloadModifyNicknamesCount;
+@property (nonatomic, copy) NSArray *payloadModifyRelationships;
+@property (nonatomic, readonly) unsigned long long payloadModifyRelationshipsCount;
 @property (nonatomic, copy) NSArray *payloadNoteContents;
 @property (nonatomic, readonly) unsigned long long payloadNoteContentsCount;
 @property (nonatomic, readonly) int*payloadNotebookItemTypes;
 @property (nonatomic, readonly) unsigned long long payloadNotebookItemTypesCount;
 @property (nonatomic, copy) NSArray *payloadNotes;
 @property (nonatomic, readonly) unsigned long long payloadNotesCount;
+@property (nonatomic, readonly) int*payloadNumericSettingUnits;
+@property (nonatomic, readonly) unsigned long long payloadNumericSettingUnitsCount;
+@property (nonatomic, copy) NSArray *payloadNumericSettingValues;
+@property (nonatomic, readonly) unsigned long long payloadNumericSettingValuesCount;
+@property (nonatomic, readonly) int*payloadOutgoingMessageTypes;
+@property (nonatomic, readonly) unsigned long long payloadOutgoingMessageTypesCount;
 @property (nonatomic, readonly) int*payloadParsecCategories;
 @property (nonatomic, readonly) unsigned long long payloadParsecCategoriesCount;
 @property (nonatomic, copy) NSArray *payloadPaymentAmountValues;
@@ -554,6 +659,14 @@
 @property (nonatomic, readonly) unsigned long long payloadPrimitiveLongsCount;
 @property (nonatomic, copy) NSArray *payloadPrimitiveStrings;
 @property (nonatomic, readonly) unsigned long long payloadPrimitiveStringsCount;
+@property (nonatomic, copy) NSArray *payloadPrivateAddMediaIntentDatas;
+@property (nonatomic, readonly) unsigned long long payloadPrivateAddMediaIntentDatasCount;
+@property (nonatomic, copy) NSArray *payloadPrivatePlayMediaIntentDatas;
+@property (nonatomic, readonly) unsigned long long payloadPrivatePlayMediaIntentDatasCount;
+@property (nonatomic, copy) NSArray *payloadPrivateSearchForMediaIntentDatas;
+@property (nonatomic, readonly) unsigned long long payloadPrivateSearchForMediaIntentDatasCount;
+@property (nonatomic, copy) NSArray *payloadPrivateUpdateMediaAffinityIntentDatas;
+@property (nonatomic, readonly) unsigned long long payloadPrivateUpdateMediaAffinityIntentDatasCount;
 @property (nonatomic, readonly) int*payloadRadioTypes;
 @property (nonatomic, readonly) unsigned long long payloadRadioTypesCount;
 @property (nonatomic, readonly) int*payloadRelativeReferences;
@@ -562,8 +675,14 @@
 @property (nonatomic, readonly) unsigned long long payloadRelativeSettingsCount;
 @property (nonatomic, copy) NSArray *payloadSendMessageAttachments;
 @property (nonatomic, readonly) unsigned long long payloadSendMessageAttachmentsCount;
+@property (nonatomic, readonly) int*payloadSettingActions;
+@property (nonatomic, readonly) unsigned long long payloadSettingActionsCount;
+@property (nonatomic, copy) NSArray *payloadSettingMetadatas;
+@property (nonatomic, readonly) unsigned long long payloadSettingMetadatasCount;
 @property (nonatomic, copy) NSArray *payloadShareDestinations;
 @property (nonatomic, readonly) unsigned long long payloadShareDestinationsCount;
+@property (nonatomic, copy) NSArray *payloadSleepAlarmAttributes;
+@property (nonatomic, readonly) unsigned long long payloadSleepAlarmAttributesCount;
 @property (nonatomic, copy) NSArray *payloadSpatialEventTriggers;
 @property (nonatomic, readonly) unsigned long long payloadSpatialEventTriggersCount;
 @property (nonatomic, copy) NSArray *payloadSpeedValues;
@@ -598,6 +717,8 @@
 @property (nonatomic, readonly) unsigned long long payloadTimersCount;
 @property (nonatomic, copy) NSArray *payloadURLValues;
 @property (nonatomic, readonly) unsigned long long payloadURLValuesCount;
+@property (nonatomic, readonly) int*payloadUpdateAlarmOperations;
+@property (nonatomic, readonly) unsigned long long payloadUpdateAlarmOperationsCount;
 @property (nonatomic, readonly) int*payloadVisualCodeTypes;
 @property (nonatomic, readonly) unsigned long long payloadVisualCodeTypesCount;
 @property (nonatomic, copy) NSArray *payloadVoiceCommandDeviceInformations;
@@ -627,10 +748,14 @@
 
 + (Class)payloadActivityListType;
 + (Class)payloadActivityType;
++ (Class)payloadAlarmSearchType;
++ (Class)payloadAlarmType;
 + (Class)payloadAppIdentifierType;
 + (Class)payloadArchivedObjectType;
 + (Class)payloadBillDetailsValueType;
 + (Class)payloadBillPayeeValueType;
++ (Class)payloadCallRecordFilterType;
++ (Class)payloadCallRecordValueType;
 + (Class)payloadContactEventTriggerType;
 + (Class)payloadContactListType;
 + (Class)payloadContactValueType;
@@ -642,6 +767,7 @@
 + (Class)payloadDateTimeRangeValueType;
 + (Class)payloadDateTimeValueType;
 + (Class)payloadDeviceDetailType;
++ (Class)payloadDeviceType;
 + (Class)payloadDialingContactType;
 + (Class)payloadDistanceListType;
 + (Class)payloadDistanceValueType;
@@ -656,6 +782,7 @@
 + (Class)payloadFinancialAccountValueType;
 + (Class)payloadGeographicalFeatureListType;
 + (Class)payloadGeographicalFeatureType;
++ (Class)payloadGetSettingResponseDataType;
 + (Class)payloadHomeAttributeType;
 + (Class)payloadHomeAttributeValueType;
 + (Class)payloadHomeEntityType;
@@ -674,15 +801,24 @@
 + (Class)payloadMediaItemGroupType;
 + (Class)payloadMediaItemValueType;
 + (Class)payloadMediaSearchType;
++ (Class)payloadModifyNicknameType;
++ (Class)payloadModifyRelationshipType;
 + (Class)payloadNoteContentType;
 + (Class)payloadNoteType;
++ (Class)payloadNumericSettingValueType;
 + (Class)payloadPaymentAmountValueType;
 + (Class)payloadPaymentMethodListType;
 + (Class)payloadPaymentMethodValueType;
 + (Class)payloadPlaceListType;
 + (Class)payloadPlaceType;
++ (Class)payloadPrivateAddMediaIntentDataType;
++ (Class)payloadPrivatePlayMediaIntentDataType;
++ (Class)payloadPrivateSearchForMediaIntentDataType;
++ (Class)payloadPrivateUpdateMediaAffinityIntentDataType;
 + (Class)payloadSendMessageAttachmentType;
++ (Class)payloadSettingMetadataType;
 + (Class)payloadShareDestinationType;
++ (Class)payloadSleepAlarmAttributeType;
 + (Class)payloadSpatialEventTriggerType;
 + (Class)payloadSpeedValueType;
 + (Class)payloadStringListType;
@@ -704,8 +840,13 @@
 
 - (void).cxx_destruct;
 - (int)StringAsPayloadAccountTypes:(id)arg1;
+- (int)StringAsPayloadAlarmPeriods:(id)arg1;
+- (int)StringAsPayloadAlarmRepeatSchedules:(id)arg1;
+- (int)StringAsPayloadAlarmSearchTypes:(id)arg1;
 - (int)StringAsPayloadBalanceTypes:(id)arg1;
 - (int)StringAsPayloadBillTypes:(id)arg1;
+- (int)StringAsPayloadBinarySettingValues:(id)arg1;
+- (int)StringAsPayloadBoundedSettingValues:(id)arg1;
 - (int)StringAsPayloadCallAudioRoutes:(id)arg1;
 - (int)StringAsPayloadCallCapabilities:(id)arg1;
 - (int)StringAsPayloadCallDestinationTypes:(id)arg1;
@@ -715,6 +856,7 @@
 - (int)StringAsPayloadCarDefrosters:(id)arg1;
 - (int)StringAsPayloadCarSeats:(id)arg1;
 - (int)StringAsPayloadCarSignalIdentifiers:(id)arg1;
+- (int)StringAsPayloadChangeAlarmStatusOperations:(id)arg1;
 - (int)StringAsPayloadDateSearchTypes:(id)arg1;
 - (int)StringAsPayloadDeviceTypes:(id)arg1;
 - (int)StringAsPayloadFileEntityTypes:(id)arg1;
@@ -733,6 +875,8 @@
 - (int)StringAsPayloadMessageEffects:(id)arg1;
 - (int)StringAsPayloadMessageTypes:(id)arg1;
 - (int)StringAsPayloadNotebookItemTypes:(id)arg1;
+- (int)StringAsPayloadNumericSettingUnits:(id)arg1;
+- (int)StringAsPayloadOutgoingMessageTypes:(id)arg1;
 - (int)StringAsPayloadParsecCategories:(id)arg1;
 - (int)StringAsPayloadPaymentStatus:(id)arg1;
 - (int)StringAsPayloadPersonalPlaceTypes:(id)arg1;
@@ -743,12 +887,14 @@
 - (int)StringAsPayloadRadioTypes:(id)arg1;
 - (int)StringAsPayloadRelativeReferences:(id)arg1;
 - (int)StringAsPayloadRelativeSettings:(id)arg1;
+- (int)StringAsPayloadSettingActions:(id)arg1;
 - (int)StringAsPayloadTaskPriorities:(id)arg1;
 - (int)StringAsPayloadTaskReferences:(id)arg1;
 - (int)StringAsPayloadTaskStatus:(id)arg1;
 - (int)StringAsPayloadTemporalEventTriggerTypes:(id)arg1;
 - (int)StringAsPayloadTimerStates:(id)arg1;
 - (int)StringAsPayloadTimerTypes:(id)arg1;
+- (int)StringAsPayloadUpdateAlarmOperations:(id)arg1;
 - (int)StringAsPayloadVisualCodeTypes:(id)arg1;
 - (int)StringAsPayloadWellnessObjectTypes:(id)arg1;
 - (int)StringAsPayloadWellnessQueryResultTypes:(id)arg1;
@@ -756,26 +902,35 @@
 - (int)StringAsPayloadWorkoutGoalUnitTypes:(id)arg1;
 - (int)StringAsPayloadWorkoutLocationTypes:(id)arg1;
 - (int)StringAsType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addPayloadAccountType:(int)arg1;
 - (void)addPayloadActivity:(id)arg1;
 - (void)addPayloadActivityList:(id)arg1;
+- (void)addPayloadAlarm:(id)arg1;
+- (void)addPayloadAlarmPeriod:(int)arg1;
+- (void)addPayloadAlarmRepeatSchedule:(int)arg1;
+- (void)addPayloadAlarmSearch:(id)arg1;
+- (void)addPayloadAlarmSearchType:(int)arg1;
 - (void)addPayloadAppIdentifier:(id)arg1;
 - (void)addPayloadArchivedObject:(id)arg1;
 - (void)addPayloadBalanceType:(int)arg1;
 - (void)addPayloadBillDetailsValue:(id)arg1;
 - (void)addPayloadBillPayeeValue:(id)arg1;
 - (void)addPayloadBillType:(int)arg1;
+- (void)addPayloadBinarySettingValue:(int)arg1;
+- (void)addPayloadBoundedSettingValue:(int)arg1;
 - (void)addPayloadCallAudioRoute:(int)arg1;
 - (void)addPayloadCallCapability:(int)arg1;
 - (void)addPayloadCallDestinationType:(int)arg1;
+- (void)addPayloadCallRecordFilter:(id)arg1;
 - (void)addPayloadCallRecordType:(int)arg1;
+- (void)addPayloadCallRecordValue:(id)arg1;
 - (void)addPayloadCarAirCirculationMode:(int)arg1;
 - (void)addPayloadCarAudioSource:(int)arg1;
 - (void)addPayloadCarDefroster:(int)arg1;
 - (void)addPayloadCarSeat:(int)arg1;
 - (void)addPayloadCarSignalIdentifier:(int)arg1;
+- (void)addPayloadChangeAlarmStatusOperation:(int)arg1;
+- (void)addPayloadChargingConnectorType:(id)arg1;
 - (void)addPayloadContactEventTrigger:(id)arg1;
 - (void)addPayloadContactList:(id)arg1;
 - (void)addPayloadContactValue:(id)arg1;
@@ -787,6 +942,7 @@
 - (void)addPayloadDateTimeRangeList:(id)arg1;
 - (void)addPayloadDateTimeRangeValue:(id)arg1;
 - (void)addPayloadDateTimeValue:(id)arg1;
+- (void)addPayloadDevice:(id)arg1;
 - (void)addPayloadDeviceDetail:(id)arg1;
 - (void)addPayloadDeviceType:(int)arg1;
 - (void)addPayloadDialingContact:(id)arg1;
@@ -810,6 +966,7 @@
 - (void)addPayloadFinancialAccountValue:(id)arg1;
 - (void)addPayloadGeographicalFeature:(id)arg1;
 - (void)addPayloadGeographicalFeatureList:(id)arg1;
+- (void)addPayloadGetSettingResponseData:(id)arg1;
 - (void)addPayloadHomeAttribute:(id)arg1;
 - (void)addPayloadHomeAttributeType:(int)arg1;
 - (void)addPayloadHomeAttributeValue:(id)arg1;
@@ -837,9 +994,14 @@
 - (void)addPayloadMessageAttribute:(int)arg1;
 - (void)addPayloadMessageEffect:(int)arg1;
 - (void)addPayloadMessageType:(int)arg1;
+- (void)addPayloadModifyNickname:(id)arg1;
+- (void)addPayloadModifyRelationship:(id)arg1;
 - (void)addPayloadNote:(id)arg1;
 - (void)addPayloadNoteContent:(id)arg1;
 - (void)addPayloadNotebookItemType:(int)arg1;
+- (void)addPayloadNumericSettingUnit:(int)arg1;
+- (void)addPayloadNumericSettingValue:(id)arg1;
+- (void)addPayloadOutgoingMessageType:(int)arg1;
 - (void)addPayloadParsecCategory:(int)arg1;
 - (void)addPayloadPaymentAmountValue:(id)arg1;
 - (void)addPayloadPaymentMethodList:(id)arg1;
@@ -857,11 +1019,18 @@
 - (void)addPayloadPrimitiveInt:(int)arg1;
 - (void)addPayloadPrimitiveLong:(long long)arg1;
 - (void)addPayloadPrimitiveString:(id)arg1;
+- (void)addPayloadPrivateAddMediaIntentData:(id)arg1;
+- (void)addPayloadPrivatePlayMediaIntentData:(id)arg1;
+- (void)addPayloadPrivateSearchForMediaIntentData:(id)arg1;
+- (void)addPayloadPrivateUpdateMediaAffinityIntentData:(id)arg1;
 - (void)addPayloadRadioType:(int)arg1;
 - (void)addPayloadRelativeReference:(int)arg1;
 - (void)addPayloadRelativeSetting:(int)arg1;
 - (void)addPayloadSendMessageAttachment:(id)arg1;
+- (void)addPayloadSettingAction:(int)arg1;
+- (void)addPayloadSettingMetadata:(id)arg1;
 - (void)addPayloadShareDestination:(id)arg1;
+- (void)addPayloadSleepAlarmAttribute:(id)arg1;
 - (void)addPayloadSpatialEventTrigger:(id)arg1;
 - (void)addPayloadSpeedValue:(id)arg1;
 - (void)addPayloadStringList:(id)arg1;
@@ -879,6 +1048,7 @@
 - (void)addPayloadTimerState:(int)arg1;
 - (void)addPayloadTimerType:(int)arg1;
 - (void)addPayloadURLValue:(id)arg1;
+- (void)addPayloadUpdateAlarmOperation:(int)arg1;
 - (void)addPayloadVisualCodeType:(int)arg1;
 - (void)addPayloadVoiceCommandDeviceInformation:(id)arg1;
 - (void)addPayloadVolumeValue:(id)arg1;
@@ -894,21 +1064,32 @@
 - (void)clearPayloadAccountTypes;
 - (void)clearPayloadActivities;
 - (void)clearPayloadActivityLists;
+- (void)clearPayloadAlarmPeriods;
+- (void)clearPayloadAlarmRepeatSchedules;
+- (void)clearPayloadAlarmSearchTypes;
+- (void)clearPayloadAlarmSearchs;
+- (void)clearPayloadAlarms;
 - (void)clearPayloadAppIdentifiers;
 - (void)clearPayloadArchivedObjects;
 - (void)clearPayloadBalanceTypes;
 - (void)clearPayloadBillDetailsValues;
 - (void)clearPayloadBillPayeeValues;
 - (void)clearPayloadBillTypes;
+- (void)clearPayloadBinarySettingValues;
+- (void)clearPayloadBoundedSettingValues;
 - (void)clearPayloadCallAudioRoutes;
 - (void)clearPayloadCallCapabilities;
 - (void)clearPayloadCallDestinationTypes;
+- (void)clearPayloadCallRecordFilters;
 - (void)clearPayloadCallRecordTypes;
+- (void)clearPayloadCallRecordValues;
 - (void)clearPayloadCarAirCirculationModes;
 - (void)clearPayloadCarAudioSources;
 - (void)clearPayloadCarDefrosters;
 - (void)clearPayloadCarSeats;
 - (void)clearPayloadCarSignalIdentifiers;
+- (void)clearPayloadChangeAlarmStatusOperations;
+- (void)clearPayloadChargingConnectorTypes;
 - (void)clearPayloadContactEventTriggers;
 - (void)clearPayloadContactLists;
 - (void)clearPayloadContactValues;
@@ -922,6 +1103,7 @@
 - (void)clearPayloadDateTimeValues;
 - (void)clearPayloadDeviceDetails;
 - (void)clearPayloadDeviceTypes;
+- (void)clearPayloadDevices;
 - (void)clearPayloadDialingContacts;
 - (void)clearPayloadDistanceLists;
 - (void)clearPayloadDistanceValues;
@@ -943,6 +1125,7 @@
 - (void)clearPayloadFinancialAccountValues;
 - (void)clearPayloadGeographicalFeatureLists;
 - (void)clearPayloadGeographicalFeatures;
+- (void)clearPayloadGetSettingResponseDatas;
 - (void)clearPayloadHomeAttributeTypes;
 - (void)clearPayloadHomeAttributeValueTypes;
 - (void)clearPayloadHomeAttributeValues;
@@ -970,9 +1153,14 @@
 - (void)clearPayloadMessageAttributes;
 - (void)clearPayloadMessageEffects;
 - (void)clearPayloadMessageTypes;
+- (void)clearPayloadModifyNicknames;
+- (void)clearPayloadModifyRelationships;
 - (void)clearPayloadNoteContents;
 - (void)clearPayloadNotebookItemTypes;
 - (void)clearPayloadNotes;
+- (void)clearPayloadNumericSettingUnits;
+- (void)clearPayloadNumericSettingValues;
+- (void)clearPayloadOutgoingMessageTypes;
 - (void)clearPayloadParsecCategories;
 - (void)clearPayloadPaymentAmountValues;
 - (void)clearPayloadPaymentMethodLists;
@@ -990,11 +1178,18 @@
 - (void)clearPayloadPrimitiveInts;
 - (void)clearPayloadPrimitiveLongs;
 - (void)clearPayloadPrimitiveStrings;
+- (void)clearPayloadPrivateAddMediaIntentDatas;
+- (void)clearPayloadPrivatePlayMediaIntentDatas;
+- (void)clearPayloadPrivateSearchForMediaIntentDatas;
+- (void)clearPayloadPrivateUpdateMediaAffinityIntentDatas;
 - (void)clearPayloadRadioTypes;
 - (void)clearPayloadRelativeReferences;
 - (void)clearPayloadRelativeSettings;
 - (void)clearPayloadSendMessageAttachments;
+- (void)clearPayloadSettingActions;
+- (void)clearPayloadSettingMetadatas;
 - (void)clearPayloadShareDestinations;
+- (void)clearPayloadSleepAlarmAttributes;
 - (void)clearPayloadSpatialEventTriggers;
 - (void)clearPayloadSpeedValues;
 - (void)clearPayloadStringLists;
@@ -1012,6 +1207,7 @@
 - (void)clearPayloadTimerTypes;
 - (void)clearPayloadTimers;
 - (void)clearPayloadURLValues;
+- (void)clearPayloadUpdateAlarmOperations;
 - (void)clearPayloadVisualCodeTypes;
 - (void)clearPayloadVoiceCommandDeviceInformations;
 - (void)clearPayloadVolumeValues;
@@ -1042,6 +1238,24 @@
 - (id)payloadActivityListAtIndex:(unsigned long long)arg1;
 - (id)payloadActivityLists;
 - (unsigned long long)payloadActivityListsCount;
+- (id)payloadAlarmAtIndex:(unsigned long long)arg1;
+- (int)payloadAlarmPeriodAtIndex:(unsigned long long)arg1;
+- (int*)payloadAlarmPeriods;
+- (id)payloadAlarmPeriodsAsString:(int)arg1;
+- (unsigned long long)payloadAlarmPeriodsCount;
+- (int)payloadAlarmRepeatScheduleAtIndex:(unsigned long long)arg1;
+- (int*)payloadAlarmRepeatSchedules;
+- (id)payloadAlarmRepeatSchedulesAsString:(int)arg1;
+- (unsigned long long)payloadAlarmRepeatSchedulesCount;
+- (id)payloadAlarmSearchAtIndex:(unsigned long long)arg1;
+- (int)payloadAlarmSearchTypeAtIndex:(unsigned long long)arg1;
+- (int*)payloadAlarmSearchTypes;
+- (id)payloadAlarmSearchTypesAsString:(int)arg1;
+- (unsigned long long)payloadAlarmSearchTypesCount;
+- (id)payloadAlarmSearchs;
+- (unsigned long long)payloadAlarmSearchsCount;
+- (id)payloadAlarms;
+- (unsigned long long)payloadAlarmsCount;
 - (id)payloadAppIdentifierAtIndex:(unsigned long long)arg1;
 - (id)payloadAppIdentifiers;
 - (unsigned long long)payloadAppIdentifiersCount;
@@ -1062,6 +1276,14 @@
 - (int*)payloadBillTypes;
 - (id)payloadBillTypesAsString:(int)arg1;
 - (unsigned long long)payloadBillTypesCount;
+- (int)payloadBinarySettingValueAtIndex:(unsigned long long)arg1;
+- (int*)payloadBinarySettingValues;
+- (id)payloadBinarySettingValuesAsString:(int)arg1;
+- (unsigned long long)payloadBinarySettingValuesCount;
+- (int)payloadBoundedSettingValueAtIndex:(unsigned long long)arg1;
+- (int*)payloadBoundedSettingValues;
+- (id)payloadBoundedSettingValuesAsString:(int)arg1;
+- (unsigned long long)payloadBoundedSettingValuesCount;
 - (int)payloadCallAudioRouteAtIndex:(unsigned long long)arg1;
 - (int*)payloadCallAudioRoutes;
 - (id)payloadCallAudioRoutesAsString:(int)arg1;
@@ -1074,10 +1296,16 @@
 - (int*)payloadCallDestinationTypes;
 - (id)payloadCallDestinationTypesAsString:(int)arg1;
 - (unsigned long long)payloadCallDestinationTypesCount;
+- (id)payloadCallRecordFilterAtIndex:(unsigned long long)arg1;
+- (id)payloadCallRecordFilters;
+- (unsigned long long)payloadCallRecordFiltersCount;
 - (int)payloadCallRecordTypeAtIndex:(unsigned long long)arg1;
 - (int*)payloadCallRecordTypes;
 - (id)payloadCallRecordTypesAsString:(int)arg1;
 - (unsigned long long)payloadCallRecordTypesCount;
+- (id)payloadCallRecordValueAtIndex:(unsigned long long)arg1;
+- (id)payloadCallRecordValues;
+- (unsigned long long)payloadCallRecordValuesCount;
 - (int)payloadCarAirCirculationModeAtIndex:(unsigned long long)arg1;
 - (int*)payloadCarAirCirculationModes;
 - (id)payloadCarAirCirculationModesAsString:(int)arg1;
@@ -1098,6 +1326,13 @@
 - (int*)payloadCarSignalIdentifiers;
 - (id)payloadCarSignalIdentifiersAsString:(int)arg1;
 - (unsigned long long)payloadCarSignalIdentifiersCount;
+- (int)payloadChangeAlarmStatusOperationAtIndex:(unsigned long long)arg1;
+- (int*)payloadChangeAlarmStatusOperations;
+- (id)payloadChangeAlarmStatusOperationsAsString:(int)arg1;
+- (unsigned long long)payloadChangeAlarmStatusOperationsCount;
+- (id)payloadChargingConnectorTypeAtIndex:(unsigned long long)arg1;
+- (id)payloadChargingConnectorTypes;
+- (unsigned long long)payloadChargingConnectorTypesCount;
 - (id)payloadContactEventTriggerAtIndex:(unsigned long long)arg1;
 - (id)payloadContactEventTriggers;
 - (unsigned long long)payloadContactEventTriggersCount;
@@ -1132,6 +1367,7 @@
 - (id)payloadDateTimeValueAtIndex:(unsigned long long)arg1;
 - (id)payloadDateTimeValues;
 - (unsigned long long)payloadDateTimeValuesCount;
+- (id)payloadDeviceAtIndex:(unsigned long long)arg1;
 - (id)payloadDeviceDetailAtIndex:(unsigned long long)arg1;
 - (id)payloadDeviceDetails;
 - (unsigned long long)payloadDeviceDetailsCount;
@@ -1139,6 +1375,8 @@
 - (int*)payloadDeviceTypes;
 - (id)payloadDeviceTypesAsString:(int)arg1;
 - (unsigned long long)payloadDeviceTypesCount;
+- (id)payloadDevices;
+- (unsigned long long)payloadDevicesCount;
 - (id)payloadDialingContactAtIndex:(unsigned long long)arg1;
 - (id)payloadDialingContacts;
 - (unsigned long long)payloadDialingContactsCount;
@@ -1208,6 +1446,9 @@
 - (unsigned long long)payloadGeographicalFeatureListsCount;
 - (id)payloadGeographicalFeatures;
 - (unsigned long long)payloadGeographicalFeaturesCount;
+- (id)payloadGetSettingResponseDataAtIndex:(unsigned long long)arg1;
+- (id)payloadGetSettingResponseDatas;
+- (unsigned long long)payloadGetSettingResponseDatasCount;
 - (id)payloadHomeAttributeAtIndex:(unsigned long long)arg1;
 - (int)payloadHomeAttributeTypeAtIndex:(unsigned long long)arg1;
 - (int*)payloadHomeAttributeTypes;
@@ -1298,6 +1539,12 @@
 - (int*)payloadMessageTypes;
 - (id)payloadMessageTypesAsString:(int)arg1;
 - (unsigned long long)payloadMessageTypesCount;
+- (id)payloadModifyNicknameAtIndex:(unsigned long long)arg1;
+- (id)payloadModifyNicknames;
+- (unsigned long long)payloadModifyNicknamesCount;
+- (id)payloadModifyRelationshipAtIndex:(unsigned long long)arg1;
+- (id)payloadModifyRelationships;
+- (unsigned long long)payloadModifyRelationshipsCount;
 - (id)payloadNoteAtIndex:(unsigned long long)arg1;
 - (id)payloadNoteContentAtIndex:(unsigned long long)arg1;
 - (id)payloadNoteContents;
@@ -1308,6 +1555,17 @@
 - (unsigned long long)payloadNotebookItemTypesCount;
 - (id)payloadNotes;
 - (unsigned long long)payloadNotesCount;
+- (int)payloadNumericSettingUnitAtIndex:(unsigned long long)arg1;
+- (int*)payloadNumericSettingUnits;
+- (id)payloadNumericSettingUnitsAsString:(int)arg1;
+- (unsigned long long)payloadNumericSettingUnitsCount;
+- (id)payloadNumericSettingValueAtIndex:(unsigned long long)arg1;
+- (id)payloadNumericSettingValues;
+- (unsigned long long)payloadNumericSettingValuesCount;
+- (int)payloadOutgoingMessageTypeAtIndex:(unsigned long long)arg1;
+- (int*)payloadOutgoingMessageTypes;
+- (id)payloadOutgoingMessageTypesAsString:(int)arg1;
+- (unsigned long long)payloadOutgoingMessageTypesCount;
 - (int*)payloadParsecCategories;
 - (id)payloadParsecCategoriesAsString:(int)arg1;
 - (unsigned long long)payloadParsecCategoriesCount;
@@ -1366,6 +1624,18 @@
 - (id)payloadPrimitiveStringAtIndex:(unsigned long long)arg1;
 - (id)payloadPrimitiveStrings;
 - (unsigned long long)payloadPrimitiveStringsCount;
+- (id)payloadPrivateAddMediaIntentDataAtIndex:(unsigned long long)arg1;
+- (id)payloadPrivateAddMediaIntentDatas;
+- (unsigned long long)payloadPrivateAddMediaIntentDatasCount;
+- (id)payloadPrivatePlayMediaIntentDataAtIndex:(unsigned long long)arg1;
+- (id)payloadPrivatePlayMediaIntentDatas;
+- (unsigned long long)payloadPrivatePlayMediaIntentDatasCount;
+- (id)payloadPrivateSearchForMediaIntentDataAtIndex:(unsigned long long)arg1;
+- (id)payloadPrivateSearchForMediaIntentDatas;
+- (unsigned long long)payloadPrivateSearchForMediaIntentDatasCount;
+- (id)payloadPrivateUpdateMediaAffinityIntentDataAtIndex:(unsigned long long)arg1;
+- (id)payloadPrivateUpdateMediaAffinityIntentDatas;
+- (unsigned long long)payloadPrivateUpdateMediaAffinityIntentDatasCount;
 - (int)payloadRadioTypeAtIndex:(unsigned long long)arg1;
 - (int*)payloadRadioTypes;
 - (id)payloadRadioTypesAsString:(int)arg1;
@@ -1381,9 +1651,19 @@
 - (id)payloadSendMessageAttachmentAtIndex:(unsigned long long)arg1;
 - (id)payloadSendMessageAttachments;
 - (unsigned long long)payloadSendMessageAttachmentsCount;
+- (int)payloadSettingActionAtIndex:(unsigned long long)arg1;
+- (int*)payloadSettingActions;
+- (id)payloadSettingActionsAsString:(int)arg1;
+- (unsigned long long)payloadSettingActionsCount;
+- (id)payloadSettingMetadataAtIndex:(unsigned long long)arg1;
+- (id)payloadSettingMetadatas;
+- (unsigned long long)payloadSettingMetadatasCount;
 - (id)payloadShareDestinationAtIndex:(unsigned long long)arg1;
 - (id)payloadShareDestinations;
 - (unsigned long long)payloadShareDestinationsCount;
+- (id)payloadSleepAlarmAttributeAtIndex:(unsigned long long)arg1;
+- (id)payloadSleepAlarmAttributes;
+- (unsigned long long)payloadSleepAlarmAttributesCount;
 - (id)payloadSpatialEventTriggerAtIndex:(unsigned long long)arg1;
 - (id)payloadSpatialEventTriggers;
 - (unsigned long long)payloadSpatialEventTriggersCount;
@@ -1441,6 +1721,10 @@
 - (id)payloadURLValueAtIndex:(unsigned long long)arg1;
 - (id)payloadURLValues;
 - (unsigned long long)payloadURLValuesCount;
+- (int)payloadUpdateAlarmOperationAtIndex:(unsigned long long)arg1;
+- (int*)payloadUpdateAlarmOperations;
+- (id)payloadUpdateAlarmOperationsAsString:(int)arg1;
+- (unsigned long long)payloadUpdateAlarmOperationsCount;
 - (int)payloadVisualCodeTypeAtIndex:(unsigned long long)arg1;
 - (int*)payloadVisualCodeTypes;
 - (id)payloadVisualCodeTypesAsString:(int)arg1;
@@ -1488,21 +1772,32 @@
 - (void)setPayloadAccountTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadActivities:(id)arg1;
 - (void)setPayloadActivityLists:(id)arg1;
+- (void)setPayloadAlarmPeriods:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadAlarmRepeatSchedules:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadAlarmSearchTypes:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadAlarmSearchs:(id)arg1;
+- (void)setPayloadAlarms:(id)arg1;
 - (void)setPayloadAppIdentifiers:(id)arg1;
 - (void)setPayloadArchivedObjects:(id)arg1;
 - (void)setPayloadBalanceTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadBillDetailsValues:(id)arg1;
 - (void)setPayloadBillPayeeValues:(id)arg1;
 - (void)setPayloadBillTypes:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadBinarySettingValues:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadBoundedSettingValues:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadCallAudioRoutes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadCallCapabilities:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadCallDestinationTypes:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadCallRecordFilters:(id)arg1;
 - (void)setPayloadCallRecordTypes:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadCallRecordValues:(id)arg1;
 - (void)setPayloadCarAirCirculationModes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadCarAudioSources:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadCarDefrosters:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadCarSeats:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadCarSignalIdentifiers:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadChangeAlarmStatusOperations:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadChargingConnectorTypes:(id)arg1;
 - (void)setPayloadContactEventTriggers:(id)arg1;
 - (void)setPayloadContactLists:(id)arg1;
 - (void)setPayloadContactValues:(id)arg1;
@@ -1516,6 +1811,7 @@
 - (void)setPayloadDateTimeValues:(id)arg1;
 - (void)setPayloadDeviceDetails:(id)arg1;
 - (void)setPayloadDeviceTypes:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadDevices:(id)arg1;
 - (void)setPayloadDialingContacts:(id)arg1;
 - (void)setPayloadDistanceLists:(id)arg1;
 - (void)setPayloadDistanceValues:(id)arg1;
@@ -1537,6 +1833,7 @@
 - (void)setPayloadFinancialAccountValues:(id)arg1;
 - (void)setPayloadGeographicalFeatureLists:(id)arg1;
 - (void)setPayloadGeographicalFeatures:(id)arg1;
+- (void)setPayloadGetSettingResponseDatas:(id)arg1;
 - (void)setPayloadHomeAttributeTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadHomeAttributeValueTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadHomeAttributeValues:(id)arg1;
@@ -1564,9 +1861,14 @@
 - (void)setPayloadMessageAttributes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadMessageEffects:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadMessageTypes:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadModifyNicknames:(id)arg1;
+- (void)setPayloadModifyRelationships:(id)arg1;
 - (void)setPayloadNoteContents:(id)arg1;
 - (void)setPayloadNotebookItemTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadNotes:(id)arg1;
+- (void)setPayloadNumericSettingUnits:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadNumericSettingValues:(id)arg1;
+- (void)setPayloadOutgoingMessageTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadParsecCategories:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadPaymentAmountValues:(id)arg1;
 - (void)setPayloadPaymentMethodLists:(id)arg1;
@@ -1584,11 +1886,18 @@
 - (void)setPayloadPrimitiveInts:(id)arg1;
 - (void)setPayloadPrimitiveLongs:(id)arg1;
 - (void)setPayloadPrimitiveStrings:(id)arg1;
+- (void)setPayloadPrivateAddMediaIntentDatas:(id)arg1;
+- (void)setPayloadPrivatePlayMediaIntentDatas:(id)arg1;
+- (void)setPayloadPrivateSearchForMediaIntentDatas:(id)arg1;
+- (void)setPayloadPrivateUpdateMediaAffinityIntentDatas:(id)arg1;
 - (void)setPayloadRadioTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadRelativeReferences:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadRelativeSettings:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadSendMessageAttachments:(id)arg1;
+- (void)setPayloadSettingActions:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setPayloadSettingMetadatas:(id)arg1;
 - (void)setPayloadShareDestinations:(id)arg1;
+- (void)setPayloadSleepAlarmAttributes:(id)arg1;
 - (void)setPayloadSpatialEventTriggers:(id)arg1;
 - (void)setPayloadSpeedValues:(id)arg1;
 - (void)setPayloadStringLists:(id)arg1;
@@ -1606,6 +1915,7 @@
 - (void)setPayloadTimerTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadTimers:(id)arg1;
 - (void)setPayloadURLValues:(id)arg1;
+- (void)setPayloadUpdateAlarmOperations:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadVisualCodeTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setPayloadVoiceCommandDeviceInformations:(id)arg1;
 - (void)setPayloadVolumeValues:(id)arg1;

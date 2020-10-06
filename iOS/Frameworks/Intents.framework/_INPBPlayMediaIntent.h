@@ -3,7 +3,6 @@
  */
 
 @interface _INPBPlayMediaIntent : PBCodable <NSCopying, NSSecureCoding, _INPBPlayMediaIntent> {
-    bool  __encodeLegacyGloryData;
     NSArray * _alternativeResults;
     NSArray * _audioSearchResults;
     _INPBString * _audiobookAuthor;
@@ -31,13 +30,13 @@
     int  _playbackRepeatMode;
     double  _playbackSpeed;
     _INPBString * _playlistTitle;
+    _INPBPrivatePlayMediaIntentData * _privatePlayMediaIntentData;
     NSString * _proxiedBundleIdentifier;
     NSString * _recoID;
     bool  _resumePlayback;
     _INPBString * _showTitle;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *alternativeResults;
 @property (nonatomic, readonly) unsigned long long alternativeResultsCount;
 @property (nonatomic, copy) NSArray *audioSearchResults;
@@ -63,6 +62,7 @@
 @property (nonatomic) bool hasPlaybackRepeatMode;
 @property (nonatomic) bool hasPlaybackSpeed;
 @property (nonatomic, readonly) bool hasPlaylistTitle;
+@property (nonatomic, readonly) bool hasPrivatePlayMediaIntentData;
 @property (nonatomic, readonly) bool hasProxiedBundleIdentifier;
 @property (nonatomic, readonly) bool hasRecoID;
 @property (nonatomic) bool hasResumePlayback;
@@ -83,6 +83,7 @@
 @property (nonatomic) int playbackRepeatMode;
 @property (nonatomic) double playbackSpeed;
 @property (nonatomic, retain) _INPBString *playlistTitle;
+@property (nonatomic, retain) _INPBPrivatePlayMediaIntentData *privatePlayMediaIntentData;
 @property (nonatomic, copy) NSString *proxiedBundleIdentifier;
 @property (nonatomic, copy) NSString *recoID;
 @property (nonatomic) bool resumePlayback;
@@ -100,8 +101,6 @@
 - (int)StringAsParsecCategory:(id)arg1;
 - (int)StringAsPlaybackQueueLocation:(id)arg1;
 - (int)StringAsPlaybackRepeatMode:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAlternativeResults:(id)arg1;
 - (void)addAudioSearchResults:(id)arg1;
 - (void)addBucket:(id)arg1;
@@ -141,6 +140,7 @@
 - (bool)hasPlaybackRepeatMode;
 - (bool)hasPlaybackSpeed;
 - (bool)hasPlaylistTitle;
+- (bool)hasPrivatePlayMediaIntentData;
 - (bool)hasProxiedBundleIdentifier;
 - (bool)hasRecoID;
 - (bool)hasResumePlayback;
@@ -168,6 +168,7 @@
 - (id)playbackRepeatModeAsString:(int)arg1;
 - (double)playbackSpeed;
 - (id)playlistTitle;
+- (id)privatePlayMediaIntentData;
 - (id)proxiedBundleIdentifier;
 - (bool)readFrom:(id)arg1;
 - (id)recoID;
@@ -197,6 +198,7 @@
 - (void)setPlaybackRepeatMode:(int)arg1;
 - (void)setPlaybackSpeed:(double)arg1;
 - (void)setPlaylistTitle:(id)arg1;
+- (void)setPrivatePlayMediaIntentData:(id)arg1;
 - (void)setProxiedBundleIdentifier:(id)arg1;
 - (void)setRecoID:(id)arg1;
 - (void)setResumePlayback:(bool)arg1;

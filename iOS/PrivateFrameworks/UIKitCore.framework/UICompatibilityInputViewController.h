@@ -3,8 +3,10 @@
  */
 
 @interface UICompatibilityInputViewController : UIInputViewController <_UIKBDelegateAwareInputController> {
+    <UITextCursorAssertion> * _blinkAssertion;
     double  _currentResumeTime;
     UIKeyboard * _deferredSystemView;
+    UILayoutGuide * _focusSafeAreaLayoutGuide;
     UIKeyboardInputMode * _incomingExtensionInputMode;
     double  _incomingExtensionInputModeTime;
     UIViewController * _inputController;
@@ -18,14 +20,14 @@
     bool  _tearingDownInputController;
 }
 
+@property (nonatomic, retain) <UITextCursorAssertion> *blinkAssertion;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) UILayoutGuide *focusSafeAreaLayoutGuide;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) UIViewController *inputController;
 @property (nonatomic, retain) NSArray *internalEdgeMatchConstraints;
 @property (readonly) Class superclass;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (bool)_requiresProxyInterface;
 + (void)applicationDidReceiveMemoryWarning:(id)arg1;
@@ -41,21 +43,21 @@
 - (id)_keyboardForThisViewController;
 - (id)_systemViewControllerForInputMode:(id)arg1;
 - (void)_tvUpdateAppearanceForUserInterfaceStyle;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addSnapshotViewForInputMode:(id)arg1;
 - (void)assertCurrentInputModeIfNecessary;
+- (id)blinkAssertion;
 - (id)childCompatibilityController;
+- (void)dealloc;
 - (void)didFinishTranslation;
 - (void)didMoveToParentViewController:(id)arg1;
 - (void)didRotateFromInterfaceOrientation:(long long)arg1;
 - (void)didSuspend:(id)arg1;
 - (void)finishSplitTransition:(bool)arg1;
+- (id)focusSafeAreaLayoutGuide;
 - (void)generateCompatibleSizeConstraintsIfNecessary;
 - (id)inputController;
 - (id)internalEdgeMatchConstraints;
+- (void)isHosted:(id)arg1;
 - (void)keyboardWillChangeFromDelegate:(id)arg1 toDelegate:(id)arg2;
 - (void)killIncomingExtension;
 - (void)loadView;
@@ -64,6 +66,7 @@
 - (void)removeSnapshotView;
 - (void)resetInputMode;
 - (void)resetInputModeInMainThread;
+- (void)setBlinkAssertion:(id)arg1;
 - (void)setDeferredSystemView:(id)arg1;
 - (void)setInputController:(id)arg1;
 - (void)setInputMode:(id)arg1;
@@ -74,6 +77,7 @@
 - (void)shouldUpdateInputMode:(id)arg1;
 - (void)takeSnapshotView;
 - (void)tearDownInputController;
+- (void)validateInputModeIsDisplayed;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillAppear:(bool)arg1;
 - (void)viewWillDisappear:(bool)arg1;

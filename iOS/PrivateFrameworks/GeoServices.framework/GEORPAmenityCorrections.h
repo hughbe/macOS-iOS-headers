@@ -12,9 +12,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_addedAmenities : 1; 
         unsigned int read_removedAmenities : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_addedAmenities : 1; 
-        unsigned int wrote_removedAmenities : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -41,10 +39,6 @@
 - (void).cxx_destruct;
 - (int)StringAsAddedAmenities:(id)arg1;
 - (int)StringAsRemovedAmenities:(id)arg1;
-- (void)_addNoFlagsAddedAmenities:(int)arg1;
-- (void)_addNoFlagsRemovedAmenities:(int)arg1;
-- (void)_readAddedAmenities;
-- (void)_readRemovedAmenities;
 - (void)addAddedAmenities:(int)arg1;
 - (void)addRemovedAmenities:(int)arg1;
 - (int*)addedAmenities;
@@ -62,7 +56,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

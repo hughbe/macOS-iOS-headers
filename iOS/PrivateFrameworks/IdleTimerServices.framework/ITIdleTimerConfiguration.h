@@ -28,6 +28,7 @@
 - (unsigned long long)_idleEventMask;
 - (void)_setIdleEventHandlerBlock:(id /* block */)arg1;
 - (void)_setIdleEventMask:(unsigned long long)arg1;
+- (id)_uniquedReason:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;

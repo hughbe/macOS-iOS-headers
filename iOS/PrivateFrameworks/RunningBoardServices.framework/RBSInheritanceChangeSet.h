@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSInheritanceChangeSet : NSObject <BSXPCSecureCoding> {
+@interface RBSInheritanceChangeSet : NSObject <RBSXPCSecureCoding> {
     NSSet * _gainedInheritances;
     NSSet * _lostInheritances;
 }
@@ -14,13 +14,13 @@
 @property (nonatomic, readonly, copy) NSSet *lostInheritances;
 @property (readonly) Class superclass;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)gainedInheritances;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithGainedInheritances:(id)arg1 lostInheritances:(id)arg2;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)lostInheritances;
 

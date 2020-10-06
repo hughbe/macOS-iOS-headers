@@ -6,8 +6,7 @@
     struct { 
         unsigned int read_hours : 1; 
         unsigned int read_qualities : 1; 
-        unsigned int wrote_hours : 1; 
-        unsigned int wrote_qualities : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOWiFiQualityHours * _hours;
     NSMutableArray * _qualities;
@@ -27,9 +26,6 @@
 + (Class)qualitiesType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsQualities:(id)arg1;
-- (void)_readHours;
-- (void)_readQualities;
 - (void)addQualities:(id)arg1;
 - (void)clearQualities;
 - (void)copyTo:(id)arg1;
@@ -41,7 +37,10 @@
 - (id)hours;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)qualities;
 - (id)qualitiesAtIndex:(unsigned long long)arg1;

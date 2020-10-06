@@ -13,7 +13,9 @@
 @property (nonatomic, copy) NSArray *keychainItems;
 @property (nonatomic, readonly) TKTokenID *tokenID;
 
++ (bool)_hasSeparateKeysAndCertificatesObjectIDSpace;
 + (id)interfaceForProtocol;
++ (void)set_hasSeparateKeysAndCertificatesObjectIDSpace:(bool)arg1;
 
 - (void).cxx_destruct;
 - (id)beginTransaction;

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIDictationLayoutView : UIDictationView {
+@interface UIDictationLayoutView : UIDictationView <UIPointerInteractionDelegate> {
     bool  _blackTextColor;
     NSString * _currentDictationLanguage;
     UIButton * _globeButton;
@@ -12,13 +12,13 @@
     UIButton * _waveTapEndpointButton;
 }
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
 
 - (id)darkGrayColor;
+- (void)dealloc;
 - (void)finishReturnToKeyboard;
 - (void)globeButtonPressed:(id)arg1 withEvent:(id)arg2;
 - (void)globeButtonPressed:(id)arg1 withEvent:(id)arg2 location:(struct CGPoint { double x1; double x2; })arg3;
@@ -26,6 +26,7 @@
 - (bool)isShowing;
 - (void)keyboardButtonPressed:(id)arg1;
 - (void)layoutSubviews;
+- (id)pointerInteraction:(id)arg1 styleForRegion:(id)arg2;
 - (void)returnToKeyboard;
 - (void)setRenderConfig:(id)arg1;
 - (void)setState:(int)arg1;

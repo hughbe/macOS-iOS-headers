@@ -14,7 +14,7 @@
 @property unsigned long long bytesInboundCount;
 @property unsigned long long bytesOutboundCount;
 @property (readonly) long long event;
-@property (copy) NEFilterFlow *flow;
+@property (retain) NEFilterFlow *flow;
 
 + (bool)supportsSecureCoding;
 

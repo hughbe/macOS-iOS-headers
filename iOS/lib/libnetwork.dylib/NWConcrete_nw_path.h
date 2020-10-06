@@ -13,8 +13,6 @@
     NSObject<OS_nw_interface> * delegate;
     NSObject<OS_nw_interface> * direct;
     NSObject<OS_nw_array> * discovered_endpoints;
-    NSObject<OS_xpc_object> * dns_search_domains;
-    NSObject<OS_nw_array> * dns_servers;
     unsigned int  effective_mtu;
     unsigned int  effective_traffic_class;
     NSObject<OS_nw_endpoint> * endpoint;
@@ -42,6 +40,7 @@
     NSObject<OS_xpc_object> * network_agent_dictionary;
     unsigned int  no_fallback_timer;
     NSObject<OS_nw_interface> * override_interface;
+    unsigned int  override_interface_scoped;
     unsigned int  override_is_constrained;
     unsigned int  override_is_expensive;
     NSObject<OS_nw_endpoint> * override_local_endpoint;
@@ -56,6 +55,8 @@
             unsigned int scoped_interface_index; 
             unsigned int flow_divert_control_unit; 
             unsigned int filter_control_unit; 
+            unsigned int pass_flags; 
+            unsigned int drop_flags; 
         } routing_result_parameter; 
         unsigned int filter_control_unit; 
         unsigned int service_action; 
@@ -79,6 +80,7 @@
     char * reason_description;
     unsigned char  recommended_mss;
     NSObject<OS_nw_array> * resolved_endpoints;
+    NSObject<OS_nw_array> * resolver_configs;
     unsigned int  specific_listener;
     int  status;
     unsigned int  traffic_mgmt_background;

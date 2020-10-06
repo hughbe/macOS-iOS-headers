@@ -12,6 +12,7 @@
 @property (nonatomic) bool needsUpdate;
 @property (nonatomic) id target;
 
+- (void).cxx_destruct;
 - (SEL)action;
 - (id)description;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;

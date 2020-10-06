@@ -3,29 +3,21 @@
  */
 
 @interface LSBundleProxy : LSResourceProxy <NSSecureCoding> {
-    bool  _UPPValidated;
     _LSLazyPropertyList * __entitlements;
     _LSLazyPropertyList * __environmentVariables;
-    _LSLazyPropertyList * __groupContainers;
     _LSLazyPropertyList * __infoDictionary;
     _LSBundleIDValidationToken * __validationToken;
     NSURL * _bundleContainerURL;
     NSString * _bundleExecutable;
-    unsigned long long  _bundleFlags;
     NSString * _bundleIdentifier;
-    NSString * _bundleType;
     NSURL * _bundleURL;
     NSString * _bundleVersion;
     NSUUID * _cacheGUID;
     unsigned long long  _compatibilityState;
     bool  _containerized;
-    NSURL * _dataContainerURL;
     bool  _foundBackingBundle;
-    unsigned char  _iconFlags;
     NSString * _localizedShortName;
     NSArray * _machOUUIDs;
-    unsigned int  _plistContentFlags;
-    bool  _profileValidated;
     NSString * _sdkVersion;
     unsigned long long  _sequenceNumber;
     NSString * _signerIdentity;
@@ -35,7 +27,6 @@
 @property (nonatomic, readonly) bool UPPValidated;
 @property (setter=_setEntitlements:, nonatomic, copy) _LSLazyPropertyList *_entitlements;
 @property (setter=_setEnvironmentVariables:, nonatomic, copy) _LSLazyPropertyList *_environmentVariables;
-@property (setter=_setGroupContainers:, nonatomic, copy) _LSLazyPropertyList *_groupContainers;
 @property (readonly) bool _inf_isSystem;
 @property (setter=_setInfoDictionary:, nonatomic, copy) _LSLazyPropertyList *_infoDictionary;
 @property (setter=_setValidationToken:, nonatomic, retain) _LSBundleIDValidationToken *_validationToken;
@@ -55,6 +46,7 @@
 @property (nonatomic, readonly) NSDictionary *entitlements;
 @property (nonatomic, readonly) NSDictionary *environmentVariables;
 @property (nonatomic, readonly) bool foundBackingBundle;
+@property (nonatomic, readonly) bool freeProfileValidated;
 @property (nonatomic, readonly) NSDictionary *groupContainerURLs;
 @property (readonly) LSApplicationProxy *if_containingAppProxy;
 @property (readonly) bool if_isAppExtension;
@@ -71,23 +63,17 @@
 // Image: /System/Library/Frameworks/CoreServices.framework/CoreServices
 
 + (id)bundleProxyForCurrentProcess;
-+ (bool)bundleProxyForCurrentProcessNeedsUpdate:(id)arg1;
 + (id)bundleProxyForIdentifier:(id)arg1;
 + (id)bundleProxyForURL:(id)arg1;
 + (id)bundleProxyForURL:(id)arg1 error:(id*)arg2;
 + (id)bundleProxyWithAuditToken:(struct { unsigned int x1[8]; })arg1 error:(id*)arg2;
 + (bool)canInstantiateFromDatabase;
++ (void)clearBundleProxyForCurrentProcess;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)UPPValidated;
-- (unsigned long long)_containerClassForLSBundleType:(id)arg1;
-- (id)_dataContainerURLFromContainerManager;
 - (id)_entitlements;
 - (id)_environmentVariables;
-- (id)_environmentVariablesFromContainerManager;
-- (id)_groupContainerURLsFromContainerManager;
-- (id)_groupContainers;
 - (bool)_hasAssociatedPersonas;
 - (id)_infoDictionary;
 - (id)_initWithBundleUnit:(unsigned int)arg1 context:(struct LSContext { id x1; }*)arg2 bundleType:(unsigned long long)arg3 bundleID:(id)arg4 localizedName:(id)arg5 bundleContainerURL:(id)arg6 dataContainerURL:(id)arg7 resourcesDirectoryURL:(id)arg8 iconsDictionary:(id)arg9 iconFileNames:(id)arg10 version:(id)arg11;
@@ -96,10 +82,8 @@
 - (void)_setCompatibilityState:(unsigned long long)arg1;
 - (void)_setEntitlements:(id)arg1;
 - (void)_setEnvironmentVariables:(id)arg1;
-- (void)_setGroupContainers:(id)arg1;
 - (void)_setInfoDictionary:(id)arg1;
 - (void)_setValidationToken:(id)arg1;
-- (bool)_shouldCallThroughToContainerManagerForPersona;
 - (bool)_usesSystemPersona;
 - (id)_validationToken;
 - (id)_valueForEqualityTesting;
@@ -136,14 +120,12 @@
 - (id)objectForInfoDictionaryKey:(id)arg1 ofClass:(Class)arg2;
 - (id)objectForInfoDictionaryKey:(id)arg1 ofClass:(Class)arg2 valuesOfClass:(Class)arg3;
 - (id)objectsForInfoDictionaryKeys:(id)arg1;
-- (bool)profileValidated;
 - (id)sdkVersion;
 - (unsigned long long)sequenceNumber;
 - (void)setMachOUUIDs:(id)arg1;
 - (void)setSDKVersion:(id)arg1;
 - (id)signerIdentity;
 - (id)signerOrganization;
-- (id)uniqueIdentifier;
 
 // Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
 
@@ -151,10 +133,18 @@
 + (id)cls_appExtensionContainerBundleProxyForCurrentTask;
 + (id)cls_appExtensionContainerBundleProxyWithProperties:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_appExtensionContainerBundleForConnection:(id)arg1;
+
 // Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
 
 - (id)un_applicationBundleIdentifier;
 - (id)un_applicationBundleURL;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (id)__ck_icon;
 
 // Image: /System/Library/PrivateFrameworks/IntentsFoundation.framework/IntentsFoundation
 
@@ -163,5 +153,9 @@
 - (bool)if_isAppExtension;
 - (bool)if_isSystem;
 - (bool)if_isWatchKitAppExtension;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (bool)_isInstalled;
 
 @end

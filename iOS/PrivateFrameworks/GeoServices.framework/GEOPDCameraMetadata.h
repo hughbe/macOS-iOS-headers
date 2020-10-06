@@ -11,12 +11,7 @@
         unsigned int read_textureIds : 1; 
         unsigned int read_lensProjection : 1; 
         unsigned int read_position : 1; 
-        unsigned int wrote_textureIds : 1; 
-        unsigned int wrote_lensProjection : 1; 
-        unsigned int wrote_position : 1; 
-        unsigned int wrote_cameraNumber : 1; 
-        unsigned int wrote_imageHeight : 1; 
-        unsigned int wrote_imageWidth : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _imageHeight;
     int  _imageWidth;
@@ -51,10 +46,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsTextureId:(unsigned int)arg1;
-- (void)_readLensProjection;
-- (void)_readPosition;
-- (void)_readTextureIds;
 - (void)addTextureId:(unsigned int)arg1;
 - (int)cameraNumber;
 - (void)clearTextureIds;
@@ -73,7 +64,10 @@
 - (int)imageWidth;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)lensProjection;
 - (void)mergeFrom:(id)arg1;
 - (id)position;

@@ -3,6 +3,7 @@
  */
 
 @interface NSMigrationManager : NSObject {
+    NSString * _destinationConfigurationForCloudKitValidation;
     NSDictionary * _destinationEntitiesByVersionHash;
     NSManagedObjectContext * _destinationManagedObjectContext;
     NSManagedObjectModel * _destinationModel;
@@ -26,6 +27,7 @@
 }
 
 @property (readonly) NSEntityMapping *currentEntityMapping;
+@property (nonatomic, retain) NSString *destinationConfigurationForCloudKitValidation;
 @property (readonly) NSManagedObjectContext *destinationContext;
 @property (readonly) NSManagedObjectModel *destinationModel;
 @property (readonly) NSMappingModel *mappingModel;
@@ -56,6 +58,7 @@
 - (id)currentEntityMapping;
 - (id)currentPropertyMapping;
 - (void)dealloc;
+- (id)destinationConfigurationForCloudKitValidation;
 - (id)destinationContext;
 - (id)destinationEntityForEntityMapping:(id)arg1;
 - (id)destinationInstancesForEntityMappingNamed:(id)arg1 sourceInstances:(id)arg2;
@@ -68,6 +71,7 @@
 - (bool)migrateStoreFromURL:(id)arg1 type:(id)arg2 options:(id)arg3 withMappingModel:(id)arg4 toDestinationURL:(id)arg5 destinationType:(id)arg6 destinationOptions:(id)arg7 error:(id*)arg8;
 - (float)migrationProgress;
 - (void)reset;
+- (void)setDestinationConfigurationForCloudKitValidation:(id)arg1;
 - (void)setUserInfo:(id)arg1;
 - (void)setUsesStoreSpecificMigrationManager:(bool)arg1;
 - (id)sourceContext;

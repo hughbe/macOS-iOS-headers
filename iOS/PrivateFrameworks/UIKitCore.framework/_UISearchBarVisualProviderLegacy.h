@@ -131,6 +131,7 @@
 @property (nonatomic, retain) UISearchBarTextField *searchField;
 @property (nonatomic) struct UIOffset { double x1; double x2; } searchFieldBackgroundPositionAdjustment;
 @property (nonatomic, readonly) double searchFieldHeight;
+@property (nonatomic, readonly) UITextField *searchFieldIfExists;
 @property (nonatomic) long long searchFieldLeftViewMode;
 @property (nonatomic, readonly) UINavigationItem *searchNavigationItem;
 @property (getter=isSearchResultsButtonSelected, nonatomic) bool searchResultsButtonSelected;
@@ -260,6 +261,7 @@
 - (id)searchFieldBackgroundImageForState:(unsigned long long)arg1;
 - (struct UIOffset { double x1; double x2; })searchFieldBackgroundPositionAdjustment;
 - (double)searchFieldHeight;
+- (id)searchFieldIfExists;
 - (long long)searchFieldLeftViewMode;
 - (bool)searchFieldWidthShouldBeFlexible;
 - (id)searchNavigationItem;
@@ -290,6 +292,9 @@
 - (void)setDrawsBackgroundInPalette:(bool)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setEnabled:(bool)arg1 animated:(bool)arg2;
+- (void)setHelperPlaceholder:(id)arg1;
+- (void)setHelperPlaceholderHidden:(bool)arg1;
+- (void)setHelperPlaceholderOverride:(id)arg1;
 - (void)setHostedByNavigationBar:(bool)arg1;
 - (void)setImage:(id)arg1 forSearchBarIcon:(long long)arg2 state:(unsigned long long)arg3;
 - (void)setInNavigationPalette:(bool)arg1;
@@ -353,6 +358,8 @@
 - (void)updateDictationButton;
 - (void)updateEffectiveContentInset;
 - (void)updateForDrawsBackgroundInPalette;
+- (void)updateForDynamicType;
+- (void)updateForSemanticContext;
 - (void)updateIfNecessaryForOldSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)updateMagnifyingGlassView;
 - (void)updateNavigationBarLayoutInsertDataForSearchBar:(id)arg1 collapsibleScopeBar:(id)arg2 forLayoutState:(long long)arg3;
@@ -366,6 +373,7 @@
 - (void)updateSearchFieldArt;
 - (bool)useRelaxedScopeLayout;
 - (bool)usesEmbeddedAppearance;
+- (bool)wantsDictationButton;
 - (bool)wouldCombineLandscapeBarsForSize:(struct CGSize { double x1; double x2; })arg1;
 
 @end

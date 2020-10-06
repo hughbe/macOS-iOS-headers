@@ -10,10 +10,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_feedbackComponents : 1; 
         unsigned int read_feedbackId : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_feedbackComponents : 1; 
-        unsigned int wrote_feedbackId : 1; 
-        unsigned int wrote_status : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,9 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatus:(id)arg1;
-- (void)_addNoFlagsFeedbackComponent:(id)arg1;
-- (void)_readFeedbackComponents;
-- (void)_readFeedbackId;
 - (void)addFeedbackComponent:(id)arg1;
 - (void)clearFeedbackComponents;
 - (void)clearUnknownFields:(bool)arg1;
@@ -56,7 +50,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

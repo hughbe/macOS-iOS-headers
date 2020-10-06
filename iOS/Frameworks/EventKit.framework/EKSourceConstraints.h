@@ -75,6 +75,7 @@
         unsigned int supportsRecurrenceSplit : 1; 
         unsigned int requiresOpeningAttachmentAsLink : 1; 
         unsigned int shouldUseDeleteAndAddInsteadOfMoveBetweenCalendars : 1; 
+        unsigned int supportsInvitationModificationsWithoutNotification : 1; 
     }  _flags;
 }
 
@@ -103,6 +104,7 @@
 @property (nonatomic) bool prohibitsMultipleMonthsInYearlyRecurrence;
 @property (nonatomic) bool prohibitsPrivateEventsWithAttendees;
 @property (nonatomic) bool prohibitsSlicingEventsWithAttendees;
+@property (nonatomic) bool prohibitsUsingEventOrganizerEmailWhenComposingMail;
 @property (nonatomic) bool prohibitsYearlyRecurrenceInterval;
 @property (nonatomic) bool proposedStatusRequiredForResponse;
 @property (nonatomic) bool recurrenceSeriesMustIncludeMoreThanFirstOccurrence;
@@ -129,10 +131,12 @@
 @property (nonatomic) bool supportsDelegateEnumeration;
 @property (nonatomic) bool supportsDelegation;
 @property (nonatomic) bool supportsEventForwarding;
+@property (nonatomic) bool supportsFloatingTimeZone;
 @property (nonatomic) bool supportsIgnoringEventsInAvailabilityRequests;
 @property (nonatomic) bool supportsInboxAvailability;
 @property (nonatomic) bool supportsIncomingInvitations;
 @property (nonatomic) bool supportsInvitationModifications;
+@property (nonatomic) bool supportsInvitationModificationsWithoutNotification;
 @property (nonatomic) bool supportsJunkReporting;
 @property (nonatomic) bool supportsLocationDirectorySearches;
 @property (nonatomic) bool supportsOutgoingInvitations;
@@ -147,6 +151,8 @@
 @property (nonatomic) bool supportsStructuredLocations;
 @property (nonatomic) bool supportsSubscribedCalendars;
 @property (nonatomic) bool supportsURLField;
+
++ (id)allAllowSourceConstraints;
 
 - (bool)alarmTriggerIntervalConstrainedToRecurrenceInterval;
 - (bool)allowsCalendarAddDeleteModify;
@@ -243,6 +249,7 @@
 - (void)setSupportsInboxAvailability:(bool)arg1;
 - (void)setSupportsIncomingInvitations:(bool)arg1;
 - (void)setSupportsInvitationModifications:(bool)arg1;
+- (void)setSupportsInvitationModificationsWithoutNotification:(bool)arg1;
 - (void)setSupportsJunkReporting:(bool)arg1;
 - (void)setSupportsLocationDirectorySearches:(bool)arg1;
 - (void)setSupportsOutgoingInvitations:(bool)arg1;
@@ -278,6 +285,7 @@
 - (bool)supportsInboxAvailability;
 - (bool)supportsIncomingInvitations;
 - (bool)supportsInvitationModifications;
+- (bool)supportsInvitationModificationsWithoutNotification;
 - (bool)supportsJunkReporting;
 - (bool)supportsLocationDirectorySearches;
 - (bool)supportsOutgoingInvitations;

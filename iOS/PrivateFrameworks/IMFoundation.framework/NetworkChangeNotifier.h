@@ -25,6 +25,7 @@
 + (bool)enableNotifications;
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (void)_clearIPCache;
 - (bool)_listenForChanges;
 - (id)connectionMonitor;

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRAVLocalEndpoint : MRAVConcreteEndpoint <NSSecureCoding> {
+@interface MRAVLocalEndpoint : MRAVEndpoint <NSSecureCoding> {
     MRAVOutputContext * _outputContext;
     MROutputContextController * _outputContextController;
     NSArray * _outputDevices;
@@ -16,19 +16,14 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (void)_ouputDevicesForOutputDeviceUIDs:(id)arg1 completion:(id /* block */)arg2;
 - (void)_outputContextDevicesDidChangeNotification:(id)arg1;
-- (void)_registerForNotifications;
-- (void)_reloadOutputDevicesFromContext;
 - (void)addOutputDevices:(id)arg1 initiator:(id)arg2 withReplyQueue:(id)arg3 completion:(id /* block */)arg4;
 - (bool)canModifyGroupMembership;
-- (void)connectToExternalDeviceWithCompletion:(id /* block */)arg1;
 - (long long)connectionType;
 - (void)dealloc;
+- (id)designatedGroupLeader;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithOutputContext:(id)arg1;
-- (id)initWithOutputDevices:(id)arg1;
 - (bool)isProxyGroupPlayer;
 - (id)origin;
 - (void)outputContextDataSourceOutputDeviceDidChangeVolume:(id)arg1;

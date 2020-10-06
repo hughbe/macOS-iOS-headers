@@ -39,6 +39,8 @@
 @property (nonatomic) bool templateVariant;
 @property (nonatomic) unsigned long long variantOptions;
 
+// Image: /System/Library/PrivateFrameworks/IconServices.framework/IconServices
+
 + (id)icnsImageDescriptors;
 + (id)imageDescriptorNamed:(id)arg1;
 + (bool)supportsSecureCoding;
@@ -82,5 +84,9 @@
 - (struct CGSize { double x1; double x2; })size;
 - (bool)templateVariant;
 - (unsigned long long)variantOptions;
+
+// Image: /System/Library/PrivateFrameworks/SensorKitUI.framework/SensorKitUI
+
++ (id)skui_imageDescriptorForAuthorization;
 
 @end

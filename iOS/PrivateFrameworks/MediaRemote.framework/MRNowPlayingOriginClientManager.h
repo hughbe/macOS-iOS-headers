@@ -13,9 +13,7 @@
 - (id)clientForPlayerPath:(id)arg1;
 - (id)clientRequestsForPlayerPath:(id)arg1;
 - (id)debugDescription;
-- (id)existingClientForPlayerPath:(id)arg1;
 - (id)existingClientRequestsForPlayerPath:(id)arg1;
-- (id)existingOriginClientForPlayerPath:(id)arg1;
 - (id)existingOriginClientRequestsForPlayerPath:(id)arg1;
 - (id)existingPlayerClientRequestsForPlayerPath:(id)arg1;
 - (id)init;

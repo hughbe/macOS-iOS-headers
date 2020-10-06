@@ -26,6 +26,7 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 
 - (void).cxx_destruct;
 - (bool)URLKnownToBeTrusted;
@@ -39,6 +40,7 @@
 - (id)requestByEncodingRequest:(id)arg1 parameters:(id)arg2;
 - (id)requestEncoder;
 - (id)requestWithComponents:(id)arg1;
+- (id)requestWithURL:(id)arg1;
 - (id)responseDecoder;
 - (void)setAccount:(id)arg1;
 - (void)setClientInfo:(id)arg1;

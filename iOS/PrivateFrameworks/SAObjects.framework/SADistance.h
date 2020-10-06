@@ -11,6 +11,8 @@
 @property (nonatomic, copy) NSString *unit;
 @property (nonatomic, copy) NSNumber *value;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)distance;
 + (id)distanceWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -20,5 +22,11 @@
 - (void)setValue:(id)arg1;
 - (id)unit;
 - (id)value;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)afui_abbreviatedUnit;
+- (long long)afui_compare:(id)arg1;
+- (id)afui_metersValue;
 
 @end

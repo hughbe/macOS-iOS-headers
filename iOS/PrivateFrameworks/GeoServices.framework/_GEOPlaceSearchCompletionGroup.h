@@ -20,7 +20,7 @@
 
 - (void).cxx_destruct;
 - (bool)enforceServerResultsOrder;
-- (id)initWithSection:(id)arg1 traits:(id)arg2 entryListIndex:(int)arg3 mapItems:(id)arg4;
+- (id)initWithSection:(id)arg1 traits:(id)arg2 entryListIndex:(int)arg3 mapItems:(id)arg4 collections:(id)arg5 publishers:(id)arg6;
 - (id)items;
 - (id)localizedSectionHeader;
 - (bool)shouldInterleaveClientResults;

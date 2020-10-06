@@ -5,6 +5,7 @@
 
 @required
 
+- (unsigned int)allowedPixelBufferCompressionDirection;
 - (NSArray *)cloneVideoRequirements;
 - (int)executionTarget;
 - (NSArray *)inputMetadataRequirements;

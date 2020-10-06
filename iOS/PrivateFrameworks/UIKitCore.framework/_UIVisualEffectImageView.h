@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UIVisualEffectImageView : UIImageView <_UIVisualEffectViewParticipating> {
+@interface _UIVisualEffectImageView : UIImageView <_UIVisualEffectViewParticipatingInternal> {
     NSArray * _filters;
     _UIVisualEffectViewBackdropCaptureGroup * _primaryCaptureGroup;
     NSArray * _viewEffects;

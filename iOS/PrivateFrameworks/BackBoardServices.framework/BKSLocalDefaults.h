@@ -31,6 +31,8 @@
 @property (nonatomic) bool disableStudyLogPowerButtonLogging;
 @property (nonatomic) bool disableStudyLogVolumeKeyLogging;
 @property (getter=isDitheringEnabled, nonatomic) bool ditheringEnabled;
+@property (nonatomic) bool fenceArbiterDisabled;
+@property (nonatomic) bool fenceArbiterSkipPreFenceSynchronize;
 @property (nonatomic) float fenceArbiterTimeoutInterval;
 @property (nonatomic) bool forceCloneMirroring;
 @property (nonatomic) NSString *forceMirroredOrientation;

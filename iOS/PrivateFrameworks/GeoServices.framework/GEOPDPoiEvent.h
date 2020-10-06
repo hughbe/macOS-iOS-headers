@@ -17,15 +17,7 @@
         unsigned int read_performers : 1; 
         unsigned int read_poiIds : 1; 
         unsigned int read_timezone : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_eventCategorys : 1; 
-        unsigned int wrote_eventDateTimes : 1; 
-        unsigned int wrote_eventId : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_performers : 1; 
-        unsigned int wrote_poiIds : 1; 
-        unsigned int wrote_timezone : 1; 
-        unsigned int wrote_expectedAttendance : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOLocalizedString * _name;
     NSMutableArray * _performers;
@@ -61,17 +53,6 @@
 + (Class)poiIdType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsEventCategory:(id)arg1;
-- (void)_addNoFlagsEventDateTime:(id)arg1;
-- (void)_addNoFlagsPerformer:(id)arg1;
-- (void)_addNoFlagsPoiId:(id)arg1;
-- (void)_readEventCategorys;
-- (void)_readEventDateTimes;
-- (void)_readEventId;
-- (void)_readName;
-- (void)_readPerformers;
-- (void)_readPoiIds;
-- (void)_readTimezone;
 - (void)addEventCategory:(id)arg1;
 - (void)addEventDateTime:(id)arg1;
 - (void)addPerformer:(id)arg1;
@@ -100,7 +81,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)name;
 - (id)performerAtIndex:(unsigned long long)arg1;

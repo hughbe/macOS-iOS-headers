@@ -8,6 +8,8 @@
 }
 
 + (int)UDisplayContextForIUDisplayNameContext:(unsigned long long)arg1;
++ (id)_getXPCConnectionForLocalizationSwitcher;
++ (id)_preferredLanguagesForBundleID:(id)arg1;
 + (id)_proposedOverrideLanguageFromLanguage:(id)arg1 forLocalizations:(id)arg2 preferredLanguages:(id)arg3 regionCode:(id)arg4;
 + (void)_setPreferredLanguage:(id)arg1 forBundleID:(id)arg2;
 + (id)alternateContinentOfRegion:(id)arg1;
@@ -34,7 +36,9 @@
 + (id)numberingSystemsForLocaleID:(id)arg1;
 + (id)numberingSystemsFromArray:(id)arg1 forLocaleID:(id)arg2;
 + (id)parentLocaleIdentifierForIdentifier:(id)arg1;
++ (id)perAppLanguageSelectionBundleIdentifiers;
 + (id)preferredLanguageForBundleID:(id)arg1;
++ (void)preferredLanguagesForBundleID:(id)arg1 reply:(id /* block */)arg2;
 + (id)preferredLanguagesForRegion:(id)arg1;
 + (id)preferredLanguagesForRegionWithoutFiltering:(id)arg1;
 + (id)preferredLanguagesFromLanguages:(id)arg1 byAddingFallbacksForRegion:(id)arg2;
@@ -46,7 +50,9 @@
 + (id)sharedIntlUtility;
 + (id)shortDisplayNameForNumberingSystemWithIdentifier:(id)arg1 localeIdentifier:(id)arg2;
 + (id)stdLanguageIDs;
++ (void)subscribeToAppLanguageChanges:(id /* block */)arg1;
 + (id)supportedCalendars;
++ (void)unsubscribeFromAppLanguageChanges;
 + (bool)upgradeAppleLanguagesFrom:(id)arg1 to:(id)arg2;
 + (long long)yearlessYearForMonth:(long long)arg1 withCalendar:(id)arg2;
 

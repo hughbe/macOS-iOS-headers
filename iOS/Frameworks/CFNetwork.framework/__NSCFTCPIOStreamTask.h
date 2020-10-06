@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@interface __NSCFTCPIOStreamTask : __NSCFURLSessionTask {
+@interface __NSCFTCPIOStreamTask : NSURLSessionTask {
     NSData * __initialDataPayload;
     unsigned char  _captureStreamsUponCompletion;
     NSMutableArray * _completedSuspendedWork;
@@ -48,8 +48,6 @@
 }
 
 @property (copy) NSData *_initialDataPayload;
-@property (nonatomic, retain) __NSCFURLLocalStreamTaskWorkRead *currentReadTask;
-@property (nonatomic, retain) __NSCFURLLocalStreamTaskWorkWrite *currentWriteTask;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -95,16 +93,11 @@
 - (void)closeWrite;
 - (void)copyStreamProperty:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)currentReadTask;
-- (id)currentWriteTask;
 - (void)dealloc;
 - (id)initWithHost:(id)arg1 port:(long long)arg2 taskGroup:(id)arg3 disavow:(id /* block */)arg4;
 - (id)initWithTask:(id)arg1 connection:(struct shared_ptr<TransportConnection> { struct TransportConnection {} *x1; struct __shared_weak_count {} *x2; })arg2 extraBytes:(id)arg3 disavow:(id /* block */)arg4;
-- (struct shared_ptr<TransportConnectionObjCPP> { struct TransportConnectionObjCPP {} *x1; struct __shared_weak_count {} *x2; })ios;
 - (bool)isKindOfClass:(Class)arg1;
 - (void)readDataOfMinLength:(unsigned long long)arg1 maxLength:(unsigned long long)arg2 timeout:(double)arg3 completionHandler:(id /* block */)arg4;
-- (void)setCurrentReadTask:(id)arg1;
-- (void)setCurrentWriteTask:(id)arg1;
 - (void)set_initialDataPayload:(id)arg1;
 - (bool)shouldDoWorkConsideringTlsState;
 - (void)startSecureConnection;

@@ -2,17 +2,55 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
  */
 
-@interface WebGLLayer : CAEAGLLayer {
-    struct GraphicsContext3D { int (**x1)(); unsigned int x2; struct GraphicsContext3DAttributes { bool x_3_1_1; bool x_3_1_2; bool x_3_1_3; bool x_3_1_4; bool x_3_1_5; bool x_3_1_6; bool x_3_1_7; int x_3_1_8; bool x_3_1_9; bool x_3_1_10; bool x_3_1_11; float x_3_1_12; int x_3_1_13; } x3; unsigned char x4; int x5; int x6; struct RetainPtr<WebGLLayer> { void *x_7_1_1; } x7; void *x8; struct HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> > { struct HashTable<unsigned int, WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> >, WTF::IntHash<unsigned int>, WTF::HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> >::KeyValuePairTraits, WTF::HashTraits<unsigned int> > { struct KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> {} *x_1_2_1; } x_9_1_1; } x9; } * _context;
+@interface WebGLLayer : CALayer {
+    struct IntSize { 
+        int m_width; 
+        int m_height; 
+    }  _bufferSize;
+    struct unique_ptr<WebCore::IOSurface, std::__1::default_delete<WebCore::IOSurface> > { 
+        struct __compressed_pair<WebCore::IOSurface *, std::__1::default_delete<WebCore::IOSurface> > { 
+            struct IOSurface {} *__value_; 
+        } __ptr_; 
+    }  _contentsBuffer;
+    void * _contentsPbuffer;
+    struct NakedPtr<WebCore::GraphicsContextGLOpenGL> { 
+        struct GraphicsContextGLOpenGL {} *m_ptr; 
+    }  _context;
     float  _devicePixelRatio;
+    struct unique_ptr<WebCore::IOSurface, std::__1::default_delete<WebCore::IOSurface> > { 
+        struct __compressed_pair<WebCore::IOSurface *, std::__1::default_delete<WebCore::IOSurface> > { 
+            struct IOSurface {} *__value_; 
+        } __ptr_; 
+    }  _drawingBuffer;
+    void * _drawingPbuffer;
+    void * _eglConfig;
+    void * _eglDisplay;
+    void * _latchedPbuffer;
+    bool  _preparedForDisplay;
+    struct unique_ptr<WebCore::IOSurface, std::__1::default_delete<WebCore::IOSurface> > { 
+        struct __compressed_pair<WebCore::IOSurface *, std::__1::default_delete<WebCore::IOSurface> > { 
+            struct IOSurface {} *__value_; 
+        } __ptr_; 
+    }  _spareBuffer;
+    void * _sparePbuffer;
+    bool  _usingAlpha;
 }
 
-@property (nonatomic) struct GraphicsContext3D { int (**x1)(); unsigned int x2; struct GraphicsContext3DAttributes { bool x_3_1_1; bool x_3_1_2; bool x_3_1_3; bool x_3_1_4; bool x_3_1_5; bool x_3_1_6; bool x_3_1_7; int x_3_1_8; bool x_3_1_9; bool x_3_1_10; bool x_3_1_11; float x_3_1_12; int x_3_1_13; } x3; unsigned char x4; int x5; int x6; struct RetainPtr<WebGLLayer> { void *x_7_1_1; } x7; void *x8; /* Warning: unhandled struct encoding: '{HashMap<unsigned int' */ struct x9; }*context; /* unknown property attribute:  WTF::HashTraits<WebCore::GraphicsContext3D::Client *> >=^^{Client}}}BBIB} */
+@property (nonatomic) struct NakedPtr<WebCore::GraphicsContextGLOpenGL> { struct GraphicsContextGLOpenGL {} *x1; } context;
 
-- (struct GraphicsContext3D { int (**x1)(); unsigned int x2; struct GraphicsContext3DAttributes { bool x_3_1_1; bool x_3_1_2; bool x_3_1_3; bool x_3_1_4; bool x_3_1_5; bool x_3_1_6; bool x_3_1_7; int x_3_1_8; bool x_3_1_9; bool x_3_1_10; bool x_3_1_11; float x_3_1_12; int x_3_1_13; } x3; unsigned char x4; int x5; int x6; struct RetainPtr<WebGLLayer> { void *x_7_1_1; } x7; void *x8; struct HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> > { struct HashTable<unsigned int, WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> >, WTF::IntHash<unsigned int>, WTF::HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> >::KeyValuePairTraits, WTF::HashTraits<unsigned int> > { struct KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> {} *x_1_2_1; } x_9_1_1; } x9; }*)context;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+- (bool)allocateIOSurfaceBackingStoreWithSize:(struct IntSize { int x1; int x2; })arg1 usingAlpha:(bool)arg2;
+- (void)bindFramebufferToNextAvailableSurface;
+- (struct NakedPtr<WebCore::GraphicsContextGLOpenGL> { struct GraphicsContextGLOpenGL {} *x1; })context;
 - (struct CGImage { }*)copyImageSnapshotWithColorSpace:(struct CGColorSpace { }*)arg1;
 - (void)display;
-- (id)initWithGraphicsContext3D:(struct GraphicsContext3D { int (**x1)(); unsigned int x2; struct GraphicsContext3DAttributes { bool x_3_1_1; bool x_3_1_2; bool x_3_1_3; bool x_3_1_4; bool x_3_1_5; bool x_3_1_6; bool x_3_1_7; int x_3_1_8; bool x_3_1_9; bool x_3_1_10; bool x_3_1_11; float x_3_1_12; int x_3_1_13; } x3; unsigned char x4; int x5; int x6; struct RetainPtr<WebGLLayer> { void *x_7_1_1; } x7; void *x8; struct HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> > { struct HashTable<unsigned int, WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> >, WTF::IntHash<unsigned int>, WTF::HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> >::KeyValuePairTraits, WTF::HashTraits<unsigned int> > { struct KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> {} *x_1_2_1; } x_9_1_1; } x9; }*)arg1;
-- (void)setContext:(struct GraphicsContext3D { int (**x1)(); unsigned int x2; struct GraphicsContext3DAttributes { bool x_3_1_1; bool x_3_1_2; bool x_3_1_3; bool x_3_1_4; bool x_3_1_5; bool x_3_1_6; bool x_3_1_7; int x_3_1_8; bool x_3_1_9; bool x_3_1_10; bool x_3_1_11; float x_3_1_12; int x_3_1_13; } x3; unsigned char x4; int x5; int x6; struct RetainPtr<WebGLLayer> { void *x_7_1_1; } x7; void *x8; struct HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> > { struct HashTable<unsigned int, WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry>, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> >, WTF::IntHash<unsigned int>, WTF::HashMap<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry, WTF::IntHash<unsigned int>, WTF::HashTraits<unsigned int>, WTF::HashTraits<WebCore::GraphicsContext3D::ShaderSourceEntry> >::KeyValuePairTraits, WTF::HashTraits<unsigned int> > { struct KeyValuePair<unsigned int, WebCore::GraphicsContext3D::ShaderSourceEntry> {} *x_1_2_1; } x_9_1_1; } x9; }*)arg1;
+- (id)initWithGraphicsContextGL:(struct NakedPtr<WebCore::GraphicsContextGLOpenGL> { struct GraphicsContextGLOpenGL {} *x1; })arg1;
+- (void)prepareForDisplay;
+- (void)releaseGLResources;
+- (void)setAnchorPoint:(struct CGPoint { double x1; double x2; })arg1;
+- (void)setContext:(struct NakedPtr<WebCore::GraphicsContextGLOpenGL> { struct GraphicsContextGLOpenGL {} *x1; })arg1;
+- (void)setEGLDisplay:(void*)arg1 config:(void*)arg2;
+- (void)setTransform:(struct CATransform3D { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; double x12; double x13; double x14; double x15; double x16; })arg1;
 
 @end

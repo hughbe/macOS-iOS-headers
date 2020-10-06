@@ -19,14 +19,12 @@
 }
 
 @property (setter=setAVOutputDevice:, nonatomic, retain) AVOutputDevice *avOutputDevice;
+@property (getter=isHeadTrackedSpatialAudioActive, nonatomic, readonly) bool headTrackedSpatialAudioActive;
 @property (nonatomic, retain) MRAVOutputDeviceSourceInfo *sourceInfo;
+@property (nonatomic, readonly) bool supportsHeadTrackedSpatialAudio;
 
 - (void).cxx_destruct;
 - (id)MACAddress;
-- (bool)_isOutputDevice:(id)arg1 belongToOutputContext:(id)arg2;
-- (void)_onqueue_clearCachedAVOutputDeviceProperties;
-- (id)_outputContext;
-- (id)_playingPairedDeviceNameForAVOutputDevice:(id)arg1;
 - (id)avOutputDevice;
 - (id)availableBluetoothListeningModes;
 - (float)batteryLevel;
@@ -37,6 +35,7 @@
 - (bool)canFetchMediaDataFromSender;
 - (bool)canPlayEncryptedProgressiveDownloadAssets;
 - (bool)canRelayCommunicationChannel;
+- (id)clusterComposition;
 - (id)currentBluetoothListeningMode;
 - (unsigned int)deviceSubtype;
 - (unsigned int)deviceType;
@@ -50,6 +49,7 @@
 - (bool)isDeviceGroupable;
 - (bool)isGroupLeader;
 - (bool)isGroupable;
+- (bool)isHeadTrackedSpatialAudioActive;
 - (bool)isLocalDevice;
 - (bool)isPickedOnPairedDevice;
 - (bool)isProxyGroupPlayer;
@@ -74,8 +74,10 @@
 - (bool)supportsBufferedAirPlay;
 - (bool)supportsExternalScreen;
 - (bool)supportsHAP;
+- (bool)supportsHeadTrackedSpatialAudio;
 - (bool)supportsRapport;
 - (id)uid;
 - (float)volume;
+- (unsigned int)volumeCapabilities;
 
 @end

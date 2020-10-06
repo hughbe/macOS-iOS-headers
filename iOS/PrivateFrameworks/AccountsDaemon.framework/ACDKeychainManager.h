@@ -48,6 +48,7 @@
 + (id)keychainHostnameAccounts;
 + (id)keychainServiceNameForClientID:(id)arg1 accountTypeIdentifier:(id)arg2 additionalAccountTypeSegment:(id)arg3 key:(id)arg4;
 + (void)makeItemInvisibleWithService:(id)arg1 andAccount:(id)arg2;
++ (void)notifiyCredentialChangedForAccount:(id)arg1;
 + (bool)removeAccountSyncItemForAccount:(id)arg1 clientID:(id)arg2 properties:(id)arg3 error:(id*)arg4;
 + (void)removeCredentialForAccount:(id)arg1;
 + (void)removeCredentialForAccount:(id)arg1 clientID:(id)arg2;
@@ -55,6 +56,7 @@
 + (void)removeCredentialForAccount:(id)arg1 error:(id*)arg2;
 + (void)removeCredentialForAccount:(id)arg1 key:(id)arg2 error:(id*)arg3;
 + (void)removeDataclassAccountSyncItemForAccount:(id)arg1;
++ (void)removeTombstoneForService:(id)arg1 keychainAccountIdentifier:(id)arg2;
 + (id)removeTombstonesForAccount:(id)arg1 clientID:(id)arg2 error:(id*)arg3;
 + (id)server;
 + (void)setAccountSynciOSVersion:(id)arg1;

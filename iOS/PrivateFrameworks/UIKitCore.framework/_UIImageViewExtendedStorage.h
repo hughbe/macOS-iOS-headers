@@ -17,14 +17,21 @@
         unsigned int highlighted : 1; 
         unsigned int masksTemplateImages : 1; 
         unsigned int adjustsImageSizeForAccessibilityContentSizeCategory : 1; 
+        unsigned int startingLoad : 1; 
+        unsigned int enqueueingLoad : 1; 
+        unsigned int stoppingLoad : 1; 
     }  _flags;
     NSArray * _highlightedAnimationImages;
     UIImage * _highlightedImage;
     UIImage * _image;
+    UIImage * _imageBeingSetByLoader;
     UILayoutGuide * _imageContentGuide;
+    _UIImageLoader * _imageLoader;
     UIImageView * _imageView;
     NSMapTable * _layouts;
+    <_UIImageViewLoadingDelegate> * _loadingDelegate;
     UIImageSymbolConfiguration * _overridingSymbolConfiguration;
+    UIView * _placeholderView;
     UIImageSymbolConfiguration * _preferredSymbolConfiguration;
     unsigned long long  _templateImageRenderingEffects;
 }

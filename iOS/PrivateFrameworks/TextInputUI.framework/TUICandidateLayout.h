@@ -33,6 +33,7 @@
     NSIndexPath * _oldFirstVisibleIndexPath;
     double  _oldFirstVisibleOffset;
     long long  _rowType;
+    bool  _showExtraLineBeforeFirstRow;
     bool  _showsIndex;
     double  _singleSlottedCellMargin;
     NSMutableArray * _slottedCellSeparatorAttributes;
@@ -50,6 +51,7 @@
 @property (nonatomic, retain) NSIndexPath *oldFirstVisibleIndexPath;
 @property (nonatomic) double oldFirstVisibleOffset;
 @property (nonatomic) long long rowType;
+@property (nonatomic) bool showExtraLineBeforeFirstRow;
 @property (nonatomic) bool showsIndex;
 @property (nonatomic) double singleSlottedCellMargin;
 @property (nonatomic) long long transitionState;
@@ -92,10 +94,12 @@
 - (void)setOldFirstVisibleIndexPath:(id)arg1;
 - (void)setOldFirstVisibleOffset:(double)arg1;
 - (void)setRowType:(long long)arg1;
+- (void)setShowExtraLineBeforeFirstRow:(bool)arg1;
 - (void)setShowsIndex:(bool)arg1;
 - (void)setSingleSlottedCellMargin:(double)arg1;
 - (void)setTransitionState:(long long)arg1;
 - (bool)shouldInvalidateLayoutForBoundsChange:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (bool)showExtraLineBeforeFirstRow;
 - (bool)showsIndex;
 - (double)singleSlottedCellMargin;
 - (long long)transitionState;

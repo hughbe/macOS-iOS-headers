@@ -11,11 +11,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_departurePredicateCountdown : 1; 
         unsigned int read_departurePredicateStamp : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_departurePredicateCountdown : 1; 
-        unsigned int wrote_departurePredicateStamp : 1; 
-        unsigned int wrote_operatingHoursRange : 1; 
-        unsigned int wrote_includeRealTimeDepartures : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _includeRealTimeDepartures;
     struct GEOPDTimeRange { 
@@ -48,8 +44,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readDeparturePredicateCountdown;
-- (void)_readDeparturePredicateStamp;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -65,7 +59,10 @@
 - (bool)includeRealTimeDepartures;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })operatingHoursRange;
 - (void)readAll:(bool)arg1;

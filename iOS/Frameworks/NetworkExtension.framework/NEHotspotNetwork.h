@@ -8,13 +8,10 @@
 
 @property (readonly) NSString *BSSID;
 @property (readonly) NSString *SSID;
-@property (getter=didAutoJoin, readonly) bool autoJoined;
-@property (getter=isChosenHelper, readonly) bool chosenHelper;
 @property (readonly) NSString *interfaceName;
-@property (getter=didJustJoin, readonly) bool justJoined;
 @property struct __CNNetwork { }*network;
-@property (getter=isSecure, readonly) bool secure;
-@property (readonly) double signalStrength;
+
++ (void)fetchCurrentWithCompletionHandler:(id /* block */)arg1;
 
 - (id)BSSID;
 - (id)SSID;

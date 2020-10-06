@@ -43,6 +43,7 @@
 - (id)mainThreadSchedulerProvider;
 - (id)memoryMonitoringSource;
 - (void)refreshCacheKey:(id)arg1;
+- (id)renderedBasicMonogramForString:(id)arg1 color:(id)arg2 scope:(id)arg3 prohibitedSources:(long long)arg4;
 - (id)renderedBasicMonogramFromString:(id)arg1 scope:(id)arg2;
 - (id)renderedLikenessesForContacts:(id)arg1 scope:(id)arg2 workScheduler:(id)arg3;
 - (id)renderer;

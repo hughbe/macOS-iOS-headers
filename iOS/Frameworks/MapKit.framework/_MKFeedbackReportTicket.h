@@ -15,6 +15,7 @@
 - (void).cxx_destruct;
 - (void)cancel;
 - (id)initWithFeedbackReportTicket:(id)arg1;
+- (void)submitWithCallbackQueue:(id)arg1 handler:(id /* block */)arg2 networkActivity:(id /* block */)arg3;
 - (void)submitWithHandler:(id /* block */)arg1 networkActivity:(id /* block */)arg2;
 - (id)traits;
 

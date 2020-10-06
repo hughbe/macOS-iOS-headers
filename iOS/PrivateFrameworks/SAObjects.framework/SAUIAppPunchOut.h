@@ -21,6 +21,8 @@
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, copy) NSArray *themeIcons;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)appPunchOut;
 + (id)appPunchOutWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -60,5 +62,14 @@
 - (void)setThemeIcons:(id)arg1;
 - (id)subtitle;
 - (id)themeIcons;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)_afui_installAppPunchout;
+- (long long)_afui_usefulUserResultType;
+- (void)afui_getInstallAppPunchoutWithCompletion:(id /* block */)arg1;
+- (void)afui_populateStoreServicesData:(id /* block */)arg1;
+- (id)afui_punchOutAppNotAvailableViews;
+- (id)afui_punchOutFailureViews;
 
 @end

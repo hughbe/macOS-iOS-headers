@@ -10,7 +10,7 @@
 
 @property (nonatomic, readonly) bool displaysAdditionalSeparators;
 
-+ (id)snapshotWithSectionCountsProvider:(id /* block */)arg1 topBottomSeparatorProvider:(id /* block */)arg2 displaysAdditionalSeparators:(bool)arg3;
++ (id)snapshotterForSectionCountsProvider:(id /* block */)arg1 topBottomSeparatorProvider:(id /* block */)arg2 displaysAdditionalSeparators:(bool)arg3;
 
 - (void).cxx_destruct;
 - (bool)displaysAdditionalSeparators;

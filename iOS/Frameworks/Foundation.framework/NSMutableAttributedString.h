@@ -8,6 +8,7 @@
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 
+- (void)_inflectWithReplacements:(id)arg1;
 - (void)addAttribute:(id)arg1 value:(id)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
 - (void)addAttributes:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)addAttributesWeakly:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
@@ -24,11 +25,72 @@
 - (void)setAttributedString:(id)arg1;
 - (void)setAttributes:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 
+// Image: /System/Library/Frameworks/ClockKit.framework/ClockKit
+
+- (void)addAttributesPreservingOriginals:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (void)mf_addAttribute:(id)arg1 value:(id)arg2;
+- (void)mf_removeAttribute:(id)arg1;
+- (void)mf_setString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Coherence.framework/Coherence
+
+- (void)appendStorage:(id)arg1 fromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (void)appendString:(id)arg1;
+- (id)emptyCopy;
+- (void)insertStorage:(id)arg1 atIndex:(unsigned long long)arg2;
+- (void)removeObjectsInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)replaceStorageInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 withStorage:(id)arg2 fromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
+- (id)storageFromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+
 // Image: /System/Library/PrivateFrameworks/DataDetectorsCore.framework/DataDetectorsCore
 
 - (void)dd_appendAttributedString:(id)arg1;
 - (void)dd_chopResults;
 - (void)dd_offsetResultsBy:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
+
+- (void)dd_appendUrl:(id)arg1 context:(id)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3 backedAttributes:(id)arg4;
+- (void)dd_makeLinksForResultsInAttributesOfType:(unsigned long long)arg1 context:(id)arg2;
+- (void)dd_makeLinksForResultsInAttributesOfType:(unsigned long long)arg1 context:(id)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
+- (void)dd_makeLinksForResultsInAttributesOfType:(unsigned long long)arg1 usingURLificationBlock:(id /* block */)arg2 context:(id)arg3 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4;
+- (void)dd_replaceResultAttributesWithSimpleLinksForTypes:(unsigned long long)arg1 context:(id)arg2;
+- (void)dd_resetResults;
+- (void)dd_resetResults:(bool)arg1;
+- (bool)dd_urlifyClientRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 index:(unsigned long long)arg2 context:(id)arg3;
+- (bool)dd_urlifyResult:(id)arg1 withBlock:(id /* block */)arg2 referenceDate:(id)arg3 context:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/DocumentManagerUICore.framework/DocumentManagerUICore
+
++ (id)_doc_attributedStringForTitle:(id)arg1 textAttributes:(id)arg2 tagColors:(id)arg3 tagDrawingTraits:(struct { double x1; double x2; double x3; long long x4; })arg4;
++ (id)_doc_gridAttributedStringForTitle:(id)arg1 tagColors:(id)arg2 font:(id)arg3 layoutDirection:(long long)arg4;
++ (id)_doc_spacerImageWithWidth:(double)arg1;
+
+- (void)_doc_insertPrefixTextAttachment:(id)arg1 spacerAttributedString:(id)arg2 ensuringLayoutDirection:(long long)arg3;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
+- (struct CGSize { double x1; double x2; })scaleFontAndKerningToFitSize:(struct CGSize { double x1; double x2; })arg1 minimumFontSize:(double)arg2 minimumKerning:(double)arg3 stillDidntFit:(bool*)arg4;
+- (double)scaleFontSizeByAmount:(double)arg1 minimumFontSize:(double)arg2;
+- (double)scaleNumericAttribute:(id)arg1 byAmount:(double)arg2;
+- (void)scaleToFitWidth:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HealthRecordsUI.framework/HealthRecordsUI
+
++ (id)wd_stringWithString:(id)arg1 highlightingStrings:(id)arg2 baseColor:(id)arg3 baseFont:(id)arg4 highlightingBaseColor:(id)arg5 highlightColor:(id)arg6 highlightFont:(id)arg7;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (id)hk_attributedStringForText:(id)arg1 style:(id)arg2 color:(id)arg3 boldText:(id)arg4;
++ (id)hk_initWithString:(id)arg1 font:(id)arg2 hyphenationFactor:(double)arg3;
+
+// Image: /System/Library/PrivateFrameworks/HeartRhythmUI.framework/HeartRhythmUI
+
++ (id)hrui_attributedStringForText:(id)arg1 style:(id)arg2 color:(id)arg3 boldText:(id)arg4;
++ (id)hrui_bulletedString:(id)arg1 textStyle:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
@@ -36,6 +98,58 @@
 - (void)replaceAttribute:(id)arg1 value:(id)arg2 withValue:(id)arg3;
 - (void)replaceNewlinesWithSpaces;
 - (void)trimWhitespace;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (void)ic_appendAttributedSubstring:(id)arg1 fromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (void)ic_appendString:(id)arg1;
+- (void)ic_replaceCharactersInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 withAttributedSubstring:(id)arg2 fromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
+- (void)ic_addForegroundColorInRangesWhereNoColorAlreadyExists:(id)arg1;
+- (void)ic_addTextBlocks:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (void)ic_convertParagraphStyleToBodyInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)ic_setParagraphStyleForWritingDirection:(long long)arg1 andAlignment:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_addLinkURL:(id)arg1 toRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 withColor:(id)arg3 isUnderlined:(bool)arg4;
+
+// Image: /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
+
+- (void)ic_appendAttributedSubstring:(id)arg1 fromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (void)ic_replaceCharactersInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 withAttributedSubstring:(id)arg2 fromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
+
+- (id)attributedStringByTrimmingEmptySpaceEdges;
+- (unsigned long long)replaceOccurrencesOfString:(id)arg1 withString:(id)arg2;
+- (void)scrcAppendFormat:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderOutput.framework/ScreenReaderOutput
+
+- (void)scrAttributedStringTrimTrailingNewlines;
+
+// Image: /System/Library/PrivateFrameworks/Silex.framework/Silex
+
+- (void)sxaxApplyLowerPitchTokenToRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/SpeechRecognitionCommandServices.framework/SpeechRecognitionCommandServices
+
+- (void)adjustCapsAndSpacingUsingLeadingText:(id)arg1 localeIdentifier:(id)arg2 spellingGuessesBlock:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
+- (void)tv_addLanguageAwareness:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TestFlightCore.framework/TestFlightCore
+
+- (void)tf_addLanguageAwareness:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TextToSpeech.framework/TextToSpeech
+
+- (void)appendString:(id)arg1 withAttributes:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
 

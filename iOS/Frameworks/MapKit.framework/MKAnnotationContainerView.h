@@ -50,6 +50,8 @@
         double y; 
     }  _previousMouseDragPoint;
     double  _previousMouseDragTimeStamp;
+    NSMutableSet * _prioritiesToAdd;
+    MKPriorityToIndexMap * _priorityMap;
     NSMutableArray * _requiredPriorityAnnotationViews;
     MKAnnotationView * _selectedAnnotationView;
     bool  _suppress;
@@ -73,6 +75,7 @@
 @property (nonatomic, readonly) MKAnnotationView *userLocationView;
 
 - (void).cxx_destruct;
+- (void)_addPrioritiesForAnnotationViewIfNeeded:(id)arg1;
 - (id)_annotationViewForSelectionAtPoint:(struct CGPoint { double x1; double x2; })arg1 avoidCurrent:(bool)arg2 maxDistance:(double)arg3;
 - (void)_draggingAnnotationViewDidPause:(id)arg1;
 - (void)_dropDraggingAnnotationViewAnimated:(bool)arg1;
@@ -86,6 +89,7 @@
 - (bool)_updateAnnotationViews:(id)arg1;
 - (void)_updateClusterableAnnotationViews:(id)arg1 withID:(id)arg2;
 - (void)_updateCollidableAnnotationViews;
+- (bool)_updatePriorityMapIfNeeded;
 - (void)_updateZPositionForAnnotationView:(id)arg1 inBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_visibleCenteringRect;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_visibleCenteringRectInView:(id)arg1;
@@ -96,7 +100,7 @@
 - (void)addObserver:(id)arg1;
 - (void)annotationViewDidChangeCenterOffset:(id)arg1;
 - (void)annotationViewDidChangeHidden:(id)arg1;
-- (void)annotationViewDidChangeZIndex:(id)arg1;
+- (void)annotationViewDidChangeZPriority:(id)arg1;
 - (id)annotationViewForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)annotationViews;
 - (id)annotationsInMapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
@@ -149,5 +153,6 @@
 - (void)updateCalloutStateForSelectedAnnotationView:(id)arg1;
 - (void)updateUserLocationView;
 - (id)userLocationView;
+- (void)visibleCenteringRectChanged;
 
 @end

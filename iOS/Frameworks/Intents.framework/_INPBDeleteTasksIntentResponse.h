@@ -3,12 +3,10 @@
  */
 
 @interface _INPBDeleteTasksIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBDeleteTasksIntentResponse> {
-    bool  __encodeLegacyGloryData;
     NSArray * _deletedTasks;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, copy) NSArray *deletedTasks;
 @property (nonatomic, readonly) unsigned long long deletedTasksCount;
@@ -20,8 +18,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addDeletedTasks:(id)arg1;
 - (void)clearDeletedTasks;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

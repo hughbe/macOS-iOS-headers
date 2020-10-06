@@ -16,7 +16,10 @@
 @property (readonly) Class superclass;
 @property (nonatomic) UIView *view;
 
++ (void)_setPrefersPencilOnlyDrawing:(bool)arg1;
++ (bool)hasSeenPencilPairingUI;
 + (long long)preferredTapAction;
++ (bool)prefersPencilOnlyDrawing;
 
 - (void).cxx_destruct;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;

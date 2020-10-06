@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INMediaSearch : NSObject <INJSONSerializable, NSCopying, NSSecureCoding> {
+@interface INMediaSearch : NSObject <CMSCoding, INJSONSerializable, NSCopying, NSSecureCoding> {
     NSString * _albumName;
     NSString * _artistName;
     NSArray * _genreNames;
@@ -31,6 +31,8 @@
 @property (nonatomic, readonly) long long sortOrder;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (bool)supportsSecureCoding;
 
@@ -47,7 +49,6 @@
 - (id)genreNames;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMediaType:(long long)arg1 sortOrder:(long long)arg2 mediaName:(id)arg3 artistName:(id)arg4 albumName:(id)arg5 genreNames:(id)arg6 moodNames:(id)arg7 activityNames:(id)arg8 releaseDate:(id)arg9 reference:(long long)arg10 mediaIdentifier:(id)arg11;
 - (id)initWithMediaType:(long long)arg1 sortOrder:(long long)arg2 mediaName:(id)arg3 artistName:(id)arg4 albumName:(id)arg5 genreNames:(id)arg6 moodNames:(id)arg7 releaseDate:(id)arg8 reference:(long long)arg9 mediaIdentifier:(id)arg10;
 - (bool)isEqual:(id)arg1;
 - (id)mediaIdentifier;
@@ -57,5 +58,11 @@
 - (long long)reference;
 - (id)releaseDate;
 - (long long)sortOrder;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
 
 @end

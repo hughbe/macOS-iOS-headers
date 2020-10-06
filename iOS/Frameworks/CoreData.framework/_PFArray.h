@@ -22,14 +22,9 @@
 + (Class)classForKeyedUnarchiver;
 + (void)initialize;
 
-- (unsigned int)_flags;
 - (bool)_isDeallocating;
-- (id*)_objectsPointer;
-- (void)_setShouldRelease:(bool)arg1;
-- (void)_setShouldUseExtendedRelease:(bool)arg1;
 - (bool)_tryRetain;
 - (id)arrayFromObjectIDs;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;

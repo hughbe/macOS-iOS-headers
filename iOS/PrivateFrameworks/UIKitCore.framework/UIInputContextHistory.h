@@ -7,6 +7,7 @@
 }
 
 @property (nonatomic, readonly) NSSet *recipientIdentifiers;
+@property (nonatomic, readonly) NSSet *recipientNames;
 @property (nonatomic, readonly) NSString *senderIdentifier;
 @property (nonatomic, readonly) NSSet *senderIdentifiers;
 @property (nonatomic, readonly) TIInputContextHistory *tiInputContextHistory;
@@ -20,8 +21,10 @@
 - (bool)isEqual:(id)arg1;
 - (id)mostRecentTextEntries:(unsigned long long)arg1;
 - (id)recipientIdentifiers;
+- (id)recipientNames;
 - (id)senderIdentifier;
 - (id)senderIdentifiers;
 - (id)tiInputContextHistory;
+- (void)updateRecipientNames:(id)arg1;
 
 @end

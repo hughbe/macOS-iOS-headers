@@ -37,8 +37,11 @@
 - (bool)hasInitiallyExpanded;
 - (bool)hasTappedItemIndex;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)initiallyExpanded;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)proactiveItemAtIndex:(unsigned long long)arg1;
 - (id)proactiveItems;

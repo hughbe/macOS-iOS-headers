@@ -9,6 +9,7 @@
 + (void)_setStoreInfo1:(id)arg1;
 + (void)_storeDeallocated;
 + (id)_storeInfo1;
++ (bool)_usesTaggedPointers;
 + (bool)accessInstanceVariablesDirectly;
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;

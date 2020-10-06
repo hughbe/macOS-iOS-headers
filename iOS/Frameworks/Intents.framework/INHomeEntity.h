@@ -12,6 +12,7 @@
     long long  _sceneType;
     long long  _type;
     INSpeakableString * _zone;
+    NSArray * _zones;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -29,6 +30,7 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) long long type;
 @property (nonatomic, readonly, copy) INSpeakableString *zone;
+@property (nonatomic, readonly, copy) NSArray *zones;
 
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (bool)supportsSecureCoding;
@@ -48,6 +50,7 @@
 - (unsigned long long)hash;
 - (id)home;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithEntityName:(id)arg1 type:(long long)arg2 entityIdentifier:(id)arg3 deviceTypes:(id)arg4 sceneType:(long long)arg5 room:(id)arg6 home:(id)arg7 group:(id)arg8 zones:(id)arg9;
 - (id)initWithEntityName:(id)arg1 type:(long long)arg2 entityIdentifier:(id)arg3 deviceTypes:(id)arg4 sceneType:(long long)arg5 room:(id)arg6 zone:(id)arg7 home:(id)arg8 group:(id)arg9;
 - (id)initWithName:(id)arg1 type:(long long)arg2 deviceType:(long long)arg3;
 - (bool)isEqual:(id)arg1;
@@ -56,5 +59,6 @@
 - (long long)sceneType;
 - (long long)type;
 - (id)zone;
+- (id)zones;
 
 @end

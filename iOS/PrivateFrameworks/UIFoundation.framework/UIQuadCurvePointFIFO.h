@@ -15,14 +15,14 @@
     UIView * _view;
 }
 
-@property (nonatomic) _UIPointVector *controlPoints;
+@property (nonatomic, retain) _UIPointVector *controlPoints;
 @property (copy) id /* block */ emissionHandler;
 @property (nonatomic) bool emitInterpolatedPoints;
 @property (nonatomic) void lastPoint;
 @property (nonatomic) double lineWidth;
 @property (nonatomic) struct CGPath { }*path;
-@property (nonatomic) _UIPointVector *points;
-@property (nonatomic) _UIPointVector *prevPoints;
+@property (nonatomic, retain) _UIPointVector *points;
+@property (nonatomic, retain) _UIPointVector *prevPoints;
 @property (nonatomic) float unitScale;
 @property (nonatomic, retain) UIView *view;
 

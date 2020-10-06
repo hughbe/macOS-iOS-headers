@@ -6,14 +6,15 @@
     NSSet * _predicates;
 }
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)initWithPredicates:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)matchesProcess:(id)arg1;
+- (id)processIdentifier;
 
 @end

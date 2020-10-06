@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INIntentResponse : NSObject <INCacheableContainer, INEnumerable, INGenericIntentResponse, INImageProxyInjecting, INIntentResponseExport, INIntentSlotComposing, INKeyImageProducing, INRuntimeObject, NSCopying, NSSecureCoding> {
+@interface INIntentResponse : NSObject <CMSCoding, INCacheableContainer, INEnumerable, INGenericIntentResponse, INImageProxyInjecting, INIntentResponseExport, INIntentSlotComposing, INKeyImageProducing, INRuntimeObject, NSCopying, NSSecureCoding> {
     long long  __stage;
     bool  __userConfirmationRequired;
     _INPBIntentResponse * _backingStore;
@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSDictionary *_JSONDictionaryRepresentation;
 @property (nonatomic, readonly) NSString *_className;
 @property (nonatomic, readonly) INCodableDescription *_codableDescription;
+@property (setter=_setCode:, nonatomic) long long _code;
 @property (nonatomic, readonly) INIntentResponseDescription *_instanceDescription;
 @property (nonatomic, readonly) INIntentResponseCodableCode *_intentResponseCodableCode;
 @property (nonatomic, readonly) long long _intentResponseCode;
@@ -37,6 +38,8 @@
 @property (nonatomic, copy) NSDictionary *propertiesByName;
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSUserActivity *userActivity;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (bool)_appLaunchRequestedFromCode:(long long)arg1;
 + (long long)_codeFromIntentResponseCode:(long long)arg1;
@@ -69,6 +72,7 @@
 - (long long)_intentResponseCode;
 - (id)_intents_cacheableObjects;
 - (bool)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(id /* block */)arg2;
+- (void)_intents_prepareResponse;
 - (long long)_intents_toggleState;
 - (void)_intents_updateContainerWithCache:(id)arg1;
 - (bool)_isSuccess;
@@ -81,11 +85,13 @@
 - (id)_propertiesByNameWithLocalizer:(id)arg1;
 - (id)_querySchemaWithBlock:(id /* block */)arg1;
 - (id)_renderedResponseForLanguage:(id)arg1 requiresSiriCompatibility:(bool)arg2;
+- (id)_renderedResponseWithLocalizer:(id)arg1 requiresSiriCompatibility:(bool)arg2;
 - (bool)_requiresAuthentication;
 - (bool)_requiresProtectedData;
 - (id)_responseMessagePBRepresentation;
 - (id)_responseTemplateForLanguage:(id)arg1;
 - (id)_responseTemplateForLanguage:(id)arg1 requiresSiriCompatibility:(bool)arg2;
+- (id)_responseTemplateWithLocalizer:(id)arg1;
 - (id)_responseTemplateWithLocalizer:(id)arg1 requiresSiriCompatibility:(bool)arg2;
 - (void)_setCode:(long long)arg1;
 - (void)_setPayloadResponseMessageData:(id)arg1;
@@ -123,5 +129,13 @@
 - (id)valueForKey:(id)arg1;
 - (id)valueForProperty:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
+- (id)cmsCoded;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (void)wf_getOutputValueWithCompletionHandler:(id /* block */)arg1;
 
 @end

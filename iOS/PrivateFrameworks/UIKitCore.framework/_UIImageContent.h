@@ -23,7 +23,6 @@
 @property (nonatomic, readonly) CUINamedVectorGlyph *vectorGlyph;
 @property (nonatomic, readonly) double vectorScale;
 
-+ (bool)content:(id)arg1 isEqualToContent:(id)arg2;
 + (id)empty;
 
 - (struct CGImage { }*)CGImage;
@@ -38,7 +37,6 @@
 - (bool)_drawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 context:(struct CGContext { }*)arg2 effect:(id)arg3;
 - (void)_drawWithoutEffectInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 context:(struct CGContext { }*)arg2;
 - (void)_prepareforDrawingInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 context:(struct CGContext { }*)arg2;
-- (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })_transformForCGContextWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
 - (bool)canProvideCGImage;
 - (bool)canProvideFullResCGImage;
 - (id)contentWithCGImage:(struct CGImage { }*)arg1;

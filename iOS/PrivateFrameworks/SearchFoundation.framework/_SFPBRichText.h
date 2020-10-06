@@ -17,9 +17,12 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSArray *icons;
 @property (nonatomic, readonly) NSData *jsonData;
+@property (nonatomic) unsigned int maxLines;
 @property (nonatomic, retain) _SFPBGraphicalFloat *starRating;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) _SFPBText *text;
+
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
 
 - (void).cxx_destruct;
 - (void)addFormattedTextPieces:(id)arg1;
@@ -49,5 +52,12 @@
 - (id)starRating;
 - (id)text;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
++ (id)textWithString:(id)arg1;
+
+- (unsigned int)maxLines;
+- (void)setMaxLines:(unsigned int)arg1;
 
 @end

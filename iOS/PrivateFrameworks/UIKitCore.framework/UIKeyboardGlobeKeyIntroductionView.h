@@ -18,12 +18,7 @@
 @property (nonatomic, retain) NSDate *startDate;
 @property (nonatomic, retain) UILabel *titleLabel;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)backdropStyleForRenderConfig:(id)arg1;
 - (id)backdropView;
 - (id /* block */)completionBlock;

@@ -17,11 +17,10 @@
     }  _frame;
     NSSet * _ignoreOcclusionReasons;
     long long  _interfaceOrientation;
+    long long  _interruptionPolicy;
     long long  _isOccluded;
     double  _level;
     bool  _occluded;
-    bool  _occludedHasBeenCalculated;
-    NSArray * _occlusions;
     BSSettings * _otherSettings;
     bool  _prefersProcessTaskSuspensionWhileSceneForeground;
     BSSettings * _transientLocalSettings;
@@ -36,6 +35,7 @@
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } frame;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) long long interfaceOrientation;
+@property (nonatomic, readonly) long long interruptionPolicy;
 @property (nonatomic, readonly) double level;
 @property (nonatomic, readonly, copy) NSArray *occlusions;
 @property (readonly) Class superclass;
@@ -47,6 +47,7 @@
 
 - (void).cxx_destruct;
 - (id)_descriptionBuilderWithMultilinePrefix:(id)arg1 debug:(bool)arg2;
+- (bool)appendDescriptionToBuilder:(id)arg1 forFlag:(long long)arg2 object:(id)arg3 ofSetting:(unsigned long long)arg4;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })bounds;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -63,6 +64,7 @@
 - (id)init;
 - (id)initWithSettings:(id)arg1;
 - (long long)interfaceOrientation;
+- (long long)interruptionPolicy;
 - (bool)isBackgrounded;
 - (bool)isEqual:(id)arg1;
 - (bool)isForeground;
@@ -75,10 +77,17 @@
 - (id)otherSettings;
 - (bool)prefersProcessTaskSuspensionWhileSceneForeground;
 - (void)setPrefersProcessTaskSuspensionWhileSceneForeground:(bool)arg1;
+- (bool)settings:(id)arg1 appendDescriptionToBuilder:(id)arg2 forFlag:(long long)arg3 object:(id)arg4 ofSetting:(unsigned long long)arg5;
+- (id)settings:(id)arg1 keyDescriptionForSetting:(unsigned long long)arg2;
+- (id)settings:(id)arg1 valueDescriptionForFlag:(long long)arg2 object:(id)arg3 ofSetting:(unsigned long long)arg4;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
 - (id)transientLocalSettings;
 - (id)valueDescriptionForFlag:(long long)arg1 object:(id)arg2 ofSetting:(unsigned long long)arg3;
+
+// Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard
+
+- (id)fb_fallbackSpecification;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

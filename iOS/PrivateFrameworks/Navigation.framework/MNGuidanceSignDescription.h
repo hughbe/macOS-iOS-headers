@@ -3,6 +3,7 @@
  */
 
 @interface MNGuidanceSignDescription : NSObject <NSSecureCoding> {
+    <GEOTransitArtworkDataSource> * _artworkOverride;
     int  _composedGuidanceEventIndex;
     NSArray * _details;
     long long  _distanceDetailLevel;
@@ -15,6 +16,7 @@
     NSDictionary * _variableOverrides;
 }
 
+@property (nonatomic, readonly) <GEOTransitArtworkDataSource> *artworkOverride;
 @property (nonatomic, readonly) int composedGuidanceEventIndex;
 @property (nonatomic, readonly) NSArray *details;
 @property (nonatomic, readonly) long long distanceDetailLevel;
@@ -29,6 +31,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)artworkOverride;
 - (int)composedGuidanceEventIndex;
 - (id)debugDescription;
 - (id)description;
@@ -36,7 +39,7 @@
 - (long long)distanceDetailLevel;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithID:(id)arg1 titles:(id)arg2 details:(id)arg3 variableOverrides:(id)arg4 distanceDetailLevel:(int)arg5 junction:(id)arg6 shieldText:(id)arg7 shieldID:(int)arg8 shieldStringID:(id)arg9 composedGuidanceEventIndex:(int)arg10;
+- (id)initWithID:(id)arg1 titles:(id)arg2 details:(id)arg3 variableOverrides:(id)arg4 distanceDetailLevel:(int)arg5 junction:(id)arg6 artworkOverride:(id)arg7 shieldText:(id)arg8 shieldID:(int)arg9 shieldStringID:(id)arg10 composedGuidanceEventIndex:(int)arg11;
 - (id)junction;
 - (int)shieldID;
 - (id)shieldStringID;

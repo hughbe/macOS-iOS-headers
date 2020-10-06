@@ -22,6 +22,7 @@
 - (id)placeholderImageProvider;
 - (id)renderAvatarsForContacts:(id)arg1 handler:(id /* block */)arg2;
 - (id)renderAvatarsForContacts:(id)arg1 scope:(id)arg2 imageHandler:(id /* block */)arg3;
+- (id)renderAvatarsForContacts:(id)arg1 scope:(id)arg2 includePlaceholder:(bool)arg3 imageHandler:(id /* block */)arg4;
 - (id)renderAvatarsForContacts:(id)arg1 scope:(id)arg2 placeholder:(bool)arg3 workScheduler:(id)arg4 imageHandler:(id /* block */)arg5;
 - (id)renderMonogramForContact:(id)arg1 color:(id)arg2 scope:(id)arg3 prohibitedSources:(long long)arg4;
 - (id)renderMonogramForString:(id)arg1 color:(id)arg2 scope:(id)arg3 prohibitedSources:(long long)arg4;

@@ -12,14 +12,12 @@
 }
 
 @property (setter=_setCodableEnum:, nonatomic) INCodableEnum *_codableEnum;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, copy) NSString *displayNameLocID;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) long long index;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (nonatomic, readonly, copy) NSString *localizedDisplayName;
 @property (nonatomic, copy) NSString *name;
 @property (readonly) Class superclass;
@@ -28,12 +26,15 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableEnumDisplayNameIDKey;
+- (id)__INCodableEnumDisplayNameKey;
+- (id)__INCodableEnumIndexKey;
+- (id)__INCodableEnumNameKey;
+- (id)__INCodableEnumSynonymsKey;
 - (id)_codableEnum;
 - (bool)_intents_compareValue:(id)arg1 relation:(unsigned long long)arg2;
 - (void)_setCodableEnum:(id)arg1;
-- (id)cacheGroup;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (id)displayName;
@@ -43,7 +44,6 @@
 - (long long)index;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
-- (id)keyPrefix;
 - (id)localizedDisplayName;
 - (id)localizedDisplayNameForLanguage:(id)arg1;
 - (id)localizedDisplayNameWithLocalizer:(id)arg1;

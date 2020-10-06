@@ -25,6 +25,7 @@
 - (bool)isLongForm;
 - (id)localizedBody;
 - (id)localizedTitle;
+- (id)serializedDictionary;
 - (void)setIsLongForm:(bool)arg1;
 - (void)setLocalizedBody:(id)arg1;
 - (void)setLocalizedTitle:(id)arg1;

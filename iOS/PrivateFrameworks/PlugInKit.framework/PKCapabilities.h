@@ -4,7 +4,6 @@
 
 @interface PKCapabilities : NSObject
 
-+ (unsigned int)_mainExecutableSDKVersion;
 + (bool)supportsAutoreleasePoolDuringPlugInLaunch;
 
 @end

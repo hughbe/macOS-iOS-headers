@@ -5,6 +5,7 @@
 @interface IDSSocketPairProtobufMessage : IDSSocketPairMessage <IDSSocketPairMessage> {
     bool  _compressed;
     NSData * _data;
+    bool  _didWakeHint;
     bool  _expectsPeerResponse;
     NSDate * _expiryDate;
     unsigned short  _isResponse;
@@ -20,6 +21,7 @@
 
 @property (nonatomic) bool compressed;
 @property (nonatomic, readonly) NSData *data;
+@property (nonatomic) bool didWakeHint;
 @property (nonatomic, readonly) bool expectsPeerResponse;
 @property (nonatomic, retain) NSDate *expiryDate;
 @property (nonatomic, readonly) unsigned short isResponse;
@@ -35,15 +37,17 @@
 - (unsigned char)command;
 - (bool)compressed;
 - (id)data;
+- (bool)didWakeHint;
 - (bool)expectsPeerResponse;
 - (id)expiryDate;
 - (id)initWithCommand:(unsigned char)arg1 underlyingData:(id)arg2;
-- (id)initWithSequenceNumber:(unsigned int)arg1 streamID:(unsigned short)arg2 expectsPeerResponse:(bool)arg3 wantsAppAck:(bool)arg4 compressed:(bool)arg5 peerResponseIdentifier:(id)arg6 messageUUID:(id)arg7 expiryDate:(id)arg8 protobuf:(id)arg9;
+- (id)initWithSequenceNumber:(unsigned int)arg1 streamID:(unsigned short)arg2 expectsPeerResponse:(bool)arg3 wantsAppAck:(bool)arg4 compressed:(bool)arg5 didWakeHint:(bool)arg6 peerResponseIdentifier:(id)arg7 messageUUID:(id)arg8 expiryDate:(id)arg9 protobuf:(id)arg10;
 - (unsigned short)isResponse;
 - (id)messageUUID;
 - (id)peerResponseIdentifier;
 - (unsigned int)sequenceNumber;
 - (void)setCompressed:(bool)arg1;
+- (void)setDidWakeHint:(bool)arg1;
 - (void)setExpiryDate:(id)arg1;
 - (void)setSequenceNumber:(unsigned int)arg1;
 - (void)setStreamID:(unsigned short)arg1;

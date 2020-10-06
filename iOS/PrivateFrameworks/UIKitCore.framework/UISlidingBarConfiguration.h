@@ -4,19 +4,34 @@
 
 @interface UISlidingBarConfiguration : NSObject <NSCopying> {
     long long  __leadingBackgroundStyle;
-    bool  __leadingBorderWidthIsInPixels;
     double  __rawLeadingBorderWidth;
     double  __rawTrailingBorderWidth;
     long long  __trailingBackgroundStyle;
-    bool  __trailingBorderWidthIsInPixels;
-    bool  _allowMixedSideBySideAndOverlay;
     UIColor * _borderColor;
-    bool  _leadingMayBeHidden;
+    union { 
+        unsigned int value; 
+        struct { 
+            unsigned int leadingMayBeHidden : 1; 
+            unsigned int trailingMayBeHidden : 1; 
+            unsigned int supplementaryMayBeHidden : 1; 
+            unsigned int allowMixedSideBySideAndOverlay : 1; 
+            unsigned int allowTotalWidthGreaterThanParent : 1; 
+            unsigned int forceOverlay : 1; 
+            unsigned int supplementaryComplementsLeadingTrailing : 1; 
+            unsigned int detachedMain : 1; 
+            unsigned int leadingBorderWidthIsInPixels : 1; 
+            unsigned int trailingBorderWidthIsInPixels : 1; 
+            unsigned int shouldFadeStaticNavBarButton : 1; 
+            unsigned int reserved : 21; 
+        } flags; 
+    }  _configurationFlags;
     NSArray * _leadingWidths;
     double  _maximumMainWidth;
     double  _minimumMainWidthFraction;
     double  _minimumMainWidthFractionForSecondColumn;
-    bool  _trailingMayBeHidden;
+    double  _rubberBandExtension;
+    long long  _supplementaryEdge;
+    NSArray * _supplementaryWidths;
     NSArray * _trailingWidths;
 }
 
@@ -27,12 +42,21 @@
 @property (setter=_setTrailingBackgroundStyle:, nonatomic) long long _trailingBackgroundStyle;
 @property (setter=_setTrailingBorderWidthIsInPixels:, nonatomic) bool _trailingBorderWidthIsInPixels;
 @property (nonatomic) bool allowMixedSideBySideAndOverlay;
+@property (nonatomic) bool allowTotalWidthGreaterThanParent;
 @property (nonatomic, retain) UIColor *borderColor;
+@property (nonatomic) bool detachedMain;
+@property (nonatomic) bool forceOverlay;
 @property (nonatomic) bool leadingMayBeHidden;
 @property (nonatomic, copy) NSArray *leadingWidths;
 @property (nonatomic) double maximumMainWidth;
 @property (nonatomic) double minimumMainWidthFraction;
 @property (nonatomic) double minimumMainWidthFractionForSecondColumn;
+@property (nonatomic) double rubberBandExtension;
+@property (nonatomic) bool shouldFadeStaticNavBarButton;
+@property (nonatomic) bool supplementaryComplementsLeadingTrailing;
+@property (nonatomic) long long supplementaryEdge;
+@property (nonatomic) bool supplementaryMayBeHidden;
+@property (nonatomic, copy) NSArray *supplementaryWidths;
 @property (nonatomic) bool trailingMayBeHidden;
 @property (nonatomic, copy) NSArray *trailingWidths;
 
@@ -50,8 +74,12 @@
 - (long long)_trailingBackgroundStyle;
 - (bool)_trailingBorderWidthIsInPixels;
 - (bool)allowMixedSideBySideAndOverlay;
+- (bool)allowTotalWidthGreaterThanParent;
 - (id)borderColor;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
+- (bool)detachedMain;
+- (bool)forceOverlay;
 - (unsigned long long)hash;
 - (id)init;
 - (bool)isEqual:(id)arg1;
@@ -61,8 +89,12 @@
 - (double)maximumMainWidth;
 - (double)minimumMainWidthFraction;
 - (double)minimumMainWidthFractionForSecondColumn;
+- (double)rubberBandExtension;
 - (void)setAllowMixedSideBySideAndOverlay:(bool)arg1;
+- (void)setAllowTotalWidthGreaterThanParent:(bool)arg1;
 - (void)setBorderColor:(id)arg1;
+- (void)setDetachedMain:(bool)arg1;
+- (void)setForceOverlay:(bool)arg1;
 - (void)setLeadingBorderWidthInPixels:(double)arg1;
 - (void)setLeadingBorderWidthInPoints:(double)arg1;
 - (void)setLeadingMayBeHidden:(bool)arg1;
@@ -70,10 +102,21 @@
 - (void)setMaximumMainWidth:(double)arg1;
 - (void)setMinimumMainWidthFraction:(double)arg1;
 - (void)setMinimumMainWidthFractionForSecondColumn:(double)arg1;
+- (void)setRubberBandExtension:(double)arg1;
+- (void)setShouldFadeStaticNavBarButton:(bool)arg1;
+- (void)setSupplementaryComplementsLeadingTrailing:(bool)arg1;
+- (void)setSupplementaryEdge:(long long)arg1;
+- (void)setSupplementaryMayBeHidden:(bool)arg1;
+- (void)setSupplementaryWidths:(id)arg1;
 - (void)setTrailingBorderWidthInPixels:(double)arg1;
 - (void)setTrailingBorderWidthInPoints:(double)arg1;
 - (void)setTrailingMayBeHidden:(bool)arg1;
 - (void)setTrailingWidths:(id)arg1;
+- (bool)shouldFadeStaticNavBarButton;
+- (bool)supplementaryComplementsLeadingTrailing;
+- (long long)supplementaryEdge;
+- (bool)supplementaryMayBeHidden;
+- (id)supplementaryWidths;
 - (double)trailingBorderWidthForScale:(double)arg1;
 - (bool)trailingMayBeHidden;
 - (id)trailingWidths;

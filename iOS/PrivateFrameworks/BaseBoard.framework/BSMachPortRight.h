@@ -27,12 +27,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (void)_critical:(id /* block */)arg1;
-- (id)_initWithPort:(unsigned int)arg1 owner:(int)arg2 trace:(id)arg3;
 - (id)_lock_encodePort:(unsigned int)arg1;
-- (void)_lock_invalidate;
-- (void)_lock_invalidateForOwner:(int)arg1;
-- (bool)_lock_isUsable;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

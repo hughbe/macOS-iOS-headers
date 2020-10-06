@@ -23,12 +23,6 @@
 @property (nonatomic, readonly) double timeout;
 
 - (void).cxx_destruct;
-- (void)_completeWatchdogAfterFiring:(bool)arg1;
-- (void)_invalidateTimer;
-- (void)_setupTimerWithInterval:(double)arg1 handler:(id /* block */)arg2;
-- (void)_stageOneTimerFired;
-- (void)_stageTwoTimerFired;
-- (void)_startWatchdogTimer;
 - (void)_watchdogInvalidated;
 - (void)_watchdogTimerFired;
 - (void)dealloc;

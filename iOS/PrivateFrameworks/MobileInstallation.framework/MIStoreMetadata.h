@@ -7,9 +7,11 @@
     NSString * _altDSID;
     NSString * _appleID;
     NSString * _artistName;
+    NSString * _assetToken;
     NSNumber * _betaExternalVersionIdentifier;
     NSString * _bundleShortVersionString;
     NSString * _bundleVersion;
+    NSArray * _categories;
     bool  _deviceBasedVPP;
     NSNumber * _downloaderID;
     NSString * _enterpriseInstallURL;
@@ -55,9 +57,11 @@
 @property (nonatomic, copy) NSString *altDSID;
 @property (nonatomic, copy) NSString *appleID;
 @property (nonatomic, copy) NSString *artistName;
+@property (nonatomic, copy) NSString *assetToken;
 @property (nonatomic, retain) NSNumber *betaExternalVersionIdentifier;
 @property (nonatomic, copy) NSString *bundleShortVersionString;
 @property (nonatomic, copy) NSString *bundleVersion;
+@property (nonatomic, copy) NSArray *categories;
 @property (nonatomic) bool deviceBasedVPP;
 @property (nonatomic, retain) NSNumber *downloaderID;
 @property (nonatomic, copy) NSString *enterpriseInstallURL;
@@ -108,9 +112,11 @@
 - (id)altDSID;
 - (id)appleID;
 - (id)artistName;
+- (id)assetToken;
 - (id)betaExternalVersionIdentifier;
 - (id)bundleShortVersionString;
 - (id)bundleVersion;
+- (id)categories;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (bool)deviceBasedVPP;
@@ -152,9 +158,11 @@
 - (void)setAltDSID:(id)arg1;
 - (void)setAppleID:(id)arg1;
 - (void)setArtistName:(id)arg1;
+- (void)setAssetToken:(id)arg1;
 - (void)setBetaExternalVersionIdentifier:(id)arg1;
 - (void)setBundleShortVersionString:(id)arg1;
 - (void)setBundleVersion:(id)arg1;
+- (void)setCategories:(id)arg1;
 - (void)setDSPersonID:(id)arg1;
 - (void)setDeviceBasedVPP:(bool)arg1;
 - (void)setDownloaderID:(id)arg1;

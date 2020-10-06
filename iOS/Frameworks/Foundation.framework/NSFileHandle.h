@@ -6,6 +6,10 @@
 
 @property (readonly, copy) NSData *availableData;
 @property (readonly) unsigned long long offsetInFile;
+@property (nonatomic, readonly) NSString *pathname;
+@property (nonatomic, readonly) NSString *segmentName;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)fileHandleForReadingAtPath:(id)arg1;
@@ -57,5 +61,47 @@
 - (void)writeData:(id)arg1;
 - (bool)writeData:(id)arg1 error:(out id*)arg2;
 - (id /* block */)writeabilityHandler;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (long long)hk_countLines;
+- (void)hk_readLinesInFile:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppleServiceToolkit.framework/AppleServiceToolkit
+
++ (id)fileHandleForCreatingURL:(id)arg1 protection:(id)arg2 error:(id*)arg3;
+
+- (bool)isOpenForUpdating;
+
+// Image: /System/Library/PrivateFrameworks/BiomeStorage.framework/BiomeStorage
+
+- (id)pathname;
+- (id)segmentName;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)writeString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (unsigned long long)writeWithCompression:(id)arg1 andUpdateAdler32:(struct adler32_t { unsigned long long x1; }*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (bool)hk_readValue:(void*)arg1 ofSize:(unsigned long long)arg2 error:(id*)arg3;
+- (bool)hk_writeValue:(const void*)arg1 size:(unsigned long long)arg2 error:(id*)arg3;
+
+// Image: /System/Library/PrivateFrameworks/MapsSupport.framework/MapsSupport
+
+- (bool)_maps_writeData:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
+
+- (void)ml_lock;
+- (void)ml_unlock;
+
+// Image: /System/Library/PrivateFrameworks/SpotlightServices.framework/SpotlightServices
+
+- (id)prs_mappedData;
 
 @end

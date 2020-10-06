@@ -21,8 +21,8 @@
 - (id)avatarStore;
 - (bool)canCreateMemoji;
 - (id)identifier;
-- (id)initWithContact:(id)arg1;
-- (id)initWithContact:(id)arg1 avatarStore:(id)arg2;
+- (id)initWithVisualIdentity:(id)arg1;
+- (id)initWithVisualIdentity:(id)arg1 avatarStore:(id)arg2;
 - (id)loadItemsForSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 RTL:(bool)arg3 renderingQueue:(id)arg4 callbackQueue:(id)arg5 itemDelegate:(id)arg6;
 - (void)setIdentifier:(id)arg1;
 

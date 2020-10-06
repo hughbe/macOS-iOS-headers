@@ -16,13 +16,7 @@
     unsigned long long  _slotLimit;
 }
 
-- (void)_dispose;
-- (void)clearTemporaryIDs;
 - (void)dealloc;
 - (void)finalize;
-- (unsigned long long)getAllObjects:(id*)arg1;
-- (id)initWithWeaksReferences:(bool)arg1;
-- (void)setCapacityHint:(unsigned long long)arg1 forSlot:(unsigned int)arg2;
-- (void)setForUseWithCoordinator:(id)arg1;
 
 @end

@@ -26,7 +26,10 @@
 - (bool)hasLow;
 - (unsigned long long)hash;
 - (unsigned long long)high;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned long long)low;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

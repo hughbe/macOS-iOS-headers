@@ -8,9 +8,6 @@
     NSString * _logKey;
     NSString * _profile;
     NSString * _profileVersion;
-    bool  _waitingForConnectivity;
-    NSMutableArray * _waitingForConnectivityBlocks;
-    NSObject<OS_dispatch_queue> * _waitingForConnectivityQueue;
 }
 
 @property (nonatomic, retain) AMSURLSession *URLSession;
@@ -22,9 +19,6 @@
 @property (nonatomic, retain) NSString *profile;
 @property (nonatomic, retain) NSString *profileVersion;
 @property (readonly) Class superclass;
-@property (nonatomic) bool waitingForConnectivity;
-@property (nonatomic, retain) NSMutableArray *waitingForConnectivityBlocks;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *waitingForConnectivityQueue;
 
 + (id)_OSBuildTypeString;
 + (id)_URLCookieNamesForProfile:(id)arg1;
@@ -39,13 +33,10 @@
 - (void).cxx_destruct;
 - (id)URLSession;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveResponse:(id)arg3 completionHandler:(id /* block */)arg4;
-- (void)URLSession:(id)arg1 taskIsWaitingForConnectivity:(id)arg2;
 - (id)_cookiesForNames:(id)arg1;
 - (id)_createRequestWithCookieNames:(id)arg1 storefront:(id)arg2;
 - (bool)_shouldRetryForResult:(id)arg1 cookieNames:(id)arg2 urlCookies:(id)arg3 newStorefront:(id)arg4;
 - (void)_updateStorefrontSuffixIfNecessaryWithBagData:(id)arg1;
-- (void)_updateWaitingForConnectivity:(bool)arg1;
-- (void)addWaitingForConnectivityBlock:(id /* block */)arg1;
 - (id)clientInfo;
 - (id)initWithClientInfo:(id)arg1 profile:(id)arg2 profileVersion:(id)arg3;
 - (id)logKey;
@@ -57,11 +48,5 @@
 - (void)setProfile:(id)arg1;
 - (void)setProfileVersion:(id)arg1;
 - (void)setURLSession:(id)arg1;
-- (void)setWaitingForConnectivity:(bool)arg1;
-- (void)setWaitingForConnectivityBlocks:(id)arg1;
-- (void)setWaitingForConnectivityQueue:(id)arg1;
-- (bool)waitingForConnectivity;
-- (id)waitingForConnectivityBlocks;
-- (id)waitingForConnectivityQueue;
 
 @end

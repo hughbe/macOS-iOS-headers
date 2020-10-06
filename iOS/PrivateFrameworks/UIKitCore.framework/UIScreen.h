@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIScreen : NSObject <DebugHierarchyObject_Fallback, UICoordinateSpace, UIFocusItemContainer, UITraitEnvironment, _UIFallbackEnvironment, _UIFocusEnvironmentInternal, _UIFocusEnvironmentPrivate, _UIFocusRegionContainer, _UITraitEnvironmentInternal> {
+@interface UIScreen : NSObject <INUIImageLoaderDelegate, UICoordinateSpace, UIFocusItemContainer, UITraitEnvironment, _CRKImageLoaderDelegate, _UIFallbackEnvironment, _UIFocusEnvironmentInternal, _UIFocusEnvironmentPrivate, _UIFocusRegionContainer, _UITraitEnvironmentInternal> {
     bool  __UIIBAlwaysProvidePeripheryInsets;
     FBSDisplayConfiguration * __displayConfiguration;
     UIWindow<UIFocusEnvironment> * __focusedWindow;
@@ -15,15 +15,11 @@
         unsigned int isSupported : 1; 
         unsigned int isInRange : 1; 
     }  _carPlayHumanPresenceStatus;
-    CARSessionStatus * _currentCarSessionStatus;
+    CARSessionStatus * _carSessionStatus;
     UITraitCollection * _defaultTraitCollection;
     <_UIDisplayInfoProviding> * _displayInfoProvider;
     _UIDragManager * _dragManager;
     _UIScreenFixedCoordinateSpace * _fixedCoordinateSpace;
-    _UIFocusMovementPerformer * _focusMovementPerformer;
-    _UIFocusScrollManager * _focusScrollManager;
-    UIFocusSystem * _focusSystem;
-    _UIScreenFocusSystemManager * _focusSystemManager;
     long long  _gamut;
     UISDisplayContext * _initialDisplayContext;
     _UIInteractiveHighlightEnvironment * _interactiveHighlightEnvironment;
@@ -75,6 +71,8 @@
 
 @property (setter=_setUIIBAlwaysProvidePeripheryInsets:, nonatomic) bool _UIIBAlwaysProvidePeripheryInsets;
 @property (setter=_setFocusedWindow:, nonatomic) UIWindow<UIFocusEnvironment> *_focusedWindow;
+@property (readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _gkBounds;
+@property (readonly) double _gkScale;
 @property (setter=_setLastNotifiedBacklightLevel:, nonatomic) float _lastNotifiedBacklightLevel;
 @property (getter=_isPerformingSystemSnapshot, setter=_setPerformingSystemSnapshot:, nonatomic) bool _performingSystemSnapshot;
 @property (nonatomic, readonly) UIWindow *_preferredFocusedWindow;
@@ -88,6 +86,8 @@
 @property (nonatomic) double brightness;
 @property (nonatomic, readonly) double calibratedLatency;
 @property (getter=isCaptured, setter=_setCaptured:, nonatomic) bool captured;
+@property (getter=_carSessionStatus, nonatomic, retain) CARSessionStatus *carSessionStatus;
+@property (nonatomic, readonly) unsigned long long ck_screenSizeCategory;
 @property (readonly) <UICoordinateSpace> *coordinateSpace;
 @property (nonatomic, retain) UIScreenMode *currentMode;
 @property (readonly, copy) NSString *debugDescription;
@@ -97,15 +97,14 @@
 @property (getter=_dragManager, nonatomic, readonly) _UIDragManager *dragManager;
 @property (getter=_isEligibleForFocusInteraction, nonatomic, readonly) bool eligibleForFocusInteraction;
 @property (readonly) <UICoordinateSpace> *fixedCoordinateSpace;
+@property (nonatomic, readonly, copy) NSString *focusGroupIdentifier;
 @property (nonatomic, readonly) <UIFocusItemContainer> *focusItemContainer;
 @property (getter=_focusMapContainer, nonatomic, readonly) <_UIFocusRegionContainer> *focusMapContainer;
-@property (getter=_focusMovementPerformer, nonatomic, readonly) _UIFocusMovementPerformer *focusMovementPerformer;
-@property (getter=_focusScrollManager, nonatomic, readonly) _UIFocusScrollManager *focusScrollManager;
 @property (getter=_focusSystem, nonatomic, readonly) UIFocusSystem *focusSystem;
-@property (getter=_focusSystemManager, nonatomic, readonly) _UIScreenFocusSystemManager *focusSystemManager;
 @property (nonatomic, readonly) <UIFocusItem> *focusedItem;
 @property (nonatomic, readonly) UIView *focusedView;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) bool ic_isSecure;
 @property (getter=_interactiveHighlightEnvironment, nonatomic, readonly) _UIInteractiveHighlightEnvironment *interactiveHighlightEnvironment;
 @property (getter=_lastNotifiedTraitCollection, setter=_setLastNotifiedTraitCollection:, nonatomic, retain) UITraitCollection *lastNotifiedTraitCollection;
 @property (getter=_linearFocusMovementSequences, nonatomic, readonly, copy) NSArray *linearFocusMovementSequences;
@@ -123,9 +122,11 @@
 @property (nonatomic, readonly) UIView *preferredFocusedView;
 @property (nonatomic, readonly) UIScreenMode *preferredMode;
 @property (nonatomic, readonly) double scale;
+@property (readonly) unsigned long long screenSizeCategory;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) bool supportsFocus;
 @property (nonatomic, readonly) UITraitCollection *traitCollection;
+@property (getter=isUserInterfaceIdiomPad, nonatomic, readonly) bool userInterfaceIdiomPad;
 @property (nonatomic) bool wantsSoftwareDimming;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
@@ -144,7 +145,6 @@
 + (void)_enumerateScreensWithBlock:(id /* block */)arg1;
 + (bool)_isProbablyBeingRecorded;
 + (id)_mainScreenThreadSafeTraitCollection;
-+ (void)_prepareCarScreensForResume;
 + (void)_prepareScreensForAppResume;
 + (id)_screenForScene:(id)arg1;
 + (id)_screenWithDisplayID:(id)arg1;
@@ -180,6 +180,7 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_boundsForInterfaceOrientation:(long long)arg1;
 - (id)_capabilities;
 - (id)_capabilityForKey:(id)arg1;
+- (id)_carSessionStatus;
 - (void)_clearCarPlayHumanPresenceState;
 - (void)_computeMetrics;
 - (void)_computeMetrics:(bool)arg1;
@@ -196,7 +197,6 @@
 - (id)_dragManager;
 - (long long)_effectiveUserInterfaceStyle;
 - (void)_endObservingBacklightLevelNotifications;
-- (void)_ensureFocusSystemIsLoaded;
 - (bool)_expectsSecureRendering;
 - (void)_externalDeviceNightModeDidChange:(id)arg1;
 - (id)_fallbackTraitCollection;
@@ -258,6 +258,7 @@
 - (void)_postBrightnessDidChangeNotificationIfAppropriate;
 - (id)_preferredFocusRegionCoordinateSpace;
 - (id)_preferredFocusedWindow;
+- (id)_preferredFocusedWindowScene;
 - (void)_prepareForWindow;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_referenceBounds;
 - (double)_refreshRate;
@@ -352,6 +353,7 @@
 - (int)screenType;
 - (void)setBitsPerComponent:(int)arg1;
 - (void)setBrightness:(double)arg1;
+- (void)setCarSessionStatus:(id)arg1;
 - (void)setCurrentMode:(id)arg1;
 - (void)setDisplayConfiguration:(id)arg1;
 - (void)setFocusEnabled:(bool)arg1;
@@ -368,15 +370,88 @@
 - (void)updateFocusIfNeeded;
 - (bool)wantsSoftwareDimming;
 
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
+// Image: /System/Library/Frameworks/IntentsUI.framework/IntentsUI
 
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-- (double)__dbg_traitCollectionDisplayCornerRadius;
+- (id)traitCollectionForImageLoader:(id)arg1;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
 - (id)_mapkit_display;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (struct CGSize { double x1; double x2; })pu_workImageSize;
+
+// Image: /System/Library/Frameworks/SwiftUI.framework/SwiftUI
+
++ (void)_performSwiftUITestingOverrides;
+
+- (double)_SwiftUITesting_currentScreenScale;
+- (bool)_SwiftUITesting_wantsWideContentMargins;
+
+// Image: /System/Library/PrivateFrameworks/AssetViewer.framework/AssetViewer
+
+- (long long)currentOrientation;
+
+// Image: /System/Library/PrivateFrameworks/CardKit.framework/CardKit
+
+- (id)traitCollectionForImageLoader:(id)arg1 image:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (bool)__ck_isFullscreen;
+- (unsigned long long)ck_screenSizeCategory;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUICore.framework/GameCenterUICore
+
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_gkBounds;
+- (double)_gkScale;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (bool)hk_currentDeviceHas4InchScreen;
++ (bool)hk_currentDeviceHas4Point7InchScreen;
++ (bool)hk_currentDeviceHas5Point8InchScreen;
+
+// Image: /System/Library/PrivateFrameworks/HeartRhythmUI.framework/HeartRhythmUI
+
++ (bool)hrui_currentDeviceHas5Point8InchScreen;
++ (bool)hrui_currentDeviceHasLargePhoneScreen;
++ (bool)hrui_currentDeviceHasMediumPhoneScreen;
++ (bool)hrui_currentDeviceHasSmallPhoneScreen;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
+- (bool)ic_isSecure;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
+- (bool)isUserInterfaceIdiomPad;
+- (unsigned long long)screenSizeCategory;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSKit.framework/TSKit
+
++ (bool)tsk_appIsAlwaysInDarkMode;
++ (bool)tsk_deviceCanUseSidebar;
++ (bool)tsk_deviceIsLandscape;
++ (double)tsk_expectedScreenScale;
++ (bool)tsk_is3xScreenScale;
++ (bool)tsk_isHorizontallyCompactOnLandscape;
++ (bool)tsk_pad1080H;
++ (bool)tsk_pad1112H;
++ (bool)tsk_pad1180H;
++ (bool)tsk_pad1194H;
++ (bool)tsk_pad1366H;
++ (bool)tsk_pad1366HOrLarger;
++ (bool)tsk_phoneUI568H;
++ (bool)tsk_phoneUI568HOrSmaller;
++ (bool)tsk_phoneUI667H;
++ (bool)tsk_phoneUI667HOrSmaller;
++ (bool)tsk_phoneUI736H;
++ (bool)tsk_phoneUI812H;
++ (bool)tsk_phoneUI812HOrLarger;
++ (bool)tsk_phoneUI896H;
++ (void)tsk_resetScreenScaleCache;
++ (double)tsk_screenScale;
 
 @end

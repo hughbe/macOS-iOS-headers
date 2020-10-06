@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SampleAnalysis.framework/SampleAnalysis
  */
 
-@interface SASamplePrintOptions : NSObject {
+@interface SASamplePrintOptions : NSObject <NSCopying> {
     bool  _aggregateFramesByOffsetIntoBinary;
     bool  _aggregateProcessesByExecutable;
     bool  _aggregateStacksByProcess;
@@ -18,6 +18,10 @@
     bool  _displayBlockedReasonsLackingProcessOwners;
     bool  _displayBlockedThreads;
     bool  _displayBody;
+    bool  _displayCPUNumForNonRunningThreads;
+    bool  _displayCPUNumForRunningThreads;
+    bool  _displayDetailedCpuTime;
+    bool  _displayDetailedWallTime;
     bool  _displayEmptyBootArgs;
     bool  _displayFooter;
     bool  _displayFrameAddresses;
@@ -25,11 +29,9 @@
     bool  _displayHeader;
     bool  _displayIdleWorkQueueThreads;
     bool  _displayOffsetsFromUnnamedSymbols;
-    bool  _displayProcessFirstLastTimes;
     bool  _displayRunnableThreads;
     bool  _displayRunningThreads;
     bool  _displayStacksWithZeroCount;
-    bool  _displaySub1MsCpuTime;
     bool  _displaySymbolInformation;
     bool  _displayTasksWithZeroCount;
     bool  _displayThreadRunningState;
@@ -50,14 +52,20 @@
     BOOL  _omitTasksBelowPercentOfTotalSamples;
     long long  _omitTasksBelowSampleCount;
     bool  _orderTasksBySampleCount;
+    bool  _patchTruncatedStacks;
+    NSSet * _pidsToPrint;
     bool  _printHeavyStacks;
     bool  _printJson;
     bool  _printSpinSignatureStack;
     bool  _printTargetHIDEvent;
     bool  _printTargetThreadOnly;
+    NSSet * _processNamesToPrint;
+    NSSet * _processUUIDsToPrint;
     bool  _showThreadStateAsLeafFrame;
     bool  _systemstatsFormat;
     bool  _tabDelineateBinaryImageSections;
+    NSSet * _tidsToPrint;
+    NSSet * _uniquePidsToPrint;
 }
 
 @property bool aggregateFramesByOffsetIntoBinary;
@@ -75,6 +83,10 @@
 @property bool displayBlockedReasonsLackingProcessOwners;
 @property bool displayBlockedThreads;
 @property bool displayBody;
+@property bool displayCPUNumForNonRunningThreads;
+@property bool displayCPUNumForRunningThreads;
+@property bool displayDetailedCpuTime;
+@property bool displayDetailedWallTime;
 @property bool displayEmptyBootArgs;
 @property bool displayFooter;
 @property bool displayFrameAddresses;
@@ -107,22 +119,30 @@
 @property BOOL omitTasksBelowPercentOfTotalSamples;
 @property long long omitTasksBelowSampleCount;
 @property bool orderTasksBySampleCount;
+@property bool patchTruncatedStacks;
+@property (copy) NSSet *pidsToPrint;
 @property bool printHeavyStacks;
 @property bool printJson;
 @property bool printSpinSignatureStack;
 @property bool printTargetHIDEvent;
 @property bool printTargetThreadOnly;
+@property (copy) NSSet *processNamesToPrint;
+@property (copy) NSSet *processUUIDsToPrint;
 @property bool showThreadStateAsLeafFrame;
 @property bool systemstatsFormat;
 @property bool tabDelineateBinaryImageSections;
+@property (copy) NSSet *tidsToPrint;
+@property (copy) NSSet *uniquePidsToPrint;
 @property bool verbose;
 
+- (void).cxx_destruct;
 - (bool)aggregateFramesByOffsetIntoBinary;
 - (bool)aggregateProcessesByExecutable;
 - (bool)aggregateStacksByProcess;
 - (bool)aggregateStacksByThread;
 - (bool)binaryImagesBeforeStacks;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)debugDescription;
 - (bool)displayAddressesInBlockedReasons;
 - (bool)displayAllBinaries;
 - (bool)displayAllHIDEvents;
@@ -133,6 +153,10 @@
 - (bool)displayBlockedReasonsLackingProcessOwners;
 - (bool)displayBlockedThreads;
 - (bool)displayBody;
+- (bool)displayCPUNumForNonRunningThreads;
+- (bool)displayCPUNumForRunningThreads;
+- (bool)displayDetailedCpuTime;
+- (bool)displayDetailedWallTime;
 - (bool)displayEmptyBootArgs;
 - (bool)displayFooter;
 - (bool)displayFrameAddresses;
@@ -166,11 +190,15 @@
 - (BOOL)omitTasksBelowPercentOfTotalSamples;
 - (long long)omitTasksBelowSampleCount;
 - (bool)orderTasksBySampleCount;
+- (bool)patchTruncatedStacks;
+- (id)pidsToPrint;
 - (bool)printHeavyStacks;
 - (bool)printJson;
 - (bool)printSpinSignatureStack;
 - (bool)printTargetHIDEvent;
 - (bool)printTargetThreadOnly;
+- (id)processNamesToPrint;
+- (id)processUUIDsToPrint;
 - (void)setAggregateFramesByOffsetIntoBinary:(bool)arg1;
 - (void)setAggregateProcessesByExecutable:(bool)arg1;
 - (void)setAggregateStacksByProcess:(bool)arg1;
@@ -186,6 +214,10 @@
 - (void)setDisplayBlockedReasonsLackingProcessOwners:(bool)arg1;
 - (void)setDisplayBlockedThreads:(bool)arg1;
 - (void)setDisplayBody:(bool)arg1;
+- (void)setDisplayCPUNumForNonRunningThreads:(bool)arg1;
+- (void)setDisplayCPUNumForRunningThreads:(bool)arg1;
+- (void)setDisplayDetailedCpuTime:(bool)arg1;
+- (void)setDisplayDetailedWallTime:(bool)arg1;
 - (void)setDisplayEmptyBootArgs:(bool)arg1;
 - (void)setDisplayFooter:(bool)arg1;
 - (void)setDisplayFrameAddresses:(bool)arg1;
@@ -218,18 +250,26 @@
 - (void)setOmitTasksBelowPercentOfTotalSamples:(BOOL)arg1;
 - (void)setOmitTasksBelowSampleCount:(long long)arg1;
 - (void)setOrderTasksBySampleCount:(bool)arg1;
+- (void)setPatchTruncatedStacks:(bool)arg1;
+- (void)setPidsToPrint:(id)arg1;
 - (void)setPrintHeavyStacks:(bool)arg1;
 - (void)setPrintJson:(bool)arg1;
 - (void)setPrintSpinSignatureStack:(bool)arg1;
 - (void)setPrintTargetHIDEvent:(bool)arg1;
 - (void)setPrintTargetThreadOnly:(bool)arg1;
+- (void)setProcessNamesToPrint:(id)arg1;
+- (void)setProcessUUIDsToPrint:(id)arg1;
 - (void)setShowThreadStateAsLeafFrame:(bool)arg1;
 - (void)setSystemstatsFormat:(bool)arg1;
 - (void)setTabDelineateBinaryImageSections:(bool)arg1;
+- (void)setTidsToPrint:(id)arg1;
+- (void)setUniquePidsToPrint:(id)arg1;
 - (void)setVerbose:(bool)arg1;
 - (bool)showThreadStateAsLeafFrame;
 - (bool)systemstatsFormat;
 - (bool)tabDelineateBinaryImageSections;
+- (id)tidsToPrint;
+- (id)uniquePidsToPrint;
 - (bool)verbose;
 
 @end

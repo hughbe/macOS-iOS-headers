@@ -30,6 +30,7 @@
 - (void)releaseHold:(id)arg1 reply:(id /* block */)arg2;
 - (bool)releaseHold:(id)arg1 withError:(id*)arg2;
 - (void)setClient:(id)arg1;
+- (bool)terminatePlugInAtURL:(id)arg1 withError:(id*)arg2;
 - (void)terminatePlugInsInApplication:(id)arg1 options:(long long)arg2 result:(id /* block */)arg3;
 - (id)terminatePlugInsInApplication:(id)arg1 options:(long long)arg2 withError:(id*)arg3;
 - (void)unregisterPlugInAtURL:(id)arg1 result:(id /* block */)arg2;

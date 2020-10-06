@@ -8,6 +8,7 @@
 - (id)featuresForTextString:(id)arg1 inMessageUnit:(id)arg2 context:(id)arg3;
 - (id)init;
 - (id)newYearsEveDayDateFromReferenceDate:(id)arg1;
+- (id)queue;
 - (void)setTimeZone:(id)arg1 forDateFeatures:(id)arg2;
 - (struct __DDScanner { }*)standardScanner;
 - (void)standardizeTimezonesForDetectedFeatures:(id)arg1;

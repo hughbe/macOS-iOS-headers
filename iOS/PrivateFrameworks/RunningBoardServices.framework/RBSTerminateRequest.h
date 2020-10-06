@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSTerminateRequest : RBSRequest <BSXPCSecureCoding, NSCopying> {
+@interface RBSTerminateRequest : RBSRequest <NSCopying, RBSXPCSecureCoding> {
     RBSTerminateContext * _context;
-    int  _pid;
-    RBSProcessIdentity * _processIdentity;
+    RBSProcessPredicate * _predicate;
+    <RBSServiceLocalProtocol> * _service;
     bool  _targetsAllManagedProcesses;
 }
 
@@ -13,32 +13,29 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly) int pid;
-@property (nonatomic, copy) RBSProcessIdentity *processIdentity;
+@property (nonatomic, retain) RBSProcessPredicate *predicate;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) bool targetsAllManagedProcesses;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)context;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (bool)execute:(out id*)arg1;
 - (bool)execute:(out id*)arg1 error:(out id*)arg2;
+- (unsigned long long)hash;
 - (id)initForAllManagedWithReason:(id)arg1;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithPredicate:(id)arg1 context:(id)arg2;
+- (id)initWithPredicate:(id)arg1 context:(id)arg2 service:(id)arg3;
 - (id)initWithProcessIdentifier:(id)arg1 context:(id)arg2;
 - (id)initWithProcessIdentity:(id)arg1 context:(id)arg2;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
-- (int)pid;
-- (id)processIdentity;
-- (void)setProcessIdentity:(id)arg1;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
+- (id)predicate;
+- (void)setPredicate:(id)arg1;
 - (bool)targetsAllManagedProcesses;
 
 @end

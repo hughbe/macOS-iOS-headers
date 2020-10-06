@@ -6,14 +6,6 @@
     bool  _privileged;
 }
 
-@property (getter=isPrivileged, nonatomic, readonly) bool privileged;
-@property (nonatomic, readonly, copy) NSString *serviceName;
-
-+ (id)uniqueClientContextWithServiceName:(id)arg1 privileged:(bool)arg2;
-
-- (id)_initWithService:(id)arg1 privileged:(bool)arg2;
 - (bool)isClient;
-- (bool)isPrivileged;
-- (id)serviceName;
 
 @end

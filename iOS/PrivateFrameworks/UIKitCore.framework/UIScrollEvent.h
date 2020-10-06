@@ -7,6 +7,7 @@
     unsigned long long  _lastDeliveredPhase;
     unsigned long long  _lastReceivedPhase;
     unsigned long long  _phase;
+    BKSHIDEventPointerAttributes * _pointerAttributes;
     struct CGPoint { 
         double x; 
         double y; 
@@ -14,6 +15,7 @@
 }
 
 @property (readonly) struct CGVector { double x1; double x2; } acceleratedDelta;
+@property (getter=_beganScrollTimestamp, nonatomic, readonly) double beganScrollTimestamp;
 @property (readonly) bool directionInvertedFromDevice;
 @property (getter=_isHighResolution, nonatomic, readonly) bool highResolution;
 @property (readonly) struct CGVector { double x1; double x2; } nonAcceleratedDelta;
@@ -22,6 +24,7 @@
 @property (getter=_scrollType, nonatomic, readonly) unsigned long long scrollType;
 
 - (void).cxx_destruct;
+- (double)_beganScrollTimestamp;
 - (id)_gestureRecognizersForWindow:(id)arg1;
 - (bool)_hasDeliveredTerminalPhase;
 - (id)_init;
@@ -35,6 +38,7 @@
 - (bool)_sendEventToGestureRecognizer:(id)arg1;
 - (void)_setHIDEvent:(struct __IOHIDEvent { }*)arg1;
 - (void)_wasDeliveredToGestureRecognizers;
+- (id)_windowServerHitTestWindow;
 - (id)_windows;
 - (struct CGVector { double x1; double x2; })acceleratedDelta;
 - (bool)directionInvertedFromDevice;

@@ -24,11 +24,15 @@
 }
 
 @property float minimumShadowSpread;
-@property (nonatomic) double scaleFactor;
 
++ (id)caFilterFromCUIEffectBlendMode:(unsigned int)arg1;
 + (int)cgBlendModeFromCUIEffectBlendMode:(unsigned int)arg1;
++ (void)configureVibrantColorMatrixFilter:(id)arg1 withOptions:(struct _CUIVibrantColorMatrixOptions { double x1[4]; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; })arg2;
 + (unsigned int)cuiEffectBlendModeFromCGBlendMode:(int)arg1;
++ (struct _CUIVibrantColorMatrixOptions { double x1[4]; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; })monochromeVibrantColorMatrixOptions;
 + (id)requiredEffectParametersForEffectType:(unsigned int)arg1;
++ (struct _CUIVibrantColorMatrixOptions { double x1[4]; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; })standardVibrantColorMatrixOptionsForColor:(struct CGColor { }*)arg1;
++ (struct _CUIVibrantColorMatrixOptions { double x1[4]; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; })vibrantColorMatrixOptionsWithColor:(struct CGColor { }*)arg1 saturation:(double)arg2 brightness:(double)arg3;
 
 - (id)CUIEffectDataRepresentation;
 - (void)_insertEffectTuple:(struct { unsigned int x1; unsigned int x2; union { double x_3_1_1; unsigned long long x_3_1_2; struct _rgbcolor { unsigned char x_3_2_1; unsigned char x_3_2_2; unsigned char x_3_2_3; } x_3_1_3; short x_3_1_4; unsigned int x_3_1_5; } x3; })arg1 atEffectIndex:(unsigned long long)arg2;
@@ -67,9 +71,7 @@
 - (id)initWithEffectScale:(double)arg1;
 - (id)layerEffectsRepresentation;
 - (float)minimumShadowSpread;
-- (double)scaleFactor;
 - (void)setMinimumShadowSpread:(float)arg1;
-- (void)setScaleFactor:(double)arg1;
 - (union { double x1; unsigned long long x2; struct _rgbcolor { unsigned char x_3_1_1; unsigned char x_3_1_2; unsigned char x_3_1_3; } x3; short x4; unsigned int x5; })valueForParameter:(unsigned int)arg1 inEffectAtIndex:(unsigned long long)arg2;
 
 @end

@@ -10,12 +10,11 @@
     NSString * _synonymLocID;
 }
 
+@property (nonatomic, readonly) INCodableEnum *_codableEnum;
 @property (setter=_setCodableEnumValue:, nonatomic) INCodableEnumValue *_codableEnumValue;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (nonatomic, readonly, copy) NSString *localizedPronunciationHint;
 @property (nonatomic, readonly, copy) NSString *localizedSynonym;
 @property (nonatomic, copy) NSString *pronunciationHint;
@@ -27,18 +26,20 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableEnumPronunciationHintIDKey;
+- (id)__INCodableEnumPronunciationHintKey;
+- (id)__INCodableEnumSynonymIDKey;
+- (id)__INCodableEnumSynonymKey;
+- (id)_codableEnum;
 - (id)_codableEnumValue;
 - (void)_setCodableEnumValue:(id)arg1;
-- (id)cacheGroup;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
-- (id)keyPrefix;
 - (id)localizedPronunciationHint;
 - (id)localizedPronunciationHintForLanguage:(id)arg1;
 - (id)localizedPronunciationHintWithLocalizer:(id)arg1;

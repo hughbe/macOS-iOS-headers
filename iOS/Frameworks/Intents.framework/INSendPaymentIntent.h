@@ -12,6 +12,8 @@
 @property (nonatomic, readonly, copy) INPerson *payee;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 - (id)_categoryVerb;
 - (id)_dictionaryRepresentation;
 - (long long)_intentCategory;
@@ -34,5 +36,14 @@
 - (void)setPayee:(id)arg1;
 - (void)setVerb:(id)arg1;
 - (id)verb;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (void)atx_getArgsInto:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AssistantCardServiceSupport.framework/AssistantCardServiceSupport
+
+- (void)requestCard:(id)arg1 reply:(id /* block */)arg2;
+- (unsigned long long)servicePriorityForCardRequest:(id)arg1;
 
 @end

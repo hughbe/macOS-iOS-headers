@@ -9,6 +9,6 @@
 - (id)_compactPresentationController;
 - (id)_exceptionStringForNilSourceViewOrBarButtonItem;
 - (id)_presentationControllerForTraitCollection:(id)arg1;
-- (void)dimmingViewWasTapped:(id)arg1;
+- (bool)dimmingViewWasTapped:(id)arg1 withDismissCompletion:(id /* block */)arg2;
 
 @end

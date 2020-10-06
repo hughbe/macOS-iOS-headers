@@ -36,6 +36,7 @@
 
 - (void).cxx_destruct;
 - (id)_allVisibleBarItemViews;
+- (void)_checkBarButtonItemState:(id)arg1;
 - (void)_collapseGroupsIfNecessaryForWidth:(double)arg1;
 - (bool)_containsFlexibleGroupViews;
 - (void)_didTapButtonBarButton:(id)arg1 withEvent:(id)arg2;

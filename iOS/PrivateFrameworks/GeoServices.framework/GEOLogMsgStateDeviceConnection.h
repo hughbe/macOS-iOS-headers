@@ -12,10 +12,7 @@
         unsigned int has_deviceNetworkConnectivity : 1; 
         unsigned int read_deviceCarrierName : 1; 
         unsigned int read_deviceCountryCode : 1; 
-        unsigned int wrote_deviceCarrierName : 1; 
-        unsigned int wrote_deviceCountryCode : 1; 
-        unsigned int wrote_cellularDataState : 1; 
-        unsigned int wrote_deviceNetworkConnectivity : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -39,8 +36,6 @@
 - (void).cxx_destruct;
 - (int)StringAsCellularDataState:(id)arg1;
 - (int)StringAsDeviceNetworkConnectivity:(id)arg1;
-- (void)_readDeviceCarrierName;
-- (void)_readDeviceCountryCode;
 - (int)cellularDataState;
 - (id)cellularDataStateAsString:(int)arg1;
 - (void)copyTo:(id)arg1;
@@ -58,7 +53,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

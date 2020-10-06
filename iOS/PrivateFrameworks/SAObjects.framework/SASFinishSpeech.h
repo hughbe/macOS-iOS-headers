@@ -17,6 +17,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic) double totalAudioRecorded;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)finishSpeech;
 + (id)finishSpeechWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -35,5 +37,10 @@
 - (void)setServerFeatureLatencyDistribution:(id)arg1;
 - (void)setTotalAudioRecorded:(double)arg1;
 - (double)totalAudioRecorded;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (bool)siriCore_isRestartable;
+- (bool)siriCore_supportedByLocalSession;
 
 @end

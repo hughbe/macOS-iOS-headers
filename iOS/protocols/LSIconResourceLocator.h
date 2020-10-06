@@ -8,6 +8,5 @@
 - (NSString *)applicationIdentifier;
 - (NSDictionary *)bundleIconsDictionary;
 - (NSURL *)resourcesDirectoryURL;
-- (LSBundleProxy *)typeOwner;
 
 @end

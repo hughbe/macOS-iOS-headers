@@ -75,8 +75,6 @@
 @property (nonatomic, readonly) UITabBar *tabBar;
 @property (getter=_unselectedTintColor, setter=_setUnselectedTintColor:, nonatomic, retain) UIColor *unselectedTintColor;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)_defaultLabelColor;
 
 - (void).cxx_destruct;
@@ -104,6 +102,7 @@
 - (bool)_isSelected;
 - (void)_positionBadge;
 - (void)_positionBadgeAfterChangesIfNecessary:(id /* block */)arg1;
+- (void)_reducedTransparencyDidChange:(id)arg1;
 - (void)_removeCarplayConstraints;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_responderSelectionRect;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_responderSelectionRectForWindow:(id)arg1;
@@ -132,14 +131,12 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_tabBarHitRect;
 - (struct UIOffset { double x1; double x2; })_titlePositionAdjustment;
 - (id)_unselectedTintColor;
+- (void)_updateAfterTraitCollectionOrAccessibilityDidChangeTV;
 - (void)_updateBadgeAppearanceAndLayoutNow:(bool)arg1;
 - (void)_updateSelectedIndicatorFrame;
 - (void)_updateSelectedIndicatorView;
 - (void)_updateToMatchCurrentState;
 - (void)_updateVibrancyEffectView;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)badgeBackgroundColorForState:(long long)arg1;
 - (struct UIOffset { double x1; double x2; })badgePositionAdjustmentForState:(long long)arg1;
 - (id)badgeTextAttributesForState:(long long)arg1;

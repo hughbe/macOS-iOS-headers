@@ -7,9 +7,12 @@
 @property (nonatomic, copy) NSString *recordType;
 
 + (id)new;
++ (bool)supportsSecureCoding;
 
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)CKPropertiesDescription;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithSubscriptionID:(id)arg1;
+- (void)setRecordType:(id)arg1;
 
 @end

@@ -26,6 +26,15 @@
 - (void)setUserInfo:(id)arg1;
 - (id)userInfo;
 
+// Image: /System/Library/PrivateFrameworks/ARKitCore.framework/ARKitCore
+
+- (struct __CVBuffer { }*)ar_decodePixelBufferForKey:(id)arg1;
+- (void)ar_encodePixelBuffer:(struct __CVBuffer { }*)arg1 forKey:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
+- (bool)ef_isNSXPCCoder;
+
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 - (id)geo_decodeXPCDataForKey:(id)arg1;

@@ -9,9 +9,12 @@
 - (void)garbageCollectDatabaseWithCompletionHandler:(id /* block */)arg1;
 - (void)installApplication:(id)arg1 atURL:(id)arg2 withOptions:(id)arg3 installType:(unsigned long long)arg4 reply:(id /* block */)arg5;
 - (void)rebuildApplicationDatabasesForSystem:(bool)arg1 internal:(bool)arg2 user:(bool)arg3 completionHandler:(id /* block */)arg4;
+- (void)refreshContentInFrameworkAtURL:(id)arg1 reply:(id /* block */)arg2;
 - (void)registerContainerURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)registerExtensionPoint:(id)arg1 platform:(unsigned int)arg2 withInfo:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)registerItemInfo:(id)arg1 alias:(id)arg2 diskImageAlias:(id)arg3 bundleURL:(id)arg4 installationPlist:(id)arg5 completionHandler:(id /* block */)arg6;
+- (void)relaxApplicationTypeRequirements:(bool)arg1 forBundleIdentifier:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)removeAllHandlersWithCompletionHandler:(id /* block */)arg1;
 - (void)removeHandlerForContentType:(id)arg1 roles:(unsigned int)arg2 completionHandler:(id /* block */)arg3;
 - (void)removeHandlerForURLScheme:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)resetServerStoreWithCompletionHandler:(id /* block */)arg1;

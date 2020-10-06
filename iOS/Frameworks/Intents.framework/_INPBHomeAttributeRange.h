@@ -3,7 +3,6 @@
  */
 
 @interface _INPBHomeAttributeRange : PBCodable <NSCopying, NSSecureCoding, _INPBHomeAttributeRange> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int lowerValue : 1; 
         unsigned int upperValue : 1; 
@@ -12,7 +11,6 @@
     double  _upperValue;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasLowerValue;
@@ -24,8 +22,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

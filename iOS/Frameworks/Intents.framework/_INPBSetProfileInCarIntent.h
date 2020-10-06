@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSetProfileInCarIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSetProfileInCarIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBDataString * _carName;
     bool  _defaultProfile;
     struct { 
@@ -14,7 +13,6 @@
     _INPBInteger * _profileNumber;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBDataString *carName;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) bool defaultProfile;
@@ -33,8 +31,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)carName;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)defaultProfile;

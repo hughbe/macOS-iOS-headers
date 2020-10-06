@@ -8,15 +8,15 @@
 
 @property (nonatomic, readonly, copy) NSString *identifier;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)identifier;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)matchesProcess:(id)arg1;
 - (id)processPredicate;

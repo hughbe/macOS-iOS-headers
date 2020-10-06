@@ -3,7 +3,7 @@
  */
 
 @interface MDDisplayLayer : NSObject <GGLLayerDelegate, MDRenderTarget> {
-    struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::ComputeQueue *, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_1_1; struct ComputeQueue {} **x_3_1_2; struct __compressed_pair<ggl::ComputeQueue **, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_2_1; struct StdAllocator<ggl::ComputeQueue *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; } * _activeRenderQueue;
+    struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::CommandBuffer *, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_1_1; struct CommandBuffer {} **x_3_1_2; struct __compressed_pair<ggl::CommandBuffer **, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_2_1; struct StdAllocator<ggl::CommandBuffer *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; } * _activeRenderQueue;
     struct CGRect { 
         struct CGPoint { 
             double x; 
@@ -14,11 +14,6 @@
             double height; 
         } size; 
     }  _bounds;
-    struct unique_ptr<ggl::RenderBuffer, std::__1::default_delete<ggl::RenderBuffer> > { 
-        struct __compressed_pair<ggl::RenderBuffer *, std::__1::default_delete<ggl::RenderBuffer> > { 
-            struct RenderBuffer {} *__value_; 
-        } __ptr_; 
-    }  _colorTextures;
     struct deque<std::__1::function<void ()>, std::__1::allocator<std::__1::function<void ()> > >="__map_"{__split_buffer<std::__1::function<void ()> *, std::__1::allocator<std::__1::function<void ()> *> >="__first_"^^{function<void ()> {}  _completionHandlers;
     double  _contentsScale;
     struct unique_ptr<md::DebugConsoleManager, std::__1::default_delete<md::DebugConsoleManager> > { 
@@ -38,27 +33,53 @@
         } __ptr_; 
     }  _depthStencil;
     struct Device { int x1; struct shared_ptr<ggl::Device> { struct Device {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct unique_ptr<md::SharedDeviceResources, std::__1::default_delete<md::SharedDeviceResources> > { struct __compressed_pair<md::SharedDeviceResources *, std::__1::default_delete<md::SharedDeviceResources> > { struct SharedDeviceResources {} *x_1_2_1; } x_3_1_1; } x3; } * _device;
+    CALayer<GGLLayer> * _layer;
+    struct shared_ptr<ggl::RenderBuffer> { 
+        struct RenderBuffer {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    }  _linearColorTextures;
     struct RenderTargetFormat { 
         int colorFormats[4]; 
         unsigned long long colorFormatsCount; 
         unsigned int samples; 
         int depthStencilFormat; 
-    }  _format;
-    CALayer<GGLLayer> * _layer;
-    struct unique_ptr<ggl::RenderBuffer, std::__1::default_delete<ggl::RenderBuffer> > { 
-        struct __compressed_pair<ggl::RenderBuffer *, std::__1::default_delete<ggl::RenderBuffer> > { 
-            struct RenderBuffer {} *__value_; 
-        } __ptr_; 
-    }  _msaaTexture;
-    bool  _readPixels;
-    <GGLRenderQueueSource> * _renderSource;
+    }  _linearFormat;
+    struct shared_ptr<ggl::RenderBuffer> { 
+        struct RenderBuffer {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    }  _linearMsaaTexture;
     struct unique_ptr<ggl::RenderTarget, std::__1::default_delete<ggl::RenderTarget> > { 
         struct __compressed_pair<ggl::RenderTarget *, std::__1::default_delete<ggl::RenderTarget> > { 
             struct RenderTarget {} *__value_; 
         } __ptr_; 
-    }  _renderTarget;
+    }  _linearRenderTarget;
+    struct shared_ptr<ggl::RenderBuffer> { 
+        struct RenderBuffer {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    }  _linearTexture;
+    bool  _readPixels;
+    <GGLRenderQueueSource> * _renderSource;
     struct Renderer { int (**x1)(); struct Device {} *x2; unsigned long long x3; unsigned long long x4; unsigned long long x5; bool x6; float x7; unsigned long long x8; struct vector<std::__1::shared_ptr<ggl::DebugRenderer>, geo::StdAllocator<std::__1::shared_ptr<ggl::DebugRenderer>, ggl::Allocator> > { struct shared_ptr<ggl::DebugRenderer> {} *x_9_1_1; struct shared_ptr<ggl::DebugRenderer> {} *x_9_1_2; struct __compressed_pair<std::__1::shared_ptr<ggl::DebugRenderer> *, geo::StdAllocator<std::__1::shared_ptr<ggl::DebugRenderer>, ggl::Allocator> > { struct shared_ptr<ggl::DebugRenderer> {} *x_3_2_1; struct StdAllocator<std::__1::shared_ptr<ggl::DebugRenderer>, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_9_1_3; } x9; struct unique_ptr<ggl::RenderQueue, std::__1::default_delete<ggl::RenderQueue> > { struct __compressed_pair<ggl::RenderQueue *, std::__1::default_delete<ggl::RenderQueue> > { struct RenderQueue {} *x_1_2_1; } x_10_1_1; } x10; struct shared_ptr<ggl::CommonLibrary> { struct CommonLibrary {} *x_11_1_1; struct __shared_weak_count {} *x_11_1_2; } x11; } * _renderer;
     bool  _requiresMultisampling;
+    struct shared_ptr<ggl::RenderBuffer> { 
+        struct RenderBuffer {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    }  _sRGBColorTextures;
+    struct RenderTargetFormat { 
+        int colorFormats[4]; 
+        unsigned long long colorFormatsCount; 
+        unsigned int samples; 
+        int depthStencilFormat; 
+    }  _sRGBFormat;
+    struct shared_ptr<ggl::RenderBuffer> { 
+        struct RenderBuffer {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    }  _sRGBMsaaTexture;
+    struct unique_ptr<ggl::RenderTarget, std::__1::default_delete<ggl::RenderTarget> > { 
+        struct __compressed_pair<ggl::RenderTarget *, std::__1::default_delete<ggl::RenderTarget> > { 
+            struct RenderTarget {} *__value_; 
+        } __ptr_; 
+    }  _sRGBRenderTarget;
     struct _retain_ptr<VKSharedResources *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> { 
         int (**_vptr$_retain_ptr)(); 
         VKSharedResources *_obj; 
@@ -68,6 +89,7 @@
     bool  _shouldRasterize;
     unsigned long long  _signpostId;
     struct CGContext { } * _snapshotContext;
+    bool  _supportsFramebufferFetch;
     struct shared_ptr<md::TaskContext> { 
         struct TaskContext {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
@@ -84,6 +106,8 @@
 @property (nonatomic, readonly) const struct RenderTargetFormat { int x1[4]; unsigned long long x2; unsigned int x3; int x4; }*format;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) CALayer *layer;
+@property (nonatomic, readonly) const struct RenderTargetFormat { int x1[4]; unsigned long long x2; unsigned int x3; int x4; }*linearFormat;
+@property (nonatomic, readonly) struct RenderTarget { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; struct RenderTargetFormat { int x_6_1_1[4]; unsigned long long x_6_1_2; unsigned int x_6_1_3; int x_6_1_4; } x6; struct Texture {} *x7[4]; struct Texture {} *x8[4]; struct Texture {} *x9; bool x10; }*linearRenderTarget;
 @property (nonatomic, readonly) bool multiSample;
 @property (nonatomic) <GGLRenderQueueSource> *renderSource;
 @property (nonatomic, readonly) struct Renderer { int (**x1)(); struct Device {} *x2; unsigned long long x3; unsigned long long x4; unsigned long long x5; bool x6; float x7; unsigned long long x8; /* Warning: unhandled struct encoding: '{vector<std::__1::shared_ptr<ggl::DebugRenderer>' */ struct x9; }*renderer; /* unknown property attribute:  std::__1::default_delete<ggl::CommandBuffer> >=^{CommandBuffer}}}} */
@@ -91,11 +115,12 @@
 @property (nonatomic) struct CGSize { double x1; double x2; } size;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } sizeInPixels;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) bool supportsFramebufferFetch;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_didReadPixels:(struct shared_ptr<ggl::BitmapDataBase> { struct BitmapDataBase {} *x1; struct __shared_weak_count {} *x2; }*)arg1;
-- (struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::ComputeQueue *, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_1_1; struct ComputeQueue {} **x_3_1_2; struct __compressed_pair<ggl::ComputeQueue **, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_2_1; struct StdAllocator<ggl::ComputeQueue *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)_renderQueueForTimestamp:(double)arg1 prepareHandler:(id /* block */)arg2;
+- (struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::CommandBuffer *, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_1_1; struct CommandBuffer {} **x_3_1_2; struct __compressed_pair<ggl::CommandBuffer **, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_2_1; struct StdAllocator<ggl::CommandBuffer *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)_renderQueueForTimestamp:(double)arg1 prepareHandler:(id /* block */)arg2;
 - (float)averageFPS;
 - (struct shared_ptr<ggl::BitmapDataBase> { struct BitmapDataBase {} *x1; struct __shared_weak_count {} *x2; })bitmapData;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })bounds;
@@ -111,8 +136,8 @@
 - (void)didUpdateFrameTexture;
 - (void)disablePerformanceHUD:(id)arg1;
 - (void)drawInContext:(struct CGContext { }*)arg1;
-- (void)drawToTexture:(struct Texture { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; int x6; int x7; int x8; int x9; unsigned int x10; int x11; unsigned int x12; unsigned int x13; }*)arg1 withRenderQueue:(struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::ComputeQueue *, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_1_1; struct ComputeQueue {} **x_3_1_2; struct __compressed_pair<ggl::ComputeQueue **, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_2_1; struct StdAllocator<ggl::ComputeQueue *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)arg2;
-- (void)drawToTexture:(struct Texture { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; int x6; int x7; int x8; int x9; unsigned int x10; int x11; unsigned int x12; unsigned int x13; }*)arg1 withRenderQueue:(struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::ComputeQueue *, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_1_1; struct ComputeQueue {} **x_3_1_2; struct __compressed_pair<ggl::ComputeQueue **, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_2_1; struct StdAllocator<ggl::ComputeQueue *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)arg2 completionHandler:(id /* block */)arg3;
+- (void)drawToTexture:(struct Texture { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; int x6; int x7; int x8; int x9; unsigned int x10; int x11; unsigned int x12; unsigned int x13; }*)arg1 withRenderQueue:(struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::CommandBuffer *, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_1_1; struct CommandBuffer {} **x_3_1_2; struct __compressed_pair<ggl::CommandBuffer **, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_2_1; struct StdAllocator<ggl::CommandBuffer *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)arg2;
+- (void)drawToTexture:(struct Texture { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; int x6; int x7; int x8; int x9; unsigned int x10; int x11; unsigned int x12; unsigned int x13; }*)arg1 withRenderQueue:(struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::CommandBuffer *, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_1_1; struct CommandBuffer {} **x_3_1_2; struct __compressed_pair<ggl::CommandBuffer **, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_2_1; struct StdAllocator<ggl::CommandBuffer *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)arg2 completionHandler:(id /* block */)arg3;
 - (void)enablePerformanceHUD:(id)arg1;
 - (void)expandedPerformanceHUD:(id)arg1;
 - (struct RenderTarget { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; struct RenderTargetFormat { int x_6_1_1[4]; unsigned long long x_6_1_2; unsigned int x_6_1_3; int x_6_1_4; } x6; struct Texture {} *x7[4]; struct Texture {} *x8[4]; struct Texture {} *x9; bool x10; }*)finalRenderTarget;
@@ -121,9 +146,11 @@
 - (id)initWithContentScale:(double)arg1 shouldRasterize:(bool)arg2 taskContext:(const struct shared_ptr<md::TaskContext> { struct TaskContext {} *x1; struct __shared_weak_count {} *x2; }*)arg3 device:(struct Device { int x1; struct shared_ptr<ggl::Device> { struct Device {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct unique_ptr<md::SharedDeviceResources, std::__1::default_delete<md::SharedDeviceResources> > { struct __compressed_pair<md::SharedDeviceResources *, std::__1::default_delete<md::SharedDeviceResources> > { struct SharedDeviceResources {} *x_1_2_1; } x_3_1_1; } x3; }*)arg4 sharedResources:(id)arg5 signpostId:(unsigned long long)arg6;
 - (bool)isDelayedRenderQueueConsumptionSupported;
 - (id)layer;
+- (const struct RenderTargetFormat { int x1[4]; unsigned long long x2; unsigned int x3; int x4; }*)linearFormat;
+- (struct RenderTarget { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; struct RenderTargetFormat { int x_6_1_1[4]; unsigned long long x_6_1_2; unsigned int x_6_1_3; int x_6_1_4; } x6; struct Texture {} *x7[4]; struct Texture {} *x8[4]; struct Texture {} *x9; bool x10; }*)linearRenderTarget;
 - (bool)multiSample;
-- (void)prepareTexture:(struct Texture { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; int x6; int x7; int x8; int x9; unsigned int x10; int x11; unsigned int x12; unsigned int x13; }*)arg1;
-- (struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::ComputeQueue *, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_1_1; struct ComputeQueue {} **x_3_1_2; struct __compressed_pair<ggl::ComputeQueue **, geo::StdAllocator<ggl::ComputeQueue *, ggl::Allocator> > { struct ComputeQueue {} **x_3_2_1; struct StdAllocator<ggl::ComputeQueue *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)renderQueueForTimestamp:(double)arg1;
+- (void)prepareTexture:(const struct shared_ptr<ggl::Texture2DAbstract> { struct Texture2DAbstract {} *x1; struct __shared_weak_count {} *x2; }*)arg1;
+- (struct RenderQueue { struct PassDescriptor { struct AttachmentActions { int x_1_2_1; int x_1_2_2; } x_1_1_1[4]; struct AttachmentActions { int x_2_2_1; int x_2_2_2; } x_1_1_2; struct AttachmentActions { int x_3_2_1; int x_3_2_2; } x_1_1_3; } x1; struct vector<ggl::RenderQueue::Pass, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_2_1_1; struct Pass {} *x_2_1_2; struct __compressed_pair<ggl::RenderQueue::Pass *, geo::StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> > { struct Pass {} *x_3_2_1; struct StdAllocator<ggl::RenderQueue::Pass, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_2_1_3; } x2; struct vector<ggl::CommandBuffer *, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_1_1; struct CommandBuffer {} **x_3_1_2; struct __compressed_pair<ggl::CommandBuffer **, geo::StdAllocator<ggl::CommandBuffer *, ggl::Allocator> > { struct CommandBuffer {} **x_3_2_1; struct StdAllocator<ggl::CommandBuffer *, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_3_1_3; } x3; }*)renderQueueForTimestamp:(double)arg1;
 - (id)renderSource;
 - (void)renderWithTimestamp:(double)arg1 completion:(struct function<void ()>={__value_func<void ()>={type=[24C] {})arg2;
 - (struct Renderer { int (**x1)(); struct Device {} *x2; unsigned long long x3; unsigned long long x4; unsigned long long x5; bool x6; float x7; unsigned long long x8; struct vector<std::__1::shared_ptr<ggl::DebugRenderer>, geo::StdAllocator<std::__1::shared_ptr<ggl::DebugRenderer>, ggl::Allocator> > { struct shared_ptr<ggl::DebugRenderer> {} *x_9_1_1; struct shared_ptr<ggl::DebugRenderer> {} *x_9_1_2; struct __compressed_pair<std::__1::shared_ptr<ggl::DebugRenderer> *, geo::StdAllocator<std::__1::shared_ptr<ggl::DebugRenderer>, ggl::Allocator> > { struct shared_ptr<ggl::DebugRenderer> {} *x_3_2_1; struct StdAllocator<std::__1::shared_ptr<ggl::DebugRenderer>, ggl::Allocator> { struct Allocator {} *x_2_3_1; } x_3_2_2; } x_9_1_3; } x9; struct unique_ptr<ggl::RenderQueue, std::__1::default_delete<ggl::RenderQueue> > { struct __compressed_pair<ggl::RenderQueue *, std::__1::default_delete<ggl::RenderQueue> > { struct RenderQueue {} *x_1_2_1; } x_10_1_1; } x10; struct shared_ptr<ggl::CommonLibrary> { struct CommonLibrary {} *x_11_1_1; struct __shared_weak_count {} *x_11_1_2; } x11; }*)renderer;
@@ -138,6 +165,7 @@
 - (bool)shouldRasterize;
 - (struct CGSize { double x1; double x2; })size;
 - (struct CGSize { double x1; double x2; })sizeInPixels;
+- (bool)supportsFramebufferFetch;
 - (void)willPresent;
 - (void)willUpdateFrameTexture;
 

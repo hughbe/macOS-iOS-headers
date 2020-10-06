@@ -17,16 +17,20 @@
 @property (readonly) Class superclass;
 
 + (id)_authenticateRequestWithAuthType:(unsigned long long)arg1 taskInfo:(id)arg2 dialogResponse:(id)arg3;
-+ (id)_handleAuthenticateResult:(id)arg1 redirectURL:(id)arg2 error:(id)arg3;
-+ (id)_performAuthRequest:(id)arg1 redirectURL:(id)arg2 taskInfo:(id)arg3;
-+ (id)performAuthForTypesFromResponse:(id)arg1 taskInfo:(id)arg2;
++ (id)_handleDialogFromAuthError:(id)arg1 taskInfo:(id)arg2;
++ (id)_performAuthRequest:(id)arg1 actionResult:(id)arg2 redirectURL:(id)arg3 taskInfo:(id)arg4;
++ (id)_presentAuthRequest:(id)arg1 taskInfo:(id)arg2;
++ (void)_updateTaskWithAuthedAccount:(id)arg1 taskInfo:(id)arg2;
++ (void)_updateTaskWithLastCredentialSource:(id)arg1 taskInfo:(id)arg2;
++ (unsigned long long)authenticationTypeForResponse:(id)arg1 responseDictionary:(id)arg2;
++ (id)performAuthFromResponse:(id)arg1 taskInfo:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)_locateActionableButtonUsingDialogResponse:(id)arg1;
 - (id)authenticateRequest;
 - (id)dialogDictionary;
 - (id)dialogResponse;
-- (id)initWithDialogDictionary:(id)arg1 taskInfo:(id)arg2;
+- (id)initWithResponseDictionary:(id)arg1 taskInfo:(id)arg2;
 - (id)performWithTaskInfo:(id)arg1;
 - (void)setDialogDictionary:(id)arg1;
 

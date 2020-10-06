@@ -3,6 +3,7 @@
  */
 
 @interface GEOEnvironmentInfo : NSObject {
+    NSString * _actualName;
     NSString * _displayName;
     NSError * _lastLoadingError;
     NSData * _manifestData;
@@ -12,6 +13,7 @@
     long long  _state;
 }
 
+@property (nonatomic, readonly) NSString *actualName;
 @property (nonatomic, readonly) NSString *displayName;
 @property (nonatomic, readonly) NSError *lastLoadingError;
 @property (nonatomic, readonly) NSString *name;
@@ -21,6 +23,7 @@
 
 - (void).cxx_destruct;
 - (id)_manifestURLString;
+- (id)actualName;
 - (id)displayName;
 - (id)initWithName:(id)arg1 displayName:(id)arg2 dictionaryRepresentation:(id)arg3;
 - (bool)isActive;

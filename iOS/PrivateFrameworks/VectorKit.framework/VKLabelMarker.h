@@ -45,9 +45,10 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (struct Box<double, 2> { struct Matrix<double, 2, 1> { double x_1_1_1[2]; } x1; struct Matrix<double, 2, 1> { double x_2_1_1[2]; } x2; })_bounds;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_calloutAnchorRect:(bool)arg1;
 - (unsigned long long)animationID;
 - (unsigned long long)businessID;
-- (struct CGPoint { double x1; double x2; })calloutAnchorPointWithCanvasSize:(struct CGSize { double x1; double x2; })arg1 canvasScale:(double)arg2 snapToPixels:(bool)arg3;
+- (struct CGPoint { double x1; double x2; })calloutAnchorPointWithSnapToPixels:(bool)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })calloutAnchorRect;
 - (id)clusterContentBounds;
 - (id)clusterFeatureAnnotations;
@@ -77,7 +78,9 @@
 - (bool)isLeafCluster;
 - (bool)isOnRoute;
 - (bool)isOneWayArrow;
+- (bool)isRouteAnnotation;
 - (bool)isRouteEta;
+- (bool)isRouteWaypoint;
 - (bool)isSelectable;
 - (bool)isSelected;
 - (bool)isTextVisible;
@@ -89,6 +92,7 @@
 - (bool)isVenueButton;
 - (bool)isVisible;
 - (const struct shared_ptr<md::LabelMarker> { struct LabelMarker {} *x1; struct __shared_weak_count {} *x2; }*)labelMarkerImpl;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })lateralCalloutAnchorRect;
 - (id)locale;
 - (id)mapRegion;
 - (id)parentClusterLabelMarker;
@@ -96,9 +100,9 @@
 - (bool)positionOfInterest:(struct { double x1; double x2; }*)arg1 zoom:(float*)arg2;
 - (id)relatedSubTexts;
 - (id)relatedTexts;
+- (id)routeAnnotations;
 - (id)routeInfo;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })screenCollisionBounds;
-- (struct CGPoint { double x1; double x2; })screenPointToScrollRelativeToWithCanvasSize:(struct CGSize { double x1; double x2; })arg1 canvasScale:(double)arg2;
 - (int)selectionType;
 - (void)setIsDragged:(bool)arg1;
 - (void)setIsPickedIconDrawnExternally:(bool)arg1;
@@ -116,6 +120,7 @@
 - (unsigned long long)venueID;
 - (unsigned long long)venueLevelID;
 - (short)venueLookInsideFloorOrdinal;
+- (id)waypointInfo;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 

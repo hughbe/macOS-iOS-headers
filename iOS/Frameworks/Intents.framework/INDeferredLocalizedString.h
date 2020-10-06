@@ -18,6 +18,8 @@
 @property (nonatomic, readonly, copy) NSString *_formatKey;
 @property (nonatomic, readonly, copy) NSString *_table;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (void)initialize;
 + (bool)supportsSecureCoding;
 
@@ -41,5 +43,9 @@
 - (id)initWithDeferredFormat:(id)arg1 fromTable:(id)arg2 bundleIdentifier:(id)arg3 bundleURL:(id)arg4 arguments:(id)arg5;
 - (unsigned long long)length;
 - (id)localizeForLanguage:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_deferredLocalizedStringWithFormat:(id)arg1;
 
 @end

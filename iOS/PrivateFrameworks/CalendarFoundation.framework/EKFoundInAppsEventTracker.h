@@ -4,10 +4,6 @@
 
 @interface EKFoundInAppsEventTracker : NSObject
 
-+ (id)pseudoEventDateChangedTracker;
-+ (id)pseudoEventDetailsOpenedTracker;
-+ (id)pseudoEventExpiredTracker;
-+ (id)pseudoEventInitialTimeToLeaveFiredTracker;
 + (void)trackPseudoEventDateChanged;
 + (void)trackPseudoEventDetailsOpened;
 + (void)trackPseudoEventInitialTimeToLeaveFired;

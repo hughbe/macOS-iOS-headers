@@ -49,10 +49,6 @@
 - (void)_setIsPresented:(bool)arg1;
 - (void)_showFromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 inView:(id)arg2 direction:(unsigned long long)arg3 animated:(bool)arg4;
 - (id)_titleLabel;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)actionSheetStyle;
 - (long long)addButtonWithTitle:(id)arg1;
 - (id)addButtonWithTitle:(id)arg1 label:(id)arg2;
@@ -60,6 +56,7 @@
 - (id)buttonTitleAtIndex:(long long)arg1;
 - (long long)cancelButtonIndex;
 - (id)context;
+- (void)dealloc;
 - (id)delegate;
 - (long long)destructiveButtonIndex;
 - (void)dismissWithClickedButtonIndex:(long long)arg1 animated:(bool)arg2;
@@ -88,5 +85,9 @@
 - (void)showInView:(id)arg1;
 - (id)subtitle;
 - (id)title;
+
+// Image: /usr/lib/swift/libswiftUIKit.dylib
+
+- (id)initWithTitle:(id)arg1 delegate:(id)arg2 cancelButtonTitle:(id)arg3 destructiveButtonTitle:(id)arg4;
 
 @end

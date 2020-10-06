@@ -6,6 +6,7 @@
 @optional
 
 - (void)authTokenChanged:(CTServiceDescriptor *)arg1;
+- (void)prlVersionDidChange:(CTXPCServiceSubscriptionContext *)arg1 version:(NSNumber *)arg2;
 - (void)shortLabelsDidChange;
 - (void)simLockSaveRequestDidComplete:(CTXPCServiceSubscriptionContext *)arg1 success:(bool)arg2;
 - (void)simPinChangeRequestDidComplete:(CTXPCServiceSubscriptionContext *)arg1 success:(bool)arg2;

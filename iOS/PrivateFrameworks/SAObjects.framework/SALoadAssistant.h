@@ -6,12 +6,15 @@
 
 @property (nonatomic, copy) NSString *aceId;
 @property (nonatomic, copy) NSData *activationToken;
+@property (nonatomic, copy) NSString *appleConnectServiceTicket;
+@property (nonatomic, copy) NSString *appleConnectSessionToken;
 @property (nonatomic, copy) NSString *assistantId;
 @property (nonatomic, copy) NSString *connectionMode;
 @property (nonatomic, copy) NSString *connectionType;
 @property (nonatomic, copy) NSString *dataSharingOptInStatus;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSNumber *deviceAuthVersion;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *language;
 @property (nonatomic, copy) NSString *lastKnownAceHostOfCompanion;
@@ -30,10 +33,13 @@
 + (id)loadAssistantWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)activationToken;
+- (id)appleConnectServiceTicket;
+- (id)appleConnectSessionToken;
 - (id)assistantId;
 - (id)connectionMode;
 - (id)connectionType;
 - (id)dataSharingOptInStatus;
+- (id)deviceAuthVersion;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)language;
@@ -46,10 +52,13 @@
 - (bool)requiresResponse;
 - (id)sessionValidationData;
 - (void)setActivationToken:(id)arg1;
+- (void)setAppleConnectServiceTicket:(id)arg1;
+- (void)setAppleConnectSessionToken:(id)arg1;
 - (void)setAssistantId:(id)arg1;
 - (void)setConnectionMode:(id)arg1;
 - (void)setConnectionType:(id)arg1;
 - (void)setDataSharingOptInStatus:(id)arg1;
+- (void)setDeviceAuthVersion:(id)arg1;
 - (void)setLanguage:(id)arg1;
 - (void)setLastKnownAceHostOfCompanion:(id)arg1;
 - (void)setLinkedAssistantId:(id)arg1;

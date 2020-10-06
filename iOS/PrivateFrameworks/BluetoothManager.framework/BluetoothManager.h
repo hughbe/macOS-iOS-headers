@@ -22,6 +22,8 @@
 
 @property (nonatomic) bool blacklistEnabled;
 
+// Image: /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
+
 + (int)lastInitError;
 + (void)setSharedInstanceQueue:(id)arg1;
 + (id)sharedInstance;
@@ -102,5 +104,9 @@
 - (void)startVoiceCommand:(id)arg1;
 - (void)unpairDevice:(id)arg1;
 - (bool)wasDeviceDiscovered:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
+
+- (long long)localDeviceSupportsService:(unsigned int)arg1;
 
 @end

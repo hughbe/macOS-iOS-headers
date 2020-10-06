@@ -47,6 +47,8 @@
 @property (nonatomic) double speed;
 @property (nonatomic) double velocityThreshold;
 
+// Image: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
+
 + (bool)supportsSecureCoding;
 + (id)world;
 
@@ -71,7 +73,7 @@
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
-- (void)debugDraw:(float)arg1 matrix:(union _GLKMatrix4 { struct { float x_1_1_1; float x_1_1_2; float x_1_1_3; float x_1_1_4; float x_1_1_5; float x_1_1_6; float x_1_1_7; float x_1_1_8; float x_1_1_9; float x_1_1_10; float x_1_1_11; float x_1_1_12; float x_1_1_13; float x_1_1_14; float x_1_1_15; float x_1_1_16; } x1; float x2[16]; })arg2 showsPhysics:(bool)arg3 showsOutlineInterior:(bool)arg4 showsFields:(bool)arg5;
+- (void)debugDraw:(float)arg1 matrix:(union _GLSKMatrix4 { struct { float x_1_1_1; float x_1_1_2; float x_1_1_3; float x_1_1_4; float x_1_1_5; float x_1_1_6; float x_1_1_7; float x_1_1_8; float x_1_1_9; float x_1_1_10; float x_1_1_11; float x_1_1_12; float x_1_1_13; float x_1_1_14; float x_1_1_15; float x_1_1_16; } x1; float x2[16]; })arg2 showsPhysics:(bool)arg3 showsOutlineInterior:(bool)arg4 showsFields:(bool)arg5;
 - (const struct PKDebugDrawPacket { struct vector<PKPoint, std::__1::allocator<PKPoint> > { struct { /* ? */ } *x_1_1_1; struct { /* ? */ } *x_1_1_2; struct __compressed_pair<PKPoint *, std::__1::allocator<PKPoint> > { struct { /* ? */ } *x_3_2_1; } x_1_1_3; } x1; struct vector<PKDebugDrawPacket::color4, std::__1::allocator<PKDebugDrawPacket::color4> > { struct { /* ? */ } *x_2_1_1; struct { /* ? */ } *x_2_1_2; struct __compressed_pair<PKDebugDrawPacket::color4 *, std::__1::allocator<PKDebugDrawPacket::color4> > { struct { /* ? */ } *x_3_2_1; } x_2_1_3; } x2; }*)debugDrawPacket;
 - (void)encodeWithCoder:(id)arg1;
 - (void)enumerateBodiesAlongRayStart:(struct CGPoint { double x1; double x2; })arg1 end:(struct CGPoint { double x1; double x2; })arg2 usingBlock:(id /* block */)arg3;
@@ -105,5 +107,9 @@
 - (double)speed;
 - (bool)stepWithTime:(double)arg1 velocityIterations:(unsigned long long)arg2 positionIterations:(unsigned long long)arg3;
 - (double)velocityThreshold;
+
+// Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
+
+- (bool)isKindOfClass:(Class)arg1;
 
 @end

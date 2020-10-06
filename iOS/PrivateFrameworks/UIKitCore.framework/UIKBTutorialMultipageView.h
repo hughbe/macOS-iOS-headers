@@ -20,12 +20,7 @@
 @property (nonatomic) double pagingInterval;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)configMediaView;
 - (id)initWithPageViews:(id)arg1 pagingInterval:(double)arg2;
 - (void)layoutSubviews;

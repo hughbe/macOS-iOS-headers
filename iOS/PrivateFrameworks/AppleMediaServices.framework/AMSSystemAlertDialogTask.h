@@ -26,11 +26,11 @@
 
 - (void).cxx_destruct;
 - (struct __CFDictionary { }*)_createNoteDictionaryWithKeys:(struct ButtonKey { struct __CFString {} *x1; int x2; }*)arg1 buttonActions:(id)arg2 outOptions:(unsigned long long*)arg3;
-- (struct __CFUserNotification { }*)_createNotificationFromDictionary:(struct __CFDictionary { }*)arg1 options:(unsigned long long)arg2;
 - (long long)_defaultButtonIndexForActions:(id)arg1;
 - (id)_handleResponseForNote:(struct __CFUserNotification { }*)arg1 buttonActions:(id)arg2 keys:(struct ButtonKey { struct __CFString {} *x1; int x2; }*)arg3;
 - (long long)_keyboardTypeFor:(long long)arg1;
 - (id)_reorderButtonActions;
+- (struct __CFUserNotification { }*)_showNotificationFromDictionary:(struct __CFDictionary { }*)arg1 options:(unsigned long long)arg2;
 - (long long)defaultButtonIndex;
 - (bool)dismissOnHomeButton;
 - (bool)dismissOnLock;

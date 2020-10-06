@@ -55,7 +55,10 @@
 - (bool)hasMinY;
 - (bool)hasZoom;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)maxX;
 - (unsigned int)maxY;
 - (void)mergeFrom:(id)arg1;

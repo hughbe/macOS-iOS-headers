@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKModifyWebSharingOperation : CKDatabaseOperation {
+@interface CKModifyWebSharingOperation : CKDatabaseOperation <CKModifyWebSharingOperationCallbacks> {
     NSMutableDictionary * _recordErrors;
     NSArray * _recordIDsToShare;
     NSArray * _recordIDsToShareReadWrite;
@@ -14,9 +14,11 @@
     id /* block */  _webShareRecordsCompletionBlock;
 }
 
+@property (nonatomic, readonly) <CKModifyWebSharingOperationCallbacks> *clientOperationCallbackProxy;
+@property (nonatomic, readonly) CKModifyWebSharingOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *recordErrors;
 @property (nonatomic, retain) NSArray *recordIDsToShare;
-@property (nonatomic, retain) NSArray *recordIDsToShareReadWrite;
+@property (nonatomic, copy) NSArray *recordIDsToShareReadWrite;
 @property (nonatomic, retain) NSArray *recordIDsToUnshare;
 @property (nonatomic, copy) id /* block */ recordSharedBlock;
 @property (nonatomic, copy) id /* block */ recordUnsharedBlock;
@@ -24,13 +26,16 @@
 @property (nonatomic, retain) NSMutableArray *unsharedRecordIDs;
 @property (nonatomic, copy) id /* block */ webShareRecordsCompletionBlock;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleWebSharingInitiationForRecordID:(id)arg1 sharingKey:(id)arg2 baseSharingToken:(id)arg3 error:(id)arg4;
+- (void)handleWebSharingRevocationForRecordID:(id)arg1 error:(id)arg2;
 - (bool)hasCKOperationCallbacksSet;
 - (id)initWithRecordIDsToWebShare:(id)arg1 recordIDsToUnshare:(id)arg2;
 - (void)performCKOperation;

@@ -3,6 +3,7 @@
  */
 
 @interface CNPhotoPickerProviderItem : NSObject <NSCopying> {
+    bool  _allowsEditing;
     <CNScheduler> * _callbackQueue;
     struct CGRect { 
         struct CGPoint { 
@@ -14,6 +15,7 @@
             double height; 
         } size; 
     }  _cropRect;
+    UIImage * _croppedFullSizeImage;
     <CNPhotoPickerProviderItemDelegate> * _delegate;
     NSData * _filteredImageData;
     UIImage * _fullSizeImage;
@@ -29,11 +31,12 @@
     NSData * _thumbnailImageData;
 }
 
-@property (nonatomic, readonly) bool allowsEditing;
+@property (nonatomic) bool allowsEditing;
 @property (nonatomic, readonly) bool allowsMoveAndScale;
 @property (nonatomic, readonly) bool allowsVariants;
 @property (nonatomic, readonly) <CNScheduler> *callbackQueue;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } cropRect;
+@property (nonatomic, retain) UIImage *croppedFullSizeImage;
 @property (nonatomic) <CNPhotoPickerProviderItemDelegate> *delegate;
 @property (nonatomic, retain) NSData *filteredImageData;
 @property (nonatomic, retain) UIImage *fullSizeImage;
@@ -66,9 +69,11 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)createVariantsItemsWithVariantsManager:(id)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })cropRect;
+- (id)croppedFullSizeImage;
 - (id)delegate;
 - (id)filteredImageData;
 - (id)fullSizeImage;
+- (void)fullSizeViewWithCompletion:(id /* block */)arg1;
 - (id)fullscreenImageData;
 - (void)generateAllImageDatasIfNeeded;
 - (id)generatePhotoFilterVariants;
@@ -88,6 +93,8 @@
 - (id)recentsIdentifier;
 - (id)renderingQueue;
 - (id)rotateImageDataIfNeeded:(id)arg1;
+- (void)setAllowsEditing:(bool)arg1;
+- (void)setCroppedFullSizeImage:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFilteredImageData:(id)arg1;
 - (void)setFullSizeImage:(id)arg1;
@@ -108,6 +115,7 @@
 - (void)thumbnailViewWithPlaceholderProvider:(id /* block */)arg1 completion:(id /* block */)arg2;
 - (void)updateContact:(id)arg1;
 - (void)updateTintColorIfNeeded:(id)arg1;
+- (void)updateVisualIdentity:(id)arg1;
 - (id)variantIdentifier;
 
 @end

@@ -23,8 +23,6 @@
 @property (nonatomic, retain) UIFontDescriptor *selectedFontDescriptor;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_commonInitWithCompletion:(id /* block */)arg1;
 - (id)_containedRemoteViewController;
@@ -34,11 +32,8 @@
 - (void)_pickerDidSelectFont:(id)arg1;
 - (void)_setChildViewController:(id)arg1;
 - (void)_viewControllerPresentationDidInitiate;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)configuration;
+- (void)dealloc;
 - (id)delegate;
 - (void)dismissViewControllerWithTransition:(int)arg1 completion:(id /* block */)arg2;
 - (void)encodeWithCoder:(id)arg1;

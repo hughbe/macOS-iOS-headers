@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIFocusSystem : NSObject <_UIFocusEnvironmentInternal, _UIFocusEnvironmentPrivate> {
+@interface UIFocusSystem : NSObject <_UIFocusCastingControllerDelegate, _UIFocusEnvironmentInternal, _UIFocusEnvironmentPrivate> {
     <_UIFocusSystemDelegate> * _delegate;
     bool  _enabled;
     struct { 
@@ -16,12 +16,16 @@
         unsigned int delegateRespondsToFocusItemContainer : 1; 
     }  _flags;
     _UIFocusAnimationCoordinatorManager * _focusAnimationCoordinatorManager;
+    _UIFocusCastingController * _focusCastingController;
     _UIFocusGroupHistory * _focusGroupHistory;
     <_UIFocusHapticFeedbackGenerator> * _focusHapticFeedbackGenerator;
+    _UIFocusItemFrameReporter * _focusItemFrameReporter;
     _UIFocusSoundGenerator * _focusSoundGenerator;
     <UIFocusItem> * _focusedItem;
+    UIFocusMovementAction * _pendingFocusMovementAction;
     _UIFocusUpdateRequest * _pendingFocusUpdateRequest;
     <UIFocusItem> * _previousFocusedItem;
+    bool  _waitingForFocusMovementAction;
 }
 
 @property (nonatomic) bool areChildrenFocused;
@@ -32,9 +36,12 @@
 @property (getter=_isEligibleForFocusInteraction, nonatomic, readonly) bool eligibleForFocusInteraction;
 @property (getter=_isEnabled, setter=_setEnabled:, nonatomic) bool enabled;
 @property (getter=_focusAnimationCoordinatorManager, setter=_setFocusAnimationCoordinatorManager:, nonatomic, retain) _UIFocusAnimationCoordinatorManager *focusAnimationCoordinatorManager;
+@property (getter=_focusCastingController, setter=_setFocusCastingController:, nonatomic, retain) _UIFocusCastingController *focusCastingController;
 @property (getter=_focusGroupHistory, nonatomic, readonly) _UIFocusGroupHistory *focusGroupHistory;
+@property (nonatomic, readonly, copy) NSString *focusGroupIdentifier;
 @property (getter=_focusHapticFeedbackGenerator, setter=_setFocusHapticFeedbackGenerator:, nonatomic, retain) <_UIFocusHapticFeedbackGenerator> *focusHapticFeedbackGenerator;
 @property (nonatomic, readonly) <UIFocusItemContainer> *focusItemContainer;
+@property (getter=_focusItemFrameReporter, setter=_setFocusItemFrameReporter:, nonatomic, retain) _UIFocusItemFrameReporter *focusItemFrameReporter;
 @property (getter=_focusMapContainer, nonatomic, readonly) <_UIFocusRegionContainer> *focusMapContainer;
 @property (getter=_focusSoundGenerator, setter=_setFocusSoundGenerator:, nonatomic, retain) _UIFocusSoundGenerator *focusSoundGenerator;
 @property (nonatomic, readonly) <UIFocusItem> *focusedItem;
@@ -43,6 +50,7 @@
 @property (getter=_hostFocusSystem, nonatomic, readonly) UIFocusSystem *hostFocusSystem;
 @property (getter=_linearFocusMovementSequences, nonatomic, readonly, copy) NSArray *linearFocusMovementSequences;
 @property (nonatomic, readonly) <UIFocusEnvironment> *parentFocusEnvironment;
+@property (nonatomic, retain) UIFocusMovementAction *pendingFocusMovementAction;
 @property (getter=_preferredFirstResponder, nonatomic, readonly) UIResponder *preferredFirstResponder;
 @property (getter=_preferredFirstResponderFocusSystem, nonatomic, readonly) UIFocusSystem *preferredFirstResponderFocusSystem;
 @property (nonatomic, readonly, copy) NSArray *preferredFocusEnvironments;
@@ -50,6 +58,7 @@
 @property (nonatomic, readonly) UIView *preferredFocusedView;
 @property (getter=_previousFocusedItem, nonatomic, readonly) <UIFocusItem> *previousFocusedItem;
 @property (readonly) Class superclass;
+@property (nonatomic) bool waitingForFocusMovementAction;
 
 + (id)_allFocusSystems;
 + (bool)environment:(id)arg1 containsEnvironment:(id)arg2;
@@ -59,18 +68,22 @@
 - (void).cxx_destruct;
 - (void)_cancelPendingFocusRestoration;
 - (id)_contextForUpdateToEnvironment:(id)arg1 withAnimationCoordinator:(id)arg2;
+- (id)_contextForUpdateToEnvironment:(id)arg1 withAnimationCoordinator:(id)arg2 allowsFocusRestoration:(bool)arg3;
 - (id)_currentFocusAnimationCoordinator;
 - (bool)_debug_isEnvironmentEligibleForFocusUpdate:(id)arg1 debugReport:(id)arg2;
 - (id)_delegate;
 - (void)_didFinishUpdatingFocusInContext:(id)arg1;
 - (void)_enableWithoutFocusRestoration;
 - (id)_focusAnimationCoordinatorManager;
+- (id)_focusCastingController;
 - (void)_focusEnvironmentWillDisappear:(id)arg1;
 - (id)_focusGroupHistory;
 - (id)_focusHapticFeedbackGenerator;
+- (id)_focusItemFrameReporter;
 - (id)_focusMapContainer;
 - (id)_focusSoundGenerator;
 - (id)_focusedView;
+- (void)_handleFocusMovementAction:(id)arg1;
 - (id)_hostFocusSystem;
 - (id)_init;
 - (id)_initWithFocusEnabled:(bool)arg1;
@@ -93,7 +106,9 @@
 - (void)_setEnabled:(bool)arg1;
 - (void)_setEnabled:(bool)arg1 withAnimationCoordinator:(id)arg2;
 - (void)_setFocusAnimationCoordinatorManager:(id)arg1;
+- (void)_setFocusCastingController:(id)arg1;
 - (void)_setFocusHapticFeedbackGenerator:(id)arg1;
+- (void)_setFocusItemFrameReporter:(id)arg1;
 - (void)_setFocusSoundGenerator:(id)arg1;
 - (void)_setNeedsFocusRestoration;
 - (bool)_shouldRestoreFocusInContext:(id)arg1;
@@ -105,15 +120,21 @@
 - (bool)_updateFocusImmediatelyWithContext:(id)arg1;
 - (bool)_updateFocusWithContext:(id)arg1 report:(id)arg2;
 - (id)_validatedPendingFocusUpdateRequest;
+- (id)description;
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (id)focusItemContainer;
 - (id)focusedItem;
+- (id)focusedWindowForFocusCastingController:(id)arg1;
 - (id)init;
 - (id)parentFocusEnvironment;
+- (id)pendingFocusMovementAction;
 - (id)preferredFocusEnvironments;
 - (void)requestFocusUpdateToEnvironment:(id)arg1;
 - (void)setNeedsFocusUpdate;
+- (void)setPendingFocusMovementAction:(id)arg1;
+- (void)setWaitingForFocusMovementAction:(bool)arg1;
 - (bool)shouldUpdateFocusInContext:(id)arg1;
 - (void)updateFocusIfNeeded;
+- (bool)waitingForFocusMovementAction;
 
 @end

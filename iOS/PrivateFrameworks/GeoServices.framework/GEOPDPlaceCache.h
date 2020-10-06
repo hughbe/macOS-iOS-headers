@@ -15,17 +15,17 @@
 
 - (void).cxx_destruct;
 - (id)_cacheKeyForHandle:(id)arg1;
-- (id)_cacheKeysForPlace:(id)arg1;
+- (id)_cacheKeysForPlace:(id)arg1 request:(id)arg2;
 - (unsigned long long)_calculateFreeableSpace;
 - (bool)_deleteAndResetDB:(id)arg1;
-- (void)_evictPlace:(id)arg1;
+- (void)_evictPlaceWithHash:(id)arg1;
 - (void)_iterateAllKeysFilteringCacheKeyWithPredicate:(id)arg1 entryBlock:(id /* block */)arg2 finishedBlock:(id /* block */)arg3;
 - (void)_iterateAllPlacesFilteringCacheKeyWithPredicate:(id)arg1 entryBlock:(id /* block */)arg2 finishedBlock:(id /* block */)arg3;
 - (void)_localeChanged:(id)arg1;
 - (id)_lookupPlaceByRequestKey:(id)arg1 allowExpiredPlace:(bool)arg2 placeIsExpired:(bool*)arg3;
 - (bool)_meetsManifestVersionPolicyForPlace:(id)arg1;
 - (unsigned long long)_shrinkBySize:(unsigned long long)arg1;
-- (void)_storePlace:(id)arg1 forRequestKeys:(id)arg2;
+- (void)_storePlace:(id)arg1 withHash:(id)arg2 forRequestKeys:(id)arg3;
 - (bool)_validateDBLocaleAndResetIfNecessary;
 - (unsigned long long)calculateFreeableSpaceSync;
 - (void)calculateFreeableSpaceWithHandler:(id /* block */)arg1;

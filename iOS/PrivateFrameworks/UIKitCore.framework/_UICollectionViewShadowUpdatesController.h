@@ -22,13 +22,10 @@
 
 - (void).cxx_destruct;
 - (id)_coalesceUpdatesIfPossible:(id)arg1;
+- (id)_collectionView:(id)arg1 accessoriesForContextMenuWithConfiguration:(id)arg2 layoutAnchor:(struct { unsigned long long x1; unsigned long long x2; double x3; double x4; })arg3;
 - (bool)_collectionView:(id)arg1 canEditItemAtIndexPath:(id)arg2;
 - (bool)_collectionView:(id)arg1 canHandleDropSesson:(id)arg2;
 - (bool)_collectionView:(id)arg1 canMoveItemAtIndexPath:(id)arg2;
-- (id)_collectionView:(id)arg1 cursorRegionForItemAtIndexPath:(id)arg2 defaultRegion:(id)arg3;
-- (id)_collectionView:(id)arg1 cursorStyleForModifiers:(long long)arg2 atIndexPath:(id)arg3;
-- (void)_collectionView:(id)arg1 cursorWillEnterItemAtIndexPath:(id)arg2;
-- (void)_collectionView:(id)arg1 cursorWillExitItemAtIndexPath:(id)arg2;
 - (long long)_collectionView:(id)arg1 dataOwnerForDragSession:(id)arg2 atIndexPath:(id)arg3;
 - (long long)_collectionView:(id)arg1 dataOwnerForDropSession:(id)arg2 withDestinationIndexPath:(id)arg3;
 - (id)_collectionView:(id)arg1 dragDestinationTargetIndexPathForProposedIndexPath:(id)arg2 currentIndexPath:(id)arg3 dropSession:(id)arg4;
@@ -52,6 +49,7 @@
 - (id)_collectionView:(id)arg1 sectionIndexTitlesTrimmedToCount:(unsigned long long)arg2;
 - (bool)_collectionView:(id)arg1 shouldApplyTransitionContentOffset:(struct CGPoint { double x1; double x2; })arg2 contentSize:(struct CGSize { double x1; double x2; })arg3;
 - (bool)_collectionView:(id)arg1 shouldSpringLoadItemAtIndexPath:(id)arg2 withContext:(id)arg3;
+- (id)_collectionView:(id)arg1 styleForContextMenuWithConfiguration:(id)arg2;
 - (struct CGPoint { double x1; double x2; })_collectionView:(id)arg1 targetContentOffsetForProposedContentOffset:(struct CGPoint { double x1; double x2; })arg2;
 - (id)_collectionView:(id)arg1 targetIndexPathForMoveFromItemAtIndexPath:(id)arg2 toProposedIndexPath:(id)arg3;
 - (id)_collectionView:(id)arg1 templateLayoutCellForCellsWithReuseIdentifier:(id)arg2;
@@ -76,6 +74,7 @@
 - (void)addRebaseObserver:(id)arg1;
 - (void)appendShadowUpdate:(id)arg1;
 - (id)collectionView;
+- (bool)collectionView:(id)arg1 canEditItemAtIndexPath:(id)arg2;
 - (bool)collectionView:(id)arg1 canFocusItemAtIndexPath:(id)arg2;
 - (bool)collectionView:(id)arg1 canHandleDropSession:(id)arg2;
 - (bool)collectionView:(id)arg1 canHandleDropSesson:(id)arg2;
@@ -83,6 +82,7 @@
 - (bool)collectionView:(id)arg1 canPerformAction:(SEL)arg2 forItemAtIndexPath:(id)arg3 withSender:(id)arg4;
 - (void)collectionView:(id)arg1 cancelPrefetchingForItemsAtIndexPaths:(id)arg2;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
+- (id)collectionView:(id)arg1 contextMenuConfigurationForItemAtIndexPath:(id)arg2 point:(struct CGPoint { double x1; double x2; })arg3;
 - (void)collectionView:(id)arg1 didDeselectItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 didEndDisplayingCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (void)collectionView:(id)arg1 didEndDisplayingSupplementaryView:(id)arg2 forElementOfKind:(id)arg3 atIndexPath:(id)arg4;
@@ -111,18 +111,15 @@
 - (struct CGSize { double x1; double x2; })collectionView:(id)arg1 layout:(id)arg2 referenceSizeForFooterInSection:(long long)arg3;
 - (struct CGSize { double x1; double x2; })collectionView:(id)arg1 layout:(id)arg2 referenceSizeForHeaderInSection:(long long)arg3;
 - (struct CGSize { double x1; double x2; })collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
-- (void)collectionView:(id)arg1 listLayout:(id)arg2 didEndEditingRowAtIndexPath:(id)arg3;
 - (double)collectionView:(id)arg1 listLayout:(id)arg2 heightForFooterInSection:(long long)arg3;
 - (double)collectionView:(id)arg1 listLayout:(id)arg2 heightForHeaderInSection:(long long)arg3;
 - (double)collectionView:(id)arg1 listLayout:(id)arg2 heightForRowAtIndexPath:(id)arg3;
-- (id)collectionView:(id)arg1 listLayout:(id)arg2 leadingSwipeActionsConfigurationForRowAtIndexPath:(id)arg3;
-- (id)collectionView:(id)arg1 listLayout:(id)arg2 trailingSwipeActionsConfigurationForRowAtIndexPath:(id)arg3;
-- (void)collectionView:(id)arg1 listLayout:(id)arg2 willBeginEditingRowAtIndexPath:(id)arg3;
 - (void)collectionView:(id)arg1 moveItemAtIndexPath:(id)arg2 toIndexPath:(id)arg3;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (void)collectionView:(id)arg1 performAction:(SEL)arg2 forItemAtIndexPath:(id)arg3 withSender:(id)arg4;
 - (void)collectionView:(id)arg1 performDropWithCoordinator:(id)arg2;
 - (void)collectionView:(id)arg1 prefetchItemsAtIndexPaths:(id)arg2;
+- (id)collectionView:(id)arg1 previewForHighlightingContextMenuWithConfiguration:(id)arg2;
 - (bool)collectionView:(id)arg1 shouldDeselectItemAtIndexPath:(id)arg2;
 - (bool)collectionView:(id)arg1 shouldHighlightItemAtIndexPath:(id)arg2;
 - (bool)collectionView:(id)arg1 shouldSelectItemAtIndexPath:(id)arg2;
@@ -151,7 +148,10 @@
 - (id)collectionView:(id)arg1 transitionLayoutForOldLayout:(id)arg2 newLayout:(id)arg3;
 - (id)collectionView:(id)arg1 viewForSupplementaryElementOfKind:(id)arg2 atIndexPath:(id)arg3;
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
+- (void)collectionView:(id)arg1 willDisplayContextMenuWithConfiguration:(id)arg2 animator:(id)arg3;
 - (void)collectionView:(id)arg1 willDisplaySupplementaryView:(id)arg2 forElementKind:(id)arg3 atIndexPath:(id)arg4;
+- (void)collectionView:(id)arg1 willEndContextMenuInteractionWithConfiguration:(id)arg2 animator:(id)arg3;
+- (void)collectionView:(id)arg1 willPerformPreviewActionForMenuWithConfiguration:(id)arg2 animator:(id)arg3;
 - (id)computeRevertShadowUpdates;
 - (void)didRebaseWithNewBaseUpdateMap:(id)arg1;
 - (id)indexPathAfterShadowUpdates:(id)arg1;

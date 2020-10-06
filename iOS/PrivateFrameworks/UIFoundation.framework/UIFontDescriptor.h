@@ -30,7 +30,10 @@
 + (id)preferredFontDescriptorWithTextStyle:(id)arg1 compatibleWithTraitCollection:(id)arg2;
 + (bool)supportsSecureCoding;
 
+- (id)_NSAffineTransform;
 - (id)_attributes;
+- (id)_fontDescriptorWithMatrix:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
+- (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })_matrix;
 - (id)_swapWithFontAttributes:(id)arg1 options:(unsigned long long)arg2;
 - (id)_visibleName;
 - (Class)classForCoder;
@@ -74,5 +77,22 @@
 - (id)_mapkit_fontDescriptorByAddingFeaturesForTabularFigures;
 - (id)_mapkit_fontDescriptorByAddingFeaturesForTimeDisplay;
 - (id)_mapkit_fontDescriptorByAddingFeaturesForTimeDisplayUseMonospace:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariSharedUI.framework/SafariSharedUI
+
++ (id)safari_preferredFontDescriptorWithTextStyle:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
++ (id)telephonyUIBodyShortEmphasizedFontDescriptor;
++ (id)telephonyUIBodyShortFontDescriptor;
++ (id)telephonyUIBodyShortItalicFontDescriptor;
++ (id)telephonyUIFootnoteShortFontDescriptor;
++ (id)telephonyUIPreferredFontDescriptorWithTextStyle:(id)arg1 addingSymbolicTraits:(unsigned int)arg2;
++ (id)telephonyUISubheadlineShortFontDescriptor;
+
+// Image: /System/Library/PrivateFrameworks/TestFlightCore.framework/TestFlightCore
+
++ (id)tf_systemFontWithTextStyle:(id)arg1 weight:(double)arg2 forTraitCollection:(id)arg3;
 
 @end

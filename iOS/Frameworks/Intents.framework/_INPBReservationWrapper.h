@@ -3,7 +3,8 @@
  */
 
 @interface _INPBReservationWrapper : PBCodable <NSCopying, NSSecureCoding, _INPBReservationWrapper> {
-    bool  __encodeLegacyGloryData;
+    _INPBBoatReservation * _boatReservation;
+    _INPBBusReservation * _busReservation;
     _INPBFlightReservation * _flightReservation;
     struct { }  _has;
     _INPBLodgingReservation * _lodgingReservation;
@@ -13,10 +14,13 @@
     _INPBTrainReservation * _trainReservation;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
+@property (nonatomic, retain) _INPBBoatReservation *boatReservation;
+@property (nonatomic, retain) _INPBBusReservation *busReservation;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBFlightReservation *flightReservation;
+@property (nonatomic, readonly) bool hasBoatReservation;
+@property (nonatomic, readonly) bool hasBusReservation;
 @property (nonatomic, readonly) bool hasFlightReservation;
 @property (nonatomic, readonly) bool hasLodgingReservation;
 @property (nonatomic, readonly) bool hasRentalCarReservation;
@@ -34,12 +38,14 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
+- (id)boatReservation;
+- (id)busReservation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)flightReservation;
+- (bool)hasBoatReservation;
+- (bool)hasBusReservation;
 - (bool)hasFlightReservation;
 - (bool)hasLodgingReservation;
 - (bool)hasRentalCarReservation;
@@ -53,6 +59,8 @@
 - (bool)readFrom:(id)arg1;
 - (id)rentalCarReservation;
 - (id)restaurantReservation;
+- (void)setBoatReservation:(id)arg1;
+- (void)setBusReservation:(id)arg1;
 - (void)setFlightReservation:(id)arg1;
 - (void)setLodgingReservation:(id)arg1;
 - (void)setRentalCarReservation:(id)arg1;

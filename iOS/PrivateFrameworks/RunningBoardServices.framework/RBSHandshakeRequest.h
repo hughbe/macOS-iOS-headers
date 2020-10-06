@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSHandshakeRequest : NSObject <BSXPCSecureCoding> {
+@interface RBSHandshakeRequest : NSObject <RBSXPCSecureCoding> {
     NSSet * _assertionDescriptors;
     unsigned int  _euid;
 }
@@ -14,14 +14,14 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)assertionDescriptors;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned int)euid;
 - (unsigned long long)hash;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (void)setAssertionDescriptors:(id)arg1;
 - (void)setEuid:(unsigned int)arg1;

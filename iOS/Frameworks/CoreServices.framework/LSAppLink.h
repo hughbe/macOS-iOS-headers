@@ -6,6 +6,7 @@
     NSURL * _URL;
     _LSValidationToken * __validationToken;
     LSApplicationProxy * _targetApplicationProxy;
+    LSApplicationRecord * _targetApplicationRecord;
 }
 
 @property (copy) NSURL *URL;
@@ -13,11 +14,12 @@
 @property (nonatomic, retain) NSDictionary *browserSettings;
 @property (getter=isEnabled, nonatomic) bool enabled;
 @property long long openStrategy;
-@property (retain) LSApplicationProxy *targetApplicationProxy;
+@property (readonly) LSApplicationProxy *targetApplicationProxy;
+@property (retain) LSApplicationRecord *targetApplicationRecord;
 
 + (bool)URLComponentsAreValidForAppLinks:(id)arg1 error:(id*)arg2;
 + (bool)_URLIsValidForAppLinks:(id)arg1 error:(id*)arg2;
-+ (id)_appLinkWithURL:(id)arg1 applicationProxy:(id)arg2 plugInClass:(Class)arg3;
++ (id)_appLinkWithURL:(id)arg1 applicationRecord:(id)arg2 plugInClass:(Class)arg3;
 + (id)_appLinksWithState:(id)arg1 context:(struct LSContext { id x1; }*)arg2 limit:(unsigned long long)arg3 URLComponents:(id)arg4 error:(id*)arg5;
 + (id)_appLinksWithState:(id)arg1 context:(struct LSContext { id x1; }*)arg2 limit:(unsigned long long)arg3 requireEntitlement:(bool)arg4 error:(id*)arg5;
 + (id)_appLinksWithState:(id)arg1 limit:(unsigned long long)arg2 requireEntitlement:(bool)arg3 error:(id*)arg4;
@@ -31,6 +33,8 @@
 + (void)openWithURL:(id)arg1 completionHandler:(id /* block */)arg2;
 + (void)openWithURL:(id)arg1 configuration:(id)arg2 completionHandler:(id /* block */)arg3;
 + (bool)removeAllSettingsReturningError:(id*)arg1;
++ (bool)setSettingsSwitchState:(long long)arg1 forApplicationIdentifier:(id)arg2 error:(id*)arg3;
++ (long long)settingsSwitchStateForApplicationIdentifier:(id)arg1;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -58,9 +62,10 @@
 - (void)setEnabled:(bool)arg1;
 - (bool)setEnabled:(bool)arg1 error:(id*)arg2;
 - (void)setOpenStrategy:(long long)arg1;
-- (void)setTargetApplicationProxy:(id)arg1;
+- (void)setTargetApplicationRecord:(id)arg1;
 - (void)setURL:(id)arg1;
 - (void)set_validationToken:(id)arg1;
 - (id)targetApplicationProxy;
+- (id)targetApplicationRecord;
 
 @end

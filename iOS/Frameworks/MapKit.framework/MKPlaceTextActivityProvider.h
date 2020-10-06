@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKPlaceTextActivityProvider : MKPlaceActivityProvider <MKActivityItemSource>
+@interface MKPlaceTextActivityProvider : MKPlaceActivityProvider <UIActivityItemSource>
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;

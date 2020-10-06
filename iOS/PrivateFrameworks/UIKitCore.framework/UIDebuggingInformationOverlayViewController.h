@@ -18,12 +18,7 @@
 @property struct CGPoint { double x1; double x2; } offset;
 @property (nonatomic, retain) UIDebuggingInformationRootTableViewController *rootTableViewController;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)containerView;
 - (void)didReceiveGesture:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

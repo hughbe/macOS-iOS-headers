@@ -2,30 +2,40 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MROrigin : NSObject {
+@interface MROrigin : NSObject <NSCopying> {
     NSString * _displayName;
-    long long  _identifier;
+    int  _identifier;
+    bool  _local;
     long long  _type;
 }
 
-@property (nonatomic, readonly, copy) NSString *displayName;
-@property (nonatomic, readonly) long long identifier;
-@property (getter=isLocal, nonatomic, readonly) bool local;
+@property (nonatomic, readonly) NSData *data;
+@property (nonatomic, copy) NSString *displayName;
+@property (nonatomic) int identifier;
+@property (getter=isLocal, nonatomic) bool local;
 @property (nonatomic, readonly) _MROriginProtobuf *protobuf;
-@property (nonatomic, readonly) long long type;
+@property (nonatomic, readonly) MROrigin *skeleton;
+@property (nonatomic) long long type;
 
 + (id)localOrigin;
 
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)data;
+- (id)description;
 - (id)displayName;
-- (long long)identifier;
+- (int)identifier;
 - (id)initWithData:(id)arg1;
-- (id)initWithIdentifier:(long long)arg1 type:(long long)arg2 displayName:(id)arg3;
+- (id)initWithIdentifier:(int)arg1 type:(long long)arg2 displayName:(id)arg3;
 - (id)initWithProtobuf:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isLocal;
 - (id)protobuf;
+- (void)setDisplayName:(id)arg1;
+- (void)setIdentifier:(int)arg1;
+- (void)setLocal:(bool)arg1;
+- (void)setType:(long long)arg1;
+- (id)skeleton;
 - (long long)type;
 
 @end

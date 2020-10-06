@@ -7,16 +7,21 @@
     NSLock * _connectionLock;
 }
 
++ (id /* block */)factory;
+
 - (void).cxx_destruct;
 - (id)_daemonConnection;
 - (id)backupMetadata;
 - (void)cancelDataMigratorDeferredExit;
+- (void)cancelInternalSkipInfo;
 - (void)deferDataMigratorExit;
 - (void)ensureShortLivedTokenUpgrade;
 - (void)ensureSilentLoginUpgrade;
+- (void)getInternalSkipInfo:(id /* block */)arg1;
 - (id)init;
 - (void)observeFinishSetupTriggers;
 - (void)performSilentICDPUpgrade;
+- (void)setInternalShouldSkipFlows:(bool)arg1 skipExceptions:(id)arg2;
 - (bool)setupAssistantNeedsToRun;
 
 @end

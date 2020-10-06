@@ -23,6 +23,7 @@
     }  _has;
     int  _noise;
     unsigned int  _phymode;
+    NSString * _privateMacType;
     NSString * _security;
     int  _signal;
     unsigned long long  _timestamp;
@@ -45,12 +46,14 @@
 @property (nonatomic) bool hasError;
 @property (nonatomic) bool hasNoise;
 @property (nonatomic) bool hasPhymode;
+@property (nonatomic, readonly) bool hasPrivateMacType;
 @property (nonatomic, readonly) bool hasSecurity;
 @property (nonatomic) bool hasSignal;
 @property (nonatomic) bool hasTimestamp;
 @property (nonatomic) bool hasTxrate;
 @property (nonatomic) int noise;
 @property (nonatomic) unsigned int phymode;
+@property (nonatomic, retain) NSString *privateMacType;
 @property (nonatomic, retain) NSString *security;
 @property (nonatomic) int signal;
 @property (nonatomic) unsigned long long timestamp;
@@ -77,6 +80,7 @@
 - (bool)hasError;
 - (bool)hasNoise;
 - (bool)hasPhymode;
+- (bool)hasPrivateMacType;
 - (bool)hasSecurity;
 - (bool)hasSignal;
 - (bool)hasTimestamp;
@@ -86,6 +90,7 @@
 - (void)mergeFrom:(id)arg1;
 - (int)noise;
 - (unsigned int)phymode;
+- (id)privateMacType;
 - (bool)readFrom:(id)arg1;
 - (id)security;
 - (void)setBand:(int)arg1;
@@ -106,6 +111,7 @@
 - (void)setHasTxrate:(bool)arg1;
 - (void)setNoise:(int)arg1;
 - (void)setPhymode:(unsigned int)arg1;
+- (void)setPrivateMacType:(id)arg1;
 - (void)setSecurity:(id)arg1;
 - (void)setSignal:(int)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;

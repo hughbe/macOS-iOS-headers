@@ -11,7 +11,6 @@
 + (id)classesForSaveArchive;
 + (id)decodeSecureArchivedData:(id)arg1 usingDelegate:(id)arg2 classes:(id)arg3;
 + (id)encodableTokenForStore:(id)arg1 queryGenerationToken:(id)arg2;
-+ (id)identifierForStore:(id)arg1;
 + (void)logMessage:(id)arg1 forComponent:(id)arg2;
 + (id)newSecureArchivedDataWithRootObject:(id)arg1;
 + (id)newUserInfoFromException:(id)arg1;

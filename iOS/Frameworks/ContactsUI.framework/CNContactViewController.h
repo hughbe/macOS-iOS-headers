@@ -22,6 +22,7 @@
     long long  _editMode;
     bool  _editingProposedInformation;
     NSArray * _extraBarButtonItems;
+    bool  _hasCompletedSetup;
     NSString * _highlightedPropertyIdentifier;
     bool  _highlightedPropertyImportant;
     NSString * _highlightedPropertyKey;
@@ -31,6 +32,7 @@
     NSString * _initialPrompt;
     NSString * _message;
     long long  _mode;
+    UINavigationItem * _observedNavigationItem;
     CNContainer * _parentContainer;
     CNGroup * _parentGroup;
     CNPolicy * _policy;
@@ -72,6 +74,7 @@
 @property (nonatomic) long long editMode;
 @property (nonatomic) bool editingProposedInformation;
 @property (nonatomic, retain) NSArray *extraBarButtonItems;
+@property (nonatomic) bool hasCompletedSetup;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSString *highlightedPropertyIdentifier;
 @property (nonatomic) bool highlightedPropertyImportant;
@@ -81,6 +84,7 @@
 @property (nonatomic, retain) NSString *initialPrompt;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, readonly) long long mode;
+@property (nonatomic, retain) UINavigationItem *observedNavigationItem;
 @property (nonatomic, retain) CNContainer *parentContainer;
 @property (nonatomic, retain) CNGroup *parentGroup;
 @property (nonatomic, readonly) CNPolicy *policy;
@@ -98,6 +102,8 @@
 @property (nonatomic, copy) NSAttributedString *verifiedInfoMessage;
 @property (nonatomic, retain) UIViewController<CNContactContentViewController> *viewController;
 @property (nonatomic, copy) NSString *warningMessage;
+
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
 
 + (id)descriptorForRequiredKeys;
 + (id)viewControllerForContact:(id)arg1;
@@ -149,6 +155,7 @@
 - (void)enableCancelKeyboardShortcut;
 - (void)enableSaveKeyboardShortcut;
 - (id)extraBarButtonItems;
+- (bool)hasCompletedSetup;
 - (void)highlightPropertyWithKey:(id)arg1 identifier:(id)arg2;
 - (void)highlightPropertyWithKey:(id)arg1 identifier:(id)arg2 important:(bool)arg3;
 - (id)highlightedPropertyIdentifier;
@@ -166,6 +173,8 @@
 - (id)message;
 - (long long)mode;
 - (id)navigationItemController;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
+- (id)observedNavigationItem;
 - (id)parentContainer;
 - (id)parentGroup;
 - (id)policy;
@@ -203,6 +212,7 @@
 - (void)setEditing:(bool)arg1 animated:(bool)arg2;
 - (void)setEditingProposedInformation:(bool)arg1;
 - (void)setExtraBarButtonItems:(id)arg1;
+- (void)setHasCompletedSetup:(bool)arg1;
 - (void)setHighlightedPropertyIdentifier:(id)arg1;
 - (void)setHighlightedPropertyImportant:(bool)arg1;
 - (void)setHighlightedPropertyKey:(id)arg1;
@@ -210,6 +220,7 @@
 - (void)setImportantMessage:(id)arg1;
 - (void)setInitialPrompt:(id)arg1;
 - (void)setMessage:(id)arg1;
+- (void)setObservedNavigationItem:(id)arg1;
 - (void)setParentContainer:(id)arg1;
 - (void)setParentGroup:(id)arg1;
 - (void)setPptDelegate:(id)arg1;
@@ -239,5 +250,9 @@
 - (void)viewWillAppear:(bool)arg1;
 - (void)viewWillLayoutSubviews;
 - (id)warningMessage;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)_mf_viewControllerForUnknownContactWithEmailAddress:(id)arg1;
 
 @end

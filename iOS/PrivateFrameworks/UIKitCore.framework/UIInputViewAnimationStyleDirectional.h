@@ -13,10 +13,10 @@
 - (bool)canDismissWithScrollView;
 - (id)controllerForStartPlacement:(id)arg1 endPlacement:(id)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)endPlacementForInputViewSet:(id)arg1;
+- (id)endPlacementForInputViewSet:(id)arg1 windowScene:(id)arg2;
 - (bool)isEqual:(id)arg1;
 - (int)outDirection;
 - (void)setOutDirection:(int)arg1;
-- (id)startPlacementForInputViewSet:(id)arg1 currentPlacement:(id)arg2;
+- (id)startPlacementForInputViewSet:(id)arg1 currentPlacement:(id)arg2 windowScene:(id)arg3;
 
 @end

@@ -7,8 +7,8 @@
     CKMetric * _cloudKitMetrics;
 }
 
-@property (nonatomic, retain) CKMetric *MMCSMetrics;
-@property (nonatomic, retain) CKMetric *cloudKitMetrics;
+@property (nonatomic, copy) CKMetric *MMCSMetrics;
+@property (nonatomic, copy) CKMetric *cloudKitMetrics;
 
 + (bool)supportsSecureCoding;
 

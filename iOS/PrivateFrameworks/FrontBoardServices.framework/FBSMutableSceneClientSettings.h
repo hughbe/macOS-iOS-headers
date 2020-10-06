@@ -8,10 +8,10 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (setter=_setLayers:, nonatomic, copy) NSOrderedSet *layers;
-@property (nonatomic, copy) NSSet *occlusions;
 @property (nonatomic) long long preferredInterfaceOrientation;
 @property (nonatomic) double preferredLevel;
 @property (nonatomic, copy) NSString *preferredSceneHostIdentifier;
+@property (nonatomic, copy) FBSSceneIdentityToken *preferredSceneHostIdentity;
 @property (readonly) Class superclass;
 
 + (bool)_isMutable;
@@ -20,9 +20,9 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)otherSettings;
-- (void)setOcclusions:(id)arg1;
 - (void)setPreferredInterfaceOrientation:(long long)arg1;
 - (void)setPreferredLevel:(double)arg1;
 - (void)setPreferredSceneHostIdentifier:(id)arg1;
+- (void)setPreferredSceneHostIdentity:(id)arg1;
 
 @end

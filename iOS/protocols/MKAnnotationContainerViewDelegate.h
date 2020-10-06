@@ -19,7 +19,6 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })annotationContainerVisibleRect:(MKAnnotationContainerView *)arg1;
 - (void)annotationContainerWillAnimateBubble:(MKAnnotationContainerView *)arg1;
 - (void)annotationContainerWillDropPins:(MKAnnotationContainerView *)arg1;
-- (double)annotationContainerZoomScale:(MKAnnotationContainerView *)arg1;
 - (void)calloutDidAppearForAnnotationView:(MKAnnotationView *)arg1 inContainer:(MKAnnotationContainerView *)arg2;
 - (struct CGPoint { double x1; double x2; })convertCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 toPointToView:(UIView *)arg2;
 - (struct CLLocationCoordinate2D { double x1; double x2; })convertPoint:(struct CGPoint { double x1; double x2; })arg1 toCoordinateFromView:(UIView *)arg2;

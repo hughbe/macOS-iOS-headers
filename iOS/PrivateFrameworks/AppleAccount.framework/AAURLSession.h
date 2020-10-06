@@ -31,5 +31,7 @@
 - (id)dataTaskWithRequest:(id)arg1 completion:(id /* block */)arg2;
 - (id)dataTaskWithURL:(id)arg1 completion:(id /* block */)arg2;
 - (id)init;
+- (id)initForProxiedDevice:(id)arg1;
+- (void)resetSessionCache;
 
 @end

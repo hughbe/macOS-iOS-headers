@@ -28,6 +28,7 @@
         unsigned long long length; 
     }  _deferredDisplayCharRange;
     id  _delegate;
+    bool  _delegateIsWeakValue;
     unsigned short  _displayInvalidationDisableStack;
     id  _extraData;
     NSTextContainer * _extraLineFragmentContainer;
@@ -79,6 +80,7 @@
     NSTypesetter * _typesetter;
 }
 
+@property (nonatomic) bool CUIK_limitsLayoutForSuspiciousContents;
 @property (nonatomic) bool allowsNonContiguousLayout;
 @property bool allowsOriginalFontMetricsOverride;
 @property (nonatomic) <NSLayoutManagerDelegate> *delegate;
@@ -141,6 +143,7 @@
 - (void)_drawLineForGlyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 type:(long long)arg2 baselineOffset:(double)arg3 lineFragmentRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4 lineFragmentGlyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg5 containerOrigin:(struct CGPoint { double x1; double x2; })arg6 isStrikethrough:(bool)arg7;
 - (bool)_drawsDebugBaselines;
 - (bool)_drawsUnderlinesLikeWebKit;
+- (struct _NSRange { unsigned long long x1; unsigned long long x2; })_exactGlyphRangeForCharacterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_extendedCharRangeForInvalidation:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 editedCharRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)_fillGlyphHoleAtIndex:(unsigned long long)arg1 desiredNumberOfCharacters:(unsigned long long)arg2;
 - (void)_fillGlyphHoleForCharacterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 startGlyphIndex:(unsigned long long)arg2 desiredNumberOfCharacters:(unsigned long long)arg3;
@@ -165,6 +168,7 @@
 - (id)_glyphTreeDescription;
 - (void)_growCachedRectArrayToSize:(unsigned long long)arg1;
 - (bool)_hasSeenRightToLeft;
+- (double)_hyphenationFactor;
 - (unsigned long long)_indexOfFirstGlyphInTextContainer:(id)arg1 okToFillHoles:(bool)arg2;
 - (void)_insertGlyphs:(unsigned int*)arg1 elasticAttributes:(bool*)arg2 count:(unsigned long long)arg3 atGlyphIndex:(unsigned long long)arg4 characterIndex:(unsigned long long)arg5;
 - (id)_insertionPointHelperForGlyphAtIndex:(unsigned long long)arg1;
@@ -213,6 +217,7 @@
 - (void)_setGlyphsPerLineEstimate:(unsigned long long)arg1 integerOffsetPerLineEstimate:(unsigned long long)arg2;
 - (void)_setGlyphsPerLineEstimate:(unsigned long long)arg1 offsetPerLineEstimate:(double)arg2;
 - (void)_setHasSeenRightToLeft:(bool)arg1;
+- (void)_setHyphenationFactor:(double)arg1;
 - (void)_setMirrorsTextAlignment:(bool)arg1;
 - (void)_setNeedToFlushGlyph:(bool)arg1;
 - (void)_setRowArrayCache:(id)arg1;
@@ -223,6 +228,7 @@
 - (void)_simpleInsertGlyph:(unsigned int)arg1 atGlyphIndex:(unsigned long long)arg2 characterIndex:(unsigned long long)arg3 elastic:(bool)arg4;
 - (unsigned long long)_smallEncodingGlyphIndexForCharacterIndex:(unsigned long long)arg1 startOfRange:(bool)arg2 okToFillHoles:(bool)arg3;
 - (unsigned long long)_smallEncodingGlyphIndexForCharacterIndex:(unsigned long long)arg1 startOfRange:(bool)arg2 okToFillHoles:(bool)arg3 considerNulls:(bool)arg4;
+- (id)_stringForLoggingLineFragmentForGlyphAtIndex:(long long)arg1;
 - (id)_temporaryAttribute:(id)arg1 atCharacterIndex:(unsigned long long)arg2 effectiveRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg3;
 - (id)_temporaryAttribute:(id)arg1 atCharacterIndex:(unsigned long long)arg2 longestEffectiveRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg3 inRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4;
 - (id)_temporaryAttributesAtCharacterIndex:(unsigned long long)arg1 longestEffectiveRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg2 inRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
@@ -254,6 +260,7 @@
 - (void)deleteGlyphsInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (id)description;
 - (id)destinationTextContainerForRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 inTextContainer:(id)arg2;
+- (id /* block */)didCompleteLayoutObserverBlock;
 - (void)drawBackgroundForGlyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 atPoint:(struct CGPoint { double x1; double x2; })arg2;
 - (void)drawGlyphsForGlyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 atPoint:(struct CGPoint { double x1; double x2; })arg2;
 - (void)drawSpellingUnderlineForGlyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 spellingState:(long long)arg2 inGlyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3 lineFragmentRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4 lineFragmentGlyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg5 containerOrigin:(struct CGPoint { double x1; double x2; })arg6;
@@ -353,6 +360,7 @@
 - (void)setBoundsRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 forTextBlock:(id)arg2 glyphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
 - (void)setCharacterIndex:(unsigned long long)arg1 forGlyphAtIndex:(unsigned long long)arg2;
 - (void)setDelegate:(id)arg1;
+- (void)setDidCompleteLayoutObserverBlock:(id /* block */)arg1;
 - (void)setDrawsOutsideLineFragment:(bool)arg1 forGlyphAtIndex:(unsigned long long)arg2;
 - (void)setEllipsisGlyphAttribute:(bool)arg1 forGlyphAtIndex:(unsigned long long)arg2;
 - (void)setExtraLineFragmentRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 usedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 textContainer:(id)arg3;
@@ -421,8 +429,14 @@
 - (bool)usesScreenFonts;
 - (id)viewProviderForTextAttachment:(id)arg1 characterIndex:(unsigned long long)arg2;
 
+// Image: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
+
+- (bool)CUIK_limitsLayoutForSuspiciousContents;
+- (void)setCUIK_limitsLayoutForSuspiciousContents:(bool)arg1;
+
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 - (id)_commonTextInputController;
+- (id)_ui_baselineCalculatorForView:(id)arg1;
 
 @end

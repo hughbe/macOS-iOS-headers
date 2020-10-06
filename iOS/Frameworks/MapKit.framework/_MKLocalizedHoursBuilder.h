@@ -44,6 +44,7 @@
 - (void)_updateLocalizedString;
 - (void)calculateWidthsForData:(id)arg1;
 - (id)compareDate;
+- (id)concatenateStrings:(id)arg1 joinedByString:(id)arg2;
 - (id)formatData:(id)arg1;
 - (unsigned long long)geoMapItemOpeningHourOptions;
 - (id)hoursStateLabelColor;
@@ -61,5 +62,6 @@
 - (void)setTimeZone:(id)arg1;
 - (id)timeZone;
 - (void)updateHoursLabelColor;
+- (void)updateHoursLabelColorWithDefaultLabelColor:(id)arg1;
 
 @end

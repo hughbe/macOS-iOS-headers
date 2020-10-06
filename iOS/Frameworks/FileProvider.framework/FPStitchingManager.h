@@ -7,6 +7,7 @@
     NSHashTable * _stitchingSessions;
 }
 
+@property (nonatomic, readonly) NSMutableArray *allDeletedIDs;
 @property (nonatomic, readonly) NSDictionary *allPlaceholderItemsByParentIdentifierAndName;
 @property (nonatomic, readonly) NSArray *allPlaceholderReplacementsIDs;
 @property (nonatomic, readonly) NSDictionary *stitchedFieldsAndItemsByItemIDs;
@@ -16,6 +17,7 @@
 
 - (void).cxx_destruct;
 - (void)addBouncedItem:(id)arg1;
+- (id)allDeletedIDs;
 - (id)allPlaceholderItemsByParentIdentifierAndName;
 - (id)allPlaceholderReplacementsIDs;
 - (id)init;

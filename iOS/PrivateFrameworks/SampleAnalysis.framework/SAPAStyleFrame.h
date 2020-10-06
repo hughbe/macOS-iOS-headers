@@ -2,21 +2,22 @@
    Image: /System/Library/PrivateFrameworks/SampleAnalysis.framework/SampleAnalysis
  */
 
-@interface SAPAStyleFrame : NSObject {
+@interface SAPAStyleFrame : NSObject <SASerializable> {
     SAFrame * _frame;
 }
 
-@property (retain) SAFrame *frame;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
 
 + (id)classDictionaryKey;
-+ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const struct { unsigned long long x1; unsigned long long x2; BOOL x3; BOOL x4; unsigned long long x5; unsigned long long x6; }*)arg1 bufferLength:(unsigned long long)arg2;
++ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2;
 
 - (void).cxx_destruct;
 - (bool)addSelfToBuffer:(void*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
 - (void)addSelfToSerializationDictionary:(id)arg1;
-- (id)frame;
-- (void)populateReferencesUsingBuffer:(const struct { unsigned long long x1; unsigned long long x2; BOOL x3; BOOL x4; unsigned long long x5; unsigned long long x6; }*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
-- (void)setFrame:(id)arg1;
+- (void)populateReferencesUsingBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 
 @end

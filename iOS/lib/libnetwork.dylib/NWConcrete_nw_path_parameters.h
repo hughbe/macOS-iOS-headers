@@ -34,7 +34,8 @@
         unsigned int only_primary_requires_type : 1; 
         unsigned int prefer_no_proxy : 1; 
         unsigned int no_proxy_path_selection : 1; 
-        unsigned int __pad_bits : 2; 
+        unsigned int system_proxy : 1; 
+        unsigned int __pad_bits : 1; 
         unsigned char __pad[2]; 
     }  path_value;
     NSObject<OS_nw_interface> * required_interface;

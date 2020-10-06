@@ -9,6 +9,7 @@
     NSError * _fetchError;
     FPXSpotlightIndexer * _indexer;
     bool  _isInitialIndexing;
+    bool  _isOutOfBandIndexing;
     unsigned long long  _logSection;
     NSData * _nextAnchor;
     NSArray * _updatedItems;
@@ -25,7 +26,7 @@
 - (id)deletedItemIDs;
 - (id)fetchError;
 - (void)finishWithResult:(id)arg1 error:(id)arg2;
-- (id)initWithIndexer:(id)arg1 isInitialIndexing:(bool)arg2 queue:(id)arg3;
+- (id)initWithIndexer:(id)arg1 isInitialIndexing:(bool)arg2 isOutOfBandIndexing:(bool)arg3 queue:(id)arg4;
 - (void)main;
 - (id)nextAnchor;
 - (void)setCanIndexFromCurrentState:(id /* block */)arg1;

@@ -25,6 +25,7 @@
     NSData * _payloadFilterMask;
     long long  _payloadType;
     bool  _poweredOffSleep;
+    SFBLERecorder * _recorder;
     double  _rescanInterval;
     int  _rescanSecondsActual;
     NSObject<OS_dispatch_source> * _rescanTimer;
@@ -77,6 +78,7 @@
 @property (nonatomic, copy) id /* block */ invalidationHandler;
 @property (nonatomic, readonly, copy) NSData *payloadFilterData;
 @property (nonatomic, readonly, copy) NSData *payloadFilterMask;
+@property (nonatomic, retain) SFBLERecorder *recorder;
 @property (nonatomic) double rescanInterval;
 @property (nonatomic) bool rssiLog;
 @property (nonatomic) bool rssiLogStdOut;
@@ -107,6 +109,7 @@
 - (bool)_needDups;
 - (void)_poweredOff;
 - (void)_poweredOn;
+- (void)_recordDevice:(id)arg1 data:(id)arg2 rssi:(id)arg3 info:(id)arg4;
 - (void)_removeAllDevicesWithReason:(id)arg1;
 - (void)_rescanLostFired;
 - (void)_rescanTimerFired;
@@ -136,6 +139,10 @@
 - (id /* block */)deviceFoundHandler;
 - (id /* block */)deviceLostHandler;
 - (id)dispatchQueue;
+- (void)foundAWDLDevice:(id)arg1 rssi:(id)arg2;
+- (void)foundNearbyDevice:(id)arg1 data:(id)arg2 peerInfo:(id)arg3;
+- (void)foundPairingDevice:(id)arg1 payload:(id)arg2 rssi:(id)arg3 peerInfo:(id)arg4;
+- (void)foundPeripheralDevice:(id)arg1 advertisementData:(id)arg2 RSSI:(id)arg3;
 - (id)initWithType:(long long)arg1;
 - (void)invalidate;
 - (id /* block */)invalidationHandler;
@@ -156,6 +163,7 @@
 - (id)payloadFilterData;
 - (id)payloadFilterMask;
 - (void)performUpdate:(id /* block */)arg1;
+- (id)recorder;
 - (double)rescanInterval;
 - (bool)rssiLog;
 - (bool)rssiLogStdOut;
@@ -175,6 +183,7 @@
 - (void)setDispatchQueue:(id)arg1;
 - (void)setInvalidationHandler:(id /* block */)arg1;
 - (void)setPayloadFilterData:(id)arg1 mask:(id)arg2;
+- (void)setRecorder:(id)arg1;
 - (void)setRescanInterval:(double)arg1;
 - (void)setRssiLog:(bool)arg1;
 - (void)setRssiLogStdOut:(bool)arg1;

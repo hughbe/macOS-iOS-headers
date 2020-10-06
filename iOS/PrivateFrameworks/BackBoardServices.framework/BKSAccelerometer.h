@@ -36,7 +36,7 @@
 - (void)_serverWasRestarted;
 - (void)_updateOrientationServer;
 - (bool)accelerometerEventsEnabled;
-- (int)currentDeviceOrientation;
+- (long long)currentDeviceOrientation;
 - (void)dealloc;
 - (id)delegate;
 - (id)init;

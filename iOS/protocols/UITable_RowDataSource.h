@@ -32,8 +32,11 @@
 - (bool)_isTableHeaderAutohiding;
 - (double)_maxTitleWidthForFooterInSection:(long long)arg1;
 - (double)_maxTitleWidthForHeaderInSection:(long long)arg1;
+- (void)_prepareForRowDataHeaderFooterSizing;
 - (bool)_providesRowHeights;
 - (double)_rowSpacing;
+- (double)_sectionFooterPadding;
+- (double)_sectionHeaderPadding;
 - (void)_setHeight:(double)arg1 forRowAtIndexPath:(NSIndexPath *)arg2 usingPresentationValues:(bool)arg3;
 - (bool)_shouldStripHeaderTopPaddingForSection:(long long)arg1;
 - (bool)_shouldUseNewHeaderFooterBehavior;
@@ -46,7 +49,5 @@
 - (long long)_titleAlignmentForHeaderInSection:(long long)arg1;
 - (NSString *)_titleForFooterInSection:(long long)arg1;
 - (NSString *)_titleForHeaderInSection:(long long)arg1;
-- (UIView *)_viewForFooterInSection:(long long)arg1;
-- (UIView *)_viewForHeaderInSection:(long long)arg1;
 
 @end

@@ -28,7 +28,10 @@
 @property (nonatomic, copy) id /* block */ testBehavior_didCompleteWithError;
 @property (nonatomic, copy) id /* block */ testBehavior_tooManyTasksRunning;
 
+// Image: /System/Library/PrivateFrameworks/C2.framework/C2
+
 + (void)_reportWithOptions:(id)arg1 networkEvent:(id)arg2 genericEvent:(id)arg3 triggers:(int)arg4;
++ (id)gzipDecode:(id)arg1;
 + (id)gzipEncode:(id)arg1;
 + (void)reportMetricWithOptions:(id)arg1 genericMetricType:(long long)arg2 eventName:(id)arg3 startTime:(id)arg4 endTime:(id)arg5 attributes:(id)arg6;
 + (void)reportNetworkEvent:(id)arg1 triggers:(int)arg2 originalSessionTask:(id)arg3;
@@ -65,5 +68,9 @@
 - (void)setTestBehavior_tooManyTasksRunning:(id /* block */)arg1;
 - (id /* block */)testBehavior_didCompleteWithError;
 - (id /* block */)testBehavior_tooManyTasksRunning;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
++ (void)reportCKEventMetric:(id)arg1 proxy:(id)arg2 completionHandler:(id /* block */)arg3;
 
 @end

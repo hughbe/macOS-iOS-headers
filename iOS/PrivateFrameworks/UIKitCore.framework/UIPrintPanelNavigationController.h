@@ -2,9 +2,16 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIPrintPanelNavigationController : UINavigationController
+@interface UIPrintPanelNavigationController : UINavigationController {
+    <UIPrintPanelAppearanceDelegate> * _appearanceDelegate;
+}
 
+@property (nonatomic) <UIPrintPanelAppearanceDelegate> *appearanceDelegate;
+
+- (void).cxx_destruct;
 - (void)__viewWillLayoutSubviews;
 - (void)_presentationControllerDidDismiss:(id)arg1;
+- (id)appearanceDelegate;
+- (void)setAppearanceDelegate:(id)arg1;
 
 @end

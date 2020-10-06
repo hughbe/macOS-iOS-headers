@@ -14,7 +14,7 @@
     UIButton * _doneButton;
     NSArray * _editorConstraints;
     UIKBSystemLayoutViewController * _editorVC;
-    NSLayoutConstraint * _horizontalAlignment;
+    NSArray * _horizontalAlignments;
     UIViewController * _inputVC;
     bool  _isAutomaticResponderTransition;
     bool  _isVisible;
@@ -31,7 +31,7 @@
     bool  _supportsTouchInput;
     <UISystemInputViewControllerDelegate> * _systemInputViewControllerDelegate;
     UITextInputTraits * _textInputTraits;
-    NSLayoutConstraint * _verticalAlignment;
+    NSArray * _verticalAlignments;
     bool  _willPresentFullscreen;
     bool  _willUpdateBackgroundEffectOnInputModeChange;
 }
@@ -48,7 +48,7 @@
 @property (nonatomic, retain) NSArray *editorConstraints;
 @property (nonatomic, retain) UIKBSystemLayoutViewController *editorVC;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, retain) NSLayoutConstraint *horizontalAlignment;
+@property (nonatomic, retain) NSArray *horizontalAlignments;
 @property (nonatomic, retain) UIViewController *inputVC;
 @property (nonatomic) bool isAutomaticResponderTransition;
 @property (nonatomic, retain) UIKeyboard *keyboard;
@@ -64,11 +64,9 @@
 @property (nonatomic) <UISystemInputViewControllerDelegate> *systemInputViewControllerDelegate;
 @property (nonatomic, retain) UITextInputTraits *textInputTraits;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } unfocusedFocusGuideOutsets;
-@property (nonatomic, retain) NSLayoutConstraint *verticalAlignment;
+@property (nonatomic, retain) NSArray *verticalAlignments;
 @property (nonatomic) bool willPresentFullscreen;
 @property (nonatomic) bool willUpdateBackgroundEffectOnInputModeChange;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_canonicalTraitsForResponder:(id)arg1;
 + (id)_carPlay_systemInputViewControllerForResponder:(id)arg1 editorView:(id)arg2 containingResponder:(id)arg3 traitCollection:(id)arg4;
@@ -87,7 +85,6 @@
 - (void)_didSuspend:(id)arg1;
 - (bool)_disableAutomaticKeyboardBehavior;
 - (void)_dismissSystemInputViewController;
-- (id)_effectView;
 - (unsigned long long)_horizontalLayoutTypeForEdge:(long long)arg1;
 - (id)_promptLabel;
 - (void)_removeAccessoryViewController:(id)arg1;
@@ -101,11 +98,8 @@
 - (void)_willResume:(id)arg1;
 - (void)_windowDidBecomeKey:(id)arg1;
 - (void)_windowWillBecomeKey:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)accessoryViewControllerForEdge:(long long)arg1;
+- (id)alignmentConstraintArrayForAxis:(long long)arg1;
 - (id)alignmentConstraintForAxis:(long long)arg1;
 - (long long)blurEffectStyle;
 - (id)cachedRecents;
@@ -114,6 +108,7 @@
 - (id)constraintsForEdge:(long long)arg1;
 - (id)containingView;
 - (id)contentLayoutView;
+- (void)dealloc;
 - (bool)didDisplayRecents;
 - (void)didSelectRecentInput;
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
@@ -122,7 +117,7 @@
 - (id)editorConstraints;
 - (id)editorVC;
 - (void)findNextInputDelegate;
-- (id)horizontalAlignment;
+- (id)horizontalAlignments;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)inputModeDidChange:(id)arg1;
 - (id)inputVC;
@@ -145,6 +140,7 @@
 - (void)resetContainingResponder;
 - (void)setAccessoryViewController:(id)arg1 forEdge:(long long)arg2;
 - (void)setAlignmentConstraint:(id)arg1 forAxis:(long long)arg2;
+- (void)setAlignmentConstraintArray:(id)arg1 forAxis:(long long)arg2;
 - (void)setBlurEffectStyle:(long long)arg1;
 - (void)setCachedRecents:(id)arg1;
 - (void)setConstraints:(id)arg1 forEdge:(long long)arg2;
@@ -154,7 +150,7 @@
 - (void)setDoneButton:(id)arg1;
 - (void)setEditorConstraints:(id)arg1;
 - (void)setEditorVC:(id)arg1;
-- (void)setHorizontalAlignment:(id)arg1;
+- (void)setHorizontalAlignments:(id)arg1;
 - (void)setInputVC:(id)arg1;
 - (void)setIsAutomaticResponderTransition:(bool)arg1;
 - (void)setKeyboard:(id)arg1;
@@ -169,7 +165,7 @@
 - (void)setSystemInputViewControllerDelegate:(id)arg1;
 - (void)setTextInputTraits:(id)arg1;
 - (void)setUnfocusedFocusGuideOutsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
-- (void)setVerticalAlignment:(id)arg1;
+- (void)setVerticalAlignments:(id)arg1;
 - (void)setWillPresentFullscreen:(bool)arg1;
 - (void)setWillUpdateBackgroundEffectOnInputModeChange:(bool)arg1;
 - (void)set_promptLabel:(id)arg1;
@@ -184,7 +180,7 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })unfocusedFocusGuideOutsets;
 - (void)updateAlignmentConstraints;
 - (void)updateViewConstraints;
-- (id)verticalAlignment;
+- (id)verticalAlignments;
 - (void)viewDidAppear:(bool)arg1;
 - (void)viewWillAppear:(bool)arg1;
 - (void)viewWillDisappear:(bool)arg1;

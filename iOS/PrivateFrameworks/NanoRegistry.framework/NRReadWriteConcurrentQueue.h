@@ -15,8 +15,6 @@
 }
 
 - (void).cxx_destruct;
-- (void)_resumeReaders;
-- (void)_suspendReadersAndWaitForDrain;
 - (void)enqueueReadWithBlock:(id /* block */)arg1 bypassSuspend:(bool)arg2;
 - (void)enqueueReadWithBlock:(id /* block */)arg1 bypassSuspend:(bool)arg2 async:(bool)arg3;
 - (void)enqueueReadWithBlockAsync:(id /* block */)arg1 bypassSuspend:(bool)arg2;

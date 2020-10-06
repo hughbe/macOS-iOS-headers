@@ -5,6 +5,7 @@
 
 @required
 
+- (struct CGPoint { double x1; double x2; })contentOffsetAdjustment;
 - (NSIndexSet *)indexesForInvalidatedAuxillariesOfKind:(NSString *)arg1;
 - (NSSet *)invalidatedAuxillaryKinds;
 - (<_UICollectionLayoutAuxillaryOffsets> *)invalidatedAuxillaryOffsets;

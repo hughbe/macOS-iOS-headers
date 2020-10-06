@@ -7,6 +7,7 @@
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)andPredicateOperator;
++ (void)initialize;
 + (id)notPredicateOperator;
 + (id)orPredicateOperator;
 

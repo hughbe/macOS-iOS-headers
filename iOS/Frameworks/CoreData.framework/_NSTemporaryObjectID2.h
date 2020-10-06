@@ -14,7 +14,6 @@
 - (void)_setPersistentStore:(id)arg1;
 - (id)_storeIdentifier;
 - (void)dealloc;
-- (void)finalize;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
 - (id)persistentStore;

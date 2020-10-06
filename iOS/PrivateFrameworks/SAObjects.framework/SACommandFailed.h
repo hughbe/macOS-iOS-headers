@@ -14,6 +14,9 @@
 @property (nonatomic, copy) NSString *reason;
 @property (nonatomic, copy) NSString *refId;
 @property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *turnId;
+
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)commandFailed;
 + (id)commandFailedWithDictionary:(id)arg1 context:(id)arg2;
@@ -29,5 +32,15 @@
 - (bool)requiresResponse;
 - (void)setErrorCode:(long long)arg1;
 - (void)setReason:(id)arg1;
+- (void)setTurnId:(id)arg1;
+- (id)turnId;
+
+// Image: /System/Library/PrivateFrameworks/SiriClientFlow.framework/SiriClientFlow
+
++ (id)commandFailedWithError:(id)arg1;
++ (id)commandFailedWithErrorCode:(long long)arg1 errorString:(id)arg2;
+
+- (id)initWithError:(id)arg1;
+- (id)initWithErrorCode:(long long)arg1 reason:(id)arg2;
 
 @end

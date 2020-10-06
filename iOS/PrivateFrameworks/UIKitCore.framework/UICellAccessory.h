@@ -2,27 +2,46 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UICellAccessory : NSObject {
-    bool  _alwaysNeedsLayout;
-    NSString * _identifier;
-    UIView * _view;
+@interface UICellAccessory : NSObject <NSCopying, NSSecureCoding> {
+    UIColor * _backgroundColor;
+    long long  _displayedState;
+    bool  _hidden;
+    double  _reservedLayoutWidth;
+    UIColor * _tintColor;
 }
 
-@property (nonatomic, readonly) bool alwaysNeedsLayout;
-@property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, readonly) bool requestsHuggingLayoutWidth;
-@property (nonatomic, readonly) UIView *view;
+@property (getter=_backgroundColor, setter=_setBackgroundColor:, nonatomic, retain) UIColor *backgroundColor;
+@property (nonatomic) long long displayedState;
+@property (getter=isHidden, nonatomic) bool hidden;
+@property (getter=_identifier, nonatomic, readonly) NSString *identifier;
+@property (getter=_isSystemType, nonatomic, readonly) bool isSystemType;
+@property (nonatomic) double reservedLayoutWidth;
+@property (getter=_systemType, nonatomic, readonly) long long systemType;
+@property (nonatomic, retain) UIColor *tintColor;
 
-+ (id)accessoryWithIdentifier:(id)arg1;
++ (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)alwaysNeedsLayout;
-- (id)description;
-- (id)identifier;
+- (id)_backgroundColor;
+- (long long)_defaultPlacementForHeader:(bool)arg1;
+- (id)_identifier;
+- (bool)_isSystemType;
+- (void)_setBackgroundColor:(id)arg1;
+- (long long)_systemType;
+- (long long)_systemTypePlacementForHeader:(bool)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (long long)displayedState;
+- (void)encodeWithCoder:(id)arg1;
+- (unsigned long long)hash;
+- (id)init;
+- (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
-- (bool)requestsHuggingLayoutWidth;
-- (void)setIdentifier:(id)arg1;
-- (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
-- (id)view;
+- (bool)isHidden;
+- (double)reservedLayoutWidth;
+- (void)setDisplayedState:(long long)arg1;
+- (void)setHidden:(bool)arg1;
+- (void)setReservedLayoutWidth:(double)arg1;
+- (void)setTintColor:(id)arg1;
+- (id)tintColor;
 
 @end

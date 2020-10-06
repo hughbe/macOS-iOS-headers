@@ -63,6 +63,7 @@
 @property (nonatomic) struct SCNVector3 { float x1; float x2; float x3; } eulerAngles;
 @property (nonatomic, copy) NSArray *filters;
 @property (nonatomic) long long focusBehavior;
+@property (nonatomic, readonly, copy) NSString *focusGroupIdentifier;
 @property (nonatomic, readonly) <UIFocusItemContainer> *focusItemContainer;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } frame;
 @property (nonatomic, retain) SCNGeometry *geometry;
@@ -112,6 +113,8 @@
 @property (nonatomic, readonly) struct SCNMatrix4 { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; } worldTransform;
 @property (nonatomic, readonly) struct SCNVector3 { float x1; float x2; float x3; } worldUp;
 
+// Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
+
 + (id)_dumpNodeTree:(id)arg1 tab:(id)arg2;
 + (id)keyPathsForValuesAffectingEulerAngles;
 + (id)keyPathsForValuesAffectingOrientation;
@@ -126,7 +129,7 @@
 + (id)nodeWithGeometry:(id)arg1;
 + (id)nodeWithMDLAsset:(id)arg1;
 + (id)nodeWithMDLObject:(id)arg1;
-+ (id)nodeWithMDLObject:(id)arg1 masterObjects:(id)arg2 sceneNodes:(id)arg3 skinnedMeshes:(id)arg4 skelNodesMap:(struct SkelNodesMap { struct map<MDLSkeleton *, (anonymous namespace)::SkelNodes, std::__1::less<MDLSkeleton *>, std::__1::allocator<std::__1::pair<MDLSkeleton *const, (anonymous namespace)::SkelNodes> > >={__tree<std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes>, std::__1::__map_value_compare<MDLSkeleton *, std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes>, std::__1::less<MDLSkeleton *>, true>, std::__1::allocator<std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes> > >=^{__tree_end_node<std::__1::__tree_node_base<void *> *> {} x1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes>, void *> > >={__tree_end_node<std::__1::__tree_node_base<void *> *>=^{__tree_node_base<void *> {} x2; }*)arg5 options:(id)arg6;
++ (id)nodeWithMDLObject:(id)arg1 masterObjects:(id)arg2 sceneNodes:(id)arg3 skinnedMeshes:(id)arg4 skelNodesMap:(struct SkelNodesMap { struct map<MDLSkeleton *, (anonymous namespace)::SkelNodes, std::__1::less<MDLSkeleton *>, std::__1::allocator<std::__1::pair<MDLSkeleton *const, (anonymous namespace)::SkelNodes> > >={__tree<std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes>, std::__1::__map_value_compare<MDLSkeleton *, std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes>, std::__1::less<MDLSkeleton *>, true>, std::__1::allocator<std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes> > >=^{__tree_end_node<std::__1::__tree_node_base<void *> *> {} x1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<MDLSkeleton *, (anonymous namespace)::SkelNodes>, void *> > >={__tree_end_node<std::__1::__tree_node_base<void *> *>=^{__tree_node_base<void *> {} x2; }*)arg5 asset:(id)arg6 options:(id)arg7;
 + (id)nodeWithNodeRef:(struct __C3DNode { struct __C3DEntity { struct __CFRuntimeBase { unsigned long long x_1_2_1; _Atomic unsigned long long x_1_2_2; } x_1_1_1; void *x_1_1_2; struct __CFString {} *x_1_1_3; struct __CFString {} *x_1_1_4; struct __CFDictionary {} *x_1_1_5; struct __C3DScene {} *x_1_1_6; long long x_1_1_7; } x1; struct __C3DNode {} *x2; struct __C3DNode {} *x3; struct __C3DNode {} *x4; int x5; struct { union C3DMatrix4x4 { float x_1_2_1[16]; /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x_1_2_2[4]; void*x_1_2_3; } x_6_1_1; union { } x_6_1_2; } x6; union { unsigned char x_7_1_1; void*x_7_1_2; long doublex_7_1_3; void*x_7_1_4; void*x_7_1_5; void*x_7_1_6; const int x_7_1_7; void*x_7_1_8; void*x_7_1_9; void*x_7_1_10; void*x_7_1_11; } *x7; bool x8; float x9; unsigned long long x10; int x11; unsigned int x12 : 1; unsigned int x13 : 1; unsigned int x14 : 1; unsigned int x15 : 1; unsigned int x16 : 1; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; }*)arg1;
 + (bool)resolveInstanceMethod:(SEL)arg1;
 + (void)simdLocalFront;
@@ -439,5 +442,9 @@
 - (struct SCNVector3 { float x1; float x2; float x3; })worldRight;
 - (struct SCNMatrix4 { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; })worldTransform;
 - (struct SCNVector3 { float x1; float x2; float x3; })worldUp;
+
+// Image: /System/Library/PrivateFrameworks/AvatarKit.framework/AvatarKit
+
+- (void)avt_enableSubdivisionOnHierarchyWithQuality:(unsigned long long)arg1 animoji:(bool)arg2;
 
 @end

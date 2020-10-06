@@ -49,8 +49,10 @@
 - (id)ZWNJKeyImageName;
 - (id)_controlKeyBackgroundColorName;
 - (void)_customizeTraits:(id)arg1 forPopupForKey:(id)arg2 withRenderingContext:(id)arg3 keycapsFontName:(id)arg4;
+- (id)_defaultControlKeyBackgroundColorName;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
 - (void)addLayoutSegment:(id)arg1;
+- (bool)allowsPaddleForKey:(id)arg1;
 - (bool)allowsPaddles;
 - (void)applyBoldTextForContent:(id)arg1 withKey:(id)arg2;
 - (id)backgroundTraitsForKeyplane:(id)arg1;
@@ -62,6 +64,7 @@
 - (id)controlKeyForegroundColorName;
 - (id)controlKeyShadowColorName;
 - (id)copyKeyImageName;
+- (void)customizeLanguageIndicatorTraitsForTraits:(id)arg1;
 - (id)cutKeyImageName;
 - (void)dealloc;
 - (id)defaultKeyBackgroundColorName;

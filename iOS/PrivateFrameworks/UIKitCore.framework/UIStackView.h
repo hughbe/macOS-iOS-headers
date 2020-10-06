@@ -39,14 +39,6 @@
 - (struct CGSize { double x1; double x2; })_systemLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3 hasIntentionallyCollapsedHeight:(bool*)arg4;
 - (void)_vendedBaselineViewDidMoveForFirst:(bool)arg1;
 - (void)_vendedBaselineViewParametersDidChange;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addArrangedSubview:(id)arg1;
 - (long long)alignment;
 - (id)arrangedSubviews;
@@ -83,5 +75,19 @@
 - (void)_mapkit_setArrangedSubviews:(id)arg1;
 - (long long)_mk_axis;
 - (void)set_mk_axis:(long long)arg1;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_baselineAlignedHorizontalStackView;
++ (id)mf_baselineAlignedVerticalStackView;
++ (id)mf_equalSpacingHorizontalStackView;
++ (id)mf_equallyFilledHorizontalStackView;
++ (id)mf_equallyFilledVerticalStackView;
+
+- (void)mf_addArrangedSubviews:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
+- (void)cps_addArrangedSpacerWithHeight:(double)arg1;
 
 @end

@@ -32,15 +32,20 @@
     NSObject<OS_dispatch_queue> * _presetMonitoringQueue;
     id /* block */  _profileChangedBlock;
     struct RealtimeState { 
-        struct CAMutex { 
-            int (**_vptr$CAMutex)(); 
-            char *mName; 
-            struct _opaque_pthread_t {} *mOwner; 
-            struct _opaque_pthread_mutex_t { 
-                long long __sig; 
-                BOOL __opaque[56]; 
-            } mMutex; 
-        } mMutex; 
+        struct semaphore_mutex_t<caulk::semaphore> { 
+            struct semaphore { 
+                struct semaphore { 
+                    unsigned int mMachSem; 
+                    bool mOwned; 
+                } mImpl; 
+                struct atomic<int> { 
+                    struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { 
+                        _Atomic int __a_value; 
+                    } __a_; 
+                } mCounter; 
+                int mOriginalCounter; 
+            } mSema; 
+        } mRenderMutex; 
         struct RenderObserverList { 
             struct TThreadSafeList<RenderObserver> { 
                 struct NodeStack { 
@@ -63,6 +68,16 @@
             union { _Atomic /* Warning: Unrecognized filer type: 'U' using 'void*' */ void*x_0_2_1; byref void*x_0_2_2; in double x_0_2_3; void*x_0_2_4; const void*x_0_2_5; void x_0_2_6; void*x_0_2_7; in void*x_0_2_8; } *mScheduleHead; 
             AUAudioUnit *mOwningAU; 
         } eventSchedule; 
+        struct optional<RenderContextChangeGenerator> { 
+            union { 
+                BOOL __null_state_; 
+                struct RenderContextChangeGenerator { 
+                    void *mLastWorkgroup; 
+                    id /* block */ mObserver; 
+                } __val_; 
+            } ; 
+            bool __engaged_; 
+        } contextChangeGenerator; 
     }  _realtimeState;
     long long  _renderQuality;
     bool  _renderResourcesAllocated;
@@ -107,6 +122,7 @@
 @property (nonatomic, copy) id /* block */ profileChangedBlock;
 @property (nonatomic, readonly) bool providesUserInterface;
 @property (nonatomic, readonly) id /* block */ renderBlock;
+@property (nonatomic, readonly) id /* block */ renderContextObserver;
 @property (nonatomic) long long renderQuality;
 @property (nonatomic, readonly) bool renderResourcesAllocated;
 @property (getter=isRenderingOffline, nonatomic) bool renderingOffline;
@@ -131,6 +147,7 @@
 + (bool)_saveUserPreset:(id)arg1 state:(id)arg2 error:(id*)arg3;
 + (id)auAudioUnitForAudioUnit:(struct OpaqueAudioComponentInstance { }*)arg1;
 + (void)instantiateWithComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg1 options:(unsigned int)arg2 completionHandler:(id /* block */)arg3;
++ (void)instantiateWithComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg1 options:(unsigned int)arg2 connectionProvider:(struct function<NSXPCConnection *(NSUUID *)>={__value_func<NSXPCConnection *(NSUUID *)>={type=[24C] {})arg3 completionHandler:(id /* block */)arg4;
 + (id)keyPathsForValuesAffectingAllParameterValues;
 + (void)registerSubclass:(Class)arg1 asComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg2 name:(id)arg3 version:(unsigned int)arg4;
 
@@ -139,9 +156,12 @@
 - (long long)MIDIOutputBufferSizeHint;
 - (id /* block */)MIDIOutputEventBlock;
 - (id)MIDIOutputNames;
+- (void)_setValue:(id)arg1 forKey:(id)arg2 error:(id*)arg3;
+- (id)_valueForProperty:(id)arg1 error:(id*)arg2;
 - (void)addRenderObserver:(int (*)arg1 userData:(void*)arg2;
 - (bool)allParameterValues;
 - (bool)allocateRenderResourcesAndReturnError:(id*)arg1;
+- (struct OpaqueAudioComponentInstance { }*)audioUnit;
 - (id)audioUnitName;
 - (id)audioUnitShortName;
 - (id)cachedViewController;
@@ -167,15 +187,18 @@
 - (id)initWithComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg1 error:(id*)arg2;
 - (id)initWithComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg1 options:(unsigned int)arg2 error:(id*)arg3;
 - (id)inputBusses;
+- (void)internalDeallocateRenderResources;
 - (id /* block */)internalRenderBlock;
 - (void)invalidateAudioUnit;
 - (bool)isLoadedInProcess;
 - (bool)isMusicDeviceOrEffect;
 - (bool)isRenderingOffline;
+- (bool)isSpeechSynthesisProvider;
 - (double)latency;
 - (id)manufacturerName;
 - (unsigned int)maximumFramesToRender;
 - (id /* block */)musicalContextBlock;
+- (id)osWorkgroup;
 - (id)outputBusses;
 - (id)parameterTree;
 - (id)parameterTree;
@@ -184,9 +207,11 @@
 - (id /* block */)profileChangedBlock;
 - (id)profileStateForCable:(unsigned char)arg1 channel:(unsigned char)arg2;
 - (bool)providesUserInterface;
+- (int)remoteProcessIdentifier;
 - (void)removeRenderObserver:(long long)arg1;
 - (void)removeRenderObserver:(int (*)arg1 userData:(void*)arg2;
 - (id /* block */)renderBlock;
+- (id /* block */)renderContextObserver;
 - (long long)renderQuality;
 - (bool)renderResourcesAllocated;
 - (void)requestViewControllerWithCompletionHandler:(id /* block */)arg1;
@@ -201,6 +226,7 @@
 - (void)setCurrentPreset:(id)arg1;
 - (void)setFullState:(id)arg1;
 - (void)setFullStateForDocument:(id)arg1;
+- (void)setLoadedOutOfProcess;
 - (void)setMIDIOutputBufferSizeHint:(long long)arg1;
 - (void)setMIDIOutputEventBlock:(id /* block */)arg1;
 - (void)setMaximumFramesToRender:(unsigned int)arg1;

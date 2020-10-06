@@ -9,4 +9,8 @@
 + (NSString *)bagSubProfile;
 + (NSString *)bagSubProfileVersion;
 
+@optional
+
++ (AMSBag *)createBagForSubProfile;
+
 @end

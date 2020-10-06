@@ -47,6 +47,8 @@
 @property (nonatomic, copy) NSString *winPercentage;
 @property (nonatomic, copy) NSString *wins;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)team;
 + (id)teamWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -136,5 +138,15 @@
 - (id)venueName;
 - (id)winPercentage;
 - (id)wins;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (id)_siriui_sportsValueForStandingsSnippetColumn:(id)arg1;
+- (id)siriui_displayName;
+- (id)siriui_displayNameAndLocation;
+- (void)siriui_enumerateEntitiesWithGroupHandler:(id /* block */)arg1 teamHandler:(id /* block */)arg2 athleteHandler:(id /* block */)arg3;
+- (id)siriui_localizedQualificationPositionFormatString;
+- (id)siriui_localizedSnippetColumnHeader:(id)arg1;
+- (id)siriui_textForSnippetColumn:(id)arg1;
 
 @end

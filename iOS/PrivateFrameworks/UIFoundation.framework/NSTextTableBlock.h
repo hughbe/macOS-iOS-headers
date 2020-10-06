@@ -8,8 +8,6 @@
     long long  _rowNum;
     long long  _rowSpan;
     NSTextTable * _table;
-    void * _tableBlockPrimary;
-    void * _tableBlockSecondary;
 }
 
 + (void)initialize;

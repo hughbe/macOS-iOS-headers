@@ -20,6 +20,7 @@
     UIGestureRecognizer * _longPress;
     CNContact * _meContact;
     UILabel * _titleLabel;
+    CALayer * _topSeparator;
 }
 
 @property (nonatomic, retain) UIView *avatarView;
@@ -43,6 +44,7 @@
 @property (nonatomic, retain) CNContact *meContact;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UILabel *titleLabel;
+@property (nonatomic, readonly) CALayer *topSeparator;
 
 + (id)descriptorForRequiredKeys;
 
@@ -86,9 +88,12 @@
 - (void)setFootnoteTitleToValueHorizontalSpaceConstraint:(id)arg1;
 - (void)setMeContact:(id)arg1;
 - (void)setMeContact:(id)arg1 footnoteTitle:(id)arg2 footnoteValue:(id)arg3;
+- (void)setTopSeparatorWithInset:(double)arg1 andLength:(double)arg2;
 - (void)showMenu;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (id)titleLabel;
+- (id)topSeparator;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updateFontRelatedConstraints;
 
 @end

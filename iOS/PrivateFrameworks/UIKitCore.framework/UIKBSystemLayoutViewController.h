@@ -23,15 +23,10 @@
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } minimumInsets;
 @property (nonatomic) unsigned long long verticalLayoutType;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)systemLayoutViewControllerWithViewController:(id)arg1;
 
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct CGSize { double x1; double x2; })centeredOffsets;
+- (void)dealloc;
 - (unsigned long long)horizontalLayoutType;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })minimumInsets;
 - (void)setCenteredOffsets:(struct CGSize { double x1; double x2; })arg1;

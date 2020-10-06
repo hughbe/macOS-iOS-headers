@@ -53,6 +53,8 @@
 @property (nonatomic, readonly) NSURL *trashURL;
 @property (nonatomic, readonly) NSURL *url;
 
+// Image: /System/Library/PrivateFrameworks/CloudDocs.framework/CloudDocs
+
 + (id)_URLForPlistOfMangledID:(id)arg1;
 + (id)_bundleIDVersionsWithProperties:(id)arg1 mangledID:(id)arg2;
 + (id)_bundleIDsWithProperties:(id)arg1;
@@ -158,5 +160,11 @@
 - (bool)updateMetadataWithRecordData:(id)arg1 iconPaths:(id)arg2;
 - (id)url;
 - (id)versionNumberForBundleIdentifier:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
+- (unsigned int)currentStatus;
+- (bool)isOverQuota;
+- (id)lastServerUpdate;
 
 @end

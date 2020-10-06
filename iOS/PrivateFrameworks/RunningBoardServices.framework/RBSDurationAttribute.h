@@ -14,18 +14,18 @@
 @property (nonatomic) unsigned long long startPolicy;
 @property (nonatomic) double warningDuration;
 
+// Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
+
 + (id)attributeWithDuration:(double)arg1;
 + (id)attributeWithDuration:(double)arg1 warningDuration:(double)arg2 startPolicy:(unsigned long long)arg3 endPolicy:(unsigned long long)arg4;
 + (id)invalidateAfterInterval:(double)arg1;
 + (id)terminateAfterInterval:(double)arg1;
 
-- (id)_initWithInvalidationDuration:(double)arg1 warningDuration:(double)arg2 startPolicy:(unsigned long long)arg3 endPolicy:(unsigned long long)arg4;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (id)description;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned long long)endPolicy;
 - (unsigned long long)hash;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (double)invalidationDuration;
 - (bool)isEqual:(id)arg1;
 - (void)setEndPolicy:(unsigned long long)arg1;
@@ -33,7 +33,12 @@
 - (void)setStartPolicy:(unsigned long long)arg1;
 - (void)setWarningDuration:(double)arg1;
 - (unsigned long long)startPolicy;
-- (id)succinctDescriptionBuilder;
 - (double)warningDuration;
+
+// Image: /System/Library/PrivateFrameworks/RunningBoard.framework/RunningBoard
+
+- (void)applyToAssertionIntransientState:(id)arg1 attributePath:(unsigned long long)arg2 context:(id)arg3;
+- (bool)conflictsWithAttribute:(id)arg1;
+- (bool)isValidForContext:(id)arg1 withError:(id*)arg2;
 
 @end

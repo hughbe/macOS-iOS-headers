@@ -11,7 +11,7 @@
     unsigned long long  _engraveShadowCount;
     struct { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; struct CGPoint { double x_9_1_1; double x_9_1_2; } x9; } * _extraShadow;
     unsigned long long  _extraShadowCount;
-    struct { float x1; float x2; float x3; float x4; float x5; bool x6; } * _hueSaturation;
+    struct { float x1; float x2; float x3; float x4; float x5; bool x6; bool x7; } * _hueSaturation;
     unsigned long long  _hueSaturationCount;
     struct { unsigned int x1; float x2; float x3; float x4; float x5; float x6; } * _innerGlow;
     unsigned long long  _innerGlowCount;
@@ -36,7 +36,7 @@
 @property (nonatomic) unsigned long long engraveShadowCount;
 @property (nonatomic, readonly) struct { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; struct CGPoint { double x_9_1_1; double x_9_1_2; } x9; }*extraShadow;
 @property (nonatomic, readonly) unsigned long long extraShadowCount;
-@property (nonatomic, readonly) struct { float x1; float x2; float x3; float x4; float x5; bool x6; }*hueSaturation;
+@property (nonatomic, readonly) struct { float x1; float x2; float x3; float x4; float x5; bool x6; bool x7; }*hueSaturation;
 @property (nonatomic, readonly) unsigned long long hueSaturationCount;
 @property (nonatomic, readonly) struct { unsigned int x1; float x2; float x3; float x4; float x5; float x6; }*innerGlow;
 @property (nonatomic) unsigned long long innerGlowCount;
@@ -128,14 +128,14 @@
 - (bool)hasInnerGradient;
 - (bool)hasInnerShadow;
 - (bool)hasOuterGlow;
-- (struct { float x1; float x2; float x3; float x4; float x5; bool x6; }*)hueSaturation;
+- (struct { float x1; float x2; float x3; float x4; float x5; bool x6; bool x7; }*)hueSaturation;
 - (unsigned long long)hueSaturationCount;
 - (id)image:(id)arg1 withAdjustedOpacity:(float)arg2;
 - (id)imageWithBevelEmbossOfImage:(id)arg1 effect:(struct { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; unsigned int x13; })arg2;
 - (id)imageWithColorOverlayOfImage:(id)arg1 effect:(struct { unsigned int x1; float x2; float x3; float x4; float x5; bool x6; })arg2;
 - (id)imageWithEngraveShadowOfImage:(id)arg1 effect:(struct { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; struct CGPoint { double x_9_1_1; double x_9_1_2; } x9; })arg2;
 - (id)imageWithExtraShadowOfImage:(id)arg1 effect:(struct { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; struct CGPoint { double x_9_1_1; double x_9_1_2; } x9; })arg2;
-- (id)imageWithHueSaturationOfImage:(id)arg1 effect:(struct { float x1; float x2; float x3; float x4; float x5; bool x6; })arg2;
+- (id)imageWithHueSaturationOfImage:(id)arg1 effect:(struct { float x1; float x2; float x3; float x4; float x5; bool x6; bool x7; })arg2;
 - (id)imageWithInnerGlowOfImage:(id)arg1 effect:(struct { unsigned int x1; float x2; float x3; float x4; float x5; float x6; })arg2;
 - (id)imageWithInnerShadowOfImage:(id)arg1 effect:(struct { unsigned int x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; struct CGPoint { double x_9_1_1; double x_9_1_2; } x9; })arg2;
 - (id)imageWithInteriorGradientFillOfImage:(id)arg1 effect:(struct { unsigned int x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; })arg2;

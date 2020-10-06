@@ -44,6 +44,8 @@
 @property (nonatomic, copy) id /* block */ valueSetter;
 @property (nonatomic, copy) id /* block */ valueValidatator;
 
+// Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+
 + (id)row;
 + (id)rowWithTitle:(id)arg1 valueGetter:(id /* block */)arg2 valueSetter:(id /* block */)arg3;
 + (id)rowWithTitle:(id)arg1 valueKeyPath:(id)arg2;
@@ -114,5 +116,38 @@
 - (id /* block */)valueSetter;
 - (id /* block */)valueValidatator;
 - (id)valueValidator:(id /* block */)arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)pu_rowWithTitle:(id)arg1 action:(id /* block */)arg2;
++ (id)pu_rowWithTitle:(id)arg1 asynchronousOutputProducer:(id /* block */)arg2;
++ (id)pu_rowWithTitle:(id)arg1 output:(id /* block */)arg2;
++ (id)pu_rowWithTitle:(id)arg1 settings:(id)arg2;
++ (id)pu_rowWithTitle:(id)arg1 settings:(id)arg2 condition:(id)arg3;
++ (id)pu_rowWithTitle:(id)arg1 settingsProvider:(id /* block */)arg2;
++ (id)pu_rowWithTitle:(id)arg1 settingsProvider:(id /* block */)arg2 isTransient:(bool)arg3;
+
+- (id)pu_increment:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosPlayer.framework/PhotosPlayer
+
+- (id)is_increment:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_rowWithTitle:(id)arg1 action:(id /* block */)arg2;
++ (id)px_rowWithTitle:(id)arg1 asynchronousOutputProducer:(id /* block */)arg2;
++ (id)px_rowWithTitle:(id)arg1 continuousOutputProducer:(id /* block */)arg2;
++ (id)px_rowWithTitle:(id)arg1 output:(id /* block */)arg2;
++ (id)px_rowWithTitle:(id)arg1 postDismissalAction:(id /* block */)arg2;
++ (id)px_rowWithTitle:(id)arg1 valueKeyPath:(id)arg2 condition:(id)arg3;
+
+- (id)px_conditionFormat:(id)arg1 possibleValues:(id)arg2;
+- (id)px_increment:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PrototypeToolsUI.framework/PrototypeToolsUI
+
+- (id)defaultUIAction;
+- (Class)tableViewCellClass;
 
 @end

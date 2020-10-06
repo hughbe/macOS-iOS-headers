@@ -5,11 +5,12 @@
 @interface IMLocalObjectInternal : NSObject {
     bool  _busyForwarding;
     NSMutableArray * _componentQueue;
-    NSLock * _componentQueueLock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _componentQueueLock;
     NSRecursiveLock * _componentQueueProcessingLock;
     NSObject<OS_xpc_object> * _connection;
     IMMessageContext * _currentMessageContext;
-    NSObject<OS_dispatch_semaphore> * _deathLock;
     NSRecursiveLock * _lock;
     bool  _offMainThread;
     bool  _pendingComponentQueueProcessing;

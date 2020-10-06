@@ -23,6 +23,7 @@
 - (void)_handleAutoScrollFromPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)_isPointInsideEditControl:(struct CGPoint { double x1; double x2; })arg1;
 - (void)_selectIndexPaths:(id)arg1;
+- (bool)_shouldBeginInteractionAtIndexPath:(id)arg1;
 - (bool)_shouldBeginInteractionAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)_tableViewDelegate;
 - (void)_updateSelectedIndexPaths:(id)arg1;
@@ -42,6 +43,7 @@
 - (void)setCurrentSelectionState:(id)arg1;
 - (void)setMultiSelectInteraction:(id)arg1;
 - (void)setTableView:(id)arg1;
+- (bool)shouldAllowSelectionExtensionAtIndexPath:(id)arg1;
 - (bool)shouldAllowSelectionExtensionAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)shouldBeginMultiSelectInteraction:(id)arg1 ofType:(long long)arg2 atPoint:(struct CGPoint { double x1; double x2; })arg3 withVelocity:(struct CGPoint { double x1; double x2; })arg4;
 - (bool)supportsMultiSelectInteraction:(id)arg1;

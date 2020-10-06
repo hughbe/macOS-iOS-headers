@@ -26,6 +26,7 @@
         unsigned int titleNoWrap : 1; 
         unsigned int thumbnailCropCircle : 1; 
         unsigned int playActionAlign : 1; 
+        unsigned int subtitleIsEmphasized : 1; 
     }  _has;
     bool  _hasBottomPadding;
     bool  _hasTopPadding;
@@ -47,6 +48,7 @@
     SFRichText * _richSubtitle;
     int  _separatorStyle;
     NSString * _subtitle;
+    bool  _subtitleIsEmphasized;
     bool  _thumbnailCropCircle;
     NSString * _title;
     int  _titleAlign;
@@ -97,6 +99,7 @@
 @property (nonatomic, retain) SFRichText *richSubtitle;
 @property (nonatomic) int separatorStyle;
 @property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic) bool subtitleIsEmphasized;
 @property (readonly) Class superclass;
 @property (nonatomic) bool thumbnailCropCircle;
 @property (nonatomic, copy) NSString *title;
@@ -106,6 +109,8 @@
 @property (nonatomic, copy) NSNumber *titleWeight;
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, retain) SFUserReportRequest *userReportRequest;
+
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
 
 + (bool)supportsSecureCoding;
 
@@ -133,6 +138,7 @@
 - (bool)hasPlayActionAlign;
 - (bool)hasReviewNewLine;
 - (bool)hasSeparatorStyle;
+- (bool)hasSubtitleIsEmphasized;
 - (bool)hasThumbnailCropCircle;
 - (bool)hasTitleAlign;
 - (bool)hasTitleNoWrap;
@@ -187,6 +193,7 @@
 - (void)setRichSubtitle:(id)arg1;
 - (void)setSeparatorStyle:(int)arg1;
 - (void)setSubtitle:(id)arg1;
+- (void)setSubtitleIsEmphasized:(bool)arg1;
 - (void)setThumbnailCropCircle:(bool)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setTitleAlign:(int)arg1;
@@ -195,6 +202,7 @@
 - (void)setTitleWeight:(id)arg1;
 - (void)setType:(id)arg1;
 - (id)subtitle;
+- (bool)subtitleIsEmphasized;
 - (bool)thumbnailCropCircle;
 - (id)title;
 - (int)titleAlign;
@@ -202,5 +210,10 @@
 - (bool)titleNoWrap;
 - (id)titleWeight;
 - (id)type;
+
+// Image: /System/Library/PrivateFrameworks/CardKit.framework/CardKit
+
+- (int)_crk_leadingCardSectionSeparatorStyle;
+- (int)_crk_trailingCardSectionSeparatorStyle;
 
 @end

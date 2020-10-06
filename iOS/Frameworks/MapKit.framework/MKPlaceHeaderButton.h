@@ -2,11 +2,11 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKPlaceHeaderButton : UIButton <_MKPlaceActionButtonControllerProtocol> {
+@interface MKPlaceHeaderButton : UIButton <_MKPlaceActionControlledButton> {
     _MKPlaceActionButtonController * _buttonController;
+    bool  _buttonHighlighted;
     unsigned long long  _buttonType;
     NSLayoutConstraint * _heightConstraint;
-    bool  _highlighted;
     bool  _primary;
     MKVibrantView * _vibrantView;
 }
@@ -31,12 +31,12 @@
 - (void)infoCardThemeChanged;
 - (id)init;
 - (id)initWithPrimaryType:(unsigned long long)arg1;
-- (bool)isHighlighted;
-- (void)placeActionbuttonControllerTextDidChanged:(id)arg1;
-- (void)setAttributesWithTitle:(id)arg1 subTitle:(id)arg2;
+- (void)placeActionButtonControllerTextDidChange:(id)arg1;
 - (void)setButtonController:(id)arg1;
 - (void)setHighlighted:(bool)arg1;
-- (void)setPrimaryButtonTitle:(id)arg1;
+- (void)setPrimaryTitle:(id)arg1;
+- (void)setPrimaryTitle:(id)arg1 subtitle:(id)arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })titleRectForContentRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)updateButtonWithHighlighted:(bool)arg1;
 
 @end

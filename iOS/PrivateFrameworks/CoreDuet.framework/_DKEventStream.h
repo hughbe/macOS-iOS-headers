@@ -16,6 +16,8 @@
 @property (readonly) NSString *name;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
+
 + (id)eventStreamWithName:(id)arg1;
 + (id)eventStreamWithName:(id)arg1 valueType:(id)arg2;
 + (id)fromPBCodable:(id)arg1;
@@ -26,10 +28,15 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)eventProperties;
 - (id)eventValueType;
+- (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 valueType:(id)arg2 cache:(id)arg3;
 - (bool)isEqual:(id)arg1;
 - (id)name;
 - (id)toPBCodable;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

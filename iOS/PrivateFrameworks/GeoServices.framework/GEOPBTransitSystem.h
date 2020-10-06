@@ -12,13 +12,7 @@
         unsigned int read_nameDisplayString : 1; 
         unsigned int read_styleAttributes : 1; 
         unsigned int read_website : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_artwork : 1; 
-        unsigned int wrote_muid : 1; 
-        unsigned int wrote_nameDisplayString : 1; 
-        unsigned int wrote_styleAttributes : 1; 
-        unsigned int wrote_website : 1; 
-        unsigned int wrote_systemIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned long long  _muid;
     NSString * _nameDisplayString;
@@ -55,10 +49,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readArtwork;
-- (void)_readNameDisplayString;
-- (void)_readStyleAttributes;
-- (void)_readWebsite;
 - (id)artwork;
 - (id)bestName;
 - (void)clearUnknownFields:(bool)arg1;
@@ -77,7 +67,10 @@
 - (id)identifier;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muid;
 - (id)nameDisplayString;

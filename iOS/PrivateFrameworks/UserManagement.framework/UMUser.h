@@ -77,6 +77,8 @@
 @property (nonatomic, readonly) unsigned long long userType;
 @property (nonatomic, copy) NSString *username;
 
+// Image: /System/Library/PrivateFrameworks/UserManagement.framework/UserManagement
+
 + (id)userWithUID:(unsigned int)arg1;
 
 - (void).cxx_destruct;
@@ -165,5 +167,9 @@
 - (id)userPersonaFromIdentityString:(id)arg1;
 - (unsigned long long)userType;
 - (id)username;
+
+// Image: /System/Library/PrivateFrameworks/UserManagementUI.framework/UserManagementUI
+
+- (id)photo;
 
 @end

@@ -3,6 +3,7 @@
  */
 
 @interface GEOMapItemAdditionalPlaceInfo : NSObject {
+    <GEOMapItem> * _mapItem;
     GEOPlace * _place;
 }
 
@@ -15,6 +16,7 @@
 - (void).cxx_destruct;
 - (double)areaInMeters;
 - (struct { double x1; double x2; })coordinate;
+- (id)initWithMapItem:(id)arg1;
 - (id)initWithName:(id)arg1 placeType:(int)arg2 areaInMeters:(double)arg3;
 - (id)initWithPlace:(id)arg1;
 - (id)mapRegion;

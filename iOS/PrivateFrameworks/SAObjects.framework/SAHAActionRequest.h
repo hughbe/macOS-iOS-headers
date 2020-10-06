@@ -8,6 +8,8 @@
 @property (nonatomic) long long executionOrder;
 @property (nonatomic, retain) SAHAFilter *filter;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)actionRequest;
 + (id)actionRequestWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -19,5 +21,9 @@
 - (void)setActions:(id)arg1;
 - (void)setExecutionOrder:(long long)arg1;
 - (void)setFilter:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

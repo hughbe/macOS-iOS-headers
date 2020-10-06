@@ -23,6 +23,7 @@
 - (void)dealloc;
 - (oneway void)handleContext:(id)arg1 completion:(id /* block */)arg2;
 - (oneway void)handleIntent:(id)arg1 inBackgroundAppWithBundleId:(id)arg2 reply:(id /* block */)arg3;
+- (oneway void)handleIntentForwardingAction:(id)arg1 inBackgroundApplicationWithBundleIdentifier:(id)arg2 completionHandler:(id /* block */)arg3;
 - (id)init;
 - (id)initWithServicePort:(long long)arg1;
 - (void)invalidate;

@@ -14,6 +14,8 @@
 - (void)optimizeContentsForGPUAccess:(id)arg1 slice:(unsigned long long)arg2 level:(unsigned long long)arg3;
 - (void)optimizeIndirectCommandBuffer:(id)arg1 withRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)resetCommandsInBuffer:(id)arg1 withRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (void)resolveCounters:(id)arg1 inRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 destinationBuffer:(id)arg3 destinationOffset:(unsigned long long)arg4;
+- (void)sampleCountersInBuffer:(id)arg1 atSampleIndex:(unsigned long long)arg2 withBarrier:(bool)arg3;
 - (void)synchronizeResource:(id)arg1;
 - (void)synchronizeTexture:(id)arg1 slice:(unsigned long long)arg2 level:(unsigned long long)arg3;
 - (void)updateFence:(id)arg1;

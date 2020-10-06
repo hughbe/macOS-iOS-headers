@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UITableViewController : UIViewController <DebugHierarchyObject_Fallback, UITableViewDataSource, UITableViewDelegate, UITableViewFocusDelegateLegacy, UIViewControllerPreviewingDelegate, UIViewControllerPreviewingDelegate_Deprecated, _UIKeyboardAutoRespondingScrollViewController> {
+@interface UITableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITableViewFocusDelegateLegacy, UIViewControllerPreviewingDelegate, UIViewControllerPreviewingDelegate_Deprecated, _UIKeyboardAutoRespondingScrollViewController> {
     _UIFilteredDataSource * _filteredDataSource;
     long long  _filteredDataType;
     UIAutoRespondingScrollViewControllerKeyboardSupport * _keyboardSupport;
@@ -41,17 +41,8 @@
 - (id)_staticDataSource;
 - (bool)_viewControllerWasSelected;
 - (void)_willChangeToIdiom:(long long)arg1 onScreen:(id)arg2;
-- (void)dealloc;
-- (bool)respondsToSelector:(SEL)arg1;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)clearsSelectionOnViewWillAppear;
+- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
@@ -64,6 +55,7 @@
 - (void)previewingContext:(id)arg1 commitViewController:(id)arg2;
 - (id)previewingContext:(id)arg1 viewControllerForLocation:(struct CGPoint { double x1; double x2; })arg2;
 - (id)refreshControl;
+- (bool)respondsToSelector:(SEL)arg1;
 - (void)setClearsSelectionOnViewWillAppear:(bool)arg1;
 - (void)setEditing:(bool)arg1 animated:(bool)arg2;
 - (void)setRefreshControl:(id)arg1;
@@ -93,5 +85,9 @@
 - (void)_cnui_beginRefreshingWithDuration:(double)arg1;
 - (void)_cnui_updateAccountsRefreshControl;
 - (void)refreshAccountsNow:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (void)_confirmDeleteConversationFromView:(id)arg1 alertTitle:(id)arg2 forMultipleConversations:(bool)arg3 withReportSpamHander:(id /* block */)arg4 withNotReportSpamHandler:(id /* block */)arg5 withCancelHandler:(id /* block */)arg6;
 
 @end

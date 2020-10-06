@@ -2,8 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
  */
 
-@interface SFSearchResult : NSObject <NSCopying, NSSecureCoding, SFJSONSerializable, SFSearchResult> {
+@interface SFSearchResult : NSObject <NSCopying, NSSecureCoding, SFJSONSerializable, SFSearchResult, WBSCompletionListItem> {
     SFActionItem * _action;
+    NSArray * _alternativeURLs;
     NSString * _appleReferrer;
     NSString * _applicationBundleIdentifier;
     NSString * _auxiliaryBottomText;
@@ -13,6 +14,7 @@
     unsigned long long  _blockId;
     NSString * _calendarIdentifier;
     SFCard * _card;
+    SFCard * _compactCard;
     NSString * _completedQuery;
     NSString * _completion;
     SFImage * _completionImage;
@@ -23,6 +25,7 @@
     SFCustom * _customProperties;
     long long  _dataOwnerType;
     NSArray * _descriptions;
+    bool  _didTakeoverGo;
     bool  _doNotFold;
     NSNumber * _engagementScore;
     NSData * _entityData;
@@ -55,8 +58,10 @@
     SFMoreResults * _moreResults;
     SFPunchout * _moreResultsPunchout;
     NSString * _nearbyBusinessesString;
+    bool  _noGoTakeover;
     double  _personalizationScore;
     int  _placement;
+    bool  _preferTopPlatter;
     bool  _preventThumbnailImageScaling;
     bool  _publiclyIndexable;
     NSString * _publishDate;
@@ -76,6 +81,7 @@
     NSURL * _sectionHeaderMoreURL;
     NSDictionary * _serverFeatures;
     double  _serverScore;
+    bool  _shouldUseCompactDisplay;
     NSString * _sourceName;
     NSString * _srf;
     NSString * _storeIdentifier;
@@ -88,9 +94,12 @@
     NSURL * _url;
     NSString * _userActivityRequiredString;
     NSString * _userInput;
+    bool  _usesCompactDisplay;
+    bool  _wasCompact;
 }
 
 @property (nonatomic, retain) SFActionItem *action;
+@property (nonatomic, copy) NSArray *alternativeURLs;
 @property (nonatomic, copy) NSString *appleReferrer;
 @property (nonatomic, copy) NSString *applicationBundleIdentifier;
 @property (nonatomic, copy) NSString *auxiliaryBottomText;
@@ -100,6 +109,7 @@
 @property (nonatomic) unsigned long long blockId;
 @property (nonatomic, copy) NSString *calendarIdentifier;
 @property (nonatomic, retain) SFCard *card;
+@property (nonatomic, retain) SFCard *compactCard;
 @property (nonatomic, copy) NSString *completedQuery;
 @property (nonatomic, copy) NSString *completion;
 @property (nonatomic, retain) SFImage *completionImage;
@@ -113,10 +123,13 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSArray *descriptions;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
+@property (nonatomic) bool didTakeoverGo;
 @property (nonatomic) bool doNotFold;
+@property (nonatomic, readonly) unsigned long long engagementDestination;
 @property (nonatomic, retain) NSNumber *engagementScore;
 @property (nonatomic, retain) NSData *entityData;
 @property (nonatomic, copy) NSString *fbr;
+@property (readonly) NSString *feedbackSectionIdentifier;
 @property (nonatomic, copy) NSString *fileProviderDomainIdentifier;
 @property (nonatomic, copy) NSString *fileProviderIdentifier;
 @property (nonatomic, copy) NSString *footnote;
@@ -125,6 +138,7 @@
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, retain) SFCard *inlineCard;
 @property (nonatomic, copy) NSString *intendedQuery;
+@property (readonly) bool isAppClip;
 @property (nonatomic) bool isCentered;
 @property (nonatomic) bool isFuzzyMatch;
 @property (nonatomic) bool isLocalApplicationResult;
@@ -132,9 +146,11 @@
 @property (nonatomic) bool isSecondaryTitleDetached;
 @property (nonatomic) bool isStaticCorrection;
 @property (nonatomic) bool isStreaming;
+@property (readonly) bool isWebClip;
 @property (nonatomic, copy) NSArray *itemProviderDataTypes;
 @property (nonatomic, copy) NSArray *itemProviderFileTypes;
 @property (nonatomic, readonly) NSData *jsonData;
+@property (nonatomic, readonly) NSString *lastSearchQuery;
 @property (nonatomic, copy) NSDictionary *localFeatures;
 @property (nonatomic, retain) NSData *mapsData;
 @property (nonatomic, retain) SFImage *mapsMoreIcon;
@@ -147,8 +163,12 @@
 @property (nonatomic, retain) SFMoreResults *moreResults;
 @property (nonatomic, retain) SFPunchout *moreResultsPunchout;
 @property (nonatomic, copy) NSString *nearbyBusinessesString;
+@property (nonatomic) bool noGoTakeover;
+@property (nonatomic, readonly) NSString *parsecDomainIdentifier;
+@property (nonatomic) long long parsecQueryID;
 @property (nonatomic) double personalizationScore;
 @property (nonatomic) int placement;
+@property (nonatomic) bool preferTopPlatter;
 @property (nonatomic) bool preventThumbnailImageScaling;
 @property (nonatomic) bool publiclyIndexable;
 @property (nonatomic, copy) NSString *publishDate;
@@ -160,6 +180,7 @@
 @property (nonatomic, copy) NSString *resultBundleId;
 @property (nonatomic, copy) NSString *resultTemplate;
 @property (nonatomic, copy) NSString *resultType;
+@property (nonatomic, readonly) NSString *safari_loggingDescription;
 @property (nonatomic, copy) NSString *secondaryTitle;
 @property (nonatomic, retain) SFImage *secondaryTitleImage;
 @property (nonatomic, copy) NSString *sectionBundleIdentifier;
@@ -168,6 +189,9 @@
 @property (nonatomic, copy) NSURL *sectionHeaderMoreURL;
 @property (nonatomic, copy) NSDictionary *serverFeatures;
 @property (nonatomic) double serverScore;
+@property (nonatomic, readonly) SFSearchResult *sfSearchResultValue;
+@property (nonatomic) bool shouldUseCompactDisplay;
+@property (nonatomic, retain) WBSQuerySuggestion *siriSuggestion;
 @property (nonatomic, copy) NSString *sourceName;
 @property (nonatomic, copy) NSString *srf;
 @property (nonatomic, copy) NSString *storeIdentifier;
@@ -181,11 +205,16 @@
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, copy) NSString *userActivityRequiredString;
 @property (nonatomic, copy) NSString *userInput;
+@property (nonatomic) bool usesCompactDisplay;
+@property (nonatomic) bool wasCompact;
+
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)action;
+- (id)alternativeURLs;
 - (id)appleReferrer;
 - (id)applicationBundleIdentifier;
 - (id)auxiliaryBottomText;
@@ -195,6 +224,8 @@
 - (unsigned long long)blockId;
 - (id)calendarIdentifier;
 - (id)card;
+- (id)compactCard;
+- (bool)compareWithResult:(id)arg1 logger:(id /* block */)arg2;
 - (id)completedQuery;
 - (id)completion;
 - (id)completionImage;
@@ -207,6 +238,7 @@
 - (long long)dataOwnerType;
 - (id)descriptions;
 - (id)dictionaryRepresentation;
+- (bool)didTakeoverGo;
 - (bool)doNotFold;
 - (void)encodeWithCoder:(id)arg1;
 - (id)engagementScore;
@@ -242,8 +274,10 @@
 - (id)moreResults;
 - (id)moreResultsPunchout;
 - (id)nearbyBusinessesString;
+- (bool)noGoTakeover;
 - (double)personalizationScore;
 - (int)placement;
+- (bool)preferTopPlatter;
 - (bool)preventThumbnailImageScaling;
 - (bool)publiclyIndexable;
 - (id)publishDate;
@@ -264,6 +298,7 @@
 - (id)serverFeatures;
 - (double)serverScore;
 - (void)setAction:(id)arg1;
+- (void)setAlternativeURLs:(id)arg1;
 - (void)setAppleReferrer:(id)arg1;
 - (void)setApplicationBundleIdentifier:(id)arg1;
 - (void)setAuxiliaryBottomText:(id)arg1;
@@ -273,6 +308,7 @@
 - (void)setBlockId:(unsigned long long)arg1;
 - (void)setCalendarIdentifier:(id)arg1;
 - (void)setCard:(id)arg1;
+- (void)setCompactCard:(id)arg1;
 - (void)setCompletedQuery:(id)arg1;
 - (void)setCompletion:(id)arg1;
 - (void)setCompletionImage:(id)arg1;
@@ -283,6 +319,7 @@
 - (void)setCustomProperties:(id)arg1;
 - (void)setDataOwnerType:(long long)arg1;
 - (void)setDescriptions:(id)arg1;
+- (void)setDidTakeoverGo:(bool)arg1;
 - (void)setDoNotFold:(bool)arg1;
 - (void)setEngagementScore:(id)arg1;
 - (void)setEntityData:(id)arg1;
@@ -315,8 +352,10 @@
 - (void)setMoreResults:(id)arg1;
 - (void)setMoreResultsPunchout:(id)arg1;
 - (void)setNearbyBusinessesString:(id)arg1;
+- (void)setNoGoTakeover:(bool)arg1;
 - (void)setPersonalizationScore:(double)arg1;
 - (void)setPlacement:(int)arg1;
+- (void)setPreferTopPlatter:(bool)arg1;
 - (void)setPreventThumbnailImageScaling:(bool)arg1;
 - (void)setPubliclyIndexable:(bool)arg1;
 - (void)setPublishDate:(id)arg1;
@@ -336,6 +375,7 @@
 - (void)setSectionHeaderMoreURL:(id)arg1;
 - (void)setServerFeatures:(id)arg1;
 - (void)setServerScore:(double)arg1;
+- (void)setShouldUseCompactDisplay:(bool)arg1;
 - (void)setSourceName:(id)arg1;
 - (void)setSrf:(id)arg1;
 - (void)setStoreIdentifier:(id)arg1;
@@ -348,6 +388,9 @@
 - (void)setUrl:(id)arg1;
 - (void)setUserActivityRequiredString:(id)arg1;
 - (void)setUserInput:(id)arg1;
+- (void)setUsesCompactDisplay:(bool)arg1;
+- (void)setWasCompact:(bool)arg1;
+- (bool)shouldUseCompactDisplay;
 - (id)sourceName;
 - (id)srf;
 - (id)storeIdentifier;
@@ -360,5 +403,71 @@
 - (id)url;
 - (id)userActivityRequiredString;
 - (id)userInput;
+- (bool)usesCompactDisplay;
+- (bool)wasCompact;
+
+// Image: /System/Library/PrivateFrameworks/NewsToday.framework/NewsToday
+
+- (id)nt_cacheExpirationDateWithFetchDate:(id)arg1;
+- (id)nt_publishDate;
+
+// Image: /System/Library/PrivateFrameworks/SafariSharedUI.framework/SafariSharedUI
+
++ (id)safari_sfSearchResultWithUniqueIdentifier;
+
+- (id)_firstCardSectionOfClass:(Class)arg1 ofCard:(id)arg2 outIndex:(unsigned long long*)arg3;
+- (unsigned long long)engagementDestination;
+- (id)parsecDomainIdentifier;
+- (long long)parsecQueryID;
+- (id)safari_firstCardSectionOfClass:(Class)arg1;
+- (id)safari_firstInlineCardSectionOfClass:(Class)arg1;
+- (unsigned long long)safari_indexOfFirstInlineCardSectionOfClass:(Class)arg1;
+- (id)safari_loggingDescription;
+- (void)setParsecQueryID:(long long)arg1;
+- (id)sfSearchResultValue;
+
+// Image: /System/Library/PrivateFrameworks/SearchToShareCore.framework/SearchToShareCore
+
+- (id)_sts_cardSectionWithClass:(Class)arg1;
+- (id)sts_appProviderName;
+- (id)sts_badge;
+- (id)sts_providerHostPageURL;
+- (struct CGSize { double x1; double x2; })sts_providerIconSize;
+- (void)sts_providerIconWithScale:(double)arg1 completion:(id /* block */)arg2;
+- (id)sts_providerName;
+- (id)sts_searchProviderImage;
+- (id)sts_videoDuration;
+
+// Image: /System/Library/PrivateFrameworks/SpotlightServices.framework/SpotlightServices
+
+- (float)PRSRankingItemAdditions_albumNumYearsAgo:(double)arg1;
+- (float)PRSRankingItemAdditions_albumStarRating;
+- (float)PRSRankingItemAdditions_anyTophitMustBe;
+- (float)PRSRankingItemAdditions_anyTophitNo;
+- (float)PRSRankingItemAdditions_appNumReviews;
+- (float)PRSRankingItemAdditions_appStarRating;
+- (id)PRSRankingItemAdditions_completedQuery;
+- (id)PRSRankingItemAdditions_correctedQuery;
+- (id)PRSRankingItemAdditions_description;
+- (float)PRSRankingItemAdditions_epubBookNumReviews;
+- (float)PRSRankingItemAdditions_epubBookNumYearsAgo:(double)arg1;
+- (float)PRSRankingItemAdditions_epubBookStarRating;
+- (float)PRSRankingItemAdditions_movieNumYearsAgo:(double)arg1;
+- (float)PRSRankingItemAdditions_movieReviewRating;
+- (float)PRSRankingItemAdditions_movieStarRating;
+- (float)PRSRankingItemAdditions_podcastStarRating;
+- (float)PRSRankingItemAdditions_profileNumFollowers;
+- (float)PRSRankingItemAdditions_songNumYearsAgo:(double)arg1;
+- (id)PRSRankingItemAdditions_title;
+- (float)PRSRankingItemAdditions_tvshowNumYearsAgo:(double)arg1;
+- (id)PRSRankingItemAdditions_url;
+- (float)PRSRankingItemAdditions_webVideoNumViews;
+- (float)PRSRankingItemAdditions_webVideoNumYearsAgo:(double)arg1;
+- (bool)collectAnonymousFeatures;
+- (id)feedbackSectionIdentifier;
+- (bool)isAppClip;
+- (bool)isWebClip;
+- (id)objectForFeedback;
+- (void)setPropertiesOnResultCopy:(id)arg1;
 
 @end

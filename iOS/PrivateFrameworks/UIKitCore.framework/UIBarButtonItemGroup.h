@@ -14,6 +14,7 @@
     UIBarButtonItem * _representativeItem;
     _UIButtonGroupViewController * _representativeUI;
     bool  _sendActionsBeforeDismiss;
+    bool  _shouldAlwaysCollapse;
 }
 
 @property (nonatomic, copy) NSArray *barButtonItems;
@@ -29,11 +30,14 @@
 @property (nonatomic, retain) UIBarButtonItem *representativeItem;
 @property (getter=_representativeUI, setter=_setRepresentativeUI:, nonatomic, retain) _UIButtonGroupViewController *representativeUI;
 @property (getter=_sendActionsBeforeDismiss, setter=_setSendActionsBeforeDismiss:, nonatomic) bool sendActionsBeforeDismiss;
+@property (getter=_shouldAlwaysCollapse, setter=_setShouldAlwaysCollapse:, nonatomic) bool shouldAlwaysCollapse;
+@property (getter=_isSystemGroup, nonatomic, readonly) bool systemGroup;
 
 - (void).cxx_destruct;
 - (unsigned long long)_expandStyle;
 - (bool)_isHidden;
 - (bool)_isLocked;
+- (bool)_isSystemGroup;
 - (id)_items;
 - (double)_minimumLeadingSpace;
 - (double)_minimumTrailingSpace;
@@ -52,6 +56,8 @@
 - (void)_setPriority:(float)arg1;
 - (void)_setRepresentativeUI:(id)arg1;
 - (void)_setSendActionsBeforeDismiss:(bool)arg1;
+- (void)_setShouldAlwaysCollapse:(bool)arg1;
+- (bool)_shouldAlwaysCollapse;
 - (void)_validateAllItems;
 - (id)barButtonItems;
 - (id)description;

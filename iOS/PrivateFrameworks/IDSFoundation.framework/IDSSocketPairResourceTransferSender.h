@@ -5,6 +5,7 @@
 @interface IDSSocketPairResourceTransferSender : IDSSocketPairMessage <IDSSocketPairMessage> {
     bool  _compressPayload;
     bool  _compressed;
+    bool  _didWakeHint;
     bool  _done;
     bool  _expectsPeerResponse;
     NSDate * _expiryDate;
@@ -25,6 +26,7 @@
 }
 
 @property (nonatomic, readonly) NSData *data;
+@property (nonatomic, readonly) bool didWakeHint;
 @property (nonatomic, readonly) bool expectsPeerResponse;
 @property (nonatomic, retain) NSDate *expiryDate;
 @property (nonatomic, readonly) bool isDone;
@@ -44,7 +46,7 @@
 - (unsigned char)command;
 - (void)dealloc;
 - (id)description;
-- (id)initWithResourceAtPath:(id)arg1 metadata:(id)arg2 sequenceNumber:(unsigned int)arg3 streamID:(unsigned short)arg4 expectsPeerResponse:(bool)arg5 wantsAppAck:(bool)arg6 compressPayload:(bool)arg7 compressed:(bool)arg8 peerResponseIdentifier:(id)arg9 messageUUID:(id)arg10 expiryDate:(id)arg11;
+- (id)initWithResourceAtPath:(id)arg1 metadata:(id)arg2 sequenceNumber:(unsigned int)arg3 streamID:(unsigned short)arg4 expectsPeerResponse:(bool)arg5 wantsAppAck:(bool)arg6 compressPayload:(bool)arg7 compressed:(bool)arg8 didWakeHint:(bool)arg9 peerResponseIdentifier:(id)arg10 messageUUID:(id)arg11 expiryDate:(id)arg12;
 - (bool)isDone;
 - (unsigned int)maxChunkSize;
 - (id)messageUUID;

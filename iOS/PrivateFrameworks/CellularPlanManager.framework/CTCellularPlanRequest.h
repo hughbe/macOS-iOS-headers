@@ -34,7 +34,6 @@
 + (id)createSessionRequest;
 + (void)initialize;
 + (bool)isRetriableErrorCode:(long long)arg1;
-+ (void)load;
 + (id)loadPlansRequestWithUrl:(id)arg1 postData:(id)arg2;
 + (id)newInitiatePurchaseWithSessionId:(id)arg1 planId:(id)arg2;
 + (id)newPurchaseWithSessionId:(id)arg1 receipt:(id)arg2 userId:(id)arg3 userName:(id)arg4;

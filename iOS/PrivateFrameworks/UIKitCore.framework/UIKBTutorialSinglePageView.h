@@ -14,12 +14,7 @@
 @property (nonatomic) bool useAlertStyle;
 @property (nonatomic, retain) UIView *visualDisplayView;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)configPageView;
 - (id)initWithImageView:(id)arg1;
 - (void)layoutSubviews;

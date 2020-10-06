@@ -26,9 +26,20 @@
             double height; 
         } size; 
     }  _keyboardPositionWithIAV;
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _keyboardPositionWithRemoteIAV;
     bool  _shouldTakeSnapshot;
-    NSString * _sourceCanvasIdentifier;
+    NSString * _sourceBundleIdentifier;
     NSString * _sourceDisplayIdentifier;
+    NSString * _sourceSceneIdentityString;
 }
 
 @property (readonly, copy) BKSAnimationFenceHandle *animationFence;
@@ -36,9 +47,11 @@
 @property (readonly) bool keyboardOnScreen;
 @property (readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } keyboardPosition;
 @property (readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } keyboardPositionWithIAV;
+@property struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } keyboardPositionWithRemoteIAV;
 @property (nonatomic) bool shouldTakeSnapshot;
-@property (nonatomic, copy) NSString *sourceCanvasIdentifier;
+@property (nonatomic, copy) NSString *sourceBundleIdentifier;
 @property (nonatomic, copy) NSString *sourceDisplayIdentifier;
+@property (nonatomic, copy) NSString *sourceSceneIdentityString;
 
 + (id)animationFence;
 + (id)informationForKeyboardDown;
@@ -60,12 +73,16 @@
 - (bool)keyboardOnScreen;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })keyboardPosition;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })keyboardPositionWithIAV;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })keyboardPositionWithRemoteIAV;
 - (void)resetAnimationFencing;
+- (void)setKeyboardPositionWithRemoteIAV:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setShouldTakeSnapshot:(bool)arg1;
-- (void)setSourceCanvasIdentifier:(id)arg1;
+- (void)setSourceBundleIdentifier:(id)arg1;
 - (void)setSourceDisplayIdentifier:(id)arg1;
+- (void)setSourceSceneIdentityString:(id)arg1;
 - (bool)shouldTakeSnapshot;
-- (id)sourceCanvasIdentifier;
+- (id)sourceBundleIdentifier;
 - (id)sourceDisplayIdentifier;
+- (id)sourceSceneIdentityString;
 
 @end

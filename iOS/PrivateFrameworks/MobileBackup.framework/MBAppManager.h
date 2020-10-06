@@ -22,7 +22,10 @@
 - (id)_copySystemPluginsWithError:(id*)arg1;
 - (id)_copySystemPluginsWithPlists:(id)arg1 error:(id*)arg2;
 - (id)_copyUserAppsWithError:(id*)arg1;
+- (bool)_isContainerizedAppDomain:(id)arg1;
+- (void)_reconcileBooksAndHealthInDisabledDomainsList:(id)arg1;
 - (id)_subdomainNamesForAppDomainNames:(id)arg1;
+- (void)_syncDisabledDomainsWithAllInstalledAppDomains:(id)arg1;
 - (id)allApps;
 - (id)allContainers;
 - (id)allDisabledDomainNames;
@@ -40,8 +43,8 @@
 - (bool)moveAppDataToSafeHarborForContainer:(id)arg1 usingIntermediateRestoreDir:(bool)arg2 withError:(id*)arg3;
 - (bool)moveAppDataToSafeHarborForContainer:(id)arg1 withError:(id*)arg2;
 - (void)removeAllDisabledDomainNames;
-- (void)removeOldAppPlaceholderDomainZip;
 - (void)removeOldSafeHarbors;
+- (void)removeStaleStateForUninstalledApps;
 - (void)setEnabled:(bool)arg1 forDomainName:(id)arg2;
 - (id)systemDataContainerWithIdentifier:(id)arg1;
 - (id)systemSharedContainerWithIdentifier:(id)arg1;

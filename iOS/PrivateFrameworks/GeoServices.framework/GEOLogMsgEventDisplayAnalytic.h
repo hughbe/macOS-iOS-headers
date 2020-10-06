@@ -61,7 +61,10 @@
 - (bool)hasRequiredResourcesAvailable;
 - (bool)hasTotalTime;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)meanImageSpacing;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)movementDistance;

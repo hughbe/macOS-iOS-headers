@@ -5,7 +5,7 @@
 @interface AVHapticPlayer : NSObject {
     unsigned long long  _behavior;
     NSMutableArray * _channelArray;
-    HapticClient * _client;
+    AVHapticClient * _client;
     id /* block */  _connectionErrorHandler;
     bool  _resourcesAllocated;
     id /* block */  _stopRunningHandler;
@@ -13,7 +13,7 @@
 
 @property (nonatomic) unsigned long long behavior;
 @property (nonatomic, readonly) NSArray *channels;
-@property (readonly) HapticClient *client;
+@property (readonly) AVHapticClient *client;
 @property (copy) id /* block */ connectionErrorHandler;
 @property (readonly) double currentMediaTime;
 @property (readonly) double hapticLatency;
@@ -32,17 +32,19 @@
 - (id /* block */)connectionErrorHandler;
 - (bool)copyCustomAudioEvent:(unsigned long long)arg1 options:(id)arg2 reply:(id /* block */)arg3;
 - (bool)createCustomAudioEvent:(id)arg1 format:(id)arg2 frames:(unsigned long long)arg3 options:(id)arg4 reply:(id /* block */)arg5;
+- (id)createOptionsFromAudioSessionID:(unsigned int)arg1 shared:(bool)arg2;
 - (double)currentMediaTime;
 - (void)dealloc;
 - (void)deallocateRenderResources;
 - (void)detachHapticSequence:(unsigned long long)arg1;
-- (bool)doInitWithSessionID:(unsigned int)arg1 isShared:(bool)arg2 error:(id*)arg3;
+- (bool)doInitWithOptions:(id)arg1 error:(id*)arg2;
 - (bool)enableSequenceLooping:(unsigned long long)arg1 enable:(bool)arg2 error:(id*)arg3;
 - (void)expectNotifyAfter:(double)arg1;
 - (bool)finishWithCompletionHandler:(id /* block */)arg1;
 - (unsigned long long)getBehavior;
 - (double)hapticLatency;
 - (id)initAndReturnError:(id*)arg1;
+- (id)initWithOptions:(id)arg1 error:(id*)arg2;
 - (id)initWithSessionID:(unsigned int)arg1 error:(id*)arg2;
 - (id)initWithSessionID:(unsigned int)arg1 sessionIsShared:(bool)arg2 error:(id*)arg3;
 - (void)invalidateChannels;
@@ -54,9 +56,11 @@
 - (bool)playHapticSequence:(unsigned long long)arg1 atTime:(double)arg2 offset:(double)arg3;
 - (bool)prepareHapticSequence:(unsigned long long)arg1 error:(id*)arg2;
 - (void)prewarmWithCompletionHandler:(id /* block */)arg1;
+- (void)queryServerCapabilities:(id)arg1 reply:(id /* block */)arg2;
+- (bool)referenceCustomAudioEvent:(unsigned long long)arg1 reply:(id /* block */)arg2;
 - (void)releaseChannels;
+- (bool)releaseCustomAudioEvent:(unsigned long long)arg1 reply:(id /* block */)arg2;
 - (bool)removeChannel:(id)arg1 error:(id*)arg2;
-- (bool)removeCustomAudioEvent:(unsigned long long)arg1 reply:(id /* block */)arg2;
 - (bool)resourcesAllocated;
 - (bool)resumeHapticSequence:(unsigned long long)arg1 atTime:(double)arg2;
 - (bool)seekHapticSequence:(unsigned long long)arg1 toTime:(double)arg2;

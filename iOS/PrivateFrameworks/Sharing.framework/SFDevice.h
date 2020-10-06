@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Sharing.framework/Sharing
  */
 
-@interface SFDevice : NSObject <NSSecureCoding> {
+@interface SFDevice : NSObject <HFHomeKitObject, NSSecureCoding> {
     NSString * _accountID;
     int  _audioRoutingScore;
     bool  _autoUnlockEnabled;
@@ -47,17 +47,21 @@
 @property (nonatomic, copy) NSArray *batteryInfo;
 @property (nonatomic, retain) SFBLEDevice *bleDevice;
 @property (nonatomic, copy) NSString *contactIdentifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) unsigned char deviceActionType;
 @property (nonatomic) unsigned char deviceClassCode;
 @property (nonatomic) unsigned int deviceFlags;
-@property (nonatomic, readonly) unsigned char deviceModelCode;
+@property (nonatomic) unsigned char deviceModelCode;
 @property (nonatomic, readonly) long long deviceType;
 @property (nonatomic) long long distance;
 @property (nonatomic, readonly) bool duetSync;
 @property (nonatomic) bool hasProblem;
+@property (readonly) unsigned long long hash;
 @property (nonatomic) unsigned int hotspotInfo;
 @property (nonatomic, copy) NSUUID *identifier;
 @property (nonatomic, copy) NSString *idsIdentifier;
+@property (nonatomic, readonly) bool idsIdentifierConflictDetected;
 @property (nonatomic, readonly, copy) NSString *mediaRemoteID;
 @property (nonatomic, readonly, copy) NSString *mediaRouteID;
 @property (nonatomic, copy) NSString *model;
@@ -71,11 +75,15 @@
 @property (nonatomic, readonly) unsigned long long problemFlags;
 @property (nonatomic, readonly) NSString *rapportIdentifier;
 @property (nonatomic, copy) NSString *requestSSID;
+@property (readonly) Class superclass;
 @property (nonatomic) unsigned int systemPairState;
 @property (nonatomic) bool testMode;
+@property (nonatomic, readonly, copy) NSUUID *uniqueIdentifier;
 @property (nonatomic) bool wakeDevice;
 @property (nonatomic) bool watchLocked;
 @property (nonatomic, readonly) bool wifiP2P;
+
+// Image: /System/Library/PrivateFrameworks/Sharing.framework/Sharing
 
 + (bool)supportsSecureCoding;
 
@@ -100,6 +108,7 @@
 - (unsigned int)hotspotInfo;
 - (id)identifier;
 - (id)idsIdentifier;
+- (bool)idsIdentifierConflictDetected;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)mediaRemoteID;
@@ -125,6 +134,7 @@
 - (void)setDeviceActionType:(unsigned char)arg1;
 - (void)setDeviceClassCode:(unsigned char)arg1;
 - (void)setDeviceFlags:(unsigned int)arg1;
+- (void)setDeviceModelCode:(unsigned char)arg1;
 - (void)setDistance:(long long)arg1;
 - (void)setHasProblem:(bool)arg1;
 - (void)setHotspotInfo:(unsigned int)arg1;
@@ -148,5 +158,15 @@
 - (bool)wakeDevice;
 - (bool)watchLocked;
 - (bool)wifiP2P;
+
+// Image: /System/Library/PrivateFrameworks/DiagnosticExtensionsDaemon.framework/DiagnosticExtensionsDaemon
+
+- (bool)isValidDEDPingDevice;
+- (bool)isValidDEDPongDevice;
+- (bool)isWithinDEDRange;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
+- (id)uniqueIdentifier;
 
 @end

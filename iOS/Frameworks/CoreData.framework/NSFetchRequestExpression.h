@@ -23,7 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (id)_expressionWithSubstitutionVariables:(id)arg1;
-- (id)_keypathsForDerivedPropertyValidation:(id*)arg1;
 - (void)acceptVisitor:(id)arg1 flags:(unsigned long long)arg2;
 - (id)contextExpression;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -37,7 +36,6 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isCountOnlyRequest;
 - (bool)isEqual:(id)arg1;
-- (id)predicateFormat;
 - (id)requestExpression;
 
 @end

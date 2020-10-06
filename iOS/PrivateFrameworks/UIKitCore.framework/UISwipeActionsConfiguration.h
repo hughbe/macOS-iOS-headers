@@ -3,11 +3,13 @@
  */
 
 @interface UISwipeActionsConfiguration : NSObject {
+    long long  __swipeActionsStyle;
     NSArray * _actions;
     bool  _autosizesButtons;
     bool  _performsFirstActionWithFullSwipe;
 }
 
+@property (getter=_swipeActionsStyle, setter=_setSwipeActionsStyle:, nonatomic) long long _swipeActionsStyle;
 @property (nonatomic, readonly, copy) NSArray *actions;
 @property (getter=_autosizesButtons, setter=_setAutosizesButtons:, nonatomic) bool autosizesButtons;
 @property (nonatomic) bool performsFirstActionWithFullSwipe;
@@ -17,6 +19,8 @@
 - (void).cxx_destruct;
 - (bool)_autosizesButtons;
 - (void)_setAutosizesButtons:(bool)arg1;
+- (void)_setSwipeActionsStyle:(long long)arg1;
+- (long long)_swipeActionsStyle;
 - (id)actions;
 - (id)description;
 - (id)init;

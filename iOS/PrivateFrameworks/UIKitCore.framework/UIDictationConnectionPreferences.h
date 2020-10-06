@@ -18,6 +18,7 @@
 - (id)dictationSLSEnabledLanguages;
 - (bool)ignoreServerManualEndpointingThreshold;
 - (id)initSingleton;
+- (bool)isSmartLanguageSelectionEnabled;
 - (id)languageCode;
 - (id)manualEndpointingThreshold;
 - (void)setAfPreferences:(id)arg1;

@@ -3,12 +3,10 @@
  */
 
 @interface _INPBImageNoteContent : PBCodable <NSCopying, NSSecureCoding, _INPBImageNoteContent> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     _INPBImageValue * _image;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasImage;
@@ -19,8 +17,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

@@ -10,6 +10,7 @@
 - (bool)_accessibilityActivate;
 - (id)_accessibilityArticleAncestor;
 - (struct CGPoint { double x1; double x2; })_accessibilityConvertPointToViewSpace:(struct CGPoint { double x1; double x2; })arg1;
+- (id)_accessibilityDescriptionListAncestor;
 - (id)_accessibilityFieldsetAncestor;
 - (id)_accessibilityFrameAncestor;
 - (bool)_accessibilityHasTouchEventListener;
@@ -25,6 +26,7 @@
 - (struct CGPath { }*)_accessibilityPath;
 - (id)_accessibilityPreviousElementsWithCount:(unsigned int)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_accessibilityRelativeFrame;
+- (id)_accessibilityResolvedEditingStyles;
 - (struct CGPoint { double x1; double x2; })_accessibilityScrollPosition;
 - (struct CGSize { double x1; double x2; })_accessibilityScrollSize;
 - (bool)_accessibilityScrollToVisible;
@@ -39,7 +41,7 @@
 - (id)_accessibilityTreeAncestor;
 - (bool)_accessibilityValueIsAutofilled;
 - (id)_accessibilityWebDocumentView;
-- (bool)_addAccessibilityObject:(struct AccessibilityObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; unsigned int x3; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_4_1_1; unsigned int x_4_1_2; unsigned int x_4_1_3; } x4; bool x5; int x6; int x7; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_8_1_1; bool x_8_1_2; bool x_8_1_3; bool x_8_1_4; } x8; bool x9; bool x10; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_11_1_1; } x11; }*)arg1 toTextMarkerArray:(id)arg2;
+- (bool)_addAccessibilityObject:(struct AccessibilityObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; unsigned long long x4; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_5_1_1; unsigned int x_5_1_2; unsigned int x_5_1_3; } x5; bool x6; int x7; int x8; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_9_1_1; bool x_9_1_2; bool x_9_1_3; bool x_9_1_4; } x9; bool x10; bool x11; }*)arg1 toTextMarkerArray:(id)arg2;
 - (unsigned long long)_axAdjustableTrait;
 - (unsigned long long)_axButtonTrait;
 - (unsigned long long)_axContainedByFieldsetTrait;
@@ -66,7 +68,7 @@
 - (unsigned long long)_axUpdatesFrequentlyTrait;
 - (unsigned long long)_axVisitedTrait;
 - (unsigned long long)_axWebContentTrait;
-- (struct RefPtr<WebCore::Range, WTF::DumbPtrTraits<WebCore::Range> > { struct Range {} *x1; })_convertToDOMRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (struct Optional<WebCore::SimpleRange> { bool x1; union storage_t<WebCore::SimpleRange> { unsigned char x_2_1_1; struct SimpleRange { struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_1_3_1; unsigned int x_1_3_2; } x_2_2_1; struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_2_1_2; } x2; })_convertToDOMRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_convertToNSRange:(struct Range { unsigned int x1; struct Ref<WebCore::Document, WTF::DumbPtrTraits<WebCore::Document> > { struct Document {} *x_2_1_1; } x2; struct RangeBoundaryPoint { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_3_1_1; struct Optional<unsigned int> { bool x_2_2_1; union constexpr_storage_t<unsigned int> { unsigned char x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_3_1_2; struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_3_2_1; } x_3_1_3; } x3; struct RangeBoundaryPoint { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_4_1_1; struct Optional<unsigned int> { bool x_2_2_1; union constexpr_storage_t<unsigned int> { unsigned char x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_4_1_2; struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_3_2_1; } x_4_1_3; } x4; }*)arg1;
 - (bool)_prepareAccessibilityCall;
 - (id)_stringForRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 attributed:(bool)arg2;
@@ -90,7 +92,7 @@
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })accessibilityColumnRange;
 - (id)accessibilityContainer;
 - (id)accessibilityDatetimeValue;
-- (void)accessibilityDecreaseSelection:(int)arg1;
+- (void)accessibilityDecreaseSelection:(unsigned char)arg1;
 - (void)accessibilityDecrement;
 - (id)accessibilityElementAtIndex:(long long)arg1;
 - (long long)accessibilityElementCount;
@@ -106,7 +108,7 @@
 - (id)accessibilityHint;
 - (id)accessibilityHitTest:(struct CGPoint { double x1; double x2; })arg1;
 - (id)accessibilityIdentifier;
-- (void)accessibilityIncreaseSelection:(int)arg1;
+- (void)accessibilityIncreaseSelection:(unsigned char)arg1;
 - (void)accessibilityIncrement;
 - (bool)accessibilityInsertText:(id)arg1;
 - (id)accessibilityInvalidStatus;
@@ -114,6 +116,9 @@
 - (bool)accessibilityIsComboBox;
 - (bool)accessibilityIsDialog;
 - (bool)accessibilityIsExpanded;
+- (bool)accessibilityIsInDescriptionListDefinition;
+- (bool)accessibilityIsInDescriptionListTerm;
+- (bool)accessibilityIsIndeterminate;
 - (bool)accessibilityIsMathTopObject;
 - (bool)accessibilityIsMediaMuted;
 - (bool)accessibilityIsMediaPlaying;
@@ -139,9 +144,10 @@
 - (id)accessibilityMathSuperscriptObject;
 - (id)accessibilityMathType;
 - (id)accessibilityMathUnderObject;
-- (void)accessibilityModifySelection:(int)arg1 increase:(bool)arg2;
+- (void)accessibilityModifySelection:(unsigned char)arg1 increase:(bool)arg2;
 - (void)accessibilityMoveSelectionToMarker:(id)arg1;
 - (id)accessibilityObjectForTextMarker:(id)arg1;
+- (bool)accessibilityPerformEscape;
 - (id)accessibilityPlaceholderValue;
 - (id)accessibilityPlatformMathSubscriptKey;
 - (id)accessibilityPlatformMathSuperscriptKey;
@@ -173,8 +179,8 @@
 - (void)dealloc;
 - (id)description;
 - (void)detach;
-- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)detailParentForObject:(struct AccessibilityObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; unsigned int x3; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_4_1_1; unsigned int x_4_1_2; unsigned int x_4_1_3; } x4; bool x5; int x6; int x7; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_8_1_1; bool x_8_1_2; bool x_8_1_3; bool x_8_1_4; } x8; bool x9; bool x10; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_11_1_1; } x11; }*)arg1;
-- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)detailParentForSummaryObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)arg1;
+- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)detailParentForObject:(struct AccessibilityObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; unsigned long long x4; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_5_1_1; unsigned int x_5_1_2; unsigned int x_5_1_3; } x5; bool x6; int x7; int x8; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_9_1_1; bool x_9_1_2; bool x_9_1_3; bool x_9_1_4; } x9; bool x10; bool x11; }*)arg1;
+- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)detailParentForSummaryObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)arg1;
 - (bool)determineIsAccessibilityElement;
 - (void)disableAttributeCaching;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })elementTextRange;
@@ -182,7 +188,7 @@
 - (void)enableAttributeCaching;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frameForTextMarkers:(id)arg1;
 - (long long)indexOfAccessibilityElement:(id)arg1;
-- (id)initWithAccessibilityObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)arg1;
+- (id)initWithAccessibilityObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)arg1;
 - (id)interactiveVideoDescription;
 - (bool)isAccessibilityElement;
 - (bool)isAttachment;
@@ -207,25 +213,24 @@
 - (void)postValueChangedNotification;
 - (id)previousMarkerForCharacterOffset:(struct CharacterOffset { struct Node {} *x1; int x2; int x3; int x4; }*)arg1;
 - (id)previousMarkerForMarker:(id)arg1;
-- (struct RefPtr<WebCore::Range, WTF::DumbPtrTraits<WebCore::Range> > { struct Range {} *x1; })rangeForTextMarkers:(id)arg1;
-- (struct RefPtr<WebCore::Range, WTF::DumbPtrTraits<WebCore::Range> > { struct Range {} *x1; })rangeFromMarkers:(id)arg1 withText:(id)arg2;
-- (id)rectsForSelectionRects:(const struct Vector<WebCore::SelectionRect, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct SelectionRect {} *x1; unsigned int x2; unsigned int x3; }*)arg1;
+- (struct Optional<WebCore::SimpleRange> { bool x1; union storage_t<WebCore::SimpleRange> { unsigned char x_2_1_1; struct SimpleRange { struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_1_3_1; unsigned int x_1_3_2; } x_2_2_1; struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_2_1_2; } x2; })rangeForTextMarkers:(id)arg1;
+- (struct Optional<WebCore::SimpleRange> { bool x1; union storage_t<WebCore::SimpleRange> { unsigned char x_2_1_1; struct SimpleRange { struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_1_3_1; unsigned int x_1_3_2; } x_2_2_1; struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_2_1_2; } x2; })rangeFromMarkers:(id)arg1 withText:(id)arg2;
 - (id)selectedTextMarker;
 - (id)selectionRangeString;
 - (id)startOrEndTextMarkerForTextMarkers:(id)arg1 isStart:(bool)arg2;
 - (id)stringForRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (id)stringForTextMarkers:(id)arg1;
 - (bool)stringValueShouldBeUsedInLabel;
-- (struct AccessibilityTableCell { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; unsigned int x3; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_4_1_1; unsigned int x_4_1_2; unsigned int x_4_1_3; } x4; bool x5; int x6; int x7; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_8_1_1; bool x_8_1_2; bool x_8_1_3; bool x_8_1_4; } x8; bool x9; bool x10; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_11_1_1; } x11; int x12; int x13; struct Node {} *x14; struct WeakPtrFactory<WebCore::AccessibilityRenderObject> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_15_1_1; } x15; struct WeakPtr<WebCore::RenderObject> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_16_1_1; } x16; }*)tableCellParent;
-- (struct AccessibilityTable { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; unsigned int x3; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_4_1_1; unsigned int x_4_1_2; unsigned int x_4_1_3; } x4; bool x5; int x6; int x7; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_8_1_1; bool x_8_1_2; bool x_8_1_3; bool x_8_1_4; } x8; bool x9; bool x10; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_11_1_1; } x11; int x12; int x13; struct Node {} *x14; struct WeakPtrFactory<WebCore::AccessibilityRenderObject> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_15_1_1; } x15; struct WeakPtr<WebCore::RenderObject> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_16_1_1; } x16; }*)tableParent;
+- (struct AccessibilityTableCell { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; unsigned long long x4; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_5_1_1; unsigned int x_5_1_2; unsigned int x_5_1_3; } x5; bool x6; int x7; int x8; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_9_1_1; bool x_9_1_2; bool x_9_1_3; bool x_9_1_4; } x9; bool x10; bool x11; int x12; int x13; struct Node {} *x14; struct WeakPtrFactory<WebCore::AccessibilityRenderObject, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_15_1_1; } x15; }*)tableCellParent;
+- (struct AccessibilityTable { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; unsigned long long x4; struct Vector<WTF::RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct RefPtr<WebCore::AXCoreObject, WTF::DumbPtrTraits<WebCore::AXCoreObject> > {} *x_5_1_1; unsigned int x_5_1_2; unsigned int x_5_1_3; } x5; bool x6; int x7; int x8; struct AccessibilityIsIgnoredFromParentData { struct AXCoreObject {} *x_9_1_1; bool x_9_1_2; bool x_9_1_3; bool x_9_1_4; } x9; bool x10; bool x11; int x12; int x13; struct Node {} *x14; struct WeakPtrFactory<WebCore::AccessibilityRenderObject, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_15_1_1; } x15; }*)tableParent;
 - (id)textMarkerForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)textMarkerForPosition:(long long)arg1;
 - (id)textMarkerRange;
 - (id)textMarkerRangeForMarkers:(id)arg1;
 - (id)textMarkerRangeForSelection;
 - (id)textMarkerRangeFromMarkers:(id)arg1 withText:(id)arg2;
-- (id)textMarkersForRange:(struct RefPtr<WebCore::Range, WTF::DumbPtrTraits<WebCore::Range> > { struct Range {} *x1; })arg1;
+- (id)textMarkersForRange:(const struct Optional<WebCore::SimpleRange> { bool x1; union storage_t<WebCore::SimpleRange> { unsigned char x_2_1_1; struct SimpleRange { struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_1_3_1; unsigned int x_1_3_2; } x_2_2_1; struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_4_1; } x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_2_1_2; } x2; }*)arg1;
 - (id)textRectsFromMarkers:(id)arg1 withText:(id)arg2;
-- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)treeItemParentForObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)arg1;
+- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)treeItemParentForObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)arg1;
 
 @end

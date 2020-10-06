@@ -17,7 +17,6 @@
     double  _startTimestamp;
 }
 
-@property (nonatomic, readonly) double duration;
 @property (nonatomic) double duration;
 @property (nonatomic) double endTimestamp;
 @property (nonatomic, readonly) NSError *error;
@@ -33,11 +32,11 @@
 @property (nonatomic) double startTimestamp;
 
 - (void).cxx_destruct;
+- (double)calculatedDuration;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (double)duration;
 - (double)duration;
 - (double)endTimestamp;
 - (id)error;

@@ -9,7 +9,7 @@
     int  _backgroundTaskCount;
     NSMutableSet * _clientConnections;
     NSLock * _connectionLock;
-    CDBDataProtectionObserver * _dataProtectionObserver;
+    bool  _initializationFinished;
     NSArray * _modules;
     NSObject<OS_dispatch_queue> * _notificationQueue;
     NSArray * _signalSensors;
@@ -20,7 +20,6 @@
 
 @property (getter=isActive, nonatomic) bool active;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *alarmQueue;
-@property (nonatomic, retain) CDBDataProtectionObserver *dataProtectionObserver;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -28,10 +27,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *workQueue;
 
-+ (id)_stringForBackgroundTaskAgentJobStatus:(int)arg1;
-
 - (void).cxx_destruct;
-- (void)_cleanupChangeTablesInDatabase:(struct CalDatabase { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; int x2; struct CPRecordStore {} *x3; struct CalEventOccurrenceCache {} *x4; struct CalScheduledTaskCache {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct _opaque_pthread_mutex_t { long long x_8_1_1; BOOL x_8_1_2[56]; } x8; unsigned int x9; unsigned int x10; struct __CFArray {} *x11; struct __CFString {} *x12; struct __CFArray {} *x13; int x14; int x15; struct __CFString {} *x16; struct __CFString {} *x17; struct __CFString {} *x18; int x19; id /* block */ x20; struct _opaque_pthread_mutex_t { long long x_21_1_1; BOOL x_21_1_2[56]; } x21; bool x22; struct __CFArray {} *x23; struct __CFArray {} *x24; struct __CFArray {} *x25; id x26; bool x27; struct __CFSet {} *x28; id x29; bool x30; }*)arg1;
+- (void)_cleanupChangeTablesInDatabase:(struct CalDatabase { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; int x2; struct CPRecordStore {} *x3; struct CalEventOccurrenceCache {} *x4; struct CalScheduledTaskCache {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct _opaque_pthread_mutex_t { long long x_8_1_1; BOOL x_8_1_2[56]; } x8; unsigned int x9; unsigned int x10; struct __CFArray {} *x11; struct __CFString {} *x12; struct __CFArray {} *x13; int x14; int x15; struct __CFString {} *x16; struct __CFString {} *x17; struct __CFString {} *x18; int x19; id /* block */ x20; struct _opaque_pthread_mutex_t { long long x_21_1_1; BOOL x_21_1_2[56]; } x21; bool x22; struct __CFArray {} *x23; struct __CFArray {} *x24; struct __CFArray {} *x25; id x26; bool x27; bool x28; struct __CFSet {} *x29; id x30; bool x31; }*)arg1;
 - (void)_deactivateAndExitWithStatus:(int)arg1;
 - (void)_dumpState;
 - (void)_enableICloudBackups;
@@ -44,21 +41,18 @@
 - (void)_registerForAlarmEvents;
 - (void)_registerForAnalyticsCollection;
 - (void)_registerForAttachmentCleanup;
-- (void)_registerForBackgroundTaskAgentJobs;
 - (void)_registerForChangeTableCleanup;
 - (void)_registerForDatabaseCleanup;
 - (void)_registerForNotifications;
 - (void)_registerMaintenanceActivities;
 - (void)_setUpSignalHandlers;
-- (void)_startBirthdayManager;
 - (void)_tearDownSignalHandlers;
 - (bool)_trimAndExtendOccurrenceCache;
 - (void)_updateOccurrenceCacheTimeZone;
 - (void)activate;
 - (id)alarmQueue;
-- (void)cleanupDatabase:(struct CalDatabase { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; int x2; struct CPRecordStore {} *x3; struct CalEventOccurrenceCache {} *x4; struct CalScheduledTaskCache {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct _opaque_pthread_mutex_t { long long x_8_1_1; BOOL x_8_1_2[56]; } x8; unsigned int x9; unsigned int x10; struct __CFArray {} *x11; struct __CFString {} *x12; struct __CFArray {} *x13; int x14; int x15; struct __CFString {} *x16; struct __CFString {} *x17; struct __CFString {} *x18; int x19; id /* block */ x20; struct _opaque_pthread_mutex_t { long long x_21_1_1; BOOL x_21_1_2[56]; } x21; bool x22; struct __CFArray {} *x23; struct __CFArray {} *x24; struct __CFArray {} *x25; id x26; bool x27; struct __CFSet {} *x28; id x29; bool x30; }*)arg1;
+- (void)cleanupDatabase:(struct CalDatabase { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; int x2; struct CPRecordStore {} *x3; struct CalEventOccurrenceCache {} *x4; struct CalScheduledTaskCache {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct _opaque_pthread_mutex_t { long long x_8_1_1; BOOL x_8_1_2[56]; } x8; unsigned int x9; unsigned int x10; struct __CFArray {} *x11; struct __CFString {} *x12; struct __CFArray {} *x13; int x14; int x15; struct __CFString {} *x16; struct __CFString {} *x17; struct __CFString {} *x18; int x19; id /* block */ x20; struct _opaque_pthread_mutex_t { long long x_21_1_1; BOOL x_21_1_2[56]; } x21; bool x22; struct __CFArray {} *x23; struct __CFArray {} *x24; struct __CFArray {} *x25; id x26; bool x27; bool x28; struct __CFSet {} *x29; id x30; bool x31; }*)arg1;
 - (void)clientConnectionDied:(id)arg1;
-- (id)dataProtectionObserver;
 - (void)deactivate;
 - (void)dealloc;
 - (id)init;
@@ -67,7 +61,6 @@
 - (bool)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (id)modules;
 - (void)setActive:(bool)arg1;
-- (void)setDataProtectionObserver:(id)arg1;
 - (void)setModules:(id)arg1;
 - (void)setWorkQueue:(id)arg1;
 - (id)workQueue;

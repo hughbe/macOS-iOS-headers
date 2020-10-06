@@ -12,6 +12,7 @@
 + (id)_extensionAuxiliaryHostProtocol;
 + (id)_extensionAuxiliaryVendorProtocol;
 
+- (int)requiredEntitlement;
 - (void)startFilterWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;
 
 @end

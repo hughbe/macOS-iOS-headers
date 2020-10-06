@@ -7,21 +7,21 @@
     double  _enabledAlpha;
     UIImpactFeedbackGenerator * _impactFeedbackGenerator;
     <UISwitchControl> * _switchControl;
+    NSString * _title;
 }
 
 @property (nonatomic) bool enabled;
 @property (nonatomic) double enabledAlpha;
 @property (nonatomic, retain) UIImpactFeedbackGenerator *impactFeedbackGenerator;
 @property (nonatomic) <UISwitchControl> *switchControl;
+@property (copy) NSString *title;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
++ (bool)isFixedSize;
++ (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })preferredAlignmentRectInsets;
 + (struct CGSize { double x1; double x2; })preferredContentSize;
 
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (void)_intrinsicContentSizeInvalidatedForChildView:(id)arg1;
 - (bool)enabled;
 - (double)enabledAlpha;
 - (id)impactFeedbackGenerator;
@@ -38,7 +38,9 @@
 - (void)setSwitchControl:(id)arg1;
 - (void)setThumbTintColor:(id)arg1;
 - (void)setTintColor:(id)arg1;
+- (void)setTitle:(id)arg1;
 - (id)switchControl;
 - (void)tintColorDidChange;
+- (id)title;
 
 @end

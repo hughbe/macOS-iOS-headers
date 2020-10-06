@@ -13,6 +13,7 @@
             double height; 
         } size; 
     }  _cropRect;
+    NSString * _displayString;
     NSString * _identifier;
     NSData * _imageData;
     NSDate * _lastUsedDate;
@@ -22,6 +23,7 @@
 }
 
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } cropRect;
+@property (nonatomic, retain) NSString *displayString;
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) NSData *imageData;
 @property (nonatomic, readonly) NSDate *lastUsedDate;
@@ -32,11 +34,13 @@
 - (void).cxx_destruct;
 - (id)copyWithNewImageData:(id)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })cropRect;
+- (id)displayString;
 - (id)identifier;
 - (id)imageData;
 - (id)initWithIdentifier:(id)arg1 imageData:(id)arg2 cropRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg3 lastUsedDate:(id)arg4;
 - (id)initWithImageData:(id)arg1 cropRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 lastUsedDate:(id)arg3;
 - (id)lastUsedDate;
+- (void)setDisplayString:(id)arg1;
 - (void)setSource:(long long)arg1;
 - (void)setSourceIdentifier:(id)arg1;
 - (void)setVariant:(id)arg1;

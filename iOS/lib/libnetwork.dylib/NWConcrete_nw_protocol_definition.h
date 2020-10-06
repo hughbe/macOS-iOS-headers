@@ -10,6 +10,7 @@
     int (* allocate_metadata;
     int (* allocate_options;
     int (* check_equality_options;
+    int (* copy_data_transfer_snapshot;
     int (* copy_establishment_report;
     int (* copy_message_options;
     int (* copy_metadata;
@@ -24,12 +25,14 @@
     int (* deallocate_metadata;
     int (* deallocate_options;
     int (* destroy;
+    int (* finalize_metadata;
     unsigned int  framer;
     int (* framer_create;
     id /* block */  framer_start;
     int (* handle_error;
     int (* handle_inbound;
     int (* handle_outbound;
+    unsigned int  has_global_definition;
     struct nw_protocol_identifier { 
         BOOL name[32]; 
         int level; 
@@ -38,15 +41,21 @@
     int (* inbound_starting;
     int (* inbound_stopping;
     int (* initialize;
+    int (* initialize_metadata;
     int (* link_state;
     unsigned int  message_is_stream;
+    int (* message_size_handler;
+    unsigned int  metadata_size;
+    unsigned int  multipath;
     int (* outbound_starting;
     int (* outbound_stopping;
+    int (* path_changed_handler;
     unsigned int  receive_single_message;
     int (* set_original;
     int (* should_flush_cache;
     int (* start;
     int (* stop;
+    unsigned int  supports_discontiguous_data;
     unsigned int  supports_replies;
     unsigned char  unique_identifier;
     int  variant;

@@ -13,15 +13,7 @@
         unsigned int read_navBackgroundColor : 1; 
         unsigned int read_navTintColor : 1; 
         unsigned int read_timezone : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_hoursOfOperations : 1; 
-        unsigned int wrote_messageId : 1; 
-        unsigned int wrote_messageUrl : 1; 
-        unsigned int wrote_navBackgroundColor : 1; 
-        unsigned int wrote_navTintColor : 1; 
-        unsigned int wrote_timezone : 1; 
-        unsigned int wrote_responseTime : 1; 
-        unsigned int wrote_isVerified : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _hoursOfOperations;
     bool  _isVerified;
@@ -63,13 +55,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsResponseTime:(id)arg1;
-- (void)_addNoFlagsHoursOfOperation:(id)arg1;
-- (void)_readHoursOfOperations;
-- (void)_readMessageId;
-- (void)_readMessageUrl;
-- (void)_readNavBackgroundColor;
-- (void)_readNavTintColor;
-- (void)_readTimezone;
 - (void)addHoursOfOperation:(id)arg1;
 - (void)clearHoursOfOperations;
 - (void)clearUnknownFields:(bool)arg1;
@@ -90,8 +75,11 @@
 - (unsigned long long)hoursOfOperationsCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isVerified;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)messageId;
 - (id)messageUrl;

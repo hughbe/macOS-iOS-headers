@@ -54,13 +54,12 @@
 @property (getter=_strongReferenceToOurself, setter=_setStrongReferenceToOurself:, nonatomic, retain) UIViewController *strongReferenceToOurself;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)__viewControllerWillBePresented:(bool)arg1;
 - (void)_callPreparationHandler:(id /* block */)arg1;
 - (id)_childViewController;
 - (void)_cloudSharingControllerDidActivateShowSharedFolder;
+- (void)_cloudSharingControllerDidChooseTransport:(id)arg1;
 - (void)_cloudSharingControllerDidModifyPrimarySwitch:(bool)arg1;
 - (void)_cloudSharingControllerDidModifySecondarySwitch:(bool)arg1;
 - (bool)_commonInit;
@@ -103,14 +102,11 @@
 - (void)_shareWasMadePrivate;
 - (id)_sharingViewPresentationController;
 - (id)_strongReferenceToOurself;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)activityItemSource;
 - (unsigned long long)availablePermissions;
 - (id)container;
 - (id)containerSetupInfo;
+- (void)dealloc;
 - (id)delegate;
 - (id)initWithPreparationHandler:(id /* block */)arg1;
 - (id)initWithShare:(id)arg1 container:(id)arg2;

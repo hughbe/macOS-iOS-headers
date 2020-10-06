@@ -18,6 +18,7 @@
 @property (copy) NSString *percentEncodedUser;
 @property (copy) NSNumber *port;
 @property (copy) NSString *query;
+@property (nonatomic, copy) NSDictionary *queryDictionary;
 @property (copy) NSArray *queryItems;
 @property (readonly) struct _NSRange { unsigned long long x1; unsigned long long x2; } rangeOfFragment;
 @property (readonly) struct _NSRange { unsigned long long x1; unsigned long long x2; } rangeOfHost;
@@ -85,13 +86,74 @@
 - (id)string;
 - (id)user;
 
+// Image: /System/Library/PrivateFrameworks/ClipServices.framework/ClipServices
+
+- (void)cps_addQueryItem:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreParsec.framework/CoreParsec
+
++ (id)parsec_componentsWithString:(id)arg1;
++ (id)parsec_componentsWithURL:(id)arg1 resolvingAgainstBaseURL:(bool)arg2;
+
+- (struct _NSRange { unsigned long long x1; unsigned long long x2; })embeddedAMPURLRange;
+- (id)parsec_componentsAfterRemovingSubdomains;
+- (id)parsec_componentsForEmbeddedAMPURLFromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (id)parsec_normalizedURLStringForDeepLinkIngest;
+- (id)parsec_normalizedURLStringForDeepLinkWhitelist;
+- (id)parsec_normalizedURLStringForLDAModel;
+- (id)parsec_normalizedURLStringForTLDFeatures;
+- (id)parsec_normalizedURLStringWithOptions:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FamilyCircle.framework/FamilyCircle
+
+- (id)fa_queryItemsDictionary;
+- (id)fa_valueForQueryItem:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 - (void)geo_updateQueryItemsWithBlock:(id /* block */)arg1;
 
+// Image: /System/Library/PrivateFrameworks/MetricsKit.framework/MetricsKit
+
++ (id)mt_queryParameterStringForDictionary:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (bool)ic_boolValueForQueryItemWithKey:(id)arg1;
+- (id)ic_queryItemWithKey:(id)arg1;
+- (id)ic_stringValueForQueryItemWithKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/RemoteMediaServices.framework/RemoteMediaServices
+
+- (id)rms_componentsByAddingQueryParameters:(id)arg1;
+- (id)rms_componentsByAddingQueryParameters:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Silex.framework/Silex
+
+- (id)queryValueForName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TVRemoteCore.framework/TVRemoteCore
+
+- (id)rms_componentsByAddingQueryParameters:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
 
+- (bool)containsPercentEncodedQueryItemWithName:(id)arg1;
 - (bool)containsQueryItemWithName:(id)arg1;
 - (id)firstQueryItemWithName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (void)addValuesFromQueryDictionary:(id)arg1;
+- (id)queryDictionary;
+- (void)setQueryDictionary:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSPersistence.framework/TSPersistence
+
+- (void)tsp_setQueryDictionary:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSPersistence.framework/TSPersistence
+
+- (void)tsp_setQueryDictionary:(id)arg1;
 
 @end

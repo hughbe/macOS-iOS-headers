@@ -17,6 +17,12 @@
 @property (nonatomic, readonly) UIFont *largeTitleFontStatic;
 @property (nonatomic, readonly) UIFont *mediumBodyFont;
 @property (nonatomic, readonly) UIFont *mediumTitleFont;
+@property (nonatomic, readonly) UIFont *ratingCallToActionGlyphFont;
+@property (nonatomic, readonly) UIFont *ratingCallToActionHeaderLabelFont;
+@property (nonatomic, readonly) UIFont *ratingCallToActionLabelFont;
+@property (nonatomic, readonly) UIFont *ratingOverallFont;
+@property (nonatomic, readonly) UIFont *ratingOverallPercentageFont;
+@property (nonatomic, readonly) UIFont *recommendSubtitleFont;
 @property (nonatomic, readonly) UIFont *rowButtonFont;
 @property (nonatomic, readonly) UIFont *rowGlyphButtonFont;
 @property (nonatomic, readonly) UIFont *sectionHeaderButtonFont;
@@ -38,6 +44,12 @@
 - (id)largeTitleFontStatic;
 - (id)mediumBodyFont;
 - (id)mediumTitleFont;
+- (id)ratingCallToActionGlyphFont;
+- (id)ratingCallToActionHeaderLabelFont;
+- (id)ratingCallToActionLabelFont;
+- (id)ratingOverallFont;
+- (id)ratingOverallPercentageFont;
+- (id)recommendSubtitleFont;
 - (id)rowButtonFont;
 - (id)rowGlyphButtonFont;
 - (id)sectionHeaderButtonFont;

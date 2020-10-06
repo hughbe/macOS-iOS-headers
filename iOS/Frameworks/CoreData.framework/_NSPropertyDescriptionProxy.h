@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface _NSPropertyDescriptionProxy : NSObject <NSSecureCoding> {
+@interface _NSPropertyDescriptionProxy : NSObject <NSCoding, NSSecureCoding> {
     NSEntityDescription * _entityDescription;
     unsigned int  _entitysReferenceIDForProperty;
     id  _sourceBuffer;

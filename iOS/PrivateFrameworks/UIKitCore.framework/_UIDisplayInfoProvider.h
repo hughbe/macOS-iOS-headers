@@ -39,10 +39,10 @@
     double  systemMinimumMargin;
 }
 
-@property (nonatomic) unsigned long long artworkSubtype;
+@property (nonatomic, readonly) unsigned long long artworkSubtype;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, retain) FBSDisplayConfiguration *displayConfiguration;
+@property (nonatomic, readonly) FBSDisplayConfiguration *displayConfiguration;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) double homeAffordanceOverlayAllowance;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } peripheryInsets;
@@ -62,8 +62,6 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsLandscapeRight;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsPortrait;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsPortraitUpsideDown;
-- (void)setArtworkSubtype:(unsigned long long)arg1;
-- (void)setDisplayConfiguration:(id)arg1;
 - (double)systemMinimumMargin;
 
 @end

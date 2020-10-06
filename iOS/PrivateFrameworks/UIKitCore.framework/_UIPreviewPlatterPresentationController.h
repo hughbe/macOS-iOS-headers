@@ -4,7 +4,7 @@
 
 @interface _UIPreviewPlatterPresentationController : UIPresentationController <UIGestureRecognizerDelegate, _UIContextMenuActionsListViewDelegate, _UIPreviewPlatterPanControllerDelegate> {
     NSArray * _accessoryViews;
-    UIPanGestureRecognizer * _actionScrubbingHandoffGestureRecognizer;
+    _UIContextMenuActionScrubbingHandoffGestureRecognizer * _actionScrubbingHandoffGestureRecognizer;
     _UIContextMenuActionsListView * _actionsView;
     UIVisualEffectView * _backgroundEffectView;
     _UIPreviewPlatterView * _contentPlatterView;
@@ -27,7 +27,7 @@
 }
 
 @property (nonatomic, readonly) NSArray *accessoryViews;
-@property (nonatomic, retain) UIPanGestureRecognizer *actionScrubbingHandoffGestureRecognizer;
+@property (nonatomic, retain) _UIContextMenuActionScrubbingHandoffGestureRecognizer *actionScrubbingHandoffGestureRecognizer;
 @property (nonatomic, readonly) _UIContextMenuActionsListView *actionsView;
 @property (nonatomic, readonly) UIVisualEffectView *backgroundEffectView;
 @property (nonatomic, readonly) _UIPreviewPlatterView *contentPlatterView;
@@ -50,13 +50,19 @@
 @property (nonatomic, retain) UITargetedPreview *sourcePreview;
 @property (readonly) Class superclass;
 
++ (id)_actionsOnlyViewControllerForSourcePreview:(id)arg1;
+
 - (void).cxx_destruct;
-- (id)_actionsOnlyViewControllerForSourcePreview:(id)arg1;
+- (void)_applicationWillResignActive:(id)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_baseContentInsetsWithLeftMargin:(double*)arg1 rightMargin:(double*)arg2;
 - (void)_createActionsViewIfNecessary;
 - (void)_handleActionHandoffGesture:(id)arg1;
 - (void)_handleDismissalTapGesture:(id)arg1;
 - (void)_handlePlatterActionTapGesture:(id)arg1;
+- (void)_keyboardWillHide:(id)arg1;
+- (void)_keyboardWillShow:(id)arg1;
+- (bool)_needsToAvoidKeyboard;
+- (id)_parentTraitEnvironment;
 - (void)_preDismissalTasks;
 - (bool)_shouldDisableInteractionDuringTransitions;
 - (bool)_shouldKeepCurrentFirstResponder;
@@ -77,8 +83,11 @@
 - (id)actionsView;
 - (id)backgroundEffectView;
 - (id)contentPlatterView;
+- (void)contextMenuListView:(id)arg1 didSelectElement:(id)arg2;
+- (id)contextMenuListView:(id)arg1 willDisplayMenu:(id)arg2;
 - (id)currentLayout;
 - (id)currentStyle;
+- (void)dealloc;
 - (id)dismissalTapGestureRecognizer;
 - (void)dismissalTransitionWillBegin;
 - (id)displayedConfiguration;
@@ -102,7 +111,6 @@
 - (long long)presentationStyle;
 - (void)presentationTransitionDidEnd:(bool)arg1;
 - (void)presentationTransitionWillBegin;
-- (void)previewActionsView:(id)arg1 didSelectAction:(id)arg2;
 - (void)setActionScrubbingHandoffGestureRecognizer:(id)arg1;
 - (void)setCurrentStyle:(id)arg1;
 - (void)setDismissalTapGestureRecognizer:(id)arg1;

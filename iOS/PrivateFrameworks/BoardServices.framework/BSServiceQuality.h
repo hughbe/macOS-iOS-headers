@@ -13,7 +13,6 @@
 @property (nonatomic, readonly) int relativePriority;
 @property (nonatomic, readonly) unsigned int serviceClass;
 
-+ (id)_serviceWithClass:(unsigned int)arg1 relativePriority:(int)arg2 main:(bool)arg3;
 + (id)background;
 + (id)main;
 + (id)serviceWithClass:(unsigned int)arg1;
@@ -23,7 +22,6 @@
 + (id)utility;
 
 - (void).cxx_destruct;
-- (id)_initWithClass:(unsigned int)arg1 name:(id)arg2 relativePriority:(int)arg3 singleton:(bool)arg4 main:(bool)arg5;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;

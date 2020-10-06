@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@interface BSXPCCodingArray : NSObject <BSXPCCoding, NSFastEnumeration> {
+@interface BSXPCCodingArray : NSObject <BSDescriptionProviding, BSXPCCoding, NSFastEnumeration> {
     NSArray * _array;
 }
 

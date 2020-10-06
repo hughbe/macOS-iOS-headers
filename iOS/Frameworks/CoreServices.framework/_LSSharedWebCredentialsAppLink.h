@@ -17,8 +17,14 @@
 @property (readonly) struct LSBinding { unsigned int x1; struct LSBundleData {} *x2; unsigned int x3; struct { /* ? */ } *x4; id x5; id x6; } binding;
 @property (nonatomic, retain) _SWCServiceDetails *serviceDetails;
 
++ (id)_SWCSettingsWithApplicationIdentifier:(id)arg1 error:(id*)arg2;
++ (id)_SWCSpecifierForSettingsWithApplicationIdentifier:(id)arg1;
++ (bool)_areAppLinksEnabledForServiceDetails:(id)arg1 cachedSettings:(id*)arg2;
++ (bool)_setSWCSetting:(id)arg1 forKey:(id)arg2 withApplicationIdentifier:(id)arg3 error:(id*)arg4;
 + (void)initialize;
 + (bool)removeAllSettingsReturningError:(id*)arg1;
++ (bool)setSettingsSwitchState:(long long)arg1 forApplicationIdentifier:(id)arg2 error:(id*)arg3;
++ (long long)settingsSwitchStateForApplicationIdentifier:(id)arg1;
 + (bool)supportsSecureCoding;
 
 - (id).cxx_construct;

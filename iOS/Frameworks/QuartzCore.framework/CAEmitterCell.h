@@ -78,6 +78,7 @@
 - (bool)CAMLTypeSupportedForKey:(id)arg1;
 - (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (void)CA_prepareRenderValue;
+- (bool)CA_validateValue:(id)arg1 forKey:(id)arg2;
 - (float)alphaRange;
 - (float)alphaSpeed;
 - (bool)autoreverses;

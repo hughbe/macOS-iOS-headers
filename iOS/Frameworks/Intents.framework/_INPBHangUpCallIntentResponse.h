@@ -3,14 +3,12 @@
  */
 
 @interface _INPBHangUpCallIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBHangUpCallIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int hungUpCallType : 1; 
     }  _has;
     int  _hungUpCallType;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasHungUpCallType;
@@ -21,8 +19,6 @@
 + (bool)supportsSecureCoding;
 
 - (int)StringAsHungUpCallType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

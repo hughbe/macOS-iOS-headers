@@ -18,10 +18,10 @@
 + (id)phoneNumberWithDigits:(id)arg1 countryCode:(id)arg2;
 + (id)phoneNumberWithDigits:(long long)arg1 digits:(id)arg2 countryCode:(id)arg3;
 
+- (void).cxx_destruct;
 - (id)canonicalFormat;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)countryCode;
-- (void)dealloc;
 - (id)digits;
 - (id)encodedString;
 - (id)formatForCallingCountry:(id)arg1;

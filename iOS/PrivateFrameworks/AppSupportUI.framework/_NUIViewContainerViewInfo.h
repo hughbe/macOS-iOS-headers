@@ -13,9 +13,17 @@
         double baseLineFromTop; 
         double baseLineFromBottom; 
     }  _baselines;
+    struct UIEdgeInsets { 
+        double top; 
+        double left; 
+        double bottom; 
+        double right; 
+    }  _cachedAlignmentInsets;
     struct { 
+        unsigned int neverCacheLayoutSize : 1; 
+        unsigned int shouldCacheLayoutSize : 1; 
         unsigned int alsoInvalidateSuperview : 1; 
-        unsigned int alignmentInsetsAreCustom : 1; 
+        unsigned int cachedAlignmentInsetsAreValid : 1; 
         unsigned int topBaselineIsCustom : 1; 
         unsigned int bottomBaselineIsCustom : 1; 
     }  _flags;
@@ -39,6 +47,5 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)init;
-- (void)resetCaches;
 
 @end

@@ -6,6 +6,7 @@
     double  _courseDelta;
     double  _courseMatchScore;
     double  _courseWeight;
+    double  _distanceAlongRouteFromPreviousMatch;
     double  _distanceFromRoute;
     double  _distanceMatchScore;
     double  _distanceWeight;
@@ -27,6 +28,7 @@
 @property (nonatomic) double courseDelta;
 @property (nonatomic) double courseMatchScore;
 @property (nonatomic) double courseWeight;
+@property (nonatomic) double distanceAlongRouteFromPreviousMatch;
 @property (nonatomic) double distanceFromRoute;
 @property (nonatomic) double distanceMatchScore;
 @property (nonatomic) double distanceWeight;
@@ -43,6 +45,7 @@
 - (double)courseMatchScore;
 - (double)courseWeight;
 - (id)description;
+- (double)distanceAlongRouteFromPreviousMatch;
 - (double)distanceFromRoute;
 - (double)distanceMatchScore;
 - (double)distanceWeight;
@@ -56,6 +59,7 @@
 - (void)setCourseDelta:(double)arg1;
 - (void)setCourseMatchScore:(double)arg1;
 - (void)setCourseWeight:(double)arg1;
+- (void)setDistanceAlongRouteFromPreviousMatch:(double)arg1;
 - (void)setDistanceFromRoute:(double)arg1;
 - (void)setDistanceMatchScore:(double)arg1;
 - (void)setDistanceWeight:(double)arg1;

@@ -26,6 +26,8 @@
 @property (nonatomic) bool useSharedBagInterpreter;
 @property (nonatomic, readonly) long long version;
 
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+
 - (void).cxx_destruct;
 - (long long)SAPVersion;
 - (id)_establishContext;
@@ -59,5 +61,10 @@
 - (bool)verifyData:(id)arg1 withSignature:(id)arg2 error:(id*)arg3;
 - (void)verifySignature:(id)arg1 forData:(id)arg2 completionBlock:(id /* block */)arg3;
 - (long long)version;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
+
++ (id)sharedDefaultSession;
++ (id)sharedPrimeSession;
 
 @end

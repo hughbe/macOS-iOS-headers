@@ -3,7 +3,10 @@
  */
 
 @interface GEOCompanionDriveStep : PBCodable <GEOCompanionManeuverStep, NSCopying> {
+    GEOPBTransitArtwork * _artworkOverride;
+    GEOEVChargeInfo * _chargingInfo;
     int  _drivingSide;
+    GEOEVStepInfo * _evInfo;
     GEONameInfo * _exitNumber;
     struct { 
         unsigned int has_drivingSide : 1; 
@@ -12,20 +15,14 @@
         unsigned int has_shieldType : 1; 
         unsigned int has_toFreeway : 1; 
         unsigned int read_junctionElements : 1; 
+        unsigned int read_artworkOverride : 1; 
+        unsigned int read_chargingInfo : 1; 
+        unsigned int read_evInfo : 1; 
         unsigned int read_exitNumber : 1; 
         unsigned int read_maneuverNames : 1; 
         unsigned int read_shield : 1; 
         unsigned int read_signposts : 1; 
-        unsigned int wrote_junctionElements : 1; 
-        unsigned int wrote_exitNumber : 1; 
-        unsigned int wrote_maneuverNames : 1; 
-        unsigned int wrote_shield : 1; 
-        unsigned int wrote_signposts : 1; 
-        unsigned int wrote_drivingSide : 1; 
-        unsigned int wrote_junctionType : 1; 
-        unsigned int wrote_maneuverType : 1; 
-        unsigned int wrote_shieldType : 1; 
-        unsigned int wrote_toFreeway : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct GEOJunctionElement { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; } * _junctionElements;
     unsigned long long  _junctionElementsCount;
@@ -45,11 +42,17 @@
     bool  _toFreeway;
 }
 
+@property (nonatomic, retain) GEOPBTransitArtwork *artworkOverride;
+@property (nonatomic, retain) GEOEVChargeInfo *chargingInfo;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) int drivingSide;
+@property (nonatomic, retain) GEOEVStepInfo *evInfo;
 @property (nonatomic, retain) GEONameInfo *exitNumber;
+@property (nonatomic, readonly) bool hasArtworkOverride;
+@property (nonatomic, readonly) bool hasChargingInfo;
 @property (nonatomic) bool hasDrivingSide;
+@property (nonatomic, readonly) bool hasEvInfo;
 @property (nonatomic, readonly) bool hasExitNumber;
 @property (nonatomic) bool hasJunctionType;
 @property (nonatomic) bool hasManeuverType;
@@ -60,6 +63,7 @@
 @property (nonatomic, readonly) struct GEOJunctionElement { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*junctionElements;
 @property (nonatomic, readonly) unsigned long long junctionElementsCount;
 @property (nonatomic) int junctionType;
+@property (nonatomic, readonly) <GEOTransitArtworkDataSource> *maneuverArtworkOverride;
 @property (nonatomic, retain) NSMutableArray *maneuverNames;
 @property (nonatomic) int maneuverType;
 @property (nonatomic, retain) NSString *shield;
@@ -77,17 +81,11 @@
 - (int)StringAsDrivingSide:(id)arg1;
 - (int)StringAsJunctionType:(id)arg1;
 - (int)StringAsManeuverType:(id)arg1;
-- (void)_addNoFlagsJunctionElement:(struct GEOJunctionElement { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
-- (void)_addNoFlagsManeuverName:(id)arg1;
-- (void)_addNoFlagsSignpost:(id)arg1;
-- (void)_readExitNumber;
-- (void)_readJunctionElements;
-- (void)_readManeuverNames;
-- (void)_readShield;
-- (void)_readSignposts;
 - (void)addJunctionElement:(struct GEOJunctionElement { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
 - (void)addManeuverName:(id)arg1;
 - (void)addSignpost:(id)arg1;
+- (id)artworkOverride;
+- (id)chargingInfo;
 - (void)clearJunctionElements;
 - (void)clearManeuverNames;
 - (void)clearSignposts;
@@ -98,8 +96,12 @@
 - (id)dictionaryRepresentation;
 - (int)drivingSide;
 - (id)drivingSideAsString:(int)arg1;
+- (id)evInfo;
 - (id)exitNumber;
+- (bool)hasArtworkOverride;
+- (bool)hasChargingInfo;
 - (bool)hasDrivingSide;
+- (bool)hasEvInfo;
 - (bool)hasExitNumber;
 - (bool)hasJunctionType;
 - (bool)hasManeuverType;
@@ -109,12 +111,16 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (struct GEOJunctionElement { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })junctionElementAtIndex:(unsigned long long)arg1;
 - (struct GEOJunctionElement { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*)junctionElements;
 - (unsigned long long)junctionElementsCount;
 - (int)junctionType;
 - (id)junctionTypeAsString:(int)arg1;
+- (id)maneuverArtworkOverride;
 - (id)maneuverNameAtIndex:(unsigned long long)arg1;
 - (id)maneuverNames;
 - (unsigned long long)maneuverNamesCount;
@@ -123,7 +129,10 @@
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setArtworkOverride:(id)arg1;
+- (void)setChargingInfo:(id)arg1;
 - (void)setDrivingSide:(int)arg1;
+- (void)setEvInfo:(id)arg1;
 - (void)setExitNumber:(id)arg1;
 - (void)setHasDrivingSide:(bool)arg1;
 - (void)setHasJunctionType:(bool)arg1;

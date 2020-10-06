@@ -9,6 +9,7 @@
 @property (nonatomic, readonly) double cellEstimatedHeight;
 @property (nonatomic, readonly) <CNContactListStyle> *contactListStyle;
 @property (nonatomic, readonly) unsigned long long tableNoContactsAvailableStyle;
+@property (nonatomic, readonly) bool usesInsetPlatterStyle;
 
 + (void)applyDefaultStyleToContact:(id)arg1 usingFormatter:(id)arg2 ofCell:(id)arg3;
 
@@ -22,13 +23,17 @@
 - (void)applyContactListStyleToMeContactLabel:(id)arg1 ofCell:(id)arg2;
 - (void)applyContactListStyleToNavigationBar:(id)arg1;
 - (void)applyContactListStyleToSearchBar:(id)arg1;
+- (void)applyContactListStyleToSearchCell:(id)arg1;
+- (void)applyContactListStyleToSelectedCell:(id)arg1;
 - (void)applyContactListStyleToTableView:(id)arg1;
 - (void)applyContactListStyleToText:(id)arg1 ofHighlightedCell:(id)arg2;
 - (void)applyContactListStyleToText:(id)arg1 ofSearchResultCell:(id)arg2;
 - (void)applyContactListStyleToText:(id)arg1 ofUnhighlightedCell:(id)arg2;
+- (void)applySelectionTextStyleToCell:(id)arg1;
 - (double)cellEstimatedHeight;
 - (id)contactListStyle;
 - (id)initWithContactListStyle:(id)arg1;
 - (unsigned long long)tableNoContactsAvailableStyle;
+- (bool)usesInsetPlatterStyle;
 
 @end

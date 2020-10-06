@@ -6,8 +6,7 @@
     struct { 
         unsigned int read_possibleStops : 1; 
         unsigned int read_scheduledLinks : 1; 
-        unsigned int wrote_possibleStops : 1; 
-        unsigned int wrote_scheduledLinks : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _possibleStops;
     PBDataReader * _reader;
@@ -27,10 +26,6 @@
 + (Class)scheduledLinkType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsPossibleStop:(id)arg1;
-- (void)_addNoFlagsScheduledLink:(id)arg1;
-- (void)_readPossibleStops;
-- (void)_readScheduledLinks;
 - (void)addPossibleStop:(id)arg1;
 - (void)addScheduledLink:(id)arg1;
 - (void)clearPossibleStops;
@@ -42,8 +37,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithRoute:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)possibleStopAtIndex:(unsigned long long)arg1;
 - (id)possibleStops;

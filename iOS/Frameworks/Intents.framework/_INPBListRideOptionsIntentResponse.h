@@ -3,7 +3,6 @@
  */
 
 @interface _INPBListRideOptionsIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBListRideOptionsIntentResponse> {
-    bool  __encodeLegacyGloryData;
     _INPBTimestamp * _expirationDate;
     struct { 
         unsigned int supportsApplePayForPayment : 1; 
@@ -13,7 +12,6 @@
     bool  _supportsApplePayForPayment;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBTimestamp *expirationDate;
@@ -32,8 +30,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addPaymentMethods:(id)arg1;
 - (void)addRideOptions:(id)arg1;
 - (void)clearPaymentMethods;

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSEntityMapping : NSObject <NSSecureCoding> {
+@interface NSEntityMapping : NSObject <NSCoding, NSSecureCoding> {
     NSMutableArray * _attributeMappings;
     NSString * _destinationEntityName;
     NSData * _destinationEntityVersionHash;

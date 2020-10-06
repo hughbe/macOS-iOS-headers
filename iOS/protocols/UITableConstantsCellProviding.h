@@ -6,7 +6,7 @@
 @required
 
 - (long long)_cellStyle;
-- (double)_defaultTrailingCellMarginWidth;
 - (UIColor *)_editingControlTintColorForStyle:(long long)arg1;
+- (double)_minimumCellAccessoryMargin;
 
 @end

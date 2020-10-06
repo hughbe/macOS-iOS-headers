@@ -19,7 +19,7 @@
 - (struct MTLCompilerCache { int (**x1)(); id x2; int x3; int x4; }*)cache;
 - (void)dealloc;
 - (bool)disableRunTimeCompilation;
-- (id)initWithFilePath:(id)arg1 readOnly:(bool)arg2 deviceInfo:(const struct MTLTargetDeviceArch { unsigned int x1; unsigned int x2; char *x3; }*)arg3;
+- (id)initWithFilePath:(id)arg1 readOnly:(bool)arg2 deviceInfo:(const struct MTLTargetDeviceArch { unsigned long long x1; unsigned int x2; char *x3; }*)arg3;
 - (void)setDisableRunTimeCompilation:(bool)arg1;
 - (bool)writable;
 - (void)write;

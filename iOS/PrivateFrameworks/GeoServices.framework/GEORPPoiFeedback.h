@@ -13,15 +13,12 @@
         unsigned int read_corrections : 1; 
         unsigned int read_placeRequest : 1; 
         unsigned int read_place : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_corrections : 1; 
-        unsigned int wrote_placeRequest : 1; 
-        unsigned int wrote_place : 1; 
-        unsigned int wrote_correctionType : 1; 
-        unsigned int wrote_addOtherPoi : 1; 
+        unsigned int read_poiCuratedCollectionContext : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDPlace * _place;
     GEOPDPlaceRequest * _placeRequest;
+    GEORPCuratedCollectionContext * _poiCuratedCollectionContext;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -39,17 +36,16 @@
 @property (nonatomic, readonly) bool hasCorrections;
 @property (nonatomic, readonly) bool hasPlace;
 @property (nonatomic, readonly) bool hasPlaceRequest;
+@property (nonatomic, readonly) bool hasPoiCuratedCollectionContext;
 @property (nonatomic, retain) GEOPDPlace *place;
 @property (nonatomic, retain) GEOPDPlaceRequest *placeRequest;
+@property (nonatomic, retain) GEORPCuratedCollectionContext *poiCuratedCollectionContext;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
 - (int)StringAsCorrectionType:(id)arg1;
-- (void)_readCorrections;
-- (void)_readPlace;
-- (void)_readPlaceRequest;
 - (bool)addOtherPoi;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
@@ -64,13 +60,18 @@
 - (bool)hasCorrections;
 - (bool)hasPlace;
 - (bool)hasPlaceRequest;
+- (bool)hasPoiCuratedCollectionContext;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)place;
 - (id)placeRequest;
+- (id)poiCuratedCollectionContext;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setAddOtherPoi:(bool)arg1;
@@ -80,6 +81,7 @@
 - (void)setHasCorrectionType:(bool)arg1;
 - (void)setPlace:(id)arg1;
 - (void)setPlaceRequest:(id)arg1;
+- (void)setPoiCuratedCollectionContext:(id)arg1;
 - (id)unknownFields;
 - (void)writeTo:(id)arg1;
 

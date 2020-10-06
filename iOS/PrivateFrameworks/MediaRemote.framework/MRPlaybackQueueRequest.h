@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRPlaybackQueueRequest : NSObject {
+@interface MRPlaybackQueueRequest : NSObject <NSCopying, NSSecureCoding> {
     double  _artworkHeight;
     double  _artworkWidth;
-    long long  _cachingPolicy;
+    unsigned int  _cachingPolicy;
     NSArray * _contentItemIdentifiers;
     bool  _hasArtworkHeight;
     bool  _hasArtworkWidth;
@@ -15,7 +15,7 @@
     bool  _hasIncludeLyrics;
     bool  _hasIncludeMetadata;
     bool  _hasIncludeSections;
-    bool  _hasIsLegacyNowPlayingInfoRequest;
+    bool  _hasLegacyNowPlayingInfoRequest;
     bool  _hasLength;
     bool  _hasLocation;
     bool  _hasReturnContentItemAssetsInUserCompletion;
@@ -24,8 +24,8 @@
     bool  _includeLyrics;
     bool  _includeMetadata;
     bool  _includeSections;
-    bool  _isLegacyNowPlayingInfoRequest;
     NSString * _label;
+    bool  _legacyNowPlayingInfoRequest;
     long long  _length;
     long long  _location;
     MRPlayerPath * _playerPath;
@@ -35,9 +35,11 @@
 
 @property (nonatomic) double artworkHeight;
 @property (nonatomic) double artworkWidth;
-@property (nonatomic) long long cachingPolicy;
+@property (nonatomic) unsigned int cachingPolicy;
+@property (nonatomic, readonly) bool containsNonDefaultAssets;
 @property (nonatomic, copy) NSArray *contentItemIdentifiers;
 @property (nonatomic, readonly) NSData *data;
+@property (nonatomic, readonly, copy) NSDictionary *dictionaryRepresentation;
 @property (nonatomic) bool hasArtworkHeight;
 @property (nonatomic) bool hasArtworkWidth;
 @property (nonatomic) bool hasCachingPolicy;
@@ -46,30 +48,47 @@
 @property (nonatomic) bool hasIncludeLyrics;
 @property (nonatomic) bool hasIncludeMetadata;
 @property (nonatomic) bool hasIncludeSections;
-@property (nonatomic) bool hasIsLegacyNowPlayingInfoRequest;
+@property (nonatomic) bool hasLegacyNowPlayingInfoRequest;
 @property (nonatomic) bool hasLength;
 @property (nonatomic) bool hasLocation;
+@property (nonatomic, readonly) bool hasRange;
 @property (nonatomic) bool hasReturnContentItemAssetsInUserCompletion;
+@property (nonatomic, readonly) bool includeArtwork;
 @property (nonatomic) bool includeInfo;
 @property (nonatomic) bool includeLanguageOptions;
 @property (nonatomic) bool includeLyrics;
 @property (nonatomic) bool includeMetadata;
 @property (nonatomic) bool includeSections;
-@property (nonatomic) bool isLegacyNowPlayingInfoRequest;
 @property (nonatomic, copy) NSString *label;
+@property (getter=isLegacyNowPlayingInfoRequest, nonatomic) bool legacyNowPlayingInfoRequest;
 @property (nonatomic) long long length;
 @property (nonatomic) long long location;
 @property (nonatomic, retain) MRPlayerPath *playerPath;
 @property (nonatomic, readonly) _MRPlaybackQueueRequestProtobuf *protobuf;
+@property (nonatomic, readonly) struct _NSRange { unsigned long long x1; unsigned long long x2; } range;
+@property (nonatomic, readonly) bool rangeContainsNowPlayingItem;
 @property (nonatomic, copy) NSString *requestIdentifier;
 @property (nonatomic) bool returnContentItemAssetsInUserCompletion;
+@property (nonatomic, readonly) bool shouldRequestItem;
+@property (nonatomic, readonly) bool shouldRequestItemNotConsideringMetadata;
+@property (nonatomic, readonly) MRPlaybackQueueRequest *skeleton;
+
++ (id)defaultPlaybackQueueRequest;
++ (id)defaultPlaybackQueueRequestWithRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
++ (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (double)artworkHeight;
 - (double)artworkWidth;
-- (long long)cachingPolicy;
+- (unsigned int)cachingPolicy;
+- (bool)containsNonDefaultAssets;
 - (id)contentItemIdentifiers;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)data;
+- (id)description;
+- (id)dictionaryRepresentation;
+- (void)encodeWithCoder:(id)arg1;
+- (bool)exactMatch:(id)arg1;
 - (bool)hasArtworkHeight;
 - (bool)hasArtworkWidth;
 - (bool)hasCachingPolicy;
@@ -78,29 +97,40 @@
 - (bool)hasIncludeLyrics;
 - (bool)hasIncludeMetadata;
 - (bool)hasIncludeSections;
-- (bool)hasIsLegacyNowPlayingInfoRequest;
+- (bool)hasLegacyNowPlayingInfoRequest;
 - (bool)hasLength;
 - (bool)hasLocation;
+- (bool)hasRange;
 - (bool)hasReturnContentItemAssetsInUserCompletion;
+- (bool)includeArtwork;
 - (bool)includeInfo;
 - (bool)includeLanguageOptions;
 - (bool)includeLyrics;
 - (bool)includeMetadata;
 - (bool)includeSections;
+- (id)initFromTransactionName:(unsigned long long)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithData:(id)arg1;
+- (id)initWithIdentifiers:(id)arg1;
+- (id)initWithIdentifiers:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (id)initWithProtobuf:(id)arg1;
+- (id)initWithRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isLegacyNowPlayingInfoRequest;
 - (id)label;
 - (long long)length;
 - (long long)location;
+- (bool)match:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (id)playerPath;
 - (id)protobuf;
+- (struct _NSRange { unsigned long long x1; unsigned long long x2; })range;
+- (bool)rangeContainsNowPlayingItem;
 - (id)requestIdentifier;
 - (bool)returnContentItemAssetsInUserCompletion;
 - (void)setArtworkHeight:(double)arg1;
 - (void)setArtworkWidth:(double)arg1;
-- (void)setCachingPolicy:(long long)arg1;
+- (void)setCachingPolicy:(unsigned int)arg1;
 - (void)setContentItemIdentifiers:(id)arg1;
 - (void)setHasArtworkHeight:(bool)arg1;
 - (void)setHasArtworkWidth:(bool)arg1;
@@ -110,7 +140,7 @@
 - (void)setHasIncludeLyrics:(bool)arg1;
 - (void)setHasIncludeMetadata:(bool)arg1;
 - (void)setHasIncludeSections:(bool)arg1;
-- (void)setHasIsLegacyNowPlayingInfoRequest:(bool)arg1;
+- (void)setHasLegacyNowPlayingInfoRequest:(bool)arg1;
 - (void)setHasLength:(bool)arg1;
 - (void)setHasLocation:(bool)arg1;
 - (void)setHasReturnContentItemAssetsInUserCompletion:(bool)arg1;
@@ -119,12 +149,15 @@
 - (void)setIncludeLyrics:(bool)arg1;
 - (void)setIncludeMetadata:(bool)arg1;
 - (void)setIncludeSections:(bool)arg1;
-- (void)setIsLegacyNowPlayingInfoRequest:(bool)arg1;
 - (void)setLabel:(id)arg1;
+- (void)setLegacyNowPlayingInfoRequest:(bool)arg1;
 - (void)setLength:(long long)arg1;
 - (void)setLocation:(long long)arg1;
 - (void)setPlayerPath:(id)arg1;
 - (void)setRequestIdentifier:(id)arg1;
 - (void)setReturnContentItemAssetsInUserCompletion:(bool)arg1;
+- (bool)shouldRequestItem;
+- (bool)shouldRequestItemNotConsideringMetadata;
+- (id)skeleton;
 
 @end

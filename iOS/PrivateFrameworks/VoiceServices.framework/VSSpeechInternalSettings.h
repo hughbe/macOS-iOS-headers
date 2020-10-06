@@ -13,6 +13,7 @@
 @property (nonatomic) bool disableCache;
 @property (nonatomic) bool disableDeviceNeuralTTS;
 @property (nonatomic) bool disableDeviceRacing;
+@property (nonatomic, readonly) bool disableMobileAssetURLReset;
 @property (nonatomic) bool disableOsprey;
 @property (nonatomic) bool disableOspreyStreaming;
 @property (nonatomic) bool disableServerTTS;
@@ -20,6 +21,7 @@
 @property (nonatomic) bool enableLocalVoices;
 @property (nonatomic) bool forceOsprey;
 @property (nonatomic) bool forceServerTTS;
+@property (nonatomic) bool ignorePowerAndThermalState;
 @property (nonatomic, readonly) bool internalBuild;
 @property (nonatomic, retain) NSUserDefaults *internalDefaults;
 @property (nonatomic) bool isInternalBuild;
@@ -29,6 +31,7 @@
 @property (nonatomic) bool simulateNetworkStall;
 @property (nonatomic) float streamBufferDuration;
 @property (nonatomic) bool useBetaVoice;
+@property (nonatomic, readonly) bool useSSMLInput;
 @property (nonatomic) bool whisper;
 
 + (id)standardInstance;
@@ -39,6 +42,7 @@
 - (bool)disableCache;
 - (bool)disableDeviceNeuralTTS;
 - (bool)disableDeviceRacing;
+- (bool)disableMobileAssetURLReset;
 - (bool)disableOsprey;
 - (bool)disableOspreyStreaming;
 - (bool)disableServerTTS;
@@ -46,6 +50,7 @@
 - (bool)enableLocalVoices;
 - (bool)forceOsprey;
 - (bool)forceServerTTS;
+- (bool)ignorePowerAndThermalState;
 - (id)init;
 - (bool)internalBuild;
 - (id)internalDefaults;
@@ -65,6 +70,7 @@
 - (void)setEnableLocalVoices:(bool)arg1;
 - (void)setForceOsprey:(bool)arg1;
 - (void)setForceServerTTS:(bool)arg1;
+- (void)setIgnorePowerAndThermalState:(bool)arg1;
 - (void)setInternalDefaults:(id)arg1;
 - (void)setIsInternalBuild:(bool)arg1;
 - (void)setLogSensitiveText:(bool)arg1;
@@ -77,6 +83,7 @@
 - (bool)simulateNetworkStall;
 - (float)streamBufferDuration;
 - (bool)useBetaVoice;
+- (bool)useSSMLInput;
 - (bool)whisper;
 
 @end

@@ -3,20 +3,23 @@
  */
 
 @interface NWConcrete_nw_resolver : NSObject <OS_nw_resolver> {
+    NSObject<OS_nw_array> * alternative_endpoints;
+    id /* block */  alternative_handler;
+    NSObject<OS_nw_array> * alternative_protocols;
     NSObject<OS_dispatch_group> * cancel_group;
     id /* block */  cancel_handler;
     NSObject<OS_dispatch_queue> * client_queue;
     NSObject<OS_nw_context> * context;
-    void * crazy_eyeballs_timer;
+    void * delayed_reporting_timer;
     int  dns_error;
     struct _DNSServiceRef_t { } * dns_service;
     unsigned int  dns_service_id;
     struct _DNSServiceRef_t { } * dns_service_secondary_pointer;
     NSObject<OS_nw_endpoint> * endpoint;
     NSObject<OS_nw_array> * endpoint_array;
-    NSObject<OS_nw_txt_record> * esni_record;
-    unsigned char  flags;
+    unsigned short  flags;
     unsigned int  forced_protocol;
+    NSObject<OS_dnssd_getaddrinfo> * gai;
     unsigned int  has_ipv4;
     unsigned int  has_ipv6;
     NWConcrete_nw_resolver * internally_retained_object;
@@ -32,9 +35,15 @@
     NSObject<OS_nw_path> * path;
     NSObject<OS_nw_interface> * path_required_interface;
     void * query_timer;
-    unsigned int  resolve_esni;
+    int  result_protocol;
+    int  result_provider;
+    unsigned char  selected_resolver_config;
+    NSObject<OS_nw_array> * services;
     int  status;
     unsigned int  suppress_logging;
+    unsigned int  svcb_dohuri;
+    unsigned int  svcb_received;
+    unsigned int  svcb_requested;
     id /* block */  update_block;
     unsigned int  used_local_cache;
 }
@@ -46,6 +55,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithEndpoint:(id)arg1 parameters:(id)arg2 path:(id)arg3;
 
 @end

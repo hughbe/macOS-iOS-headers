@@ -19,7 +19,6 @@
 + (id)parametersForSpecification:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_configureCopy:(id)arg1;
 - (id)clientSettings;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -28,6 +27,7 @@
 - (void)encodeWithXPCDictionary:(id)arg1;
 - (unsigned long long)hash;
 - (id)init;
+- (id)initWithParameters:(id)arg1;
 - (id)initWithSpecification:(id)arg1;
 - (id)initWithXPCDictionary:(id)arg1;
 - (bool)isEqual:(id)arg1;

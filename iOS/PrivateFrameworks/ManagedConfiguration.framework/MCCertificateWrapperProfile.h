@@ -4,6 +4,8 @@
 
 @interface MCCertificateWrapperProfile : MCConfigurationProfile
 
+// Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+
 + (id)_basicWrapperProfileDictForCertificateName:(id)arg1 fileName:(id)arg2 identifier:(id)arg3;
 + (id)_identifierHashFromData:(id)arg1;
 + (id)_wrapperPayloadDictWithCertData:(id)arg1 fileName:(id)arg2 name:(id)arg3 identifier:(id)arg4 type:(id)arg5;
@@ -18,5 +20,10 @@
 - (bool)isSigned;
 - (id)stubDictionary;
 - (int)trustLevel;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
+- (bool)shouldHideUnstrustedLabel;
+- (bool)shouldUseTrustedNomenclature;
 
 @end

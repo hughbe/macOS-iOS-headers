@@ -3,6 +3,7 @@
  */
 
 @interface NWL2Report : NSObject {
+    unsigned char  _cellularBand;
     int  _cellularBandInfo;
     int  _cellularBandwidth;
     int  _cellularBars;
@@ -11,9 +12,8 @@
     int  _cellularLQM;
     int  _cellularMCC;
     int  _cellularMNC;
+    unsigned int  _cellularMode;
     int  _cellularPID;
-    unsigned char  _cellularPowerCostDownload;
-    unsigned char  _cellularPowerCostUpload;
     unsigned char  _cellularRadioTechnology;
     int  _cellularTAC;
     int  _cellularUARFCN;
@@ -23,6 +23,7 @@
     unsigned char  _wifiRadioTechnology;
 }
 
+@property (nonatomic) unsigned char cellularBand;
 @property (nonatomic) int cellularBandInfo;
 @property (nonatomic) int cellularBandwidth;
 @property (nonatomic) int cellularBars;
@@ -31,9 +32,8 @@
 @property (nonatomic) int cellularLQM;
 @property (nonatomic) int cellularMCC;
 @property (nonatomic) int cellularMNC;
+@property (nonatomic) unsigned int cellularMode;
 @property (nonatomic) int cellularPID;
-@property (nonatomic) unsigned char cellularPowerCostDownload;
-@property (nonatomic) unsigned char cellularPowerCostUpload;
 @property (nonatomic) unsigned char cellularRadioTechnology;
 @property (nonatomic) int cellularTAC;
 @property (nonatomic) int cellularUARFCN;
@@ -43,6 +43,7 @@
 @property (nonatomic) unsigned char wifiRadioTechnology;
 
 - (void).cxx_destruct;
+- (unsigned char)cellularBand;
 - (int)cellularBandInfo;
 - (int)cellularBandwidth;
 - (int)cellularBars;
@@ -51,13 +52,14 @@
 - (int)cellularLQM;
 - (int)cellularMCC;
 - (int)cellularMNC;
+- (unsigned int)cellularMode;
 - (int)cellularPID;
-- (unsigned char)cellularPowerCostDownload;
-- (unsigned char)cellularPowerCostUpload;
 - (unsigned char)cellularRadioTechnology;
 - (int)cellularTAC;
 - (int)cellularUARFCN;
+- (id)createAWDReport;
 - (id)description;
+- (void)setCellularBand:(unsigned char)arg1;
 - (void)setCellularBandInfo:(int)arg1;
 - (void)setCellularBandwidth:(int)arg1;
 - (void)setCellularBars:(int)arg1;
@@ -66,9 +68,8 @@
 - (void)setCellularLQM:(int)arg1;
 - (void)setCellularMCC:(int)arg1;
 - (void)setCellularMNC:(int)arg1;
+- (void)setCellularMode:(unsigned int)arg1;
 - (void)setCellularPID:(int)arg1;
-- (void)setCellularPowerCostDownload:(unsigned char)arg1;
-- (void)setCellularPowerCostUpload:(unsigned char)arg1;
 - (void)setCellularRadioTechnology:(unsigned char)arg1;
 - (void)setCellularTAC:(int)arg1;
 - (void)setCellularUARFCN:(int)arg1;

@@ -16,7 +16,6 @@
 + (bool)_learnWord:(id)arg1 inDictionary:(id)arg2;
 + (void)_setDictionaryEntry:(id)arg1 forName:(id)arg2;
 + (void)_setWords:(id)arg1 inDictionary:(id)arg2;
-+ (id)_textCheckerBackgroundQueue;
 + (id)_wordsInDictionary:(id)arg1;
 + (id)availableLanguages;
 + (id)bestLanguageForString:(id)arg1 fromAlternatives:(id)arg2 currentLanguage:(id)arg3;
@@ -26,7 +25,6 @@
 + (bool)hasLearnedWord:(id)arg1;
 + (void)learnWord:(id)arg1;
 + (id)openUserDictionary:(id)arg1;
-+ (void)queryLocalUpdateAssets:(id /* block */)arg1;
 + (void)setString:(id)arg1 isExemptFromChecker:(bool)arg2;
 + (long long)uniqueSpellDocumentTag;
 + (void)unlearnWord:(id)arg1;
@@ -55,9 +53,10 @@
 - (void)initGlobals;
 - (void)initUserDictionaries;
 - (bool)isWordInUserDictionaries:(id)arg1 caseSensitive:(bool)arg2;
-- (void)queryUpdateBundle;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })rangeOfMisspelledWordInString:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 startingAt:(long long)arg3 wrap:(bool)arg4 language:(id)arg5;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })rangeOfMisspelledWordInString:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 startingAt:(long long)arg3 wrap:(bool)arg4 languages:(id)arg5;
+- (void)releaseAllLexicons;
+- (void)resetAllLanguageModels;
 - (void)setIgnoredWords:(id)arg1;
 - (id)stringForInputString:(id)arg1 language:(id)arg2;
 - (id)suggestWordInLanguage:(id)arg1;

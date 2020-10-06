@@ -9,14 +9,6 @@
     struct __CFRunLoop { } * _scheduledRunLoop;
 }
 
-@property (retain) NSMutableArray *monitors;
-
-- (void)copyScheduledRunLoop:(struct __CFRunLoop {}**)arg1 andMode:(const struct __CFString {}**)arg2;
 - (void)dealloc;
-- (id)listener;
-- (id)monitors;
-- (void)setListener:(id)arg1;
-- (void)setMonitors:(id)arg1;
-- (void)setScheduledRunLoop:(struct __CFRunLoop { }*)arg1 andMode:(struct __CFString { }*)arg2;
 
 @end

@@ -3,8 +3,8 @@
  */
 
 @interface MSVBidirectionalDictionary : NSObject <NSCopying, NSMutableCopying, NSSecureCoding> {
-    NSMutableDictionary * _keyToObjectDictionary;
-    NSMutableDictionary * _objectToKeyDictionary;
+    NSDictionary * _keyToObjectDictionary;
+    NSDictionary * _objectToKeyDictionary;
 }
 
 + (id)bidirectionalDictionary;
@@ -18,6 +18,7 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)keyForObject:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;

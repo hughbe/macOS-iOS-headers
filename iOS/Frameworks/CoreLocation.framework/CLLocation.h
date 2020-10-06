@@ -2,15 +2,19 @@
    Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
  */
 
-@interface CLLocation : NSObject <CKRecordValue, INJSONSerializable, NSCopying, NSSecureCoding> {
+@interface CLLocation : NSObject <CKRecordValue, HMBModelObjectStorage, HMFObject, INJSONSerializable, NSCopying, NSSecureCoding> {
     id  _internal;
 }
 
 @property (nonatomic, readonly) _CLLocationGroundAltitude *_groundAltitude;
 @property (nonatomic, readonly) int _mapkit_source;
 @property (nonatomic, readonly) double altitude;
+@property (nonatomic, readonly) double altitudeWgs84;
+@property (nonatomic, readonly, copy) NSArray *attributeDescriptions;
 @property (nonatomic, readonly) struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; } clientLocation;
+@property (nonatomic, readonly) NSData *coarseMetaData;
 @property (nonatomic, readonly) struct CLLocationCoordinate2D { double x1; double x2; } coordinate;
+@property (getter=isCoordinateFused, nonatomic, readonly) bool coordinateFused;
 @property (nonatomic, readonly) double course;
 @property (nonatomic, readonly) double courseAccuracy;
 @property (readonly, copy) NSString *debugDescription;
@@ -23,15 +27,22 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) double horizontalAccuracy;
 @property (nonatomic, readonly) unsigned int integrity;
+@property (nonatomic, readonly) bool isAltitudeWgs84Available;
 @property (getter=_navigation_isStale, nonatomic, readonly) bool isStale;
 @property (nonatomic, readonly) NSString *iso6709Notation;
 @property (getter=_navigation_locationDescription, nonatomic, readonly) NSString *locationDescription;
 @property (nonatomic, readonly) CLLocationMatchInfo *matchInfo;
+@property (readonly, copy) NSString *privateDescription;
+@property (readonly, copy) NSString *propertyDescription;
 @property (nonatomic, readonly) struct CLLocationCoordinate2D { double x1; double x2; } rawCoordinate;
 @property (nonatomic, readonly) double rawCourse;
+@property (nonatomic, readonly) double rawCourseAccuracy;
+@property (nonatomic, readonly) double rawHorizontalAccuracy;
 @property (getter=_navigation_rawShiftedCoordinate, nonatomic, readonly) struct CLLocationCoordinate2D { double x1; double x2; } rawShiftedCoordinate;
 @property (nonatomic) int referenceFrame;
 @property (getter=_navigation_routeMatch, nonatomic, readonly) GEORouteMatch *routeMatch;
+@property (readonly, copy) NSString *shortDescription;
+@property (nonatomic, readonly) int signalEnvironmentType;
 @property (nonatomic, readonly) double speed;
 @property (nonatomic, readonly) double speedAccuracy;
 @property (readonly) Class superclass;
@@ -43,14 +54,21 @@
 // Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
 
 + (id)deriveLocationFromLocations:(id)arg1;
++ (id)deriveLocationFromLocations:(id)arg1 options:(id)arg2;
 + (id)filterOutliers:(id)arg1;
++ (id)filterOutliers:(id)arg1 options:(id)arg2;
 + (id)locationByReductivelyFilteringLocations:(id)arg1;
++ (id)locationByReductivelyFilteringLocations:(id)arg1 options:(id)arg2;
++ (double)rangeForBeaconType:(unsigned long long)arg1;
 + (bool)supportsSecureCoding;
 
 - (id)_groundAltitude;
 - (id)_initWithCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 altitude:(double)arg2 horizontalAccuracy:(double)arg3 verticalAccuracy:(double)arg4 course:(double)arg5 courseAccuracy:(double)arg6 speed:(double)arg7 speedAccuracy:(double)arg8 timestamp:(id)arg9 floor:(int)arg10;
+- (id)_initWithRTLocation:(id)arg1;
 - (double)altitude;
+- (double)altitudeWgs84;
 - (struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })clientLocation;
+- (id)coarseMetaData;
 - (struct CLLocationCoordinate2D { double x1; double x2; })coordinate;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (double)course;
@@ -64,22 +82,29 @@
 - (double)horizontalAccuracy;
 - (id)init;
 - (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1;
-- (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 clientLocationPrivate:(struct { double x1; double x2; double x3; double x4; double x5; float x6; float x7; float x8; bool x9; int x10; struct { double x_11_1_1; double x_11_1_2; } x11; double x12; int x13; int x14; bool x15; struct { double x_16_1_1; double x_16_1_2; bool x_16_1_3; bool x_16_1_4; } x16; struct { double x_17_1_1; double x_17_1_2; } x17; float x18; struct { double x_19_1_1; double x_19_1_2; } x19; double x20; double x21; int x22; bool x23; double x24; double x25; double x26; double x27; })arg2;
+- (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 clientLocationPrivate:(struct { double x1; double x2; double x3; double x4; double x5; float x6; float x7; float x8; bool x9; int x10; struct { double x_11_1_1; double x_11_1_2; } x11; double x12; int x13; int x14; bool x15; struct { double x_16_1_1; double x_16_1_2; bool x_16_1_3; bool x_16_1_4; } x16; struct { double x_17_1_1; double x_17_1_2; } x17; int x18; float x19; struct { double x_20_1_1; double x_20_1_2; } x20; double x21; double x22; int x23; bool x24; double x25; double x26; double x27; double x28; double x29; double x30; bool x31; struct { double x_32_1_1; double x_32_1_2; } x32; double x33; int x34; double x35; double x36; })arg2;
+- (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 clientLocationPrivate:(struct { double x1; double x2; double x3; double x4; double x5; float x6; float x7; float x8; bool x9; int x10; struct { double x_11_1_1; double x_11_1_2; } x11; double x12; int x13; int x14; bool x15; struct { double x_16_1_1; double x_16_1_2; bool x_16_1_3; bool x_16_1_4; } x16; struct { double x_17_1_1; double x_17_1_2; } x17; int x18; float x19; struct { double x_20_1_1; double x_20_1_2; } x20; double x21; double x22; int x23; bool x24; double x25; double x26; double x27; double x28; double x29; double x30; bool x31; struct { double x_32_1_1; double x_32_1_2; } x32; double x33; int x34; double x35; double x36; })arg2 coarseMetaData:(id)arg3;
+- (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 coarseMetaData:(id)arg2;
 - (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 matchInfo:(id)arg2;
 - (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 matchInfo:(id)arg2 trustedTimestamp:(double)arg3;
 - (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 matchInfo:(id)arg2 trustedTimestamp:(double)arg3 groundAltitude:(id)arg4;
+- (id)initWithClientLocation:(struct { int x1; struct { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; int x11; double x12; int x13; struct { double x_14_1_1; double x_14_1_2; } x14; double x15; int x16; unsigned int x17; int x18; int x19; int x20; })arg1 matchInfo:(id)arg2 trustedTimestamp:(double)arg3 groundAltitude:(id)arg4 fusionInfo:(id)arg5 rawHorizontalAccuracy:(double)arg6 rawCourseAccuracy:(double)arg7;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 altitude:(double)arg2 horizontalAccuracy:(double)arg3 verticalAccuracy:(double)arg4 course:(double)arg5 courseAccuracy:(double)arg6 speed:(double)arg7 speedAccuracy:(double)arg8 timestamp:(id)arg9;
 - (id)initWithCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 altitude:(double)arg2 horizontalAccuracy:(double)arg3 verticalAccuracy:(double)arg4 course:(double)arg5 speed:(double)arg6 timestamp:(id)arg7;
 - (id)initWithCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 altitude:(double)arg2 horizontalAccuracy:(double)arg3 verticalAccuracy:(double)arg4 timestamp:(id)arg5;
 - (id)initWithLatitude:(double)arg1 longitude:(double)arg2;
 - (unsigned int)integrity;
+- (bool)isAltitudeWgs84Available;
+- (bool)isCoordinateFused;
 - (id)iso6709Notation;
 - (id)jsonObject;
 - (id)matchInfo;
 - (id)propagateLocationToTime:(double)arg1;
 - (struct CLLocationCoordinate2D { double x1; double x2; })rawCoordinate;
 - (double)rawCourse;
+- (double)rawCourseAccuracy;
+- (double)rawHorizontalAccuracy;
 - (int)referenceFrame;
 - (void)setHorizontalAccuracy:(double)arg1;
 - (void)setReferenceFrame:(int)arg1;
@@ -113,12 +138,68 @@
 
 - (int)_mapkit_source;
 
+// Image: /System/Library/Frameworks/iAd.framework/iAd
+
+- (id)snappedToGrid:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionClient.framework/AppPredictionClient
+
+- (bool)atx_isFuzzyMatch:(id)arg1;
+- (unsigned int)atx_locationHash;
+- (unsigned long long)atx_locationHashWithLevel:(int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (unsigned int)atx_locationHash;
+- (unsigned long long)atx_locationHashWithLevel:(int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (id)cam_videoMetadataRepresentation;
+
+// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+
+- (unsigned long long)cplSpecialHash;
+- (bool)cplSpecialIsEqual:(id)arg1;
+- (id)initWithCPLArchiver:(id)arg1;
+- (id)plistArchiveWithCPLArchiver:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)fromSchema:(id)arg1;
+
+- (id)schema;
+
+// Image: /System/Library/PrivateFrameworks/FMIPCore.framework/FMIPCore
+
+- (bool)isEqual:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
++ (id)hmbDecodeData:(id)arg1 fromStorageLocation:(unsigned long long)arg2 error:(id*)arg3;
+
+- (id)hmbEncodeForStorageLocation:(unsigned long long)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
++ (id)shortDescription;
+
+- (id)attributeDescriptions;
+- (id)description;
+- (id)privateDescription;
+- (id)shortDescription;
+
+// Image: /System/Library/PrivateFrameworks/MediaMiningKit.framework/MediaMiningKit
+
+- (id)timeZone;
+
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 + (bool)_navigation_isLocation:(id)arg1 equalTo:(id)arg2;
 + (id)_navigation_stringWithType:(int)arg1;
 
 - (id)_navigation_detailedMatchInfo;
+- (struct { double x1; double x2; double x3; })_navigation_geoCoordinate3D;
 - (id)_navigation_geoLocation;
 - (bool)_navigation_gtLog;
 - (bool)_navigation_hasMatch;
@@ -131,6 +212,20 @@
 - (void)_navigation_setGtLog:(bool)arg1;
 - (double)_navigation_speedAccuracy;
 - (id)initWithCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 rawCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg2 course:(double)arg3 rawCourse:(double)arg4 courseAccuracy:(double)arg5 speed:(double)arg6 speedAccuracy:(double)arg7 altitude:(double)arg8 timestamp:(double)arg9 horizontalAccuracy:(double)arg10 verticalAccuracy:(double)arg11 type:(int)arg12 referenceFrame:(int)arg13;
+- (id)initWithCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1 rawCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg2 course:(double)arg3 rawCourse:(double)arg4 courseAccuracy:(double)arg5 speed:(double)arg6 speedAccuracy:(double)arg7 altitude:(double)arg8 timestamp:(double)arg9 horizontalAccuracy:(double)arg10 verticalAccuracy:(double)arg11 type:(int)arg12 referenceFrame:(int)arg13 serializedCoarseMetaData:(id)arg14;
 - (id)initWithGeoLocation:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (int)pl_locationHash;
+- (id)pl_newSurroundingLocationsHashes;
+
+// Image: /System/Library/PrivateFrameworks/SearchAds.framework/SearchAds
+
+- (id)snappedToGrid:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WeatherFoundation.framework/WeatherFoundation
+
+- (bool)wf_isEquivalentToLocation:(id)arg1 tolerance:(double)arg2;
 
 @end

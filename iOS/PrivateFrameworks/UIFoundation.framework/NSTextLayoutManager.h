@@ -2,10 +2,14 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@interface NSTextLayoutManager : NSObject <NSSecureCoding, NSTextViewportElementProvider> {
+@interface NSTextLayoutManager : NSObject <NSSecureCoding, NSTextSelectionDataSource, NSTextViewportElementProvider> {
+    bool  _allowsFontSubstitutionAffectingVerticalMetrics;
     long long  _applicationFrameworkContext;
     NSLayoutManager * _companion;
     <NSTextLayoutManagerDelegatePrivate> * _delegate;
+    <NSTextLocation> * _firstNonContiguousLayoutSegmentLocation;
+    double  _firstNonContiguousLayoutSegmentOriginY;
+    bool  _isProcessingRenderingAttributesMethod;
     /* Warning: unhandled struct encoding: '{?="textContainer"@"NSTextContainer""textRange"@"NSTextRange""layoutFragmentTable"@"NSMapTable""usageBounds"{CGRect="origin"{CGPoint="x"d"y"d}"size"{CGSize="width"d"height"d}}"layoutFragments"^@"layoutFragmentsHint"^@"layoutFragmentsCount"Q"layoutFragmentsSize"Q}' */ struct { 
         NSTextContainer *textContainer; 
         NSTextRange *textRange; 
@@ -24,7 +28,8 @@
     }  _lastTextContainerEntry;
     NSOperationQueue * _layoutQueue;
     bool  _limitsLayoutForSuspiciousContents;
-    struct { id x1; id x2; id x3; } * _softInvalidatedSegmentHead;
+    id /* block */  _renderingAttributesValidator;
+    <NSTextLocation> * _softInvalidationLocation;
     NSTextContainer * _templateTextContainer;
     struct { id x1; id x2; id x3; struct CGRect { struct CGPoint { double x_1_2_1; double x_1_2_2; } x_4_1_1; struct CGSize { double x_2_2_1; double x_2_2_2; } x_4_1_2; } x4; id *x5; id *x6; unsigned long long x7; unsigned long long x8; } * _textContainerEntries;
     struct { id x1; id x2; id x3; struct CGRect { struct CGPoint { double x_1_2_1; double x_1_2_2; } x_4_1_1; struct CGSize { double x_2_2_1; double x_2_2_2; } x_4_1_2; } x4; id *x5; id *x6; unsigned long long x7; unsigned long long x8; } * _textContainerEntriesAccessHint;
@@ -32,10 +37,10 @@
     unsigned long long  _textContainerEntriesSize;
     NSArray * _textContainers;
     NSTextContentManager * _textContentManager;
-    struct { id x1; id x2; id x3; } * _textLayoutSegments;
-    struct { id x1; id x2; id x3; } * _textLayoutSegmentsAccessHint;
-    unsigned long long  _textLayoutSegmentsCount;
-    unsigned long long  _textLayoutSegmentsSize;
+    NSTextParagraph * _textParagraphForEmptyDocument;
+    NSTextSelectionNavigation * _textSelectionNavigation;
+    NSArray * _textSelections;
+    bool  _usesDefaultHyphenation;
     bool  _usesFontLeading;
     NSTextViewportLayoutController * _viewportLayoutController;
 }
@@ -43,50 +48,97 @@
 @property (readonly, copy) NSString *debugDescription;
 @property <NSTextLayoutManagerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
+@property (readonly) NSTextRange *documentRange;
 @property (readonly) unsigned long long hash;
 @property (retain) NSOperationQueue *layoutQueue;
 @property bool limitsLayoutForSuspiciousContents;
+@property (copy) id /* block */ renderingAttributesValidator;
 @property (readonly) Class superclass;
 @property (retain) NSTextContainer *templateTextContainer;
 @property (readonly, copy) NSArray *textContainers;
 @property (readonly) NSTextContentManager *textContentManager;
+@property (readonly) NSTextSelectionNavigation *textSelectionNavigation;
+@property (retain) NSArray *textSelections;
 @property (readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } usageBoundsForLastTextContainer;
+@property bool usesDefaultHyphenation;
 @property bool usesFontLeading;
 
++ (void)_setThrowsOnAssertionError:(bool)arg1;
++ (void)_setValidatesInternalCaches:(bool)arg1;
++ (bool)_throwsOnAssertionError;
++ (bool)_validatesInternalCaches;
 + (Class)companionLayoutManagerClass;
++ (id)linkRenderingAttributes;
 + (bool)supportsSecureCoding;
++ (bool)usesDefaultHyphenation;
++ (id)validRenderingAttributes;
 + (Class)viewportLayoutControllerClass;
 
 - (void)_addTextContainerFromTemplate:(id)arg1;
 - (void)_commonInit;
+- (void)_fixSelectionAfterChangeInCharacterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 changeInLength:(long long)arg2;
 - (bool)_hasLayoutForLocation:(id)arg1;
+- (void)_invalidateTextParagraphForEmptyDocument;
+- (void)_prepareAttributedString:(id)arg1 forTextLayoutFragment:(id)arg2;
 - (void)_removeTextContainer;
 - (void)_removeTextContainersUntilCondition:(id /* block */)arg1;
+- (id)_selectionAndMarkedTextAttributesForLocation:(id)arg1 inTextRange:(id)arg2 effectiveTextRange:(out id*)arg3;
+- (id)_textLayoutFragmentAtLocation:(id)arg1;
+- (id)_textLineFragmentAtLocation:(id)arg1 textLayoutFragment:(out id*)arg2 rangeDelta:(out long long*)arg3;
+- (id)_textParagraphForEmptyDocument;
+- (bool)_validateTextContainerEntries;
+- (void)addRenderingAttribute:(id)arg1 value:(id)arg2 forTextRange:(id)arg3;
+- (id)adjustedTextSelectionsForEditingContextFromTextSelections:(id)arg1;
+- (bool)allowsFontSubstitutionAffectingVerticalMetrics;
 - (long long)applicationFrameworkContext;
+- (long long)baseWritingDirectionAtLocation:(id)arg1;
 - (id)companionLayoutManager;
 - (void)dealloc;
 - (id)delegate;
+- (id)documentRange;
 - (void)encodeWithCoder:(id)arg1;
 - (void)ensureLayoutForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)ensureLayoutForRange:(id)arg1;
+- (void)enumerateCaretOffsetsInLineFragmentAtLocation:(id)arg1 usingBlock:(id /* block */)arg2;
+- (void)enumerateContainerBoundariesFromLocation:(id)arg1 reverse:(bool)arg2 usingBlock:(id /* block */)arg3;
+- (void)enumerateRenderingAttributesFromLocation:(id)arg1 reverse:(bool)arg2 usingBlock:(id /* block */)arg3;
+- (void)enumerateSubstringsFromLocation:(id)arg1 options:(unsigned long long)arg2 usingBlock:(id /* block */)arg3;
 - (id)enumerateTextLayoutFragmentsFromLocation:(id)arg1 options:(long long)arg2 usingBlock:(id /* block */)arg3;
+- (id)enumerateTextLayoutFragmentsInTextRange:(id)arg1 options:(long long)arg2 usingBlock:(id /* block */)arg3;
+- (void)enumerateTextSegmentsInRange:(id)arg1 type:(long long)arg2 options:(unsigned long long)arg3 usingBlock:(id /* block */)arg4;
 - (void)enumerateViewportElementsFromLocation:(id)arg1 options:(long long)arg2 usingBlock:(id /* block */)arg3;
 - (void)finalizeAndPushLastTextContainer;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (void)invalidateLayoutForRange:(id)arg1;
+- (void)invalidateRenderingAttributesForTextRange:(id)arg1;
+- (bool)isCountableDataSource;
+- (long long)layoutOrientationAtLocation:(id)arg1;
 - (id)layoutQueue;
 - (bool)limitsLayoutForSuspiciousContents;
+- (id)lineFragmentRangeForPoint:(struct CGPoint { double x1; double x2; })arg1 inContainerAtLocation:(id)arg2;
+- (id)locationFromLocation:(id)arg1 offset:(long long)arg2;
+- (long long)offsetFromLocation:(id)arg1 toLocation:(id)arg2;
+- (void)processLayoutInvalidationForTextRange:(id)arg1 synchronizing:(bool)arg2;
 - (id)rangeForTextContainerAtIndex:(long long)arg1;
+- (void)removeRenderingAttribute:(id)arg1 forTextRange:(id)arg2;
+- (id)renderingAttributesForLink:(id)arg1 atLocation:(id)arg2;
+- (id /* block */)renderingAttributesValidator;
+- (id)renderingColorForDocumentColor:(id)arg1 atLocation:(id)arg2;
 - (void)replaceCharactersInRange:(id)arg1 withAttributedString:(id)arg2;
 - (void)replaceCharactersInRange:(id)arg1 withElements:(id)arg2;
 - (void)replaceTextContentManager:(id)arg1;
+- (void)setAllowsFontSubstitutionAffectingVerticalMetrics:(bool)arg1;
 - (void)setApplicationFrameworkContext:(long long)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setLayoutQueue:(id)arg1;
 - (void)setLimitsLayoutForSuspiciousContents:(bool)arg1;
+- (void)setRenderingAttributes:(id)arg1 forTextRange:(id)arg2;
+- (void)setRenderingAttributesValidator:(id /* block */)arg1;
 - (void)setTemplateTextContainer:(id)arg1;
 - (void)setTextContentManager:(id)arg1;
+- (void)setTextSelections:(id)arg1;
+- (void)setUsesDefaultHyphenation:(bool)arg1;
 - (void)setUsesFontLeading:(bool)arg1;
 - (void)synchronize;
 - (id)templateTextContainer;
@@ -96,9 +148,13 @@
 - (id)textContentManager;
 - (id)textLayoutFragmentForLocation:(id)arg1;
 - (id)textLayoutFragmentForPosition:(struct CGPoint { double x1; double x2; })arg1 inTextContainerAtIndex:(long long)arg2;
+- (id)textRangeForSelectionGranularity:(long long)arg1 enclosingLocation:(id)arg2;
+- (id)textSelectionNavigation;
+- (id)textSelections;
 - (void)updateLayoutWithTextLayoutFragment:(id)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })usageBoundsForLastTextContainer;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })usageBoundsInTextContainerAtIndex:(long long)arg1;
+- (bool)usesDefaultHyphenation;
 - (bool)usesFontLeading;
 - (id)viewportLayoutController;
 

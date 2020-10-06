@@ -78,9 +78,6 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)_baselineViewVendForFirstBaseline:(bool)arg1;
-- (struct CGSize { double x1; double x2; })_calculateArrangedSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 forLayout:(bool)arg2;
-- (long long)_effectiveAlignmentForArrangedSubview:(id)arg1;
 - (long long)alignment;
 - (id)arrangedDescription;
 - (long long)axis;

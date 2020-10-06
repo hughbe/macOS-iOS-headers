@@ -21,20 +21,7 @@
         unsigned int read_openlr : 1; 
         unsigned int read_predictedSpeeds : 1; 
         unsigned int read_zilch : 1; 
-        unsigned int wrote_geoIds : 1; 
-        unsigned int wrote_latitudeCoordinates : 1; 
-        unsigned int wrote_longitudeCoordinates : 1; 
-        unsigned int wrote_geoid : 1; 
-        unsigned int wrote_openlr : 1; 
-        unsigned int wrote_predictedSpeeds : 1; 
-        unsigned int wrote_zilch : 1; 
-        unsigned int wrote_color : 1; 
-        unsigned int wrote_confidence : 1; 
-        unsigned int wrote_decayTimeWindowInMinutes : 1; 
-        unsigned int wrote_endOffset : 1; 
-        unsigned int wrote_speedKph : 1; 
-        unsigned int wrote_startOffset : 1; 
-        unsigned int wrote_hidden : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct { 
         long long *list; 
@@ -98,16 +85,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsColor:(id)arg1;
-- (void)_addNoFlagsGeoIds:(long long)arg1;
-- (void)_addNoFlagsLatitudeCoordinates:(float)arg1;
-- (void)_addNoFlagsLongitudeCoordinates:(float)arg1;
-- (void)_addNoFlagsPredictedSpeed:(id)arg1;
-- (void)_readGeoIds;
-- (void)_readLatitudeCoordinates;
-- (void)_readLongitudeCoordinates;
-- (void)_readOpenlr;
-- (void)_readPredictedSpeeds;
-- (void)_readZilch;
 - (void)addGeoIds:(long long)arg1;
 - (void)addLatitudeCoordinates:(float)arg1;
 - (void)addLongitudeCoordinates:(float)arg1;
@@ -143,7 +120,10 @@
 - (bool)hidden;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (float*)latitudeCoordinates;
 - (float)latitudeCoordinatesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)latitudeCoordinatesCount;

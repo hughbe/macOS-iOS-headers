@@ -5,7 +5,7 @@
 @interface _UIViewServiceInterface : NSObject <NSXPCConnectionDelegate> {
     bool  __automatic_invalidation_invalidated;
     int  __automatic_invalidation_retainCount;
-    bool  _isTerminated;
+    _Atomic bool  _isTerminated;
     _UIRemoteViewService * _service;
     NSString * _serviceBundleIdentifier;
     NSXPCConnection * _serviceConnection;

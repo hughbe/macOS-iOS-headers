@@ -4,32 +4,32 @@
 
 @interface CKDiscretionaryOptions : NSObject <NSCoding, NSSecureCoding> {
     bool  _allowsExpensiveAccess;
+    NSString * _applicationBundleIdentifierOverride;
     unsigned long long  _discretionaryNetworkBehavior;
     NSString * _secondarySourceAppplicationBundleId;
-    NSString * _sourceApplicationBundleId;
     double  _timeoutIntervalForResource;
 }
 
 @property (nonatomic) bool allowsExpensiveAccess;
+@property (nonatomic, retain) NSString *applicationBundleIdentifierOverride;
 @property (nonatomic) unsigned long long discretionaryNetworkBehavior;
 @property (nonatomic, retain) NSString *secondarySourceAppplicationBundleId;
-@property (nonatomic, retain) NSString *sourceApplicationBundleId;
 @property (nonatomic) double timeoutIntervalForResource;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (bool)allowsExpensiveAccess;
+- (id)applicationBundleIdentifierOverride;
 - (unsigned long long)discretionaryNetworkBehavior;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)secondarySourceAppplicationBundleId;
 - (void)setAllowsExpensiveAccess:(bool)arg1;
+- (void)setApplicationBundleIdentifierOverride:(id)arg1;
 - (void)setDiscretionaryNetworkBehavior:(unsigned long long)arg1;
 - (void)setSecondarySourceAppplicationBundleId:(id)arg1;
-- (void)setSourceApplicationBundleId:(id)arg1;
 - (void)setTimeoutIntervalForResource:(double)arg1;
-- (id)sourceApplicationBundleId;
 - (double)timeoutIntervalForResource;
 
 @end

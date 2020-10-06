@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
  */
 
-@interface AKAuthorizationPresentationContext : NSObject <NSSecureCoding> {
+@interface AKAuthorizationPresentationContext : NSObject <NSCopying, NSSecureCoding> {
     NSString * _bundleID;
     AKCredentialRequestContext * _credentialRequestContext;
     NSData * _iconData;
@@ -24,13 +24,16 @@
 @property (nonatomic, copy) NSArray *loginChoices;
 @property (nonatomic, retain) AKUserInformation *userInformation;
 
++ (id)presentationContextForRequestContext:(id)arg1 client:(id)arg2;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (void)_addPresentationParametersForContext:(id)arg1;
 - (void)_addPresenterParameters;
 - (id)bundleID;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)credentialRequestContext;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)iconData;
 - (id)iconName;
@@ -38,6 +41,7 @@
 - (id)informativeText;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithContext:(id)arg1 bundleID:(id)arg2;
+- (id)initWithContext:(id)arg1 client:(id)arg2;
 - (id)localizedAppName;
 - (id)loginChoices;
 - (void)setBundleID:(id)arg1;

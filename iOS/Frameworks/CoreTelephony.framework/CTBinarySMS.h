@@ -20,8 +20,8 @@
 @property (nonatomic, copy) NSString *smscAddress;
 @property (nonatomic) int srcPort;
 
+- (void).cxx_destruct;
 - (id)context;
-- (void)dealloc;
 - (id)destinationAddress;
 - (int)dstPort;
 - (id)init;

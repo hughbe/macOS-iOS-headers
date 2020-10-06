@@ -6,5 +6,6 @@
 @required
 
 - (id)dedup;
+- (id)dk_dedup;
 
 @end

@@ -3,12 +3,15 @@
  */
 
 @interface CUIStructuredThemeStore : NSObject <CUIStructuredThemeStorage, CUIStructuredThemeStorage2> {
+    NSDictionary * _aliasDictionary;
     int (* _attributePresent;
     NSString * _bundleID;
     NSMutableDictionary * _cache;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _cacheLock;
+    NSSet * _legacyFlippableSet;
+    unsigned int  _mainBundle;
     NSCache * _namedRenditionKeyCache;
     CUICommonAssetStorage * _store;
     struct os_unfair_lock_s { 
@@ -20,28 +23,28 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property bool mainBundle;
 @property (readonly) Class superclass;
-@property (nonatomic) unsigned long long themeIndex;
 
-- (bool)_canGetRenditionWithKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1 isFPO:(bool*)arg2 lookForSubstitutions:(bool)arg3;
 - (void)_commonInit;
-- (bool)_formatStorageKeyArrayBytes:(void*)arg1 length:(unsigned long long)arg2 fromKey:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg3;
-- (void)_getKeyForAssetClosestToKey:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1 foundAsset:(bool*)arg2;
-- (id)_newRenditionKeyDataFromKey:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
+- (bool)_formatStorageKeyArrayBytes:(void*)arg1 length:(unsigned long long)arg2 fromKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg3;
+- (id)_newRenditionKeyDataFromKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (void)_updateKeyWithCompatibilityMapping:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
+- (id)aliasForName:(id)arg1;
 - (id)allImageNames;
 - (unsigned short)appearanceIdentifierForName:(id)arg1;
 - (id)appearances;
-- (bool)assetExistsForKey:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
+- (bool)assetExistsForKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (unsigned int)authoredWithSchemaVersion;
 - (id)baseGradationKeySignatureForKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (id)bundleID;
+- (bool)caAllowSubimageOfImage:(struct CGImage { }*)arg1;
 - (bool)canGetRenditionWithKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
-- (bool)canGetRenditionWithKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1 isFPO:(bool*)arg2;
 - (id)catalogGlobals;
 - (void)clearRenditionCache;
 - (unsigned long long)colorSpaceID;
-- (id)convertRenditionKeyToKeyData:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
+- (bool)containsLookupForName:(id)arg1;
+- (id)convertRenditionKeyToKeyData:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (id)copyKeySignatureForKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1 withBytesNoCopy:(char *)arg2 length:(unsigned long long)arg3;
 - (id)copyLookupKeySignatureForKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (void)dealloc;
@@ -54,6 +57,7 @@
 - (bool)getFontName:(id*)arg1 baselineOffset:(double*)arg2 forFontType:(id)arg3;
 - (bool)getPhysicalColor:(struct _colordef { unsigned int x1; unsigned int x2; struct _rgbquad { unsigned int x_3_1_1 : 8; unsigned int x_3_1_2 : 8; unsigned int x_3_1_3 : 8; unsigned int x_3_1_4 : 8; } x3; }*)arg1 withName:(id)arg2;
 - (bool)hasPhysicalColorWithName:(id)arg1;
+- (bool)imageNamedShouldFlip:(id)arg1;
 - (id)imagesWithName:(id)arg1;
 - (id)initWithBytes:(const void*)arg1 length:(unsigned long long)arg2;
 - (id)initWithPath:(id)arg1;
@@ -63,7 +67,9 @@
 - (id)keySignatureForKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (unsigned short)localizationIdentifierForName:(id)arg1;
 - (id)localizations;
-- (id)lookupAssetForKey:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
+- (id)lookupAssetForKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
+- (bool)mainBundle;
+- (id)mappedAliases;
 - (long long)maximumRenditionKeyTokenCount;
 - (id)nameForAppearanceIdentifier:(unsigned short)arg1;
 - (id)renditionInfoForIdentifier:(unsigned short)arg1;
@@ -73,6 +79,8 @@
 - (id)renditionNameForKeyList:(struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (id)renditionWithKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (id)renditionWithKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1 usingKeySignature:(id)arg2;
+- (void)setBundleID:(id)arg1;
+- (void)setMainBundle:(bool)arg1;
 - (void)setThemeIndex:(unsigned long long)arg1;
 - (id)store;
 - (unsigned long long)themeIndex;

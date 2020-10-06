@@ -3,7 +3,6 @@
  */
 
 @interface _INPBDateTime : PBCodable <NSCopying, NSSecureCoding, _INPBDateTime> {
-    bool  __encodeLegacyGloryData;
     int  _calendarSystem;
     _INPBLocalDate * _date;
     struct { 
@@ -13,7 +12,6 @@
     NSString * _timeZoneID;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int calendarSystem;
 @property (nonatomic, retain) _INPBLocalDate *date;
 @property (readonly, copy) NSString *debugDescription;
@@ -31,8 +29,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCalendarSystem:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)calendarSystem;
 - (id)calendarSystemAsString:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

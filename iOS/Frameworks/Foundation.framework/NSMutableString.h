@@ -33,6 +33,10 @@
 - (unsigned long long)replaceOccurrencesOfString:(id)arg1 withString:(id)arg2 options:(unsigned long long)arg3 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4;
 - (void)setString:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (void)hk_appendComponentsJoinedByString:(id)arg1 container:(id)arg2 componentGenerator:(id /* block */)arg3;
+
 // Image: /System/Library/Frameworks/Network.framework/Network
 
 - (void)appendPrettyBOOL:(bool)arg1 withName:(id)arg2 indent:(int)arg3;
@@ -46,14 +50,33 @@
 - (void)appendPrettyObject:(id)arg1 withName:(id)arg2 andIndent:(int)arg3 options:(unsigned long long)arg4;
 - (void)appendToStringAtColumnWithContent:(int*)arg1 column:(unsigned char)arg2 content:(const char *)arg3 appendAsNewLine:(bool)arg4 addNewLine:(bool)arg5;
 
+// Image: /System/Library/PrivateFrameworks/AXMediaUtilities.framework/AXMediaUtilities
+
++ (id)axmIndentationString:(long long)arg1;
+
+- (void)axmAppendIndentation:(long long)arg1;
+
 // Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
 
 - (void)ams_appendNullableString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BookUtility.framework/BookUtility
+
+- (void)bu_indentBy:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
+
+- (void)replaceOccurrencesOfString:(id)arg1 withString:(id)arg2;
+- (void)searchAndReplaceInString:(id)arg1 withString:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
 
 - (void)replaceOccurrencesOfString:(id)arg1 withString:(id)arg2;
 - (void)searchAndReplaceInString:(id)arg1 withString:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
+- (void)crk_deleteSuffix:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
 
@@ -65,13 +88,81 @@
 - (void)_cn_trimLeadingWhitespace;
 - (void)_cn_trimTrailingWhitespace;
 
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (void)sg_decodeEncodedWords;
+
 // Image: /System/Library/PrivateFrameworks/DataDetectorsCore.framework/DataDetectorsCore
 
 - (void)dd_appendSpaces:(unsigned int)arg1;
 
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
+- (void)ef_appendQuotedSQLEscapedString:(id)arg1;
+- (void)ef_appendSQLEscapedString:(id)arg1;
+- (void)ef_removeCharactersInSet:(id)arg1 beforeOccurrencesOfString:(id)arg2;
+- (void)ef_replaceContiguousSequencesOfCharactersInSet:(id)arg1 withString:(id)arg2;
+- (void)ef_rfc5322Unfold;
+- (void)ef_trimLeadingCharactersInSet:(id)arg1;
+- (void)ef_trimTrailingCharactersInSet:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ExchangeSync.framework/Frameworks/DAEAS.framework/DAEAS
+
+- (void)appendString:(id)arg1 withSeparator:(id)arg2;
+- (void)convertLineEndingsTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
+- (void)hf_appendLine:(id)arg1;
+- (void)hf_appendLineWithFormat:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
 - (void)replaceNewlinesWithSpaces;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (void)indentBy:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
+- (void)tc_replaceAllSubstr:(id)arg1 with:(id)arg2;
+- (void)tc_replaceAllSubstr:(id)arg1 with:(id)arg2 escStr:(id)arg3;
+- (void)tc_replaceAllSubstr:(id)arg1 with:(id)arg2 escStr:(id)arg3 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4;
+- (void)tc_replaceAllSubstr:(id)arg1 with:(id)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
+- (bool)tc_replaceSubstr:(id)arg1 with:(id)arg2;
+- (bool)tc_replaceSubstr:(id)arg1 with:(id)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
+- (void)tsu_appendCharacter:(unsigned short)arg1;
+- (void)tsu_appendSeparator:(id)arg1 format:(id)arg2;
+- (void)tsu_indentBy:(unsigned long long)arg1;
+- (void)tsu_insertCharacter:(unsigned short)arg1 atIndex:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (bool)px_removeSuffix:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ProactiveInputPredictions.framework/ProactiveInputPredictions
+
+- (void)psg_removeCharactersFromSet:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
+
+- (void)addMathIndicators;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (void)siriUIAppendStringWithCommaSeparation:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
+- (void)replaceBreaksWithPlainTextVersions;
+
+// Image: /System/Library/PrivateFrameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_appendCharacter:(unsigned short)arg1;
+- (void)tsu_appendSeparator:(id)arg1 format:(id)arg2;
+- (void)tsu_indentBy:(unsigned long long)arg1;
+- (void)tsu_insertCharacter:(unsigned short)arg1 atIndex:(unsigned long long)arg2;
 
 // Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
 
@@ -87,5 +178,29 @@
 - (void)_ICSRemoveCharactersFromSet:(id)arg1;
 - (void)_ICSStripControlChracters;
 - (id)controlCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSCalculationEngine.framework/TSCalculationEngine
+
+- (void)tsce_appendSpaces:(int)arg1;
+- (void)tsce_appendWhitespace:(char *)arg1 startingIndex:(int*)arg2;
+- (void)tsce_replaceCharactersInSet:(id)arg1 withString:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_appendCharacter:(unsigned short)arg1;
+- (void)tsu_appendSeparator:(id)arg1 format:(id)arg2;
+- (void)tsu_indentBy:(unsigned long long)arg1;
+- (void)tsu_insertCharacter:(unsigned short)arg1 atIndex:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
+- (void)gqd_insertCharacter:(unsigned short)arg1 atIndex:(unsigned short)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_appendCharacter:(unsigned short)arg1;
+- (void)tsu_appendSeparator:(id)arg1 format:(id)arg2;
+- (void)tsu_indentBy:(unsigned long long)arg1;
+- (void)tsu_insertCharacter:(unsigned short)arg1 atIndex:(unsigned long long)arg2;
 
 @end

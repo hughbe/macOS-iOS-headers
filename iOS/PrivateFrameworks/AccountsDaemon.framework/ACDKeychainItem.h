@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) const struct __CFData { }*persistentRef;
 @property (nonatomic, copy) NSString *service;
 @property (nonatomic) bool synchronizable;
+@property (nonatomic, readonly) bool useDataProtectionKeychain;
 @property (nonatomic) long long version;
 
 + (id)new;
@@ -39,6 +40,7 @@
 - (id)initWithPersistentRef:(const struct __CFData { }*)arg1;
 - (id)initWithPersistentRef:(const struct __CFData { }*)arg1 properties:(id)arg2;
 - (id)metadata;
+- (void)migrateToKeyBagFromLegacy;
 - (const struct __CFData { }*)persistentRef;
 - (void)reload;
 - (bool)save:(id*)arg1;
@@ -51,6 +53,7 @@
 - (void)setSynchronizable:(bool)arg1;
 - (void)setVersion:(long long)arg1;
 - (bool)synchronizable;
+- (bool)useDataProtectionKeychain;
 - (long long)version;
 
 @end

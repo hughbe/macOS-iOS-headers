@@ -10,6 +10,8 @@
 @property (nonatomic, readonly) UILabel *labelLabel;
 @property (nonatomic, retain) UITextView *textView;
 
++ (bool)shouldIndentWhileEditing;
+
 - (void).cxx_destruct;
 - (bool)allowsCellSelection;
 - (void)dealloc;
@@ -22,7 +24,6 @@
 - (void)setProperty:(id)arg1;
 - (void)setTextView:(id)arg1;
 - (void)setValueTextAttributes:(id)arg1;
-- (bool)shouldIndentWhileEditing;
 - (bool)shouldPerformDefaultAction;
 - (bool)supportsTintColorValue;
 - (id)textView;

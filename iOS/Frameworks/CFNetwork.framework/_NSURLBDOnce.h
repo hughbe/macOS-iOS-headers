@@ -8,7 +8,5 @@
 }
 
 - (void)dealloc;
-- (void)doit;
-- (id)initWithBlock:(id /* block */)arg1;
 
 @end

@@ -7,12 +7,7 @@
     UIImageView * _fgView;
 }
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithKeyplaneView:(id)arg1;
 - (void)setAlpha:(double)arg1;
 - (id)snapshotFromView:(id)arg1;

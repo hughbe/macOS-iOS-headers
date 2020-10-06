@@ -41,7 +41,10 @@
 - (bool)hasMaxCategories;
 - (bool)hasMaxResultsPerCategory;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)maxCategories;
 - (unsigned int)maxResultsPerCategory;
 - (void)mergeFrom:(id)arg1;

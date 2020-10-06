@@ -26,8 +26,8 @@
     NSObject<OS_dispatch_source> * _mach_source;
     unsigned long long  _messageSize;
     unsigned long long  _nextOutgoingMessageID;
+    NSArray * _nonWakingTopics;
     NSArray * _opportunisticTopics;
-    bool  _portNameIsBundleId;
     NSString * _processName;
     NSData * _publicToken;
     NSMutableArray * _queuedDelegateBlocks;
@@ -37,16 +37,21 @@
 
 @property (nonatomic) <APSConnectionDelegate> *delegate;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *delegateQueue;
+@property (setter=_setEnabledTopics:, nonatomic, retain) NSArray *enabledTopics;
+@property (setter=_setIgnoredTopics:, nonatomic, retain) NSArray *ignoredTopics;
 @property (nonatomic, readonly) bool isShutdown;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *ivarQueue;
 @property (nonatomic) unsigned long long largeMessageSize;
 @property (nonatomic) unsigned long long messageSize;
+@property (setter=_setNonWakingTopics:, nonatomic, retain) NSArray *nonWakingTopics;
+@property (setter=_setOpportunisticTopics:, nonatomic, retain) NSArray *opportunisticTopics;
 @property (nonatomic, readonly, retain) NSData *publicToken;
 @property (nonatomic) bool usesAppLaunchStats;
 
 // Image: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
 
 + (void)_blockingXPCCallWithArgumentBlock:(id /* block */)arg1 resultHandler:(id /* block */)arg2;
++ (id)_createXPCConnectionWithQueueName:(const char *)arg1;
 + (void)_flushIdentityCache;
 + (void)_safelyCancelAndReleaseConnection:(id)arg1;
 + (void)_setTokenState;
@@ -64,7 +69,7 @@
 - (void)_addEnableCriticalReliabilityToXPCMessage:(id)arg1;
 - (void)_addEnableStatusNotificationsToXPCMessage:(id)arg1;
 - (void)_addUsesAppLaunchStatsToXPCMessage:(id)arg1;
-- (void)_callDelegateOnIvarQueueWithBlock:(id /* block */)arg1;
+- (void)_asyncOnDelegateQueueWithBlock:(id /* block */)arg1;
 - (void)_cancelConnection;
 - (void)_cancelConnectionOnIvarQueue;
 - (void)_connectIfNecessary;
@@ -83,17 +88,23 @@
 - (void)_disconnectOnIvarQueue;
 - (void)_dispatch_async_to_ivarQueue:(id /* block */)arg1;
 - (void)_handleEvent:(id)arg1 withHandler:(id /* block */)arg2;
+- (id)_initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2 enablePushDuringSleep:(bool)arg3 queue:(id)arg4;
 - (id)_listForIdentifierOnIvarQueue:(unsigned long long)arg1;
 - (void)_noteDisconnectedFromDaemonOnIvarQueue;
-- (void)_onIvarQueue_setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3 sendToDaemon:(bool)arg4;
+- (void)_onIvarQueue_setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3 nonWakingTopics:(id)arg4 sendToDaemon:(bool)arg5 completion:(id /* block */)arg6;
 - (void)_reconnectIfNecessaryOnIvarQueueAfterDelay;
 - (void)_sendOutgoingMessage:(id)arg1 fake:(bool)arg2;
 - (void)_setEnableCriticalReliability:(bool)arg1 sendToDaemon:(bool)arg2;
 - (void)_setEnableStatusNotifications:(bool)arg1 sendToDaemon:(bool)arg2;
-- (void)_setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3 sendToDaemon:(bool)arg4;
+- (void)_setEnabledTopics:(id)arg1;
+- (void)_setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3 nonWakingTopics:(id)arg4 sendToDaemon:(bool)arg5 completion:(id /* block */)arg6;
+- (void)_setIgnoredTopics:(id)arg1;
+- (void)_setNonWakingTopics:(id)arg1;
+- (void)_setOpportunisticTopics:(id)arg1;
 - (void)_setUsesAppLaunchStats:(bool)arg1 sendToDaemon:(bool)arg2;
 - (void)_shutdownFromDealloc;
 - (void)_shutdownOnIvarQueue;
+- (id)_topicListNameForLogging:(unsigned long long)arg1;
 - (void)cancelOutgoingMessage:(id)arg1;
 - (void)confirmReceiptForMessage:(id)arg1;
 - (void)dealloc;
@@ -103,7 +114,6 @@
 - (bool)hasIdentity;
 - (id)ignoredTopics;
 - (id)initWithEnvironmentName:(id)arg1;
-- (id)initWithEnvironmentName:(id)arg1 launchBundleIdOnDemand:(id)arg2 queue:(id)arg3;
 - (id)initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2;
 - (id)initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2 queue:(id)arg3;
 - (id)initWithEnvironmentName:(id)arg1 queue:(id)arg2;
@@ -114,6 +124,7 @@
 - (unsigned long long)largeMessageSize;
 - (unsigned long long)messageSize;
 - (void)moveTopic:(id)arg1 fromList:(unsigned long long)arg2 toList:(unsigned long long)arg3;
+- (id)nonWakingTopics;
 - (id)opportunisticTopics;
 - (id)publicToken;
 - (void)removeFromRunLoop;
@@ -128,9 +139,12 @@
 - (void)setEnabledTopics:(id)arg1;
 - (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2;
 - (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3;
+- (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3 nonWakingTopics:(id)arg4;
+- (void)setEnabledTopics:(id)arg1 ignoredTopics:(id)arg2 opportunisticTopics:(id)arg3 nonWakingTopics:(id)arg4 completion:(id /* block */)arg5;
 - (void)setIgnoredTopics:(id)arg1;
 - (void)setLargeMessageSize:(unsigned long long)arg1;
 - (void)setMessageSize:(unsigned long long)arg1;
+- (void)setNonWakingTopics:(id)arg1;
 - (void)setOpportunisticTopics:(id)arg1;
 - (void)setUsesAppLaunchStats:(bool)arg1;
 - (void)shutdown;

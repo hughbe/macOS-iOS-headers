@@ -25,6 +25,8 @@
 - (void)didChangeMinuteInterval;
 - (void)didChangeMode;
 - (void)didChangeTimeZone;
+- (void)didChangeToday;
+- (void)didReset;
 - (bool)hasDefaultSize;
 - (void)setData:(_UIDatePickerDataModel *)arg1;
 - (void)setDatePicker:(UIDatePicker *)arg1;
@@ -40,12 +42,16 @@
 - (UIColor *)_textColor;
 - (UIColor *)_textShadowColor;
 - (void)_updateDateOrTime;
+- (void)_workaround66574039_datePickerDidUpdateLayoutMargins;
 - (double)contentWidth;
 - (NSDateComponents *)dateComponents;
+- (void)didChangeCustomFontDesign;
+- (UIResponder *)primaryFirstResponder;
 - (void)setDateComponents:(NSDateComponents *)arg1;
 - (void)setHighlightsToday:(bool)arg1;
 - (void)setStaggerTimeIntervals:(bool)arg1;
 - (void)setTimeInterval:(double)arg1;
 - (double)timeInterval;
+- (bool)usesAutoLayout;
 
 @end

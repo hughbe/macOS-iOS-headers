@@ -12,11 +12,9 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) GEOETATrafficUpdateRequest *updatedRequest;
 
-+ (bool)supportsSecureCoding;
-
 - (void).cxx_destruct;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (void)encodeToXPCDictionary:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (bool)isValid;
 - (void)setUpdatedRequest:(id)arg1;
 - (id)updatedRequest;

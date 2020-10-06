@@ -3,7 +3,9 @@
  */
 
 @interface AMSKeychainOptions : NSObject <NSCopying> {
+    bool  _authenticationFallbackVisible;
     NSString * _clientCertLabel;
+    bool  _displayAuthenticationReason;
     NSString * _intermediateCertLabel;
     NSString * _label;
     NSString * _prompt;
@@ -12,7 +14,9 @@
     unsigned long long  _style;
 }
 
+@property (nonatomic) bool authenticationFallbackVisible;
 @property (nonatomic, copy) NSString *clientCertLabel;
+@property (nonatomic) bool displayAuthenticationReason;
 @property (nonatomic, copy) NSString *intermediateCertLabel;
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic, copy) NSString *prompt;
@@ -24,9 +28,11 @@
 
 - (void).cxx_destruct;
 - (bool)_compareString:(id)arg1 withString:(id)arg2;
+- (bool)authenticationFallbackVisible;
 - (id)clientCertLabel;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
+- (bool)displayAuthenticationReason;
 - (id)init;
 - (id)initWithOptionsDictionary:(id)arg1;
 - (id)intermediateCertLabel;
@@ -36,7 +42,9 @@
 - (id)prompt;
 - (unsigned long long)purpose;
 - (bool)regenerateKeys;
+- (void)setAuthenticationFallbackVisible:(bool)arg1;
 - (void)setClientCertLabel:(id)arg1;
+- (void)setDisplayAuthenticationReason:(bool)arg1;
 - (void)setIntermediateCertLabel:(id)arg1;
 - (void)setLabel:(id)arg1;
 - (void)setPrompt:(id)arg1;

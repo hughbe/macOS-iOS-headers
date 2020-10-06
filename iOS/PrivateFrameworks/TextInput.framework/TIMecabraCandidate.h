@@ -17,13 +17,17 @@
     bool  _isForShortcutConversion;
     NSNumber * _mecabraCandidatePointerValue;
     bool  _partialCandidate;
+    bool  _prefixMatched;
     bool  _regionalCandidate;
     bool  _responseKitCandidate;
     NSString * _responseKitCategory;
+    bool  _wubixingConvertedByPinyin;
 }
 
 @property (getter=isContinuousPathConversion, nonatomic) bool continuousPathConversion;
 @property (nonatomic, retain) NSNumber *mecabraCandidatePointerValue;
+
+// Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
 
 + (bool)supportsSecureCoding;
 + (int)type;
@@ -53,12 +57,24 @@
 - (bool)isFullwidthCandidate;
 - (bool)isOTAWordListCandidate;
 - (bool)isPartialCandidate;
+- (bool)isPrefixMatched;
 - (bool)isRegionalCandidate;
 - (bool)isResponseKitCandidate;
+- (bool)isWubixingConvertedByPinyin;
 - (id)label;
 - (id)mecabraCandidatePointerValue;
 - (id)responseKitCategory;
 - (void)setContinuousPathConversion:(bool)arg1;
 - (void)setMecabraCandidatePointerValue:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TextInputCore.framework/TextInputCore
+
++ (id)convertedInputFromMecabraCandidate:(void*)arg1;
++ (id)dictionaryReadingFromMecabraCandidate:(void*)arg1;
++ (id)displayReadingFromMecabraCandidate:(void*)arg1;
++ (id)mecabraCandidateWithCandidateRef:(const void*)arg1 autoconvertedCandidates:(id)arg2;
+
+- (id)initWithMecabraCandidate:(const void*)arg1;
+- (id)initWithMecabraCandidate:(const void*)arg1 cursorMovement:(long long)arg2;
 
 @end

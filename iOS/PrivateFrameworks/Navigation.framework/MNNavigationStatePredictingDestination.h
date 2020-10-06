@@ -12,6 +12,7 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (id)clParameters;
 - (void)commuteSession:(id)arg1 didUpdateDestinations:(id)arg2;
 - (void)commuteSessionDidArrive:(id)arg1;
 - (unsigned long long)desiredLocationProviderType;

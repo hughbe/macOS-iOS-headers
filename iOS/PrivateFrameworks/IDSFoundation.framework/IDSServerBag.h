@@ -19,7 +19,6 @@
     unsigned long long  _hasPairedDeviceState;
     BOOL  _hashAlgorithm;
     NSDate * _loadDate;
-    IDSRateLimiter * _rateLimiter;
     IDSRemoteURLConnection * _remoteURLConnection;
     id /* block */  _remoteURLCreationBlock;
     NSArray * _serverCerts;
@@ -53,12 +52,15 @@
 @property (readonly) bool isLoaded;
 @property (readonly) bool isLoading;
 @property (readonly) bool isServerAvailable;
-@property (nonatomic, retain) IDSRateLimiter *rateLimiter;
 @property (copy) id /* block */ remoteURLCreationBlock;
+@property (readonly) bool requiresIDSConnection;
+@property (readonly) bool requiresIDSHost;
 @property (retain) NSArray *serverCerts;
 @property (retain) NSData *serverGivenBag;
 @property (retain) NSData *serverSignature;
 @property int token;
+
+// Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
 
 + (id)_bagCreationLock;
 + (id)_sharedInstance;
@@ -118,8 +120,9 @@
 - (bool)isLoading;
 - (bool)isServerAvailable;
 - (id)objectForKey:(id)arg1;
-- (id)rateLimiter;
 - (id /* block */)remoteURLCreationBlock;
+- (bool)requiresIDSConnection;
+- (bool)requiresIDSHost;
 - (id)serverCerts;
 - (id)serverGivenBag;
 - (id)serverSignature;
@@ -130,7 +133,6 @@
 - (void)setConnectionMonitorCreationBlock:(id /* block */)arg1;
 - (void)setHasPairedDeviceState:(unsigned long long)arg1;
 - (void)setHashAlgorithm:(BOOL)arg1;
-- (void)setRateLimiter:(id)arg1;
 - (void)setRemoteURLCreationBlock:(id /* block */)arg1;
 - (void)setServerCerts:(id)arg1;
 - (void)setServerGivenBag:(id)arg1;
@@ -147,5 +149,9 @@
 - (int)token;
 - (bool)trustRefFromCertificates:(id)arg1 canReportFailure:(bool)arg2 trustRef:(struct __SecTrust {}**)arg3;
 - (id)urlWithKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUtilities.framework/IMSharedUtilities
+
++ (bool)im_messageCheckpointingEnabled;
 
 @end

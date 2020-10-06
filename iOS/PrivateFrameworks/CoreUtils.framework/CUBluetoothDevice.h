@@ -10,6 +10,8 @@
     int  _colorCode;
     unsigned int  _connectedServices;
     unsigned int  _deviceFlags;
+    unsigned int  _deviceType;
+    int  _disconnectReason;
     NSUUID * _identifier;
     bool  _magicPaired;
     NSString * _manufacturer;
@@ -19,7 +21,9 @@
     int  _primaryPlacement;
     unsigned int  _productIdentifier;
     int  _secondaryPlacement;
+    int  _streamState;
     bool  _supportsAACPService;
+    unsigned int  _versionID;
 }
 
 @property (nonatomic) struct { unsigned char x1[6]; } address;
@@ -27,6 +31,8 @@
 @property (nonatomic) int colorCode;
 @property (nonatomic) unsigned int connectedServices;
 @property (nonatomic) unsigned int deviceFlags;
+@property (nonatomic) unsigned int deviceType;
+@property (nonatomic) int disconnectReason;
 @property (nonatomic, copy) NSUUID *identifier;
 @property (nonatomic) bool magicPaired;
 @property (nonatomic, copy) NSString *manufacturer;
@@ -36,7 +42,9 @@
 @property (nonatomic) int primaryPlacement;
 @property (nonatomic) unsigned int productIdentifier;
 @property (nonatomic) int secondaryPlacement;
+@property (nonatomic) int streamState;
 @property (nonatomic) bool supportsAACPService;
+@property (nonatomic) unsigned int versionID;
 
 - (void).cxx_destruct;
 - (struct { unsigned char x1[6]; })address;
@@ -45,6 +53,8 @@
 - (unsigned int)connectedServices;
 - (id)description;
 - (unsigned int)deviceFlags;
+- (unsigned int)deviceType;
+- (int)disconnectReason;
 - (unsigned long long)hash;
 - (id)identifier;
 - (id)init;
@@ -62,6 +72,8 @@
 - (void)setColorCode:(int)arg1;
 - (void)setConnectedServices:(unsigned int)arg1;
 - (void)setDeviceFlags:(unsigned int)arg1;
+- (void)setDeviceType:(unsigned int)arg1;
+- (void)setDisconnectReason:(int)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setMagicPaired:(bool)arg1;
 - (void)setManufacturer:(id)arg1;
@@ -71,7 +83,11 @@
 - (void)setPrimaryPlacement:(int)arg1;
 - (void)setProductIdentifier:(unsigned int)arg1;
 - (void)setSecondaryPlacement:(int)arg1;
+- (void)setStreamState:(int)arg1;
 - (void)setSupportsAACPService:(bool)arg1;
+- (void)setVersionID:(unsigned int)arg1;
+- (int)streamState;
 - (bool)supportsAACPService;
+- (unsigned int)versionID;
 
 @end

@@ -4,6 +4,7 @@
 
 @interface CNUIPlaceholderProviderFactory : NSObject <CNUIPlaceholderProviderFactory> {
     <CNScheduler> * _highPriorityLock;
+    <CNUIPRLikenessProvider> * _loadingGroupPlaceholderProvider;
     <CNUIPRLikenessProvider> * _loadingPlaceholderProvider;
     <CNUIPRLikenessProvider> * _placeholderProvider;
     <CNScheduler> * _resourceLock;
@@ -13,6 +14,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) <CNScheduler> *highPriorityLock;
+@property (readonly) <CNUIPRLikenessProvider> *loadingGroupPlaceholderProvider;
 @property (readonly) <CNUIPRLikenessProvider> *loadingPlaceholderProvider;
 @property (readonly) <CNUIPRLikenessProvider> *placeholderProvider;
 @property (nonatomic, retain) <CNScheduler> *resourceLock;
@@ -21,6 +23,8 @@
 - (void).cxx_destruct;
 - (id)highPriorityLock;
 - (id)init;
+- (id)loadingGroupPlaceholderProvider;
+- (id)loadingGroupPlaceholderProviderWithBackgroundStyle:(unsigned long long)arg1;
 - (id)loadingPlaceholderProvider;
 - (id)placeholderProvider;
 - (id)resourceLock;

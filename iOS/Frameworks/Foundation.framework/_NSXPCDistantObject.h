@@ -14,30 +14,14 @@
 }
 
 @property (readonly, retain) NSXPCConnection *_connection;
-@property (readonly, copy) id /* block */ _errorBlock;
-@property (readonly) bool _exported;
-@property (readonly) unsigned long long _generationCount;
-@property (readonly) bool _noImportance;
-@property (readonly) unsigned long long _proxyNumber;
-@property (retain) NSXPCInterface *_remoteInterface;
-@property (readonly) bool _sync;
-@property double _timeout;
 @property (copy) NSDictionary *_userInfo;
 
 + (bool)supportsSecureCoding;
 
 - (id)_connection;
-- (id /* block */)_errorBlock;
-- (bool)_exported;
 - (void)_forwardStackInvocation:(id)arg1;
-- (unsigned long long)_generationCount;
 - (id)_initWithConnection:(id)arg1 exportedObject:(id)arg2 interface:(id)arg3;
 - (id)_initWithConnection:(id)arg1 proxyNumber:(unsigned long long)arg2 generationCount:(unsigned long long)arg3 interface:(id)arg4 options:(unsigned long long)arg5 error:(id /* block */)arg6;
-- (bool)_noImportance;
-- (unsigned long long)_proxyNumber;
-- (id)_remoteInterface;
-- (bool)_sync;
-- (double)_timeout;
 - (id)_unboostingRemoteObjectProxy;
 - (id)_userInfo;
 - (bool)conformsToProtocol:(id)arg1;
@@ -51,8 +35,6 @@
 - (id)remoteObjectProxyWithTimeout:(double)arg1 errorHandler:(id /* block */)arg2;
 - (id)remoteObjectProxyWithUserInfo:(id)arg1 errorHandler:(id /* block */)arg2;
 - (bool)respondsToSelector:(SEL)arg1;
-- (void)set_remoteInterface:(id)arg1;
-- (void)set_timeout:(double)arg1;
 - (void)set_userInfo:(id)arg1;
 - (id)synchronousRemoteObjectProxyWithErrorHandler:(id /* block */)arg1;
 

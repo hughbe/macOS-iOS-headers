@@ -12,6 +12,7 @@
 - (void)cancel;
 - (GEOCategorySearchResultSection *)categorySearchResultSection;
 - (GEOResolvedItem *)clientResolvedResult;
+- (NSArray *)collectionResults;
 - (GEORelatedSearchSuggestion *)defaultRelatedSuggestion;
 - (GEODirectionIntent *)directionIntent;
 - (NSArray *)displayHeaderSubstitutes;
@@ -19,7 +20,9 @@
 - (NSError *)error;
 - (NSArray *)exactMapItems;
 - (bool)isChainResultSet;
+- (NSArray *)publisherResults;
 - (NSArray *)refinedMapItems;
+- (NSArray *)relatedEntitySections;
 - (NSArray *)relatedSearchSuggestions;
 - (double)requestResponseTime;
 - (NSString *)resultDisplayHeader;

@@ -13,6 +13,8 @@
 - (struct RenderTarget { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; struct RenderTargetFormat { int x_6_1_1[4]; unsigned long long x_6_1_2; unsigned int x_6_1_3; int x_6_1_4; } x6; struct Texture {} *x7[4]; struct Texture {} *x8[4]; struct Texture {} *x9; bool x10; }*)finalRenderTarget;
 - (const struct RenderTargetFormat { int x1[4]; unsigned long long x2; unsigned int x3; int x4; }*)format;
 - (bool)hasRenderTarget;
+- (const struct RenderTargetFormat { int x1[4]; unsigned long long x2; unsigned int x3; int x4; }*)linearFormat;
+- (struct RenderTarget { int (**x1)(); struct ResourceManager {} *x2; struct RenderResource {} *x3; int (**x4)(); char *x5; struct RenderTargetFormat { int x_6_1_1[4]; unsigned long long x_6_1_2; unsigned int x_6_1_3; int x_6_1_4; } x6; struct Texture {} *x7[4]; struct Texture {} *x8[4]; struct Texture {} *x9; bool x10; }*)linearRenderTarget;
 - (bool)multiSample;
 - (<GGLRenderQueueSource> *)renderSource;
 - (void)renderWithTimestamp:(void *)arg1 completion:(void *)arg2; // needs 2 arg types, found 5: double, struct function<void ()>={__value_func<void ()>={type=[24C] {}, struct __base<void ()> {}*, /* Warning: Unrecognized filer type: '}' using 'void*' */ void*, void*
@@ -24,6 +26,7 @@
 - (bool)shouldRasterize;
 - (struct CGSize { double x1; double x2; })size;
 - (struct CGSize { double x1; double x2; })sizeInPixels;
+- (bool)supportsFramebufferFetch;
 
 @optional
 

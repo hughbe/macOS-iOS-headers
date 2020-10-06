@@ -9,7 +9,7 @@
 + (Class)recipientType;
 
 - (int)StringAsEffect:(NSString *)arg1;
-- (int)StringAsMessageType:(NSString *)arg1;
+- (int)StringAsOutgoingMessageType:(NSString *)arg1;
 - (void)addAttachments:(_INPBSendMessageAttachment *)arg1;
 - (void)addRecipient:(_INPBContact *)arg1;
 - (NSArray *)attachments;
@@ -27,13 +27,13 @@
 - (bool)hasEffect;
 - (bool)hasGroupName;
 - (bool)hasIntentMetadata;
-- (bool)hasMessageType;
+- (bool)hasOutgoingMessageType;
 - (bool)hasSender;
 - (bool)hasServiceName;
 - (bool)hasSpeakableGroupName;
 - (_INPBIntentMetadata *)intentMetadata;
-- (int)messageType;
-- (NSString *)messageTypeAsString:(int)arg1;
+- (int)outgoingMessageType;
+- (NSString *)outgoingMessageTypeAsString:(int)arg1;
 - (_INPBContact *)recipientAtIndex:(unsigned long long)arg1;
 - (NSArray *)recipients;
 - (unsigned long long)recipientsCount;
@@ -45,9 +45,9 @@
 - (void)setEffect:(int)arg1;
 - (void)setGroupName:(_INPBString *)arg1;
 - (void)setHasEffect:(bool)arg1;
-- (void)setHasMessageType:(bool)arg1;
+- (void)setHasOutgoingMessageType:(bool)arg1;
 - (void)setIntentMetadata:(_INPBIntentMetadata *)arg1;
-- (void)setMessageType:(int)arg1;
+- (void)setOutgoingMessageType:(int)arg1;
 - (void)setRecipients:(NSArray *)arg1;
 - (void)setSender:(_INPBContact *)arg1;
 - (void)setServiceName:(NSString *)arg1;

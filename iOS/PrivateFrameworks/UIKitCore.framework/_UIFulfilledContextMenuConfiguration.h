@@ -3,22 +3,22 @@
  */
 
 @interface _UIFulfilledContextMenuConfiguration : NSObject {
-    UIMenu * _actions;
     <NSCopying> * _identifier;
+    UIMenu * _menu;
     UIViewController * _previewViewController;
 }
 
-@property (nonatomic, copy) UIMenu *actions;
 @property (nonatomic, copy) <NSCopying> *identifier;
+@property (nonatomic, copy) UIMenu *menu;
 @property (nonatomic, retain) UIViewController *previewViewController;
 
 - (void).cxx_destruct;
-- (id)actions;
 - (id)identifier;
 - (bool)isPresentable;
+- (id)menu;
 - (id)previewViewController;
-- (void)setActions:(id)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setMenu:(id)arg1;
 - (void)setPreviewViewController:(id)arg1;
 
 @end

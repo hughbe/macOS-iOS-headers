@@ -9,7 +9,9 @@
 - (id)addMemberToGroupEventWithMember:(id)arg1 group:(id)arg2;
 - (id)addSubgroupToGroupEventWithSubgroup:(id)arg1 group:(id)arg2;
 - (id)deleteContactEventWithContactIdentifier:(id)arg1;
+- (id)deleteContactEventWithContactIdentifier:(id)arg1 externalURI:(id)arg2 externalModificationTag:(id)arg3;
 - (id)deleteGroupEventWithGroupIdentifier:(id)arg1;
+- (id)deleteGroupEventWithGroupIdentifier:(id)arg1 externalURI:(id)arg2 externalModificationTag:(id)arg3;
 - (id)differentMeCardEventWithContactIdentifier:(id)arg1;
 - (id)dropEverythingEvent;
 - (id)linkContactsEventWithFromContact:(id)arg1 toContact:(id)arg2;

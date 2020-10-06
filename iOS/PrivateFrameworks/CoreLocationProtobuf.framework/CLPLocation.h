@@ -5,6 +5,7 @@
 @interface CLPLocation : PBCodable <NSCopying> {
     float  _altitude;
     NSMutableArray * _appBundleIdIndices;
+    CLPBaroCalibrationIndication * _baroCalibrationIndication;
     int  _context;
     float  _course;
     float  _courseAccuracy;
@@ -55,12 +56,14 @@
 
 @property (nonatomic) float altitude;
 @property (nonatomic, retain) NSMutableArray *appBundleIdIndices;
+@property (nonatomic, retain) CLPBaroCalibrationIndication *baroCalibrationIndication;
 @property (nonatomic) int context;
 @property (nonatomic) float course;
 @property (nonatomic) float courseAccuracy;
 @property (nonatomic, retain) CLPMotionActivity *dominantMotionActivity;
 @property (nonatomic) int floor;
 @property (nonatomic) bool hasAltitude;
+@property (nonatomic, readonly) bool hasBaroCalibrationIndication;
 @property (nonatomic) bool hasContext;
 @property (nonatomic) bool hasCourse;
 @property (nonatomic) bool hasCourseAccuracy;
@@ -114,6 +117,7 @@
 - (id)appBundleIdIndices;
 - (id)appBundleIdIndicesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)appBundleIdIndicesCount;
+- (id)baroCalibrationIndication;
 - (void)clearAppBundleIdIndices;
 - (int)context;
 - (void)copyTo:(id)arg1;
@@ -125,6 +129,7 @@
 - (id)dominantMotionActivity;
 - (int)floor;
 - (bool)hasAltitude;
+- (bool)hasBaroCalibrationIndication;
 - (bool)hasContext;
 - (bool)hasCourse;
 - (bool)hasCourseAccuracy;
@@ -171,6 +176,7 @@
 - (id)satReport;
 - (void)setAltitude:(float)arg1;
 - (void)setAppBundleIdIndices:(id)arg1;
+- (void)setBaroCalibrationIndication:(id)arg1;
 - (void)setContext:(int)arg1;
 - (void)setCourse:(float)arg1;
 - (void)setCourseAccuracy:(float)arg1;

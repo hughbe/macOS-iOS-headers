@@ -42,6 +42,7 @@
     NSString * _networkHostname;
     NSString * _networkInterfaceIdentifier;
     bool  _networkIsDiscretionary;
+    NSString * _networkNegotiatedTlsProtocolVersion;
     unsigned int  _networkPreviousAttemptCount;
     NSString * _networkProtocolName;
     NSString * _networkRemoteAddresssAndPort;
@@ -88,6 +89,7 @@
 @property (nonatomic, readonly) bool hasNetworkHostname;
 @property (nonatomic, readonly) bool hasNetworkInterfaceIdentifier;
 @property (nonatomic) bool hasNetworkIsDiscretionary;
+@property (nonatomic, readonly) bool hasNetworkNegotiatedTlsProtocolVersion;
 @property (nonatomic) bool hasNetworkPreviousAttemptCount;
 @property (nonatomic, readonly) bool hasNetworkProtocolName;
 @property (nonatomic, readonly) bool hasNetworkRemoteAddresssAndPort;
@@ -132,6 +134,7 @@
 @property (nonatomic, retain) NSString *networkHostname;
 @property (nonatomic, retain) NSString *networkInterfaceIdentifier;
 @property (nonatomic) bool networkIsDiscretionary;
+@property (nonatomic, retain) NSString *networkNegotiatedTlsProtocolVersion;
 @property (nonatomic) unsigned int networkPreviousAttemptCount;
 @property (nonatomic, retain) NSString *networkProtocolName;
 @property (nonatomic, retain) NSString *networkRemoteAddresssAndPort;
@@ -182,6 +185,7 @@
 - (bool)hasNetworkHostname;
 - (bool)hasNetworkInterfaceIdentifier;
 - (bool)hasNetworkIsDiscretionary;
+- (bool)hasNetworkNegotiatedTlsProtocolVersion;
 - (bool)hasNetworkPreviousAttemptCount;
 - (bool)hasNetworkProtocolName;
 - (bool)hasNetworkRemoteAddresssAndPort;
@@ -229,6 +233,7 @@
 - (id)networkHostname;
 - (id)networkInterfaceIdentifier;
 - (bool)networkIsDiscretionary;
+- (id)networkNegotiatedTlsProtocolVersion;
 - (unsigned int)networkPreviousAttemptCount;
 - (id)networkProtocolName;
 - (id)networkRemoteAddresssAndPort;
@@ -292,6 +297,7 @@
 - (void)setNetworkHostname:(id)arg1;
 - (void)setNetworkInterfaceIdentifier:(id)arg1;
 - (void)setNetworkIsDiscretionary:(bool)arg1;
+- (void)setNetworkNegotiatedTlsProtocolVersion:(id)arg1;
 - (void)setNetworkPreviousAttemptCount:(unsigned int)arg1;
 - (void)setNetworkProtocolName:(id)arg1;
 - (void)setNetworkRemoteAddresssAndPort:(id)arg1;

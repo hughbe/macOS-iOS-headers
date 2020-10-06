@@ -11,8 +11,8 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)assertionEndpoint;
-- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;

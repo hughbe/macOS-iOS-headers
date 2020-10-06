@@ -8,8 +8,7 @@
     struct { 
         unsigned int read_bookedTableSessionId : 1; 
         unsigned int read_bookedTables : 1; 
-        unsigned int wrote_bookedTableSessionId : 1; 
-        unsigned int wrote_bookedTables : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -27,9 +26,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsBookedTable:(id)arg1;
-- (void)_readBookedTableSessionId;
-- (void)_readBookedTables;
 - (void)addBookedTable:(id)arg1;
 - (id)bookedTableAtIndex:(unsigned long long)arg1;
 - (id)bookedTableSessionId;
@@ -44,7 +40,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

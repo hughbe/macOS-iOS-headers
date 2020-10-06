@@ -3,9 +3,7 @@
  */
 
 @interface CSAttributeEvaluator : NSObject {
-    unsigned long long  _attributeTokenCount;
     bool  _fuzzyMatching;
-    id /* block */  _handler;
     NSString * _language;
     bool  _matchOncePerTerm;
     unsigned long long  _matcherCount;
@@ -17,9 +15,7 @@
     void * _tokenizer;
 }
 
-@property (nonatomic) unsigned long long attributeTokenCount;
 @property (nonatomic) bool fuzzyMatching;
-@property (nonatomic, copy) id /* block */ handler;
 @property (nonatomic, retain) NSString *language;
 @property (nonatomic) bool matchOncePerTerm;
 @property (nonatomic) unsigned long long matcherCount;
@@ -34,25 +30,26 @@
 + (void)enumerateTokensForString:(id)arg1 locale:(id)arg2 options:(unsigned long long)arg3 withHandler:(id /* block */)arg4;
 
 - (void).cxx_destruct;
-- (unsigned long long)attributeTokenCount;
 - (void)dealloc;
 - (unsigned long long)evaluateAttribute:(id)arg1 ignoreSubtokens:(bool)arg2 skipTranscriptions:(bool)arg3 withFuzzyHandler:(id /* block */)arg4;
 - (unsigned long long)evaluateAttribute:(id)arg1 ignoreSubtokens:(bool)arg2 skipTranscriptions:(bool)arg3 withHandler:(id /* block */)arg4;
+- (unsigned long long)evaluateAttribute:(id)arg1 ignoreSubtokens:(bool)arg2 strongCompounds:(bool)arg3 skipTranscriptions:(bool)arg4 withFuzzyHandler:(id /* block */)arg5;
+- (unsigned long long)evaluateAttribute:(id)arg1 ignoreSubtokens:(bool)arg2 strongCompounds:(bool)arg3 skipTranscriptions:(bool)arg4 withHandler:(id /* block */)arg5;
+- (unsigned long long)evaluateAttribute:(id)arg1 ignoreSubtokens:(bool)arg2 strongCompounds:(bool)arg3 withHandler:(id /* block */)arg4;
 - (unsigned long long)evaluateAttribute:(id)arg1 ignoreSubtokens:(bool)arg2 withHandler:(id /* block */)arg3;
 - (bool)fuzzyMatching;
-- (id /* block */)handler;
 - (id)initWithQuery:(id)arg1 language:(id)arg2 fuzzyThreshold:(unsigned char)arg3 options:(unsigned long long)arg4;
 - (id)language;
 - (bool)matchOncePerTerm;
 - (unsigned long long)matcherCount;
 - (const void**)matchers;
 - (unsigned long long)options;
+- (bool)processPropertyToken:(const unsigned short*)arg1 length:(long long)arg2 tokenType:(int)arg3 range:(struct { long long x1; long long x2; })arg4 index:(long long)arg5 evaluationHandler:(id /* block */)arg6;
+- (void)processTranscriptionTokens:(struct CSAttributeEvaluatorContext { id x1; id /* block */ x2; unsigned long long x3; bool x4; char *x5; long long x6; long long x7; struct { /* ? */ } *x8; struct { /* ? */ } *x9; long long *x10; long long x11; long long x12; }*)arg1;
 - (id)queryString;
 - (unsigned long long)queryTermCount;
 - (id)queryTerms;
-- (void)setAttributeTokenCount:(unsigned long long)arg1;
 - (void)setFuzzyMatching:(bool)arg1;
-- (void)setHandler:(id /* block */)arg1;
 - (void)setLanguage:(id)arg1;
 - (void)setMatchOncePerTerm:(bool)arg1;
 - (void)setMatcherCount:(unsigned long long)arg1;

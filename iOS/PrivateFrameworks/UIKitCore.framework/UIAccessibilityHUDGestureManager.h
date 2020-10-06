@@ -6,7 +6,8 @@
     <UIAccessibilityHUDGestureDelegate> * _delegate;
     bool  _delegateDirectlyShowsHUD;
     bool  _isInvalidated;
-    UILongPressGestureRecognizer * _recognizer;
+    UIAccessibilityHUDGestureLongPressRecognizer * _recognizer;
+    bool  _shouldFailAfterMinimumPresentationDuration;
     NSMutableArray * _subscribedConcurrentGestureRecognizers;
     UIView * _view;
     UIViewController * _viewControllerDisplayingHUD;
@@ -20,11 +21,14 @@
 @property (nonatomic, readonly) UIView *view;
 
 - (void).cxx_destruct;
+- (void)_backOff;
+- (void)_backOffIfNeeded;
 - (id)_bestViewControllerForView;
 - (void)_clearButtonItemGestureSubscriptions;
 - (void)_concurrentGestureRecognizerFired:(id)arg1;
 - (void)_didToggleLargeContentViewer:(id)arg1;
 - (void)_dismissAccessibilityHUD;
+- (bool)_gestureRecognizer:(id)arg1 canPreventGestureRecognizer:(id)arg2;
 - (bool)_gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
 - (void)_gestureRecognizerChanged:(id)arg1;
 - (void)_invalidate;

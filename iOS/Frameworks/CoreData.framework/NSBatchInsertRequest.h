@@ -15,10 +15,10 @@
     NSArray * _objectsToInsert;
 }
 
+@property (copy) id /* block */ dictionaryHandler;
 @property (readonly) NSEntityDescription *entity;
 @property (readonly, copy) NSString *entityName;
-@property (copy) id /* block */ insertDictionaryHandler;
-@property (copy) id /* block */ insertManagedObjectHandler;
+@property (copy) id /* block */ managedObjectHandler;
 @property (copy) NSArray *objectsToInsert;
 @property unsigned long long resultType;
 
@@ -35,6 +35,7 @@
 - (void)_setSecureOperation:(bool)arg1;
 - (void)dealloc;
 - (id)description;
+- (id /* block */)dictionaryHandler;
 - (id)encodeForXPC;
 - (id)entity;
 - (id)entityName;
@@ -45,13 +46,12 @@
 - (id)initWithEntityName:(id)arg1 dictionaryHandler:(id /* block */)arg2;
 - (id)initWithEntityName:(id)arg1 managedObjectHandler:(id /* block */)arg2;
 - (id)initWithEntityName:(id)arg1 objects:(id)arg2;
-- (id /* block */)insertDictionaryHandler;
-- (id /* block */)insertManagedObjectHandler;
+- (id /* block */)managedObjectHandler;
 - (id)objectsToInsert;
 - (unsigned long long)requestType;
 - (unsigned long long)resultType;
-- (void)setInsertDictionaryHandler:(id /* block */)arg1;
-- (void)setInsertManagedObjectHandler:(id /* block */)arg1;
+- (void)setDictionaryHandler:(id /* block */)arg1;
+- (void)setManagedObjectHandler:(id /* block */)arg1;
 - (void)setObjectsToInsert:(id)arg1;
 - (void)setResultType:(unsigned long long)arg1;
 

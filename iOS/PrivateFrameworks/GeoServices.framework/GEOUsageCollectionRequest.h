@@ -9,10 +9,7 @@
         unsigned int read_tilesAbExperimentAssignment : 1; 
         unsigned int read_timeToLeaveHypothesisFeedbackCollections : 1; 
         unsigned int read_timeToLeaveInitialTravelTimeFeedbackCollections : 1; 
-        unsigned int wrote_abExperimentAssignments : 1; 
-        unsigned int wrote_tilesAbExperimentAssignment : 1; 
-        unsigned int wrote_timeToLeaveHypothesisFeedbackCollections : 1; 
-        unsigned int wrote_timeToLeaveInitialTravelTimeFeedbackCollections : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,13 +34,6 @@
 + (Class)timeToLeaveInitialTravelTimeFeedbackCollectionType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAbExperimentAssignment:(id)arg1;
-- (void)_addNoFlagsTimeToLeaveHypothesisFeedbackCollection:(id)arg1;
-- (void)_addNoFlagsTimeToLeaveInitialTravelTimeFeedbackCollection:(id)arg1;
-- (void)_readAbExperimentAssignments;
-- (void)_readTilesAbExperimentAssignment;
-- (void)_readTimeToLeaveHypothesisFeedbackCollections;
-- (void)_readTimeToLeaveInitialTravelTimeFeedbackCollections;
 - (id)abExperimentAssignmentAtIndex:(unsigned long long)arg1;
 - (id)abExperimentAssignments;
 - (unsigned long long)abExperimentAssignmentsCount;
@@ -61,7 +51,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

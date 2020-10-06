@@ -11,9 +11,9 @@
 }
 
 @property (nonatomic, readonly) long long databaseScope;
-@property (nonatomic, readonly) NSString *fieldName;
-@property (nonatomic, readonly) CKRecordID *recordID;
-@property (nonatomic, readonly) NSString *recordType;
+@property (nonatomic, readonly, copy) NSString *fieldName;
+@property (nonatomic, readonly, copy) CKRecordID *recordID;
+@property (nonatomic, readonly, copy) NSString *recordType;
 @property (nonatomic, readonly) CKRecordID *repairZoneRecordID;
 
 + (bool)supportsSecureCoding;

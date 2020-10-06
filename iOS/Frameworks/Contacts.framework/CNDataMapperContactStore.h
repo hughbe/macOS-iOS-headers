@@ -34,6 +34,7 @@
 - (id)contactsForFetchRequest:(id)arg1 matchInfos:(id*)arg2 error:(id*)arg3;
 - (id)contactsInContainerWithIdentifier:(id)arg1 keysToFetch:(id)arg2 error:(id*)arg3;
 - (id)containersMatchingPredicate:(id)arg1 error:(id*)arg2;
+- (id)currentHistoryAnchor;
 - (id)currentHistoryToken;
 - (id)defaultContainerIdentifier;
 - (id)description;

@@ -3,6 +3,7 @@
  */
 
 @interface RPRequestEntry : NSObject {
+    unsigned long long  _length;
     NSDictionary * _options;
     NSString * _requestID;
     id /* block */  _responseHandler;
@@ -11,6 +12,7 @@
     unsigned int  _xpcID;
 }
 
+@property (nonatomic) unsigned long long length;
 @property (nonatomic, copy) NSDictionary *options;
 @property (nonatomic, copy) NSString *requestID;
 @property (nonatomic, copy) id /* block */ responseHandler;
@@ -19,10 +21,12 @@
 @property (nonatomic) unsigned int xpcID;
 
 - (void).cxx_destruct;
+- (unsigned long long)length;
 - (id)options;
 - (id)requestID;
 - (id /* block */)responseHandler;
 - (unsigned long long)sendTicks;
+- (void)setLength:(unsigned long long)arg1;
 - (void)setOptions:(id)arg1;
 - (void)setRequestID:(id)arg1;
 - (void)setResponseHandler:(id /* block */)arg1;

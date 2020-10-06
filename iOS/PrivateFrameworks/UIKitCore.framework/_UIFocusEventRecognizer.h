@@ -6,6 +6,7 @@
     CARInputDeviceTouchpad * _currentCarTouchpad;
     <_UIFocusEventRecognizerDelegate> * _delegate;
     bool  _enabled;
+    unsigned long long  _failedPanGestureHeading;
     _UIFocusFastScrollingRecognizer * _fastScrollingRecognizer;
     struct CGPoint { 
         double x; 
@@ -22,7 +23,6 @@
     }  _flags;
     unsigned long long  _focusUpdateCountSinceLastPanBegan;
     unsigned long long  _inputType;
-    bool  _isShippingSettings;
     CADisplayLink * _joystickFocusDirectionDisplayLink;
     _UIFocusEngineJoystickGestureRecognizer * _joystickGestureRecognizer;
     NSTimer * _joystickModeExitTimer;
@@ -65,15 +65,12 @@
     }  _progressAccumulator;
     NSArray * _remoteGestures;
     _UIFocusPressGestureRecognizer * _selectGestureRecognizer;
-    CARSessionStatus * _sessionStatus;
     bool  _supportsFastScrolling;
     UITapGestureRecognizer * _tapGestureRecognizer;
     struct CGPoint { 
         double x; 
         double y; 
     }  _touchBeganPoint;
-    NSObservation * _trackingModeObserveration;
-    NSUserDefaults * _trackingUserDefaults;
     struct CGVector { 
         double dx; 
         double dy; 
@@ -107,8 +104,9 @@
 - (id)_focusMovementForJoystickPosition:(struct CGPoint { double x1; double x2; })arg1 usingMinimumRadius:(double)arg2 focusMovementStyle:(long long)arg3;
 - (id)_focusMovementSystem;
 - (void)_focusSystemEnabledStateDidChange:(id)arg1;
-- (double)_frictionInterpolationForMomentumSpeed:(double)arg1 totalDistance:(double)arg2 slope:(double)arg3 shortDistance:(double)arg4 longDistance:(double)arg5;
+- (id)_focusSystemSceneComponent;
 - (void)_gestureRecognizerFailed:(id)arg1;
+- (id)_globalCoordinateSpace;
 - (void)_handleButtonGesture:(id)arg1;
 - (void)_handleJoystickGesture:(id)arg1;
 - (void)_handleJoystickRepeatMode:(id)arg1;
@@ -119,7 +117,6 @@
 - (void)_handleTapGesture:(id)arg1;
 - (unsigned long long)_headingForJoystickPosition:(struct CGPoint { double x1; double x2; })arg1 usingMinimumRadius:(double)arg2;
 - (bool)_hideLinearGroupDebugOverlayIfNecessary:(bool)arg1;
-- (double)_horizontalFrictionInterpolationForMomentumSpeed:(double)arg1 totalDistance:(double)arg2;
 - (bool)_joystickAttemptFocusMovementWithRequest:(id)arg1;
 - (void)_joystickDisplayLinkHeartbeat:(id)arg1;
 - (bool)_joystickFocusMovement:(id)arg1 shouldBeConsideredEqualToFocusMovement:(id)arg2;
@@ -130,6 +127,7 @@
 - (double)_joystickRepeatDurationForTimeInMovementZone:(double)arg1;
 - (struct CGVector { double x1; double x2; })_joystickVelocityForHeading:(unsigned long long)arg1;
 - (void)_momentumHeartbeat:(id)arg1;
+- (struct CGSize { double x1; double x2; })_momentumReferenceSize;
 - (id)_motionEffectsController;
 - (id)_moveEvent;
 - (void)_moveFocusContainerWithHeading:(unsigned long long)arg1;
@@ -143,10 +141,12 @@
 - (void)_previousFocusContainer:(id)arg1;
 - (void)_recordMomentumForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)_removeGestureRecognizers;
+- (void)_resetFailedMovementHeading;
 - (void)_resetJoystick;
 - (void)_resetMomentum;
 - (void)_resetMotionEffects;
 - (void)_resetPanGestureState;
+- (void)_resetProgressAccumulator;
 - (void)_resetProgressAccumulatorWithRequest:(id)arg1;
 - (void)_sendGestureBeginNotification;
 - (void)_sendMomentumEndNotificationsAndAnimateRollback:(bool)arg1;
@@ -162,8 +162,6 @@
 - (id)_uiktest_panGestureRecognizer;
 - (void)_uiktest_setPanGestureRecognizer:(id)arg1;
 - (void)_updatePanLocation:(struct CGPoint { double x1; double x2; })arg1 reportedVelocity:(struct CGVector { double x1; double x2; })arg2;
-- (void)_updateTrackingMode;
-- (double)_verticalFrictionInterpolationForMomentumSpeed:(double)arg1 totalDistance:(double)arg2;
 - (void)dealloc;
 - (id)delegate;
 - (void)fastScrollingRecognizer:(id)arg1 didRecognizeFastScrollingRequest:(id)arg2;

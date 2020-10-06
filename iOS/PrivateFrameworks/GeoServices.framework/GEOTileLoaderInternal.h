@@ -32,7 +32,6 @@
             unsigned long long __value_; 
         } __size_; 
     }  _recentErrors;
-    struct list<_CacheRequester<void (^)(unsigned long long)>, std::__1::allocator<_CacheRequester<void (^)(unsigned long long)> > >="__end_"{__list_node_base<_CacheRequester<void (^)(unsigned long long)>, void *>="__prev_"^{__list_node_base<_CacheRequester<void (^)(unsigned long long)>, void *> {}  _shrinkCacheRequesters;
     struct unique_ptr<geo::DispatchTimer, std::__1::default_delete<geo::DispatchTimer> > { 
         struct __compressed_pair<geo::DispatchTimer *, std::__1::default_delete<geo::DispatchTimer> > { 
             struct DispatchTimer {} *__value_; 

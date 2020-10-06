@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIActivityIndicatorView : UIView <DebugHierarchyObject_Fallback, NSCoding> {
+@interface UIActivityIndicatorView : UIView <NSCoding> {
     long long  _activityIndicatorViewStyle;
     long long  _actualActivityIndicatorViewStyle;
     bool  _animating;
@@ -36,11 +36,8 @@
 @property (getter=_animatingImageView, nonatomic, readonly) UIImageView *animatingImageView;
 @property (nonatomic) double animationDuration;
 @property (nonatomic, retain) UIColor *color;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (getter=_disableUpdateColorOnTraitCollectionChange, nonatomic, readonly) bool disableUpdateColorOnTraitCollectionChange;
 @property (nonatomic) bool hasShadow;
-@property (readonly) unsigned long long hash;
 @property (nonatomic) bool hidesWhenStopped;
 @property (getter=_lastArtCacheKey, nonatomic, readonly) _UIActivityIndicatorViewArtworkCacheKey *lastArtCacheKey;
 @property (getter=_lastHighlightArtCacheKey, nonatomic, readonly) _UIActivityIndicatorViewArtworkCacheKey *lastHighlightArtCacheKey;
@@ -54,7 +51,6 @@
 @property (getter=_spokeFrameRatio, nonatomic, readonly) long long spokeFrameRatio;
 @property (getter=_spokeHighlightImages, nonatomic, readonly) NSArray *spokeHighlightImages;
 @property (getter=_spokeImages, nonatomic, readonly) NSArray *spokeImages;
-@property (readonly) Class superclass;
 @property (nonatomic) double width;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
@@ -72,8 +68,6 @@
 - (void)_applicationDidEnterBackground:(id)arg1;
 - (void)_applicationWillEnterForeground:(id)arg1;
 - (id)_artCacheKeyWithStyle:(long long)arg1 color:(id)arg2;
-- (bool)_canCustomize;
-- (bool)_canCustomizeStyle:(long long)arg1;
 - (bool)_colorRequiresDynamicTinting;
 - (void)_commonInit;
 - (bool)_contentHuggingDefault_isUsuallyFixedHeight;
@@ -120,19 +114,12 @@
 - (void)_updateLayoutInfo;
 - (void)_updateMessageForStyle:(long long)arg1;
 - (void)_updateSubviewFramesWithBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (bool)_useCustomStyleForLegacyStyles;
 - (double)_widthForGearWidth:(double)arg1;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)activityIndicatorViewStyle;
 - (double)animationDuration;
 - (id)color;
+- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (bool)hasShadow;
 - (bool)hidesWhenStopped;
@@ -168,5 +155,14 @@
 - (void)tintColorDidChange;
 - (void)traitCollectionDidChange:(id)arg1;
 - (double)width;
+
+// Image: /System/Library/PrivateFrameworks/MaterialKit.framework/MaterialKit
+
+- (void)mt_applyVisualStyling:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
 
 @end

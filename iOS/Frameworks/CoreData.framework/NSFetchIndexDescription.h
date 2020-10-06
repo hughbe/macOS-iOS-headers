@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSFetchIndexDescription : NSObject <NSCoding, NSSecureCoding> {
+@interface NSFetchIndexDescription : NSObject <NSCoding, NSCopying, NSSecureCoding> {
     NSArray * _elements;
     NSEntityDescription * _entity;
     NSString * _name;
@@ -16,21 +16,8 @@
 
 + (bool)supportsSecureCoding;
 
-- (void)_checkElements:(id)arg1;
-- (long long)_compare:(id)arg1;
-- (id)_compoundIndexRepresentation;
-- (bool)_expressionIsCompoundIndexCompatible:(id)arg1;
-- (bool)_isBinary;
-- (bool)_isCompoundIndexCompatible;
 - (bool)_isEditable;
-- (bool)_isIndexForProperty:(id)arg1;
-- (bool)_isMappedSinglePropertyIndex;
-- (bool)_isPurelyModeledIndex;
-- (bool)_isUnique;
-- (void)_setEntity:(id)arg1;
-- (void)_setIsUnique:(bool)arg1;
 - (void)_throwIfNotEditable;
-- (void)_validateCollationTypeChangeFrom:(unsigned long long)arg1 to:(unsigned long long)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;

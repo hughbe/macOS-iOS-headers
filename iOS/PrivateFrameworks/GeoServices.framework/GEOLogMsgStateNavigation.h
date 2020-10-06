@@ -38,7 +38,10 @@
 - (bool)hasNavCameraState;
 - (bool)hasNavState;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)lineType;
 - (id)lineTypeAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;

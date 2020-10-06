@@ -7,6 +7,7 @@
     BOOL  _isC2KEquipment;
     BOOL  _nicknamesVersion;
     BOOL  _optionallyReceiveTypingIndicator;
+    BOOL  _prefersSDRVideo;
     BOOL  _showPeerErrors;
     BOOL  _supportsAcknowledgementsV1;
     BOOL  _supportsActivitySharing;
@@ -16,9 +17,14 @@
     BOOL  _supportsBubbleEditingV1;
     BOOL  _supportsCertifiedDeliveryV1;
     BOOL  _supportsChatAppsV1;
+    BOOL  _supportsFMDV2;
+    BOOL  _supportsFMFenceV1;
     BOOL  _supportsFullScreenMomentsV1;
     BOOL  _supportsFullScreenMomentsV2;
     BOOL  _supportsFullScreenMomentsV3;
+    BOOL  _supportsHDRVideo;
+    BOOL  _supportsHEIFEncoding;
+    BOOL  _supportsHarmony;
     BOOL  _supportsImpactEffectsV1;
     BOOL  _supportsIncomingFindMyV1;
     BOOL  _supportsInlineAttachments;
@@ -26,17 +32,21 @@
     BOOL  _supportsKeepReceipts;
     BOOL  _supportsKeySharing;
     BOOL  _supportsLocationSharing;
+    BOOL  _supportsManateeForAppleCash;
     BOOL  _supportsMediaV2;
     BOOL  _supportsOriginalTimestampOrderingV1;
     BOOL  _supportsPhotosExtensionV1;
     BOOL  _supportsProtobufPayloadDataV2;
+    BOOL  _supportsRegionForAppleCash;
     BOOL  _supportsScreenTimeV2;
     BOOL  _supportsStickersV1;
     BOOL  _supportsUpdateAttachmentsV1;
 }
 
++ (id)allowedCapabilities;
 + (bool)supportsSecureCoding;
 
+- (id)debugDescription;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCapabilitiesMap:(id)arg1;

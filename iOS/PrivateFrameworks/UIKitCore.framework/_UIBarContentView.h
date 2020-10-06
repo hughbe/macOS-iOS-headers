@@ -7,7 +7,6 @@
     _UIBarButtonItemAppearanceStorage * _appearanceStorage;
     UIImage * _backIndicatorMaskImage;
     bool  _barIsBlack;
-    bool  _barWantsLetterpress;
     bool  _centerTextButtons;
 }
 
@@ -19,7 +18,6 @@
 @property (nonatomic, retain) UIImage *backIndicatorMaskImage;
 @property (nonatomic) bool barIsBlack;
 @property (nonatomic, readonly) long long barType;
-@property (nonatomic) bool barWantsLetterpress;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } bounds;
 @property (nonatomic) bool centerTextButtons;
 @property (nonatomic, readonly) bool compactMetrics;
@@ -64,7 +62,6 @@
 - (id)backIndicatorMaskImage;
 - (bool)barIsBlack;
 - (long long)barType;
-- (bool)barWantsLetterpress;
 - (bool)centerTextButtons;
 - (bool)compactMetrics;
 - (double)defaultEdgeSpacing;
@@ -75,7 +72,6 @@
 - (void)setBackIndicatorImage:(id)arg1;
 - (void)setBackIndicatorMaskImage:(id)arg1;
 - (void)setBarIsBlack:(bool)arg1;
-- (void)setBarWantsLetterpress:(bool)arg1;
 - (void)setCenterTextButtons:(bool)arg1;
 
 @end

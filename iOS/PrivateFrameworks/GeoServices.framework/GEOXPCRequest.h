@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOXPCRequest : NSObject <NSSecureCoding> {
+@interface GEOXPCRequest : NSObject <GEOXPCSerializable> {
     GEOApplicationAuditToken * _auditToken;
     NSError * _error;
     unsigned char  _flags;
@@ -15,7 +15,10 @@
     GEOMapServiceTraits * _traits;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) unsigned char flags;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSString *method;
 @property (nonatomic, retain) NSObject<OS_xpc_object> *object;
 @property (nonatomic, retain) GEOPeer *peer;
@@ -23,21 +26,21 @@
 @property (nonatomic, retain) NSProgress *progress;
 @property (nonatomic, readonly) NSObject<OS_xpc_object> *replyDictionary;
 @property (nonatomic, retain) NSString *service;
+@property (readonly) Class superclass;
 @property (nonatomic, readonly) GEODataRequestThrottlerToken *throttleToken;
 @property (nonatomic, readonly) GEOMapServiceTraits *traits;
 
 + (bool)reportsProgress;
-+ (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)_createConnectionWithQueue:(id)arg1;
 - (id)_prepareRequest;
 - (id)description;
-- (void)encodeWithCoder:(id)arg1;
+- (void)encodeToXPCDictionary:(id)arg1;
 - (unsigned char)flags;
 - (id)init;
-- (id)initWithCoder:(id)arg1;
 - (id)initWithMessage:(id)arg1 traits:(id)arg2 auditToken:(id)arg3 throttleToken:(id)arg4;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (id)method;
 - (id)object;
 - (id)peer;

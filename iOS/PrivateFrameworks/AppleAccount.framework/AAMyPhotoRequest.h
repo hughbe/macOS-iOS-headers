@@ -4,11 +4,11 @@
 
 @interface AAMyPhotoRequest : AARequest {
     ACAccount * _account;
-    SSAccount * _iTunesAccount;
+    ACAccount * _iTunesAccount;
     NSString * _serverCacheTag;
 }
 
-@property (setter=setiTunesAccount:, nonatomic, retain) SSAccount *iTunesAccount;
+@property (setter=setiTunesAccount:, nonatomic, retain) ACAccount *iTunesAccount;
 @property (nonatomic, copy) NSString *serverCacheTag;
 
 + (Class)responseClass;

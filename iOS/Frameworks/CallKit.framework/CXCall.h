@@ -11,6 +11,7 @@
     bool  _onHold;
     bool  _outgoing;
     NSString * _providerIdentifier;
+    bool  _video;
 }
 
 @property (nonatomic, readonly, copy) NSUUID *UUID;
@@ -25,6 +26,7 @@
 @property (getter=isOutgoing, nonatomic) bool outgoing;
 @property (nonatomic, retain) NSString *providerIdentifier;
 @property (readonly) Class superclass;
+@property (getter=isVideo, nonatomic) bool video;
 
 + (bool)supportsSecureCoding;
 
@@ -44,6 +46,7 @@
 - (bool)isHostedOnCurrentDevice;
 - (bool)isOnHold;
 - (bool)isOutgoing;
+- (bool)isVideo;
 - (id)providerIdentifier;
 - (id)sanitizedCopy;
 - (id)sanitizedCopyWithZone:(struct _NSZone { }*)arg1;
@@ -54,6 +57,7 @@
 - (void)setOnHold:(bool)arg1;
 - (void)setOutgoing:(bool)arg1;
 - (void)setProviderIdentifier:(id)arg1;
+- (void)setVideo:(bool)arg1;
 - (void)updateCopy:(id)arg1 withZone:(struct _NSZone { }*)arg2;
 - (void)updateSanitizedCopy:(id)arg1 withZone:(struct _NSZone { }*)arg2;
 

@@ -18,6 +18,7 @@
     NSString * _assetTitle;
     NSString * _avAssetDownloadChildDownloadSessionIdentifier;
     long long  _basePriority;
+    bool  _basePrioritySetExplicitly;
     NSString * _bundleID;
     long long  _bytesPerSecondLimit;
     long long  _countOfBytesClientExpectsToReceive;
@@ -84,6 +85,7 @@
 @property (copy) NSString *assetTitle;
 @property (copy) NSString *avAssetDownloadChildDownloadSessionIdentifier;
 @property long long basePriority;
+@property bool basePrioritySetExplicitly;
 @property (copy) NSString *bundleID;
 @property long long bytesPerSecondLimit;
 @property long long countOfBytesClientExpectsToReceive;
@@ -154,6 +156,7 @@
 - (id)assetTitle;
 - (id)avAssetDownloadChildDownloadSessionIdentifier;
 - (long long)basePriority;
+- (bool)basePrioritySetExplicitly;
 - (id)bundleID;
 - (long long)bytesPerSecondLimit;
 - (long long)countOfBytesClientExpectsToReceive;
@@ -178,11 +181,11 @@
 - (bool)hasStarted;
 - (unsigned long long)identifier;
 - (id)initWithAVAggregateAssetDownloadChildDownloadSessionIdentifier:(id)arg1 assetTitle:(id)arg2 assetArtworkData:(id)arg3 options:(id)arg4 taskIdentifier:(unsigned long long)arg5 uniqueIdentifier:(id)arg6 bundleID:(id)arg7 sessionID:(id)arg8;
+- (id)initWithAVAggregateDownloadTaskNoChildTaskKindWithURL:(id)arg1 destinationURL:(id)arg2 assetTitle:(id)arg3 assetArtworkData:(id)arg4 options:(id)arg5 taskIdentifier:(unsigned long long)arg6 uniqueIdentifier:(id)arg7 bundleID:(id)arg8 sessionID:(id)arg9;
 - (id)initWithAVAssetDownloadURL:(id)arg1 destinationURL:(id)arg2 assetTitle:(id)arg3 assetArtworkData:(id)arg4 options:(id)arg5 taskIdentifier:(unsigned long long)arg6 uniqueIdentifier:(id)arg7 bundleID:(id)arg8 sessionID:(id)arg9;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDataTask:(id)arg1 uniqueIdentifier:(id)arg2 bundleID:(id)arg3 sessionID:(id)arg4;
 - (id)initWithDownloadTask:(id)arg1 uniqueIdentifier:(id)arg2 bundleID:(id)arg3 sessionID:(id)arg4;
-- (id)initWithTask:(id)arg1 uniqueIdentifier:(id)arg2 bundleID:(id)arg3 sessionID:(id)arg4;
 - (id)initWithUploadTask:(id)arg1 uniqueIdentifier:(id)arg2 bundleID:(id)arg3 sessionID:(id)arg4;
 - (bool)initializedWithAVAsset;
 - (bool)isDiscretionary;
@@ -208,6 +211,7 @@
 - (void)setAssetTitle:(id)arg1;
 - (void)setAvAssetDownloadChildDownloadSessionIdentifier:(id)arg1;
 - (void)setBasePriority:(long long)arg1;
+- (void)setBasePrioritySetExplicitly:(bool)arg1;
 - (void)setBundleID:(id)arg1;
 - (void)setBytesPerSecondLimit:(long long)arg1;
 - (void)setCountOfBytesClientExpectsToReceive:(long long)arg1;

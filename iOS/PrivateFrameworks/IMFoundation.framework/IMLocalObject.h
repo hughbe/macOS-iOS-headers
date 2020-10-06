@@ -22,18 +22,21 @@
 + (void)_unregisterIMLocalObject:(id)arg1;
 + (void)initialize;
 
-- (void)_cancelHandlerCompleted;
 - (void)_clearPort:(bool)arg1;
 - (void)_clearPort:(bool)arg1 signalRunLoopIfNeeded:(bool)arg2;
 - (id)_currentMessageContext;
 - (void)_enqueueInvocation:(id)arg1;
 - (void)_enqueueInvocation:(id)arg1 xpcMessage:(id)arg2;
+- (void)_enqueueInvocation:(id)arg1 xpcMessage:(id)arg2 submitToComponentQueue:(bool)arg3 isSync:(bool)arg4;
 - (void)_enqueueInvocationWithPriority:(id)arg1 priority:(int)arg2;
 - (void)_enqueueInvocationWithPriority:(id)arg1 xpcMessage:(id)arg2 priority:(int)arg3;
+- (void)_enqueueInvocationWithSync:(id)arg1;
+- (void)_enqueueInvocationWithSync:(id)arg1 xpcMessage:(id)arg2;
+- (void)_enqueueInvocationWithSync:(id)arg1 xpcMessage:(id)arg2 submitToComponentQueue:(bool)arg3;
 - (bool)_handleInvocation:(id)arg1;
-- (void)_handleInvocationForSendMessage:(id)arg1;
+- (bool)_handleInvocation:(id)arg1 processingComponentQueue:(bool)arg2;
 - (void)_handleNewInvocations;
-- (void)_noteNewInvocation;
+- (void)_noteNewInvocation:(bool)arg1;
 - (id)_peekInvocation;
 - (void)_popInvocation;
 - (void)_portDidBecomeInvalid;
@@ -49,6 +52,7 @@
 - (id)initWithTarget:(id)arg1 portName:(id)arg2 protocol:(id)arg3;
 - (id)initWithTarget:(id)arg1 protocol:(id)arg2;
 - (void)invalidate;
+- (bool)isSameConnection:(id)arg1;
 - (bool)isValid;
 - (bool)isValidSelector:(SEL)arg1;
 - (id)portName;

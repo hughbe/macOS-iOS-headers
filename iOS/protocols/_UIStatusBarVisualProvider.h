@@ -31,7 +31,9 @@
 - (NSOrderedSet *)region:(_UIStatusBarRegion *)arg1 willSetDisplayItems:(NSOrderedSet *)arg2;
 - (NSSet *)regionIdentifiersForPartWithIdentifier:(NSString *)arg1;
 - (_UIStatusBarAnimation *)removalAnimationForDisplayItemWithIdentifier:(_UIStatusBarIdentifier *)arg1 itemAnimation:(_UIStatusBarAnimation *)arg2;
+- (bool)showSensorActivityIndicatorWithoutPortalView;
 - (void)sizeUpdatedFromSize:(struct CGSize { double x1; double x2; })arg1;
+- (void)statusBarEnabledPartsUpdated;
 - (void)statusBarRegionsUpdated;
 - (void)styleUpdatedFromStyle:(long long)arg1;
 - (NSArray *)willUpdateWithData:(_UIStatusBarData *)arg1;

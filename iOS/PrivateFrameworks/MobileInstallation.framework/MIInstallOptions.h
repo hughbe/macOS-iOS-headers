@@ -5,6 +5,7 @@
 @interface MIInstallOptions : NSObject <NSCopying, NSSecureCoding> {
     bool  _allowLocalProvisioned;
     unsigned long long  _autoInstallOverride;
+    NSString * _bundleIdentifier;
     bool  _developerInstall;
     NSData * _geoJSONData;
     NSData * _iTunesArtworkData;
@@ -24,6 +25,7 @@
 
 @property (nonatomic) bool allowLocalProvisioned;
 @property (nonatomic) unsigned long long autoInstallOverride;
+@property (nonatomic, copy) NSString *bundleIdentifier;
 @property (getter=isDeveloperInstall, nonatomic) bool developerInstall;
 @property (nonatomic, copy) NSData *geoJSONData;
 @property (nonatomic, copy) NSData *iTunesArtworkData;
@@ -46,6 +48,7 @@
 - (void).cxx_destruct;
 - (bool)allowLocalProvisioned;
 - (unsigned long long)autoInstallOverride;
+- (id)bundleIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
@@ -66,6 +69,7 @@
 - (id)provisioningProfiles;
 - (void)setAllowLocalProvisioned:(bool)arg1;
 - (void)setAutoInstallOverride:(unsigned long long)arg1;
+- (void)setBundleIdentifier:(id)arg1;
 - (void)setDeveloperInstall:(bool)arg1;
 - (void)setGeoJSONData:(id)arg1;
 - (void)setITunesArtworkData:(id)arg1;

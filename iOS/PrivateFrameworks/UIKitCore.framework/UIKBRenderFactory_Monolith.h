@@ -51,6 +51,7 @@
 - (double)textKeyFontWeight;
 - (double)tldKeyFontSize;
 - (double)tldKeyFontWeight;
+- (id)variantKeyBackgroundColor;
 - (id)variantKeyColor;
 
 @end

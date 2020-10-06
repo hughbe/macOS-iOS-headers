@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UINavigationItem : NSObject <DebugHierarchyObject_Fallback, NSCoding, _UIBarAppearanceChangeObserver> {
+@interface UINavigationItem : NSObject <NSCoding, _UIBarAppearanceChangeObserver> {
     bool  __alignLargeTitleAccessoryViewToBaseline;
     NSArray * __alternateLargeTitles;
     bool  __backgroundHidden;
@@ -19,8 +19,10 @@
     NSString * __weeTitle;
     NSArray * _abbreviatedBackButtonTitles;
     bool  _alwaysShowsSearchBar;
+    bool  _alwaysUseManualScrollEdgeAppearance;
     double  _autoScrollEdgeTransitionDistance;
     UIBarButtonItem * _backBarButtonItem;
+    long long  _backButtonDisplayMode;
     NSString * _backButtonTitle;
     UIView * _backButtonView;
     _UINavigationBarPalette * _bottomPalette;
@@ -65,7 +67,9 @@
 @property (setter=_setAbbreviatedBackButtonTitles:, nonatomic, copy) NSArray *_abbreviatedBackButtonTitles;
 @property (nonatomic, readonly) bool _alignLargeTitleAccessoryViewToBaseline;
 @property (nonatomic, retain) NSArray *_alternateLargeTitles;
+@property (setter=_setAlwaysUseManualScrollEdgeAppearance:, nonatomic) bool _alwaysUseManualScrollEdgeAppearance;
 @property (setter=_setAutoScrollEdgeTransitionDistance:, nonatomic) double _autoScrollEdgeTransitionDistance;
+@property (setter=_setBackButtonDisplayMode:, nonatomic) unsigned long long _backButtonDisplayMode;
 @property (setter=_setBackgroundHidden:, nonatomic) bool _backgroundHidden;
 @property (setter=_setBottomPalette:, nonatomic, retain) _UINavigationBarPalette *_bottomPalette;
 @property (setter=_setCanvasView:, nonatomic, retain) UIView *_canvasView;
@@ -92,6 +96,7 @@
 @property (nonatomic) double _titleViewWidthForAnimations;
 @property (setter=_setWeeTitle:, nonatomic, copy) NSString *_weeTitle;
 @property (nonatomic, retain) UIBarButtonItem *backBarButtonItem;
+@property (nonatomic) long long backButtonDisplayMode;
 @property (nonatomic, copy) NSString *backButtonTitle;
 @property (nonatomic, copy) UINavigationBarAppearance *compactAppearance;
 @property (nonatomic, retain) id context;
@@ -112,6 +117,12 @@
 @property (nonatomic) bool leftItemsSupplementBackButton;
 @property (nonatomic) UINavigationBar *navigationBar;
 @property (nonatomic, copy) NSString *prompt;
+@property (setter=pu_setBanner:, nonatomic, retain) PUAbstractNavigationBanner *pu_banner;
+@property (setter=px_setBackButtonDisplayMode:, nonatomic) long long px_backButtonDisplayMode;
+@property (setter=px_setBannerView:, nonatomic, retain) UIView *px_bannerView;
+@property (setter=px_setDisableLargeTitle:, nonatomic) bool px_disableLargeTitle;
+@property (setter=px_setHidesBackButtonInRegularWidth:, nonatomic) bool px_hidesBackButtonInRegularWidth;
+@property (setter=px_setPreferredLargeTitleDisplayMode:, nonatomic) long long px_preferredLargeTitleDisplayMode;
 @property (nonatomic, retain) UIBarButtonItem *rightBarButtonItem;
 @property (nonatomic, copy) NSArray *rightBarButtonItems;
 @property (nonatomic, copy) UINavigationBarAppearance *scrollEdgeAppearance;
@@ -133,7 +144,10 @@
 - (id)_addDefaultTitleViewToNavigationBarIfNecessary:(id)arg1;
 - (bool)_alignLargeTitleAccessoryViewToBaseline;
 - (id)_alternateLargeTitles;
+- (bool)_alwaysUseManualScrollEdgeAppearance;
 - (double)_autoScrollEdgeTransitionDistance;
+- (unsigned long long)_backButtonDisplayMode;
+- (id)_backButtonTitleAllowingGenericTitles:(bool)arg1;
 - (bool)_backgroundHidden;
 - (id)_barButtonForBackButtonIndicator;
 - (id)_bottomPalette;
@@ -195,7 +209,9 @@
 - (id)_rightItemSpaceList;
 - (id)_searchControllerIfAllowed;
 - (void)_setAbbreviatedBackButtonTitles:(id)arg1;
+- (void)_setAlwaysUseManualScrollEdgeAppearance:(bool)arg1;
 - (void)_setAutoScrollEdgeTransitionDistance:(double)arg1;
+- (void)_setBackButtonDisplayMode:(unsigned long long)arg1;
 - (void)_setBackButtonPressed:(bool)arg1;
 - (void)_setBackButtonTitle:(id)arg1 lineBreakMode:(long long)arg2;
 - (void)_setBackgroundHidden:(bool)arg1;
@@ -249,6 +265,7 @@
 - (id)_weeTitle;
 - (void)appearance:(id)arg1 categoriesChanged:(long long)arg2;
 - (id)backBarButtonItem;
+- (long long)backButtonDisplayMode;
 - (id)backButtonTitle;
 - (id)backButtonView;
 - (id)compactAppearance;
@@ -280,6 +297,7 @@
 - (id)scrollEdgeAppearance;
 - (id)searchController;
 - (void)setBackBarButtonItem:(id)arg1;
+- (void)setBackButtonDisplayMode:(long long)arg1;
 - (void)setBackButtonTitle:(id)arg1;
 - (void)setCompactAppearance:(id)arg1;
 - (void)setContext:(id)arg1;
@@ -317,6 +335,7 @@
 - (void)setTitleView:(id)arg1;
 - (void)setUseRelativeLargeTitleInsets:(bool)arg1;
 - (void)set_alternateLargeTitles:(id)arg1;
+- (void)set_alwaysUseManualScrollEdgeAppearance:(bool)arg1;
 - (void)set_customLeftView:(id)arg1;
 - (void)set_customLeftViews:(id)arg1;
 - (void)set_customRightView:(id)arg1;
@@ -333,16 +352,54 @@
 - (void)updateNavigationBarButtonsAnimated:(bool)arg1;
 - (bool)useRelativeLargeTitleInsets;
 
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
 
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
+- (bool)_pu_shouldUpdateBarButtonItems:(id)arg1 withNewBarButtonItems:(id)arg2;
+- (id)pu_banner;
+- (void)pu_setBanner:(id)arg1;
+- (void)pu_setDefaultBackBarButtonItemWithTitle:(id)arg1;
+- (bool)pu_shouldUpdateLeftBarButtonItems:(id)arg1;
+- (bool)pu_shouldUpdateRightBarButtonItems:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/OnBoardingKit.framework/OnBoardingKit
 
 - (void)ob_applyAutomaticScrollToEdgeBehavior;
-- (void)ob_applyAutomaticScrollToEdgeBehavior;
 - (void)ob_applyAutomaticScrollToEdgeBehaviorWithDistance:(double)arg1;
-- (void)ob_applyAutomaticScrollToEdgeBehaviorWithDistance:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pkui_enableManualScrollEdgeAppearanceWithInitialProgress:(double)arg1;
+- (void)pkui_setupScrollEdgeChromelessAppearance;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (void)_updateFinalLargeTitleDisplayMode;
+- (long long)px_backButtonDisplayMode;
+- (id)px_bannerView;
+- (bool)px_disableLargeTitle;
+- (bool)px_hidesBackButtonInRegularWidth;
+- (long long)px_preferredLargeTitleDisplayMode;
+- (void)px_setBackButtonDisplayMode:(long long)arg1;
+- (void)px_setBannerView:(id)arg1;
+- (void)px_setDisableLargeTitle:(bool)arg1;
+- (void)px_setHidesBackButtonInRegularWidth:(bool)arg1;
+- (void)px_setPreferredLargeTitleDisplayMode:(long long)arg1;
+- (void)px_updateBackButtonVisibilityForTraitCollection:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (void)ts_setBackButtonTitle:(id)arg1;
+- (void)ts_setBottomPaletteMinimumHeight:(double)arg1;
+- (void)ts_setBottomPalettePreferredHeight:(double)arg1;
+- (void)ts_setBottomPaletteWithContentView:(id)arg1;
+- (void)ts_setLargeTitleAccessoryView:(id)arg1 alignToBaseline:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (void)fadeInTitleView;
+- (void)fadeOutTitleView;
+- (void)mergeValuesFromItem:(id)arg1;
+- (void)resetAllValues;
+- (void)setTitleView:(id)arg1 animated:(bool)arg2;
 
 @end

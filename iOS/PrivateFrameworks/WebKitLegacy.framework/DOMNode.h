@@ -12,6 +12,7 @@
 @property (nonatomic) bool acceptsDictationSearchResults;
 @property (nonatomic) bool acceptsEmoji;
 @property (nonatomic) bool acceptsFloatingKeyboard;
+@property (nonatomic) bool acceptsInitialEmojiKeyboard;
 @property (nonatomic) bool acceptsPayloads;
 @property (nonatomic) bool acceptsSplitKeyboard;
 @property (readonly) DOMNamedNodeMap *attributes;
@@ -72,6 +73,7 @@
 @property (readonly) DOMElement *parentElement;
 @property (readonly) DOMNode *parentNode;
 @property (nonatomic, copy) UITextInputPasswordRules *passwordRules;
+@property (nonatomic) bool preferOnlineDictation;
 @property (copy) NSString *prefix;
 @property (readonly) DOMNode *previousSibling;
 @property (nonatomic, copy) NSString *recentInputIdentifier;
@@ -115,12 +117,11 @@
 
 + (id)_nodeFromJSWrapper:(struct OpaqueJSValue { }*)arg1;
 
-- (struct Element { int (**x1)(); struct Weak<WebCore::JSDOMObject> { struct WeakImpl {} *x_2_1_1; } x2; unsigned int x3; unsigned int x4; struct ContainerNode {} *x5; struct TreeScope {} *x6; struct Node {} *x7; struct Node {} *x8; struct CompactPointerTuple<WebCore::RenderObject *, unsigned char> { unsigned long long x_9_1_1; } x9; struct unique_ptr<WebCore::NodeRareData, WebCore::Node::NodeRareDataDeleter> { struct __compressed_pair<WebCore::NodeRareData *, WebCore::Node::NodeRareDataDeleter> { struct NodeRareData {} *x_1_2_1; } x_10_1_1; } x10; struct WeakPtrFactory<WebCore::ContainerNode> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_11_1_1; } x11; struct Node {} *x12; struct Node {} *x13; struct QualifiedName { struct RefPtr<WebCore::QualifiedName::QualifiedNameImpl, WTF::DumbPtrTraits<WebCore::QualifiedName::QualifiedNameImpl> > { struct QualifiedNameImpl {} *x_1_2_1; } x_14_1_1; } x14; struct RefPtr<WebCore::ElementData, WTF::DumbPtrTraits<WebCore::ElementData> > { struct ElementData {} *x_15_1_1; } x15; }*)_linkElement;
+- (struct Element { int (**x1)(); struct Weak<WebCore::JSDOMObject> { struct WeakImpl {} *x_2_1_1; } x2; unsigned int x3; unsigned int x4; struct ContainerNode {} *x5; struct TreeScope {} *x6; struct Node {} *x7; struct Node {} *x8; struct CompactPointerTuple<WebCore::RenderObject *, unsigned char> { unsigned long long x_9_1_1; } x9; struct unique_ptr<WebCore::NodeRareData, WebCore::Node::NodeRareDataDeleter> { struct __compressed_pair<WebCore::NodeRareData *, WebCore::Node::NodeRareDataDeleter> { struct NodeRareData {} *x_1_2_1; } x_10_1_1; } x10; struct WeakPtrFactory<WebCore::ContainerNode, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_11_1_1; } x11; struct Node {} *x12; struct Node {} *x13; struct QualifiedName { struct RefPtr<WebCore::QualifiedName::QualifiedNameImpl, WTF::DumbPtrTraits<WebCore::QualifiedName::QualifiedNameImpl> > { struct QualifiedNameImpl {} *x_1_2_1; } x_14_1_1; } x14; }*)_linkElement;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_renderRect:(bool*)arg1;
 - (struct RootObject { }*)_rootObject;
 - (struct _WKQuad { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGPoint { double x_3_1_1; double x_3_1_2; } x3; struct CGPoint { double x_4_1_1; double x_4_1_2; } x4; })absoluteQuad;
 - (struct _WKQuad { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGPoint { double x_3_1_1; double x_3_1_2; } x3; struct CGPoint { double x_4_1_1; double x_4_1_2; } x4; })absoluteQuadAndInsideFixedPosition:(bool*)arg1;
-- (id)absoluteQuads;
 - (id)absoluteQuads;
 - (void)addEventListener:(id)arg1 :(id)arg2 :(bool)arg3;
 - (void)addEventListener:(id)arg1 listener:(id)arg2 useCapture:(bool)arg3;
@@ -128,10 +129,8 @@
 - (id)attributes;
 - (id)baseURI;
 - (id)borderRadii;
-- (id)borderRadii;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })boundingBox;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })boundingBoxUsingTransforms;
-- (id)boundingBoxes;
 - (id)boundingBoxes;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })boundingFrame;
 - (id)childNodes;
@@ -140,12 +139,10 @@
 - (float)computedFontSize;
 - (bool)contains:(id)arg1;
 - (bool)containsOnlyInlineObjects;
-- (bool)containsOnlyInlineObjects;
 - (void)dealloc;
 - (id)description;
 - (bool)dispatchEvent:(id)arg1;
 - (id)endPosition;
-- (id)findExplodedTextNodeAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)findExplodedTextNodeAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)firstChild;
 - (void)getPreviewSnapshotImage:(struct CGImage {}**)arg1 andRects:(id*)arg2;
@@ -167,7 +164,6 @@
 - (bool)isEqualNode:(id)arg1;
 - (bool)isHorizontalWritingMode;
 - (bool)isSameNode:(id)arg1;
-- (bool)isSelectableBlock;
 - (bool)isSelectableBlock;
 - (bool)isSupported:(id)arg1 :(id)arg2;
 - (bool)isSupported:(id)arg1 version:(id)arg2;
@@ -192,7 +188,6 @@
 - (id)previousFocusNode;
 - (id)previousSibling;
 - (id)rangeOfContainingParagraph;
-- (id)rangeOfContainingParagraph;
 - (id)rangeOfContents;
 - (id)removeChild:(id)arg1;
 - (void)removeEventListener:(id)arg1 :(id)arg2 :(bool)arg3;
@@ -206,10 +201,14 @@
 - (id)startPosition;
 - (id)textContent;
 - (double)textHeight;
-- (double)textHeight;
 - (id)textRects;
 - (id)webArchive;
 - (id)webArchiveByFilteringSubframes:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
+
+- (void)dd_removeResultLinks;
+- (bool)dd_searchForLinkRemovingExistingDDLinksWithEndNode:(id)arg1 didModifyDOM:(bool*)arg2;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
@@ -223,6 +222,7 @@
 - (void)_deleteBackwardAndNotify:(bool)arg1;
 - (void)_deleteByWord;
 - (void)_deleteForwardAndNotify:(bool)arg1;
+- (void)_deleteForwardByWord;
 - (void)_deleteToEndOfLine;
 - (void)_deleteToEndOfParagraph;
 - (void)_deleteToStartOfLine;
@@ -280,6 +280,7 @@
 - (void)_replaceDocumentWithText:(id)arg1;
 - (bool)_requiresAccessoryView;
 - (bool)_requiresInputView;
+- (id)_responderWindow;
 - (void)_scrollRectToVisible:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 animated:(bool)arg2;
 - (void)_selectAll;
 - (id)_selectableText;
@@ -305,6 +306,8 @@
 - (bool)_supportsAutoFill;
 - (id)_textColorForCaretSelection;
 - (id)_textFormElement;
+- (long long)_textInputSource;
+- (id)_textInteraction;
 - (id)_textRangeFromNSRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (id)_textSelectingContainer;
 - (void)_transpose;
@@ -371,10 +374,12 @@
 - (bool)hasSelection;
 - (bool)hasText;
 - (int)initialSelectionBehavior;
+- (id)inputAssistantItem;
 - (id)inputDelegate;
 - (void)insertDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
 - (id)insertDictationResultPlaceholder;
 - (void)insertText:(id)arg1;
+- (id)insertTextPlaceholderWithSize:(struct CGSize { double x1; double x2; })arg1;
 - (id)interactionAssistant;
 - (bool)isAutoFillMode;
 - (bool)isEditable;
@@ -385,6 +390,7 @@
 - (bool)isSameBlock:(id)arg1;
 - (bool)isSecure;
 - (bool)isShowingPlaceholder;
+- (bool)isSingleLineDocument;
 - (bool)isTextControl;
 - (id)itemTitle;
 - (long long)keyboardType;
@@ -412,6 +418,7 @@
 - (id)rangeOfEnclosingWord:(id)arg1;
 - (id)rectsForNSRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)removeDictationResultPlaceholder:(id)arg1 willInsertResult:(bool)arg2;
+- (void)removeTextPlaceholder:(id)arg1;
 - (bool)rendersAsBlock;
 - (void)replaceCurrentWordWithText:(id)arg1;
 - (void)replaceRange:(id)arg1 withText:(id)arg2;
@@ -447,6 +454,7 @@
 - (void)setTextLoupeVisibility:(int)arg1;
 - (void)setTextSuggestionDelegate:(id)arg1;
 - (void)setTextTrimmingSet:(struct __CFCharacterSet { }*)arg1;
+- (void)set_textInputSource:(long long)arg1;
 - (void)setupPlaceholderTextIfNeeded;
 - (bool)showsTapHighlight;
 - (bool)strictlyContainsBlock:(id)arg1;

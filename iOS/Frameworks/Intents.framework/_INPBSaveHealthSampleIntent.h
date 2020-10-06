@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSaveHealthSampleIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSaveHealthSampleIntent> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int objectType : 1; 
     }  _has;
@@ -15,7 +14,6 @@
     NSArray * _values;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasIntentMetadata;
@@ -39,8 +37,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsObjectType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addSampleMetadata:(id)arg1;
 - (void)addValues:(id)arg1;
 - (void)clearSampleMetadatas;

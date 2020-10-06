@@ -24,7 +24,8 @@
 + (bool)isLocationShiftEnabled;
 + (bool)isLocationShiftRequiredForCoordinate:(struct { double x1; double x2; })arg1;
 + (unsigned int)locationShiftFunctionVersion;
-+ (void)useLocalProxy;
++ (Class)proxyClass;
++ (void)setProxyClass:(Class)arg1;
 
 - (void).cxx_destruct;
 - (void)_countryProvidersDidChange:(id)arg1;

@@ -10,10 +10,13 @@
 - (NSString *)confirmationReasonAsString:(int)arg1;
 - (bool)hasConfirmationReason;
 - (bool)hasShouldDoEmergencyCountdown;
+- (bool)hasStartedCall;
 - (void)setConfirmationReason:(int)arg1;
 - (void)setHasConfirmationReason:(bool)arg1;
 - (void)setHasShouldDoEmergencyCountdown:(bool)arg1;
 - (void)setShouldDoEmergencyCountdown:(bool)arg1;
+- (void)setStartedCall:(_INPBConnectedCall *)arg1;
 - (bool)shouldDoEmergencyCountdown;
+- (_INPBConnectedCall *)startedCall;
 
 @end

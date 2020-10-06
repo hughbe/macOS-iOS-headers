@@ -12,6 +12,7 @@
 + (id)policyRequiringSharingOfTouchesDeliveredToChildContextId:(unsigned int)arg1 withHostContextId:(unsigned int)arg2;
 + (bool)supportsSecureCoding;
 
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)assertionEndpoint;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

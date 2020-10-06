@@ -10,6 +10,7 @@
 @property (getter=isGeocoding, nonatomic, readonly) bool geocoding;
 
 + (id)_timeZoneAtLocation:(id)arg1;
++ (void)hydrateGeoMapItemLocallyFromHandle:(id)arg1 completionHandler:(id /* block */)arg2;
 
 - (void)_ensureMainThreadExecutionContextForBlock:(id /* block */)arg1;
 - (void)_notifyCancel;

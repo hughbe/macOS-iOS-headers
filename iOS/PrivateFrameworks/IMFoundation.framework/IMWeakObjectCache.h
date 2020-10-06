@@ -12,6 +12,7 @@
 
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (id)copyObjectForKey:(id)arg1;
 - (id)copyOrSetObject:(id)arg1 forKey:(id)arg2;
 - (void)dealloc;

@@ -10,7 +10,6 @@
 - (void)clearRestoreType;
 - (bool)didRestoreFromBackup;
 - (bool)didSetupUsingiTunes;
-- (void)recordLanguageSelectedUsingBuddy;
 - (void)recordSetupUsingBuddy;
 - (long long)restoreType;
 

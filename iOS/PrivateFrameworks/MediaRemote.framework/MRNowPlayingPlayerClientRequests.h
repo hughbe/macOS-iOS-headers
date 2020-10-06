@@ -5,11 +5,11 @@
 @interface MRNowPlayingPlayerClientRequests : NSObject <MRNowPlayingClientState> {
     NSOperationQueue * _enquedNowPlayingInfoAssetRequests;
     NSOperationQueue * _enquedNowPlayingInfoRequests;
-    _MRPlaybackQueueProtobuf * _playbackQueue;
+    MRPlaybackQueue * _playbackQueue;
     NSMutableDictionary * _playbackQueueCompletions;
     unsigned int  _playbackState;
     NSMutableArray * _playbackStateCompletions;
-    _MRNowPlayingPlayerPathProtobuf * _playerPath;
+    MRPlayerPath * _playerPath;
     NSObject<OS_dispatch_queue> * _responseQueue;
     NSObject<OS_dispatch_queue> * _serialQueue;
     MRPlaybackQueueSubscriptionController * _subscriptionController;
@@ -19,17 +19,13 @@
     NSMutableDictionary * _transactions;
 }
 
-@property (nonatomic, copy) _MRPlaybackQueueProtobuf *playbackQueue;
+@property (nonatomic, copy) MRPlaybackQueue *playbackQueue;
 @property (nonatomic) unsigned int playbackState;
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 @property (nonatomic, readonly) MRPlaybackQueueSubscriptionController *subscriptionController;
 @property (nonatomic, retain) NSArray *supportedCommands;
 
 - (void).cxx_destruct;
-- (void)_handleEnqueuedPlaybackQueueRequest:(id)arg1 completion:(id /* block */)arg2;
-- (void)_handleTransactionPackets:(id)arg1 packets:(id)arg2 completion:(id /* block */)arg3;
-- (void)_registerDefaultCallbacks;
-- (id)_transactionDestintationForName:(unsigned long long)arg1;
 - (void)addPlaybackQueueCompletion:(id /* block */)arg1 forRequest:(id)arg2;
 - (void)addTransactionCallback:(id /* block */)arg1 forName:(unsigned long long)arg2;
 - (void)dealloc;
@@ -52,6 +48,5 @@
 - (id)transactionCallbacksForName:(unsigned long long)arg1;
 - (void)updateContentItemArtwork:(id)arg1;
 - (void)updateContentItems:(id)arg1;
-- (void)updatePlaybackQueue:(id)arg1;
 
 @end

@@ -9,10 +9,7 @@
         unsigned int read_language : 1; 
         unsigned int read_logoURLs : 1; 
         unsigned int read_snippetLogoURLs : 1; 
-        unsigned int wrote_displayName : 1; 
-        unsigned int wrote_language : 1; 
-        unsigned int wrote_logoURLs : 1; 
-        unsigned int wrote_snippetLogoURLs : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _language;
     NSMutableArray * _logoURLs;
@@ -37,12 +34,6 @@
 + (Class)snippetLogoURLsType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsLogoURLs:(id)arg1;
-- (void)_addNoFlagsSnippetLogoURLs:(id)arg1;
-- (void)_readDisplayName;
-- (void)_readLanguage;
-- (void)_readLogoURLs;
-- (void)_readSnippetLogoURLs;
 - (void)addLogoURLs:(id)arg1;
 - (void)addSnippetLogoURLs:(id)arg1;
 - (id)bestURLForLogos:(id)arg1 scale:(double)arg2;
@@ -58,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)language;
 - (id)logoURLs;
 - (id)logoURLsAtIndex:(unsigned long long)arg1;

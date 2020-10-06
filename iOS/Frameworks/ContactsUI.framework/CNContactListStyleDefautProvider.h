@@ -13,6 +13,8 @@
 @property (nonatomic, readonly) UIFont *cellNameTextEmphasisedFont;
 @property (nonatomic, readonly) UIFont *cellNameTextFont;
 @property (nonatomic, readonly) UIColor *cellNameTextHighlightedColor;
+@property (nonatomic, readonly) UIColor *cellNameTextHighlightedLightColor;
+@property (nonatomic, readonly) UIColor *cellSearchBackgroundColor;
 @property (nonatomic, readonly) UIColor *cellSearchResultTextColor;
 @property (nonatomic, readonly) UIColor *cellSearchResultTextDisabledColor;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } cellSeparatorInset;
@@ -36,6 +38,7 @@
 @property (nonatomic, readonly) UIColor *tableSeparatorColor;
 @property (nonatomic, readonly) long long tableSeparatorOverlayBlendMode;
 @property (nonatomic, readonly) long long tableSeparatorStyle;
+@property (nonatomic, readonly) bool usesInsetPlatterStyle;
 
 - (id)bannerTitleTextColor;
 - (id)cellBackgroundColor;
@@ -46,6 +49,8 @@
 - (id)cellNameTextEmphasisedFont;
 - (id)cellNameTextFont;
 - (id)cellNameTextHighlightedColor;
+- (id)cellNameTextHighlightedLightColor;
+- (id)cellSearchBackgroundColor;
 - (id)cellSearchResultTextColor;
 - (id)cellSearchResultTextDisabledColor;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })cellSeparatorInset;
@@ -69,5 +74,6 @@
 - (id)tableSeparatorColor;
 - (long long)tableSeparatorOverlayBlendMode;
 - (long long)tableSeparatorStyle;
+- (bool)usesInsetPlatterStyle;
 
 @end

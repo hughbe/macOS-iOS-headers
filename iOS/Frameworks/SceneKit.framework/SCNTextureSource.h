@@ -21,6 +21,7 @@
 - (void)setGlTextureCache:(id)arg1;
 - (void)setMTLTextureCache:(id)arg1;
 - (void)setSize;
+- (bool)shouldFlip;
 - (bool)supportsMetal;
 - (void)textureSize;
 - (struct __C3DTexture { }*)textureWithEngineContext:(struct __C3DEngineContext { }*)arg1 textureSampler:(struct __C3DTextureSampler { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; int x2; int x3; int x4; int x5; int x6; int x7; struct C3DColor4 { union { float x_1_2_1[4]; struct { float x_2_3_1; float x_2_3_2; float x_2_3_3; float x_2_3_4; } x_1_2_2; } x_8_1_1; } x8; float x9; unsigned char x10; int x11; unsigned long long x12; }*)arg2 nextFrameTime:(double*)arg3;

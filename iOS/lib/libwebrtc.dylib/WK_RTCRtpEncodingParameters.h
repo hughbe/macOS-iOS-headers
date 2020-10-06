@@ -7,7 +7,7 @@
     NSNumber * _maxBitrateBps;
     NSNumber * _maxFramerate;
     NSNumber * _minBitrateBps;
-    double  _networkPriority;
+    long long  _networkPriority;
     NSNumber * _numTemporalLayers;
     NSString * _rid;
     NSNumber * _scaleResolutionDownBy;
@@ -18,22 +18,25 @@
 @property (nonatomic, copy) NSNumber *maxBitrateBps;
 @property (nonatomic, copy) NSNumber *maxFramerate;
 @property (nonatomic, copy) NSNumber *minBitrateBps;
-@property (nonatomic, readonly) struct RtpEncodingParameters { struct optional<unsigned int> { union { BOOL x_1_2_1; unsigned int x_1_2_2; } x_1_1_1; bool x_1_1_2; } x1; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_2_1_1; bool x_2_1_2; } x2; struct optional<webrtc::RtpFecParameters> { union { BOOL x_1_2_1; struct RtpFecParameters { struct optional<unsigned int> { union { BOOL x_1_5_1; unsigned int x_1_5_2; } x_1_4_1; bool x_1_4_2; } x_2_3_1; int x_2_3_2; } x_1_2_2; } x_3_1_1; bool x_3_1_2; } x3; struct optional<webrtc::RtpRtxParameters> { union { BOOL x_1_2_1; struct RtpRtxParameters { struct optional<unsigned int> { union { BOOL x_1_5_1; unsigned int x_1_5_2; } x_1_4_1; bool x_1_4_2; } x_2_3_1; } x_1_2_2; } x_4_1_1; bool x_4_1_2; } x4; struct optional<webrtc::DtxStatus> { union { BOOL x_1_2_1; int x_1_2_2; } x_5_1_1; bool x_5_1_2; } x5; double x6; double x7; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_8_1_1; bool x_8_1_2; } x8; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_9_1_1; bool x_9_1_2; } x9; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_10_1_1; bool x_10_1_2; } x10; } nativeParameters; /* unknown property attribute:  std::__1::allocator<char> >}}}} */
-@property (nonatomic) double networkPriority;
+@property (nonatomic, readonly) struct RtpEncodingParameters { struct optional<unsigned int> { union { BOOL x_1_2_1; unsigned int x_1_2_2; } x_1_1_1; bool x_1_1_2; } x1; double x2; int x3; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_4_1_1; bool x_4_1_2; } x4; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_5_1_1; bool x_5_1_2; } x5; struct optional<double> { union { BOOL x_1_2_1; double x_1_2_2; } x_6_1_1; bool x_6_1_2; } x6; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_7_1_1; bool x_7_1_2; } x7; struct optional<double> { union { BOOL x_1_2_1; double x_1_2_2; } x_8_1_1; bool x_8_1_2; } x8; bool x9; /* Warning: unhandled struct encoding: '{basic_string<char' */ struct x10; } nativeParameters; /* unknown property attribute:  std::__1::allocator<char> >={__rep=(?={__long=*QQ}{__short=[23c]{?=C}}{__raw=[3Q]})}}}} */
+@property (nonatomic) long long networkPriority;
 @property (nonatomic, copy) NSNumber *numTemporalLayers;
 @property (nonatomic, copy) NSString *rid;
 @property (nonatomic, copy) NSNumber *scaleResolutionDownBy;
 @property (nonatomic, readonly) NSNumber *ssrc;
 
++ (int)nativePriorityFromPriority:(long long)arg1;
++ (long long)priorityFromNativePriority:(int)arg1;
+
 - (void).cxx_destruct;
 - (id)init;
-- (id)initWithNativeParameters:(const struct RtpEncodingParameters { struct optional<unsigned int> { union { BOOL x_1_2_1; unsigned int x_1_2_2; } x_1_1_1; bool x_1_1_2; } x1; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_2_1_1; bool x_2_1_2; } x2; struct optional<webrtc::RtpFecParameters> { union { BOOL x_1_2_1; struct RtpFecParameters { struct optional<unsigned int> { union { BOOL x_1_5_1; unsigned int x_1_5_2; } x_1_4_1; bool x_1_4_2; } x_2_3_1; int x_2_3_2; } x_1_2_2; } x_3_1_1; bool x_3_1_2; } x3; struct optional<webrtc::RtpRtxParameters> { union { BOOL x_1_2_1; struct RtpRtxParameters { struct optional<unsigned int> { union { BOOL x_1_5_1; unsigned int x_1_5_2; } x_1_4_1; bool x_1_4_2; } x_2_3_1; } x_1_2_2; } x_4_1_1; bool x_4_1_2; } x4; struct optional<webrtc::DtxStatus> { union { BOOL x_1_2_1; int x_1_2_2; } x_5_1_1; bool x_5_1_2; } x5; double x6; double x7; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_8_1_1; bool x_8_1_2; } x8; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_9_1_1; bool x_9_1_2; } x9; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_10_1_1; bool x_10_1_2; } x10; }*)arg1;
+- (id)initWithNativeParameters:(const struct RtpEncodingParameters { struct optional<unsigned int> { union { BOOL x_1_2_1; unsigned int x_1_2_2; } x_1_1_1; bool x_1_1_2; } x1; double x2; int x3; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_4_1_1; bool x_4_1_2; } x4; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_5_1_1; bool x_5_1_2; } x5; struct optional<double> { union { BOOL x_1_2_1; double x_1_2_2; } x_6_1_1; bool x_6_1_2; } x6; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_7_1_1; bool x_7_1_2; } x7; struct optional<double> { union { BOOL x_1_2_1; double x_1_2_2; } x_8_1_1; bool x_8_1_2; } x8; bool x9; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > { struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> > { struct __rep { union { struct __long { char *x_1_5_1; unsigned long long x_1_5_2; unsigned long long x_1_5_3; } x_1_4_1; struct __short { BOOL x_2_5_1[23]; struct { unsigned char x_2_6_1; } x_2_5_2; } x_1_4_2; struct __raw { unsigned long long x_3_5_1[3]; } x_1_4_3; } x_1_3_1; } x_1_2_1; } x_10_1_1; } x10; }*)arg1;
 - (bool)isActive;
 - (id)maxBitrateBps;
 - (id)maxFramerate;
 - (id)minBitrateBps;
-- (struct RtpEncodingParameters { struct optional<unsigned int> { union { BOOL x_1_2_1; unsigned int x_1_2_2; } x_1_1_1; bool x_1_1_2; } x1; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_2_1_1; bool x_2_1_2; } x2; struct optional<webrtc::RtpFecParameters> { union { BOOL x_1_2_1; struct RtpFecParameters { struct optional<unsigned int> { union { BOOL x_1_5_1; unsigned int x_1_5_2; } x_1_4_1; bool x_1_4_2; } x_2_3_1; int x_2_3_2; } x_1_2_2; } x_3_1_1; bool x_3_1_2; } x3; struct optional<webrtc::RtpRtxParameters> { union { BOOL x_1_2_1; struct RtpRtxParameters { struct optional<unsigned int> { union { BOOL x_1_5_1; unsigned int x_1_5_2; } x_1_4_1; bool x_1_4_2; } x_2_3_1; } x_1_2_2; } x_4_1_1; bool x_4_1_2; } x4; struct optional<webrtc::DtxStatus> { union { BOOL x_1_2_1; int x_1_2_2; } x_5_1_1; bool x_5_1_2; } x5; double x6; double x7; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_8_1_1; bool x_8_1_2; } x8; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_9_1_1; bool x_9_1_2; } x9; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_10_1_1; bool x_10_1_2; } x10; })nativeParameters;
-- (double)networkPriority;
+- (struct RtpEncodingParameters { struct optional<unsigned int> { union { BOOL x_1_2_1; unsigned int x_1_2_2; } x_1_1_1; bool x_1_1_2; } x1; double x2; int x3; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_4_1_1; bool x_4_1_2; } x4; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_5_1_1; bool x_5_1_2; } x5; struct optional<double> { union { BOOL x_1_2_1; double x_1_2_2; } x_6_1_1; bool x_6_1_2; } x6; struct optional<int> { union { BOOL x_1_2_1; int x_1_2_2; } x_7_1_1; bool x_7_1_2; } x7; struct optional<double> { union { BOOL x_1_2_1; double x_1_2_2; } x_8_1_1; bool x_8_1_2; } x8; bool x9; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > { struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> > { struct __rep { union { struct __long { char *x_1_5_1; unsigned long long x_1_5_2; unsigned long long x_1_5_3; } x_1_4_1; struct __short { BOOL x_2_5_1[23]; struct { unsigned char x_2_6_1; } x_2_5_2; } x_1_4_2; struct __raw { unsigned long long x_3_5_1[3]; } x_1_4_3; } x_1_3_1; } x_1_2_1; } x_10_1_1; } x10; })nativeParameters;
+- (long long)networkPriority;
 - (id)numTemporalLayers;
 - (id)rid;
 - (id)scaleResolutionDownBy;
@@ -41,7 +44,7 @@
 - (void)setMaxBitrateBps:(id)arg1;
 - (void)setMaxFramerate:(id)arg1;
 - (void)setMinBitrateBps:(id)arg1;
-- (void)setNetworkPriority:(double)arg1;
+- (void)setNetworkPriority:(long long)arg1;
 - (void)setNumTemporalLayers:(id)arg1;
 - (void)setRid:(id)arg1;
 - (void)setScaleResolutionDownBy:(id)arg1;

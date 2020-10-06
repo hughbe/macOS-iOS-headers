@@ -2,12 +2,23 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UISplitViewController : UIViewController <DebugHierarchyObject_Fallback> {
+@interface UISplitViewController : UIViewController <GKContentRefresh, GKURLHandling> {
+    bool  __lockedForDelegateCallback;
     <UISplitViewControllerImpl> * _impl;
 }
 
+@property (getter=_allowsDimmedSecondaryAsDeepestUnambiguousResponder, setter=_setAllowsDimmedSecondaryAsDeepestUnambiguousResponder:, nonatomic) bool _allowsDimmedSecondaryAsDeepestUnambiguousResponder;
 @property (setter=_setDisplayModeButtonItemTitle:, nonatomic, copy) NSString *_displayModeButtonItemTitle;
+@property (nonatomic, readonly) UIScreenEdgePanGestureRecognizer *_fluidOpenSidebarPresentationGestureRecognizer;
+@property (setter=_setForceDisplayModeBarButtonHidden:, nonatomic) bool _forceDisplayModeBarButtonHidden;
+@property (getter=_isLockedForDelegateCallback, setter=_setLockedForDelegateCallback:, nonatomic) bool _lockedForDelegateCallback;
+@property (getter=_preferredPrimaryColumnWidth, setter=_setPreferredPrimaryColumnWidth:, nonatomic) double _preferredPrimaryColumnWidth;
+@property (setter=_setPreferredSplitBehavior:, nonatomic) long long _preferredSplitBehavior;
+@property (getter=_preferredSupplementaryColumnWidth, setter=_setPreferredSupplementaryColumnWidth:, nonatomic) double _preferredSupplementaryColumnWidth;
+@property (nonatomic, readonly) long long _splitBehavior;
+@property (setter=_setVisibleToggleButtonRequiresPresentsWithGesture:, nonatomic) bool _visibleToggleButtonRequiresPresentsWithGesture;
 @property (getter=isCollapsed, nonatomic, readonly) bool collapsed;
+@property (nonatomic, readonly) long long composition;
 @property (nonatomic, copy) UISlidingBarConfiguration *configuration;
 @property (nonatomic, readonly) UISlidingBarState *currentState;
 @property (readonly, copy) NSString *debugDescription;
@@ -19,17 +30,33 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool hidesMasterViewInPortrait;
 @property (nonatomic) double maximumPrimaryColumnWidth;
+@property (nonatomic) double maximumSupplementalColumnWidth;
+@property (nonatomic) double maximumSupplementaryColumnWidth;
 @property (nonatomic) double minimumPrimaryColumnWidth;
+@property (nonatomic) double minimumSupplementalColumnWidth;
+@property (nonatomic) double minimumSupplementaryColumnWidth;
 @property (nonatomic, readonly) NSArray *possibleStates;
 @property (nonatomic) long long preferredDisplayMode;
+@property (nonatomic) double preferredPrimaryColumnWidth;
 @property (nonatomic) double preferredPrimaryColumnWidthFraction;
+@property (nonatomic) long long preferredSplitBehavior;
+@property (nonatomic) double preferredSupplementalColumnWidthFraction;
+@property (nonatomic) double preferredSupplementaryColumnWidth;
+@property (nonatomic) double preferredSupplementaryColumnWidthFraction;
 @property (getter=_prefersOverlayInRegularWidthPhone, setter=_setPrefersOverlayInRegularWidthPhone:, nonatomic) bool prefersOverlayInRegularWidthPhone;
+@property (nonatomic) bool prefersSecondaryOnlyShortcutButtonVisible;
 @property (nonatomic) bool presentsWithGesture;
 @property (nonatomic) long long primaryBackgroundStyle;
 @property (nonatomic, readonly) double primaryColumnWidth;
 @property (nonatomic) long long primaryEdge;
+@property (nonatomic) bool showsFullScreenShortcutButtonIfApplicable;
+@property (nonatomic) bool showsSecondaryOnlyButton;
+@property (nonatomic, readonly) long long splitBehavior;
 @property (nonatomic, copy) UISlidingBarStateRequest *stateRequest;
+@property (nonatomic, readonly) long long style;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) double supplementalColumnWidth;
+@property (nonatomic, readonly) double supplementaryColumnWidth;
 @property (getter=_usesDeviceOverlayPreferences, setter=_setUsesDeviceOverlayPreferences:, nonatomic) bool usesDeviceOverlayPreferences;
 @property (getter=_usesExtraWidePrimaryColumn, setter=_setUsesExtraWidePrimaryColumn:, nonatomic) bool usesExtraWidePrimaryColumn;
 @property (nonatomic, copy) NSArray *viewControllers;
@@ -45,11 +72,15 @@
 - (void).cxx_destruct;
 - (id)_additionalViewControllersToCheckForUserActivity;
 - (id)_allContainedViewControllers;
+- (void)_allowingMutationsInDelegateCallback:(id /* block */)arg1;
+- (bool)_allowsDimmedSecondaryAsDeepestUnambiguousResponder;
 - (void)_animateToRequest:(id)arg1;
 - (id)_childViewControllersToSendViewWillTransitionToSize;
+- (long long)_columnForViewController:(id)arg1;
 - (void)_commonInit;
 - (double)_contentMarginForChildViewController:(id)arg1;
 - (struct CGSize { double x1; double x2; })_contentSizeForChildViewController:(id)arg1 inPopoverController:(id)arg2;
+- (id)_deepestUnambiguousResponder;
 - (void)_descendantWillPresentViewController:(id)arg1 modalSourceViewController:(id)arg2 presentationController:(id)arg3 animated:(bool)arg4;
 - (void)_didChangeToFirstResponder:(id)arg1;
 - (void)_didEndSnapshotSession:(id)arg1;
@@ -58,36 +89,63 @@
 - (id)_displayModeButtonItemTitle;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_edgeInsetsForChildViewController:(id)arg1 insetsAreAbsolute:(bool*)arg2;
 - (void)_enumerateAncestorViewControllersUntilStop:(bool*)arg1 usingBlock:(id /* block */)arg2;
+- (id)_fluidOpenSidebarPresentationGestureRecognizer;
+- (bool)_forceDisplayModeBarButtonHidden;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_frameForChildContentContainer:(id)arg1;
 - (void)_getRotationContentSettings:(struct { bool x1; bool x2; bool x3; bool x4; bool x5; double x6; int x7; }*)arg1;
 - (bool)_handlesCounterRotationForPresentation;
 - (bool)_hasPreferredInterfaceOrientationForPresentation;
+- (void)_hideColumn:(long long)arg1;
 - (bool)_iPhoneShouldUseOverlayInCurrentEnvironment;
+- (bool)_isAnimating;
 - (bool)_isCollapsed;
+- (bool)_isLockedForDelegateCallback;
 - (bool)_isRotating;
 - (bool)_layoutPrimaryOnRight;
 - (void)_marginInfoForChild:(id)arg1 leftMargin:(double*)arg2 rightMargin:(double*)arg3;
+- (id)_multitaskingDragExclusionRects;
+- (void)_navigationController:(id)arg1 navigationBar:(id)arg2 topItemUpdatedContentLayout:(id)arg3;
+- (void)_navigationControllerDidChangeNavigationBarHidden:(id)arg1;
+- (void)_navigationControllerDidUpdateStack:(id)arg1;
+- (bool)_navigationControllerShouldNotAdjustTransitioningSizeForChildContainer:(id)arg1;
 - (bool)_optsOutOfPopoverControllerHierarchyCheck;
 - (id)_panelImpl;
 - (void)_popoverController:(id)arg1 didChangeFromVisible:(bool)arg2;
 - (void)_popoverController:(id)arg1 willChangeToVisible:(bool)arg2;
 - (long long)_preferredModalPresentationStyle;
+- (double)_preferredPrimaryColumnWidth;
+- (long long)_preferredSplitBehavior;
+- (double)_preferredSupplementaryColumnWidth;
 - (bool)_prefersOverlayInRegularWidthPhone;
 - (id)_presentationControllerForPresentedController:(id)arg1 presentingController:(id)arg2 sourceController:(id)arg3;
 - (id)_primaryContentResponder;
 - (id)_primaryDimmingView;
+- (double)_primaryDividerPosition;
+- (void)_setAllowsDimmedSecondaryAsDeepestUnambiguousResponder:(bool)arg1;
 - (void)_setDisplayModeButtonItemTitle:(id)arg1;
+- (void)_setForceDisplayModeBarButtonHidden:(bool)arg1;
+- (void)_setLockedForDelegateCallback:(bool)arg1;
+- (void)_setPreferredPrimaryColumnWidth:(double)arg1;
+- (void)_setPreferredSplitBehavior:(long long)arg1;
+- (void)_setPreferredSupplementaryColumnWidth:(double)arg1;
 - (void)_setPrefersOverlayInRegularWidthPhone:(bool)arg1;
 - (void)_setUsesDeviceOverlayPreferences:(bool)arg1;
 - (void)_setUsesExtraWidePrimaryColumn:(bool)arg1;
+- (void)_setViewController:(id)arg1 forColumn:(long long)arg2;
+- (void)_setVisibleToggleButtonRequiresPresentsWithGesture:(bool)arg1;
 - (bool)_shouldPersistViewWhenCoding;
+- (bool)_shouldUseFluidSidebarGestures;
 - (bool)_shouldUseNewStatusBarBehavior;
 - (bool)_shouldUseSeparateStatusBarStyles;
+- (void)_showColumn:(long long)arg1;
+- (long long)_splitBehavior;
 - (long long)_subclassPreferredFocusedViewPrioritizationType;
 - (id)_super_childViewControllerForStatusBarStyle;
 - (id)_super_childViewControllersToSendViewWillTransitionToSize;
+- (id)_super_deepestUnambiguousResponder;
 - (void)_super_didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (bool)_super_disableAutomaticKeyboardBehavior;
+- (id)_super_multitaskingDragExclusionRects;
 - (id)_super_preferredFocusEnvironments;
 - (id)_super_preferredFocusedView;
 - (long long)_super_preferredInterfaceOrientationForPresentation;
@@ -98,7 +156,10 @@
 - (id)_super_traitCollectionForChildEnvironment:(id)arg1;
 - (void)_super_viewWillTransitionToSize:(struct CGSize { double x1; double x2; })arg1 withTransitionCoordinator:(id)arg2;
 - (void)_super_willTransitionToTraitCollection:(id)arg1 withTransitionCoordinator:(id)arg2;
+- (double)_supplementaryDividerPosition;
+- (void)_tabBarControllerDidChangeSelection:(id)arg1;
 - (id)_traitCollectionForChildEnvironment:(id)arg1;
+- (void)_triggerSidebarKeyCommandAction:(id)arg1;
 - (void)_updateChildContentMargins;
 - (void)_updateDisplayModeButtonItem;
 - (void)_updateLayoutForStatusBarAndInterfaceOrientation;
@@ -106,22 +167,19 @@
 - (bool)_usesDeviceOverlayPreferences;
 - (bool)_usesExtraWidePrimaryColumn;
 - (bool)_usesPanelImpl;
+- (void)_viewControllerChildViewControllersDidChange:(id)arg1;
+- (id)_viewControllerForColumn:(long long)arg1;
+- (bool)_visibleToggleButtonRequiresPresentsWithGesture;
 - (void)_willBeginSnapshotSession:(id)arg1;
 - (void)_willShowCollapsedDetailViewController:(id)arg1 inTargetController:(id)arg2;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addChildViewController:(id)arg1;
 - (id)childViewControllerForStatusBarStyle;
+- (long long)composition;
 - (id)configuration;
 - (id)currentState;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (id)delegate;
+- (id)description;
 - (id)detailViewController;
 - (void)didMoveToParentViewController:(id)arg1;
 - (void)didRotateFromInterfaceOrientation:(long long)arg1;
@@ -130,14 +188,21 @@
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (float)gutterWidth;
+- (void)hideColumn:(long long)arg1;
 - (bool)hidesMasterViewInPortrait;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithComposition:(long long)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)initWithStyle:(long long)arg1;
 - (bool)isCollapsed;
 - (void)loadView;
 - (id)masterViewController;
 - (double)maximumPrimaryColumnWidth;
+- (double)maximumSupplementalColumnWidth;
+- (double)maximumSupplementaryColumnWidth;
 - (double)minimumPrimaryColumnWidth;
+- (double)minimumSupplementalColumnWidth;
+- (double)minimumSupplementaryColumnWidth;
 - (id)possibleStates;
 - (void)preferredContentSizeDidChangeForChildContentContainer:(id)arg1;
 - (long long)preferredDisplayMode;
@@ -145,36 +210,80 @@
 - (id)preferredFocusedView;
 - (long long)preferredInterfaceOrientationForPresentation;
 - (long long)preferredLeadingStatusBarStyle;
+- (double)preferredPrimaryColumnWidth;
 - (double)preferredPrimaryColumnWidthFraction;
+- (long long)preferredSplitBehavior;
+- (double)preferredSupplementalColumnWidthFraction;
+- (double)preferredSupplementaryColumnWidth;
+- (double)preferredSupplementaryColumnWidthFraction;
 - (long long)preferredTrailingStatusBarStyle;
+- (bool)prefersSecondaryOnlyShortcutButtonVisible;
 - (bool)presentsWithGesture;
 - (long long)primaryBackgroundStyle;
 - (double)primaryColumnWidth;
 - (long long)primaryEdge;
 - (void)removeChildViewController:(id)arg1;
+- (void)removeFromParentViewController;
+- (void)setAutomaticallyAdjustsScrollViewInsets:(bool)arg1;
+- (void)setComposition:(long long)arg1;
 - (void)setConfiguration:(id)arg1;
+- (void)setDefinesPresentationContext:(bool)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setEdgesForExtendedLayout:(unsigned long long)arg1;
+- (void)setExtendedLayoutIncludesOpaqueBars:(bool)arg1;
 - (void)setGutterWidth:(float)arg1;
 - (void)setHidesMasterViewInPortrait:(bool)arg1;
 - (void)setMaximumPrimaryColumnWidth:(double)arg1;
+- (void)setMaximumSupplementalColumnWidth:(double)arg1;
+- (void)setMaximumSupplementaryColumnWidth:(double)arg1;
 - (void)setMinimumPrimaryColumnWidth:(double)arg1;
+- (void)setMinimumSupplementalColumnWidth:(double)arg1;
+- (void)setMinimumSupplementaryColumnWidth:(double)arg1;
+- (void)setModalPresentationCapturesStatusBarAppearance:(bool)arg1;
+- (void)setModalPresentationStyle:(long long)arg1;
+- (void)setModalTransitionStyle:(long long)arg1;
+- (void)setOverrideTraitCollection:(id)arg1;
+- (void)setPreferredContentSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)setPreferredDisplayMode:(long long)arg1;
+- (void)setPreferredPrimaryColumnWidth:(double)arg1;
 - (void)setPreferredPrimaryColumnWidthFraction:(double)arg1;
+- (void)setPreferredSplitBehavior:(long long)arg1;
+- (void)setPreferredSupplementalColumnWidthFraction:(double)arg1;
+- (void)setPreferredSupplementaryColumnWidth:(double)arg1;
+- (void)setPreferredSupplementaryColumnWidthFraction:(double)arg1;
+- (void)setPrefersSecondaryOnlyShortcutButtonVisible:(bool)arg1;
 - (void)setPresentsWithGesture:(bool)arg1;
 - (void)setPrimaryBackgroundStyle:(long long)arg1;
 - (void)setPrimaryEdge:(long long)arg1;
+- (void)setProvidesPresentationContextTransitionStyle:(bool)arg1;
+- (void)setRestoresFocusAfterTransition:(bool)arg1;
+- (void)setShowsFullScreenShortcutButtonIfApplicable:(bool)arg1;
+- (void)setShowsSecondaryOnlyButton:(bool)arg1;
 - (void)setStateRequest:(id)arg1;
+- (void)setStyle:(long long)arg1;
+- (void)setView:(id)arg1;
+- (void)setViewController:(id)arg1 forColumn:(long long)arg2;
 - (void)setViewControllers:(id)arg1;
+- (void)setViewRespectsSystemMinimumLayoutMargins:(bool)arg1;
 - (bool)shouldAutorotateToInterfaceOrientation:(long long)arg1;
 - (bool)shouldUpdateFocusInContext:(id)arg1;
+- (void)showColumn:(long long)arg1;
 - (void)showDetailViewController:(id)arg1 sender:(id)arg2;
 - (void)showViewController:(id)arg1 sender:(id)arg2;
+- (bool)showsFullScreenShortcutButtonIfApplicable;
+- (bool)showsSecondaryOnlyButton;
 - (struct CGSize { double x1; double x2; })sizeForChildContentContainer:(id)arg1 withParentContainerSize:(struct CGSize { double x1; double x2; })arg2;
+- (long long)splitBehavior;
 - (id)stateRequest;
+- (long long)style;
+- (double)supplementalColumnWidth;
+- (double)supplementaryColumnWidth;
 - (unsigned long long)supportedInterfaceOrientations;
 - (void)toggleMasterVisible:(id)arg1;
 - (void)traitCollectionDidChange:(id)arg1;
+- (id)transitionCoordinator;
 - (void)unloadViewForced:(bool)arg1;
+- (id)viewControllerForColumn:(long long)arg1;
 - (id)viewControllers;
 - (void)viewDidAppear:(bool)arg1;
 - (void)viewDidDisappear:(bool)arg1;
@@ -185,5 +294,27 @@
 - (void)willAnimateRotationToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
 - (void)willRotateToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
 - (void)willTransitionToTraitCollection:(id)arg1 withTransitionCoordinator:(id)arg2;
+
+// Image: /System/Library/Frameworks/SwiftUI.framework/SwiftUI
+
+- (id)makeDetailNavigationControllerWithRoot:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUICore.framework/GameCenterUICore
+
+- (void)_gkForceNextContentUpdate;
+- (void)_gkHandleURLPathComponents:(id)arg1 query:(id)arg2;
+- (void)_gkResetContents;
+- (void)_gkSetContentsNeedUpdateWithHandler:(id /* block */)arg1;
+- (void)_gkUpdateContentsWithCompletionHandlerAndError:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (void)togglePrimaryViewVisibilityAnimated:(bool)arg1;
+- (void)ts_columnSeparatorsExtendToTitlebar:(bool)arg1;
+- (bool)ts_isCollapsedOrCollapsing;
+- (bool)ts_isCollapsing;
+- (void)ts_setGutterWidth:(double)arg1;
+- (void)ts_setPrefersOverlayInRegularWidthPhone:(bool)arg1;
+- (void)ts_setPrimaryBackgroundStyle:(long long)arg1;
 
 @end

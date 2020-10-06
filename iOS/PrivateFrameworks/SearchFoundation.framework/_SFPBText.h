@@ -15,6 +15,8 @@
 @property (readonly) Class superclass;
 @property (copy) NSString *text;
 
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
+
 - (void).cxx_destruct;
 - (id)dictionaryRepresentation;
 - (unsigned long long)hash;
@@ -29,5 +31,9 @@
 - (void)setText:(id)arg1;
 - (id)text;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
++ (id)textWithString:(id)arg1;
 
 @end

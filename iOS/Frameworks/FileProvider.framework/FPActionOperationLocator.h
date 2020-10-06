@@ -10,6 +10,7 @@
 @property (nonatomic, readonly) NSURL *asURL;
 @property (nonatomic, readonly) NSString *filename;
 @property (nonatomic, readonly) id identifier;
+@property (nonatomic, readonly) bool isDownloaded;
 @property (nonatomic, readonly) bool isExternalURL;
 @property (nonatomic, readonly) bool isFolder;
 @property (nonatomic, readonly) bool isProviderItem;
@@ -17,6 +18,8 @@
 @property (nonatomic, readonly) bool requiresCrossDeviceCopy;
 @property (nonatomic, readonly) unsigned long long size;
 @property (nonatomic, readonly) id underlyingObject;
+
+// Image: /System/Library/Frameworks/FileProvider.framework/FileProvider
 
 + (id)locatorForItem:(id)arg1;
 + (id)locatorForURL:(id)arg1;
@@ -43,5 +46,15 @@
 - (bool)requiresCrossDeviceCopy;
 - (unsigned long long)size;
 - (id)underlyingObject;
+
+// Image: /System/Library/PrivateFrameworks/FileProviderDaemon.framework/FileProviderDaemon
+
++ (bool)_isMoveAcrossZonesOrSharedRootsForSource:(id)arg1 destination:(id)arg2;
+
+- (bool)isDownloaded;
+- (unsigned long long)materializeOptionForDestinationItem:(id)arg1 recursively:(bool)arg2 isCopy:(bool)arg3 extensionManager:(id)arg4;
+- (id)materializedURLWithDomain:(id)arg1;
+- (id)materializedURLWithExtensionManager:(id)arg1;
+- (bool)willRequireDownloadForSourceItem:(id)arg1 extensionManager:(id)arg2;
 
 @end

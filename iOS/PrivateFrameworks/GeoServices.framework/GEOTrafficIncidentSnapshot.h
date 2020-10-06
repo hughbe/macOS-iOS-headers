@@ -7,9 +7,7 @@
         unsigned int has_receivedTime : 1; 
         unsigned int read_incidents : 1; 
         unsigned int read_snapshotMetaData : 1; 
-        unsigned int wrote_incidents : 1; 
-        unsigned int wrote_receivedTime : 1; 
-        unsigned int wrote_snapshotMetaData : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _incidents;
     PBDataReader * _reader;
@@ -32,9 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsIncidents:(id)arg1;
-- (void)_readIncidents;
-- (void)_readSnapshotMetaData;
 - (void)addIncidents:(id)arg1;
 - (void)clearIncidents;
 - (void)copyTo:(id)arg1;
@@ -49,7 +44,10 @@
 - (unsigned long long)incidentsCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

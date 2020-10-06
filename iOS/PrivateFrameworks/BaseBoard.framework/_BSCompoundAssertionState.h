@@ -4,17 +4,17 @@
 
 @interface _BSCompoundAssertionState : NSObject <BSCompoundAssertionState> {
     bool  _active;
-    NSSet * _context;
+    NSOrderedSet * _context;
 }
 
 @property (getter=isActive, readonly) bool active;
 @property (readonly) NSSet *context;
+@property (readonly) NSOrderedSet *orderedContext;
 
 - (void).cxx_destruct;
 - (id)context;
 - (id)description;
 - (bool)isActive;
-- (void)setActive:(bool)arg1;
-- (void)setContext:(id)arg1;
+- (id)orderedContext;
 
 @end

@@ -6,8 +6,7 @@
     struct { 
         unsigned int read_items : 1; 
         unsigned int read_options : 1; 
-        unsigned int wrote_items : 1; 
-        unsigned int wrote_options : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _items;
     GEOURLOptions * _options;
@@ -27,9 +26,6 @@
 + (Class)itemType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsItem:(id)arg1;
-- (void)_readItems;
-- (void)_readOptions;
 - (void)addItem:(id)arg1;
 - (void)clearItems;
 - (void)copyTo:(id)arg1;
@@ -40,12 +36,15 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
 - (id)initWithDirectionsOptions:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithOptions:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)itemAtIndex:(unsigned long long)arg1;
 - (id)items;
 - (unsigned long long)itemsCount;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)options;
 - (void)readAll:(bool)arg1;

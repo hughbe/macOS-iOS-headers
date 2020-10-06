@@ -8,9 +8,9 @@
         unsigned int m_capacity; 
         unsigned int m_size; 
     }  _layers;
-    struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC> { 
-        struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-            struct WeakPtrImpl {} *m_ptr; 
+    struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC, WTF::EmptyCounter> { 
+        struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { 
+            struct WeakPtrImpl<WTF::EmptyCounter> {} *m_ptr; 
         } m_impl; 
     }  _parent;
     struct Vector<WTF::RetainPtr<AVSampleBufferAudioRenderer>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { 
@@ -25,7 +25,7 @@
 - (void)beginObservingLayer:(id)arg1;
 - (void)beginObservingRenderer:(id)arg1;
 - (void)dealloc;
-- (id)initWithParent:(struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_1_1; } x1; }*)arg1;
+- (id)initWithParent:(struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_1_1; } x1; }*)arg1;
 - (void)invalidate;
 - (void)layerFailedToDecode:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;

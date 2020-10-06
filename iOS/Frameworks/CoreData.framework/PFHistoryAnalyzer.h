@@ -11,7 +11,7 @@
 - (void)dealloc;
 - (id)init;
 - (id)initWithOptions:(id)arg1;
-- (id)instantiateNewAnalyzerContext;
+- (id)instantiateNewAnalyzerContextForChangesInStore:(id)arg1;
 - (id)newAnalyzerContextForStore:(id)arg1 sinceLastHistoryToken:(id)arg2 inManagedObjectContext:(id)arg3 error:(id*)arg4;
 - (id)options;
 - (bool)processTransaction:(id)arg1 withContext:(id)arg2 error:(id*)arg3;

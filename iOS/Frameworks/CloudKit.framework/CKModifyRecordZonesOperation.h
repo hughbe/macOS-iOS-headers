@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKModifyRecordZonesOperation : CKDatabaseOperation {
+@interface CKModifyRecordZonesOperation : CKDatabaseOperation <CKModifyRecordZonesOperationCallbacks> {
     NSMutableArray * _deletedRecordZoneIDs;
     bool  _markZonesAsUserPurged;
     id /* block */  _modifyRecordZonesCompletionBlock;
@@ -13,23 +13,28 @@
     NSMutableArray * _savedRecordZones;
 }
 
+@property (nonatomic, readonly) <CKModifyRecordZonesOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSMutableArray *deletedRecordZoneIDs;
 @property (nonatomic) bool markZonesAsUserPurged;
 @property (nonatomic, copy) id /* block */ modifyRecordZonesCompletionBlock;
+@property (nonatomic, readonly) CKModifyRecordZonesOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *recordZoneErrors;
 @property (nonatomic, copy) NSArray *recordZoneIDsToDelete;
 @property (nonatomic, retain) NSMutableDictionary *recordZonesByZoneIDs;
 @property (nonatomic, copy) NSArray *recordZonesToSave;
 @property (nonatomic, retain) NSMutableArray *savedRecordZones;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)deletedRecordZoneIDs;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleDeleteForRecordZoneID:(id)arg1 error:(id)arg2;
+- (void)handleSaveForRecordZoneID:(id)arg1 recordZone:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordZonesToSave:(id)arg1 recordZoneIDsToDelete:(id)arg2;
@@ -40,6 +45,7 @@
 - (id)recordZoneIDsToDelete;
 - (id)recordZonesByZoneIDs;
 - (id)recordZonesToSave;
+- (id)relevantZoneIDs;
 - (id)savedRecordZones;
 - (void)setDeletedRecordZoneIDs:(id)arg1;
 - (void)setMarkZonesAsUserPurged:(bool)arg1;

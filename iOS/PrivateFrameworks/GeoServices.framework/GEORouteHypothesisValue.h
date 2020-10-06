@@ -10,6 +10,7 @@
     GEORouteHypothesisMonitor * _monitor;
     GEOComposedWaypoint * _origin;
     bool  _prediction;
+    GEORouteAttributes * _routeAttributes;
     long long  _rowId;
     GEOMapServiceTraits * _traits;
     int  _transportType;
@@ -26,9 +27,10 @@
 @property (nonatomic, readonly) GEORouteHypothesisMonitor *monitor;
 @property (nonatomic, readonly) GEOComposedWaypoint *origin;
 @property (nonatomic) bool prediction;
+@property (nonatomic, copy) GEORouteAttributes *routeAttributes;
 @property (nonatomic) long long rowId;
 @property (nonatomic, readonly) GEOMapServiceTraits *traits;
-@property (nonatomic) int transportType;
+@property (nonatomic, readonly) int transportType;
 @property (nonatomic) double updatedTimeStamp;
 @property (nonatomic) double valueRefreshTimeStamp;
 
@@ -45,17 +47,18 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)expirationDate;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithSource:(id)arg1 toDestination:(id)arg2 transportType:(int)arg3 arrivalDate:(id)arg4 expirationDate:(id)arg5 traceName:(id)arg6 traits:(id)arg7;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 expirationDate:(id)arg4 traceName:(id)arg5 traits:(id)arg6 routeAttributes:(id)arg7;
 - (bool)isStaleToPurgeFromDisk;
 - (bool)isStaleToRefresh;
 - (id)monitor;
 - (id)origin;
 - (bool)prediction;
+- (id)routeAttributes;
 - (long long)rowId;
 - (void)setCurrentHypothesis:(id)arg1;
 - (void)setPrediction:(bool)arg1;
+- (void)setRouteAttributes:(id)arg1;
 - (void)setRowId:(long long)arg1;
-- (void)setTransportType:(int)arg1;
 - (void)setUpdatedTimeStamp:(double)arg1;
 - (void)setValueRefreshTimeStamp:(double)arg1;
 - (id)traits;

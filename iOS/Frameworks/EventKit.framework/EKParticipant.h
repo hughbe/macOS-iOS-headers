@@ -27,6 +27,12 @@
 @property (nonatomic) int proposedStartDateStatus;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
+
++ (bool)canonicalizedEqualityTestValue1:(id)arg1 value2:(id)arg2 key:(id)arg3 object1:(id)arg4 object2:(id)arg5;
++ (bool)doesParticipantURL:(id)arg1 email:(id)arg2 andPhoneNumber:(id)arg3 matchParticipantURL:(id)arg4 email:(id)arg5 andPhoneNumber:(id)arg6;
++ (id)knownIdentityKeysForComparison;
++ (id)knownSingleValueKeysForComparison;
 + (id)participantWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3 url:(id)arg4;
 + (id)participantWithName:(id)arg1 url:(id)arg2;
 
@@ -36,12 +42,13 @@
 - (id)UUID;
 - (id)comment;
 - (id)contactPredicate;
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)displayName;
 - (id)displayNameRaw;
 - (id)emailAddress;
+- (id)existingContact;
 - (id)firstName;
+- (bool)hasProposedStartDate;
 - (id)initWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3 url:(id)arg4;
 - (id)invitedBy;
 - (id)inviterNameString;
@@ -51,6 +58,7 @@
 - (id)lastName;
 - (id)name;
 - (id)nameComponents;
+- (id)nameUsingAddressAsBackup;
 - (id)owner;
 - (long long)participantRole;
 - (long long)participantStatus;
@@ -62,6 +70,7 @@
 - (id)semanticIdentifier;
 - (void)setComment:(id)arg1;
 - (void)setDisplayName:(id)arg1;
+- (void)setDisplayNameRaw:(id)arg1;
 - (void)setEmailAddress:(id)arg1;
 - (void)setFirstName:(id)arg1;
 - (id)setInviterNameString;
@@ -73,5 +82,11 @@
 - (void)setURL:(id)arg1;
 - (void)setUUID:(id)arg1;
 - (id)url;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)commentLabelString;
+- (id)displayName;
+- (id)displayNameWithDecomposedFirstName:(id*)arg1 lastName:(id*)arg2 department:(id*)arg3;
 
 @end

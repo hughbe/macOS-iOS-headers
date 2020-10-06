@@ -6,15 +6,10 @@
     GEOLatLng * _coordinate;
     struct { 
         unsigned int has_formType : 1; 
-        unsigned int read_unknownFields : 1; 
         unsigned int read_coordinate : 1; 
         unsigned int read_mapRegion : 1; 
         unsigned int read_mapsId : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_coordinate : 1; 
-        unsigned int wrote_mapRegion : 1; 
-        unsigned int wrote_mapsId : 1; 
-        unsigned int wrote_formType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _formType;
     GEOMapRegion * _mapRegion;
@@ -25,7 +20,6 @@
     }  _readerLock;
     unsigned int  _readerMarkLength;
     unsigned int  _readerMarkPos;
-    PBUnknownFields * _unknownFields;
 }
 
 @property (nonatomic, retain) GEOLatLng *coordinate;
@@ -36,16 +30,11 @@
 @property (nonatomic, readonly) bool hasMapsId;
 @property (nonatomic, retain) GEOMapRegion *mapRegion;
 @property (nonatomic, retain) GEOPDMapsIdentifier *mapsId;
-@property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
 - (int)StringAsFormType:(id)arg1;
-- (void)_readCoordinate;
-- (void)_readMapRegion;
-- (void)_readMapsId;
-- (void)clearUnknownFields:(bool)arg1;
 - (id)coordinate;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -60,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapRegion;
 - (id)mapsId;
 - (void)mergeFrom:(id)arg1;
@@ -71,7 +63,6 @@
 - (void)setHasFormType:(bool)arg1;
 - (void)setMapRegion:(id)arg1;
 - (void)setMapsId:(id)arg1;
-- (id)unknownFields;
 - (void)writeTo:(id)arg1;
 
 @end

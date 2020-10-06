@@ -16,7 +16,6 @@
 
 - (void).cxx_destruct;
 - (id)endDate;
-- (id)initWithInsertedObjects:(id)arg1 tombstones:(id)arg2 startDate:(id)arg3 endDate:(id)arg4;
 - (id)insertedObjects;
 - (id)startDate;
 - (id)tombstones;

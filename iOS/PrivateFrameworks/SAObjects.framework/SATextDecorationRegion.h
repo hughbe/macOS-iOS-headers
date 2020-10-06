@@ -12,6 +12,8 @@
 @property (nonatomic, copy) NSNumber *start;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)textDecorationRegion;
 + (id)textDecorationRegionWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -23,5 +25,9 @@
 - (void)setProperty:(id)arg1;
 - (void)setStart:(id)arg1;
 - (id)start;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (struct _NSRange { unsigned long long x1; unsigned long long x2; })siriui_range;
 
 @end

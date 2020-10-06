@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKRouteLinkPresentationActivityProvider : MKRouteActivityProvider <MKActivityItemLinkPresentationSource> {
+@interface MKRouteLinkPresentationActivityProvider : MKRouteActivityProvider <UIActivityItemLinkPresentationSource> {
     LPLinkMetadata * _cachedMetadata;
     GEOComposedRoute * _composedRoute;
 }

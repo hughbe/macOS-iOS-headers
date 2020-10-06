@@ -52,13 +52,7 @@
 @property (nonatomic, retain) UIKBHandwritingStrokeView *strokeView;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)activeTouches;
 - (void)addInkPoint:(struct CGPoint { double x1; double x2; })arg1 value:(double)arg2;
 - (id)bezierPathFIFO;
@@ -68,6 +62,7 @@
 - (void)clearTouches;
 - (id)currentPath;
 - (id)currentPoints;
+- (void)dealloc;
 - (void)deleteStrokesAtIndexes:(id)arg1;
 - (void)didMoveToWindow;
 - (void)displayLayer:(id)arg1;

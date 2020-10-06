@@ -5,6 +5,7 @@
 @interface CLRunLoopSilo : CLSilo {
     double  _currentLatchedAbsoluteTimestamp;
     CLRunLoopSiloThread * _siloThread;
+    bool  _useCLPermissiveTimer;
 }
 
 - (void).cxx_destruct;
@@ -15,9 +16,12 @@
 - (double)currentLatchedAbsoluteTimestamp;
 - (id)debugDescription;
 - (id)getTimeCoercibleVariantInstance;
+- (bool)inPermissiveMode;
 - (id)initWithCurrentRunLoopAndIdentifier:(id)arg1;
+- (id)initWithCurrentRunLoopAndIdentifier:(id)arg1 bePermissive:(bool)arg2;
 - (id)initWithIdentifier:(id)arg1;
 - (id)initWithUnderlyingRunLoop:(struct __CFRunLoop { }*)arg1;
+- (bool)isSuspended;
 - (id)newTimer;
 - (void)resume;
 - (id)runloop;

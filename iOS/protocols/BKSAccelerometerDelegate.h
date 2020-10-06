@@ -9,6 +9,6 @@
 
 @optional
 
-- (void)accelerometer:(BKSAccelerometer *)arg1 didChangeDeviceOrientation:(int)arg2;
+- (void)accelerometer:(BKSAccelerometer *)arg1 didChangeDeviceOrientation:(long long)arg2;
 
 @end

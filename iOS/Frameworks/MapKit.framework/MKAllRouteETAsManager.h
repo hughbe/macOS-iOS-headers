@@ -8,6 +8,7 @@
 }
 
 @property (nonatomic, copy) GEOAutomobileOptions *automobileOptions;
+@property (nonatomic, copy) GEOCyclingOptions *cyclingOptions;
 @property (nonatomic) <MKAllRouteETAsManagerDelegate> *delegate;
 @property (nonatomic, retain) MKMapItem *mapItem;
 @property (nonatomic, retain) MKMapItem *originMapItem;
@@ -15,12 +16,14 @@
 
 - (void).cxx_destruct;
 - (id)automobileOptions;
+- (id)cyclingOptions;
 - (id)delegate;
 - (id)init;
 - (id)mapItem;
 - (id)originMapItem;
 - (id)routeETAForTransportType:(unsigned long long)arg1;
 - (void)setAutomobileOptions:(id)arg1;
+- (void)setCyclingOptions:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setMapItem:(id)arg1;
 - (void)setOriginMapItem:(id)arg1;

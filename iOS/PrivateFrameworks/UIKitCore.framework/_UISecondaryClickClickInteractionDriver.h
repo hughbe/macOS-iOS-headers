@@ -6,9 +6,9 @@
     double  _allowableMovement;
     bool  _cancelsTouchesInView;
     bool  _clicksUpAutomaticallyAfterTimeout;
+    unsigned long long  _currentState;
     <_UIClickInteractionDriverDelegate> * _delegate;
     _UISecondaryClickDriverGestureRecognizer * _gestureRecognizer;
-    _UIStateMachine * _stateMachine;
     UIView * _view;
 }
 
@@ -26,7 +26,6 @@
 @property (nonatomic, readonly) bool isCurrentlyAcceleratedByForce;
 @property (nonatomic, readonly) double maximumEffectProgress;
 @property (nonatomic, readonly) UIGestureRecognizer *primaryGestureRecognizer;
-@property (nonatomic, retain) _UIStateMachine *stateMachine;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) double touchDuration;
 @property (nonatomic) UIView *view;
@@ -38,7 +37,6 @@
 - (void)_attemptSecondaryClick;
 - (void)_gestureRecognizerFailed:(id)arg1;
 - (void)_handleGestureRecognizer:(id)arg1;
-- (void)_prepareStateMachine;
 - (double)allowableMovement;
 - (void)cancelInteraction;
 - (bool)cancelsTouchesInView;
@@ -58,9 +56,7 @@
 - (void)setCancelsTouchesInView:(bool)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setGestureRecognizer:(id)arg1;
-- (void)setStateMachine:(id)arg1;
 - (void)setView:(id)arg1;
-- (id)stateMachine;
 - (double)touchDuration;
 - (id)view;
 

@@ -3,6 +3,8 @@
  */
 
 @interface UIKeyboardCandidateViewStyle : NSObject <NSCopying, TUICandidateViewStyle> {
+    bool  _allowCandidateGridExpanding;
+    long long  _alternativeTextAlignment;
     UIColor * _alternativeTextColor;
     UIFont * _alternativeTextFont;
     UIFont * _annotationTextFont;
@@ -76,6 +78,7 @@
     UIImage * _rightEdgeSeparatorImage;
     double  _rowHeight;
     bool  _scrollDisabled;
+    bool  _showExtraLineBeforeFirstRow;
     bool  _showOneMoreCandidate;
     bool  _showsIndex;
     double  _singleSlottedCellMargin;
@@ -95,6 +98,8 @@
     UIImage * _transliterationCandidateBackgroundImage;
 }
 
+@property (nonatomic) bool allowCandidateGridExpanding;
+@property (nonatomic) long long alternativeTextAlignment;
 @property (nonatomic, retain) UIColor *alternativeTextColor;
 @property (nonatomic, retain) UIFont *alternativeTextFont;
 @property (nonatomic, retain) UIFont *annotationTextFont;
@@ -148,6 +153,7 @@
 @property (nonatomic, retain) UIImage *rightEdgeSeparatorImage;
 @property (nonatomic) double rowHeight;
 @property (nonatomic) bool scrollDisabled;
+@property (nonatomic) bool showExtraLineBeforeFirstRow;
 @property (nonatomic) bool showOneMoreCandidate;
 @property (nonatomic) bool showsIndex;
 @property (nonatomic) double singleSlottedCellMargin;
@@ -172,6 +178,8 @@
 + (id)tvStyleForDarkKeyboard:(bool)arg1;
 
 - (void).cxx_destruct;
+- (bool)allowCandidateGridExpanding;
+- (long long)alternativeTextAlignment;
 - (id)alternativeTextColor;
 - (id)alternativeTextFont;
 - (id)annotationTextFont;
@@ -224,6 +232,8 @@
 - (id)rightEdgeSeparatorImage;
 - (double)rowHeight;
 - (bool)scrollDisabled;
+- (void)setAllowCandidateGridExpanding:(bool)arg1;
+- (void)setAlternativeTextAlignment:(long long)arg1;
 - (void)setAlternativeTextColor:(id)arg1;
 - (void)setAlternativeTextFont:(id)arg1;
 - (void)setAnnotationTextFont:(id)arg1;
@@ -274,6 +284,7 @@
 - (void)setRightEdgeSeparatorImage:(id)arg1;
 - (void)setRowHeight:(double)arg1;
 - (void)setScrollDisabled:(bool)arg1;
+- (void)setShowExtraLineBeforeFirstRow:(bool)arg1;
 - (void)setShowOneMoreCandidate:(bool)arg1;
 - (void)setShowsIndex:(bool)arg1;
 - (void)setSingleSlottedCellMargin:(double)arg1;
@@ -285,6 +296,7 @@
 - (void)setSortControlPadding:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setTextColor:(id)arg1;
 - (void)setTransliterationCandidateBackgroundColor:(id)arg1;
+- (bool)showExtraLineBeforeFirstRow;
 - (bool)showOneMoreCandidate;
 - (bool)showsIndex;
 - (double)singleSlottedCellMargin;

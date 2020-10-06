@@ -12,6 +12,7 @@
 @property (nonatomic) bool skipValueTransformerValidation;
 @property (nonatomic) bool validateLegacyMetadataAttributes;
 
++ (bool)enforceUniqueConstraintChecks;
 + (id)stringFromDeleteRule:(unsigned long long)arg1;
 
 - (bool)_validateManagedObjectModel:(id)arg1 error:(id*)arg2;

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKQueryOperation : CKDatabaseOperation {
+@interface CKQueryOperation : CKDatabaseOperation <CKQueryOperationCallbacks> {
     NSDictionary * _assetTransferOptionsByKey;
     CKQueryCursor * _cursor;
     NSArray * _desiredKeys;
@@ -17,24 +17,27 @@
     CKRecordZoneID * _zoneID;
 }
 
-@property (nonatomic, retain) NSDictionary *assetTransferOptionsByKey;
+@property (nonatomic, copy) NSDictionary *assetTransferOptionsByKey;
+@property (nonatomic, readonly) <CKQueryOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) CKQueryCursor *cursor;
 @property (nonatomic, copy) NSArray *desiredKeys;
 @property (nonatomic) bool fetchAllResults;
+@property (nonatomic, readonly) CKQueryOperationInfo *operationInfo;
 @property (nonatomic, copy) CKQuery *query;
 @property (nonatomic, copy) id /* block */ queryCompletionBlock;
 @property (nonatomic, copy) id /* block */ queryCursorFetchedBlock;
 @property (nonatomic, copy) id /* block */ recordFetchedBlock;
-@property (nonatomic, retain) CKQueryCursor *resultsCursor;
+@property (nonatomic, copy) CKQueryCursor *resultsCursor;
 @property (nonatomic) unsigned long long resultsLimit;
 @property (nonatomic) bool shouldFetchAssetContent;
 @property (nonatomic, copy) CKRecordZoneID *zoneID;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
++ (SEL)daemonCallbackCompletionSelector;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleCompletionCallback:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)assetTransferOptionsByKey;
 - (id)cursor;
@@ -42,6 +45,9 @@
 - (bool)fetchAllResults;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleOperationDidCompleteWithCursor:(id)arg1 metrics:(id)arg2 error:(id)arg3;
+- (void)handleQueryDidFetchCursor:(id)arg1 reply:(id /* block */)arg2;
+- (void)handleQueryDidFetchRecord:(id)arg1;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithCursor:(id)arg1;

@@ -4,6 +4,7 @@
 
 @interface UIApplicationSceneSpecification : FBSSceneSpecification
 
+- (bool)affectsAppLifecycleIfInternal;
 - (id)baseSceneComponentClassDictionary;
 - (Class)clientAgentClass;
 - (Class)clientSettingsClass;

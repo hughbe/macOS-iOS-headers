@@ -24,15 +24,9 @@
 @property (nonatomic, readonly) unsigned long long count;
 @property (nonatomic, readonly) NRMutableDeviceCollection *deviceCollection;
 @property (nonatomic, readonly) bool dirty;
-@property (nonatomic, retain) NSMutableArray *history;
-@property (nonatomic, retain) NSMutableDictionary *historyStateCache;
-@property (nonatomic, retain) NSMutableArray *historyStateCacheIndex;
-@property (nonatomic, retain) NSMutableArray *historyStateCacheMRU;
 @property (nonatomic, readonly) unsigned long long nextIndex;
 @property (nonatomic, readonly) NRPBDeviceCollectionHistory *protobuf;
-@property (nonatomic) unsigned long long startIndex;
 @property (nonatomic, readonly) unsigned int switchIndex;
-@property (nonatomic, retain) NRSwitchRecordCollection *switchRecords;
 
 + (bool)supportsSecureCoding;
 
@@ -53,11 +47,7 @@
 - (id)deviceIDAtSwitchIndex:(unsigned int)arg1 date:(id*)arg2;
 - (bool)dirty;
 - (void)encodeWithCoder:(id)arg1;
-- (id)history;
 - (id)historyEntryAtIndex:(unsigned long long)arg1;
-- (id)historyStateCache;
-- (id)historyStateCacheIndex;
-- (id)historyStateCacheMRU;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProtobuf:(id)arg1;
@@ -70,16 +60,7 @@
 - (id)protobuf;
 - (void)pruneStateCacheItems:(unsigned long long)arg1;
 - (void)removeObserver:(id)arg1;
-- (void)setHistory:(id)arg1;
-- (void)setHistoryStateCache:(id)arg1;
-- (void)setHistoryStateCacheIndex:(id)arg1;
-- (void)setHistoryStateCacheMRU:(id)arg1;
-- (void)setStartIndex:(unsigned long long)arg1;
-- (void)setSwitchRecords:(id)arg1;
-- (unsigned long long)startIndex;
-- (id)stateAtIndex:(unsigned long long)arg1;
 - (id)switchDeviceIDFromDiff:(id)arg1;
 - (unsigned int)switchIndex;
-- (id)switchRecords;
 
 @end

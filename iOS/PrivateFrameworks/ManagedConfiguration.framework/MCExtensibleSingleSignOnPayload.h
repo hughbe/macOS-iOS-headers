@@ -27,7 +27,6 @@
 - (void).cxx_destruct;
 - (bool)_validateHost:(id)arg1 outError:(id*)arg2;
 - (id)_validateURLString:(id)arg1 outError:(id*)arg2;
-- (id)description;
 - (id)esso_URLs;
 - (id)esso_extensionData;
 - (id)esso_extensionIdentifier;
@@ -46,5 +45,6 @@
 - (void)setEsso_type:(id)arg1;
 - (id)stubDictionary;
 - (id)title;
+- (id)verboseDescription;
 
 @end

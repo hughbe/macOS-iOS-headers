@@ -11,9 +11,10 @@
     struct { 
         unsigned int read_encodedPaces : 1; 
         unsigned int read_secondsInFutures : 1; 
-        unsigned int wrote_encodedPaces : 1; 
-        unsigned int wrote_secondsInFutures : 1; 
+        unsigned int read_path : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
+    GEOTrafficPath * _path;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -29,16 +30,14 @@
 
 @property (nonatomic, readonly) unsigned int*encodedPaces;
 @property (nonatomic, readonly) unsigned long long encodedPacesCount;
+@property (nonatomic, readonly) bool hasPath;
+@property (nonatomic, retain) GEOTrafficPath *path;
 @property (nonatomic, readonly) unsigned int*secondsInFutures;
 @property (nonatomic, readonly) unsigned long long secondsInFuturesCount;
 
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsEncodedPace:(unsigned int)arg1;
-- (void)_addNoFlagsSecondsInFuture:(unsigned int)arg1;
-- (void)_readEncodedPaces;
-- (void)_readSecondsInFutures;
 - (void)addEncodedPace:(unsigned int)arg1;
 - (void)addSecondsInFuture:(unsigned int)arg1;
 - (void)clearEncodedPaces;
@@ -51,17 +50,23 @@
 - (unsigned int)encodedPaceAtIndex:(unsigned long long)arg1;
 - (unsigned int*)encodedPaces;
 - (unsigned long long)encodedPacesCount;
+- (bool)hasPath;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
+- (id)path;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (unsigned int)secondsInFutureAtIndex:(unsigned long long)arg1;
 - (unsigned int*)secondsInFutures;
 - (unsigned long long)secondsInFuturesCount;
 - (void)setEncodedPaces:(unsigned int*)arg1 count:(unsigned long long)arg2;
+- (void)setPath:(id)arg1;
 - (void)setSecondsInFutures:(unsigned int*)arg1 count:(unsigned long long)arg2;
 - (void)writeTo:(id)arg1;
 

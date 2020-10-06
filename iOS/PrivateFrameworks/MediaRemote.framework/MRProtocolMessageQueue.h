@@ -14,11 +14,10 @@
 @property (nonatomic) <MRProtocolMessageQueueDelegate> *delegate;
 
 - (void).cxx_destruct;
-- (id)_dataForMessage:(id)arg1;
 - (id)datasource;
 - (void)dealloc;
 - (id)delegate;
-- (void)enqueueMessage:(id)arg1 reply:(id /* block */)arg2 queue:(id)arg3;
+- (void)enqueueMessage:(id)arg1 expectedMessage:(unsigned long long)arg2 reply:(id /* block */)arg3 queue:(id)arg4;
 - (void)flush;
 - (id)initWithMaxLowPriorityMessagesAllowed:(unsigned long long)arg1;
 - (bool)reply:(id)arg1;

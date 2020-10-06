@@ -9,6 +9,7 @@
 }
 
 @property (nonatomic, copy) id /* block */ aggregateZonePCSCompletionBlock;
+@property (nonatomic, readonly) CKAggregateZonePCSOperationInfo *operationInfo;
 @property (nonatomic, copy) NSArray *sourceZoneIDs;
 @property (nonatomic, copy) CKRecordZone *targetZone;
 

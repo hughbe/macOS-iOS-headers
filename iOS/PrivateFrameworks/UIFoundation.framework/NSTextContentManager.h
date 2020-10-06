@@ -31,7 +31,6 @@
 - (void).cxx_destruct;
 - (void)_decrementTransactionStack;
 - (void)_incrementTransactionStack;
-- (void)addEditActionInRange:(id)arg1 newTextRange:(id)arg2;
 - (void)addTextLayoutManager:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
@@ -41,9 +40,13 @@
 - (bool)hasEditingTransaction;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (bool)isCountableDataSource;
+- (id)locationFromLocation:(id)arg1 offset:(long long)arg2;
 - (unsigned long long)maximumNumberOfUncachedElements;
+- (long long)offsetFromLocation:(id)arg1 toLocation:(id)arg2;
 - (void)performEditingTransactionWithBlock:(id /* block */)arg1;
 - (id)primaryTextLayoutManager;
+- (void)recordEditActionInRange:(id)arg1 newTextRange:(id)arg2;
 - (void)removeTextLayoutManager:(id)arg1;
 - (void)replaceCharactersInRange:(id)arg1 withTextElements:(id)arg2;
 - (void)setDelegate:(id)arg1;

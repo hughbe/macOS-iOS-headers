@@ -11,6 +11,7 @@
 @property (nonatomic, readonly, copy) NSNumber *childItemCount;
 @property (readonly, copy) NSString *containerDisplayName;
 @property (nonatomic, readonly, copy) NSDate *contentModificationDate;
+@property (nonatomic, readonly, copy) UTType *contentType;
 @property (nonatomic, readonly, copy) NSDate *creationDate;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -71,6 +72,7 @@
 - (id)cloudContainerIdentifier;
 - (id)containerDisplayName;
 - (id)contentModificationDate;
+- (id)contentType;
 - (id)creationDate;
 - (id)displayName;
 - (id)documentSize;

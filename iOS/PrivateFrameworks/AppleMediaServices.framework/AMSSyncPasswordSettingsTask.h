@@ -26,6 +26,7 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 + (unsigned long long)freePasswordSettingFromServerValue:(unsigned long long)arg1;
 + (unsigned long long)paidPasswordSettingFromServerValue:(unsigned long long)arg1;
 + (id)serverValueForFreePasswordSetting:(unsigned long long)arg1;

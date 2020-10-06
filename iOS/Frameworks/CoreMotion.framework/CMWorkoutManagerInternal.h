@@ -20,6 +20,7 @@
 - (void)_startWorkout:(id)arg1;
 - (void)_stopWorkout:(id)arg1;
 - (void)_teardown;
+- (void)_triggerWorkoutLocationUpdateForTesting:(long long)arg1;
 - (void)_unregisterForWorkoutEvents;
 - (void)_userDismissedWorkoutAlert;
 - (void)dealloc;

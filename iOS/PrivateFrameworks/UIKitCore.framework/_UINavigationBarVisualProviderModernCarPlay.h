@@ -35,7 +35,6 @@
 @property (nonatomic, readonly) double backButtonMaximumWidth;
 @property (nonatomic, retain) UIVisualEffectView *backgroundView;
 @property (nonatomic, readonly) long long barType;
-@property (nonatomic, readonly) bool barWantsLetterpress;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } bounds;
 @property (nonatomic, readonly) bool centerTextButtons;
 @property (nonatomic, readonly) bool compactMetrics;
@@ -84,7 +83,6 @@
 - (id)backgroundView;
 - (long long)barMetrics;
 - (long long)barType;
-- (bool)barWantsLetterpress;
 - (bool)centerTextButtons;
 - (void)changeAppearance;
 - (bool)compactMetrics;
@@ -106,6 +104,7 @@
 - (id)leadingBarNoItemsConstraint;
 - (id)leadingBarWithNoTitleTrailingConstraint;
 - (id)leadingBarWithTitleTrailingConstraint;
+- (void)navigationBarInvalidatedResolvedLayoutMargins;
 - (void)navigationItem:(id)arg1 appearance:(id)arg2 categoriesChanged:(long long)arg3;
 - (bool)navigationItemIsBackItem:(id)arg1;
 - (bool)navigationItemIsTopItem:(id)arg1;
@@ -162,6 +161,7 @@
 - (id)trailingBarNoItemsConstraint;
 - (id)trailingBarWithNoTitleLeadingConstraint;
 - (id)trailingBarWithTitleLeadingConstraint;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updateTopNavigationItemAnimated:(bool)arg1;
 
 @end

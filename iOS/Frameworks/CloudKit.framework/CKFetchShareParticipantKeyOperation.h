@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchShareParticipantKeyOperation : CKDatabaseOperation {
+@interface CKFetchShareParticipantKeyOperation : CKDatabaseOperation <CKFetchShareParticipantKeyOperationCallbacks> {
     NSDictionary * _baseTokensByShareID;
     NSDictionary * _childRecordIDsByShareID;
     NSMutableDictionary * _errorsByShareID;
@@ -11,26 +11,29 @@
     id /* block */  _shareParticipantKeyFetchedBlock;
 }
 
-@property (nonatomic, retain) NSDictionary *baseTokensByShareID;
-@property (nonatomic, retain) NSDictionary *childRecordIDsByShareID;
+@property (nonatomic, copy) NSDictionary *baseTokensByShareID;
+@property (nonatomic, copy) NSDictionary *childRecordIDsByShareID;
+@property (nonatomic, readonly) <CKFetchShareParticipantKeyOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSMutableDictionary *errorsByShareID;
-@property (nonatomic, retain) NSArray *shareIDs;
+@property (nonatomic, readonly) CKFetchShareParticipantKeyOperationInfo *operationInfo;
+@property (nonatomic, copy) NSArray *shareIDs;
 @property (nonatomic, copy) id /* block */ shareParticipantKeyCompletionBlock;
 @property (nonatomic, copy) id /* block */ shareParticipantKeyFetchedBlock;
+
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
 
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)baseTokensByShareID;
 - (id)childRecordIDsByShareID;
 - (id)errorsByShareID;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleParticipantKeyFetchForRecordID:(id)arg1 participantKey:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)initWithShareIDs:(id)arg1;
-- (Class)operationInfoClass;
 - (void)performCKOperation;
 - (void)setBaseTokensByShareID:(id)arg1;
 - (void)setChildRecordIDsByShareID:(id)arg1;

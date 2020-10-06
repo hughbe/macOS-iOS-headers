@@ -21,6 +21,31 @@
     NSLayoutConstraint * _leftViewTopSpacerBottomConstraint;
     _MKSmallCalloutPassthroughButton * _maskedContainerView;
     NSLayoutConstraint * _maxWidthConstraint;
+    struct { 
+        double margin; 
+        double cornerRadius; 
+        double arrowBase; 
+        double arrowHeight; 
+        bool useRadialSmoothing; 
+        union { 
+            struct { 
+                double arrowBaseRadius; 
+                double arrowRadius; 
+            } radialSmoothing; 
+            struct { 
+                double arrowSmoothing; 
+                double arrowPointFactor; 
+            } nonRadialSmoothing; 
+        } ; 
+        bool alignDetailViewBaseline; 
+        bool scaleVerticalPaddingForDynamicType; 
+        struct UIEdgeInsets { 
+            double top; 
+            double left; 
+            double bottom; 
+            double right; 
+        } padding; 
+    }  _metrics;
     NSLayoutConstraint * _minWidthConstraint;
     bool  _needsPreferredContentSizeUpdate;
     bool  _parallaxEnabled;
@@ -71,6 +96,7 @@
 - (void)dealloc;
 - (id)detailView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 metrics:(struct { double x1; double x2; double x3; double x4; bool x5; union { struct { double x_1_2_1; double x_1_2_2; } x_6_1_1; struct { double x_2_2_1; double x_2_2_2; } x_6_1_2; } x6; bool x7; bool x8; struct UIEdgeInsets { double x_9_1_1; double x_9_1_2; double x_9_1_3; double x_9_1_4; } x9; })arg2;
 - (id)leftView;
 - (double)maximumWidth;
 - (double)minimumWidth;

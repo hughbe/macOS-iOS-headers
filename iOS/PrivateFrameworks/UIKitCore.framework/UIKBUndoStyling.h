@@ -15,6 +15,7 @@
     UIColor * _elementBackgroundColor;
     UIColor * _elementCoverColor;
     bool  _isRTL;
+    bool  _tooSmallForInstructionalText;
     bool  _undoRedoIconOnly;
 }
 
@@ -30,7 +31,11 @@
 @property (nonatomic, retain) UIColor *elementBackgroundColor;
 @property (nonatomic, retain) UIColor *elementCoverColor;
 @property (nonatomic) bool isRTL;
+@property (nonatomic) bool tooSmallForInstructionalText;
+@property (nonatomic, readonly) UIFont *undoInteractiveControlLabelFont;
 @property (nonatomic) bool undoRedoIconOnly;
+@property (nonatomic, readonly) UIFont *undoStateControlLabelFont;
+@property (nonatomic, readonly) UIFont *undoStateControlUnavailableLabelFont;
 
 - (void).cxx_destruct;
 - (id)HUDShadowColor;
@@ -59,8 +64,13 @@
 - (void)setHUDShadowColor:(id)arg1;
 - (void)setHUDbackgroundColor:(id)arg1;
 - (void)setIsRTL:(bool)arg1;
+- (void)setTooSmallForInstructionalText:(bool)arg1;
 - (void)setUndoRedoIconOnly:(bool)arg1;
+- (bool)tooSmallForInstructionalText;
+- (id)undoInteractiveControlLabelFont;
 - (bool)undoRedoIconOnly;
+- (id)undoStateControlLabelFont;
+- (id)undoStateControlUnavailableLabelFont;
 - (id)vibrancyEffectForBlur:(id)arg1;
 
 @end

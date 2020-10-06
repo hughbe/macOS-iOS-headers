@@ -11,16 +11,11 @@
     UIImage * _value;
 }
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_selectedCompactImage;
 - (id)_selectedImage;
 - (id)_unselectedCompactImage;
 - (id)_unselectedImage;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)didMoveToWindow;
 - (id)initWithImage:(id)arg1 alternateImage:(id)arg2 landscapeImage:(id)arg3 landscapeAlternateImage:(id)arg4;
 - (void)setAlternateImage:(id)arg1;

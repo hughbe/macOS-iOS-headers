@@ -23,10 +23,12 @@
 - (NSString *)entityTypeAsString:(int)arg1;
 - (_INPBDataString *)group;
 - (bool)hasAccessory;
+- (bool)hasAllQuantifier;
 - (bool)hasDeviceType;
 - (bool)hasEntityName;
 - (bool)hasEntityType;
 - (bool)hasGroup;
+- (bool)hasHasAllQuantifier;
 - (bool)hasHome;
 - (bool)hasIsExcludeFilter;
 - (bool)hasOuterDeviceName;
@@ -53,8 +55,10 @@
 - (void)setEntityName:(_INPBDataString *)arg1;
 - (void)setEntityType:(int)arg1;
 - (void)setGroup:(_INPBDataString *)arg1;
+- (void)setHasAllQuantifier:(bool)arg1;
 - (void)setHasDeviceType:(bool)arg1;
 - (void)setHasEntityType:(bool)arg1;
+- (void)setHasHasAllQuantifier:(bool)arg1;
 - (void)setHasIsExcludeFilter:(bool)arg1;
 - (void)setHasOuterDeviceType:(bool)arg1;
 - (void)setHasServiceType:(bool)arg1;

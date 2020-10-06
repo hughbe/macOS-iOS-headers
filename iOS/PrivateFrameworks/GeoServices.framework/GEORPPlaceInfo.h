@@ -8,10 +8,7 @@
         unsigned int read_placeResponse : 1; 
         unsigned int read_sourceApplication : 1; 
         unsigned int read_sourceUrl : 1; 
-        unsigned int wrote_placeRequest : 1; 
-        unsigned int wrote_placeResponse : 1; 
-        unsigned int wrote_sourceApplication : 1; 
-        unsigned int wrote_sourceUrl : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDPlaceRequest * _placeRequest;
     GEOPDPlaceResponse * _placeResponse;
@@ -39,10 +36,6 @@
 - (void).cxx_destruct;
 - (void)_clearLocationsFromPlaceRequest;
 - (void)_clearLocationsFromPlaceResponse;
-- (void)_readPlaceRequest;
-- (void)_readPlaceResponse;
-- (void)_readSourceApplication;
-- (void)_readSourceUrl;
 - (void)clearLocations;
 - (void)clearSessionId;
 - (void)copyTo:(id)arg1;
@@ -56,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)placeRequest;
 - (id)placeResponse;

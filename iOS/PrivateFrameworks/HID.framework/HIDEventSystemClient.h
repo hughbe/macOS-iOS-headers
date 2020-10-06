@@ -3,6 +3,7 @@
  */
 
 @interface HIDEventSystemClient : NSObject {
+    id /* block */  _cancelHandler;
     struct __IOHIDEventSystemClient { } * _client;
     id /* block */  _eventHandler;
     id /* block */  _filterHandler;

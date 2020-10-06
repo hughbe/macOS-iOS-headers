@@ -9,10 +9,7 @@
         unsigned int read_inflightTypeCounts : 1; 
         unsigned int read_shadowTypeCounts : 1; 
         unsigned int read_storedTypeCounts : 1; 
-        unsigned int wrote_inflightTypeCounts : 1; 
-        unsigned int wrote_shadowTypeCounts : 1; 
-        unsigned int wrote_storedTypeCounts : 1; 
-        unsigned int wrote_evalModeEnabled : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _inflightTypeCounts;
     PBDataReader * _reader;
@@ -37,12 +34,6 @@
 + (Class)storedTypeCountsType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsInflightTypeCounts:(id)arg1;
-- (void)_addNoFlagsShadowTypeCounts:(id)arg1;
-- (void)_addNoFlagsStoredTypeCounts:(id)arg1;
-- (void)_readInflightTypeCounts;
-- (void)_readShadowTypeCounts;
-- (void)_readStoredTypeCounts;
 - (void)addInflightTypeCounts:(id)arg1;
 - (void)addShadowTypeCounts:(id)arg1;
 - (void)addStoredTypeCounts:(id)arg1;
@@ -61,7 +52,10 @@
 - (unsigned long long)inflightTypeCountsCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

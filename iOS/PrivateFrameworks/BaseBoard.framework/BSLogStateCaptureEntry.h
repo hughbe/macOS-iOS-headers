@@ -8,16 +8,13 @@
     NSString * _title;
 }
 
-@property (nonatomic, copy) id /* block */ captureBlock;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, readonly, copy) id /* block */ captureBlock;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *queue;
+@property (nonatomic, readonly) NSString *title;
 
 - (void).cxx_destruct;
 - (id /* block */)captureBlock;
 - (id)queue;
-- (void)setCaptureBlock:(id /* block */)arg1;
-- (void)setQueue:(id)arg1;
-- (void)setTitle:(id)arg1;
 - (id)title;
 
 @end

@@ -6,6 +6,7 @@
     NSArray * _allCommits;
     NSArray * _allContributedFrameLatencies;
     NSArray * _allContributedFrameLifetimes;
+    NSSet * _allFirstFrameLifetimesWithCommits;
     NSArray * _allFrameLatencies;
     NSArray * _allFrameLifetimes;
     NSArray * _allHIDLatencies;
@@ -27,6 +28,7 @@
 @property (nonatomic, readonly) NSArray *allCommits;
 @property (nonatomic, readonly) NSArray *allContributedFrameLatencies;
 @property (nonatomic, readonly) NSArray *allContributedFrameLifetimes;
+@property (nonatomic, readonly) NSSet *allFirstFrameLifetimesWithCommits;
 @property (nonatomic, readonly) NSArray *allFrameLatencies;
 @property (nonatomic, readonly) NSArray *allFrameLifetimes;
 @property (nonatomic, readonly) NSArray *allHIDLatencies;
@@ -39,10 +41,12 @@
 @property (nonatomic, readonly) NSArray *contributedLongFrameLatencies;
 @property (nonatomic, readonly) NSArray *contributedNonFirstFrameGlitches;
 @property (nonatomic, readonly) double firstFrameGlitchTimeRatio;
+@property (nonatomic, readonly) double firstFrameGlitchTimeRatioMsPerS;
 @property (nonatomic, readonly) NSArray *firstFrameGlitches;
 @property (nonatomic, readonly) unsigned long long frameCount;
 @property (nonatomic, readonly) float frameRate;
 @property (nonatomic, readonly) double glitchTimeRatio;
+@property (nonatomic, readonly) double glitchTimeRatioMsPerS;
 @property (nonatomic, readonly) NSArray *glitches;
 @property (nonatomic, readonly) NSArray *longCommits;
 @property (nonatomic, readonly) NSArray *longContributedFrameLifetimes;
@@ -53,6 +57,7 @@
 @property (nonatomic, readonly) NSArray *longSystemwideCommits;
 @property (nonatomic, readonly) NSArray *longTransactionLifetimes;
 @property (nonatomic, readonly) double nonFirstFrameGlitchTimeRatio;
+@property (nonatomic, readonly) double nonFirstFrameGlitchTimeRatioMsPerS;
 @property (nonatomic, readonly) NSArray *nonFirstFrameGlitches;
 
 + (id)serializationTypeNumber;
@@ -70,6 +75,7 @@
 - (id)allCommits;
 - (id)allContributedFrameLatencies;
 - (id)allContributedFrameLifetimes;
+- (id)allFirstFrameLifetimesWithCommits;
 - (id)allFrameLatencies;
 - (id)allFrameLifetimes;
 - (id)allHIDLatencies;
@@ -87,10 +93,12 @@
 - (unsigned long long)durationToFirstEndMachContinuousTime:(id)arg1;
 - (double)durationToFirstEndSeconds:(id)arg1;
 - (double)firstFrameGlitchTimeRatio;
+- (double)firstFrameGlitchTimeRatioMsPerS;
 - (id)firstFrameGlitches;
 - (unsigned long long)frameCount;
 - (float)frameRate;
 - (double)glitchTimeRatio;
+- (double)glitchTimeRatioMsPerS;
 - (id)glitches;
 - (id)humanReadableType;
 - (id)initWithBeginEvent:(id)arg1 endEvent:(id)arg2 accumulatedState:(id)arg3;
@@ -105,6 +113,7 @@
 - (id)longSystemwideCommits;
 - (id)longTransactionLifetimes;
 - (double)nonFirstFrameGlitchTimeRatio;
+- (double)nonFirstFrameGlitchTimeRatioMsPerS;
 - (id)nonFirstFrameGlitches;
 - (void)setCompositeIntervals:(id)arg1;
 

@@ -66,8 +66,8 @@
 - (id)initWithName:(id)arg1 type:(id)arg2 kind:(unsigned int)arg3 scan:(unsigned int)arg4 offset:(unsigned int)arg5 size:(unsigned int)arg6 stride:(unsigned int)arg7 subFieldArray:(id)arg8 swiftTyperef:(void*)arg9;
 - (id)initWithName:(id)arg1 type:(id)arg2 scan:(unsigned int)arg3 offset:(unsigned int)arg4 size:(unsigned int)arg5;
 - (id)initWithObjcIvar:(struct objc_ivar { }*)arg1 size:(unsigned int)arg2 isARC:(bool)arg3 is64Bit:(bool)arg4;
-- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3;
-- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3 returnedDestinationLayoutClassInfoIndex:(unsigned int*)arg4;
+- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3 error:(id*)arg4;
+- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3 returnedDestinationLayoutClassInfoIndex:(unsigned int*)arg4 error:(id*)arg5;
 - (void)initializeSubFieldArray;
 - (bool)isArrayEntries;
 - (bool)isArraySize;

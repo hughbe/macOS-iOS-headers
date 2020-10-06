@@ -17,7 +17,6 @@
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
-- (id)_init;
 - (void)addObserver:(id)arg1;
 - (void)dealloc;
 - (id)init;

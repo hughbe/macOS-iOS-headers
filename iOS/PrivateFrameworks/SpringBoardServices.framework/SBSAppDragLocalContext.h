@@ -11,6 +11,7 @@
     UIView * _portaledPreview;
     bool  _sourceLocal;
     long long  _startLocation;
+    NSUserActivity * _userActivity;
 }
 
 @property (nonatomic, copy) NSString *applicationBundleIdentifier;
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) UIView *portaledPreview;
 @property (getter=isSourceLocal, nonatomic) bool sourceLocal;
 @property (nonatomic, readonly) long long startLocation;
+@property (nonatomic, retain) NSUserActivity *userActivity;
 
 - (void).cxx_destruct;
 - (id)applicationBundleIdentifier;
@@ -40,8 +42,10 @@
 - (void)setLaunchURL:(id)arg1;
 - (void)setPortaledPreview:(id)arg1;
 - (void)setSourceLocal:(bool)arg1;
+- (void)setUserActivity:(id)arg1;
 - (long long)startLocation;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
+- (id)userActivity;
 
 @end

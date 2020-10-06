@@ -21,16 +21,11 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UIKBAutoFillTestViewController *testViewController;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_cancelBarButtonItemAction:(id)arg1;
 - (void)_enumerateSubviewsOfRootView:(id)arg1 usingBlock:(id /* block */)arg2;
 - (void)_moveTaggerHighlightViewOverView:(id)arg1;
 - (void)_removeTaggerHighlightView;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)delegate;
 - (id)initWithAutoFillTestViewController:(id)arg1;
 - (void)setDelegate:(id)arg1;

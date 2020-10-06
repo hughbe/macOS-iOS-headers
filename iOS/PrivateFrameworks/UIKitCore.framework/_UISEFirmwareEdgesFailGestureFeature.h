@@ -4,11 +4,6 @@
 
 @interface _UISEFirmwareEdgesFailGestureFeature : _UISEGestureFeature <_UISETouchedEdgesProvider> {
     bool  _hasDoneTest;
-    struct CGPoint { 
-        double x; 
-        double y; 
-    }  _initialLocation;
-    double  _initialTimestamp;
     <_UISEGestureFeatureSettings> * _settings;
     unsigned long long  _touchedEdges;
 }

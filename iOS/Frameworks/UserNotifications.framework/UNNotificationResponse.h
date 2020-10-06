@@ -45,6 +45,10 @@
 - (id)targetConnectionEndpoint;
 - (id)targetSceneIdentifier;
 
+// Image: /System/Library/PrivateFrameworks/TeaFoundation.framework/TeaFoundation
+
++ (id)responseWithNotification:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 - (id)targetScene;

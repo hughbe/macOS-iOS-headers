@@ -3,23 +3,30 @@
  */
 
 @interface _UIFocusGroup : NSObject {
-    _UIFocusGroupDescriptor * _descriptor;
+    NSString * _identifier;
     _UIFocusGroup * _parentGroup;
+    <UIFocusEnvironment> * _rootEnvironment;
 }
 
-@property (getter=_descriptor, nonatomic, readonly) _UIFocusGroupDescriptor *descriptor;
+@property (getter=_identifier, nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) _UIFocusGroup *parentGroup;
+@property (nonatomic, readonly) <UIFocusEnvironment> *rootEnvironment;
+
++ (id)invalidGroup;
++ (id)nullGroup;
 
 - (void).cxx_destruct;
 - (id)_commonAncestorWithGroup:(id)arg1;
-- (id)_descriptor;
-- (id)childGroupWithDescriptor:(id)arg1;
-- (id)debugDescription;
+- (id)_identifier;
+- (id)childGroupWithIdentifier:(id)arg1;
+- (id)childGroupWithIdentifier:(id)arg1 rootEnvironment:(id)arg2;
 - (id)description;
 - (unsigned long long)hash;
-- (id)initWithDescriptor:(id)arg1;
+- (id)initWithIdentifier:(id)arg1;
+- (id)initWithIdentifier:(id)arg1 rootEnvironment:(id)arg2;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToFocusGroup:(id)arg1;
 - (id)parentGroup;
+- (id)rootEnvironment;
 
 @end

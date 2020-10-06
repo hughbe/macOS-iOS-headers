@@ -12,8 +12,11 @@
 
 @optional
 
+- (bool)_balloonCalloutShouldCenterWhenOffscreen;
 - (bool)_balloonCalloutShouldOriginateFromSmallSize:(double*)arg1;
+- (bool)_balloonCalloutShouldShowArrow;
 - (UIView *)_balloonContentView;
+- (UIColor *)_balloonImageTintColor;
 - (UIColor *)_balloonInnerStrokeColor;
 
 @end

@@ -2,34 +2,52 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UICollectionLayoutSolveParameters : NSObject <_UICollectionLayoutSolveResult> {
+@interface _UICollectionLayoutSolveParameters : NSObject <NSCopying> {
     NSMutableDictionary * _invalidatedAuxillaryDict;
     NSMutableIndexSet * _invalidatedIndexes;
     bool  _isFullResolve;
+    struct CGPoint { 
+        double x; 
+        double y; 
+    }  _scrollOffset;
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _visibleBounds;
 }
 
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasInvalidatedItems;
-@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) NSSet *invalidatedAuxillaryKinds;
 @property (nonatomic, readonly) NSIndexSet *invalidatedIndexes;
 @property (nonatomic, readonly) bool isFullResolve;
-@property (readonly) Class superclass;
+@property (nonatomic, readonly) struct CGPoint { double x1; double x2; } scrollOffset;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } visibleBounds;
 
 + (id)parametersForFullResolve;
 
 - (void).cxx_destruct;
 - (void)addAuxillaryIndex:(long long)arg1 elementKind:(id)arg2;
 - (void)addItemIndex:(long long)arg1;
+- (id)copyWithScrollOffset:(struct CGPoint { double x1; double x2; })arg1 visibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)hasInvalidatedItems;
 - (id)indexesForInvalidatedAuxillariesOfKind:(id)arg1;
 - (id)init;
 - (id)initWithInvalidatedIndexes:(id)arg1;
-- (id)initWithInvalidatedIndexes:(id)arg1 isFullResolve:(bool)arg2;
+- (id)initWithInvalidatedIndexes:(id)arg1 invalidatedAuxillaryDict:(id)arg2 isFullResolve:(bool)arg3 scrollOffset:(struct CGPoint { double x1; double x2; })arg4 visibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg5;
+- (id)initWithInvalidatedIndexes:(id)arg1 scrollOffset:(struct CGPoint { double x1; double x2; })arg2 visibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg3;
 - (id)invalidatedAuxillaryKinds;
 - (id)invalidatedAuxillaryOffsets;
 - (id)invalidatedIndexes;
+- (bool)isEqual:(id)arg1;
 - (bool)isFullResolve;
+- (struct CGPoint { double x1; double x2; })scrollOffset;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })visibleBounds;
 
 @end

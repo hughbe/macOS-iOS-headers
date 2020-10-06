@@ -9,10 +9,6 @@
         double height; 
     }  _nativePixelSize;
     long long  _overscanCompensation;
-    struct CGSize { 
-        double width; 
-        double height; 
-    }  _pixelSize;
     double  _refreshRate;
 }
 
@@ -22,7 +18,6 @@
 @property (nonatomic, readonly) long long hdrMode;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } nativePixelSize;
 @property (nonatomic, readonly) long long overscanCompensation;
-@property (nonatomic, readonly) struct CGSize { double x1; double x2; } pixelSize;
 @property (nonatomic, readonly) double refreshRate;
 @property (readonly) Class superclass;
 
@@ -43,7 +38,6 @@
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (struct CGSize { double x1; double x2; })nativePixelSize;
 - (long long)overscanCompensation;
-- (struct CGSize { double x1; double x2; })pixelSize;
 - (double)refreshRate;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;

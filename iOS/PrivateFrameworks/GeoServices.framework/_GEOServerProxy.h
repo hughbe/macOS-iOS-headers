@@ -16,7 +16,6 @@
 - (void).cxx_destruct;
 - (void)_setServer:(id)arg1 daemon:(id)arg2;
 - (id)description;
-- (bool)handleIncomingMessage:(id)arg1 fromPeer:(id)arg2;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToServerProxy:(id)arg1;

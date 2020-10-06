@@ -3,10 +3,12 @@
  */
 
 @interface _SFPBContactImage : PBCodable <NSSecureCoding, _SFPBContactImage> {
+    NSString * _appIconBadgeBundleIdentifier;
     NSArray * _contactIdentifiers;
     bool  _threeDTouchEnabled;
 }
 
+@property (nonatomic, copy) NSString *appIconBadgeBundleIdentifier;
 @property (nonatomic, copy) NSArray *contactIdentifiers;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -17,6 +19,7 @@
 
 - (void).cxx_destruct;
 - (void)addContactIdentifiers:(id)arg1;
+- (id)appIconBadgeBundleIdentifier;
 - (void)clearContactIdentifiers;
 - (id)contactIdentifiers;
 - (id)contactIdentifiersAtIndex:(unsigned long long)arg1;
@@ -29,6 +32,7 @@
 - (bool)isEqual:(id)arg1;
 - (id)jsonData;
 - (bool)readFrom:(id)arg1;
+- (void)setAppIconBadgeBundleIdentifier:(id)arg1;
 - (void)setContactIdentifiers:(id)arg1;
 - (void)setThreeDTouchEnabled:(bool)arg1;
 - (bool)threeDTouchEnabled;

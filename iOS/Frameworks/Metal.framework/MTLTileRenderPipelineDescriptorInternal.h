@@ -16,10 +16,14 @@
         unsigned long long colorSampleCount; 
         MTLPipelineBufferDescriptorArrayInternal *tileBuffers; 
         unsigned short maxTotalThreadsPerThreadgroup; 
+        long long textureWriteRoundingMode; 
+        NSDictionary *pluginData; 
+        NSArray *binaryArchives; 
     }  _private;
 }
 
-- (const struct MTLTileRenderPipelineDescriptorPrivate { id x1; union { unsigned long long x_2_1_1; unsigned long long x_2_1_2; } x2; id x3; id x4; bool x5; unsigned long long x6; unsigned long long x7; id x8; unsigned short x9; }*)_descriptorPrivate;
+- (const struct MTLTileRenderPipelineDescriptorPrivate { id x1; union { unsigned long long x_2_1_1; unsigned long long x_2_1_2; } x2; id x3; id x4; bool x5; unsigned long long x6; unsigned long long x7; id x8; unsigned short x9; long long x10; id x11; id x12; }*)_descriptorPrivate;
+- (id)binaryArchives;
 - (id)colorAttachments;
 - (unsigned long long)colorSampleCount;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -31,19 +35,28 @@
 - (bool)isEqual:(id)arg1;
 - (id)label;
 - (unsigned long long)maxTotalThreadsPerThreadgroup;
+- (id)newSerializedTileDataWithFlags:(unsigned long long)arg1 options:(unsigned long long)arg2 error:(id*)arg3;
+- (id)pluginData;
 - (unsigned long long)rasterSampleCount;
 - (void)reset;
 - (unsigned long long)sampleCount;
+- (void)setBinaryArchives:(id)arg1;
 - (void)setColorSampleCount:(unsigned long long)arg1;
 - (void)setLabel:(id)arg1;
 - (void)setMaxTotalThreadsPerThreadgroup:(unsigned long long)arg1;
+- (void)setPluginData:(id)arg1;
 - (void)setRasterSampleCount:(unsigned long long)arg1;
 - (void)setSampleCount:(unsigned long long)arg1;
+- (void)setTextureWriteFPRoundingMode:(long long)arg1;
+- (void)setTextureWriteRoundingMode:(long long)arg1;
 - (void)setThreadgroupSizeMatchesTileSize:(bool)arg1;
 - (void)setTileFunction:(id)arg1;
+- (long long)textureWriteFPRoundingMode;
+- (long long)textureWriteRoundingMode;
 - (bool)threadgroupSizeMatchesTileSize;
 - (id)tileBuffers;
 - (id)tileFunction;
 - (void)validateWithDevice:(id)arg1;
+- (bool)validateWithDevice:(id)arg1 error:(id*)arg2;
 
 @end

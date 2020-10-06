@@ -4,6 +4,7 @@
 
 @interface MBSnapshot : NSObject <NSCopying, NSSecureCoding> {
     long long  _backupType;
+    NSString * _buildVersion;
     NSDate * _created;
     NSDate * _date;
     NSString * _deviceName;
@@ -18,6 +19,7 @@
 }
 
 @property (nonatomic) long long backupType;
+@property (nonatomic, readonly) NSString *buildVersion;
 @property (nonatomic, readonly) NSDate *created;
 @property (nonatomic, readonly) NSDate *date;
 @property (nonatomic, readonly) NSString *deviceName;
@@ -32,18 +34,19 @@
 
 + (bool)supportsSecureCoding;
 
+- (void).cxx_destruct;
 - (long long)backupType;
+- (id)buildVersion;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)created;
 - (id)date;
-- (void)dealloc;
 - (id)description;
 - (id)deviceName;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithSnapshotID:(unsigned long long)arg1 deviceName:(id)arg2 date:(id)arg3 created:(id)arg4 modified:(id)arg5 state:(int)arg6 isCompatible:(bool)arg7 systemVersion:(id)arg8 quotaReserved:(unsigned long long)arg9 backupType:(long long)arg10;
-- (id)initWithSnapshotID:(unsigned long long)arg1 snapshotUUID:(id)arg2 deviceName:(id)arg3 date:(id)arg4 created:(id)arg5 modified:(id)arg6 state:(int)arg7 isCompatible:(bool)arg8 systemVersion:(id)arg9 quotaReserved:(unsigned long long)arg10 backupType:(long long)arg11;
-- (id)initWithSnapshotUUID:(id)arg1 snapshotID:(unsigned long long)arg2 deviceName:(id)arg3 date:(id)arg4 created:(id)arg5 modified:(id)arg6 state:(int)arg7 isCompatible:(bool)arg8 systemVersion:(id)arg9 quotaReserved:(unsigned long long)arg10 backupType:(long long)arg11;
+- (id)initWithSnapshotID:(unsigned long long)arg1 deviceName:(id)arg2 date:(id)arg3 created:(id)arg4 modified:(id)arg5 state:(int)arg6 isCompatible:(bool)arg7 systemVersion:(id)arg8 buildVersion:(id)arg9 quotaReserved:(unsigned long long)arg10 backupType:(long long)arg11;
+- (id)initWithSnapshotID:(unsigned long long)arg1 snapshotUUID:(id)arg2 deviceName:(id)arg3 date:(id)arg4 created:(id)arg5 modified:(id)arg6 state:(int)arg7 isCompatible:(bool)arg8 systemVersion:(id)arg9 buildVersion:(id)arg10 quotaReserved:(unsigned long long)arg11 backupType:(long long)arg12;
+- (id)initWithSnapshotUUID:(id)arg1 snapshotID:(unsigned long long)arg2 deviceName:(id)arg3 date:(id)arg4 created:(id)arg5 modified:(id)arg6 state:(int)arg7 isCompatible:(bool)arg8 systemVersion:(id)arg9 buildVersion:(id)arg10 quotaReserved:(unsigned long long)arg11 backupType:(long long)arg12;
 - (bool)isCompatible;
 - (id)modified;
 - (unsigned long long)quotaReserved;

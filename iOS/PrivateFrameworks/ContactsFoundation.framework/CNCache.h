@@ -22,7 +22,7 @@
 + (id)atomicCacheScheduler;
 + (id)boundingStrategyWithCapacity:(unsigned long long)arg1;
 + (id)boundingStrategyWithTTL:(double)arg1;
-+ (id)boundingStrategyWithTTL:(double)arg1 timeProvider:(id)arg2;
++ (id)boundingStrategyWithTTL:(double)arg1 renewalOptions:(unsigned long long)arg2 timeProvider:(id)arg3;
 + (id)cache;
 + (id)nonatomicCacheScheduler;
 

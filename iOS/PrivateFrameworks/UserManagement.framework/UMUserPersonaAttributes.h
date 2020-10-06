@@ -4,9 +4,11 @@
 
 @interface UMUserPersonaAttributes : NSObject <NSCopying> {
     NSDate * _creationDate;
+    bool  _isDataSeparatedPersona;
     bool  _isDefaultPersona;
     bool  _isDisabled;
     bool  _isEnterprisePersona;
+    bool  _isGuestPersona;
     bool  _isPersonalPersona;
     bool  _isSystemPersona;
     bool  _isUniversalPersona;
@@ -22,9 +24,11 @@
 }
 
 @property (nonatomic, copy) NSDate *creationDate;
+@property (nonatomic) bool isDataSeparatedPersona;
 @property (nonatomic) bool isDefaultPersona;
 @property (nonatomic) bool isDisabled;
 @property (nonatomic) bool isEnterprisePersona;
+@property (nonatomic) bool isGuestPersona;
 @property (nonatomic) bool isPersonalPersona;
 @property (nonatomic) bool isSystemPersona;
 @property (nonatomic) bool isUniversalPersona;
@@ -49,9 +53,11 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)creationDate;
 - (id)description;
+- (bool)isDataSeparatedPersona;
 - (bool)isDefaultPersona;
 - (bool)isDisabled;
 - (bool)isEnterprisePersona;
+- (bool)isGuestPersona;
 - (bool)isPersonalPersona;
 - (bool)isSystemPersona;
 - (bool)isUniversalPersona;
@@ -60,9 +66,11 @@
 - (id)lastLoginDate;
 - (id)personaLayoutPathURL;
 - (void)setCreationDate:(id)arg1;
+- (void)setIsDataSeparatedPersona:(bool)arg1;
 - (void)setIsDefaultPersona:(bool)arg1;
 - (void)setIsDisabled:(bool)arg1;
 - (void)setIsEnterprisePersona:(bool)arg1;
+- (void)setIsGuestPersona:(bool)arg1;
 - (void)setIsPersonalPersona:(bool)arg1;
 - (void)setIsSystemPersona:(bool)arg1;
 - (void)setIsUniversalPersona:(bool)arg1;

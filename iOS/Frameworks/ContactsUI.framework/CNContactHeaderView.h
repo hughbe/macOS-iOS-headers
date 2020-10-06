@@ -54,6 +54,7 @@
 + (id)descriptorForRequiredKeysIncludingAvatarViewDescriptors:(bool)arg1;
 + (id)makePhotoViewWithMonogrammerStyle:(long long)arg1 shouldAllowTakePhotoAction:(bool)arg2 shouldAllowImageDrops:(bool)arg3 monogramOnly:(bool)arg4;
 + (bool)requiresConstraintBasedLayout;
++ (id)sizeAttributesShowingNavBar:(bool)arg1;
 
 - (void).cxx_destruct;
 - (id)activatedConstraints;
@@ -72,7 +73,8 @@
 - (double)defaultMaxHeight;
 - (id)delegate;
 - (id)descriptorForRequiredKeys;
-- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 monogrammerStyle:(long long)arg3 shouldAllowTakePhotoAction:(bool)arg4 shouldAllowImageDrops:(bool)arg5 monogramOnly:(bool)arg6 delegate:(id)arg7;
+- (void)didFinishUsing;
+- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 monogrammerStyle:(long long)arg3 shouldAllowTakePhotoAction:(bool)arg4 shouldAllowImageDrops:(bool)arg5 showingNavBar:(bool)arg6 monogramOnly:(bool)arg7 delegate:(id)arg8;
 - (double)lastViewWidth;
 - (void)layoutSubviews;
 - (double)maxHeight;
@@ -116,6 +118,7 @@
 - (id)sizeAttributes;
 - (void)updateConstraints;
 - (void)updateFontSizes;
+- (void)updateForShowingNavBar:(bool)arg1;
 - (void)updateSizeDependentAttributes;
 - (void)updateWithContacts:(id)arg1;
 - (void)updateWithNewContact:(id)arg1;

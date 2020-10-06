@@ -5,6 +5,7 @@
 
 @required
 
+- (unsigned long long)avatarViewBackgroundStyle;
 - (unsigned long long)avatarViewStyle;
 - (PRMonogramColor *)color;
 - (struct CGSize { double x1; double x2; })pointSize;

@@ -4,8 +4,6 @@
 
 @interface _DKKnowledgeSyncStorageAssertion : NSObject
 
-+ (unsigned long long)assertionCount;
-
 - (void)dealloc;
 - (id)init;
 

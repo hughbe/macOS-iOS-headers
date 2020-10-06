@@ -4,11 +4,15 @@
 
 @interface NRWatchPairingExtendedMetadata : NSObject <NSSecureCoding> {
     long long  _chipID;
+    bool  _isCellularEnabled;
+    long long  _pairingVersion;
     bool  _postFailsafeObliteration;
     NSString * _productType;
 }
 
 @property (nonatomic) long long chipID;
+@property (nonatomic) bool isCellularEnabled;
+@property (nonatomic) long long pairingVersion;
 @property (nonatomic) bool postFailsafeObliteration;
 @property (nonatomic, retain) NSString *productType;
 
@@ -19,9 +23,13 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (bool)isCellularEnabled;
+- (long long)pairingVersion;
 - (bool)postFailsafeObliteration;
 - (id)productType;
 - (void)setChipID:(long long)arg1;
+- (void)setIsCellularEnabled:(bool)arg1;
+- (void)setPairingVersion:(long long)arg1;
 - (void)setPostFailsafeObliteration:(bool)arg1;
 - (void)setProductType:(id)arg1;
 

@@ -10,6 +10,7 @@
     id /* block */  _postDismissCleanUp;
     id /* block */  _postDismissItemUpdate;
     UIView * _presentationContainer;
+    bool  _suppressInputViewDuringPresentation;
 }
 
 @property (nonatomic, retain) _UIPlatterView *destinationPlatterView;
@@ -19,6 +20,7 @@
 @property (nonatomic, copy) id /* block */ postDismissCleanUp;
 @property (nonatomic, copy) id /* block */ postDismissItemUpdate;
 @property (nonatomic, readonly) UIView *presentationContainer;
+@property (nonatomic) bool suppressInputViewDuringPresentation;
 
 - (void).cxx_destruct;
 - (id)destinationPlatterView;
@@ -34,5 +36,7 @@
 - (void)setDragContainer:(id)arg1;
 - (void)setPostDismissCleanUp:(id /* block */)arg1;
 - (void)setPostDismissItemUpdate:(id /* block */)arg1;
+- (void)setSuppressInputViewDuringPresentation:(bool)arg1;
+- (bool)suppressInputViewDuringPresentation;
 
 @end

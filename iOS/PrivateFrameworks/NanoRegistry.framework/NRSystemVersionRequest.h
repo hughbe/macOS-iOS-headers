@@ -9,8 +9,6 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-- (id)connection;
-- (id)proxyWithErrorHandler:(id /* block */)arg1;
 - (void)sendVersionRequestToCompanion;
 
 @end

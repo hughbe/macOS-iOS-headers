@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKShare : CKRecord <NSCopying, NSSecureCoding> {
+@interface CKShare : CKRecord <HMBModelObjectStorage, NSCopying, NSSecureCoding> {
     NSMutableSet * _addedParticipantIDs;
     NSMutableArray * _allParticipants;
     bool  _allowsAnonymousPublicAccess;
@@ -28,19 +28,23 @@
 @property (nonatomic, retain) NSMutableSet *addedParticipantIDs;
 @property (nonatomic, retain) NSMutableArray *allParticipants;
 @property (nonatomic) bool allowsAnonymousPublicAccess;
-@property (nonatomic) bool allowsReadOnlyParticipantsToSeeEachOther;
 @property (nonatomic, retain) CKContainerID *containerID;
-@property (nonatomic, readonly) CKShareParticipant *currentUserParticipant;
+@property (nonatomic, readonly, copy) CKShareParticipant *currentUserParticipant;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) bool encodeAllowsReadOnlyParticipantsToSeeEachOther;
+@property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) NSArray *ic_nonCurrentUserParticipants;
+@property (nonatomic, readonly) unsigned long long ic_nonOwnerAcceptedParticipantsCount;
+@property (nonatomic, readonly) unsigned long long ic_nonOwnerInvitedParticipantsCount;
 @property (nonatomic, retain) NSArray *invitedKeysToRemove;
 @property (nonatomic, retain) NSData *invitedProtectionData;
 @property (nonatomic, retain) NSString *invitedProtectionEtag;
 @property (nonatomic, readonly) bool isZoneWideShare;
 @property (nonatomic, retain) NSMutableArray *lastFetchedParticipants;
-@property (nonatomic, copy) NSURL *mutableURL;
-@property (nonatomic, readonly) CKShareParticipant *owner;
+@property (nonatomic, readonly, copy) CKShareParticipant *owner;
 @property (nonatomic) long long participantVisibility;
-@property (nonatomic, readonly) NSArray *participants;
+@property (nonatomic, readonly, copy) NSArray *participants;
 @property (nonatomic, retain) NSString *previousInvitedProtectionEtag;
 @property (nonatomic, retain) NSString *previousPublicProtectionEtag;
 @property (nonatomic) long long publicPermission;
@@ -51,6 +55,9 @@
 @property (nonatomic, copy) CKRecordID *rootRecordID;
 @property (nonatomic) bool serializePersonalInfo;
 @property (nonatomic, copy) CKShareID *shareID;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (bool)supportsSecureCoding;
 
@@ -143,5 +150,43 @@
 - (id)shareID;
 - (id)shareURL;
 - (id)updateFromServerShare:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
+- (bool)_brc_isOwner;
+- (bool)deserializeSharingOptions:(unsigned long long*)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_decryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 pcsManager:(id)arg2;
+- (void)_encryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 pcsManager:(id)arg2;
+- (void)_ingestAndExportPPPCSFromShareInvitationToken:(id)arg1 context:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)_prepPCSDataUsingPreDecryptedPCSOnlyWithContext:(id)arg1 databaseScope:(long long)arg2;
+- (void)_prepPCSDataWithContext:(id)arg1 databaseScope:(long long)arg2 publicSharingKey:(id)arg3 removeServerSpecifiedKeys:(bool)arg4 containerID:(id)arg5 completionHandler:(id /* block */)arg6;
+- (void)_prepPCSDataWithContext:(id)arg1 databaseScope:(long long)arg2 publicSharingKey:(id)arg3 removeServerSpecifiedKeys:(bool)arg4 containerID:(id)arg5 sharedRecordZone:(id)arg6 completionHandler:(id /* block */)arg7;
+- (bool)hasEncryptedPersonalInfo;
+- (struct _OpaquePCSShareProtection { }*)privatePCS;
+- (struct _OpaquePCSShareProtection { }*)publicPCS;
+- (void)setPrivatePCS:(struct _OpaquePCSShareProtection { }*)arg1;
+- (void)setPublicPCS:(struct _OpaquePCSShareProtection { }*)arg1;
+- (void)setSharePCSData:(id)arg1;
+- (void)setSharePCSData:(id)arg1 isUnitTestAccount:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (bool)hd_isCKShare;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
++ (id)hmbDecodeData:(id)arg1 fromStorageLocation:(unsigned long long)arg2 error:(id*)arg3;
+
+- (id)hmbEncodeForStorageLocation:(unsigned long long)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (unsigned long long)_nonOwnerParticipantsCountWithAcceptanceStatus:(long long)arg1;
+- (id)ic_nonCurrentUserParticipants;
+- (unsigned long long)ic_nonOwnerAcceptedParticipantsCount;
+- (unsigned long long)ic_nonOwnerInvitedParticipantsCount;
 
 @end

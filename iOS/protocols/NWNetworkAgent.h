@@ -37,10 +37,12 @@
 - (void)setRequiresAssert:(bool)arg1;
 - (void)setSpecificUseOnly:(bool)arg1;
 - (void)setSupportsBrowseRequests:(bool)arg1;
+- (void)setSupportsListenRequests:(bool)arg1;
 - (void)setSupportsResolveRequests:(bool)arg1;
 - (void)setUpdateClientsImmediately:(bool)arg1;
 - (bool)startAgentWithOptions:(NSDictionary *)arg1;
 - (bool)supportsBrowseRequests;
+- (bool)supportsListenRequests;
 - (bool)supportsResolveRequests;
 - (void)unassertAgentWithOptions:(NSDictionary *)arg1;
 - (bool)updateClientsImmediately;

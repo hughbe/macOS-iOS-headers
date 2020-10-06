@@ -2,15 +2,22 @@
    Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
  */
 
-@interface SFUserReportFeedback : SFFeedback <NSCopying> {
+@interface SFUserReportFeedback : SFFeedback <CRUserReportRequestFeedback, NSCopying> {
     SFCardSection * _cardSection;
     SFSearchResult * _result;
     SFPunchout * _userSelection;
 }
 
+@property (nonatomic, readonly) SFUserReportFeedback *backingFeedback;
 @property (nonatomic, retain) SFCardSection *cardSection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) SFSearchResult *result;
+@property (readonly) Class superclass;
 @property (nonatomic, retain) SFPunchout *userSelection;
+
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
 
 + (bool)supportsSecureCoding;
 
@@ -25,5 +32,9 @@
 - (void)setResult:(id)arg1;
 - (void)setUserSelection:(id)arg1;
 - (id)userSelection;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
+- (id)backingFeedback;
 
 @end

@@ -34,7 +34,7 @@
     bool  _useCourseForHeading;
 }
 
-@property (nonatomic) long long activityType;
+@property (nonatomic, readonly) bool coarseModeEnabled;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) double desiredAccuracy;
@@ -73,8 +73,8 @@
 - (void)_setTrackingLocation:(bool)arg1;
 - (void)_startLocationUpdateWithObserver:(id)arg1 desiredAccuracy:(double)arg2;
 - (void)_updateForNewLocation:(id)arg1 rawLocation:(id)arg2;
-- (long long)activityType;
 - (void)addLocationListener:(id)arg1;
+- (bool)coarseModeEnabled;
 - (void)dealloc;
 - (double)desiredAccuracy;
 - (double)distanceFilter;
@@ -98,6 +98,7 @@
 - (id /* block */)locationCorrector;
 - (id)locationError;
 - (id)locationProvider;
+- (void)locationProvider:(id)arg1 didChangeCoarseMode:(bool)arg2;
 - (void)locationProvider:(id)arg1 didReceiveError:(id)arg2;
 - (void)locationProvider:(id)arg1 didUpdateHeading:(id)arg2;
 - (void)locationProvider:(id)arg1 didUpdateLocation:(id)arg2;
@@ -115,7 +116,6 @@
 - (void)removeLocationListener:(id)arg1;
 - (void)requestLocationAccessFor:(id)arg1;
 - (void)resourceManifestManager:(id)arg1 didChangeActiveTileGroup:(id)arg2 fromOldTileGroup:(id)arg3;
-- (void)setActivityType:(long long)arg1;
 - (void)setDesiredAccuracy:(double)arg1;
 - (void)setDistanceFilter:(double)arg1;
 - (void)setEffectiveBundle:(id)arg1;
@@ -132,9 +132,10 @@
 - (void)stopHeadingUpdateWithObserver:(id)arg1;
 - (void)stopLocationUpdateWithObserver:(id)arg1;
 - (double)timeScale;
-- (void)useGPSLocationProvider;
+- (void)useGPSLocationProviderWithCLParameters:(id)arg1;
 - (void)useHybridLocationProvider;
 - (void)useLeechedLocationProvider;
+- (void)useSimulationLocationProvider:(id)arg1;
 - (void)useTraceLocationProvider:(id)arg1;
 
 @end

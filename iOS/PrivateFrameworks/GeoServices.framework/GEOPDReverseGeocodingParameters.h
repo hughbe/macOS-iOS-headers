@@ -10,11 +10,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_extendedLocations : 1; 
         unsigned int read_locations : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_extendedLocations : 1; 
-        unsigned int wrote_locations : 1; 
-        unsigned int wrote_placeTypeLimit : 1; 
-        unsigned int wrote_preserveOriginalLocation : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _locations;
     int  _placeTypeLimit;
@@ -42,10 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsPlaceTypeLimit:(id)arg1;
-- (void)_addNoFlagsExtendedLocation:(id)arg1;
-- (void)_addNoFlagsLocation:(id)arg1;
-- (void)_readExtendedLocations;
-- (void)_readLocations;
 - (void)addExtendedLocation:(id)arg1;
 - (void)addLocation:(id)arg1;
 - (void)clearExtendedLocations;
@@ -64,7 +56,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)locationAtIndex:(unsigned long long)arg1;
 - (id)locations;
 - (unsigned long long)locationsCount;

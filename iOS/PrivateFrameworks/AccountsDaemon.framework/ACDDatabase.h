@@ -23,7 +23,6 @@
 - (bool)_persistentStoreCoodinator_resetPersistentStoreCoordinatorWithError:(id*)arg1;
 - (bool)_shouldResetPersistentStoreAfterError:(id)arg1;
 - (id)_unverifiedBackupURL;
-- (bool)_validateDatabaseAtURL:(id)arg1 error:(id*)arg2;
 - (id)createConnection;
 - (void)databaseConnection:(id)arg1 encounteredUnrecoverableError:(id)arg2;
 - (id)databaseURL;

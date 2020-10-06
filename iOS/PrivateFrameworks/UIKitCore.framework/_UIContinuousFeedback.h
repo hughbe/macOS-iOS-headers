@@ -20,6 +20,7 @@
 + (id)type;
 
 - (id)_debugDictionary;
+- (double)_effectiveDuration;
 - (unsigned long long)_effectiveEventType;
 - (id)_playableProtocol;
 - (void)_playedAtTime:(double)arg1 engine:(id)arg2;

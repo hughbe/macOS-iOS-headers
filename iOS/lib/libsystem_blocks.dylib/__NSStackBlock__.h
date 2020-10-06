@@ -2,6 +2,11 @@
    Image: /usr/lib/system/libsystem_blocks.dylib
  */
 
-@interface __NSStackBlock__ : __NSStackBlock
+@interface __NSStackBlock__ : NSBlock
+
+- (id)autorelease;
+- (oneway void)release;
+- (id)retain;
+- (unsigned long long)retainCount;
 
 @end

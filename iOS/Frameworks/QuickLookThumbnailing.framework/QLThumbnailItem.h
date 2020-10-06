@@ -16,13 +16,17 @@
 }
 
 @property (copy) NSString *computedContentType;
+@property (nonatomic, readonly) NSString *contentType;
 @property (readonly) NSData *data;
 @property unsigned long long downloadStatus;
+@property (nonatomic, readonly) unsigned long long itemType;
 @property bool needsAccessToExternalResources;
 @property (nonatomic, copy) NSString *overriddenContentType;
 @property (readonly) NSURL *url;
 @property (readonly) FPSandboxingURLWrapper *urlWrapperForExtension;
 @property (readonly) FPSandboxingURLWrapper *urlWrapperForParentDirectory;
+
+// Image: /System/Library/Frameworks/QuickLookThumbnailing.framework/QuickLookThumbnailing
 
 + (bool)supportsSecureCoding;
 
@@ -49,5 +53,10 @@
 - (id)url;
 - (id)urlWrapperForExtension;
 - (id)urlWrapperForParentDirectory;
+
+// Image: /System/Library/PrivateFrameworks/QuickLookSupport.framework/QuickLookSupport
+
+- (id)contentType;
+- (unsigned long long)itemType;
 
 @end

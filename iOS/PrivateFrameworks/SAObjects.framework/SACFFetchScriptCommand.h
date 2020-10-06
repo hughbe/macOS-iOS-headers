@@ -13,6 +13,8 @@
 @property (nonatomic, copy) NSString *refId;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)fetchScriptCommand;
 + (id)fetchScriptCommandWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -23,5 +25,11 @@
 - (bool)requiresResponse;
 - (void)setFetchScriptType:(id)arg1;
 - (void)setJsScriptIdentifiers:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (bool)siriCore_bufferingAllowedDuringActiveSession;
+- (bool)siriCore_isRetryable;
+- (bool)siriCore_supportedByLocalSession;
 
 @end

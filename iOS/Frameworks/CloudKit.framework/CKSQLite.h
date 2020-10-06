@@ -17,6 +17,7 @@
     NSMutableDictionary * _statementsBySQL;
     long long  _synchronousMode;
     bool  _traced;
+    NSMutableDictionary * _unitTestOverrides;
     int  _userVersion;
 }
 
@@ -35,7 +36,10 @@
 @property (nonatomic, readonly) NSMutableDictionary *statementsBySQL;
 @property (nonatomic) long long synchronousMode;
 @property (nonatomic) bool traced;
+@property (nonatomic, retain) NSMutableDictionary *unitTestOverrides;
 @property (nonatomic) int userVersion;
+
++ (id)equalityClauseAndBindingsForDict:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)_boxedPropertyDictionary:(id)arg1 forObjCClass:(id)arg2;
@@ -109,16 +113,19 @@
 - (void)setShouldVacuum:(bool)arg1;
 - (void)setSynchronousMode:(long long)arg1;
 - (void)setTraced:(bool)arg1;
+- (void)setUnitTestOverrides:(id)arg1;
 - (void)setUserVersion:(int)arg1;
 - (bool)shouldVacuum;
 - (id)statementForSQL:(id)arg1;
 - (id)statementsBySQL;
 - (long long)synchronousMode;
 - (bool)traced;
+- (id)unitTestOverrides;
 - (void)update:(id)arg1 set:(id)arg2 where:(id)arg3 bindings:(id)arg4 limit:(id)arg5;
 - (void)updateAllObjectsOfClass:(Class)arg1 set:(id)arg2 where:(id)arg3 bindings:(id)arg4;
 - (long long)upsertInto:(id)arg1 values:(id)arg2 onConflict:(id)arg3 doUpdate:(id)arg4 where:(id)arg5;
 - (int)userVersion;
 - (void)vacuum;
+- (void)willCreateDatabase;
 
 @end

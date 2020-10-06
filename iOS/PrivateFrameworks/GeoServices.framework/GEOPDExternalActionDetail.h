@@ -12,11 +12,7 @@
         unsigned int read_actionUrlComponent : 1; 
         unsigned int read_actionUrlVerb : 1; 
         unsigned int read_logoId : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_actionLabel : 1; 
-        unsigned int wrote_actionUrlComponent : 1; 
-        unsigned int wrote_actionUrlVerb : 1; 
-        unsigned int wrote_logoId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _logoId;
     PBDataReader * _reader;
@@ -41,10 +37,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readActionLabel;
-- (void)_readActionUrlComponent;
-- (void)_readActionUrlVerb;
-- (void)_readLogoId;
 - (id)actionLabel;
 - (id)actionUrlComponent;
 - (id)actionUrlVerb;
@@ -60,7 +52,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)logoId;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

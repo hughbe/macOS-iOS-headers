@@ -70,7 +70,6 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)_cacheDisplayScaleIfNeeded;
 - (id)container;
 - (struct CGSize { double x1; double x2; })contentLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 forArrangedSubview:(id)arg2;
 - (id)dataSource;

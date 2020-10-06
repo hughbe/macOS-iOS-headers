@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSeat : PBCodable <NSCopying, NSSecureCoding, _INPBSeat> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     NSString * _seatNumber;
     NSString * _seatRow;
@@ -11,7 +10,6 @@
     NSString * _seatingType;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasSeatNumber;
@@ -28,8 +26,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

@@ -8,6 +8,7 @@
 
 @property (nonatomic, retain) NSCountedSet *holdingUpdatesKeys;
 
+- (void).cxx_destruct;
 - (void)beginHoldingUpdatesForKey:(id)arg1;
 - (void)dealloc;
 - (id)description;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBFilePropertyValue : PBCodable <NSCopying, NSSecureCoding, _INPBFilePropertyValue> {
-    bool  __encodeLegacyGloryData;
     _INPBDateTimeRange * _dateTime;
     int  _fileType;
     struct { 
@@ -14,7 +13,6 @@
     _INPBString * _value;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBDateTimeRange *dateTime;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -34,8 +32,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsFileType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dateTime;
 - (id)dictionaryRepresentation;

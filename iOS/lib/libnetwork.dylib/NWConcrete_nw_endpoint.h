@@ -4,20 +4,34 @@
 
 @interface NWConcrete_nw_endpoint : NSObject <OS_nw_endpoint> {
     unsigned short  alternate_port;
+    struct { 
+        struct nw_endpoint_alterative_s {} *tqh_first; 
+        struct nw_endpoint_alterative_s {} **tqh_last; 
+    }  alternative_list;
     struct nw_hash_table { } * associations;
+    NSObject<OS_dnssd_cname_array> * cname_array;
     NSObject<OS_nw_context> * context;
     char * description;
     unsigned int  description_used;
+    unsigned int  do_not_redact_description;
+    struct nw_endpoint_alterative_s { 
+        struct { 
+            struct nw_endpoint_alterative_s {} *tqe_next; 
+            struct nw_endpoint_alterative_s {} **tqe_prev; 
+        } chain; 
+        NWConcrete_nw_endpoint *endpoint; 
+        NSObject<OS_nw_protocol_definition> *applicable_protocol; 
+    }  first_alternative;
     NSObject<OS_nw_interface> * interface;
+    int  interface_type;
     unsigned int  is_local_domain;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  lock;
-    char * logging_description;
-    unsigned int  logging_description_used;
-    int  original_fd;
     NWConcrete_nw_endpoint * parent_endpoint;
     unsigned int  parent_is_proxy;
+    char * redacted_description;
+    unsigned int  redacted_description_used;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -29,6 +43,7 @@
 @property (nonatomic, readonly) unsigned short port;
 @property (nonatomic) unsigned short priority;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) NSObject<OS_nw_txt_record> *txtRecord;
 @property (nonatomic, readonly) unsigned int type;
 @property (nonatomic) unsigned short weight;
 
@@ -41,7 +56,7 @@
 - (const char *)domainForPolicy;
 - (const char *)getDescription;
 - (unsigned long long)getHash;
-- (const char *)getLoggingDescription;
+- (const char *)getRedactedDescription;
 - (const char *)hostname;
 - (id)init;
 - (bool)isEqual:(id)arg1;
@@ -50,7 +65,9 @@
 - (unsigned short)priority;
 - (id)redactedDescription;
 - (void)setPriority:(unsigned short)arg1;
+- (void)setTxtRecord:(id)arg1;
 - (void)setWeight:(unsigned short)arg1;
+- (id)txtRecord;
 - (unsigned int)type;
 - (unsigned short)weight;
 

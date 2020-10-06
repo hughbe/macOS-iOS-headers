@@ -10,9 +10,6 @@
     }  _lock;
 }
 
-- (void)addClass:(Class)arg1;
-- (void)clear;
-- (bool)containsClass:(Class)arg1;
 - (void)dealloc;
 - (id)init;
 

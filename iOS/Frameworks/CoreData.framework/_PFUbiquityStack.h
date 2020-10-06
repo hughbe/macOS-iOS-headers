@@ -11,28 +11,8 @@
     PFUbiquityLocation * _ubiquityRootURL;
 }
 
-@property (nonatomic, readonly) NSString *localPeerID;
-@property (nonatomic, readonly) PFUbiquityMetadataFactoryEntry *metadataEntry;
-@property (nonatomic, readonly) NSManagedObjectContext *metadataMOC;
-@property (nonatomic, readonly) PFUbiquityLocation *metadataStoreFileLocation;
-@property (nonatomic, readonly) NSString *storeName;
-@property (nonatomic, readonly) PFUbiquityLocation *ubiquityRootURL;
-
-- (id)allPeers;
-- (id)createMetadataStoreKnowledgeVector:(id*)arg1;
-- (id)createMinMetadataStoreKnowledgeVector:(id*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)init;
-- (id)initWithMetadataEntry:(id)arg1;
-- (id)localPeerID;
-- (id)metadataEntry;
-- (id)metadataMOC;
-- (id)metadataStoreFileLocation;
-- (id)peerForPeerID:(id)arg1 createIfMissing:(bool)arg2;
-- (bool)purgeAndInitializeMetadataStoreFileWithError:(id*)arg1;
-- (bool)purgeMetadataForStoreMetadata:(id)arg1 withError:(id*)arg2;
-- (id)storeName;
-- (id)ubiquityRootURL;
 
 @end

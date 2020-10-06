@@ -61,6 +61,7 @@
 @property (nonatomic) bool acceptsDictationSearchResults;
 @property (nonatomic) bool acceptsEmoji;
 @property (nonatomic) bool acceptsFloatingKeyboard;
+@property (nonatomic) bool acceptsInitialEmojiKeyboard;
 @property (nonatomic) bool acceptsPayloads;
 @property (nonatomic) bool acceptsSplitKeyboard;
 @property (nonatomic) bool allowsAttachments;
@@ -113,6 +114,7 @@
 @property (nonatomic) long long nonEditingLinebreakMode;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } padding;
 @property (nonatomic, copy) UITextInputPasswordRules *passwordRules;
+@property (nonatomic) bool preferOnlineDictation;
 @property (nonatomic, copy) NSString *recentInputIdentifier;
 @property (nonatomic, copy) NSString *responseContext;
 @property (nonatomic) bool returnKeyGoesToNextResponder;
@@ -152,8 +154,6 @@
 @property (nonatomic) bool useInterfaceLanguageForLocalization;
 @property (nonatomic) struct _NSRange { unsigned long long x1; unsigned long long x2; } validTextRange;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)activeFieldEditor;
 + (id)excludedElementsForHTML;
 + (id)sharedFieldEditor;
@@ -163,7 +163,6 @@
 - (void)_applyCorrectTextContainerSize;
 - (void)_applyCorrectTextContainerSize:(id)arg1;
 - (void)_cancelObscureAllTextTimer;
-- (id)_canvasView;
 - (bool)_clearOnEditIfNeeded;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_contentInsetsFromFonts;
 - (void)_deactivateSelectionView;
@@ -195,6 +194,7 @@
 - (bool)_shouldIgnoreAutofillSave;
 - (bool)_shouldObscureInput;
 - (bool)_shouldObscureNextInput;
+- (id)_textCanvasView;
 - (id)_textContainer;
 - (id)_textInputController;
 - (id)_textInputTraits;
@@ -206,17 +206,9 @@
 - (void)_unobscureTextInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 settingTimerToReobscure:(bool)arg2;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_unobscuredSecureRange;
 - (void)_updateLayoutManagerStyleEffectConfiguration;
-- (void)dealloc;
-- (id)forwardingTargetForSelector:(SEL)arg1;
-- (id)methodSignatureForSelector:(SEL)arg1;
-- (bool)respondsToSelector:(SEL)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)activateEditor;
 - (void)addTextAlternativesDisplayStyle:(long long)arg1 toRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (bool)allowsAttachments;
-- (int)atomStyle;
 - (id)attributedSubstringForMarkedRange;
 - (id)attributedText;
 - (id)attributedTextInRange:(id)arg1;
@@ -226,7 +218,6 @@
 - (id)beginningOfDocument;
 - (void)cancelAutoscroll;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })caretRectForPosition:(id)arg1;
-- (unsigned long long)characterOffsetAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)characterRangeAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)characterRangeByExtendingPosition:(id)arg1 inDirection:(long long)arg2;
 - (void)clearText;
@@ -235,13 +226,14 @@
 - (long long)comparePosition:(id)arg1 toPosition:(id)arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })contentFrameForView:(id)arg1;
 - (void)deactivateEditorDiscardingEdits:(bool)arg1;
+- (void)dealloc;
 - (void)deleteBackward;
 - (void)drawRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
-- (bool)drawsAsAtom;
 - (id)endOfDocument;
 - (void)endSelectionChange;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })firstRectForRange:(id)arg1;
 - (id)font;
+- (id)forwardingTargetForSelector:(SEL)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frameForDictationResultPlaceholder:(id)arg1;
 - (bool)hasMarkedText;
 - (bool)hasText;
@@ -277,6 +269,7 @@
 - (id)markedTextRange;
 - (id)markedTextStyle;
 - (id)metadataDictionariesForDictationResults;
+- (id)methodSignatureForSelector:(SEL)arg1;
 - (struct CGSize { double x1; double x2; })minSize;
 - (long long)nonEditingLinebreakMode;
 - (long long)offsetFromPosition:(id)arg1 toPosition:(id)arg2;
@@ -290,6 +283,7 @@
 - (void)replaceRange:(id)arg1 withAttributedText:(id)arg2;
 - (void)replaceRange:(id)arg1 withText:(id)arg2;
 - (void)replaceRangeWithTextWithoutClosingTyping:(id)arg1 replacementText:(id)arg2;
+- (bool)respondsToSelector:(SEL)arg1;
 - (void)scrollSelectionToVisible:(bool)arg1;
 - (int)scrollXOffset;
 - (int)scrollYOffset;
@@ -338,6 +332,7 @@
 - (id)textContainer;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })textContainerInset;
 - (struct CGPoint { double x1; double x2; })textContainerOrigin;
+- (struct CGPoint { double x1; double x2; })textContainerOriginForTextAlignment:(long long)arg1;
 - (id)textField;
 - (id)textInRange:(id)arg1;
 - (void)textInput:(id)arg1 prepareAttributedTextForInsertion:(id)arg2;
@@ -346,6 +341,7 @@
 - (void)textInputDidAnimatePaste:(id)arg1;
 - (void)textInputDidChange:(id)arg1;
 - (void)textInputDidChangeSelection:(id)arg1;
+- (bool)textInputShouldExtendCaretHeight:(id)arg1;
 - (id)textInputTraits;
 - (id)textInputView;
 - (void)textInputWillAnimatePaste:(id)arg1;

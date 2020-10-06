@@ -63,6 +63,7 @@
 - (void)_applyExtendedLayout:(const char *)arg1 withSize:(unsigned int)arg2;
 - (id)_copyWithInstanceSize:(unsigned int)arg1 superclassOffset:(unsigned int)arg2 asVariant:(bool)arg3 mutable:(bool)arg4;
 - (void)_demangleClassName;
+- (void)_determineBinaryPathUsingObjectIdentifier:(id)arg1 remoteClassNameLoc:(unsigned long long)arg2;
 - (void)_freeLocalIvarList;
 - (void)_identifyObjCClassStructureBlocksForIsa:(unsigned long long)arg1 isMetaclass:(bool)arg2 withScanner:(id)arg3 addressIdentifierBlock:(id /* block */)arg4;
 - (id)_initWithClass:(unsigned long long)arg1 type:(unsigned int)arg2 realizedOnly:(bool)arg3 infoMap:(id)arg4 objectIdentifier:(id)arg5 reader:(id /* block */)arg6;
@@ -72,7 +73,7 @@
 - (void)_processARRLayout:(const char *)arg1 scanType:(unsigned int)arg2;
 - (void)_replaceField:(id)arg1 withFields:(id)arg2;
 - (void)_replaceFieldRecursively:(id)arg1 withField:(id)arg2;
-- (void)_setBinaryPath:(id)arg1;
+- (void)_setBinaryPath:(id)arg1 sanitize:(bool)arg2;
 - (void)_setClassNameWithAddress:(unsigned long long)arg1 symbolicator:(struct _CSTypeRef { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)_setDefaultScanType:(unsigned int)arg1;
 - (void)_setDisplayName:(id)arg1;
@@ -114,7 +115,7 @@
 - (id)initWithClosureContext:(unsigned long long)arg1 typeInfo:(struct swift_typeinfo { int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg2 infoMap:(id)arg3 swiftFieldMetadataContext:(struct libSwiftRemoteMirrorWrapper { struct SwiftReflectionInteropContext {} *x1; unsigned long long x2; }*)arg4;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRealizedClass:(unsigned long long)arg1 type:(unsigned int)arg2 infoMap:(id)arg3 objectIdentifier:(id)arg4 reader:(id /* block */)arg5;
-- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3;
+- (id)initWithSerializer:(id)arg1 classMap:(id)arg2 version:(unsigned int)arg3 error:(id*)arg4;
 - (unsigned int)instanceSize;
 - (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 memoryReader:(id /* block */)arg3;
 - (id)instanceSpecificInfoForObject:(unsigned long long)arg1 ofSize:(unsigned int)arg2 withScanner:(id)arg3 memoryReader:(id /* block */)arg4;

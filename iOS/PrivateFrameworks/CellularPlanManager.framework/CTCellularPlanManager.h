@@ -54,6 +54,7 @@
 - (void)didSelectPlansForIMessage:(id)arg1 completion:(id /* block */)arg2;
 - (void)didSelectRemotePlanItem:(id)arg1 completion:(id /* block */)arg2;
 - (void)didTransferPlanForCsn:(id)arg1 iccid:(id)arg2 profileServer:(id)arg3 state:(id)arg4;
+- (void)didTransferPlanForCsn:(id)arg1 iccid:(id)arg2 srcIccid:(id)arg3 profileServer:(id)arg4 state:(id)arg5;
 - (void)enableVinylFlowTypeOverride:(bool)arg1;
 - (void)enterSimSetupWithCompletion:(id /* block */)arg1;
 - (void)eraseAllPlans:(id /* block */)arg1;
@@ -82,6 +83,7 @@
 - (unsigned long long)getSupportedFlowTypes;
 - (void)getSupportedFlowTypes:(id /* block */)arg1;
 - (id)init;
+- (void)installPendingRemotePlan:(id)arg1 completion:(id /* block */)arg2;
 - (bool)isAddButtonEnabled;
 - (void)isAddButtonEnabled:(id /* block */)arg1;
 - (void)isMultipleDataPlanSupportAvailable:(id /* block */)arg1;
@@ -137,6 +139,7 @@
 - (void)triggerAddNewDataPlan:(id /* block */)arg1;
 - (void)userDidProvideConsentResponse:(long long)arg1 forPlan:(id)arg2 isRemote:(bool)arg3 completion:(id /* block */)arg4;
 - (void)userDidProvideResponse:(long long)arg1 confirmationCode:(id)arg2 forPlan:(id)arg3 isRemote:(bool)arg4 completion:(id /* block */)arg5;
+- (void)userSignupInitiatedOrFailed;
 - (void)willDisplayPlanItems;
 
 @end

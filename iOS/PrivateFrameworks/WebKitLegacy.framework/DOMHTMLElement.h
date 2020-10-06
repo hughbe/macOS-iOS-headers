@@ -57,7 +57,6 @@
 - (void)setWebkitdropzone:(id)arg1;
 - (bool)spellcheck;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (int)tabIndex;
 - (id)title;
 - (id)titleDisplayString;

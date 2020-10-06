@@ -14,10 +14,8 @@
 - (void)handleEvent:(id)arg1;
 - (id)init;
 - (id)queue;
-- (void)reloadCarrierSettings:(bool)arg1;
 - (void)reloadMNS;
 - (void)reloadNetworkdSettings;
 - (void)setQueue:(id)arg1;
-- (bool)updateSettingsFromCarrierFile:(id)arg1 prefix:(id)arg2 settings:(id)arg3;
 
 @end

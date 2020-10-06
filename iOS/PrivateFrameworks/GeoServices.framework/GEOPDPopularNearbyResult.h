@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_litePlaceResults : 1; 
         unsigned int read_sectionHeader : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_litePlaceResults : 1; 
-        unsigned int wrote_sectionHeader : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct GEOPDLitePlaceResult { unsigned long long x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; } * _litePlaceResults;
     unsigned long long  _litePlaceResultsCount;
@@ -33,9 +31,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsLitePlaceResult:(struct GEOPDLitePlaceResult { unsigned long long x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
-- (void)_readLitePlaceResults;
-- (void)_readSectionHeader;
 - (void)addLitePlaceResult:(struct GEOPDLitePlaceResult { unsigned long long x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
 - (void)clearLitePlaceResults;
 - (void)clearUnknownFields:(bool)arg1;
@@ -48,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (struct GEOPDLitePlaceResult { unsigned long long x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })litePlaceResultAtIndex:(unsigned long long)arg1;
 - (struct GEOPDLitePlaceResult { unsigned long long x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)litePlaceResults;
 - (unsigned long long)litePlaceResultsCount;

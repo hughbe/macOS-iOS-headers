@@ -2,34 +2,42 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRPlayer : NSObject {
+@interface MRPlayer : NSObject <NSCopying> {
     long long  _audioSessionType;
     NSString * _displayName;
     NSString * _identifier;
+    NSSet * _mxSessionIDs;
 }
 
 @property (nonatomic) long long audioSessionType;
 @property (nonatomic, readonly, copy) NSData *data;
+@property (getter=isDefaultPlayer, nonatomic, readonly) bool defaultPlayer;
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, readonly) bool hasAuxiliaryProperties;
 @property (nonatomic, copy) NSString *identifier;
-@property (nonatomic, readonly) _MRNowPlayingPlayerProtobuf *protobuf;
+@property (nonatomic, copy) NSSet *mxSessionIDs;
+@property (nonatomic, readonly) MRPlayer *skeleton;
 
 + (id)defaultPlayer;
 
 - (void).cxx_destruct;
 - (long long)audioSessionType;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)data;
+- (id)description;
 - (id)displayName;
 - (bool)hasAuxiliaryProperties;
 - (id)identifier;
 - (id)initWithData:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 displayName:(id)arg2;
-- (id)initWithProtobuf:(id)arg1;
+- (bool)isDefaultPlayer;
 - (bool)isEqual:(id)arg1;
-- (id)protobuf;
+- (void)mergeFrom:(id)arg1;
+- (id)mxSessionIDs;
 - (void)setAudioSessionType:(long long)arg1;
 - (void)setDisplayName:(id)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setMxSessionIDs:(id)arg1;
+- (id)skeleton;
 
 @end

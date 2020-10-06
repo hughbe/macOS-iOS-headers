@@ -11,12 +11,7 @@
         unsigned int read_debugExperimentBranch : 1; 
         unsigned int read_offlineAbJson : 1; 
         unsigned int read_querySubstring : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_debugExperimentBranch : 1; 
-        unsigned int wrote_offlineAbJson : 1; 
-        unsigned int wrote_querySubstring : 1; 
-        unsigned int wrote_placeRequestType : 1; 
-        unsigned int wrote_serviceType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _offlineAbJson;
     int  _placeRequestType;
@@ -48,9 +43,6 @@
 - (void).cxx_destruct;
 - (int)StringAsPlaceRequestType:(id)arg1;
 - (int)StringAsServiceType:(id)arg1;
-- (void)_readDebugExperimentBranch;
-- (void)_readOfflineAbJson;
-- (void)_readQuerySubstring;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -65,7 +57,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)offlineAbJson;
 - (int)placeRequestType;

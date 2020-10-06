@@ -16,6 +16,7 @@
     _UIKBRTFingerDetection * _fingerDetection;
     _UIKBRTRecognizer * _handRestRecognizer;
     bool  _hasPreferredHeight;
+    bool  _ignoringKeyplaneChange;
     UITextInputTraits * _inputTraits;
     bool  _isExecutingDeferredTouchTasks;
     bool  _listeningForDidChange;
@@ -54,6 +55,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool hideKeysUnderIndicator;
 @property (nonatomic, readonly) long long idiom;
+@property (nonatomic) bool ignoringKeyplaneChange;
 @property (nonatomic) bool isExecutingDeferredTouchTasks;
 @property (nonatomic) double lastTouchUpTime;
 @property (nonatomic, retain) NSString *layoutTag;
@@ -70,8 +72,6 @@
 @property (nonatomic, retain) NSMutableSet *touchIgnoredUUIDSet;
 @property (nonatomic, retain) _UIKBRTTouchVelocities *touchVelocities;
 @property (nonatomic, readonly) UIKeyboardTypingStyleEstimator *typingStyleEstimator;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (bool)_showSmallDisplayKeyplane;
 + (Class)_subclassForScreenTraits:(id)arg1;
@@ -101,10 +101,6 @@
 - (id)_uikbrtTouchDrifting:(id)arg1 touchIdentifiersForFingerID:(unsigned long long)arg2;
 - (void)_uikbrtTouchDriftingStateChanged:(id)arg1;
 - (void)_updateTouchState:(id)arg1 errorVector:(struct CGPoint { double x1; double x2; })arg2 rowOffsetFromHomeRow:(long long)arg3;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)acceptRecentInputIfNecessary;
 - (id)activationIndicatorView;
 - (id)activeTouchUUID;
@@ -131,6 +127,7 @@
 - (unsigned long long)cursorLocation;
 - (void)deactivateActiveKeys;
 - (void)deactivateActiveKeysClearingTouchInfo:(bool)arg1 clearingDimming:(bool)arg2;
+- (void)dealloc;
 - (id /* block */)deferredTaskForActiveTouch;
 - (id /* block */)deferredTouchDownTask;
 - (id /* block */)deferredTouchMovedTask;
@@ -168,6 +165,7 @@
 - (double)hitBuffer;
 - (long long)idiom;
 - (bool)ignoresShiftState;
+- (bool)ignoringKeyplaneChange;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)internationalKeyDisplayStringOnEmojiKeyboard;
 - (bool)isAlphabeticPlane;
@@ -176,6 +174,7 @@
 - (bool)isGeometricShiftOrMoreKeyForTouch:(id)arg1;
 - (bool)isHandwritingPlane;
 - (bool)isKanaPlane;
+- (bool)isPossibleToTypeFast;
 - (bool)isReachableDevice;
 - (bool)isResized;
 - (bool)isResizing;
@@ -227,6 +226,7 @@
 - (void)setFingerDetection:(id)arg1;
 - (void)setHandRestRecognizer:(id)arg1;
 - (void)setHideKeysUnderIndicator:(bool)arg1;
+- (void)setIgnoringKeyplaneChange:(bool)arg1;
 - (void)setIsExecutingDeferredTouchTasks:(bool)arg1;
 - (void)setKeyboardBias:(long long)arg1;
 - (void)setLabel:(id)arg1 forKey:(id)arg2;

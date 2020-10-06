@@ -17,6 +17,7 @@
     NSDictionary * _metricsEvent;
     NSDate * _scheduledTime;
     bool  _shouldSuppressDefaultAction;
+    NSSet * _subsections;
     NSString * _subtitle;
     NSString * _threadIdentifier;
     NSString * _title;
@@ -41,6 +42,7 @@
 @property (nonatomic, retain) NSDictionary *metricsEvent;
 @property (nonatomic, retain) NSDate *scheduledTime;
 @property (nonatomic) bool shouldSuppressDefaultAction;
+@property (nonatomic, retain) NSSet *subsections;
 @property (nonatomic, retain) NSString *subtitle;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) NSString *threadIdentifier;
@@ -57,6 +59,7 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 + (long long)explicitEnabledForCenterBundleID:(id)arg1;
 + (id)handleNotificationResponse:(id)arg1 bag:(id)arg2;
 + (id)handleNotificationResponse:(id)arg1 bagContract:(id)arg2;
@@ -65,7 +68,7 @@
 + (id)notificationCenter:(id)arg1 openSettingsForNotification:(id)arg2 bag:(id)arg3;
 + (id)notificationWithPayload:(id)arg1 andConfig:(id)arg2;
 + (void)openAppUsingBundleIdentifier:(id)arg1;
-+ (bool)shouldDeleteNotificationForPayload:(id)arg1 outIdentifier:(id*)arg2;
++ (bool)shouldDeleteNotificationForPayload:(id)arg1 outIdentifier:(id*)arg2 scheduledOnly:(bool*)arg3;
 + (bool)shouldHandleNotificationResponse:(id)arg1;
 + (bool)shouldHandleServiceExtensionNotificationRequest:(id)arg1;
 
@@ -82,6 +85,7 @@
 - (id)createUNNotificationContent;
 - (id)createUNNotificationRequestFromContent:(id)arg1;
 - (id)defaultAction;
+- (id)determineSelectedActionFromResponse:(id)arg1 error:(id*)arg2;
 - (bool)explicitContent;
 - (id)handleSelectedButton:(id)arg1 bag:(id)arg2;
 - (id)handleSelectedButton:(id)arg1 bagContract:(id)arg2;
@@ -110,12 +114,14 @@
 - (void)setMetricsEvent:(id)arg1;
 - (void)setScheduledTime:(id)arg1;
 - (void)setShouldSuppressDefaultAction:(bool)arg1;
+- (void)setSubsections:(id)arg1;
 - (void)setSubtitle:(id)arg1;
 - (void)setThreadIdentifier:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setUserInfo:(id)arg1;
 - (void)setVideoUrl:(id)arg1;
 - (bool)shouldSuppressDefaultAction;
+- (id)subsections;
 - (id)subtitle;
 - (id)threadIdentifier;
 - (id)title;

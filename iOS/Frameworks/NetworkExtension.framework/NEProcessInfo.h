@@ -12,7 +12,6 @@
 + (id)copyUUIDsForExecutable:(id)arg1;
 + (id)copyUUIDsForFatBinary:(int)arg1;
 + (id)copyUUIDsFromExecutable:(const char *)arg1;
-+ (id)getApplicationNameFromPlugin:(id)arg1 userUID:(unsigned int)arg2;
 + (void)initGlobals;
 + (bool)is64bitCapable;
 

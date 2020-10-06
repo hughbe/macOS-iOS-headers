@@ -12,6 +12,7 @@
 @property (nonatomic) double headIndent;
 @property (nonatomic) float hyphenationFactor;
 @property (nonatomic) long long lineBreakMode;
+@property (nonatomic) unsigned long long lineBreakStrategy;
 @property (nonatomic) double lineHeightMultiple;
 @property (nonatomic) double lineSpacing;
 @property (nonatomic) double maximumLineHeight;
@@ -20,6 +21,8 @@
 @property (nonatomic) double paragraphSpacingBefore;
 @property (nonatomic, copy) NSArray *tabStops;
 @property (nonatomic) double tailIndent;
+
+// Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
 
 - (void)_mutateTabStops;
 - (void)_setLineBoundsOptions:(unsigned long long)arg1;
@@ -52,5 +55,14 @@
 - (void)setTighteningFactorForTruncation:(float)arg1;
 - (void)setUsesDefaultHyphenation:(bool)arg1;
 - (void)setUsesOpticalAlignment:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
+
+- (void)ik_applyViewElementStyle:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
++ (id)NTKHyphenationParagraphStyle;
++ (id)NTKHyphenationParagraphStyleWithFactor:(float)arg1;
 
 @end

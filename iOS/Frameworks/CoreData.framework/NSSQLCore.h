@@ -15,7 +15,7 @@
     NSDictionary * _historyTrackingOptions;
     bool  _metadataIsClean;
     NSSQLModel * _model;
-    id  _observer;
+    _NSSQLCoreConnectionObsever * _observer;
     NSSQLiteConnection * _queryGenerationTrackingConnection;
     int  _remoteNotificationToken;
     bool  _remoteStoresDidChange;
@@ -35,11 +35,16 @@
         unsigned int hasFileBackedFutures : 1; 
         unsigned int isInMemory : 1; 
         unsigned int _debugRequestsHandling : 1; 
-        unsigned int _RESERVED : 16; 
+        unsigned int historyBatchUpdateModProperties : 1; 
+        unsigned int indexTracking : 1; 
+        unsigned int _RESERVED : 14; 
     }  _sqlCoreFlags;
-    int  _sqlCoreStateLock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _sqlCoreStateLock;
     NSMutableDictionary * _storeMetadata;
     int  _transactionInMemorySequence;
+    id  _usedIndexes;
     _PFMutex * _writerSerializationMutex;
 }
 
@@ -170,9 +175,13 @@
 - (id)fetchUbiquityKnowledgeVector;
 - (id)fileBackedFuturesDirectory;
 - (int)fileProtectionLevel;
+- (bool)finishDeferredLightweightMigration:(bool)arg1 withError:(id*)arg2;
 - (void)freeQueryGenerationWithIdentifier:(id)arg1;
+- (id)harvestIndexStatisticsFromConnections;
 - (bool)hasAncillaryModels;
+- (bool)hasHistoryBatchUpdatePropertiesOption;
 - (bool)hasHistoryTracking;
+- (bool)hasIndexTracking;
 - (id)identifier;
 - (id)initWithPersistentStoreCoordinator:(id)arg1 configurationName:(id)arg2 URL:(id)arg3 options:(id)arg4;
 - (bool)isInMemory;
@@ -204,10 +213,12 @@
 - (id)processBatchInsert:(id)arg1 inContext:(id)arg2 error:(id*)arg3;
 - (id)processBatchUpdate:(id)arg1 inContext:(id)arg2 error:(id*)arg3;
 - (id)processChangeRequest:(id)arg1 inContext:(id)arg2 error:(id*)arg3;
+- (id)processCloudKitContainerEventRequest:(id)arg1 inContext:(id)arg2 error:(id*)arg3;
 - (id)processCloudKitMirroringRequest:(id)arg1 inContext:(id)arg2 error:(id*)arg3;
 - (id)processCountRequest:(id)arg1 inContext:(id)arg2;
 - (id)processFetchRequest:(id)arg1 inContext:(id)arg2;
 - (id)processRefreshObjects:(id)arg1 inContext:(id)arg2;
+- (id)processSQLiteIndexStatisticsRequest:(id)arg1 inContext:(id)arg2 error:(id*)arg3;
 - (id)processSaveChanges:(id)arg1 forContext:(id)arg2;
 - (void)recomputePrimaryKeyMaxForEntities:(id)arg1;
 - (void)recordRemoteQueryGenerationDidChange;

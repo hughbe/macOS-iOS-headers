@@ -11,6 +11,7 @@
     }  _alignmentRectInsets;
     _UIStatusBarCellularSignalView * _bottomSignalView;
     long long  _iconSize;
+    NSLayoutConstraint * _topConstraint;
     _UIStatusBarCellularSignalView * _topSignalView;
     NSLayoutConstraint * _verticalInterspaceConstraint;
 }
@@ -25,6 +26,7 @@
 @property (nonatomic, readonly) long long overriddenVerticalAlignment;
 @property (nonatomic, readonly) bool prefersBaselineAlignment;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) NSLayoutConstraint *topConstraint;
 @property (readonly) _UIStatusBarCellularSignalView *topSignalView;
 @property (nonatomic, retain) NSLayoutConstraint *verticalInterspaceConstraint;
 @property (nonatomic, readonly) bool wantsCrossfade;
@@ -40,9 +42,12 @@
 - (long long)iconSize;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (struct CGSize { double x1; double x2; })intrinsicContentSize;
 - (void)setAlignmentRectInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setIconSize:(long long)arg1;
+- (void)setTopConstraint:(id)arg1;
 - (void)setVerticalInterspaceConstraint:(id)arg1;
+- (id)topConstraint;
 - (id)topSignalView;
 - (id)verticalInterspaceConstraint;
 - (id)viewForLastBaselineLayout;

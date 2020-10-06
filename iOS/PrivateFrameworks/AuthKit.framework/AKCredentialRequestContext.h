@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
  */
 
-@interface AKCredentialRequestContext : NSObject <NSSecureCoding> {
+@interface AKCredentialRequestContext : NSObject <NSCopying, NSSecureCoding> {
     AKAuthorizationRequest * _authorizationRequest;
     NSString * _callerBundleID;
     NSData * _iconData;
@@ -10,6 +10,7 @@
     NSNumber * _iconScale;
     NSValue * _iconSize;
     NSString * _informativeText;
+    bool  _isEligibleForUpgradeFromPassword;
     bool  _isFirstPartyLogin;
     bool  _isRapportLogin;
     bool  _isWebLogin;
@@ -29,6 +30,7 @@
     bool  _shouldForceUI;
     bool  _shouldSkipAuthorizationUI;
     bool  _shouldSkipBiometrics;
+    AKAuthorizationUpgradeContext * _upgradeContext;
 }
 
 @property (nonatomic, retain) NSString *_callerBundleID;
@@ -37,6 +39,7 @@
 @property (nonatomic, copy) NSNumber *_iconScale;
 @property (nonatomic, copy) NSValue *_iconSize;
 @property (nonatomic, copy) NSString *_informativeText;
+@property (nonatomic, readonly) bool _isEligibleForUpgradeFromPassword;
 @property (nonatomic) bool _isFirstPartyLogin;
 @property (nonatomic) bool _isRapportLogin;
 @property (nonatomic) bool _isWebLogin;
@@ -53,6 +56,7 @@
 @property (nonatomic) bool _shouldForceUI;
 @property (nonatomic) bool _shouldSkipAuthorizationUI;
 @property (nonatomic) bool _shouldSkipBiometrics;
+@property (nonatomic, readonly) AKAuthorizationUpgradeContext *_upgradeContext;
 @property (nonatomic, retain) AKAuthorizationRequest *authorizationRequest;
 @property (nonatomic, retain) NSArray *credentialRequests;
 @property (nonatomic, retain) AKPasswordRequest *passwordRequest;
@@ -67,6 +71,7 @@
 - (id)_iconScale;
 - (id)_iconSize;
 - (id)_informativeText;
+- (bool)_isEligibleForUpgradeFromPassword;
 - (bool)_isFirstPartyLogin;
 - (bool)_isRapportLogin;
 - (bool)_isWebLogin;
@@ -83,6 +88,7 @@
 - (bool)_shouldForceUI;
 - (bool)_shouldSkipAuthorizationUI;
 - (bool)_shouldSkipBiometrics;
+- (id)_upgradeContext;
 - (id)authorizationRequest;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)credentialRequests;
@@ -90,6 +96,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithUpgradeContext:(id)arg1;
 - (id)passwordRequest;
 - (id)requestIdentifier;
 - (void)setAuthorizationRequest:(id)arg1;

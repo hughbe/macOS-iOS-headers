@@ -58,18 +58,15 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)_cacheDisplayScaleIfNeeded;
 - (id)container;
 - (struct CGSize { double x1; double x2; })contentLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 forArrangedSubview:(id)arg2;
 - (id)dataSource;
 - (void)dealloc;
 - (id)initWithContainer:(id)arg1 dataSource:(id)arg2;
-- (bool)isBaselineRelativeArrangement;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })layoutFrameForArrangedSubview:(id)arg1 withProposedContentFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (struct CGSize { double x1; double x2; })layoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)populateBoxArrangementCells:(struct vector<_NUIBoxArrangementCell, std::__1::allocator<_NUIBoxArrangementCell> > { struct _NUIBoxArrangementCell {} *x1; struct _NUIBoxArrangementCell {} *x2; struct __compressed_pair<_NUIBoxArrangementCell *, std::__1::allocator<_NUIBoxArrangementCell> > { struct _NUIBoxArrangementCell {} *x_3_1_1; } x3; }*)arg1;
 - (void)positionItemsInBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 block:(id /* block */)arg2;
 - (void)reloadData;
-- (void)setBaselineRelativeArrangement:(bool)arg1;
 
 @end

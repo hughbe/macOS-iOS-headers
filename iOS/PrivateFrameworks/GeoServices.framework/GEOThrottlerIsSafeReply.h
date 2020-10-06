@@ -16,12 +16,10 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) GEODataRequestThrottlerToken *throttlerToken;
 
-+ (bool)supportsSecureCoding;
-
 - (void).cxx_destruct;
 - (int)availableRequestCount;
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (void)encodeToXPCDictionary:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (bool)isValid;
 - (double)nextSafeRequestTime;
 - (void)setAvailableRequestCount:(int)arg1;

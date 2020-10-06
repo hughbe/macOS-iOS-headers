@@ -21,10 +21,16 @@
 @property (nonatomic, retain) NSString *routing;
 @property (nonatomic, retain) NSString *title;
 
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
+
 + (id)_stringByStrippingControlCharactersFromString:(id)arg1;
 + (id)displayLabelForContact:(id)arg1 unlocalizedLabel:(id)arg2;
 + (Class)frozenClass;
++ (id)knownIdentityKeysForComparison;
++ (id)knownSingleValueKeysForComparison;
++ (id)locationWithGEOMapItem:(id)arg1;
 + (id)locationWithMapItem:(id)arg1;
++ (id)locationWithPlacemark:(id)arg1;
 + (id)locationWithTitle:(id)arg1;
 
 - (void).cxx_destruct;
@@ -69,5 +75,9 @@
 - (void)setTitle:(id)arg1;
 - (id)title;
 - (void)updateFromMapItem:(id)arg1;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)humanReadableContactString;
 
 @end

@@ -24,6 +24,9 @@
 @property (nonatomic, readonly) UISpringTimingParameters *springTimingParameters;
 @property (nonatomic) double stiffness;
 @property (nonatomic, readonly) long long timingCurveType;
+@property (nonatomic, readonly) double ts_settlingDuration;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (void)_convertDampingRatio:(double)arg1 response:(double)arg2 toMass:(double*)arg3 stiffness:(double*)arg4 damping:(double*)arg5;
 + (void)_convertMass:(double)arg1 stiffness:(double)arg2 damping:(double)arg3 toDampingRatio:(double*)arg4 response:(double*)arg5;
@@ -45,6 +48,7 @@
 - (id)initWithDampingRatio:(double)arg1 response:(double)arg2;
 - (id)initWithDampingRatio:(double)arg1 response:(double)arg2 initialVelocity:(struct CGVector { double x1; double x2; })arg3;
 - (id)initWithMass:(double)arg1 stiffness:(double)arg2 damping:(double)arg3 initialVelocity:(struct CGVector { double x1; double x2; })arg4;
+- (id)initWithVelocity:(struct CGVector { double x1; double x2; })arg1;
 - (struct CGVector { double x1; double x2; })initialVelocity;
 - (bool)isEqual:(id)arg1;
 - (double)mass;
@@ -56,5 +60,9 @@
 - (id)springTimingParameters;
 - (double)stiffness;
 - (long long)timingCurveType;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (double)ts_settlingDuration;
 
 @end

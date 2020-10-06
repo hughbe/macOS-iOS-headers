@@ -58,6 +58,7 @@
 - (void)addApplicationProxy:(id)arg1 withOverrideURL:(id)arg2;
 - (id)allInstalledApplications;
 - (id)allPlaceholders;
+- (id)applicationInfoForAuditToken:(id)arg1;
 - (id)applicationInfoForBundleIdentifier:(id)arg1;
 - (void)applicationInstallsArePrioritized:(id)arg1 arePaused:(id)arg2;
 - (void)applicationInstallsDidCancel:(id)arg1;
@@ -68,6 +69,7 @@
 - (void)applicationInstallsDidStart:(id)arg1;
 - (void)applicationInstallsDidUpdateIcon:(id)arg1;
 - (void)applicationStateDidChange:(id)arg1;
+- (void)applicationsDidChangePersonas:(id)arg1;
 - (void)applicationsDidFailToInstall:(id)arg1;
 - (void)applicationsDidFailToUninstall:(id)arg1;
 - (void)applicationsDidInstall:(id)arg1;

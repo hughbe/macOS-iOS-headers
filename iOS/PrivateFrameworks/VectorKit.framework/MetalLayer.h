@@ -13,10 +13,13 @@
         struct __shared_weak_count {} *__cntrl_; 
     }  _device;
     bool  _sRGB;
-    struct unique_ptr<ggl::RenderBuffer, std::__1::default_delete<ggl::RenderBuffer> > { 
-        struct __compressed_pair<ggl::RenderBuffer *, std::__1::default_delete<ggl::RenderBuffer> > { 
-            struct RenderBuffer {} *__value_; 
-        } __ptr_; 
+    struct shared_ptr<ggl::SamplerState> { 
+        struct SamplerState {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    }  _samplerState;
+    struct shared_ptr<ggl::Texture2D> { 
+        struct Texture2D {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
     }  _texture;
 }
 

@@ -25,6 +25,8 @@
 + (id)sharedKeyboardMediaController;
 
 - (void).cxx_destruct;
+- (void)_didInsertMedia;
+- (void)_didPresentCard;
 - (void)_displayiMessageAppWithID:(id)arg1;
 - (void)_embedRecentlyUsedMediaViewInView:(id)arg1 animated:(bool)arg2;
 - (void)_instantiateCardFromViewService;

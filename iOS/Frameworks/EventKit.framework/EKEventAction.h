@@ -11,6 +11,7 @@
 @property (nonatomic, copy) NSString *externalScheduleID;
 
 + (Class)frozenClass;
++ (id)knownIdentityKeysForComparison;
 
 - (id)externalFolderID;
 - (id)externalID;

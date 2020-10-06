@@ -4,8 +4,10 @@
 
 @interface AMSBiometricsSignatureRequest : NSObject {
     ACAccount * _account;
+    <AMSBagProtocol> * _bag;
     NSString * _challenge;
     AMSProcessInfo * _clientInfo;
+    bool  _dualAction;
     AMSKeychainOptions * _keychainOptions;
     struct __SecAccessControl { } * _localAuthAccessControlRef;
     LAContext * _localAuthContext;
@@ -13,8 +15,10 @@
 }
 
 @property (nonatomic, readonly, copy) ACAccount *account;
+@property (nonatomic, retain) <AMSBagProtocol> *bag;
 @property (nonatomic, readonly, copy) NSString *challenge;
 @property (nonatomic, readonly, copy) AMSProcessInfo *clientInfo;
+@property (getter=isDualAction, nonatomic) bool dualAction;
 @property (nonatomic, readonly) AMSKeychainOptions *keychainOptions;
 @property (nonatomic, readonly) struct __SecAccessControl { }*localAuthAccessControlRef;
 @property (nonatomic, readonly) LAContext *localAuthContext;
@@ -23,14 +27,18 @@
 - (void).cxx_destruct;
 - (id)_localAuthOptions;
 - (id)account;
+- (id)bag;
 - (id)challenge;
 - (id)clientInfo;
 - (void)dealloc;
 - (id)initWithAccount:(id)arg1 clientInfo:(id)arg2 challenge:(id)arg3 options:(id)arg4 error:(id*)arg5;
+- (bool)isDualAction;
 - (id)keychainOptions;
 - (struct __SecAccessControl { }*)localAuthAccessControlRef;
 - (id)localAuthContext;
 - (id)localAuthOptions;
+- (void)setBag:(id)arg1;
+- (void)setDualAction:(bool)arg1;
 - (void)setLocalAuthAccessControlRef:(struct __SecAccessControl { }*)arg1;
 
 @end

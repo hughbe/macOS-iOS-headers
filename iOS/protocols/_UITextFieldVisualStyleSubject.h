@@ -5,10 +5,9 @@
 
 @required
 
-- (_UITextFieldCanvasView *)_canvasView;
 - (UIVisualEffectView *)_contentBackdropView;
+- (UIView *)_contentView;
 - (UIColor *)_currentTextColor;
-- (UIView *)_effectiveContentView;
 - (bool)_fieldEditorAttached;
 - (double)_fieldEditorHeight;
 - (bool)_hasFloatingFieldEditor;
@@ -16,6 +15,8 @@
 - (bool)_isFocused;
 - (long long)_keyboardAppearance;
 - (bool)_shouldDetermineInterfaceStyleTextColor;
+- (bool)_shouldOverrideEditingFont;
+- (_UITextFieldCanvasView *)_textCanvasView;
 - (bool)_textShouldFillFieldEditorHeight;
 - (bool)_textShouldUseVibrancy;
 - (long long)_userInterfaceStyle;

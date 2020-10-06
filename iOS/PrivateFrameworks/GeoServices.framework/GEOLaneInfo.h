@@ -43,7 +43,10 @@
 - (bool)hasSupportsManeuver;
 - (unsigned long long)hash;
 - (bool)hov;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (bool)preferredForMultipleManeuvers;
 - (void)readAll:(bool)arg1;

@@ -10,24 +10,27 @@
 }
 
 @property (setter=_setCodableAttribute:, nonatomic) INCodableAttribute *_codableAttribute;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
+@property (nonatomic, readonly) INCodableDescription *_codableDescription;
 @property (readonly, copy) NSString *debugDescription;
 @property (getter=isDefaultDialog, nonatomic) bool defaultDialog;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSString *formatString;
 @property (nonatomic, copy) NSString *formatStringID;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (readonly) Class superclass;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableDescriptionFormatStringDictionaryKey;
+- (id)__INCodableDescriptionFormatStringDictionaryLanguageCodeKey;
+- (id)__INCodableDescriptionFormatStringIDKey;
+- (id)__INCodableDescriptionFormatStringKey;
+- (id)__INCodableDescriptionFormatStringLanguageCodeKey;
 - (id)_codableAttribute;
+- (id)_codableDescription;
 - (void)_setCodableAttribute:(id)arg1;
-- (id)cacheGroup;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -37,7 +40,6 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isDefaultDialog;
 - (bool)isEqual:(id)arg1;
-- (id)keyPrefix;
 - (id)localizedDialogWithIntent:(id)arg1 tokens:(id)arg2;
 - (id)localizedDialogWithIntent:(id)arg1 tokens:(id)arg2 forLanguage:(id)arg3;
 - (id)localizedDialogWithIntent:(id)arg1 tokens:(id)arg2 localizer:(id)arg3;

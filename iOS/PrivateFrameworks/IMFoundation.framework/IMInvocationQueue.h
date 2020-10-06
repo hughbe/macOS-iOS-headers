@@ -23,6 +23,7 @@
 @property (nonatomic, readonly, retain) NSMutableArray *queue;
 @property id target;
 
+- (void).cxx_destruct;
 - (bool)_acceptsOptions:(unsigned long long)arg1;
 - (void)_checkQueue;
 - (id)_dequeueInvocation;

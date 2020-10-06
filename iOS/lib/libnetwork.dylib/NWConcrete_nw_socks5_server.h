@@ -35,6 +35,5 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithParameters:(id)arg1 clientQueue:(id)arg2;
 
 @end

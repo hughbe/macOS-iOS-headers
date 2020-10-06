@@ -14,6 +14,7 @@
 - (void).cxx_destruct;
 - (void)_setTypingStyleEstimation:(unsigned long long)arg1;
 - (void)beganContinuousPath;
+- (void)cancelContinuousPath;
 - (unsigned long long)currentTypingStyleEstimation;
 - (id)delegate;
 - (void)endedContinuousPath;

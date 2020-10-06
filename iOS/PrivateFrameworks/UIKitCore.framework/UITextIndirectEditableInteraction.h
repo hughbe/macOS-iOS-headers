@@ -7,7 +7,6 @@
 }
 
 - (void).cxx_destruct;
-- (void)finishInit;
 - (id)initWithView:(id)arg1;
 
 @end

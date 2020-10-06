@@ -8,19 +8,24 @@
 @property (nonatomic, retain) NSString *ckRecordZoneName;
 @property (nonatomic, retain) CKServerChangeToken *currentChangeToken;
 @property (nonatomic, retain) NSCKDatabaseMetadata *database;
-@property (nonatomic) bool hasChanges;
 @property (nonatomic) bool hasRecordZone;
 @property (nonatomic, retain) NSNumber *hasRecordZoneNum;
 @property (nonatomic) bool hasSubscription;
 @property (nonatomic, retain) NSNumber *hasSubscriptionNum;
 @property (nonatomic, retain) NSDate *lastFetchDate;
 @property (nonatomic, retain) NSSet *mirroredRelationships;
+@property (nonatomic) bool needsImport;
+@property (nonatomic) bool needsRecoveryFromUserPurge;
+@property (nonatomic) bool needsRecoveryFromZoneDelete;
+@property (nonatomic, retain) NSSet *queries;
 @property (nonatomic, retain) NSSet *records;
+@property (nonatomic) bool supportsAtomicChanges;
+@property (nonatomic) bool supportsFetchChanges;
+@property (nonatomic) bool supportsRecordSharing;
 
 + (id)entityPath;
 + (id)zoneMetadataForZoneID:(id)arg1 inDatabaseWithScope:(long long)arg2 forStore:(id)arg3 inContext:(id)arg4 error:(id*)arg5;
 
-- (id)createRecordZoneID;
 - (bool)hasRecordZone;
 - (bool)hasSubscription;
 - (void)setHasRecordZone:(bool)arg1;

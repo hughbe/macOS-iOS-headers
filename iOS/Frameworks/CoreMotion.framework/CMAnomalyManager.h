@@ -14,6 +14,7 @@
 
 @property (nonatomic) <CMAnomalyDelegate> *delegate;
 
++ (long long)getAnomalyFeatureEnablingStrategyForUserAge:(id)arg1;
 + (bool)isAnomalyDetectionAvailable;
 
 - (void)_registerForAnomalyDetection:(bool)arg1;

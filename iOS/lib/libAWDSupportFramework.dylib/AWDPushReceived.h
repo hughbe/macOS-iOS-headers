@@ -14,6 +14,7 @@
         unsigned int linkQuality : 1; 
         unsigned int payloadSize : 1; 
         unsigned int receiveOffset : 1; 
+        unsigned int wakeStatus : 1; 
     }  _has;
     unsigned int  _isFromStorage;
     int  _linkQuality;
@@ -21,6 +22,7 @@
     unsigned int  _receiveOffset;
     unsigned long long  _timestamp;
     NSString * _topic;
+    int  _wakeStatus;
 }
 
 @property (nonatomic) unsigned int connectionType;
@@ -35,13 +37,16 @@
 @property (nonatomic) bool hasReceiveOffset;
 @property (nonatomic) bool hasTimestamp;
 @property (nonatomic, readonly) bool hasTopic;
+@property (nonatomic) bool hasWakeStatus;
 @property (nonatomic) unsigned int isFromStorage;
 @property (nonatomic) int linkQuality;
 @property (nonatomic) unsigned int payloadSize;
 @property (nonatomic) unsigned int receiveOffset;
 @property (nonatomic) unsigned long long timestamp;
 @property (nonatomic, retain) NSString *topic;
+@property (nonatomic) int wakeStatus;
 
+- (int)StringAsWakeStatus:(id)arg1;
 - (unsigned int)connectionType;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -59,6 +64,7 @@
 - (bool)hasReceiveOffset;
 - (bool)hasTimestamp;
 - (bool)hasTopic;
+- (bool)hasWakeStatus;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
 - (unsigned int)isFromStorage;
@@ -77,14 +83,18 @@
 - (void)setHasPayloadSize:(bool)arg1;
 - (void)setHasReceiveOffset:(bool)arg1;
 - (void)setHasTimestamp:(bool)arg1;
+- (void)setHasWakeStatus:(bool)arg1;
 - (void)setIsFromStorage:(unsigned int)arg1;
 - (void)setLinkQuality:(int)arg1;
 - (void)setPayloadSize:(unsigned int)arg1;
 - (void)setReceiveOffset:(unsigned int)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;
 - (void)setTopic:(id)arg1;
+- (void)setWakeStatus:(int)arg1;
 - (unsigned long long)timestamp;
 - (id)topic;
+- (int)wakeStatus;
+- (id)wakeStatusAsString:(int)arg1;
 - (void)writeTo:(id)arg1;
 
 @end

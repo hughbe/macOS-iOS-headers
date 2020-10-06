@@ -24,7 +24,6 @@
 - (void).cxx_destruct;
 - (id)configuration;
 - (id)crk_payload;
-- (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)leaderPayloadCertificateAnchorPersistentID;
 - (id)leaderPayloadCertificateAnchorUUID;
@@ -47,5 +46,6 @@
 - (id)stubDictionary;
 - (id)title;
 - (id)translatedCRKError:(id)arg1;
+- (id)verboseDescription;
 
 @end

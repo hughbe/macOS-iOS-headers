@@ -60,8 +60,6 @@
 @property (nonatomic, retain) UIColor *tintColor;
 @property (nonatomic, retain) NSString *title;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)_cursorInteractionEnabled;
 + (void)_resetRenderingModesForBackgroundImageView:(id)arg1 inBarStyle:(long long)arg2 isEnabled:(bool)arg3 withAccessibilityBackground:(bool)arg4 wantsBlendModeForAccessibilityBackgrounds:(bool)arg5 accessibilityBackgroundTintColor:(id)arg6;
 + (id)defaultFont;
@@ -97,13 +95,13 @@
 - (bool)_contentHuggingDefault_isUsuallyFixedHeight;
 - (bool)_createdByBarButtonItem;
 - (id)_customOrAccessibilityBackgroundImageForState:(unsigned long long)arg1 style:(long long)arg2 isMini:(bool)arg3;
-- (id)_defaultTitleColorForState:(unsigned long long)arg1;
+- (id)_defaultTitleColorForState:(unsigned long long)arg1 isTintColor:(bool*)arg2;
 - (id)_defaultTitleShadowColorForState:(unsigned long long)arg1;
 - (struct CGSize { double x1; double x2; })_defaultTitleShadowOffsetForState:(unsigned long long)arg1;
 - (void)_didChangeFromIdiom:(long long)arg1 onScreen:(id)arg2 traverseHierarchy:(bool)arg3;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
 - (id)_enclosingBar;
-- (id)_externalTitleColorForState:(unsigned long long)arg1;
+- (id)_externalTitleColorForState:(unsigned long long)arg1 isTintColor:(bool*)arg2;
 - (id)_externalUnfocusedBorderColor;
 - (double)_fontScaleAdjustment;
 - (bool)_hasBaselineAlignedAbsoluteVerticalPosition:(out double*)arg1 withinNavBar:(id)arg2 forSize:(struct CGSize { double x1; double x2; })arg3;
@@ -143,6 +141,7 @@
 - (void)_setWantsLetterpressContent;
 - (bool)_showsAccessibilityBackgroundWhenEnabled;
 - (id)_stylesForSizingTitles;
+- (bool)_supportsMacIdiom;
 - (id)_tintColor;
 - (struct UIOffset { double x1; double x2; })_titlePositionAdjustmentForBarMetrics:(long long)arg1;
 - (id)_titleTextAttributesForState:(unsigned long long)arg1;
@@ -155,10 +154,6 @@
 - (id)_visualStyleForMetrics:(long long)arg1;
 - (bool)_wantsAccessibilityButtonShapes;
 - (bool)_wantsBlendModeForAccessibilityBackgrounds;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)barStyle;
 - (long long)buttonType;
 - (bool)canBecomeFocused;
@@ -166,6 +161,7 @@
 - (int)controlSize;
 - (id)cursorInteraction:(id)arg1 regionForLocation:(struct CGPoint { double x1; double x2; })arg2 defaultRegion:(id)arg3;
 - (id)cursorInteraction:(id)arg1 styleForRegion:(id)arg2 modifiers:(long long)arg3;
+- (void)dealloc;
 - (id)image;
 - (id)initWithImage:(id)arg1;
 - (id)initWithImage:(id)arg1 style:(int)arg2;

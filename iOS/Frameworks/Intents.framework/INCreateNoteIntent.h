@@ -12,6 +12,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly, copy) INSpeakableString *title;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 - (id)_categoryVerb;
 - (id)_dictionaryRepresentation;
 - (long long)_intentCategory;
@@ -32,5 +34,11 @@
 - (void)setVerb:(id)arg1;
 - (id)title;
 - (id)verb;
+
+// Image: /System/Library/PrivateFrameworks/AssistantCardServiceSupport.framework/AssistantCardServiceSupport
+
+- (void)_buildCardFromRequest:(id)arg1 reply:(id /* block */)arg2;
+- (void)requestCard:(id)arg1 reply:(id /* block */)arg2;
+- (unsigned long long)servicePriorityForCardRequest:(id)arg1;
 
 @end

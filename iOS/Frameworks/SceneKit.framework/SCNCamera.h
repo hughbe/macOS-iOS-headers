@@ -42,6 +42,7 @@
     <MTLTexture> * _grainTexture;
     unsigned int  _isPresentationInstance;
     unsigned int  _legacyFov;
+    void _lensShift;
     float  _maximumExposure;
     float  _minimumExposure;
     float  _motionBlurIntensity;
@@ -233,6 +234,7 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isAnimationForKeyPaused:(id)arg1;
 - (bool)isPausedOrPausedByInheritance;
+- (void)lensShift;
 - (double)maximumExposure;
 - (double)minimumExposure;
 - (double)motionBlurIntensity;
@@ -300,6 +302,7 @@
 - (void)setGrainSlice:(double)arg1;
 - (void)setGrainTexture:(id)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setLensShift;
 - (void)setMaximumExposure:(double)arg1;
 - (void)setMinimumExposure:(double)arg1;
 - (void)setMotionBlurIntensity:(double)arg1;

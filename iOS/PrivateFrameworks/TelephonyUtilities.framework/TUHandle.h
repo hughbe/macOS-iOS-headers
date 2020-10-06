@@ -46,6 +46,7 @@
 - (bool)isCanonicallyEqualToHandle:(id)arg1 isoCountryCode:(id)arg2;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToHandle:(id)arg1;
+- (bool)isEquivalentToHandle:(id)arg1;
 - (bool)isValidForISOCountryCode:(id)arg1;
 - (id)isoCountryCode;
 - (id)normalizedValue;

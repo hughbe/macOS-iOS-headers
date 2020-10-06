@@ -4,21 +4,19 @@
 
 @interface GEOPDETAFilter : PBCodable <NSCopying> {
     GEOAutomobileOptions * _automobileOptions;
+    GEOClientCapabilities * _clientCapabilities;
+    GEOCyclingOptions * _cyclingOptions;
     struct { 
         unsigned int has_includeHistoricTravelTime : 1; 
         unsigned int has_includeRouteTrafficDetail : 1; 
         unsigned int read_unknownFields : 1; 
         unsigned int read_transportTypes : 1; 
         unsigned int read_automobileOptions : 1; 
+        unsigned int read_clientCapabilities : 1; 
+        unsigned int read_cyclingOptions : 1; 
         unsigned int read_transitOptions : 1; 
         unsigned int read_walkingOptions : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_transportTypes : 1; 
-        unsigned int wrote_automobileOptions : 1; 
-        unsigned int wrote_transitOptions : 1; 
-        unsigned int wrote_walkingOptions : 1; 
-        unsigned int wrote_includeHistoricTravelTime : 1; 
-        unsigned int wrote_includeRouteTrafficDetail : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _includeHistoricTravelTime;
     bool  _includeRouteTrafficDetail;
@@ -39,7 +37,11 @@
 }
 
 @property (nonatomic, retain) GEOAutomobileOptions *automobileOptions;
+@property (nonatomic, retain) GEOClientCapabilities *clientCapabilities;
+@property (nonatomic, retain) GEOCyclingOptions *cyclingOptions;
 @property (nonatomic, readonly) bool hasAutomobileOptions;
+@property (nonatomic, readonly) bool hasClientCapabilities;
+@property (nonatomic, readonly) bool hasCyclingOptions;
 @property (nonatomic) bool hasIncludeHistoricTravelTime;
 @property (nonatomic) bool hasIncludeRouteTrafficDetail;
 @property (nonatomic, readonly) bool hasTransitOptions;
@@ -52,25 +54,27 @@
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 @property (nonatomic, retain) GEOWalkingOptions *walkingOptions;
 
++ (id)_etaFilterWithTransportTypes:(int*)arg1 transportTypesCount:(unsigned long long)arg2 automobileOptions:(id)arg3 transitOptions:(id)arg4 walkingOptions:(id)arg5 cyclingOptions:(id)arg6;
++ (id)etaFilterForRouteAttributes:(id)arg1;
++ (id)etaFilterForTraits:(id)arg1;
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
 - (int)StringAsTransportTypes:(id)arg1;
-- (void)_addNoFlagsTransportType:(int)arg1;
-- (void)_readAutomobileOptions;
-- (void)_readTransitOptions;
-- (void)_readTransportTypes;
-- (void)_readWalkingOptions;
 - (void)addTransportType:(int)arg1;
 - (id)automobileOptions;
 - (void)clearTransportTypes;
 - (void)clearUnknownFields:(bool)arg1;
+- (id)clientCapabilities;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)cyclingOptions;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (bool)hasAutomobileOptions;
+- (bool)hasClientCapabilities;
+- (bool)hasCyclingOptions;
 - (bool)hasIncludeHistoricTravelTime;
 - (bool)hasIncludeRouteTrafficDetail;
 - (bool)hasTransitOptions;
@@ -80,11 +84,16 @@
 - (bool)includeRouteTrafficDetail;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setAutomobileOptions:(id)arg1;
+- (void)setClientCapabilities:(id)arg1;
+- (void)setCyclingOptions:(id)arg1;
 - (void)setHasIncludeHistoricTravelTime:(bool)arg1;
 - (void)setHasIncludeRouteTrafficDetail:(bool)arg1;
 - (void)setIncludeHistoricTravelTime:(bool)arg1;

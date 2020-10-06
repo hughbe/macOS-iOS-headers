@@ -45,5 +45,6 @@
 - (void)setInputMatteImage:(id)arg1;
 - (void)setInputScale:(id)arg1;
 - (void)setInputShape:(id)arg1;
+- (id)unifiedRenderingOutputImage:(struct CGImageMetadata { }*)arg1;
 
 @end

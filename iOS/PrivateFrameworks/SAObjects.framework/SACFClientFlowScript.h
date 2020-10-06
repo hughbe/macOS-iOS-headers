@@ -14,6 +14,8 @@
 @property (nonatomic) bool shouldSkipExecution;
 @property (nonatomic, retain) SACFScriptUrlInformation *urlInformation;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)clientFlowScript;
 + (id)clientFlowScriptWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -37,5 +39,10 @@
 - (bool)shouldCacheScript;
 - (bool)shouldSkipExecution;
 - (id)urlInformation;
+
+// Image: /System/Library/PrivateFrameworks/SiriClientFlow.framework/SiriClientFlow
+
+- (id)_cf_httpMethod;
+- (bool)_cf_needsDownload;
 
 @end

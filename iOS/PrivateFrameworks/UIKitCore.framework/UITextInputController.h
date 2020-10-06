@@ -14,6 +14,7 @@
     NSLayoutManager * _layoutManager;
     _UITextServiceSession * _learnSession;
     _UITextServiceSession * _lookupSession;
+    NSAttributedString * _markedText;
     struct _NSRange { 
         unsigned long long location; 
         unsigned long long length; 
@@ -32,6 +33,7 @@
     _UITextServiceSession * _shareSession;
     bool  _shouldStartUndoGroup;
     UITextChecker * _textChecker;
+    UITextCheckingController * _textCheckingController;
     UITextInputTraits * _textInputTraits;
     UITextPlaceholder * _textPlaceholder;
     struct { 
@@ -42,6 +44,7 @@
         unsigned int delegateRespondsToTextInputWillChangeSelectionFromCharacterRangeToCharacterRange : 1; 
         unsigned int delegateRespondsToTextInputEditorDidChangeSelection : 1; 
         unsigned int delegateRespondsToTextInputPrepareAttributedTextForInsertion : 1; 
+        unsigned int delegateRespondsToTextInputShouldExtendCaretHeight : 1; 
         unsigned int delegateRespondsToIsSingleLine : 1; 
         unsigned int textOrSelectionChangeOriginatesWithKeyboard : 1; 
         unsigned int showingTextStyleOptions : 1; 
@@ -68,6 +71,7 @@
 @property (nonatomic) bool acceptsDictationSearchResults;
 @property (nonatomic) bool acceptsEmoji;
 @property (nonatomic) bool acceptsFloatingKeyboard;
+@property (nonatomic) bool acceptsInitialEmojiKeyboard;
 @property (nonatomic) bool acceptsPayloads;
 @property (nonatomic) bool acceptsSplitKeyboard;
 @property (nonatomic) bool allowsEditingTextAttributes;
@@ -122,6 +126,7 @@
 @property (nonatomic, readonly) UITextRange *markedTextRange;
 @property (nonatomic, copy) NSDictionary *markedTextStyle;
 @property (nonatomic, copy) UITextInputPasswordRules *passwordRules;
+@property (nonatomic) bool preferOnlineDictation;
 @property (nonatomic) struct _NSRange { unsigned long long x1; unsigned long long x2; } previousSelectedRange;
 @property (nonatomic, copy) NSString *recentInputIdentifier;
 @property (nonatomic, copy) NSString *responseContext;
@@ -161,7 +166,7 @@
 @property (nonatomic) bool useInterfaceLanguageForLocalization;
 @property (nonatomic) struct _NSRange { unsigned long long x1; unsigned long long x2; } validTextRange;
 
-+ (bool)_pasteboardHasStrings;
++ (bool)_shouldUseStandardTextScaling:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_addShortcut:(id)arg1;
@@ -180,6 +185,7 @@
 - (unsigned int)_characterInRelationToRangedSelection:(int)arg1;
 - (id)_characterPositionForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)_clampedpositionFromPosition:(id)arg1 offset:(int)arg2;
+- (void)_clearMarkedText;
 - (void)_clearSelectionUI;
 - (void)_coordinateSelectionChange:(id /* block */)arg1;
 - (void)_copySelectionToClipboard;
@@ -189,6 +195,7 @@
 - (void)_deleteBackwardAndNotify:(bool)arg1;
 - (void)_deleteByWord;
 - (void)_deleteForwardAndNotify:(bool)arg1;
+- (void)_deleteForwardByWord;
 - (void)_deleteToEndOfLine;
 - (void)_deleteToEndOfParagraph;
 - (void)_deleteToStartOfLine;
@@ -226,9 +233,11 @@
 - (bool)_isDisplayingShortcutViewController;
 - (bool)_isEmptySelection;
 - (bool)_isSecureTextEntry;
+- (bool)_isSystemAttachment:(id)arg1;
 - (id)_itemProviderForCopyingRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (id)_keyInput;
 - (id)_layoutManager;
+- (void)_layoutManagerDidCompleteLayout;
 - (bool)_mightHaveSelection;
 - (void)_moveCurrentSelection:(int)arg1;
 - (id)_moveDown:(bool)arg1 withHistory:(id)arg2;
@@ -327,6 +336,7 @@
 - (void)_teardownTextContainerView:(id)arg1;
 - (id)_textColorForCaretSelection;
 - (void)_textContainerDidChangeView:(id)arg1;
+- (long long)_textInputSource;
 - (id)_textInputTraits;
 - (id)_textRangeFromNSRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (id)_textStorage;
@@ -340,6 +350,7 @@
 - (void)_updateEmptyStringAttributes;
 - (void)_updateFirstTextView;
 - (void)_updateRangeForSmartDelete;
+- (void)_updateRectsForPlaceholder;
 - (void)_updateSelectionWithTextRange:(id)arg1 withAffinityDownstream:(bool)arg2;
 - (bool)_usesAsynchronousProtocol;
 - (unsigned long long)_validCaretPositionFromCharacterIndex:(unsigned long long)arg1 downstream:(bool)arg2;
@@ -352,8 +363,8 @@
 - (void)alignLeft:(id)arg1;
 - (void)alignRight:(id)arg1;
 - (bool)allowsEditingTextAttributes;
+- (id)annotatedSubstringForRange:(id)arg1;
 - (void)appendUndoOperation:(id)arg1 newGroup:(bool)arg2;
-- (int)atomStyle;
 - (id)attributedSubstringForMarkedRange;
 - (id)attributedTextInRange:(id)arg1;
 - (long long)baseWritingDirectionForPosition:(id)arg1 inDirection:(long long)arg2;
@@ -380,7 +391,6 @@
 - (id)delegate;
 - (void)deleteBackward;
 - (void)didEndEditing;
-- (bool)drawsAsAtom;
 - (id)endOfDocument;
 - (void)endSelectionChange;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })firstRectForRange:(id)arg1;
@@ -409,6 +419,7 @@
 - (id)markedTextStyle;
 - (id)metadataDictionariesForDictationResults;
 - (id)methodSignatureForSelector:(SEL)arg1;
+- (void)notifyTextCheckingControllerForSelectionChange;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })nsRangeForTextRange:(id)arg1;
 - (long long)offsetFromPosition:(id)arg1 toPosition:(id)arg2;
 - (void)paste:(id)arg1;
@@ -423,6 +434,7 @@
 - (id)rangeWithTextAlternatives:(id*)arg1 atPosition:(id)arg2;
 - (void)registerUndoOperationForType:(int)arg1 actionName:(id)arg2 affectedRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3 replacementText:(id)arg4;
 - (void)removeAlternativesForCurrentWord;
+- (void)removeAnnotation:(id)arg1 forRange:(id)arg2;
 - (void)removeDictationResultPlaceholder:(id)arg1 willInsertResult:(bool)arg2;
 - (void)removeSpellingMarkersForCurrentWord;
 - (void)removeSpellingMarkersFromWordInRange:(id)arg1;
@@ -430,6 +442,7 @@
 - (void)removeTextPlaceholder:(id)arg1 notifyInputDelegate:(bool)arg2;
 - (void)removeTextStylingFromString:(id)arg1;
 - (void)replace:(id)arg1;
+- (void)replaceRange:(id)arg1 withAnnotatedString:(id)arg2 relativeReplacementRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
 - (void)replaceRange:(id)arg1 withAttributedText:(id)arg2;
 - (void)replaceRange:(id)arg1 withText:(id)arg2;
 - (void)replaceRangeWithTextWithoutClosingTyping:(id)arg1 replacementText:(id)arg2;
@@ -459,6 +472,7 @@
 - (void)setSelectedTextRange:(id)arg1;
 - (void)setShouldStartUndoGroup:(bool)arg1;
 - (void)setTypingAttributes:(id)arg1;
+- (void)set_textInputSource:(long long)arg1;
 - (bool)shouldStartNewUndoGroup:(id)arg1 textGranularity:(long long)arg2 operationType:(int)arg3;
 - (bool)shouldStartUndoGroup;
 - (void)stopCoalescing;
@@ -480,6 +494,7 @@
 - (void)unmarkText;
 - (void)updateSelection;
 - (void)updateTextAttributesWithConversionHandler:(id /* block */)arg1;
+- (id)validAnnotations;
 - (void)validateCommand:(id)arg1;
 
 @end

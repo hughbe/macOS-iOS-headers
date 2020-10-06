@@ -41,6 +41,7 @@
 - (void)_setButtonBarLeadingInset:(double)arg1 trailingInset:(double)arg2;
 - (void)_updateThreeUpFlagsForItems:(id)arg1;
 - (double)absorptionForItem:(id)arg1;
+- (long long)barType;
 - (bool)compactMetrics;
 - (double)defaultEdgeSpacing;
 - (double)defaultTextPadding;

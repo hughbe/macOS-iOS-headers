@@ -16,6 +16,7 @@
 - (void).cxx_destruct;
 - (long long)anchorPosition;
 - (id)annotationView;
+- (void)annotationViewFrameDidChange;
 - (void)dismissAnimated:(bool)arg1 completionBlock:(id /* block */)arg2;
 - (bool)hasPendingVisibility;
 - (id)initWithAnnotationView:(id)arg1;

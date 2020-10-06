@@ -4,6 +4,7 @@
 
 @interface UIKeyboardEmojiGraphicsTraits : NSObject {
     double  _alertTextWidth;
+    double  _bottomPadding;
     double  _categoryHeaderFontSize;
     double  _categoryHeaderHeight;
     double  _categoryHeaderLeftPadding;
@@ -26,6 +27,7 @@
 }
 
 @property (nonatomic, readonly) double alertTextWidth;
+@property (nonatomic, readonly) double bottomPadding;
 @property (nonatomic, readonly) double categoryHeaderFontSize;
 @property (nonatomic, readonly) double categoryHeaderHeight;
 @property (nonatomic, readonly) double categoryHeaderLeftPadding;
@@ -47,6 +49,7 @@
 + (id)emojiGraphicsTraitsWithScreenTraits:(id)arg1;
 
 - (double)alertTextWidth;
+- (double)bottomPadding;
 - (double)categoryHeaderFontSize;
 - (double)categoryHeaderHeight;
 - (double)categoryHeaderLeftPadding;

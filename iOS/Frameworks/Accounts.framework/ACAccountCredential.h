@@ -55,6 +55,7 @@
 - (id)credentialItemForKey:(id)arg1;
 - (id)credentialItems;
 - (id)credentialType;
+- (id)description;
 - (id)dirtyProperties;
 - (void)encodeWithCoder:(id)arg1;
 - (id)expiryDate;

@@ -5,6 +5,7 @@
 @interface AKCredentialRequest : NSObject <AKCredentialRequestProtocol> {
     NSString * _altDSID;
     NSUUID * _requestIdentifier;
+    NSUUID * _transactionID;
     NSString * _userIdentifier;
 }
 
@@ -14,6 +15,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, copy) NSUUID *requestIdentifier;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSUUID *transactionID;
 @property (nonatomic, copy) NSString *userIdentifier;
 
 + (bool)supportsSecureCoding;
@@ -28,6 +30,7 @@
 - (id)requestIdentifier;
 - (void)setRequestIdentifier:(id)arg1;
 - (void)setUserIdentifier:(id)arg1;
+- (id)transactionID;
 - (id)userIdentifier;
 
 @end

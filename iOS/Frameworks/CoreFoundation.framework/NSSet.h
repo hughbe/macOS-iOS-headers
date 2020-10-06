@@ -2,13 +2,26 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSSet : NSObject <NSCopying, NSFastEnumeration, NSMutableCopying, NSSecureCoding, PQLBindable>
+@interface NSSet : NSObject <EFSQLValueCollectionExpressable, HKUUIDCollection, HMFObject, NSCopying, NSFastEnumeration, NSMutableCopying, NSSecureCoding, PQLBindable, _SetOperable>
 
+@property (nonatomic, readonly, copy) NSArray *allObjects;
+@property (nonatomic, readonly, copy) NSArray *attributeDescriptions;
+@property (nonatomic, readonly) long long count;
 @property (readonly) unsigned long long count;
+@property (nonatomic, readonly, copy) NSString *crk_stableDescription;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, copy) NSString *ef_SQLExpression;
+@property (nonatomic, readonly) NSSet *ef_flatten;
+@property (nonatomic, readonly) NSSet *ef_notEmpty;
 @property (readonly) unsigned long long hash;
+@property (readonly, copy) NSString *hmbDescription;
+@property (getter=hmf_isEmpty, readonly) bool hmf_empty;
+@property (readonly, copy) NSString *privateDescription;
+@property (readonly, copy) NSString *propertyDescription;
+@property (readonly, copy) NSString *shortDescription;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) NSSet *wf_combinations;
 
 // Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
 
@@ -128,16 +141,59 @@
 - (id)valueForKey:(id)arg1;
 - (id)valueForKeyPath:(id)arg1;
 
+// Image: /System/Library/Frameworks/GameController.framework/GameController
+
+- (id)gc_setByRemovingObjectsFromSet:(id)arg1;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_setByUnioningSet:(id)arg1 otherSet:(id)arg2;
++ (id)hk_typesForArrayOf:(Class)arg1;
++ (id)hk_typesForDictionaryMapping:(Class)arg1 to:(Class)arg2;
++ (id)hk_typesForSetOf:(Class)arg1;
+
+- (bool)hk_allObjectsPassTestWithError:(id*)arg1 test:(id /* block */)arg2;
+- (id)hk_anyObjectPassingTest:(id /* block */)arg1;
+- (bool)hk_containsObjectPassingTest:(id /* block */)arg1;
+- (id)hk_dataForAllUUIDs;
+- (bool)hk_enumerateUUIDsWithError:(id*)arg1 block:(id /* block */)arg2;
+- (id)hk_filter:(id /* block */)arg1;
+- (id)hk_firstSortedObjectWithComparison:(id /* block */)arg1;
+- (id)hk_intersection:(id)arg1;
+- (id)hk_map:(id /* block */)arg1;
+- (id)hk_mapToDictionary:(id /* block */)arg1;
+- (id)hk_minus:(id)arg1;
+
+// Image: /System/Library/Frameworks/Photos.framework/Photos
+
+- (void)ph_enumerateIntersectionWithSet:(id)arg1 usingBlock:(id /* block */)arg2;
+
 // Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
 
 - (id)CAMLType;
 - (void)encodeWithCAMLWriter:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ARKitCore.framework/ARKitCore
+
+- (id)ar_map:(id /* block */)arg1;
 
 // Image: /System/Library/PrivateFrameworks/AXCoreUtilities.framework/AXCoreUtilities
 
 - (id)ax_filteredSetUsingBlock:(id /* block */)arg1;
 - (id)ax_flatMappedSetUsingBlock:(id /* block */)arg1;
 - (id)ax_mappedSetUsingBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AccessibilitySharedSupport.framework/AccessibilitySharedSupport
+
+- (id)ax_makeObjectsRespondToSelector:(SEL)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ActivityAchievements.framework/ActivityAchievements
+
+- (id)intersectSet:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ActivitySharing.framework/ActivitySharing
+
+- (id)as_autoreleasingCompactMap:(id /* block */)arg1;
 
 // Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
 
@@ -154,6 +210,11 @@
 - (id)ams_mapWithTransform:(id /* block */)arg1;
 - (id)ams_nonEmptyComponentsJoinedByString:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
+- (id)af_mappedDictionary:(id /* block */)arg1;
+- (id)af_mappedSet:(id /* block */)arg1;
+
 // Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
 
 - (id)bs_compactMap:(id /* block */)arg1;
@@ -164,12 +225,41 @@
 - (id)bs_map:(id /* block */)arg1;
 - (id)bs_reduce:(id)arg1 block:(id /* block */)arg2;
 
+// Image: /System/Library/PrivateFrameworks/CDDataAccess.framework/CDDataAccess
+
+- (id)DACompactDescription;
+
+// Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
+
+- (id)allObjectsWithClass:(Class)arg1;
+
 // Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
 
 + (id)intersectionOfSet:(id)arg1 withSet:(id)arg2;
 
 - (id)CalMutableRecursiveCopy;
 - (id)allObjectsWithClass:(Class)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CameraEffectsKit.framework/CameraEffectsKit
+
+- (id)mutableDeepCopy;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
+- (id)_deepCopy;
+
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
+- (id)crk_filterUsingBlock:(id /* block */)arg1;
+- (id)crk_mapUsingBlock:(id /* block */)arg1;
+- (id)crk_setByAddingSet:(id)arg1;
+- (id)crk_setByIntersectingSet:(id)arg1;
+- (id)crk_setByRemovingObject:(id)arg1;
+- (id)crk_setBySubtractingSet:(id)arg1;
+- (id)crk_stableDescription;
+- (id)setByCombiningWithSet:(id)arg1 operation:(SEL)arg2;
+- (id)setByIntersectingSet:(id)arg1;
+- (id)setBySubtractingSet:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
 
@@ -178,6 +268,96 @@
 - (id)_cn_firstObjectPassingTest:(id /* block */)arg1;
 - (id)_cn_indexBy:(id /* block */)arg1;
 - (id)_cn_map:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
+- (id)mapAndFilterObjectsUsingBlock:(id /* block */)arg1;
+- (id)mapObjectsUsingBlock:(id /* block */)arg1;
+- (id)setByRemovingObject:(id)arg1;
+- (id)wf_combinations;
+- (id)wf_combinationsWithRepetitionsOfSize:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
+
+- (id)DACompactDescription;
+
+// Image: /System/Library/PrivateFrameworks/DiagnosticExtensionsDaemon.framework/DiagnosticExtensionsDaemon
+
+- (id)findWithBlock:(id /* block */)arg1;
+- (id)flatMapWithBlock:(id /* block */)arg1;
+- (id)rejectItemsPassingTest:(id /* block */)arg1;
+- (id)selectItemsPassingTest:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DocumentCamera.framework/DocumentCamera
+
+- (bool)dc_containsObjectPassingTest:(id /* block */)arg1;
+- (id)dc_objectPassingTest:(id /* block */)arg1;
+- (id)dc_objectsOfClass:(Class)arg1;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
+- (id)ef_SQLExpression;
+- (id)ef_SQLIsolatedExpression;
+- (bool)ef_all:(id /* block */)arg1;
+- (bool)ef_any:(id /* block */)arg1;
+- (id)ef_anyPassingTest:(id /* block */)arg1;
+- (id)ef_compactMap:(id /* block */)arg1;
+- (unsigned long long)ef_countObjectsPassingTest:(id /* block */)arg1;
+- (id)ef_filter:(id /* block */)arg1;
+- (id)ef_flatMap:(id /* block */)arg1;
+- (id)ef_flatten;
+- (id)ef_notEmpty;
+- (id)ef_partition:(id /* block */)arg1;
+- (void)ef_renderSQLExpressionInto:(id)arg1;
+- (void)ef_renderSQLExpressionInto:(id)arg1 conjoiner:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/FMCoreLite.framework/FMCoreLite
+
++ (id)fm_setWithSafeObject:(id)arg1;
+
+- (bool)fm_any:(id /* block */)arg1;
+- (void)fm_each:(id /* block */)arg1;
+- (id)fm_filter:(id /* block */)arg1;
+- (id)fm_firstObjectPassingTest:(id /* block */)arg1;
+- (id)fm_map:(id /* block */)arg1;
+- (id)fm_setByFlattening;
+- (id)fm_setByIntersectingWithSet:(id)arg1;
+- (id)fm_setByRemovingObjectsFromSet:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FriendKit.framework/FriendKit
+
+- (id)fkSanitizedDestinationSet;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
+- (id)_gkDescriptionWithChildren:(long long)arg1;
+- (id)_gkDistinctValuesForKeyPath:(id)arg1;
+- (id)_gkMapDictionaryWithKeyPath:(id)arg1;
+- (id)_gkMapDictionaryWithKeyPath:(id)arg1 valueKeyPath:(id)arg2;
+- (id)_gkMapWithBlock:(id /* block */)arg1;
+- (id)_gkSetByRemovingObject:(id)arg1;
+- (id)_gkValuesForKeyPath:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
++ (id)shortDescription;
+
+- (id)hmf_addedObjectsFromSet:(id)arg1;
+- (id)hmf_commonObjectsFromSet:(id)arg1;
+- (bool)hmf_isEmpty;
+- (id)hmf_removedObjectsFromSet:(id)arg1;
+- (id)privateDescription;
+- (id)shortDescription;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
+- (id)hf_appleTVMediaProfiles;
+- (id)hf_homePodMediaProfiles;
+- (id)hf_prettyDescription;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
+- (id)hmbDescription;
 
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
@@ -194,10 +374,222 @@
 
 - (bool)mr_containsObjectUsingWeakMatching:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/Memories.framework/Memories
+
+- (id)mutableDeepCopy;
+
+// Image: /System/Library/PrivateFrameworks/NanoPassKit.framework/NanoPassKit
+
+- (id)npkComprehension:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NetAppsUtilities.framework/NetAppsUtilities
+
++ (id)na_setWithSafeObject:(id)arg1;
+
+- (bool)na_all:(id /* block */)arg1;
+- (bool)na_allObjectsPassTest:(id /* block */)arg1;
+- (bool)na_any:(id /* block */)arg1;
+- (id)na_dictionaryByBucketingObjectsUsingKeyGenerator:(id /* block */)arg1;
+- (id)na_dictionaryWithKeyGenerator:(id /* block */)arg1;
+- (void)na_each:(id /* block */)arg1;
+- (id)na_filter:(id /* block */)arg1;
+- (id)na_firstObjectPassingTest:(id /* block */)arg1;
+- (id)na_flatMap:(id /* block */)arg1;
+- (id)na_map:(id /* block */)arg1;
+- (id)na_reduceWithInitialValue:(id)arg1 reducer:(id /* block */)arg2;
+- (bool)na_safeContainsObject:(id)arg1;
+- (id)na_setByDiffingWithSet:(id)arg1;
+- (id)na_setByFlattening;
+- (id)na_setByIntersectingWithSet:(id)arg1;
+- (id)na_setByRemovingObjectsFromSet:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NeutrinoCore.framework/NeutrinoCore
+
+- (void)nu_updateDigest:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)fc_set:(id /* block */)arg1;
++ (id)fc_unionOfSetsInArray:(id)arg1;
+
+- (id)fc_arrayByTransformingWithBlock:(id /* block */)arg1;
+- (id)fc_arrayOfObjectsPassingTest:(id /* block */)arg1;
+- (bool)fc_containsAnyObjectInArray:(id)arg1;
+- (bool)fc_containsObjectPassingTest:(id /* block */)arg1;
+- (unsigned long long)fc_countOfObjectsPassingTest:(id /* block */)arg1;
+- (id)fc_dictionaryOfSortedSetsWithKeyBlock:(id /* block */)arg1;
+- (id)fc_diffAgainstSet:(id)arg1;
+- (id)fc_firstObjectPassingTest:(id /* block */)arg1;
+- (id)fc_mutableSetByTransformingWithBlock:(id /* block */)arg1;
+- (id)fc_onlyObject;
+- (id)fc_setByIntersectingSet:(id)arg1;
+- (id)fc_setByMinusingSet:(id)arg1;
+- (id)fc_setByRemovingObject:(id)arg1;
+- (id)fc_setByTransformingWithBlock:(id /* block */)arg1;
+- (id)fc_setByUnioningSet:(id)arg1;
+- (id)fc_setOfObjectsPassingTest:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
++ (id)ic_setFromNonNilArray:(id)arg1;
+
+- (id)ic_compactMap:(id /* block */)arg1;
+- (bool)ic_containsObjectPassingTest:(id /* block */)arg1;
+- (id)ic_map:(id /* block */)arg1;
+- (id)ic_objectPassingTest:(id /* block */)arg1;
+- (id)ic_objectsConformingToProtocol:(id)arg1;
+- (id)ic_objectsOfClass:(Class)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (id)tsu_intersectionOfSets:(id)arg1;
++ (bool)tsu_set:(id)arg1 isEqualToSet:(id)arg2;
++ (id)tsu_setWithSelectors:(SEL)arg1;
+
+- (bool)tsu_containsObjectIdenticalTo:(id)arg1;
+- (bool)tsu_isHomogeneousForClass:(Class)arg1;
+- (id)tsu_onlyObject;
+- (id)tsu_setByIntersectingSet:(id)arg1;
+- (id)tsu_setByMappingObjectsUsingBlock:(id /* block */)arg1;
+- (id)tsu_setBySubtractingSet:(id)arg1;
+- (id)tsu_sortedArray;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pk_arrayCopy;
+- (id)pk_mutableArrayCopy;
+- (id)pk_setByApplyingBlock:(id /* block */)arg1;
+- (id)pk_setByRemovingObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (id)_pl_filter:(id /* block */)arg1;
+- (id)_pl_firstObjectPassingTest:(id /* block */)arg1;
+- (id)_pl_map:(id /* block */)arg1;
+- (id)_pl_prettyDescriptionWithIndent:(long long)arg1;
+- (unsigned long long)pl_countOfObjectsPassingTest:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoVision.framework/PhotoVision
+
+- (id)fetchedObjects;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsFoundation.framework/PodcastsFoundation
+
+- (id)filter:(id /* block */)arg1 compactMap:(id /* block */)arg2;
+- (id)mt_compactMap:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
+
+- (id)setByIntersectingWithSet:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (bool)safari_allObjectsPassTest:(id /* block */)arg1;
+- (id)safari_anyObjectPassingTest:(id /* block */)arg1;
+- (id)safari_arrayByMappingObjectsUsingBlock:(id /* block */)arg1;
+- (bool)safari_containsObjectPassingTest:(id /* block */)arg1;
+- (id)safari_mapAndFilterObjectsUsingBlock:(id /* block */)arg1;
+- (id)safari_setByRemovingObject:(id)arg1;
+- (id)safari_shortestURL;
+- (id)safari_smallestObject:(id /* block */)arg1;
+- (id)safari_sortedArrayUsingFinderLikeSorting;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
+
+- (bool)containsObjectClass:(id)arg1;
+- (id)scrc_deepMutableCopyWithZone:(struct _NSZone { }*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TSUtility.framework/TSUtility
+
++ (bool)tsu_set:(id)arg1 isEqualToSet:(id)arg2;
+
+- (bool)tsu_containsObjectIdenticalTo:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
 
 - (id)tu_anyObjectPassingTest:(id /* block */)arg1;
 - (bool)tu_containsObjectPassingTest:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TouchRemote.framework/TouchRemote
+
+- (id)setByIntersectingSet:(id)arg1;
+- (id)setByMinusingSet:(id)arg1;
+- (id)setByRemovingObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WiFiKit.framework/WiFiKit
+
+- (id)hiddenNetworkProfiles;
+- (id)hs20Networks;
+- (id)logStringWithScanRecords;
+- (id)scanRecordWithSSID:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WiFiKitUI.framework/WiFiKitUI
+
+- (id)adhocNetworks;
+- (id)infrastructureNetworks;
+- (id)instantHotspotNetworks;
+- (id)knownNetworks;
+- (id)popularNetworks;
+- (id)unconfiguredNetworks;
+
+// Image: /System/Library/PrivateFrameworks/WiFiPolicy.framework/WiFiPolicy
+
+- (id)bssidPredicate;
+- (id)reformatBSSIDs;
+- (id)tilePredicate;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSPersistence.framework/TSPersistence
+
++ (id)tsp_consolidateFeatureInfos:(id)arg1 andReturnReadVersion:(out unsigned long long*)arg2 writeVersion:(out unsigned long long*)arg3;
+
+- (id)tsp_initWithProtobufStringArray:(const struct RepeatedPtrField<std::__1::basic_string<char> > { struct Arena {} *x1; int x2; int x3; struct Rep {} *x4; }*)arg1;
+- (void)tsp_saveToProtobufStringArray:(struct RepeatedPtrField<std::__1::basic_string<char> > { struct Arena {} *x1; int x2; int x3; struct Rep {} *x4; }*)arg1;
+- (id)tsp_sortedDataArray;
+- (id)tsp_sortedObjectArray;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSStyles.framework/TSStyles
+
+- (bool)tss_containsStyleOrVariationOfStyle:(id)arg1;
+- (bool)tss_hasVariations;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_intersectionOfSets:(id)arg1;
++ (bool)tsu_set:(id)arg1 isEqualToSet:(id)arg2;
++ (id)tsu_setWithSelectors:(SEL)arg1;
+
+- (bool)tsu_containsKindOfClass:(Class)arg1;
+- (bool)tsu_containsObjectIdenticalTo:(id)arg1;
+- (bool)tsu_isHomogeneousForClass:(Class)arg1;
+- (id)tsu_onlyObject;
+- (id)tsu_setByIntersectingSet:(id)arg1;
+- (id)tsu_setByMappingObjectsUsingBlock:(id /* block */)arg1;
+- (id)tsu_setBySubtractingSet:(id)arg1;
+- (id)tsu_sortedArray;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSPersistence.framework/TSPersistence
+
++ (id)tsp_consolidateFeatureInfos:(id)arg1 andReturnReadVersion:(out unsigned long long*)arg2 writeVersion:(out unsigned long long*)arg3;
+
+- (id)tsp_initWithProtobufStringArray:(const struct RepeatedPtrField<std::__1::basic_string<char> > { struct Arena {} *x1; int x2; int x3; struct Rep {} *x4; }*)arg1;
+- (void)tsp_saveToProtobufStringArray:(struct RepeatedPtrField<std::__1::basic_string<char> > { struct Arena {} *x1; int x2; int x3; struct Rep {} *x4; }*)arg1;
+- (id)tsp_sortedDataArray;
+- (id)tsp_sortedObjectArray;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_intersectionOfSets:(id)arg1;
++ (bool)tsu_set:(id)arg1 isEqualToSet:(id)arg2;
++ (id)tsu_setWithSelectors:(SEL)arg1;
+
+- (bool)tsu_containsKindOfClass:(Class)arg1;
+- (bool)tsu_containsObjectIdenticalTo:(id)arg1;
+- (bool)tsu_isHomogeneousForClass:(Class)arg1;
+- (id)tsu_onlyObject;
+- (id)tsu_setByIntersectingSet:(id)arg1;
+- (id)tsu_setByMappingObjectsUsingBlock:(id /* block */)arg1;
+- (id)tsu_setBySubtractingSet:(id)arg1;
+- (id)tsu_sortedArray;
 
 // Image: /usr/lib/libprequelite.dylib
 

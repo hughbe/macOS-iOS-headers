@@ -3,7 +3,6 @@
  */
 
 @interface _INPBIdentifyIncomingCallerIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBIdentifyIncomingCallerIntentResponse> {
-    bool  __encodeLegacyGloryData;
     NSArray * _callRecords;
     struct { 
         unsigned int statusCode : 1; 
@@ -11,7 +10,6 @@
     int  _statusCode;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *callRecords;
 @property (nonatomic, readonly) unsigned long long callRecordsCount;
 @property (readonly, copy) NSString *debugDescription;
@@ -26,8 +24,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatusCode:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addCallRecords:(id)arg1;
 - (id)callRecords;
 - (id)callRecordsAtIndex:(unsigned long long)arg1;

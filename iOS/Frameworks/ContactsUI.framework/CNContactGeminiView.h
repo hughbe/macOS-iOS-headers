@@ -37,6 +37,7 @@
 + (bool)requiresConstraintBasedLayout;
 
 - (void).cxx_destruct;
+- (bool)_hasBaseline;
 - (id)ab_textAttributes;
 - (id)activatedConstraints;
 - (bool)allowsPickerActions;
@@ -80,5 +81,7 @@
 - (id)twoLineLayoutConstraints;
 - (id)typeLabel;
 - (void)updateConstraints;
+- (id)viewForFirstBaselineLayout;
+- (id)viewForLastBaselineLayout;
 
 @end

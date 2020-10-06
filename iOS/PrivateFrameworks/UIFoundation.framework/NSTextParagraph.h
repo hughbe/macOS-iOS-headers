@@ -4,32 +4,41 @@
 
 @interface NSTextParagraph : NSTextElement {
     NSAttributedString * _attributedString;
+    NSDictionary * _attributes;
+    long long  _fallbackBaseDirection;
     NSTextRange * _paragraphContentRange;
     NSTextRange * _paragraphSeparatorRange;
     struct _NSRange { 
         unsigned long long location; 
         unsigned long long length; 
     }  _range;
+    long long  _resolvedBaseDirection;
     NSTextDataProvider * _textDataProvider;
     NSMutableArray * _textLayoutFragments;
 }
 
 @property (readonly, copy) NSAttributedString *attributedString;
+@property (copy) NSDictionary *attributes;
 @property (readonly) NSTextRange *paragraphContentRange;
 @property (readonly) NSTextRange *paragraphSeparatorRange;
 
 + (id)textParagraphsForAttributedString:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 
+- (long long)_resolvedBaseWritingDirectionWithFallbackDirection:(long long)arg1;
 - (id)attributedString;
+- (id)attributes;
 - (void)dealloc;
+- (id)description;
 - (id)init;
 - (id)initWithAttributedString:(id)arg1;
 - (id)initWithAttributedString:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (id)initWithString:(id)arg1 attributes:(id)arg2;
 - (id)initWithTextContentManager:(id)arg1;
 - (id)paragraphContentRange;
 - (id)paragraphRange;
 - (id)paragraphSeparatorRange;
 - (void)setAttributedString:(id)arg1;
+- (void)setAttributes:(id)arg1;
 - (void)setParagraphContentRange:(id)arg1;
 - (void)setParagraphSeparatorRange:(id)arg1;
 - (void)setTextDataProvider:(id)arg1;

@@ -22,6 +22,7 @@
 - (id)debugDescription;
 - (id)identifier;
 - (id)initWithIdentifier:(id)arg1;
+- (bool)isSuspended;
 - (id)newTimer;
 - (void)resume;
 - (void)suspend;

@@ -11,7 +11,6 @@
 - (UIColor *)disabledActionRowTextColor;
 - (UIColor *)headerPrimaryButtonHighlightedColor;
 - (UIColor *)headerPrimaryButtonNormalColor;
-- (UIColor *)highlightedActionRowTextColor;
 - (UIColor *)highlightedTintColor;
 - (bool)isDarkTheme;
 - (NSString *)javaScriptName;
@@ -19,6 +18,9 @@
 - (UIColor *)normalActionRowBackgroundColor;
 - (UIColor *)normalActionRowBackgroundPressedColor;
 - (UIColor *)normalBackgroundColor;
+- (UIColor *)ratingBarBackgroundColor;
+- (UIColor *)ratingBarEndColor;
+- (UIColor *)ratingBarStartColor;
 - (UIColor *)rowColor;
 - (UIColor *)selectedRowColor;
 - (UIColor *)separatorLineColor;

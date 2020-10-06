@@ -7,8 +7,10 @@
 
 - (NSString *)containerDisplayName;
 - (NSString *)displayName;
+- (NSDictionary *)extendedAttributes;
 - (NSString *)fileSystemFilename;
 - (NSURL *)fileURL;
+- (<NSFileProviderItemFlags> *)flags;
 - (NSPersonNameComponents *)fp_addedByNameComponents;
 - (NSSet *)fp_cloudContainerClientBundleIdentifiers;
 - (NSString *)fp_cloudContainerIdentifier;
@@ -22,8 +24,10 @@
 - (NSString *)fp_spotlightDomainIdentifier;
 - (NSNumber *)hasUnresolvedConflicts;
 - (NSNumber *)isDownloadRequested;
+- (bool)isExcludedFromSync;
 - (bool)isHidden;
 - (bool)isTopLevelSharedItem;
+- (NSFileProviderItemVersion *)itemVersion;
 - (NSString *)preformattedMostRecentEditorName;
 - (NSString *)preformattedOwnerName;
 - (NSString *)providerIdentifier;

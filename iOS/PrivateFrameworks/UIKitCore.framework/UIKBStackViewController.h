@@ -6,8 +6,6 @@
 
 @property (nonatomic, readonly) UIStackView *stackView;
 
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addChildViewController:(id)arg1;
 - (void)loadView;
 - (void)removeChildViewController:(id)arg1;

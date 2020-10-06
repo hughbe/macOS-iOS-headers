@@ -28,7 +28,10 @@
 - (bool)hasLinkGeometry;
 - (bool)hasLinkId;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)linkGeometry;
 - (unsigned long long)linkId;
 - (void)mergeFrom:(id)arg1;

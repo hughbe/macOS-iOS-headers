@@ -34,8 +34,6 @@
 @property (nonatomic, retain) UITextReplacement *textReplacement;
 @property (nonatomic, readonly) int type;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)_cursorInteractionEnabled;
 + (id)buttonWithImage:(id)arg1 action:(SEL)arg2 type:(int)arg3 inView:(id)arg4;
 + (id)buttonWithTitle:(id)arg1 action:(SEL)arg2 type:(int)arg3 inView:(id)arg4;
@@ -44,10 +42,6 @@
 - (void).cxx_destruct;
 - (void)_commonSetupWithAction:(SEL)arg1 type:(int)arg2;
 - (double)_scaleFactorForImage;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (SEL)action;
 - (double)additionalContentHeight;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })adjustRectForPosition:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 scaleRect:(bool)arg2;
@@ -63,6 +57,7 @@
 - (id)cursorInteraction:(id)arg1 styleForRegion:(id)arg2 modifiers:(long long)arg3;
 - (void)cursorInteraction:(id)arg1 willEnterRegion:(id)arg2 withAnimator:(id)arg3;
 - (void)cursorInteraction:(id)arg1 willExitRegion:(id)arg2 withAnimator:(id)arg3;
+- (void)dealloc;
 - (double)dividerOffset;
 - (bool)dontDismiss;
 - (void)fadeAndSendAction;

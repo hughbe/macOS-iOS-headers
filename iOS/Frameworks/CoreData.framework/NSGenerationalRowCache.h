@@ -3,17 +3,15 @@
  */
 
 @interface NSGenerationalRowCache : NSObject {
-    int  _lock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
     NSPersistentStoreCache * _primaryCache;
     NSMutableDictionary * _rowCachesByGenerationToken;
     NSPersistentStore * _store;
 }
 
 - (void)dealloc;
-- (void)forgetAllExternalData;
 - (id)initWithStore:(id)arg1;
-- (void)removeRowCacheForGeneration:(id)arg1;
-- (void)removeRowCacheForGenerationWithIdentifier:(id)arg1;
-- (id)rowCacheForGeneration:(id)arg1;
 
 @end

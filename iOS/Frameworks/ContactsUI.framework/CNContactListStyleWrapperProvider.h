@@ -18,6 +18,7 @@
 - (id)cellNameTextEmphasisedFont;
 - (id)cellNameTextFont;
 - (id)cellNameTextHighlightedColor;
+- (id)cellSearchBackgroundColor;
 - (id)cellSearchResultTextColor;
 - (id)cellSearchResultTextDisabledColor;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })cellSeparatorInset;
@@ -43,5 +44,6 @@
 - (id)tableSeparatorColor;
 - (long long)tableSeparatorOverlayBlendMode;
 - (long long)tableSeparatorStyle;
+- (bool)usesInsetPlatterStyle;
 
 @end

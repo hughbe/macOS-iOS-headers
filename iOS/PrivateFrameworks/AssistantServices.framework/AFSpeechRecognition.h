@@ -16,6 +16,7 @@
 - (void).cxx_destruct;
 - (id)aceRecognition;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithPhrases:(id)arg1;

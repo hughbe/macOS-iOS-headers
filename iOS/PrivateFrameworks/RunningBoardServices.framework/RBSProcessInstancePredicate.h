@@ -4,6 +4,6 @@
 
 @interface RBSProcessInstancePredicate : RBSProcessIdentifierPredicate
 
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 
 @end

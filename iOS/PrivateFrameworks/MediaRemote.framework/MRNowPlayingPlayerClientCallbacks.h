@@ -25,7 +25,7 @@
     id /* block */  _playbackSessionMigrateBeginCallback;
     id /* block */  _playbackSessionMigrateEndCallback;
     id /* block */  _playbackSessionMigrateRequestCallback;
-    _MRNowPlayingPlayerPathProtobuf * _playerPath;
+    MRPlayerPath * _playerPath;
     NSObject<OS_dispatch_queue> * _serialQueue;
     id /* block */  _videoThumbnailsCallback;
 }
@@ -49,7 +49,7 @@
 @property (nonatomic, copy) id /* block */ playbackSessionMigrateBeginCallback;
 @property (nonatomic, copy) id /* block */ playbackSessionMigrateEndCallback;
 @property (nonatomic, copy) id /* block */ playbackSessionMigrateRequestCallback;
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 @property (nonatomic, copy) id /* block */ videoThumbnailsCallback;
 
 - (void).cxx_destruct;

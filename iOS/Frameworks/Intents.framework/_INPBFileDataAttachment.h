@@ -3,13 +3,11 @@
  */
 
 @interface _INPBFileDataAttachment : PBCodable <NSCopying, NSSecureCoding, _INPBFileDataAttachment> {
-    bool  __encodeLegacyGloryData;
     NSData * _data;
     NSString * _fileName;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSData *data;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -22,8 +20,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)data;
 - (id)dictionaryRepresentation;

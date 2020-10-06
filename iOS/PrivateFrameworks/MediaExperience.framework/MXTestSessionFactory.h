@@ -32,7 +32,9 @@
 - (int)activateSession:(struct opaqueCMSession { }*)arg1;
 - (int)addAndVerifyNumberToDictionary:(struct __CFDictionary { }*)arg1 numberType:(long long)arg2 forKey:(const void*)arg3 andValue:(const void*)arg4;
 - (int)addNotificationListener:(struct opaqueCMSession { }*)arg1 notificationName:(struct __CFString { }*)arg2 listener:(const void*)arg3;
+- (int)addNotificationListenerForMXSession:(void*)arg1 notificationName:(struct __CFString { }*)arg2 listener:(const void*)arg3;
 - (int)checkSessionActiveState:(unsigned char)arg1 sessionToCheck:(struct opaqueCMSession { }*)arg2;
+- (int)checkSessionDuckedOnVADState:(unsigned char)arg1 sessionToCheck:(struct opaqueCMSession { }*)arg2;
 - (int)checkSessionDuckedState:(unsigned char)arg1 sessionToCheck:(struct opaqueCMSession { }*)arg2;
 - (int)checkSessionNowPlayingState:(unsigned char)arg1 sessionToCheck:(struct opaqueCMSession { }*)arg2;
 - (int)checkSessionPlayingState:(unsigned char)arg1 sessionToCheck:(struct opaqueCMSession { }*)arg2;
@@ -49,6 +51,7 @@
 - (struct opaqueCMSession { }*)createFacetimeAudioSession;
 - (struct opaqueCMSession { }*)createFacetimeVideoSession;
 - (struct opaqueCMSession { }*)createGameSession;
+- (void*)createMXSessionForCoreSession:(struct opaqueCMSession { }*)arg1;
 - (struct opaqueCMSession { }*)createMusicSession;
 - (struct opaqueCMSession { }*)createNavigationSession;
 - (struct opaqueCMSession { }*)createPhoneCallSession;
@@ -70,6 +73,7 @@
 - (unsigned char)hasPhoneCallCapability;
 - (unsigned char)hasPlayAndRecordCapability;
 - (int)removeNotificationListener:(struct opaqueCMSession { }*)arg1 notificationName:(struct __CFString { }*)arg2 listener:(const void*)arg3;
+- (int)removeNotificationListenerForMXSession:(void*)arg1 notificationName:(struct __CFString { }*)arg2 listener:(const void*)arg3;
 - (int)setAndVerifyInterruptionStyle:(unsigned int)arg1 sessionToSet:(struct opaqueCMSession { }*)arg2;
 - (int)setAndVerifyPriority:(int)arg1 sessionToSet:(struct opaqueCMSession { }*)arg2;
 - (int)setAndVerifyProperty:(int)arg1 propertyName:(struct __CFString { }*)arg2 andValue:(void*)arg3 sessionToSet:(struct opaqueCMSession { }*)arg4;

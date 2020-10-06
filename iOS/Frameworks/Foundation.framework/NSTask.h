@@ -18,6 +18,8 @@
 @property (readonly) long long terminationReason;
 @property (readonly) int terminationStatus;
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)currentTaskDictionary;
 + (id)launchedTaskWithDictionary:(id)arg1;
@@ -60,5 +62,31 @@
 - (id /* block */)terminationHandler;
 - (long long)terminationReason;
 - (int)terminationStatus;
+
+// Image: /System/Library/PrivateFrameworks/WiFiVelocity.framework/WiFiVelocity
+
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 error:(id*)arg3;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 launchHandler:(id /* block */)arg3 didLaunch:(bool*)arg4 error:(id*)arg5;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 launchHandler:(id /* block */)arg3 reply:(id /* block */)arg4;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputData:(id)arg3 error:(id*)arg4;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputData:(id)arg3 launchHandler:(id /* block */)arg4 didLaunch:(bool*)arg5 error:(id*)arg6;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputData:(id)arg3 launchHandler:(id /* block */)arg4 reply:(id /* block */)arg5;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputData:(id)arg3 reply:(id /* block */)arg4;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFileHandle:(id)arg3 error:(id*)arg4;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFileHandle:(id)arg3 launchHandler:(id /* block */)arg4 didLaunch:(bool*)arg5 error:(id*)arg6;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFileHandle:(id)arg3 launchHandler:(id /* block */)arg4 reply:(id /* block */)arg5;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFileHandle:(id)arg3 reply:(id /* block */)arg4;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFilePath:(id)arg3 error:(id*)arg4;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFilePath:(id)arg3 launchHandler:(id /* block */)arg4 didLaunch:(bool*)arg5 error:(id*)arg6;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFilePath:(id)arg3 launchHandler:(id /* block */)arg4 reply:(id /* block */)arg5;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 outputFilePath:(id)arg3 reply:(id /* block */)arg4;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 reply:(id /* block */)arg3;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 timeout:(double)arg3 outputData:(id)arg4 errorData:(id)arg5 launchHandler:(id /* block */)arg6 didLaunch:(bool*)arg7 error:(id*)arg8;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 timeout:(double)arg3 outputData:(id)arg4 errorData:(id)arg5 launchHandler:(id /* block */)arg6 reply:(id /* block */)arg7;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 timeout:(double)arg3 outputFileHandle:(id)arg4 errorFileHandle:(id)arg5 launchHandler:(id /* block */)arg6 didLaunch:(bool*)arg7 error:(id*)arg8;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 timeout:(double)arg3 outputFileHandle:(id)arg4 errorFileHandle:(id)arg5 launchHandler:(id /* block */)arg6 reply:(id /* block */)arg7;
++ (bool)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 timeout:(double)arg3 outputFilePath:(id)arg4 errorFilePath:(id)arg5 redirectErrorToOutput:(bool)arg6 launchHandler:(id /* block */)arg7 didLaunch:(bool*)arg8 error:(id*)arg9;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 timeout:(double)arg3 outputFilePath:(id)arg4 errorFilePath:(id)arg5 redirectErrorToOutput:(bool)arg6 launchHandler:(id /* block */)arg7 reply:(id /* block */)arg8;
++ (void)runTaskWithLaunchPath:(id)arg1 arguments:(id)arg2 timeout:(double)arg3 startBlock:(id /* block */)arg4 updateBlock:(id /* block */)arg5 endBlock:(id /* block */)arg6;
 
 @end

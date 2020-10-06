@@ -25,7 +25,7 @@
 - (void).cxx_destruct;
 - (id)accessControl;
 - (id)constraints;
-- (id)encodedObjectID;
+- (id)description;
 - (id)initWithItemInfo:(id)arg1;
 - (id)initWithObjectID:(id)arg1;
 - (id)keychainAttributes;

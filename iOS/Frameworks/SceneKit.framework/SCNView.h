@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@interface SCNView : UIView <DebugHierarchyObject_Fallback, SCNSceneRenderer, SCNTechniqueSupport> {
+@interface SCNView : UIView <SCNSceneRenderer, SCNTechniqueSupport> {
     unsigned long long  __ibPreferredRenderingAPI;
     NSString * __ibSceneName;
     unsigned int  _appChangedColorAppearance;
@@ -56,6 +56,7 @@
 @property (nonatomic, readonly) <MTLCommandQueue> *commandQueue;
 @property (nonatomic, readonly) void*context;
 @property (nonatomic, readonly) <MTLRenderCommandEncoder> *currentRenderCommandEncoder;
+@property (nonatomic, readonly) MTLRenderPassDescriptor *currentRenderPassDescriptor;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } currentViewport;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) unsigned long long debugOptions;
@@ -82,8 +83,6 @@
 @property (nonatomic, copy) SCNTechnique *technique;
 @property (getter=isTemporalAntialiasingEnabled, nonatomic) bool temporalAntialiasingEnabled;
 @property (nonatomic) bool usesReverseZ;
-
-// Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
 
 + (bool)_isMetalSupported;
 + (id)_kvoKeysForwardedToRenderer;
@@ -120,7 +119,7 @@
 - (int)_ibPreferredRenderingAPI;
 - (id)_ibSceneName;
 - (bool)_ibWantsMultisampling;
-- (void)_initializeDisplayLinkWithCompletionHandler:(id /* block */)arg1;
+- (void)_initializeDisplayLinkWithScreen:(id)arg1 completionHandler:(id /* block */)arg2;
 - (bool)_isEditor;
 - (void)_jitterRedisplay;
 - (long long)_preferredFocusMovementStyle;
@@ -288,14 +287,5 @@
 - (void)updateAtTime:(double)arg1;
 - (bool)usesReverseZ;
 - (void)willMoveToWindow:(id)arg1;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyAdditionalGroupingIDs;
-+ (id)fallback_debugHierarchyObjectsInGroupWithID:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3;
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-- (id)__dbg_pointOfViewIndexPath;
 
 @end

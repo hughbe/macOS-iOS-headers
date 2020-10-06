@@ -41,8 +41,11 @@
 - (bool)hasZoomLevel;
 - (unsigned long long)hash;
 - (unsigned int)heading;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isLabelingShown;
+- (id)jsonRepresentation;
 - (id)location;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)numberPoisInView;

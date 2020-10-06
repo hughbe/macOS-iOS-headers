@@ -13,12 +13,7 @@
         unsigned int read_coordinate : 1; 
         unsigned int read_mapLocation : 1; 
         unsigned int read_originalAddressFields : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_accessPoint : 1; 
-        unsigned int wrote_addressFields : 1; 
-        unsigned int wrote_coordinate : 1; 
-        unsigned int wrote_mapLocation : 1; 
-        unsigned int wrote_originalAddressFields : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEORPMapLocation * _mapLocation;
     GEORPFeedbackAddressFields * _originalAddressFields;
@@ -46,11 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readAccessPoint;
-- (void)_readAddressFields;
-- (void)_readCoordinate;
-- (void)_readMapLocation;
-- (void)_readOriginalAddressFields;
 - (id)accessPoint;
 - (id)addressFields;
 - (void)clearUnknownFields:(bool)arg1;
@@ -67,7 +57,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapLocation;
 - (void)mergeFrom:(id)arg1;
 - (id)originalAddressFields;

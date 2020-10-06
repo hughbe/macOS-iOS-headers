@@ -28,9 +28,10 @@
 @property (nonatomic, readonly) long long type;
 @property (nonatomic, copy) NSURL *url;
 
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
+
 + (int)_currentAuthorizationStatus;
 + (id)alarmWithAbsoluteDate:(id)arg1;
-+ (id)alarmWithAlarm:(id)arg1;
 + (id)alarmWithRelativeOffset:(double)arg1;
 + (bool)areLocationsAllowed;
 + (bool)areLocationsAllowedWithAuthorizationStatus:(int)arg1;
@@ -38,10 +39,11 @@
 + (bool)areLocationsCurrentlyEnabled;
 + (double)defaultGeofencedReminderRadius;
 + (Class)frozenClass;
++ (id)knownIdentityKeysForComparison;
 + (id)knownRelationshipMultiValueKeys;
 + (id)knownRelationshipSingleValueKeys;
++ (id)knownSingleValueKeysForComparison;
 + (long long)maxPublicProximity;
-+ (id)noneTriggerDate;
 
 - (void).cxx_destruct;
 - (id)UUID;
@@ -54,6 +56,7 @@
 - (id)calendarOwner;
 - (long long)compare:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (bool)defaultAlarm;
 - (id)description;
 - (id)emailAddress;
 - (id)externalID;
@@ -63,9 +66,7 @@
 - (bool)isAbsolute;
 - (bool)isDefaultAlarm;
 - (bool)isSnoozed;
-- (bool)isTimeToLeaveAlarm;
 - (bool)isTopographicallyEqualToAlarm:(id)arg1;
-- (bool)isVehicleAlarm;
 - (id)originalAlarm;
 - (id)owner;
 - (id)ownerUUID;
@@ -80,7 +81,6 @@
 - (void)setDefaultAlarm:(bool)arg1;
 - (void)setEmailAddress:(id)arg1;
 - (void)setIsSnoozed:(bool)arg1;
-- (void)setIsTimeToLeaveAlarm:(bool)arg1;
 - (void)setOriginalAlarm:(id)arg1;
 - (void)setProximity:(long long)arg1;
 - (void)setRelativeOffset:(double)arg1;
@@ -88,16 +88,21 @@
 - (void)setSnoozedAlarms:(id)arg1;
 - (void)setSoundName:(id)arg1;
 - (void)setStructuredLocation:(id)arg1;
-- (void)setTriggerIsNotRelativeToTravelTime:(bool)arg1;
 - (void)setUUID:(id)arg1;
 - (void)setUrl:(id)arg1;
-- (bool)shouldIncludeInNormalAlarms;
 - (id)snoozedAlarms;
 - (id)soundName;
 - (id)structuredLocation;
-- (bool)triggerIsNotRelativeToTravelTime;
 - (long long)type;
 - (id)url;
 - (bool)validateWithOwner:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)_localizedDescription:(bool)arg1 isAllDay:(bool)arg2;
+- (id)localizedAllDayDescription;
+- (id)localizedDescription;
+- (id)longLocalizedAllDayDescription;
+- (id)longLocalizedDescription;
 
 @end

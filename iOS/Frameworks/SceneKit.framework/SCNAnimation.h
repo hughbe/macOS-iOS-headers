@@ -63,6 +63,7 @@
 
 - (const void*)__CFObject;
 - (void)_didMutate;
+- (void)_optimizeKeyframesWithTarget:(id)arg1;
 - (void)_setAnimationRef:(struct __C3DAnimation { }*)arg1;
 - (void)_syncObjCModel;
 - (id /* block */)animationDidStart;
@@ -117,6 +118,7 @@
 - (void)setUsesSceneTimeBase:(bool)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (double)startDelay;
+- (id)subAnimations;
 - (double)timeOffset;
 - (id)timingFunction;
 - (id)userAnimation;

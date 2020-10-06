@@ -16,6 +16,7 @@
 - (void)getImageForImageDescriptor:(id)arg1 completion:(id /* block */)arg2;
 - (id)imageCache;
 - (id)imageForImageDescriptor:(id)arg1;
+- (id)prepareImageForDescriptor:(id)arg1;
 - (void)prepareImagesForImageDescriptors:(id)arg1;
 - (void)setImageCache:(id)arg1;
 

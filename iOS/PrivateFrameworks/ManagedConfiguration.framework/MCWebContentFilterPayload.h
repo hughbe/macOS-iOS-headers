@@ -34,7 +34,6 @@
 - (void).cxx_destruct;
 - (bool)autoFilterEnabled;
 - (id)blacklistedURLStrings;
-- (id)description;
 - (bool)filterBrowsers;
 - (bool)filterSockets;
 - (id)filterType;
@@ -60,6 +59,7 @@
 - (id)subtitle1Description;
 - (id)subtitle1Label;
 - (id)title;
+- (id)verboseDescription;
 - (id)whitelistedBookmarks;
 
 @end

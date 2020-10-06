@@ -32,8 +32,11 @@
 - (bool)hasGtLog;
 - (unsigned long long)hash;
 - (id)initWithCoordinate:(struct { double x1; double x2; })arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithLatitude:(double)arg1 longitude:(double)arg2;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)lat;
 - (double)lng;
 - (void)mergeFrom:(id)arg1;

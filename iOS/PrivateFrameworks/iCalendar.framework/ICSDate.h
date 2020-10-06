@@ -6,6 +6,8 @@
 
 @property (nonatomic, retain) NSString *tzid;
 
+// Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
+
 - (id)components;
 - (id)description;
 - (bool)hasFloatingTimeZone;
@@ -17,5 +19,19 @@
 - (id)parametersToIncludeForChecksumVersion:(int)arg1;
 - (void)setTzid:(id)arg1;
 - (id)tzid;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (id)copyDateWithNewComponents:(id)arg1;
+- (id)endDateWithDuration:(id)arg1;
+- (id)gmtOffsetTimeZoneWithCalendar:(id)arg1 withEvent:(id)arg2;
+- (id)gregorianCalendarDateByAddingDuration:(id)arg1;
+- (id)systemTimeZoneWithCalendar:(id)arg1 withEvent:(id)arg2 withCorrectnessFlag:(bool*)arg3;
+- (id)validatedCompleteDateTime;
+
+// Image: /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
+
+- (id)rem_dateAsUTC;
+- (id)rem_dateWithICSCalendar:(id)arg1;
 
 @end

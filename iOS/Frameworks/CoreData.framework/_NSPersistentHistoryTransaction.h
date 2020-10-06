@@ -18,12 +18,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (id)_backingObjectID;
-- (id)_coordinator;
-- (id)_persistentStore;
-- (void)_setChanges:(id)arg1;
-- (void)_setCoordinator:(id)arg1;
-- (id)_userInfoFromChanges;
 - (id)author;
 - (id)bundleID;
 - (id)changes;
@@ -31,7 +25,6 @@
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithDictionary:(id)arg1 andObjectID:(id)arg2;
 - (id)initialQueryGenerationToken;
 - (id)objectIDNotification;
 - (id)postQueryGenerationToken;

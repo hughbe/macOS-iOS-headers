@@ -17,6 +17,7 @@
         } size; 
     }  _rect;
     bool  _vertical;
+    long long  _writingDirection;
 }
 
 @property (setter=_setDrawsOwnHighlight:, nonatomic) bool _drawsOwnHighlight;
@@ -24,6 +25,7 @@
 @property (nonatomic) bool containsStart;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } rect;
 @property (getter=isVertical, nonatomic) bool vertical;
+@property (nonatomic) long long writingDirection;
 
 + (id)selectionRectWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 fromView:(id)arg2;
 
@@ -38,6 +40,7 @@
 - (void)setContainsStart:(bool)arg1;
 - (void)setRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 fromView:(id)arg2;
 - (void)setVertical:(bool)arg1;
+- (void)setWritingDirection:(long long)arg1;
 - (long long)writingDirection;
 
 @end

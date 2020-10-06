@@ -42,7 +42,6 @@
 + (id)renditionKey;
 + (id)renditionKeyWithKeyList:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 
-- (void)_expandKeyIfNecessaryForCount:(long long)arg1;
 - (void)copyValuesFromKeyList:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

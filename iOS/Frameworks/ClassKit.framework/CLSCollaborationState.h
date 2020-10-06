@@ -8,6 +8,7 @@
     long long  _domain;
     long long  _domainVersion;
     unsigned long long  _flags;
+    NSDictionary * _info;
     NSString * _note;
     NSString * _ownerPersonID;
     NSString * _parentEntityName;
@@ -27,6 +28,7 @@
 @property (nonatomic) long long domainVersion;
 @property (nonatomic) unsigned long long flags;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, copy) NSDictionary *info;
 @property (nonatomic, copy) NSString *note;
 @property (nonatomic, copy) NSString *ownerPersonID;
 @property (nonatomic, copy) NSString *parentEntityName;
@@ -40,6 +42,7 @@
 
 + (id)identifierForTargetObjectID:(id)arg1 ownerPersonID:(id)arg2 domain:(long long)arg3;
 + (id)relations;
++ (id)supportedInfoDictionaryClasses;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -57,6 +60,7 @@
 - (id)friendlyFlagsRepresentation;
 - (id)friendlyStateRepresentation;
 - (bool)hasServerMetadata;
+- (id)info;
 - (id)initForObject:(id)arg1 ownerPersonID:(id)arg2 domain:(long long)arg3 state:(long long)arg4 flags:(unsigned long long)arg5;
 - (id)initForObjectWithID:(id)arg1 targetClass:(Class)arg2 ownerPersonID:(id)arg3 domain:(long long)arg4 state:(long long)arg5 flags:(unsigned long long)arg6;
 - (id)initWithCoder:(id)arg1;
@@ -74,6 +78,7 @@
 - (void)setDomain:(long long)arg1;
 - (void)setDomainVersion:(long long)arg1;
 - (void)setFlags:(unsigned long long)arg1;
+- (void)setInfo:(id)arg1;
 - (void)setNote:(id)arg1;
 - (void)setOwnerPersonID:(id)arg1;
 - (void)setParentEntityName:(id)arg1;

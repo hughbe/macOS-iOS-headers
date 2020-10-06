@@ -15,8 +15,8 @@
             double depth; 
         } size; 
     }  _bounds;
-    GEOComposedRouteLeg * _composedRouteLeg;
-    unsigned long long  _composedRouteLegIndex;
+    GEOComposedRouteSegment * _composedRouteSegment;
+    unsigned long long  _composedRouteSegmentIndex;
     GEOComposedRouteStep * _composedRouteStep;
     unsigned long long  _finalStepIndex;
     double  _lengthScaleFactor;
@@ -38,8 +38,8 @@
 }
 
 @property (nonatomic, readonly) struct { struct { double x_1_1_1; double x_1_1_2; double x_1_1_3; } x1; struct { double x_2_1_1; double x_2_1_2; double x_2_1_3; } x2; } bounds;
-@property (nonatomic, readonly) GEOComposedRouteLeg *composedRouteLeg;
-@property (nonatomic, readonly) unsigned long long composedRouteLegIndex;
+@property (nonatomic, readonly) GEOComposedRouteSegment *composedRouteSegment;
+@property (nonatomic, readonly) unsigned long long composedRouteSegmentIndex;
 @property (nonatomic, readonly) GEOComposedRouteStep *composedRouteStep;
 @property (nonatomic, readonly) unsigned int endPointIndex;
 @property (nonatomic, readonly) unsigned long long finalStepIndex;
@@ -55,17 +55,17 @@
 
 - (void).cxx_destruct;
 - (bool)_MapsCarPlay_isEqual:(id)arg1;
-- (void)_initStepForRoute:(id)arg1;
+- (void)_initialStepInSteps:(id)arg1;
 - (struct { struct { double x_1_1_1; double x_1_1_2; double x_1_1_3; } x1; struct { double x_2_1_1; double x_2_1_2; double x_2_1_3; } x2; })bounds;
-- (id)composedRouteLeg;
-- (unsigned long long)composedRouteLegIndex;
+- (id)composedRouteSegment;
+- (unsigned long long)composedRouteSegmentIndex;
 - (id)composedRouteStep;
 - (void)dealloc;
 - (id)description;
 - (unsigned int)endPointIndex;
 - (unsigned long long)finalStepIndex;
-- (id)initWithRoute:(id)arg1 startPoint:(unsigned int)arg2 pointCount:(unsigned int)arg3 bounds:(struct { struct { double x_1_1_1; double x_1_1_2; double x_1_1_3; } x1; struct { double x_2_1_1; double x_2_1_2; double x_2_1_3; } x2; })arg4 transportType:(int)arg5 finalStepIndex:(unsigned long long)arg6 startDistance:(double)arg7 lengthScaleFactor:(double)arg8;
-- (id)initWithRoute:(id)arg1 startPoint:(unsigned int)arg2 pointCount:(unsigned int)arg3 transportType:(int)arg4 finalStepIndex:(unsigned long long)arg5 fallbackStartCoordinate:(struct { double x1; double x2; })arg6 fallbackEndCoordinate:(struct { double x1; double x2; })arg7 startDistance:(double)arg8 lengthScaleFactor:(double)arg9;
+- (id)initWithCoordinates:(id)arg1 segment:(id)arg2 segmentIndex:(unsigned long long)arg3 steps:(id)arg4 startCoordinateIndex:(unsigned int)arg5 coordinateCount:(unsigned int)arg6 bounds:(struct { struct { double x_1_1_1; double x_1_1_2; double x_1_1_3; } x1; struct { double x_2_1_1; double x_2_1_2; double x_2_1_3; } x2; })arg7 transportType:(int)arg8 finalStepIndex:(unsigned long long)arg9 startDistance:(double)arg10 lengthScaleFactor:(double)arg11;
+- (id)initWithCoordinates:(id)arg1 segment:(id)arg2 segmentIndex:(unsigned long long)arg3 steps:(id)arg4 startCoordinateIndex:(unsigned int)arg5 coordinateCount:(unsigned int)arg6 transportType:(int)arg7 finalStepIndex:(unsigned long long)arg8 fallbackStartCoordinate:(struct { double x1; double x2; })arg9 fallbackEndCoordinate:(struct { double x1; double x2; })arg10 startDistance:(double)arg11 lengthScaleFactor:(double)arg12;
 - (bool)isTransfer;
 - (double)lengthScaleFactor;
 - (unsigned int)pointCount;
@@ -73,6 +73,8 @@
 - (void)setLengthScaleFactor:(double)arg1;
 - (double)startDistance;
 - (unsigned int)startPointIndex;
+- (id)stringForCoordinates;
+- (id)stringForPoints;
 - (int)transportType;
 
 // Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit

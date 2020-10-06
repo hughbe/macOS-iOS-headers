@@ -53,11 +53,8 @@
 @property (setter=_setButtonType:, nonatomic) long long _buttonType;
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } _centroidScreen;
 @property (nonatomic) bool _prefersToBeExclusiveWithCompetingLongPressGestureRecognizers;
-@property (getter=_previousVelocitySample, readonly) UILongPressGestureVelocitySample *_previousVelocitySample;
 @property (setter=_setRequiresQuietImpulse:, nonatomic) bool _requiresQuietImpulse;
-@property (setter=_setRequiresQuietImpulseForCurrentTouchSequence:, nonatomic) bool _requiresQuietImpulseForCurrentTouchSequence;
 @property (setter=_setShouldAlwaysEnableMultitouchTimerAtTouchesBegin:, nonatomic) bool _shouldAlwaysEnableMultitouchTimerAtTouchesBegin;
-@property (getter=_velocitySample, readonly) UILongPressGestureVelocitySample *_velocitySample;
 @property (nonatomic) double allowableMovement;
 @property (nonatomic) bool cancelPastAllowableMovement;
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } centroid;
@@ -73,7 +70,10 @@
 @property (nonatomic) unsigned long long numberOfTouchesRequired;
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } startPoint;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) struct CGPoint { double x1; double x2; } tc_startPoint;
 @property (nonatomic, retain) NSArray *touches;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (bool)supportsSecureCoding;
 
@@ -96,12 +96,11 @@
 - (bool)_impulseQuietEnough;
 - (void)_incorporateTouchForceMessageIntoImpulseQuietness:(id)arg1;
 - (void)_interactionsEndedWithValidTouches:(bool)arg1;
+- (bool)_isGestureType:(long long)arg1;
 - (struct CGPoint { double x1; double x2; })_locationOfTouches:(id)arg1;
 - (struct UIOffset { double x1; double x2; })_offsetInViewFromSceneReferenceLocation:(struct CGPoint { double x1; double x2; })arg1 toSceneReferenceLocation:(struct CGPoint { double x1; double x2; })arg2;
 - (bool)_prefersToBeExclusiveWithCompetingLongPressGestureRecognizers;
-- (id)_previousVelocitySample;
 - (bool)_requiresQuietImpulse;
-- (bool)_requiresQuietImpulseForCurrentTouchSequence;
 - (void)_resetGestureRecognizer;
 - (void)_resetImpulseQuietness;
 - (void)_resetVelocitySamples;
@@ -111,7 +110,6 @@
 - (void)_setAllowsDynamicTouchesList:(bool)arg1;
 - (void)_setButtonType:(long long)arg1;
 - (void)_setRequiresQuietImpulse:(bool)arg1;
-- (void)_setRequiresQuietImpulseForCurrentTouchSequence:(bool)arg1;
 - (void)_setShouldAlwaysEnableMultitouchTimerAtTouchesBegin:(bool)arg1;
 - (void)_setTranslation:(struct CGPoint { double x1; double x2; })arg1 inView:(id)arg2;
 - (struct CGPoint { double x1; double x2; })_shiftPanLocationToNewSceneReferenceLocation:(struct CGPoint { double x1; double x2; })arg1;
@@ -124,7 +122,6 @@
 - (double)_touchSloppinessFactor;
 - (bool)_touchesMayBeRecognizedByForcePreviewingRevealGestureRecognizerWhichShouldDelayTimer:(id)arg1;
 - (struct CGPoint { double x1; double x2; })_translationInView:(id)arg1;
-- (id)_velocitySample;
 - (bool)activeTouchesExceedAllowableSeparation;
 - (double)allowableMovement;
 - (long long)buttonMaskRequired;
@@ -176,5 +173,13 @@
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
 - (struct CGPoint { double x1; double x2; })velocityInView:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (bool)cam_isHoldingLongPress;
+
+// Image: /System/Library/PrivateFrameworks/TeaCharts.framework/TeaCharts
+
+- (struct CGPoint { double x1; double x2; })tc_startPoint;
 
 @end

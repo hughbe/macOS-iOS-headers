@@ -14,6 +14,7 @@
     unsigned long long  _colorSpaceID;
     double  _compressionQuality;
     long long  _compressionType;
+    struct CGImage { } * _destImage;
     int  _exifOrientation;
     bool  _flipped;
     unsigned int  _height;

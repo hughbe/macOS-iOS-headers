@@ -2,23 +2,13 @@
    Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
  */
 
-@interface AMSCardEnrollmentEligibilityTask : AMSTask <AMSBagConsumer> {
+@interface AMSCardEnrollmentEligibilityTask : AMSTask {
     <AMSBagProtocol> * _bag;
     NSString * _countryCode;
 }
 
 @property (nonatomic, retain) <AMSBagProtocol> *bag;
 @property (nonatomic, readonly, copy) NSString *countryCode;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-
-+ (id)_bagKeySet;
-+ (void)addRequiredBagKeysToAggregator:(id)arg1;
-+ (id)bagKeySet;
-+ (id)bagSubProfile;
-+ (id)bagSubProfileVersion;
 
 - (void).cxx_destruct;
 - (unsigned long long)_cardTypeForPassTypeIdentifier:(id)arg1 serialNumber:(id)arg2;

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INPlayMediaIntent : INIntent <INPlayMediaIntentExport>
+@interface INPlayMediaIntent : INIntent <CMSCoding, INPlayMediaIntentExport>
 
 @property (nonatomic, copy) NSArray *alternativeResults;
 @property (nonatomic, copy) NSArray *audioSearchResults;
@@ -20,10 +20,13 @@
 @property (nonatomic, readonly) long long playbackQueueLocation;
 @property (nonatomic, readonly) long long playbackRepeatMode;
 @property (nonatomic, readonly, copy) NSNumber *playbackSpeed;
+@property (nonatomic, copy) INPrivatePlayMediaIntentData *privatePlayMediaIntentData;
 @property (nonatomic, copy) NSString *proxiedBundleIdentifier;
 @property (nonatomic, copy) NSString *recoID;
 @property (nonatomic, readonly, copy) NSNumber *resumePlayback;
 @property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (id)_ignoredParameters;
 
@@ -31,6 +34,8 @@
 - (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
 - (id)_dictionaryRepresentation;
 - (long long)_intentCategory;
+- (id)_intents_backgroundHandlingAssertionForBundleIdentifier:(id)arg1 context:(unsigned long long)arg2 error:(id*)arg3;
+- (bool)_intents_isExemptFromMulitWindowRequirementForInAppHandling;
 - (id)_keyCodableAttributes;
 - (id)_metadata;
 - (void)_redactForMissingPrivacyEntitlementOptions:(unsigned long long)arg1 containingAppBundleId:(id)arg2;
@@ -56,6 +61,7 @@
 - (long long)playbackQueueLocation;
 - (long long)playbackRepeatMode;
 - (id)playbackSpeed;
+- (id)privatePlayMediaIntentData;
 - (id)proxiedBundleIdentifier;
 - (id)recoID;
 - (id)resumePlayback;
@@ -74,10 +80,31 @@
 - (void)setPlaybackQueueLocation:(long long)arg1;
 - (void)setPlaybackRepeatMode:(long long)arg1;
 - (void)setPlaybackSpeed:(id)arg1;
+- (void)setPrivatePlayMediaIntentData:(id)arg1;
 - (void)setProxiedBundleIdentifier:(id)arg1;
 - (void)setRecoID:(id)arg1;
 - (void)setResumePlayback:(id)arg1;
 - (void)setVerb:(id)arg1;
 - (id)verb;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionClient.framework/AppPredictionClient
+
+- (id)atx_nonNilParametersByName;
+
+// Image: /System/Library/PrivateFrameworks/AssistantCardServiceSupport.framework/AssistantCardServiceSupport
+
+- (void)requestCard:(id)arg1 reply:(id /* block */)arg2;
+- (unsigned long long)servicePriorityForCardRequest:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
+
+// Image: /System/Library/PrivateFrameworks/IntentsServices.framework/IntentsServices
+
+- (bool)ins_shouldPrepareAudioSession;
+- (bool)ins_shouldPrewarmApp;
 
 @end

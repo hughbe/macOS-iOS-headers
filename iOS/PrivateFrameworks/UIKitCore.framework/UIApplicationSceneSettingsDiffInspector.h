@@ -5,6 +5,7 @@
 @interface UIApplicationSceneSettingsDiffInspector : FBSSceneSettingsDiffInspector
 
 - (void)_observeOtherSetting:(unsigned long long)arg1 withBlock:(id /* block */)arg2;
+- (void)observeAccessibilityContrastWithBlock:(id /* block */)arg1;
 - (void)observeCanShowAlertsWithBlock:(id /* block */)arg1;
 - (void)observeDeactivationReasonsWithBlock:(id /* block */)arg1;
 - (void)observeDeviceOrientationEventsEnabledWithBlock:(id /* block */)arg1;
@@ -13,6 +14,7 @@
 - (void)observeForcedStatusBarStyleWithBlock:(id /* block */)arg1;
 - (void)observeIdleModeEnabledWithBlock:(id /* block */)arg1;
 - (void)observePersistenceIdentifierWithBlock:(id /* block */)arg1;
+- (void)observePointerLockStatusWithBlock:(id /* block */)arg1;
 - (void)observeSafeAreaInsetsLandscapeLeftWithBlock:(id /* block */)arg1;
 - (void)observeSafeAreaInsetsLandscapeRightWithBlock:(id /* block */)arg1;
 - (void)observeSafeAreaInsetsPortraitUpsideDownWithBlock:(id /* block */)arg1;

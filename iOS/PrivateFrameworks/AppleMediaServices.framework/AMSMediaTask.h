@@ -6,6 +6,7 @@
     bool  _URLKnownToBeTrusted;
     ACAccount * _account;
     NSArray * _additionalPlatforms;
+    NSDictionary * _additionalQueryParams;
     <AMSBagProtocol> * _bag;
     NSArray * _bundleIdentifiers;
     bool  _charts;
@@ -23,6 +24,7 @@
 @property (nonatomic) bool URLKnownToBeTrusted;
 @property (nonatomic, retain) ACAccount *account;
 @property (nonatomic, retain) NSArray *additionalPlatforms;
+@property (nonatomic, retain) NSDictionary *additionalQueryParams;
 @property (nonatomic, readonly) <AMSBagProtocol> *bag;
 @property (nonatomic, retain) NSArray *bundleIdentifiers;
 @property (nonatomic) bool charts;
@@ -44,11 +46,13 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 
 - (void).cxx_destruct;
 - (bool)URLKnownToBeTrusted;
 - (id)account;
 - (id)additionalPlatforms;
+- (id)additionalQueryParams;
 - (id)bag;
 - (id)bundleIdentifiers;
 - (bool)charts;
@@ -64,6 +68,7 @@
 - (id)searchTerm;
 - (void)setAccount:(id)arg1;
 - (void)setAdditionalPlatforms:(id)arg1;
+- (void)setAdditionalQueryParams:(id)arg1;
 - (void)setBundleIdentifiers:(id)arg1;
 - (void)setCharts:(bool)arg1;
 - (void)setClientInfo:(id)arg1;

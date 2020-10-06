@@ -10,11 +10,11 @@
     NSObject<OS_dispatch_queue> * _workQueue;
 }
 
-@property (nonatomic, copy) id /* block */ callback;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *callbackQueue;
+@property (nonatomic, readonly) id /* block */ callback;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *callbackQueue;
 @property (nonatomic) bool listening;
-@property (nonatomic, retain) NSString *notificationName;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *workQueue;
+@property (nonatomic, readonly) NSString *notificationName;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *workQueue;
 
 - (void).cxx_destruct;
 - (bool)_addObserver;
@@ -27,13 +27,10 @@
 - (void)dealloc;
 - (id)description;
 - (id)initWithNotificationName:(id)arg1 callback:(id /* block */)arg2;
+- (id)initWithNotificationName:(id)arg1 callback:(id /* block */)arg2 queue:(id)arg3;
 - (bool)listening;
 - (id)notificationName;
-- (void)setCallback:(id /* block */)arg1;
-- (void)setCallbackQueue:(id)arg1;
 - (void)setListening:(bool)arg1;
-- (void)setNotificationName:(id)arg1;
-- (void)setWorkQueue:(id)arg1;
 - (id)workQueue;
 
 @end

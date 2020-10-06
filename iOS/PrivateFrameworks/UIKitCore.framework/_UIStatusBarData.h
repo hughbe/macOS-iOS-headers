@@ -27,6 +27,7 @@
     _UIStatusBarDataBoolEntry * _radarEntry;
     _UIStatusBarDataEntry * _rotationLockEntry;
     _UIStatusBarDataCellularEntry * _secondaryCellularEntry;
+    _UIStatusBarDataEntry * _sensorActivityEntry;
     _UIStatusBarDataStringEntry * _shortTimeEntry;
     _UIStatusBarDataEntry * _studentEntry;
     _UIStatusBarDataTetheringEntry * _tetheringEntry;
@@ -65,6 +66,7 @@
 @property (nonatomic, copy) _UIStatusBarDataBoolEntry *radarEntry;
 @property (nonatomic, copy) _UIStatusBarDataEntry *rotationLockEntry;
 @property (nonatomic, copy) _UIStatusBarDataCellularEntry *secondaryCellularEntry;
+@property (nonatomic, copy) _UIStatusBarDataEntry *sensorActivityEntry;
 @property (nonatomic, copy) _UIStatusBarDataStringEntry *shortTimeEntry;
 @property (nonatomic, copy) _UIStatusBarDataEntry *studentEntry;
 @property (nonatomic, copy) _UIStatusBarDataTetheringEntry *tetheringEntry;
@@ -117,6 +119,7 @@
 - (id)radarEntry;
 - (id)rotationLockEntry;
 - (id)secondaryCellularEntry;
+- (id)sensorActivityEntry;
 - (void)setActivityEntry:(id)arg1;
 - (void)setAirPlayEntry:(id)arg1;
 - (void)setAirplaneModeEntry:(id)arg1;
@@ -141,6 +144,7 @@
 - (void)setRadarEntry:(id)arg1;
 - (void)setRotationLockEntry:(id)arg1;
 - (void)setSecondaryCellularEntry:(id)arg1;
+- (void)setSensorActivityEntry:(id)arg1;
 - (void)setShortTimeEntry:(id)arg1;
 - (void)setStudentEntry:(id)arg1;
 - (void)setTetheringEntry:(id)arg1;

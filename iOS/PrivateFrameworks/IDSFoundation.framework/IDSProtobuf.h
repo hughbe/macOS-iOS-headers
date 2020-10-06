@@ -13,6 +13,8 @@
 @property (nonatomic) unsigned short type;
 @property (nonatomic, retain) NSData *uncompressedData;
 
+// Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+
 + (id)keyRepresentationForType:(unsigned short)arg1 isResponse:(bool)arg2;
 
 - (void).cxx_destruct;
@@ -35,5 +37,26 @@
 - (void)setUncompressedData:(id)arg1;
 - (unsigned short)type;
 - (id)uncompressedData;
+
+// Image: /System/Library/PrivateFrameworks/BulletinDistributorCompanion.framework/BulletinDistributorCompanion
+
+- (id)extendedDescription;
+- (id)transportData;
+
+// Image: /System/Library/PrivateFrameworks/NanoLeash.framework/NanoLeash
+
+- (id)nfmDescription;
+
+// Image: /System/Library/PrivateFrameworks/NanoPassKit.framework/NanoPassKit
+
+- (id)npkDescription;
+
+// Image: /System/Library/PrivateFrameworks/PBBridgeSupport.framework/PBBridgeSupport
+
+- (id)pbDescription;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pkDescription;
 
 @end

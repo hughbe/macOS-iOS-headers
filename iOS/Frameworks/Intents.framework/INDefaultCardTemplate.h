@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INDefaultCardTemplate : NSObject <INImageProxyInjecting, INKeyImageProducing, NSCopying, NSSecureCoding> {
+@interface INDefaultCardTemplate : NSObject <INImageProxyInjecting, INKeyImageProducing, NSCopying, NSSecureCoding, REDefaultCardTemplateProperties> {
     INImage * _image;
     NSString * _subtitle;
     NSString * _title;
@@ -12,9 +12,12 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) INImage *image;
 @property (nonatomic, copy) INImage *image;
+@property (nonatomic, readonly) NSString *subtitle;
 @property (nonatomic, copy) NSString *subtitle;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) NSString *title;
 @property (nonatomic, copy) NSString *title;
 
 + (bool)supportsSecureCoding;

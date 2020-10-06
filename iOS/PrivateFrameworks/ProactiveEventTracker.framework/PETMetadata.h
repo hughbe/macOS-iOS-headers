@@ -10,6 +10,7 @@
     struct { 
         unsigned int uploadTime : 1; 
         unsigned int configVersion : 1; 
+        unsigned int isConfigEnabled : 1; 
         unsigned int isGm : 1; 
         unsigned int isInternal : 1; 
         unsigned int isInternalCarry : 1; 
@@ -17,6 +18,7 @@
         unsigned int isTestingData : 1; 
         unsigned int isTrialUpload : 1; 
     }  _has;
+    bool  _isConfigEnabled;
     bool  _isGm;
     bool  _isInternal;
     bool  _isInternalCarry;
@@ -24,6 +26,7 @@
     bool  _isTestingData;
     bool  _isTrialUpload;
     NSString * _language;
+    NSString * _messageGroup;
     NSString * _platform;
     NSString * _pseudoDeviceId;
     unsigned long long  _uploadTime;
@@ -37,6 +40,7 @@
 @property (nonatomic) bool hasConfigVersion;
 @property (nonatomic, readonly) bool hasCountry;
 @property (nonatomic, readonly) bool hasDevice;
+@property (nonatomic) bool hasIsConfigEnabled;
 @property (nonatomic) bool hasIsGm;
 @property (nonatomic) bool hasIsInternal;
 @property (nonatomic) bool hasIsInternalCarry;
@@ -44,9 +48,11 @@
 @property (nonatomic) bool hasIsTestingData;
 @property (nonatomic) bool hasIsTrialUpload;
 @property (nonatomic, readonly) bool hasLanguage;
+@property (nonatomic, readonly) bool hasMessageGroup;
 @property (nonatomic, readonly) bool hasPlatform;
 @property (nonatomic, readonly) bool hasPseudoDeviceId;
 @property (nonatomic) bool hasUploadTime;
+@property (nonatomic) bool isConfigEnabled;
 @property (nonatomic) bool isGm;
 @property (nonatomic) bool isInternal;
 @property (nonatomic) bool isInternalCarry;
@@ -54,6 +60,7 @@
 @property (nonatomic) bool isTestingData;
 @property (nonatomic) bool isTrialUpload;
 @property (nonatomic, retain) NSString *language;
+@property (nonatomic, retain) NSString *messageGroup;
 @property (nonatomic, retain) NSString *platform;
 @property (nonatomic, retain) NSString *pseudoDeviceId;
 @property (nonatomic) unsigned long long uploadTime;
@@ -71,6 +78,7 @@
 - (bool)hasConfigVersion;
 - (bool)hasCountry;
 - (bool)hasDevice;
+- (bool)hasIsConfigEnabled;
 - (bool)hasIsGm;
 - (bool)hasIsInternal;
 - (bool)hasIsInternalCarry;
@@ -78,10 +86,12 @@
 - (bool)hasIsTestingData;
 - (bool)hasIsTrialUpload;
 - (bool)hasLanguage;
+- (bool)hasMessageGroup;
 - (bool)hasPlatform;
 - (bool)hasPseudoDeviceId;
 - (bool)hasUploadTime;
 - (unsigned long long)hash;
+- (bool)isConfigEnabled;
 - (bool)isEqual:(id)arg1;
 - (bool)isGm;
 - (bool)isInternal;
@@ -91,6 +101,7 @@
 - (bool)isTrialUpload;
 - (id)language;
 - (void)mergeFrom:(id)arg1;
+- (id)messageGroup;
 - (id)platform;
 - (id)pseudoDeviceId;
 - (bool)readFrom:(id)arg1;
@@ -99,6 +110,7 @@
 - (void)setCountry:(id)arg1;
 - (void)setDevice:(id)arg1;
 - (void)setHasConfigVersion:(bool)arg1;
+- (void)setHasIsConfigEnabled:(bool)arg1;
 - (void)setHasIsGm:(bool)arg1;
 - (void)setHasIsInternal:(bool)arg1;
 - (void)setHasIsInternalCarry:(bool)arg1;
@@ -106,6 +118,7 @@
 - (void)setHasIsTestingData:(bool)arg1;
 - (void)setHasIsTrialUpload:(bool)arg1;
 - (void)setHasUploadTime:(bool)arg1;
+- (void)setIsConfigEnabled:(bool)arg1;
 - (void)setIsGm:(bool)arg1;
 - (void)setIsInternal:(bool)arg1;
 - (void)setIsInternalCarry:(bool)arg1;
@@ -113,6 +126,7 @@
 - (void)setIsTestingData:(bool)arg1;
 - (void)setIsTrialUpload:(bool)arg1;
 - (void)setLanguage:(id)arg1;
+- (void)setMessageGroup:(id)arg1;
 - (void)setPlatform:(id)arg1;
 - (void)setPseudoDeviceId:(id)arg1;
 - (void)setUploadTime:(unsigned long long)arg1;

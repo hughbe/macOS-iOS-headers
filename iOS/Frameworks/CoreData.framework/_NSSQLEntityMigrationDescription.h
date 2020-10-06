@@ -17,34 +17,11 @@
     bool  _updateUsingCopy;
 }
 
-@property (nonatomic, readonly) NSSQLEntity *destinationEntity;
-@property (nonatomic, readonly) NSEntityMapping *entityMapping;
-@property (nonatomic) bool migrationNeedsCopyDueToConstraintMigration;
-@property (nonatomic, readonly) int migrationType;
 @property (nonatomic, readonly) NSSQLEntity *sourceEntity;
 
-- (void)_changeToCopyMigrationType;
-- (void)_generateSQLValueMappingsWithMigrationContext:(struct _NSSQLMigrationContext { id x1; })arg1;
-- (void)_populateSQLValuesByPropertyFromTransforms:(id)arg1 migrationContext:(struct _NSSQLMigrationContext { id x1; })arg2;
-- (void)_populateSQLValuesForDestinationToOne:(id)arg1 fromSourceToOne:(id)arg2;
-- (void)_populateSQLValuesForVirtualToOnesWithMigrationContext:(struct _NSSQLMigrationContext { id x1; })arg1;
-- (id)_unmappedRelationshipForFormerlyVirtualToOne:(id)arg1 migrationContext:(struct _NSSQLMigrationContext { id x1; })arg2;
-- (id)addedManyToManys;
 - (void)dealloc;
 - (id)description;
-- (id)destinationEntity;
-- (id)entityMapping;
-- (id)initWithEntityMapping:(id)arg1 sourceEntity:(id)arg2 destinationEntity:(id)arg3;
-- (bool)migrationNeedsCopyDueToConstraintMigration;
-- (int)migrationType;
-- (id)newCloudKitMetadataUpdateStatements;
-- (id)nextPropertyTransform;
-- (void)populateForeignKeyUpdateDataWithMigrationContext:(struct _NSSQLMigrationContext { id x1; })arg1;
-- (id)removedManyToManys;
-- (void)setMigrationNeedsCopyDueToConstraintMigration:(bool)arg1;
-- (id)sourceEntitiesByToOneWithNewEntityKey;
 - (id)sourceEntity;
-- (id)sqlValueForColumnName:(id)arg1 migrationContext:(struct _NSSQLMigrationContext { id x1; })arg2;
-- (id)transformedManyToManys;
+- (void)validateCloudKitEntityMigration;
 
 @end

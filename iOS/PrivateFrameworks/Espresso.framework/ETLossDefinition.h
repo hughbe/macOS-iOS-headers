@@ -16,6 +16,7 @@
 @property (retain) NSString *outputName;
 @property (readonly) NSString *targetInputName;
 
++ (id)BuiltInLoss:(id)arg1;
 + (id)L2LossWithInputName:(id)arg1 targetInputName:(id)arg2 lossOutputName:(id)arg3;
 + (id)crossEntropyLossWithInputName:(id)arg1 targetInputName:(id)arg2 lossOutputName:(id)arg3;
 

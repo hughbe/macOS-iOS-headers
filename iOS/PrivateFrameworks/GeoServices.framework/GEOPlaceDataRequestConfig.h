@@ -14,7 +14,6 @@
 - (struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })dataRequestKindForRequest:(id)arg1 traits:(id)arg2;
 - (id)initWithTimeout:(double)arg1 request:(id)arg2 traits:(id)arg3;
 - (unsigned long long)multipathServiceType;
-- (unsigned char)requestCounterInfoTypeForRequest:(id)arg1;
 - (id)serviceTypeNumber;
 - (double)timeout;
 - (unsigned long long)urlType;

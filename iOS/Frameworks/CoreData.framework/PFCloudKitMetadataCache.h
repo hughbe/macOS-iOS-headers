@@ -5,6 +5,7 @@
 @interface PFCloudKitMetadataCache : NSObject {
     NSMutableSet * _invalidatedMTMKeys;
     NSMutableDictionary * _mtmKeyToMirroredRelationship;
+    NSMutableDictionary * _objectIDToChangedPropertyKeys;
     NSMutableDictionary * _objectIDToRecordMetadata;
     NSMutableDictionary * _objectIDToRelationshipNameToExistingMTMKeys;
     NSMutableDictionary * _recordIDToMirroredRelationshipOrRecordMetadata;
@@ -16,6 +17,8 @@
 - (bool)cacheMetadataForObjectsWithIDs:(id)arg1 andRecordsWithIDs:(id)arg2 inStore:(id)arg3 withManagedObjectContext:(id)arg4 error:(id*)arg5;
 - (void)cacheZoneMetadata:(id)arg1;
 - (void)dealloc;
+- (bool)efficientlyBatchObjectsInHistoryRequest:(id)arg1 fromStore:(id)arg2 inManagedObjectContext:(id)arg3 returningError:(id*)arg4 withBlock:(id /* block */)arg5;
+- (bool)hasLocalEditsForPropertyNamed:(id)arg1 onObjectWithID:(id)arg2;
 - (id)init;
 - (id)mirroredRelationshipForKey:(id)arg1;
 - (id)mirroredRelationshipForRecordID:(id)arg1;

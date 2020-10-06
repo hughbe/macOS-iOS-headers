@@ -28,6 +28,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithParameters:(id)arg1;
 
 @end

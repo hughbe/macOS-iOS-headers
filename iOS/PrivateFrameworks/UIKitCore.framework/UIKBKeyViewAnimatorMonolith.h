@@ -20,7 +20,7 @@
 - (void)floatingContentView:(id)arg1 didFinishTransitioningToState:(unsigned long long)arg2;
 - (void)floatingContentView:(id)arg1 isTransitioningFromState:(unsigned long long)arg2 toState:(unsigned long long)arg3;
 - (id)init;
-- (Class)keyViewClassForKey:(id)arg1 traits:(id)arg2;
+- (Class)keyViewClassForKey:(id)arg1 renderTraits:(id)arg2 screenTraits:(id)arg3;
 - (void)reset;
 - (bool)shouldAssertCurrentKeyState:(id)arg1;
 - (bool)shouldPurgeKeyViews;

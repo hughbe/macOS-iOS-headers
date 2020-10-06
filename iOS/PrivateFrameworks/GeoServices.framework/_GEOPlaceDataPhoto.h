@@ -5,10 +5,11 @@
 @interface _GEOPlaceDataPhoto : NSObject <GEOMapItemPhoto> {
     GEOPDCaptionedPhoto * _captionedPhoto;
     GEOPDPhoto * _photo;
-    NSArray * _sortedPhotoInfos;
+    <GEOPhotoInfoSource> * _photoInfoSource;
 }
 
 @property (nonatomic, readonly) NSString *author;
+@property (nonatomic, readonly) NSString *backgroundJoeColor;
 @property (nonatomic, readonly) bool businessProvided;
 @property (nonatomic, readonly) NSString *caption;
 @property (readonly, copy) NSString *debugDescription;
@@ -25,7 +26,10 @@
 
 - (void).cxx_destruct;
 - (id)author;
+- (id)backgroundJoeColor;
+- (id)bestPhotoForFrameSize:(struct CGSize { double x1; double x2; })arg1 displayScale:(double)arg2 options:(id)arg3;
 - (id)bestPhotoForSize:(struct CGSize { double x1; double x2; })arg1 allowSmaller:(bool)arg2;
+- (id)bestPhotoForSize:(struct CGSize { double x1; double x2; })arg1 options:(id)arg2;
 - (bool)businessProvided;
 - (id)caption;
 - (bool)displayFullScreenPhotoGallery;

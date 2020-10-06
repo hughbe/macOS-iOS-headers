@@ -22,53 +22,31 @@
     NSString * _value;
 }
 
-@property (nonatomic, retain) NSString *abDatabaseUUID;
 @property (nonatomic) int abIdentifier;
 @property (nonatomic) int abUid;
 @property (nonatomic, retain) NSString *actionChannel;
-@property (nonatomic, retain) NSString *actionType;
-@property (nonatomic, retain) NSString *bundleIdentifier;
-@property (nonatomic, retain) CNContact *contact;
+@property (nonatomic, readonly) NSString *actionType;
+@property (nonatomic, readonly) NSString *bundleIdentifier;
 @property (nonatomic, readonly) CNContactProperty *contactProperty;
-@property (nonatomic, retain) CNContactStore *contactStore;
 @property (nonatomic) bool dirty;
-@property (nonatomic, retain) NSString *label;
-@property (nonatomic, retain) NSString *labeledValueIdentifier;
+@property (nonatomic, readonly, copy) NSString *localizedContactPropertyLabel;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic) int oldAbUid;
-@property (nonatomic, copy) NSString *originalName;
-@property (nonatomic, retain) NSString *propertyKey;
-@property (nonatomic) long long type;
+@property (nonatomic, readonly) long long type;
 @property (nonatomic, retain) NSString *value;
 
 // Image: /System/Library/Frameworks/Contacts.framework/Contacts
 
-+ (id)contactFormatter;
-+ (id)createLabeledValueForFavoritesEntryValue:(id)arg1 label:(id)arg2 iOSLegacyIdentifier:(int)arg3 propertyKey:(id)arg4;
-+ (id)descriptorsForRequiredKeysForPropertyKey:(id)arg1;
-+ (id)favoritesEntryValueForLabeledValueValue:(id)arg1 propertyKey:(id)arg2;
-+ (bool)favoritesEntryValueForLabeledValueValue:(id)arg1 propertyKey:(id)arg2 isEqualToValue:(id)arg3;
 + (void)initialize;
-+ (id)instantMessageAddressForFavoritesEntryValue:(id)arg1;
-+ (id)labeledValueValueForFavoritesEntryValue:(id)arg1 propertyKey:(id)arg2;
-+ (id)socialProfileForFavoritesEntryValue:(id)arg1;
-+ (id)valueStringFromInstantMessageAddress:(id)arg1;
-+ (id)valueStringFromSocialProfile:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_convertFromEntryType:(long long)arg1 toActionType:(id*)arg2 bundleIdentifier:(id*)arg3;
-- (int)_entryTypeForActionType:(id)arg1 bundleIdentifier:(id)arg2;
-- (id)_initWithContact:(id)arg1 propertyKey:(id)arg2 labeledValueIdentifier:(id)arg3 entryType:(long long)arg4 actionType:(id)arg5 bundleIdentifier:(id)arg6 store:(id)arg7;
-- (id)abDatabaseUUID;
 - (int)abIdentifier;
 - (int)abUid;
 - (id)actionChannel;
 - (id)actionType;
 - (void)applyChangeRecord:(id)arg1;
 - (id)bundleIdentifier;
-- (id)contact;
 - (id)contactProperty;
-- (id)contactStore;
 - (void)dealloc;
 - (id)dictionaryRepresentation;
 - (void)dictionaryRepresentation:(id*)arg1 isDirty:(bool*)arg2;
@@ -78,31 +56,17 @@
 - (id)initWithContact:(id)arg1 propertyKey:(id)arg2 labeledValueIdentifier:(id)arg3 actionType:(id)arg4 bundleIdentifier:(id)arg5 store:(id)arg6;
 - (id)initWithDictionaryRepresentation:(id)arg1 store:(id)arg2;
 - (bool)isEqual:(id)arg1;
-- (id)label;
-- (id)labeledValueIdentifier;
 - (id)name;
 - (int)oldAbUid;
-- (id)originalName;
-- (id)propertyKey;
 - (id)rematch;
 - (bool)rematchWithContacts;
 - (bool)rematchWithGeminiManager:(id)arg1;
 - (void)resetContactMatch;
-- (void)setAbDatabaseUUID:(id)arg1;
 - (void)setAbIdentifier:(int)arg1;
 - (void)setAbUid:(int)arg1;
 - (void)setActionChannel:(id)arg1;
-- (void)setActionType:(id)arg1;
-- (void)setBundleIdentifier:(id)arg1;
-- (void)setContact:(id)arg1;
-- (void)setContactStore:(id)arg1;
 - (void)setDirty:(bool)arg1;
-- (void)setLabel:(id)arg1;
-- (void)setLabeledValueIdentifier:(id)arg1;
 - (void)setOldAbUid:(int)arg1;
-- (void)setOriginalName:(id)arg1;
-- (void)setPropertyKey:(id)arg1;
-- (void)setType:(long long)arg1;
 - (void)setValue:(id)arg1;
 - (long long)type;
 - (id)value;
@@ -116,5 +80,10 @@
 // Image: /System/Library/PrivateFrameworks/ContactsUICore.framework/ContactsUICore
 
 + (id)favoritesEntryForUserActionItem:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
+- (id)localizedBundleName;
+- (id)localizedContactPropertyLabel;
 
 @end

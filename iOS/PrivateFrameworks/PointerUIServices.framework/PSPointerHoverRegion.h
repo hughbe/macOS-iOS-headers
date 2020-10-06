@@ -35,6 +35,7 @@
     NSValue * _pointerSlipValue;
     double  _pointerVisualIntensity;
     unsigned long long  _preferredPointerMaterialLuminance;
+    bool  _shouldPointerSuppressMirroring;
     bool  _shouldPointerUnderlayContent;
 }
 
@@ -53,6 +54,7 @@
 @property (nonatomic, readonly, copy) NSValue *pointerSlipValue;
 @property (nonatomic, readonly) double pointerVisualIntensity;
 @property (nonatomic, readonly) unsigned long long preferredPointerMaterialLuminance;
+@property (nonatomic, readonly) bool shouldPointerSuppressMirroring;
 @property (nonatomic, readonly) bool shouldPointerUnderlayContent;
 
 + (bool)supportsSecureCoding;
@@ -80,6 +82,7 @@
 - (id)pointerSlipValue;
 - (double)pointerVisualIntensity;
 - (unsigned long long)preferredPointerMaterialLuminance;
+- (bool)shouldPointerSuppressMirroring;
 - (bool)shouldPointerUnderlayContent;
 
 @end

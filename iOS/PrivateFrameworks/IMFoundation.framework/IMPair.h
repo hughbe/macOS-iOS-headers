@@ -12,6 +12,7 @@
 
 + (id)pairWithFirst:(id)arg1 second:(id)arg2;
 
+- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;

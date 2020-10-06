@@ -31,7 +31,6 @@
 
 - (void).cxx_destruct;
 - (id)configurationDictionary;
-- (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)installationWarnings;
 - (bool)isPayloadAllowed;
@@ -55,6 +54,7 @@
 - (id)sharedSecretKey;
 - (id)stubDictionary;
 - (id)userNameKey;
+- (id)verboseDescription;
 - (id)vpnType;
 
 @end

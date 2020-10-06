@@ -12,6 +12,7 @@
 @property (nonatomic) unsigned int scanType;
 @property (nonatomic) unsigned int scannableSize;
 @property (nonatomic) unsigned int stride;
+@property (nonatomic, copy) NSString *typeName;
 
 - (void)addSubField:(id)arg1;
 - (void)mutateTypeFieldsRecursivelyWithBlock:(id /* block */)arg1 parentOffset:(unsigned int)arg2;

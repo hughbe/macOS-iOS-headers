@@ -6,6 +6,8 @@
     NSArray * _attenuationDurations;
     unsigned char  _attenuationValue;
     NSDate * _date;
+    long long  _daysSinceOnsetOfSymptoms;
+    unsigned int  _diagnosisReportType;
     double  _duration;
     NSDictionary * _metadata;
     unsigned char  _totalRiskScore;
@@ -16,6 +18,8 @@
 @property (nonatomic, copy) NSArray *attenuationDurations;
 @property (nonatomic) unsigned char attenuationValue;
 @property (nonatomic, copy) NSDate *date;
+@property (nonatomic) long long daysSinceOnsetOfSymptoms;
+@property (nonatomic) unsigned int diagnosisReportType;
 @property (nonatomic) double duration;
 @property (nonatomic, copy) NSDictionary *metadata;
 @property (nonatomic) unsigned char totalRiskScore;
@@ -26,7 +30,9 @@
 - (id)attenuationDurations;
 - (unsigned char)attenuationValue;
 - (id)date;
+- (long long)daysSinceOnsetOfSymptoms;
 - (id)description;
+- (unsigned int)diagnosisReportType;
 - (double)duration;
 - (void)encodeWithXPCObject:(id)arg1;
 - (id)init;
@@ -35,6 +41,8 @@
 - (void)setAttenuationDurations:(id)arg1;
 - (void)setAttenuationValue:(unsigned char)arg1;
 - (void)setDate:(id)arg1;
+- (void)setDaysSinceOnsetOfSymptoms:(long long)arg1;
+- (void)setDiagnosisReportType:(unsigned int)arg1;
 - (void)setDuration:(double)arg1;
 - (void)setMetadata:(id)arg1;
 - (void)setTotalRiskScore:(unsigned char)arg1;

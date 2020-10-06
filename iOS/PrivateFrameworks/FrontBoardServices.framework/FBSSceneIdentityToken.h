@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
  */
 
-@interface FBSSceneIdentityToken : NSObject <BSXPCCoding, BSXPCSecureCoding, NSCopying> {
+@interface FBSSceneIdentityToken : NSObject <BSXPCCoding, BSXPCSecureCoding, NSCopying, NSSecureCoding> {
     BSServiceConnectionEndpoint * _endpoint;
     NSString * _identifier;
     NSString * _stringRepresentation;
@@ -17,18 +17,21 @@
 @property (readonly) Class superclass;
 
 + (bool)supportsBSXPCSecureCoding;
++ (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)debugDescription;
 - (id)description;
 - (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
 - (id)endpoint;
 - (unsigned long long)hash;
 - (id)identifier;
 - (id)init;
 - (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 endpoint:(id)arg2;
 - (id)initWithXPCDictionary:(id)arg1;
 - (bool)isEqual:(id)arg1;

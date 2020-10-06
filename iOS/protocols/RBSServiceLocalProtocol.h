@@ -21,6 +21,9 @@
 - (bool)invalidateAssertionWithIdentifier:(RBSAssertionIdentifier *)arg1 error:(out id*)arg2;
 - (RBSProcessExitContext *)lastExitContextForInstance:(RBSProcessInstance *)arg1 error:(out id*)arg2;
 - (RBSProcessLimitations *)limitationsForInstance:(RBSProcessInstance *)arg1 error:(out id*)arg2;
+- (RBSMachPortTaskNameRight *)portForIdentifier:(RBSProcessIdentifier *)arg1;
+- (NSSet *)preventLaunchPredicatesWithError:(out id*)arg1;
+- (NSString *)processName:(NSNumber *)arg1;
 - (void)reset;
 - (NSArray *)statesForPredicate:(RBSProcessPredicate *)arg1 withDescriptor:(RBSProcessStateDescriptor *)arg2 error:(out id*)arg3;
 - (bool)subscribeProcessStateMonitor:(RBSProcessMonitor *)arg1 configuration:(RBSProcessMonitorConfiguration *)arg2 error:(out id*)arg3;

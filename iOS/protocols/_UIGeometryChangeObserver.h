@@ -5,6 +5,10 @@
 
 @required
 
-- (void)_geometryChanges:(NSDictionary *)arg1 forAncestor:(UIView *)arg2;
+- (void)_geometryChanged:(const struct { int x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGPoint { double x_3_1_1; double x_3_1_2; } x3; struct CGSize { double x_4_1_1; double x_4_1_2; } x4; id x5; id x6; id x7; id x8; }*)arg1 forAncestor:(UIView *)arg2;
+
+@optional
+
+- (bool)_geometryObserverNeedsAncestorOnly;
 
 @end

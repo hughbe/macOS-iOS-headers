@@ -8,8 +8,8 @@
     NSArray * _sortDescriptors;
 }
 
-@property (nonatomic, copy) NSPredicate *predicate;
-@property (nonatomic, copy) NSString *recordType;
+@property (nonatomic, readonly, copy) NSPredicate *predicate;
+@property (nonatomic, readonly, copy) NSString *recordType;
 @property (nonatomic, copy) NSArray *sortDescriptors;
 
 + (bool)supportsSecureCoding;

@@ -6,15 +6,21 @@
     NSString * _DSID;
     struct __CFUserNotification { } * _activeSecondFactoryEntryPrompt;
     NSString * _altDSID;
+    NSString * _alternativeButtonString;
+    bool  _alwaysShowUsernameField;
     <AKAnisetteServiceProtocol> * _anisetteDataProvider;
     bool  _anticipateEscrowAttempt;
     NSString * _appProvidedContext;
     NSDictionary * _appProvidedData;
     unsigned long long  _attemptIndex;
     long long  _authenticationMode;
+    long long  _authenticationPromptStyle;
     unsigned long long  _authenticationType;
+    NSString * _cancelButtonString;
     unsigned long long  _capabilityForUIDisplay;
+    NSString * _cellularDataAttributionAppBundleID;
     id  _clientInfo;
+    bool  _clientShouldHandleAlternativeButtonAction;
     AKDevice * _companionDevice;
     AKAnisetteData * _companionDeviceAnisetteData;
     NSString * _defaultButtonString;
@@ -22,12 +28,16 @@
     NSString * _deviceClass;
     NSString * _deviceColor;
     NSString * _deviceEnclosureColor;
+    NSData * _displayImageData;
     NSString * _displayString;
     NSString * _displayTitle;
     NSString * _generatedCode;
     NSNumber * _hasEmptyPassword;
     NSString * _helpAnchor;
     NSString * _helpBook;
+    bool  _hideAlternativeButton;
+    bool  _hideCancelButton;
+    bool  _hideReasonString;
     NSDictionary * _httpHeadersForRemoteUI;
     NSUUID * _identifier;
     NSString * _identityToken;
@@ -39,6 +49,7 @@
     bool  _isProxyingForApp;
     bool  _isTriggeredByNotification;
     bool  _isUsernameEditable;
+    bool  _keepAlive;
     NSNumber * _latitude;
     NSNumber * _longitude;
     NSString * _masterKey;
@@ -46,10 +57,14 @@
     NSString * _message;
     bool  _needsCredentialRecovery;
     bool  _needsNewAppleID;
+    bool  _needsNewChildAccount;
     bool  _needsPasswordChange;
     bool  _needsRepair;
+    bool  _needsSecurityUpgradeUI;
     NSString * _password;
     NSString * _passwordPromptTitle;
+    bool  _performUIOutOfProcess;
+    NSString * _privacyBundleIdentifier;
     NSString * _proxiedAppBundleID;
     NSString * _proxiedAppName;
     AKDevice * _proxiedDevice;
@@ -77,6 +92,7 @@
     bool  _supportsPiggybacking;
     NSString * _title;
     NSString * _username;
+    NSString * _windowTitle;
 }
 
 @property (nonatomic, copy) NSString *DSID;
@@ -88,10 +104,12 @@
 @property (nonatomic, readonly) NSString *_interpolatedReasonWithBlame;
 @property (nonatomic) bool _isPasswordEditable;
 @property (setter=_setProxyingForApp:, nonatomic) bool _isProxyingForApp;
+@property (nonatomic) bool _keepAlive;
 @property (setter=_setMasterKey:, nonatomic, copy) NSString *_masterKey;
 @property (setter=_setMessage:, nonatomic, copy) NSString *_message;
 @property (setter=_setPassword:, nonatomic, copy) NSString *_password;
 @property (nonatomic, copy) NSString *_passwordPromptTitle;
+@property (nonatomic) bool _performUIOutOfProcess;
 @property (setter=_setProxiedAppBundleID:, nonatomic, copy) NSString *_proxiedAppBundleID;
 @property (setter=_setProxiedAppName:, nonatomic, copy) NSString *_proxiedAppName;
 @property (nonatomic, readonly) bool _requiresPasswordInput;
@@ -100,13 +118,19 @@
 @property (nonatomic) bool _shouldSendIdentityTokenForRemoteUI;
 @property (nonatomic) bool _shouldSkipInitialReachabilityCheck;
 @property (nonatomic, copy) NSString *altDSID;
+@property (retain) NSString *alternativeButtonString;
+@property (nonatomic) bool alwaysShowUsernameField;
 @property (nonatomic, retain) <AKAnisetteServiceProtocol> *anisetteDataProvider;
 @property (nonatomic) bool anticipateEscrowAttempt;
 @property (nonatomic, copy) NSString *appProvidedContext;
 @property (nonatomic, copy) NSDictionary *appProvidedData;
 @property (nonatomic) long long authenticationMode;
+@property (nonatomic) long long authenticationPromptStyle;
 @property (nonatomic) unsigned long long authenticationType;
+@property (retain) NSString *cancelButtonString;
+@property (nonatomic, copy) NSString *cellularDataAttributionAppBundleID;
 @property (nonatomic, retain) id clientInfo;
+@property (nonatomic) bool clientShouldHandleAlternativeButtonAction;
 @property (nonatomic, copy) AKDevice *companionDevice;
 @property (nonatomic, retain) AKAnisetteData *companionDeviceAnisetteData;
 @property (getter=isContextEligibleForBiometricOrPasscodeAuth, nonatomic, readonly) bool contextEligibleForBiometricOrPasscodeAuth;
@@ -119,6 +143,7 @@
 @property (nonatomic, copy) NSString *deviceClass;
 @property (nonatomic, copy) NSString *deviceColor;
 @property (nonatomic, copy) NSString *deviceEnclosureColor;
+@property (retain) NSData *displayImageData;
 @property (nonatomic, copy) NSString *displayString;
 @property (nonatomic, copy) NSString *displayTitle;
 @property (nonatomic, copy) NSString *generatedCode;
@@ -126,6 +151,9 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *helpAnchor;
 @property (nonatomic, copy) NSString *helpBook;
+@property bool hideAlternativeButton;
+@property bool hideCancelButton;
+@property bool hideReasonString;
 @property (nonatomic, copy) NSDictionary *httpHeadersForRemoteUI;
 @property (setter=setAppleIDLoginEnabled:, nonatomic, copy) NSNumber *isAppleIDLoginEnabled;
 @property (nonatomic) bool isEphemeral;
@@ -137,8 +165,11 @@
 @property (nonatomic) long long maximumLoginAttempts;
 @property (nonatomic) bool needsCredentialRecovery;
 @property (nonatomic) bool needsNewAppleID;
+@property (nonatomic) bool needsNewChildAccount;
 @property (nonatomic) bool needsPasswordChange;
 @property (nonatomic) bool needsRepair;
+@property (nonatomic) bool needsSecurityUpgradeUI;
+@property (copy) NSString *privacyBundleIdentifier;
 @property (nonatomic, copy) AKDevice *proxiedDevice;
 @property (nonatomic, retain) AKAnisetteData *proxiedDeviceAnisetteData;
 @property (nonatomic, copy) NSString *reason;
@@ -160,6 +191,9 @@
 @property (nonatomic) bool supportsPiggybacking;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, copy) NSString *username;
+@property (retain) NSString *windowTitle;
+
+// Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
 + (bool)supportsSecureCoding;
 
@@ -176,11 +210,13 @@
 - (id)_interpolatedReasonWithBlame;
 - (bool)_isPasswordEditable;
 - (bool)_isProxyingForApp;
+- (bool)_keepAlive;
 - (bool)_localUserHasEmptyPassword;
 - (id)_masterKey;
 - (id)_message;
 - (id)_password;
 - (id)_passwordPromptTitle;
+- (bool)_performUIOutOfProcess;
 - (id)_proxiedAppBundleID;
 - (id)_proxiedAppName;
 - (bool)_requiresPasswordInput;
@@ -202,6 +238,8 @@
 - (void)_stopListeningForSecondFactorCodeEntryNotification;
 - (void)_updateWithValuesFromContext:(id)arg1;
 - (id)altDSID;
+- (id)alternativeButtonString;
+- (bool)alwaysShowUsernameField;
 - (id)anisetteDataProvider;
 - (bool)anticipateEscrowAttempt;
 - (id)appProvidedContext;
@@ -209,8 +247,12 @@
 - (id)authKitAccount:(id*)arg1;
 - (id)authKitAccountForSilentServiceToken:(id*)arg1;
 - (long long)authenticationMode;
+- (long long)authenticationPromptStyle;
 - (unsigned long long)authenticationType;
+- (id)cancelButtonString;
+- (id)cellularDataAttributionAppBundleID;
 - (id)clientInfo;
+- (bool)clientShouldHandleAlternativeButtonAction;
 - (id)companionDevice;
 - (id)companionDeviceAnisetteData;
 - (id)debugDescription;
@@ -222,6 +264,7 @@
 - (id)deviceEnclosureColor;
 - (void)dismissBasicLoginUIWithCompletion:(id /* block */)arg1;
 - (void)dismissSecondFactorUIWithCompletion:(id /* block */)arg1;
+- (id)displayImageData;
 - (id)displayString;
 - (id)displayTitle;
 - (void)encodeWithCoder:(id)arg1;
@@ -229,6 +272,9 @@
 - (id)hasEmptyPassword;
 - (id)helpAnchor;
 - (id)helpBook;
+- (bool)hideAlternativeButton;
+- (bool)hideCancelButton;
+- (bool)hideReasonString;
 - (id)httpHeadersForRemoteUI;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
@@ -246,13 +292,16 @@
 - (long long)maximumLoginAttempts;
 - (bool)needsCredentialRecovery;
 - (bool)needsNewAppleID;
+- (bool)needsNewChildAccount;
 - (bool)needsPasswordChange;
 - (bool)needsRepair;
+- (bool)needsSecurityUpgradeUI;
 - (void)presentBasicLoginUIWithCompletion:(id /* block */)arg1;
 - (void)presentBiometricOrPasscodeValidationForAppleID:(id)arg1 completion:(id /* block */)arg2;
 - (void)presentLoginAlertWithError:(id)arg1 title:(id)arg2 message:(id)arg3 completion:(id /* block */)arg4;
 - (void)presentSecondFactorAlertWithError:(id)arg1 title:(id)arg2 message:(id)arg3 completion:(id /* block */)arg4;
 - (void)presentSecondFactorUIWithCompletion:(id /* block */)arg1;
+- (id)privacyBundleIdentifier;
 - (id)proxiedDevice;
 - (id)proxiedDeviceAnisetteData;
 - (id)reason;
@@ -261,14 +310,20 @@
 - (id)serviceIdentifiers;
 - (long long)serviceType;
 - (void)setAltDSID:(id)arg1;
+- (void)setAlternativeButtonString:(id)arg1;
+- (void)setAlwaysShowUsernameField:(bool)arg1;
 - (void)setAnisetteDataProvider:(id)arg1;
 - (void)setAnticipateEscrowAttempt:(bool)arg1;
 - (void)setAppProvidedContext:(id)arg1;
 - (void)setAppProvidedData:(id)arg1;
 - (void)setAppleIDLoginEnabled:(id)arg1;
 - (void)setAuthenticationMode:(long long)arg1;
+- (void)setAuthenticationPromptStyle:(long long)arg1;
 - (void)setAuthenticationType:(unsigned long long)arg1;
+- (void)setCancelButtonString:(id)arg1;
+- (void)setCellularDataAttributionAppBundleID:(id)arg1;
 - (void)setClientInfo:(id)arg1;
+- (void)setClientShouldHandleAlternativeButtonAction:(bool)arg1;
 - (void)setCompanionDevice:(id)arg1;
 - (void)setCompanionDeviceAnisetteData:(id)arg1;
 - (void)setDSID:(id)arg1;
@@ -277,6 +332,7 @@
 - (void)setDeviceClass:(id)arg1;
 - (void)setDeviceColor:(id)arg1;
 - (void)setDeviceEnclosureColor:(id)arg1;
+- (void)setDisplayImageData:(id)arg1;
 - (void)setDisplayString:(id)arg1;
 - (void)setDisplayTitle:(id)arg1;
 - (void)setFirstTimeLogin:(bool)arg1;
@@ -284,6 +340,9 @@
 - (void)setHasEmptyPassword:(id)arg1;
 - (void)setHelpAnchor:(id)arg1;
 - (void)setHelpBook:(id)arg1;
+- (void)setHideAlternativeButton:(bool)arg1;
+- (void)setHideCancelButton:(bool)arg1;
+- (void)setHideReasonString:(bool)arg1;
 - (void)setHttpHeadersForRemoteUI:(id)arg1;
 - (void)setIsEphemeral:(bool)arg1;
 - (void)setIsUsernameEditable:(bool)arg1;
@@ -292,8 +351,11 @@
 - (void)setMaximumLoginAttempts:(long long)arg1;
 - (void)setNeedsCredentialRecovery:(bool)arg1;
 - (void)setNeedsNewAppleID:(bool)arg1;
+- (void)setNeedsNewChildAccount:(bool)arg1;
 - (void)setNeedsPasswordChange:(bool)arg1;
 - (void)setNeedsRepair:(bool)arg1;
+- (void)setNeedsSecurityUpgradeUI:(bool)arg1;
+- (void)setPrivacyBundleIdentifier:(id)arg1;
 - (void)setProxiedDevice:(id)arg1;
 - (void)setProxiedDeviceAnisetteData:(id)arg1;
 - (void)setReason:(id)arg1;
@@ -315,9 +377,12 @@
 - (void)setTitle:(id)arg1;
 - (void)setTriggeredByNotification:(bool)arg1;
 - (void)setUsername:(id)arg1;
+- (void)setWindowTitle:(id)arg1;
 - (void)set_attemptIndex:(unsigned long long)arg1;
 - (void)set_isPasswordEditable:(bool)arg1;
+- (void)set_keepAlive:(bool)arg1;
 - (void)set_passwordPromptTitle:(id)arg1;
+- (void)set_performUIOutOfProcess:(bool)arg1;
 - (void)set_shouldSendGrandSlamTokensForRemoteUI:(bool)arg1;
 - (void)set_shouldSendIdentityTokenForRemoteUI:(bool)arg1;
 - (void)set_shouldSkipInitialReachabilityCheck:(bool)arg1;
@@ -334,5 +399,10 @@
 - (bool)supportsPiggybacking;
 - (id)title;
 - (id)username;
+- (id)windowTitle;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (id)pk_AKAppleIDAuthenticationInAppContext;
 
 @end

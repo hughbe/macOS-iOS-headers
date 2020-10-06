@@ -17,6 +17,8 @@
 + (id)_copyFileAtURLToTemporaryDirectory:(id)arg1;
 + (id)createTempDestinationURLWithExtension:(id)arg1;
 + (Class)frozenClass;
++ (id)knownIdentityKeysForComparison;
++ (id)knownSingleValueKeysForComparison;
 
 - (id)URL;
 - (id)URLForPendingFileCopy;
@@ -25,7 +27,7 @@
 - (long long)compareFileNames:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)externalId;
+- (id)externalID;
 - (id)fileFormat;
 - (id)fileName;
 - (id)fileNameRaw;
@@ -35,7 +37,7 @@
 - (id)localRelativePath;
 - (id)localURL;
 - (id)semanticIdentifier;
-- (void)setExternalId:(id)arg1;
+- (void)setExternalID:(id)arg1;
 - (void)setFileFormat:(id)arg1;
 - (void)setFileNameRaw:(id)arg1;
 - (void)setFileSize:(id)arg1;

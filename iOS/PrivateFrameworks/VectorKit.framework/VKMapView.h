@@ -11,6 +11,12 @@
     }  _animatingToEdgeInsets;
     unsigned char  _applicationState;
     MDARController * _arController;
+    struct _retain_ptr<VKCamera *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> { 
+        int (**_vptr$_retain_ptr)(); 
+        VKCamera *_obj; 
+        struct _retain_objc { } _retain; 
+        struct _release_objc { } _release; 
+    }  _camera;
     VKMapCanvas * _canvas;
     bool  _didFinishSnapshotting;
     unsigned char  _displayedSearchResultsType;
@@ -43,14 +49,6 @@
             BOOL __opaque[56]; 
         } __m_; 
     }  _mapDelegateMutex;
-    struct { 
-        unsigned char timePeriod; 
-        unsigned char overlayType; 
-        unsigned char applicationState; 
-        unsigned char searchResultsType; 
-        bool mapHasLabels; 
-    }  _mapDisplayStyle;
-    VKTimedAnimation * _mapDisplayStyleAnimation;
     struct unique_ptr<md::MapEngine, std::__1::default_delete<md::MapEngine> > { 
         struct __compressed_pair<md::MapEngine *, std::__1::default_delete<md::MapEngine> > { 
             struct MapEngine {} *__value_; 
@@ -74,6 +72,7 @@
     long long  _navigationDisplayRate;
     VKNotificationObserver * _notificationObserver;
     GEOPOICategoryFilter * _pointsOfInterestFilter;
+    VKRouteContext * _routeContext;
     struct _retain_ptr<VKStateCaptureHandler *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> { 
         int (**_vptr$_retain_ptr)(); 
         VKStateCaptureHandler *_obj; 
@@ -85,11 +84,10 @@
     double  _verticalYaw;
 }
 
-@property (nonatomic) bool allowDatelineWraparound;
 @property (nonatomic, readonly) double altitude;
 @property (getter=isAnimatingToTrackAnnotation, nonatomic, readonly) bool animatingToTrackAnnotation;
+@property (nonatomic) struct { bool x1; double x2; bool x3; bool x4; } annotationTrackingBehavior;
 @property (nonatomic) long long annotationTrackingHeadingAnimationDisplayRate;
-@property (nonatomic) long long annotationTrackingZoomStyle;
 @property (nonatomic) unsigned char applicationState;
 @property (nonatomic) long long applicationUILayout;
 @property (nonatomic) <VKMapViewCameraDelegate> *cameraDelegate;
@@ -122,9 +120,11 @@
 @property (nonatomic, readonly) VKMapCanvas *mapCanvas;
 @property (nonatomic) <VKMapViewDelegate> *mapDelegate;
 @property (nonatomic) struct { unsigned char x1; unsigned char x2; unsigned char x3; unsigned char x4; bool x5; } mapDisplayStyle;
-@property (nonatomic, readonly) const struct MapEngine { int (**x1)(); struct shared_ptr<md::TaskContext> { struct TaskContext {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct Device {} *x3; /* Warning: unhandled struct encoding: '{_retain_ptr<_MapEngineRenderQueueSource *' */ struct x4; }*mapEngine; /* unknown property attribute:  geo::_equal_objc>=^^?@{_retain_objc=}{_release_objc=}}QQ} */
+@property (nonatomic, readonly) const struct MapEngine { int (**x1)(); struct shared_ptr<md::TaskContext> { struct TaskContext {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct Device {} *x3; struct RealisticCommandBufferSelector {} *x4; /* Warning: unhandled struct encoding: '{_retain_ptr<_MapEngineRenderQueueSource *' */ struct x5; }*mapEngine; /* unknown property attribute:  geo::_equal_objc>=^^?@{_retain_objc=}{_release_objc=}}QQ{shared_ptr<std::__1::atomic<unsigned long> >=^{atomic<unsigned long>}^{__shared_weak_count}}} */
 @property (nonatomic, readonly) GEOMapRegion *mapRegion;
 @property (nonatomic) int mapType;
+@property (getter=maxPitch, nonatomic, readonly) double maxPitch;
+@property (getter=minPitch, nonatomic, readonly) double minPitch;
 @property (nonatomic) long long navigationDisplayRate;
 @property (nonatomic) long long navigationShieldSize;
 @property (nonatomic, readonly) double pitch;
@@ -148,6 +148,7 @@
 @property (nonatomic) bool staysCenteredDuringPinch;
 @property (nonatomic) bool staysCenteredDuringRotation;
 @property (nonatomic) float styleZOffsetScale;
+@property (nonatomic, readonly) bool supportsGPUFrameCaptureToDestination;
 @property (nonatomic) long long targetDisplay;
 @property (nonatomic) bool trackingCameraShouldHandleGestures;
 @property (nonatomic) double trackingZoomScale;
@@ -181,13 +182,11 @@
 - (void)addOverlay:(id)arg1;
 - (void)addPersistentRouteOverlay:(id)arg1;
 - (void)addRouteOverlay:(id)arg1;
-- (bool)allowDatelineWraparound;
 - (double)altitude;
-- (void)animateStylesWithDuration:(double)arg1 animations:(id /* block */)arg2;
 - (id /* block */)annotationCoordinateTest;
 - (id /* block */)annotationRectTest;
+- (struct { bool x1; double x2; bool x3; bool x4; })annotationTrackingBehavior;
 - (long long)annotationTrackingHeadingAnimationDisplayRate;
-- (long long)annotationTrackingZoomStyle;
 - (unsigned char)applicationState;
 - (long long)applicationUILayout;
 - (void)arController:(id)arg1 arSessionWasInterrupted:(unsigned long long)arg2;
@@ -255,10 +254,11 @@
 - (unsigned char)emphasis;
 - (bool)enableDebugLabelHighlighting;
 - (void)enableTestStatistics;
+- (void)enableViewDataLoading:(bool)arg1;
 - (void)enter3DMode;
 - (void)enterARModeAtCoordinate:(struct { double x1; double x2; })arg1;
 - (void)enterMuninForMarker:(id)arg1 withHeading:(double)arg2;
-- (void)enterMuninForStorefrontView:(id)arg1;
+- (void)enterMuninForStorefrontView:(id)arg1 secondaryStorefrontView:(id)arg2;
 - (void)exit3DMode;
 - (void)exitARMode;
 - (id)featureMarkerAtPoint:(struct CGPoint { double x1; double x2; })arg1;
@@ -313,12 +313,14 @@
 - (void)mapDidFinishChangingMapDisplayStyle:(struct { unsigned char x1; unsigned char x2; unsigned char x3; unsigned char x4; bool x5; })arg1;
 - (void)mapDidReloadStylesheet:(id)arg1;
 - (struct { unsigned char x1; unsigned char x2; unsigned char x3; unsigned char x4; bool x5; })mapDisplayStyle;
-- (const struct MapEngine { int (**x1)(); struct shared_ptr<md::TaskContext> { struct TaskContext {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct Device {} *x3; struct _retain_ptr<_MapEngineRenderQueueSource *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> { int (**x_4_1_1)(); id x_4_1_2; struct _retain_objc { } x_4_1_3; struct _release_objc { } x_4_1_4; } x4; struct unique_ptr<ggl::DisplayLink, std::__1::default_delete<ggl::DisplayLink> > { struct __compressed_pair<ggl::DisplayLink *, std::__1::default_delete<ggl::DisplayLink> > { struct DisplayLink {} *x_1_2_1; } x_5_1_1; } x5; struct unique_ptr<ggl::SnapshotRunLoop, std::__1::default_delete<ggl::SnapshotRunLoop> > { struct __compressed_pair<ggl::SnapshotRunLoop *, std::__1::default_delete<ggl::SnapshotRunLoop> > { struct SnapshotRunLoop {} *x_1_2_1; } x_6_1_1; } x6; struct RunLoop {} *x7; struct unique_ptr<md::AnimationManager, std::__1::default_delete<md::AnimationManager> > { struct __compressed_pair<md::AnimationManager *, std::__1::default_delete<md::AnimationManager> > { struct AnimationManager {} *x_1_2_1; } x_8_1_1; } x8; }*)mapEngine;
+- (const struct MapEngine { int (**x1)(); struct shared_ptr<md::TaskContext> { struct TaskContext {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct Device {} *x3; struct RealisticCommandBufferSelector {} *x4; struct _retain_ptr<_MapEngineRenderQueueSource *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> { int (**x_5_1_1)(); id x_5_1_2; struct _retain_objc { } x_5_1_3; struct _release_objc { } x_5_1_4; } x5; struct unique_ptr<ggl::DisplayLink, std::__1::default_delete<ggl::DisplayLink> > { struct __compressed_pair<ggl::DisplayLink *, std::__1::default_delete<ggl::DisplayLink> > { struct DisplayLink {} *x_1_2_1; } x_6_1_1; } x6; struct unique_ptr<ggl::SnapshotRunLoop, std::__1::default_delete<ggl::SnapshotRunLoop> > { struct __compressed_pair<ggl::SnapshotRunLoop *, std::__1::default_delete<ggl::SnapshotRunLoop> > { struct SnapshotRunLoop {} *x_1_2_1; } x_7_1_1; } x7; struct RunLoop {} *x8; struct unique_ptr<md::AnimationManager, std::__1::default_delete<md::AnimationManager> > { struct __compressed_pair<md::AnimationManager *, std::__1::default_delete<md::AnimationManager> > { struct AnimationManager {} *x_1_2_1; } x_9_1_1; } x9; }*)mapEngine;
 - (void)mapLabelsDidLayout:(id)arg1;
 - (id)mapRegion;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })mapRegionBounds;
 - (int)mapType;
+- (double)maxPitch;
 - (double)maximumZoomLevelForTileSize:(long long)arg1;
+- (double)minPitch;
 - (double)minimumZoomLevelForTileSize:(long long)arg1;
 - (void)moveToFlyoverTourStartPosition:(id)arg1 duration:(double)arg2 completion:(id /* block */)arg3;
 - (bool)moveToMarker:(id)arg1 withHeading:(double)arg2 animated:(bool)arg3 completionHandler:(id /* block */)arg4;
@@ -372,9 +374,8 @@
 - (void)selectedLabelMarkerWillDisappear:(const struct shared_ptr<md::LabelMarker> { struct LabelMarker {} *x1; struct __shared_weak_count {} *x2; }*)arg1;
 - (id)selectedTransitLineIDs;
 - (void)setARInterfaceOrientation:(long long)arg1;
-- (void)setAllowDatelineWraparound:(bool)arg1;
+- (void)setAnnotationTrackingBehavior:(struct { bool x1; double x2; bool x3; bool x4; })arg1;
 - (void)setAnnotationTrackingHeadingAnimationDisplayRate:(long long)arg1;
-- (void)setAnnotationTrackingZoomStyle:(long long)arg1;
 - (void)setApplicationState:(unsigned char)arg1;
 - (void)setApplicationState:(unsigned char)arg1 displayedSearchResultsType:(unsigned char)arg2;
 - (void)setApplicationUILayout:(long long)arg1;
@@ -415,6 +416,7 @@
 - (void)setIconsShouldAlignToPixels:(bool)arg1;
 - (void)setIsPitchable:(bool)arg1;
 - (void)setLabelEdgeInsets:(struct VKEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (void)setLabelExclusionRegions:(id)arg1;
 - (void)setLabelMarkerSelectionEnabled:(bool)arg1;
 - (void)setLabelScaleFactor:(long long)arg1;
 - (void)setLoadMuninAvailability:(bool)arg1;
@@ -426,6 +428,7 @@
 - (void)setMapDisplayStyle:(struct { unsigned char x1; unsigned char x2; unsigned char x3; unsigned char x4; bool x5; })arg1 animated:(bool)arg2 duration:(double)arg3;
 - (void)setMapRegion:(id)arg1 pitch:(double)arg2 yaw:(double)arg3;
 - (void)setMapRegion:(id)arg1 pitch:(double)arg2 yaw:(double)arg3 duration:(double)arg4 completion:(id /* block */)arg5;
+- (void)setMapRegion:(id)arg1 pitch:(double)arg2 yaw:(double)arg3 duration:(double)arg4 timingCurve:(id /* block */)arg5 completion:(id /* block */)arg6;
 - (void)setMapType:(int)arg1;
 - (void)setMapType:(int)arg1 animated:(bool)arg2;
 - (void)setNavContext:(id)arg1;
@@ -477,7 +480,7 @@
 - (void)startPinchingWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)startPitchingWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)startRotatingWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1;
-- (void)startTrackingAnnotation:(id)arg1 trackHeading:(bool)arg2 animated:(bool)arg3;
+- (void)startTrackingAnnotation:(id)arg1 trackHeading:(bool)arg2 animated:(bool)arg3 duration:(double)arg4 timingFunction:(id /* block */)arg5;
 - (bool)staysCenteredDuringPinch;
 - (bool)staysCenteredDuringRotation;
 - (void)stopFlyoverAnimation;
@@ -490,6 +493,7 @@
 - (void)stopTrackingAnnotation;
 - (float)styleZOffsetScale;
 - (bool)stylesheetIsDevResource;
+- (bool)supportsGPUFrameCaptureToDestination;
 - (bool)supportsMapType:(int)arg1;
 - (bool)supportsNightMode;
 - (bool)tapAtPoint:(struct CGPoint { double x1; double x2; })arg1;
@@ -507,6 +511,7 @@
 - (void)transitionToTracking:(bool)arg1 mapMode:(long long)arg2 startLocation:(struct { double x1; double x2; })arg3 startCourse:(double)arg4 pounceCompletionHandler:(id /* block */)arg5;
 - (void)updatePanWithTranslation:(struct CGPoint { double x1; double x2; })arg1;
 - (void)updatePinchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 oldFactor:(double)arg2 newFactor:(double)arg3;
+- (void)updatePitchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 degrees:(double)arg2;
 - (void)updatePitchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 translation:(double)arg2;
 - (void)updateRotationWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 newValue:(double)arg2;
 - (id)userLocationAnimator;
@@ -524,7 +529,7 @@
 - (bool)wantsTimerTick;
 - (void)willBecomeFullyDrawn;
 - (void)willEnterForeground;
-- (void)willLayoutWithTimestamp:(double)arg1;
+- (void)willLayoutWithTimestamp:(double)arg1 withContext:(struct LayoutContext { id x1; struct shared_ptr<gdc::Camera> { struct Camera {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; unsigned char x3; struct VKEdgeInsets { float x_4_1_1; float x_4_1_2; float x_4_1_3; float x_4_1_4; } x4; struct VKEdgeInsets { float x_5_1_1; float x_5_1_2; float x_5_1_3; float x_5_1_4; } x5; struct shared_ptr<ggl::PolygonBase::MeshMesh> { struct MeshMesh {} *x_6_1_1; struct __shared_weak_count {} *x_6_1_2; } x6; struct shared_ptr<ggl::PolygonBase::MeshMesh> { struct MeshMesh {} *x_7_1_1; struct __shared_weak_count {} *x_7_1_2; } x7; struct shared_ptr<ggl::CommonMesh::Pos2UVMesh> { struct Pos2UVMesh {} *x_8_1_1; struct __shared_weak_count {} *x_8_1_2; } x8; struct StencilManager { unsigned char x_9_1_1; unsigned char x_9_1_2; unsigned char x_9_1_3; struct ClearItem { unsigned char x_4_2_1; struct Matrix<float, 4, 1> { float x_2_3_1[4]; } x_4_2_2; bool x_4_2_3; float x_4_2_4; unsigned char x_4_2_5; unsigned int x_4_2_6; } x_9_1_4; } x9; struct shared_ptr<ggl::Device> { struct Device {} *x_10_1_1; struct __shared_weak_count {} *x_10_1_2; } x10; }*)arg2;
 - (void)willStopPanningAtPoint:(struct CGPoint { double x1; double x2; })arg1 withVelocity:(struct CGPoint { double x1; double x2; })arg2;
 - (float)worldSpaceWidthOfView;
 - (double)yaw;

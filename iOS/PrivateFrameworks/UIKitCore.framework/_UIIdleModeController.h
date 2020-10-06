@@ -5,6 +5,7 @@
 @interface _UIIdleModeController : NSObject {
     UIWindow * _backgroundWindow;
     bool  _didApplyVisualEffects;
+    unsigned long long  _dismissalTransactionID;
     bool  _idleModeEnabled;
     UIWindow * _keyWindow;
     bool  _keyWindowAllowedGroupBlending;

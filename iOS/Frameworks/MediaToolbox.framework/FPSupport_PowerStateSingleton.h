@@ -11,5 +11,6 @@
 - (void)_didChangePowerState:(id)arg1;
 - (void)dealloc;
 - (id)init;
+- (void)postNotification;
 
 @end

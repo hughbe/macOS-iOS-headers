@@ -3,11 +3,12 @@
  */
 
 @interface MBManager : NSObject {
-    id  _delegate;
+    NSObject<MBManagerDelegate> * _delegate;
 }
 
-@property (nonatomic) NSObject<MBManagerDelegate> *delegate;
+@property NSObject<MBManagerDelegate> *delegate;
 
+- (void).cxx_destruct;
 - (id)_init;
 - (bool)addFileToBackupUDID:(id)arg1 snapshotID:(unsigned long long)arg2 domainName:(id)arg3 relativePath:(id)arg4 fromPath:(id)arg5 error:(id*)arg6;
 - (bool)airTrafficShouldCreateAppPlaceholdersWithError:(id*)arg1;
@@ -97,6 +98,7 @@
 - (bool)setupBackupWithPasscode:(id)arg1 error:(id*)arg2;
 - (void)startBackup;
 - (bool)startBackupWithError:(id*)arg1;
+- (bool)startBackupWithOptions:(id)arg1 error:(id*)arg2;
 - (void)startDataTransferWithPreflightInfo:(id)arg1 completionHandler:(id /* block */)arg2;
 - (bool)startDeviceTransferWithTaskType:(long long)arg1 sessionInfo:(id)arg2 error:(id*)arg3;
 - (void)startKeychainDataImportWithKeychainInfo:(id)arg1 completionHandler:(id /* block */)arg2;

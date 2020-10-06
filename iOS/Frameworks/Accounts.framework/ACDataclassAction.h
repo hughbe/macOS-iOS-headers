@@ -6,6 +6,8 @@
     NSArray * _affectedContainers;
     bool  _isDestructive;
     long long  _type;
+    NSString * _undoAlertMessage;
+    NSString * _undoAlertTitle;
 }
 
 @property (getter=_isError, readonly) bool _error;
@@ -16,6 +18,8 @@
 @property (nonatomic, readonly) bool isDestructive;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) long long type;
+@property (nonatomic, retain) NSString *undoAlertMessage;
+@property (nonatomic, retain) NSString *undoAlertTitle;
 
 // Image: /System/Library/Frameworks/Accounts.framework/Accounts
 
@@ -39,7 +43,11 @@
 - (id)initWithType:(long long)arg1 destructivity:(bool)arg2 affectedContainers:(id)arg3;
 - (bool)isDestructive;
 - (bool)isEqual:(id)arg1;
+- (void)setUndoAlertMessage:(id)arg1;
+- (void)setUndoAlertTitle:(id)arg1;
 - (long long)type;
+- (id)undoAlertMessage;
+- (id)undoAlertTitle;
 
 // Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
 

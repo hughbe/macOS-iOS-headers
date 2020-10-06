@@ -9,10 +9,8 @@
     NSSet * _mandatoryNameProperties;
 }
 
-@property (nonatomic, copy) NSDictionary *fallBackNamePropertyByNameKey;
 @property (nonatomic) bool ignoresNickname;
 @property (nonatomic) bool ignoresOrganization;
-@property (nonatomic, copy) NSSet *mandatoryNameProperties;
 
 + (bool)supportsSecureCoding;
 
@@ -23,18 +21,13 @@
 - (id)_cn_requiredKeys;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)encodeWithCoder:(id)arg1;
-- (id)fallBackNamePropertyByNameKey;
 - (unsigned long long)hash;
 - (bool)ignoresNickname;
 - (bool)ignoresOrganization;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
-- (id)mandatoryNameProperties;
-- (void)setFallBackNamePropertyByNameKey:(id)arg1;
 - (void)setIgnoresNickname:(bool)arg1;
 - (void)setIgnoresOrganization:(bool)arg1;
-- (void)setMandatoryNameProperties:(id)arg1;
-- (void)setupNameKeys;
 
 @end

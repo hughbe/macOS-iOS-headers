@@ -2,51 +2,31 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKTransitItemIncidentCell : MKCustomSeparatorTableViewCell {
-    MKTransitIncidentItemCellBackgroundView * _backgroundView;
-    NSLayoutConstraint * _bottomToBackgroundConstraint;
-    NSLayoutConstraint * _bottomToLabelConstraint;
-    NSArray * _constraints;
-    UIImageView * _incidentIconImageView;
-    bool  _incidentIsBlocking;
-    _MKUILabel * _lastUpdatedLabel;
-    NSLayoutConstraint * _lastUpdatedToTitleBaselineConstraint;
-    bool  _needsConstraintsRebuild;
-    bool  _padBottom;
-    _MKUILabel * _titleLabel;
-    NSLayoutConstraint * _titleLabelToTopConstraint;
-    NSLayoutConstraint * _titleToLastUpdatedLabelConstraint;
-    bool  _useCondensedWidthLayout;
+@interface MKTransitItemIncidentCell : MKCustomSeparatorTableViewCell <MKTransitItemIncidentView> {
+    MKTransitItemIncidentView * _incidentView;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic) bool padBottom;
 @property (nonatomic) long long position;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (id)_blockingImage;
-- (void)_configureWithMessage:(id)arg1 referenceDate:(id)arg2 lastUpdated:(id)arg3 incidentIsBlocking:(bool)arg4 shouldShowImage:(bool)arg5 inSiri:(bool)arg6;
-- (void)_contentSizeCategoryDidChange;
-- (double)_leadingMargin;
-- (id)_nonBlockingImage;
-- (double)_trailingMargin;
-- (void)_updateBottomConstraints;
-- (void)_updateConstraintValues;
-- (void)configureViews;
+- (void)_configureViews;
+- (void)_updateIncidentViewBottomOffset;
 - (void)configureWithIncident:(id)arg1 referenceDate:(id)arg2 shouldShowImage:(bool)arg3 inSiri:(bool)arg4;
 - (void)configureWithIncidentMessage:(id)arg1 referenceDate:(id)arg2 shouldShowImage:(bool)arg3 inSiri:(bool)arg4;
-- (void)dealloc;
-- (void)didMoveToWindow;
-- (void)infoCardThemeChanged;
+- (void)configureWithMessage:(id)arg1 incident:(id)arg2 referenceDate:(id)arg3 shouldShowImage:(bool)arg4 inSiri:(bool)arg5;
 - (id)initWithReuseIdentifier:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 - (bool)padBottom;
 - (long long)position;
-- (void)rebuildConstraints;
 - (void)setLeadingSeparatorInset:(double)arg1;
 - (void)setPadBottom:(bool)arg1;
 - (void)setPosition:(long long)arg1;
 - (void)setSeparatorHidden:(bool)arg1;
 - (void)setTrailingSeparatorInset:(double)arg1;
-- (void)updateConstraints;
 
 @end

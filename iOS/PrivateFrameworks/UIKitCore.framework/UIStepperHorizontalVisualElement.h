@@ -43,8 +43,6 @@
 @property (nonatomic) double value;
 @property (nonatomic) bool wraps;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)_highlightOpacityAnimation;
 + (id)_highlightSizeAnimation;
 + (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })initialAlignmentRectInsets;
@@ -69,9 +67,6 @@
 - (void)_updateDividerImageForButtonState;
 - (void)_updateHighlight:(id)arg1 button:(id)arg2 onRight:(bool)arg3;
 - (void)_updateHighlightingAtPoint:(struct CGPoint { double x1; double x2; })arg1 withEvent:(id)arg2;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })alignmentRectInsetsForControl:(id)arg1;
 - (bool)autorepeat;
 - (id)backgroundImageForState:(unsigned long long)arg1;

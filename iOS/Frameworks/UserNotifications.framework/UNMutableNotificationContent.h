@@ -26,7 +26,6 @@
 @property (nonatomic) bool shouldIgnoreDoNotDisturb;
 @property (nonatomic) bool shouldIgnoreDowntime;
 @property (nonatomic) bool shouldPreemptPresentedNotification;
-@property (nonatomic) bool shouldPreemptSTAR;
 @property (nonatomic) bool shouldPreventNotificationDismissalAfterDefaultAction;
 @property (nonatomic) bool shouldSuppressDefaultAction;
 @property (nonatomic) bool shouldSuppressScreenLightUp;
@@ -41,6 +40,8 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSSet *topicIdentifiers;
 @property (nonatomic, copy) NSDictionary *userInfo;
+
+// Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)setAccessoryImageName:(id)arg1;
@@ -65,7 +66,6 @@
 - (void)setShouldIgnoreDoNotDisturb:(bool)arg1;
 - (void)setShouldIgnoreDowntime:(bool)arg1;
 - (void)setShouldPreemptPresentedNotification:(bool)arg1;
-- (void)setShouldPreemptSTAR:(bool)arg1;
 - (void)setShouldPreventNotificationDismissalAfterDefaultAction:(bool)arg1;
 - (void)setShouldSuppressDefaultAction:(bool)arg1;
 - (void)setShouldSuppressScreenLightUp:(bool)arg1;
@@ -80,5 +80,25 @@
 - (void)setTitle:(id)arg1;
 - (void)setTopicIdentifiers:(id)arg1;
 - (void)setUserInfo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/EmergencyAlerts.framework/EmergencyAlerts
+
+- (id)ea_bundleForBundleIdentifier:(id)arg1;
+- (id)ea_defaultTitle;
+- (id)ea_externalToneFileURLForTone:(id)arg1 inBundle:(id)arg2;
+- (id)ea_externalVibrationPatternFileURLForVibration:(id)arg1 inBundle:(id)arg2;
+- (id)ea_operatorPreferenceForSoundIsMutableInRelayMode;
+- (id)ea_operatorPreferences;
+- (void)ea_setPropertiesForCellBroadcastMessage:(id)arg1 withActivePhoneCall:(bool)arg2;
+- (id)ea_timestampSubtitleForDate:(id)arg1 locale:(id)arg2;
+- (id)ea_timestampSubtitleForNow;
+
+// Image: /System/Library/PrivateFrameworks/HealthMenstrualCycles.framework/HealthMenstrualCycles
+
++ (id)_hkmc_contentWithCategory:(id)arg1 body:(id)arg2 title:(id)arg3 expirationDate:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/SleepDaemon.framework/SleepDaemon
+
++ (id)hdsp_notificationContentWithEnvironment:(id)arg1;
 
 @end

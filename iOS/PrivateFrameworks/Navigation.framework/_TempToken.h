@@ -5,7 +5,9 @@
 @interface _TempToken : NSObject <GEOServerFormatToken> {
     <GEOTransitArtworkDataSource> * _artworkValue;
     <GEOServerFormatTokenCountdownValue> * _countdownValue;
+    float  _percentageValue;
     <GEOServerFormatTokenPriceValue> * _priceValue;
+    bool  _shouldScaleUnits;
     NSString * _stringValue;
     NSArray * _timeStampValues;
     NSString * _token;
@@ -20,7 +22,9 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic) float percentageValue;
 @property (nonatomic, retain) <GEOServerFormatTokenPriceValue> *priceValue;
+@property (nonatomic, readonly) bool shouldScaleUnits;
 @property (nonatomic, retain) NSString *stringValue;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) NSArray *timeStampValues;
@@ -28,7 +32,7 @@
 @property (nonatomic) long long type;
 @property (nonatomic) unsigned int value1;
 @property (nonatomic) unsigned int value2;
-@property (nonatomic, readonly) NSArray *value3s;
+@property (nonatomic, retain) NSArray *value3s;
 
 - (void).cxx_destruct;
 - (id)artworkValue;
@@ -36,9 +40,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithToken:(id)arg1;
+- (float)percentageValue;
 - (id)priceValue;
 - (void)setArtworkValue:(id)arg1;
 - (void)setCountdownValue:(id)arg1;
+- (void)setPercentageValue:(float)arg1;
 - (void)setPriceValue:(id)arg1;
 - (void)setStringValue:(id)arg1;
 - (void)setTimeStampValues:(id)arg1;
@@ -46,6 +52,8 @@
 - (void)setType:(long long)arg1;
 - (void)setValue1:(unsigned int)arg1;
 - (void)setValue2:(unsigned int)arg1;
+- (void)setValue3s:(id)arg1;
+- (bool)shouldScaleUnits;
 - (id)stringValue;
 - (id)timeStampValues;
 - (id)token;

@@ -17,6 +17,7 @@
 + (bool)isCanceledError:(id)arg1;
 + (bool)isCertificateError:(id)arg1;
 + (bool)isError:(id)arg1 errorWithDomain:(id)arg2 code:(long long)arg3;
++ (bool)isFileAlreadyExistsError:(id)arg1;
 + (bool)isFileNotFoundError:(id)arg1;
 + (bool)isTimeoutError:(id)arg1;
 + (id)timeoutError;

@@ -3,15 +3,28 @@
  */
 
 @interface GEOPDSpatialEventLookupResult : PBCodable <NSCopying> {
+    GEOMapRegion * _displayMapRegion;
     NSMutableArray * _events;
     struct { 
         unsigned int has_statusCode : 1; 
+        unsigned int read_unknownFields : 1; 
+        unsigned int read_displayMapRegion : 1; 
+        unsigned int read_events : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
+    PBDataReader * _reader;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _readerLock;
+    unsigned int  _readerMarkLength;
+    unsigned int  _readerMarkPos;
     int  _statusCode;
     PBUnknownFields * _unknownFields;
 }
 
+@property (nonatomic, retain) GEOMapRegion *displayMapRegion;
 @property (nonatomic, retain) NSMutableArray *events;
+@property (nonatomic, readonly) bool hasDisplayMapRegion;
 @property (nonatomic) bool hasStatusCode;
 @property (nonatomic) int statusCode;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
@@ -28,15 +41,23 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (id)displayMapRegion;
 - (id)eventAtIndex:(unsigned long long)arg1;
 - (id)events;
 - (unsigned long long)eventsCount;
+- (bool)hasDisplayMapRegion;
 - (bool)hasStatusCode;
 - (unsigned long long)hash;
+- (id)init;
+- (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setDisplayMapRegion:(id)arg1;
 - (void)setEvents:(id)arg1;
 - (void)setHasStatusCode:(bool)arg1;
 - (void)setStatusCode:(int)arg1;

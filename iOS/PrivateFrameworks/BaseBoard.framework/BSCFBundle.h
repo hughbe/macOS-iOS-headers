@@ -6,8 +6,6 @@
     struct __CFBundle { } * _cfBundle;
 }
 
-- (id)_initWithCFBundle:(struct __CFBundle { }*)arg1;
-- (id)_pathsForResource:(id)arg1 ofType:(id)arg2 inDirectory:(id)arg3;
 - (id)bundleIdentifier;
 - (id)bundlePath;
 - (struct __CFBundle { }*)cfBundle;

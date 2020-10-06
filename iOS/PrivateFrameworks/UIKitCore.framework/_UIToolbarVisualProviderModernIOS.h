@@ -22,8 +22,6 @@
 - (void)_itemCustomViewDidChange:(id)arg1 fromView:(id)arg2;
 - (void)_itemDidChangeEnabledState:(id)arg1;
 - (void)_itemDidChangeHiddenState:(id)arg1;
-- (void)_itemDidChangeSecondaryActionState:(id)arg1;
-- (void)_itemDidChangeSecondaryActions:(id)arg1;
 - (void)_itemDidChangeSelectionState:(id)arg1;
 - (void)_itemDidChangeWidth:(id)arg1;
 - (void)_itemStandardViewNeedsUpdate:(id)arg1;
@@ -38,6 +36,7 @@
 - (struct CGSize { double x1; double x2; })defaultSizeForOrientation:(long long)arg1;
 - (long long)itemDistribution;
 - (void)layoutSubviews;
+- (void)prepare;
 - (void)setCustomBackgroundView:(id)arg1;
 - (void)setItemDistribution:(long long)arg1;
 - (void)setUseModernAppearance:(bool)arg1;

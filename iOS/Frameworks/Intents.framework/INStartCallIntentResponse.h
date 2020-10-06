@@ -10,6 +10,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSNumber *shouldDoEmergencyCountdown;
+@property (nonatomic, copy) INConnectedCall *startedCall;
 @property (readonly) Class superclass;
 
 + (bool)_appLaunchRequestedFromCode:(long long)arg1;
@@ -33,6 +34,8 @@
 - (void)setConfirmationReason:(long long)arg1;
 - (void)setPropertiesByName:(id)arg1;
 - (void)setShouldDoEmergencyCountdown:(id)arg1;
+- (void)setStartedCall:(id)arg1;
 - (id)shouldDoEmergencyCountdown;
+- (id)startedCall;
 
 @end

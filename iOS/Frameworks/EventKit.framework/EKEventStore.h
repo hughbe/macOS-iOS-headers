@@ -27,17 +27,20 @@
     bool  _hasAccessToReminders;
     bool  _inboxRepliedSectionHasContent;
     CADDatabaseInitializationOptions * _initializationOptions;
-    NSMutableSet * _insertedObjects;
+    NSHashTable * _insertedObjects;
     double  _lastDatabaseNotificationTimestamp;
     EKObjectID * _localSourceID;
     EKObjectID * _naturalLanguageSuggestedEventCalendarID;
     bool  _needsCommitForRemoteChanges;
     NSObject<OS_dispatch_queue> * _notificationCollectionCacheQueue;
     NSMutableSet * _objectsPendingCommit;
+    NSMutableSet * _objectsPendingSave;
     NSMutableDictionary * _registeredObjects;
     NSObject<OS_dispatch_queue> * _registeredQueue;
     NSDictionary * _reminderSourceIDToEventSourceIDMapping;
-    NSObject<OS_dispatch_queue> * _reminderSourceMapLock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _reminderSourceMapLock;
     EKReminderStore * _reminderStore;
     NSMutableDictionary * _sources;
     EKObjectID * _subscribedCalendarsSourceID;
@@ -51,6 +54,7 @@
 @property (nonatomic, retain) NSMutableDictionary *_cachedNotificationCollections;
 @property (nonatomic, readonly) bool allowsBirthdayModifications;
 @property (nonatomic, readonly) bool automaticLocationGeocodingAllowed;
+@property (nonatomic) bool birthdayCalendarEnabled;
 @property (nonatomic, readonly) <CalCalendarDataContainerProvider> *calendarDataContainerProvider;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *calendarSourcesAndDefaultsQueue;
 @property (nonatomic, readonly) NSArray *calendars;
@@ -75,7 +79,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) bool inboxRepliedSectionHasContent;
 @property (nonatomic, readonly) NSArray *inboxRepliedSectionItems;
-@property (nonatomic, retain) NSMutableSet *insertedObjects;
+@property (nonatomic, retain) NSHashTable *insertedObjects;
 @property (nonatomic, readonly) bool isDataProtected;
 @property (nonatomic, readonly) unsigned long long lastConfirmedSplashScreenVersion;
 @property (nonatomic) double lastDatabaseNotificationTimestamp;
@@ -84,10 +88,11 @@
 @property (nonatomic, readonly) int notifiableEventCount;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *notificationCollectionCacheQueue;
 @property (nonatomic, retain) NSMutableSet *objectsPendingCommit;
+@property (nonatomic, retain) NSMutableSet *objectsPendingSave;
 @property (nonatomic, retain) NSMutableDictionary *registeredObjects;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *registeredQueue;
 @property (nonatomic, retain) NSDictionary *reminderSourceIDToEventSourceIDMapping;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *reminderSourceMapLock;
+@property (nonatomic, readonly) struct os_unfair_lock_s { unsigned int x1; }*reminderSourceMapLock;
 @property (nonatomic, readonly) EKReminderStore *reminderStore;
 @property (nonatomic) bool showDeclinedEvents;
 @property (nonatomic, readonly) NSArray *sources;
@@ -98,6 +103,13 @@
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *unsavedChangesQueue;
 @property (nonatomic, retain) NSMutableSet *updatedObjects;
 
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
+
++ (void)_addDaysSpannedByEvent:(id)arg1 toCountedSet:(id)arg2 inRange:(id)arg3 withNSCalendar:(id)arg4;
++ (id)_filteredObjectsWithIdentifiers:(id)arg1 fromObjects:(id)arg2;
++ (bool)_isConfirmedSuggestedEvent:(id)arg1 uniqueKey:(id*)arg2;
++ (bool)_skipTCCAccessCheck;
++ (bool)accessGrantedForEntityType:(unsigned long long)arg1;
 + (long long)authorizationStatusForEntityType:(unsigned long long)arg1;
 + (int)calDatabaseInitOptionsFromEKEventStoreInitOptions:(unsigned long long)arg1;
 + (Class)classForEntityName:(id)arg1;
@@ -109,6 +121,7 @@
 + (void)setReminderStoreContainerTokenProvider:(id /* block */)arg1;
 
 - (void).cxx_destruct;
+- (id)ICSDataForCalendarItems:(id)arg1 options:(long long)arg2;
 - (id)ICSDataForCalendarItems:(id)arg1 preventLineFolding:(bool)arg2;
 - (Class)_SGSuggestionsServiceClass;
 - (void)_accessStatusChanged;
@@ -126,8 +139,8 @@
 - (void)_clearCachedConstraintsForSourceWithObjectID:(id)arg1;
 - (void)_clearCachedSources;
 - (id)_combineEventSources:(id)arg1 withReminderSources:(id)arg2;
-- (bool)_commit:(id*)arg1;
-- (void)_databaseChangedExternally:(unsigned long long)arg1;
+- (bool)_commitObjectsWithIdentifiers:(id)arg1 error:(id*)arg2;
+- (void)_databaseChangedExternally:(unsigned long long)arg1 processSynchronously:(bool)arg2;
 - (void)_defaultAlarmChangedExternally;
 - (void)_defaultCalendarChangedExternally;
 - (id)_deletableCalendars;
@@ -135,10 +148,13 @@
 - (void)_deleteObject:(id)arg1;
 - (void)_detachObject:(id)arg1;
 - (id)_eventOccurrenceWithURI:(id)arg1;
+- (id)_eventWithEventIdentifier:(id)arg1;
+- (id)_eventWithRecurrenceIdentifier:(id)arg1;
 - (id)_eventWithURI:(id)arg1 checkValid:(bool)arg2;
 - (id)_fetchConstraintsForSourceWithObjectID:(id)arg1;
 - (id)_fetchPersistentNotificationCollectionForSourceWithObjectID:(id)arg1;
 - (void)_forgetRegisteredObjects;
+- (void)_handleExternalDatabaseChangeNotification:(id)arg1 synchronously:(bool)arg2;
 - (id)_importEventsWithExternalIDs:(id)arg1 fromICSData:(id)arg2 intoCalendarsWithIDs:(id)arg3 options:(unsigned long long)arg4 batchSize:(int)arg5;
 - (void)_insertObject:(id)arg1;
 - (bool)_isUnitTesting;
@@ -149,6 +165,7 @@
 - (void)_postEventStoreChangedNotificationWithChangeType:(unsigned long long)arg1 changedObjectIDs:(id)arg2;
 - (id)_predicateForRemindersWithDate:(id)arg1 useAsCompletionDate:(bool)arg2 calendars:(id)arg3 limitToCompletedOrIncomplete:(bool)arg4 completed:(bool)arg5 includeDatesBefore:(bool)arg6 sortOrder:(int)arg7 preloadProperties:(id)arg8;
 - (id)_predicateForRemindersWithDate:(id)arg1 useAsCompletionDate:(bool)arg2 calendars:(id)arg3 limitToCompletedOrIncomplete:(bool)arg4 completed:(bool)arg5 includeDatesBefore:(bool)arg6 sortOrder:(int)arg7 preloadProperties:(id)arg8 maxResults:(unsigned long long)arg9;
+- (void)_processChangedObjectIDsWithToken:(long long)arg1 errorCode:(int)arg2 changesTruncated:(bool)arg3 latestToken:(long long)arg4 changeData:(id)arg5 insertCount:(int)arg6 updateCount:(int)arg7 deleteCount:(int)arg8 resultHandler:(id /* block */)arg9;
 - (void)_rebuildSourceMapsWithEventSources:(id)arg1 reminderSources:(id)arg2;
 - (bool)_refreshDASource:(id)arg1 isUserRequested:(bool)arg2;
 - (void)_registerObject:(id)arg1;
@@ -160,6 +177,7 @@
 - (bool)_removeReminder:(id)arg1 commit:(bool)arg2 error:(id*)arg3;
 - (void)_requestAccessForEntityType:(unsigned long long)arg1;
 - (void)_reregisterObject:(id)arg1 oldID:(id)arg2;
+- (bool)_saveAndRollbackIfNeededForEvent:(id)arg1 span:(long long)arg2;
 - (bool)_saveCalendar:(id)arg1 commit:(bool)arg2 error:(id*)arg3;
 - (void)_saveWithoutNotify;
 - (void)_setIsUnitTesting:(bool)arg1;
@@ -171,8 +189,10 @@
 - (void)_validateEventPredicate:(id)arg1;
 - (void)_validateObjectIDs:(id)arg1 completion:(id /* block */)arg2;
 - (void)_validateReminderPredicate:(id)arg1;
+- (void)acceptAlternateTimeProposalNotification:(id)arg1 forAttendee:(id)arg2 commit:(bool)arg3 error:(id*)arg4;
 - (void)acceptSuggestedEvent:(id)arg1;
 - (bool)accessGrantedForEntityType:(unsigned long long)arg1;
+- (bool)acknowledgeNotifications:(id)arg1 error:(id*)arg2;
 - (id)acquireDefaultCalendarForNewEvents;
 - (id)acquireDefaultCalendarForNewReminders;
 - (void)addContactIdentifier:(id)arg1 forCalendarItem:(id)arg2;
@@ -182,6 +202,8 @@
 - (id)allEventsWithUniqueId:(id)arg1 occurrenceDate:(id)arg2;
 - (bool)allowsBirthdayModifications;
 - (bool)automaticLocationGeocodingAllowed;
+- (id)beginCalDAVServerSimulationWithHostname:(id)arg1;
+- (bool)birthdayCalendarEnabled;
 - (void)cacheValidationStatusForAddress:(id)arg1 status:(unsigned long long)arg2;
 - (id)cachedConstraintsForSource:(id)arg1;
 - (id)cachedConstraintsForSourceWithObjectID:(id)arg1;
@@ -191,6 +213,7 @@
 - (id)calendarItemsWithExternalIdentifier:(id)arg1 inCalendars:(id)arg2;
 - (id)calendarItemsWithUniqueIdentifier:(id)arg1 inCalendar:(id)arg2;
 - (id)calendarSourcesAndDefaultsQueue;
+- (id)calendarWithExternalID:(id)arg1;
 - (id)calendarWithExternalURI:(id)arg1;
 - (id)calendarWithID:(id)arg1;
 - (id)calendarWithIdentifier:(id)arg1;
@@ -199,6 +222,7 @@
 - (bool)canModifyCalendarDatabase;
 - (bool)canModifySuggestedEventCalendar;
 - (void)cancelFetchRequest:(id)arg1;
+- (void)changedObjectIDsSinceToken:(long long)arg1 resultHandler:(id /* block */)arg2;
 - (id)changesSinceSequenceNumber:(int)arg1;
 - (void)clearSuperfluousChanges;
 - (id)closestCachedOccurrenceToDate:(double)arg1 forEventUID:(int)arg2;
@@ -206,6 +230,7 @@
 - (id)combineEventCalendars:(id)arg1 withReminderCalendars:(id)arg2;
 - (id)combinedReminderAndEventSources;
 - (bool)commit:(id*)arg1;
+- (bool)commitObjects:(id)arg1 error:(id*)arg2;
 - (void)confirmSuggestedEvent:(id)arg1;
 - (id)connection;
 - (id)constraintsCacheQueue;
@@ -219,6 +244,7 @@
 - (id)databasePath;
 - (id)dbChangedQueue;
 - (void)dealloc;
+- (void)declineAlternateTimeProposalNotification:(id)arg1 forAttendee:(id)arg2 commit:(bool)arg3 error:(id*)arg4;
 - (id)defaultAllDayAlarm;
 - (id)defaultCalendarForNewEvents;
 - (id)defaultCalendarForNewEventsInDelegateSource:(id)arg1;
@@ -231,14 +257,14 @@
 - (void)deleteSuggestedEvent:(id)arg1;
 - (id)deletedObjects;
 - (id)doEvents:(id)arg1 haveOccurrencesAfterDate:(id)arg2;
-- (id)earliestExpiringNotifiableEventEndDateAfterDate:(id)arg1 timeZone:(id)arg2;
+- (void)endCalDAVServerSimulation:(id)arg1;
 - (void)enumerateEventsMatchingPredicate:(id)arg1 usingBlock:(id /* block */)arg2;
 - (id)eventForUID:(id)arg1 occurrenceDate:(id)arg2;
 - (id)eventForUID:(id)arg1 occurrenceDate:(id)arg2 checkValid:(bool)arg3;
 - (unsigned long long)eventNotificationCount;
-- (unsigned long long)eventNotificationCountForSource:(id)arg1 excludingDelegateSources:(bool)arg2 filteredByShowsNotificationsFlag:(bool)arg3;
+- (unsigned long long)eventNotificationCountForSource:(id)arg1 excludingDelegateSources:(bool)arg2 filteredByShowsNotificationsFlag:(bool)arg3 excludeRowIDs:(id)arg4;
 - (id)eventNotifications;
-- (id)eventNotificationsFilteredByShowsNotificationsFlag:(bool)arg1;
+- (id)eventNotificationsFilteredByShowsNotificationsFlag:(bool)arg1 earliestExpiringNotification:(id*)arg2;
 - (id)eventObjectIDsMatchingPredicate:(id)arg1;
 - (id)eventSourceForReminderSource:(id)arg1;
 - (id)eventSourceIDForReminderSourceID:(id)arg1;
@@ -248,19 +274,24 @@
 - (id)eventStoreIdentifier;
 - (id)eventWithIdentifier:(id)arg1;
 - (id)eventWithUUID:(id)arg1;
+- (id)eventWithUUID:(id)arg1 occurrenceDate:(id)arg2;
 - (id)eventWithUniqueId:(id)arg1;
 - (id)eventWithUniqueId:(id)arg1 occurrenceDate:(id)arg2;
 - (id)eventsMatchingPredicate:(id)arg1;
 - (id)eventsWithExternalIdentifier:(id)arg1 inCalendars:(id)arg2;
+- (id)eventsWithIdentifiers:(id)arg1;
 - (void)fetchChangedObjectIDsSinceToken:(long long)arg1 resultHandler:(id /* block */)arg2;
+- (void)fetchEventCountsInRange:(id)arg1 inCalendars:(id)arg2 exclusionOptions:(long long)arg3 completion:(id /* block */)arg4;
 - (id)fetchEventsMatchingPredicate:(id)arg1 resultHandler:(id /* block */)arg2;
 - (void)fetchGrantedDelegatesForSource:(id)arg1 results:(id /* block */)arg2;
 - (id)fetchObjectsMatchingPredicate:(id)arg1 completion:(id /* block */)arg2;
 - (bool)fetchProperties:(id)arg1 forReminders:(id)arg2;
 - (id)fetchRemindersMatchingPredicate:(id)arg1 completion:(id /* block */)arg2;
+- (id)fetchStorageUsage;
 - (unsigned int)flags;
 - (void)getMapsWithReminderSourceMap:(id*)arg1 eventSourceMap:(id*)arg2;
 - (id)getSubscribedCalendarsSourceCreateIfNeededWithError:(id*)arg1;
+- (void)handleExternalDatabaseChangeNotification:(id)arg1;
 - (bool)hasImmediatelyEligibleTravelEvents;
 - (bool)hideCalendarsFromNotificationCenter:(id)arg1 error:(id*)arg2;
 - (id)importEventsWithExternalIDs:(id)arg1 fromICSData:(id)arg2 intoCalendars:(id)arg3 options:(unsigned long long)arg4 batchSize:(int)arg5;
@@ -282,10 +313,13 @@
 - (id)insertedObjects;
 - (void)invalidateReminderSourceMaps;
 - (bool)isDataProtected;
+- (bool)isSourceManaged:(id)arg1;
 - (unsigned long long)lastConfirmedSplashScreenVersion;
 - (double)lastDatabaseNotificationTimestamp;
+- (id)localBirthdayCalendarCreateIfNeededWithError:(id*)arg1;
 - (id)localBirthdayCalendarSource;
 - (id)localSource;
+- (id)localSubscribedCalendarSource;
 - (void)locationBasedAlarmOccurrencesWithCompletion:(id /* block */)arg1;
 - (void)markChangedObjectIDsConsumedUpToToken:(long long)arg1;
 - (bool)markIndividualChangesConsumed:(id)arg1 error:(id*)arg2;
@@ -299,34 +333,32 @@
 - (id)objectWithObjectID:(id)arg1;
 - (id)objectsMatchingPredicate:(id)arg1;
 - (id)objectsPendingCommit;
+- (id)objectsPendingSave;
 - (id)occurrenceCacheGetOccurrencesForCalendars:(id)arg1;
 - (id)occurrenceCacheGetOccurrencesForCalendars:(id)arg1 onDay:(double)arg2;
 - (bool)occurrenceCacheOccurrencesAreBeingGenerated;
 - (bool)occurrencesExistInRangeForEvent:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 mustStartInInterval:(bool)arg4 timezone:(id)arg5;
 - (id)ownedSources;
+- (void)performHoldingReminderSourceMapLock:(id /* block */)arg1;
 - (void)postSyntheticRouteHypothesis:(id)arg1 forEventWithExternalURL:(id)arg2;
-- (id)predicateForAllRemindersDueBeforeOrOnDueDate:(id)arg1 calendars:(id)arg2;
-- (id)predicateForAllRemindersWithDueDate:(id)arg1 calendars:(id)arg2;
 - (id)predicateForAssistantEventSearchWithTimeZone:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 title:(id)arg4 location:(id)arg5 notes:(id)arg6 participants:(id)arg7 calendars:(id)arg8 limit:(long long)arg9;
 - (id)predicateForCalendarItemsOfType:(unsigned long long)arg1 inCalendar:(id)arg2;
 - (id)predicateForCalendarItemsOfType:(unsigned long long)arg1 withExternalID:(id)arg2 inCalendar:(id)arg3;
 - (id)predicateForCalendarItemsOfType:(unsigned long long)arg1 withExternalID:(id)arg2 inSource:(id)arg3;
 - (id)predicateForCalendarItemsOfType:(unsigned long long)arg1 withUniqueIdentifier:(id)arg2 inCalendar:(id)arg3;
 - (id)predicateForCalendarItemsOfType:(unsigned long long)arg1 withUniqueIdentifier:(id)arg2 inSource:(id)arg3;
-- (id)predicateForCompletedRemindersWithCalendars:(id)arg1;
 - (id)predicateForCompletedRemindersWithCompletionDateStarting:(id)arg1 ending:(id)arg2 calendars:(id)arg3;
-- (id)predicateForCompletedRemindersWithDueDate:(id)arg1 calendars:(id)arg2 sortOrder:(int)arg3;
-- (id)predicateForCompletedRemindersWithDueDateOrCompletionDate:(id)arg1 calendars:(id)arg2 sortOrder:(int)arg3;
 - (id)predicateForEventCreatedFromSuggestionWithOpaqueKey:(id)arg1;
+- (id)predicateForEventsCreatedFromSuggestion;
 - (id)predicateForEventsCreatedFromSuggestionWithExtractionGroupIdentifier:(id)arg1;
+- (id)predicateForEventsWithStartDate:(id)arg1 endDate:(id)arg2 calendarIdentifiers:(id)arg3 exclusionOptions:(long long)arg4;
+- (id)predicateForEventsWithStartDate:(id)arg1 endDate:(id)arg2 calendarIdentifiers:(id)arg3 prefetchHint:(long long)arg4 exclusionOptions:(long long)arg5;
 - (id)predicateForEventsWithStartDate:(id)arg1 endDate:(id)arg2 calendars:(id)arg3;
 - (id)predicateForEventsWithStartDate:(id)arg1 endDate:(id)arg2 calendars:(id)arg3 loadDefaultProperties:(bool)arg4;
 - (id)predicateForEventsWithStartDate:(id)arg1 endDate:(id)arg2 calendars:(id)arg3 matchingContacts:(id)arg4;
+- (id)predicateForEventsWithStartDate:(id)arg1 endDate:(id)arg2 calendars:(id)arg3 prefetchHint:(long long)arg4 exclusionOptions:(long long)arg5;
 - (id)predicateForEventsWithStartDate:(id)arg1 title:(id)arg2 source:(id)arg3;
 - (id)predicateForIncompleteRemindersAndRemindersCompletedAfter:(id)arg1 inCalendar:(id)arg2;
-- (id)predicateForIncompleteRemindersDueBeforeOrOnDueDate:(id)arg1 calendars:(id)arg2 sortOrder:(int)arg3;
-- (id)predicateForIncompleteRemindersDueBeforeOrOnExactDueDate:(id)arg1 calendars:(id)arg2 sortOrder:(int)arg3;
-- (id)predicateForIncompleteRemindersWithDueDate:(id)arg1 calendars:(id)arg2 sortOrder:(int)arg3;
 - (id)predicateForIncompleteRemindersWithDueDateStarting:(id)arg1 ending:(id)arg2 calendars:(id)arg3;
 - (id)predicateForMasterEventsInCalendar:(id)arg1;
 - (id)predicateForMasterEventsInCalendars:(id)arg1;
@@ -344,9 +376,6 @@
 - (id)predicateForPreloadedIncompleteRemindersWithDueDate:(id)arg1 calendars:(id)arg2 sortOrder:(int)arg3 preloadProperties:(id)arg4 maxResults:(unsigned long long)arg5;
 - (id)predicateForRemindersInCalendars:(id)arg1;
 - (id)predicateForRemindersInCalendars:(id)arg1 preloadProperties:(id)arg2;
-- (id)predicateForRemindersWithSearchTerm:(id)arg1;
-- (id)predicateForRemindersWithSearchTerm:(id)arg1 preloadProperties:(id)arg2;
-- (id)predicateForRemindersWithTitle:(id)arg1 calendars:(id)arg2;
 - (id)predicateForRemindersWithTitle:(id)arg1 listTitle:(id)arg2 limitToCompletedOrIncomplete:(bool)arg3 completed:(bool)arg4 dueAfter:(id)arg5 dueBefore:(id)arg6 searchTerm:(id)arg7 sortOrder:(int)arg8;
 - (id)predicateForRemindersWithTitle:(id)arg1 listTitle:(id)arg2 limitToCompletedOrIncomplete:(bool)arg3 completed:(bool)arg4 dueAfter:(id)arg5 dueBefore:(id)arg6 searchTerm:(id)arg7 sortOrder:(int)arg8 maxResults:(unsigned long long)arg9;
 - (id)predicateForUnacknowledgedEvents;
@@ -367,13 +396,14 @@
 - (id)registerFetchedObjectWithID:(id)arg1;
 - (id)registerFetchedObjectWithID:(id)arg1 withDefaultLoadedPropertyKeys:(id)arg2 values:(id)arg3;
 - (long long)registerForDetailedChangeTracking:(id*)arg1;
+- (long long)registerForDetailedChangeTrackingInSource:(id)arg1 error:(id*)arg2;
 - (id)registeredObjects;
 - (id)registeredQueue;
 - (id)reminderObjectIDsMatchingPredicate:(id)arg1;
 - (id)reminderSourceForEventSource:(id)arg1;
 - (id)reminderSourceIDToEventSourceIDMapping;
 - (id)reminderSourceMap;
-- (id)reminderSourceMapLock;
+- (struct os_unfair_lock_s { unsigned int x1; }*)reminderSourceMapLock;
 - (id)reminderSources;
 - (id)reminderStore;
 - (void)reminderStoreChanged;
@@ -398,9 +428,11 @@
 - (void)requestAccessToEntityType:(unsigned long long)arg1 completion:(id /* block */)arg2;
 - (void)reset;
 - (id)resourceChangesForEntityTypes:(unsigned long long)arg1;
+- (void)respondToSharedCalendarInvitation:(id)arg1 withStatus:(unsigned long long)arg2;
 - (bool)returnEventResults;
 - (bool)returnReminderResults;
 - (void)rollback;
+- (bool)save:(id*)arg1;
 - (bool)saveCalendar:(id)arg1 commit:(bool)arg2 error:(id*)arg3;
 - (bool)saveCalendar:(id)arg1 error:(id*)arg2;
 - (bool)saveEvent:(id)arg1 span:(long long)arg2 commit:(bool)arg3 error:(id*)arg4;
@@ -414,6 +446,8 @@
 - (id)scheduledTaskCacheFetchTasksOnDay:(id)arg1;
 - (id)scheduledTaskCacheFetchTasksOnDay:(id)arg1 maxResults:(unsigned long long)arg2;
 - (int)sequenceNumber;
+- (void)setBirthdayCalendarEnabled:(bool)arg1;
+- (void)setCachedEKSourceConstraintObject:(id)arg1 forKey:(id)arg2;
 - (void)setDataProtectionObserver:(id)arg1;
 - (void)setDatabase:(id)arg1;
 - (void)setDefaultCalendar:(id)arg1 forNewEventsInDelegateSource:(id)arg2;
@@ -428,9 +462,9 @@
 - (void)setLastDatabaseNotificationTimestamp:(double)arg1;
 - (void)setNeedsCommitForRemoteChanges:(bool)arg1;
 - (void)setObjectsPendingCommit:(id)arg1;
+- (void)setObjectsPendingSave:(id)arg1;
 - (void)setRegisteredObjects:(id)arg1;
 - (void)setReminderSourceIDToEventSourceIDMapping:(id)arg1;
-- (void)setReminderSourceMapLock:(id)arg1;
 - (void)setShowDeclinedEvents:(bool)arg1;
 - (void)setSourceAccountManagement:(int)arg1;
 - (void)setSourceAccountManagement:(int)arg1 withBundleID:(id)arg2;
@@ -447,7 +481,9 @@
 - (id)sourceWithExternalID:(id)arg1;
 - (id)sourceWithIdentifier:(id)arg1;
 - (id)sources;
+- (id)sourcesEnabledForEntityType:(unsigned long long)arg1;
 - (id)suggestedEventCalendar;
+- (unsigned long long)timeToLeaveLocationAuthorizationStatus;
 - (id)timeZone;
 - (id)travelEligibleEventsInCalendars:(id)arg1 startDate:(id)arg2 endDate:(id)arg3;
 - (int)unacknowledgedEventCount;
@@ -456,5 +492,39 @@
 - (void)updateGrantedDelegatePermission:(id)arg1 source:(id)arg2 completion:(id /* block */)arg3;
 - (id)updatedObjects;
 - (void)vehicleTriggerAlarmOccurrencesWithCompletion:(id /* block */)arg1;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)_uicolorFromString:(id)arg1;
+- (id)colorForCalendar:(id)arg1;
+- (id)colorNamesInRainbowOrder;
+- (id)defaultCalendarColorsInRainbowOrder;
+- (id)localizedStringForSymbolicColorName:(id)arg1;
+- (id)stringForColor:(id)arg1;
+- (id)symbolicNameToUIColors;
+
+// Image: /System/Library/Frameworks/iAd.framework/iAd
+
++ (id)sharedEventStore;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)sg_newStore;
++ (void)sg_usingSharedStoreForReadingOnly:(id /* block */)arg1;
+
+- (id)_sg_fetchEKEventsForPseudoNLEvent:(id)arg1 title:(id)arg2 participants:(id)arg3;
+- (id)eventWithExternalID:(id)arg1;
+- (double)eventsPerWeekAroundDate:(id)arg1;
+- (id)eventsWithSameAlternativeOpaqueKeyAsDuplicateKey:(id)arg1 harvestStore:(id)arg2;
+- (id)eventsWithSameAlternativeOpaqueKeyAsPseudoEvent:(id)arg1 harvestStore:(id)arg2;
+- (id)eventsWithSameAlternativeOpaqueKeyAsStorageEvent:(id)arg1 harvestStore:(id)arg2;
+- (id)eventsWithSameOpaqueKeyAsDuplicateKey:(id)arg1 extraKey:(id)arg2 harvestStore:(id)arg3;
+- (id)eventsWithSameOpaqueKeyAsPseudoEvent:(id)arg1 harvestStore:(id)arg2;
+- (id)eventsWithSameOpaqueKeyAsStorageEvent:(id)arg1 harvestStore:(id)arg2;
+- (void)sg_bumpTimeToLiveForZeroKeywordNLEventOnInteraction:(id)arg1;
+- (id)sg_confirmedEKEventForSGEvent:(id)arg1;
+- (id)sg_fetchEKEventsForPseudoEventBySimilarTitleAndStartTime:(id)arg1;
+- (id)sg_fetchEKEventsForPseudoNLEvent:(id)arg1 entity:(id)arg2;
+- (id)sg_fetchEKEventsForPseudoNLEvent:(id)arg1 message:(id)arg2;
 
 @end

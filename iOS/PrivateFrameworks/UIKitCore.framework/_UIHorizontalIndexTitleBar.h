@@ -14,7 +14,7 @@
         double left; 
         double bottom; 
         double right; 
-    }  _parentSafeAreaInsets;
+    }  _parentContentInset;
     struct UIEdgeInsets { 
         double top; 
         double left; 
@@ -33,7 +33,7 @@
 @property (nonatomic) _UIHorizontalIndexTitleBarCell *focusedCell;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) UIFocusGuide *horizontalIndexTitleBarFocusGuide;
-@property (getter=_parentSafeAreaInsets, setter=_setParentSafeAreaInsets:, nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } parentSafeAreaInsets;
+@property (getter=_parentContentInset, setter=_setParentContentInset:, nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } parentContentInset;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } sectionInset;
 @property (nonatomic) _UIHorizontalIndexTitleBarCell *selectedCell;
 @property (readonly) Class superclass;
@@ -43,11 +43,11 @@
 - (id)_currentlyFocusedCell;
 - (void)_flipIfRightToLeft;
 - (bool)_isViewEntryCell:(id)arg1;
-- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_parentSafeAreaInsets;
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_parentContentInset;
 - (void)_selectEntryForTitleIndex:(long long)arg1;
 - (void)_selectFocusedCell;
 - (void)_sendDelayedFocusActionIfNecessary;
-- (void)_setParentSafeAreaInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (void)_setParentContentInset:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)_updateSectionInset;
 - (void)_updateWithEntries:(id)arg1;
 - (id)collectionView;

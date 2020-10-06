@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSNumberFormatter : NSFormatter <NSObservable, NSObserver> {
+@interface NSNumberFormatter : NSFormatter <HKNumberFormatter, NSObservable, NSObserver> {
     NSMutableDictionary * _attributes;
     unsigned long long  _behavior;
     long long  _cacheGeneration;
@@ -15,6 +15,7 @@
 
 @property bool allowsFloats;
 @property bool alwaysShowsDecimalSeparator;
+@property (getter=bcui_isPercentSymbolEnabled, setter=bcui_setPercentSymbolEnabled:, nonatomic) bool bcui_percentSymbolEnabled;
 @property (copy) NSString *currencyCode;
 @property (copy) NSString *currencyDecimalSeparator;
 @property (copy) NSString *currencyGroupingSeparator;
@@ -229,8 +230,75 @@
 - (bool)usesSignificantDigits;
 - (id)zeroSymbol;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_heartRateNumberFormatter;
++ (id)hk_percentDecimalNumberFormatter;
++ (id)hk_percentNumberFormatter;
++ (id)hk_wholeNumberFormatter;
+
+// Image: /System/Library/Frameworks/PencilKit.framework/PencilKit
+
++ (id)pkaxLocalizedDouble:(double)arg1;
++ (id)pkaxLocalizedDouble:(double)arg1 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg2;
++ (id)pkaxLocalizedNumber:(id)arg1;
++ (id)pkaxLocalizedNumber:(id)arg1 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg2;
++ (id)pkaxLocalizedNumber:(id)arg1 numberStyle:(unsigned long long)arg2;
++ (id)pkaxLocalizedNumber:(id)arg1 numberStyle:(unsigned long long)arg2 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg3;
++ (id)pkaxLocalizedPercentage:(double)arg1;
++ (id)pkaxLocalizedPercentage:(double)arg1 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg2;
++ (id)pkaxLocalizedUnsignedInteger:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BatteryCenterUI.framework/BatteryCenterUI
+
++ (id)bcui_newPercentChargeFormatter;
+
+- (bool)bcui_isPercentSymbolEnabled;
+- (void)bcui_setPercentSymbolEnabled:(bool)arg1;
+
 // Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
 
 - (id)stringFromInteger:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DocumentCamera.framework/DocumentCamera
+
++ (id)dcaxLocalizedDouble:(double)arg1;
++ (id)dcaxLocalizedDouble:(double)arg1 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg2;
++ (id)dcaxLocalizedNumber:(id)arg1;
++ (id)dcaxLocalizedNumber:(id)arg1 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg2;
++ (id)dcaxLocalizedNumber:(id)arg1 numberStyle:(unsigned long long)arg2;
++ (id)dcaxLocalizedNumber:(id)arg1 numberStyle:(unsigned long long)arg2 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg3;
++ (id)dcaxLocalizedPercentage:(double)arg1;
++ (id)dcaxLocalizedPercentage:(double)arg1 maximumNumberOfDigitsAfterDecimalSeparator:(unsigned long long)arg2;
++ (id)dcaxLocalizedUnsignedInteger:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
++ (id)ef_formatInteger:(long long)arg1 withGrouping:(bool)arg2;
++ (id)ef_formatUnsignedInteger:(unsigned long long)arg1 withGrouping:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
++ (id)gkRankFormatter;
++ (id)gk_formatInteger:(long long)arg1 withGrouping:(bool)arg2;
++ (id)gk_formatUnsignedInteger:(unsigned long long)arg1 withGrouping:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
+- (bool)returnsUnitWithValueForDisplay;
+- (id)stringFromNumber:(id)arg1 displayType:(id)arg2 unitController:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/NanoWeatherComplicationsCompanion.framework/NanoWeatherComplicationsCompanion
+
++ (id)nwm_airQualityIndexNumberFormatter;
++ (id)nwm_ultravioletIndexNumberFormatter;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
++ (id)siriui_localizedStringFromNumber:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
++ (id)sbf_cachedDecimalNumberFormatter;
 
 @end

@@ -46,7 +46,6 @@
 + (id)systemDataVolumeNode;
 
 - (void).cxx_destruct;
-- (struct __CFBundle { }*)CFBundleWithError:(id*)arg1;
 - (id)URL;
 - (id)bookmarkDataRelativeToNode:(id)arg1 error:(id*)arg2;
 - (id)bookmarkDataWithOptions:(unsigned long long)arg1 relativeToNode:(id)arg2 error:(id*)arg3;
@@ -61,6 +60,7 @@
 - (bool)checkResourceIsReachableAndReturnError:(id*)arg1;
 - (id)childNodeWithRelativePath:(id)arg1 flags:(unsigned int)arg2 error:(id*)arg3;
 - (void)clearURLPropertyCacheIfStale;
+- (struct __CFBundle { }*)copyCFBundleWithError:(id*)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)diskImageURLWithFlags:(unsigned int)arg1 error:(id*)arg2;

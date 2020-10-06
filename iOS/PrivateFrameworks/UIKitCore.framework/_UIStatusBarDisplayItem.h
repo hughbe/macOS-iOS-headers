@@ -13,8 +13,15 @@
     double  _alpha;
     bool  _background;
     double  _baselineOffset;
+    double  _centerOffset;
     UIView * _containerView;
     bool  _enabled;
+    struct NSDirectionalEdgeInsets { 
+        double top; 
+        double leading; 
+        double bottom; 
+        double trailing; 
+    }  _extendedHoverInsets;
     bool  _floating;
     UIView * _highlightView;
     _UIStatusBarAction * _hoverAction;
@@ -53,6 +60,7 @@
 @property (nonatomic) double alpha;
 @property (getter=isBackground, nonatomic) bool background;
 @property (nonatomic) double baselineOffset;
+@property (nonatomic) double centerOffset;
 @property (nonatomic) UIView *containerView;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -91,9 +99,11 @@
 - (double)alpha;
 - (void)applyStyleAttributes:(id)arg1;
 - (double)baselineOffset;
+- (double)centerOffset;
 - (id)containerView;
 - (id)description;
 - (id)displayable;
+- (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })extendedHoverInsets;
 - (bool)floating;
 - (id)highlightView;
 - (id)hoverAction;
@@ -117,8 +127,10 @@
 - (void)setAlpha:(double)arg1;
 - (void)setBackground:(bool)arg1;
 - (void)setBaselineOffset:(double)arg1;
+- (void)setCenterOffset:(double)arg1;
 - (void)setContainerView:(id)arg1;
 - (void)setEnabled:(bool)arg1;
+- (void)setExtendedHoverInsets:(struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setFloating:(bool)arg1;
 - (void)setHighlightView:(id)arg1;
 - (void)setHoverAction:(id)arg1;

@@ -2,11 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UIContextBinder : NSObject <_UIAnimationFenceCoordinating> {
-    NSMutableArray * __preCommitHandlers;
-    id /* block */  __realPostCommitHandler;
-    id /* block */  __realPreCommitHandler;
-    bool  __registeredPreCommitHandler;
+@interface _UIContextBinder : NSObject {
     NSPointerArray * _attachedBindables;
     <_UIContextBinderContextCreationPolicyHolding> * _contextCreationPolicyHolder;
     long long  _contextManagementPolicy;
@@ -18,12 +14,8 @@
 @property (nonatomic, readonly) NSArray *attachedBindables;
 @property (nonatomic) <_UIContextBinderContextCreationPolicyHolding> *contextCreationPolicyHolder;
 @property (nonatomic) long long contextManagementPolicy;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSArray *enrolledBindables;
-@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) <_UIContextBinding> *substrate;
-@property (readonly) Class superclass;
 
 + (id)createContextForBindable:(id)arg1 withSubstrate:(id)arg2;
 
@@ -31,14 +23,6 @@
 - (id)_attachedBindablePointersAsCopy:(bool)arg1;
 - (id)_contextForBindable:(id)arg1;
 - (id)_enrolledBindablePointersAsCopy:(bool)arg1;
-- (void)_synchronizeDrawing;
-- (unsigned int)_synchronizeDrawingAcrossProcesses;
-- (void)_synchronizeDrawingAcrossProcessesOverPort:(unsigned int)arg1;
-- (void)_synchronizeDrawingAcrossProcessesOverPort:(unsigned int)arg1 withPreCommitHandler:(id /* block */)arg2;
-- (void)_synchronizeDrawingWithFence:(id)arg1;
-- (void)_synchronizeDrawingWithFence:(id)arg1 preCommitHandler:(id /* block */)arg2;
-- (void)_synchronizeDrawingWithPreCommitHandler:(id /* block */)arg1;
-- (id)_synchronizedDrawingFence;
 - (void)attachBindable:(id)arg1;
 - (id)attachedBindables;
 - (bool)bindableEnrolled:(id)arg1;

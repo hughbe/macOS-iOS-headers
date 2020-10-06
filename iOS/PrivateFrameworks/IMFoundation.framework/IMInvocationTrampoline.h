@@ -8,6 +8,7 @@
 
 @property (retain) id target;
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (void)forwardInvocation:(id)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;

@@ -36,6 +36,8 @@
 @property (nonatomic) bool titleChanged;
 @property (nonatomic, retain) NSNumber *updateCount;
 
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
+
 - (void).cxx_destruct;
 - (bool)allDay;
 - (id)calendarName;
@@ -70,5 +72,14 @@
 - (bool)timeChanged;
 - (bool)titleChanged;
 - (id)updateCount;
+
+// Image: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
+
+- (long long)_changedPropertyCount;
+- (id)_dateStringWithOptions:(unsigned long long)arg1;
+- (id)_resourceChangeStringWithOptions:(unsigned long long)arg1 dict:(id)arg2;
+- (id)allDescriptionStringsWithOptions:(unsigned long long)arg1;
+- (id)descriptionStrings:(unsigned long long)arg1;
+- (bool)supportsDisplay;
 
 @end

@@ -32,10 +32,6 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (id)MIMEType;
-+ (bool)canDecodeDownloadHeaderData:(id)arg1;
-+ (bool)decodeDownloadHeader:(id)arg1 headerLength:(int*)arg2 modificationTime:(unsigned long long*)arg3 filename:(id*)arg4;
-
 - (void)dealloc;
 - (id)decodeData:(id)arg1;
 - (bool)decodeDownloadData:(id)arg1 dataForkData:(id*)arg2 resourceForkData:(id*)arg3;

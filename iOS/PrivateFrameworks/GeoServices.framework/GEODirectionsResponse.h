@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEODirectionsResponse : PBCodable <GEOCompanionCompatibility, NSCopying> {
+@interface GEODirectionsResponse : PBCodable <GEOCompanionCompatibility, NSCopying, _GEOEnrouteNoticesProvider> {
     NSMutableArray * _arrivalParameters;
     GEOClientMetrics * _clientMetrics;
     NSString * _dataVersion;
@@ -54,46 +54,8 @@
         unsigned int read_transitDataVersion : 1; 
         unsigned int read_transitIncidentMessage : 1; 
         unsigned int read_transitRouteUpdateConfiguration : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_problemDetails : 1; 
-        unsigned int wrote_supportedTransportTypes : 1; 
-        unsigned int wrote_timepointUsed : 1; 
-        unsigned int wrote_arrivalParameters : 1; 
-        unsigned int wrote_clientMetrics : 1; 
-        unsigned int wrote_dataVersion : 1; 
-        unsigned int wrote_datasetAbStatus : 1; 
-        unsigned int wrote_debugData : 1; 
-        unsigned int wrote_debugLatencyMs : 1; 
-        unsigned int wrote_decoderData : 1; 
-        unsigned int wrote_directionsResponseID : 1; 
-        unsigned int wrote_displayHints : 1; 
-        unsigned int wrote_etaServiceSummary : 1; 
-        unsigned int wrote_failureAlert : 1; 
-        unsigned int wrote_incidentsOffRoutes : 1; 
-        unsigned int wrote_incidentsOnRoutes : 1; 
-        unsigned int wrote_nonRecommendedRoutesCache : 1; 
-        unsigned int wrote_placeSearchResponses : 1; 
-        unsigned int wrote_routes : 1; 
-        unsigned int wrote_serviceGaps : 1; 
-        unsigned int wrote_serviceVersion : 1; 
-        unsigned int wrote_sessionState : 1; 
-        unsigned int wrote_snapScoreMetadataDebug : 1; 
-        unsigned int wrote_styleAttributes : 1; 
-        unsigned int wrote_suggestedRoutes : 1; 
-        unsigned int wrote_trafficCameras : 1; 
-        unsigned int wrote_trafficSignals : 1; 
-        unsigned int wrote_transitDataVersion : 1; 
-        unsigned int wrote_transitIncidentMessage : 1; 
-        unsigned int wrote_transitRouteUpdateConfiguration : 1; 
-        unsigned int wrote_instructionSignFillColor : 1; 
-        unsigned int wrote_liveRouteSavingsSeconds : 1; 
-        unsigned int wrote_localDistanceUnits : 1; 
-        unsigned int wrote_selectedRouteIndex : 1; 
-        unsigned int wrote_status : 1; 
-        unsigned int wrote_hasKhSegments : 1; 
-        unsigned int wrote_isNavigable : 1; 
-        unsigned int wrote_isOfflineResponse : 1; 
-        unsigned int wrote_routeDeviatesFromOriginal : 1; 
+        unsigned int read_waypointRoutes : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _hasKhSegments;
     NSMutableArray * _incidentsOffRoutes;
@@ -145,6 +107,7 @@
     GEOPBTransitRoutingIncidentMessage * _transitIncidentMessage;
     GEOTransitRouteUpdateConfiguration * _transitRouteUpdateConfiguration;
     PBUnknownFields * _unknownFields;
+    NSMutableArray * _waypointRoutes;
 }
 
 @property (nonatomic, retain) NSMutableArray *arrivalParameters;
@@ -220,6 +183,9 @@
 @property (nonatomic, retain) GEOPBTransitRoutingIncidentMessage *transitIncidentMessage;
 @property (nonatomic, retain) GEOTransitRouteUpdateConfiguration *transitRouteUpdateConfiguration;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
+@property (nonatomic, retain) NSMutableArray *waypointRoutes;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (Class)arrivalParametersType;
 + (Class)incidentsOffRoutesType;
@@ -231,52 +197,15 @@
 + (Class)suggestedRouteType;
 + (Class)trafficCameraType;
 + (Class)trafficSignalType;
++ (Class)waypointRouteType;
 
 - (void).cxx_destruct;
 - (int)StringAsInstructionSignFillColor:(id)arg1;
 - (int)StringAsLocalDistanceUnits:(id)arg1;
 - (int)StringAsStatus:(id)arg1;
 - (int)StringAsSupportedTransportTypes:(id)arg1;
-- (void)_addNoFlagsArrivalParameters:(id)arg1;
-- (void)_addNoFlagsIncidentsOffRoutes:(id)arg1;
-- (void)_addNoFlagsIncidentsOnRoutes:(id)arg1;
-- (void)_addNoFlagsPlaceSearchResponse:(id)arg1;
-- (void)_addNoFlagsProblemDetail:(struct GEOProblemDetail { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
-- (void)_addNoFlagsRoute:(id)arg1;
-- (void)_addNoFlagsServiceGap:(id)arg1;
-- (void)_addNoFlagsSuggestedRoute:(id)arg1;
-- (void)_addNoFlagsSupportedTransportType:(int)arg1;
-- (void)_addNoFlagsTrafficCamera:(id)arg1;
-- (void)_addNoFlagsTrafficSignal:(id)arg1;
-- (id)_destinationMapItem;
-- (void)_readArrivalParameters;
-- (void)_readClientMetrics;
-- (void)_readDataVersion;
-- (void)_readDatasetAbStatus;
-- (void)_readDebugData;
-- (void)_readDecoderData;
-- (void)_readDirectionsResponseID;
-- (void)_readDisplayHints;
-- (void)_readEtaServiceSummary;
-- (void)_readFailureAlert;
-- (void)_readIncidentsOffRoutes;
-- (void)_readIncidentsOnRoutes;
-- (void)_readNonRecommendedRoutesCache;
-- (void)_readPlaceSearchResponses;
-- (void)_readProblemDetails;
-- (void)_readRoutes;
-- (void)_readServiceGaps;
-- (void)_readServiceVersion;
-- (void)_readSessionState;
-- (void)_readSnapScoreMetadataDebug;
-- (void)_readStyleAttributes;
-- (void)_readSuggestedRoutes;
-- (void)_readSupportedTransportTypes;
-- (void)_readTrafficCameras;
-- (void)_readTrafficSignals;
-- (void)_readTransitDataVersion;
-- (void)_readTransitIncidentMessage;
-- (void)_readTransitRouteUpdateConfiguration;
+- (id)_geoTrafficCameras;
+- (id)_geoTrafficSignals;
 - (void)addArrivalParameters:(id)arg1;
 - (void)addIncidentsOffRoutes:(id)arg1;
 - (void)addIncidentsOnRoutes:(id)arg1;
@@ -288,6 +217,7 @@
 - (void)addSupportedTransportType:(int)arg1;
 - (void)addTrafficCamera:(id)arg1;
 - (void)addTrafficSignal:(id)arg1;
+- (void)addWaypointRoute:(id)arg1;
 - (id)arrivalParameters;
 - (id)arrivalParametersAtIndex:(unsigned long long)arg1;
 - (unsigned long long)arrivalParametersCount;
@@ -305,6 +235,7 @@
 - (void)clearTrafficCameras;
 - (void)clearTrafficSignals;
 - (void)clearUnknownFields:(bool)arg1;
+- (void)clearWaypointRoutes;
 - (id)clientMetrics;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -357,13 +288,15 @@
 - (unsigned long long)incidentsOnRoutesCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
-- (id)initWithDictionaryRepresentation:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)instanceCompatibleWithProtocolVersion:(unsigned long long)arg1;
 - (int)instructionSignFillColor;
 - (id)instructionSignFillColorAsString:(int)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isNavigable;
 - (bool)isOfflineResponse;
+- (id)jsonRepresentation;
 - (int)liveRouteSavingsSeconds;
 - (int)localDistanceUnits;
 - (id)localDistanceUnitsAsString:(int)arg1;
@@ -436,6 +369,7 @@
 - (void)setTransitDataVersion:(id)arg1;
 - (void)setTransitIncidentMessage:(id)arg1;
 - (void)setTransitRouteUpdateConfiguration:(id)arg1;
+- (void)setWaypointRoutes:(id)arg1;
 - (id)snapScoreMetadataDebug;
 - (int)status;
 - (id)statusAsString:(int)arg1;
@@ -458,6 +392,13 @@
 - (id)transitIncidentMessage;
 - (id)transitRouteUpdateConfiguration;
 - (id)unknownFields;
+- (id)waypointRouteAtIndex:(unsigned long long)arg1;
+- (id)waypointRoutes;
+- (unsigned long long)waypointRoutesCount;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
+
+- (void)addFakeTrafficIncidentAlert:(unsigned long long)arg1;
 
 @end

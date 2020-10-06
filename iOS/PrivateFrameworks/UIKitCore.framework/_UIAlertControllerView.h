@@ -4,6 +4,7 @@
 
 @interface _UIAlertControllerView : UIView <UIGestureRecognizerDelegatePrivate, UIInterfaceActionHandlerInvocationDelegate, UIScrollViewDelegate, UISpringLoadedInteractionSupporting> {
     NSLayoutConstraint * _actionGroupEqualsContentViewWidthConstraint;
+    bool  _actionScrubbingEnabled;
     struct CGPoint { 
         double x; 
         double y; 
@@ -83,6 +84,7 @@
     UILabel * _messageLabel;
     _UIFlexibleConstantConstraintSet * _messageLabelTopAlignmentConstraints;
     NSArray * _noDimmingViewConstraints;
+    double  _offset;
     bool  _presentationContextPrefersCancelActionShown;
     UIView * _separatedHeaderContentViewControllerContainerView;
     NSLayoutConstraint * _separatedHeaderContentViewControllerContainerViewBottomConstraint;
@@ -108,6 +110,7 @@
 @property (readonly) UIView *_dimmingView;
 @property (setter=_setVisualStyle:, nonatomic, retain) UIAlertControllerVisualStyle *_visualStyle;
 @property (retain) NSLayoutConstraint *actionGroupEqualsContentViewWidthConstraint;
+@property (nonatomic) bool actionScrubbingEnabled;
 @property (nonatomic, retain) _UIAlertControllerActionViewMetrics *actionViewMetrics;
 @property (getter=_actionsReversed, setter=_setActionsReversed:, nonatomic) bool actionsReversed;
 @property UIAlertController *alertController;
@@ -146,6 +149,7 @@
 @property (retain) NSLayoutConstraint *mainActionButtonSequenceViewHorizontalAlignmentConstraint;
 @property (retain) NSLayoutConstraint *mainActionButtonSequenceViewWidthConstraint;
 @property (retain) _UIFlexibleConstantConstraintSet *messageLabelTopAlignmentConstraints;
+@property (nonatomic) double offset;
 @property (nonatomic) bool presentationContextPrefersCancelActionShown;
 @property bool presentedAsPopover;
 @property (retain) NSLayoutConstraint *separatedHeaderContentViewControllerContainerViewBottomConstraint;
@@ -168,15 +172,20 @@
 + (bool)requiresConstraintBasedLayout;
 
 - (void).cxx_destruct;
+- (void)_UIAppearance_setAlignsToKeyboard:(bool)arg1;
+- (void)_UIAppearance_setHasDimmingView:(bool)arg1;
+- (void)_UIAppearance_setPresentationContextPrefersCancelActionShown:(bool)arg1;
+- (void)_UIAppearance_setPresentedAsPopover:(bool)arg1;
+- (void)_UIAppearance_setShouldHaveBackdropView:(bool)arg1;
 - (id)__cancelActionView;
 - (void)_accessibilityColorsChanged;
 - (void)_actionLayoutDirectionChanged;
 - (bool)_actionLayoutIsVertical;
 - (void)_actionsChanged;
 - (bool)_actionsReversed;
-- (void)_addContentViewControllerToViewHierarchy;
-- (void)_addHeaderContentViewControllerToViewHierarchy;
-- (void)_addSeparatedHeaderContentViewControllerToViewHierarchy;
+- (void)_addContentViewControllerToViewHierarchyIfNecessary;
+- (void)_addHeaderContentViewControllerToViewHierarchyIfNecessary;
+- (void)_addSeparatedHeaderContentViewControllerToViewHierarchyIfNecessary;
 - (void)_applyContentViewControllerContainerViewConstraints;
 - (void)_applyDetailMessageConstraints;
 - (void)_applyHeaderContentViewControllerContainerViewConstraints;
@@ -285,6 +294,7 @@
 - (void)_updateActionsGroupPresentationStyles;
 - (void)_updateCancelActionBeingDiscrete;
 - (void)_updateConstraintConstants;
+- (void)_updateConstraintSpacingForExternalOffset;
 - (void)_updateContentView;
 - (void)_updateDetailLabelContents;
 - (void)_updateDetailLabelFontSize;
@@ -305,6 +315,7 @@
 - (id)_vibrancyEffectForTitleAndMessageLabel;
 - (id)_visualStyle;
 - (id)actionGroupEqualsContentViewWidthConstraint;
+- (bool)actionScrubbingEnabled;
 - (id)actionViewMetrics;
 - (id)actions;
 - (id)alertController;
@@ -330,6 +341,7 @@
 - (id)contentViewMaxHeightConstraint;
 - (id)contentViewTopConstraint;
 - (void)dealloc;
+- (void)deselectAllActions;
 - (id)detailMessageLabelTopAlignmentConstraint;
 - (void)didMoveToSuperview;
 - (void)didMoveToWindow;
@@ -353,6 +365,7 @@
 - (id)mainActionButtonSequenceViewWidthConstraint;
 - (id)message;
 - (id)messageLabelTopAlignmentConstraints;
+- (double)offset;
 - (id)preferredFocusedView;
 - (bool)presentationContextPrefersCancelActionShown;
 - (bool)presentedAsPopover;
@@ -361,6 +374,7 @@
 - (id)separatedHeaderContentViewControllerContainerViewBottomConstraint;
 - (id)separatedHeaderContentViewControllerContainerViewWidthConstraint;
 - (void)setActionGroupEqualsContentViewWidthConstraint:(id)arg1;
+- (void)setActionScrubbingEnabled:(bool)arg1;
 - (void)setActionViewMetrics:(id)arg1;
 - (void)setAlertController:(id)arg1;
 - (void)setAlignsToKeyboard:(bool)arg1;
@@ -394,6 +408,7 @@
 - (void)setMainActionButtonSequenceViewHorizontalAlignmentConstraint:(id)arg1;
 - (void)setMainActionButtonSequenceViewWidthConstraint:(id)arg1;
 - (void)setMessageLabelTopAlignmentConstraints:(id)arg1;
+- (void)setOffset:(double)arg1;
 - (void)setPresentationContextPrefersCancelActionShown:(bool)arg1;
 - (void)setPresentedAsPopover:(bool)arg1;
 - (void)setSeparatedHeaderContentViewControllerContainerViewBottomConstraint:(id)arg1;

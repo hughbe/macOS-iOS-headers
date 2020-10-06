@@ -3,7 +3,6 @@
  */
 
 @interface _INPBAddTasksIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBAddTasksIntentResponse> {
-    bool  __encodeLegacyGloryData;
     NSArray * _addedTasks;
     struct { }  _has;
     _INPBTaskList * _modifiedTaskList;
@@ -14,7 +13,6 @@
     }  _warnings;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *addedTasks;
 @property (nonatomic, readonly) unsigned long long addedTasksCount;
 @property (readonly, copy) NSString *debugDescription;
@@ -31,8 +29,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsWarnings:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAddedTasks:(id)arg1;
 - (void)addWarnings:(int)arg1;
 - (id)addedTasks;

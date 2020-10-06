@@ -13,11 +13,7 @@
         unsigned int read_childActionDirections : 1; 
         unsigned int read_childActionFlyover : 1; 
         unsigned int read_childActionSearch : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_childActionDirections : 1; 
-        unsigned int wrote_childActionFlyover : 1; 
-        unsigned int wrote_childActionSearch : 1; 
-        unsigned int wrote_childActionType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -42,9 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsChildActionType:(id)arg1;
-- (void)_readChildActionDirections;
-- (void)_readChildActionFlyover;
-- (void)_readChildActionSearch;
 - (id)childActionDirections;
 - (id)childActionFlyover;
 - (id)childActionSearch;
@@ -62,7 +55,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

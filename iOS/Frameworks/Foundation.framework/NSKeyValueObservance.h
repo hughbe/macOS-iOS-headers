@@ -5,6 +5,7 @@
 @interface NSKeyValueObservance : NSObject {
     unsigned int  _cachedIsShareable;
     void * _context;
+    unsigned int  _isInternalObservationHelper;
     NSObject * _observer;
     unsigned int  _options;
     NSObject * _originalObservable;

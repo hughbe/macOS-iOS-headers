@@ -5,6 +5,7 @@
 @interface BKSMousePointerDevicePreferences : NSObject <BSProtobufSerializable, NSSecureCoding> {
     long long  _buttonConfigurationForHardwareButtonMice;
     long long  _buttonConfigurationForVirtualButtonMice;
+    long long  _doubleTapDragMode;
     bool  _enableNaturalScrolling;
     bool  _enableTapToClick;
     bool  _enableTwoFingerSecondaryClick;
@@ -16,6 +17,7 @@
 @property (nonatomic) long long buttonConfigurationForVirtualButtonMice;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic) long long doubleTapDragMode;
 @property (nonatomic) bool enableNaturalScrolling;
 @property (nonatomic) bool enableTapToClick;
 @property (nonatomic) bool enableTwoFingerSecondaryClick;
@@ -33,6 +35,7 @@
 - (long long)buttonConfigurationForVirtualButtonMice;
 - (id)description;
 - (id)didFinishProtobufDecodingWithError:(out id*)arg1;
+- (long long)doubleTapDragMode;
 - (bool)enableNaturalScrolling;
 - (bool)enableTapToClick;
 - (bool)enableTwoFingerSecondaryClick;
@@ -46,6 +49,7 @@
 - (float)scrollAccelerationFactor;
 - (void)setButtonConfigurationForHardwareButtonMice:(long long)arg1;
 - (void)setButtonConfigurationForVirtualButtonMice:(long long)arg1;
+- (void)setDoubleTapDragMode:(long long)arg1;
 - (void)setEnableNaturalScrolling:(bool)arg1;
 - (void)setEnableTapToClick:(bool)arg1;
 - (void)setEnableTwoFingerSecondaryClick:(bool)arg1;

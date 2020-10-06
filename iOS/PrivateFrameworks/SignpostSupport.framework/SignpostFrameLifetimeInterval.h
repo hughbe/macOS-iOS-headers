@@ -4,11 +4,13 @@
 
 @interface SignpostFrameLifetimeInterval : SignpostAnimationSubInterval <SignpostCARenderServerFrameMetadata> {
     unsigned char  _bufferCount;
+    NSArray * _commits;
     SignpostContextInfo * _contextInfoForHIDInput;
     unsigned long long  _displayRefreshIntervalDurationMachTime;
     SignpostContextInfo * _earliestTimeContextInfo;
     SignpostFrameLatencyInterval * _frameLatencyInterval;
     unsigned int  _frameSeed;
+    bool  _frameStallSkipRequest;
     SignpostHIDLatencyInterval * _hidLatencyInterval;
     NSDictionary * _pidToContextInfoArrayDict;
     unsigned long long  _previousFramePresentationMCT;
@@ -18,6 +20,7 @@
 }
 
 @property (nonatomic, readonly) unsigned char bufferCount;
+@property (nonatomic, retain) NSArray *commits;
 @property (nonatomic, readonly) SignpostContextInfo *contextInfoForHIDInput;
 @property (nonatomic, readonly) NSSet *contributingPIDs;
 @property (nonatomic, readonly) unsigned int displayID;
@@ -29,6 +32,7 @@
 @property (nonatomic, readonly) <SignpostSupportTimeInterval> *frameOverrunInactiveDisplayInterval;
 @property (nonatomic, readonly) <SignpostSupportTimeInterval> *frameOverrunInterval;
 @property (nonatomic, readonly) unsigned int frameSeed;
+@property (nonatomic, readonly) bool frameStallSkipRequest;
 @property (nonatomic, readonly) SignpostHIDLatencyInterval *hidLatencyInterval;
 @property (nonatomic, readonly) bool hidLatencyIsLong;
 @property (nonatomic, readonly) bool mayBeFirstFrame;
@@ -50,6 +54,7 @@
 - (bool)_isLongMCT:(unsigned long long)arg1 expectedFrameLatency:(unsigned char)arg2;
 - (unsigned long long)_overrunBeginMCT;
 - (unsigned char)bufferCount;
+- (id)commits;
 - (id)contextInfoForHIDInput;
 - (id)contributingPIDs;
 - (unsigned int)displayID;
@@ -61,6 +66,7 @@
 - (id)frameOverrunInactiveDisplayInterval;
 - (id)frameOverrunInterval;
 - (unsigned int)frameSeed;
+- (bool)frameStallSkipRequest;
 - (id)hidLatencyInterval;
 - (bool)hidLatencyIsLong;
 - (id)initWithInterval:(id)arg1 contextArray:(id)arg2 hidLatencyInterval:(id)arg3 renderInterval:(id)arg4 frameLatencyInterval:(id)arg5 frameSeedToSkippedRenderIntervals:(id)arg6;
@@ -72,6 +78,7 @@
 - (unsigned long long)previousFramePresentationMCT;
 - (id)renderInterval;
 - (bool)renderIntervalIsLong;
+- (void)setCommits:(id)arg1;
 - (id)skippedRenders;
 - (unsigned int)swapID;
 - (id)userVisibleGlitchInterval;

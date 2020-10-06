@@ -9,6 +9,8 @@
     CNContact * _contact;
     NSString * _contactIdentifier;
     NSString * _externalID;
+    NSString * _externalModificationTag;
+    NSString * _externalURI;
     NSNumber * _imagesChanged;
     NSArray * _linkedContactIdentifiers;
 }
@@ -19,6 +21,8 @@
 @property (nonatomic, retain) CNContact *contact;
 @property (nonatomic, readonly) NSString *contactIdentifier;
 @property (nonatomic, retain) NSString *externalID;
+@property (nonatomic, retain) NSString *externalModificationTag;
+@property (nonatomic, retain) NSString *externalURI;
 @property (nonatomic, retain) NSNumber *imagesChanged;
 @property (nonatomic, copy) NSArray *linkedContactIdentifiers;
 
@@ -33,6 +37,8 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)externalID;
+- (id)externalModificationTag;
+- (id)externalURI;
 - (unsigned long long)hash;
 - (id)imagesChanged;
 - (id)initWithCoder:(id)arg1;
@@ -45,6 +51,8 @@
 - (void)setChangeType:(long long)arg1;
 - (void)setContact:(id)arg1;
 - (void)setExternalID:(id)arg1;
+- (void)setExternalModificationTag:(id)arg1;
+- (void)setExternalURI:(id)arg1;
 - (void)setImagesChanged:(id)arg1;
 - (void)setLinkedContactIdentifiers:(id)arg1;
 

@@ -24,6 +24,7 @@
 - (id)inputScale;
 - (id)outputData;
 - (id)outputImage;
+- (id)outputImageMPS;
 - (id)outputImageNonMPS;
 - (void)setInputCount:(id)arg1;
 - (void)setInputExtent:(id)arg1;

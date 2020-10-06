@@ -48,6 +48,8 @@
 @property (nonatomic, readonly) NSString *title;
 @property (nonatomic, readonly) NSString *uniqueKey;
 
+// Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
+
 + (id)eventWithRecordId:(id)arg1 origin:(id)arg2 uniqueKey:(id)arg3 opaqueKey:(id)arg4 title:(id)arg5 notes:(id)arg6 start:(id)arg7 startTimeZone:(id)arg8 end:(id)arg9 endTimeZone:(id)arg10 isAllDay:(bool)arg11 creationDate:(id)arg12 lastModifiedDate:(id)arg13 locations:(id)arg14 tags:(id)arg15 URL:(id)arg16;
 + (bool)supportsSecureCoding;
 
@@ -60,6 +62,7 @@
 - (id)creationDate;
 - (id)dateForUTCDate:(id)arg1 withTimeZone:(id)arg2;
 - (double)duration;
+- (long long)ekEventAvailabilityState;
 - (void)encodeWithCoder:(id)arg1;
 - (id)end;
 - (id)endDateComponents;
@@ -84,6 +87,7 @@
 - (bool)isNaturalLanguageEvent;
 - (id)lastModifiedDate;
 - (id)locations;
+- (id)loggingIdentifier;
 - (void)mergeIntoEKEvent:(id)arg1;
 - (void)mergeIntoEKEvent:(id)arg1 withStore:(id)arg2;
 - (void)mergeIntoEKEvent:(id)arg1 withStore:(id)arg2 preservingValuesDifferentFrom:(id)arg3;
@@ -93,8 +97,9 @@
 - (id)opaqueKey;
 - (id)poiFilters;
 - (id)schemaOrg;
-- (bool)shouldAllowNotificationsInCalendar;
 - (bool)shouldAllowNotificationsInCalendarForBundleId:(id)arg1 appIsInForeground:(bool)arg2;
+- (bool)shouldAllowNotificationsInCalendarForBundleId:(id)arg1 appIsInForeground:(bool)arg2 allowListOverride:(id)arg3;
+- (bool)shouldAllowNotificationsInCalendarWithAllowListOverride:(id)arg1;
 - (id)start;
 - (id)startDateComponents;
 - (id)startTimeZone;
@@ -102,5 +107,14 @@
 - (id)title;
 - (id)toEKEventWithStore:(id)arg1;
 - (id)uniqueKey;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsUI.framework/CoreSuggestionsUI
+
++ (id)formatEvents:(id)arg1;
++ (bool)sameDayEvents:(id)arg1;
+
+- (id)formattedStartDate;
+- (id)formattedStartTime;
+- (id)timeZoneOrGMT;
 
 @end

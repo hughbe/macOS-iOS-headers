@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UIDataSourceSnapshotter : NSObject <NSCopying, _UIDataSourceSnapshot> {
+@interface _UIDataSourceSnapshotter : NSObject <NSCopying, _UIDataSourceSnapshotTranslating> {
     struct vector<_NSRange, std::__1::allocator<_NSRange> > { 
         struct _NSRange {} *__begin_; 
         struct _NSRange {} *__end_; 
@@ -12,8 +12,14 @@
     }  _sectionRanges;
 }
 
-+ (id)snapshotForDataSourceBackedView:(id)arg1;
-+ (id)snapshotWithSectionCountsProvider:(id /* block */)arg1;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+
++ (id)snapshotterForDataSourceBackedView:(id)arg1;
++ (id)snapshotterForSectionCountsProvider:(id /* block */)arg1;
++ (id)snapshotterForSnapshot:(id)arg1;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;

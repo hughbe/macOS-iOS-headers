@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *contentType;
 @property (nonatomic, copy) NSData *data;
 
+- (void).cxx_destruct;
 - (void)addContentTypeParameterWithName:(id)arg1 value:(id)arg2;
 - (id)allContentTypeParameterNames;
 - (id)contentId;
@@ -22,7 +23,6 @@
 - (id)contentType;
 - (id)contentTypeParameterWithName:(id)arg1;
 - (id)data;
-- (void)dealloc;
 - (id)initWithData:(id)arg1 contentType:(id)arg2;
 - (void)setContentId:(id)arg1;
 - (void)setContentLocation:(id)arg1;

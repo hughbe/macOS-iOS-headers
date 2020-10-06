@@ -18,6 +18,7 @@
 @property (nonatomic) unsigned long long minFilter;
 @property (nonatomic) unsigned long long mipFilter;
 @property (nonatomic) bool normalizedCoordinates;
+@property (nonatomic) unsigned long long pixelFormat;
 @property (nonatomic) unsigned long long rAddressMode;
 @property (nonatomic) unsigned long long resourceIndex;
 @property (nonatomic) unsigned long long sAddressMode;

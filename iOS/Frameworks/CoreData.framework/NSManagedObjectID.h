@@ -2,15 +2,32 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSManagedObjectID : NSObject <NSCopying, NSFetchRequestResult>
+@interface NSManagedObjectID : NSObject <NSCopying, NSFetchRequestResult, RCRecordingsFolderIdentifier>
 
+@property (nonatomic, readonly) long long __rc_folderType;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) NSEntityDescription *entity;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) Class ic_entityClass;
+@property (nonatomic, readonly) bool ic_isAccountType;
+@property (nonatomic, readonly) bool ic_isContainerType;
+@property (nonatomic, readonly) bool ic_isFolderType;
+@property (nonatomic, readonly) bool ic_isLegacyAccountType;
+@property (nonatomic, readonly) bool ic_isLegacyContainerType;
+@property (nonatomic, readonly) bool ic_isLegacyFolderType;
+@property (nonatomic, readonly) bool ic_isLegacyNoteType;
+@property (nonatomic, readonly) bool ic_isModernAccountProxyType;
+@property (nonatomic, readonly) bool ic_isModernAccountType;
+@property (nonatomic, readonly) bool ic_isModernContainerType;
+@property (nonatomic, readonly) bool ic_isModernFolderType;
+@property (nonatomic, readonly) bool ic_isModernNoteType;
+@property (nonatomic, readonly) bool ic_isNoteType;
 @property (readonly) NSPersistentStore *persistentStore;
 @property (readonly) Class superclass;
 @property (getter=isTemporaryID, readonly) bool temporaryID;
+
+// Image: /System/Library/Frameworks/CoreData.framework/CoreData
 
 + (id)_newArchiveForScalarObjectIDs:(id)arg1;
 + (bool)accessInstanceVariablesDirectly;
@@ -39,5 +56,31 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isTemporaryID;
 - (id)persistentStore;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (Class)ic_entityClass;
+- (bool)ic_isAccountType;
+- (bool)ic_isContainerType;
+- (bool)ic_isEntityOfClass:(Class)arg1;
+- (bool)ic_isFolderType;
+- (bool)ic_isLegacyAccountType;
+- (bool)ic_isLegacyContainerType;
+- (bool)ic_isLegacyFolderType;
+- (bool)ic_isLegacyNoteType;
+- (bool)ic_isModernAccountProxyType;
+- (bool)ic_isModernAccountType;
+- (bool)ic_isModernContainerType;
+- (bool)ic_isModernFolderType;
+- (bool)ic_isModernNoteType;
+- (bool)ic_isNoteType;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (id)pl_shortURI;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
+- (long long)__rc_folderType;
 
 @end

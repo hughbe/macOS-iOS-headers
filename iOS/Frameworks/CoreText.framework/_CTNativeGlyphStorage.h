@@ -13,8 +13,6 @@
 
 + (id)newWithCount:(long long)arg1;
 
-- (bool)_isDeallocating;
-- (bool)_tryRetain;
 - (long long)attachmentCountAtIndex:(long long)arg1;
 - (id)copyWithRange:(struct { long long x1; long long x2; })arg1;
 - (void)dealloc;
@@ -25,7 +23,6 @@
 - (void)moveGlyphsFromRange:(struct { long long x1; long long x2; })arg1 toIndex:(long long)arg2;
 - (struct CGPoint { double x1; double x2; })originAtIndex:(long long)arg1;
 - (void)popGlyphAtIndex:(long long)arg1;
-- (id)prepareWithCapacity:(long long)arg1 preallocated:(bool)arg2;
 - (void)puntStringIndicesInRange:(struct { long long x1; long long x2; })arg1 by:(long long)arg2;
 - (void)pushGlyphAtIndex:(long long)arg1;
 - (oneway void)release;
@@ -33,7 +30,6 @@
 - (unsigned long long)retainCount;
 - (void)setAdvance:(struct CGSize { double x1; double x2; })arg1 atIndex:(long long)arg2;
 - (void)setAttachmentCount:(long long)arg1 atIndex:(long long)arg2;
-- (void)setCapacity:(long long)arg1;
 - (void)setGlyph:(unsigned short)arg1 atIndex:(long long)arg2;
 - (void)setOrigin:(struct CGPoint { double x1; double x2; })arg1 atIndex:(long long)arg2;
 - (void)setProps:(unsigned int)arg1 atIndex:(long long)arg2;

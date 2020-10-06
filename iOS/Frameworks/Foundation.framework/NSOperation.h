@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSOperation : NSObject {
+@interface NSOperation : NSObject <FCOperationIdentifying, ICLoggable, RCOperationIdentifying> {
     struct { 
         NSOperation *__prevOp; 
         NSOperation *__nextOp; 
@@ -46,13 +46,17 @@
 @property (getter=isCancelled, readonly) bool cancelled;
 @property (copy) id /* block */ completionBlock;
 @property (getter=isConcurrent, readonly) bool concurrent;
+@property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSArray *dependencies;
+@property (readonly, copy) NSString *description;
 @property (getter=isExecuting, readonly) bool executing;
 @property (getter=isFinished, readonly) bool finished;
+@property (readonly) unsigned long long hash;
 @property (copy) NSString *name;
 @property long long qualityOfService;
 @property long long queuePriority;
 @property (getter=isReady, readonly) bool ready;
+@property (readonly) Class superclass;
 @property double threadPriority;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
@@ -106,9 +110,28 @@
 - (void)waitUntilFinished;
 - (void)waitUntilFinishedOrTimeout:(double)arg1;
 
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
+- (void)cat_addDependencies:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
 
 - (void)decreasePriority;
 - (void)increasePriority;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (id)longOperationDescription;
+- (id)shortOperationDescription;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (id)ic_loggingIdentifier;
+- (id)ic_loggingValues;
+
+// Image: /System/Library/PrivateFrameworks/RemoteConfiguration.framework/RemoteConfiguration
+
+- (id)longOperationDescription;
+- (id)shortOperationDescription;
 
 @end

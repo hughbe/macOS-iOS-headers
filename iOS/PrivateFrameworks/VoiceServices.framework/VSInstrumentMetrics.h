@@ -10,6 +10,7 @@
     NSString * _clientBundleIdentifier;
     long long  _eagerRequestCreatedTimeStampDiffs;
     long long  _errorCode;
+    NSString * _experimentIdentifier;
     bool  _isCacheHitFromDisk;
     bool  _isCacheHitFromMemory;
     bool  _isServerStreamTTS;
@@ -18,6 +19,7 @@
     bool  _isServerTimeout;
     bool  _isSpeechRequest;
     bool  _isWarmStart;
+    bool  _neuralAlignmentStall;
     long long  _promptCount;
     long long  _requestCreatedTimestamp;
     long long  _sourceOfTTS;
@@ -25,11 +27,9 @@
     long long  _speechEndTimestamp;
     long long  _synthesisBeginTimestamp;
     long long  _synthesisEndTimestamp;
-    long long  _synthesisToSpeechTimeGap;
     NSString * _utterance;
     NSString * _voiceAssetKey;
     NSString * _voiceResourceAssetKey;
-    long long  _waitForSynthesisToFinishTimeDelay;
 }
 
 @property double audioDuration;
@@ -39,6 +39,7 @@
 @property (copy) NSString *clientBundleIdentifier;
 @property long long eagerRequestCreatedTimeStampDiffs;
 @property long long errorCode;
+@property (copy) NSString *experimentIdentifier;
 @property bool isCacheHitFromDisk;
 @property bool isCacheHitFromMemory;
 @property bool isServerStreamTTS;
@@ -47,6 +48,7 @@
 @property bool isServerTimeout;
 @property bool isSpeechRequest;
 @property bool isWarmStart;
+@property bool neuralAlignmentStall;
 @property long long promptCount;
 @property long long requestCreatedTimestamp;
 @property long long sourceOfTTS;
@@ -54,11 +56,9 @@
 @property long long speechEndTimestamp;
 @property long long synthesisBeginTimestamp;
 @property long long synthesisEndTimestamp;
-@property long long synthesisToSpeechTimeGap;
 @property (copy) NSString *utterance;
 @property (copy) NSString *voiceAssetKey;
 @property (copy) NSString *voiceResourceAssetKey;
-@property long long waitForSynthesisToFinishTimeDelay;
 
 + (bool)supportsSecureCoding;
 
@@ -69,6 +69,7 @@
 - (double)audioQueueLatency;
 - (long long)audioStartTimestampDiffs;
 - (bool)canUseServerTTS;
+- (id)cappedRealTimeFactor;
 - (id)clientBundleIdentifier;
 - (id)description;
 - (id)dictionaryMetrics;
@@ -76,6 +77,7 @@
 - (double)eagerRequestTimeGap;
 - (void)encodeWithCoder:(id)arg1;
 - (long long)errorCode;
+- (id)experimentIdentifier;
 - (id)initWithCoder:(id)arg1;
 - (bool)isCacheHitFromDisk;
 - (bool)isCacheHitFromMemory;
@@ -86,6 +88,7 @@
 - (bool)isSpeechRequest;
 - (bool)isSynthesisCached;
 - (bool)isWarmStart;
+- (bool)neuralAlignmentStall;
 - (long long)promptCount;
 - (double)realTimeFactor;
 - (long long)requestCreatedTimestamp;
@@ -96,6 +99,7 @@
 - (void)setClientBundleIdentifier:(id)arg1;
 - (void)setEagerRequestCreatedTimeStampDiffs:(long long)arg1;
 - (void)setErrorCode:(long long)arg1;
+- (void)setExperimentIdentifier:(id)arg1;
 - (void)setIsCacheHitFromDisk:(bool)arg1;
 - (void)setIsCacheHitFromMemory:(bool)arg1;
 - (void)setIsServerStreamTTS:(bool)arg1;
@@ -104,6 +108,7 @@
 - (void)setIsServerTimeout:(bool)arg1;
 - (void)setIsSpeechRequest:(bool)arg1;
 - (void)setIsWarmStart:(bool)arg1;
+- (void)setNeuralAlignmentStall:(bool)arg1;
 - (void)setPromptCount:(long long)arg1;
 - (void)setRequestCreatedTimestamp:(long long)arg1;
 - (void)setSourceOfTTS:(long long)arg1;
@@ -111,26 +116,18 @@
 - (void)setSpeechEndTimestamp:(long long)arg1;
 - (void)setSynthesisBeginTimestamp:(long long)arg1;
 - (void)setSynthesisEndTimestamp:(long long)arg1;
-- (void)setSynthesisToSpeechTimeGap:(long long)arg1;
 - (void)setUtterance:(id)arg1;
 - (void)setVoiceAssetKey:(id)arg1;
 - (void)setVoiceResourceAssetKey:(id)arg1;
-- (void)setWaitForSynthesisToFinishTimeDelay:(long long)arg1;
 - (long long)sourceOfTTS;
 - (long long)speechBeginTimestamp;
 - (long long)speechEndTimestamp;
 - (long long)synthesisBeginTimestamp;
 - (long long)synthesisEndTimestamp;
-- (double)synthesisLatency;
-- (double)synthesisToSpeechTime;
-- (long long)synthesisToSpeechTimeGap;
 - (double)timeToSpeakLatency;
 - (double)ttsSynthesisLatency;
-- (double)ttsTotalLatency;
 - (id)utterance;
 - (id)voiceAssetKey;
 - (id)voiceResourceAssetKey;
-- (double)waitForSynthesisToFinishTime;
-- (long long)waitForSynthesisToFinishTimeDelay;
 
 @end

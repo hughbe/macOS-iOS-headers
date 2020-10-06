@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSearchCallHistoryIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBSearchCallHistoryIntentResponse> {
-    bool  __encodeLegacyGloryData;
     NSArray * _callRecords;
     NSString * _dateCreated;
     struct { }  _has;
@@ -11,7 +10,6 @@
     NSString * _targetContact;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *callRecords;
 @property (nonatomic, readonly) unsigned long long callRecordsCount;
 @property (nonatomic, copy) NSString *dateCreated;
@@ -29,8 +27,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addCallRecords:(id)arg1;
 - (id)callRecords;
 - (id)callRecordsAtIndex:(unsigned long long)arg1;

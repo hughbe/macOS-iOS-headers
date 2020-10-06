@@ -76,4 +76,24 @@
 - (id)formattedAddressString;
 - (id)formattedAddressStrings;
 
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)fromSchema:(id)arg1;
+
+- (id)schema;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)_ABKeyFromCNKey:(id)arg1;
++ (id)_CNKeyFromABKey:(id)arg1;
++ (id)backwardsCompatiblePostalAddressDictionary:(id)arg1;
++ (id)postalAddressFromWebServiceDictionaryRepresentation:(id)arg1;
+
+- (id)_countryCodeForCountryName:(id)arg1;
+- (id)backwardsCompatibleDictionaryRepresentation;
+- (id)redactedPostalAddress;
+- (id)redactedStreetAddress;
+- (id)suggestedCountryCode;
+- (id)webServiceDictionaryRepresentation;
+
 @end

@@ -11,12 +11,7 @@
         unsigned int read_personalizedMaps : 1; 
         unsigned int read_placeRequest : 1; 
         unsigned int read_place : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_address : 1; 
-        unsigned int wrote_personalizedMaps : 1; 
-        unsigned int wrote_placeRequest : 1; 
-        unsigned int wrote_place : 1; 
-        unsigned int wrote_type : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEORPPersonalizedMapsContext * _personalizedMaps;
     GEOPDPlace * _place;
@@ -47,10 +42,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (void)_readAddress;
-- (void)_readPersonalizedMaps;
-- (void)_readPlace;
-- (void)_readPlaceRequest;
 - (id)address;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
@@ -65,7 +56,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)personalizedMaps;
 - (id)place;

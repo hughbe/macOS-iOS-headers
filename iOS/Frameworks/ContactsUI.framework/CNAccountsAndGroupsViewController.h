@@ -2,50 +2,63 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNAccountsAndGroupsViewController : UITableViewController <UITableViewDelegate> {
-    CNContactListStyleApplier * _contactListStyleApplier;
+@interface CNAccountsAndGroupsViewController : UIViewController <UICollectionViewDelegate> {
+    UICollectionView * _collectionView;
     CNAccountsAndGroupsDataSource * _dataSource;
     <CNAccountsAndGroupsViewControllerDelegate> * _delegate;
+    UICollectionViewDiffableDataSource * _diffableDataSource;
     bool  _needsReload;
+    _UIDiffableDataSourceOutlineSectionController * _sectionController;
+    UIButton * _showAllButton;
     bool  _tableViewNeedsReloadAfterResume;
 }
 
-@property (nonatomic, retain) CNContactListStyleApplier *contactListStyleApplier;
+@property (retain) UICollectionView *collectionView;
 @property (nonatomic, retain) CNAccountsAndGroupsDataSource *dataSource;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <CNAccountsAndGroupsViewControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
+@property (retain) UICollectionViewDiffableDataSource *diffableDataSource;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool needsReload;
+@property (retain) _UIDiffableDataSourceOutlineSectionController *sectionController;
+@property (retain) UIButton *showAllButton;
 @property (readonly) Class superclass;
 @property (nonatomic) bool tableViewNeedsReloadAfterResume;
 
 - (void).cxx_destruct;
 - (void)applicationDidResume;
-- (void)applyStyle;
-- (id)contactListStyleApplier;
-- (void)contactStoreDidChangeWithNotification:(id)arg1;
+- (id)collectionView;
+- (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
+- (void)configureDataSource;
+- (void)contactStoreDidChange:(id)arg1;
 - (void)contentSizeCategoryDidChange:(id)arg1;
 - (id)dataSource;
 - (void)dealloc;
 - (id)delegate;
+- (id)diffableDataSource;
 - (void)done:(id)arg1;
-- (id)initWithStyle:(long long)arg1;
-- (void)loadView;
+- (id)doneButtonItem;
+- (id)groupsStyle;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (id)layout;
 - (bool)needsReload;
-- (long long)numberOfSectionsInTableView:(id)arg1;
 - (void)reloadData;
-- (void)setContactListStyleApplier:(id)arg1;
+- (void)resetShowButtonFont;
+- (id)sectionController;
+- (void)setCollectionView:(id)arg1;
 - (void)setDataSource:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setDiffableDataSource:(id)arg1;
 - (void)setNeedsReload:(bool)arg1;
+- (void)setSectionController:(id)arg1;
+- (void)setShowAllButton:(id)arg1;
 - (void)setTableViewNeedsReloadAfterResume:(bool)arg1;
-- (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
-- (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
-- (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
-- (id)tableView:(id)arg1 titleForHeaderInSection:(long long)arg2;
+- (id)showAllButton;
+- (void)showAllButtonTapped;
 - (bool)tableViewNeedsReloadAfterResume;
-- (void)viewDidAppear:(bool)arg1;
+- (void)toggleSelectionOfItem:(id)arg1;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)arg1;
 

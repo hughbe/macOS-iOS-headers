@@ -10,8 +10,6 @@
 @property (nonatomic) bool limitToWindowLevel;
 @property (nonatomic) long long priorityLevel;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)_isSystemWindow;
 
 - (id)__autorotationSanityCheckObjectFromSource:(id)arg1 selector:(SEL)arg2;
@@ -21,9 +19,6 @@
 - (bool)_shouldAutorotateToInterfaceOrientation:(long long)arg1;
 - (bool)_shouldControlAutorotation;
 - (id)_topMostWindow;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)applicationWindowRotated:(id)arg1;
 - (id)init;
 - (id)initWithWindowScene:(id)arg1;

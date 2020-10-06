@@ -18,7 +18,6 @@
 - (unsigned short)appearanceIdentifierForName:(id)arg1;
 - (id)appearances;
 - (bool)canGetRenditionWithKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;
-- (bool)canGetRenditionWithKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1 isFPO:(bool*)arg2;
 - (void)clearRenditionCache;
 - (void)dealloc;
 - (id)defaultAppearanceName;

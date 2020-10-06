@@ -9,9 +9,7 @@
         unsigned int read_environmentDisplayName : 1; 
         unsigned int read_environmentReleaseName : 1; 
         unsigned int read_urls : 1; 
-        unsigned int wrote_environmentDisplayName : 1; 
-        unsigned int wrote_environmentReleaseName : 1; 
-        unsigned int wrote_urls : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -32,10 +30,6 @@
 + (Class)urlType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsUrl:(id)arg1;
-- (void)_readEnvironmentDisplayName;
-- (void)_readEnvironmentReleaseName;
-- (void)_readUrls;
 - (void)addUrl:(id)arg1;
 - (void)clearUrls;
 - (void)copyTo:(id)arg1;
@@ -49,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

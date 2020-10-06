@@ -14,6 +14,7 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (bool)_allowsPaintSelectionForLoupeInteraction:(id)arg1;
 - (void)adjustVariableDelaySettingsForLoupeInteraction:(id)arg1;
 - (void)configureGestureExclusionRequirementsForTextLoupeInteraction:(id)arg1;
 - (void)configureLoupeGestureRecognizer:(id)arg1 forTextLoupeInteraction:(id)arg2;

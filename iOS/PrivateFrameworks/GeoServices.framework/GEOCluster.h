@@ -7,8 +7,7 @@
     struct { 
         unsigned int read_indexs : 1; 
         unsigned int read_container : 1; 
-        unsigned int wrote_indexs : 1; 
-        unsigned int wrote_container : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct { 
         int *list; 
@@ -31,9 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsIndex:(int)arg1;
-- (void)_readContainer;
-- (void)_readIndexs;
 - (void)addIndex:(int)arg1;
 - (void)clearIndexs;
 - (void)clearSensitiveFields;
@@ -50,7 +46,10 @@
 - (unsigned long long)indexsCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

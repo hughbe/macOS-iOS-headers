@@ -52,6 +52,17 @@
             struct Coordinate3D<Radians, double> {} *__value_; 
         } __end_cap_; 
     }  _coordinatesToFrame;
+    struct Coordinate3D<Radians, double> { 
+        struct Unit<RadianUnitDescription, double> { 
+            double _value; 
+        } latitude; 
+        struct Unit<RadianUnitDescription, double> { 
+            double _value; 
+        } longitude; 
+        struct Unit<MeterUnitDescription, double> { 
+            double _value; 
+        } altitude; 
+    }  _cornerCoordinates;
     struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > { 
         struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> > { 
             struct __rep { 
@@ -77,13 +88,14 @@
     double  _depthNear;
     double  _desiredZoomScale;
     VKDetachedNavGestureCameraBehavior * _detachedGestureBehavior;
-    struct Spring<double, 1, mdc::SpringType::Linear> { 
+    struct Spring<double, 1, gdc::SpringType::Linear> { 
         double _position; 
         double _velocity; 
         double _restingPosition; 
         double _kSpring; 
         double _kDamper; 
     }  _distanceFromTargetSpring;
+    bool  _enableDynamicFrameRate;
     bool  _enablePan;
     bool  _enablePitch;
     bool  _enableRotate;
@@ -118,7 +130,7 @@
     struct Unit<RadianUnitDescription, double> { 
         double _value; 
     }  _headingMinDelta;
-    struct Spring<double, 1, mdc::SpringType::Angular> { 
+    struct Spring<double, 1, gdc::SpringType::Angular> { 
         double _position; 
         double _velocity; 
         double _restingPosition; 
@@ -181,7 +193,7 @@
     bool  _needsUpdate;
     float  _panReturnDelayTime;
     bool  _panning;
-    struct Spring<double, 1, mdc::SpringType::Linear> { 
+    struct Spring<double, 1, gdc::SpringType::Linear> { 
         double _position; 
         double _velocity; 
         double _restingPosition; 
@@ -189,6 +201,22 @@
         double _kDamper; 
     }  _pitchSpring;
     bool  _pitching;
+    struct WindowedSampler<60> { 
+        double _min; 
+        double _max; 
+        double _avg; 
+        double _sum; 
+        struct optional<unsigned long> { 
+            bool _hasValue; 
+            union ValueUnion { 
+                unsigned char data[8]; 
+                unsigned long long type; 
+            } _value; 
+        } _idx; 
+        struct array<double, 60> { 
+            double __elems_[60]; 
+        } _samples; 
+    }  _pixelSamples;
     struct VKEdgeInsets { 
         float top; 
         float left; 
@@ -237,7 +265,7 @@
     }  _routeFocusCoordinate;
     VKSceneConfiguration * _sceneConfiguration;
     VKScreenCanvas<VKInteractiveMap> * _screenCanvas;
-    struct Spring<double, 2, mdc::SpringType::Linear> { 
+    struct Spring<double, 2, gdc::SpringType::Linear> { 
         struct Matrix<double, 2, 1> { 
             double _e[2]; 
         } _position; 
@@ -253,6 +281,7 @@
     bool  _sentZoomNotification;
     VKTimedAnimation * _snapHeadingAnimation;
     VKTimedAnimation * _snapPitchAnimation;
+    unsigned char  _styleLegsToFrame;
     unsigned char  _styleManeuversToFrame;
     struct shared_ptr<md::TaskContext> { 
         struct TaskContext {} *__ptr_; 
@@ -308,9 +337,10 @@
 @property (nonatomic, readonly) bool isFullyPitched;
 @property (nonatomic, readonly) bool isPitched;
 @property (nonatomic, readonly) bool isRotated;
-@property (nonatomic, readonly) struct MapDataAccess { struct World {} *x1; unsigned char x2; id x3; struct CameraAccessInternal {} *x4; /* Warning: unhandled struct encoding: '{unique_ptr<md::CameraAccessCartographic' */ struct x5; }*mapDataAccess; /* unknown property attribute:  std::__1::default_delete<md::CameraAccessMunin> >=^{CameraAccessMunin}}}} */
+@property (nonatomic, readonly) struct MapDataAccess { struct World {} *x1; unsigned char x2; unsigned char x3; id x4; struct shared_ptr<gdc::Camera> { struct Camera {} *x_5_1_1; struct __shared_weak_count {} *x_5_1_2; } x5; }*mapDataAccess;
 @property (nonatomic, readonly) GEOMapRegion *mapRegion;
 @property (nonatomic, readonly) double maxPitch;
+@property (nonatomic, readonly) double minPitch;
 @property (nonatomic) double pitch;
 @property (nonatomic, readonly) struct RunLoopController { struct MapEngine {} *x1; long long x2; long long x3; }*runLoopController;
 @property (nonatomic) VKSceneConfiguration *sceneConfiguration;
@@ -321,12 +351,15 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_addAdditionalRoutePointsToFrameToList:(struct vector<geo::Coordinate3D<Radians, double>, std::__1::allocator<geo::Coordinate3D<Radians, double> > > { struct Coordinate3D<Radians, double> {} *x1; struct Coordinate3D<Radians, double> {} *x2; struct __compressed_pair<geo::Coordinate3D<Radians, double> *, std::__1::allocator<geo::Coordinate3D<Radians, double> > > { struct Coordinate3D<Radians, double> {} *x_3_1_1; } x3; }*)arg1;
+- (double)_calculateMaxPixelChangeAndUpdateCorners;
 - (bool)_canZoomIn;
 - (bool)_canZoomOut;
+- (float)_currentRoadSignOffset;
 - (id)_debugText:(bool)arg1 showNavCameraDebugConsoleAttributes:(bool)arg2;
 - (bool)_hasRunningAnimation;
 - (double)_normalizedZoomLevelForDisplayZoomLevel:(double)arg1;
 - (void)_setDetached:(bool)arg1;
+- (void)_setNavCameraIsDetached:(bool)arg1;
 - (void)_setNeedsUpdate;
 - (void)_snapHeading;
 - (void)_snapPitch;
@@ -360,7 +393,7 @@
 - (double)distanceToManeuver:(unsigned long long)arg1;
 - (double)heading;
 - (id)init;
-- (id)initWithTaskContext:(struct shared_ptr<md::TaskContext> { struct TaskContext {} *x1; struct __shared_weak_count {} *x2; })arg1 device:(struct Device { int x1; struct shared_ptr<ggl::Device> { struct Device {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct unique_ptr<md::SharedDeviceResources, std::__1::default_delete<md::SharedDeviceResources> > { struct __compressed_pair<md::SharedDeviceResources *, std::__1::default_delete<md::SharedDeviceResources> > { struct SharedDeviceResources {} *x_1_2_1; } x_3_1_1; } x3; }*)arg2 mapDataAccess:(struct MapDataAccess { struct World {} *x1; unsigned char x2; id x3; struct CameraAccessInternal {} *x4; struct unique_ptr<md::CameraAccessCartographic, std::__1::default_delete<md::CameraAccessCartographic> > { struct __compressed_pair<md::CameraAccessCartographic *, std::__1::default_delete<md::CameraAccessCartographic> > { struct CameraAccessCartographic {} *x_1_2_1; } x_5_1_1; } x5; struct unique_ptr<md::CameraAccessGlobe, std::__1::default_delete<md::CameraAccessGlobe> > { struct __compressed_pair<md::CameraAccessGlobe *, std::__1::default_delete<md::CameraAccessGlobe> > { struct CameraAccessGlobe {} *x_1_2_1; } x_6_1_1; } x6; struct unique_ptr<md::CameraAccessMunin, std::__1::default_delete<md::CameraAccessMunin> > { struct __compressed_pair<md::CameraAccessMunin *, std::__1::default_delete<md::CameraAccessMunin> > { struct CameraAccessMunin {} *x_1_2_1; } x_7_1_1; } x7; }*)arg3 animationRunner:(struct AnimationRunner { struct MapEngine {} *x1; }*)arg4 runLoopController:(struct RunLoopController { struct MapEngine {} *x1; long long x2; long long x3; }*)arg5 cameraDelegate:(id)arg6;
+- (id)initWithTaskContext:(struct shared_ptr<md::TaskContext> { struct TaskContext {} *x1; struct __shared_weak_count {} *x2; })arg1 device:(struct Device { int x1; struct shared_ptr<ggl::Device> { struct Device {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; struct unique_ptr<md::SharedDeviceResources, std::__1::default_delete<md::SharedDeviceResources> > { struct __compressed_pair<md::SharedDeviceResources *, std::__1::default_delete<md::SharedDeviceResources> > { struct SharedDeviceResources {} *x_1_2_1; } x_3_1_1; } x3; }*)arg2 mapDataAccess:(struct MapDataAccess { struct World {} *x1; unsigned char x2; unsigned char x3; id x4; struct shared_ptr<gdc::Camera> { struct Camera {} *x_5_1_1; struct __shared_weak_count {} *x_5_1_2; } x5; }*)arg3 animationRunner:(struct AnimationRunner { struct MapEngine {} *x1; }*)arg4 runLoopController:(struct RunLoopController { struct MapEngine {} *x1; long long x2; long long x3; }*)arg5 cameraDelegate:(id)arg6;
 - (bool)isGesturing;
 - (bool)isPitchEnabled;
 - (bool)isRotateEnabled;
@@ -420,6 +453,7 @@
 - (void)updateManeuversToFrame;
 - (void)updatePanWithTranslation:(struct CGPoint { double x1; double x2; })arg1;
 - (void)updatePinchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 oldFactor:(double)arg2 newFactor:(double)arg3;
+- (void)updatePitchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 degrees:(double)arg2;
 - (void)updatePitchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 translation:(double)arg2;
 - (void)updatePointsToFrame;
 - (void)updateRotationWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 newValue:(double)arg2;

@@ -6,6 +6,7 @@
     OSABinaryImageSegment * _absolute_segment;
     OSABinaryImageSegment * _kernel_cache_segment;
     NSMutableArray * _kernel_segments;
+    NSMutableArray * _kernel_text_exec_segments;
     NSMutableArray * _notes;
     NSMutableArray * _rootedCacheLibs;
     NSMutableDictionary * _shared_segments;
@@ -26,6 +27,7 @@
 - (id)searchFrame:(unsigned long long)arg1 in:(id)arg2 result:(id*)arg3;
 - (void)setKernelCache:(unsigned char)arg1 address:(unsigned long long)arg2 size:(unsigned long long)arg3;
 - (void)setKernelImages:(id)arg1;
+- (void)setKernelTextExecImages:(id)arg1;
 - (void)setRootedCacheLibs:(struct dyld_uuid_info_64 { unsigned long long x1; unsigned char x2[16]; }*)arg1 count:(unsigned int)arg2;
 - (void)targetSharedCache:(unsigned char)arg1 withSlide:(unsigned long long)arg2 atBaseAddress:(unsigned long long)arg3;
 

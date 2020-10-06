@@ -8,9 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_feedbackInfos : 1; 
         unsigned int read_nextPageToken : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_feedbackInfos : 1; 
-        unsigned int wrote_nextPageToken : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSData * _nextPageToken;
     PBDataReader * _reader;
@@ -31,9 +29,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsFeedbackInfo:(id)arg1;
-- (void)_readFeedbackInfos;
-- (void)_readNextPageToken;
 - (void)addFeedbackInfo:(id)arg1;
 - (void)clearFeedbackInfos;
 - (void)clearUnknownFields:(bool)arg1;
@@ -48,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)nextPageToken;
 - (void)readAll:(bool)arg1;

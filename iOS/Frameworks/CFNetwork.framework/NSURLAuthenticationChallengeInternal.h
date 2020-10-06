@@ -14,6 +14,5 @@
 }
 
 - (void)dealloc;
-- (id)initWithProtectionSpace:(id)arg1 proposedCredential:(id)arg2 previousFailureCount:(long long)arg3 failureResponse:(id)arg4 error:(id)arg5 sender:(id)arg6;
 
 @end

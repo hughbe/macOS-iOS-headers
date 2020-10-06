@@ -19,6 +19,8 @@
 @property (getter=isThreeDTouchEnabled, nonatomic) bool threeDTouchEnabled;
 @property (nonatomic, readonly) UIView *view;
 
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
+
 + (Class)defaultImplementation;
 + (id)descriptorForRequiredKeysWithThreeDTouchEnabled:(bool)arg1;
 
@@ -29,5 +31,11 @@
 - (id)initWithSettings:(id)arg1;
 - (id)objectViewControllerDelegate;
 - (void)setObjectViewControllerDelegate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
++ (id)ic_avatarViewWithContact:(id)arg1;
++ (id)ic_contactAvatarViewsWithShareParticipants:(id)arg1;
++ (id)ic_defaultAvatarView;
 
 @end

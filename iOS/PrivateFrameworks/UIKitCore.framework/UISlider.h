@@ -2,52 +2,22 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UISlider : UIControl <DebugHierarchyObject_Fallback, NSCoding, _UICursorInteractionDelegate> {
-    double  _alpha;
-    struct __CFDictionary { } * _contentLookup;
-    _UIEdgeFeedbackGenerator * _edgeFeedbackGenerator;
-    double  _hitOffset;
-    UIImageView * _innerThumbView;
-    bool  _maxColorIsValid;
-    UIColor * _maxTintColor;
-    UIView * _maxTrackClipView;
-    UIImageView * _maxTrackView;
-    float  _maxValue;
-    UIImageView * _maxValueImageView;
-    UIColor * _minTintColor;
-    UIView * _minTrackClipView;
-    UIImageView * _minTrackView;
-    float  _minValue;
-    UIImageView * _minValueImageView;
-    _UIModulationFeedbackGenerator * _modulationFeedbackGenerator;
-    struct { 
-        unsigned int continuous : 1; 
-        unsigned int animating : 1; 
-        unsigned int preparingToAnimate : 1; 
-        unsigned int showValue : 1; 
-        unsigned int trackEnabled : 1; 
-        unsigned int creatingSnapshot : 1; 
-        unsigned int thumbDisabled : 1; 
-        unsigned int minTrackHidden : 1; 
-    }  _sliderFlags;
-    bool  _thumbIsArtworkBased;
-    UIColor * _thumbTintColor;
-    UIImageView * _thumbView;
-    UIView * _thumbViewNeue;
-    NSArray * _trackColors;
-    bool  _trackIsArtworkBased;
-    float  _value;
+@interface UISlider : UIControl <NSCoding> {
+    _UISliderDataModel * _data;
+    NSArray * _dummyViews;
+    UIView<_UISliderVisualElement> * _visualElement;
 }
 
+@property (setter=_setTrackEnabled:, nonatomic) bool _trackEnabled;
+@property (nonatomic) double akMaximumValue;
+@property (nonatomic) double akMinimumValue;
+@property (nonatomic) double akValue;
 @property (getter=isContinuous, nonatomic) bool continuous;
 @property (nonatomic, readonly) UIImage *currentMaximumTrackImage;
 @property (nonatomic, readonly) UIImage *currentMinimumTrackImage;
 @property (nonatomic, readonly) UIImage *currentThumbImage;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (getter=_edgeFeedbackBehavior, setter=_setEdgeFeedbackBehavior:, nonatomic, retain) _UIEdgeFeedbackGenerator *edgeFeedbackBehavior;
 @property (getter=_edgeFeedbackGenerator, setter=_setEdgeFeedbackGenerator:, nonatomic, retain) _UIEdgeFeedbackGenerator *edgeFeedbackGenerator;
-@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) UIColor *maximumTrackTintColor;
 @property (nonatomic) float maximumValue;
 @property (nonatomic, retain) UIImage *maximumValueImage;
@@ -55,91 +25,57 @@
 @property (nonatomic) float minimumValue;
 @property (nonatomic, retain) UIImage *minimumValueImage;
 @property (getter=_modulationFeedbackGenerator, setter=_setModulationFeedbackGenerator:, nonatomic, retain) _UIModulationFeedbackGenerator *modulationFeedbackGenerator;
-@property (readonly) Class superclass;
 @property (nonatomic, retain) UIColor *thumbTintColor;
 @property (nonatomic) float value;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (bool)_allowActionsToQueue;
-+ (id)_modernThumbImageWithTraitCollection:(id)arg1 tintColor:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)__distributionStatisticsForUserInteractionDuration;
 - (bool)_alwaysHandleScrollerMouseEvent;
-- (void)_buildTrackArtwork;
-- (id)_contentForState:(unsigned long long)arg1;
 - (bool)_contentHuggingDefault_isUsuallyFixedHeight;
-- (void)_contentSizeCategoryChanged:(id)arg1;
 - (unsigned long long)_controlEventsForActionTriggered;
 - (void)_controlTouchBegan:(id)arg1 withEvent:(id)arg2;
 - (void)_controlTouchEnded:(id)arg1 withEvent:(id)arg2;
 - (void)_controlTouchMoved:(id)arg1 withEvent:(id)arg2;
-- (double)_cornerRadiusForRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)_edgeFeedbackBehavior;
 - (id)_edgeFeedbackGenerator;
-- (void)_initImages;
-- (void)_initSubviews;
+- (void)_installVisualElement;
+- (void)_installVisualElement:(id)arg1;
+- (void)_intrinsicContentSizeInvalidatedForChildView:(id)arg1;
 - (struct CGSize { double x1; double x2; })_intrinsicSizeWithinSize:(struct CGSize { double x1; double x2; })arg1;
 - (bool)_isThumbEnabled;
-- (void)_layoutSubviewsForBoundsChange:(bool)arg1;
-- (void)_listenForContentSizeCategoryChangesIfNecessary;
 - (id)_maxTrackView;
 - (id)_maxValueView;
-- (id)_maximumTrackImageForState:(unsigned long long)arg1;
 - (id)_minTrackView;
 - (id)_minValueView;
-- (id)_minimumTrackImageForState:(unsigned long long)arg1;
 - (id)_modulationFeedbackGenerator;
 - (void)_populateArchivedSubviews:(id)arg1;
-- (void)_rebuildControlThumb:(bool)arg1 track:(bool)arg2;
-- (void)_sendDelayedActions;
-- (void)_setContent:(id)arg1 forState:(unsigned long long)arg2;
 - (void)_setEdgeFeedbackBehavior:(id)arg1;
 - (void)_setEdgeFeedbackGenerator:(id)arg1;
-- (void)_setMaximumTrackImage:(id)arg1 forStates:(unsigned long long)arg2;
-- (void)_setMinimumTrackImage:(id)arg1 forStates:(unsigned long long)arg2;
+- (void)_setMaxValue:(float)arg1;
+- (void)_setMinValue:(float)arg1;
 - (void)_setMinimumTrackVisible:(bool)arg1 withDuration:(double)arg2;
 - (void)_setModulationFeedbackGenerator:(id)arg1;
 - (void)_setThumbEnabled:(bool)arg1;
-- (void)_setThumbImage:(id)arg1 forStates:(unsigned long long)arg2;
 - (void)_setTrackEnabled:(bool)arg1;
 - (void)_setUseLookNeue:(bool)arg1;
-- (void)_setValue:(float)arg1 andSendAction:(bool)arg2;
-- (void)_setValue:(float)arg1 minValue:(float)arg2 maxValue:(float)arg3 andSendAction:(bool)arg4;
-- (void)_setupFeedback;
-- (bool)_shouldBeginTrackingAtPoint:(struct CGPoint { double x1; double x2; })arg1 pointInKnob:(struct CGPoint { double x1; double x2; }*)arg2 inKnob:(bool*)arg3;
-- (void)_sliderAnimationDidStop:(bool)arg1;
-- (void)_sliderAnimationWillStart;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_thumbHitEdgeInsets;
-- (id)_thumbImageForState:(unsigned long long)arg1;
+- (id)_thumbView;
+- (id)_thumbViewNeue;
 - (bool)_trackEnabled;
-- (void)_traitCollectionDidChangeInternal:(const struct _UITraitCollectionChangeDescription { id x1; id x2; bool x3; bool x4; bool x5; bool x6; bool x7; bool x8; bool x9; bool x10; bool x11; }*)arg1;
-- (void)_updateAppearanceForEnabled:(bool)arg1;
-- (void)_updateMaxTrackColorForInitialization:(bool)arg1;
-- (void)_updateMinimumTrackTintColor;
-- (void)dealloc;
-- (id)description;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })alignmentRectInsets;
 - (bool)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (bool)cancelMouseTracking;
 - (bool)cancelTouchTracking;
 - (bool)continueTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (id)createThumbView;
-- (id)createThumbViewNeue;
 - (id)currentMaximumTrackImage;
 - (id)currentMinimumTrackImage;
 - (id)currentThumbImage;
-- (id)cursorInteraction:(id)arg1 regionForLocation:(struct CGPoint { double x1; double x2; })arg2 defaultRegion:(id)arg3;
-- (id)cursorInteraction:(id)arg1 styleForRegion:(id)arg2;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (void)endTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (bool)gestureRecognizerShouldBegin:(id)arg1;
@@ -150,6 +86,7 @@
 - (bool)isAnimatingValueChange;
 - (bool)isContinuous;
 - (bool)isElementAccessibilityExposedToInterfaceBuilder;
+- (bool)isTracking;
 - (void)layoutSubviews;
 - (id)maximumTrackImageForState:(unsigned long long)arg1;
 - (id)maximumTrackTintColor;
@@ -161,11 +98,8 @@
 - (float)minimumValue;
 - (id)minimumValueImage;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })minimumValueImageRectForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
-- (void)setAlpha:(double)arg1;
-- (void)setBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setContinuous:(bool)arg1;
 - (void)setEnabled:(bool)arg1;
-- (void)setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setHighlighted:(bool)arg1;
 - (void)setMaximumTrackImage:(id)arg1 forState:(unsigned long long)arg2;
 - (void)setMaximumTrackImage:(id)arg1 forStates:(unsigned long long)arg2;
@@ -178,19 +112,30 @@
 - (void)setMinimumValue:(float)arg1;
 - (void)setMinimumValueImage:(id)arg1;
 - (void)setSelected:(bool)arg1;
+- (void)setSemanticContentAttribute:(long long)arg1;
 - (void)setShowValue:(bool)arg1;
 - (void)setThumbImage:(id)arg1 forState:(unsigned long long)arg2;
 - (void)setThumbImage:(id)arg1 forStates:(unsigned long long)arg2;
 - (void)setThumbTintColor:(id)arg1;
+- (void)setTracking:(bool)arg1;
 - (void)setValue:(float)arg1;
 - (void)setValue:(float)arg1 animated:(bool)arg2;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (id)thumbImageForState:(unsigned long long)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })thumbRectForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 trackRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 value:(float)arg3;
 - (id)thumbTintColor;
-- (void)tintColorDidChange;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })trackRectForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)traitCollectionDidChange:(id)arg1;
 - (float)value;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })valueTextRectForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
+- (double)akMaximumValue;
+- (double)akMinimumValue;
+- (double)akValue;
+- (void)setAkMaximumValue:(double)arg1;
+- (void)setAkMinimumValue:(double)arg1;
+- (void)setAkValue:(double)arg1;
 
 @end

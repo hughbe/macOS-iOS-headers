@@ -5,7 +5,7 @@
 @interface MTKTextureLoader : NSObject {
     <MTLCommandQueue> * _blitQueue;
     <TXRBufferAllocator> * _bufferAllocator;
-    <MTLDevice> * _device;
+    <MTLDeviceSPI> * _device;
     NSObject<OS_dispatch_queue> * _loadQueue;
     NSObject<OS_dispatch_semaphore> * _loadSemaphore;
     NSObject<OS_dispatch_queue> * _notifyQueue;

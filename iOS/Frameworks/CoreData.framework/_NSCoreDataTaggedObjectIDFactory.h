@@ -12,7 +12,6 @@
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 
 - (id)_fallbackFactory;
-- (id)_initCoreWithTaggedIndex:(unsigned int)arg1;
 - (void)_setStoreInfo1:(id)arg1;
 - (void)_storeDeallocated;
 - (id)_storeInfo1;

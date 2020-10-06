@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SAUIAssistantUtteranceView : SAAceView
+@interface SAUIAssistantUtteranceView : SAAceView <SiriUIUUFRSayable, SiriUIUUFRShowable>
 
 @property (nonatomic, copy) NSString *dialogIdentifier;
 @property (nonatomic, copy) NSNumber *postDialogDelayInMilliseconds;
@@ -31,5 +31,14 @@
 - (bool)af_isUtterance;
 - (id)af_speakableText;
 - (id)af_text;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)afui_insertionContext;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (id)_uufrSaid;
+- (id)_uufrShownRequestedByInstrumentationManager:(id)arg1;
 
 @end

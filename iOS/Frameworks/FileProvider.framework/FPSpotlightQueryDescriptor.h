@@ -7,6 +7,7 @@
     FPQueryEnumerationSettings * _settings;
 }
 
+@property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) FPQueryEnumerationSettings *settings;
 
 - (void).cxx_destruct;
@@ -19,6 +20,7 @@
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToItemQueryDescriptor:(id)arg1;
 - (bool)keepCollectorsAlive;
+- (id)name;
 - (id)queryStringForMountPoint:(id)arg1;
 - (id)settings;
 - (bool)supportsQueryingAllMountPoints;

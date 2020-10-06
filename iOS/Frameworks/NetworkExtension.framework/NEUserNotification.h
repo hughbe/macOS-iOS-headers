@@ -5,18 +5,20 @@
 @interface NEUserNotification : NSObject {
     id /* block */  _callback;
     NSObject<OS_dispatch_queue> * _callbackQueue;
-    bool  _isBanner;
+    bool  _isAlert;
     id  _notification;
     id  _notificationSource;
 }
 
 @property (nonatomic, copy) id /* block */ callback;
 @property (retain) NSObject<OS_dispatch_queue> *callbackQueue;
-@property bool isBanner;
+@property bool isAlert;
 @property (retain) id notification;
 @property (retain) id notificationSource;
 
++ (void)cancelCurrentNotificationWithDefaultResponse:(bool)arg1 queue:(id)arg2 completionHandler:(id /* block */)arg3;
 + (id)createLAContext;
++ (void)executeOnMainLoop:(id /* block */)arg1;
 + (Class)getUIDeviceClass;
 + (void)promptForLocalAuthenticationWithReason:(id)arg1 completionQueue:(id)arg2 completionHandler:(id /* block */)arg3;
 + (bool)shouldPromptForLocalAuthentication;
@@ -25,18 +27,17 @@
 - (id /* block */)callback;
 - (id)callbackQueue;
 - (void)cancel;
-- (void)executeOnMainLoop:(id /* block */)arg1;
-- (id)initAddConfigurationsForApp:(id)arg1 warningHeader:(id)arg2 warning:(id)arg3;
-- (id)initAuthenticationWithHeader:(id)arg1 options:(id)arg2 flags:(unsigned long long)arg3;
-- (id)initBannerWithHeader:(id)arg1 message:(id)arg2 alternateMessage:(id)arg3 defaultMessage:(id)arg4;
-- (id)initObsoleteAlertWithAppName:(id)arg1;
-- (bool)isBanner;
+- (id)initAndShowAddConfigurationsForApp:(id)arg1 warningHeader:(id)arg2 warning:(id)arg3 callbackQueue:(id)arg4 callbackHandler:(id /* block */)arg5;
+- (id)initAndShowAlertWithHeader:(id)arg1 message:(id)arg2 alternateMessage:(id)arg3 defaultMessage:(id)arg4 noBoldDefault:(bool)arg5 callbackQueue:(id)arg6 callbackHandler:(id /* block */)arg7;
+- (id)initAndShowAuthenticationWithHeader:(id)arg1 options:(id)arg2 flags:(unsigned long long)arg3 callbackQueue:(id)arg4 callbackHandler:(id /* block */)arg5;
+- (id)initAndShowLocalNetworkAlertWithAppName:(id)arg1 reasonString:(id)arg2 callbackQueue:(id)arg3 callbackHandler:(id /* block */)arg4;
+- (bool)isAlert;
 - (id)notification;
 - (id)notificationSource;
 - (bool)postNotificationWithCallbackQueue:(id)arg1 callbackHandler:(id /* block */)arg2;
 - (void)setCallback:(id /* block */)arg1;
 - (void)setCallbackQueue:(id)arg1;
-- (void)setIsBanner:(bool)arg1;
+- (void)setIsAlert:(bool)arg1;
 - (void)setNotification:(id)arg1;
 - (void)setNotificationSource:(id)arg1;
 

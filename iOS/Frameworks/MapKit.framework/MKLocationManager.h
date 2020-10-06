@@ -3,9 +3,9 @@
  */
 
 @interface MKLocationManager : NSObject <GEOResourceManifestTileGroupObserver, MKLocationProviderDelegate> {
-    bool  _allowOldLocations;
     double  _applicationResumeTime;
     double  _applicationSuspendTime;
+    geo_isolater * _authorizedForPreciseLocationIsolater;
     int  _consecutiveOutOfCourseCount;
     bool  _continuedAfterBecomingInactive;
     bool  _continuesWhileInactive;
@@ -41,8 +41,10 @@
     double  _navCourse;
     id /* block */  _networkActivity;
     NSLock * _observersLock;
+    int  _preciseLocationAuthorizationState;
     NSMutableArray * _recentLocationUpdateIntervals;
     bool  _suspended;
+    bool  _temporaryPreciseLocationAuthorizationPromptShown;
     CLHeading * _throttledHeading;
     bool  _trackingHeading;
     bool  _trackingLocation;
@@ -52,7 +54,6 @@
 }
 
 @property (nonatomic) long long activityType;
-@property (nonatomic) bool allowOldLocations;
 @property (nonatomic, copy) id /* block */ authorizationRequestBlock;
 @property (nonatomic) bool continuesWhileInactive;
 @property (nonatomic, readonly) GEOLocation *courseCorrectedLocation;
@@ -67,12 +68,14 @@
 @property (nonatomic, copy) NSString *effectiveBundleIdentifier;
 @property (getter=isEnabled, nonatomic) bool enabled;
 @property (nonatomic, readonly) double expectedGpsUpdateInterval;
+@property (nonatomic) bool fusionInfoEnabled;
 @property (nonatomic, readonly) GEOLocation *gridSnappedCurrentLocation;
 @property (nonatomic, readonly) bool hasLocation;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) CLHeading *heading;
 @property (nonatomic) long long headingOrientation;
 @property (nonatomic, readonly) double headingUpdateTimeInterval;
+@property (nonatomic, readonly) bool isAuthorizedForPreciseLocation;
 @property (nonatomic, readonly) bool isHeadingServicesAvailable;
 @property (nonatomic, readonly) bool isLastLocationStale;
 @property (nonatomic, readonly) bool isLocationServicesApproved;
@@ -81,6 +84,7 @@
 @property (nonatomic, readonly) bool isLocationServicesEnabled;
 @property (nonatomic, readonly) bool isLocationServicesPossiblyAvailable;
 @property (nonatomic, readonly) bool isLocationServicesRestricted;
+@property (nonatomic, readonly) bool isTemporaryPreciseLocationAuthorizationPromptShown;
 @property (nonatomic, readonly) CLLocation *lastGoodLocation;
 @property (nonatomic, readonly) CLLocation *lastLocation;
 @property (getter=wasLastLocationPushed, nonatomic, readonly) bool lastLocationPushed;
@@ -92,7 +96,6 @@
 @property (nonatomic, retain) <MNLocationRecorder> *locationRecorder;
 @property (getter=isLocationServicesAuthorizationNeeded, nonatomic, readonly) bool locationServicesAuthorizationNeeded;
 @property (getter=isLocationServicesPreferencesDialogEnabled, nonatomic) bool locationServicesPreferencesDialogEnabled;
-@property (nonatomic, readonly) bool locationShiftEnabled;
 @property (nonatomic) bool logStartStopLocationUpdates;
 @property (nonatomic) bool matchInfoEnabled;
 @property (nonatomic) double minimumLocationUpdateInterval;
@@ -124,10 +127,9 @@
 - (void)_startLocationUpdateWithObserver:(id)arg1 desiredAccuracy:(double)arg2;
 - (void)_suspend;
 - (void)_syncLocationProviderWithTracking;
-- (void)_useCoreLocationProvider;
+- (void)_useDefaultCoreLocationProvider;
 - (void)_waitForAccurateLocationsTimerFired:(id)arg1;
 - (long long)activityType;
-- (bool)allowOldLocations;
 - (void)applicationDidBecomeActive:(id)arg1;
 - (void)applicationWillResignActive:(id)arg1;
 - (id /* block */)authorizationRequestBlock;
@@ -144,12 +146,15 @@
 - (id)effectiveBundle;
 - (id)effectiveBundleIdentifier;
 - (double)expectedGpsUpdateInterval;
+- (bool)fusionInfoEnabled;
 - (id)gridSnappedCurrentLocation;
 - (bool)hasLocation;
 - (id)heading;
 - (long long)headingOrientation;
 - (double)headingUpdateTimeInterval;
 - (id)init;
+- (id)initWithCLLocationManager:(id)arg1;
+- (bool)isAuthorizedForPreciseLocation;
 - (bool)isEnabled;
 - (bool)isHeadingServicesAvailable;
 - (bool)isLastLocationStale;
@@ -162,6 +167,7 @@
 - (bool)isLocationServicesPossiblyAvailable:(id*)arg1;
 - (bool)isLocationServicesPreferencesDialogEnabled;
 - (bool)isLocationServicesRestricted;
+- (bool)isTemporaryPreciseLocationAuthorizationPromptShown;
 - (id)lastGoodLocation;
 - (id)lastLocation;
 - (int)lastLocationSource;
@@ -181,7 +187,6 @@
 - (void)locationProviderDidResumeLocationUpdates:(id)arg1;
 - (bool)locationProviderShouldPauseLocationUpdates:(id)arg1;
 - (id)locationRecorder;
-- (bool)locationShiftEnabled;
 - (bool)logStartStopLocationUpdates;
 - (bool)matchInfoEnabled;
 - (double)minimumLocationUpdateInterval;
@@ -189,13 +194,13 @@
 - (id /* block */)networkActivity;
 - (id)observersDescription;
 - (void)pushLocation:(id)arg1;
+- (void)requestTemporaryPreciseLocationAuthorizationWithPurposeKey:(id)arg1 completion:(id /* block */)arg2;
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)reset;
 - (void)resetAfterResumeIfNecessary;
 - (void)resourceManifestManager:(id)arg1 didChangeActiveTileGroup:(id)arg2 fromOldTileGroup:(id)arg3;
 - (void)setActivityType:(long long)arg1;
-- (void)setAllowOldLocations:(bool)arg1;
 - (void)setAuthorizationRequestBlock:(id /* block */)arg1;
 - (void)setContinuesWhileInactive:(bool)arg1;
 - (void)setDesiredAccuracy:(double)arg1;
@@ -203,6 +208,7 @@
 - (void)setEffectiveBundle:(id)arg1;
 - (void)setEffectiveBundleIdentifier:(id)arg1;
 - (void)setEnabled:(bool)arg1;
+- (void)setFusionInfoEnabled:(bool)arg1;
 - (void)setHeading:(id)arg1;
 - (void)setHeadingOrientation:(long long)arg1;
 - (void)setLastLocation:(id)arg1;

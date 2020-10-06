@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
  */
 
-@interface IDSRemoteURLConnection : NSObject {
+@interface IDSRemoteURLConnection : NSObject <FTMessageDeliveryRemoteURLConnection> {
     id /* block */  _block;
     NSString * _bundleIdentifierForDataUsage;
     bool  _cancelled;
@@ -23,14 +23,20 @@
 @property (copy) id /* block */ block;
 @property (retain) NSString *bundleIdentifierForDataUsage;
 @property int concurrentConnections;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property bool disableKeepAlive;
 @property bool forceCellularIfPossible;
+@property (readonly) unsigned long long hash;
 @property int keepAliveCell;
 @property int keepAliveWifi;
 @property (retain) NSURLRequest *request;
 @property bool requireIDSHost;
 @property bool shouldReturnTimingData;
 @property bool shouldUsePipelining;
+@property (readonly) Class superclass;
+
++ (id)alloc;
 
 - (void).cxx_destruct;
 - (bool)_connect;

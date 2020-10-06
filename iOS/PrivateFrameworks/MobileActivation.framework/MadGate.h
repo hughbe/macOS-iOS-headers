@@ -30,6 +30,6 @@
 - (bool)reactivateDevice:(id*)arg1;
 - (bool)recertifyDeviceWithError:(id*)arg1;
 - (bool)unbrickDevice:(id*)arg1;
-- (void)updateBasebandTicket:(struct __SecKey { }*)arg1 baaCert:(struct __SecCertificate { }*)arg2 options:(id)arg3 withCompletion:(id /* block */)arg4;
+- (void)updateBasebandTicket:(struct __SecKey { }*)arg1 baaCert:(struct __SecCertificate { }*)arg2 baaIntermediateCert:(struct __SecCertificate { }*)arg3 options:(id)arg4 withCompletion:(id /* block */)arg5;
 
 @end

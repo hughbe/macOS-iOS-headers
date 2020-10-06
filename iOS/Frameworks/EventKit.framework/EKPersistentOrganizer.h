@@ -4,10 +4,10 @@
 
 @interface EKPersistentOrganizer : EKPersistentParticipant
 
-@property (nonatomic, retain) NSURL *address;
-@property (getter=isCurrentUser, nonatomic) bool currentUser;
-@property (nonatomic, retain) NSString *displayName;
+@property (nonatomic, retain) NSString *URL;
+@property (nonatomic, retain) NSString *displayNameRaw;
 @property (nonatomic, retain) NSString *emailAddress;
+@property (nonatomic) bool isCurrentUser;
 
 + (id)defaultPropertiesToLoad;
 + (Class)meltedClass;
@@ -20,7 +20,9 @@
 - (id)initWithName:(id)arg1 emailAddress:(id)arg2 address:(id)arg3 isCurrentUser:(bool)arg4;
 - (bool)isCurrentUser;
 - (id)owner;
-- (void)setCurrentUser:(bool)arg1;
+- (long long)scheduleAgent;
+- (void)setIsCurrentUser:(bool)arg1;
 - (void)setOwner:(id)arg1;
+- (void)setScheduleAgent:(long long)arg1;
 
 @end

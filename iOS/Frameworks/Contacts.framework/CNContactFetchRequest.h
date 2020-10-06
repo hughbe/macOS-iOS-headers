@@ -11,6 +11,7 @@
     bool  _onlyMainStore;
     NSPredicate * _predicate;
     bool  _rankSort;
+    unsigned long long  _serialNumber;
     bool  _shouldFailIfAccountNotYetSynced;
     long long  _sortOrder;
     bool  _unifyResults;
@@ -24,10 +25,12 @@
 @property (nonatomic) bool onlyMainStore;
 @property (nonatomic, copy) NSPredicate *predicate;
 @property (nonatomic) bool rankSort;
+@property (readonly) unsigned long long serialNumber;
 @property (nonatomic) bool shouldFailIfAccountNotYetSynced;
 @property (nonatomic) long long sortOrder;
 @property (nonatomic) bool unifyResults;
 
++ (unsigned long long)makeSerialNumber;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -48,6 +51,7 @@
 - (id)predicate;
 - (bool)rankSort;
 - (bool)requiresMeContactAuthorization;
+- (unsigned long long)serialNumber;
 - (void)setAllowsBatching:(bool)arg1;
 - (void)setBatchSize:(unsigned long long)arg1;
 - (void)setDisallowsEncodedFetch:(bool)arg1;

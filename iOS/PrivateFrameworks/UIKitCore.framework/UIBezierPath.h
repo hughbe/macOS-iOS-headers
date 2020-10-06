@@ -28,6 +28,8 @@
 @property (nonatomic) double miterLimit;
 @property (nonatomic) bool usesEvenOddFillRule;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)_bezierPathWithArcRoundedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 cornerRadius:(double)arg2;
 + (id)_bezierPathWithPillRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 cornerRadius:(double)arg2;
 + (id)_bezierPathWithRoundedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 byRoundingCorners:(unsigned long long)arg2 cornerRadius:(double)arg3;
@@ -51,6 +53,7 @@
 
 - (const struct CGPath { }*)CGPath;
 - (void)_addRoundedCornerWithTrueCorner:(struct CGPoint { double x1; double x2; })arg1 radius:(struct CGSize { double x1; double x2; })arg2 corner:(unsigned long long)arg3 clockwise:(bool)arg4;
+- (void)_addRoundedCornerWithTrueCorner:(struct CGPoint { double x1; double x2; })arg1 radius:(struct CGSize { double x1; double x2; })arg2 corner:(unsigned long long)arg3 clockwise:(bool)arg4 leadInIsContinuous:(bool)arg5 leadOutIsContinuous:(bool)arg6;
 - (struct CGPath { }*)_createMutablePathByDecodingData:(id)arg1;
 - (id)_initWithCGMutablePath:(struct CGPath { }*)arg1;
 - (struct CGPath { }*)_mutablePath;
@@ -103,5 +106,42 @@
 - (void)stroke;
 - (void)strokeWithBlendMode:(int)arg1 alpha:(double)arg2;
 - (bool)usesEvenOddFillRule;
+
+// Image: /System/Library/Frameworks/PencilKit.framework/PencilKit
+
+- (const struct CGPath { }*)PK_CGPath;
+
+// Image: /System/Library/PrivateFrameworks/AccessibilityPhysicalInteraction.framework/AccessibilityPhysicalInteraction
+
++ (id)bezierPathForFingerShape:(unsigned long long)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 curveOnly:(bool)arg3;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
+- (void)akAppendPath:(id)arg1;
+- (struct CGPath { }*)newCGPathForPlatformBezierPath;
+
+// Image: /System/Library/PrivateFrameworks/BiometricKitUI.framework/BiometricKitUI
+
+- (void)bkui_bezierPathAddRoundedCorner:(unsigned long long)arg1 withRadius:(double)arg2 followingAngle:(double)arg3;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
+- (void)hk_applyBlock:(id /* block */)arg1;
+- (id)hk_firstPoint;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_bezierPathWithRoundedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 cornerRadii:(struct { union { struct { float x_1_2_1; float x_1_2_2; float x_1_2_3; float x_1_2_4; } x_1_1_1; float x_1_1_2[4]; } x1; })arg2;
+
+// Image: /System/Library/PrivateFrameworks/Silex.framework/Silex
+
++ (id)sx_bezierPathWithNonContinuousRoundedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 byRoundingCorners:(unsigned long long)arg2 cornerRadius:(double)arg3;
++ (id)sx_bezierPathWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 byRoundingCorners:(unsigned long long)arg2 cornerRadius:(double)arg3 continuousCorners:(bool)arg4;
+
+- (id)TSDBezierPath;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
++ (id)ts_bezierPathWithPillRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 cornerRadius:(double)arg2;
 
 @end

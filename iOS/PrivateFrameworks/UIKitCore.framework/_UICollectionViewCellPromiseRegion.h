@@ -5,6 +5,7 @@
 @interface _UICollectionViewCellPromiseRegion : NSObject <_UIFocusRegionContainer, _UILegacyFocusRegion> {
     UICollectionView * _collectionView;
     UICollectionViewLayoutAttributes * _layoutAttributes;
+    UIScrollView * _parentScrollView;
 }
 
 @property (nonatomic) bool areChildrenFocused;
@@ -12,11 +13,13 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (getter=_isEligibleForFocusInteraction, nonatomic, readonly) bool eligibleForFocusInteraction;
+@property (nonatomic, readonly, copy) NSString *focusGroupIdentifier;
 @property (nonatomic, readonly) <UIFocusItemContainer> *focusItemContainer;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) UICollectionViewLayoutAttributes *layoutAttributes;
 @property (getter=_linearFocusMovementSequences, nonatomic, readonly, copy) NSArray *linearFocusMovementSequences;
 @property (nonatomic, readonly) <UIFocusEnvironment> *parentFocusEnvironment;
+@property (nonatomic) UIScrollView *parentScrollView;
 @property (nonatomic, readonly, copy) NSArray *preferredFocusEnvironments;
 @property (getter=_preferredFocusMovementStyle, nonatomic, readonly) long long preferredFocusMovementStyle;
 @property (nonatomic, readonly) UIView *preferredFocusedView;
@@ -44,10 +47,12 @@
 - (id)focusItemContainer;
 - (id)layoutAttributes;
 - (id)parentFocusEnvironment;
+- (id)parentScrollView;
 - (id)preferredFocusEnvironments;
 - (void)setCollectionView:(id)arg1;
 - (void)setLayoutAttributes:(id)arg1;
 - (void)setNeedsFocusUpdate;
+- (void)setParentScrollView:(id)arg1;
 - (bool)shouldUpdateFocusInContext:(id)arg1;
 - (void)updateFocusIfNeeded;
 

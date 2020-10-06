@@ -2,13 +2,18 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@interface MCProcessAssertion : NSObject
+@interface MCProcessAssertion : NSObject {
+    NSString * _reason;
+    NSObject<OS_os_transaction> * _transaction;
+}
 
-+ (id)assertion;
-+ (id)executionQueue;
+@property (nonatomic, readonly) NSString *reason;
 
+- (void).cxx_destruct;
+- (void)_createAssertion;
+- (void)_releaseAssertion;
 - (void)dealloc;
-- (id)init;
-- (void)touch;
+- (id)initWithReason:(id)arg1;
+- (id)reason;
 
 @end

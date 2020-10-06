@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface _NSNoChangeToken : NSObject <NSSecureCoding>
+@interface _NSNoChangeToken : NSObject <NSCoding, NSSecureCoding>
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
-+ (id)defaultInstance;
 + (void)initialize;
 + (bool)supportsSecureCoding;
 
-- (id)_initPrivate;
 - (bool)_isDeallocating;
 - (bool)_tryRetain;
 - (id)autorelease;

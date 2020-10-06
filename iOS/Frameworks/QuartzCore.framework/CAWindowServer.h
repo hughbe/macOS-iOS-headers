@@ -17,6 +17,7 @@
 + (id)server;
 + (id)serverIfRunning;
 + (id)serverWithOptions:(id)arg1;
++ (void)stopServer;
 
 - (void)_detectDisplays;
 - (id)_init;

@@ -18,13 +18,9 @@
 + (void)initialize;
 + (bool)supportsSecureCoding;
 
-- (void)_coreCreationForKeys:(const id*)arg1 count:(unsigned long long)arg2;
-- (void)_coreDealloc:(bool)arg1;
 - (bool)_isDeallocating;
-- (struct __CFArray { }*)_makeBranchTableForKeys:(const char **)arg1 count:(unsigned long long)arg2;
 - (bool)_tryRetain;
 - (id)allKeys;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)countByEnumeratingWithState:(struct { unsigned long long x1; id *x2; unsigned long long *x3; unsigned long long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned long long)arg3;

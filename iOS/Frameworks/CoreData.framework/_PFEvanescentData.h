@@ -10,16 +10,9 @@
     int  _openfd;
 }
 
-@property (readonly) const void*mapping;
-@property (readonly, copy) NSURL *url;
-
 + (Class)classForKeyedUnarchiver;
 
-- (void)_closeMapping;
-- (void)_destroyMapping;
-- (const void*)_openMapping;
 - (const void*)bytes;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -35,8 +28,6 @@
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToData:(id)arg1;
 - (unsigned long long)length;
-- (const void*)mapping;
 - (id)subdataWithRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
-- (id)url;
 
 @end

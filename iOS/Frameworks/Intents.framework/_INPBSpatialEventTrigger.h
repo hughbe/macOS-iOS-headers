@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSpatialEventTrigger : PBCodable <NSCopying, NSSecureCoding, _INPBSpatialEventTrigger> {
-    bool  __encodeLegacyGloryData;
     int  _event;
     struct { 
         unsigned int event : 1; 
@@ -14,7 +13,6 @@
     NSArray * _suggestedValues;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) int event;
@@ -34,8 +32,6 @@
 - (void).cxx_destruct;
 - (int)StringAsEvent:(id)arg1;
 - (int)StringAsMobileSpace:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addSuggestedValues:(id)arg1;
 - (void)clearSuggestedValues;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

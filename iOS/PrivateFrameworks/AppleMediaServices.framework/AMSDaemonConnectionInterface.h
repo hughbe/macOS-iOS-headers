@@ -9,6 +9,7 @@
 + (id)_deviceMessengerServiceInterface;
 + (id)_securityClientInterface;
 + (id)_securityServiceInterface;
++ (void)_setUpSecurityInterfaceBiometricProxy:(id)arg1;
 + (void)_setUpSecurityInterfaceHandleResponseSelector:(id)arg1;
 + (void)_setUpSecurityInterfaceSignedHeadersSelector:(id)arg1;
 + (id)interface;

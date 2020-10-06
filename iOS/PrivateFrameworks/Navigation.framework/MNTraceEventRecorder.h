@@ -31,7 +31,7 @@
 - (id)initWithTraceRecorder:(id)arg1;
 - (void)navigationSession:(id)arg1 didAnnounce:(id)arg2 stage:(unsigned long long)arg3;
 - (void)navigationSession:(id)arg1 didAnnounceArrival:(id)arg2;
-- (void)navigationSession:(id)arg1 didReroute:(id)arg2 withLocation:(id)arg3 withAlternateRoutes:(id)arg4;
+- (void)navigationSession:(id)arg1 didReroute:(id)arg2 withLocation:(id)arg3 withAlternateRoutes:(id)arg4 rerouteReason:(unsigned long long)arg5;
 - (void)navigationSession:(id)arg1 didSwitchToNewTransportType:(int)arg2 newRoute:(id)arg3;
 - (void)navigationSession:(id)arg1 didUpdateMatchedLocation:(id)arg2;
 - (void)navigationSession:(id)arg1 displayPrimaryStep:(id)arg2 instructions:(id)arg3 shieldType:(int)arg4 shieldText:(id)arg5 drivingSide:(int)arg6 maneuverStepIndex:(unsigned long long)arg7 isSynthetic:(bool)arg8;
@@ -40,7 +40,7 @@
 - (void)navigationSession:(id)arg1 showLaneDirections:(id)arg2;
 - (void)navigationSession:(id)arg1 updateSignsWithInfo:(id)arg2;
 - (void)navigationSessionBeginGuidanceUpdate:(id)arg1;
-- (void)navigationSessionDidStart:(id)arg1;
+- (void)navigationSessionDidStart:(id)arg1 isReconnecting:(bool)arg2;
 - (void)navigationSessionEndGuidanceUpdate:(id)arg1;
 - (void)navigationSessionHideSecondaryStep:(id)arg1;
 - (void)navigationSessionWillReroute:(id)arg1;

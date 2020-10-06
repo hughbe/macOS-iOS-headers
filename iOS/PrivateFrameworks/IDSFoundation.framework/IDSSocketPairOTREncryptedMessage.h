@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic, readonly) NSData *data;
+@property (nonatomic, readonly) bool didWakeHint;
 @property (nonatomic, readonly) bool encrypted;
 @property (nonatomic, readonly) bool expectsPeerResponse;
 @property (nonatomic, retain) NSDate *expiryDate;

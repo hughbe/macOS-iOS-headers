@@ -16,6 +16,8 @@
 @property (nonatomic, copy) NSArray *possibleTitles;
 @property (nonatomic, copy) NSArray *possibleValues;
 
+// Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -44,5 +46,18 @@
 - (id)titleForRow:(long long)arg1 inSection:(long long)arg2;
 - (id)titleForSection:(long long)arg1;
 - (id)valueForRow:(long long)arg1 inSection:(long long)arg2;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_possibleValues:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (id)px_possibleValues:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PrototypeToolsUI.framework/PrototypeToolsUI
+
+- (id)defaultUIAction;
+- (Class)tableViewCellClass;
 
 @end

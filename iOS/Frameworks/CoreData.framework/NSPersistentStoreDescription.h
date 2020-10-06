@@ -21,6 +21,8 @@
 @property double timeout;
 @property (copy) NSString *type;
 
+// Image: /System/Library/Frameworks/CoreData.framework/CoreData
+
 + (id)inMemoryPersistentStoreDescription;
 + (id)persistentStoreDescriptionWithURL:(id)arg1;
 
@@ -61,5 +63,13 @@
 - (double)timeout;
 - (id)type;
 - (bool)usesPersistentHistoryTracking;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
++ (id)wf_configurationInDirectory:(id)arg1 filename:(id)arg2;
++ (id)wf_inMemoryConfiguration;
++ (id)wf_legacyVoiceShortcutsConfiguration;
++ (id)wf_shortcutsConfiguration;
++ (id)wf_voiceShortcutsDirectoryURL;
 
 @end

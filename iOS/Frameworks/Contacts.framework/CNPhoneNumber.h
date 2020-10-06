@@ -25,6 +25,7 @@
 
 // Image: /System/Library/Frameworks/Contacts.framework/Contacts
 
++ (id /* block */)StringValue;
 + (id)_countryCodeForNorthAmericanDialingPlanAreaCodesExcludingUS;
 + (id)_countryCodesForNorthAmericanDialingPlan;
 + (bool)_isCountryCodeForNorthAmericanDialingPlan:(id)arg1;
@@ -40,7 +41,6 @@
 
 - (void).cxx_destruct;
 - (id)_countryCodeFromPhoneNumberRef;
-- (id)_determineCorrectCountryCodeForNorthAmericanDialingPlan;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)countryCode;
 - (void)dealloc;
@@ -71,8 +71,16 @@
 - (id)stringValueWithCFPhoneNumberOptions:(unsigned long long)arg1;
 - (id)unformattedInternationalStringValue;
 
+// Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
+
++ (id)fullyQualifiedStringForStringValue:(id)arg1 countryCode:(id)arg2;
+
 // Image: /System/Library/PrivateFrameworks/ContactsUICore.framework/ContactsUICore
 
 - (id)_cnui_URLDestinationID;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pkFormattedStringValue;
 
 @end

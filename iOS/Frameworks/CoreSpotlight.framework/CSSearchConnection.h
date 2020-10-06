@@ -20,6 +20,7 @@
 - (void)handleReply:(id)arg1;
 - (id)init;
 - (id)initWithMachServiceName:(id)arg1;
+- (void)preheat:(id)arg1;
 - (bool)previouslyInitialized;
 - (id)queries;
 - (id)queryForID:(id)arg1;

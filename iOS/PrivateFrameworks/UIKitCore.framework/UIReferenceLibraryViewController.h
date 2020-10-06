@@ -20,8 +20,6 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)_backgroundColor;
 + (id)_colorAttributes;
 + (id)_defaultButtonImage;
@@ -51,9 +49,6 @@
 - (void)_searchWeb:(id)arg1;
 - (void)_setPopoverController:(id)arg1;
 - (void)_willBecomeContentViewControllerOfPopover:(id)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id /* block */)dismissCompletionHandler;
 - (bool)enableRotation;
 - (id)init;

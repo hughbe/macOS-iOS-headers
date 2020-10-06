@@ -3,7 +3,7 @@
  */
 
 @interface MTLDebugInstrumentationData : NSObject {
-    const struct MTLSerializedDebugInstrumentationData { unsigned long long x1; struct Statistics { unsigned int x_2_1_1; unsigned int x_2_1_2; unsigned int x_2_1_3; unsigned int x_2_1_4; unsigned int x_2_1_5; unsigned int x_2_1_6; unsigned int x_2_1_7; unsigned int x_2_1_8; unsigned int x_2_1_9; unsigned int x_2_1_10[5]; unsigned int x_2_1_11; unsigned int x_2_1_12; unsigned int x_2_1_13; unsigned int x_2_1_14; unsigned int x_2_1_15; unsigned int x_2_1_16; unsigned int x_2_1_17; unsigned int x_2_1_18; unsigned int x_2_1_19; unsigned int x_2_1_20; unsigned int x_2_1_21; unsigned int x_2_1_22; } x2; struct FlatArray<MTLSerializedDebugInstrumentationData::FlatArray<char> > { unsigned int x_3_1_1; unsigned int x_3_1_2; } x3; struct FlatArray<MTLBoundsCheck::DebugLocation> { unsigned int x_4_1_1; unsigned int x_4_1_2; } x4; struct FlatArray<MTLBoundsCheck::DebugSubProgram> { unsigned int x_5_1_1; unsigned int x_5_1_2; } x5; } * _data;
+    const struct MTLSerializedDebugInstrumentationData { unsigned long long x1; struct FlatArray<MTLSerializedDebugInstrumentationData::FlatArray<char> > { unsigned int x_2_1_1; unsigned int x_2_1_2; } x2; struct FlatArray<MTLBoundsCheck::DebugLocation> { unsigned int x_3_1_1; unsigned int x_3_1_2; } x3; struct FlatArray<MTLBoundsCheck::DebugSubProgram> { unsigned int x_4_1_1; unsigned int x_4_1_2; } x4; struct FlatArray<MTLBoundsCheck::ConstantDataHeader> { unsigned int x_5_1_1; unsigned int x_5_1_2; } x5; struct FlatArray<unsigned char> { unsigned int x_6_1_1; unsigned int x_6_1_2; } x6; struct FlatArray<unsigned char> { unsigned int x_7_1_1; unsigned int x_7_1_2; } x7; unsigned int x8; unsigned int x9; unsigned long long x10; union InstrumentationStatusFlags { struct { unsigned int x_1_2_1 : 1; unsigned int x_1_2_2 : 1; unsigned int x_1_2_3 : 1; } x_11_1_1; unsigned short x_11_1_2; } x11; } * _data;
     NSObject<OS_dispatch_data> * _dataMap;
     /* Warning: unhandled struct encoding: '{vector<MTLDebugLocation *, std::__1::allocator<MTLDebugLocation *> >="__begin_"^@"__end_"^@"__end_cap_"{__compressed_pair<MTLDebugLocation **, std::__1::allocator<MTLDebugLocation *> >="__value_"^@}}' */ struct vector<MTLDebugLocation *, std::__1::allocator<MTLDebugLocation *> > { 
         __end_ **__begin_; 
@@ -11,6 +11,7 @@
     /* Warning: unhandled struct encoding: '{vector<MTLDebugSubProgram *, std::__1::allocator<MTLDebugSubProgram *> >="__begin_"^@"__end_"^@"__end_cap_"{__compressed_pair<MTLDebugSubProgram **, std::__1::allocator<MTLDebugSubProgram *> >="__value_"^@}}' */ struct vector<MTLDebugSubProgram *, std::__1::allocator<MTLDebugSubProgram *> > { 
         __end_ **__begin_; 
     }  _debugSubPrograms;
+    NSData * _globalConstantsData;
     struct vector<const __CFString *, std::__1::allocator<const __CFString *> > { 
         struct __CFString {} **__begin_; 
         struct __CFString {} **__end_; 
@@ -18,17 +19,30 @@
             struct __CFString {} **__value_; 
         } __end_cap_; 
     }  _strings;
+    NSObject<OS_dispatch_data> * _userReflectionData;
 }
 
-@property (nonatomic, readonly) bool hasBacktrackingFailures;
+@property (nonatomic, readonly) unsigned int activeThreadgroupMask;
+@property (nonatomic, readonly) unsigned long long bufferAccessMask;
+@property (nonatomic, readonly) bool hasArgumentBufferInstrumentationFailures;
+@property (nonatomic, readonly) bool hasArgumentLimitsInstrumentationFailures;
+@property (nonatomic, readonly) bool hasGlobalConstantsInstrumentationFailures;
+@property (nonatomic, readonly) unsigned int threadgroupArgumentOffset;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (unsigned int)activeThreadgroupMask;
+- (unsigned long long)bufferAccessMask;
 - (void)dealloc;
 - (id)debugLocationForID:(unsigned int)arg1;
 - (id)debugSubProgramForID:(unsigned int)arg1;
-- (bool)hasBacktrackingFailures;
+- (id)globalConstantsData;
+- (bool)hasArgumentBufferInstrumentationFailures;
+- (bool)hasArgumentLimitsInstrumentationFailures;
+- (bool)hasGlobalConstantsInstrumentationFailures;
 - (id)initWithData:(id)arg1;
 - (id)stringForID:(unsigned int)arg1;
+- (unsigned int)threadgroupArgumentOffset;
+- (id)userReflectionData;
 
 @end

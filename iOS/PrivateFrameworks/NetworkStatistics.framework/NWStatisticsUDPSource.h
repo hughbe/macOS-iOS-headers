@@ -72,6 +72,7 @@
         unsigned char uuid[16]; 
         unsigned char euuid[16]; 
         unsigned char vuuid[16]; 
+        unsigned char fuuid[16]; 
         unsigned short ifnet_properties; 
         unsigned char reserved[6]; 
     }  _descriptor;

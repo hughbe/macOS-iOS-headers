@@ -6,11 +6,13 @@
     NSData * _JSONData;
     NSData * _backingJSONData;
     bool  _compressed;
+    NSString * _urlString;
 }
 
 @property (nonatomic, readonly) NSData *JSONData;
 @property (nonatomic, retain) NSData *backingJSONData;
 @property (getter=isCompressed, nonatomic) bool compressed;
+@property (nonatomic, retain) NSString *urlString;
 
 + (id)_createJSONObjectForEntries:(id)arg1;
 + (id)_createJSONObjectForTaskMetrics:(id)arg1 requestData:(id)arg2 responseData:(id)arg3;
@@ -28,12 +30,16 @@
 
 - (void).cxx_destruct;
 - (id)JSONData;
-- (id)_initWithJSONObject:(id)arg1;
 - (id)backingJSONData;
+- (id)initWithJSONObject:(id)arg1;
+- (id)initWithMetrics:(id)arg1 requestData:(id)arg2 responseData:(id)arg3;
 - (id)initWithURLTaskInfo:(id)arg1;
 - (bool)isCompressed;
+- (void)logHARData;
 - (void)setBackingJSONData:(id)arg1;
 - (void)setCompressed:(bool)arg1;
+- (void)setUrlString:(id)arg1;
+- (id)urlString;
 - (bool)writeToDiskWithError:(id*)arg1 compressed:(bool)arg2;
 
 @end

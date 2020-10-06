@@ -4,6 +4,7 @@
 
 @interface MKPlaceCardActionItem : NSObject {
     _MKMapItemAttribution * _attribution;
+    UIColor * _backgroundColor;
     NSString * _displayString;
     bool  _enabled;
     NSString * _glyph;
@@ -16,6 +17,7 @@
 }
 
 @property (nonatomic, retain) _MKMapItemAttribution *attribution;
+@property (nonatomic, retain) UIColor *backgroundColor;
 @property (nonatomic, readonly, copy) NSString *displayString;
 @property (nonatomic) bool enabled;
 @property (nonatomic, copy) NSString *glyph;
@@ -28,6 +30,7 @@
 
 - (void).cxx_destruct;
 - (id)attribution;
+- (id)backgroundColor;
 - (id)displayString;
 - (bool)enabled;
 - (id)glyph;
@@ -37,6 +40,7 @@
 - (bool)selected;
 - (id)selectedItem;
 - (void)setAttribution:(id)arg1;
+- (void)setBackgroundColor:(id)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setGlyph:(id)arg1;
 - (void)setGlyphColor:(id)arg1;

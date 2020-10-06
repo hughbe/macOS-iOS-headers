@@ -6,6 +6,8 @@
     void * _reserved;
 }
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 - (void)_addRangeToArray:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)_ensureRangeCapacity:(unsigned long long)arg1;
 - (void)_incrementBy:(unsigned long long)arg1 startingAtIndex:(unsigned long long)arg2;
@@ -29,5 +31,65 @@
 - (void)removeIndexesPassingTest:(id /* block */)arg1;
 - (void)removeIndexesWithOptions:(unsigned long long)arg1 passingTest:(id /* block */)arg2;
 - (void)shiftIndexesStartingAtIndex:(unsigned long long)arg1 by:(long long)arg2;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (void)hk_addDayIndex:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
+- (void)cat_moveIndex:(unsigned long long)arg1 toIndex:(unsigned long long)arg2;
+- (void)cat_shiftAndAddIndex:(unsigned long long)arg1;
+- (void)cat_shiftAndAddIndexesInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)cat_shiftAndRemoveIndex:(unsigned long long)arg1;
+- (void)cat_shiftAndRemoveIndexesInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (void)__ck_intersectIndexes:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Memories.framework/Memories
+
++ (id)indexSetWithIndexesInRCRange:(struct { long long x1; long long x2; })arg1;
+
+- (void)addIndexesInRCRange:(struct { long long x1; long long x2; })arg1;
+- (void)closeGapsSmallerThan:(long long)arg1;
+- (void)removeBlocksSmallerThan:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MessageLegacy.framework/MessageLegacy
+
+- (void)mf_intersectIndexes:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
+- (void)tsu_intersectionWithIndexSet:(id)arg1;
+- (void)tsu_moveIndexesInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 toOffset:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (void)pl_adjustIndexesForDeletions:(id)arg1;
+- (void)pl_adjustIndexesForInsertions:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (void)px_adjustIndexesForDeletedRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)px_adjustIndexesForDeletions:(id)arg1;
+- (void)px_adjustIndexesForInsertedRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)px_adjustIndexesForInsertions:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_intersectionWithIndexSet:(id)arg1;
+- (void)tsu_moveIndexesInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 toOffset:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_intersectionWithIndexSet:(id)arg1;
+- (void)tsu_moveIndexesInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 toOffset:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_intersectionWithIndexSet:(id)arg1;
+- (void)tsu_moveIndexesInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 toOffset:(unsigned long long)arg2;
 
 @end

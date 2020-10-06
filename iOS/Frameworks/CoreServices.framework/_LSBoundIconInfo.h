@@ -13,7 +13,6 @@
     _LSLazyPropertyList * _iconsDictionary;
     bool  _prerendered;
     NSURL * _resourcesDirectoryURL;
-    LSBundleProxy * _typeOwner;
 }
 
 @property (nonatomic, copy) NSString *applicationIdentifier;
@@ -31,7 +30,6 @@
 @property (getter=isPrerendered, nonatomic) bool prerendered;
 @property (nonatomic, retain) NSURL *resourcesDirectoryURL;
 @property (readonly) Class superclass;
-@property (nonatomic, copy) LSBundleProxy *typeOwner;
 
 + (bool)supportsSecureCoding;
 
@@ -61,7 +59,5 @@
 - (void)setIconsDictionary:(id)arg1;
 - (void)setPrerendered:(bool)arg1;
 - (void)setResourcesDirectoryURL:(id)arg1;
-- (void)setTypeOwner:(id)arg1;
-- (id)typeOwner;
 
 @end

@@ -20,8 +20,8 @@
 + (id)marketingNameForModel:(id)arg1;
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (void)_generateProductInformation;
-- (void)dealloc;
 - (id)deviceInformationString;
 - (id)init;
 - (id)model;

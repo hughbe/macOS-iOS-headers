@@ -30,7 +30,10 @@
 - (id)dictionaryRepresentation;
 - (bool)hasAllowFullScreenPhoto;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)pictureItemAtIndex:(unsigned long long)arg1;
 - (id)pictureItems;

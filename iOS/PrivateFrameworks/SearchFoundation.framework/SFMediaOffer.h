@@ -17,13 +17,16 @@
 @property (nonatomic, copy) NSString *applicationBundleIdentifier;
 @property (nonatomic, retain) SFImage *baseIcon;
 @property (nonatomic, copy) NSString *contactIdentifier;
+@property (nonatomic, retain) SFPunchout *customDirectionsPunchout;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
+@property (nonatomic) int directionsMode;
 @property (nonatomic, copy) NSString *email;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) SFImage *icon;
 @property (nonatomic, retain) SFImage *image;
+@property (nonatomic, copy) NSString *interactionContentType;
 @property (nonatomic) bool isEnabled;
 @property (nonatomic) bool isITunes;
 @property (nonatomic) bool isOverlay;
@@ -46,6 +49,7 @@
 @property (nonatomic, copy) NSString *provider;
 @property (nonatomic, retain) SFPunchout *punchout;
 @property (nonatomic) bool requiresLocalMedia;
+@property (nonatomic) bool shouldSearchDirectionsAlongCurrentRoute;
 @property (nonatomic, copy) NSArray *storeIdentifiers;
 @property (nonatomic, copy) NSString *sublabel;
 @property (readonly) Class superclass;

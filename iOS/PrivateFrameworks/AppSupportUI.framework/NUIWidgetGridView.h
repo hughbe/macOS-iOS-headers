@@ -31,25 +31,17 @@
 + (unsigned long long)maxNumberOfItems;
 
 - (void).cxx_destruct;
-- (void)_createGridViewIfNeeded;
 - (struct { double x1; double x2; })borrowableSpaceForCellAtIndex:(unsigned long long)arg1;
 - (id)cellForGridViewItemAtIndex:(long long)arg1;
 - (double)centerAdjustmentAllowed;
 - (void)contentSizeDidChange;
 - (double)currentLabelOutset;
-- (long long)currentLayout;
 - (id)dataSource;
 - (id)delegate;
 - (struct { double x1; double x2; })entitledExtraSpaceForCellAtIndex:(unsigned long long)arg1;
-- (void)generateItems;
-- (double)horizontalMargin;
 - (long long)imageStyle;
 - (id)initWithDataSource:(id)arg1 delegate:(id)arg2;
-- (unsigned long long)itemsPerRow;
-- (double)labelMinSpacing;
-- (double)labelOutset;
 - (void)layoutSubviews;
-- (unsigned long long)maxNumberOfItems;
 - (void)reloadData;
 - (void)setCenterAdjustmentAllowed:(double)arg1;
 - (void)setDataSource:(id)arg1;

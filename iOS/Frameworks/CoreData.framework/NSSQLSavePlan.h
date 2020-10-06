@@ -16,6 +16,7 @@
     }  _flags;
     struct __CFDictionary { } * _insertCache;
     NSSQLSaveChangesRequestContext * _requestContext;
+    NSMutableSet * _rowsToAddToRowCache;
     NSMutableArray * _rowsToDelete;
     struct __CFDictionary { } * _toManyCache;
     NSMutableDictionary * _toManyRelationshipChanges;
@@ -23,6 +24,7 @@
     NSMutableSet * _updatedByForeignKey;
     NSMutableSet * _updatedByRequest;
     struct __CFDictionary { } * _updatedFOKRowsInCurrentSave;
+    NSMutableDictionary * _usedIndexes;
 }
 
 @property (nonatomic, readonly) <_NSCoreDataCollectionWithoutKeys> *externalDataReferencesToDelete;
@@ -32,6 +34,7 @@
 @property (nonatomic, readonly) NSSaveChangesRequest *saveRequest;
 @property (nonatomic, readonly) NSManagedObjectContext *savingContext;
 @property (nonatomic) int transactionInMemorySequence;
+@property (nonatomic, readonly) NSMutableDictionary *usedIndexes;
 
 - (void)_addExternalReferenceDataToDelete:(id)arg1;
 - (void)_addExternalReferenceDataToSave:(id)arg1;
@@ -51,7 +54,7 @@
 - (id)_newRowCacheRowForToManyUpdatesForRelationship:(id)arg1 rowCacheOriginal:(id)arg2 originalOrderKeys:(id)arg3 originalSnapshot:(id)arg4 value:(id)arg5 added:(id)arg6 deleted:(id)arg7 sourceRowPK:(long long)arg8 properties:(id)arg9 sourceObject:(id)arg10 newIndexes:(unsigned long long**)arg11 reorderedIndexes:(char **)arg12;
 - (unsigned int)_orderKeyForObject:(id)arg1 fromSourceObjectID:(id)arg2 inverseRelationship:(id)arg3 inOrderedSet:(id)arg4;
 - (void)_populateOrderKeysInOrderedSet:(id)arg1 usingSourceObjectID:(id)arg2 inverseRelationship:(id)arg3 newIndexes:(unsigned long long**)arg4 reorderedIndexes:(char **)arg5;
-- (void)_populateRow:(id)arg1 fromObject:(id)arg2 timestamp:(double)arg3 inserted:(bool)arg4;
+- (void)_populateRow:(id)arg1 fromObject:(id)arg2 timestamp:(double)arg3 inserted:(bool)arg4 shouldAddToRowCache:(bool*)arg5;
 - (void)_prepareForDeletionOfDatabaseExternalPropertiesForObject:(id)arg1;
 - (void)_prepareForDeletionOfExternalDataReferencesForObject:(id)arg1;
 - (void)_prepareForDeletionOfFileBackedFuturesForObject:(id)arg1;
@@ -67,19 +70,21 @@
 - (id)foreignOrderKeysBeingUpdated;
 - (bool)hasChangesForWriting;
 - (id)initForRequestContext:(id)arg1;
-- (id)newAncillaryRowsUpdatedForRowCache;
+- (id)newAncillaryUpdatedRows;
 - (id)newCorrelationTableUpdates;
+- (id)newDeletedRows;
+- (id)newInsertedRows;
 - (id)newObjectsForExhaustiveLockConflictDetection;
 - (id)newObjectsForFastLockConflictDetection;
 - (id)newObjectsForUniquenessConflictDetectionGivenReportedFailures:(id)arg1;
-- (id)newPrimaryRowsUpdatedForRowCache;
+- (id)newPrimaryUpdatedRows;
 - (id)newRowsToAddToRowCache;
-- (id)newRowsToRemoveFromRowCache;
 - (void)prepareRows;
 - (id)saveRequest;
 - (id)savingContext;
 - (void)setTransactionInMemorySequence:(int)arg1;
 - (id)toManyRelationshipChanges;
 - (int)transactionInMemorySequence;
+- (id)usedIndexes;
 
 @end

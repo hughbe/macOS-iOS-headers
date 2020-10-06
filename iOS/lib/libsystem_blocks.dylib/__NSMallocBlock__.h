@@ -2,6 +2,12 @@
    Image: /usr/lib/system/libsystem_blocks.dylib
  */
 
-@interface __NSMallocBlock__ : __NSMallocBlock
+@interface __NSMallocBlock__ : NSBlock
+
+- (bool)_isDeallocating;
+- (bool)_tryRetain;
+- (oneway void)release;
+- (id)retain;
+- (unsigned long long)retainCount;
 
 @end

@@ -3,13 +3,11 @@
  */
 
 @interface _INPBActivity : PBCodable <NSCopying, NSSecureCoding, _INPBActivity> {
-    bool  __encodeLegacyGloryData;
     NSArray * _activityDescriptors;
     _INPBString * _activityType;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *activityDescriptors;
 @property (nonatomic, readonly) unsigned long long activityDescriptorsCount;
 @property (nonatomic, retain) _INPBString *activityType;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)activityDescriptors;
 - (id)activityDescriptorsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)activityDescriptorsCount;

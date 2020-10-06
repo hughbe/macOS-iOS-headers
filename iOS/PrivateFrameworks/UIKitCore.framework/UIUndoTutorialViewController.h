@@ -10,13 +10,8 @@
 @property (nonatomic, copy) id /* block */ completionHandler;
 @property (nonatomic, retain) UIUndoTutorialView *tutorialView;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id /* block */)completionHandler;
 - (void)doneButtonPressed;
 - (id)initWithCompletionHandler:(id /* block */)arg1;

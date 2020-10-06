@@ -18,7 +18,6 @@
 @property (nonatomic, retain) CNChangeHistoryAnchor *latestChangeAnchor;
 @property (nonatomic) bool unifyResults;
 
-+ (bool)enumerateEnumerator:(id)arg1 usingBlock:(id /* block */)arg2;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;

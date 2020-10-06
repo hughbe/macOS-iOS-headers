@@ -24,15 +24,10 @@
 @property double maximumPopoverHeight;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addPrinter:(id)arg1 moreComing:(bool)arg2;
 - (void)adjustPopoverSize;
+- (void)dealloc;
 - (void)didChangePreferredContentSize;
 - (id)initWithOwnerViewController:(id)arg1;
 - (void)loadView;

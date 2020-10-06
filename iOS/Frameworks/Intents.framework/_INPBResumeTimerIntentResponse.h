@@ -3,12 +3,10 @@
  */
 
 @interface _INPBResumeTimerIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBResumeTimerIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     NSArray * _resumedTimers;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -20,8 +18,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addResumedTimers:(id)arg1;
 - (void)clearResumedTimers;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

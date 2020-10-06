@@ -10,8 +10,8 @@
     }  _allowance;
     unsigned long long  _baselineValue;
     unsigned long long  _consumedValue;
+    RBSProcessHandle * _processHandle;
     NSObject<OS_dispatch_queue> * _queue;
-    BSMachPortSendRight * _taskRight;
     BSTimer * _timer;
 }
 
@@ -23,7 +23,6 @@
 
 - (void).cxx_destruct;
 - (void)_beginMonitoring;
-- (double)_getElapsedCPUTimeForTaskPort:(unsigned int)arg1;
 - (void)_prepareForReuse;
 - (bool)_queue_calculateValueConsumed:(out unsigned long long*)arg1;
 - (void)_queue_evaluateConsumption;

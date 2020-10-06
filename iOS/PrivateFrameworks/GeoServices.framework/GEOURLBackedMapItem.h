@@ -24,6 +24,7 @@
 @property (getter=_alternateSearchableNames, nonatomic, readonly) NSArray *alternateSearchableNames;
 @property (getter=_amenities, nonatomic, readonly) NSArray *amenities;
 @property (getter=_annotatedItemList, nonatomic, readonly) <GEOAnnotatedItemList> *annotatedItemList;
+@property (getter=_appleRatings, nonatomic, readonly) NSArray *appleRatings;
 @property (getter=_areaInMeters, nonatomic, readonly) double areaInMeters;
 @property (nonatomic, readonly) NSArray *areasOfInterest;
 @property (getter=_associatedApp, nonatomic, readonly) GEOAssociatedApp *associatedApp;
@@ -33,6 +34,7 @@
 @property (getter=_businessClaim, nonatomic, readonly) GEOPDBusinessClaim *businessClaim;
 @property (getter=_businessHours, nonatomic, readonly) NSArray *businessHours;
 @property (getter=_businessURL, nonatomic, readonly) NSString *businessURL;
+@property (getter=_canDownloadMorePhotos, nonatomic, readonly) bool canDownloadMorePhotos;
 @property (nonatomic, readonly) struct { double x1; double x2; } centerCoordinate;
 @property (getter=_childItems, nonatomic, readonly) NSArray *childItems;
 @property (getter=_clientAttributes, nonatomic, readonly) GEOMapItemClientAttributes *clientAttributes;
@@ -81,6 +83,7 @@
 @property (getter=_hasLinkedServices, nonatomic, readonly) bool hasLinkedServices;
 @property (getter=_hasMUID, nonatomic, readonly) bool hasMUID;
 @property (getter=_hasOperatingHours, nonatomic, readonly) bool hasOperatingHours;
+@property (getter=_hasPlaceQuestionnaire, nonatomic, readonly) bool hasPlaceQuestionnaire;
 @property (getter=_hasPriceRange, nonatomic, readonly) bool hasPriceRange;
 @property (getter=_hasResolvablePartialInformation, nonatomic, readonly) bool hasResolvablePartialInformation;
 @property (getter=_hasResultProviderID, nonatomic, readonly) bool hasResultProviderID;
@@ -94,10 +97,13 @@
 @property (getter=_hasWifiFingerprintLabelType, nonatomic, readonly) bool hasWifiFingerprintLabelType;
 @property (readonly) unsigned long long hash;
 @property (getter=_identifier, nonatomic, readonly) GEOMapItemIdentifier *identifier;
+@property (getter=_identifierHistory, nonatomic, readonly) NSArray *identifierHistory;
 @property (getter=_isInLinkedPlaceRelationship, nonatomic, readonly) bool inLinkedPlaceRelationship;
 @property (nonatomic, readonly) bool isEventAllDay;
 @property (getter=_isStandaloneBrand, nonatomic, readonly) bool isStandAloneBrand;
 @property (getter=_isTransitDisplayFeature, nonatomic, readonly) bool isTransitDisplayFeature;
+@property (getter=_iso3166CountryCode, nonatomic, readonly) NSString *iso3166CountryCode;
+@property (getter=_iso3166SubdivisionCode, nonatomic, readonly) NSString *iso3166SubdivisionCode;
 @property (getter=_linkedServices, nonatomic, readonly) NSArray *linkedServices;
 @property (getter=_mapsCategoryId, nonatomic, readonly) NSString *mapsCategoryId;
 @property (getter=_messageLink, nonatomic, readonly) GEOMessageLink *messageLink;
@@ -108,15 +114,18 @@
 @property (getter=_normalizedUserRatingScore, nonatomic, readonly) float normalizedUserRatingScore;
 @property (getter=_openingHoursOptions, nonatomic, readonly) unsigned long long openingHoursOptions;
 @property (getter=_optsOutOfTelephoneAds, nonatomic, readonly) bool optsOutOfTelephoneAds;
+@property (getter=_overallAppleRating, nonatomic, readonly) GEOAppleRating *overallRating;
 @property (getter=_parsecSectionType, nonatomic, readonly) int parsecSectionType;
 @property (getter=_photos, nonatomic, readonly) NSArray *photos;
 @property (getter=_photosAttribution, nonatomic, readonly) GEOMapItemPhotosAttribution *photosAttribution;
 @property (getter=_place, nonatomic, readonly) GEOPlace *place;
 @property (getter=_placeCollections, nonatomic, readonly) NSArray *placeCollections;
+@property (getter=_placeCollectionsIds, nonatomic, readonly) NSArray *placeCollectionsIds;
 @property (getter=_placeData, nonatomic, readonly) GEOPDPlace *placeData;
 @property (getter=_placeDataAsData, nonatomic, readonly) NSData *placeDataAsData;
 @property (getter=_placeDisplayStyle, nonatomic, readonly) int placeDisplayStyle;
 @property (getter=_placeDisplayType, nonatomic, readonly) int placeDisplayType;
+@property (getter=_placeQuestionnaire, nonatomic, readonly) GEOPlaceQuestionnaire *placeQuestionnaire;
 @property (getter=_placeResult, nonatomic, readonly) GEOPlaceResult *placeResult;
 @property (getter=_placeType, nonatomic, readonly) int placeType;
 @property (getter=_placecardLayoutConfiguration, nonatomic, readonly) GEOPlacecardLayoutConfiguration *placecardLayoutConfiguration;
@@ -138,6 +147,7 @@
 @property (getter=_roadAccessPoints, nonatomic, readonly) NSArray *roadAccessPoints;
 @property (getter=_sampleSizeForUserRatingScore, nonatomic, readonly) unsigned int sampleSizeForUserRatingScore;
 @property (nonatomic, readonly) NSString *secondaryName;
+@property (getter=_secondaryQuickLinks, nonatomic, readonly) NSArray *secondaryQuickLinks;
 @property (nonatomic, readonly) NSString *secondarySpokenName;
 @property (getter=_showSuggestAnEditButton, nonatomic, readonly) bool showSuggestAnEditButton;
 @property (nonatomic, readonly) NSArray *spatialMappedCategories;
@@ -146,9 +156,11 @@
 @property (getter=_storefrontPresentationInfo, nonatomic, readonly) GEOStorefrontPresentationInfo *storefrontPresentationInfo;
 @property (getter=_styleAttributes, nonatomic, readonly) GEOFeatureStyleAttributes *styleAttributes;
 @property (readonly) Class superclass;
+@property (getter=_supportsAppleRatings, nonatomic, readonly) bool supportsAppleRatings;
 @property (getter=_telephone, nonatomic, readonly) NSString *telephone;
 @property (nonatomic, readonly) NSTimeZone *timezone;
 @property (getter=_tips, nonatomic, readonly) NSArray *tips;
+@property (getter=_totalPhotoCount, nonatomic, readonly) unsigned long long totalPhotoCount;
 @property (getter=_transitAttribution, nonatomic, readonly) <GEOTransitAttribution> *transitAttribution;
 @property (getter=_transitInfo, nonatomic, readonly) <GEOMapItemTransitInfo> *transitInfo;
 @property (getter=_transitVehiclePosition, nonatomic, readonly) <GEOTransitVehiclePosition> *transitVehiclePosition;

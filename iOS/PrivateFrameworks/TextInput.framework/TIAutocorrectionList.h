@@ -7,6 +7,7 @@
     bool  _containsProactiveTriggers;
     NSArray * _emojiList;
     NSArray * _predictions;
+    bool  _proactiveSuggestionsEmpty;
     NSArray * _proactiveTriggers;
 }
 
@@ -16,7 +17,9 @@
 @property (nonatomic, readonly) bool containsContinuousPathConversions;
 @property (nonatomic) bool containsProactiveTriggers;
 @property (nonatomic, readonly) NSArray *emojiList;
+@property (nonatomic, readonly) bool notEmpty;
 @property (nonatomic, readonly) NSArray *predictions;
+@property (nonatomic) bool proactiveSuggestionsEmpty;
 @property (nonatomic, readonly) NSArray *proactiveTriggers;
 @property (nonatomic, readonly) bool shouldAcceptTopCandidate;
 
@@ -44,14 +47,18 @@
 - (id)initWithCandidates:(id)arg1 shouldAcceptTopCandidate:(bool)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)predictions;
+- (bool)proactiveSuggestionsEmpty;
 - (id)proactiveTriggers;
 - (void)setContainsProactiveTriggers:(bool)arg1;
+- (void)setProactiveSuggestionsEmpty:(bool)arg1;
 - (bool)shouldAcceptTopCandidate;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 - (bool)containsAutofillCandidates;
 - (bool)containsContinuousPathConversions;
+- (bool)notEmpty;
+- (long long)sourceForAutocorrection;
 - (void)updateLabelsWithSmartPunctuation:(id)arg1;
 
 @end

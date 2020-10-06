@@ -12,6 +12,7 @@
 @property (retain) IMDoubleLinkedListNode *first;
 @property (retain) IMDoubleLinkedListNode *last;
 
+- (void).cxx_destruct;
 - (id)allObjects;
 - (void)appendLinkedListNode:(id)arg1;
 - (void)appendObject:(id)arg1;

@@ -3,6 +3,7 @@
  */
 
 @interface CDMonitorManager : NSObject {
+    NSObject<OS_dispatch_source> * _SIGTERMHandlerSource;
     id /* block */  _generalHistoricalDeletingHandler;
     id /* block */  _generalHistoricalHandler;
     id /* block */  _generalInstantHandler;

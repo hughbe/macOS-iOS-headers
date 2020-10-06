@@ -9,8 +9,6 @@
     }  _queueLock;
 }
 
-- (id)initWithQueue:(id)arg1;
-- (void)invalidateQueue;
 - (void)setTotalUnitCount:(long long)arg1;
 
 @end

@@ -8,10 +8,7 @@
         unsigned int read_incidentType : 1; 
         unsigned int read_transitDepartureSequenceUsage : 1; 
         unsigned int read_transitSystemName : 1; 
-        unsigned int wrote_incidentType : 1; 
-        unsigned int wrote_transitDepartureSequenceUsage : 1; 
-        unsigned int wrote_transitSystemName : 1; 
-        unsigned int wrote_transitCategory : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _incidentType;
     PBDataReader * _reader;
@@ -38,9 +35,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsTransitCategory:(id)arg1;
-- (void)_readIncidentType;
-- (void)_readTransitDepartureSequenceUsage;
-- (void)_readTransitSystemName;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -53,7 +47,10 @@
 - (id)incidentType;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

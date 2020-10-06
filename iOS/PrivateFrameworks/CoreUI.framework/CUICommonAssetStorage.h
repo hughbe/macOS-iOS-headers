@@ -92,6 +92,7 @@
 - (void)enumerateBitmapIndexUsingBlock:(id /* block */)arg1;
 - (bool)enumerateKeysAndObjectsUsingBlock:(id /* block */)arg1;
 - (void)enumerateKeysAndObjectsWithoutIgnoringUsingBlock:(id /* block */)arg1;
+- (void)enumerateRenditionInfosUsingBlock:(id /* block */)arg1;
 - (struct _carextendedMetadata { unsigned int x1; BOOL x2[256]; BOOL x3[256]; BOOL x4[256]; BOOL x5[256]; }*)extendedMetadata;
 - (id)externalTags;
 - (void*)facetKeysdb;

@@ -25,6 +25,7 @@
     NSString * _instanceID;
     bool  _isInvalidated;
     NSError * _joinLeaveError;
+    unsigned long long  _localParticipantID;
     bool  _needsToWaitForPreConnectionData;
     NSDictionary * _participantInfo;
     bool  _preferCellularForCallSetup;
@@ -47,6 +48,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) unsigned long long localParticipantID;
 @property (nonatomic, readonly) unsigned int sessionEndedReason;
 @property (nonatomic, readonly) unsigned int state;
 @property (readonly) Class superclass;
@@ -65,8 +67,10 @@
 - (void)invalidate;
 - (void)joinWithOptions:(id)arg1;
 - (void)leaveGroupSession;
+- (unsigned long long)localParticipantID;
 - (void)requestActiveParticipants;
 - (void)session:(id)arg1 didReceiveActiveParticipants:(id)arg2 success:(bool)arg3;
+- (void)session:(id)arg1 didReceivePluginAllocationInfo:(id)arg2;
 - (void)session:(id)arg1 didReceiveReport:(id)arg2;
 - (void)session:(id)arg1 participantDidJoinGroupWithInfo:(id)arg2;
 - (void)session:(id)arg1 participantDidLeaveGroupWithInfo:(id)arg2;

@@ -9,6 +9,7 @@
     id /* block */  _changedAttributesHandler;
     id /* block */  _changedItemsHandler;
     id /* block */  _completionHandler;
+    id /* block */  _completionScoresHandler;
     id /* block */  _completionsHandler;
     id /* block */  _countChangedHandler;
     bool  _finished;
@@ -45,6 +46,7 @@
 @property (copy) id /* block */ changedAttributesHandler;
 @property (copy) id /* block */ changedItemsHandler;
 @property (copy) id /* block */ completionHandler;
+@property (copy) id /* block */ completionScoresHandler;
 @property (copy) id /* block */ completionsHandler;
 @property (copy) id /* block */ countChangedHandler;
 @property (nonatomic, readonly) NSArray *fetchAttributes;
@@ -71,6 +73,9 @@
 @property (nonatomic) bool userFSIndex;
 
 + (id)_makeQueryErrorWithErrorCode:(long long)arg1 description:(id)arg2 underlyingError:(id)arg3;
++ (void)initialize;
++ (void)preheat:(id)arg1;
++ (void)setConnectionName:(id)arg1;
 + (void)userEngagedWithUniqueIdentifier:(id)arg1 bundleId:(id)arg2 forUserQuery:(id)arg3 interactionType:(int)arg4;
 
 - (void).cxx_destruct;
@@ -84,6 +89,7 @@
 - (id /* block */)changedAttributesHandler;
 - (id /* block */)changedItemsHandler;
 - (id /* block */)completionHandler;
+- (id /* block */)completionScoresHandler;
 - (id /* block */)completionsHandler;
 - (id)connection;
 - (id)copyCSSearchableItemWithValues:(id*)arg1 valueCount:(unsigned long long)arg2 attrKeys:(unsigned long long*)arg3 protectionClass:(id)arg4 mappingStrategy:(id)arg5 attrInfo:(short*)arg6 requestedAttributeCount:(unsigned long long)arg7 unpackInfo:(struct CSUnpackInfo { short x1; short x2; short x3; short x4; short x5; })arg8 userFSDomain:(id)arg9;
@@ -143,6 +149,7 @@
 - (void)setChangedAttributesHandler:(id /* block */)arg1;
 - (void)setChangedItemsHandler:(id /* block */)arg1;
 - (void)setCompletionHandler:(id /* block */)arg1;
+- (void)setCompletionScoresHandler:(id /* block */)arg1;
 - (void)setCompletionsHandler:(id /* block */)arg1;
 - (void)setCountChangedHandler:(id /* block */)arg1;
 - (void)setFoundAttributesHandler:(id /* block */)arg1;

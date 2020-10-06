@@ -20,19 +20,9 @@
 @property (readonly) Class superclass;
 
 + (void)_enableLogging;
-+ (id)sharedDownloadManagerForMediaKind:(id)arg1 persistenceIdentifier:(id)arg2;
 
-- (void)_createNewDownload;
 - (long long)_getDownloadIdent;
 - (void)_invalidate;
-- (void)_invokeInvocation:(id)arg1 withConnection:(id)arg2;
-- (void)_managerFailedToStartInTime;
-- (void)_postTerminalInvocation:(id)arg1;
-- (void)_preTerminalInvocation:(id)arg1;
-- (void)_sendTerminalDidFinishToDelegate:(id)arg1;
-- (void)_sendTerminalErrorToDelegate:(id)arg1;
-- (void)_sourcePerform;
-- (void)_updateClientWithCurrentWrites:(id)arg1;
 - (void)_updateDownloadState:(id)arg1;
 - (void)cancel;
 - (void)cancelAuthenticationChallenge:(id)arg1;
@@ -48,8 +38,6 @@
 - (void)performDefaultHandlingForAuthenticationChallenge:(id)arg1;
 - (void)rejectProtectionSpaceAndContinueWithChallenge:(id)arg1;
 - (void)scheduleInRunLoop:(id)arg1 forMode:(id)arg2;
-- (void)setDelegateQueue:(id)arg1;
-- (void)setHandlerForDownload:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)start;
 - (void)unscheduleFromRunLoop:(id)arg1 forMode:(id)arg2;
 - (void)useCredential:(id)arg1 forAuthenticationChallenge:(id)arg2;

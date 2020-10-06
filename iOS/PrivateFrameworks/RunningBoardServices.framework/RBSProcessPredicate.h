@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessPredicate : NSObject <BSXPCSecureCoding, RBSProcessMatching> {
+@interface RBSProcessPredicate : NSObject <RBSProcessMatching, RBSXPCSecureCoding> {
     RBSProcessPredicateImpl * _predicate;
 }
 
+@property (nonatomic, readonly, copy) NSString *beforeTranslocationBundlePath;
 @property (nonatomic, readonly, copy) NSString *bundleIdentifier;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -20,6 +21,7 @@
 
 + (id)predicate;
 + (id)predicateMatching:(id)arg1;
++ (id)predicateMatchingBeforeTranslocationBundlePath:(id)arg1;
 + (id)predicateMatchingBundleIdentifier:(id)arg1;
 + (id)predicateMatchingEuid:(unsigned int)arg1;
 + (id)predicateMatchingExtensionPoint:(id)arg1;
@@ -27,24 +29,26 @@
 + (id)predicateMatchingIdentifier:(id)arg1;
 + (id)predicateMatchingIdentity:(id)arg1;
 + (id)predicateMatchingJobLabel:(id)arg1;
++ (id)predicateMatchingLaunchServicesProcesses;
++ (id)predicateMatchingPlatform:(int)arg1;
 + (id)predicateMatchingPredicates:(id)arg1;
 + (id)predicateMatchingServiceName:(id)arg1;
++ (id)predicateMatchingSuspendableProcesses;
 + (id)predicateMatchingTarget:(id)arg1;
 + (id)predicatePowerLogProcesses;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
+- (id)beforeTranslocationBundlePath;
 - (id)bundleIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned int)euid;
 - (id)extensionPoint;
 - (unsigned long long)hash;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithPredicate:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)jobLabel;
 - (bool)matchesProcess:(id)arg1;
@@ -53,7 +57,5 @@
 - (id)processIdentity;
 - (id)processPredicate;
 - (id)serviceName;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 
 @end

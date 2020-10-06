@@ -23,6 +23,6 @@
 - (bool)setGPUPriority:(unsigned long long)arg1;
 - (bool)setGPUPriority:(unsigned long long)arg1 offset:(unsigned short)arg2;
 - (void)setLabel:(id)arg1;
-- (void)submitCommandBuffers:(id*)arg1 count:(unsigned long long)arg2;
+- (void)submitCommandBuffers:(const id*)arg1 count:(unsigned long long)arg2;
 
 @end

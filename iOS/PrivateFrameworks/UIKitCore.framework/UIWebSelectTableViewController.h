@@ -38,8 +38,6 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSString *textContentType;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (id)_cachedItems;
 - (id)_groupsAndOptions;
 - (bool)_isEmpty;
@@ -48,9 +46,6 @@
 - (id)_selectionNode;
 - (void)_setupGroupsAndOptions;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)deleteBackward;
 - (bool)hasText;
 - (id)initWithDOMHTMLSelectNode:(id)arg1 cachedItems:(id)arg2 singleSelectionIndex:(unsigned long long)arg3 multipleSelection:(bool)arg4;

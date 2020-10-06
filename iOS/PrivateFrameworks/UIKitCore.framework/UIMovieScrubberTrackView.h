@@ -44,17 +44,12 @@
 @property (nonatomic) <UIMovieScrubberTrackViewDataSource> *dataSource;
 @property (nonatomic) <UIMovieScrubberTrackViewDelegate> *delegate;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_createImageViewForTimestamp:(id)arg1 isSummaryThumbnail:(bool)arg2;
 - (void)_reallyReloadData;
 - (void)_setOverlayViewIsZoomed:(bool)arg1 minValue:(float)arg2 maxValue:(float)arg3;
 - (void)_unzoomAnimationDidFinish;
 - (void)_zoomAnimationDidFinish;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)animateFillFramesAway;
 - (void)clear;
 - (id)dataSource;

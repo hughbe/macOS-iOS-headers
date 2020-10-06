@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_spatialEventLookupResults : 1; 
         unsigned int read_spatialPlaceLookupResults : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_spatialEventLookupResults : 1; 
-        unsigned int wrote_spatialPlaceLookupResults : 1; 
-        unsigned int wrote_statusCode : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,10 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatusCode:(id)arg1;
-- (void)_addNoFlagsSpatialEventLookupResult:(id)arg1;
-- (void)_addNoFlagsSpatialPlaceLookupResult:(id)arg1;
-- (void)_readSpatialEventLookupResults;
-- (void)_readSpatialPlaceLookupResults;
 - (void)addSpatialEventLookupResult:(id)arg1;
 - (void)addSpatialPlaceLookupResult:(id)arg1;
 - (void)clearSpatialEventLookupResults;
@@ -54,7 +47,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

@@ -4,8 +4,12 @@
 
 @interface IMIDSLog : NSObject
 
++ (id)URLLoading;
++ (id)activityMonitor;
 + (id)daemon;
++ (id)daemon_oversized;
 + (id)dataDetector;
 + (id)encryption;
++ (id)security;
 
 @end

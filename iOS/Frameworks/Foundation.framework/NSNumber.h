@@ -2,22 +2,37 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSNumber : NSValue <AFSecurityDigestibleChunksProviding, CKRecordValue, CUByteCodable, INCodableAttributeRelationComparing, INJSONSerializable, NSFetchRequestResult, PQLValuable, RBSProcessIdentifier, _DKDeduping, _PASDistilledString>
+@interface NSNumber : NSValue <AADataType, AFSecurityDigestibleChunksProviding, APPCSupplementalContextAllowedTypes, ASDNotificationType, ASParsingLeafNode, ATXScoreLogSerializable, CKLParsedObject, CKRecordValue, CMSCoding, CRCoding, CRDataType, CREquatable, CUByteCodable, EFSQLBindable, EFSQLValueExpressable, HFPropertyListConvertible, HKSPSyncAnchor, HMBQueryableModelFieldCoder, IMJSONSerializableValueProviding, INCodableAttributeRelationComparing, INJSONSerializable, LPCSSText, MAPropertyTypeProtocol, MPCPlaybackEngineEventPayloadJSONValue, NSFetchRequestResult, PQLValuable, RBSProcessIdentifier, RCRecordingsFolderIdentifier, REDonatedActionIdentifierProviding, SiriCoreSQLiteValue, TSCHChartGridValue, TSDMixing, WFJSONObject, WFJavaScriptCoreBridgeableObject, WFNaming, WFPropertyListObject, WFSerializableContent, _DKDeduping, _PASDistilledString>
 
-@property (readonly) long long _cn_reputationScoreValue;
+@property (nonatomic, readonly) double CGFloatValue;
+@property (nonatomic, readonly) long long CPAnalyticsSignpostIDValue;
+@property (nonatomic, readonly) long long PHAssetExportRequestVariantValue;
+@property (nonatomic, readonly) unsigned long long PXDataSourceIdentifierValue;
+@property (nonatomic, readonly) long long __rc_folderType;
 @property (nonatomic, readonly) double _cn_timeIntervalValue;
+@property (nonatomic, readonly) unsigned long long bl_hlsUnsignedIntegerValue;
 @property (readonly) bool boolValue;
 @property (readonly) BOOL charValue;
+@property (nonatomic, readonly) int chartGridValueType;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly) struct { unsigned int x1 : 8; unsigned int x2 : 4; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 18; unsigned short x6[8]; } decimalValue;
 @property (readonly, copy) NSString *description;
 @property (readonly) double doubleValue;
+@property (nonatomic, readonly) EFSQLBinding *ef_SQLBinding;
+@property (nonatomic, readonly, copy) NSString *ef_SQLExpression;
 @property (readonly) float floatValue;
 @property (readonly) unsigned long long hash;
+@property (setter=ik_setUnit:, nonatomic) unsigned long long ik_unit;
+@property (nonatomic, readonly) NSString *ik_unitStringValue;
 @property (readonly) int intValue;
 @property (readonly) long long integerValue;
 @property (readonly) long long longLongValue;
 @property (readonly) long long longValue;
+@property (readonly) long long matissePropertyType;
+@property (nonatomic, readonly, copy) NSNumber *na_absoluteValue;
+@property (nonatomic, readonly) bool na_isFloatValue;
+@property (nonatomic, readonly) bool na_isSignedValue;
+@property (nonatomic, readonly) NSNumber *safari_percentageFromSamplingRate;
 @property (readonly) short shortValue;
 @property (readonly, copy) NSString *stringValue;
 @property (readonly) Class superclass;
@@ -27,6 +42,7 @@
 @property (readonly) unsigned long long unsignedLongLongValue;
 @property (readonly) unsigned long long unsignedLongValue;
 @property (readonly) unsigned short unsignedShortValue;
+@property (nonatomic, readonly, copy) NSString *wfName;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -100,13 +116,13 @@
 - (unsigned long long)unsignedLongValue;
 - (unsigned short)unsignedShortValue;
 
-// Image: /Developer/Library/PrivateFrameworks/DebugHierarchyFoundation.framework/DebugHierarchyFoundation
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
-- (id)dbgStringForType:(id)arg1 error:(id*)arg2;
+- (void)ck_bindInStatement:(id)arg1 atIndex:(unsigned long long)arg2;
 
-// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+// Image: /System/Library/Frameworks/CoreML.framework/CoreML
 
-- (long long)_cn_reputationScoreValue;
++ (id)modelOriginNumberFromUserDefinedDictionary:(id)arg1;
 
 // Image: /System/Library/Frameworks/Intents.framework/Intents
 
@@ -116,7 +132,11 @@
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 - (bool)_intents_isDouble;
 - (bool)_intents_isInteger;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
+
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
+
+- (id)_lp_CSSText;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
@@ -125,6 +145,14 @@
 - (int)_mk_laneDirectionValue;
 - (double)cgFloatValue;
 - (id)initWithCGFloat:(double)arg1;
+
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+
+- (id)MPMediaLibraryDataProviderSystemML3CoercedString;
+
+// Image: /System/Library/Frameworks/Photos.framework/Photos
+
+- (long long)PHAssetExportRequestVariantValue;
 
 // Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
 
@@ -138,18 +166,104 @@
 - (id)CA_roundToIntegerFromValue:(id)arg1;
 - (void)encodeWithCAMLWriter:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/AXRuntime.framework/AXRuntime
+
+- (id)_axDictionaryKeyReplacementRepresentation;
+- (id)_axReconstitutedRepresentationForDictionaryKeyReplacement;
+- (id)_axRecursivelyPropertyListCoercedRepresentationWithError:(id*)arg1;
+- (id)_axRecursivelyReconstitutedRepresentationFromPropertyListWithError:(id*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
+
+- (unsigned int)MIDIDevice;
+- (unsigned int)MIDIEndpoint;
+- (unsigned int)MIDIEntity;
+- (unsigned int)MIDIObject;
+
+// Image: /System/Library/PrivateFrameworks/AdPlatformsCommon.framework/AdPlatformsCommon
+
+- (id)jsonRepresentationWithOptions:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppAnalytics.framework/AppAnalytics
+
+- (id)toJsonValueAndReturnError:(id*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (void)atx_writeToFile:(struct __sFILE { char *x1; int x2; int x3; short x4; short x5; struct __sbuf { char *x_6_1_1; int x_6_1_2; } x6; int x7; void *x8; int (*x9)(); int (*x10)(); int (*x11)(); int (*x12)(); struct __sbuf { char *x_13_1_1; int x_13_1_2; } x13; struct __sFILEX {} *x14; int x15; unsigned char x16[3]; unsigned char x17[1]; struct __sbuf { char *x_18_1_1; int x_18_1_2; } x18; int x19; long long x20; }*)arg1;
+- (bool)needsQuotes;
+
 // Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
 
 - (void)af_enumerateDigestibleChunksWithOptions:(unsigned long long)arg1 usingBlock:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/BookLibrary.framework/BookLibrary
+
++ (id)bl_numberWithItemIdentifier:(unsigned long long)arg1;
+
+- (unsigned long long)bl_hlsUnsignedIntegerValue;
+- (unsigned long long)bl_itemIdentifierValue;
+
+// Image: /System/Library/PrivateFrameworks/CPAnalytics.framework/CPAnalytics
+
+- (long long)CPAnalyticsSignpostIDValue;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_numberWithObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (id)__ck_localizedString;
+
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
++ (unsigned long long)crk_featureBoolTypeFromNumber:(id)arg1;
+
+- (unsigned long long)crk_featureBoolType;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
+
+// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+
+- (id)initWithCPLArchiver:(id)arg1;
+- (id)plistArchiveWithCPLArchiver:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAutocomplete.framework/ContactsAutocomplete
+
++ (id)_cnac_numberWithAutocompleteAddressType:(long long)arg1;
+
+- (long long)_cnac_autocompleteAddressTypeValue;
 
 // Image: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
 
 - (double)_cn_timeIntervalValue;
 - (void)_cn_times:(id /* block */)arg1;
 
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
++ (id)objectWithWFSerializedRepresentation:(id)arg1;
+
+- (id)wfName;
+- (id)wfSerializedRepresentation;
+
 // Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
 
 - (id)dedup;
+- (id)dk_dedup;
+
+// Image: /System/Library/PrivateFrameworks/CoreParsec.framework/CoreParsec
+
+- (int)sf_asRowAlignment;
+- (int)sf_asTopHit;
 
 // Image: /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
 
@@ -161,6 +275,11 @@
 - (long long)cr_CRContactIDValue;
 - (long long)cr_CRRecentIDValue;
 
+// Image: /System/Library/PrivateFrameworks/CoreSpeech.framework/CoreSpeech
+
+- (id)_cs_initWithXPCObject:(id)arg1;
+- (id)_cs_xpcObject;
+
 // Image: /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
 
 + (id)createWithBytesNoCopy:(void*)arg1 length:(unsigned long long)arg2 error:(id*)arg3;
@@ -168,25 +287,174 @@
 - (const char *)encodedBytesAndReturnLength:(unsigned long long*)arg1 error:(id*)arg2;
 - (id)encodedDataAndReturnError:(id*)arg1;
 
+// Image: /System/Library/PrivateFrameworks/DoNotDisturbServer.framework/DoNotDisturbServer
+
++ (id)dnds_numberWithDate:(id)arg1;
++ (id)dnds_safeNumberWithDate:(id)arg1;
+
+- (id)dnds_dateValue;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
+- (id)ef_SQLBinding;
+- (id)ef_SQLExpression;
+- (id)ef_SQLIsolatedExpression;
+- (void)ef_renderSQLExpressionInto:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ExchangeSync.framework/Frameworks/DAEAS.framework/DAEAS
+
++ (bool)acceptsTopLevelLeaves;
++ (bool)expectsContent;
++ (bool)frontingBasicTypes;
++ (bool)notifyOfUnknownTokens;
++ (bool)parsingLeafNode;
++ (bool)parsingWithSubItems;
+
+- (id)initWithASParseContext:(id)arg1 root:(id)arg2 parent:(id)arg3 callbackDict:(id)arg4 streamCallbackDict:(id)arg5 lengthUntilEndOfTerminator:(int)arg6;
+- (int)parsingState;
+
+// Image: /System/Library/PrivateFrameworks/FMCoreLite.framework/FMCoreLite
+
+- (bool)fm_isEqualToNumber:(id)arg1 withPrecision:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
++ (id)_gkServerTimeInterval:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (bool)hk_hasFloatingPointValue;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
+- (bool)hk_animatable;
+- (id)hk_midPointToValue:(id)arg1 percentage:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HearingCore.framework/HearingCore
+
+- (id)localizedFormat;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
++ (id)hmbDecodeQueryableParameter:(id)arg1;
++ (id)hmbDescriptionForEncodedQueryableVariable:(id)arg1;
++ (id)hmbEncodeQueryableParameter:(id)arg1;
++ (id)hmbNumberWithSQLite3Column:(struct sqlite3_stmt { }*)arg1 column:(int)arg2;
+
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
 - (id)localizedString;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUtilities.framework/IMSharedUtilities
+
+- (bool)isArchivable_im;
+
+// Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
+
+- (void)ik_setUnit:(unsigned long long)arg1;
+- (unsigned long long)ik_unit;
+- (id)ik_unitStringValue;
+
+// Image: /System/Library/PrivateFrameworks/KnowledgeGraphKit.framework/KnowledgeGraphKit
+
+- (long long)matissePropertyType;
 
 // Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
 
 - (bool)_BoolValue;
 
-// Image: /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
+// Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
 
-+ (bool)isNumber:(id)arg1 equalTo:(id)arg2;
+- (void)ml_bindToSQLiteStatement:(struct sqlite3_stmt { }*)arg1 atPosition:(int)arg2;
+- (bool)ml_matchesValue:(id)arg1 usingComparison:(int)arg2;
+- (id)ml_stringValueForSQL;
 
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 - (double)cgFloatValue;
 
+// Image: /System/Library/PrivateFrameworks/NetAppsUtilities.framework/NetAppsUtilities
+
+- (id)na_absoluteValue;
+- (long long)na_compareAbsoluteValue:(id)arg1;
+- (bool)na_isFloatValue;
+- (bool)na_isSignedValue;
+- (id)na_largerNumber:(id)arg1;
+- (id)na_smallerNumber:(id)arg1;
+- (id)na_valueRoundedToNearestStepValue:(id)arg1 relativeToBaseValue:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NeutrinoCore.framework/NeutrinoCore
+
+- (bool)nu_isBoolean;
+- (bool)nu_isFloat;
+- (bool)nu_isInfinite;
+- (bool)nu_isInteger;
+- (bool)nu_isNaN;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (double)CGFloatValue;
+- (unsigned long long)bl_hlsUnsignedIntegerValue;
+- (bool)fc_isGreaterThan:(id)arg1;
+- (bool)fc_isLessThan:(id)arg1;
+- (bool)fc_isLessThanOrEqualTo:(id)arg1;
+- (id)fc_largerNumber:(id)arg1;
+- (id)fc_smallerNumber:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (id)deltaSince:(id)arg1 in:(id)arg2;
+- (void)encodeWithCRCoder:(id)arg1;
+- (id)initWithCRCoder:(id)arg1;
+- (void)mergeWith:(id)arg1;
+- (void)realizeLocalChangesIn:(id)arg1;
+- (void)setDocument:(id)arg1;
+- (id)tombstone;
+- (void)walkGraph:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (id)numberWithCGFloat:(double)arg1;
+
+- (double)CGFloatValue;
+- (bool)isFloatingPointType;
+- (void)sfu_appendJsonStringToString:(id)arg1;
+- (bool)tsu_isAlmostEqual:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (bool)pk_isIntegralNumber;
+- (bool)pk_isNegativeNumber;
+- (bool)pk_isNotANumber;
+- (bool)pk_isPositiveNumber;
+- (bool)pk_isZeroNumber;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (unsigned long long)PXDataSourceIdentifierValue;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsFoundation.framework/PodcastsFoundation
+
+- (id)im_jsonSerializableValue;
+
 // Image: /System/Library/PrivateFrameworks/ProactiveSupport.framework/ProactiveSupport
 
 - (id)_pas_revivedString;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (unsigned long long)re_actionIdentifierHashValue;
+
+// Image: /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
+
+- (id)deltaSince:(id)arg1 in:(id)arg2;
+- (void)encodeWithCRCoder:(id)arg1;
+- (id)initWithCRCoder:(id)arg1;
+- (void)mergeWith:(id)arg1;
+- (void)realizeLocalChangesIn:(id)arg1;
+- (void)setDocument:(id)arg1;
+- (id)tombstone;
+- (void)walkGraph:(id /* block */)arg1;
 
 // Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
 
@@ -194,12 +462,56 @@
 - (id)processPredicate;
 - (int)rbs_pid;
 
+// Image: /System/Library/PrivateFrameworks/SafariSharedUI.framework/SafariSharedUI
+
+- (id)safari_percentageFromSamplingRate;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (double)siriCoreSQLiteValue_doubleRepresentation;
+- (id)siriCoreSQLiteValue_escapedString:(bool)arg1;
+- (long long)siriCoreSQLiteValue_integerRepresentation;
+- (id)siriCoreSQLiteValue_toData;
+- (id)siriCoreSQLiteValue_toNumber;
+- (id)siriCoreSQLiteValue_toString;
+- (long long)siriCoreSQLiteValue_type;
+
+// Image: /System/Library/PrivateFrameworks/Sleep.framework/Sleep
+
+- (id)hksp_increment;
+
 // Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
 + (id)numberWithItemIdentifier:(unsigned long long)arg1;
 
 - (id)initWithItemIdentifier:(unsigned long long)arg1;
 - (unsigned long long)itemIdentifierValue;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
+- (id)mixedObjectWithFraction:(double)arg1 ofObject:(id)arg2;
+- (long long)mixingTypeWithObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_numberWithCGFloat:(double)arg1;
+
+- (void)appendJsonStringToString:(id)arg1;
+- (double)tsu_CGFloatValue;
+- (bool)tsu_isFloatingPointType;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
+- (id)vui_languageAwareDescription;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
+- (long long)__rc_folderType;
+- (long long)rc_persistentIDValue;
+
+// Image: /System/Library/PrivateFrameworks/WebContentAnalysis.framework/WebContentAnalysis
+
+- (bool)WF_isEqualToNumber:(id)arg1 withPrecision:(float)arg2;
 
 // Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
 
@@ -209,6 +521,45 @@
 - (void)_ICSFBTypeAppendingToString:(id)arg1;
 - (void)_ICSStringWithOptions:(unsigned long long)arg1 appendingToString:(id)arg2;
 - (void)_ICSUTCOffsetAppendingToString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSCharts.framework/TSCharts
+
++ (id)tsch_instanceWithArchive:(const struct ChartsNSNumberDoubleArchive { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1 unarchiver:(id)arg2;
++ (id)tsch_numberWithStyleInt:(int)arg1;
++ (id)tsch_numberWithStyleProperty:(int)arg1;
++ (id)tsch_optionalNumberWithArchive:(const struct ChartsNSNumberDoubleArchive { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1 unarchiver:(id)arg2;
++ (void)tsch_saveOptionalNumber:(id)arg1 toArchive:(struct ChartsNSNumberDoubleArchive { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg2 archiver:(id)arg3;
+
+- (int)chartGridValueType;
+- (id)tsch_initWithArchive:(const struct ChartsNSNumberDoubleArchive { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1 unarchiver:(id)arg2;
+- (void)tsch_saveToArchive:(struct ChartsNSNumberDoubleArchive { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1 archiver:(id)arg2;
+- (int)tsch_styleIntValue;
+- (int)tsch_stylePropertyValue;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSDrawables.framework/TSDrawables
+
+- (id)mixedObjectWithFraction:(double)arg1 ofObject:(id)arg2;
+- (long long)mixingTypeWithObject:(id)arg1 context:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSStyles.framework/TSStyles
+
+- (int)tss_propertyValue;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)numberWithCGFloat:(double)arg1;
+
+- (double)CGFloatValue;
+- (bool)isFloatingPointType;
+- (bool)tsu_isAlmostEqual:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)numberWithCGFloat:(double)arg1;
+
+- (double)CGFloatValue;
+- (bool)isFloatingPointType;
+- (bool)tsu_isAlmostEqual:(id)arg1;
 
 // Image: /usr/lib/libprequelite.dylib
 

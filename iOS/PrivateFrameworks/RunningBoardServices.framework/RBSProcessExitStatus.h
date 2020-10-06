@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessExitStatus : NSObject <BSXPCSecureCoding, NSCopying> {
+@interface RBSProcessExitStatus : NSObject <NSCopying, NSSecureCoding, RBSXPCSecureCoding> {
     unsigned long long  _code;
     unsigned int  _domain;
 }
@@ -14,10 +14,9 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (id)_nameForDomain:(unsigned int)arg1;
-+ (id)_nameForDomain:(unsigned int)arg1 code:(unsigned long long)arg2;
 + (id)statusWithDomain:(unsigned int)arg1 code:(unsigned long long)arg2;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
++ (bool)supportsSecureCoding;
 
 - (id)_dictionaryRepresentation;
 - (id)_initWithDictionaryRepresentation:(id)arg1;
@@ -25,18 +24,18 @@
 - (unsigned long long)code;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (unsigned int)domain;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)error;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (unsigned long long)hash;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isCrash;
+- (bool)isEqual:(id)arg1;
 - (bool)isFairPlayFailure;
 - (bool)isJetsam;
 - (bool)isSignal;
 - (bool)isValid;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 
 @end

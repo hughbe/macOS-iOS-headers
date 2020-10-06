@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UITabBar : UIView <DebugHierarchyObject_Fallback, UIBarPositioning, _UIShadowedView> {
+@interface UITabBar : UIView <UIBarPositioning, _UIShadowedView, _UITabBarDelegateInternal> {
     UIView * __expectedSuperviewFollowingAnimation;
     _UITabBarAppearanceStorage * _appearanceStorage;
     NSArray * _backgroundEffects;
@@ -10,7 +10,7 @@
     long long  _barOrientation;
     NSArray * _customizationItems;
     UITabBarCustomizeView * _customizeView;
-    <UITabBarDelegate> * _delegate;
+    <_UITabBarDelegateInternal> * _delegate;
     long long  _displayStyle;
     bool  _hidesShadow;
     long long  _imageStyle;
@@ -38,6 +38,7 @@
         unsigned int disableBlurTinting : 1; 
         unsigned int pendingFocusAction : 1; 
         unsigned int springLoaded : 1; 
+        unsigned int delegateRespondsToInterfaceOrientationWindowSelector : 1; 
     }  _tabBarFlags;
     long long  _tabBarSizing;
     _UITabBarAccessoryView * _trailingBarAccessoryView;
@@ -52,6 +53,7 @@
 @property (setter=_setBarOrientation:, nonatomic) long long _barOrientation;
 @property (setter=_setBlurEnabled:, nonatomic) bool _blurEnabled;
 @property (setter=_setDisableBlurTinting:, nonatomic) bool _disableBlurTinting;
+@property (nonatomic, readonly) long long _expectedInterfaceOrientation;
 @property (nonatomic, retain) UIView *_expectedSuperviewFollowingAnimation;
 @property (nonatomic, readonly) UIView *_externalViewForSafeAreaInsets;
 @property (setter=_setHidesShadow:, nonatomic) bool _hidesShadow;
@@ -150,6 +152,7 @@
 - (id)_effectiveUnselectedTabTintColorConsideringView:(id)arg1;
 - (id)_effectiveUnselectedTintColor;
 - (void)_ensureUnfocusedItemsAreNotSelected;
+- (long long)_expectedInterfaceOrientation;
 - (id)_expectedSuperviewFollowingAnimation;
 - (id)_externalViewForSafeAreaInsets;
 - (long long)_focusedIndex;
@@ -225,16 +228,6 @@
 - (void)_useModernAppearance;
 - (bool)_useVibrantItems;
 - (bool)_vibrantLabels;
-- (void)dealloc;
-- (id)description;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addConstraint:(id)arg1;
 - (id)backgroundEffects;
 - (id)backgroundImage;
@@ -243,7 +236,9 @@
 - (id)barTintColor;
 - (void)beginCustomizingItems:(id)arg1;
 - (bool)canBecomeFocused;
+- (void)dealloc;
 - (id)delegate;
+- (id)description;
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (void)dismissCustomizeSheet:(bool)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -304,5 +299,9 @@
 - (id)trailingAccessoryView;
 - (void)traitCollectionDidChange:(id)arg1;
 - (id)unselectedItemTintColor;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (void)ts_setBackgroundView:(id)arg1;
 
 @end

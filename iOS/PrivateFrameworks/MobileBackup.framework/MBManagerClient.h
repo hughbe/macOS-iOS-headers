@@ -3,22 +3,20 @@
  */
 
 @interface MBManagerClient : MBManager <MBConnectionHandler> {
-    MBConnection * _connnection;
+    MBConnection * _connection;
     int  _enabledToken;
     NSObject<OS_dispatch_queue> * _eventQueue;
     int  _iTunesRestoreEndedNotificationToken;
     bool  _iTunesRestoreStarted;
     int  _iTunesRestoreStartedNotificationToken;
-    NSObject<MBManagerDelegate> * _privateDelegate;
     bool  _shouldSupportiTunes;
-    int  _stateToken;
     NSObject<OS_dispatch_source> * _timer;
 }
 
-@property NSObject<MBManagerDelegate> *privateDelegate;
+@property (retain) MBConnection *connection;
 @property (nonatomic) bool shouldSupportiTunes;
 
-- (void)_backupDidBeginNotification;
+- (void).cxx_destruct;
 - (bool)_isBackupAgent2Running;
 - (id)_makeConnection;
 - (bool)_restoreApplicationWithBundleID:(id)arg1 failed:(bool)arg2 qos:(id)arg3 context:(id)arg4 error:(id*)arg5;
@@ -33,11 +31,13 @@
 - (id)backgroundRestoreInfo;
 - (id)backupDeviceUUID;
 - (id)backupState;
+- (void)boostBackgroundRestoreWithCompletionHandler:(id /* block */)arg1;
 - (void)cancel;
 - (bool)cancelApplicationRestoreWithBundleID:(id)arg1 error:(id*)arg2;
 - (bool)cancelDeviceTransferWithTaskType:(long long)arg1 error:(id*)arg2;
 - (void)cancelRestore;
 - (void)clearRestoreSession;
+- (id)connection;
 - (void)connection:(id)arg1 didReceiveMessage:(id)arg2;
 - (void)connectionWasInterrupted:(id)arg1;
 - (void)connectionWasInvalidated:(id)arg1;
@@ -51,6 +51,7 @@
 - (bool)deleteBackupUDID:(id)arg1 error:(id*)arg2;
 - (bool)deleteItemFromBackupUDID:(id)arg1 snapshotID:(unsigned long long)arg2 domainName:(id)arg3 relativePath:(id)arg4 error:(id*)arg5;
 - (bool)deleteSnapshotID:(unsigned long long)arg1 fromBackupUDID:(id)arg2 error:(id*)arg3;
+- (id)deviceLockInfosWithError:(id*)arg1;
 - (id)disabledDomainInfos;
 - (bool)discountCameraRollQuota;
 - (bool)discountCameraRollQuotaForBackupUDID:(id)arg1 error:(id*)arg2;
@@ -82,7 +83,6 @@
 - (bool)pinSnapshotID:(unsigned long long)arg1 backupUDID:(id)arg2 error:(id*)arg3;
 - (bool)prepareForBackgroundRestoreWithError:(id*)arg1;
 - (void)prioritizeRestoreFileWithPath:(id)arg1;
-- (id)privateDelegate;
 - (void)rebootDevice;
 - (bool)recordRestoreFailure:(id)arg1 error:(id*)arg2;
 - (bool)releaseLockWithBackupUDID:(id)arg1 owner:(id)arg2 error:(id*)arg3;
@@ -110,8 +110,7 @@
 - (void)setAllowiTunesBackup:(bool)arg1;
 - (void)setBackupEnabled:(bool)arg1;
 - (void)setBackupEnabled:(bool)arg1 forDomainName:(id)arg2;
-- (void)setDelegate:(id)arg1;
-- (void)setPrivateDelegate:(id)arg1;
+- (void)setConnection:(id)arg1;
 - (void)setRestoreQualityOfService:(long long)arg1;
 - (void)setRestoreSessionWithBackupUDID:(id)arg1 snapshotUUID:(id)arg2;
 - (void)setShouldSupportiTunes:(bool)arg1;
@@ -119,6 +118,7 @@
 - (bool)setupBackupWithPasscode:(id)arg1 error:(id*)arg2;
 - (bool)shouldSupportiTunes;
 - (bool)startBackupWithError:(id*)arg1;
+- (bool)startBackupWithOptions:(id)arg1 error:(id*)arg2;
 - (void)startDataTransferWithPreflightInfo:(id)arg1 completionHandler:(id /* block */)arg2;
 - (bool)startDeviceTransferWithTaskType:(long long)arg1 sessionInfo:(id)arg2 error:(id*)arg3;
 - (void)startKeychainDataImportWithKeychainInfo:(id)arg1 completionHandler:(id /* block */)arg2;

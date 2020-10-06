@@ -87,6 +87,7 @@
     NSMutableData * _inMemoryFileData;
     NSString * _lastChunkPartialHash;
     unsigned long long  _lastResumptionSavedOffset;
+    bool  _performCachedWrites;
     unsigned long long  _recordsProcessed;
     bool  _storeCurrentFileInMemory;
     NSDictionary * _streamInfoDict;
@@ -115,6 +116,7 @@
 @property (nonatomic, readonly) unsigned long long hashedChunkSize;
 @property (nonatomic, retain) NSMutableData *inMemoryFileData;
 @property (nonatomic, retain) NSString *lastChunkPartialHash;
+@property (nonatomic) bool performCachedWrites;
 @property (nonatomic) unsigned long long recordsProcessed;
 @property (nonatomic) bool storeCurrentFileInMemory;
 @property (nonatomic, retain) NSDictionary *streamInfoDict;
@@ -154,6 +156,7 @@
 - (id)initWithPath:(id)arg1 options:(id)arg2 error:(id*)arg3;
 - (id)lastChunkPartialHash;
 - (void)markResumptionPoint;
+- (bool)performCachedWrites;
 - (unsigned long long)recordsProcessed;
 - (id)serializeState;
 - (void)setCurrentCRC32:(unsigned long long)arg1;
@@ -167,6 +170,7 @@
 - (void)setDenyInvalidSymlinks:(bool)arg1;
 - (void)setInMemoryFileData:(id)arg1;
 - (void)setLastChunkPartialHash:(id)arg1;
+- (void)setPerformCachedWrites:(bool)arg1;
 - (void)setRecordsProcessed:(unsigned long long)arg1;
 - (void)setStoreCurrentFileInMemory:(bool)arg1;
 - (void)setStreamInfoDict:(id)arg1;

@@ -38,8 +38,6 @@
     NSObject<OS_nw_parameters> * tc_network_parameters;
     unsigned int  tc_not_viable;
     NSObject<OS_nw_path> * tc_nw_current_path;
-    id /* block */  tc_nw_tls_message;
-    id /* block */  tc_nw_tls_prepare;
     NSObject<OS_nw_connection> * tc_nwconn;
     long long  tc_quality;
     unsigned int  tc_sent_connected;
@@ -58,6 +56,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithParameters:(id)arg1;
 
 @end

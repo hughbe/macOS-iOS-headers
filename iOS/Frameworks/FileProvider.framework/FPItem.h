@@ -8,6 +8,7 @@
     NSString * _cloudContainerIdentifier;
     NSString * _containerDisplayName;
     NSDate * _contentModificationDate;
+    UTType * _contentType;
     NSDate * _creationDate;
     bool  _dataless;
     NSArray * _decorations;
@@ -63,7 +64,6 @@
     NSArray * _tags;
     bool  _topLevelSharedItem;
     bool  _trashed;
-    NSString * _typeIdentifier;
     bool  _uploaded;
     bool  _uploading;
     NSError * _uploadingError;
@@ -72,6 +72,7 @@
     NSData * _versionIdentifier;
 }
 
+@property (nonatomic, readonly) NSDate *_doc_dateForSortingRecents;
 @property (getter=isActionable, nonatomic, readonly) bool actionable;
 @property (nonatomic, readonly, copy) NSString *appContainerBundleIdentifier;
 @property (nonatomic) unsigned long long capabilities;
@@ -80,6 +81,7 @@
 @property (getter=isCloudItem, nonatomic, readonly) bool cloudItem;
 @property (nonatomic, retain) NSString *containerDisplayName;
 @property (nonatomic, copy) NSDate *contentModificationDate;
+@property (nonatomic, readonly, copy) UTType *contentType;
 @property (nonatomic, readonly) NSProgress *copyingProgress;
 @property (nonatomic, copy) NSDate *creationDate;
 @property (getter=isDataless, nonatomic) bool dataless;
@@ -88,6 +90,8 @@
 @property (nonatomic, readonly) unsigned long long depthInHierarchy;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSString *displayName;
+@property (nonatomic, readonly) unsigned long long doc_folderIconType;
+@property (nonatomic, readonly) bool doc_isSMBSharepoint;
 @property (nonatomic, copy) NSNumber *documentSize;
 @property (nonatomic, readonly) NSString *domainIdentifier;
 @property (getter=isDownloadRequested, readonly, copy) NSNumber *downloadRequested;
@@ -162,6 +166,7 @@
 @property (getter=isShared, nonatomic) bool shared;
 @property (getter=isSharedByCurrentUser, nonatomic) bool sharedByCurrentUser;
 @property (nonatomic, retain) NSString *sharingPermissions;
+@property (nonatomic, readonly) NSString *sourceIdentifier;
 @property (nonatomic, retain) NSString *spotlightSubDomainIdentifier;
 @property (nonatomic) unsigned long long state;
 @property (readonly) Class superclass;
@@ -179,6 +184,8 @@
 @property (nonatomic, retain) NSDictionary *userInfo;
 @property (nonatomic, retain) NSData *versionIdentifier;
 @property (getter=isWritable, nonatomic, readonly) bool writable;
+
+// Image: /System/Library/Frameworks/FileProvider.framework/FileProvider
 
 + (id)allUbiquitousResourceKeys;
 + (id)archivePlaceholderForItem:(id)arg1 underParent:(id)arg2 inProviderDomainID:(id)arg3;
@@ -203,6 +210,7 @@
 - (id)cloudContainerIdentifier;
 - (id)containerDisplayName;
 - (id)contentModificationDate;
+- (id)contentType;
 - (id)copyAsPending;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyingProgress;
@@ -250,8 +258,8 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProviderDomainID:(id)arg1 itemIdentifier:(id)arg2 parentItemIdentifier:(id)arg3 filename:(id)arg4 isDirectory:(bool)arg5;
 - (id)initWithProviderDomainID:(id)arg1 itemIdentifier:(id)arg2 parentItemIdentifier:(id)arg3 filename:(id)arg4 typeIdentifier:(id)arg5;
+- (id)initWithProviderID:(id)arg1 domainIdentifier:(id)arg2 itemIdentifier:(id)arg3 parentItemIdentifier:(id)arg4 filename:(id)arg5 contentType:(id)arg6;
 - (id)initWithProviderID:(id)arg1 domainIdentifier:(id)arg2 itemIdentifier:(id)arg3 parentItemIdentifier:(id)arg4 filename:(id)arg5 isDirectory:(bool)arg6;
-- (id)initWithProviderID:(id)arg1 domainIdentifier:(id)arg2 itemIdentifier:(id)arg3 parentItemIdentifier:(id)arg4 filename:(id)arg5 typeIdentifier:(id)arg6;
 - (id)initWithSearchableItem:(id)arg1;
 - (id)initWithVendorItem:(id)arg1 provider:(id)arg2 domain:(id)arg3 extensionCapabilities:(unsigned long long)arg4 useFPFS:(bool)arg5;
 - (bool)isActionable;
@@ -383,5 +391,16 @@
 - (id)uploadingProgress;
 - (id)userInfo;
 - (id)versionIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/DocumentManagerExecutables.framework/DocumentManagerExecutables
+
+- (id)_doc_dateForSortingRecents;
+- (long long)_doc_fileTypeCompareWithItem:(id)arg1;
+- (id)sourceIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/DocumentManagerUICore.framework/DocumentManagerUICore
+
+- (unsigned long long)doc_folderIconType;
+- (bool)doc_isSMBSharepoint;
 
 @end

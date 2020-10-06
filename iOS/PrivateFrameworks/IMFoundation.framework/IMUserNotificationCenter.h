@@ -18,6 +18,7 @@
 
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (void)_cancelActiveUserNotificationForIdentifier:(id)arg1;
 - (id /* block */)_dequeueBlockForIdentifier:(id)arg1;
 - (id)_dequeueListenerForIdentifier:(id)arg1;
@@ -33,7 +34,6 @@
 - (void)addUserNotification:(id)arg1 listener:(id)arg2;
 - (void)addUserNotification:(id)arg1 listener:(id)arg2 completionHandler:(id /* block */)arg3;
 - (unsigned long long)countForIdentifier:(id)arg1;
-- (void)dealloc;
 - (id)identifierToBlockQueueMap;
 - (id)identifierToCFUserNotificationMap;
 - (id)identifierToIMUserNotificationQueueMap;

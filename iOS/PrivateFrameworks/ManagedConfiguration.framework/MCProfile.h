@@ -53,6 +53,7 @@
 @property (nonatomic, readonly, retain) NSArray *localizedPayloadSummaryByType;
 @property (getter=isLocked, nonatomic) bool locked;
 @property (nonatomic, readonly, retain) NSArray *managedPayloads;
+@property (nonatomic, readonly) NSString *managingProfileIdentifier;
 @property (nonatomic) bool mustInstallNonInteractively;
 @property (nonatomic, readonly) bool needsReboot;
 @property (nonatomic, readonly, retain) NSString *organization;
@@ -72,6 +73,8 @@
 @property (nonatomic, readonly) unsigned long long targetDeviceType;
 @property (nonatomic, readonly) int trustLevel;
 @property (nonatomic, readonly) long long version;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
 
 + (id)_malformedProfileError;
 + (id)badFieldTypeErrorWithField:(id)arg1;
@@ -138,6 +141,7 @@
 - (id)localizedPayloadSummaryByType;
 - (id)malformedProfileErrorWithError:(id)arg1;
 - (id)managedPayloads;
+- (id)managingProfileIdentifier;
 - (bool)mayInstallWithOptions:(id)arg1 hasInteractionClient:(bool)arg2 outError:(id*)arg3;
 - (bool)mustInstallNonInteractively;
 - (bool)needsReboot;
@@ -154,6 +158,7 @@
 - (id)removalPasscode;
 - (void)replacePayloadWithUUID:(id)arg1 withPayload:(id)arg2;
 - (id)restrictionsWithHeuristicsAppliedOutError:(id*)arg1;
+- (id)serializedDictionary;
 - (void)setDisplayName:(id)arg1;
 - (void)setEncrypted:(bool)arg1;
 - (void)setInstallDate:(id)arg1;
@@ -173,8 +178,14 @@
 - (id)subjectSummaryFromCertificateWithPersistentID:(id)arg1;
 - (unsigned long long)targetDeviceType;
 - (int)trustLevel;
+- (id)verboseDescription;
 - (long long)version;
 - (bool)writeStubToDirectory:(id)arg1;
 - (bool)writeStubToPath:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
+- (bool)shouldHideUnstrustedLabel;
+- (bool)shouldUseTrustedNomenclature;
 
 @end

@@ -15,9 +15,10 @@
 - (void).cxx_destruct;
 - (struct CGImage { }*)CGImageForImageDescriptor:(id)arg1;
 - (double)_aspectRatio;
+- (id)_cachedImageForDescriptor:(id)arg1;
 - (id)_imageForSymbolImageDescriptor:(id)arg1;
 - (id)_initTransparent;
-- (id)_prepareImageForImageDescriptor:(id)arg1;
+- (id)_prepareImageForImageDescriptor:(id)arg1 allowIO:(bool)arg2;
 - (void)_prepareImageForSymbolImageDescriptor:(id)arg1;
 - (id)decorations;
 - (void)getCGImageForImageDescriptor:(id)arg1 completion:(id /* block */)arg2;
@@ -32,6 +33,7 @@
 - (id)initWithURL:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToIcon:(id)arg1;
+- (id)prepareImageForDescriptor:(id)arg1;
 - (void)prepareImagesForDescriptors:(id)arg1;
 - (void)prepareImagesForImageDescriptors:(id)arg1;
 - (id)resourceProxy;

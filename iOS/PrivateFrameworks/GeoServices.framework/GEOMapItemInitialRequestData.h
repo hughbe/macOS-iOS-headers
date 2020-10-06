@@ -27,7 +27,10 @@
 - (bool)hasPlaceRequestParameters;
 - (bool)hasRequestType;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)placeRequestParameters;
 - (void)readAll:(bool)arg1;

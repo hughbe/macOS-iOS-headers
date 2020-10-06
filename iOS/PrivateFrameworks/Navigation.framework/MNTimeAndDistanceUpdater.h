@@ -9,16 +9,12 @@
     MNLocation * _location;
     MNActiveRouteInfo * _mainRoute;
     NSTimer * _minuteTimer;
-    double  _remainingDistance;
-    double  _remainingTime;
     NSArray * _routes;
 }
 
 @property (nonatomic) <MNTimeAndDistanceUpdaterDelegate> *delegate;
 @property (nonatomic, readonly) double distanceToManeuverEnd;
 @property (nonatomic, readonly) double distanceToManeuverStart;
-@property (nonatomic, readonly) double remainingDistance;
-@property (nonatomic, readonly) double remainingTime;
 
 - (void).cxx_destruct;
 - (void)_startTimerToNextMinute;
@@ -26,8 +22,6 @@
 - (id)delegate;
 - (double)distanceToManeuverEnd;
 - (double)distanceToManeuverStart;
-- (double)remainingDistance;
-- (double)remainingTime;
 - (void)setDelegate:(id)arg1;
 - (void)setLocation:(id)arg1 notificationType:(unsigned long long)arg2;
 - (void)setRoutes:(id)arg1 mainRoute:(id)arg2 location:(id)arg3 notificationType:(unsigned long long)arg4;

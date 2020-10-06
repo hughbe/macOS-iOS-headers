@@ -7,8 +7,6 @@
     FBDisplayLayoutTransition * _interfaceOrientationTransition;
 }
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)registerAsSystemApp;
 + (bool)rendersLocally;
 
@@ -16,9 +14,6 @@
 - (long long)_interfaceOrientationRotationDirectionFromOrientation:(long long)arg1 toOrientation:(long long)arg2;
 - (bool)_openURL:(id)arg1;
 - (bool)_saveSnapshotWithName:(id)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)canOpenURL:(id)arg1;
 - (bool)handleDoubleHeightStatusBarTapWithStyleOverride:(int)arg1;
 - (bool)handleStatusBarHoverActionForRegion:(long long)arg1;

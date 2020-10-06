@@ -14,12 +14,7 @@
         unsigned int read_directionsWaypointPlaceInfos : 1; 
         unsigned int read_endWaypoint : 1; 
         unsigned int read_startWaypoint : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_directionsRequests : 1; 
-        unsigned int wrote_directionsResponses : 1; 
-        unsigned int wrote_directionsWaypointPlaceInfos : 1; 
-        unsigned int wrote_endWaypoint : 1; 
-        unsigned int wrote_startWaypoint : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -46,14 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsDirectionsRequest:(id)arg1;
-- (void)_addNoFlagsDirectionsResponse:(id)arg1;
-- (void)_addNoFlagsDirectionsWaypointPlaceInfo:(id)arg1;
-- (void)_readDirectionsRequests;
-- (void)_readDirectionsResponses;
-- (void)_readDirectionsWaypointPlaceInfos;
-- (void)_readEndWaypoint;
-- (void)_readStartWaypoint;
 - (void)addDirectionsRequest:(id)arg1;
 - (void)addDirectionsResponse:(id)arg1;
 - (void)addDirectionsWaypointPlaceInfo:(id)arg1;
@@ -80,7 +67,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

@@ -4,18 +4,18 @@
 
 @interface _UIRemoteKeyboardsToken : NSObject {
     int  _identifier;
-    NSString * canvasIdentifier;
+    NSString * sceneIdentityString;
 }
 
-@property (nonatomic, copy) NSString *canvasIdentifier;
+@property (nonatomic, copy) NSString *sceneIdentityString;
 
 + (id)uniqueToken;
 
-- (id)canvasIdentifier;
 - (void)dealloc;
 - (id)description;
 - (id)init;
 - (bool)isEqual:(id)arg1;
-- (void)setCanvasIdentifier:(id)arg1;
+- (id)sceneIdentityString;
+- (void)setSceneIdentityString:(id)arg1;
 
 @end

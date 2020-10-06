@@ -8,6 +8,8 @@
         unsigned long long eupid; 
         unsigned long long start_timestamp; 
         unsigned long long timestamp; 
+        unsigned long long rx_transfer_size; 
+        unsigned long long tx_transfer_size; 
         struct activity_bitmap { 
             unsigned long long start; 
             unsigned long long bitmap[2]; 
@@ -80,6 +82,7 @@
         unsigned char uuid[16]; 
         unsigned char euuid[16]; 
         unsigned char vuuid[16]; 
+        unsigned char fuuid[16]; 
         union { 
             struct tcp_conn_status { 
                 unsigned int probe_activated : 1; 

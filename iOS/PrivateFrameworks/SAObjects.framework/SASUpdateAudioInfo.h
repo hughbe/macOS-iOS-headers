@@ -27,6 +27,8 @@
 @property (nonatomic) bool triggeredTwoShotBorealis;
 @property (nonatomic, copy) NSString *vendorId;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)updateAudioInfo;
 + (id)updateAudioInfoWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -65,5 +67,9 @@
 - (void)setVendorId:(id)arg1;
 - (bool)triggeredTwoShotBorealis;
 - (id)vendorId;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (bool)siriCore_isRestartable;
 
 @end

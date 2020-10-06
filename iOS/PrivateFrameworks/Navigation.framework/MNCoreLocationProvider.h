@@ -8,6 +8,8 @@
     id /* block */  _authorizationRequestBlock;
     int  _authorizationStatus;
     CLLocationManager * _clLocationManager;
+    MNLocationProviderCLParameters * _clParameters;
+    bool  _coarseModeEnabled;
     NSRunLoop * _debug_deinitRunLoop;
     NSRunLoop * _debug_initRunLoop;
     <MNLocationProviderDelegate> * _delegate;
@@ -20,9 +22,9 @@
 }
 
 @property (nonatomic, readonly) CLLocationManager *_clLocationManager;
-@property (nonatomic) long long activityType;
 @property (nonatomic, copy) id /* block */ authorizationRequestBlock;
 @property (nonatomic, readonly) int authorizationStatus;
+@property (nonatomic, readonly) bool coarseModeEnabled;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MNLocationProviderDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -49,9 +51,10 @@
 - (void)_resetForNewEffectiveBundle;
 - (void)_sharedInit;
 - (void)_updateAuthorizationStatus;
-- (long long)activityType;
+- (void)_updateForCLParameters:(id)arg1;
 - (id /* block */)authorizationRequestBlock;
 - (int)authorizationStatus;
+- (bool)coarseModeEnabled;
 - (void)dealloc;
 - (id)delegate;
 - (double)desiredAccuracy;
@@ -72,6 +75,7 @@
 - (void)locationManager:(id)arg1 didUpdateLocations:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateVehicleHeading:(id)arg2;
 - (void)locationManager:(id)arg1 didUpdateVehicleSpeed:(id)arg2;
+- (void)locationManagerDidChangeAuthorization:(id)arg1;
 - (void)locationManagerDidPauseLocationUpdates:(id)arg1;
 - (void)locationManagerDidResumeLocationUpdates:(id)arg1;
 - (bool)matchInfoEnabled;
@@ -79,8 +83,8 @@
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)resetForActiveTileGroupChanged;
-- (void)setActivityType:(long long)arg1;
 - (void)setAuthorizationRequestBlock:(id /* block */)arg1;
+- (void)setCLParameters:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDesiredAccuracy:(double)arg1;
 - (void)setDistanceFilter:(double)arg1;

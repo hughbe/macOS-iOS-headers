@@ -3,7 +3,6 @@
  */
 
 @interface _UIViewAnimationAttributes : NSObject <NSSecureCoding> {
-    long long  _curve;
     double  _delay;
     double  _duration;
     bool  _hasSpringAttributes;
@@ -17,6 +16,7 @@
 @property (getter=_curve, nonatomic, readonly) long long curve;
 @property (getter=_delay, nonatomic, readonly) double delay;
 @property (getter=_duration, nonatomic, readonly) double duration;
+@property (getter=_frameInterval, nonatomic, readonly) double frameInterval;
 @property (getter=_hasSpringAttributes, nonatomic, readonly) bool hasSpringAttributes;
 @property (getter=_springDamping, nonatomic, readonly) double springDamping;
 @property (getter=_springMass, nonatomic, readonly) double springMass;
@@ -28,12 +28,12 @@
 - (long long)_curve;
 - (double)_delay;
 - (double)_duration;
+- (double)_frameInterval;
 - (bool)_hasSpringAttributes;
 - (double)_springDamping;
 - (double)_springMass;
 - (double)_springStiffness;
 - (double)_springVelocity;
-- (long long)curve;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 

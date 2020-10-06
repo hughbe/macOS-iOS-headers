@@ -9,8 +9,8 @@
 @property (nonatomic, readonly) NSDictionary *requests;
 
 - (void).cxx_destruct;
-- (unsigned long long)countForRequestType:(unsigned char)arg1;
-- (void)incrementCountForRequestType:(unsigned char)arg1;
+- (unsigned long long)countForRequestType:(int)arg1;
+- (void)incrementCountForRequestType:(int)arg1;
 - (id)init;
 - (id)requests;
 

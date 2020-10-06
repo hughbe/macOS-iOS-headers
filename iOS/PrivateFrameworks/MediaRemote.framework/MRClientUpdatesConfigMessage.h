@@ -8,13 +8,15 @@
 @property (nonatomic, readonly) bool keyboardUpdates;
 @property (nonatomic, readonly) bool nowPlayingUpdates;
 @property (nonatomic, readonly) bool outputDeviceUpdates;
+@property (nonatomic, readonly) bool systemEndpointUpdates;
 @property (nonatomic, readonly) bool volumeUpdates;
 
 - (bool)artworkUpdates;
-- (id)initWithNowPlayingUpdates:(bool)arg1 artworkUpdates:(bool)arg2 volumeUpdates:(bool)arg3 keyboardUpdates:(bool)arg4 outputDeviceUpdates:(bool)arg5;
+- (id)initWithNowPlayingUpdates:(bool)arg1 artworkUpdates:(bool)arg2 volumeUpdates:(bool)arg3 keyboardUpdates:(bool)arg4 outputDeviceUpdates:(bool)arg5 systemEndpointUpdates:(bool)arg6;
 - (bool)keyboardUpdates;
 - (bool)nowPlayingUpdates;
 - (bool)outputDeviceUpdates;
+- (bool)systemEndpointUpdates;
 - (unsigned long long)type;
 - (bool)volumeUpdates;
 

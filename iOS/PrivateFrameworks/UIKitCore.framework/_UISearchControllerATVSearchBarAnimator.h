@@ -6,11 +6,18 @@
     bool  _shouldLayoutTabBar;
 }
 
+@property (nonatomic) bool shouldLayoutTabBar;
+
+- (void)_updateLayoutForGridKeyboard:(id)arg1 animated:(bool)arg2;
 - (void)animateTransition:(id)arg1;
 - (void)didFocusSearchBarForController:(id)arg1;
 - (void)didRelayoutSearchBarForController:(id)arg1;
 - (void)didUnfocusSearchBarForController:(id)arg1;
 - (id)init;
+- (void)setShouldLayoutTabBar:(bool)arg1;
+- (bool)shouldLayoutTabBar;
+- (void)updateViewsWithSearchController:(id)arg1;
+- (void)updateViewsWithSearchController:(id)arg1 reloadInputViewController:(bool)arg2;
 - (void)willFocusOffscreenViewForController:(id)arg1 withHeading:(unsigned long long)arg2;
 
 @end

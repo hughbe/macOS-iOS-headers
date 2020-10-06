@@ -3,10 +3,10 @@
  */
 
 @interface _UIStatusBarRadarItem : _UIStatusBarIndicatorItem {
-    _UIStatusBarFocusableImageView * _radarItemView;
+    _UIStatusBarRadarView * _radarItemView;
 }
 
-@property (nonatomic, retain) _UIStatusBarFocusableImageView *radarItemView;
+@property (nonatomic, retain) _UIStatusBarRadarView *radarItemView;
 
 - (void).cxx_destruct;
 - (void)_create_radarItemView;

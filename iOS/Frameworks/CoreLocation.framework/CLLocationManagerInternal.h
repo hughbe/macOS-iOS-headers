@@ -42,6 +42,7 @@
     CLTimer * fLocationRequestTimer;
     CLLocationManager * fManager;
     id /* block */  fPlaceInferenceHandler;
+    CLTimer * fPlaceInferenceTimer;
     NSMutableSet * fRangedConstraints;
     NSMutableSet * fRangedRegions;
     CLTimer * fRangingRequestTimer;

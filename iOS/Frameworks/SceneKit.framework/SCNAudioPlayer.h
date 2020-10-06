@@ -10,6 +10,7 @@
     bool  _customAudioNode;
     struct __C3DNode { } * _nodeRef;
     struct __C3DScene { } * _scene;
+    bool  _shouldRecycle;
     id /* block */  didFinishPlayback;
     id /* block */  willStartPlayback;
 }

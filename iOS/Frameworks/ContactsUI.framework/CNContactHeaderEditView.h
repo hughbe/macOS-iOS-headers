@@ -20,17 +20,19 @@
 + (id)contactHeaderViewWithContact:(id)arg1 shouldAllowTakePhotoAction:(bool)arg2 monogramOnly:(bool)arg3 delegate:(id)arg4;
 + (id)contactHeaderViewWithContact:(id)arg1 shouldAllowTakePhotoAction:(bool)arg2 showingNavBar:(bool)arg3 monogramOnly:(bool)arg4 delegate:(id)arg5;
 + (id)makePhotoViewWithMonogrammerStyle:(long long)arg1 shouldAllowTakePhotoAction:(bool)arg2 shouldAllowImageDrops:(bool)arg3 monogramOnly:(bool)arg4;
++ (id)sizeAttributesShowingNavBar:(bool)arg1;
 
 - (void).cxx_destruct;
 - (bool)allowsEditPhoto;
 - (void)calculateLabelSizesIfNeeded;
 - (double)defaultMaxHeight;
+- (void)didFinishUsing;
 - (id)editButton;
 - (id)editButtonHeightConstraint;
 - (void)editButtonPressed;
 - (bool)hasPhoto;
 - (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 shouldAllowTakePhotoAction:(bool)arg3 delegate:(id)arg4 showingNavBar:(bool)arg5 monogramOnly:(bool)arg6;
-- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 shouldAllowTakePhotoAction:(bool)arg3 monogramOnly:(bool)arg4 delegate:(id)arg5;
+- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 shouldAllowTakePhotoAction:(bool)arg3 showingNavBar:(bool)arg4 monogramOnly:(bool)arg5 delegate:(id)arg6;
 - (struct CGSize { double x1; double x2; })maxButtonSize;
 - (double)maxHeight;
 - (bool)photoIsModified;

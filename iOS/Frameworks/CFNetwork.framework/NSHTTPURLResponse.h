@@ -6,6 +6,7 @@
     NSHTTPURLResponseInternal * _httpInternal;
 }
 
+@property (nonatomic, readonly) double _iAd_cacheControlMaxAge;
 @property (readonly, copy) NSDictionary *allHeaderFields;
 @property (nonatomic, readonly) NSData *ams_actionData;
 @property (nonatomic, readonly) NSData *ams_actionDataV1;
@@ -14,6 +15,7 @@
 @property (nonatomic, readonly) NSString *ams_actionNameV1;
 @property (nonatomic, readonly) NSString *ams_actionNameV1_5;
 @property (readonly) long long statusCode;
+@property (readonly) bool tsu_isSuccess;
 
 // Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
 
@@ -22,12 +24,8 @@
 + (bool)supportsSecureCoding;
 
 - (id)_allHTTPHeaderFieldsAsArrays;
-- (id)_clientCertificateChain;
-- (id)_clientCertificateState;
-- (id)_initWithCFURLResponse:(id)arg1;
+- (id)_initWithCFURLResponse:(struct _CFURLResponse { }*)arg1;
 - (id)_peerCertificateChain;
-- (struct __SecTrust { }*)_peerTrust;
-- (void)_setPeerTrust:(struct __SecTrust { }*)arg1;
 - (id)allHeaderFields;
 - (void)dealloc;
 - (id)description;
@@ -38,6 +36,10 @@
 - (long long)statusCode;
 - (id)valueForHTTPHeaderField:(id)arg1;
 
+// Image: /System/Library/Frameworks/iAd.framework/iAd
+
+- (double)_iAd_cacheControlMaxAge;
+
 // Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
 
 - (long long)_anisetteType;
@@ -47,5 +49,61 @@
 - (id)ams_actionName;
 - (id)ams_actionNameV1;
 - (id)ams_actionNameV1_5;
+
+// Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
+
+- (id)_ak_dataForEncodedHeaderWithKey:(id)arg1;
+- (id)ak_acceptedTermsInfo;
+- (id)ak_stringForEncodedHeaderWithKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DistributedEvaluation.framework/DistributedEvaluation
+
+- (bool)_fides_statusIsHTTPOK;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
+- (double)_maxAge;
+- (id)getSAPSignature;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
+- (bool)tsu_isSuccess;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pk_valueForHTTPHeaderField:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
+
+- (id)radio_decompressedDataWithBodyData:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesCloud.framework/iTunesCloud
+
+- (id)_cacheControlParameters;
+- (double)cacheControlMaxAge;
+- (bool)hasCacheControl;
+- (id)ic_valueForHTTPHeaderField:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
+
+- (id)_dateFromExpires;
+- (bool)_getCacheControlMaxAge:(double*)arg1;
+- (id)_iTunesStore_valueForHTTPHeader:(id)arg1;
+- (double)expirationInterval;
+- (id)itunes_expirationDate;
+- (double)itunes_expirationInterval;
+- (long long)itunes_maxExpectedContentLength;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (bool)tsu_isSuccessStatusCode:(long long)arg1;
+
+- (bool)tsu_isSuccess;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (bool)tsu_isSuccessStatusCode:(long long)arg1;
+
+- (bool)tsu_isSuccess;
 
 @end

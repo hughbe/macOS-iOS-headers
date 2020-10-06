@@ -11,9 +11,9 @@
 
 @property (nonatomic, retain) NSMutableArray *operations;
 
+- (void).cxx_destruct;
 - (void)_performReplaceSelectedText:(id)arg1;
 - (void)clearOperations;
-- (void)dealloc;
 - (double)delayAfterSelector:(SEL)arg1;
 - (void)dictationWillBeginInDocument:(id)arg1;
 - (bool)hasOperations;

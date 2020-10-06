@@ -17,6 +17,8 @@
     }  _bcnPerHistorys;
     unsigned int  _capabilities;
     unsigned int  _channel;
+    unsigned int  _channelSwitchDuringHostSleep;
+    unsigned int  _channelSwitchDuringHostWake;
     unsigned int  _channelWidth;
     NSString * _countryCode;
     unsigned int  _enhancedSecurityType;
@@ -38,6 +40,8 @@
         unsigned int akmSuites : 1; 
         unsigned int capabilities : 1; 
         unsigned int channel : 1; 
+        unsigned int channelSwitchDuringHostSleep : 1; 
+        unsigned int channelSwitchDuringHostWake : 1; 
         unsigned int channelWidth : 1; 
         unsigned int enhancedSecurityType : 1; 
         unsigned int flags : 1; 
@@ -50,6 +54,7 @@
         unsigned int mcastCipher : 1; 
         unsigned int phyMode : 1; 
         unsigned int reason : 1; 
+        unsigned int rxCSAFrames : 1; 
         unsigned int securityType : 1; 
         unsigned int subreason : 1; 
         unsigned int ucastCipher : 1; 
@@ -71,12 +76,14 @@
     unsigned int  _mcastCipher;
     NSData * _oui;
     unsigned int  _phyMode;
+    NSString * _privateMacType;
     unsigned int  _reason;
     struct { 
         int *list; 
         unsigned long long count; 
         unsigned long long size; 
     }  _rssiHistorys;
+    unsigned int  _rxCSAFrames;
     unsigned int  _securityType;
     unsigned int  _subreason;
     unsigned long long  _timestamp;
@@ -113,6 +120,8 @@
 @property (nonatomic, readonly) unsigned long long bcnPerHistorysCount;
 @property (nonatomic) unsigned int capabilities;
 @property (nonatomic) unsigned int channel;
+@property (nonatomic) unsigned int channelSwitchDuringHostSleep;
+@property (nonatomic) unsigned int channelSwitchDuringHostWake;
 @property (nonatomic) unsigned int channelWidth;
 @property (nonatomic, retain) NSString *countryCode;
 @property (nonatomic) unsigned int enhancedSecurityType;
@@ -126,6 +135,8 @@
 @property (nonatomic) bool hasAssociationDuration;
 @property (nonatomic) bool hasCapabilities;
 @property (nonatomic) bool hasChannel;
+@property (nonatomic) bool hasChannelSwitchDuringHostSleep;
+@property (nonatomic) bool hasChannelSwitchDuringHostWake;
 @property (nonatomic) bool hasChannelWidth;
 @property (nonatomic, readonly) bool hasCountryCode;
 @property (nonatomic) bool hasEnhancedSecurityType;
@@ -144,7 +155,9 @@
 @property (nonatomic) bool hasMcastCipher;
 @property (nonatomic, readonly) bool hasOui;
 @property (nonatomic) bool hasPhyMode;
+@property (nonatomic, readonly) bool hasPrivateMacType;
 @property (nonatomic) bool hasReason;
+@property (nonatomic) bool hasRxCSAFrames;
 @property (nonatomic) bool hasSecurityType;
 @property (nonatomic) bool hasSubreason;
 @property (nonatomic) bool hasTimestamp;
@@ -174,9 +187,11 @@
 @property (nonatomic) unsigned int mcastCipher;
 @property (nonatomic, retain) NSData *oui;
 @property (nonatomic) unsigned int phyMode;
+@property (nonatomic, retain) NSString *privateMacType;
 @property (nonatomic) unsigned int reason;
 @property (nonatomic, readonly) int*rssiHistorys;
 @property (nonatomic, readonly) unsigned long long rssiHistorysCount;
+@property (nonatomic) unsigned int rxCSAFrames;
 @property (nonatomic) unsigned int securityType;
 @property (nonatomic) unsigned int subreason;
 @property (nonatomic) unsigned long long timestamp;
@@ -215,6 +230,8 @@
 - (unsigned long long)bcnPerHistorysCount;
 - (unsigned int)capabilities;
 - (unsigned int)channel;
+- (unsigned int)channelSwitchDuringHostSleep;
+- (unsigned int)channelSwitchDuringHostWake;
 - (unsigned int)channelWidth;
 - (void)clearBcnFrmsHistorys;
 - (void)clearBcnPerHistorys;
@@ -242,6 +259,8 @@
 - (bool)hasAssociationDuration;
 - (bool)hasCapabilities;
 - (bool)hasChannel;
+- (bool)hasChannelSwitchDuringHostSleep;
+- (bool)hasChannelSwitchDuringHostWake;
 - (bool)hasChannelWidth;
 - (bool)hasCountryCode;
 - (bool)hasEnhancedSecurityType;
@@ -260,7 +279,9 @@
 - (bool)hasMcastCipher;
 - (bool)hasOui;
 - (bool)hasPhyMode;
+- (bool)hasPrivateMacType;
 - (bool)hasReason;
+- (bool)hasRxCSAFrames;
 - (bool)hasSecurityType;
 - (bool)hasSubreason;
 - (bool)hasTimestamp;
@@ -293,11 +314,13 @@
 - (void)mergeFrom:(id)arg1;
 - (id)oui;
 - (unsigned int)phyMode;
+- (id)privateMacType;
 - (bool)readFrom:(id)arg1;
 - (unsigned int)reason;
 - (int)rssiHistoryAtIndex:(unsigned long long)arg1;
 - (int*)rssiHistorys;
 - (unsigned long long)rssiHistorysCount;
+- (unsigned int)rxCSAFrames;
 - (unsigned int)securityType;
 - (void)setAkmSuites:(unsigned int)arg1;
 - (void)setAssociationDuration:(double)arg1;
@@ -305,6 +328,8 @@
 - (void)setBcnPerHistorys:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setCapabilities:(unsigned int)arg1;
 - (void)setChannel:(unsigned int)arg1;
+- (void)setChannelSwitchDuringHostSleep:(unsigned int)arg1;
+- (void)setChannelSwitchDuringHostWake:(unsigned int)arg1;
 - (void)setChannelWidth:(unsigned int)arg1;
 - (void)setCountryCode:(id)arg1;
 - (void)setEnhancedSecurityType:(unsigned int)arg1;
@@ -316,6 +341,8 @@
 - (void)setHasAssociationDuration:(bool)arg1;
 - (void)setHasCapabilities:(bool)arg1;
 - (void)setHasChannel:(bool)arg1;
+- (void)setHasChannelSwitchDuringHostSleep:(bool)arg1;
+- (void)setHasChannelSwitchDuringHostWake:(bool)arg1;
 - (void)setHasChannelWidth:(bool)arg1;
 - (void)setHasEnhancedSecurityType:(bool)arg1;
 - (void)setHasFlags:(bool)arg1;
@@ -330,6 +357,7 @@
 - (void)setHasMcastCipher:(bool)arg1;
 - (void)setHasPhyMode:(bool)arg1;
 - (void)setHasReason:(bool)arg1;
+- (void)setHasRxCSAFrames:(bool)arg1;
 - (void)setHasSecurityType:(bool)arg1;
 - (void)setHasSubreason:(bool)arg1;
 - (void)setHasTimestamp:(bool)arg1;
@@ -349,8 +377,10 @@
 - (void)setMcastCipher:(unsigned int)arg1;
 - (void)setOui:(id)arg1;
 - (void)setPhyMode:(unsigned int)arg1;
+- (void)setPrivateMacType:(id)arg1;
 - (void)setReason:(unsigned int)arg1;
 - (void)setRssiHistorys:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setRxCSAFrames:(unsigned int)arg1;
 - (void)setSecurityType:(unsigned int)arg1;
 - (void)setSubreason:(unsigned int)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBPayloadConfirmation : PBCodable <NSCopying, NSSecureCoding, _INPBPayloadConfirmation> {
-    bool  __encodeLegacyGloryData;
     int  _addTasksIntentTargetTaskListConfirmationReason;
     _INPBSelectionItem * _confirmationItem;
     struct { 
@@ -15,7 +14,6 @@
     int  _startCallIntentContactsConfirmationReason;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int addTasksIntentTargetTaskListConfirmationReason;
 @property (nonatomic, retain) _INPBSelectionItem *confirmationItem;
 @property (readonly, copy) NSString *debugDescription;
@@ -35,8 +33,6 @@
 - (int)StringAsAddTasksIntentTargetTaskListConfirmationReason:(id)arg1;
 - (int)StringAsReason:(id)arg1;
 - (int)StringAsStartCallIntentContactsConfirmationReason:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)addTasksIntentTargetTaskListConfirmationReason;
 - (id)addTasksIntentTargetTaskListConfirmationReasonAsString:(int)arg1;
 - (id)confirmationItem;

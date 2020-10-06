@@ -24,6 +24,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) _UIFocusInputDeviceInfo *inputDeviceInfo;
 @property (nonatomic, retain) _UIFocusMovementInfo *movementInfo;
+@property (getter=isMovementRequest, nonatomic, readonly) bool movementRequest;
 @property (nonatomic, readonly) bool requiresEnvironmentValidation;
 @property (nonatomic, readonly) bool requiresNextFocusedItem;
 @property (nonatomic, retain) _UIFocusSearchInfo *searchInfo;
@@ -44,6 +45,7 @@
 - (id)init;
 - (id)initWithFocusSystem:(id)arg1 window:(id)arg2;
 - (id)inputDeviceInfo;
+- (bool)isMovementRequest;
 - (id)movementInfo;
 - (bool)requiresEnvironmentValidation;
 - (bool)requiresNextFocusedItem;

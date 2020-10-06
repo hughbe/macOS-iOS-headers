@@ -7,7 +7,7 @@
 }
 
 @property (nonatomic, readonly) double oldestTimestamp;
-@property (nonatomic, readonly) unsigned char requestType;
+@property (nonatomic, readonly) struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } requestType;
 
 + (id)counterLogInfoWithDictionary:(id)arg1;
 + (bool)supportsSecureCoding;
@@ -23,7 +23,7 @@
 - (bool)isEqual:(id)arg1;
 - (double)oldestTimestamp;
 - (unsigned long long)recvBytes;
-- (unsigned char)requestType;
+- (struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })requestType;
 - (unsigned long long)xmitBytes;
 
 @end

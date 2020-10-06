@@ -27,6 +27,7 @@
 - (id)delegate;
 - (void)didChangePreferredContentSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)didChangeToEditMode:(bool)arg1;
+- (void)didChangeToShowTitle:(bool)arg1;
 - (void)didCompleteWithContact:(id)arg1;
 - (void)didDeleteContact:(id)arg1;
 - (void)didExecuteClearRecentsDataAction;

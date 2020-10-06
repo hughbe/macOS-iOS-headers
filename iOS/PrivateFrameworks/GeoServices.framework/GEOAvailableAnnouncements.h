@@ -7,8 +7,7 @@
     struct { 
         unsigned int read_announcements : 1; 
         unsigned int read_languageCode : 1; 
-        unsigned int wrote_announcements : 1; 
-        unsigned int wrote_languageCode : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _languageCode;
     PBDataReader * _reader;
@@ -27,9 +26,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAnnouncement:(id)arg1;
-- (void)_readAnnouncements;
-- (void)_readLanguageCode;
 - (void)addAnnouncement:(id)arg1;
 - (id)announcementAtIndex:(unsigned long long)arg1;
 - (id)announcements;
@@ -43,7 +39,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)languageCode;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

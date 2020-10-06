@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSString *topic;
 @property (nonatomic, retain) NSDictionary *userInfo;
 
+// Image: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
+
 - (void).cxx_destruct;
 - (id)correlationIdentifier;
 - (id)dictionaryRepresentation;
@@ -38,5 +40,9 @@
 - (void)setUserInfo:(id)arg1;
 - (id)topic;
 - (id)userInfo;
+
+// Image: /System/Library/PrivateFrameworks/UserNotificationsServer.framework/UserNotificationsServer
+
+- (id)uns_bundleIdentifier;
 
 @end

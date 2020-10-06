@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchShareMetadataOperation : CKOperation {
+@interface CKFetchShareMetadataOperation : CKOperation <CKFetchShareMetadataOperationCallbacks> {
     NSMutableDictionary * _errorsByURL;
     id /* block */  _fetchShareMetadataCompletionBlock;
     NSMutableSet * _packagesToDestroy;
@@ -13,8 +13,10 @@
     bool  _shouldFetchRootRecord;
 }
 
+@property (nonatomic, readonly) <CKFetchShareMetadataOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSMutableDictionary *errorsByURL;
 @property (nonatomic, copy) id /* block */ fetchShareMetadataCompletionBlock;
+@property (nonatomic, readonly) CKFetchShareMetadataOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableSet *packagesToDestroy;
 @property (nonatomic, copy) id /* block */ perShareMetadataBlock;
 @property (nonatomic, copy) NSArray *rootRecordDesiredKeys;
@@ -22,16 +24,18 @@
 @property (nonatomic, copy) NSArray *shareURLs;
 @property (nonatomic) bool shouldFetchRootRecord;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (bool)claimPackagesInRecord:(id)arg1 error:(id*)arg2;
 - (id)errorsByURL;
 - (id /* block */)fetchShareMetadataCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleShareMetadataFetchForURL:(id)arg1 shareMetadata:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithShareURLs:(id)arg1;

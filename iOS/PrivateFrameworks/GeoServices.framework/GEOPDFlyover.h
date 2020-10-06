@@ -12,11 +12,7 @@
         unsigned int read_labelFrames : 1; 
         unsigned int read_labels : 1; 
         unsigned int read_notificationMessages : 1; 
-        unsigned int wrote_cameraPaths : 1; 
-        unsigned int wrote_labelFrames : 1; 
-        unsigned int wrote_labels : 1; 
-        unsigned int wrote_notificationMessages : 1; 
-        unsigned int wrote_useSplines : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct GEOPDLabelFrame { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; } * _labelFrames;
     unsigned long long  _labelFramesCount;
@@ -47,14 +43,6 @@
 + (Class)notificationMessageType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsCameraPath:(struct GEOPDCameraPathFrame { float x1; float x2; float x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; })arg1;
-- (void)_addNoFlagsLabel:(id)arg1;
-- (void)_addNoFlagsLabelFrame:(struct GEOPDLabelFrame { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
-- (void)_addNoFlagsNotificationMessage:(id)arg1;
-- (void)_readCameraPaths;
-- (void)_readLabelFrames;
-- (void)_readLabels;
-- (void)_readNotificationMessages;
 - (void)addCameraPath:(struct GEOPDCameraPathFrame { float x1; float x2; float x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; })arg1;
 - (void)addLabel:(id)arg1;
 - (void)addLabelFrame:(struct GEOPDLabelFrame { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
@@ -77,7 +65,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)labelAtIndex:(unsigned long long)arg1;
 - (struct GEOPDLabelFrame { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })labelFrameAtIndex:(unsigned long long)arg1;
 - (struct GEOPDLabelFrame { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*)labelFrames;

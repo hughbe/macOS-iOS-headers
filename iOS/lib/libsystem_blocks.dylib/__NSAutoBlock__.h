@@ -2,6 +2,9 @@
    Image: /usr/lib/system/libsystem_blocks.dylib
  */
 
-@interface __NSAutoBlock__ : __NSAutoBlock
+@interface __NSAutoBlock__ : NSBlock
+
+- (id)copy;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 
 @end

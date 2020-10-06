@@ -3,13 +3,11 @@
  */
 
 @interface _INPBPlaceList : PBCodable <NSCopying, NSSecureCoding, _INPBPlaceList> {
-    bool  __encodeLegacyGloryData;
     _INPBCondition * _condition;
     struct { }  _has;
     NSArray * _places;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBCondition *condition;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addPlace:(id)arg1;
 - (void)clearPlaces;
 - (id)condition;

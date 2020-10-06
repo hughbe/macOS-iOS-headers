@@ -12,6 +12,7 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
++ (bool)shouldIndentWhileEditing;
 + (bool)wantsChevron;
 + (bool)wantsHorizontalLayout;
 
@@ -25,7 +26,6 @@
 - (void)picker:(id)arg1 didPickItem:(id)arg2;
 - (void)pickerDidCancel:(id)arg1;
 - (void)setGeminiPicker:(id)arg1;
-- (bool)shouldIndentWhileEditing;
 - (bool)shouldPerformDefaultAction;
 - (id)variableConstraints;
 

@@ -5,6 +5,7 @@
 @interface SFResultSection : NSObject <NSCopying, NSSecureCoding, SFJSONSerializable> {
     NSString * _bundleIdentifier;
     NSString * _identifier;
+    bool  _isInitiallyHidden;
     unsigned long long  _maxInitiallyVisibleResults;
     NSString * _moreText;
     double  _rankingScore;
@@ -18,6 +19,7 @@
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *identifier;
+@property (nonatomic) bool isInitiallyHidden;
 @property (nonatomic, readonly) NSData *jsonData;
 @property (nonatomic) unsigned long long maxInitiallyVisibleResults;
 @property (nonatomic, copy) NSString *moreText;
@@ -30,12 +32,14 @@
 
 - (void).cxx_destruct;
 - (id)bundleIdentifier;
+- (bool)compareWithSection:(id)arg1 logger:(id /* block */)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)identifier;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (bool)isInitiallyHidden;
 - (id)jsonData;
 - (unsigned long long)maxInitiallyVisibleResults;
 - (id)moreText;
@@ -43,6 +47,7 @@
 - (id)results;
 - (void)setBundleIdentifier:(id)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setIsInitiallyHidden:(bool)arg1;
 - (void)setMaxInitiallyVisibleResults:(unsigned long long)arg1;
 - (void)setMoreText:(id)arg1;
 - (void)setRankingScore:(double)arg1;

@@ -39,6 +39,7 @@
 - (bool)definitely_die;
 - (bool)do_ping:(id)arg1;
 - (bool)first_contact;
+- (id)get_async_proxy:(id /* block */)arg1;
 - (id)get_proxy:(id /* block */)arg1;
 - (void)handle_server_death;
 - (void)handle_server_resurrection;

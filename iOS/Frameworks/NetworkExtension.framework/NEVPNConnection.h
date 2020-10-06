@@ -7,6 +7,8 @@
     NSString * _configurationName;
     NSDate * _connectedDate;
     bool  _initialized;
+    bool  _installNotify;
+    bool  _installed;
     NSError * _lastDisconnectError;
     NSObject<OS_dispatch_queue> * _queue;
     void * _session;
@@ -19,6 +21,8 @@
 @property (nonatomic, retain) NSString *configurationName;
 @property (readonly) NSDate *connectedDate;
 @property (nonatomic) bool initialized;
+@property (nonatomic) bool installNotify;
+@property (nonatomic) bool installed;
 @property (readonly) NSError *lastDisconnectError;
 @property (readonly) NEVPNManager *manager;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *queue;
@@ -28,6 +32,7 @@
 @property NEVPNManager *weakmanager;
 
 + (id)createConnectionForEnabledEnterpriseConfiguration;
++ (id)createConnectionForEnabledEnterpriseConfigurationWithName:(id)arg1;
 + (id)createDisconnectErrorWithDomain:(id)arg1 code:(unsigned int)arg2;
 
 - (void).cxx_destruct;
@@ -37,9 +42,11 @@
 - (void)createSessionWithConfigurationIdentifier:(id)arg1 forceInfoFetch:(bool)arg2 completionHandler:(id /* block */)arg3;
 - (void)dealloc;
 - (void)destroySession;
-- (id)initHeadless;
+- (id)initHeadlessWithName:(id)arg1;
 - (id)initWithType:(int)arg1;
 - (bool)initialized;
+- (bool)installNotify;
+- (bool)installed;
 - (id)lastDisconnectError;
 - (id)manager;
 - (void)newSessionWithConfigID:(id)arg1 withCompletionHandler:(id /* block */)arg2;
@@ -50,6 +57,8 @@
 - (int)sessionType;
 - (void)setConfigurationName:(id)arg1;
 - (void)setInitialized:(bool)arg1;
+- (void)setInstallNotify:(bool)arg1;
+- (void)setInstalled:(bool)arg1;
 - (void)setSession:(void*)arg1;
 - (void)setWeakmanager:(id)arg1;
 - (bool)startVPNTunnelAndReturnError:(id*)arg1;

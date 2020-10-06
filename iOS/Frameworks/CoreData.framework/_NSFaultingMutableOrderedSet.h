@@ -14,7 +14,7 @@
         unsigned int _relationship : 16; 
     }  _flags;
     NSMutableDictionary * _forcedKeys;
-    id  _grottyHack;
+    _NSFaultingMutableOrderedSet * _grottyHack;
     unsigned int * _orderKeys;
     id  _realSet;
     NSManagedObject * _source;
@@ -29,24 +29,17 @@
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (Class)classForKeyedUnarchiver;
 
-- (void)_assignOrderKeysUsingCount:(unsigned int)arg1;
-- (bool)_hasOrderKeys;
 - (bool)_isDeallocating;
 - (bool)_isIdenticalFault:(id)arg1;
-- (id)_newOrderKeys;
-- (unsigned int)_orderKeyForObject:(id)arg1;
 - (id)_orderedObjectsAndKeys;
-- (void)_populateOrderKeysUsingSnapshot:(id)arg1 orderKeys:(id)arg2 newIndexes:(unsigned long long**)arg3 reorderedIndexes:(char **)arg4;
 - (bool)_reorderObjectsToLocationsByOrderKey:(id)arg1 error:(id*)arg2;
 - (void)_setProcessingIdempotentKVO:(bool)arg1;
 - (bool)_shouldProcessKVOChange;
 - (bool)_tryRetain;
-- (void)_updateOrderKeysFromOrderOfObjectIDs:(id)arg1;
 - (void)addObject:(id)arg1;
 - (void)addObjects:(const id*)arg1 count:(unsigned long long)arg2;
 - (void)addObjectsFromArray:(id)arg1;
 - (id)allObjects;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (bool)containsObject:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -98,7 +91,6 @@
 - (void)unionSet:(id)arg1;
 - (id)valueForKey:(id)arg1;
 - (id)valueForKeyPath:(id)arg1;
-- (void)willChange;
 - (void)willRead;
 - (void)willReadWithContents:(id)arg1;
 

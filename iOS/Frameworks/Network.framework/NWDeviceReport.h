@@ -4,6 +4,7 @@
 
 @interface NWDeviceReport : NSObject {
     unsigned int  _batteryAbsoluteCapacity;
+    NWAccumulator * _batteryAccumulator;
     bool  _batteryAtCriticalLevel;
     bool  _batteryAtWarnLevel;
     unsigned int  _batteryCurrentCapacity;
@@ -17,10 +18,13 @@
     unsigned int  _batteryVoltage;
     bool  _devicePluggedIn;
     bool  _deviceScreenOn;
+    unsigned int  _motionState;
+    NSString * _serialNumber;
     unsigned int  _thermalPressure;
 }
 
 @property (nonatomic) unsigned int batteryAbsoluteCapacity;
+@property (nonatomic, retain) NWAccumulator *batteryAccumulator;
 @property (nonatomic) bool batteryAtCriticalLevel;
 @property (nonatomic) bool batteryAtWarnLevel;
 @property (nonatomic) unsigned int batteryCurrentCapacity;
@@ -34,9 +38,15 @@
 @property (nonatomic) unsigned int batteryVoltage;
 @property (nonatomic) bool devicePluggedIn;
 @property (nonatomic) bool deviceScreenOn;
+@property (nonatomic) unsigned int motionState;
+@property (nonatomic, retain) NSString *serialNumber;
 @property (nonatomic) unsigned int thermalPressure;
 
++ (id)createAccumulator:(id)arg1;
+
+- (void).cxx_destruct;
 - (unsigned int)batteryAbsoluteCapacity;
+- (id)batteryAccumulator;
 - (bool)batteryAtCriticalLevel;
 - (bool)batteryAtWarnLevel;
 - (unsigned int)batteryCurrentCapacity;
@@ -48,10 +58,14 @@
 - (unsigned int)batteryPercentage;
 - (unsigned int)batteryTimeRemaining;
 - (unsigned int)batteryVoltage;
+- (id)createAWDReport;
 - (id)description;
 - (bool)devicePluggedIn;
 - (bool)deviceScreenOn;
+- (unsigned int)motionState;
+- (id)serialNumber;
 - (void)setBatteryAbsoluteCapacity:(unsigned int)arg1;
+- (void)setBatteryAccumulator:(id)arg1;
 - (void)setBatteryAtCriticalLevel:(bool)arg1;
 - (void)setBatteryAtWarnLevel:(bool)arg1;
 - (void)setBatteryCurrentCapacity:(unsigned int)arg1;
@@ -65,6 +79,8 @@
 - (void)setBatteryVoltage:(unsigned int)arg1;
 - (void)setDevicePluggedIn:(bool)arg1;
 - (void)setDeviceScreenOn:(bool)arg1;
+- (void)setMotionState:(unsigned int)arg1;
+- (void)setSerialNumber:(id)arg1;
 - (void)setThermalPressure:(unsigned int)arg1;
 - (unsigned int)thermalPressure;
 

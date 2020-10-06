@@ -10,7 +10,9 @@
     struct _csibitmap { unsigned int x1; union { unsigned int x_2_1_1; struct _csibitmapflags { unsigned int x_2_2_1 : 1; unsigned int x_2_2_2 : 1; unsigned int x_2_2_3 : 30; } x_2_1_2; } x2; unsigned int x3; unsigned int x4; unsigned char x5[0]; } * bmp;
     NSData * csiData;
     _CUIThemePixelRendition * rendition;
-    int  renditionLock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  renditionLock;
     _CSIRenditionBlockData * retainedBlockData;
     _CSIRenditionBlockData * sharedBlockDataBGRX;
     _CSIRenditionBlockData * sharedBlockDataGray;
@@ -25,5 +27,7 @@
     unsigned long long  sourceRowbytes;
     unsigned int  usedForDataProvider;
 }
+
+- (void)dealloc;
 
 @end

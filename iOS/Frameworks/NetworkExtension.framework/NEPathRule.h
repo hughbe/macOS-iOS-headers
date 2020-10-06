@@ -8,9 +8,11 @@
     NSNumber * _aggregatePersonalCellular;
     NSNumber * _aggregatePersonalWiFi;
     bool  _denyCellularFallback;
+    bool  _denyMulticast;
     long long  _internalCellularBehavior;
     long long  _internalWiFiBehavior;
     bool  _isIdentifierExternal;
+    bool  _multicastPreferenceSet;
 }
 
 @property (retain) NSNumber *aggregateEnterpriseCellular;
@@ -20,9 +22,11 @@
 @property long long cellularBehavior;
 @property (getter=isDefaultPathRule, readonly) bool defaultPathRule;
 @property bool denyCellularFallback;
+@property bool denyMulticast;
 @property long long internalCellularBehavior;
 @property long long internalWiFiBehavior;
 @property bool isIdentifierExternal;
+@property bool multicastPreferenceSet;
 @property long long wifiBehavior;
 
 + (long long)aggregateNetworkBehavior:(long long)arg1 other:(long long)arg2;
@@ -38,6 +42,7 @@
 - (long long)cellularBehavior;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)denyCellularFallback;
+- (bool)denyMulticast;
 - (id)description;
 - (id)descriptionWithIndent:(int)arg1 options:(unsigned long long)arg2;
 - (void)encodeWithCoder:(id)arg1;
@@ -49,15 +54,18 @@
 - (bool)isDefaultPathRule;
 - (bool)isEqual:(id)arg1;
 - (bool)isIdentifierExternal;
+- (bool)multicastPreferenceSet;
 - (void)setAggregateEnterpriseCellular:(id)arg1;
 - (void)setAggregateEnterpriseWiFi:(id)arg1;
 - (void)setAggregatePersonalCellular:(id)arg1;
 - (void)setAggregatePersonalWiFi:(id)arg1;
 - (void)setCellularBehavior:(long long)arg1;
 - (void)setDenyCellularFallback:(bool)arg1;
+- (void)setDenyMulticast:(bool)arg1;
 - (void)setInternalCellularBehavior:(long long)arg1;
 - (void)setInternalWiFiBehavior:(long long)arg1;
 - (void)setIsIdentifierExternal:(bool)arg1;
+- (void)setMulticastPreferenceSet:(bool)arg1;
 - (void)setWifiBehavior:(long long)arg1;
 - (bool)signingIdentifierAllowed:(id)arg1 domainsOrAccountsRequired:(out bool*)arg2;
 - (bool)supportsCellularBehavior:(long long)arg1;

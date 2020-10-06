@@ -3,7 +3,6 @@
  */
 
 @interface _INPBReservationAction : PBCodable <NSCopying, NSSecureCoding, _INPBReservationAction> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int type : 1; 
     }  _has;
@@ -12,7 +11,6 @@
     _INPBDateTimeRange * _validDuration;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasType;
@@ -28,8 +26,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

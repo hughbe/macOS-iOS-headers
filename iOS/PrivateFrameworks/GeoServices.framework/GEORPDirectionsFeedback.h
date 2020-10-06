@@ -11,10 +11,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_directionsContext : 1; 
         unsigned int read_directionsCorrections : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_directionsContext : 1; 
-        unsigned int wrote_directionsCorrections : 1; 
-        unsigned int wrote_correctionType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,8 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCorrectionType:(id)arg1;
-- (void)_readDirectionsContext;
-- (void)_readDirectionsCorrections;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -54,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

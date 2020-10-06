@@ -38,7 +38,10 @@
 - (id)dictionaryRepresentation;
 - (bool)hasPhotoType;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)maxPhotos;
 - (void)mergeFrom:(id)arg1;
 - (int)photoSizeAtIndex:(unsigned long long)arg1;

@@ -103,6 +103,7 @@
 - (id)_queryDelegate:(id)arg1 forItemsForBeginningSession:(id)arg2;
 - (void)_queryDelegate:(id)arg1 forLiftPreviewsUsingItems:(id)arg2 session:(id)arg3;
 - (id)_requiredContextIDsForDragSessionInView:(id)arg1;
+- (id)_session:(id)arg1 customSpringAnimationBehaviorForCancellingItem:(id)arg2;
 - (bool)_session:(id)arg1 item:(id)arg2 shouldDelaySetDownAnimationWithCompletion:(id /* block */)arg3;
 - (void)_session:(id)arg1 item:(id)arg2 willCancelWithAnimator:(id)arg3;
 - (unsigned long long)_session:(id)arg1 sourceOperationMaskForDraggingWithinApp:(bool)arg2;

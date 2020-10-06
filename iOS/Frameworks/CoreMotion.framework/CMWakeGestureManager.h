@@ -3,9 +3,9 @@
  */
 
 @interface CMWakeGestureManager : NSObject {
-    <CMWakeGestureDelegate> * _delegate;
     unsigned int  backlightService;
     long long  fCurrentState;
+    <CMWakeGestureDelegate> * fDelegate;
     NSObject<OS_dispatch_queue> * fDispatchQ;
     BOOL  fDisplayState;
     bool  fEnableAudioAlert;
@@ -22,6 +22,7 @@
     NSString * fProcessName;
     int  fScreenDimmingNotificationToken;
     int  fSelector;
+    <CMWakeGestureDelegate> * fUpdatedDelegate;
     struct Dispatcher { int (**x1)(); id x2; } * fWakeDispatcher;
     struct unique_ptr<CMWakeGestureVisitor, std::__1::default_delete<CMWakeGestureVisitor> > { 
         struct __compressed_pair<CMWakeGestureVisitor *, std::__1::default_delete<CMWakeGestureVisitor> > { 
@@ -61,11 +62,11 @@
 - (void)onWakeUpdated:(const struct Sample { unsigned long long x1; struct GestureReport {} *x2; }*)arg1;
 - (void)playAlert;
 - (void)reenableDetectedStateRecognition;
+- (void)sendWakeTriggerAnalytics:(unsigned char)arg1 withDisplay:(int)arg2;
 - (void)setDelegate:(id)arg1;
 - (void)simulateGesture:(long long)arg1 after:(double)arg2;
 - (bool)simulateGestureWithDelay:(double)arg1 Duration:(double)arg2;
 - (void)startWakeGestureUpdates;
 - (void)stopWakeGestureUpdates;
-- (void)writeAggdScalarForKey:(id)arg1 withValue:(id)arg2;
 
 @end

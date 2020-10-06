@@ -23,6 +23,7 @@
 - (id)initInUniverse:(id)arg1;
 - (void)invalidate;
 - (id)manager;
+- (void)setArray:(id)arg1 forKey:(id)arg2;
 - (void)setBool:(bool)arg1 forKey:(id)arg2;
 - (void)setDictionary:(id)arg1 forKey:(id)arg2;
 - (void)setDouble:(double)arg1 forKey:(id)arg2;

@@ -26,6 +26,7 @@
 - (void)setStackDelegate:(id)arg1;
 - (void)setStackedSubviews:(id)arg1;
 - (void)setStackedSubviews:(id)arg1 animated:(bool)arg2;
+- (void)setStackedSubviews:(id)arg1 animated:(bool)arg2 isNeedLayout:(bool)arg3;
 - (id)stackAnimationDelegate;
 - (id)stackDelegate;
 - (id)stackedSubviews;

@@ -28,8 +28,8 @@
             unsigned int itemMode : 3; 
             unsigned int fromReadOnlyDB : 1; 
             unsigned int isSharedFolderSubItem : 1; 
-            unsigned int possiblyContainsSharedToMeItem : 1; 
-            unsigned int possiblyContainsSharedByMeItem : 1; 
+            unsigned int isSharedToMeOrContainsSharedToMeItem : 1; 
+            unsigned int isSharedByMeOrContainsSharedByMeItem : 1; 
             unsigned int editedSinceShared : 1; 
             unsigned char BRQueryItemKind; 
             unsigned char kind; 
@@ -56,14 +56,15 @@
 }
 
 @property (nonatomic, readonly) NSString *appLibraryID;
-@property (nonatomic, readonly) unsigned int br_downloadStatus;
+@property (nonatomic, readonly) unsigned short br_downloadStatus;
 @property (nonatomic, readonly) unsigned int br_shareOptions;
-@property (nonatomic, readonly) unsigned int br_uploadStatus;
+@property (nonatomic, readonly) unsigned short br_uploadStatus;
 @property (nonatomic, readonly) NSNumber *btime;
 @property (nonatomic, readonly) unsigned long long capabilities;
 @property (nonatomic, readonly, copy) NSNumber *childItemCount;
 @property (readonly, copy) NSString *containerDisplayName;
 @property (nonatomic, readonly, copy) NSDate *contentModificationDate;
+@property (nonatomic, readonly, copy) UTType *contentType;
 @property (nonatomic, readonly, copy) NSDate *creationDate;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, readonly) NSArray *decorations;
@@ -147,6 +148,8 @@
 @property (nonatomic, readonly) NSDictionary *userInfo;
 @property (nonatomic, readonly) NSData *versionIdentifier;
 
+// Image: /System/Library/PrivateFrameworks/CloudDocs.framework/CloudDocs
+
 + (id)askDaemonQueryItemForURL:(id)arg1 andFakeFSEvent:(bool)arg2 error:(id*)arg3;
 + (id)askDaemonQueryItemForURL:(id)arg1 error:(id*)arg2;
 + (id)containerItemForContainer:(id)arg1 forceScan:(bool)arg2;
@@ -166,9 +169,9 @@
 - (id)attributeForName:(id)arg1;
 - (id)attributeNames;
 - (id)attributesForNames:(id)arg1;
-- (unsigned int)br_downloadStatus;
+- (unsigned short)br_downloadStatus;
 - (unsigned int)br_shareOptions;
-- (unsigned int)br_uploadStatus;
+- (unsigned short)br_uploadStatus;
 - (id)btime;
 - (bool)canMerge:(id)arg1;
 - (unsigned long long)capabilities;
@@ -264,5 +267,9 @@
 - (id)userInfo;
 - (id)valueForKey:(id)arg1;
 - (id)versionIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
+- (id)initWithRelPath:(id)arg1 error:(id*)arg2;
 
 @end

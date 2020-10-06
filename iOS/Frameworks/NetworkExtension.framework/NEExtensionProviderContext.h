@@ -22,6 +22,7 @@
 @property (readonly) NSXPCConnection *hostConnection;
 @property (nonatomic) bool isDisposed;
 @property (nonatomic, readonly) NEProvider *provider;
+@property (nonatomic, readonly) Class requiredProviderSuperClass;
 @property (nonatomic) bool started;
 @property (copy) id /* block */ stopCompletionHandler;
 @property (readonly) Class superclass;
@@ -50,6 +51,7 @@
 - (long long)neStopReasonToProviderStopReason:(int)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (id)provider;
+- (Class)requiredProviderSuperClass;
 - (void)setConfiguration:(id)arg1;
 - (void)setConfiguration:(id)arg1 extensionIdentifier:(id)arg2;
 - (void)setDescription:(id)arg1;
@@ -64,6 +66,7 @@
 - (id /* block */)stopCompletionHandler;
 - (void)stopWithReason:(int)arg1;
 - (id)transaction;
+- (void)validateWithCompletionHandler:(id /* block */)arg1;
 - (void)wake;
 
 @end

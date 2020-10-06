@@ -11,7 +11,7 @@
     id  _containers;
     id  _delegate;
     unsigned long long  _estimatedCount;
-    unsigned long long  _flags;
+    _Atomic unsigned long long  _flags;
     unsigned long long  _genericKey;
     id  _objRefMap;
     id  _objects;
@@ -85,10 +85,65 @@
 
 + (id)CalArchivedDataWithRootObject:(id)arg1 ofClasses:(id)arg2 error:(id*)arg3;
 
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_archivedDataWithRootObject:(id)arg1;
++ (id)cat_archivedDataWithRootObject:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+
++ (id)cpl_archivedDataWithRootObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
++ (id)wf_securelyArchivedDataWithRootObject:(id)arg1;
++ (id)wf_securelyArchivedDataWithRootObject:(id)arg1 deletionResponsibility:(long long)arg2;
++ (id)wf_securelyArchivedDataWithRootObject:(id)arg1 fileCoder:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/DigitalTouchShared.framework/DigitalTouchShared
+
++ (id)_et_secureArchivedDataWithRootObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DoNotDisturbServer.framework/DoNotDisturbServer
+
++ (id)dnds_secureLegacyArchiver;
+
+// Image: /System/Library/PrivateFrameworks/FusionPluginKit.framework/FusionPluginKit
+
++ (id)archiveObject:(id)arg1;
++ (void)archiveObject:(id)arg1 to:(id)arg2;
++ (id)archiveObjectToData:(id)arg1;
++ (id)archiveObjectToDict:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FusionPluginServices.framework/FusionPluginServices
+
++ (id)archiveObject:(id)arg1;
++ (void)archiveObject:(id)arg1 to:(id)arg2;
++ (id)archiveObjectToData:(id)arg1;
++ (id)archiveObjectToDict:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/NanoRegistry.framework/NanoRegistry
 
 + (bool)nr_secureArchiveRootObject:(id)arg1 toFile:(id)arg2;
 + (bool)nr_secureArchiveRootObject:(id)arg1 toFile:(id)arg2 withOptions:(unsigned long long)arg3;
 + (id)nr_secureArchivedDataWithRootObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PairedSync.framework/PairedSync
+
++ (bool)secureArchiveRootObject:(id)arg1 toFile:(id)arg2;
++ (bool)secureArchiveRootObject:(id)arg1 toFile:(id)arg2 withOptions:(unsigned long long)arg3;
++ (id)secureArchivedDataWithRootObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesCloud.framework/iTunesCloud
+
++ (id)ic_archivedDataWithRootUserIdentity:(id)arg1 inStore:(id)arg2 requiringSecureCoding:(bool)arg3 error:(id*)arg4;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_securelyArchiveRoot:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_securelyArchiveRoot:(id)arg1;
 
 @end

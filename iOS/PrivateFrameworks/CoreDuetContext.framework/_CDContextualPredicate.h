@@ -42,6 +42,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (bool)evaluateOnEveryKeyPathUpdate;
 - (bool)evaluateWithObject:(id)arg1;
+- (bool)evaluateWithState:(id)arg1 previousValue:(id)arg2;
 - (bool)firesOnAnyChange;
 - (unsigned long long)hash;
 - (id)initForChangeAtKeyPath:(id)arg1;

@@ -6,8 +6,7 @@
 @required
 
 - (void)__cancelAlertActionWithToken:(long long)arg1;
-- (void)__createViewController:(void *)arg1 withAppearanceSerializedRepresentations:(void *)arg2 hostAccessibilityServerPort:(void *)arg3 canShowTextServices:(void *)arg4 replyHandler:(void *)arg5; // needs 5 arg types, found 15: NSString *, NSArray *, BSMachPortSendRight *, bool, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, _UIHostedWindowHostingHandle *, NSArray *, long long, int, BSMachPortSendRight *, NSError *, void*
-- (void)__createViewController:(void *)arg1 withContextToken:(void *)arg2 fbsDisplays:(void *)arg3 appearanceSerializedRepresentations:(void *)arg4 traitCollection:(void *)arg5 initialInterfaceOrientation:(void *)arg6 hostAccessibilityServerPort:(void *)arg7 canShowTextServices:(void *)arg8 replyHandler:(void *)arg9; // needs 9 arg types, found 19: NSString *, NSUUID *, NSArray *, NSArray *, UITraitCollection *, long long, BSMachPortSendRight *, bool, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, _UIHostedWindowHostingHandle *, NSArray *, long long, int, BSMachPortSendRight *, NSError *, void*
+- (void)__createViewControllerWithOptions:(void *)arg1 completionBlock:(void *)arg2; // needs 2 arg types, found 8: _UIViewServiceViewControllerOperatorCreateOptions *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, _UIViewServiceControllerOperatorCreateResult *, NSError *, void*
 - (void)__dimmingViewWasTapped;
 - (void)__exchangeAccessibilityPortInformation:(void *)arg1 replyHandler:(void *)arg2; // needs 2 arg types, found 8: BSMachPortSendRight *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, BSMachPortSendRight *, NSError *, void*
 - (void)__hostDidAttachDisplay:(FBSDisplayConfiguration *)arg1;
@@ -47,6 +46,7 @@
 - (void)__setHostTintColor:(UIColor *)arg1 tintAdjustmentMode:(long long)arg2;
 - (void)__setHostTraitCollection:(UITraitCollection *)arg1 deferIfAnimated:(bool)arg2;
 - (void)__setHostViewUnderlapsStatusBar:(bool)arg1;
+- (void)__setMediaOverridePID:(int)arg1;
 - (void)__setServiceInPopover:(bool)arg1;
 - (void)__setSheetConfiguration:(_UISheetPresentationControllerConfiguration *)arg1;
 - (void)__textServiceDidDismiss;

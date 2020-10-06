@@ -3,6 +3,7 @@
  */
 
 @interface SFMessageCardSection : SFCardSection <NSCopying, NSSecureCoding, SFMessageCardSection> {
+    NSURL * _audioMessageURL;
     SFColor * _backgroundColor;
     bool  _canBeHidden;
     struct { 
@@ -15,6 +16,7 @@
     }  _has;
     bool  _hasBottomPadding;
     bool  _hasTopPadding;
+    SFMessageAttachment * _messageAttachment;
     int  _messageServiceType;
     int  _messageStatus;
     NSString * _messageText;
@@ -25,6 +27,7 @@
     NSString * _type;
 }
 
+@property (nonatomic, copy) NSURL *audioMessageURL;
 @property (nonatomic, retain) SFColor *backgroundColor;
 @property (nonatomic) bool canBeHidden;
 @property (nonatomic, copy) NSString *cardSectionId;
@@ -37,6 +40,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool hideDivider;
 @property (nonatomic, readonly) NSData *jsonData;
+@property (nonatomic, retain) SFMessageAttachment *messageAttachment;
 @property (nonatomic) int messageServiceType;
 @property (nonatomic) int messageStatus;
 @property (nonatomic, copy) NSString *messageText;
@@ -54,6 +58,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)audioMessageURL;
 - (id)backgroundColor;
 - (bool)canBeHidden;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -70,6 +75,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProtobuf:(id)arg1;
 - (id)jsonData;
+- (id)messageAttachment;
 - (int)messageServiceType;
 - (int)messageStatus;
 - (id)messageText;
@@ -77,10 +83,12 @@
 - (id)punchoutPickerDismissText;
 - (id)punchoutPickerTitle;
 - (int)separatorStyle;
+- (void)setAudioMessageURL:(id)arg1;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setCanBeHidden:(bool)arg1;
 - (void)setHasBottomPadding:(bool)arg1;
 - (void)setHasTopPadding:(bool)arg1;
+- (void)setMessageAttachment:(id)arg1;
 - (void)setMessageServiceType:(int)arg1;
 - (void)setMessageStatus:(int)arg1;
 - (void)setMessageText:(id)arg1;

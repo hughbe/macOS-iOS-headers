@@ -6,6 +6,8 @@
 
 @property (nonatomic, copy) NSString *aceId;
 @property (nonatomic, copy) NSData *activationToken;
+@property (nonatomic, copy) NSString *appleConnectServiceTicket;
+@property (nonatomic, copy) NSString *appleConnectSessionToken;
 @property (nonatomic, copy) NSString *connectionMode;
 @property (nonatomic, copy) NSString *connectionType;
 @property (readonly, copy) NSString *debugDescription;
@@ -24,6 +26,8 @@
 + (id)createAssistantWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)activationToken;
+- (id)appleConnectServiceTicket;
+- (id)appleConnectSessionToken;
 - (id)connectionMode;
 - (id)connectionType;
 - (id)encodedClassName;
@@ -34,6 +38,8 @@
 - (id)linkedValidationData;
 - (bool)requiresResponse;
 - (void)setActivationToken:(id)arg1;
+- (void)setAppleConnectServiceTicket:(id)arg1;
+- (void)setAppleConnectSessionToken:(id)arg1;
 - (void)setConnectionMode:(id)arg1;
 - (void)setConnectionType:(id)arg1;
 - (void)setLanguage:(id)arg1;

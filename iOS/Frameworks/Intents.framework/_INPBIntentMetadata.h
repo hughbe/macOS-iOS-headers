@@ -3,7 +3,8 @@
  */
 
 @interface _INPBIntentMetadata : PBCodable <INJSONSerializable, NSCopying, NSSecureCoding, _INPBIntentMetadata> {
-    bool  __encodeLegacyGloryData;
+    NSArray * _airPlayRouteIds;
+    NSData * _auditTokenData;
     bool  _backgroundLaunch;
     NSString * _categoryVerb;
     bool  _confirmed;
@@ -18,6 +19,7 @@
         unsigned int idiom : 1; 
         unsigned int isOwnedByCurrentUser : 1; 
         unsigned int isPrimaryDisplayDisabled : 1; 
+        unsigned int showsWhenRun : 1; 
         unsigned int triggerMethod : 1; 
         unsigned int userConfirmationRequired : 1; 
     }  _has;
@@ -38,6 +40,12 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _requiredEntitlements;
+    struct { 
+        int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _shortcutAvailabilities;
+    bool  _showsWhenRun;
     NSString * _suggestedInvocationPhrase;
     NSString * _systemExtensionBundleId;
     NSString * _systemUIExtensionBundleId;
@@ -46,7 +54,9 @@
     _INPBString * _userUtterance;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
+@property (nonatomic, copy) NSArray *airPlayRouteIds;
+@property (nonatomic, readonly) unsigned long long airPlayRouteIdsCount;
+@property (nonatomic, copy) NSData *auditTokenData;
 @property (nonatomic) bool backgroundLaunch;
 @property (nonatomic, copy) NSString *categoryVerb;
 @property (nonatomic) bool confirmed;
@@ -56,6 +66,7 @@
 @property (nonatomic) int executionContext;
 @property (nonatomic, copy) NSArray *forceNeedsValueForParameters;
 @property (nonatomic, readonly) unsigned long long forceNeedsValueForParametersCount;
+@property (nonatomic, readonly) bool hasAuditTokenData;
 @property (nonatomic) bool hasBackgroundLaunch;
 @property (nonatomic, readonly) bool hasCategoryVerb;
 @property (nonatomic) bool hasConfirmed;
@@ -72,6 +83,7 @@
 @property (nonatomic, readonly) bool hasOriginatingDeviceIdsIdentifier;
 @property (nonatomic, readonly) bool hasOriginatingDeviceRapportEffectiveId;
 @property (nonatomic, readonly) bool hasOriginatingDeviceRapportMediaSystemId;
+@property (nonatomic) bool hasShowsWhenRun;
 @property (nonatomic, readonly) bool hasSuggestedInvocationPhrase;
 @property (nonatomic, readonly) bool hasSystemExtensionBundleId;
 @property (nonatomic, readonly) bool hasSystemUIExtensionBundleId;
@@ -94,6 +106,9 @@
 @property (nonatomic, readonly) unsigned long long parameterImagesCount;
 @property (nonatomic, readonly) int*requiredEntitlements;
 @property (nonatomic, readonly) unsigned long long requiredEntitlementsCount;
+@property (nonatomic, readonly) int*shortcutAvailabilities;
+@property (nonatomic, readonly) unsigned long long shortcutAvailabilitiesCount;
+@property (nonatomic) bool showsWhenRun;
 @property (nonatomic, copy) NSString *suggestedInvocationPhrase;
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSString *systemExtensionBundleId;
@@ -111,19 +126,26 @@
 - (int)StringAsIdiom:(id)arg1;
 - (int)StringAsIntentCategory:(id)arg1;
 - (int)StringAsRequiredEntitlements:(id)arg1;
+- (int)StringAsShortcutAvailabilities:(id)arg1;
 - (int)StringAsTriggerMethod:(id)arg1;
-- (bool)_encodeLegacyGloryData;
 - (void)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
+- (void)addAirPlayRouteIds:(id)arg1;
 - (void)addForceNeedsValueForParameter:(id)arg1;
 - (void)addParameterImages:(id)arg1;
 - (void)addRequiredEntitlement:(int)arg1;
+- (void)addShortcutAvailability:(int)arg1;
+- (id)airPlayRouteIds;
+- (id)airPlayRouteIdsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)airPlayRouteIdsCount;
+- (id)auditTokenData;
 - (bool)backgroundLaunch;
 - (id)categoryVerb;
+- (void)clearAirPlayRouteIds;
 - (void)clearForceNeedsValueForParameters;
 - (void)clearParameterImages;
 - (void)clearRequiredEntitlements;
+- (void)clearShortcutAvailabilities;
 - (bool)confirmed;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -135,6 +157,7 @@
 - (id)forceNeedsValueForParameterAtIndex:(unsigned long long)arg1;
 - (id)forceNeedsValueForParameters;
 - (unsigned long long)forceNeedsValueForParametersCount;
+- (bool)hasAuditTokenData;
 - (bool)hasBackgroundLaunch;
 - (bool)hasCategoryVerb;
 - (bool)hasConfirmed;
@@ -151,6 +174,7 @@
 - (bool)hasOriginatingDeviceIdsIdentifier;
 - (bool)hasOriginatingDeviceRapportEffectiveId;
 - (bool)hasOriginatingDeviceRapportMediaSystemId;
+- (bool)hasShowsWhenRun;
 - (bool)hasSuggestedInvocationPhrase;
 - (bool)hasSystemExtensionBundleId;
 - (bool)hasSystemUIExtensionBundleId;
@@ -181,6 +205,8 @@
 - (int*)requiredEntitlements;
 - (id)requiredEntitlementsAsString:(int)arg1;
 - (unsigned long long)requiredEntitlementsCount;
+- (void)setAirPlayRouteIds:(id)arg1;
+- (void)setAuditTokenData:(id)arg1;
 - (void)setBackgroundLaunch:(bool)arg1;
 - (void)setCategoryVerb:(id)arg1;
 - (void)setConfirmed:(bool)arg1;
@@ -194,6 +220,7 @@
 - (void)setHasIntentCategory:(bool)arg1;
 - (void)setHasIsOwnedByCurrentUser:(bool)arg1;
 - (void)setHasIsPrimaryDisplayDisabled:(bool)arg1;
+- (void)setHasShowsWhenRun:(bool)arg1;
 - (void)setHasTriggerMethod:(bool)arg1;
 - (void)setHasUserConfirmationRequired:(bool)arg1;
 - (void)setIdiom:(int)arg1;
@@ -209,12 +236,19 @@
 - (void)setOriginatingDeviceRapportMediaSystemId:(id)arg1;
 - (void)setParameterImages:(id)arg1;
 - (void)setRequiredEntitlements:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setShortcutAvailabilities:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setShowsWhenRun:(bool)arg1;
 - (void)setSuggestedInvocationPhrase:(id)arg1;
 - (void)setSystemExtensionBundleId:(id)arg1;
 - (void)setSystemUIExtensionBundleId:(id)arg1;
 - (void)setTriggerMethod:(int)arg1;
 - (void)setUserConfirmationRequired:(bool)arg1;
 - (void)setUserUtterance:(id)arg1;
+- (int*)shortcutAvailabilities;
+- (id)shortcutAvailabilitiesAsString:(int)arg1;
+- (unsigned long long)shortcutAvailabilitiesCount;
+- (int)shortcutAvailabilityAtIndex:(unsigned long long)arg1;
+- (bool)showsWhenRun;
 - (id)suggestedInvocationPhrase;
 - (id)systemExtensionBundleId;
 - (id)systemUIExtensionBundleId;

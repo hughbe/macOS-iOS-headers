@@ -3,7 +3,6 @@
  */
 
 @interface _INPBRideStatus : PBCodable <NSCopying, NSSecureCoding, _INPBRideStatus> {
-    bool  __encodeLegacyGloryData;
     NSArray * _additionalActionItems;
     _INPBRideCompletionStatus * _completionStatus;
     _INPBRideDriver * _driver;
@@ -24,7 +23,6 @@
     NSArray * _waypoints;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *additionalActionItems;
 @property (nonatomic, readonly) unsigned long long additionalActionItemsCount;
 @property (nonatomic, retain) _INPBRideCompletionStatus *completionStatus;
@@ -66,8 +64,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsPhase:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAdditionalActionItems:(id)arg1;
 - (void)addWaypoints:(id)arg1;
 - (id)additionalActionItems;

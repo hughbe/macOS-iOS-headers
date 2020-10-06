@@ -4,7 +4,7 @@
 
 @interface _UIDiffableDataSourceViewUpdater : NSObject <_UICollectionViewUpdateItemApplying> {
     UICollectionView * _collectionView;
-    _UIDataSourceSnapshotter * _dataSourceSnapshotter;
+    <_UIDataSourceSnapshotTranslating> * _dataSourceSnapshot;
     long long  _sinkKind;
     UITableView * _tableView;
     long long  _tableViewRowAnimation;
@@ -12,7 +12,7 @@
 }
 
 @property (nonatomic) UICollectionView *collectionView;
-@property (nonatomic, retain) _UIDataSourceSnapshotter *dataSourceSnapshotter;
+@property (nonatomic, retain) <_UIDataSourceSnapshotTranslating> *dataSourceSnapshot;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -32,18 +32,18 @@
 - (void)_performMoveUpdate:(id)arg1 onTableView:(id)arg2;
 - (void)_performReloadUpdate:(id)arg1 onCollectionView:(id)arg2;
 - (void)_performReloadUpdate:(id)arg1 onTableView:(id)arg2;
-- (void)_performUpdateWithCollectionViewUpdateItems:(id)arg1 dataSourceSnapshotter:(id)arg2 updateHandler:(id /* block */)arg3 completion:(id /* block */)arg4;
+- (void)_performUpdateWithCollectionViewUpdateItems:(id)arg1 dataSourceSnapshot:(id)arg2 updateHandler:(id /* block */)arg3 completion:(id /* block */)arg4 viewPropertyAnimator:(id)arg5 customAnimationsProvider:(id /* block */)arg6;
 - (void)_performViewUpdates:(id)arg1;
 - (void)_reloadData;
 - (void)_willPerformDiff:(bool)arg1;
 - (id)collectionView;
-- (id)dataSourceSnapshotter;
+- (id)dataSourceSnapshot;
 - (id)initWithCollectionView:(id)arg1;
 - (id)initWithCollectionViewUpdatesSink:(id)arg1;
 - (id)initWithTableView:(id)arg1;
 - (id)initWithUpdatesSink:(id)arg1 collectionView:(id)arg2 tableView:(id)arg3;
 - (void)setCollectionView:(id)arg1;
-- (void)setDataSourceSnapshotter:(id)arg1;
+- (void)setDataSourceSnapshot:(id)arg1;
 - (void)setSinkKind:(long long)arg1;
 - (void)setTableView:(id)arg1;
 - (void)setTableViewRowAnimation:(long long)arg1;

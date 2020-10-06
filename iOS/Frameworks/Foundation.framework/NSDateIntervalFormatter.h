@@ -24,6 +24,8 @@
 @property unsigned long long timeStyle;
 @property (copy) NSTimeZone *timeZone;
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 - (id)_stringFromDate:(id)arg1 toDate:(id)arg2;
 - (id)attributedStringForObjectValue:(id)arg1 withDefaultAttributes:(id)arg2;
 - (unsigned long long)boundaryStyle;
@@ -52,5 +54,28 @@
 - (id)stringFromDateInterval:(id)arg1;
 - (unsigned long long)timeStyle;
 - (id)timeZone;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (id)hk_dateTimeDateIntervalFormatter;
++ (id)hk_dayIntervalFormatter;
++ (id)hk_hourDateIntervalFormatter;
++ (id)hk_hourDateIntervalWithDateFormatter;
++ (id)hk_hourMinuteOnlyDateIntervalFormatter;
++ (id)hk_hourOnlyDateIntervalFormatter;
++ (id)hk_monthDayYearIntervalFormatter;
++ (id)hk_monthIntervalFormatter;
++ (id)hk_monthYearIntervalFormatter;
++ (id)hk_sleepListDateIntervalFormatter;
++ (id)hk_yearIntervalFormatter;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (bool)_px_isChineseYearTemplate;
+- (id)_px_localizedCapitalizedString:(id)arg1;
+- (id)_px_substitutions;
+- (id)px_attributedStringFromDateInterval:(id)arg1 defaultAttributes:(id)arg2 emphasizedAttributes:(id)arg3;
+- (bool)px_customizesAttributedString;
+- (id)px_dateTemplateForGranularity:(unsigned long long)arg1 abbreviated:(bool)arg2;
 
 @end

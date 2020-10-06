@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
  */
 
-@interface IMMobileNetworkManager : NSObject <CoreTelephonyClientDataDelegate, RadiosPreferencesDelegate> {
+@interface IMMobileNetworkManager : NSObject <CoreTelephonyClientDataDelegate, FTMessageDeliveryAPSMobileNetworkManager, FTMessageDeliveryHTTPMobileNetworkManager, RadiosPreferencesDelegate> {
     void * _cellAssertion;
     NSMutableSet * _cellAutoAssociationTokens;
     CoreTelephonyClient * _coreTelephonyClient;
@@ -61,6 +61,7 @@
 
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (void)_adjustCellularAutoAssociation;
 - (void*)_cellAssertion;
 - (id)_coreTelephonyClient;
@@ -88,18 +89,18 @@
 - (bool)autoAssociateCellular;
 - (bool)autoAssociateWiFi;
 - (id)cellularAutoAssociationTokens;
-- (void)connectionActivationError:(id)arg1 connection:(int)arg2 error:(int)arg3;
-- (void)connectionStateChanged:(id)arg1 connection:(int)arg2 dataConnectionStatusInfo:(id)arg3;
 - (void)currentDataSimChanged:(id)arg1;
 - (id)currentDataSubscriptionContextSync;
 - (bool)dataConnectionExists;
-- (void)dataStatus:(id)arg1 dataStatusInfo:(id)arg2;
 - (void)dealloc;
 - (bool)disableFastDormancy;
 - (bool)has2GDataConnection;
 - (bool)hasLTEDataConnection;
 - (bool)inValidSIMState;
 - (id)init;
+- (void)internetConnectionActivationError:(int)arg1;
+- (void)internetConnectionStateChanged:(id)arg1;
+- (void)internetDataStatus:(id)arg1;
 - (bool)isAirplaneModeEnabled;
 - (bool)isDataConnectionActive;
 - (bool)isDataContextActive;

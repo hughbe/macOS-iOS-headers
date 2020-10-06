@@ -17,9 +17,9 @@
 
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (void)callObserver:(id)arg1 callChanged:(id)arg2;
 - (id)dateLastCallEnded;
-- (void)dealloc;
 - (id)init;
 - (bool)isOnCall;
 

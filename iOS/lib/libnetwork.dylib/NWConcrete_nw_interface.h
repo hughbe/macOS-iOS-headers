@@ -15,8 +15,7 @@
             unsigned char signature_len; 
             unsigned char __pad[3]; 
         } ipv6_signature; 
-        int is_active; 
-        int mtu; 
+        unsigned int mtu; 
         unsigned int ipv4_netmask; 
         unsigned int ipv4_broadcast; 
         unsigned int expensive : 1; 
@@ -27,7 +26,13 @@
         unsigned int multilayer_packet_logging : 1; 
         unsigned int has_netmask : 1; 
         unsigned int has_broadcast : 1; 
-        unsigned char __pad[3]; 
+        unsigned int supports_multicast : 1; 
+        unsigned int has_dns : 1; 
+        unsigned int has_nat64 : 1; 
+        unsigned int ipv4_routable : 1; 
+        unsigned int ipv6_routable : 1; 
+        unsigned int __pad_bits : 3; 
+        unsigned char __pad[2]; 
     }  details;
     unsigned int  generation;
     unsigned int  index;

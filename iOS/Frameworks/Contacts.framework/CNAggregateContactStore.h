@@ -22,6 +22,8 @@
 - (id)contactStores;
 - (id)contactWithUserActivityUserInfo:(id)arg1 keysToFetch:(id)arg2;
 - (id)containersMatchingPredicate:(id)arg1 error:(id*)arg2;
+- (id)currentHistoryAnchor;
+- (id)currentHistoryToken;
 - (id)defaultContainerIdentifier;
 - (void)didFetchContacts:(id)arg1 forPredicate:(id)arg2 fromStore:(id)arg3 unifiedFetch:(bool)arg4;
 - (bool)enumerateContactsAndMatchInfoWithFetchRequest:(id)arg1 error:(id*)arg2 usingBlock:(id /* block */)arg3;

@@ -19,6 +19,7 @@
 - (long long)playbackQueueLocation;
 - (long long)playbackRepeatMode;
 - (NSNumber *)playbackSpeed;
+- (INPrivatePlayMediaIntentData *)privatePlayMediaIntentData;
 - (NSString *)proxiedBundleIdentifier;
 - (NSString *)recoID;
 - (NSNumber *)resumePlayback;
@@ -35,6 +36,7 @@
 - (void)setPlaybackQueueLocation:(long long)arg1;
 - (void)setPlaybackRepeatMode:(long long)arg1;
 - (void)setPlaybackSpeed:(NSNumber *)arg1;
+- (void)setPrivatePlayMediaIntentData:(INPrivatePlayMediaIntentData *)arg1;
 - (void)setProxiedBundleIdentifier:(NSString *)arg1;
 - (void)setRecoID:(NSString *)arg1;
 - (void)setResumePlayback:(NSNumber *)arg1;

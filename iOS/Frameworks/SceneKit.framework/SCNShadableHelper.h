@@ -50,7 +50,6 @@
 - (id)program;
 - (void)setProgram:(id)arg1;
 - (void)setShaderModifiers:(id)arg1;
-- (id)shaderModifierCache;
 - (id)shaderModifiers;
 - (id)shaderModifiersArgumentsNames;
 

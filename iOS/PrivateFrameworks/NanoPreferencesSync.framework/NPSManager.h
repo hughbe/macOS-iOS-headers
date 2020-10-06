@@ -11,6 +11,7 @@
 @property (nonatomic, retain) NSXPCConnection *xpcConnection;
 
 + (void)initialize;
++ (bool)supportsWatch;
 
 - (void).cxx_destruct;
 - (id)connection;

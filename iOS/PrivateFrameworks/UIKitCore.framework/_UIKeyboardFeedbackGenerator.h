@@ -3,15 +3,16 @@
  */
 
 @interface _UIKeyboardFeedbackGenerator : UIFeedbackGenerator {
+    double  _lastNonReleaseActionTimestamp;
     double  _lastTypedKeyTimestamp;
 }
 
 @property (getter=_keyboardConfiguration, nonatomic, readonly) _UIKeyboardFeedbackGeneratorConfiguration *keyboardConfiguration;
+@property (nonatomic) double lastNonReleaseActionTimestamp;
 @property (getter=_lastTypedKeyTimestamp, setter=_setLastTypedKeyTimestamp:, nonatomic) double lastTypedKeyTimestamp;
 
 + (Class)_configurationClass;
 
-- (void)_activated;
 - (double)_autoDeactivationTimeout;
 - (id)_feedbackWithUpdatedVolume:(id)arg1;
 - (id)_keyboardConfiguration;
@@ -20,6 +21,10 @@
 - (void)_setLastTypedKeyTimestamp:(double)arg1;
 - (id)_stats_key;
 - (void)actionOccurred:(long long)arg1;
+- (void)cycleActivation;
+- (id)initWithCoordinateSpace:(id)arg1 visceral:(long long)arg2;
+- (double)lastNonReleaseActionTimestamp;
 - (float)scaleVolumeSlow:(float)arg1 fast:(float)arg2 timeSpan:(double)arg3;
+- (void)setLastNonReleaseActionTimestamp:(double)arg1;
 
 @end

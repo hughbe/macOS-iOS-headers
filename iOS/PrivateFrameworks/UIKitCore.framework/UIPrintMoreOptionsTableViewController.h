@@ -7,12 +7,7 @@
     long long  _stapleRow;
 }
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)didReceiveMemoryWarning;
 - (id)initWithPrintPanelViewController:(id)arg1;
 - (long long)numberOfSectionsInTableView:(id)arg1;

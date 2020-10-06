@@ -27,6 +27,7 @@
 - (bool)isCancelled;
 - (id)map:(id /* block */)arg1;
 - (id)name;
+- (id)profileWithTimeProvider:(id)arg1 os_log:(id)arg2;
 - (id)recover:(id /* block */)arg1;
 - (id)run;
 - (id)run:(id*)arg1;

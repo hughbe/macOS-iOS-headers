@@ -8,16 +8,7 @@
     bool  _requiresMasking;
 }
 
-@property (nonatomic, readonly) struct CGImage { }*CGImage;
-@property (nonatomic, readonly) UIColor *multiplyColor;
-@property (nonatomic, readonly) bool requiresMasking;
-
-+ (id)renditionWithCGImage:(struct CGImage { }*)arg1 color:(id)arg2 requiresMasking:(bool)arg3;
-
 - (void).cxx_destruct;
-- (struct CGImage { }*)CGImage;
 - (void)dealloc;
-- (id)multiplyColor;
-- (bool)requiresMasking;
 
 @end

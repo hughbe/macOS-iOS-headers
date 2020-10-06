@@ -14,8 +14,6 @@
 @property (nonatomic, readonly) struct __CFArray { }*images;
 @property (nonatomic, readonly) double scale;
 
-- (bool)_dimension1ExistsInKeyFormatForThemeRef:(unsigned long long)arg1;
-- (id)_renditionForKey:(id)arg1 inThemeRef:(unsigned long long)arg2;
 - (bool)completeTextureExtrusion;
 - (void)dealloc;
 - (struct CGImage { }*)image;

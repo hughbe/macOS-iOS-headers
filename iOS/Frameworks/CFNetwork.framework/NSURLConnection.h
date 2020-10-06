@@ -10,8 +10,11 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (readonly) NKAssetDownload *newsstandAssetDownload;
 @property (readonly, copy) NSURLRequest *originalRequest;
 @property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
 
 + (void)_collectTimingDataWithOptions:(unsigned long long)arg1;
 + (bool)_collectsTimingData;
@@ -26,7 +29,6 @@
 + (struct __CFRunLoop { }*)resourceLoaderRunLoop;
 + (void)sendAsynchronousRequest:(id)arg1 queue:(id)arg2 completionHandler:(id /* block */)arg3;
 + (id)sendSynchronousRequest:(id)arg1 returningResponse:(id*)arg2 error:(id*)arg3;
-+ (void)withResourceLoaderRunLoopAsync:(id /* block */)arg1;
 
 - (id)_cfInternal;
 - (id)_dlInternal;
@@ -54,5 +56,13 @@
 - (void)start;
 - (void)unscheduleFromRunLoop:(id)arg1 forMode:(id)arg2;
 - (void)useCredential:(id)arg1 forAuthenticationChallenge:(id)arg2;
+
+// Image: /System/Library/Frameworks/NewsstandKit.framework/NewsstandKit
+
+- (id)newsstandAssetDownload;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (id)safari_sendAsynchronousRequest:(id)arg1 queue:(id)arg2 completionHandler:(id /* block */)arg3;
 
 @end

@@ -14,6 +14,7 @@
 
 - (void).cxx_destruct;
 - (id)action;
+- (id)description;
 - (id)initWithAction:(id)arg1 item:(id)arg2;
 - (id)item;
 - (id)protectionClass;
@@ -21,5 +22,6 @@
 - (void)setAction:(id)arg1;
 - (void)setItem:(id)arg1;
 - (void)setProtectionClass:(id)arg1;
+- (void)updateWithItem:(id)arg1;
 
 @end

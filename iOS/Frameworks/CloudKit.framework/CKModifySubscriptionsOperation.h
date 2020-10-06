@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKModifySubscriptionsOperation : CKDatabaseOperation {
+@interface CKModifySubscriptionsOperation : CKDatabaseOperation <CKModifySubscriptionsOperationCallbacks> {
     NSMutableArray * _deletedSubscriptionIDs;
     id /* block */  _modifySubscriptionsCompletionBlock;
     NSMutableArray * _savedSubscriptions;
@@ -12,22 +12,27 @@
     NSArray * _subscriptionsToSave;
 }
 
+@property (nonatomic, readonly) <CKModifySubscriptionsOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSMutableArray *deletedSubscriptionIDs;
 @property (nonatomic, copy) id /* block */ modifySubscriptionsCompletionBlock;
+@property (nonatomic, readonly) CKModifySubscriptionsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableArray *savedSubscriptions;
 @property (nonatomic, retain) NSMutableDictionary *subscriptionErrors;
 @property (nonatomic, copy) NSArray *subscriptionIDsToDelete;
 @property (nonatomic, retain) NSMutableDictionary *subscriptionsBySubscriptionIDs;
 @property (nonatomic, copy) NSArray *subscriptionsToSave;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)deletedSubscriptionIDs;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleSubscriptionDeleteForSubscriptionID:(id)arg1 error:(id)arg2;
+- (void)handleSubscriptionSaveForSubscriptionID:(id)arg1 error:(id)arg2;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithSubscriptionsToSave:(id)arg1 subscriptionIDsToDelete:(id)arg2;

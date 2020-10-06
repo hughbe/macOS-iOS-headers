@@ -3,7 +3,6 @@
  */
 
 @interface _INPBStartPhotoPlaybackIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBStartPhotoPlaybackIntentResponse> {
-    bool  __encodeLegacyGloryData;
     NSString * _albumName;
     struct { 
         unsigned int searchResultsCount : 1; 
@@ -12,7 +11,6 @@
     int  _searchResultsCount;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *albumName;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -27,8 +25,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)albumName;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

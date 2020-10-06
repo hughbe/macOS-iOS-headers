@@ -27,7 +27,7 @@
 - (bool)hasSpeedThreshold;
 - (unsigned int)highlightDistance;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithEnrouteNotice:(id)arg1 trafficCamera:(id)arg2 onRoute:(id)arg3;
+- (id)initWithEnrouteNotice:(id)arg1 enrouteNoticeIndex:(unsigned long long)arg2 legIndex:(unsigned long long)arg3 trafficCamera:(id)arg4 onRoute:(id)arg5;
 - (id)position;
 - (id)speedLimitText;
 - (double)speedThreshold;

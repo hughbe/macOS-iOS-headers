@@ -10,7 +10,6 @@
 
 - (void).cxx_destruct;
 - (void)layoutSubviews;
-- (void)prepareForReuse;
 - (void)setVisualEffectView:(id)arg1;
 - (id)visualEffectView;
 

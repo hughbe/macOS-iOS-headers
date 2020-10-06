@@ -24,6 +24,7 @@
 + (id)testing_cacheDirectoryWithSuffix:(id)arg1 buildVersion:(id)arg2;
 + (id)testing_cloneDirectory:(id)arg1;
 + (id)testing_dataVaultStorageClass;
++ (id)testing_encryptedModelNames;
 + (id)testing_inputDirectory;
 + (id)testing_modelDirectory;
 + (id)testing_modelDirectory:(id)arg1;

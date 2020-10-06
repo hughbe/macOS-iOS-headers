@@ -17,12 +17,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_categoryFilters : 1; 
         unsigned int read_center : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_categoryFilters : 1; 
-        unsigned int wrote_center : 1; 
-        unsigned int wrote_timeRange : 1; 
-        unsigned int wrote_count : 1; 
-        unsigned int wrote_radius : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _radius;
     PBDataReader * _reader;
@@ -58,9 +53,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCategoryFilters:(id)arg1;
-- (void)_addNoFlagsCategoryFilter:(int)arg1;
-- (void)_readCategoryFilters;
-- (void)_readCenter;
 - (void)addCategoryFilter:(int)arg1;
 - (int)categoryFilterAtIndex:(unsigned long long)arg1;
 - (int*)categoryFilters;
@@ -82,7 +74,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (int)radius;
 - (void)readAll:(bool)arg1;

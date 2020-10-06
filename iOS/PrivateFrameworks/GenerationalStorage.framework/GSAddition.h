@@ -72,4 +72,11 @@
 - (id)br_lastEditorNameComponents;
 - (bool)br_markResolvedWithError:(id*)arg1;
 
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
++ (id)additionURLForName:(id)arg1 storagePrefix:(id)arg2 inConflictNamespace:(bool)arg3;
++ (bool)brc_parseAdditionFilename:(id)arg1 mangledID:(id*)arg2 itemID:(id*)arg3 etag:(id*)arg4 session:(id)arg5;
+
+- (bool)brc_parseMangledID:(id*)arg1 itemID:(id*)arg2 etag:(id*)arg3 session:(id)arg4;
+
 @end

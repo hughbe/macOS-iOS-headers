@@ -42,6 +42,7 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 
 - (void).cxx_destruct;
 - (bool)URLKnownToBeTrusted;

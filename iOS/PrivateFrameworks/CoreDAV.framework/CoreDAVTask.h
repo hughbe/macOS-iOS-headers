@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
  */
 
-@interface CoreDAVTask : NSObject <CoreDAVSubmittable> {
+@interface CoreDAVTask : NSObject <CoreDAVSubmittable, DATask> {
     <CoreDAVAccountInfoProvider> * _accountInfoProvider;
     bool  _allowAutomaticRedirects;
     id /* block */  _completionBlock;
@@ -42,6 +42,10 @@
     id /* block */  _responseProgressBlock;
     long long  _responseStatusCode;
     bool  _shouldRetryWithClientToken;
+    bool  _simulated;
+    NSMutableDictionary * _simulatedResponseHeaders;
+    CoreDAVItem * _simulatedRootElement;
+    long long  _simulatedStatusCode;
     <CoreDAVTaskManager> * _taskManager;
     double  _timeoutInterval;
     unsigned long long  _totalBytesReceived;
@@ -69,6 +73,11 @@
 @property (nonatomic, readonly) NSDictionary *responseHeaders;
 @property (nonatomic, copy) id /* block */ responseProgressBlock;
 @property (nonatomic) long long responseStatusCode;
+@property (nonatomic, readonly) CoreDAVItem *rootElement;
+@property (nonatomic) bool simulated;
+@property (nonatomic, retain) NSMutableDictionary *simulatedResponseHeaders;
+@property (nonatomic, retain) CoreDAVItem *simulatedRootElement;
+@property (nonatomic) long long simulatedStatusCode;
 @property (readonly) Class superclass;
 @property (nonatomic) <CoreDAVTaskManager> *taskManager;
 @property (nonatomic) double timeoutInterval;
@@ -76,6 +85,8 @@
 @property bool totalBytesWasProcessedAsAbnormallyLarge;
 @property (nonatomic, readonly) NSURL *url;
 @property (nonatomic, readonly) NSRunLoop *workRunLoop;
+
+// Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
 
 + (id)stringFromDepth:(int)arg1;
 + (unsigned int)uniqueQueryID;
@@ -144,6 +155,7 @@
 - (id)responseHeaders;
 - (id /* block */)responseProgressBlock;
 - (long long)responseStatusCode;
+- (id)rootElement;
 - (void)setAccountInfoProvider:(id)arg1;
 - (void)setAllowAutomaticRedirects:(bool)arg1;
 - (void)setCompletionBlock:(id /* block */)arg1;
@@ -157,11 +169,19 @@
 - (void)setResponseBodyParser:(id)arg1;
 - (void)setResponseProgressBlock:(id /* block */)arg1;
 - (void)setResponseStatusCode:(long long)arg1;
+- (void)setSimulated:(bool)arg1;
+- (void)setSimulatedResponseHeaders:(id)arg1;
+- (void)setSimulatedRootElement:(id)arg1;
+- (void)setSimulatedStatusCode:(long long)arg1;
 - (void)setTaskManager:(id)arg1;
 - (void)setTimeoutInterval:(double)arg1;
 - (void)setTotalBytesReceived:(unsigned long long)arg1;
 - (void)setTotalBytesWasProcessedAsAbnormallyLarge:(bool)arg1;
 - (bool)shouldLogResponseBody;
+- (bool)simulated;
+- (id)simulatedResponseHeaders;
+- (id)simulatedRootElement;
+- (long long)simulatedStatusCode;
 - (void)startModal;
 - (void)submitWithTaskManager:(id)arg1;
 - (id)taskManager;
@@ -172,5 +192,17 @@
 - (id)url;
 - (bool)validate:(id*)arg1;
 - (id)workRunLoop;
+
+// Image: /System/Library/PrivateFrameworks/CDDataAccess.framework/Frameworks/DACoreDAVGlue.framework/DACoreDAVGlue
+
+- (void)cancelTaskWithReason:(int)arg1 underlyingError:(id)arg2;
+- (void)finishWithError:(id)arg1;
+- (void)performTask;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DACoreDAVGlue.framework/DACoreDAVGlue
+
+- (void)cancelTaskWithReason:(int)arg1 underlyingError:(id)arg2;
+- (void)finishWithError:(id)arg1;
+- (void)performTask;
 
 @end

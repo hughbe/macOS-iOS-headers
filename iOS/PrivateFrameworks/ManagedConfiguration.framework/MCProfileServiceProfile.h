@@ -33,9 +33,11 @@
 - (id)localizedPayloadSummaryByType;
 - (id)managedPayloads;
 - (id)payloads;
+- (id)serializedDictionary;
 - (void)setEnrollmentIdentityPersistentID:(id)arg1;
 - (void)setURLString:(id)arg1;
 - (id)stubDictionary;
 - (bool)supportedServerVersion;
+- (id)verboseDescription;
 
 @end

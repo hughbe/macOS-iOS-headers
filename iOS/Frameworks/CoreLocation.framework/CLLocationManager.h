@@ -2,18 +2,29 @@
    Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
  */
 
-@interface CLLocationManager : NSObject {
+@interface CLLocationManager : NSObject <HMDCLLocationManager> {
     id  _internal;
 }
 
+@property (nonatomic, readonly) int _authorizationStatus;
+@property (getter=_isGroundAltitudeEnabled, setter=_setGroundAltitudeEnabled:, nonatomic) bool _groundAltitudeEnabled;
+@property (nonatomic, readonly) bool _limitsPrecision;
+@property (nonatomic, readonly) long long accuracyAuthorization;
 @property (nonatomic) long long activityType;
 @property (nonatomic) bool allowsAlteredAccessoryLocations;
 @property (nonatomic) bool allowsBackgroundLocationUpdates;
+@property (nonatomic, readonly) int authorizationStatus;
+@property (getter=isAuthorizedForPreciseLocation, nonatomic, readonly) bool authorizedForPreciseLocation;
+@property (getter=isAuthorizedForWidgetUpdates, nonatomic, readonly) bool authorizedForWidgetUpdates;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <HMDCLLocationManagerDelegate> *delegate;
 @property (nonatomic) <CLLocationManagerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) double desiredAccuracy;
 @property (nonatomic) double distanceFilter;
 @property (getter=isDynamicAccuracyReductionEnabled, nonatomic) bool dynamicAccuracyReductionEnabled;
 @property (nonatomic, readonly) double expectedGpsUpdateInterval;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, copy) CLHeading *heading;
 @property (nonatomic, readonly) bool headingAvailable;
 @property (nonatomic) double headingFilter;
@@ -33,7 +44,10 @@
 @property (nonatomic, readonly, copy) NSSet *rangedBeaconConstraints;
 @property (nonatomic, readonly, copy) NSSet *rangedRegions;
 @property (nonatomic) bool showsBackgroundLocationIndicator;
+@property (readonly) Class superclass;
 @property (nonatomic) bool supportInfo;
+
+// Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
 
 + (id)_applyArchivedAuthorizationDecisions:(id)arg1;
 + (id)_archivedAuthorizationDecisionsWithError:(id*)arg1;
@@ -41,6 +55,10 @@
 + (int)_authorizationStatusForBundleIdentifier:(id)arg1 bundle:(id)arg2;
 + (bool)_checkAndExerciseAuthorizationForBundle:(id)arg1 error:(id*)arg2;
 + (bool)_checkAndExerciseAuthorizationForBundleID:(id)arg1 error:(id*)arg2;
++ (id)_getClientTransientAuthorizationInfoForBundleId:(id)arg1 error:(id*)arg2;
++ (id)_getClientTransientAuthorizationInfoForBundlePath:(id)arg1 error:(id*)arg2;
++ (id)_setClientTransientAuthorizationInfoForBundleId:(id)arg1 data:(id)arg2;
++ (id)_setClientTransientAuthorizationInfoForBundlePath:(id)arg1 data:(id)arg2;
 + (unsigned long long)activeLocationServiceTypesForLocationDictionary:(id)arg1;
 + (bool)advertiseAsBeacon:(id)arg1 withPower:(id)arg2;
 + (unsigned long long)allowableAuthorizationForLocationDictionary:(id)arg1;
@@ -57,8 +75,11 @@
 + (bool)dumpLogsWithMessage:(id)arg1;
 + (unsigned long long)entityAuthorizationForLocationDictionary:(id)arg1;
 + (unsigned long long)entityClassesForLocationDictionary:(id)arg1;
++ (void)getIncidentalUseMode:(int*)arg1 forBundle:(id)arg2;
++ (void)getIncidentalUseMode:(int*)arg1 forBundleIdentifier:(id)arg2;
 + (bool)hasUsedBackgroundLocationServices:(id)arg1;
 + (bool)headingAvailable;
++ (unsigned long long)incidentalUseModeForLocationDictionary:(id)arg1;
 + (bool)isEntityAuthorizedForLocationDictionary:(id)arg1;
 + (bool)isLocationActiveForLocationDictionary:(id)arg1;
 + (bool)isMonitoringAvailableForClass:(Class)arg1;
@@ -85,7 +106,10 @@
 + (void)setDefaultEffectiveBundleIdentifier:(id)arg1;
 + (void)setEntityAuthorization:(unsigned long long)arg1 forLocationDictionary:(id)arg2;
 + (void)setEntityAuthorization:(unsigned long long)arg1 withCorrectiveCompensation:(bool)arg2 forLocationDictionary:(id)arg3;
++ (void)setEntityAuthorization:(unsigned long long)arg1 withCorrectiveCompensationType:(int)arg2 forLocationDictionary:(id)arg3;
 + (void)setEntityAuthorized:(bool)arg1 forLocationDictionary:(id)arg2;
++ (void)setIncidentalUseMode:(int)arg1 forBundle:(id)arg2;
++ (void)setIncidentalUseMode:(int)arg1 forBundleIdentifier:(id)arg2;
 + (void)setLocationServicesEnabled:(bool)arg1;
 + (void)setStatusBarIconEnabled:(bool)arg1 forLocationEntityClass:(unsigned long long)arg2;
 + (void)setTemporaryAuthorizationGranted:(bool)arg1 forBundle:(id)arg2;
@@ -93,22 +117,35 @@
 + (id)sharedManager;
 + (bool)shutdownDaemon;
 + (bool)significantLocationChangeMonitoringAvailable;
++ (void)updateCorrectiveCompensationChoiceForOutstandingPrompt:(int)arg1;
 
+- (int)_authorizationStatus;
+- (void)_fetchContinuousPlaceInferencesWithFidelityPolicy:(unsigned long long)arg1 handler:(id /* block */)arg2;
 - (void)_fetchPlaceInferencesWithFidelityPolicy:(unsigned long long)arg1 handler:(id /* block */)arg2;
+- (id)_groundAltitudeAtLocation:(id)arg1;
 - (id)_initWithDelegate:(id)arg1 onQueue:(id)arg2;
+- (bool)_isFusionInfoEnabled;
 - (bool)_isGroundAltitudeEnabled;
+- (bool)_limitsPrecision;
+- (void)_requestTemporaryFullAccuracyWithUsageDescription:(id)arg1;
+- (void)_requestTemporaryFullAccuracyWithUsageDescription:(id)arg1 completion:(id /* block */)arg2;
+- (void)_setFusionInfoEnabled:(bool)arg1;
 - (void)_setGroundAltitudeEnabled:(bool)arg1;
 - (void)_startLeechingVisits;
 - (void)_startMonitoringSignificantLocationChangesOfDistance:(double)arg1 withPowerBudget:(int)arg2;
+- (id)_startPlaceInferencesCommonLogic:(unsigned long long)arg1 handler:(id /* block */)arg2;
+- (void)_stopFetchingContinuousPlaceInferences;
 - (void)_updateARSessionState:(unsigned long long)arg1;
-- (void)_updateLSLHeadingEstimation:(id)arg1;
 - (void)_updateVIOEstimation:(id)arg1;
+- (void)_updateVLLocalizationResult:(id)arg1;
+- (long long)accuracyAuthorization;
 - (long long)activityType;
 - (void)allowDeferredLocationUpdatesUntilTraveled:(double)arg1 timeout:(double)arg2;
 - (bool)allowsAlteredAccessoryLocations;
 - (bool)allowsBackgroundLocationUpdates;
 - (id)appsUsingLocation;
 - (id)appsUsingLocationWithDetails;
+- (int)authorizationStatus;
 - (void)callPlaceInferenceHandlerWithResult:(id)arg1 error:(id)arg2;
 - (void)dealloc;
 - (id)delegate;
@@ -124,10 +161,14 @@
 - (id)init;
 - (id)initWithEffectiveBundle:(id)arg1;
 - (id)initWithEffectiveBundle:(id)arg1 delegate:(id)arg2 onQueue:(id)arg3;
+- (id)initWithEffectiveBundle:(id)arg1 limitingBundleIdentifier:(id)arg2 delegate:(id)arg3 onQueue:(id)arg4;
 - (id)initWithEffectiveBundleIdentifier:(id)arg1;
 - (id)initWithEffectiveBundleIdentifier:(id)arg1 bundle:(id)arg2 delegate:(id)arg3 silo:(id)arg4;
 - (id)initWithEffectiveBundleIdentifier:(id)arg1 delegate:(id)arg2 onQueue:(id)arg3;
+- (id)initWithIdentifier:(id)arg1;
 - (struct __CLClient { }*)internalClient;
+- (bool)isAuthorizedForPreciseLocation;
+- (bool)isAuthorizedForWidgetUpdates;
 - (bool)isDynamicAccuracyReductionEnabled;
 - (bool)isLocationServicesPreferencesDialogEnabled;
 - (bool)isMatchInfoEnabled;
@@ -178,6 +219,10 @@
 - (void)requestLocation;
 - (void)requestRangingToPeers:(id)arg1 timeoutSeconds:(double)arg2;
 - (void)requestStateForRegion:(id)arg1;
+- (void)requestTemporaryFullAccuracyAuthorizationWithPurposeKey:(id)arg1;
+- (void)requestTemporaryFullAccuracyAuthorizationWithPurposeKey:(id)arg1 completion:(id /* block */)arg2;
+- (void)requestTemporaryPreciseLocationAuthorizationWithPurposeKey:(id)arg1;
+- (void)requestTemporaryPreciseLocationAuthorizationWithPurposeKey:(id)arg1 completion:(id /* block */)arg2;
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)resetApps;
@@ -231,5 +276,33 @@
 - (void)stopUpdatingVehicleSpeed;
 - (bool)supportInfo;
 - (id)technologiesInUse;
+
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
++ (bool)convertAuthStatusToBool:(int)arg1;
++ (int)convertToHMDLocationAuthorization:(int)arg1;
++ (int)convertToHMDRegionState:(long long)arg1;
++ (id)hmdLocationAuthorizationAsString:(int)arg1;
++ (id)hmdRegionStateAsString:(int)arg1;
++ (id)locationAuthorizationDescription:(int)arg1;
++ (id)referenceFrameDescription:(int)arg1;
++ (id)regionDescription:(id)arg1;
++ (id)regionStateDescription:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
++ (bool)convertAuthStatusToBool:(int)arg1;
++ (int)convertToHMDLocationAuthorization:(int)arg1;
++ (int)convertToHMDRegionState:(long long)arg1;
++ (id)hmdLocationAuthorizationAsString:(int)arg1;
++ (id)hmdRegionStateAsString:(int)arg1;
++ (id)locationAuthorizationDescription:(int)arg1;
++ (id)referenceFrameDescription:(int)arg1;
++ (id)regionDescription:(id)arg1;
++ (id)regionStateDescription:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Stocks/StocksUI.framework/StocksUI
+
++ (void)su_enableIAdCoreLocationAuthorizationOnMac;
 
 @end

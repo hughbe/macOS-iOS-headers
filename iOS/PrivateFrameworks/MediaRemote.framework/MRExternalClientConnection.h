@@ -8,7 +8,9 @@
     bool  _registeredKeyboardUpdates;
     bool  _registeredToNowPlayingUpdates;
     bool  _registeredToOutputDeviceUpdates;
+    bool  _registeredToSystemEndpointUpdates;
     bool  _registeredToVolumeUpdates;
+    NSMutableArray * _subscribedOrigins;
     unsigned int  _voiceRecordingState;
 }
 
@@ -17,7 +19,9 @@
 @property (nonatomic) bool registeredKeyboardUpdates;
 @property (nonatomic) bool registeredToNowPlayingUpdates;
 @property (nonatomic) bool registeredToOutputDeviceUpdates;
+@property (nonatomic) bool registeredToSystemEndpointUpdates;
 @property (nonatomic) bool registeredToVolumeUpdates;
+@property (nonatomic, readonly, copy) NSArray *subscribedOrigins;
 @property (nonatomic) unsigned int voiceRecordingState;
 
 - (void).cxx_destruct;
@@ -29,14 +33,19 @@
 - (bool)registeredKeyboardUpdates;
 - (bool)registeredToNowPlayingUpdates;
 - (bool)registeredToOutputDeviceUpdates;
+- (bool)registeredToSystemEndpointUpdates;
 - (bool)registeredToVolumeUpdates;
 - (void)setCryptoEnabled:(bool)arg1;
 - (void)setCryptoSession:(id)arg1;
 - (void)setRegisteredKeyboardUpdates:(bool)arg1;
 - (void)setRegisteredToNowPlayingUpdates:(bool)arg1;
 - (void)setRegisteredToOutputDeviceUpdates:(bool)arg1;
+- (void)setRegisteredToSystemEndpointUpdates:(bool)arg1;
 - (void)setRegisteredToVolumeUpdates:(bool)arg1;
 - (void)setVoiceRecordingState:(unsigned int)arg1;
+- (void)subscribeOrigin:(id)arg1;
+- (id)subscribedOrigins;
+- (void)unsubscribeOrigin:(id)arg1;
 - (unsigned int)voiceRecordingState;
 
 @end

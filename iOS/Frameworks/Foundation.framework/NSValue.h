@@ -2,8 +2,14 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSValue : NSObject <BSXPCSecureCoding, DebugHierarchyValue_Fallback, MTFilterIdentityValueProviding, MTMaterialSettingsPropertyIdentityValueProviding, NSCopying, NSSecureCoding>
+@interface NSValue : NSObject <BSXPCSecureCoding, MTFilterIdentityValueProviding, MTMaterialSettingsPropertyIdentityValueProviding, NSCopying, NSSecureCoding, REDonatedActionIdentifierProviding, TSDMixing>
 
+@property (nonatomic, readonly) struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; } AXMAffineTransformValue;
+@property (nonatomic, readonly) struct CGPoint { double x1; double x2; } AXMPointValue;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } AXMRectValue;
+@property (nonatomic, readonly) struct CGSize { double x1; double x2; } AXMSizeValue;
+@property (nonatomic, readonly) struct CGVector { double x1; double x2; } AXMVectorValue;
+@property (readonly) struct { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; double x2; } CACGestureLivePreviewHandwritingPointValue;
 @property (readonly) struct CATransform3D { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; double x12; double x13; double x14; double x15; double x16; } CATransform3DValue;
 @property (nonatomic, readonly) struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; } CGAffineTransformValue;
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } CGPointValue;
@@ -12,16 +18,48 @@
 @property (nonatomic, readonly) struct CGVector { double x1; double x2; } CGVectorValue;
 @property (readonly) struct { double x1; double x2; } MKCoordinateSpanValue;
 @property (readonly) struct CLLocationCoordinate2D { double x1; double x2; } MKCoordinateValue;
+@property (nonatomic, readonly) struct { unsigned long long x1; unsigned long long x2; unsigned long long x3; } PXDisplayAssetDetailedCountsValue;
+@property (nonatomic, readonly) struct { unsigned long long x1; long long x2; } PXDisplayAssetTypedCountValue;
+@property (readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } PXEdgeInsetsValue;
+@property (nonatomic, readonly) struct PXTileIdentifier { unsigned long long x1; unsigned long long x2[10]; } PXTileIdentifierValue;
+@property (readonly) struct { double x1[4]; } RGBResultValue;
+@property (nonatomic, readonly) void SIMDDouble2Value;
+@property (nonatomic, readonly) void SIMDDouble3Value;
+@property (nonatomic, readonly) struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; } SIMDDouble3x3Value;
+@property (nonatomic, readonly) void SIMDDouble4Value;
+@property (nonatomic, readonly) struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; } SIMDDouble4x4Value;
+@property (nonatomic, readonly) void SIMDDouble8Value;
+@property (nonatomic, readonly) void SIMDFloat16Value;
+@property (nonatomic, readonly) void SIMDFloat2Value;
+@property (nonatomic, readonly) void SIMDFloat3Value;
+@property (nonatomic, readonly) struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; } SIMDFloat3x3Value;
+@property (nonatomic, readonly) void SIMDFloat4Value;
+@property (nonatomic, readonly) struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; } SIMDFloat4x4Value;
+@property (nonatomic, readonly) void SIMDFloat8Value;
+@property (nonatomic, readonly) struct { } SIMDQuatDValue;
+@property (nonatomic, readonly) struct { } SIMDQuatFValue;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } UIEdgeInsetsValue;
 @property (readonly) struct { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; double x2; } UIKBHandwritingPointValue;
 @property (nonatomic, readonly) struct UIOffset { double x1; double x2; } UIOffsetValue;
+@property (readonly) struct IMBalloonDescriptor_t { BOOL x1; BOOL x2; BOOL x3; unsigned long long x4; unsigned long long x5; BOOL x6; BOOL x7; } balloonDescriptor;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; } directionalEdgeInsetsValue;
+@property (readonly) struct _AMPDirectionalRange { struct _NSRange { unsigned long long x_1_1_1; unsigned long long x_1_1_2; } x1; long long x2; bool x3; } directionalRangeValue;
 @property (readonly) unsigned long long hash;
+@property (readonly) struct { struct { long long x_1_1_1; long long x_1_1_2; } x1; struct { long long x_2_1_1; long long x_2_1_2; } x2; } nu_pixelRect;
 @property (readonly) const char *objCType;
+@property (readonly) struct { struct { double x_1_1_1[4]; } x1; struct { double x_2_1_1[4]; } x2; double x3; } pi_grayColorResultValue;
+@property (nonatomic, readonly) struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; } pu_PUPerspectiveTransformValue;
+@property (nonatomic, readonly) struct PUDisplayVelocity { double x1; double x2; double x3; double x4; } pu_displayVelocityValue;
+@property (nonatomic, readonly) struct PXSimpleIndexPath { unsigned long long x1; long long x2; long long x3; long long x4; } px_simpleIndexPathValue;
+@property (nonatomic, readonly) struct PXViewSpecDescriptor { long long x1; unsigned long long x2; struct CGSize { double x_3_1_1; double x_3_1_2; } x3; } px_viewSpecDescriptorValue;
+@property (readonly) struct AKQuadrilateral { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGPoint { double x_3_1_1; double x_3_1_2; } x3; struct CGPoint { double x_4_1_1; double x_4_1_2; } x4; } quadrilateralValue;
 @property (readonly) struct _MSVSignedRange { long long x1; long long x2; } signedRangeValue;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; } wf_CGAffineTransformValue;
+@property (nonatomic, readonly) struct CGPoint { double x1; double x2; } wf_CGPointValue;
+@property (nonatomic, readonly) struct CGSize { double x1; double x2; } wf_CGSizeValue;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -64,28 +102,12 @@
 - (struct CGSize { double x1; double x2; })sizeValue;
 - (id)weakObjectValue;
 
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
 
-- (id)debugHierarchyValueForObjCType_CATransform3D;
-- (id)debugHierarchyValueForObjCType_CGAffineTransform;
-- (id)debugHierarchyValueForObjCType_CGPoint;
-- (id)debugHierarchyValueForObjCType_CGRect;
-- (id)debugHierarchyValueForObjCType_CGSize;
-- (id)debugHierarchyValueForObjCType_CGVector;
-- (id)debugHierarchyValueForObjCType_NSDirectionalEdgeInsets;
-- (id)debugHierarchyValueForObjCType_UIEdgeInsets;
-- (id)debugHierarchyValueForObjCType_UIOffset;
-- (id)fallback_debugHierarchyValueWithOutOptions:(id*)arg1 outError:(id*)arg2;
++ (id)_lp_valueWithCGRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
++ (id)_lp_valueWithCGSize:(struct CGSize { double x1; double x2; })arg1;
 
-// Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
-
-+ (id)valueWithCMTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
-+ (id)valueWithCMTimeMapping:(struct { struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_1_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_1_1_2; } x1; struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_2_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_2_1_2; } x2; })arg1;
-+ (id)valueWithCMTimeRange:(struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; })arg1;
-
-- (struct { struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_1_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_1_1_2; } x1; struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_2_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_2_1_2; } x2; })CMTimeMappingValue;
-- (struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; })CMTimeRangeValue;
-- (struct { long long x1; int x2; unsigned int x3; long long x4; })CMTimeValue;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_lp_CGRectValue;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
@@ -109,6 +131,22 @@
 - (id)_mapkit_initWithMKMapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)_mapkit_initWithZoomRegion:(struct { double x1; struct CLLocationCoordinate2D { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct { double x1; struct CLLocationCoordinate2D { double x_2_1_1; double x_2_1_2; } x2; })_mapkit_zoomRegionValue;
+
+// Image: /System/Library/Frameworks/PDFKit.framework/PDFKit
+
++ (id)PDFKitValueWithPDFPoint:(struct CGPoint { double x1; double x2; })arg1;
++ (id)PDFKitValueWithPDFRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+- (struct CGPoint { double x1; double x2; })PDFKitPDFPointValue;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })PDFKitPDFRectValue;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)pu_valueWithDisplayVelocity:(struct PUDisplayVelocity { double x1; double x2; double x3; double x4; })arg1;
++ (id)pu_valueWithPUPerspectiveTransform:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })arg1;
+
+- (struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })pu_PUPerspectiveTransformValue;
+- (struct PUDisplayVelocity { double x1; double x2; double x3; double x4; })pu_displayVelocityValue;
 
 // Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
 
@@ -144,6 +182,61 @@
 - (struct CGPoint { double x1; double x2; })SCN_CGPointValue;
 - (struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; })SCN_simdMatrix4Value;
 
+// Image: /System/Library/PrivateFrameworks/AVFCore.framework/AVFCore
+
++ (id)valueWithCMTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
++ (id)valueWithCMTimeMapping:(struct { struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_1_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_1_1_2; } x1; struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_2_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_2_1_2; } x2; })arg1;
++ (id)valueWithCMTimeRange:(struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; })arg1;
+
+- (struct { struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_1_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_1_1_2; } x1; struct { struct { long long x_1_2_1; int x_1_2_2; unsigned int x_1_2_3; long long x_1_2_4; } x_2_1_1; struct { long long x_2_2_1; int x_2_2_2; unsigned int x_2_2_3; long long x_2_2_4; } x_2_1_2; } x2; })CMTimeMappingValue;
+- (struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; })CMTimeRangeValue;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })CMTimeValue;
+
+// Image: /System/Library/PrivateFrameworks/AXMediaUtilities.framework/AXMediaUtilities
+
++ (id)axmValueWithCGAffineTransform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
++ (id)axmValueWithCGPoint:(struct CGPoint { double x1; double x2; })arg1;
++ (id)axmValueWithCGRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
++ (id)axmValueWithCGSize:(struct CGSize { double x1; double x2; })arg1;
++ (id)axmValueWithCGVector:(struct CGVector { double x1; double x2; })arg1;
+
+- (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })AXMAffineTransformValue;
+- (struct CGPoint { double x1; double x2; })AXMPointValue;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })AXMRectValue;
+- (struct CGSize { double x1; double x2; })AXMSizeValue;
+- (struct CGVector { double x1; double x2; })AXMVectorValue;
+
+// Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
+
++ (id)axValueWithCGPoint:(struct CGPoint { double x1; double x2; })arg1;
++ (id)axValueWithCGRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
++ (id)axValueWithCGSize:(struct CGSize { double x1; double x2; })arg1;
+
+- (struct CGPoint { double x1; double x2; })axCGPointValue;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })axCGRectValue;
+- (struct CGSize { double x1; double x2; })axCGSizeValue;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
++ (id)akValueWithPoint:(struct CGPoint { double x1; double x2; })arg1;
++ (id)akValueWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
++ (id)akValueWithSize:(struct CGSize { double x1; double x2; })arg1;
++ (id)valueWithCGRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
++ (id)valueWithQuadrilateral:(struct AKQuadrilateral { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGPoint { double x_3_1_1; double x_3_1_2; } x3; struct CGPoint { double x_4_1_1; double x_4_1_2; } x4; })arg1;
+
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })CGRectValue;
+- (struct CGPoint { double x1; double x2; })akPointValue;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })akRectValue;
+- (struct CGSize { double x1; double x2; })akSizeValue;
+- (struct AKQuadrilateral { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGPoint { double x_3_1_1; double x_3_1_2; } x3; struct CGPoint { double x_4_1_1; double x_4_1_2; } x4; })quadrilateralValue;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreKit.framework/AppStoreKit
+
++ (id)valueWithDirectionalRange:(struct _AMPDirectionalRange { struct _NSRange { unsigned long long x_1_1_1; unsigned long long x_1_1_2; } x1; long long x2; bool x3; })arg1;
++ (id)valueWithRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 direction:(long long)arg2 hasMixedDirectionality:(bool)arg3;
+
+- (struct _AMPDirectionalRange { struct _NSRange { unsigned long long x_1_1_1; unsigned long long x_1_1_2; } x1; long long x2; bool x3; })directionalRangeValue;
+
 // Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
 - (struct CGSize { double x1; double x2; })CGSizeValue;
@@ -164,6 +257,28 @@
 - (id)initWithBSXPCCoder:(id)arg1;
 - (bool)supportsBSXPCSecureCoding;
 
+// Image: /System/Library/PrivateFrameworks/BatteryCenterUI.framework/BatteryCenterUI
+
++ (id)valueWithBCUIIconImageInfo:(struct BCUIIconImageInfo { struct CGSize { double x_1_1_1; double x_1_1_2; } x1; double x2; })arg1;
+
+- (struct BCUIIconImageInfo { struct CGSize { double x_1_1_1; double x_1_1_2; } x1; double x2; })BCUIIconImageInfoValue;
+
+// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+
+- (id)cplFullDescription;
+- (id)initWithCPLArchiver:(id)arg1;
+- (id)plistArchiveWithCPLArchiver:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
++ (id)wf_valueWithCGAffineTransform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
++ (id)wf_valueWithCGPoint:(struct CGPoint { double x1; double x2; })arg1;
++ (id)wf_valueWithCGSize:(struct CGSize { double x1; double x2; })arg1;
+
+- (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })wf_CGAffineTransformValue;
+- (struct CGPoint { double x1; double x2; })wf_CGPointValue;
+- (struct CGSize { double x1; double x2; })wf_CGSizeValue;
+
 // Image: /System/Library/PrivateFrameworks/CoreMaterial.framework/CoreMaterial
 
 + (id)mt_identityValueForFilter:(id)arg1;
@@ -172,11 +287,49 @@
 - (bool)mt_isIdentityValueForFilter:(id)arg1;
 - (bool)mt_isIdentityValueForMaterialSettingsProperty:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/DrawingKit.framework/DrawingKit
+
++ (id)dk_valueWithRenderPoint:(struct { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; double x2; double x3; double x4; })arg1;
+
+- (struct { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; double x2; double x3; double x4; })dk_renderPointValue;
+
+// Image: /System/Library/PrivateFrameworks/Eyedropper.framework/Eyedropper
+
++ (id)valueWithColor:(struct EDColor { double x1; double x2; double x3; })arg1;
+
+- (struct EDColor { double x1; double x2; double x3; })colorValue;
+
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (id)_geo_valueWithGEOPlaceDataComponentKey:(union _GEOPlaceDataComponentKey { struct { unsigned long long x_1_1_1; unsigned short x_1_1_2; unsigned short x_1_1_3; unsigned int x_1_1_4; } x1; struct { unsigned int x_2_1_1; unsigned int x_2_1_2; unsigned int x_2_1_3; unsigned int x_2_1_4; } x2; })arg1;
 
 - (union _GEOPlaceDataComponentKey { struct { unsigned long long x_1_1_1; unsigned short x_1_1_2; unsigned short x_1_1_3; unsigned int x_1_1_4; } x1; struct { unsigned int x_2_1_1; unsigned int x_2_1_2; unsigned int x_2_1_3; unsigned int x_2_1_4; } x2; })_geo_GEOPlaceDataComponentKeyValue;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (id)valueWithHKGraphSeriesDataBlockPath:(struct { long long x1; long long x2; })arg1;
++ (id)valueWithHKLinearTransform:(struct HKLinearTransform { double x1; double x2; })arg1;
+
+- (struct { long long x1; long long x2; })HKGraphSeriesDataBlockPathValue;
+- (struct HKLinearTransform { double x1; double x2; })HKLinearTransformValue;
+- (id)_hk_CGPointMidPointToValue:(id)arg1 percentage:(double)arg2;
+- (id)_hk_HKLinearTransformMidPointToValue:(id)arg1 percentage:(double)arg2;
+- (bool)_hk_isCGPoint;
+- (bool)_hk_isHKLinearTransform;
+- (bool)hk_animatable;
+- (id)hk_midPointToValue:(id)arg1 percentage:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUI.framework/IMSharedUI
+
++ (id)valueWithBalloonDescriptor:(struct IMBalloonDescriptor_t { BOOL x1; BOOL x2; BOOL x3; unsigned long long x4; unsigned long long x5; BOOL x6; BOOL x7; })arg1;
+
+- (struct IMBalloonDescriptor_t { BOOL x1; BOOL x2; BOOL x3; unsigned long long x4; unsigned long long x5; BOOL x6; BOOL x7; })balloonDescriptor;
+
+// Image: /System/Library/PrivateFrameworks/IOAccessoryManager.framework/IOAccessoryManager
+
++ (id)valueWithDockState:(struct DockState { int x1; struct UnsignedWide { unsigned int x_2_1_1; unsigned int x_2_1_2; } x2; struct UnsignedWide { unsigned int x_3_1_1; unsigned int x_3_1_2; } x3; unsigned long long x4; unsigned char x5[6]; unsigned long long x6; unsigned char x7; unsigned long long x8; unsigned long long x9; bool x10; bool x11; double x12; double x13; bool x14; bool x15; id x16; struct { bool x_17_1_1; unsigned int x_17_1_2; unsigned int x_17_1_3; } x17; unsigned int x18; unsigned int x19; bool x20; })arg1;
+
+- (struct DockState { int x1; struct UnsignedWide { unsigned int x_2_1_1; unsigned int x_2_1_2; } x2; struct UnsignedWide { unsigned int x_3_1_1; unsigned int x_3_1_2; } x3; unsigned long long x4; unsigned char x5[6]; unsigned long long x6; unsigned char x7; unsigned long long x8; unsigned long long x9; bool x10; bool x11; double x12; double x13; bool x14; bool x15; id x16; struct { bool x_17_1_1; unsigned int x_17_1_2; unsigned int x_17_1_3; } x17; unsigned int x18; unsigned int x19; bool x20; })dockStateValue;
 
 // Image: /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
 
@@ -184,11 +337,152 @@
 
 - (struct _MSVSignedRange { long long x1; long long x2; })signedRangeValue;
 
+// Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
+
++ (id)valueWithML3NameOrder:(struct { long long x1; long long x2; })arg1;
+
+- (struct { long long x1; long long x2; })ML3NameOrderValue;
+
+// Image: /System/Library/PrivateFrameworks/NeutrinoCore.framework/NeutrinoCore
+
++ (id)nu_valueWithPixelRect:(struct { struct { long long x_1_1_1; long long x_1_1_2; } x1; struct { long long x_2_1_1; long long x_2_1_2; } x2; })arg1;
+
+- (struct { struct { long long x_1_1_1; long long x_1_1_2; } x1; struct { long long x_2_1_1; long long x_2_1_2; } x2; })nu_pixelRect;
+- (void)nu_updateDigest:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsFoundation.framework/NewsFoundation
+
++ (id)nf_valueWithCGRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })nf_CGRectValue;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
++ (id)ic_valueWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })ic_rectValue;
+
+// Image: /System/Library/PrivateFrameworks/PhotoImaging.framework/PhotoImaging
+
++ (id)pi_valueWithGrayColorResult:(struct { struct { double x_1_1_1[4]; } x1; struct { double x_2_1_1[4]; } x2; double x3; })arg1;
++ (id)valueWithRGBResult:(struct { double x1[4]; })arg1;
+
+- (struct { double x1[4]; })RGBResultValue;
+- (struct { struct { double x_1_1_1[4]; } x1; struct { double x_2_1_1[4]; } x2; double x3; })pi_grayColorResultValue;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_valueWithMemoryFontsSpecIdentifier:(struct PXMemoryFontsSpecIdentifier { long long x1; long long x2; long long x3; struct CGSize { double x_4_1_1; double x_4_1_2; } x4; double x5; bool x6; })arg1;
++ (id)px_valueWithSimpleIndexPath:(struct PXSimpleIndexPath { unsigned long long x1; long long x2; long long x3; long long x4; })arg1;
++ (id)px_valueWithViewSpecDescriptor:(struct PXViewSpecDescriptor { long long x1; unsigned long long x2; struct CGSize { double x_3_1_1; double x_3_1_2; } x3; })arg1;
++ (id)valueWithPXDisplayAssetDetailedCounts:(struct { unsigned long long x1; unsigned long long x2; unsigned long long x3; })arg1;
++ (id)valueWithPXDisplayAssetTypedCount:(struct { unsigned long long x1; long long x2; })arg1;
++ (id)valueWithPXEdgeInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
++ (id)valueWithPXTileGeometry:(struct PXTileGeometry { struct CGRect { struct CGPoint { double x_1_2_1; double x_1_2_2; } x_1_1_1; struct CGSize { double x_2_2_1; double x_2_2_2; } x_1_1_2; } x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGSize { double x_3_1_1; double x_3_1_2; } x3; struct CGAffineTransform { double x_4_1_1; double x_4_1_2; double x_4_1_3; double x_4_1_4; double x_4_1_5; double x_4_1_6; } x4; double x5; double x6; bool x7; struct CGSize { double x_8_1_1; double x_8_1_2; } x8; struct CGRect { struct CGPoint { double x_1_2_1; double x_1_2_2; } x_9_1_1; struct CGSize { double x_2_2_1; double x_2_2_2; } x_9_1_2; } x9; void *x10; })arg1;
++ (id)valueWithPXTileIdentifier:(struct PXTileIdentifier { unsigned long long x1; unsigned long long x2[10]; })arg1;
+
+- (struct { unsigned long long x1; unsigned long long x2; unsigned long long x3; })PXDisplayAssetDetailedCountsValue;
+- (struct { unsigned long long x1; long long x2; })PXDisplayAssetTypedCountValue;
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })PXEdgeInsetsValue;
+- (struct PXTileGeometry { struct CGRect { struct CGPoint { double x_1_2_1; double x_1_2_2; } x_1_1_1; struct CGSize { double x_2_2_1; double x_2_2_2; } x_1_1_2; } x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGSize { double x_3_1_1; double x_3_1_2; } x3; struct CGAffineTransform { double x_4_1_1; double x_4_1_2; double x_4_1_3; double x_4_1_4; double x_4_1_5; double x_4_1_6; } x4; double x5; double x6; bool x7; struct CGSize { double x_8_1_1; double x_8_1_2; } x8; struct CGRect { struct CGPoint { double x_1_2_1; double x_1_2_2; } x_9_1_1; struct CGSize { double x_2_2_1; double x_2_2_2; } x_9_1_2; } x9; void *x10; })PXTileGeometryValue;
+- (struct PXTileIdentifier { unsigned long long x1; unsigned long long x2[10]; })PXTileIdentifierValue;
+- (struct PXMemoryFontsSpecIdentifier { long long x1; long long x2; long long x3; struct CGSize { double x_4_1_1; double x_4_1_2; } x4; double x5; bool x6; })px_memoryFontsSpecIdentifierValue;
+- (struct PXSimpleIndexPath { unsigned long long x1; long long x2; long long x3; long long x4; })px_simpleIndexPathValue;
+- (struct PXViewSpecDescriptor { long long x1; unsigned long long x2; struct CGSize { double x_3_1_1; double x_3_1_2; } x3; })px_viewSpecDescriptorValue;
+
 // Image: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
 
 + (id)valueWithCGPoint:(struct CGPoint { double x1; double x2; })arg1;
 
 - (struct CGPoint { double x1; double x2; })CGPointValue;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsUI.framework/PodcastsUI
+
++ (id)valueWithDirectionalRange:(struct _AMPDirectionalRange { struct _NSRange { unsigned long long x_1_1_1; unsigned long long x_1_1_2; } x1; long long x2; bool x3; })arg1;
++ (id)valueWithRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 direction:(long long)arg2 hasNeutrals:(bool)arg3;
+
+- (struct _AMPDirectionalRange { struct _NSRange { unsigned long long x_1_1_1; unsigned long long x_1_1_2; } x1; long long x2; bool x3; })directionalRangeValue;
+
+// Image: /System/Library/PrivateFrameworks/ProVideo.framework/ProVideo
+
++ (id)valueWithSIMDDouble2;
++ (id)valueWithSIMDDouble3;
++ (id)valueWithSIMDDouble3x3:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })arg1;
++ (id)valueWithSIMDDouble4;
++ (id)valueWithSIMDDouble4x4:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; })arg1;
++ (id)valueWithSIMDDouble8;
++ (id)valueWithSIMDFloat16;
++ (id)valueWithSIMDFloat2;
++ (id)valueWithSIMDFloat3;
++ (id)valueWithSIMDFloat3x3:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })arg1;
++ (id)valueWithSIMDFloat4;
++ (id)valueWithSIMDFloat4x4:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; })arg1;
++ (id)valueWithSIMDFloat8;
++ (id)valueWithSIMDQuatD:(struct { })arg1;
++ (id)valueWithSIMDQuatF:(struct { })arg1;
+
+- (void)SIMDDouble2Value;
+- (void)SIMDDouble3Value;
+- (struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })SIMDDouble3x3Value;
+- (void)SIMDDouble4Value;
+- (struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; })SIMDDouble4x4Value;
+- (void)SIMDDouble8Value;
+- (void)SIMDFloat16Value;
+- (void)SIMDFloat2Value;
+- (void)SIMDFloat3Value;
+- (struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })SIMDFloat3x3Value;
+- (void)SIMDFloat4Value;
+- (struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; })SIMDFloat4x4Value;
+- (void)SIMDFloat8Value;
+- (struct { })SIMDQuatDValue;
+- (struct { })SIMDQuatFValue;
+
+// Image: /System/Library/PrivateFrameworks/QuickLookThumbnailingDaemon.framework/QuickLookThumbnailingDaemon
+
+- (struct CGSize { double x1; double x2; })QL_CGSizeValue;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
++ (id)re_valueWithCGRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })re_CGRectValue;
+- (unsigned long long)re_actionIdentifierHashValue;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
++ (id)valueWithCLLocationCoordinate2D:(struct CLLocationCoordinate2D { double x1; double x2; })arg1;
++ (id)valueWithMKCoordinateRegion:(struct { struct CLLocationCoordinate2D { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+- (struct CLLocationCoordinate2D { double x1; double x2; })CLLocationCoordinate2DValue;
+- (struct { struct CLLocationCoordinate2D { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })MKCoordinateRegionValue;
+
+// Image: /System/Library/PrivateFrameworks/SpeechRecognitionCommandAndControl.framework/SpeechRecognitionCommandAndControl
+
++ (id)valueWithCACGestureLivePreviewHandwritingPoint:(struct { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; double x2; })arg1;
+
+- (struct { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; double x2; })CACGestureLivePreviewHandwritingPointValue;
+
+// Image: /System/Library/PrivateFrameworks/SpeechRecognitionCommandServices.framework/SpeechRecognitionCommandServices
+
++ (id)valueWithArc:(struct _FstArc { int x1; int x2; })arg1;
+
+- (struct _FstArc { int x1; int x2; })arcValue;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
++ (id)valueWithTSDEdgeInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })TSDEdgeInsetsValue;
+- (id)mixedObjectWithFraction:(double)arg1 ofObject:(id)arg2;
+- (long long)mixingTypeWithObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
++ (id)tv_valueWithCellMetrics:(struct TVCellMetrics { struct CGSize { double x_1_1_1; double x_1_1_2; } x1; struct UIEdgeInsets { double x_2_1_1; double x_2_1_2; double x_2_1_3; double x_2_1_4; } x2; struct UIEdgeInsets { double x_3_1_1; double x_3_1_2; double x_3_1_3; double x_3_1_4; } x3; struct UIEdgeInsets { double x_4_1_1; double x_4_1_2; double x_4_1_3; double x_4_1_4; } x4; struct UIEdgeInsets { double x_5_1_1; double x_5_1_2; double x_5_1_3; double x_5_1_4; } x5; })arg1;
++ (id)tv_valueWithRowMetrics:(struct TVRowMetrics { long long x1; double x2; struct { double x_3_1_1; double x_3_1_2; } x3; struct { double x_4_1_1; double x_4_1_2; } x4; struct { double x_5_1_1; double x_5_1_2; } x5; struct { double x_6_1_1; double x_6_1_2; } x6; })arg1;
+
+- (struct TVCellMetrics { struct CGSize { double x_1_1_1; double x_1_1_2; } x1; struct UIEdgeInsets { double x_2_1_1; double x_2_1_2; double x_2_1_3; double x_2_1_4; } x2; struct UIEdgeInsets { double x_3_1_1; double x_3_1_2; double x_3_1_3; double x_3_1_4; } x3; struct UIEdgeInsets { double x_4_1_1; double x_4_1_2; double x_4_1_3; double x_4_1_4; } x4; struct UIEdgeInsets { double x_5_1_1; double x_5_1_2; double x_5_1_3; double x_5_1_4; } x5; })tv_cellMetricsValue;
+- (struct TVRowMetrics { long long x1; double x2; struct { double x_3_1_1; double x_3_1_2; } x3; struct { double x_4_1_1; double x_4_1_2; } x4; struct { double x_5_1_1; double x_5_1_2; } x5; struct { double x_6_1_1; double x_6_1_2; } x6; })tv_rowMetricsValue;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
@@ -217,6 +511,14 @@
 
 + (id)_web_valueWithCGRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })CGRectValue;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_web_CGRectValue;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSDrawables.framework/TSDrawables
+
++ (id)valueWithContentBlend:(struct _TSDContentBlend { id x1; id x2; double x3; })arg1;
+
+- (struct _TSDContentBlend { id x1; id x2; double x3; })TSDContentBlendValue;
+- (id)mixedObjectWithFraction:(double)arg1 ofObject:(id)arg2;
+- (long long)mixingTypeWithObject:(id)arg1 context:(id)arg2;
 
 @end

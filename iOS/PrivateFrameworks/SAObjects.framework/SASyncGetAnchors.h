@@ -17,6 +17,8 @@
 @property (nonatomic, copy) NSString *syncReason;
 @property (nonatomic, copy) NSArray *watchAppMetaDataList;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)getAnchors;
 + (id)getAnchorsWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -36,5 +38,10 @@
 - (id)sources;
 - (id)syncReason;
 - (id)watchAppMetaDataList;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (bool)siriCore_bufferingAllowedDuringActiveSession;
+- (bool)siriCore_isRetryable;
 
 @end

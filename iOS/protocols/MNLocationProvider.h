@@ -5,9 +5,9 @@
 
 @required
 
-- (long long)activityType;
 - (id /* block */)authorizationRequestBlock:(void *)arg1; // needs 1 arg types, found 10: id /* block */, id /* block */, void*, void, id /* block */, bool, void*, void*, id, SEL
 - (int)authorizationStatus;
+- (bool)coarseModeEnabled;
 - (<MNLocationProviderDelegate> *)delegate;
 - (double)desiredAccuracy;
 - (double)distanceFilter;
@@ -22,7 +22,6 @@
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)resetForActiveTileGroupChanged;
-- (void)setActivityType:(long long)arg1;
 - (void)setAuthorizationRequestBlock:(void *)arg1; // needs 1 arg types, found 11: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, id /* block */, void*, void, id /* block */, bool, void*, void*
 - (void)setDelegate:(id <MNLocationProviderDelegate>)arg1;
 - (void)setDesiredAccuracy:(double)arg1;
@@ -48,5 +47,6 @@
 
 - (id)initWithEffectiveBundle:(NSBundle *)arg1;
 - (id)initWithEffectiveBundleIdentifier:(NSString *)arg1;
+- (void)setCLParameters:(MNLocationProviderCLParameters *)arg1;
 
 @end

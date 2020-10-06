@@ -4,15 +4,23 @@
 
 @interface SISchemaPersonalization : PBCodable {
     bool  _appleMusicSubscriber;
+    struct { 
+        unsigned int personalDomainsSetup : 1; 
+        unsigned int appleMusicSubscriber : 1; 
+    }  _has;
     bool  _personalDomainsSetup;
 }
 
 @property (nonatomic) bool appleMusicSubscriber;
+@property (nonatomic) bool hasAppleMusicSubscriber;
+@property (nonatomic) bool hasPersonalDomainsSetup;
 @property (nonatomic, readonly) NSData *jsonData;
 @property (nonatomic) bool personalDomainsSetup;
 
 - (bool)appleMusicSubscriber;
 - (id)dictionaryRepresentation;
+- (bool)hasAppleMusicSubscriber;
+- (bool)hasPersonalDomainsSetup;
 - (unsigned long long)hash;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithJSON:(id)arg1;
@@ -21,6 +29,8 @@
 - (bool)personalDomainsSetup;
 - (bool)readFrom:(id)arg1;
 - (void)setAppleMusicSubscriber:(bool)arg1;
+- (void)setHasAppleMusicSubscriber:(bool)arg1;
+- (void)setHasPersonalDomainsSetup:(bool)arg1;
 - (void)setPersonalDomainsSetup:(bool)arg1;
 - (void)writeTo:(id)arg1;
 

@@ -11,9 +11,12 @@
 
 @property (nonatomic) CKContainer *container;
 @property (nonatomic, readonly) long long databaseScope;
+@property (readonly, copy) NSString *hmbDescription;
 @property (nonatomic, readonly) NSOperationQueue *operationQueue;
 @property (nonatomic, readonly) long long scope;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *underlyingDispatchQueue;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 - (void).cxx_destruct;
 - (id)CKPropertiesDescription;
@@ -37,6 +40,7 @@
 - (id)description;
 - (void)fetchAllRecordZonesWithCompletionHandler:(id /* block */)arg1;
 - (void)fetchAllSubscriptionsWithCompletionHandler:(id /* block */)arg1;
+- (void)fetchPCSFromCacheForZoneWithID:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)fetchRecordWithID:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)fetchRecordZoneWithID:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)fetchSubscriptionWithID:(id)arg1 completionHandler:(id /* block */)arg2;
@@ -53,5 +57,9 @@
 - (void)setUnderlyingDispatchQueue:(id)arg1;
 - (void)showAssetCache;
 - (id)underlyingDispatchQueue;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
+- (id)hmbDescription;
 
 @end

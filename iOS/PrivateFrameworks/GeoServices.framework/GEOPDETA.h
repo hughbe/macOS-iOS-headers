@@ -7,10 +7,12 @@
     struct { 
         unsigned int has_distance : 1; 
         unsigned int has_historicTravelTime : 1; 
+        unsigned int has_licensePlateRestrictionImpact : 1; 
         unsigned int has_time : 1; 
         unsigned int has_transportType : 1; 
     }  _flags;
     unsigned int  _historicTravelTime;
+    int  _licensePlateRestrictionImpact;
     GEORouteTrafficDetail * _routeTrafficDetail;
     unsigned int  _time;
     int  _transportType;
@@ -20,10 +22,12 @@
 @property (nonatomic) unsigned int distance;
 @property (nonatomic) bool hasDistance;
 @property (nonatomic) bool hasHistoricTravelTime;
+@property (nonatomic) bool hasLicensePlateRestrictionImpact;
 @property (nonatomic, readonly) bool hasRouteTrafficDetail;
 @property (nonatomic) bool hasTime;
 @property (nonatomic) bool hasTransportType;
 @property (nonatomic) unsigned int historicTravelTime;
+@property (nonatomic) int licensePlateRestrictionImpact;
 @property (nonatomic, retain) GEORouteTrafficDetail *routeTrafficDetail;
 @property (nonatomic) unsigned int time;
 @property (nonatomic) int transportType;
@@ -32,6 +36,7 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
+- (int)StringAsLicensePlateRestrictionImpact:(id)arg1;
 - (int)StringAsTransportType:(id)arg1;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
@@ -41,12 +46,18 @@
 - (unsigned int)distance;
 - (bool)hasDistance;
 - (bool)hasHistoricTravelTime;
+- (bool)hasLicensePlateRestrictionImpact;
 - (bool)hasRouteTrafficDetail;
 - (bool)hasTime;
 - (bool)hasTransportType;
 - (unsigned long long)hash;
 - (unsigned int)historicTravelTime;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
+- (int)licensePlateRestrictionImpact;
+- (id)licensePlateRestrictionImpactAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
@@ -54,9 +65,11 @@
 - (void)setDistance:(unsigned int)arg1;
 - (void)setHasDistance:(bool)arg1;
 - (void)setHasHistoricTravelTime:(bool)arg1;
+- (void)setHasLicensePlateRestrictionImpact:(bool)arg1;
 - (void)setHasTime:(bool)arg1;
 - (void)setHasTransportType:(bool)arg1;
 - (void)setHistoricTravelTime:(unsigned int)arg1;
+- (void)setLicensePlateRestrictionImpact:(int)arg1;
 - (void)setRouteTrafficDetail:(id)arg1;
 - (void)setTime:(unsigned int)arg1;
 - (void)setTransportType:(int)arg1;

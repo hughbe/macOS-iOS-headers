@@ -3,7 +3,6 @@
  */
 
 @interface _INPBQueryHealthSampleIntent : PBCodable <NSCopying, NSSecureCoding, _INPBQueryHealthSampleIntent> {
-    bool  __encodeLegacyGloryData;
     int  _expectedResultType;
     struct { 
         unsigned int expectedResultType : 1; 
@@ -18,7 +17,6 @@
     _INPBWellnessUnitType * _unit;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) int expectedResultType;
@@ -46,8 +44,6 @@
 - (int)StringAsExpectedResultType:(id)arg1;
 - (int)StringAsObjectType:(id)arg1;
 - (int)StringAsQuestionType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addRecordDate:(id)arg1;
 - (void)addThresholdValues:(id)arg1;
 - (void)clearRecordDates;

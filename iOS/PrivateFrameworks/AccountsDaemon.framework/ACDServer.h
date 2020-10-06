@@ -11,6 +11,7 @@
     ACDAuthenticationDialogManager * _authenticationDialogManager;
     NSMutableArray * _authenticationDialogManagerClients;
     ACDAuthenticationPluginManager * _authenticationPluginManager;
+    unsigned int  _clientCountMaximum;
     <ACDClientProviderProtocol> * _clientProvider;
     NSMutableDictionary * _clientsByConnection;
     <ACDDatabaseProtocol> * _database;
@@ -54,10 +55,11 @@
 - (id)_keyForConnection:(id)arg1;
 - (id)_newDaemonAccountStoreFilterForClient:(id)arg1;
 - (id)_newOAuthSignerForClient:(id)arg1;
+- (bool)_shouldNotifyClient:(id)arg1 ofChangesForAccountType:(id)arg2;
 - (void)_signalDeferredConnectionResumeQueueSemaphore;
 - (id)accessPluginManager;
 - (id)accountNotifier;
-- (void)accountStore:(id)arg1 didSaveAccount:(id)arg2;
+- (void)accountStore:(id)arg1 didSaveAccount:(id)arg2 changeType:(int)arg3;
 - (id)accountStoreListener;
 - (id)authenticationDialogListener;
 - (id)authenticationDialogManager;

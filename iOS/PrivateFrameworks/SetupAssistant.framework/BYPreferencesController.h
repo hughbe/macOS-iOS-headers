@@ -11,7 +11,9 @@
 @property (nonatomic, retain) NSMutableDictionary *preferences;
 
 + (id)buddyPreferences;
++ (id)buddyPreferencesEphemeral;
 + (id)buddyPreferencesExcludedFromBackup;
++ (id)buddyPreferencesInternal;
 + (void)flushEverything;
 + (void)persistEverything;
 
@@ -19,8 +21,10 @@
 - (bool)boolForKey:(id)arg1;
 - (id)domain;
 - (void)flush;
+- (id)init;
 - (id)initWithDomain:(id)arg1;
 - (id)objectForKey:(id)arg1;
+- (id)objectForKey:(id)arg1 includeCache:(bool)arg2;
 - (void)persist;
 - (id)preferences;
 - (void)removeObjectForKey:(id)arg1;

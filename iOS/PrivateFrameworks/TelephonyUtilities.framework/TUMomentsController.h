@@ -24,6 +24,8 @@
 + (bool)isFaceTimePhotosEnabled;
 + (bool)isFaceTimePhotosEnabledByDefault;
 + (bool)isFaceTimePhotosRestricted;
++ (bool)isFaceTimePhotosXPCServiceEnabled;
++ (bool)isInternalInstall;
 + (void)setFaceTimePhotosEnabled:(bool)arg1;
 + (void)setFaceTimePhotosEnabledDeterminer:(id /* block */)arg1;
 

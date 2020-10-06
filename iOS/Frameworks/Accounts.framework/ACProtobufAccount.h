@@ -16,16 +16,21 @@
     NSMutableArray * _dirtyDataclassProperties;
     NSMutableArray * _dirtyProperties;
     NSMutableArray * _enabledDataclasses;
+    struct { 
+        unsigned int warmingUp : 1; 
+    }  _has;
     NSString * _identifier;
     ACProtobufDate * _lastCredentialRenewalRejectionDate;
+    NSString * _modificationID;
     ACProtobufURL * _objectID;
     NSString * _owningBundleID;
-    NSString * _parentAccountIdentifier;
+    ACProtobufAccount * _parentAccount;
     NSMutableArray * _properties;
     NSMutableArray * _provisionedDataclasses;
     bool  _supportsAuthentication;
     NSString * _username;
     bool  _visible;
+    bool  _warmingUp;
 }
 
 @property (nonatomic, retain) NSString *accountDescription;
@@ -48,21 +53,25 @@
 @property (nonatomic, readonly) bool hasCredentialType;
 @property (nonatomic, readonly) bool hasDate;
 @property (nonatomic, readonly) bool hasLastCredentialRenewalRejectionDate;
+@property (nonatomic, readonly) bool hasModificationID;
 @property (nonatomic, readonly) bool hasObjectID;
 @property (nonatomic, readonly) bool hasOwningBundleID;
-@property (nonatomic, readonly) bool hasParentAccountIdentifier;
+@property (nonatomic, readonly) bool hasParentAccount;
 @property (nonatomic, readonly) bool hasUsername;
+@property (nonatomic) bool hasWarmingUp;
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) ACProtobufDate *lastCredentialRenewalRejectionDate;
+@property (nonatomic, retain) NSString *modificationID;
 @property (nonatomic, retain) ACProtobufURL *objectID;
 @property (nonatomic, retain) NSString *owningBundleID;
-@property (nonatomic, retain) NSString *parentAccountIdentifier;
+@property (nonatomic, retain) ACProtobufAccount *parentAccount;
 @property (nonatomic, retain) NSMutableArray *properties;
 @property (nonatomic, copy) NSDictionary *propertiesDictionary;
 @property (nonatomic, retain) NSMutableArray *provisionedDataclasses;
 @property (nonatomic) bool supportsAuthentication;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic) bool visible;
+@property (nonatomic) bool warmingUp;
 
 + (Class)dataclassPropertiesType;
 + (Class)dirtyAccountPropertiesType;
@@ -121,18 +130,21 @@
 - (bool)hasCredentialType;
 - (bool)hasDate;
 - (bool)hasLastCredentialRenewalRejectionDate;
+- (bool)hasModificationID;
 - (bool)hasObjectID;
 - (bool)hasOwningBundleID;
-- (bool)hasParentAccountIdentifier;
+- (bool)hasParentAccount;
 - (bool)hasUsername;
+- (bool)hasWarmingUp;
 - (unsigned long long)hash;
 - (id)identifier;
 - (bool)isEqual:(id)arg1;
 - (id)lastCredentialRenewalRejectionDate;
 - (void)mergeFrom:(id)arg1;
+- (id)modificationID;
 - (id)objectID;
 - (id)owningBundleID;
-- (id)parentAccountIdentifier;
+- (id)parentAccount;
 - (id)properties;
 - (id)propertiesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)propertiesCount;
@@ -155,20 +167,24 @@
 - (void)setDirtyDataclassProperties:(id)arg1;
 - (void)setDirtyProperties:(id)arg1;
 - (void)setEnabledDataclasses:(id)arg1;
+- (void)setHasWarmingUp:(bool)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setLastCredentialRenewalRejectionDate:(id)arg1;
+- (void)setModificationID:(id)arg1;
 - (void)setObjectID:(id)arg1;
 - (void)setOwningBundleID:(id)arg1;
-- (void)setParentAccountIdentifier:(id)arg1;
+- (void)setParentAccount:(id)arg1;
 - (void)setProperties:(id)arg1;
 - (void)setPropertiesDictionary:(id)arg1;
 - (void)setProvisionedDataclasses:(id)arg1;
 - (void)setSupportsAuthentication:(bool)arg1;
 - (void)setUsername:(id)arg1;
 - (void)setVisible:(bool)arg1;
+- (void)setWarmingUp:(bool)arg1;
 - (bool)supportsAuthentication;
 - (id)username;
 - (bool)visible;
+- (bool)warmingUp;
 - (void)writeTo:(id)arg1;
 
 @end

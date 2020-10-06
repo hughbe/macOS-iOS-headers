@@ -6,11 +6,13 @@
     LSDocumentProxy * _documentProxy;
     NSString * _handlerRank;
     unsigned char  _style;
+    bool  _yieldClaimBindings;
 }
 
 @property (nonatomic, readonly, retain) LSDocumentProxy *documentProxy;
 @property (nonatomic, readonly, copy) NSString *handlerRank;
 @property (nonatomic, readonly) unsigned char style;
+@property (nonatomic) bool yieldClaimBindings;
 
 + (bool)supportsSecureCoding;
 
@@ -25,6 +27,8 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDocumentProxy:(id)arg1 style:(unsigned char)arg2 handlerRank:(id)arg3;
 - (bool)isEqual:(id)arg1;
+- (void)setYieldClaimBindings:(bool)arg1;
 - (unsigned char)style;
+- (bool)yieldClaimBindings;
 
 @end

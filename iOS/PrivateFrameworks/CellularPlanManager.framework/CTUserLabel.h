@@ -20,6 +20,7 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
+- (long long)indexInPredefinedLabels:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithKey:(id)arg1 label:(id)arg2 labelId:(id)arg3;
 - (id)initWithLabel:(id)arg1;

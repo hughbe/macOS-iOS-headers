@@ -51,4 +51,36 @@
 + (id)_intents_sharedOldFormatRegularExpression;
 + (id)_intents_sharedStringsDictFormatRegularExpression;
 
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_attributionExpression;
++ (id)mf_attributionPrefixExpression;
++ (id)mf_copyAttributionRegularExpressionForType:(int)arg1;
++ (id)mf_forwardSeparatorExpression;
++ (id)mf_horizontalSeparatorExpression;
++ (id)mf_signatureExpression;
+
+// Image: /System/Library/PrivateFrameworks/EmailCore.framework/EmailCore
+
++ (id)ec_regularExpressionForList;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
++ (id)ef_regularExpressionForQuotedStringsInLocales:(id)arg1;
+
+- (void)ef_enumerateTokensInString:(id)arg1 options:(unsigned long long)arg2 usingBlock:(id /* block */)arg3;
+- (id)ef_stringByRemovingTokensFromString:(id)arg1 matchingOptions:(unsigned long long)arg2 tokenizationOptions:(unsigned long long)arg3 tokenizationHandler:(id /* block */)arg4;
+- (id)ef_stringByRemovingTokensFromString:(id)arg1 tokenizationHandler:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
++ (id)ic_patternForTokens:(id)arg1 matchWordBoundaries:(bool)arg2;
++ (id)ic_regexForPrefixMatchingTokens:(id)arg1 substringMatchingTokens:(id)arg2;
++ (id)ic_regexForSearchStrings:(id)arg1;
++ (id)ic_regexForSearchStrings:(id)arg1 matchWordBoundaries:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (id)safari_escapedPatternForString:(id)arg1 charactersToEscape:(id)arg2;
+
 @end

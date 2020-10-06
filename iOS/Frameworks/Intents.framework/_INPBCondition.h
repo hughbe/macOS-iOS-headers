@@ -3,14 +3,12 @@
  */
 
 @interface _INPBCondition : PBCodable <NSCopying, NSSecureCoding, _INPBCondition> {
-    bool  __encodeLegacyGloryData;
     int  _conditionalOperator;
     struct { 
         unsigned int conditionalOperator : 1; 
     }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int conditionalOperator;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -21,8 +19,6 @@
 + (bool)supportsSecureCoding;
 
 - (int)StringAsConditionalOperator:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)conditionalOperator;
 - (id)conditionalOperatorAsString:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

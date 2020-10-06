@@ -8,6 +8,7 @@
 
 @property (nonatomic, copy) NSString *contentType;
 @property (nonatomic) double cornerRadius;
+@property (nonatomic) int cornerRoundingStyle;
 @property (nonatomic, copy) NSDate *date;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;

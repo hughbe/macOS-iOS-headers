@@ -22,6 +22,7 @@
     bool  _minimumIntervalFallbackEnabled;
     double  _minimumIntervalFallbackStateTimeout;
     double  _minimumKeepAliveInterval;
+    int  _previousAction;
     double  _previousMaximumKeepAliveInterval;
     double  _serverStatsExpectedKeepAliveInterval;
     double  _serverStatsMaxKeepAliveInterval;
@@ -42,6 +43,7 @@
 @property (nonatomic) bool minimumIntervalFallbackEnabled;
 @property (nonatomic) double minimumIntervalFallbackStateTimeout;
 @property (nonatomic) double minimumKeepAliveInterval;
+@property (nonatomic) int previousAction;
 @property (nonatomic) double serverStatsExpectedKeepAliveInterval;
 @property (nonatomic) double serverStatsMaxKeepAliveInterval;
 @property (nonatomic) double serverStatsMinKeepAliveInterval;
@@ -80,6 +82,7 @@
 - (bool)minimumIntervalFallbackEnabled;
 - (double)minimumIntervalFallbackStateTimeout;
 - (double)minimumKeepAliveInterval;
+- (int)previousAction;
 - (void)processNextAction:(int)arg1;
 - (double)serverStatsExpectedKeepAliveInterval;
 - (double)serverStatsMaxKeepAliveInterval;
@@ -90,6 +93,7 @@
 - (void)setMinimumIntervalFallbackEnabled:(bool)arg1;
 - (void)setMinimumIntervalFallbackStateTimeout:(double)arg1;
 - (void)setMinimumKeepAliveInterval:(double)arg1;
+- (void)setPreviousAction:(int)arg1;
 - (void)setServerStatsExpectedKeepAliveInterval:(double)arg1;
 - (void)setServerStatsMaxKeepAliveInterval:(double)arg1;
 - (void)setServerStatsMinKeepAliveInterval:(double)arg1;

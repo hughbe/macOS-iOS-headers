@@ -8,6 +8,7 @@
     NSObject<OS_dispatch_queue> * _queue;
 }
 
+@property (nonatomic, readonly) struct { unsigned int x1[8]; } auditToken;
 @property (nonatomic, readonly, copy) NSString *bundleIdentifier;
 @property (nonatomic, readonly, copy) NSURL *bundleURL;
 @property (getter=isConnected, nonatomic) bool connected;
@@ -16,6 +17,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, copy) NSString *identifier;
+@property (nonatomic, readonly, copy) NSString *localizedName;
 @property (getter=isPermittedToUseBluetoothAccessories, nonatomic, readonly) bool permittedToUseBluetoothAccessories;
 @property (getter=isPermittedToUsePrivateAPI, nonatomic, readonly) bool permittedToUsePrivateAPI;
 @property (getter=isPermittedToUsePublicAPI, nonatomic, readonly) bool permittedToUsePublicAPI;
@@ -27,6 +29,7 @@
 - (void).cxx_destruct;
 - (oneway void)actionCompleted:(id)arg1;
 - (void)actionCompleted:(id)arg1 reply:(id /* block */)arg2;
+- (struct { unsigned int x1[8]; })auditToken;
 - (void)beginWithCompletionHandler:(id /* block */)arg1;
 - (id)bundleIdentifier;
 - (id)bundleURL;
@@ -41,6 +44,7 @@
 - (bool)isPermittedToUseBluetoothAccessories;
 - (bool)isPermittedToUsePrivateAPI;
 - (bool)isPermittedToUsePublicAPI;
+- (id)localizedName;
 - (int)processIdentifier;
 - (id)queue;
 - (oneway void)registerWithConfiguration:(id)arg1;

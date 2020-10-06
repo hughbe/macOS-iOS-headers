@@ -6,9 +6,4 @@
     struct _xpc_type_s { } * _type;
 }
 
-@property const struct _xpc_type_s { }*type;
-
-- (void)setType:(const struct _xpc_type_s { }*)arg1;
-- (const struct _xpc_type_s { }*)type;
-
 @end

@@ -52,6 +52,7 @@
 @property (nonatomic, retain) CNUIMeContactMonitor *meMonitor;
 @property (nonatomic, retain) <CNUIPlaceholderProviderFactory> *placeholderProviderFactory;
 @property (nonatomic, retain) CNUICoreRecentsManager *recentsManager;
+@property (nonatomic, readonly) bool runningInContactsAppOniPad;
 @property (nonatomic) struct UCollator { }*sortCollator;
 
 + (id)currentEnvironment;
@@ -109,6 +110,7 @@
 - (id)nts_makeRecentsManager;
 - (id)placeholderProviderFactory;
 - (id)recentsManager;
+- (bool)runningInContactsAppOniPad;
 - (void)setActionDiscoveringEnvironment:(id)arg1;
 - (void)setApplicationWorkspace:(id)arg1;
 - (void)setCachingLikenessRenderer:(id)arg1;

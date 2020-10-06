@@ -16,8 +16,6 @@
 - (id)defaultTextColorForKeyboardAppearance;
 - (void)handleTextVibrancy;
 - (id)initWithStyleSubject:(id)arg1;
-- (id)namesOfAttributesToOverrideForEditing;
-- (id)overridingEditingAttributes:(id)arg1 forOriginalAttributes:(id)arg2;
 - (id)parentViewForTextContentView;
 - (id)placeholderColor;
 - (void)setStyleSubject:(id)arg1;

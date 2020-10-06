@@ -3,10 +3,9 @@
  */
 
 @interface MRMediaRemoteServiceClient : NSObject {
-    _MRNowPlayingPlayerPathProtobuf * _activePlayerPath;
+    MRPlayerPath * _activePlayerPath;
     MRNotificationClient * _notificationClient;
     MRNotificationServiceClient * _notificationService;
-    int  _notifyRestoreClientStateForLaunch;
     NSObject<OS_dispatch_queue> * _playbackQueueDispatchQueue;
     NSMutableSet * _playerPathInvalidationHandlers;
     NSMutableArray * _registeredOrigins;
@@ -15,7 +14,7 @@
     MRMediaRemoteService * _service;
 }
 
-@property (nonatomic, retain) _MRNowPlayingPlayerPathProtobuf *activePlayerPath;
+@property (nonatomic, retain) MRPlayerPath *activePlayerPath;
 @property (nonatomic, readonly) MRNotificationClient *notificationClient;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *playbackQueueDispatchQueue;
 @property (nonatomic, readonly) NSArray *registeredOrigins;
@@ -25,14 +24,6 @@
 + (id)sharedServiceClient;
 
 - (void).cxx_destruct;
-- (void)_callInvalidationHandler:(id)arg1;
-- (void)_initializeConnectionWithCompletion:(id /* block */)arg1;
-- (void)_invalidateConnection;
-- (void)_onQueue_processPlayerPathInvalidationHandlersWithBlock:(id /* block */)arg1;
-- (void)_onQueue_setActivePlayerPath:(id)arg1;
-- (void)_processPlayerPathInvalidationHandlersWithBlock:(id /* block */)arg1;
-- (void)_registerCallbacks;
-- (void)_resumeConnection;
 - (id)activePlayerPath;
 - (id)addPlayerPathInvalidationHandler:(id)arg1;
 - (void)dealloc;

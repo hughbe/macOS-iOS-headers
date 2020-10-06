@@ -44,6 +44,7 @@
 @property (nonatomic, retain) NSURL *ringtoneSoundURL;
 @property (nonatomic, retain) TUSandboxExtendedURL *sandboxExtendedRingtoneSoundURL;
 @property (nonatomic) long long sandboxExtensionHandle;
+@property (getter=isSuperboxProvider, nonatomic, readonly) bool superboxProvider;
 @property (nonatomic, copy) NSSet *supportedHandleTypes;
 @property (nonatomic) bool supportsAudioAndVideo;
 @property (nonatomic) bool supportsAudioOnly;
@@ -77,6 +78,7 @@
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToCallProvider:(id)arg1;
 - (bool)isFaceTimeProvider;
+- (bool)isSuperboxProvider;
 - (bool)isSystemProvider;
 - (bool)isTelephonyProvider;
 - (bool)isTinCanProvider;

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UILayoutGuide : NSObject <DebugHierarchyObject_Fallback, NSCoding, NSISVariableDelegate, UILayoutItem_Internal, _UILayoutItem> {
+@interface UILayoutGuide : NSObject <AVKitLayoutItem, NSCoding, NSISVariableDelegate, UILayoutItem_Internal, _UILayoutItem> {
     bool  __allowsNegativeDimensions;
     bool  __shouldBeArchived;
     bool  _allowOwningViewSetting;
@@ -158,6 +158,7 @@
 - (unsigned long long)nsli_autoresizingMask;
 - (id)nsli_boundsHeightVariable;
 - (id)nsli_boundsWidthVariable;
+- (id)nsli_constraintWithAnchor:(id)arg1 relatedBy:(long long)arg2 toAnchor:(id)arg3 withSystemSpacingMultipliedBy:(double)arg4;
 - (id)nsli_contentHeightVariable;
 - (id)nsli_contentWidthVariable;
 - (struct CGSize { double x1; double x2; })nsli_convertSizeFromEngineSpace:(struct CGSize { double x1; double x2; })arg1;
@@ -195,9 +196,11 @@
 - (void)traitCollectionDidChange:(id)arg1;
 - (id)widthAnchor;
 
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
+// Image: /System/Library/Frameworks/AVKit.framework/AVKit
 
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
+- (id)avkit_constraintsFromCenterAnchorsToCenterAnchorsOfItem:(id)arg1;
+- (id)avkit_constraintsFromCenterAndDimensionAnchorsToCenterAndDimensionAnchorsOfItem:(id)arg1;
+- (id)avkit_constraintsFromDimensionAnchorsToSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)avkit_constraintsFromEdgeAnchorsToEdgeAnchorsOfItem:(id)arg1;
 
 @end

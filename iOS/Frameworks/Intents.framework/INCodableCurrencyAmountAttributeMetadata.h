@@ -10,9 +10,17 @@
 @property (nonatomic, copy) NSString *currencyCode;
 @property (nonatomic, readonly) NSArray *currencyCodes;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableDescriptionCurrencyCodeKey;
+- (id)__INCodableDescriptionCurrencyCodesKey;
+- (id)__INIntentResponseCodableDescriptionCurrencyCodeKey;
+- (id)__INIntentResponseCodableDescriptionCurrencyCodesKey;
+- (id)__INTypeCodableDescriptionCurrencyCodeKey;
+- (id)__INTypeCodableDescriptionCurrencyCodesKey;
 - (id)currencyCode;
 - (id)currencyCodes;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
@@ -20,5 +28,15 @@
 - (id)initWithCoder:(id)arg1;
 - (void)setCurrencyCode:(id)arg1;
 - (void)updateWithDictionary:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (Class)wf_objectClass;
+- (Class)wf_parameterClass;
+- (id)wf_parameterStateForIntentValue:(id)arg1 parameterDefinition:(id)arg2;
+- (bool)wf_processParameterValue:(id)arg1 forParameter:(id)arg2 codableAttribute:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)wf_updateParameterDictionary:(id)arg1 forCodableAttribute:(id)arg2;
+- (void)wf_updateWithParameterState:(id)arg1;
+- (void)wf_updateWithParameterValue:(id)arg1;
 
 @end

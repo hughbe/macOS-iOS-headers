@@ -95,4 +95,17 @@
 + (id)_mapkit_descriptionForTimeSinceDate:(id)arg1 referenceDate:(id)arg2;
 + (id)_mapkit_descriptionForTimeSinceDate:(id)arg1 referenceDate:(id)arg2 smallestUnit:(unsigned long long)arg3;
 
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)__ck_durationFormatter;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (id)hk_fullStyleDateComponentsFormatter;
+
+// Image: /System/Library/PrivateFrameworks/ScreenTimeSettingsUI.framework/ScreenTimeSettingsUI
+
++ (id)st_sharedAbbreviatedSecondsDateFormatter;
++ (id)st_sharedShortDynamicDateFormatter;
+
 @end

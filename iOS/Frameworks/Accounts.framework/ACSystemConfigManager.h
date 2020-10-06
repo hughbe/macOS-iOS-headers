@@ -6,11 +6,11 @@
     int  _applySkipCount;
     NSObject<OS_dispatch_queue> * _preferencesQueue;
     struct __SCPreferences { } * _preferencesSession;
-    NSObject<OS_dispatch_queue> * _timerQueue;
-    NSObject<OS_dispatch_source> * _timerSource;
 }
 
 + (id)_livingInstance;
++ (void)_scheduleSharedInstanceTeardown;
++ (void)_tearDown;
 + (unsigned long long)_timeoutInterval;
 + (id)sharedInstance;
 
@@ -19,9 +19,7 @@
 - (void)_destroySCPreferencesSession;
 - (void*)_getValueForKey:(id)arg1;
 - (void)_handleSCPreferencesSessionNotification:(unsigned int)arg1;
-- (void)_keepAlive;
 - (void)_setValue:(void*)arg1 forKey:(id)arg2;
-- (void)_tearDown;
 - (int)accountsWithAccountTypeIdentifierExist:(id)arg1;
 - (long long)countOfAccountsWithAccountTypeIdentifier:(id)arg1;
 - (void)dealloc;

@@ -6,34 +6,46 @@
     int  _airplayActiveNotificationToken;
     AVOutputDeviceDiscoverySession * _avDiscoverySession;
     NSArray * _availableOutputDevices;
-    NSObject<OS_dispatch_queue> * _calloutQueue;
     unsigned int  _discoveryMode;
     unsigned int  _endpointFeatures;
     bool  _isLocalDeviceBeingAirplayedTo;
+    NSObject<OS_dispatch_queue> * _reloadQueue;
     NSString * _routingContextUID;
-    bool  _scheduledAvailableEndpointsAndOutputDevicesReload;
+    bool  _scheduledAvailableOutputDevicesReload;
     NSObject<OS_dispatch_queue> * _serialQueue;
     unsigned int  _targetAudioSessionID;
+    NSArray * _virtualOutputDevices;
 }
 
-@property (nonatomic, readonly) NSArray *availableEndpoints;
-@property (nonatomic, readonly) NSArray *availableOutputDevices;
+@property (nonatomic, retain) NSArray *availableEndpoints;
+@property (nonatomic, retain) NSArray *availableOutputDevices;
+@property (nonatomic, readonly) NSArray *virtualOutputDevices;
+
++ (id)daemonVirtualDevices;
++ (void)setDaemonVirtualDevices:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_availableOutputDevicesDidChangeNotification:(id)arg1;
+- (void)_checkClusterConsistencyWithLeaders:(id)arg1 members:(id)arg2;
+- (void)_onQueue_reload;
 - (void)_onQueue_reloadAvailableOutputDevices;
-- (void)_scheduleAvailableEndpointsAndOutputDevicesReload;
+- (void)_scheduleAvailableOutputDevicesReload;
+- (void)_scheduleReload;
+- (bool)_shouldCreateClusterOutputDevices;
 - (id)availableEndpoints;
 - (id)availableOutputDevices;
 - (void)dealloc;
+- (id)description;
 - (bool)devicePresenceDetected;
 - (unsigned int)discoveryMode;
 - (unsigned int)endpointFeatures;
-- (id)initWithEndpointFeatures:(unsigned int)arg1;
+- (id)initWithConfiguration:(id)arg1;
 - (id)routingContextUID;
+- (void)setAvailableOutputDevices:(id)arg1;
 - (void)setDiscoveryMode:(unsigned int)arg1;
 - (void)setRoutingContextUID:(id)arg1;
 - (void)setTargetAudioSessionID:(unsigned int)arg1;
 - (unsigned int)targetAudioSessionID;
+- (id)virtualOutputDevices;
 
 @end

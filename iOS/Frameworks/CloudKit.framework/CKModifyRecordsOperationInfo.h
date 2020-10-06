@@ -36,6 +36,8 @@
 @property (nonatomic) bool shouldReportRecordsInFlight;
 @property (nonatomic) bool shouldSkipPCSRetryBehavior;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -44,6 +46,7 @@
 - (id)clientChangeTokenData;
 - (id)conflictLosersToResolveByRecordID;
 - (void)encodeWithCoder:(id)arg1;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (bool)markAsParticipantNeedsNewInvitationToken;
 - (bool)originatingFromDaemon;
@@ -71,5 +74,9 @@
 - (bool)shouldOnlySaveAssetContent;
 - (bool)shouldReportRecordsInFlight;
 - (bool)shouldSkipPCSRetryBehavior;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (bool)validateAgainstLiveProxy:(id)arg1 error:(id*)arg2;
 
 @end

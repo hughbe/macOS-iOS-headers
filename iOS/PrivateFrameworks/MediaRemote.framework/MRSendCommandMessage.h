@@ -10,7 +10,7 @@
 @property (nonatomic, readonly) unsigned int appOptions;
 @property (nonatomic, readonly) unsigned int command;
 @property (nonatomic, readonly) NSDictionary *options;
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 @property (nonatomic, readonly) NSDate *serializationDate;
 
 - (void).cxx_destruct;

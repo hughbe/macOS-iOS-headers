@@ -4,7 +4,7 @@
 
 @interface MRSetNowPlayingClientMessage : MRProtocolMessage
 
-@property (nonatomic, readonly) _MRNowPlayingClientProtobuf *client;
+@property (nonatomic, readonly) MRClient *client;
 
 - (id)client;
 - (id)initWithClient:(id)arg1;

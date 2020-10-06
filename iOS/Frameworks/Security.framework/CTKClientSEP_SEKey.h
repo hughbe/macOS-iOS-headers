@@ -3,21 +3,21 @@
  */
 
 @interface CTKClientSEP_SEKey : NSObject {
+    unsigned int  _AKSKeyType;
     struct aks_ref_key_s { } * _AKSRefKey;
     long long  _SEKeyType;
     struct __SecAccessControl { } * _accessControl;
-    struct __SecKey { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; struct __SecKeyDescriptor {} *x2; void *x3; } * _key;
+    unsigned long long  _debugID;
     id  _keyType;
 }
 
-@property (readonly) struct __SecAccessControl { }*accessControl;
-@property (readonly) NSDictionary *attributes;
-@property (readonly) struct __SecKey { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; struct __SecKeyDescriptor {} *x2; void *x3; }*key;
-@property (readonly) id keyType;
-@property (readonly) id objectID;
+@property (nonatomic, readonly) struct __SecAccessControl { }*accessControl;
+@property (nonatomic, readonly) NSDictionary *attributes;
+@property (nonatomic, readonly) id keyType;
+@property (nonatomic, readonly) id objectID;
 
 + (bool)hasSEP;
-+ (bool)hasSystemUIK;
++ (bool)hasSystemKey:(unsigned int)arg1 ACMContext:(id)arg2;
 + (int)keyClassForProtection:(id)arg1;
 + (id)protectionForKeyClass:(int)arg1;
 + (void)setupKeybagForTesting:(bool)arg1;
@@ -29,12 +29,12 @@
 - (id)computeSharedSecret:(id)arg1 ACMContext:(id)arg2 error:(id*)arg3;
 - (void)dealloc;
 - (bool)deleteWithACMContext:(id)arg1 error:(id*)arg2;
-- (id)error:(id*)arg1 withAKSReturn:(int)arg2 ACMContext:(id)arg3 AKSOperation:(id)arg4 message:(id)arg5;
+- (id)description;
+- (bool)error:(id*)arg1 withAKSReturn:(int)arg2 ACMContext:(id)arg3 AKSOperation:(id)arg4 message:(id)arg5;
 - (id)init;
 - (id)initWithAttributes:(id)arg1 ACMContext:(id)arg2 error:(id*)arg3;
 - (id)initWithKeyType:(id)arg1 accessControl:(struct __SecAccessControl { }*)arg2 applePayEnabled:(bool)arg3 ACMContext:(id)arg4 error:(id*)arg5;
-- (id)initWithObjectID:(id)arg1 error:(id*)arg2;
-- (struct __SecKey { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; struct __SecKeyDescriptor {} *x2; void *x3; }*)key;
+- (id)initWithObjectID:(id)arg1 ACMContext:(id)arg2 error:(id*)arg3;
 - (id)keyType;
 - (bool)lifetimeControlWithType:(long long)arg1 ACMContext:(id)arg2 error:(id*)arg3;
 - (id)objectID;

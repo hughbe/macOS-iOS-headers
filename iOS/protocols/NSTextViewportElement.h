@@ -11,5 +11,6 @@
 - (NSTextRange *)representedRange;
 - (NSTextRange *)representedRangeAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setLayoutPoint:(struct CGPoint { double x1; double x2; })arg1;
+- (double)verticalOffsetOfTextLocation:(id <NSTextLocation>)arg1 withAffinity:(long long)arg2;
 
 @end

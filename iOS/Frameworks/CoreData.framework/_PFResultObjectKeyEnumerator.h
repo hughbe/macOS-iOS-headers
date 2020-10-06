@@ -13,7 +13,6 @@
     id  _target;
 }
 
-- (void)_invalidate;
 - (void)dealloc;
 - (id)initWithArray:(const id*)arg1 forTarget:(id)arg2 withReferenceValues:(unsigned long long*)arg3 andRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4;
 - (id)nextObject;

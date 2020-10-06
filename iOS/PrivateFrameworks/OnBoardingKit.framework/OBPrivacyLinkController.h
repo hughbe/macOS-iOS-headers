@@ -28,6 +28,8 @@
 @property (nonatomic) bool presentedViewControllerShouldUseDarkMode;
 @property (nonatomic) bool showsLinkToUnifiedAbout;
 
+// Image: /System/Library/PrivateFrameworks/OnBoardingKit.framework/OnBoardingKit
+
 + (Class)_platformSpecificClass;
 + (id)linkWithBundleIdentifier:(id)arg1;
 + (id)linkWithBundleIdentifiers:(id)arg1;
@@ -57,5 +59,11 @@
 - (void)setShowsLinkToUnifiedAbout:(bool)arg1;
 - (bool)showsLinkToUnifiedAbout;
 - (void)viewDidAppear:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
++ (id)pk_privacyLinkForContext:(unsigned long long)arg1;
+
+- (void)pk_applyAppearance:(id)arg1;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@interface MCEmailAccountPayloadBase : MCPayload {
+@interface MCEmailAccountPayloadBase : MCPayload <MCPerAccountVPNPayloadProtocol> {
     bool  _SMIMEEnabled;
     NSNumber * _SMIMEEnabledNum;
     bool  _SMIMEEncryptByDefaultUserOverrideable;
@@ -17,6 +17,7 @@
     NSString * _SMIMESigningIdentityUUID;
     bool  _SMIMESigningIdentityUserOverrideable;
     bool  _SMIMESigningUserOverrideable;
+    NSString * _VPNUUID;
     bool  _isMailDropEnabled;
     NSNumber * _isMailDropEnabledNum;
     bool  _isRecentsSyncingDisabled;
@@ -41,10 +42,14 @@
 @property (nonatomic, retain) NSString *SMIMESigningIdentityUUID;
 @property (nonatomic) bool SMIMESigningIdentityUserOverrideable;
 @property (nonatomic) bool SMIMESigningUserOverrideable;
+@property (nonatomic, readonly, retain) NSString *VPNUUID;
+@property (nonatomic, readonly, retain) NSArray *calendarAccountIdentifiers;
+@property (nonatomic, readonly, retain) NSArray *contactsAccountIdentifiers;
 @property (nonatomic) bool isMailDropEnabled;
 @property (nonatomic, retain) NSNumber *isMailDropEnabledNum;
 @property (nonatomic) bool isRecentsSyncingDisabled;
 @property (nonatomic, retain) NSNumber *isRecentsSyncingDisabledNum;
+@property (nonatomic, readonly, retain) NSArray *mailAccountIdentifiers;
 @property (nonatomic) bool preventAppSheet;
 @property (nonatomic, retain) NSNumber *preventAppSheetNum;
 @property (nonatomic) bool preventMove;
@@ -65,9 +70,9 @@
 - (id)SMIMESigningIdentityUUID;
 - (bool)SMIMESigningIdentityUserOverrideable;
 - (bool)SMIMESigningUserOverrideable;
+- (id)VPNUUID;
 - (void)addSMIMEEncryptionPayloadKeysTo:(id)arg1;
 - (bool)containsSensitiveUserInformation;
-- (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (bool)isMailDropEnabled;
 - (id)isMailDropEnabledNum;
@@ -101,5 +106,6 @@
 - (void)setSMIMESigningIdentityUserOverrideable:(bool)arg1;
 - (void)setSMIMESigningUserOverrideable:(bool)arg1;
 - (id)stubDictionary;
+- (id)verboseDescription;
 
 @end

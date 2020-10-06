@@ -24,6 +24,7 @@
 @property (nonatomic, readonly) <MTLCommandQueue> *commandQueue;
 @property (nonatomic, readonly) void*context;
 @property (nonatomic, readonly) <MTLRenderCommandEncoder> *currentRenderCommandEncoder;
+@property (nonatomic, readonly) MTLRenderPassDescriptor *currentRenderPassDescriptor;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } currentViewport;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) unsigned long long debugOptions;

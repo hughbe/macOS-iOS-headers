@@ -6,14 +6,23 @@
     double  _fastTypingTime;
     double  _fastTypingVolumeMultiplier;
     NSDictionary * _feedbacks;
+    double  _releaseThreshold;
+    bool  _scalingForSpeedEnabled;
     double  _slowTypingTime;
+    double  _slowTypingVolumeMultiplier;
 }
 
 @property (nonatomic) double fastTypingTime;
 @property (nonatomic) double fastTypingVolumeMultiplier;
 @property (nonatomic, retain) NSDictionary *feedbacks;
+@property (nonatomic) double releaseThreshold;
+@property (nonatomic) bool scalingForSpeedEnabled;
 @property (nonatomic) double slowTypingTime;
+@property (nonatomic) double slowTypingVolumeMultiplier;
 
++ (id)configuration1;
++ (id)configuration2;
++ (id)configuration3;
 + (id)defaultConfiguration;
 
 - (void).cxx_destruct;
@@ -24,11 +33,16 @@
 - (id)feedbackKeyPaths;
 - (id)feedbacks;
 - (bool)isEqual:(id)arg1;
-- (long long)requiredSupportLevel;
+- (double)releaseThreshold;
+- (bool)scalingForSpeedEnabled;
 - (void)setFastTypingTime:(double)arg1;
 - (void)setFastTypingVolumeMultiplier:(double)arg1;
 - (void)setFeedbacks:(id)arg1;
+- (void)setReleaseThreshold:(double)arg1;
+- (void)setScalingForSpeedEnabled:(bool)arg1;
 - (void)setSlowTypingTime:(double)arg1;
+- (void)setSlowTypingVolumeMultiplier:(double)arg1;
 - (double)slowTypingTime;
+- (double)slowTypingVolumeMultiplier;
 
 @end

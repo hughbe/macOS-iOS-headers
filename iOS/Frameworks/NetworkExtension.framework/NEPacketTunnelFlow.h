@@ -14,7 +14,7 @@
     unsigned int * _packetProtocols;
     NSObject<OS_dispatch_queue> * _queue;
     NSFileHandle * _socket;
-    NSMutableDictionary * _uuidMappings;
+    NSDictionary * _uuidMap;
 }
 
 @property unsigned long long buffersSize;
@@ -28,7 +28,7 @@
 @property unsigned int*packetProtocols;
 @property (retain) NSObject<OS_dispatch_queue> *queue;
 @property (retain) NSFileHandle *socket;
-@property (retain) NSMutableDictionary *uuidMappings;
+@property (retain) NSDictionary *uuidMap;
 
 - (void).cxx_destruct;
 - (unsigned long long)buffersSize;
@@ -47,6 +47,7 @@
 - (void)readPacketObjectsWithCompletionHandler:(id /* block */)arg1;
 - (void)readPacketsWithCompletionHandler:(id /* block */)arg1;
 - (void)resetReadHandler;
+- (void)setAppUUIDMap:(id)arg1;
 - (void)setBuffersSize:(unsigned long long)arg1;
 - (void)setHandlerSetup:(bool)arg1;
 - (void)setPacketDataArray:(char **)arg1;
@@ -56,11 +57,10 @@
 - (void)setPacketProtocols:(unsigned int*)arg1;
 - (void)setQueue:(id)arg1;
 - (void)setSocket:(id)arg1;
-- (void)setUuidMappings:(id)arg1;
+- (void)setUuidMap:(id)arg1;
 - (bool)setVirtualInterfaceSocket:(id)arg1;
-- (id)signingIdentifierForUUID:(id)arg1;
 - (id)socket;
-- (id)uuidMappings;
+- (id)uuidMap;
 - (bool)writePacketObjects:(id)arg1;
 - (bool)writePackets:(id)arg1 withProtocols:(id)arg2;
 

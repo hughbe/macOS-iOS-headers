@@ -9,10 +9,7 @@
         unsigned int read_componentType : 1; 
         unsigned int read_values : 1; 
         unsigned int read_version : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_componentType : 1; 
-        unsigned int wrote_values : 1; 
-        unsigned int wrote_version : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -36,10 +33,6 @@
 + (Class)valueType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsValue:(id)arg1;
-- (void)_readComponentType;
-- (void)_readValues;
-- (void)_readVersion;
 - (void)addValue:(id)arg1;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)clearValues;
@@ -53,7 +46,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

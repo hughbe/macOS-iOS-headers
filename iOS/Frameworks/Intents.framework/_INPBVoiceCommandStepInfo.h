@@ -3,7 +3,6 @@
  */
 
 @interface _INPBVoiceCommandStepInfo : PBCodable <NSCopying, NSSecureCoding, _INPBVoiceCommandStepInfo> {
-    bool  __encodeLegacyGloryData;
     NSString * _applicationIdentifier;
     int  _category;
     struct { 
@@ -12,7 +11,6 @@
     NSString * _name;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *applicationIdentifier;
 @property (nonatomic) int category;
 @property (readonly, copy) NSString *debugDescription;
@@ -28,8 +26,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCategory:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)applicationIdentifier;
 - (int)category;
 - (id)categoryAsString:(int)arg1;

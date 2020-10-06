@@ -28,6 +28,7 @@
                 double desiredAccuracy; 
                 int referenceFrame; 
                 bool allowMonitoringWhileNearby; 
+                bool lowPower; 
             } circularAttributes; 
             struct { 
                 struct { 

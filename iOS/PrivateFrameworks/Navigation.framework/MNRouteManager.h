@@ -30,7 +30,6 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) GEODirectionsRequest *directionsRequest;
 @property (nonatomic, readonly) GEODirectionsResponse *directionsResponse;
-@property (nonatomic, readonly) GEOETARoute *etaRoute;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) GEOComposedWaypoint *originalDestination;
 @property (nonatomic, readonly) GEOComposedRoute *originalRoute;
@@ -42,7 +41,6 @@
 
 - (void).cxx_destruct;
 - (void)_clearPreloader;
-- (void)_createContingencyRoutesForResponse:(id)arg1;
 - (void)_updatePreloaderForRoute:(id)arg1;
 - (id)allRoutes;
 - (id)alternateRoutes;
@@ -54,7 +52,6 @@
 - (void)dealloc;
 - (id)directionsRequest;
 - (id)directionsResponse;
-- (id)etaRoute;
 - (id)init;
 - (id)initWithAuditToken:(id)arg1;
 - (void)locationManager:(id)arg1 didUpdateVehicleHeading:(double)arg2 timestamp:(id)arg3;

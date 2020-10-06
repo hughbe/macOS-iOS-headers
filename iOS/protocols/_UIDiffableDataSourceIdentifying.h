@@ -5,6 +5,7 @@
 
 @required
 
+- (id)_diffableDataSourceImpl;
 - (bool)_isDiffableDataSource;
 
 @end

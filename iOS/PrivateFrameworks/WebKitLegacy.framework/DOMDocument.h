@@ -35,6 +35,8 @@
 @property bool xmlStandalone;
 @property (copy) NSString *xmlVersion;
 
+// Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
+
 - (id)URL;
 - (id)URLWithAttributeString:(id)arg1;
 - (id)_documentRange;
@@ -149,5 +151,9 @@
 - (id)xmlEncoding;
 - (bool)xmlStandalone;
 - (id)xmlVersion;
+
+// Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
+
+- (void)dd_resetResults;
 
 @end

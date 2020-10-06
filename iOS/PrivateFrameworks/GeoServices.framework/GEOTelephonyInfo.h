@@ -24,14 +24,12 @@
 
 - (void).cxx_destruct;
 - (void)_updateMapsAuthed;
-- (id)cellularCarrier;
 - (id)cellularCarrierIfAvailable;
 - (int)cellularDataStateIfAvailable;
 - (void)dataSettingsChanged:(id)arg1;
 - (id)init;
-- (bool)isDeviceAuthorizedForCellular;
 - (id)isDeviceAuthorizedForCellularIfAvailable;
-- (bool)isMapsAuthorizedForCellular;
+- (void)isMapsAuthorizedForCellular:(id)arg1 result:(id /* block */)arg2;
 - (id)isMapsAuthorizedForCellularIfAvailable;
 - (void)operatorNameChanged:(id)arg1 name:(id)arg2;
 - (void)setupClient;

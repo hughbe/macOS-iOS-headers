@@ -28,6 +28,7 @@
 - (void)_create_dualSingleLineNameAndTypeView;
 - (void)_create_dualSingleLineNameView;
 - (id)_fontForEntry:(id)arg1 styleAttributes:(id)arg2 baselineOffset:(double*)arg3;
+- (struct _NSRange { unsigned long long x1; unsigned long long x2; })_nonCondensedFontRangeForEntry:(id)arg1;
 - (bool)_showCallFowardingForEntry:(id)arg1;
 - (id)_singleCellularEntryMatching:(id /* block */)arg1;
 - (id)_stringForCellularType:(long long)arg1;

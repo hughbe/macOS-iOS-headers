@@ -33,6 +33,7 @@
 - (bool)_buildIsOverridden;
 - (id)_getArrayOptionForKey:(id)arg1 defaultValue:(id)arg2;
 - (bool)_getBoolOptionForKey:(id)arg1 defaultValue:(bool)arg2;
+- (id)_getDataOptionForKey:(id)arg1 defaultValue:(id)arg2;
 - (double)_getDoubleOptionForKey:(id)arg1 defaultValue:(double)arg2;
 - (int)_getIntOptionForKey:(id)arg1 defaultValue:(int)arg2;
 - (id)_getStringOptionForKey:(id)arg1 defaultValue:(id)arg2;
@@ -55,7 +56,8 @@
 - (int)clientThrottleQueueWidth;
 - (bool)compressRequests;
 - (id)configBaseURL;
-- (id)containerIDToForceFatalManateeZoneDecryptionFailure;
+- (id)containerIdentifierPrefixesUsingDebugBinaries;
+- (id)containerIdentifierToForceFatalManateeZoneDecryptionFailure;
 - (id)customCloudDBBaseURL;
 - (id)customCodeServiceBaseURL;
 - (id)customDeviceServiceBaseURL;
@@ -77,7 +79,6 @@
 - (bool)ignoreUploadRequestPushNotifications;
 - (bool)isAppleInternalInstall;
 - (bool)logTraffic;
-- (bool)logTrafficToTextFile;
 - (int)longlivedOperationMaxRetryCount;
 - (int)longlivedOperationThrottlingRetryCount;
 - (unsigned long long)maxBatchSize;
@@ -93,12 +94,9 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (double)operationTimeout;
 - (bool)optimisticPCS;
-- (id)otherAccountsWithDefaultValue:(id)arg1;
 - (double)packageGCGracePeriod;
 - (double)packageGCPeriod;
 - (bool)pipelineFetchAllChangesRequests;
-- (id)primaryAccountEmailOverride;
-- (id)primaryAccountPasswordOverride;
 - (id)productName;
 - (id)productVersion;
 - (double)publicIdentitiesExpirationTimeout;
@@ -123,7 +121,7 @@
 - (void)setCkToken:(int)arg1;
 - (void)setCompressRequests:(bool)arg1;
 - (void)setConfigBaseURL:(id)arg1;
-- (void)setContainerIDToForceFatalManateeZoneDecryptionFailure:(id)arg1;
+- (void)setContainerIdentifierToForceFatalManateeZoneDecryptionFailure:(id)arg1;
 - (void)setCustomCloudDBBaseURL:(id)arg1;
 - (void)setCustomCodeServiceBaseURL:(id)arg1;
 - (void)setCustomDeviceServiceBaseURL:(id)arg1;
@@ -135,13 +133,10 @@
 - (void)setForceUploadRequestActivitiesToRunImmediately:(bool)arg1;
 - (void)setIgnoreUploadRequestPushNotifications:(bool)arg1;
 - (void)setLogTraffic:(bool)arg1;
-- (void)setLogTrafficToTextFile:(bool)arg1;
 - (void)setMcToken:(int)arg1;
 - (void)setModTimeInAssetCacheEviction:(bool)arg1;
 - (void)setOperationTimeout:(double)arg1;
 - (void)setOptimisticPCS:(bool)arg1;
-- (void)setPrimaryAccountEmailOverride:(id)arg1;
-- (void)setPrimaryAccountPasswordOverride:(id)arg1;
 - (void)setProductName:(id)arg1;
 - (void)setProductVersion:(id)arg1;
 - (void)setRollRecordMasterKeysOnUnshare:(bool)arg1;
@@ -155,6 +150,9 @@
 - (void)setSqlBatchTime:(double)arg1;
 - (void)setTestRunIDHeader:(id)arg1;
 - (void)setTrafficLogMaximumDataSize:(int)arg1;
+- (void)setTranscoderFunctionName:(id)arg1;
+- (void)setTranscoderPermittedRemoteMeasurement:(id)arg1;
+- (void)setTranscoderServiceName:(id)arg1;
 - (void)setUseEncryption:(bool)arg1;
 - (void)setUseEnhancedPCSEncryptionContext:(bool)arg1;
 - (void)setUsePreauth:(bool)arg1;
@@ -169,6 +167,9 @@
 - (id)testRunIDHeader;
 - (int)trafficLogMaximumDataSize;
 - (int)trafficLogQueueWidth;
+- (id)transcoderFunctionName;
+- (id)transcoderPermittedRemoteMeasurement;
+- (id)transcoderServiceName;
 - (bool)useEncryption;
 - (bool)useEnhancedPCSEncryptionContext;
 - (bool)useModTimeInAssetCacheEviction;

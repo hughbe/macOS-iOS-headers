@@ -4,6 +4,9 @@
 
 @interface NSParagraphArbitrator : NSObject {
     NSAttributedString * _attributedString;
+    struct UBreakIterator { } * _breaker;
+    NSString * _breakerLocale;
+    NSString * _breakerString;
     double  _hyphenationFactor;
     unsigned long long  _lineBreakStrategy;
     id /* block */  _lineWidth;
@@ -11,10 +14,12 @@
         unsigned long long location; 
         unsigned long long length; 
     }  _paragraphRange;
+    NSString * _preferredLanguage;
     struct _NSRange { 
         unsigned long long location; 
         unsigned long long length; 
     }  _previousLineRange;
+    struct __CFStringTokenizer { } * _tokenizer;
     long long  _typesetterBehavior;
     id /* block */  _validateLineBreakContext;
 }
@@ -24,7 +29,9 @@
 @property unsigned long long lineBreakStrategy;
 @property (copy) id /* block */ lineWidth;
 @property struct _NSRange { unsigned long long x1; unsigned long long x2; } paragraphRange;
+@property (copy) NSString *preferredLanguage;
 @property struct _NSRange { unsigned long long x1; unsigned long long x2; } previousLineRange;
+@property (readonly) struct __CFStringTokenizer { }*tokenizer;
 @property long long typesetterBehavior;
 @property (copy) id /* block */ validateLineBreakContext;
 
@@ -40,16 +47,22 @@
 - (unsigned long long)lineBreakStrategy;
 - (id /* block */)lineWidth;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })paragraphRange;
+- (id)preferredLanguage;
+- (bool)prepareBreakIteratorForAttributedString:(id)arg1 characterIndex:(unsigned long long)arg2;
+- (bool)prepareTokenizerForPreferredLanguage:(id)arg1;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })previousLineRange;
 - (void)reset;
+- (void)resetBreaker;
 - (void)setAttributedString:(id)arg1;
 - (void)setHyphenationFactor:(double)arg1;
 - (void)setLineBreakStrategy:(unsigned long long)arg1;
 - (void)setLineWidth:(id /* block */)arg1;
 - (void)setParagraphRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)setPreferredLanguage:(id)arg1;
 - (void)setPreviousLineRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)setTypesetterBehavior:(long long)arg1;
 - (void)setValidateLineBreakContext:(id /* block */)arg1;
+- (struct __CFStringTokenizer { }*)tokenizer;
 - (long long)typesetterBehavior;
 - (id /* block */)validateLineBreakContext;
 

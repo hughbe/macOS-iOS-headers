@@ -9,6 +9,8 @@
 @property (setter=_setBackingStore:, nonatomic, retain) INCodable *_backingStore;
 @property (nonatomic, readonly) INCodableDescription *codableDescription;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -24,5 +26,9 @@
 - (bool)isEqual:(id)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)valueForUndefinedKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionClient.framework/AppPredictionClient
+
+- (bool)atx_isFuzzyMatch:(id)arg1;
 
 @end

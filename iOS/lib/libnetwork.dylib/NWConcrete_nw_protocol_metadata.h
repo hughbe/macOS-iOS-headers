@@ -3,6 +3,7 @@
  */
 
 @interface NWConcrete_nw_protocol_metadata : NSObject <OS_nw_protocol_metadata> {
+    BOOL * data;
     NWConcrete_nw_protocol_definition * definition;
     void * handle;
     unsigned char  identifier;
@@ -15,6 +16,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithDefinition:(id)arg1 identifier:(unsigned char)arg2;
 
 @end

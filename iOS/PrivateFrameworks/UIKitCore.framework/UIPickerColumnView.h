@@ -59,8 +59,6 @@
 @property (nonatomic, readonly) long long selectionBarRow;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_allVisibleCells;
 - (void)_centerTableInContainer:(id)arg1;
@@ -86,9 +84,6 @@
 - (id)_viewToAddFocusLayer;
 - (id)_visibleCellClosestToPoint:(struct CGPoint { double x1; double x2; })arg1 inView:(id)arg2;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_visibleGlobalRows;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })accessibilityFrame;
 - (id)accessibilityPath;
 - (void)beginUpdates;

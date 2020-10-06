@@ -2,8 +2,11 @@
    Image: /System/Library/Frameworks/CoreHaptics.framework/CoreHaptics
  */
 
-@interface HapticCommandConverter : NSObject
+@interface HapticCommandConverter : NSObject {
+    HapticServerConfig * _serverConfig;
+}
 
+- (void).cxx_destruct;
 - (id)CHtoAVParameterCurve:(id)arg1;
 - (id)eventForAudioEventType:(unsigned long long)arg1 time:(double)arg2 eventParams:(id)arg3 duration:(double)arg4;
 - (id)eventForContinuousHapticEventType:(int)arg1 time:(double)arg2 params:(id)arg3 duration:(double)arg4;
@@ -14,6 +17,7 @@
 - (id)eventForSPIEventType:(unsigned long long)arg1 time:(double)arg2 eventParams:(id)arg3 duration:(double)arg4;
 - (id)eventForTransientHapticEventType:(unsigned long long)arg1 time:(double)arg2 params:(id)arg3 duration:(double)arg4;
 - (unsigned long long)eventTypeFromSharpness:(float)arg1 eventType:(int)arg2;
+- (id)initWithServerConfig:(id)arg1;
 - (unsigned long long)nonSustainedEventTypeFromSharpness:(float)arg1;
 - (unsigned long long)sustainedEventTypeFromSharpness:(float)arg1;
 

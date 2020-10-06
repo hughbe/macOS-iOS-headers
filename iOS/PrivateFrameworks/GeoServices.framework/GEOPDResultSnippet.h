@@ -17,15 +17,7 @@
         unsigned int read_name : 1; 
         unsigned int read_priceDescription : 1; 
         unsigned int read_priceRange : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_category : 1; 
-        unsigned int wrote_childItems : 1; 
-        unsigned int wrote_childPlaces : 1; 
-        unsigned int wrote_locationString : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_priceDescription : 1; 
-        unsigned int wrote_priceRange : 1; 
-        unsigned int wrote_distanceDisplayThreshold : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _locationString;
     NSString * _name;
@@ -62,15 +54,6 @@
 + (id)resultSnippetForPlaceData:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsChildItem:(id)arg1;
-- (void)_addNoFlagsChildPlace:(id)arg1;
-- (void)_readCategory;
-- (void)_readChildItems;
-- (void)_readChildPlaces;
-- (void)_readLocationString;
-- (void)_readName;
-- (void)_readPriceDescription;
-- (void)_readPriceRange;
 - (void)addChildItem:(id)arg1;
 - (void)addChildPlace:(id)arg1;
 - (id)category;
@@ -97,7 +80,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)locationString;
 - (void)mergeFrom:(id)arg1;
 - (id)name;

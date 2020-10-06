@@ -17,15 +17,18 @@
 - (bool)_handleMapItems:(id)arg1 withOptions:(id)arg2 url:(id)arg3 sourceApplication:(id)arg4 context:(id)arg5;
 - (bool)_handleMapsURL:(id)arg1 sourceApplication:(id)arg2 context:(id)arg3;
 - (bool)_handleSharedMapURL:(id)arg1 sourceApplication:(id)arg2 context:(id)arg3;
+- (bool)_treatAllCuratedCollectionsFrom:(id)arg1;
 - (bool)_treatCarDestinationsFrom:(id)arg1;
 - (bool)_treatCollectionFrom:(id)arg1;
 - (bool)_treatContentProvider:(id)arg1;
+- (bool)_treatCuratedCollectionFrom:(id)arg1;
 - (bool)_treatFavoritesFrom:(id)arg1;
 - (void)_treatGenericOptionsFrom:(id)arg1;
 - (void)_treatMapTypeFrom:(id)arg1;
 - (bool)_treatMuninViewStateFrom:(id)arg1;
 - (bool)_treatNavigationDirectionsFrom:(id)arg1;
 - (bool)_treatPinPositionFrom:(id)arg1;
+- (bool)_treatPublisherFrom:(id)arg1;
 - (bool)_treatRegionFrom:(id)arg1;
 - (bool)_treatSearchFrom:(id)arg1;
 - (bool)_treatSearchRegionFrom:(id)arg1;

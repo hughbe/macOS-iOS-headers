@@ -24,6 +24,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithType:(int)arg1 data:(id)arg2;
+- (bool)isEqual:(id)arg1;
 - (void)setData:(id)arg1;
 - (void)setType:(int)arg1;
 - (int)type;

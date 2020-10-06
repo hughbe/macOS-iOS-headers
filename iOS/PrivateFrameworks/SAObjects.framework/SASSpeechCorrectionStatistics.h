@@ -17,6 +17,8 @@
 @property (nonatomic, copy) NSString *sessionId;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)speechCorrectionStatistics;
 + (id)speechCorrectionStatisticsWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -35,5 +37,11 @@
 - (void)setCorrectionText:(id)arg1;
 - (void)setInteractionId:(id)arg1;
 - (void)setSessionId:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (id)siriCore_requestId;
+- (void)siriCore_setSessionRequestId:(id)arg1;
+- (bool)siriCore_supportedByLocalSession;
 
 @end

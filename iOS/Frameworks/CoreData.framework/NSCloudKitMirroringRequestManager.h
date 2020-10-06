@@ -32,7 +32,6 @@
 - (void)dealloc;
 - (id)dequeueAllPendingRequests;
 - (id)dequeueNextRequest;
-- (id)duplicateRequestErrorForRequest:(id)arg1;
 - (bool)enqueueRequest:(id)arg1 error:(id*)arg2;
 - (id)pendingDelegateResetRequest;
 - (id)pendingExportProgressRequest;

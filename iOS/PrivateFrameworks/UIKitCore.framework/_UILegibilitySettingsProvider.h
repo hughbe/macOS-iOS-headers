@@ -32,6 +32,8 @@
 @property (nonatomic) double mostRecentSaturation;
 @property (nonatomic) double nextChangeBarrier;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (long long)styleForContentColor:(id)arg1;
 + (long long)styleForContentColor:(id)arg1 contrast:(double)arg2;
 
@@ -66,5 +68,9 @@
 - (void)setMostRecentSaturation:(double)arg1;
 - (void)setNextChangeBarrier:(double)arg1;
 - (id)settings;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (void)cam_primeForUseWithCameraOverlays;
 
 @end

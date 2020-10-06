@@ -35,7 +35,7 @@
 - (id)_defaultSortOrderForOtherActivity:(id)arg1;
 - (id)_defaultSortOrderForShortcutActivity:(id)arg1;
 - (void)_enumerateAvailableActivitiesForMatchingContext:(id)arg1 intoMatchingResults:(id)arg2 matchingResultsUpdateBlock:(id /* block */)arg3 enumerateActivityBlock:(id /* block */)arg4;
-- (id)activitiesByOrderingActivities:(id)arg1 applyDefaultOrdering:(bool)arg2 applyBeforeTypePinning:(bool)arg3 activityTypeOrdering:(id)arg4;
+- (id)activitiesByOrderingActivities:(id)arg1 applyDefaultOrdering:(bool)arg2 applyBeforeTypePinning:(bool)arg3 activityTypeOrdering:(id)arg4 bypassDuet:(bool)arg5;
 - (id)applicationExtensionDiscovery;
 - (id)cachedBuiltinActivities;
 - (id)delegate;
@@ -45,6 +45,8 @@
 - (void)preheatAvailableActivitiesForMatchingContext:(id)arg1;
 - (void)primeWithDiscoveryContext:(id)arg1;
 - (bool)primed;
+- (void)registerPendingContinuousExtensionsDiscovery;
+- (id)reportExtensionsCacheResult;
 - (id)sessionID;
 - (void)setApplicationExtensionDiscovery:(id)arg1;
 - (void)setFetchShortcutsBlock:(id /* block */)arg1;

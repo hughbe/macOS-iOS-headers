@@ -5,7 +5,7 @@
 
 @required
 
-- (long long)averageBitRateForSourceDimensions:(struct CGSize { double x1; double x2; })arg1 andTargetFrameRate:(float)arg2;
+- (long long)averageBitRateForSourceFormatDescription:(struct opaqueCMFormatDescription { }*)arg1 andTargetFrameRate:(float)arg2 andEncoderSpecification:(NSDictionary *)arg3;
 - (NSDictionary *)colorSpaceFromSourceFormatDescriptions:(NSArray *)arg1 andRendererColorSpace:(NSDictionary *)arg2;
 
 @end

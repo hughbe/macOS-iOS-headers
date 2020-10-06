@@ -141,6 +141,8 @@
 - (void)setQueue:(id)arg1;
 - (void)setSendFailedTimer:(id)arg1;
 - (void)sleepWithCompletionHandler:(id /* block */)arg1;
+- (void)startControlExtensionWithConfiguration:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)startDataExtensionWithConfiguration:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)startFilter;
 - (void)startFilterExtension;
 - (void)startWithConfiguration:(id)arg1 completionHandler:(id /* block */)arg2;

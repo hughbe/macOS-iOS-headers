@@ -11,7 +11,7 @@
 - (void)dealloc;
 - (id)deletedRecordZoneID;
 - (id)description;
-- (void)doWorkWithCompletion:(id /* block */)arg1;
+- (void)doWorkForStore:(id)arg1 inMonitor:(id)arg2 completion:(id /* block */)arg3;
 - (id)initWithDeletedRecordZoneID:(id)arg1 options:(id)arg2 request:(id)arg3;
 
 @end

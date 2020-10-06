@@ -7,7 +7,7 @@
     int  _downloadState;
     bool  _enabled;
     double  _endRoutePosition;
-    NSTimer * _geodCrashTimer;
+    NSObject<OS_dispatch_source> * _geodCrashTimer;
     unsigned long long  _indexOfLastStepWithPreparedBatch;
     GEORoutePreloader * _preloader;
     double  _radialDistanceToImplicateTilesMeters;
@@ -31,7 +31,7 @@
 
 - (void).cxx_destruct;
 - (void)_cancelAllBatches;
-- (void)_geodCrashed:(id)arg1;
+- (void)_geodCrashed;
 - (void)_ignoreAlreadyRequestedTilesAndUpdateGlobalListWithNonDuplicatesForTileKeyList:(id)arg1;
 - (void)_loadPlacecardsForBatch:(id)arg1;
 - (void)_loadTilesForBatch:(id)arg1;

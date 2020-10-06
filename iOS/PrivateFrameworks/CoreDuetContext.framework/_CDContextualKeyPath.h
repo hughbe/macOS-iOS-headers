@@ -7,12 +7,14 @@
     bool  _isEphemeral;
     bool  _isUserCentric;
     NSString * _key;
+    bool  _sensitiveContents;
 }
 
 @property (nonatomic, retain) NSString *deviceID;
 @property (nonatomic) bool isEphemeral;
 @property (nonatomic) bool isUserCentric;
 @property (nonatomic, copy) NSString *key;
+@property (nonatomic) bool sensitiveContents;
 
 + (id)ephemeralKeyPathWithKey:(id)arg1;
 + (id)keyPathWithKey:(id)arg1;
@@ -37,9 +39,11 @@
 - (bool)isMultiDeviceKeyPath;
 - (bool)isUserCentric;
 - (id)key;
+- (bool)sensitiveContents;
 - (void)setDeviceID:(id)arg1;
 - (void)setIsEphemeral:(bool)arg1;
 - (void)setIsUserCentric:(bool)arg1;
 - (void)setKey:(id)arg1;
+- (void)setSensitiveContents:(bool)arg1;
 
 @end

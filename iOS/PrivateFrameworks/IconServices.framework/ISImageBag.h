@@ -20,6 +20,7 @@
 + (id)imageBagWithResourcesNamed:(id)arg1 directory:(id)arg2;
 + (id)imageBagWithResourcesNamed:(id)arg1 fromBundle:(id)arg2;
 + (id)imageBagWithResourcesNamed:(id)arg1 fromBundle:(id)arg2 subdirectory:(id)arg3;
++ (id)imageBagWithResourcesNames:(id)arg1 fromBundle:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)debugDescription;

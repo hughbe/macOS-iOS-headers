@@ -10,7 +10,6 @@
 @property (nonatomic, readonly) unsigned long long count;
 
 - (void).cxx_destruct;
-- (id)_initWithHashTable:(id)arg1 hasZeroValue:(bool)arg2;
 - (bool)containsValue:(long long)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;

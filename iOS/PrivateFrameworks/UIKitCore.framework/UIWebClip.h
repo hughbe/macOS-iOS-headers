@@ -3,10 +3,15 @@
  */
 
 @interface UIWebClip : NSObject {
+    bool  _configurationIsManaged;
+    unsigned long long  _contentMode;
     NSMutableData * _customIconData;
     NSMutableData * _customStartupImageData;
     NSMutableData * _customStartupLandscapeImageData;
     NSURLConnection * _iconConnection;
+    bool  _ignoreManifestScope;
+    bool  _isAppClip;
+    bool  _scenelessBackgroundLaunch;
     NSURLConnection * _startupImageConnection;
     NSURLConnection * _startupLandscapeImageConnection;
     unsigned long long  _webClipStatusBarStyle;
@@ -34,10 +39,15 @@
     NSString * title;
 }
 
+@property (setter=_sf_setApplicationManifest:, nonatomic, retain) _WKApplicationManifest *_sf_applicationManifest;
+@property (nonatomic, readonly) NSURL *_sf_applicationManifestPath;
+@property (nonatomic, readonly) NSUserActivity *appClipUserActivity;
 @property (nonatomic, copy) NSString *applicationBundleIdentifier;
 @property (nonatomic, readonly) NSURL *applicationLaunchURL;
 @property (nonatomic, readonly) unsigned long long bundleVersion;
 @property bool classicMode;
+@property bool configurationIsManaged;
+@property unsigned long long contentMode;
 @property (nonatomic) <WebClipDelegate> *delegate;
 @property bool fullScreen;
 @property (nonatomic, readonly, retain) UIImage *iconImage;
@@ -47,9 +57,13 @@
 @property (readonly) bool iconIsScreenShotBased;
 @property (retain) NSArray *icons;
 @property (copy) NSString *identifier;
+@property bool ignoreManifestScope;
 @property (nonatomic, retain) UIImage *initialLaunchImage;
+@property bool isAppClip;
 @property (nonatomic, retain) NSURL *pageURL;
 @property bool removalDisallowed;
+@property (nonatomic, readonly) NSString *sb_iconImageFileProtectionType;
+@property bool scenelessBackgroundLaunch;
 @property (nonatomic, retain) UIImage *startupImage;
 @property (retain) NSURL *startupImageURL;
 @property (nonatomic, retain) UIImage *startupLandscapeImage;
@@ -59,12 +73,17 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic) unsigned long long webClipStatusBarStyle;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)_contentForMetaName:(id)arg1 inWebDocumentView:(id)arg2;
++ (id)_normalizedWebClipIdentifierFromBundleIdentifier:(id)arg1;
 + (bool)_webClipFullScreenValueForMetaTagContent:(id)arg1;
 + (id)_webClipLinkTagsFromWebDocumentView:(id)arg1;
 + (unsigned long long)_webClipOrientationsForMetaTagContent:(id)arg1;
 + (long long)_webClipStatusBarStyleForMetaTagContent:(id)arg1;
++ (id)appClips;
 + (bool)bundleIdentifierContainsWebClipIdentifier:(id)arg1;
++ (id)clipsIncludingWebClips:(bool)arg1 includingAppClips:(bool)arg2;
 + (id)pathForWebClipCacheWithIdentifier:(id)arg1;
 + (id)pathForWebClipStorageWithIdentifier:(id)arg1;
 + (id)pathForWebClipWithIdentifier:(id)arg1;
@@ -87,21 +106,25 @@
 - (id)_bundleResourceWithName:(id)arg1;
 - (id)_info;
 - (id)_initWithIdentifier:(id)arg1;
+- (id)_launchURLWithScheme:(id)arg1;
 - (void)_readPropertiesFromBundle:(id)arg1;
 - (void)_reloadProperties;
 - (void)_setIconImage:(id)arg1 isPrecomposed:(bool)arg2 isScreenShotBased:(bool)arg3;
 - (bool)_writeImage:(id)arg1 toDiskWithFileName:(id)arg2;
+- (id)appClipUserActivity;
 - (id)applicationBundleIdentifier;
 - (id)applicationLaunchURL;
 - (id)bundleIdentifier;
 - (unsigned long long)bundleVersion;
 - (void)cancelMediaUpdate;
 - (bool)classicMode;
+- (bool)configurationIsManaged;
 - (void)configureWithMetaTags:(id)arg1 linkTags:(id)arg2;
 - (void)connection:(id)arg1 didFailWithError:(id)arg2;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
 - (void)connectionDidFinishLoading:(id)arg1;
+- (unsigned long long)contentMode;
 - (bool)createOnDisk;
 - (void)dealloc;
 - (id)delegate;
@@ -115,7 +138,9 @@
 - (bool)iconIsScreenShotBased;
 - (id)icons;
 - (id)identifier;
+- (bool)ignoreManifestScope;
 - (id)initialLaunchImage;
+- (bool)isAppClip;
 - (id)pageURL;
 - (bool)removalDisallowed;
 - (bool)removeFromDisk;
@@ -123,17 +148,24 @@
 - (void)requestCustomLandscapeStartupImageUpdate;
 - (void)requestCustomPortraitStartupImageUpdate;
 - (void)requestIconUpdateInSpringBoard;
+- (bool)scenelessBackgroundLaunch;
 - (void)setApplicationBundleIdentifier:(id)arg1;
 - (void)setClassicMode:(bool)arg1;
+- (void)setConfigurationIsManaged:(bool)arg1;
+- (void)setContentMode:(unsigned long long)arg1;
+- (void)setContentModeWithString:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFullScreen:(bool)arg1;
 - (void)setIconImage:(id)arg1 isPrecomposed:(bool)arg2;
 - (void)setIconImageFromScreenshot:(id)arg1;
 - (void)setIcons:(id)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setIgnoreManifestScope:(bool)arg1;
 - (void)setInitialLaunchImage:(id)arg1;
+- (void)setIsAppClip:(bool)arg1;
 - (void)setPageURL:(id)arg1;
 - (void)setRemovalDisallowed:(bool)arg1;
+- (void)setScenelessBackgroundLaunch:(bool)arg1;
 - (void)setStartupImage:(id)arg1;
 - (void)setStartupImageURL:(id)arg1;
 - (void)setStartupLandscapeImage:(id)arg1;
@@ -157,5 +189,16 @@
 - (void)updateCustomMediaLocationsWithWebClipLinkTags:(id)arg1 baseURL:(id)arg2;
 - (bool)updateOnDisk;
 - (unsigned long long)webClipStatusBarStyle;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (id)_sf_applicationManifest;
+- (id)_sf_applicationManifestPath;
+- (void)_sf_setApplicationManifest:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (id)sb_iconImageFileProtectionType;
+- (bool)sb_markIconImageFileProtectionTypeAsNone;
 
 @end

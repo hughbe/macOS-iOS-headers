@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSUserActivity : NSObject <INCacheableObject, INJSONSerializable, UIItemProviderReading, UIItemProviderWriting> {
+@interface NSUserActivity : NSObject <CMSCoding, CRContent, INCacheableObject, INJSONSerializable, REUserActivityProperties, UIItemProviderReading, UIItemProviderWriting> {
     id  _delegate;
     id  _frameworkDelegate;
     id  _internal;
@@ -22,15 +22,33 @@
 @property (readonly, retain) UAUserActivity *_internalUserActivity;
 @property (setter=_setKeywords:, copy) NSSet *_keywords;
 @property (readonly, copy) NSDate *_lastActivityDate;
+@property (readonly, copy) NSDate *_madeCurrentDate;
+@property (readonly, copy) NSDate *_madeCurrentEndDate;
+@property (readonly) double _madeCurrentInterval;
+@property (readonly, copy) NSDate *_madeInitiallyCurrentDate;
 @property (setter=_setMinimalRequiredUserInfoKeys:, copy) NSSet *_minimalRequiredUserInfoKeys;
 @property (setter=_setOptions:, copy) NSDictionary *_options;
+@property (readonly, copy) NSUUID *_originalUniqueIdentifier;
+@property (readonly, copy) NSDate *_sentToIndexerDate;
+@property (nonatomic, readonly) NSNumber *_sf_windowCreationMode;
+@property (nonatomic, readonly) _SFNavigationIntent *_sf_windowCreationNavigationIntent;
+@property (nonatomic, readonly) NSUUID *_sf_windowCreationRecentlyClosedTabUUID;
+@property (nonatomic, readonly) NSUUID *_sf_windowCreationSourceBrowserControllerUUID;
+@property (nonatomic, readonly) NSUUID *_sf_windowCreationTabUUID;
 @property (setter=_setSubtitle:, copy) NSString *_subtitle;
 @property (readonly) long long _suggestedActionType;
 @property (readonly, copy) NSString *_teamIdentifier;
 @property (readonly, retain) NSUUID *_uniqueIdentifier;
+@property (getter=_isUniversalLink) bool _universalLink;
+@property (readonly) unsigned long long _userInfoChangeCount;
+@property (nonatomic, readonly) NSString *activityType;
 @property (readonly, copy) NSString *activityType;
 @property (nonatomic, readonly, copy) NSString *cacheIdentifier;
+@property (nonatomic, retain) NSString *containerIdentifier;
+@property (nonatomic, retain) NSString *containerTitle;
+@property (copy) CSSearchableItemAttributeSet *contentAttributeSet;
 @property (nonatomic, readonly) NSArray *contextIdentifierPath;
+@property (nonatomic) double currentTime;
 @property (readonly, copy) NSString *debugDescription;
 @property <NSUserActivityDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -40,21 +58,28 @@
 @property (getter=isEligibleForPublicIndexing) bool eligibleForPublicIndexing;
 @property (getter=isEligibleForSearch) bool eligibleForSearch;
 @property (copy) NSDate *expirationDate;
+@property (nonatomic, copy) NSString *externalMediaContentIdentifier;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) INInteraction *interaction;
 @property (nonatomic, readonly) bool isClassKitDeepLink;
+@property (nonatomic, retain) NSString *itemIdentifier;
+@property (nonatomic, retain) NSString *itemTitle;
 @property (copy) NSSet *keywords;
 @property (nonatomic, retain) MKMapItem *mapItem;
+@property (nonatomic, readonly) NFCNDEFMessage *ndefMessagePayload;
 @property bool needsSave;
 @property (copy) NSString *persistentIdentifier;
 @property (copy) NSURL *referrerURL;
 @property (copy) NSSet *requiredUserInfoKeys;
+@property (nonatomic) unsigned long long shortcutAvailability;
 @property (nonatomic, copy) NSString *suggestedInvocationPhrase;
 @property (readonly) Class superclass;
 @property bool supportsContinuationStreams;
 @property (nonatomic, copy) NSString *targetContentIdentifier;
 @property (copy) NSString *targetContentIdentifier;
+@property (nonatomic, readonly) NSString *title;
 @property (copy) NSString *title;
+@property (setter=ts_setIsEligibleForPrediction:, nonatomic) bool ts_isEligibleForPrediction;
 @property (copy) NSDictionary *userInfo;
 @property (copy) NSURL *webpageURL;
 @property (nonatomic, readonly, copy) NSArray *writableTypeIdentifiersForItemProvider;
@@ -186,6 +211,11 @@
 - (id)webpageURL;
 - (void)willSynchronizeActivity;
 
+// Image: /System/Library/Frameworks/AppClip.framework/AppClip
+
+- (id)appClipActivationPayload;
+- (void)setAppClipActivationPayload:(id)arg1;
+
 // Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
 
 - (id)contextIdentifierPath;
@@ -195,6 +225,16 @@
 
 - (id)detectedBarcodeDescriptor;
 - (void)setDetectedCode:(id)arg1;
+
+// Image: /System/Library/Frameworks/CoreNFC.framework/CoreNFC
+
+- (id)ndefMessagePayload;
+- (void)setNdefMessagePayload:(id)arg1;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)_hk_userActivityForAtrialFibrillationEventType;
++ (id)_hk_userActivityForElectrocardiogramType;
 
 // Image: /System/Library/Frameworks/Intents.framework/Intents
 
@@ -209,6 +249,7 @@
 - (bool)_hasInteraction;
 - (id)_initWithIntent:(id)arg1;
 - (id)_intentsIdentifier;
+- (void)_intentsPrepareForEncoding;
 - (id)_intents_copy;
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 - (bool)_isEligibleForPrediction;
@@ -222,7 +263,9 @@
 - (id)interaction;
 - (void)setInInteraction:(id)arg1;
 - (void)setInteraction:(id)arg1;
+- (void)setShortcutAvailability:(unsigned long long)arg1;
 - (void)setSuggestedInvocationPhrase:(id)arg1;
+- (unsigned long long)shortcutAvailability;
 - (id)suggestedInvocationPhrase;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
@@ -232,6 +275,39 @@
 - (id)mapItem;
 - (void)setMapItem:(id)arg1;
 
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+
+- (id)_externalMediaContentBundleIdentifier;
+- (void)_setExternalMediaContentBundleIdentifier:(id)arg1;
+- (id)externalMediaContentIdentifier;
+- (void)setExternalMediaContentIdentifier:(id)arg1;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_windowCreationAcitivtyFromSceneConnectionOptions:(id)arg1;
++ (id)_sf_windowCreationActivityWithMode:(long long)arg1;
++ (id)_sf_windowCreationActivityWithNavigationIntent:(id)arg1;
++ (id)_sf_windowCreationActivityWithRecentlyClosedTabUUID:(id)arg1 browserControllerUUID:(id)arg2;
++ (id)_sf_windowCreationActivityWithTabUUID:(id)arg1 browserControllerUUID:(id)arg2;
+
+- (void)_sf_invalidateWindowCreationData;
+- (id)_sf_windowCreationMode;
+- (id)_sf_windowCreationNavigationIntent;
+- (id)_sf_windowCreationRecentlyClosedTabUUID;
+- (id)_sf_windowCreationSourceBrowserControllerUUID;
+- (id)_sf_windowCreationTabUUID;
+- (id)sf_windowCreationNavigationIntentID;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
+- (id)underlyingInteraction;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
+
 // Image: /System/Library/PrivateFrameworks/ContactsUICore.framework/ContactsUICore
 
 + (id)_cnui_searchMailUserActivityForContact:(id)arg1;
@@ -239,6 +315,44 @@
 + (id)_cnui_startAudioCallIntentWithHandle:(id)arg1 contact:(id)arg2;
 + (id)_cnui_startVideoCallIntentWithHandle:(id)arg1 contact:(id)arg2;
 + (id)_cnui_userActivityWithActivityType:(id)arg1 handle:(id)arg2 contact:(id)arg3 intentWithPerson:(id /* block */)arg4;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)sg_userActivityWithRequiredString:(id)arg1;
+
+- (id)sg_serialize;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
++ (id)mtUserActivityWithActivityType:(id)arg1;
++ (id)mtUserActivityWithActivityType:(id)arg1 title:(id)arg2;
++ (id)mtUserActivityWithActivityType:(id)arg1 title:(id)arg2 keywords:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (bool)px_allowsDonationsForCurrentProcess;
+
+- (bool)px_isCurrent;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsUI.framework/PodcastsUI
+
+- (id)containerIdentifier;
+- (id)containerTitle;
+- (double)currentTime;
+- (id)itemIdentifier;
+- (id)itemTitle;
+- (void)setContainerIdentifier:(id)arg1;
+- (void)setContainerTitle:(id)arg1;
+- (void)setCurrentTime:(double)arg1;
+- (void)setItemIdentifier:(id)arg1;
+- (void)setItemTitle:(id)arg1;
+- (void)setValue:(id)arg1 forKey:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TeaActivities.framework/TeaActivities
+
+- (long long)ts_executionContext;
+- (bool)ts_isEligibleForPrediction;
+- (void)ts_setIsEligibleForPrediction:(bool)arg1;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
@@ -250,5 +364,37 @@
 - (id)loadDataWithTypeIdentifier:(id)arg1 forItemProviderCompletionHandler:(id /* block */)arg2;
 - (void)setTargetContentIdentifier:(id)arg1;
 - (id)targetContentIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/UserActivity.framework/UserActivity
+
++ (bool)_registerAsProxyForApplication:(int)arg1 options:(id)arg2 completionBlock:(id /* block */)arg3;
+
+- (unsigned long long)_beginUserInfoUpdate:(id)arg1;
+- (id)_copyWithNewUUID;
+- (bool)_finishUserInfoUpdate;
+- (bool)_isUniversalLink;
+- (id)_madeCurrentDate;
+- (id)_madeCurrentEndDate;
+- (double)_madeCurrentInterval;
+- (id)_madeInitiallyCurrentDate;
+- (id)_objectForIdentifier:(id)arg1;
+- (id)_originalUniqueIdentifier;
+- (id)_payloadForIdentifier:(id)arg1;
+- (id /* block */)_payloadUpdateBlockForIdentifier:(id)arg1;
+- (void)_sendToCoreSpotlightIndexer;
+- (id)_sentToIndexerDate;
+- (void)_setDirty:(bool)arg1 identifier:(id)arg2;
+- (void)_setPayload:(id)arg1 object:(id)arg2 identifier:(id)arg3;
+- (void)_setPayload:(id)arg1 object:(id)arg2 identifier:(id)arg3 dirty:(bool)arg4;
+- (void)_setPayloadIdentifier:(id)arg1 object:(id)arg2 withBlock:(id /* block */)arg3;
+- (void)_updateForwardToCoreSpotlightIndexer:(BOOL)arg1;
+- (unsigned long long)_userInfoChangeCount;
+- (id)contentAttributeSet;
+- (void)setContentAttributeSet:(id)arg1;
+- (void)set_universalLink:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (id)wf_referenceInDatabase:(id)arg1;
 
 @end

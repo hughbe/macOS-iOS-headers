@@ -240,8 +240,44 @@
 
 // Image: /System/Library/CoreServices/RawCamera.bundle/RawCamera
 
-- (id)rcApplyFilters:(id)arg1;
 - (id)rcApplyFilters:(id)arg1 withScaleFactor:(double)arg2;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_imageWithPerspectiveTransform:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })arg1;
+- (id)pu_imageWithPerspectiveTransform:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })arg1 extent:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
+
+// Image: /System/Library/PrivateFrameworks/AXMediaUtilities.framework/AXMediaUtilities
+
+- (unsigned int)_imageOrientationForInterfaceOrientation:(long long)arg1 displayOrientation:(long long)arg2;
+- (unsigned int)_imageOrientationForInterfaceOrientation:(long long)arg1 isMirrored:(bool)arg2;
+- (id)rotatedImageWithInterfaceOrientation:(long long)arg1 displayOrientation:(long long)arg2 appliedImageOrientation:(unsigned int*)arg3;
+- (id)rotatedImageWithInterfaceOrientation:(long long)arg1 isMirrored:(bool)arg2 appliedImageOrientation:(unsigned int*)arg3;
+- (void)saveToURL:(id)arg1 withOrientation:(unsigned int)arg2 metrics:(id)arg3;
+- (void)writeImageInAllOrientationsToDirectoryAtURL:(id)arg1 metrics:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/BarcodeSupport.framework/BarcodeSupport
+
+- (id)_bcs_stringValueIfQRCode;
+
+// Image: /System/Library/PrivateFrameworks/CameraEffectsKit.framework/CameraEffectsKit
+
+- (id)bluredImageWithFlippedXAxis:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NeutrinoCore.framework/NeutrinoCore
+
+- (void)nu_updateDigest:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoImaging.framework/PhotoImaging
+
+- (id)pi_imageByApplyingStabilizationWatermark;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (id)px_imageByApplyingAlpha:(double)arg1;
+- (id)px_imageByApplyingPreferredOrientationTranform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
+- (id)px_imageByApplyingRotation:(double)arg1;
+- (id)px_imageByApplyingScale:(double)arg1;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

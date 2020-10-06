@@ -34,12 +34,25 @@
 - (id)measurementBySubtractingMeasurement:(id)arg1;
 - (id)unit;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (id)hk_equivalentQuantity;
+
 // Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 
 - (bool)_intents_compareValue:(id)arg1 relation:(unsigned long long)arg2;
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/VirtualGarage.framework/VirtualGarage
+
+- (long long)compare:(id)arg1;
+- (bool)isEqualToMeasurement:(id)arg1;
+- (bool)isGreaterThanMeasurement:(id)arg1;
+- (bool)isGreaterThanOrEqualToMeasurement:(id)arg1;
+- (bool)isLessThanMeasurement:(id)arg1;
+- (bool)isLessThanOrEqualToMeasurement:(id)arg1;
 
 @end

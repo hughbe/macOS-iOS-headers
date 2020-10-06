@@ -5,7 +5,6 @@
 @interface _UINavigationBarTransitionAssistant : NSObject {
     long long  _animationCount;
     NSMutableArray * _animationIDs;
-    bool  _cancelledCleanUp;
     bool  _cancelledTransition;
     <_UINavigationBarDelegatePrivate> * _delegate;
     double  _duration;
@@ -47,7 +46,6 @@
 - (void)_getTransitionCoordinator;
 - (void)_startTrackingAnimations;
 - (id)animationIDs;
-- (void)cancelCleanUp;
 - (void)cancelInteractiveTransitionPercent:(double)arg1 completionSpeed:(double)arg2 completionCurve:(long long)arg3;
 - (bool)cancelledCleanUp;
 - (bool)cancelledTransition;

@@ -15,6 +15,7 @@
 
 - (void).cxx_destruct;
 - (void)_applySnapshot:(id)arg1 animatingDifferences:(bool)arg2 completion:(id /* block */)arg3;
+- (id)_diffableDataSourceImpl;
 - (bool)_isDiffableDataSource;
 - (void)applySnapshot:(id)arg1 animatingDifferences:(bool)arg2;
 - (void)applySnapshot:(id)arg1 animatingDifferences:(bool)arg2 completion:(id /* block */)arg3;

@@ -26,6 +26,7 @@
     <_UIStatusBarActionable> * _hoveredActionable;
     NSMutableDictionary * _items;
     long long  _mode;
+    bool  _needsLayoutUpdateForPartFrames;
     long long  _orientation;
     UIPointerInteraction * _pointerInteraction;
     id /* block */  _regionActionValidationBlock;
@@ -37,6 +38,7 @@
     id /* block */  _updateCompletionHandler;
     <_UIStatusBarVisualProvider> * _visualProvider;
     Class  _visualProviderClass;
+    NSDictionary * _visualProviderInfo;
 }
 
 @property (nonatomic, retain) UIAccessibilityHUDGestureManager *accessibilityHUDGestureManager;
@@ -74,8 +76,12 @@
 @property (nonatomic, readonly) <_UIStatusBarVisualProvider> *visualProvider;
 @property (getter=_visualProviderClass, setter=_setVisualProviderClass:, nonatomic, retain) Class visualProviderClass;
 @property (getter=_visualProviderClassName, setter=_setVisualProviderClassName:, nonatomic, retain) NSString *visualProviderClassName;
+@property (nonatomic, retain) NSDictionary *visualProviderInfo;
 
 + (struct CGSize { double x1; double x2; })intrinsicContentSizeForTargetScreen:(id)arg1 orientation:(long long)arg2 onLockScreen:(bool)arg3;
++ (id)sensorActivityIndicator;
++ (id)sensorActivityIndicatorPartIdentifier;
++ (void)setSensorActivityIndicator:(id)arg1;
 + (id)stringForStatusBarStyle:(long long)arg1;
 
 - (void).cxx_destruct;
@@ -191,6 +197,7 @@
 - (void)setTargetActionable:(id)arg1;
 - (void)setTargetScreen:(id)arg1;
 - (void)setUpdateCompletionHandler:(id /* block */)arg1;
+- (void)setVisualProviderInfo:(id)arg1;
 - (id)stateForDisplayItemWithIdentifier:(id)arg1;
 - (void)statusBarGesture:(id)arg1;
 - (long long)style;
@@ -205,5 +212,6 @@
 - (void)updateWithAnimations:(id)arg1;
 - (void)updateWithData:(id)arg1;
 - (id)visualProvider;
+- (id)visualProviderInfo;
 
 @end

@@ -9,9 +9,9 @@
     NSFaultHandler * _faultHandler;
     NSString * _fileBackedFuturesDirectory;
     NSDictionary * _metadataToWrite;
-    NSSet * _objectIDsInsertUpdatedToPruneDATrigger;
+    NSArray * _objectIDsInsertUpdatedToPruneDATrigger;
     NSSet * _objectIDsToPruneTrigger;
-    NSSet * _objectIDsUpdatedToPruneDATrigger;
+    NSArray * _objectIDsUpdatedToPruneDATrigger;
     NSMutableDictionary * _originalCachedRows;
     NSSQLRowCache * _primaryRowCache;
     NSSQLSavePlan * _savePlan;

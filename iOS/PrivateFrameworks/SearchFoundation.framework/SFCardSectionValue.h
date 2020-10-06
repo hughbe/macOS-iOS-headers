@@ -5,6 +5,7 @@
 @interface SFCardSectionValue : NSObject <NSCopying, NSSecureCoding, SFCardSectionValue> {
     SFActivityIndicatorCardSection * _activityIndicatorCardSection;
     SFAppLinkCardSection * _appLinkCardSection;
+    SFAttributionFooterCardSection * _attributionFooterCardSection;
     SFAudioPlaybackCardSection * _audioPlaybackCardSection;
     SFButtonCardSection * _buttonCardSection;
     SFCompactRowCardSection * _compactRowCardSection;
@@ -41,10 +42,12 @@
     SFVerticalLayoutCardSection * _verticalLayoutCardSection;
     SFWatchListCardSection * _watchListCardSection;
     SFWebCardSection * _webCardSection;
+    SFWorldMapCardSection * _worldMapCardSection;
 }
 
 @property (nonatomic, retain) SFActivityIndicatorCardSection *activityIndicatorCardSection;
 @property (nonatomic, retain) SFAppLinkCardSection *appLinkCardSection;
+@property (nonatomic, retain) SFAttributionFooterCardSection *attributionFooterCardSection;
 @property (nonatomic, retain) SFAudioPlaybackCardSection *audioPlaybackCardSection;
 @property (nonatomic, retain) SFButtonCardSection *buttonCardSection;
 @property (nonatomic, retain) SFCompactRowCardSection *compactRowCardSection;
@@ -87,12 +90,14 @@
 @property (nonatomic, retain) SFVerticalLayoutCardSection *verticalLayoutCardSection;
 @property (nonatomic, retain) SFWatchListCardSection *watchListCardSection;
 @property (nonatomic, retain) SFWebCardSection *webCardSection;
+@property (nonatomic, retain) SFWorldMapCardSection *worldMapCardSection;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)activityIndicatorCardSection;
 - (id)appLinkCardSection;
+- (id)attributionFooterCardSection;
 - (id)audioPlaybackCardSection;
 - (id)buttonCardSection;
 - (id)compactRowCardSection;
@@ -126,6 +131,7 @@
 - (id)selectableGridCardSection;
 - (void)setActivityIndicatorCardSection:(id)arg1;
 - (void)setAppLinkCardSection:(id)arg1;
+- (void)setAttributionFooterCardSection:(id)arg1;
 - (void)setAudioPlaybackCardSection:(id)arg1;
 - (void)setButtonCardSection:(id)arg1;
 - (void)setCompactRowCardSection:(id)arg1;
@@ -162,6 +168,7 @@
 - (void)setVerticalLayoutCardSection:(id)arg1;
 - (void)setWatchListCardSection:(id)arg1;
 - (void)setWebCardSection:(id)arg1;
+- (void)setWorldMapCardSection:(id)arg1;
 - (id)socialMediaPostCardSection;
 - (id)stockChartCardSection;
 - (id)suggestionCardSection;
@@ -173,5 +180,6 @@
 - (id)verticalLayoutCardSection;
 - (id)watchListCardSection;
 - (id)webCardSection;
+- (id)worldMapCardSection;
 
 @end

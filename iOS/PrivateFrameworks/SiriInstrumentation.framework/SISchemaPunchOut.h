@@ -4,12 +4,20 @@
 
 @interface SISchemaPunchOut : PBCodable {
     NSString * _appID;
+    bool  _hasAppID;
+    bool  _hasUrlScheme;
+    bool  _hasViewContainer;
+    bool  _hasViewElementID;
     NSString * _urlScheme;
     SISchemaViewContainer * _viewContainer;
     NSData * _viewElementID;
 }
 
 @property (nonatomic, copy) NSString *appID;
+@property (nonatomic) bool hasAppID;
+@property (nonatomic) bool hasUrlScheme;
+@property (nonatomic) bool hasViewContainer;
+@property (nonatomic) bool hasViewElementID;
 @property (nonatomic, readonly) NSData *jsonData;
 @property (nonatomic, copy) NSString *urlScheme;
 @property (nonatomic, retain) SISchemaViewContainer *viewContainer;
@@ -18,6 +26,10 @@
 - (void).cxx_destruct;
 - (id)appID;
 - (id)dictionaryRepresentation;
+- (bool)hasAppID;
+- (bool)hasUrlScheme;
+- (bool)hasViewContainer;
+- (bool)hasViewElementID;
 - (unsigned long long)hash;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithJSON:(id)arg1;
@@ -25,6 +37,10 @@
 - (id)jsonData;
 - (bool)readFrom:(id)arg1;
 - (void)setAppID:(id)arg1;
+- (void)setHasAppID:(bool)arg1;
+- (void)setHasUrlScheme:(bool)arg1;
+- (void)setHasViewContainer:(bool)arg1;
+- (void)setHasViewElementID:(bool)arg1;
 - (void)setUrlScheme:(id)arg1;
 - (void)setViewContainer:(id)arg1;
 - (void)setViewElementID:(id)arg1;

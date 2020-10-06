@@ -38,17 +38,47 @@
 - (void)replacePointerAtIndex:(unsigned long long)arg1 withPointer:(void*)arg2;
 - (void)setCount:(unsigned long long)arg1;
 
-// Image: /Developer/Library/PrivateFrameworks/DebugHierarchyFoundation.framework/DebugHierarchyFoundation
+// Image: /System/Library/PrivateFrameworks/BookDataStore.framework/BookDataStore
 
-- (void)dbg_addObject:(id)arg1;
-- (unsigned long long)dbg_indexOfObjectIdenticalTo:(id)arg1;
-- (void)dbg_insertObject:(id)arg1 atIndex:(unsigned long long)arg2;
-- (id)dbg_objectAtIndex:(unsigned long long)arg1;
-- (void)dbg_replaceObjectAtIndex:(unsigned long long)arg1 withObject:(id)arg2;
+- (void)bds_chainSuccessAndErrorCompletionSelectorCallsForSelector:(SEL)arg1 successSoFar:(bool)arg2 errorSoFar:(id)arg3 completion:(id /* block */)arg4;
 
 // Image: /System/Library/PrivateFrameworks/DocumentManager.framework/DocumentManager
 
 - (bool)doc_containsPointer:(void*)arg1;
 - (long long)doc_indexOfPointer:(void*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
+- (void)hmf_addObject:(id)arg1;
+- (bool)hmf_removeObject:(id)arg1;
+- (bool)hmf_removePointer:(void*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
+- (void)tsu_enumerateNonNullPointersUsingBlock:(id /* block */)arg1;
+- (unsigned long long)tsu_indexOfPointer:(void*)arg1;
+- (void)tsu_insertRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_addPointersFromPointerArray:(id)arg1;
+- (id)tsu_description;
+- (void)tsu_enumerateNonNullObjectUsingBlock:(id /* block */)arg1;
+- (void)tsu_enumerateNonNullPointersUsingBlock:(id /* block */)arg1;
+- (bool)tsu_hasNonNullPointers;
+- (unsigned long long)tsu_indexOfPointer:(void*)arg1;
+- (void)tsu_insertRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)tsu_removeRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
+- (void)tsu_addPointersFromPointerArray:(id)arg1;
+- (id)tsu_description;
+- (void)tsu_enumerateNonNullObjectUsingBlock:(id /* block */)arg1;
+- (void)tsu_enumerateNonNullPointersUsingBlock:(id /* block */)arg1;
+- (bool)tsu_hasNonNullPointers;
+- (unsigned long long)tsu_indexOfPointer:(void*)arg1;
+- (void)tsu_insertRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)tsu_removeRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 
 @end

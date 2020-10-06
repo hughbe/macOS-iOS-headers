@@ -14,15 +14,13 @@
 @property (readonly, copy) NSData *resumeData;
 @property (readonly) Class superclass;
 
-+ (id)_downloadWithLoadingCFURLConnection:(struct _CFURLConnection { }*)arg1 request:(id)arg2 response:(id)arg3 delegate:(id)arg4 proxy:(id)arg5;
++ (id)_downloadWithLoadingCFURLConnection:(struct _CFURLConnection { }*)arg1 request:(struct _CFURLRequest { }*)arg2 response:(struct _CFURLResponse { }*)arg3 delegate:(id)arg4 proxy:(id)arg5;
 + (id)_downloadWithLoadingConnection:(id)arg1 request:(id)arg2 response:(id)arg3 delegate:(id)arg4 proxy:(id)arg5;
 + (id)_downloadWithRequest:(id)arg1 delegate:(id)arg2 directory:(id)arg3;
 + (bool)canResumeDownloadDecodedWithEncodingMIMEType:(id)arg1;
 
-- (id)_delegate;
 - (id)_directoryPath;
-- (bool)_downloadActive;
-- (id)_initWithLoadingCFURLConnection:(struct _CFURLConnection { }*)arg1 request:(id)arg2 response:(id)arg3 delegate:(id)arg4 proxy:(id)arg5;
+- (id)_initWithLoadingCFURLConnection:(struct _CFURLConnection { }*)arg1 request:(struct _CFURLRequest { }*)arg2 response:(struct _CFURLResponse { }*)arg3 delegate:(id)arg4 proxy:(id)arg5;
 - (id)_initWithLoadingConnection:(id)arg1 request:(id)arg2 response:(id)arg3 delegate:(id)arg4 proxy:(id)arg5;
 - (id)_initWithRequest:(id)arg1 delegate:(id)arg2 directory:(id)arg3;
 - (id)_initWithResumeInformation:(id)arg1 delegate:(id)arg2 path:(id)arg3;
@@ -32,7 +30,6 @@
 - (void)_setDirectoryPath:(id)arg1;
 - (void)cancel;
 - (void)cancelAuthenticationChallenge:(id)arg1;
-- (void)cleanupChallenges;
 - (void)continueWithoutCredentialForAuthenticationChallenge:(id)arg1;
 - (void)dealloc;
 - (bool)deletesFileUponFailure;
@@ -40,21 +37,8 @@
 - (id)init;
 - (id)initWithRequest:(id)arg1 delegate:(id)arg2;
 - (id)initWithResumeData:(id)arg1 delegate:(id)arg2 path:(id)arg3;
-- (void)releaseDelegate;
 - (id)request;
 - (id)resumeData;
-- (bool)sendCanAuthenticateAgainstProtectionSpace:(struct _CFURLProtectionSpace { }*)arg1;
-- (void)sendDecideDestinationWithSuggestedObjectName:(struct __CFString { }*)arg1;
-- (void)sendDidCreateDestination:(struct __CFURL { }*)arg1;
-- (void)sendDidFail:(struct __CFError { }*)arg1;
-- (void)sendDidFinish;
-- (void)sendDidReceiveChallenge:(struct _CFURLAuthChallenge { }*)arg1;
-- (void)sendDidReceiveData:(long long)arg1;
-- (void)sendDidReceiveResponse:(id)arg1;
-- (void)sendDidStart:(struct _CFURLDownload { }*)arg1;
-- (bool)sendShouldDecodeDataOfMIMEType:(struct __CFString { }*)arg1;
-- (void)sendWillResumeWithResponse:(id)arg1 startingByte:(unsigned long long)arg2;
-- (id)sendWillSendRequest:(id)arg1 redirectResponse:(id)arg2;
 - (void)setDeletesFileUponFailure:(bool)arg1;
 - (void)setDestination:(id)arg1 allowOverwrite:(bool)arg2;
 - (id)url;

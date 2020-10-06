@@ -3,7 +3,6 @@
  */
 
 @interface _INPBMessageLinkMetadata : PBCodable <NSCopying, NSSecureCoding, _INPBMessageLinkMetadata> {
-    bool  __encodeLegacyGloryData;
     NSString * _albumArtist;
     NSString * _albumName;
     NSString * _appleTvSubtitle;
@@ -59,7 +58,6 @@
     NSString * _tvShowName;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *albumArtist;
 @property (nonatomic, copy) NSString *albumName;
 @property (nonatomic, copy) NSString *appleTvSubtitle;
@@ -169,8 +167,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsLinkMediaType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addIconURL:(id)arg1;
 - (void)addImageURL:(id)arg1;
 - (id)albumArtist;

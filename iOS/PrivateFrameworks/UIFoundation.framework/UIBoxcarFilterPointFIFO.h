@@ -8,7 +8,7 @@
     unsigned long long  _width;
 }
 
-@property (nonatomic) _UIPointVector *prevPoints;
+@property (nonatomic, retain) _UIPointVector *prevPoints;
 @property (nonatomic) float spacing;
 @property (nonatomic) unsigned long long width;
 

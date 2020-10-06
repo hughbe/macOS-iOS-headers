@@ -7,6 +7,7 @@
     NSMutableDictionary * _accountIDDescriptionMap;
     NSMapTable * _delegateByServiceType;
     NSMutableDictionary * _initialStateByService;
+    NSString * _listenerGUID;
     id  _passwordManager;
     NSMutableDictionary * _serviceNameAccountControllerMap;
     double  _signInFuzz;
@@ -21,6 +22,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSMutableDictionary *initialStateByService;
+@property (nonatomic, retain) NSString *listenerGUID;
 @property (nonatomic, retain) <_IDSPasswordManager> *passwordManager;
 @property (nonatomic, retain) NSMutableDictionary *serviceNameAccountControllerMap;
 @property (nonatomic) double signInFuzz;
@@ -49,6 +51,7 @@
 - (void)accountController:(id)arg1 accountDisabled:(id)arg2;
 - (void)accountController:(id)arg1 accountRemoved:(id)arg2;
 - (id)accountIDDescriptionMap;
+- (void)dealloc;
 - (id)delegateByServiceType;
 - (void)disableUserType:(unsigned long long)arg1 onService:(unsigned long long)arg2 completion:(id /* block */)arg3;
 - (void)enableUserType:(unsigned long long)arg1 onService:(unsigned long long)arg2 completion:(id /* block */)arg3;
@@ -58,6 +61,7 @@
 - (id)initialStateByService;
 - (bool)isFaceTimeEnabled;
 - (bool)isiMessageEnabled;
+- (id)listenerGUID;
 - (id)passwordManager;
 - (void)provideCredential:(id)arg1 forUser:(id)arg2 onService:(unsigned long long)arg3 withCompletion:(id /* block */)arg4;
 - (void)refreshRegistrationForAccount:(id)arg1;
@@ -68,6 +72,7 @@
 - (void)setDelegate:(id)arg1 forService:(unsigned long long)arg2;
 - (void)setDelegateByServiceType:(id)arg1;
 - (void)setInitialStateByService:(id)arg1;
+- (void)setListenerGUID:(id)arg1;
 - (void)setPasswordManager:(id)arg1;
 - (void)setServiceNameAccountControllerMap:(id)arg1;
 - (void)setSignInFuzz:(double)arg1;

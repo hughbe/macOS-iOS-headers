@@ -3,7 +3,6 @@
  */
 
 @interface _INPBShareETAIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBShareETAIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     struct { 
         int *list; 
@@ -13,7 +12,6 @@
     NSArray * _recipients;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -28,8 +26,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsMediums:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addMedium:(int)arg1;
 - (void)addRecipient:(id)arg1;
 - (void)clearMediums;

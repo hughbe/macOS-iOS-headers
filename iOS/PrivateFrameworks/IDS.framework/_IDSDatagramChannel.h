@@ -25,6 +25,7 @@
     unsigned long long  _outgoingBytes;
     NSObject<OS_nw_path_evaluator> * _pathEvaluator;
     NSData * _preConnectionData;
+    NSMutableDictionary * _probingDict;
     id /* block */  _readHandler;
     id /* block */  _readHandlerWithOptions;
     struct os_unfair_lock_s { 

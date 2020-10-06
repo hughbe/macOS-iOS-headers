@@ -5,7 +5,7 @@
 @interface MNCommuteDestination : NSObject <NSCopying, NSSecureCoding> {
     GEODirectionsRequest * _directionsRequest;
     GEOETATrafficUpdateResponse * _etaResponse;
-    GEOETARoute * _etaRoute;
+    GEOComposedETARoute * _etaRoute;
     bool  _invalid;
     MNLocation * _lastLocation;
     MNLocation * _lastMatchedLocation;
@@ -18,14 +18,13 @@
     long long  _score;
     NSDictionary * _scores;
     MNCommuteDestinationSuggestion * _suggestion;
-    GEOComposedRouteTraffic * _traffic;
 }
 
 @property (readonly) bool canCalculateETA;
 @property (readonly) bool canGetETARoute;
 @property (nonatomic, retain) GEODirectionsRequest *directionsRequest;
 @property (nonatomic, retain) GEOETATrafficUpdateResponse *etaResponse;
-@property (nonatomic, retain) GEOETARoute *etaRoute;
+@property (nonatomic, retain) GEOComposedETARoute *etaRoute;
 @property (nonatomic, readonly) double geodesicDistance;
 @property (nonatomic) bool invalid;
 @property (nonatomic, retain) MNLocation *lastLocation;
@@ -41,7 +40,6 @@
 @property (nonatomic, copy) NSDictionary *scores;
 @property (nonatomic, readonly) NSString *shortDescription;
 @property (nonatomic, retain) MNCommuteDestinationSuggestion *suggestion;
-@property (nonatomic, retain) GEOComposedRouteTraffic *traffic;
 @property (nonatomic, readonly, copy) NSString *uniqueIdentifier;
 @property (nonatomic, readonly) GEOComposedWaypoint *waypoint;
 
@@ -89,10 +87,8 @@
 - (void)setScore:(long long)arg1;
 - (void)setScores:(id)arg1;
 - (void)setSuggestion:(id)arg1;
-- (void)setTraffic:(id)arg1;
 - (id)shortDescription;
 - (id)suggestion;
-- (id)traffic;
 - (id)uniqueIdentifier;
 - (void)updateFrom:(id)arg1;
 - (id)waypoint;

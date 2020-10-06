@@ -14,6 +14,7 @@
 + (id)filterIncludingAllCategories;
 
 - (void).cxx_destruct;
+- (void)applyFilterToPlaceParameters:(id)arg1;
 - (bool)applyToAutocompleteParameters:(id)arg1 error:(id*)arg2;
 - (bool)applyToSearchParameters:(id)arg1 error:(id*)arg2;
 - (id)categoriesToExclude;

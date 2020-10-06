@@ -80,6 +80,7 @@
 - (void)reportFlow:(id)arg1 forVerdict:(id)arg2 event:(long long)arg3;
 - (void)reportFlowClosed:(id)arg1;
 - (void)reportFlowStats:(id)arg1;
+- (Class)requiredProviderSuperClass;
 - (void)resumeFlow:(id)arg1 withVerdict:(id)arg2;
 - (void)sendBrowserContentFilterServerRequest;
 - (void)sendSocketContentFilterRequest;

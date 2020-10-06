@@ -3,14 +3,16 @@
  */
 
 @interface NSXPCListener : NSObject {
-    id  _delegate;
-    id  _reserved1;
-    id  _reserved2;
+    union { 
+        NSObject<OS_xpc_object> *xpc; 
+        id remote; 
+        /* Warning: Unrecognized filer type: ')' using 'void*' */ void*OS_xpc_remote_connection; 
+    }  _connection;
+    _Atomic id  _delegate;
+    unsigned char  _remote;
     NSString * _serviceName;
     unsigned long long  _state;
     NSObject<OS_dispatch_queue> * _userQueue;
-    void * _xconnection;
-    void * reserved0;
 }
 
 @property <NSXPCListenerDelegate> *delegate;
@@ -21,10 +23,14 @@
 + (void)enableTransactions;
 + (id)serviceListener;
 
+- (id)__initWithoutRemoteConnection;
+- (void)__receiveRemoteConnection:(id)arg1;
 - (id)_initShared;
+- (id)_initWithRemoteName:(id)arg1;
 - (id)_queue;
 - (void)_setQueue:(id)arg1;
 - (id)_xpcConnection;
+- (void)activate;
 - (void)dealloc;
 - (id)delegate;
 - (id)description;

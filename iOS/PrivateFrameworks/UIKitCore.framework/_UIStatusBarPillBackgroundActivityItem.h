@@ -15,6 +15,7 @@
 @property (nonatomic) struct CGSize { double x1; double x2; } pillSize;
 @property (nonatomic) long long previousType;
 
++ (bool)_identifierContainsItemImage:(id)arg1;
 + (id)pillCombinedDisplayIdentifier;
 + (bool)shouldKeepIconVisibleForActivityType:(long long)arg1;
 
@@ -23,10 +24,10 @@
 - (id)_backgroundColorForActivityType:(long long)arg1;
 - (void)_create_combinedView;
 - (bool)_shouldBounceWhenTransitioningFromType:(long long)arg1 toType:(long long)arg2;
+- (id)_textLabelForActivityType:(long long)arg1;
 - (id)applyUpdate:(id)arg1 toDisplayItem:(id)arg2;
 - (id)combinedView;
 - (id)createDisplayItemForIdentifier:(id)arg1;
-- (id)imageForUpdate:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 statusBar:(id)arg2;
 - (struct CGSize { double x1; double x2; })pillSize;
 - (long long)previousType;

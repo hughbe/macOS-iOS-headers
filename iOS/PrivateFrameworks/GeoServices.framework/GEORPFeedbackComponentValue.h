@@ -9,13 +9,12 @@
         unsigned int read_conversation : 1; 
         unsigned int read_notification : 1; 
         unsigned int read_overview : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_conversation : 1; 
-        unsigned int wrote_notification : 1; 
-        unsigned int wrote_overview : 1; 
+        unsigned int read_poiEnrichment : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEORPFeedbackNotification * _notification;
     GEORPFeedbackOverview * _overview;
+    GEORPPoiEnrichment * _poiEnrichment;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -29,16 +28,15 @@
 @property (nonatomic, readonly) bool hasConversation;
 @property (nonatomic, readonly) bool hasNotification;
 @property (nonatomic, readonly) bool hasOverview;
+@property (nonatomic, readonly) bool hasPoiEnrichment;
 @property (nonatomic, retain) GEORPFeedbackNotification *notification;
 @property (nonatomic, retain) GEORPFeedbackOverview *overview;
+@property (nonatomic, retain) GEORPPoiEnrichment *poiEnrichment;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readConversation;
-- (void)_readNotification;
-- (void)_readOverview;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)conversation;
 - (void)copyTo:(id)arg1;
@@ -48,18 +46,24 @@
 - (bool)hasConversation;
 - (bool)hasNotification;
 - (bool)hasOverview;
+- (bool)hasPoiEnrichment;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)notification;
 - (id)overview;
+- (id)poiEnrichment;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setConversation:(id)arg1;
 - (void)setNotification:(id)arg1;
 - (void)setOverview:(id)arg1;
+- (void)setPoiEnrichment:(id)arg1;
 - (id)unknownFields;
 - (void)writeTo:(id)arg1;
 

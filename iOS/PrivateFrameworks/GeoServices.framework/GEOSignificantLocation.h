@@ -3,18 +3,16 @@
  */
 
 @interface GEOSignificantLocation : PBCodable <NSCopying> {
+    GEOStructuredAddress * _address;
     double  _confidence;
     struct { 
         unsigned int has_confidence : 1; 
         unsigned int has_locationIndex : 1; 
         unsigned int has_numberOfVisitsBucket : 1; 
+        unsigned int read_address : 1; 
         unsigned int read_identifier : 1; 
         unsigned int read_location : 1; 
-        unsigned int wrote_confidence : 1; 
-        unsigned int wrote_identifier : 1; 
-        unsigned int wrote_location : 1; 
-        unsigned int wrote_locationIndex : 1; 
-        unsigned int wrote_numberOfVisitsBucket : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _identifier;
     GEOLocation * _location;
@@ -28,7 +26,9 @@
     unsigned int  _readerMarkPos;
 }
 
+@property (nonatomic, retain) GEOStructuredAddress *address;
 @property (nonatomic) double confidence;
+@property (nonatomic, readonly) bool hasAddress;
 @property (nonatomic) bool hasConfidence;
 @property (nonatomic, readonly) bool hasIdentifier;
 @property (nonatomic, readonly) bool hasLocation;
@@ -42,14 +42,14 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readIdentifier;
-- (void)_readLocation;
+- (id)address;
 - (void)clearSensitiveFields;
 - (double)confidence;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (bool)hasAddress;
 - (bool)hasConfidence;
 - (bool)hasIdentifier;
 - (bool)hasLocation;
@@ -59,13 +59,17 @@
 - (id)identifier;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)location;
 - (unsigned int)locationIndex;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)numberOfVisitsBucket;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setAddress:(id)arg1;
 - (void)setConfidence:(double)arg1;
 - (void)setHasConfidence:(bool)arg1;
 - (void)setHasLocationIndex:(bool)arg1;

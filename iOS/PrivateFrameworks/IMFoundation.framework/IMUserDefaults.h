@@ -43,6 +43,11 @@
 
 // Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
 
-+ (bool)inIDSPrototypeMode;
+- (bool)clearStateOnLaunch;
+- (void)setClearStateOnLaunch:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUtilities.framework/IMSharedUtilities
+
++ (bool)__im_isEngramEnabledForGroups;
 
 @end

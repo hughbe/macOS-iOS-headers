@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessLimitations : NSObject <BSXPCSecureCoding> {
+@interface RBSProcessLimitations : NSObject <RBSXPCSecureCoding> {
     double  _runTime;
 }
 
@@ -12,17 +12,13 @@
 @property (nonatomic) double runTime;
 @property (readonly) Class superclass;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (double)runTime;
 - (void)setRunTime:(double)arg1;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 
 @end

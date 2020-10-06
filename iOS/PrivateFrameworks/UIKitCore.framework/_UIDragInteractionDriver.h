@@ -20,7 +20,10 @@
     double  _liftDelay;
     double  _liftMoveHysteresis;
     bool  _shouldAnimateLift;
-    _UIDragInteractionDriverStateMachine * _stateMachine;
+    struct _UIDragInteractionDriverStateMachine { 
+        unsigned long long state; 
+        unsigned long long *eventsQueueEnd; 
+    }  _stateMachine;
     UIView * _view;
 }
 
@@ -42,7 +45,6 @@
 @property (nonatomic) double liftDelay;
 @property (nonatomic) double liftMoveHysteresis;
 @property (nonatomic) bool shouldAnimateLift;
-@property (nonatomic, readonly) _UIDragInteractionDriverStateMachine *stateMachine;
 @property (readonly) Class superclass;
 @property (nonatomic) UIView *view;
 
@@ -61,6 +63,7 @@
 - (void)detachFromView:(id)arg1;
 - (void)didTransitionToBeginState;
 - (void)didTransitionToCancelState;
+- (void)didTransitionToDeferred;
 - (void)didTransitionToInactiveState;
 - (void)didTransitionToInflightState;
 - (void)didTransitionToPreparing;
@@ -87,7 +90,6 @@
 - (void)setShouldAnimateLift:(bool)arg1;
 - (void)setView:(id)arg1;
 - (bool)shouldAnimateLift;
-- (id)stateMachine;
 - (id)view;
 
 @end

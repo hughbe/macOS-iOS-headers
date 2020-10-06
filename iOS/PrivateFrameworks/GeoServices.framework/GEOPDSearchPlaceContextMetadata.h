@@ -12,13 +12,7 @@
         unsigned int read_matchedDisplayNameLanguageCode : 1; 
         unsigned int read_matchedDisplayName : 1; 
         unsigned int read_normalizedQuery : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_alternateSearchableNames : 1; 
-        unsigned int wrote_interpretedCategory : 1; 
-        unsigned int wrote_matchedDisplayNameLanguageCode : 1; 
-        unsigned int wrote_matchedDisplayName : 1; 
-        unsigned int wrote_normalizedQuery : 1; 
-        unsigned int wrote_isDefaultName : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _interpretedCategory;
     bool  _isDefaultName;
@@ -51,12 +45,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAlternateSearchableName:(id)arg1;
-- (void)_readAlternateSearchableNames;
-- (void)_readInterpretedCategory;
-- (void)_readMatchedDisplayName;
-- (void)_readMatchedDisplayNameLanguageCode;
-- (void)_readNormalizedQuery;
 - (void)addAlternateSearchableName:(id)arg1;
 - (id)alternateSearchableNameAtIndex:(unsigned long long)arg1;
 - (id)alternateSearchableNames;
@@ -75,9 +63,12 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)interpretedCategory;
 - (bool)isDefaultName;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)matchedDisplayName;
 - (id)matchedDisplayNameLanguageCode;
 - (void)mergeFrom:(id)arg1;

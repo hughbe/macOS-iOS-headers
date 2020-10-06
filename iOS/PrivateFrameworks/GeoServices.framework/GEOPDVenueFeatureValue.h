@@ -11,10 +11,7 @@
         unsigned int read_featureBuilding : 1; 
         unsigned int read_featurePoi : 1; 
         unsigned int read_featureVenue : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_featureBuilding : 1; 
-        unsigned int wrote_featurePoi : 1; 
-        unsigned int wrote_featureVenue : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -36,9 +33,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readFeatureBuilding;
-- (void)_readFeaturePoi;
-- (void)_readFeatureVenue;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -53,7 +47,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

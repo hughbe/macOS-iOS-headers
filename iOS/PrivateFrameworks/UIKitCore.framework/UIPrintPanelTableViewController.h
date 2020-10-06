@@ -3,6 +3,7 @@
  */
 
 @interface UIPrintPanelTableViewController : UITableViewController <UITextFieldDelegate> {
+    long long  _annotationsRow;
     UIPrinterBrowserViewController * _browserController;
     bool  _contactingPrinter;
     long long  _copiesRow;
@@ -11,12 +12,22 @@
     long long  _jobAccountIDRow;
     _UIPrintMessageAndSpinnerView * _messageAndSpinner;
     long long  _paperRow;
-    long long  _previousPageIndexInCenterOfPreview;
     UIPrintPanelViewController * _printPanelViewController;
     UIPrintPreviewViewController * _printPreviewViewController;
-    bool  _printerWarningWasShown;
+    UIPrinterAttributesService * _printerAttributesService;
+    NSString * _printerWarning;
     long long  _punchRow;
     long long  _rangeRow;
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _savedViewFrame;
     bool  _settingsExpanded;
     long long  _settingsRow;
     long long  _settingsSection;
@@ -28,14 +39,9 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-- (void)_update:(bool)arg1;
-- (void)_updateSize;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (void)_updatePrintTableView;
+- (void)_updateTableFooterViewSize;
 - (bool)accessibilityPerformMagicTap;
 - (void)cancelButtonPressed:(id)arg1;
 - (void)clearPrintPanelViewController;
@@ -58,6 +64,8 @@
 - (void)showCancelButton;
 - (void)showContacting;
 - (void)showPreviewGenerating;
+- (void)startPrinterWarningPoll;
+- (void)stopPrinterWarningPolling;
 - (unsigned long long)supportedInterfaceOrientations;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
@@ -65,6 +73,8 @@
 - (id)tableView:(id)arg1 titleForFooterInSection:(long long)arg2;
 - (bool)textFieldShouldReturn:(id)arg1;
 - (id)textForSettings;
+- (void)traitCollectionDidChange:(id)arg1;
+- (void)updateAnnotations:(id)arg1;
 - (void)updateCopies:(id)arg1;
 - (void)updateDuplex:(id)arg1;
 - (void)updateGrayscale:(id)arg1;
@@ -74,6 +84,7 @@
 - (void)updatePunch:(id)arg1;
 - (void)updateSettingsSummaryText;
 - (void)updateStaple:(id)arg1;
+- (void)viewDidAppear:(bool)arg1;
 - (void)viewDidDisappear:(bool)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)arg1;

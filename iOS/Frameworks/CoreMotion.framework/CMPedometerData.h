@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
  */
 
-@interface CMPedometerData : NSObject <NSCopying, NSSecureCoding, SRSampling> {
+@interface CMPedometerData : NSObject <HDCoreMotionDatum, NSCopying, NSSecureCoding, SRSampling> {
     NSNumber * fActiveTime;
     NSNumber * fCurrentCadence;
     NSNumber * fCurrentPace;
@@ -47,6 +47,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSNumber *workoutType;
 
+// Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+
 + (id)maxPedometerEntries;
 + (bool)supportsSecureCoding;
 
@@ -78,5 +80,14 @@
 - (id)sourceId;
 - (id)startDate;
 - (id)workoutType;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (long long)hd_compare:(id)arg1;
+- (id)hd_datestamp;
+- (id)hd_epochDatestamp;
+- (bool)hd_hasWorkout;
+- (id)hd_sourceID;
+- (id)hd_unitForType:(id)arg1;
 
 @end

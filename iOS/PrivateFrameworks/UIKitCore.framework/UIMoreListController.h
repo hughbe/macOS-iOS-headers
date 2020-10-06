@@ -21,8 +21,6 @@
 @property (nonatomic) bool moreViewControllersChanged;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (bool)_isSupportedInterfaceOrientation:(long long)arg1;
 - (void)_layoutCells;
@@ -30,9 +28,6 @@
 - (void)_updateEditButton;
 - (bool)_viewControllerWasSelected;
 - (void)_willChangeToIdiom:(long long)arg1 onScreen:(id)arg2;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowsCustomizing;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (void)encodeRestorableStateWithCoder:(id)arg1;

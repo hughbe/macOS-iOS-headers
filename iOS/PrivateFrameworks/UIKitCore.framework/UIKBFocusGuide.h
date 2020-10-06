@@ -11,6 +11,7 @@
 @property (nonatomic) <UIKBFocusGuideDelegate> *keyboardDelegate;
 
 - (void)_didUpdateFocusToPreferredFocusedView;
+- (bool)_isUnoccludable;
 - (unsigned long long)focusHeading;
 - (id)keyboardDelegate;
 - (void)setFocusHeading:(unsigned long long)arg1;

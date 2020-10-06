@@ -11,6 +11,7 @@
 - (bool)_isAbandoningForwardingRecord;
 - (NSMutableArray *)_mutableForwardingRecord;
 - (UIResponder *)_responder;
+- (long long)_responderForwardableType;
 - (SEL)_responderSelectorForPhase:(long long)arg1;
 - (void)_setForwardablePhase:(long long)arg1;
 - (void)_setResponder:(UIResponder *)arg1;

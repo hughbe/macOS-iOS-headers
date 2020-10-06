@@ -20,6 +20,7 @@
 + (id)batchUpdateMetadataMatchingEntityIdsAndPKs:(id)arg1 withUpdates:(id)arg2 inStore:(id)arg3 withManagedObjectContext:(id)arg4 error:(id*)arg5;
 + (id)countRecordMetadataInStore:(id)arg1 inManagedObjectContext:(id)arg2 error:(id*)arg3;
 + (id)countRecordMetadataInStore:(id)arg1 matchingPredicate:(id)arg2 withManagedObjectContext:(id)arg3 error:(id*)arg4;
++ (id)countRecordMetadataInStore:(id)arg1 matchingRecordIDs:(id)arg2 withManagedObjectContext:(id)arg3 error:(id*)arg4;
 + (id)createMapOfMetadataMatchingObjectIDs:(id)arg1 inStore:(id)arg2 inManagedObjectContext:(id)arg3 error:(id*)arg4;
 + (id)createMapOfMetadataMatchingRecords:(id)arg1 andRecordIDs:(id)arg2 inStore:(id)arg3 withManagedObjectContext:(id)arg4 error:(id*)arg5;
 + (id)entityPath;
@@ -30,7 +31,6 @@
 + (id)metadataForRecordIDs:(id)arg1 fromStore:(id)arg2 inManagedObjectContext:(id)arg3 error:(id*)arg4;
 + (bool)purgeRecordMetadataWithRecordIDs:(id)arg1 inStore:(id)arg2 withManagedObjectContext:(id)arg3 error:(id*)arg4;
 
-- (id)createObjectIDForLinkedRow;
-- (id)createRecordID;
+- (id)createRecordFromSystemFields;
 
 @end

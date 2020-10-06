@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRUpdateActiveSystemEndpointMessage : MRProtocolMessage
+@interface MRUpdateActiveSystemEndpointMessage : MRProtocolMessage {
+    MRUpdateActiveSystemEndpointRequest * _request;
+}
 
-@property (nonatomic, readonly) long long changeType;
-@property (nonatomic, readonly) long long operation;
-@property (nonatomic, readonly) NSString *outputDeviceUID;
-@property (nonatomic, readonly) NSString *reason;
+@property (nonatomic, readonly) MRUpdateActiveSystemEndpointRequest *request;
 
-- (long long)changeType;
-- (id)initWithOutputDeviceUID:(id)arg1 operation:(long long)arg2 changeType:(long long)arg3 reason:(id)arg4;
-- (long long)operation;
-- (id)outputDeviceUID;
-- (id)reason;
+- (void).cxx_destruct;
+- (id)initWithRequest:(id)arg1;
+- (id)initWithUnderlyingCodableMessage:(id)arg1 error:(id)arg2;
+- (id)request;
 - (unsigned long long)type;
 
 @end

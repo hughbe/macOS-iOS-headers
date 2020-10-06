@@ -20,6 +20,7 @@
 - (id)afterDelay:(double)arg1 performBlock:(id /* block */)arg2;
 - (id)afterDelay:(double)arg1 performBlock:(id /* block */)arg2 qualityOfService:(unsigned long long)arg3;
 - (id /* block */)blockWithCurrentQualityOfServiceForBlock:(id /* block */)arg1 ifAllowedForRequestedQualityOfService:(unsigned long long)arg2;
+- (id)description;
 - (id)init;
 - (id)initWithMaxConcurrentOperationCount:(long long)arg1;
 - (id)initWithMaxConcurrentOperationCount:(long long)arg1 qualityOfService:(unsigned long long)arg2;

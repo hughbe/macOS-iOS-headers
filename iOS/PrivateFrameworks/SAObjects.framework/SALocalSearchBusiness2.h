@@ -26,6 +26,8 @@
 @property (nonatomic, copy) NSArray *reviewList;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)business2;
 + (id)business2WithDictionary:(id)arg1 context:(id)arg2;
 
@@ -65,5 +67,9 @@
 - (void)setPlaceData2:(id)arg1;
 - (void)setPriceRange:(id)arg1;
 - (void)setReviewList:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)donateActivityCommand;
 
 @end

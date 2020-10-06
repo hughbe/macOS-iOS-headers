@@ -3,7 +3,6 @@
  */
 
 @interface _INPBHomeEntity : PBCodable <NSCopying, NSSecureCoding, _INPBHomeEntity> {
-    bool  __encodeLegacyGloryData;
     int  _deviceType;
     struct { 
         int *list; 
@@ -24,9 +23,9 @@
     _INPBDataString * _room;
     int  _sceneType;
     _INPBDataString * _zone;
+    NSArray * _zones;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) int deviceType;
@@ -53,18 +52,21 @@
 @property (nonatomic) int sceneType;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) _INPBDataString *zone;
+@property (nonatomic, copy) NSArray *zones;
+@property (nonatomic, readonly) unsigned long long zonesCount;
 
 + (bool)supportsSecureCoding;
++ (Class)zonesType;
 
 - (void).cxx_destruct;
 - (int)StringAsDeviceType:(id)arg1;
 - (int)StringAsDeviceTypes:(id)arg1;
 - (int)StringAsEntityType:(id)arg1;
 - (int)StringAsSceneType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addDeviceTypes:(int)arg1;
+- (void)addZones:(id)arg1;
 - (void)clearDeviceTypes;
+- (void)clearZones;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (int)deviceType;
@@ -113,7 +115,11 @@
 - (void)setRoom:(id)arg1;
 - (void)setSceneType:(int)arg1;
 - (void)setZone:(id)arg1;
+- (void)setZones:(id)arg1;
 - (void)writeTo:(id)arg1;
 - (id)zone;
+- (id)zones;
+- (id)zonesAtIndex:(unsigned long long)arg1;
+- (unsigned long long)zonesCount;
 
 @end

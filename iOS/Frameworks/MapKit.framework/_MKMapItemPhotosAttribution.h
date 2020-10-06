@@ -7,10 +7,18 @@
 }
 
 @property (nonatomic, readonly) NSArray *addPhotoURLs;
+@property (nonatomic, readonly) bool shouldAddPhotosLocally;
+@property (nonatomic, readonly) bool shouldHandlePhotosLocally;
+@property (nonatomic, readonly) bool shouldSuppressPhotoAttribution;
+@property (nonatomic, readonly) bool supportsReportingIssue;
 
 - (void).cxx_destruct;
 - (id)addPhotoURLs;
 - (id)initWithGEOMapItemAttribution:(id)arg1;
+- (bool)shouldAddPhotosLocally;
+- (bool)shouldHandlePhotosLocally;
+- (bool)shouldSuppressPhotoAttribution;
+- (bool)supportsReportingIssue;
 - (id)urlsForPhotoWithIdentifier:(id)arg1;
 
 @end

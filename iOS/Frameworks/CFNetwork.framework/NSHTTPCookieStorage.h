@@ -10,20 +10,20 @@
 @property (nonatomic) bool _overrideSessionCookieAcceptPolicy;
 @property unsigned long long cookieAcceptPolicy;
 @property (readonly, copy) NSArray *cookies;
+@property (readonly) unsigned long long webui_safariCookieAcceptPolicyEnumValue;
+@property (readonly) bool webui_trackerProtectionEnabled;
 
 // Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
 
 + (id)_csff:(id)arg1;
-+ (id)_csfi:(id)arg1;
-+ (id)_groupContainerCookieStorages;
 + (void)_setSharedHTTPCookieStorage:(id)arg1;
 + (id)sharedCookieStorageForGroupContainerIdentifier:(id)arg1;
 + (id)sharedHTTPCookieStorage;
 
-- (struct OpaqueCFHTTPCookieStorage { }*)_CFHTTPCookieStorage;
 - (struct OpaqueCFHTTPCookieStorage { }*)_cookieStorage;
 - (id)_cookiesForURL:(id)arg1 mainDocumentURL:(id)arg2;
 - (void)_getCookieStoragePartitionsCompletionHandler:(id /* block */)arg1;
+- (id)_getCookiesForDomain:(id)arg1;
 - (void)_getCookiesForPartition:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)_getCookiesForURL:(id)arg1 mainDocumentURL:(id)arg2 partition:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)_getCookiesForURL:(id)arg1 mainDocumentURL:(id)arg2 partition:(id)arg3 policyProperties:(id)arg4 completionHandler:(id /* block */)arg5;
@@ -33,10 +33,12 @@
 - (void)_saveCookies;
 - (void)_saveCookies:(id /* block */)arg1;
 - (void)_setCookies:(id)arg1 forURL:(id)arg2 mainDocumentURL:(id)arg3 policyProperties:(id)arg4;
+- (void)_setCookiesChangedHandler:(id /* block */)arg1 onQueue:(id)arg2;
+- (void)_setCookiesRemovedHandler:(id /* block */)arg1 onQueue:(id)arg2;
 - (void)_setPrivateBrowsingEnabled:(bool)arg1;
+- (void)_setSubscribedDomainsForCookieChanges:(id)arg1;
 - (void)_testingOfStoringOfCookie:(id)arg1;
 - (unsigned long long)cookieAcceptPolicy;
-- (id)cookieRequestHeaderFieldsForURL:(id)arg1;
 - (id)cookies;
 - (id)cookiesForURL:(id)arg1;
 - (void)dealloc;
@@ -48,13 +50,26 @@
 - (void)setCookie:(id)arg1;
 - (void)setCookieAcceptPolicy:(unsigned long long)arg1;
 - (void)setCookies:(id)arg1 forURL:(id)arg2 mainDocumentURL:(id)arg3;
-- (void)setCookiesFromResponseHeader:(id)arg1 forURL:(id)arg2 policyBaseURL:(id)arg3;
 - (void)set_overrideSessionCookieAcceptPolicy:(bool)arg1;
 - (id)sortedCookiesUsingDescriptors:(id)arg1;
 - (void)storeCookies:(id)arg1 forTask:(id)arg2;
 
+// Image: /System/Library/Frameworks/VideoSubscriberAccount.framework/VideoSubscriberAccount
+
++ (id)vs_sharedCookieStorage;
+
+- (void)vs_saveCookies;
+
 // Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
 
 + (id)aa_icloudCookies;
+
+// Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
+
+- (float)_safariCookieAcceptPolicyFloatValue;
+- (void)webui_applySafariCookieAcceptPolicy;
+- (id)webui_safariCookieAcceptPolicy;
+- (unsigned long long)webui_safariCookieAcceptPolicyEnumValue;
+- (bool)webui_trackerProtectionEnabled;
 
 @end

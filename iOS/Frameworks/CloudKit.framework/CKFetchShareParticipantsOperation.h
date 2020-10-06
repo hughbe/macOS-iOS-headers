@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchShareParticipantsOperation : CKOperation {
+@interface CKFetchShareParticipantsOperation : CKOperation <CKFetchShareParticipantsOperationCallbacks> {
     NSMutableSet * _discoveredUserIdentities;
     id /* block */  _fetchShareParticipantsCompletionBlock;
     NSMutableDictionary * _lookupErrors;
@@ -10,21 +10,25 @@
     NSArray * _userIdentityLookupInfos;
 }
 
+@property (nonatomic, readonly) <CKFetchShareParticipantsOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSMutableSet *discoveredUserIdentities;
 @property (nonatomic, copy) id /* block */ fetchShareParticipantsCompletionBlock;
 @property (nonatomic, retain) NSMutableDictionary *lookupErrors;
+@property (nonatomic, readonly) CKFetchShareParticipantsOperationInfo *operationInfo;
 @property (nonatomic, copy) id /* block */ shareParticipantFetchedBlock;
 @property (nonatomic, copy) NSArray *userIdentityLookupInfos;
+
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
 
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)discoveredUserIdentities;
 - (id /* block */)fetchShareParticipantsCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleShareParticipantFetchForLookupInfo:(id)arg1 shareParticipant:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithUserIdentityLookupInfos:(id)arg1;

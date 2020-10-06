@@ -17,15 +17,7 @@
         unsigned int read_regions : 1; 
         unsigned int read_snapshotId : 1; 
         unsigned int read_speeds : 1; 
-        unsigned int wrote_compactSpeeds : 1; 
-        unsigned int wrote_feedId : 1; 
-        unsigned int wrote_feedPublishTime : 1; 
-        unsigned int wrote_feedUpdateTime : 1; 
-        unsigned int wrote_incidents : 1; 
-        unsigned int wrote_regions : 1; 
-        unsigned int wrote_snapshotId : 1; 
-        unsigned int wrote_speeds : 1; 
-        unsigned int wrote_trafficVersion : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _incidents;
     PBDataReader * _reader;
@@ -62,16 +54,6 @@
 + (Class)speedsType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsCompactSpeeds:(id)arg1;
-- (void)_addNoFlagsIncidents:(id)arg1;
-- (void)_addNoFlagsRegion:(id)arg1;
-- (void)_addNoFlagsSpeeds:(id)arg1;
-- (void)_readCompactSpeeds;
-- (void)_readFeedId;
-- (void)_readIncidents;
-- (void)_readRegions;
-- (void)_readSnapshotId;
-- (void)_readSpeeds;
 - (void)addCompactSpeeds:(id)arg1;
 - (void)addIncidents:(id)arg1;
 - (void)addRegion:(id)arg1;
@@ -101,7 +83,10 @@
 - (unsigned long long)incidentsCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

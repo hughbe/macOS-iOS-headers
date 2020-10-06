@@ -3,12 +3,14 @@
  */
 
 @interface NWConcrete_nw_endpoint_transform : NSObject <OS_nw_endpoint_transform> {
+    NSObject<OS_nw_array> * blocked_protocols;
     NSObject<OS_nw_array> * child_endpoint_handlers;
     void * child_timer;
     NWConcrete_nw_endpoint_handler * connected_child;
     NSObject<OS_nw_array> * failed_child_endpoint_handlers;
     NSObject<OS_xpc_object> * fallback_modes;
     unsigned int  next_child_endpoint_index;
+    NSObject<OS_nw_endpoint> * primary_endpoint;
 }
 
 @property (readonly, copy) NSString *debugDescription;

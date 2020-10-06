@@ -16,6 +16,7 @@
 - (bool)isRichTextResolved;
 - (void)loadRichTextWithCompletionHandler:(id /* block */)arg1;
 - (void)setCompletionHandlers:(id /* block */)arg1;
+- (void)setFormattedTextPieces:(id)arg1;
 - (void)setText:(id)arg1;
 
 @end

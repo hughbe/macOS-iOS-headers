@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKStreamingAsset : NSObject <CKRecordValue, NSCopying, NSSecureCoding> {
+@interface CKStreamingAsset : NSObject <CKRecordValue, HMBModelObjectStorage, NSCopying, NSSecureCoding> {
     NSURL * _downloadURL;
     NSDate * _downloadURLExpirationDate;
     unsigned long long  _expectedSizeBytes;
@@ -39,6 +39,8 @@
 @property (nonatomic, copy) NSString *uploadReceipt;
 @property (nonatomic, copy) NSURL *uploadURL;
 @property (nonatomic, copy) NSDate *uploadURLExpirationDate;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (bool)supportsSecureCoding;
 
@@ -82,5 +84,11 @@
 - (id)uploadReceipt;
 - (id)uploadURL;
 - (id)uploadURLExpirationDate;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
++ (id)hmbDecodeData:(id)arg1 fromStorageLocation:(unsigned long long)arg2 error:(id*)arg3;
+
+- (id)hmbEncodeForStorageLocation:(unsigned long long)arg1 error:(id*)arg2;
 
 @end

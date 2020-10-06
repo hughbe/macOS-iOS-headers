@@ -3,7 +3,6 @@
  */
 
 @interface _INPBMediaSearch : PBCodable <NSCopying, NSSecureCoding, _INPBMediaSearch> {
-    bool  __encodeLegacyGloryData;
     _INPBString * _albumName;
     _INPBString * _artistName;
     NSArray * _genreNames;
@@ -21,7 +20,6 @@
     int  _sortOrder;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBString *albumName;
 @property (nonatomic, retain) _INPBString *artistName;
 @property (readonly, copy) NSString *debugDescription;
@@ -55,8 +53,6 @@
 - (int)StringAsMediaType:(id)arg1;
 - (int)StringAsReference:(id)arg1;
 - (int)StringAsSortOrder:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addGenreNames:(id)arg1;
 - (void)addMoodNames:(id)arg1;
 - (id)albumName;

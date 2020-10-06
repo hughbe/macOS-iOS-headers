@@ -25,6 +25,8 @@
 @property (nonatomic, readonly) long long state;
 @property (nonatomic) bool userInitiatedDownload;
 
+// Image: /System/Library/PrivateFrameworks/MobileAsset.framework/MobileAsset
+
 + (bool)nonUserInitiatedDownloadsAllowed;
 
 - (void)_downloadWithOptions:(id)arg1 shouldFireCallback:(bool)arg2;
@@ -68,5 +70,9 @@
 - (long long)state;
 - (id)systemAppServerUrl;
 - (bool)userInitiatedDownload;
+
+// Image: /System/Library/PrivateFrameworks/TextInputCore.framework/TextInputCore
+
+- (id)laterAsset:(id)arg1;
 
 @end

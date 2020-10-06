@@ -12,6 +12,8 @@
 @property (getter=isMultiThreaded, nonatomic) bool multiThreaded;
 @property (readonly) EAGLSharegroup *sharegroup;
 
+// Image: /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+
 + (id)currentContext;
 + (bool)setCurrentContext:(id)arg1;
 
@@ -33,14 +35,16 @@
 - (bool)presentRenderbuffer:(unsigned long long)arg1 afterMinimumDuration:(double)arg2;
 - (bool)presentRenderbuffer:(unsigned long long)arg1 atTime:(double)arg2;
 - (bool)renderbufferStorage:(unsigned long long)arg1 fromDrawable:(id)arg2;
-- (void)sendNotification:(unsigned int)arg1 forTransaction:(unsigned int)arg2 onLayer:(unsigned int)arg3;
 - (bool)setBlockFence:(id /* block */)arg1 onQueue:(id)arg2;
 - (void)setDebugLabel:(id)arg1;
 - (void)setMultiThreaded:(bool)arg1;
 - (unsigned long long)setParameter:(unsigned int)arg1 to:(int*)arg2;
 - (id)sharegroup;
-- (void)swapNotification:(struct __IOMobileFramebuffer { }*)arg1 forTransaction:(unsigned int)arg2 onLayer:(unsigned int)arg3;
 - (bool)texImageIOSurface:(struct __IOSurface { }*)arg1 target:(unsigned long long)arg2 internalFormat:(unsigned long long)arg3 width:(unsigned int)arg4 height:(unsigned int)arg5 format:(unsigned long long)arg6 type:(unsigned long long)arg7 plane:(unsigned int)arg8;
 - (bool)texImageIOSurface:(struct __IOSurface { }*)arg1 target:(unsigned long long)arg2 internalFormat:(unsigned long long)arg3 width:(unsigned int)arg4 height:(unsigned int)arg5 format:(unsigned long long)arg6 type:(unsigned long long)arg7 plane:(unsigned int)arg8 invert:(bool)arg9;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSDrawables.framework/TSDrawables
+
+- (id)initForBrushes;
 
 @end

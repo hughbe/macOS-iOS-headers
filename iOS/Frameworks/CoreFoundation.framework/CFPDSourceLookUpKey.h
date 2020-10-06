@@ -3,14 +3,8 @@
  */
 
 @interface CFPDSourceLookUpKey : NSObject {
-    bool  byHost;
-    bool  cloud;
     struct __CFString { } * cloudPath;
-    struct __CFString { } * containerPath;
-    struct __CFString { } * domain;
-    bool  managed;
-    bool  managedUsesContainer;
-    struct __CFString { } * userName;
+    struct __CFString { } * uncanonicalizedPath;
 }
 
 - (void)dealloc;

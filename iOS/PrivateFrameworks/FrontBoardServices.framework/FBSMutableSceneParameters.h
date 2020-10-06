@@ -12,6 +12,7 @@
 
 - (void).cxx_destruct;
 - (void)_setSpecification:(id)arg1;
+- (void)applyParameters:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)setDisplay:(id)arg1;
 - (void)setSettings:(id)arg1;

@@ -13,6 +13,8 @@
 @property (nonatomic, copy) NSString *refId;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)confirmIntentCompleted;
 + (id)confirmIntentCompletedWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -23,5 +25,10 @@
 - (bool)requiresResponse;
 - (void)setIntentResponse:(id)arg1;
 - (void)setJsonEncodedIntentResponse:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IntentsServices.framework/IntentsServices
+
+- (id)ins_jsonEncodedIntentResponse;
+- (id)ins_protobufEncodedIntentResponse;
 
 @end

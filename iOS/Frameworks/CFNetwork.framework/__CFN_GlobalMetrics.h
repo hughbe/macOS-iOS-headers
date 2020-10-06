@@ -6,36 +6,16 @@
     <_NSURLSessionHTTPRewriter> * _HTTPRewriter;
     NSMutableDictionary * _backgroundSessionMetrics;
     NSMutableDictionary * _defaultSessionMetrics;
+    <_NSURLSessionEventDelegate> * _delegate;
+    NSObject<OS_dispatch_queue> * _delegateQueue;
     NSMutableDictionary * _ephemeralSessionMetrics;
     <_NSURLSessionEventDelegate> * _forwardingDelegate;
-    <_NSURLSessionEventDelegate> * delegate;
-    NSObject<OS_dispatch_queue> * delegateQueue;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  lock;
 }
 
-@property (retain) <_NSURLSessionHTTPRewriter> *HTTPRewriter;
-@property (nonatomic, retain) NSMutableDictionary *backgroundSessionMetrics;
-@property (nonatomic, retain) NSMutableDictionary *defaultSessionMetrics;
-@property (nonatomic, retain) NSMutableDictionary *ephemeralSessionMetrics;
-@property (nonatomic, retain) <_NSURLSessionEventDelegate> *forwardingDelegate;
-
-+ (id)globalMetrics;
-
 - (void).cxx_destruct;
-- (id)HTTPRewriter;
-- (id)backgroundSessionMetrics;
-- (id)defaultSessionMetrics;
-- (id)ephemeralSessionMetrics;
-- (id)forwardingDelegate;
 - (id)init;
-- (void)sessionCreate:(id)arg1;
-- (void)sessionDestroy:(id)arg1;
-- (void)setBackgroundSessionMetrics:(id)arg1;
-- (void)setDefaultSessionMetrics:(id)arg1;
-- (void)setEphemeralSessionMetrics:(id)arg1;
-- (void)setForwardingDelegate:(id)arg1;
-- (void)setHTTPRewriter:(id)arg1;
 
 @end

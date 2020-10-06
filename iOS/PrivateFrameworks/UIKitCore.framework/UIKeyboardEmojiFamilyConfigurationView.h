@@ -6,6 +6,7 @@
     NSString * _baseEmojiString;
     UIKeyboardEmojiWellView * _configuredWellView;
     NSMutableArray * _familyMemberStackViews;
+    NSIndexPath * _lastSelectedIndexPath;
     double  _metachronalRhythmAnimationStartTime;
     UIKeyboardEmojiWellView * _neutralWellView;
     UIStackView * _previewWellStackView;
@@ -22,6 +23,7 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) NSMutableArray *familyMemberStackViews;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, retain) NSIndexPath *lastSelectedIndexPath;
 @property (nonatomic, retain) UIKeyboardEmojiWellView *neutralWellView;
 @property (nonatomic, retain) UIStackView *previewWellStackView;
 @property (nonatomic, retain) UIKBTree *representedKey;
@@ -30,8 +32,6 @@
 @property (nonatomic, retain) NSArray *skinToneVariantRows;
 @property (readonly) Class superclass;
 @property (nonatomic) bool usesDarkStyle;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_selectionAndSeparatorColorForDarkMode:(bool)arg1;
 + (struct CGSize { double x1; double x2; })preferredContentViewSizeForKey:(id)arg1 withTraits:(id)arg2;
@@ -44,16 +44,15 @@
 - (id)_currentlySelectedSkinToneConfiguration;
 - (bool)_hasCompletelyConfiguredSkinToneConfiguration;
 - (void)_setCurrentlySelectedSkinToneConfiguration:(id)arg1;
+- (void)_updateBottomRowForSelections:(id)arg1;
 - (void)_updatePreviewWellForCurrentSelection;
 - (void)_updateReferencedKeySelectedVariantIndexBasedOnCurrentConfiguration;
 - (id)_wellViewForSection:(long long)arg1 item:(long long)arg2;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)baseEmojiString;
 - (id)configuredWellView;
 - (id)familyMemberStackViews;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)lastSelectedIndexPath;
 - (void)layoutSubviews;
 - (id)neutralWellView;
 - (id)previewWellStackView;
@@ -65,6 +64,7 @@
 - (void)setBaseEmojiString:(id)arg1;
 - (void)setConfiguredWellView:(id)arg1;
 - (void)setFamilyMemberStackViews:(id)arg1;
+- (void)setLastSelectedIndexPath:(id)arg1;
 - (void)setNeutralWellView:(id)arg1;
 - (void)setPreviewWellStackView:(id)arg1;
 - (void)setRepresentedKey:(id)arg1;

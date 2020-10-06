@@ -12,16 +12,24 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)cacheGroup;
+- (id)__INCodableDescriptionCodeKey;
+- (id)__INCodableDescriptionFormatStringDictionaryKey;
+- (id)__INCodableDescriptionFormatStringDictionaryLanguageCodeKey;
+- (id)__INCodableDescriptionFormatStringIDKey;
+- (id)__INCodableDescriptionFormatStringKey;
+- (id)__INCodableDescriptionFormatStringLanguageCodeKey;
+- (id)__INCodableDescriptionKey;
+- (id)__INIntentResponseCodableDescriptionCodeKey;
+- (id)__INIntentResponseCodableDescriptionKey;
+- (id)__INTypeCodableDescriptionCodeKey;
+- (id)__INTypeCodableDescriptionKey;
 - (id)code;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
-- (id)keyPrefix;
 - (id)predicateFormat;
 - (void)setCode:(id)arg1;
 - (void)updateWithDictionary:(id)arg1;

@@ -24,6 +24,7 @@
 - (void)clearAllCaches;
 - (void)clearAuthorizationsAddedBetween:(id)arg1 and:(id)arg2;
 - (void)clearCache;
+- (void)clearSafariCache;
 - (void)dealloc;
 - (void)decidePolicyForGeolocationRequestFromOrigin:(id)arg1 requestingURL:(id)arg2 view:(id)arg3 listener:(id)arg4;
 - (void)decidePolicyForGeolocationRequestFromOrigin:(id)arg1 requestingURL:(id)arg2 window:(id)arg3 listener:(id)arg4;

@@ -8,7 +8,6 @@
     AMSProcessInfo * _clientInfo;
     NSError * _error;
     NSString * _proxyBundleId;
-    AMSDialogRequest * _request;
     AMSDialogResult * _result;
 }
 
@@ -27,6 +26,7 @@
 - (id)clientInfo;
 - (id)error;
 - (id)initWithRequest:(id)arg1 result:(id)arg2 error:(id)arg3 bag:(id)arg4;
+- (id)initWithResult:(id)arg1 bag:(id)arg2;
 - (id)perform;
 - (id)proxyBundleId;
 - (id)request;

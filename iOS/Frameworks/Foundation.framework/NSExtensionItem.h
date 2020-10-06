@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSExtensionItem : NSObject <NSCopying, NSSecureCoding> {
+@interface NSExtensionItem : NSObject <NSCopying, NSSecureCoding, WFNaming> {
     NSMutableDictionary * _userInfo;
 }
 
@@ -11,6 +11,8 @@
 @property (nonatomic, copy) NSAttributedString *attributedContentText;
 @property (nonatomic, copy) NSAttributedString *attributedTitle;
 @property (nonatomic, copy) NSDictionary *userInfo;
+@property (nonatomic, readonly, copy) NSString *wfName;
+@property (setter=wf_setWidgetRequest:, nonatomic, copy) WFWidgetConfigurationRequest *wf_widgetRequest;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -32,11 +34,24 @@
 - (void)setUserInfo:(id)arg1;
 - (id)userInfo;
 
+// Image: /System/Library/Frameworks/ReplayKit.framework/ReplayKit
+
++ (id)itemWithTitle:(id)arg1 attachmentItem:(id)arg2;
+
 // Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
 + (id)extensionItemWithAppleIDAuthenticationContext:(id)arg1;
 
 - (id)ak_context;
 - (void)ak_setContext:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
+- (id)wfName;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowUIServices.framework/WorkflowUIServices
+
+- (void)wf_setWidgetRequest:(id)arg1;
+- (id)wf_widgetRequest;
 
 @end

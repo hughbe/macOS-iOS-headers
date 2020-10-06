@@ -17,8 +17,6 @@
     }  _settings;
 }
 
-+ (id)threadSpecificStringDrawingTextStorageSettings:(bool)arg1;
-
 - (id)init;
 
 @end

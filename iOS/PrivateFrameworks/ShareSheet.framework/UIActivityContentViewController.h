@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ShareSheet.framework/ShareSheet
  */
 
-@interface UIActivityContentViewController : UIViewController <UICollectionViewDelegate> {
+@interface UIActivityContentViewController : UIViewController <LPLinkViewDelegate, UICollectionViewDelegate> {
     NSArray * _actionProxies;
     NSMutableDictionary * _actionSlots;
     NSDictionary * _activitiesByUUID;
@@ -81,8 +81,13 @@
 
 - (void).cxx_destruct;
 - (id)_activityWithActivityUUID:(id)arg1;
+- (void)_cancelButtonTapped;
+- (void)_closeButtonTapped;
+- (id)_contextMenuPreviewForCollectionView:(id)arg1 collectionViewCell:(id)arg2;
 - (void)_editActionsTapped;
+- (void)_nextButtonTapped;
 - (bool)_presentedInFormSheet;
+- (void)_updatePhotosCarouselViewContent;
 - (id)actionProxies;
 - (id)actionSlots;
 - (id)activitiesByUUID;
@@ -92,13 +97,14 @@
 - (id)airDropUUID;
 - (id)applicationActivities;
 - (id)backgroundView;
-- (id)cancelBarButton;
 - (id)cancelButton;
-- (void)cancelButtonTapped;
 - (id)closeButton;
-- (void)closeButtonTapped;
+- (id)collectionView:(id)arg1 contextMenuConfigurationForItemAtIndexPath:(id)arg2 point:(struct CGPoint { double x1; double x2; })arg3;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
+- (id)collectionView:(id)arg1 previewForDismissingContextMenuWithConfiguration:(id)arg2;
+- (id)collectionView:(id)arg1 previewForHighlightingContextMenuWithConfiguration:(id)arg2;
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
+- (void)collectionView:(id)arg1 willEndContextMenuInteractionWithConfiguration:(id)arg2 animator:(id)arg3;
 - (void)configureCollectionViewIfNeeded;
 - (bool)configureForCloudSharing;
 - (bool)configureForPhotosEdit;
@@ -118,11 +124,10 @@
 - (bool)ignorePersonTap;
 - (id)init;
 - (void)layoutContentCollectionView:(bool)arg1;
+- (void)linkViewNeedsResize:(id)arg1;
 - (id)magicHeadViewController;
 - (id)nearbyCountSlotID;
-- (id)nextBarButton;
 - (id)nextButton;
-- (void)nextButtonTapped;
 - (void)overrideLayoutConfigurationWithSafeAreaInsets:(bool)arg1;
 - (id)peopleSlots;
 - (id)photosCarouselUUID;

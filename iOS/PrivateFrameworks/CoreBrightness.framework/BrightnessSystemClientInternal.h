@@ -7,6 +7,8 @@
     NSXPCConnection * _connection;
     NSObject<OS_os_log> * _logHandle;
     id  _remote;
+    NSObject<OS_dispatch_queue> * _serialQueue;
+    bool  _useSynchronousRemote;
     bool  copyPropertyForKeyCompleted;
     NSCondition * copyPropertyForKeyWaitCondition;
     BrightnessSystemClientExportedObj * exportedObj;

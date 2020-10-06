@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@interface NSHTTPCookie : NSObject <AMSHashable, NSSecureCoding> {
+@interface NSHTTPCookie : NSObject <AMSHashable, NSCoding, NSSecureCoding> {
     NSHTTPCookieInternal * _cookiePrivate;
 }
 
@@ -34,10 +34,9 @@
 
 + (id)_cf2nsCookies:(struct __CFArray { }*)arg1;
 + (id)_cookieForSetCookieString:(id)arg1 forURL:(id)arg2 partition:(id)arg3;
-+ (id)_cookiesWithResponseHeaderFields:(id)arg1 forURL:(id)arg2 singleCookie:(bool)arg3;
 + (const struct __CFArray { }*)_ns2cfCookies:(id)arg1;
 + (id)_parsedCookiesWithResponseHeaderFields:(id)arg1 forURL:(id)arg2;
-+ (id)cookieWithCFHTTPCookie:(id)arg1;
++ (id)cookieWithCFHTTPCookie:(struct OpaqueCFHTTPCookie { }*)arg1;
 + (id)cookieWithProperties:(id)arg1;
 + (id)cookiesWithResponseHeaderFields:(id)arg1 forURL:(id)arg2;
 + (id)requestHeaderFieldsWithCookies:(id)arg1;
@@ -57,8 +56,8 @@
 - (id)StoragePartition;
 - (id)Value;
 - (id)Version;
-- (id)_CFHTTPCookie;
-- (id)_GetInternalCFHTTPCookie;
+- (const struct OpaqueCFHTTPCookie { }*)_CFHTTPCookie;
+- (const struct OpaqueCFHTTPCookie { }*)_GetInternalCFHTTPCookie;
 - (long long)_compareForHeaderOrder:(id)arg1;
 - (id)_initWithCookie:(id)arg1 partition:(id)arg2;
 - (id)_initWithHeader:(const struct CompactCookieHeader { }*)arg1;
@@ -75,11 +74,10 @@
 - (id)description;
 - (id)domain;
 - (void)encodeWithCoder:(id)arg1;
-- (id)ensureCookieValid;
 - (id)expiresDate;
 - (unsigned long long)hash;
 - (id)init;
-- (id)initWithCFHTTPCookie:(id)arg1;
+- (id)initWithCFHTTPCookie:(struct OpaqueCFHTTPCookie { }*)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProperties:(id)arg1;
 - (bool)isEqual:(id)arg1;
@@ -97,6 +95,10 @@
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 - (id)replacementObjectForPortCoder:(id)arg1;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (bool)sf_matchesTopLevelDomain:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
 

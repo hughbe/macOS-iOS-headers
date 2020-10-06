@@ -3,24 +3,35 @@
  */
 
 @interface NSPersistentStoreCoordinator : NSObject <NSLocking> {
-    id * _additionalPrivateIvars;
+    int  _cd_rc;
     void * _dispatchQueue;
+    NSMutableArray * _extendedStoreURLs;
     struct _persistentStoreCoordinatorFlags { 
         unsigned int _isRegistered : 1; 
         unsigned int _canUseDirectDispatch : 1; 
-        unsigned int _reservedFlags : 30; 
+        unsigned int _queueUsage : 1; 
+        unsigned int _qosClass : 8; 
+        unsigned int _reservedFlags : 21; 
     }  _flags;
+    NSError * _lastOpenError;
     NSManagedObjectModel * _managedObjectModel;
-    long long  _miniLock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _miniLock;
+    _PFModelMap * _modelMap;
     NSArray * _persistentStores;
+    NSString * _queueLabel;
     id  _queueOwner;
-    unsigned int  _reserved32;
+    id  _xpcBundleID;
+    NSString * _xpcProcessName;
 }
 
 @property (readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, readonly) _PFModelMap *modelMap;
 @property (copy) NSString *name;
 @property (readonly) NSArray *persistentStores;
+
+// Image: /System/Library/Frameworks/CoreData.framework/CoreData
 
 + (void)__Multithreading_Violation_AllThatIsLeftToUsIsHonor__;
 + (unsigned long long)__platformOptions;
@@ -78,8 +89,10 @@
 - (void)_doPreSaveAssignmentsForObjects:(id)arg1 intoStores:(id)arg2;
 - (id)_exceptionNoStoreSaveFailureForError:(id)arg1 recommendedFrame:(int*)arg2;
 - (id)_fetchAllInstancesFromStore:(id)arg1 intoContext:(id)arg2 underlyingException:(id*)arg3;
+- (bool)_finishDeferredLightweightMigrationTasks:(bool)arg1 withError:(id*)arg2;
 - (bool)_hasHistoryTracking:(id)arg1;
 - (void)_introspectLastErrorAndThrow;
+- (bool)_isDeallocating;
 - (bool)_isRegisteredWithCloudKit;
 - (bool)_isRegisteredWithUbiquity;
 - (id)_lastOpenError;
@@ -90,7 +103,7 @@
 - (void)_postStoreRemoteChangeNotificationsForStore:(id)arg1 andState:(unsigned long long)arg2;
 - (void)_postStoresChangedNotificationsForStores:(id)arg1 changeKey:(id)arg2 options:(id)arg3;
 - (id)_processStoreResults:(id)arg1 forRequest:(id)arg2;
-- (id)_qosClassOptions;
+- (unsigned int)_qosClassOptions;
 - (id)_realStoreTypeForStoreWithType:(id)arg1 URL:(id)arg2 options:(id)arg3 error:(id*)arg4;
 - (bool)_refreshTriggerValuesInStore:(id)arg1 error:(id*)arg2;
 - (bool)_rekeyPersistentStoreAtURL:(id)arg1 type:(id)arg2 options:(id)arg3 withKey:(id)arg4 error:(id*)arg5;
@@ -116,6 +129,7 @@
 - (void)_setXPCBundleIdentifier:(id)arg1;
 - (void)_setXPCProcessName:(id)arg1;
 - (Class)_storeClassForStoreWithType:(id)arg1 URL:(id)arg2 options:(id)arg3;
+- (bool)_tryRetain;
 - (bool)_validateQueryGeneration:(id)arg1 error:(id*)arg2;
 - (id)_xpcBundleIdentifier;
 - (id)_xpcProcessName;
@@ -126,6 +140,8 @@
 - (void)dealloc;
 - (bool)destroyPersistentStoreAtURL:(id)arg1 withType:(id)arg2 options:(id)arg3 error:(id*)arg4;
 - (id)executeRequest:(id)arg1 withContext:(id)arg2 error:(id*)arg3;
+- (bool)finishDeferredLightweightMigration:(id*)arg1;
+- (bool)finishDeferredLightweightMigrationTask:(id*)arg1;
 - (id)init;
 - (id)initWithManagedObjectModel:(id)arg1;
 - (void)lock;
@@ -149,13 +165,28 @@
 - (id)persistentStoreForIdentifier:(id)arg1;
 - (id)persistentStoreForURL:(id)arg1;
 - (id)persistentStores;
+- (oneway void)release;
 - (bool)removePersistentStore:(id)arg1 error:(id*)arg2;
 - (bool)replacePersistentStoreAtURL:(id)arg1 destinationOptions:(id)arg2 withPersistentStoreFromURL:(id)arg3 sourceOptions:(id)arg4 storeType:(id)arg5 error:(id*)arg6;
+- (void)replaceResultTypeOfRequestIfNecessary:(id)arg1 store:(id)arg2 requestType:(unsigned long long)arg3 originalResultType:(unsigned long long*)arg4;
+- (id)restoreOriginalRequestIfNecessary:(id)arg1 store:(id)arg2 swizzledResults:(id)arg3 originalRequestType:(unsigned long long)arg4 originalResultType:(unsigned long long)arg5;
+- (id)retain;
+- (unsigned long long)retainCount;
 - (void)setMetadata:(id)arg1 forPersistentStore:(id)arg2;
 - (void)setName:(id)arg1;
 - (bool)setURL:(id)arg1 forPersistentStore:(id)arg2;
+- (bool)shouldUpdateStoreSpotlightIndex:(id)arg1 withResults:(id)arg2 requestType:(unsigned long long)arg3;
 - (bool)tryLock;
 - (void)unlock;
 - (bool)validateManagedObjectModel:(id)arg1 forHistoryTrackingWithOptions:(id)arg2 error:(id*)arg3;
+
+// Image: /System/Library/PrivateFrameworks/BookDataStore.framework/BookDataStore
+
+- (bool)hasStoreInCommonWith:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
+
+- (id)ic_managedObjectIDForURIRepresentation:(id)arg1;
+- (id)ic_managedObjectIDForURIString:(id)arg1;
 
 @end

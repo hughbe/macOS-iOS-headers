@@ -9,6 +9,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) CLPlacemark *parkingLocation;
+@property (nonatomic, copy) NSString *parkingNote;
 @property (readonly) Class superclass;
 
 + (bool)_appLaunchRequestedFromCode:(long long)arg1;
@@ -28,8 +29,10 @@
 - (id)initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)parkingLocation;
+- (id)parkingNote;
 - (id)propertiesByName;
 - (void)setParkingLocation:(id)arg1;
+- (void)setParkingNote:(id)arg1;
 - (void)setPropertiesByName:(id)arg1;
 
 @end

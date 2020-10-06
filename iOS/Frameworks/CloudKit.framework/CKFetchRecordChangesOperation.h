@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchRecordChangesOperation : CKDatabaseOperation {
+@interface CKFetchRecordChangesOperation : CKDatabaseOperation <CKFetchRecordChangesOperationCallbacks> {
     id /* block */  _changeTokensUpdatedBlock;
     NSArray * _desiredKeys;
     bool  _fetchAllChanges;
@@ -21,10 +21,12 @@
 }
 
 @property (nonatomic, copy) id /* block */ changeTokensUpdatedBlock;
+@property (nonatomic, readonly) <CKFetchRecordChangesOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) NSArray *desiredKeys;
 @property (nonatomic) bool fetchAllChanges;
 @property (nonatomic, copy) id /* block */ fetchRecordChangesCompletionBlock;
 @property (nonatomic, readonly) bool moreComing;
+@property (nonatomic, readonly) CKFetchRecordZoneChangesOperationInfo *operationInfo;
 @property (nonatomic, copy) CKServerChangeToken *previousServerChangeToken;
 @property (nonatomic, copy) id /* block */ recordChangedBlock;
 @property (nonatomic, retain) NSMutableDictionary *recordErrors;
@@ -37,11 +39,13 @@
 @property (nonatomic) bool shouldFetchAssetContents;
 @property (nonatomic) long long status;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
++ (SEL)daemonCallbackCompletionSelector;
++ (Class)operationInfoClass;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleCompletionCallback:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id /* block */)changeTokensUpdatedBlock;
 - (long long)changeTypesFromSetCallbacks;
@@ -50,17 +54,21 @@
 - (id /* block */)fetchRecordChangesCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleChangeForRecordID:(id)arg1 record:(id)arg2 error:(id)arg3;
+- (void)handleChangeSetCompletionWithServerChangeToken:(id)arg1 clientChangeTokenData:(id)arg2 recordChangesStatus:(long long)arg3 reply:(id /* block */)arg4;
+- (void)handleDeleteForRecordID:(id)arg1;
+- (void)handleOperationDidCompleteWithServerChangeToken:(id)arg1 clientChangeTokenData:(id)arg2 recordChangesStatus:(long long)arg3 metrics:(id)arg4 error:(id)arg5;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordZoneID:(id)arg1 previousServerChangeToken:(id)arg2;
 - (bool)moreComing;
-- (Class)operationInfoClass;
 - (void)performCKOperation;
 - (id)previousServerChangeToken;
 - (id /* block */)recordChangedBlock;
 - (id)recordErrors;
 - (id /* block */)recordWithIDWasDeletedBlock;
 - (id)recordZoneID;
+- (id)relevantZoneIDs;
 - (id)resultClientChangeTokenData;
 - (id)resultServerChangeToken;
 - (unsigned long long)resultsLimit;

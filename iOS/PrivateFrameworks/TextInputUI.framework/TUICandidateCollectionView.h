@@ -5,5 +5,6 @@
 @interface TUICandidateCollectionView : UICollectionView
 
 - (bool)_shouldFadeCellsForBoundChangeWhileRotating;
+- (void)_updateUsesStaticScrollBar;
 
 @end

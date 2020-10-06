@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
  */
 
-@interface AVHapticPlayerParameterCurve : NSObject {
+@interface AVHapticPlayerParameterCurve : NSObject <NSSecureCoding> {
     NSArray * _controlPoints;
     unsigned long long  _shape;
     double  _time;
@@ -14,9 +14,13 @@
 @property double time;
 @property unsigned long long type;
 
++ (bool)supportsSecureCoding;
+
 - (void).cxx_destruct;
 - (id)controlPoints;
+- (void)encodeWithCoder:(id)arg1;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithType:(unsigned long long)arg1 relativeTime:(double)arg2 shape:(unsigned long long)arg3 controlPoints:(id)arg4;
 - (void)setShape:(unsigned long long)arg1;
 - (void)setTime:(double)arg1;

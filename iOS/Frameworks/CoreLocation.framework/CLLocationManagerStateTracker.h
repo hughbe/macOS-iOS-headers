@@ -19,6 +19,7 @@
         bool dynamicAccuracyReductionEnabled; 
         bool previousAuthorizationStatusValid; 
         int previousAuthorizationStatus; 
+        bool limitsPrecision; 
         long long activityType; 
         int pausesLocationUpdatesAutomatically; 
         bool paused; 
@@ -30,7 +31,9 @@
         bool updatingVehicleHeading; 
         bool matchInfoEnabled; 
         bool groundAltitudeEnabled; 
+        bool fusionInfoEnabled; 
         bool courtesyPromptNeeded; 
+        bool isAuthorizedForWidgetUpdates; 
     }  _state;
 }
 
@@ -44,8 +47,11 @@
 @property (nonatomic) double desiredAccuracy;
 @property (nonatomic) double distanceFilter;
 @property (nonatomic) bool dynamicAccuracyReductionEnabled;
+@property (nonatomic) bool fusionInfoEnabled;
 @property (nonatomic) bool groundAltitudeEnabled;
 @property (nonatomic) double headingFilter;
+@property (nonatomic) bool isAuthorizedForWidgetUpdates;
+@property (nonatomic) bool limitsPrecision;
 @property (nonatomic) bool matchInfoEnabled;
 @property (nonatomic) bool paused;
 @property int pausesLocationUpdatesAutomatically;
@@ -75,6 +81,7 @@
 - (double)distanceFilter;
 - (bool)dumpState:(void*)arg1 withSize:(unsigned long long)arg2 hints:(struct os_state_hints_s { unsigned int x1; char *x2; unsigned int x3; unsigned int x4; }*)arg3;
 - (bool)dynamicAccuracyReductionEnabled;
+- (bool)fusionInfoEnabled;
 - (bool)groundAltitudeEnabled;
 - (double)headingFilter;
 - (void*)identifier;
@@ -82,6 +89,8 @@
 - (id)initInSilo:(id)arg1 withIdentifier:(void*)arg2 state:(id /* block */)arg3;
 - (id)initWithQueue:(id)arg1 identifier:(void*)arg2;
 - (id)initWithQueue:(id)arg1 identifier:(void*)arg2 state:(id /* block */)arg3;
+- (bool)isAuthorizedForWidgetUpdates;
+- (bool)limitsPrecision;
 - (bool)matchInfoEnabled;
 - (bool)paused;
 - (int)pausesLocationUpdatesAutomatically;
@@ -99,8 +108,11 @@
 - (void)setDesiredAccuracy:(double)arg1;
 - (void)setDistanceFilter:(double)arg1;
 - (void)setDynamicAccuracyReductionEnabled:(bool)arg1;
+- (void)setFusionInfoEnabled:(bool)arg1;
 - (void)setGroundAltitudeEnabled:(bool)arg1;
 - (void)setHeadingFilter:(double)arg1;
+- (void)setIsAuthorizedForWidgetUpdates:(bool)arg1;
+- (void)setLimitsPrecision:(bool)arg1;
 - (void)setMatchInfoEnabled:(bool)arg1;
 - (void)setPaused:(bool)arg1;
 - (void)setPausesLocationUpdatesAutomatically:(int)arg1;

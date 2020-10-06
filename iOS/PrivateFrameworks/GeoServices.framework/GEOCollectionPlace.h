@@ -12,12 +12,7 @@
         unsigned int read_address : 1; 
         unsigned int read_coordinate : 1; 
         unsigned int read_name : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_address : 1; 
-        unsigned int wrote_coordinate : 1; 
-        unsigned int wrote_muid : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_providerId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned long long  _muid;
     NSString * _name;
@@ -46,9 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readAddress;
-- (void)_readCoordinate;
-- (void)_readName;
 - (id)address;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)coordinate;
@@ -64,7 +56,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muid;
 - (id)name;

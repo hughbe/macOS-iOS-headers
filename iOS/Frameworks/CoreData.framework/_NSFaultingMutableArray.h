@@ -25,7 +25,6 @@
 - (bool)_isDeallocating;
 - (bool)_tryRetain;
 - (void)addObject:(id)arg1;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;

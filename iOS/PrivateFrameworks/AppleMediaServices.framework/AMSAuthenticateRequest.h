@@ -18,6 +18,7 @@
 
 - (void).cxx_destruct;
 - (id)account;
+- (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithAccount:(id)arg1 options:(id)arg2;
 - (id)initWithCoder:(id)arg1;

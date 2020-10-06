@@ -22,6 +22,7 @@
 @property (nonatomic, retain) UIColor *selectedActiveTextColor;
 @property (nonatomic, retain) UIColor *selectedInactiveColor;
 
++ (id)availableColorNames;
 + (id)availableColors;
 + (id)colorWithName:(id)arg1 inBundle:(id)arg2;
 + (id)defaultBundle;
@@ -45,6 +46,7 @@
 - (unsigned long long)hash;
 - (id)initWithColorName:(id)arg1;
 - (id)initWithColorName:(id)arg1 inBundle:(id)arg2;
+- (id)initWithRandomColor;
 - (bool)isEqual:(id)arg1;
 - (id)selectedActiveColor;
 - (id)selectedActiveTextColor;

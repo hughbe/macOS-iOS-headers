@@ -39,7 +39,7 @@
 + (struct CGSize { double x1; double x2; })intrinsicContentSizeForOrientation:(long long)arg1;
 + (double)itemSpacing;
 + (double)regionSpacing;
-+ (Class)visualProviderSubclassForScreen:(id)arg1;
++ (Class)visualProviderSubclassForScreen:(id)arg1 visualProviderInfo:(id)arg2;
 + (bool)wantsExpandedLeadingPlacements;
 
 - (void).cxx_destruct;

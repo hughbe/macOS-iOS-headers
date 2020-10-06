@@ -11,7 +11,6 @@
 }
 
 - (void).cxx_destruct;
-- (void)_init;
 - (void)close;
 - (id)delegate;
 - (id)init;

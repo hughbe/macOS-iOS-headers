@@ -41,7 +41,6 @@
 - (id)_rawValidationPredicates;
 - (id)_rawValidationWarnings;
 - (void)_setPreserveValueOnDeletionInPersistentHistory:(bool)arg1;
-- (void)_sortOutDefaultNumericValuesBecauseDoublesAndFloatsDontCompareEqualAndThatBreaksTests;
 - (void)_versionHash:(char *)arg1 inStyle:(unsigned long long)arg2;
 - (void)_writeIntoData:(id)arg1 propertiesDict:(id)arg2 uniquedPropertyNames:(id)arg3 uniquedStrings:(id)arg4 uniquedData:(id)arg5 entitiesSlots:(id)arg6 fetchRequests:(id)arg7;
 - (bool)allowsExternalBinaryDataStorage;

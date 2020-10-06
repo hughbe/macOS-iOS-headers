@@ -32,7 +32,7 @@
 @property (readonly) Class superclass;
 
 + (id)modelBuilderForAddedContacts:(id)arg1 withContactTypeAssessor:(id)arg2;
-+ (id)modelBuilderForUpdatedContacts:(id)arg1 withContactTypeAssessor:(id)arg2;
++ (id)modelBuilderForContacts:(id)arg1 withContactTypeAssessor:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)contactRepresentingItem:(id)arg1;

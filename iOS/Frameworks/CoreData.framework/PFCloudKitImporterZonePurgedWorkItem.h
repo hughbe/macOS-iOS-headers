@@ -10,9 +10,9 @@
 
 - (void)dealloc;
 - (id)description;
-- (void)doWorkWithCompletion:(id /* block */)arg1;
+- (void)doWorkForStore:(id)arg1 inMonitor:(id)arg2 completion:(id /* block */)arg3;
 - (id)initWithPurgedRecordZoneID:(id)arg1 options:(id)arg2 request:(id)arg3;
 - (id)purgedRecordZoneID;
-- (bool)wipeAllCloudDataAndPurgeHistoryToken:(bool)arg1 error:(id*)arg2;
+- (bool)wipeAllCloudDataFromStore:(id)arg1 andPurgeHistoryToken:(bool)arg2 error:(id*)arg3;
 
 @end

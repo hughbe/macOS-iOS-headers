@@ -11,6 +11,8 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (id)_copyDescription;
 + (bool)_isDeallocating;
 + (bool)_tryRetain;
@@ -103,5 +105,24 @@
 - (id)self;
 - (Class)superclass;
 - (struct _NSZone { }*)zone;
+
+// Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
+
+- (bool)_accessibilityBoolValueForKey:(id)arg1;
+- (long long)_accessibilityIntegerValueForKey:(id)arg1;
+- (void)_accessibilityRemoveValueForKey:(id)arg1;
+- (void)_accessibilitySetAssignedValue:(id)arg1 forKey:(id)arg2;
+- (void)_accessibilitySetBoolValue:(bool)arg1 forKey:(id)arg2;
+- (void)_accessibilitySetIntegerValue:(long long)arg1 forKey:(id)arg2;
+- (void)_accessibilitySetRetainedValue:(id)arg1 forKey:(id)arg2;
+- (void)_accessibilitySetUnsignedIntegerValue:(unsigned long long)arg1 forKey:(id)arg2;
+- (void)_accessibilitySetValue:(id)arg1 forKey:(id)arg2 storageMode:(int)arg3;
+- (unsigned long long)_accessibilityUnsignedIntegerValueForKey:(id)arg1;
+- (id)_accessibilityValueForKey:(id)arg1;
+- (id)_axDictionaryQueue;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUtilities.framework/IMSharedUtilities
+
+- (bool)__isSingletonProxy__im;
 
 @end

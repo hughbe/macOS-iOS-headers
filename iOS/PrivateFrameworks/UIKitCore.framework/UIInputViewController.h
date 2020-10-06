@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIInputViewController : UIViewController <DebugHierarchyObject_Fallback, UITextInputDelegate, _UITextDocumentInterfaceDelegate> {
+@interface UIInputViewController : UIViewController <UITextInputDelegate, _UITextDocumentInterfaceDelegate> {
     bool  _alignsToContentViewController;
     bool  _autosizeToCurrentKeyboard;
     bool  _commitInputModeOnTouchEnd;
@@ -29,8 +29,6 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) <UITextDocumentProxy> *textDocumentProxy;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)_requiresProxyInterface;
 + (void)presentDialogForAddingKeyboard;
 
@@ -53,16 +51,8 @@
 - (id)_textDocumentInterface;
 - (void)_updateConformanceCache;
 - (void)_willResetDocumentState;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)advanceToNextInputMode;
+- (void)dealloc;
 - (void)didReceiveMemoryWarning;
 - (void)dismissKeyboard;
 - (void)handleInputModeListFromView:(id)arg1 withEvent:(id)arg2;

@@ -8,16 +8,6 @@
     long long  _type;
 }
 
-@property (nonatomic, retain) NSString *bundleID;
-@property (nonatomic, retain) NSArray *items;
-@property (nonatomic) long long type;
-
 - (void).cxx_destruct;
-- (id)bundleID;
-- (id)items;
-- (void)setBundleID:(id)arg1;
-- (void)setItems:(id)arg1;
-- (void)setType:(long long)arg1;
-- (long long)type;
 
 @end

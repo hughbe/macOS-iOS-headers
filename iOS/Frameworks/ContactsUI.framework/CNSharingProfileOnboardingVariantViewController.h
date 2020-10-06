@@ -2,60 +2,68 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNSharingProfileOnboardingVariantViewController : CNPhotoPickerVariantListController <_UIScrollViewLayoutObserver> {
-    OBButtonTray * _buttonTray;
-    OBNavigationBarDisplayState * _cachedBarState;
+@interface CNSharingProfileOnboardingVariantViewController : OBWelcomeController <CNPhotoPickerVariantListControllerDelegate> {
+    OBBoldTrayButton * _backButton;
     OBBoldTrayButton * _continueButton;
+    NSLayoutConstraint * _heightLayoutConstraint;
+    CNPhotoPickerProviderItem * _item;
     <CNSharingProfileOnboardingVariantViewControllerDelegate> * _onboardingDelegate;
-    OBHeaderView * _onboardingHeaderView;
     OBLinkTrayButton * _poseButton;
-    UINavigationController * _retainedNavigationController;
+    CNPhotoPickerProviderItem * _selectedItem;
+    OBLinkTrayButton * _setupLaterButton;
     bool  _shouldShowPoseButton;
+    CNPhotoPickerVariantListController * _variantListController;
+    NSString * _variantName;
+    CNPhotoPickerVariantsManager * _variantsManager;
 }
 
-@property (nonatomic, retain) OBButtonTray *buttonTray;
-@property (nonatomic, retain) OBNavigationBarDisplayState *cachedBarState;
+@property (nonatomic, retain) OBBoldTrayButton *backButton;
 @property (nonatomic, retain) OBBoldTrayButton *continueButton;
+@property (nonatomic, retain) NSLayoutConstraint *heightLayoutConstraint;
+@property (nonatomic, retain) CNPhotoPickerProviderItem *item;
 @property (nonatomic) <CNSharingProfileOnboardingVariantViewControllerDelegate> *onboardingDelegate;
-@property (nonatomic, retain) OBHeaderView *onboardingHeaderView;
 @property (nonatomic, retain) OBLinkTrayButton *poseButton;
-@property (nonatomic, retain) UINavigationController *retainedNavigationController;
+@property (nonatomic, retain) CNPhotoPickerProviderItem *selectedItem;
+@property (nonatomic, retain) OBLinkTrayButton *setupLaterButton;
 @property (nonatomic) bool shouldShowPoseButton;
-
-+ (bool)_navigationBarTitleShouldShowForHeaderView:(id)arg1 inScrollView:(id)arg2;
-+ (void)updateNavigationBarWithNavigationItem:(id)arg1 forHeaderView:(id)arg2 inScrollView:(id)arg3 animated:(bool)arg4;
+@property (nonatomic, retain) CNPhotoPickerVariantListController *variantListController;
+@property (nonatomic, retain) NSString *variantName;
+@property (nonatomic, retain) CNPhotoPickerVariantsManager *variantsManager;
 
 - (void).cxx_destruct;
-- (bool)_scrollViewContentIsUnderTrayForScrollView:(id)arg1;
-- (void)_scrollViewDidLayoutSubviews:(id)arg1;
-- (void)applyAutomaticScrollToEdgeBehaviorToNavigationItem:(id)arg1 withDistance:(double)arg2;
-- (id)buttonTray;
-- (id)cachedBarState;
-- (id)collectionView:(id)arg1 viewForSupplementaryElementOfKind:(id)arg2 atIndexPath:(id)arg3;
+- (id)backButton;
 - (id)continueButton;
+- (void)didTapBack:(id)arg1;
 - (void)didTapContinue:(id)arg1;
 - (void)didTapPose:(id)arg1;
-- (id)navigationItem;
+- (void)didTapSetupLater:(id)arg1;
+- (id)heightLayoutConstraint;
+- (id)initWithVariantsManager:(id)arg1 originalItem:(id)arg2 selectedVariantIdentifier:(id)arg3;
+- (id)item;
 - (id)onboardingDelegate;
-- (id)onboardingHeaderView;
+- (void)photoPickerVariantListController:(id)arg1 didSelectProviderItem:(id)arg2;
+- (void)photoPickerVariantListControllerDidCancel:(id)arg1;
 - (id)poseButton;
-- (void)restoreNavigationBarAppearance;
-- (id)retainedNavigationController;
-- (void)scrollViewDidScroll:(id)arg1;
-- (void)setButtonTray:(id)arg1;
-- (void)setCachedBarState:(id)arg1;
+- (id)selectedItem;
+- (void)setBackButton:(id)arg1;
 - (void)setContinueButton:(id)arg1;
+- (void)setHeightLayoutConstraint:(id)arg1;
+- (void)setItem:(id)arg1;
 - (void)setOnboardingDelegate:(id)arg1;
-- (void)setOnboardingHeaderView:(id)arg1;
 - (void)setPoseButton:(id)arg1;
-- (void)setRetainedNavigationController:(id)arg1;
+- (void)setSelectedItem:(id)arg1;
+- (void)setSetupLaterButton:(id)arg1;
 - (void)setShouldShowPoseButton:(bool)arg1;
+- (void)setVariantListController:(id)arg1;
+- (void)setVariantName:(id)arg1;
+- (void)setVariantsManager:(id)arg1;
+- (id)setupLaterButton;
 - (bool)shouldShowPoseButton;
-- (void)updateContentInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
-- (void)updateTrayBackgroundForScrollView:(id)arg1;
-- (void)viewDidDisappear:(bool)arg1;
+- (void)updateOriginalItem:(id)arg1;
+- (id)variantListController;
+- (id)variantName;
+- (id)variantsManager;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
-- (void)viewWillAppear:(bool)arg1;
 
 @end

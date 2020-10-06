@@ -35,6 +35,10 @@
 - (void)setVerb:(id)arg1;
 - (id)verb;
 
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (void)atx_getArgsInto:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
 
 - (id)cd_groupName;

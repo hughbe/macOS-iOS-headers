@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessState : NSObject <BSDescriptionProviding, BSXPCSecureCoding, NSCopying> {
+@interface RBSProcessState : NSObject <NSCopying, RBSXPCSecureCoding> {
     NSObject<OS_xpc_object> * _codedState;
     NSMutableDictionary * _codedStateCache;
     unsigned long long  _codedValues;
@@ -12,7 +12,7 @@
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _lock;
-    unsigned char  _preventLaunchState;
+    bool  _preventedFromLaunching;
     NSSet * _primitiveAssertions;
     RBSProcessHandle * _process;
     NSSet * _tags;
@@ -21,6 +21,7 @@
 }
 
 @property (nonatomic, readonly, copy) NSSet *assertions;
+@property (nonatomic, readonly, copy) NSObject<OS_xpc_object> *codedState;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) unsigned char debugState;
 @property (getter=isDebugging, nonatomic, readonly) bool debugging;
@@ -29,7 +30,6 @@
 @property (nonatomic, copy) NSSet *endowmentNamespaces;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSSet *legacyAssertions;
-@property (nonatomic) unsigned char preventLaunchState;
 @property (getter=isPreventedFromLaunching, nonatomic, readonly) bool preventedFromLaunching;
 @property (nonatomic, copy) NSSet *primitiveAssertions;
 @property (nonatomic, readonly) RBSProcessHandle *process;
@@ -41,24 +41,20 @@
 
 + (void)setActiveStateDescriptor:(id)arg1;
 + (id)stateWithProcess:(id)arg1;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_lock_encodedStateForDescriptor:(id)arg1;
-- (void)_lock_finalizeCodingForValues:(unsigned long long)arg1;
 - (id)assertions;
+- (id)codedState;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned char)debugState;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
 - (void)encodeWithPreviousState:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)endowmentNamespaces;
 - (unsigned long long)hash;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
-- (id)initWithProcess:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isDebugging;
 - (bool)isDifferentFromState:(id)arg1 significantly:(out bool*)arg2;
 - (bool)isEmptyState;
@@ -66,19 +62,15 @@
 - (bool)isPreventedFromLaunching;
 - (bool)isRunning;
 - (id)legacyAssertions;
-- (unsigned char)preventLaunchState;
 - (id)primitiveAssertions;
 - (id)process;
 - (void)setDebugState:(unsigned char)arg1;
 - (void)setEndowmentNamespaces:(id)arg1;
 - (void)setLegacyAssertions:(id)arg1;
-- (void)setPreventLaunchState:(unsigned char)arg1;
 - (void)setPrimitiveAssertions:(id)arg1;
 - (void)setTags:(id)arg1;
 - (void)setTaskState:(unsigned char)arg1;
 - (void)setTerminationResistance:(unsigned char)arg1;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 - (id)tags;
 - (unsigned char)taskState;
 - (unsigned char)terminationResistance;

@@ -28,6 +28,7 @@
 - (void)URLForItemID:(id)arg1 creatingPlaceholderIfMissing:(bool)arg2 ignoreAlternateContentsURL:(bool)arg3 completionHandler:(id /* block */)arg4;
 - (void)_createItemBasedOnTemplate:(id)arg1 fields:(unsigned long long)arg2 contents:(id)arg3 options:(unsigned long long)arg4 targetName:(id)arg5 bounce:(bool)arg6 bounceNumber:(id)arg7 completionHandler:(id /* block */)arg8;
 - (void)_deleteIndexInDomainContexts:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_indexOutOfBandUpdatedItems:(id)arg1 deletedItems:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)_persistedDocumentURLForURL:(id)arg1 itemID:(id)arg2 extension:(id)arg3 creatingPlaceholderIfMissing:(bool)arg4 completionHandler:(id /* block */)arg5;
 - (id)_proxyWithCancellationHandler:(id)arg1 forClientOperation:(id)arg2;
 - (void)_reparentItem:(id)arg1 underParent:(id)arg2 withNewName:(id)arg3 shouldBounce:(bool)arg4 bounceIndex:(unsigned long long)arg5 reply:(id /* block */)arg6;
@@ -73,6 +74,7 @@
 - (void)fetchServicesForItemID:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)fetchTrashIdentifiersWithCompletionHandler:(id /* block */)arg1;
 - (void)fetchVendorEndpoint:(id /* block */)arg1;
+- (void)fpx_invalidate;
 - (void)identifierForItemAtURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)importDidFinishWithCompletionHandler:(id /* block */)arg1;
 - (void)importDocumentAtURL:(id)arg1 intoFolderWithIdentifier:(id)arg2 originalName:(id)arg3 extensionInstance:(id)arg4 reply:(id /* block */)arg5;
@@ -83,7 +85,6 @@
 - (id)instanceForItemID:(id)arg1;
 - (id)instanceForItemIDs:(id)arg1;
 - (id)instanceForURL:(id)arg1;
-- (void)invalidate;
 - (void)itemChangedAtURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)itemForItemID:(id)arg1;
 - (void)itemForItemID:(id)arg1 completionHandler:(id /* block */)arg2;

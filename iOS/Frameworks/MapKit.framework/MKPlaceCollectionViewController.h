@@ -18,7 +18,7 @@
 
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
-- (void)reloadCollections;
+- (void)reloadCollectionsAnimated:(bool)arg1;
 - (void)sectionView:(id)arg1 didDeselectRow:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)sectionView:(id)arg1 didSelectFooter:(id)arg2;
 - (void)sectionView:(id)arg1 didSelectHeader:(id)arg2;

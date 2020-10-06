@@ -11,7 +11,6 @@
     long long  _type;
 }
 
-@property (nonatomic, readonly) UIColor *displayColor;
 @property (nonatomic, readonly) NSString *displayName;
 @property (nonatomic, readonly) long long itemCount;
 @property (nonatomic, readonly) long long labelIndex;
@@ -19,13 +18,13 @@
 @property (nonatomic, readonly) NSNumber *sidebarVisible;
 @property (nonatomic, readonly) long long type;
 
+// Image: /System/Library/PrivateFrameworks/DocumentManagerCore.framework/DocumentManagerCore
+
 + (bool)supportsSecureCoding;
-+ (id)tagColorWithLabelIndex:(long long)arg1;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)displayColor;
 - (id)displayName;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
@@ -42,5 +41,11 @@
 - (id)sidebarPinned;
 - (id)sidebarVisible;
 - (long long)type;
+
+// Image: /System/Library/PrivateFrameworks/DocumentManagerUICore.framework/DocumentManagerUICore
+
++ (id)tagColorWithLabelIndex:(long long)arg1;
+
+- (id)displayColor;
 
 @end

@@ -3,7 +3,6 @@
  */
 
 @interface VKCameraController : NSObject <VKCameraController> {
-    bool  _allowDatelineWraparound;
     struct AnimationRunner { } * _animationRunner;
     VKCamera * _camera;
     <VKMapViewCameraDelegate> * _cameraDelegate;
@@ -26,7 +25,6 @@
     bool  _staysCenteredDuringRotation;
 }
 
-@property (nonatomic) bool allowDatelineWraparound;
 @property (nonatomic, readonly) double altitude;
 @property (nonatomic, readonly) struct AnimationRunner { }*animationRunner;
 @property (nonatomic, readonly) bool canPitch;
@@ -45,6 +43,7 @@
 @property (nonatomic, readonly) struct MapDataAccess { }*mapDataAccess;
 @property (nonatomic, readonly) GEOMapRegion *mapRegion;
 @property (nonatomic, readonly) double maxPitch;
+@property (nonatomic, readonly) double minPitch;
 @property (nonatomic) double pitch;
 @property (nonatomic, readonly) double presentationHeading;
 @property (nonatomic, readonly) struct RunLoopController { }*runLoopController;
@@ -52,7 +51,6 @@
 @property (nonatomic) bool staysCenteredDuringRotation;
 @property (readonly) Class superclass;
 
-- (bool)allowDatelineWraparound;
 - (double)altitude;
 - (struct AnimationRunner { }*)animationRunner;
 - (void)beginRegionChange:(bool)arg1;
@@ -92,6 +90,7 @@
 - (double)maxPitch;
 - (double)maximumZoomLevel;
 - (double)maximumZoomLevelForTileSize:(long long)arg1;
+- (double)minPitch;
 - (double)minimumZoomLevel;
 - (double)minimumZoomLevelForTileSize:(long long)arg1;
 - (double)pitch;
@@ -100,7 +99,6 @@
 - (bool)restoreViewportFromInfo:(id)arg1;
 - (struct RunLoopController { }*)runLoopController;
 - (struct CGPoint { double x1; double x2; })scaledScreenPointForPoint:(struct CGPoint { double x1; double x2; })arg1;
-- (void)setAllowDatelineWraparound:(bool)arg1;
 - (void)setCamera:(id)arg1;
 - (void)setCameraDelegate:(id)arg1;
 - (void)setCanvas:(id)arg1;

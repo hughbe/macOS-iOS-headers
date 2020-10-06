@@ -11,11 +11,7 @@
         unsigned int read_problemId : 1; 
         unsigned int read_userCredentials : 1; 
         unsigned int read_userEmail : 1; 
-        unsigned int wrote_devicePushToken : 1; 
-        unsigned int wrote_problemId : 1; 
-        unsigned int wrote_userCredentials : 1; 
-        unsigned int wrote_userEmail : 1; 
-        unsigned int wrote_didOptIn : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _problemId;
     PBDataReader * _reader;
@@ -42,10 +38,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readDevicePushToken;
-- (void)_readProblemId;
-- (void)_readUserCredentials;
-- (void)_readUserEmail;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -60,8 +52,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithSubmissionID:(id)arg1 allowContactBackAtEmailAddress:(id)arg2 traits:(id)arg3;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)problemId;
 - (void)readAll:(bool)arg1;

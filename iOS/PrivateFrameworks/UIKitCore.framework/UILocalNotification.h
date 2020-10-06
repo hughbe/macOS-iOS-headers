@@ -20,6 +20,8 @@
 @property (nonatomic, copy) NSTimeZone *timeZone;
 @property (nonatomic, copy) NSDictionary *userInfo;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 
@@ -34,5 +36,9 @@
 - (id)nextFireDateAfterDate:(id)arg1 localTimeZone:(id)arg2;
 - (id)nextFireDateForLastFireDate:(id)arg1;
 - (void)validate;
+
+// Image: /System/Library/PrivateFrameworks/UserNotificationsServer.framework/UserNotificationsServer
+
+- (void)uns_safeSetUserInfo:(id)arg1;
 
 @end

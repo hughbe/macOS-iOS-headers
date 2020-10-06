@@ -47,6 +47,9 @@
         unsigned int has_isInBasemode : 1; 
         unsigned int has_isTransitPossible : 1; 
         unsigned int has_routePlanningScreenPresented : 1; 
+        unsigned int read_userLocationGeohash4 : 1; 
+        unsigned int read_userLocation : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isCarplayConnected;
     bool  _isInBasemode;
@@ -55,11 +58,18 @@
     int  _mapType;
     int  _predictedTransportMode;
     int  _preferredTransportMode;
+    PBDataReader * _reader;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _readerLock;
+    unsigned int  _readerMarkLength;
+    unsigned int  _readerMarkPos;
     bool  _routePlanningScreenPresented;
     double  _startTime;
     double  _temperature;
     double  _timeOfDay;
     double  _timeSinceBackgrounded;
+    GEOLatLng * _userLocation;
     NSString * _userLocationGeohash4;
     int  _weatherType;
 }
@@ -106,6 +116,7 @@
 @property (nonatomic) bool hasTemperature;
 @property (nonatomic) bool hasTimeOfDay;
 @property (nonatomic) bool hasTimeSinceBackgrounded;
+@property (nonatomic, readonly) bool hasUserLocation;
 @property (nonatomic, readonly) bool hasUserLocationGeohash4;
 @property (nonatomic) bool hasWeatherType;
 @property (nonatomic) bool isCarplayConnected;
@@ -120,6 +131,7 @@
 @property (nonatomic) double temperature;
 @property (nonatomic) double timeOfDay;
 @property (nonatomic) double timeSinceBackgrounded;
+@property (nonatomic, retain) GEOLatLng *userLocation;
 @property (nonatomic, retain) NSString *userLocationGeohash4;
 @property (nonatomic) int weatherType;
 
@@ -192,14 +204,20 @@
 - (bool)hasTemperature;
 - (bool)hasTimeOfDay;
 - (bool)hasTimeSinceBackgrounded;
+- (bool)hasUserLocation;
 - (bool)hasUserLocationGeohash4;
 - (bool)hasWeatherType;
 - (unsigned long long)hash;
+- (id)init;
+- (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isCarplayConnected;
 - (bool)isEqual:(id)arg1;
 - (bool)isInBasemode;
 - (double)isTourist;
 - (bool)isTransitPossible;
+- (id)jsonRepresentation;
 - (int)mapType;
 - (id)mapTypeAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;
@@ -265,12 +283,14 @@
 - (void)setTemperature:(double)arg1;
 - (void)setTimeOfDay:(double)arg1;
 - (void)setTimeSinceBackgrounded:(double)arg1;
+- (void)setUserLocation:(id)arg1;
 - (void)setUserLocationGeohash4:(id)arg1;
 - (void)setWeatherType:(int)arg1;
 - (double)startTime;
 - (double)temperature;
 - (double)timeOfDay;
 - (double)timeSinceBackgrounded;
+- (id)userLocation;
 - (id)userLocationGeohash4;
 - (int)weatherType;
 - (id)weatherTypeAsString:(int)arg1;

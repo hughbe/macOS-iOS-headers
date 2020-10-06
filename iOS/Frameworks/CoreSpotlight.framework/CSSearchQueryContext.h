@@ -6,6 +6,7 @@
     NSArray * _bundleIDs;
     NSString * _clientBundleID;
     NSArray * _completionAttributes;
+    unsigned int  _completionOptions;
     long long  _completionResultCount;
     NSString * _completionString;
     double  _currentTime;
@@ -15,7 +16,7 @@
     NSArray * _fetchAttributes;
     NSArray * _filterQueries;
     NSString * _filterQuery;
-    unsigned char  _flags;
+    unsigned short  _flags;
     /* Warning: Unrecognized filer type: 'T' using 'void*' */ void* _fuzzyMask;
     /* Warning: Unrecognized filer type: 'T' using 'void*' */ void* _fuzzyMatch;
     NSString * _keyboardLanguage;
@@ -37,6 +38,7 @@
 @property (nonatomic, retain) NSArray *bundleIDs;
 @property (nonatomic, retain) NSString *clientBundleID;
 @property (nonatomic, retain) NSArray *completionAttributes;
+@property (nonatomic) unsigned int completionOptions;
 @property (nonatomic) long long completionResultCount;
 @property (nonatomic, retain) NSString *completionString;
 @property (nonatomic) bool counting;
@@ -47,11 +49,12 @@
 @property (nonatomic, retain) NSArray *fetchAttributes;
 @property (nonatomic, copy) NSArray *filterQueries;
 @property (nonatomic, retain) NSString *filterQuery;
-@property (nonatomic) unsigned char flags;
+@property (nonatomic) unsigned short flags;
 @property (nonatomic) bool fsOnly;
 @property (nonatomic) /* Warning: Unrecognized filer type: 'T' using 'void*' */ void*fuzzyMask;
 @property (nonatomic) /* Warning: Unrecognized filer type: 'T' using 'void*' */ void*fuzzyMatch;
 @property (nonatomic) bool grouped;
+@property (nonatomic) bool includeUserActivities;
 @property (nonatomic) bool internal;
 @property (nonatomic, retain) NSString *keyboardLanguage;
 @property (nonatomic) bool live;
@@ -61,6 +64,7 @@
 @property (nonatomic, retain) NSArray *mountPoints;
 @property (nonatomic, copy) NSDictionary *options;
 @property (nonatomic) bool parseUserQuery;
+@property (nonatomic) bool playback;
 @property (nonatomic, retain) NSArray *preferredLanguages;
 @property (nonatomic, retain) NSArray *protectionClasses;
 @property (nonatomic) unsigned int qos;
@@ -78,6 +82,7 @@
 - (id)bundleIDs;
 - (id)clientBundleID;
 - (id)completionAttributes;
+- (unsigned int)completionOptions;
 - (long long)completionResultCount;
 - (id)completionString;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -92,11 +97,12 @@
 - (id)fetchAttributes;
 - (id)filterQueries;
 - (id)filterQuery;
-- (unsigned char)flags;
+- (unsigned short)flags;
 - (bool)fsOnly;
 - (/* Warning: Unrecognized filer type: 'T' using 'void*' */ void*)fuzzyMask;
 - (/* Warning: Unrecognized filer type: 'T' using 'void*' */ void*)fuzzyMatch;
 - (bool)grouped;
+- (bool)includeUserActivities;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithQoS:(unsigned int)arg1;
@@ -110,6 +116,7 @@
 - (id)mountPoints;
 - (id)options;
 - (bool)parseUserQuery;
+- (bool)playback;
 - (id)preferredLanguages;
 - (id)protectionClasses;
 - (unsigned int)qos;
@@ -121,6 +128,7 @@
 - (void)setBundleIDs:(id)arg1;
 - (void)setClientBundleID:(id)arg1;
 - (void)setCompletionAttributes:(id)arg1;
+- (void)setCompletionOptions:(unsigned int)arg1;
 - (void)setCompletionResultCount:(long long)arg1;
 - (void)setCompletionString:(id)arg1;
 - (void)setCounting:(bool)arg1;
@@ -131,11 +139,12 @@
 - (void)setFetchAttributes:(id)arg1;
 - (void)setFilterQueries:(id)arg1;
 - (void)setFilterQuery:(id)arg1;
-- (void)setFlags:(unsigned char)arg1;
+- (void)setFlags:(unsigned short)arg1;
 - (void)setFsOnly:(bool)arg1;
 - (void)setFuzzyMask:(/* Warning: Unrecognized filer type: 'T' using 'void*' */ void*)arg1;
 - (void)setFuzzyMatch:(/* Warning: Unrecognized filer type: 'T' using 'void*' */ void*)arg1;
 - (void)setGrouped:(bool)arg1;
+- (void)setIncludeUserActivities:(bool)arg1;
 - (void)setInternal:(bool)arg1;
 - (void)setKeyboardLanguage:(id)arg1;
 - (void)setLive:(bool)arg1;
@@ -145,6 +154,7 @@
 - (void)setMountPoints:(id)arg1;
 - (void)setOptions:(id)arg1;
 - (void)setParseUserQuery:(bool)arg1;
+- (void)setPlayback:(bool)arg1;
 - (void)setPreferredLanguages:(id)arg1;
 - (void)setProtectionClasses:(id)arg1;
 - (void)setQos:(unsigned int)arg1;

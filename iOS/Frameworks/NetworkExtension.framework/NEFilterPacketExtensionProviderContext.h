@@ -23,6 +23,7 @@
 - (void)interposeHandleFlowEvent:(int)arg1 interface:(id)arg2 flow_id:(unsigned char)arg3 nexus_instance:(unsigned char)arg4 nexus_port:(unsigned int)arg5 key:(void*)arg6 key_length:(unsigned int)arg7;
 - (id)interposes;
 - (id)nw_interpose;
+- (Class)requiredProviderSuperClass;
 - (void)setInterposes:(id)arg1;
 - (void)setNw_interpose:(id)arg1;
 - (void)startFilterWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;

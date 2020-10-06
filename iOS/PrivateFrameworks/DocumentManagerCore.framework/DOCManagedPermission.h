@@ -23,7 +23,7 @@
 @property (nonatomic, retain) NSCache *cache;
 @property (nonatomic, readonly) bool hasOpenInRestrictions;
 @property (nonatomic) unsigned long long hostAccountDataOwnerState;
-@property (nonatomic, retain) NSString *hostIdentifier;
+@property (nonatomic, copy) NSString *hostIdentifier;
 @property (nonatomic, readonly) bool isNetworkDriveAllowed;
 @property (nonatomic, readonly) bool isUSBAccessAllowed;
 

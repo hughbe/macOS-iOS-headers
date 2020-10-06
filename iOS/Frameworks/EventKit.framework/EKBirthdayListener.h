@@ -8,6 +8,7 @@
     CalLimitingQueue * _updateQueue;
 }
 
++ (bool)areBirthdaysEnabled;
 + (id)eventStoreProvider;
 + (id)sharedListener;
 
@@ -16,7 +17,6 @@
 - (void)_localeChanged;
 - (void)addBirthdayCalendars;
 - (id)allContactsWithBirthdays;
-- (bool)areBirthdaysEnabled;
 - (id)birthdayCalendarsCreateIfNeeded:(bool)arg1 inStore:(id)arg2 originalIdentifier:(id)arg3 originalAlarms:(id)arg4 ignoreAlarms:(bool)arg5;
 - (id)birthdayCalendarsInStore:(id)arg1;
 - (void)checkForFailures;

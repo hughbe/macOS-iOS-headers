@@ -4,6 +4,7 @@
 
 @interface CBABCurve : NSObject {
     NSObject<OS_os_log> * _logHandle;
+    float  _scaleFactor;
     unsigned long long  _version;
     float  currentLux;
     float  mappedBrightness;
@@ -18,17 +19,25 @@
     }  pref;
 }
 
+@property float scaleFactor;
 @property (readonly) unsigned long long version;
 
 - (id)copyUserPrefState;
 - (id)description;
 - (float)getLinearBrightness;
+- (float)getScaledBL1;
+- (float)getScaledBL2;
 - (unsigned long long)getVersion;
 - (id)init;
 - (id)initWithUUID:(id)arg1;
 - (void)resetToDefaultState;
+- (float)scaleFactor;
+- (void)setLinearBrightnessMin:(float)arg1 andMax:(float)arg2;
 - (bool)setLux:(float)arg1;
 - (void)setSavedPrefences:(id)arg1;
+- (void)setScaleFactor:(float)arg1;
+- (void)setScaledBL1:(float)arg1;
+- (void)setScaledBL2:(float)arg1;
 - (void)updateALSParametersForDisplayBrightness:(float)arg1;
 - (unsigned long long)version;
 

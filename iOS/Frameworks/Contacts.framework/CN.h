@@ -4,6 +4,8 @@
 
 @interface CN : NSObject
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
 + (id)_unifyContacts:(id)arg1 includingMainStoreContacts:(bool)arg2;
 + (void)addLinkedIdentifier:(id)arg1 toLabeledValue:(id)arg2;
 + (id)allContactProperties;
@@ -124,6 +126,7 @@
 + (id)restrictedProperties;
 + (id)sectionForSortingByFamilyNameDescription;
 + (id)sectionForSortingByGivenNameDescription;
++ (bool)shouldContactUseFamilyGivenNameOrder:(id)arg1;
 + (id)singleValueContactProperties;
 + (id /* block */)socialProfileFromDictionaryTransform;
 + (id /* block */)socialProfileToDictionaryTransform;
@@ -141,5 +144,9 @@
 + (id)writableContainerProperties;
 + (id)writableMultiValueContactProperties;
 + (id)writableSingleValueContactProperties;
+
+// Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
+
++ (id)contactPropertiesByABSPropertyID;
 
 @end

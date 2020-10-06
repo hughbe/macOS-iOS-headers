@@ -5,7 +5,7 @@
 @interface NEIKEv2Helper : NSObject
 
 + (id)createDNSSettingsFromTunnelConfig:(id)arg1;
-+ (id)createIKESAConfigFromProtocol:(id)arg1 path:(id)arg2 ifIndex:(unsigned int)arg3 options:(id)arg4 serverAddress:(id)arg5;
++ (id)createIKESAConfigFromProtocol:(id)arg1 path:(id)arg2 ifIndex:(unsigned int)arg3 options:(id)arg4 server:(id)arg5;
 + (id)createIKESAProposalFromProtocol:(id)arg1 saParameters:(id)arg2 options:(id)arg3 nonceSize:(unsigned int*)arg4;
 + (id)createIKEv2ChildSAConfigFromProtocol:(id)arg1;
 + (id)createIKEv2ChildSAProposalFromProtocol:(id)arg1 saParameters:(id)arg2;

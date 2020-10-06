@@ -18,16 +18,7 @@
         unsigned int read_streetAddress : 1; 
         unsigned int read_unknown : 1; 
         unsigned int read_work : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_contactHome : 1; 
-        unsigned int wrote_contactOther : 1; 
-        unsigned int wrote_contactWork : 1; 
-        unsigned int wrote_custom : 1; 
-        unsigned int wrote_home : 1; 
-        unsigned int wrote_pointOfInterest : 1; 
-        unsigned int wrote_streetAddress : 1; 
-        unsigned int wrote_unknown : 1; 
-        unsigned int wrote_work : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOFormattedString * _home;
     GEOFormattedString * _pointOfInterest;
@@ -66,15 +57,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readContactHome;
-- (void)_readContactOther;
-- (void)_readContactWork;
-- (void)_readCustom;
-- (void)_readHome;
-- (void)_readPointOfInterest;
-- (void)_readStreetAddress;
-- (void)_readUnknown;
-- (void)_readWork;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)contactHome;
 - (id)contactOther;
@@ -97,7 +79,10 @@
 - (id)home;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)pointOfInterest;
 - (void)readAll:(bool)arg1;

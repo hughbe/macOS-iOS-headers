@@ -25,20 +25,12 @@
 
 - (void).cxx_destruct;
 - (void)_accountDidChange:(id)arg1;
-- (void)_fetchAccountInfoWithCompletionHandler:(id /* block */)arg1;
-- (void)_fetchCloudKitConfigurationAndStatus;
-- (void)_performUpdateNumberOfSyncedDevicesWithAttempt:(unsigned long long)arg1 completionHandler:(id /* block */)arg2;
-- (void)_performUpdateNumberOfSyncedDevicesWithCompletionHandler:(id /* block */)arg1;
-- (void)_updateAccountInfo:(id)arg1 error:(id)arg2;
-- (void)_updateNumberOfSyncedDevicesWithCompletionHandler:(id /* block */)arg1;
-- (id)containerKeyValueStore;
 - (void)dealloc;
 - (void)deleteRemoteStateWithReply:(id /* block */)arg1;
 - (id)init;
 - (bool)isCloudSyncAvailable;
 - (bool)isSingleDevice;
 - (bool)isSiriCloudSyncEnabled;
-- (id)keyValueStore;
 - (void)setCloudSyncAvailable:(bool)arg1;
 - (bool)supportsDeviceToDeviceEncryption;
 

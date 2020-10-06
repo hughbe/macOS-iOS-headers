@@ -3,10 +3,10 @@
  */
 
 @interface CNAccessAuthorization : NSObject {
-    CNFAccessAuthorization * _authorizer;
+    CNAuthorizationContext * _authorizer;
 }
 
-@property (nonatomic, retain) CNFAccessAuthorization *authorizer;
+@property (nonatomic, readonly) CNAuthorizationContext *authorizer;
 
 + (id)allAuthorizationKeys;
 + (id)new;
@@ -20,6 +20,5 @@
 - (id)initWithAuthorizer:(id)arg1;
 - (void)performWork:(id /* block */)arg1 authorizingFetchRequest:(id)arg2 failureHandler:(id /* block */)arg3;
 - (void)removeUnauthorizedKeysFromFetchRequest:(id)arg1;
-- (void)setAuthorizer:(id)arg1;
 
 @end

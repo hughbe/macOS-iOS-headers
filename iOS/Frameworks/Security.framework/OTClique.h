@@ -12,8 +12,12 @@
 @property (nonatomic, retain) OTConfigurationContext *ctx;
 @property (nonatomic, retain) NSMutableDictionary *defaults;
 
+// Image: /System/Library/Frameworks/Security.framework/Security
+
++ (id)fetchEscrowRecordsInternal:(id)arg1 error:(id*)arg2;
 + (id)findOptimalBottleIDsWithContextData:(id)arg1 error:(id*)arg2;
 + (long long)getCDPStatus:(id)arg1 error:(id*)arg2;
++ (bool)isCloudServicesAvailable;
 + (id)newFriendsWithContextData:(id)arg1 error:(id*)arg2;
 + (id)newFriendsWithContextData:(id)arg1 resetReason:(long long)arg2 error:(id*)arg3;
 + (id)performEscrowRecoveryWithContextData:(id)arg1 escrowArguments:(id)arg2 error:(id*)arg3;
@@ -37,8 +41,8 @@
 - (long long)fetchCliqueStatus:(id*)arg1;
 - (long long)fetchCliqueStatus:(id)arg1 error:(id*)arg2;
 - (void)fetchEscrowContents:(id /* block */)arg1;
+- (bool)fetchUserControllableViewsSyncingEnabled:(id*)arg1;
 - (id)initWithContextData:(id)arg1;
-- (id)initWithContextData:(id)arg1 error:(id*)arg2;
 - (bool)isLastFriend:(id*)arg1;
 - (bool)isOctagonPairingEnabled;
 - (bool)joinAfterRestore:(id*)arg1;
@@ -57,15 +61,30 @@
 - (void)setCliqueMemberIdentifier:(id)arg1;
 - (void)setCtx:(id)arg1;
 - (void)setDefaults:(id)arg1;
+- (bool)setOctagonUserControllableViewsSyncEnabled:(bool)arg1 error:(id*)arg2;
 - (void)setPairingDefault:(bool)arg1;
+- (bool)setUserControllableViewsSyncStatus:(bool)arg1 error:(id*)arg2;
 - (bool)setUserCredentialsAndDSID:(id)arg1 password:(id)arg2 error:(id*)arg3;
 - (id)setupPairingChannelAsAcceptor:(id)arg1;
 - (id)setupPairingChannelAsAcceptor:(id)arg1 error:(id*)arg2;
 - (id)setupPairingChannelAsInitator:(id)arg1 error:(id*)arg2;
 - (id)setupPairingChannelAsInitiator:(id)arg1;
+- (bool)sosSafariPasswordSyncingEnabled:(id*)arg1;
+- (bool)sosViewSet:(id)arg1 disabledViews:(id)arg2;
 - (bool)tryUserCredentialsAndDSID:(id)arg1 password:(id)arg2 error:(id*)arg3;
 - (bool)viewSet:(id)arg1 disabledViews:(id)arg2;
 - (bool)waitForInitialSync:(id*)arg1;
 - (bool)waitForOctagonUpgrade:(id*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OctagonTrust.framework/OctagonTrust
+
++ (id)fetchEscrowRecords:(id)arg1 error:(id*)arg2;
++ (id)filterRecords:(id)arg1;
++ (id)filterViableSOSRecords:(id)arg1;
++ (id)handleRecoveryResults:(id)arg1 recoveredInformation:(id)arg2 sosViability:(int)arg3 performedSilentBurn:(bool)arg4 recoverError:(id)arg5 error:(id*)arg6;
++ (bool)invalidateEscrowCache:(id)arg1 error:(id*)arg2;
++ (id)performEscrowRecovery:(id)arg1 cdpContext:(id)arg2 escrowRecord:(id)arg3 error:(id*)arg4;
++ (id)performSilentEscrowRecovery:(id)arg1 cdpContext:(id)arg2 allRecords:(id)arg3 error:(id*)arg4;
++ (id)recordMatchingLabel:(id)arg1 allRecords:(id)arg2;
 
 @end

@@ -27,6 +27,8 @@
 @property (readonly) NSString *name;
 @property (nonatomic, readonly) NSString *storyboardFileName;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)storyboardWithName:(id)arg1 bundle:(id)arg2;
 
 - (id)__currentSender;
@@ -59,5 +61,9 @@
 - (void)set__currentStoryboardSegueCreator:(id /* block */)arg1;
 - (void)set__currentStoryboardSegueTemplate:(id)arg1;
 - (id)storyboardFileName;
+
+// Image: /System/Library/PrivateFrameworks/HealthExperienceUI.framework/HealthExperienceUI
+
+- (id)tryToInstantiateViewControllerWithIdentifier:(id)arg1;
 
 @end

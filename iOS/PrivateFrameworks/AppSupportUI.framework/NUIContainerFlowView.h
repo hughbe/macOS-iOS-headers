@@ -58,7 +58,6 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (long long)_effectiveAlignmentForArrangedSubview:(id)arg1 inAxis:(long long)arg2;
 - (id)arrangedDescription;
 - (struct CGSize { double x1; double x2; })calculateArrangedSizeFittingSize:(struct CGSize { double x1; double x2; })arg1;
 - (id)calculateViewForFirstBaselineLayout;
@@ -78,12 +77,10 @@
 - (void)setBaselineRelativeArrangement:(bool)arg1;
 - (void)setColumnSpacing:(double)arg1;
 - (void)setHorizontalAlignment:(long long)arg1;
-- (void)setHorizontalDistribution:(long long)arg1;
 - (bool)setNeedsInvalidation:(long long)arg1;
 - (void)setNumberOfColumns:(long long)arg1;
 - (void)setRowSpacing:(double)arg1;
 - (void)setVerticalAlignment:(long long)arg1;
-- (void)setVerticalDistribution:(long long)arg1;
 - (long long)verticalAlignment;
 - (long long)verticalDistribution;
 

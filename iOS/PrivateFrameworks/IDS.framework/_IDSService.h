@@ -5,20 +5,21 @@
 @interface _IDSService : NSObject <IDSAccountControllerDelegate, IDSConnectionDelegatePrivate, IDSDaemonListenerProtocol, IDSGroupContextControllerDelegate> {
     IDSAccountController * _accountController;
     IDSQuickSwitchAcknowledgementTracker * _acknowledgementTracker;
+    bool  _clientIsSandboxed;
     NSSet * _commands;
-    NSObject<OS_xpc_object> * _connection;
     id  _delegateContext;
     NSMapTable * _delegateToInfo;
     bool  _everHadDelegate;
     IDSGroupContextController * _groupContextController;
-    bool  _hasSetupWakeListener;
     NSMutableSet * _lastIsActiveSet;
+    NSMutableArray * _linkedDevices;
+    bool  _linkedDevicesLoaded;
     unsigned int  _listenerCaps;
     bool  _manuallyAckMessages;
     id /* block */  _pendingRegisteredIdentitiesBlock;
     bool  _pretendingToBeFull;
     NSMutableDictionary * _protobufSelectors;
-    NSString * _serviceName;
+    IDSServiceProperties * _serviceProperties;
     NSMutableDictionary * _subServices;
     NSMutableDictionary * _uniqueIDToConnection;
     NSMutableDictionary * _uniqueIDToProgress;
@@ -38,6 +39,7 @@
 @property (readonly) Class superclass;
 
 + (id)deviceForFromID:(id)arg1 fromDevices:(id)arg2;
++ (void)serviceWithIdentifier:(id)arg1 commands:(id)arg2 manuallyAckMessages:(bool)arg3 delegateContext:(id)arg4 completion:(id /* block */)arg5;
 
 - (void).cxx_destruct;
 - (void)OTRTestCallback:(id)arg1 time:(double)arg2 error:(id)arg3;
@@ -49,24 +51,29 @@
 - (void)_callDelegatesWithBlock:(id /* block */)arg1;
 - (void)_callDelegatesWithBlock:(id /* block */)arg1 group:(id)arg2;
 - (void)_callIsActiveChanged;
+- (void)_callLinkedDevicesChanged;
+- (bool)_canAccount:(id)arg1 sendWithFromID:(id)arg2;
 - (void)_disableAccount:(id)arg1;
 - (void)_enableAccount:(id)arg1;
+- (void)_enforceSandboxPolicy;
 - (id)_filteredAccountsFrom:(id)arg1;
 - (void)_handlePretendingToBeFullWithIdentifier:(id*)arg1;
 - (id)_init;
 - (id)_initWithDelegateContext:(id)arg1;
 - (bool)_isDroppingMessages;
+- (void)_loadCachedLinkedDevices;
 - (void)_logConnectionMap;
 - (long long)_messageTypeForCommand:(id)arg1;
 - (id)_payloadFromDecryptedData:(id)arg1;
 - (void)_processAccountSet:(id)arg1;
+- (void)_reloadCachedLinkedDevices;
 - (void)_sendMissingMessageMetric:(id)arg1;
 - (id)_sendingAccountForAccount:(id)arg1;
-- (id)_sendingAccountForAccount:(id)arg1 destination:(id)arg2;
-- (void)_setupIDSWakeListenerIfNeeded;
+- (id)_sendingAccountForAccount:(id)arg1 destination:(id)arg2 fromID:(id)arg3;
 - (void)_setupNewConnectionForAccount:(id)arg1;
 - (void)_stopAwaitingQuickSwitchAcknowledgementFromDelegateWithIdentifier:(id)arg1;
 - (void)_tearDownConnectionForUniqueID:(id)arg1;
+- (void)_updateLinkedDevicesWithDevicesInfo:(id)arg1;
 - (void)accountController:(id)arg1 accountAdded:(id)arg2;
 - (void)accountController:(id)arg1 accountDisabled:(id)arg2;
 - (void)accountController:(id)arg1 accountEnabled:(id)arg2;
@@ -124,6 +131,8 @@
 - (id)initWithService:(id)arg1 commands:(id)arg2 manuallyAckMessages:(bool)arg3 delegateContext:(id)arg4;
 - (id)internalAccounts;
 - (bool)isPretendingToBeFull;
+- (id)linkedDeviceForFromID:(id)arg1 withRelationship:(long long)arg2;
+- (id)linkedDevicesWithRelationship:(long long)arg1;
 - (bool)manuallyAckMessages;
 - (void)performGroupTask:(id /* block */)arg1;
 - (SEL)protobufActionForType:(unsigned short)arg1 isResponse:(bool)arg2;
@@ -141,6 +150,10 @@
 - (bool)sendProtobuf:(id)arg1 fromAccount:(id)arg2 toDestinations:(id)arg3 priority:(long long)arg4 options:(id)arg5 identifier:(id*)arg6 error:(id*)arg7;
 - (bool)sendResourceAtURL:(id)arg1 metadata:(id)arg2 fromAccount:(id)arg3 toDestinations:(id)arg4 priority:(long long)arg5 options:(id)arg6 identifier:(id*)arg7 error:(id*)arg8;
 - (bool)sendServerMessage:(id)arg1 command:(id)arg2 fromAccount:(id)arg3;
+- (void)service:(id)arg1 linkedDevicesUpdated:(id)arg2;
+- (void)service:(id)arg1 tinkerDeviceAdded:(id)arg2;
+- (void)service:(id)arg1 tinkerDeviceRemoved:(id)arg2;
+- (void)service:(id)arg1 tinkerDeviceUpdated:(id)arg2;
 - (id)serviceDomain;
 - (void)setLinkPreferences:(id)arg1;
 - (void)setManuallyAckMessages:(bool)arg1;

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKPlaceLinkPresentationActivityProvider : MKPlaceActivityProvider <MKActivityItemLinkPresentationSource> {
+@interface MKPlaceLinkPresentationActivityProvider : MKPlaceActivityProvider <UIActivityItemLinkPresentationSource> {
     LPLinkMetadata * _cachedMetadata;
 }
 

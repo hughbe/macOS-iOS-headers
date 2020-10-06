@@ -6,8 +6,7 @@
     struct { 
         unsigned int read_icloudUserMapsAuthToken : 1; 
         unsigned int read_icloudUserPersonId : 1; 
-        unsigned int wrote_icloudUserMapsAuthToken : 1; 
-        unsigned int wrote_icloudUserPersonId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _icloudUserMapsAuthToken;
     NSString * _icloudUserPersonId;
@@ -28,8 +27,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readIcloudUserMapsAuthToken;
-- (void)_readIcloudUserPersonId;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -41,7 +38,10 @@
 - (id)icloudUserPersonId;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

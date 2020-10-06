@@ -17,7 +17,10 @@
 - (bool)hasNotificationCountEntitlement;
 - (bool)hasSyncClientEntitlement;
 - (bool)internalAccessLevelGranted;
+- (bool)isCalendarDaemon;
+- (bool)isFirstPartyCalendarApp;
 - (bool)shouldTrustClientEnforcedManagedConfigurationAccess;
+- (bool)storageManagementAccessGranted;
 - (bool)testingAccessLevelGranted;
 
 @end

@@ -34,6 +34,7 @@
 
 - (void).cxx_destruct;
 - (unsigned long long)addPolicy:(id)arg1;
+- (unsigned long long)addPolicy:(id)arg1 storeLocally:(bool)arg2;
 - (bool)apply;
 - (id)createTLVMessage:(unsigned char)arg1;
 - (void)dealloc;
@@ -42,6 +43,7 @@
 - (id)dumpKernelPolicies;
 - (int)dupSocket;
 - (id)init;
+- (id)initFromPrivilegedProcess;
 - (id)initWithSessionName:(id)arg1;
 - (id)initWithSocket:(int)arg1;
 - (long long)internalPriority;

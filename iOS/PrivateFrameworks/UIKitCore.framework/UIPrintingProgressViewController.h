@@ -10,12 +10,7 @@
     UIWindow * _window;
 }
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)cancelProgress;
 - (void)cleanupAfterDismiss;
 - (void)didRotateFromInterfaceOrientation:(long long)arg1;

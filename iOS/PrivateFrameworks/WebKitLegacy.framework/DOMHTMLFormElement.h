@@ -36,7 +36,6 @@
 - (void)setNoValidate:(bool)arg1;
 - (void)setTarget:(id)arg1;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (void)submit;
 - (id)target;
 

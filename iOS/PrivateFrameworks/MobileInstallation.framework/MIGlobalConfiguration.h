@@ -7,6 +7,7 @@
     bool  _allowDeletableSystemApps;
     NSSet * _builtInFrameworkBundleIDs;
     NSDictionary * _coreServicesAppBundleIDToInfoMap;
+    NSDictionary * _diskImageAppBundleIDToInfoMap;
     unsigned int  _gid;
     NSURL * _installdPath;
     NSDictionary * _internalAppBundleIDToInfoMap;
@@ -37,7 +38,6 @@
 @property (nonatomic, readonly) NSURL *developerAppsDirectory;
 @property (nonatomic, readonly) NSURL *developerFrameworksRootDirectory;
 @property (nonatomic, readonly, copy) NSDictionary *diskImageAppBundleIDToInfoMap;
-@property (nonatomic, readonly, copy) NSArray *diskImageApplicationsDirectories;
 @property (nonatomic, readonly) NSURL *factoryMountDirectory;
 @property (nonatomic, readonly) unsigned int gid;
 @property (nonatomic, readonly, copy) NSSet *installationBlacklist;
@@ -45,9 +45,9 @@
 @property (nonatomic, readonly, copy) NSDictionary *internalAppBundleIDToInfoMap;
 @property (nonatomic, readonly) NSURL *internalAppsDirectory;
 @property (nonatomic, readonly) NSURL *internalFrameworksRootDirectory;
-@property (nonatomic, readonly, copy) NSURL *lastBuildInfoFileURL;
+@property (nonatomic, readonly) NSURL *lastBuildInfoFileURL;
 @property (nonatomic, readonly) NSURL *logDirectory;
-@property (nonatomic, readonly, copy) NSURL *migrationPlistURL;
+@property (nonatomic, readonly) NSURL *migrationPlistURL;
 @property (nonatomic, readonly) NSURL *mobilePath;
 @property (nonatomic, readonly) NSURL *oldArchiveDirectory;
 @property (nonatomic, readonly) NSURL *oldDataDirectoryPath;
@@ -76,8 +76,8 @@
 - (id)_bundleIDMapForAppsInDirectory:(id)arg1 loadingAdditionalKeys:(id)arg2;
 - (id)_bundleIDMapForBundlesInDirectory:(id)arg1 withExtension:(id)arg2;
 - (id)_bundleIDMapForBundlesInDirectory:(id)arg1 withExtension:(id)arg2 loadingAdditionalKeys:(id)arg3;
-- (id)_mountFromToOnMap;
-- (id)_mountPointForDevice:(unsigned int)arg1 mountFromToOnMap:(id)arg2;
+- (id)_testModeSentinelURL;
+- (bool)_useInternalDiagnostics;
 - (id)allFrameworksDirectories;
 - (bool)allowDeletableSystemApps;
 - (id)alternateThinningModelIdentifier;
@@ -88,6 +88,7 @@
 - (id)builtInApplicationBundleIDs;
 - (id)builtInFrameworkBundleIDs;
 - (id)cachesDirectory;
+- (bool)clearIsRunningInTestMode:(id*)arg1;
 - (id)coreServicesAppBundleIDToInfoMap;
 - (id)coreServicesDirectory;
 - (id)dataDirectory;
@@ -95,8 +96,6 @@
 - (id)developerFrameworksRootDirectory;
 - (id)disableSystemAppDeletionCanaryFile;
 - (id)diskImageAppBundleIDToInfoMap;
-- (id)diskImageApplicationsDirectories;
-- (id)diskImageMountPoints;
 - (id)factoryMountDirectory;
 - (unsigned int)gid;
 - (id)init;
@@ -105,6 +104,7 @@
 - (id)internalAppBundleIDToInfoMap;
 - (id)internalAppsDirectory;
 - (id)internalFrameworksRootDirectory;
+- (bool)isRunningInTestMode:(bool*)arg1 outError:(id*)arg2;
 - (id)lastBuildInfoFileURL;
 - (id)logDirectory;
 - (id)migrationPlistURL;
@@ -117,6 +117,7 @@
 - (void)reScanSystemApps;
 - (id)roleUserMigrationMarkerFilePath;
 - (id)rootPath;
+- (bool)setIsRunningInTestMode:(id*)arg1;
 - (id)stagedSystemAppBundleIDToInfoMap;
 - (id)stagedSystemAppsDirectory;
 - (id)stagingRoot;

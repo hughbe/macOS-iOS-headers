@@ -9,25 +9,25 @@
 @property bool allowsNextDrawableTimeout;
 @property struct CGColorSpace { }*colorspace;
 @property (retain) <MTLDevice> *device;
-@property (readonly) unsigned long long displayCompositingInternalStatus;
+@property (nonatomic, readonly) unsigned long long displayCompositingInternalStatus;
 @property struct CGSize { double x1; double x2; } drawableSize;
-@property double drawableTimeoutSeconds;
-@property bool exclusiveMode;
-@property bool fenceEnabled;
+@property (nonatomic) double drawableTimeoutSeconds;
+@property (nonatomic) bool exclusiveMode;
+@property (nonatomic) bool fenceEnabled;
 @property bool framebufferOnly;
-@property double inputTime;
-@property bool lowLatency;
+@property (nonatomic) double inputTime;
+@property (nonatomic) bool lowLatency;
 @property unsigned long long maximumDrawableCount;
-@property bool nonDefaultColorspace;
+@property (nonatomic) bool nonDefaultColorspace;
 @property unsigned long long pixelFormat;
 @property (readonly) <MTLDevice> *preferredDevice;
 @property bool presentsWithTransaction;
-@property bool serverSyncEnabled;
+@property (nonatomic) bool serverSyncEnabled;
 
 + (bool)CA_automaticallyNotifiesObservers:(Class)arg1;
 + (id)defaultValueForKey:(id)arg1;
 
-- (void)_didCommitLayer:(struct Transaction { struct Shared {} *x1; int x2; struct HashTable<CA::Layer *, unsigned int *> {} *x3; struct SpinLock {} *x4; unsigned int x5; struct Level {} *x6; struct List<void (^)()> {} *x7; struct Command {} *x8; struct Deleted {} *x9; struct List<const void *> {} *x10; struct Context {} *x11; struct HashTable<CA::Layer *, CA::Layer *> {} *x12; struct __CFRunLoop {} *x13; struct __CFRunLoopObserver {} *x14; struct LayoutList {} *x15; struct List<CA::Layer *> {} *x16; struct Atomic { struct { int x_1_2_1; } x_17_1_1; } x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; }*)arg1;
+- (void)_didCommitLayer:(struct Transaction { struct Shared {} *x1; struct HashTable<CA::Layer *, unsigned int *> {} *x2; int x3; unsigned int x4; struct Level {} *x5; struct List<void (^)()> {} *x6; struct Command {} *x7; struct Deleted {} *x8; struct List<const void *> {} *x9; struct Context {} *x10; struct HashTable<CA::Layer *, CA::Layer *> {} *x11; struct __CFRunLoop {} *x12; struct __CFRunLoopObserver {} *x13; struct LayoutList {} *x14; struct List<CA::Layer *> {} *x15; struct Atomic { struct { int x_1_2_1; } x_16_1_1; } x16; unsigned int x17 : 1; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; }*)arg1;
 - (void)_display;
 - (bool)allowsNextDrawableTimeout;
 - (struct CGColorSpace { }*)colorspace;

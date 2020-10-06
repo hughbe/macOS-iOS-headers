@@ -2,10 +2,11 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKCoreLocationProvider : NSObject <CLLocationManagerDelegate, CLLocationManagerVehicleDelegate, MKLocationProvider> {
+@interface MKCoreLocationProvider : NSObject <CLLocationManagerVehicleDelegate, MKLocationProvider> {
     long long  _activityType;
     id /* block */  _authorizationRequestBlock;
     int  _authorizationStatus;
+    bool  _authorizedForPreciseLocation;
     CLLocationManager * _clLocationManager;
     NSObject<OS_dispatch_queue> * _coreLocationQueue;
     <MKLocationProviderDelegate> * _delegate;
@@ -14,6 +15,8 @@
     NSBundle * _effectiveBundle;
     NSString * _effectiveBundleIdentifier;
     double  _expectedGpsUpdateInterval;
+    bool  _fusionInfoEnabled;
+    bool  _hasExternallyProvidedLocationManager;
     bool  _hasQueriedAuthorization;
     int  _headingOrientation;
     geo_isolater * _isolation;
@@ -34,8 +37,10 @@
 @property (nonatomic, retain) NSBundle *effectiveBundle;
 @property (nonatomic, copy) NSString *effectiveBundleIdentifier;
 @property (nonatomic, readonly) double expectedGpsUpdateInterval;
+@property (nonatomic) bool fusionInfoEnabled;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) int headingOrientation;
+@property (nonatomic, readonly) bool isAuthorizedForPreciseLocation;
 @property (nonatomic, readonly) bool isTracePlayer;
 @property (nonatomic, readonly) CLLocation *lastLocation;
 @property (getter=isLocationServicesPreferencesDialogEnabled, nonatomic) bool locationServicesPreferencesDialogEnabled;
@@ -49,8 +54,10 @@
 - (int)_authorizationStatusOnQueue;
 - (id)_clLocationManager;
 - (void)_createCLLocationManager;
+- (bool)_isAuthorizedForPreciseLocationOnQueue;
 - (void)_resetForNewEffectiveBundle;
 - (void)_updateAuthorizationStatus;
+- (void)_updateAuthorizedForPreciseLocationOnQueue:(id)arg1;
 - (long long)activityType;
 - (id /* block */)authorizationRequestBlock;
 - (int)authorizationStatus;
@@ -63,8 +70,12 @@
 - (id)effectiveBundle;
 - (id)effectiveBundleIdentifier;
 - (double)expectedGpsUpdateInterval;
+- (bool)fusionInfoEnabled;
 - (int)headingOrientation;
 - (id)init;
+- (id)initWithCLLocationManager:(id)arg1;
+- (bool)isAuthorizedForPreciseLocation;
+- (void)isAuthorizedForPreciseLocationOnQueue:(id)arg1 result:(id /* block */)arg2;
 - (bool)isLocationServicesPreferencesDialogEnabled;
 - (bool)isTracePlayer;
 - (id)lastLocation;
@@ -78,6 +89,7 @@
 - (void)locationManagerDidResumeLocationUpdates:(id)arg1;
 - (bool)locationManagerShouldDisplayHeadingCalibration:(id)arg1;
 - (bool)matchInfoEnabled;
+- (void)requestTemporaryPreciseLocationAuthorizationWithPurposeKey:(id)arg1 completion:(id /* block */)arg2;
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)setActivityType:(long long)arg1;
@@ -87,6 +99,7 @@
 - (void)setDistanceFilter:(double)arg1;
 - (void)setEffectiveBundle:(id)arg1;
 - (void)setEffectiveBundleIdentifier:(id)arg1;
+- (void)setFusionInfoEnabled:(bool)arg1;
 - (void)setHeadingOrientation:(int)arg1;
 - (void)setLocationServicesPreferencesDialogEnabled:(bool)arg1;
 - (void)setMatchInfoEnabled:(bool)arg1;

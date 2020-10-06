@@ -33,7 +33,10 @@
 - (bool)hasGroupRetryCount;
 - (bool)hasLogMessageType;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)logMessageType;
 - (id)logMessageTypeAsString:(int)arg1;
 - (id)logMsgEventAtIndex:(unsigned long long)arg1;

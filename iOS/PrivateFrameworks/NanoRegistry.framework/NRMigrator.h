@@ -18,11 +18,8 @@
 + (id)sharedMigrator;
 
 - (void).cxx_destruct;
-- (id)UDIDUUID;
-- (id)_SHA256WithString:(id)arg1;
 - (void)beginMigrationWithDevice:(id)arg1 passcode:(id)arg2 withBlock:(id /* block */)arg3;
 - (void)beginMigrationWithDevice:(id)arg1 withCompletion:(id /* block */)arg2;
-- (id)compressMigrationProtobuf:(id)arg1;
 - (id)devicesExpectedToBeMigratableAfterRestore;
 - (id)devicesFromMigrationConsentRequestData:(id)arg1;
 - (void)enterPreMigrationMode;
@@ -33,10 +30,7 @@
 - (id)migratingDevice;
 - (id)migrationConsentRequestData;
 - (bool)migrationIsAvailable;
-- (id)packMigrationProtobufs:(id)arg1;
 - (void)setMigrationConsented:(bool)arg1 forDevice:(id)arg2 withBlock:(id /* block */)arg3;
 - (void)setMigrationConsented:(bool)arg1 forDeviceID:(id)arg2 withBlock:(id /* block */)arg3;
-- (id)shortenStringByCompleteUnicodeCharactersToReduceStorageSpace:(id)arg1;
-- (void)shrinkMigrationProtobufs:(id)arg1;
 
 @end

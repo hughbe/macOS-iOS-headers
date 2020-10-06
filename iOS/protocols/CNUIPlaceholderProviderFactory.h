@@ -5,6 +5,7 @@
 
 @required
 
+- (<CNUIPRLikenessProvider> *)loadingGroupPlaceholderProviderWithBackgroundStyle:(unsigned long long)arg1;
 - (<CNUIPRLikenessProvider> *)loadingPlaceholderProvider;
 - (<CNUIPRLikenessProvider> *)placeholderProvider;
 

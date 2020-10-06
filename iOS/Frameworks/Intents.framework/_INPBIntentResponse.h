@@ -3,7 +3,6 @@
  */
 
 @interface _INPBIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int requiresAuthentication : 1; 
         unsigned int requiresProtectedData : 1; 
@@ -17,7 +16,6 @@
     _INPBUserActivity * _userActivity;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasPayloadFailure;
@@ -39,8 +37,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

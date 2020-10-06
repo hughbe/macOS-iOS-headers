@@ -14,7 +14,9 @@
     NSString * _firstName;
     NSDictionary * _imageCropRects;
     NSData * _imageData;
+    NSData * _imageHash;
     NSArray * _imageReferences;
+    NSString * _imageType;
     NSArray * _instantMessagingAddresses;
     bool  _isCompany;
     bool  _isMe;
@@ -65,7 +67,9 @@
 @property (readonly) unsigned long long hash;
 @property (retain) NSDictionary *imageCropRects;
 @property (retain) NSData *imageData;
+@property (retain) NSData *imageHash;
 @property (retain) NSArray *imageReferences;
+@property (retain) NSString *imageType;
 @property (retain) NSArray *instantMessagingAddresses;
 @property bool isCompany;
 @property bool isMe;
@@ -114,7 +118,9 @@
 - (id)firstName;
 - (id)imageCropRects;
 - (id)imageData;
+- (id)imageHash;
 - (id)imageReferences;
+- (id)imageType;
 - (id)instantMessagingAddresses;
 - (bool)isCompany;
 - (bool)isMe;
@@ -154,7 +160,9 @@
 - (void)setFirstName:(id)arg1;
 - (void)setImageCropRects:(id)arg1;
 - (void)setImageData:(id)arg1;
+- (void)setImageHash:(id)arg1;
 - (void)setImageReferences:(id)arg1;
+- (void)setImageType:(id)arg1;
 - (void)setInstantMessagingAddresses:(id)arg1;
 - (void)setIsCompany:(bool)arg1;
 - (void)setIsMe:(bool)arg1;

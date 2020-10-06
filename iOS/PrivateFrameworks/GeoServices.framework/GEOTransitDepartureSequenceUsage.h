@@ -8,9 +8,7 @@
         unsigned int has_lineId : 1; 
         unsigned int read_direction : 1; 
         unsigned int read_headsign : 1; 
-        unsigned int wrote_direction : 1; 
-        unsigned int wrote_headsign : 1; 
-        unsigned int wrote_lineId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _headsign;
     unsigned long long  _lineId;
@@ -32,8 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readDirection;
-- (void)_readHeadsign;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -46,7 +42,10 @@
 - (id)headsign;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned long long)lineId;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

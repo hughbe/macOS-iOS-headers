@@ -10,6 +10,7 @@
 - (NSArray *)_alternateSearchableNames;
 - (NSArray *)_amenities;
 - (<GEOAnnotatedItemList> *)_annotatedItemList;
+- (NSArray *)_appleRatings;
 - (double)_areaInMeters;
 - (GEOMapRegion *)_arrivalMapRegionForTransportType:(int)arg1;
 - (GEOMapItemAdditionalPlaceInfo *)_asPlaceInfo;
@@ -23,6 +24,7 @@
 - (GEOPDBusinessClaim *)_businessClaim;
 - (NSArray *)_businessHours;
 - (NSString *)_businessURL;
+- (bool)_canDownloadMorePhotos;
 - (NSArray *)_childItems;
 - (GEOMapItemClientAttributes *)_clientAttributes;
 - (GEOMapItemContainedPlace *)_containedPlace;
@@ -48,6 +50,7 @@
 - (bool)_hasLocalizedCategoryNamesForType:(unsigned int)arg1;
 - (bool)_hasMUID;
 - (bool)_hasOperatingHours;
+- (bool)_hasPlaceQuestionnaire;
 - (bool)_hasPriceRange;
 - (bool)_hasResolvablePartialInformation;
 - (bool)_hasResultProviderID;
@@ -59,6 +62,7 @@
 - (bool)_hasWifiFingerprintLabelStatusCode;
 - (bool)_hasWifiFingerprintLabelType;
 - (GEOMapItemIdentifier *)_identifier;
+- (NSArray *)_identifierHistory;
 - (bool)_isInLinkedPlaceRelationship;
 - (bool)_isStandaloneBrand;
 - (bool)_isTransitDisplayFeature;
@@ -73,15 +77,18 @@
 - (float)_normalizedUserRatingScore;
 - (unsigned long long)_openingHoursOptions;
 - (bool)_optsOutOfTelephoneAds;
+- (GEOAppleRating *)_overallAppleRating;
 - (int)_parsecSectionType;
 - (NSArray *)_photos;
 - (GEOMapItemPhotosAttribution *)_photosAttribution;
 - (GEOPlace *)_place;
 - (NSArray *)_placeCollections;
+- (NSArray *)_placeCollectionsIds;
 - (GEOPDPlace *)_placeData;
 - (NSData *)_placeDataAsData;
 - (int)_placeDisplayStyle;
 - (int)_placeDisplayType;
+- (GEOPlaceQuestionnaire *)_placeQuestionnaire;
 - (GEOPlaceResult *)_placeResult;
 - (int)_placeType;
 - (GEOPlacecardLayoutConfiguration *)_placecardLayoutConfiguration;
@@ -101,13 +108,16 @@
 - (GEOMapItemReviewsAttribution *)_reviewsAttribution;
 - (NSArray *)_roadAccessPoints;
 - (unsigned int)_sampleSizeForUserRatingScore;
+- (NSArray *)_secondaryQuickLinks;
 - (bool)_showSuggestAnEditButton;
 - (NSString *)_spokenAddressForLocale:(NSString *)arg1;
 - (GEOStorefrontInfo *)_storefrontInfo;
 - (GEOStorefrontPresentationInfo *)_storefrontPresentationInfo;
 - (GEOFeatureStyleAttributes *)_styleAttributes;
+- (bool)_supportsAppleRatings;
 - (NSString *)_telephone;
 - (NSArray *)_tips;
+- (unsigned long long)_totalPhotoCount;
 - (<GEOTransitAttribution> *)_transitAttribution;
 - (<GEOMapItemTransitInfo> *)_transitInfo;
 - (<GEOTransitVehiclePosition> *)_transitVehiclePosition;
@@ -172,6 +182,8 @@
 
 @optional
 
+- (NSString *)_iso3166CountryCode;
+- (NSString *)_iso3166SubdivisionCode;
 - (<GEOMapItem> *)_mapItemBySettingIsTransitDisplayFeature:(bool)arg1;
 
 @end

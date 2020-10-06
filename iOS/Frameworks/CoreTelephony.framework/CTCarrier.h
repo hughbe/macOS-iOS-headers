@@ -16,9 +16,9 @@
 @property (nonatomic, retain) NSString *mobileCountryCode;
 @property (nonatomic, retain) NSString *mobileNetworkCode;
 
+- (void).cxx_destruct;
 - (bool)allowsVOIP;
 - (id)carrierName;
-- (void)dealloc;
 - (id)description;
 - (id)init;
 - (bool)isEqual:(id)arg1;

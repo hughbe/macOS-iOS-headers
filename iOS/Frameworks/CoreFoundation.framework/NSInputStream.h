@@ -24,4 +24,10 @@
 - (id)initWithURL:(id)arg1;
 - (long long)read:(char *)arg1 maxLength:(unsigned long long)arg2;
 
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
+- (id)safari_readAllData;
+- (bool)safari_readNetworkOrderUInt16:(unsigned short*)arg1;
+- (bool)safari_readNetworkOrderUInt32:(unsigned int*)arg1;
+
 @end

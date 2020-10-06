@@ -37,6 +37,7 @@
 - (bool)hasCaseableAutocorrection;
 - (bool)hasContinuousPathConversions;
 - (bool)hasProactiveCandidates;
+- (bool)hasTextSuggestionCandidates;
 - (id)init;
 - (bool)needsAutocorrection;
 - (void)removeAutocorrectionObserver:(id)arg1;

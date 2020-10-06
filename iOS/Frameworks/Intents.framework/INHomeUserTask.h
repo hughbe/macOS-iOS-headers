@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INHomeUserTask : NSObject <INJSONSerializable, NSCopying, NSSecureCoding> {
+@interface INHomeUserTask : NSObject <INJSONSerializable, NSCopying, NSSecureCoding, REDonatedActionIdentifierProviding> {
     long long  _attribute;
     long long  _taskType;
     INHomeAttributeValue * _value;
@@ -15,6 +15,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) long long taskType;
 @property (nonatomic, readonly, copy) INHomeAttributeValue *value;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (bool)supportsSecureCoding;
@@ -33,5 +35,9 @@
 - (bool)isEqual:(id)arg1;
 - (long long)taskType;
 - (id)value;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (unsigned long long)re_actionIdentifierHashValue;
 
 @end

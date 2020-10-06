@@ -64,7 +64,10 @@
 - (bool)hasNumberOfReroutes;
 - (bool)hasTtlUiNotificationShown;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)latestArrivalOffset;
 - (double)latestDepartureOffset;
 - (void)mergeFrom:(id)arg1;

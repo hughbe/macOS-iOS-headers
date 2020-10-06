@@ -13,6 +13,8 @@
 @property (nonatomic, retain) Class parameterClass;
 @property (nonatomic, copy) NSString *parameterKeyPath;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (id)parameterForClass:(Class)arg1 keyPath:(id)arg2;
 + (bool)supportsSecureCoding;
 
@@ -42,5 +44,9 @@
 - (void)setParameterClass:(Class)arg1;
 - (void)setParameterKeyPath:(id)arg1;
 - (void)set_indexesForSubKeyPaths:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IntentsUICardKitProviderSupport.framework/IntentsUICardKitProviderSupport
+
+- (bool)isSubParameterOf:(id)arg1;
 
 @end

@@ -13,13 +13,7 @@
         unsigned int read_batchPlaceResults : 1; 
         unsigned int read_clusters : 1; 
         unsigned int read_versionDomains : 1; 
-        unsigned int wrote_batchPlaceResults : 1; 
-        unsigned int wrote_clusters : 1; 
-        unsigned int wrote_timestamp : 1; 
-        unsigned int wrote_versionDomains : 1; 
-        unsigned int wrote_statusCode : 1; 
-        unsigned int wrote_ttl : 1; 
-        unsigned int wrote_version : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -53,12 +47,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatusCode:(id)arg1;
-- (void)_addNoFlagsBatchPlaceResult:(id)arg1;
-- (void)_addNoFlagsCluster:(id)arg1;
-- (void)_addNoFlagsVersionDomain:(id)arg1;
-- (void)_readBatchPlaceResults;
-- (void)_readClusters;
-- (void)_readVersionDomains;
 - (void)addBatchPlaceResult:(id)arg1;
 - (void)addCluster:(id)arg1;
 - (void)addVersionDomain:(id)arg1;
@@ -83,7 +71,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

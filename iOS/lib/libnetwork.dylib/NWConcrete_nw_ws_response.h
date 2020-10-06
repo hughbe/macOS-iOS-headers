@@ -16,6 +16,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithStatus:(int)arg1 selectedProtocol:(const char *)arg2;
 
 @end

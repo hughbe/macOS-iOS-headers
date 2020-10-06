@@ -104,7 +104,6 @@
 - (void)setUseCellular:(bool)arg1 forDataclass:(id)arg2;
 - (void)setUsername:(id)arg1;
 - (void)setupChildMailAccountAndEnable:(bool)arg1 withEmail:(id)arg2;
-- (void)signInWithHandler:(id /* block */)arg1;
 - (id)supportedDataclasses;
 - (id)syncStoreIdentifier;
 - (void)updateAccountPropertiesWithHandler:(id /* block */)arg1;

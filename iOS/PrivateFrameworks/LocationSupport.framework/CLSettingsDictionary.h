@@ -10,6 +10,7 @@
 
 + (id)settingsWithDictionary:(id)arg1;
 
+- (id)arrayForKey:(id)arg1 defaultValue:(id)arg2;
 - (bool)boolForKey:(id)arg1 defaultValue:(bool)arg2;
 - (void)dealloc;
 - (id)dictionary;

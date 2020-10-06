@@ -3,7 +3,6 @@
  */
 
 @interface _INPBPair : PBCodable <NSCopying, NSSecureCoding, _INPBPair> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int repeated : 1; 
     }  _has;
@@ -24,7 +23,6 @@
     bool  _repeated;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasKey;
@@ -76,8 +74,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addPairCurrencyAmountValue:(id)arg1;
 - (void)addPairCustomObject:(id)arg1;
 - (void)addPairDataString:(id)arg1;

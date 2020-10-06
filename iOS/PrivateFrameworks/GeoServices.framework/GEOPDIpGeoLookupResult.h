@@ -11,12 +11,7 @@
         unsigned int read_ipAddress : 1; 
         unsigned int read_location : 1; 
         unsigned int read_timeZome : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_countryCode : 1; 
-        unsigned int wrote_ipAddress : 1; 
-        unsigned int wrote_location : 1; 
-        unsigned int wrote_timeZome : 1; 
-        unsigned int wrote_status : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _ipAddress;
     GEOLatLng * _location;
@@ -47,10 +42,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatus:(id)arg1;
-- (void)_readCountryCode;
-- (void)_readIpAddress;
-- (void)_readLocation;
-- (void)_readTimeZome;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -65,8 +56,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)ipAddress;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)location;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

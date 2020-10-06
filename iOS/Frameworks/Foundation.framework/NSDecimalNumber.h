@@ -110,4 +110,21 @@
 
 - (void)af_enumerateDigestibleChunksWithOptions:(unsigned long long)arg1 usingBlock:(id /* block */)arg2;
 
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)pk_negativeOne;
+
+- (id)pk_absoluteValue;
+- (bool)pk_isEqualToDecimalNumber:(id)arg1;
+- (bool)pk_isGreaterThan:(id)arg1;
+- (bool)pk_isGreaterThanOrEqualTo:(id)arg1;
+- (bool)pk_isLessThan:(id)arg1;
+- (bool)pk_isLessThanOrEqualTo:(id)arg1;
+- (id)pk_negativeValue;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (const char *)siriCoreSQLiteValue_textRepresentation;
+- (long long)siriCoreSQLiteValue_type;
+
 @end

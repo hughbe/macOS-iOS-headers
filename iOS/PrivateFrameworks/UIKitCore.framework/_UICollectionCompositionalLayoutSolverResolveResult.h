@@ -29,6 +29,7 @@
 - (void)addInsertedAuxillaryOfElementKind:(id)arg1 atIndexPath:(id)arg2 isSupplementary:(bool)arg3;
 - (struct CGPoint { double x1; double x2; })contentOffsetAdjustment;
 - (struct CGSize { double x1; double x2; })contentSizeAdjustment;
+- (id)description;
 - (id)indexPathsForDeletedDecorationsForElementKind:(id)arg1;
 - (id)indexPathsForDeletedSupplememtariesForElementKind:(id)arg1;
 - (id)indexPathsForInsertedDecorationsForElementKind:(id)arg1;

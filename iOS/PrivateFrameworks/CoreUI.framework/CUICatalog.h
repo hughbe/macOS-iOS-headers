@@ -14,6 +14,7 @@
     unsigned int  _reserved;
     NSMapTable * _storageMapTable;
     unsigned long long  _storageRef;
+    NSDictionary * _vibrantColorMatrixTints;
 }
 
 @property (nonatomic) unsigned long long storageRef;
@@ -31,12 +32,12 @@
 + (bool)isValidLCRWithBytes:(const void*)arg1 length:(unsigned long long)arg2;
 + (struct CGColor { }*)newColorByAdjustingLightnessOfColor:(struct CGColor { }*)arg1 darker:(bool)arg2;
 
-- (long long)_appearanceIdentifierForName:(id)arg1;
 - (id)_baseAtlasContentsKeyForName:(id)arg1;
 - (id)_baseAtlasKeyForName:(id)arg1;
 - (id)_baseColorKeyForName:(id)arg1;
 - (id)_baseImageKeyForName:(id)arg1;
 - (id)_baseKeyForName:(id)arg1;
+- (id)_baseModelForKeyForName:(id)arg1;
 - (id)_baseMultisizeImageSetKeyForName:(id)arg1;
 - (id)_baseRecognitionGroupImageSetKeyForName:(id)arg1;
 - (id)_baseRecognitionObjectKeyForName:(id)arg1;
@@ -58,17 +59,16 @@
 - (id)_namedTextureWithName:(id)arg1 scaleFactor:(double)arg2 appearanceName:(id)arg3;
 - (id)_namedTextureWithName:(id)arg1 scaleFactor:(double)arg2 displayGamut:(long long)arg3 appearanceName:(id)arg4;
 - (id)_namedVectorImageWithName:(id)arg1 scaleFactor:(double)arg2 deviceIdiom:(long long)arg3 deviceSubtype:(unsigned long long)arg4 displayGamut:(long long)arg5 layoutDirection:(long long)arg6 sizeClassHorizontal:(long long)arg7 sizeClassVertical:(long long)arg8 appearanceIdentifier:(long long)arg9;
-- (id)_private_resolvedRenditionKeyFromThemeRef:(unsigned long long)arg1 withBaseKey:(id)arg2 scaleFactor:(double)arg3 deviceIdiom:(long long)arg4 deviceSubtype:(unsigned long long)arg5 displayGamut:(long long)arg6 layoutDirection:(long long)arg7 sizeClassHorizontal:(long long)arg8 sizeClassVertical:(long long)arg9 memoryClass:(unsigned long long)arg10 graphicsClass:(unsigned long long)arg11 graphicsFallBackOrder:(id)arg12 deviceSubtypeFallBackOrder:(id)arg13 localizationIdentifier:(unsigned long long)arg14 adjustRenditionKeyWithBlock:(id /* block */)arg15;
 - (id)_recognitionImageWithName:(id)arg1;
 - (id)_recognitionObjectWithName:(id)arg1;
 - (id)_resolvedRenditionKeyForName:(id)arg1 scaleFactor:(double)arg2 deviceIdiom:(long long)arg3 deviceSubtype:(unsigned long long)arg4 displayGamut:(long long)arg5 layoutDirection:(long long)arg6 sizeClassHorizontal:(long long)arg7 sizeClassVertical:(long long)arg8 memoryClass:(unsigned long long)arg9 graphicsClass:(unsigned long long)arg10 graphicsFallBackOrder:(id)arg11 deviceSubtypeFallBackOrder:(id)arg12 withBaseKeySelector:(SEL)arg13 adjustRenditionKeyWithBlock:(id /* block */)arg14;
 - (id)_resolvedRenditionKeyFromThemeRef:(unsigned long long)arg1 withBaseKey:(id)arg2 scaleFactor:(double)arg3 deviceIdiom:(long long)arg4 deviceSubtype:(unsigned long long)arg5 displayGamut:(long long)arg6 layoutDirection:(long long)arg7 sizeClassHorizontal:(long long)arg8 sizeClassVertical:(long long)arg9 memoryClass:(unsigned long long)arg10 graphicsClass:(unsigned long long)arg11 graphicsFallBackOrder:(id)arg12 deviceSubtypeFallBackOrder:(id)arg13 adjustRenditionKeyWithBlock:(id /* block */)arg14;
 - (void)_resourceUnPinnedNotification:(id)arg1;
 - (void)_setPreferredLocalization:(id)arg1;
-- (void)_sharedSetup;
 - (unsigned long long)_storageRefForRendition:(id)arg1 representsODRContent:(bool*)arg2;
 - (unsigned long long)_themeRef;
 - (id)_themeStore;
+- (void)_vibrantColorMatrixBrightnessSaturationForColor:(struct CGColor { }*)arg1 saturation:(double*)arg2 brightness:(double*)arg3;
 - (id)allImageNames;
 - (id)appearanceNames;
 - (int)blendModeForStylePresetWithName:(id)arg1 styleConfiguration:(id)arg2;
@@ -78,6 +78,9 @@
 - (id)colorWithName:(id)arg1 displayGamut:(long long)arg2 appearanceName:(id)arg3;
 - (id)colorWithName:(id)arg1 displayGamut:(long long)arg2 deviceIdiom:(long long)arg3;
 - (id)colorWithName:(id)arg1 displayGamut:(long long)arg2 deviceIdiom:(long long)arg3 appearanceName:(id)arg4;
+- (id)compositingFilterForStylePresetWithName:(id)arg1 styleConfiguration:(id)arg2;
+- (id)compositingFilterForStylePresetWithName:(id)arg1 styleConfiguration:(id)arg2 foregroundColor:(struct CGColor { }*)arg3;
+- (bool)containsLookupForName:(id)arg1;
 - (id)dataWithName:(id)arg1;
 - (id)dataWithName:(id)arg1 appearanceName:(id)arg2;
 - (id)dataWithName:(id)arg1 deviceIdiom:(long long)arg2 deviceSubtype:(unsigned long long)arg3 memoryClass:(unsigned long long)arg4 graphicsClass:(unsigned long long)arg5 appearanceIdentifier:(long long)arg6 graphicsFallBackOrder:(id)arg7 deviceSubtypeFallBackOrder:(id)arg8;

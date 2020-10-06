@@ -10,10 +10,8 @@
 + (id)sharedPersister;
 
 - (void).cxx_destruct;
-- (void)_findResponseForCoordinate:(struct { double x1; double x2; })arg1 usingFunction:(int (*)arg2 queue:(id)arg3 completion:(id /* block */)arg4;
 - (bool)_setup:(id)arg1;
-- (void)findExactResponseForCoordinate:(struct { double x1; double x2; })arg1 queue:(id)arg2 completion:(id /* block */)arg3;
-- (void)findResponseForCoordinate:(struct { double x1; double x2; })arg1 queue:(id)arg2 completion:(id /* block */)arg3;
+- (void)findResponseForCoordinate:(struct { double x1; double x2; })arg1 reduceRadius:(double)arg2 queue:(id)arg3 completion:(id /* block */)arg4;
 - (void)getAllEntries:(id)arg1 queue:(id)arg2 handler:(id /* block */)arg3;
 - (id)init;
 - (id)initWithDBFilePath:(id)arg1;

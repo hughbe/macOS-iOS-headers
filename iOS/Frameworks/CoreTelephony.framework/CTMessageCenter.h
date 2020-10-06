@@ -13,6 +13,8 @@
 - (void)dealloc;
 - (id)decodeMessage:(id)arg1;
 - (id)deferredMessageWithId:(unsigned int)arg1;
+- (void)emergencySessionIntentEnd:(id)arg1;
+- (void)emergencySessionIntentStart:(id)arg1;
 - (id)encodeMessage:(id)arg1;
 - (bool)getCharacterCount:(long long*)arg1 andMessageSplitThreshold:(long long*)arg2 forSmsText:(id)arg3;
 - (bool)getCharacterCountForSub:(id)arg1 count:(long long*)arg2 andMessageSplitThreshold:(long long*)arg3 forSmsText:(id)arg4;
@@ -43,6 +45,5 @@
 - (void)setDeliveryReportsEnabled:(bool)arg1;
 - (bool)simulateDeferredMessage;
 - (bool)simulateSmsReceived:(id)arg1;
-- (id)statusOfOutgoingMessages;
 
 @end

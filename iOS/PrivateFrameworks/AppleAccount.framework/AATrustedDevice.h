@@ -31,6 +31,7 @@
 }
 
 @property (nonatomic, readonly) NSString *FMIPDeviceID;
+@property (nonatomic, readonly, copy) NSString *aaui_localizedDeviceLocatorLabel;
 @property (nonatomic, readonly) NSString *backupUUID;
 @property (nonatomic, readonly) bool currentDevice;
 @property (nonatomic, readonly) NSString *detailDeviceName;
@@ -55,6 +56,8 @@
 @property (nonatomic, readonly) bool showBackupRow;
 @property (nonatomic, readonly) bool showFMIPLink;
 @property (nonatomic, readonly) bool showFMIPRow;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
 
 - (void).cxx_destruct;
 - (id)FMIPDeviceID;
@@ -84,5 +87,10 @@
 - (bool)showFMIPLink;
 - (bool)showFMIPRow;
 - (void)updateWithRUIClientInfo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
+- (id)_deviceLocatorKey;
+- (id)aaui_localizedDeviceLocatorLabel;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@interface BKSHIDEventKeyCommand : NSObject <BSDescriptionProviding, NSSecureCoding> {
+@interface BKSHIDEventKeyCommand : NSObject <BSDescriptionStreamable, NSCopying, NSSecureCoding> {
     NSString * _commandModifiedInput;
     NSString * _input;
     long long  _keyCode;
@@ -34,13 +34,14 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (void)_appendPropertiesCommon:(id)arg1;
 - (id)_initWithInput:(id)arg1 keyCode:(long long)arg2 modifierFlags:(long long)arg3;
 - (id)_sanitizedInputForDescription;
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)commandModifiedInput;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (long long)describes:(id)arg1;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)init;
@@ -54,8 +55,6 @@
 - (void)setShiftModifiedInput:(id)arg1;
 - (void)setUnmodifiedInput:(id)arg1;
 - (id)shiftModifiedInput;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 - (id)unmodifiedInput;
 
 @end

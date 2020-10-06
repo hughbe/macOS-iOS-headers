@@ -7,9 +7,7 @@
         unsigned int read_localityName : 1; 
         unsigned int read_locationName : 1; 
         unsigned int read_secondaryLocationName : 1; 
-        unsigned int wrote_localityName : 1; 
-        unsigned int wrote_locationName : 1; 
-        unsigned int wrote_secondaryLocationName : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _localityName;
     NSString * _locationName;
@@ -32,9 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readLocalityName;
-- (void)_readLocationName;
-- (void)_readSecondaryLocationName;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -45,7 +40,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)localityName;
 - (id)locationName;
 - (void)mergeFrom:(id)arg1;

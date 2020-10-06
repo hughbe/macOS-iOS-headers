@@ -18,6 +18,7 @@
 - (void)resumeRealtimeUpdatesForSubscriber:(id)arg1;
 - (void)setRoutesForPreview:(id)arg1 selectedRouteIndex:(unsigned long long)arg2;
 - (bool)shouldClearStoredRoutes;
+- (id)simulationLocationProvider;
 - (void)startNavigationWithDetails:(id)arg1 activeBlock:(id /* block */)arg2;
 - (void)stopNavigation;
 - (id)traceManager;

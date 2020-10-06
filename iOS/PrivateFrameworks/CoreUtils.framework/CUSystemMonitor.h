@@ -7,6 +7,7 @@
     bool  _activateCompleted;
     id /* block */  _bluetoothAddressChangedHandler;
     id /* block */  _callChangedHandler;
+    id /* block */  _clamshellModeChangedHandler;
     id /* block */  _consoleUserChangedHandler;
     NSObject<OS_dispatch_queue> * _dispatchQueue;
     id /* block */  _familyUpdatedHandler;
@@ -22,6 +23,7 @@
     id /* block */  _primaryAppleIDChangedHandler;
     id /* block */  _primaryIPChangedHandler;
     id /* block */  _primaryNetworkChangedHandler;
+    id /* block */  _regionChangedHandler;
     id /* block */  _rotatingIdentifierChangedHandler;
     id /* block */  _screenLockedChangedHandler;
     id /* block */  _screenOnChangedHandler;
@@ -36,6 +38,9 @@
 @property (copy) id /* block */ bluetoothAddressChangedHandler;
 @property (readonly, copy) NSData *bluetoothAddressData;
 @property (copy) id /* block */ callChangedHandler;
+@property (readonly) unsigned int callFlags;
+@property (readonly) bool clamshellMode;
+@property (copy) id /* block */ clamshellModeChangedHandler;
 @property (readonly) int connectedCallCount;
 @property (copy) id /* block */ consoleUserChangedHandler;
 @property (readonly) unsigned int consoleUserID;
@@ -45,6 +50,7 @@
 @property (copy) id /* block */ familyUpdatedHandler;
 @property (copy) id /* block */ firstUnlockHandler;
 @property (nonatomic, readonly) bool firstUnlocked;
+@property (nonatomic, readonly) bool firstUnlockedSync;
 @property (nonatomic, copy) id /* block */ invalidationHandler;
 @property (readonly) bool manateeAvailable;
 @property (copy) id /* block */ manateeChangedHandler;
@@ -67,6 +73,11 @@
 @property (nonatomic, readonly) union { struct sockaddr { unsigned char x_1_1_1; unsigned char x_1_1_2; BOOL x_1_1_3[14]; } x1; struct sockaddr_in { unsigned char x_2_1_1; unsigned char x_2_1_2; unsigned short x_2_1_3; struct in_addr { unsigned int x_4_2_1; } x_2_1_4; BOOL x_2_1_5[8]; } x2; struct sockaddr_in6 { unsigned char x_3_1_1; unsigned char x_3_1_2; unsigned short x_3_1_3; unsigned int x_3_1_4; struct in6_addr { union { unsigned char x_1_3_1[16]; unsigned short x_1_3_2[8]; unsigned int x_1_3_3[4]; } x_5_2_1; } x_3_1_5; unsigned int x_3_1_6; } x3; } primaryIPv6Addr;
 @property (copy) id /* block */ primaryNetworkChangedHandler;
 @property (nonatomic, readonly, copy) NSString *primaryNetworkSignature;
+@property (copy) id /* block */ regionChangedHandler;
+@property (readonly, copy) NSString *regionISOCountryCode;
+@property (readonly, copy) NSString *regionMobileCountryCode;
+@property (readonly, copy) NSString *regionRoutineCountry;
+@property (readonly, copy) NSString *regionRoutineState;
 @property (readonly) struct { unsigned char x1[6]; } rotatingIdentifier48;
 @property (copy) id /* block */ rotatingIdentifierChangedHandler;
 @property (readonly, copy) NSData *rotatingIdentifierData;
@@ -93,6 +104,9 @@
 - (id /* block */)bluetoothAddressChangedHandler;
 - (id)bluetoothAddressData;
 - (id /* block */)callChangedHandler;
+- (unsigned int)callFlags;
+- (bool)clamshellMode;
+- (id /* block */)clamshellModeChangedHandler;
 - (int)connectedCallCount;
 - (id /* block */)consoleUserChangedHandler;
 - (unsigned int)consoleUserID;
@@ -102,6 +116,7 @@
 - (id /* block */)familyUpdatedHandler;
 - (id /* block */)firstUnlockHandler;
 - (bool)firstUnlocked;
+- (bool)firstUnlockedSync;
 - (id)init;
 - (void)invalidate;
 - (id /* block */)invalidationHandler;
@@ -126,6 +141,11 @@
 - (union { struct sockaddr { unsigned char x_1_1_1; unsigned char x_1_1_2; BOOL x_1_1_3[14]; } x1; struct sockaddr_in { unsigned char x_2_1_1; unsigned char x_2_1_2; unsigned short x_2_1_3; struct in_addr { unsigned int x_4_2_1; } x_2_1_4; BOOL x_2_1_5[8]; } x2; struct sockaddr_in6 { unsigned char x_3_1_1; unsigned char x_3_1_2; unsigned short x_3_1_3; unsigned int x_3_1_4; struct in6_addr { union { unsigned char x_1_3_1[16]; unsigned short x_1_3_2[8]; unsigned int x_1_3_3[4]; } x_5_2_1; } x_3_1_5; unsigned int x_3_1_6; } x3; })primaryIPv6Addr;
 - (id /* block */)primaryNetworkChangedHandler;
 - (id)primaryNetworkSignature;
+- (id /* block */)regionChangedHandler;
+- (id)regionISOCountryCode;
+- (id)regionMobileCountryCode;
+- (id)regionRoutineCountry;
+- (id)regionRoutineState;
 - (struct { unsigned char x1[6]; })rotatingIdentifier48;
 - (id /* block */)rotatingIdentifierChangedHandler;
 - (id)rotatingIdentifierData;
@@ -138,6 +158,7 @@
 - (id /* block */)screenSaverChangedHandler;
 - (void)setBluetoothAddressChangedHandler:(id /* block */)arg1;
 - (void)setCallChangedHandler:(id /* block */)arg1;
+- (void)setClamshellModeChangedHandler:(id /* block */)arg1;
 - (void)setConsoleUserChangedHandler:(id /* block */)arg1;
 - (void)setDispatchQueue:(id)arg1;
 - (void)setFamilyUpdatedHandler:(id /* block */)arg1;
@@ -151,6 +172,7 @@
 - (void)setPrimaryAppleIDChangedHandler:(id /* block */)arg1;
 - (void)setPrimaryIPChangedHandler:(id /* block */)arg1;
 - (void)setPrimaryNetworkChangedHandler:(id /* block */)arg1;
+- (void)setRegionChangedHandler:(id /* block */)arg1;
 - (void)setRotatingIdentifierChangedHandler:(id /* block */)arg1;
 - (void)setScreenLockedChangedHandler:(id /* block */)arg1;
 - (void)setScreenOnChangedHandler:(id /* block */)arg1;

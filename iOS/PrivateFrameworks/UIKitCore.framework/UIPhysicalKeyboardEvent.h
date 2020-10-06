@@ -15,7 +15,7 @@
     NSString * _privateInput;
     long long  _privateModifierFlags;
     NSString * _shiftModifiedInput;
-    unsigned long long  _source;
+    long long  _source;
     NSString * _unmodifiedInput;
 }
 
@@ -37,7 +37,7 @@
 @property (nonatomic) long long _privateModifierFlags;
 @property (nonatomic, retain) NSString *_shiftModifiedInput;
 @property (nonatomic, retain) NSString *_unmodifiedInput;
-@property (nonatomic) unsigned long long source;
+@property (nonatomic) long long source;
 
 + (id)_eventWithInput:(id)arg1 inputFlags:(int)arg2;
 
@@ -67,7 +67,7 @@
 - (id)_unmodifiedInput;
 - (bool)isEqual:(id)arg1;
 - (long long)modifierFlags;
-- (void)setSource:(unsigned long long)arg1;
+- (void)setSource:(long long)arg1;
 - (void)set_commandModifiedInput:(id)arg1;
 - (void)set_externalEvent:(bool)arg1;
 - (void)set_hint:(id)arg1;
@@ -80,7 +80,7 @@
 - (void)set_privateModifierFlags:(long long)arg1;
 - (void)set_shiftModifiedInput:(id)arg1;
 - (void)set_unmodifiedInput:(id)arg1;
-- (unsigned long long)source;
+- (long long)source;
 - (long long)type;
 
 @end

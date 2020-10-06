@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSearchForBillsIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSearchForBillsIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBBillPayeeValue * _billPayee;
     int  _billType;
     _INPBDateTimeRange * _dueDateRange;
@@ -16,7 +15,6 @@
     int  _status;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBBillPayeeValue *billPayee;
 @property (nonatomic) int billType;
 @property (readonly, copy) NSString *debugDescription;
@@ -39,8 +37,6 @@
 - (void).cxx_destruct;
 - (int)StringAsBillType:(id)arg1;
 - (int)StringAsStatus:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)billPayee;
 - (int)billType;
 - (id)billTypeAsString:(int)arg1;

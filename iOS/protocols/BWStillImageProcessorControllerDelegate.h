@@ -12,6 +12,5 @@
 @optional
 
 - (void)processorController:(BWStillImageProcessorController *)arg1 didFinishProcessingBuffer:(struct __CVBuffer { }*)arg2 metadata:(NSDictionary *)arg3 type:(unsigned long long)arg4 processorInput:(BWStillImageProcessorInput *)arg5 err:(int)arg6;
-- (void)processorController:(BWStillImageProcessorController *)arg1 didSelectNewReferenceFrameWithPTS:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg2 transform:(NSArray *)arg3 processorInput:(BWStillImageProcessorInput *)arg4;
 
 @end

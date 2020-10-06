@@ -17,48 +17,12 @@
     NSString * _transport;
 }
 
-@property (nonatomic) unsigned long long additionsBucketCountTriggeringSync;
-@property (nonatomic) unsigned long long deletionsBucketCountTriggeringSync;
-@property (nonatomic) bool isSyncDisabled;
-@property (nonatomic) unsigned long long maximumBatchesPerSync;
-@property (nonatomic) unsigned long long maximumSyncsPerDay;
-@property (nonatomic) unsigned long long minimumSyncWindowInSeconds;
-@property (nonatomic) unsigned long long minimumTimeBetweenSyncsInSeconds;
-@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDictionary *properties;
-@property (nonatomic) unsigned long long singleDevicePeriodicSyncCadenceInDays;
-@property (nonatomic) unsigned long long syncBatchSizeInEvents;
-@property (nonatomic, retain) NSString *transport;
-
-+ (id)policyForSyncTransportType:(long long)arg1;
 
 - (void).cxx_destruct;
-- (unsigned long long)additionsBucketCountTriggeringSync;
-- (unsigned long long)deletionsBucketCountTriggeringSync;
 - (id)description;
 - (id)init;
-- (id)initWithName:(id)arg1 properties:(id)arg2;
-- (bool)isSyncDisabled;
-- (unsigned long long)maximumBatchesPerSync;
-- (unsigned long long)maximumSyncsPerDay;
-- (unsigned long long)minimumSyncWindowInSeconds;
-- (unsigned long long)minimumTimeBetweenSyncsInSeconds;
-- (id)name;
 - (id)properties;
-- (void)setAdditionsBucketCountTriggeringSync:(unsigned long long)arg1;
-- (void)setDeletionsBucketCountTriggeringSync:(unsigned long long)arg1;
-- (void)setIsSyncDisabled:(bool)arg1;
-- (void)setMaximumBatchesPerSync:(unsigned long long)arg1;
-- (void)setMaximumSyncsPerDay:(unsigned long long)arg1;
-- (void)setMinimumSyncWindowInSeconds:(unsigned long long)arg1;
-- (void)setMinimumTimeBetweenSyncsInSeconds:(unsigned long long)arg1;
-- (void)setName:(id)arg1;
 - (void)setProperties:(id)arg1;
-- (void)setSingleDevicePeriodicSyncCadenceInDays:(unsigned long long)arg1;
-- (void)setSyncBatchSizeInEvents:(unsigned long long)arg1;
-- (void)setTransport:(id)arg1;
-- (unsigned long long)singleDevicePeriodicSyncCadenceInDays;
-- (unsigned long long)syncBatchSizeInEvents;
-- (id)transport;
 
 @end

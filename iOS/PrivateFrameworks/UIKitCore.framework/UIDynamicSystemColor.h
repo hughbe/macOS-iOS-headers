@@ -3,6 +3,11 @@
  */
 
 @interface UIDynamicSystemColor : UIDynamicColor {
+    UIColor * _cachedColor;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _cachedColorLock;
+    unsigned long long  _cachedThemeKey;
     NSDictionary * _colorsByThemeKey;
 }
 

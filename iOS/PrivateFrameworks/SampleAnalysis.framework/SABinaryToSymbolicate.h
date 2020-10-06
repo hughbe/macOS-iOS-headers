@@ -8,17 +8,6 @@
     int  _livePid;
 }
 
-@property (readonly) SABinary *binary;
-@property unsigned long long dataGatheringOptions;
-@property int livePid;
-
-+ (id)binaryToSymbolicateWithBinary:(id)arg1;
-
 - (void).cxx_destruct;
-- (id)binary;
-- (unsigned long long)dataGatheringOptions;
-- (int)livePid;
-- (void)setDataGatheringOptions:(unsigned long long)arg1;
-- (void)setLivePid:(int)arg1;
 
 @end

@@ -7,6 +7,8 @@
     NSObject<OS_dispatch_queue> * _replyQueue;
 }
 
+// Image: /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
+
 + (id)_recentEventForGroupMembers:(id)arg1 displayName:(id)arg2 date:(id)arg3 weight:(id)arg4 metadata:(id)arg5 options:(unsigned long long)arg6;
 + (id)apiLogDescriptionOfEvent:(id)arg1;
 + (id)defaultInstance;
@@ -49,5 +51,13 @@
 - (void)requestRecentsUsingPredicate:(id)arg1 inDomains:(id)arg2 comparator:(id /* block */)arg3 queue:(id)arg4 completion:(id /* block */)arg5;
 - (void)setImplicitGroupThreshold:(unsigned long long)arg1 forDomain:(id)arg2;
 - (void)start;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (void)recordContactEventsForHeaders:(id)arg1 recentsDomain:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAutocompleteUI.framework/ContactsAutocompleteUI
+
+- (void)recordContactEventsForHeaders:(id)arg1 recentsDomain:(id)arg2;
 
 @end

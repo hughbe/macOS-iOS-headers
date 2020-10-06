@@ -18,7 +18,7 @@
 + (id)_extensionAuxiliaryVendorProtocol;
 
 - (void).cxx_destruct;
-- (void)generateThumbnailOfSize:(struct CGSize { double x1; double x2; })arg1 minimumSize:(double)arg2 scale:(double)arg3 badgeType:(unsigned long long)arg4 withItem:(id)arg5 ioSurfaceGenerator:(id)arg6 completionHandler:(id /* block */)arg7;
+- (void)generateThumbnailOfSize:(struct CGSize { double x1; double x2; })arg1 minimumSize:(double)arg2 scale:(double)arg3 badgeType:(unsigned long long)arg4 withItem:(id)arg5 ioSurfaceGenerator:(id)arg6 generatorData:(id)arg7 completionHandler:(id /* block */)arg8;
 - (id)ioSurfaceGenerator;
 - (void)ioSurfaceWithSize:(struct CGSize { double x1; double x2; })arg1 completion:(id /* block */)arg2;
 - (id)protocolServiceWithErrorHandler:(id /* block */)arg1;

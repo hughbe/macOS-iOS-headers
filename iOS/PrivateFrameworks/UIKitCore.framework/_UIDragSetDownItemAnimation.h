@@ -11,6 +11,7 @@
         double y; 
     }  _center;
     id /* block */  _completionHandler;
+    <UIViewSpringAnimationBehaviorDescribing> * _customSpringAnimationBehavior;
     bool  _defaultAnimation;
     _UIPlatterView * _defaultPlatterView;
     <_UIDragSetDownItemAnimationDelegate> * _delegate;
@@ -64,6 +65,7 @@
 @property (nonatomic, retain) _UIPlatterView *appPlatterView;
 @property (nonatomic) struct CGPoint { double x1; double x2; } center;
 @property (nonatomic, copy) id /* block */ completionHandler;
+@property (nonatomic, retain) <UIViewSpringAnimationBehaviorDescribing> *customSpringAnimationBehavior;
 @property (nonatomic) bool defaultAnimation;
 @property (nonatomic, retain) _UIPlatterView *defaultPlatterView;
 @property (nonatomic) <_UIDragSetDownItemAnimationDelegate> *delegate;
@@ -112,6 +114,7 @@
 - (void)configureAnimation;
 - (void)configureCrossfadingAnimationToTargetedPreview;
 - (void)configureSystemDefaultAnimation;
+- (id)customSpringAnimationBehavior;
 - (bool)defaultAnimation;
 - (id)defaultPlatterView;
 - (id)delegate;
@@ -150,6 +153,7 @@
 - (void)setAppPlatterView:(id)arg1;
 - (void)setCenter:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setCompletionHandler:(id /* block */)arg1;
+- (void)setCustomSpringAnimationBehavior:(id)arg1;
 - (void)setDefaultAnimation:(bool)arg1;
 - (void)setDefaultPlatterView:(id)arg1;
 - (void)setDelegate:(id)arg1;

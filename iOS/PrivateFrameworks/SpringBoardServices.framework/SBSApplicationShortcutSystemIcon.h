@@ -10,6 +10,8 @@
 @property (nonatomic, readonly) NSString *systemImageName;
 @property (nonatomic, readonly) long long type;
 
+// Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+
 - (void).cxx_destruct;
 - (id)_initForSubclass;
 - (void)encodeWithXPCDictionary:(id)arg1;
@@ -20,5 +22,10 @@
 - (bool)isEqual:(id)arg1;
 - (id)systemImageName;
 - (long long)type;
+
+// Image: /System/Library/PrivateFrameworks/ShortcutUIKit.framework/ShortcutUIKit
+
+- (id)_scui_iconImageName;
+- (id)_scui_iconImageWithAssetProvider:(id)arg1;
 
 @end

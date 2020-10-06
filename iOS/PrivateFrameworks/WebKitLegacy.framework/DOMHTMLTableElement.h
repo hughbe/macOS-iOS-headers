@@ -50,7 +50,6 @@
 - (void)setTHead:(id)arg1;
 - (void)setWidth:(id)arg1;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (id)summary;
 - (id)tBodies;
 - (id)tFoot;

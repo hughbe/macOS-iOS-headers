@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_lastSearchString : 1; 
         unsigned int read_lastUserTypedSearchString : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_lastSearchString : 1; 
-        unsigned int wrote_lastUserTypedSearchString : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _lastSearchString;
     NSString * _lastUserTypedSearchString;
@@ -31,8 +29,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readLastSearchString;
-- (void)_readLastUserTypedSearchString;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -43,7 +39,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)lastSearchString;
 - (id)lastUserTypedSearchString;
 - (void)mergeFrom:(id)arg1;

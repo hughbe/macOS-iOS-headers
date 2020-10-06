@@ -11,6 +11,7 @@
 + (id)uniqueIdentifierForREMObject:(id)arg1;
 
 - (id)_structuredLocation;
+- (id)address;
 - (id)initWithAlternateUniverseObject:(id)arg1 inEventStore:(id)arg2 withUpdatedChildObjects:(id)arg3;
 - (double)latitude;
 - (double)longitude;

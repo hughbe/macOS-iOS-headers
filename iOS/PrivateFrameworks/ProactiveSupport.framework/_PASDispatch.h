@@ -7,6 +7,7 @@
 + (id)autoreleasingSerialQueueWithLabel:(const char *)arg1;
 + (id)autoreleasingSerialQueueWithLabel:(const char *)arg1 qosClass:(unsigned int)arg2;
 + (unsigned long long)dispatchTimeWithSecondsFromNow:(double)arg1;
++ (void)notifyGroup:(id)arg1 onQueue:(id)arg2 withTimeout:(double)arg3 block:(id /* block */)arg4;
 + (void)runAsyncOnQueue:(id)arg1 afterDelaySeconds:(double)arg2 block:(id /* block */)arg3;
 + (void)runSyncOnMainThreadWithBlock:(id /* block */)arg1;
 + (void)waitForBlock:(id /* block */)arg1;

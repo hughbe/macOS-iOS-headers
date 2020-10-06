@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIResponder : NSObject <DebugHierarchyObject_Fallback, UIResponderStandardEditActions, UITextInputAdditions, UITextInput_Internal, UIUserActivityRestoring, _UIStateRestorationContinuation, _UITouchable> {
+@interface UIResponder : NSObject <UIResponderStandardEditActions, UITextInputAdditions, UITextInput_Internal, UIUserActivityRestoring, _UIPressesEventRespondable, _UIStateRestorationContinuation, _UITouchesEventRespondable> {
     struct { 
         unsigned int hasOverrideClient : 1; 
         unsigned int hasOverrideHost : 1; 
@@ -14,7 +14,6 @@
 @property (getter=_proxyTextInput, nonatomic, readonly) UIResponder<UITextInput> *__content;
 @property (setter=_setCopyConfiguration:, nonatomic, retain) <_UICopyConfigurationReading> *_copyConfiguration;
 @property (nonatomic, readonly) UIResponder *_editingDelegate;
-@property (nonatomic, readonly) UIResponder *_responderForEditing;
 @property (nonatomic, readonly) UIView<UITextInputPrivate> *_textSelectingContainer;
 @property (nonatomic, retain) <UIActivityItemsConfigurationReading> *activityItemsConfiguration;
 @property (nonatomic, readonly) bool canBecomeFirstResponder;
@@ -26,6 +25,7 @@
 @property (getter=isEditing, nonatomic, readonly) bool editing;
 @property (nonatomic, readonly) long long editingInteractionConfiguration;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) bool ic_isFirstResponder;
 @property (nonatomic, readonly) UIView *inputAccessoryView;
 @property (nonatomic, readonly) UIInputViewController *inputAccessoryViewController;
 @property (nonatomic, readonly) UITextInputAssistantItem *inputAssistantItem;
@@ -35,6 +35,7 @@
 @property (nonatomic, readonly) NSArray *keyCommands;
 @property (nonatomic, readonly) UIResponder *nextResponder;
 @property (nonatomic, copy) NSString *restorationIdentifier;
+@property (nonatomic, readonly) bool sf_inResponderChain;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSString *textInputContextIdentifier;
 @property (nonatomic, readonly) UITextInputMode *textInputMode;
@@ -59,7 +60,9 @@
 - (void)__tearDownInteractionAssistantIfNecessary;
 - (id)__textInteractionFromAssistant;
 - (void)_addShortcut:(id)arg1;
+- (id)_additionalTextInputLocales;
 - (id)_asTextSelection;
+- (long long)_availableTextServices;
 - (void)_becomeFirstResponder;
 - (void)_becomeFirstResponderAndMakeVisible;
 - (bool)_becomeFirstResponderWhenPossible;
@@ -69,7 +72,7 @@
 - (bool)_canBecomeFirstResponderWhenPossible;
 - (bool)_canChangeFirstResponder:(id)arg1 toResponder:(id)arg2;
 - (bool)_canResignIfContainsFirstResponder;
-- (bool)_canShowTextServices;
+- (bool)_canShowTextServiceForType:(long long)arg1;
 - (id)_captureOverrideState;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_caretRect;
 - (unsigned int)_characterAfterCaretSelection;
@@ -82,7 +85,6 @@
 - (void)_clearOverrideHost;
 - (void)_clearOverrideNextResponder;
 - (void)_clearRestorableResponderStatus;
-- (void)_clearTextInputSource;
 - (void)_completeForwardingTouches:(id)arg1 phase:(long long)arg2 event:(id)arg3;
 - (void)_completeForwardingTouches:(id)arg1 phase:(long long)arg2 event:(id)arg3 index:(unsigned long long)arg4;
 - (bool)_containedInAbsoluteResponderChain;
@@ -98,6 +100,7 @@
 - (void)_deleteBackwardAndNotify:(bool)arg1;
 - (void)_deleteByWord;
 - (void)_deleteForwardAndNotify:(bool)arg1;
+- (void)_deleteForwardByWord;
 - (void)_deleteToEndOfLine;
 - (void)_deleteToEndOfParagraph;
 - (void)_deleteToStartOfLine;
@@ -109,6 +112,7 @@
 - (long long)_dropDataOwner;
 - (id)_editingDelegate;
 - (id)_effectiveActivityItemsConfiguration;
+- (id)_effectiveActivityItemsConfigurationAtLocation:(struct CGPoint { double x1; double x2; })arg1 inCoordinateSpace:(id)arg2 sender:(id)arg3;
 - (id)_effectiveActivityItemsConfigurationForSender:(id)arg1;
 - (id)_effectiveActivityItemsConfigurationForView:(id)arg1 location:(struct CGPoint { double x1; double x2; })arg2 sender:(id)arg3;
 - (id)_effectivePasteConfiguration;
@@ -120,6 +124,7 @@
 - (void)_extendCurrentSelection:(int)arg1;
 - (id)_findPleasingWordBoundaryFromPosition:(id)arg1;
 - (bool)_finishResignFirstResponder;
+- (id)_firstNonnullActivityItemsConfigurationInResponderChainForLocation:(struct CGPoint { double x1; double x2; })arg1 inCoordinateSpace:(id)arg2 skipPresentingViewControllers:(bool)arg3 sender:(id)arg4 responder:(id*)arg5;
 - (id)_firstNonnullActivityItemsConfigurationInResponderChainForView:(id)arg1 location:(struct CGPoint { double x1; double x2; })arg2 sender:(id)arg3 responder:(id*)arg4;
 - (id)_firstResponder;
 - (id)_fontForCaretSelection;
@@ -140,6 +145,7 @@
 - (bool)_isPinningInputViews;
 - (bool)_isRootForKeyResponderCycle;
 - (bool)_isTransitioningFromView:(id)arg1;
+- (bool)_isView;
 - (bool)_isViewController;
 - (id)_keyCommandForEvent:(id)arg1;
 - (id)_keyCommandForEvent:(id)arg1 target:(out id*)arg2;
@@ -167,6 +173,7 @@
 - (bool)_nextResponderChainContainsResponder:(id)arg1;
 - (id)_nextResponderOverride;
 - (id)_nextResponderThatCanBecomeFirstResponder;
+- (id)_nextResponderUsingLookupStrategy:(unsigned long long)arg1;
 - (void)_nonDestructivelyResignFirstResponder;
 - (id)_normalizedStringForRangeComparison:(id)arg1;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_nsrangeForTextRange:(id)arg1;
@@ -174,6 +181,8 @@
 - (id)_overrideHost;
 - (void)_overrideInputAccessoryViewNextResponderWithResponder:(id)arg1;
 - (void)_overrideInputViewNextResponderWithResponder:(id)arg1;
+- (void)_overrideNextResponderWithResponder:(id)arg1 forType:(long long)arg2;
+- (void)_overrideRehostedViewControllerNextResponderWithResponder:(id)arg1;
 - (bool)_ownsInputAccessoryView;
 - (id)_positionAtStartOfWords:(unsigned long long)arg1 beforePosition:(id)arg2;
 - (id)_positionFromPosition:(id)arg1 inDirection:(long long)arg2 offset:(long long)arg3 withAffinityDownstream:(bool)arg4;
@@ -195,6 +204,7 @@
 - (id)_rangeOfTextUnit:(long long)arg1 enclosingPosition:(id)arg2;
 - (id)_rangeSpanningTextUnit:(long long)arg1 andPosition:(id)arg2;
 - (void)_rebuildStateRestorationIdentifierPath;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_rectToScrollToVisibleInCellInWindow:(id)arg1;
 - (void)_replaceCurrentWordWithText:(id)arg1;
 - (void)_replaceDocumentWithText:(id)arg1;
 - (bool)_requiresKeyboardResetOnReload;
@@ -250,6 +260,7 @@
 - (id)_targetForAction:(SEL)arg1 sender:(id)arg2 skipViewControllersPresentingModally:(bool)arg3;
 - (id)_textColorForCaretSelection;
 - (long long)_textInputSource;
+- (id)_textInteraction;
 - (id)_textRangeFromNSRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (id)_textSelectingContainer;
 - (id)_textServicesResponderProxy;
@@ -264,16 +275,6 @@
 - (void)_windowBecameKey;
 - (void)_windowResignedKey;
 - (id)_wordContainingCaretSelection;
-- (void)dealloc;
-- (void)doesNotRecognizeSelector:(SEL)arg1;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)activityItemsConfiguration;
 - (bool)becomeFirstResponder;
 - (void)beginSelectionChange;
@@ -282,7 +283,9 @@
 - (bool)canPasteItemProviders:(id)arg1;
 - (bool)canPerformAction:(SEL)arg1 withSender:(id)arg2;
 - (bool)canResignFirstResponder;
+- (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
+- (void)doesNotRecognizeSelector:(SEL)arg1;
 - (long long)editingInteractionConfiguration;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (void)endSelectionChange;
@@ -342,5 +345,47 @@
 - (void)updateUserActivityState:(id)arg1;
 - (id)userActivity;
 - (void)validateCommand:(id)arg1;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (long long)mf_textAlignmentForActiveInputLanguage;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (bool)sf_inResponderChain;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)currentFirstResponder;
+
+- (void)findFirstResponder:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
+- (bool)_ntk_becomeFirstResponder;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
+- (bool)ic_becomeFirstResponder;
+- (bool)ic_inhbitsGlobalKeyCommands;
+- (bool)ic_isFirstResponder;
+
+// Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
+
+- (id)_SKUIView;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
++ (id)tswp_currentFirstResponder;
+
+- (void)tswp_findFirstResponder:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
+
+- (id)tk_firstViewControllerInResponderChain;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
+- (void)vui_handleEvent:(id)arg1 forElement:(id)arg2 sourceView:(id)arg3;
 
 @end

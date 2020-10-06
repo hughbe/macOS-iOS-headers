@@ -4,6 +4,7 @@
 
 @interface _MKRouteETAFetcher : NSObject {
     GEOAutomobileOptions * _automobileOptions;
+    GEOCyclingOptions * _cyclingOptions;
     NSMutableDictionary * _etaResults;
     MKDirections * _inProgressETAUpdate;
     bool  _lastETAUpdateHadError;
@@ -22,6 +23,7 @@
 }
 
 @property (nonatomic, copy) GEOAutomobileOptions *automobileOptions;
+@property (nonatomic, copy) GEOCyclingOptions *cyclingOptions;
 @property (nonatomic, readonly) struct CLLocationCoordinate2D { double x1; double x2; } destinationCoordinate;
 @property (nonatomic, readonly) NSMutableDictionary *etaResults;
 @property (nonatomic, retain) MKMapItem *mapItem;
@@ -33,6 +35,7 @@
 - (void)_didUpdateETAResult;
 - (void)_resetState;
 - (id)automobileOptions;
+- (id)cyclingOptions;
 - (void)dealloc;
 - (struct CLLocationCoordinate2D { double x1; double x2; })destinationCoordinate;
 - (id)etaResults;
@@ -47,6 +50,7 @@
 - (void)requestNewETAForTransportType:(unsigned long long)arg1 additionalTransportTypes:(id)arg2 completion:(id /* block */)arg3;
 - (id)routeETAForTransportType:(unsigned long long)arg1;
 - (void)setAutomobileOptions:(id)arg1;
+- (void)setCyclingOptions:(id)arg1;
 - (void)setMapItem:(id)arg1;
 - (void)setOriginMapItem:(id)arg1;
 - (void)setTransitOptions:(id)arg1;

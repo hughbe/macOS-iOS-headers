@@ -3,25 +3,27 @@
  */
 
 @interface NSTextRange : NSObject {
+    <NSTextLocation> * _endLocation;
     <NSTextLocation> * _location;
-    <NSTextLocation> * _terminator;
 }
 
 @property (getter=isEmpty, readonly) bool empty;
+@property (readonly) <NSTextLocation> *endLocation;
 @property (readonly) <NSTextLocation> *location;
-@property (readonly) <NSTextLocation> *terminator;
 
 - (bool)containsLocation:(id)arg1;
+- (bool)containsRange:(id)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)endLocation;
 - (id)initWithLocation:(id)arg1;
-- (id)initWithLocation:(id)arg1 terminator:(id)arg2;
-- (id)initWithStartLocation:(id)arg1 endLocation:(id)arg2;
+- (id)initWithLocation:(id)arg1 endLocation:(id)arg2;
 - (bool)intersectsWithTextRange:(id)arg1;
 - (bool)isEmpty;
+- (bool)isEqual:(id)arg1;
 - (bool)isEqualToTextRange:(id)arg1;
 - (id)location;
-- (id)startLocation;
+- (id)shortDescription;
 - (id)terminator;
 - (id)textRangeByFormingUnionWithTextRange:(id)arg1;
 - (id)textRangeByIntersectingWithTextRange:(id)arg1;

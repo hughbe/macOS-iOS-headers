@@ -5,7 +5,9 @@
 @interface NSXPCStoreConnectionInfo : NSObject {
     NSXPCStoreServerPerConnectionCache * _cache;
     NSDictionary * _entitlements;
-    int  _lock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
     struct { 
         unsigned int val[8]; 
     }  _token;

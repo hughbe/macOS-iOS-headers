@@ -8,7 +8,9 @@
 
 @property UIResponder<UITextInput> *textView;
 
+- (void).cxx_destruct;
 - (bool)_allowsForShortDelay;
+- (bool)_isGestureType:(long long)arg1;
 - (bool)_tracksPointerTouch;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;
 - (void)invalidate;

@@ -29,7 +29,6 @@
 + (id)monitorForService:(id)arg1;
 
 - (void).cxx_destruct;
-- (id)_initWithManager:(id)arg1 service:(id)arg2;
 - (void)activate;
 - (void)dealloc;
 - (id)delegate;

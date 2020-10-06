@@ -15,16 +15,7 @@
         unsigned int read_systemNames : 1; 
         unsigned int read_timezone : 1; 
         unsigned int read_transitName : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_artworks : 1; 
-        unsigned int wrote_labels : 1; 
-        unsigned int wrote_searchDisplayName : 1; 
-        unsigned int wrote_stopLocationForTrip : 1; 
-        unsigned int wrote_styleAttributesForTrip : 1; 
-        unsigned int wrote_systemNames : 1; 
-        unsigned int wrote_timezone : 1; 
-        unsigned int wrote_transitId : 1; 
-        unsigned int wrote_transitName : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _labels;
     PBDataReader * _reader;
@@ -67,17 +58,6 @@
 + (id)transitInfoSnippetForPlaceData:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsArtwork:(id)arg1;
-- (void)_addNoFlagsLabel:(id)arg1;
-- (void)_addNoFlagsSystemName:(id)arg1;
-- (void)_readArtworks;
-- (void)_readLabels;
-- (void)_readSearchDisplayName;
-- (void)_readStopLocationForTrip;
-- (void)_readStyleAttributesForTrip;
-- (void)_readSystemNames;
-- (void)_readTimezone;
-- (void)_readTransitName;
 - (void)addArtwork:(id)arg1;
 - (void)addLabel:(id)arg1;
 - (void)addSystemName:(id)arg1;
@@ -101,7 +81,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)labelAtIndex:(unsigned long long)arg1;
 - (id)labels;
 - (unsigned long long)labelsCount;

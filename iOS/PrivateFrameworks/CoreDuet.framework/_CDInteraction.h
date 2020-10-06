@@ -16,6 +16,7 @@
     bool  _isResponse;
     NSArray * _keywords;
     NSString * _locationUUID;
+    bool  _mailShareSheetDeletionCandidate;
     long long  _mechanism;
     NSArray * _recipients;
     _CDContact * _sender;
@@ -40,6 +41,7 @@
 @property bool isResponse;
 @property (retain) NSArray *keywords;
 @property (retain) NSString *locationUUID;
+@property (nonatomic) bool mailShareSheetDeletionCandidate;
 @property long long mechanism;
 @property (nonatomic, readonly) NSArray *peopleIdentifiers;
 @property (retain) NSArray *recipients;
@@ -80,6 +82,7 @@
 - (bool)isResponse;
 - (id)keywords;
 - (id)locationUUID;
+- (bool)mailShareSheetDeletionCandidate;
 - (long long)mechanism;
 - (id)peopleIdentifiers;
 - (id)recipients;
@@ -97,6 +100,7 @@
 - (void)setIsResponse:(bool)arg1;
 - (void)setKeywords:(id)arg1;
 - (void)setLocationUUID:(id)arg1;
+- (void)setMailShareSheetDeletionCandidate:(bool)arg1;
 - (void)setMechanism:(long long)arg1;
 - (void)setRecipients:(id)arg1;
 - (void)setSender:(id)arg1;

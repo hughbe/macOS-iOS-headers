@@ -5,6 +5,12 @@
 @interface VKAnnotationTrackingCameraController : VKCameraController {
     <VKTrackableAnnotation> * _annotation;
     <VKTrackableAnnotationPresentation> * _annotationPresentation;
+    struct { 
+        bool shouldZoomToFit; 
+        double idealCenterCoordinateDistance; 
+        bool shouldPreserveUserSpecifiedZoomLevel; 
+        bool resetAfterTracking; 
+    }  _behavior;
     VKTimedAnimation * _currentAnimation;
     struct Matrix<double, 3, 1> { 
         double _e[3]; 
@@ -27,27 +33,32 @@
         unsigned int isInitialRegionChange : 1; 
         unsigned int isJumpingToAnnotation : 1; 
         unsigned int annotationImplementsAccuracy : 1; 
+        unsigned int annotationImplementsHasValidHeading : 1; 
         unsigned int annotationImplementsHeading : 1; 
         unsigned int annotationImplementsExpectedCoordinateUpdateInterval : 1; 
         unsigned int annotationImplementsExpectedHeadingUpdateInterval : 1; 
     }  _flags;
+    bool  _hasUserSpecifiedZoomLevel;
     float  _headingAnimationCompletedAngle;
     long long  _headingAnimationDisplayRate;
     double  _pendingChangeDuration;
     double  _pendingHeadingChangeDuration;
-    long long  _zoomStyle;
 }
 
 @property (nonatomic, readonly) <VKTrackableAnnotation> *annotation;
+@property (nonatomic) struct { bool x1; double x2; bool x3; bool x4; } behavior;
+@property (nonatomic) bool hasUserSpecifiedZoomLevel;
 @property (nonatomic) long long headingAnimationDisplayRate;
+@property (nonatomic, readonly) bool shouldForceZoomToFit;
 @property (getter=isTrackingHeading, nonatomic, readonly) bool trackingHeading;
-@property (nonatomic) long long zoomStyle;
 
 - (id).cxx_construct;
-- (void)_goToAnnotationAnimated:(bool)arg1 duration:(double)arg2 isInitial:(bool)arg3;
+- (void)_goToAnnotationAnimated:(bool)arg1 duration:(double)arg2 timingFunction:(id /* block */)arg3 isInitial:(bool)arg4;
 - (void)_rotateToHeadingAnimated:(bool)arg1 duration:(double)arg2;
 - (id)annotation;
+- (struct { bool x1; double x2; bool x3; bool x4; })behavior;
 - (void)dealloc;
+- (bool)hasUserSpecifiedZoomLevel;
 - (long long)headingAnimationDisplayRate;
 - (id)initWithMapDataAccess:(struct MapDataAccess { }*)arg1 animationRunner:(struct AnimationRunner { }*)arg2 runLoopController:(struct RunLoopController { struct MapEngine {} *x1; long long x2; long long x3; }*)arg3 cameraDelegate:(id)arg4;
 - (bool)isAnimating;
@@ -55,13 +66,13 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)pauseAnimation;
 - (void)resumeAnimation;
-- (void)setEdgeInsets:(struct VKEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (void)setBehavior:(struct { bool x1; double x2; bool x3; bool x4; })arg1;
 - (void)setGesturing:(bool)arg1;
+- (void)setHasUserSpecifiedZoomLevel:(bool)arg1;
 - (void)setHeadingAnimationDisplayRate:(long long)arg1;
-- (void)setZoomStyle:(long long)arg1;
-- (void)startTrackingAnnotation:(id)arg1 trackHeading:(bool)arg2 animated:(bool)arg3;
+- (bool)shouldForceZoomToFit;
+- (void)startTrackingAnnotation:(id)arg1 trackHeading:(bool)arg2 animated:(bool)arg3 duration:(double)arg4 timingFunction:(id /* block */)arg5;
 - (void)stopTrackingAnnotation;
 - (void)updateFramerate;
-- (long long)zoomStyle;
 
 @end

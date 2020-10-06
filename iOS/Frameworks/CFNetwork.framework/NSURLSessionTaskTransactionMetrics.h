@@ -22,10 +22,10 @@
 @property (readonly) bool _connectionRace;
 @property (nonatomic) struct { double x1; double x2; unsigned int x3; unsigned int x4; unsigned int x5; bool x6; } _connectionTiming;
 @property (nonatomic) bool _connectionTimingCached;
-@property (nonatomic, readonly) bool _forCache;
+@property (readonly, copy) NSDate *_firstByteReceivedDate;
+@property (readonly, copy) NSString *_interfaceName;
 @property (readonly, copy) NSString *_localAddressAndPort;
 @property (readonly) bool _localCache;
-@property (nonatomic, readonly) __CFN_TransactionMetrics *_metrics;
 @property (readonly) unsigned short _negotiatedTLSCipher;
 @property (readonly) int _negotiatedTLSProtocol;
 @property (readonly) unsigned int _redirected;
@@ -51,8 +51,11 @@
 @property (readonly) long long countOfResponseHeaderBytesReceived;
 @property (readonly, copy) NSDate *domainLookupEndDate;
 @property (readonly, copy) NSDate *domainLookupStartDate;
+@property (readonly) long long domainResolutionProtocol;
 @property (getter=isExpensive, readonly) bool expensive;
 @property (readonly, copy) NSDate *fetchStartDate;
+@property (nonatomic, readonly) NSString *interfaceName;
+@property (nonatomic, readonly) NSString *interfaceServiceName;
 @property (readonly, copy) NSString *localAddress;
 @property (readonly, copy) NSNumber *localPort;
 @property (getter=isMultipath, readonly) bool multipath;
@@ -73,6 +76,8 @@
 @property (readonly, copy) NSDate *secureConnectionEndDate;
 @property (readonly, copy) NSDate *secureConnectionStartDate;
 
+// Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+
 + (id)new;
 + (bool)supportsSecureCoding;
 
@@ -83,10 +88,10 @@
 - (bool)_connectionRace;
 - (struct { double x1; double x2; unsigned int x3; unsigned int x4; unsigned int x5; bool x6; })_connectionTiming;
 - (bool)_connectionTimingCached;
-- (bool)_forCache;
+- (id)_firstByteReceivedDate;
+- (id)_interfaceName;
 - (id)_localAddressAndPort;
 - (bool)_localCache;
-- (id)_metrics;
 - (unsigned short)_negotiatedTLSCipher;
 - (int)_negotiatedTLSProtocol;
 - (unsigned int)_redirected;
@@ -111,11 +116,11 @@
 - (id)description;
 - (id)domainLookupEndDate;
 - (id)domainLookupStartDate;
+- (long long)domainResolutionProtocol;
 - (void)encodeWithCoder:(id)arg1;
 - (id)fetchStartDate;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMetrics:(id)arg1 forCache:(bool)arg2;
 - (bool)isCellular;
 - (bool)isConstrained;
 - (bool)isExpensive;
@@ -140,6 +145,16 @@
 - (id)secureConnectionStartDate;
 - (void)set_connectionTiming:(struct { double x1; double x2; unsigned int x3; unsigned int x4; unsigned int x5; bool x6; })arg1;
 - (void)set_connectionTimingCached:(bool)arg1;
-- (void)translateConnectionTiming;
+
+// Image: /System/Library/PrivateFrameworks/C2.framework/C2
+
++ (id)_c2_stringForTLSProtocolVersion:(unsigned short)arg1;
+
+- (id)c2_NegotiatedTLSProtocolVersionString;
+
+// Image: /System/Library/PrivateFrameworks/NPTKit.framework/NPTKit
+
+- (id)interfaceName;
+- (id)interfaceServiceName;
 
 @end

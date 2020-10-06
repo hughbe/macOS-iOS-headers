@@ -7,9 +7,7 @@
         unsigned int read_index : 1; 
         unsigned int read_layer : 1; 
         unsigned int read_version : 1; 
-        unsigned int wrote_index : 1; 
-        unsigned int wrote_layer : 1; 
-        unsigned int wrote_version : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOMapLayerDataServiceLayerIndex * _index;
     GEOMapLayerDataServiceLayer * _layer;
@@ -32,9 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readIndex;
-- (void)_readLayer;
-- (void)_readVersion;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -46,7 +41,10 @@
 - (id)index;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)layer;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOWiFiESS : PBCodable <NSCopying> {
+@interface GEOWiFiESS : PBCodable <NSCopying, NSSecureCoding, TBNetwork> {
     struct { 
         int *list; 
         unsigned long long count; 
@@ -16,22 +16,22 @@
     NSMutableArray * _bss;
     struct { 
         unsigned int has_uniqueIdentifier : 1; 
+        unsigned int has_networkType : 1; 
+        unsigned int has_venueGroup : 1; 
+        unsigned int has_venueType : 1; 
         unsigned int read_attributes : 1; 
         unsigned int read_authTraits : 1; 
         unsigned int read_bss : 1; 
         unsigned int read_identifier : 1; 
         unsigned int read_name : 1; 
+        unsigned int read_ownerIdentifiers : 1; 
         unsigned int read_qualities : 1; 
-        unsigned int wrote_attributes : 1; 
-        unsigned int wrote_authTraits : 1; 
-        unsigned int wrote_bss : 1; 
-        unsigned int wrote_identifier : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_qualities : 1; 
-        unsigned int wrote_uniqueIdentifier : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _identifier;
     NSString * _name;
+    int  _networkType;
+    NSMutableArray * _ownerIdentifiers;
     NSMutableArray * _qualities;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -40,41 +40,70 @@
     unsigned int  _readerMarkLength;
     unsigned int  _readerMarkPos;
     long long  _uniqueIdentifier;
+    int  _venueGroup;
+    unsigned int  _venueType;
 }
 
+@property (nonatomic, readonly) NSString *SSID;
+@property (nonatomic, readonly) unsigned long long accessPointCount;
+@property (nonatomic, readonly) NSSet *accessPoints;
 @property (nonatomic, readonly) int*attributes;
 @property (nonatomic, readonly) unsigned long long attributesCount;
+@property (nonatomic, readonly) NSString *attributesDescription;
+@property (nonatomic, readonly) NSString *authDescription;
+@property (nonatomic, readonly) unsigned long long authMask;
 @property (nonatomic, readonly) int*authTraits;
 @property (nonatomic, readonly) unsigned long long authTraitsCount;
 @property (nonatomic, retain) NSMutableArray *bss;
+@property (getter=isCaptive, nonatomic, readonly) bool captive;
+@property (nonatomic, readonly) double centroidLat;
+@property (nonatomic, readonly) double centroidLng;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasIdentifier;
 @property (nonatomic, readonly) bool hasName;
+@property (nonatomic) bool hasNetworkType;
 @property (nonatomic) bool hasUniqueIdentifier;
+@property (nonatomic) bool hasVenueGroup;
+@property (nonatomic) bool hasVenueType;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSString *identifier;
+@property (getter=isMoving, nonatomic, readonly) bool moving;
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic) int networkType;
+@property (nonatomic, readonly) NSArray *ownerIdentifiers;
+@property (nonatomic, retain) NSMutableArray *ownerIdentifiers;
+@property (nonatomic, readonly) <TBScore> *popularityScore;
+@property (getter=isPublic, nonatomic, readonly) bool public;
 @property (nonatomic, retain) NSMutableArray *qualities;
+@property (nonatomic, readonly) <TBScore> *qualityScore;
+@property (nonatomic, readonly) NSString *remoteIdentifier;
+@property (readonly) Class superclass;
+@property (getter=isSuspicious, nonatomic, readonly) bool suspicious;
+@property (nonatomic, readonly) unsigned long long tileKey;
+@property (nonatomic, readonly) unsigned long long type;
 @property (nonatomic) long long uniqueIdentifier;
+@property (nonatomic, readonly) unsigned long long venueGroup;
+@property (nonatomic) int venueGroup;
+@property (nonatomic, readonly) unsigned int venueType;
+@property (nonatomic) unsigned int venueType;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (Class)bssType;
 + (bool)isValid:(id)arg1;
++ (Class)ownerIdentifierType;
 + (Class)qualitiesType;
 
 - (void).cxx_destruct;
 - (int)StringAsAttributes:(id)arg1;
 - (int)StringAsAuthTraits:(id)arg1;
-- (void)_addNoFlagsAttributes:(int)arg1;
-- (void)_addNoFlagsAuthTraits:(int)arg1;
-- (void)_addNoFlagsBss:(id)arg1;
-- (void)_addNoFlagsQualities:(id)arg1;
-- (void)_readAttributes;
-- (void)_readAuthTraits;
-- (void)_readBss;
-- (void)_readIdentifier;
-- (void)_readName;
-- (void)_readQualities;
+- (int)StringAsNetworkType:(id)arg1;
+- (int)StringAsVenueGroup:(id)arg1;
 - (void)addAttributes:(int)arg1;
 - (void)addAuthTraits:(int)arg1;
 - (void)addBss:(id)arg1;
+- (void)addOwnerIdentifier:(id)arg1;
 - (void)addQualities:(id)arg1;
 - (int*)attributes;
 - (id)attributesAsString:(int)arg1;
@@ -90,6 +119,7 @@
 - (void)clearAttributes;
 - (void)clearAuthTraits;
 - (void)clearBss;
+- (void)clearOwnerIdentifiers;
 - (void)clearQualities;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -98,14 +128,25 @@
 - (id)dictionaryRepresentation;
 - (bool)hasIdentifier;
 - (bool)hasName;
+- (bool)hasNetworkType;
 - (bool)hasUniqueIdentifier;
+- (bool)hasVenueGroup;
+- (bool)hasVenueType;
 - (unsigned long long)hash;
 - (id)identifier;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)name;
+- (int)networkType;
+- (id)networkTypeAsString:(int)arg1;
+- (id)ownerIdentifierAtIndex:(unsigned long long)arg1;
+- (id)ownerIdentifiers;
+- (unsigned long long)ownerIdentifiersCount;
 - (id)qualities;
 - (id)qualitiesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)qualitiesCount;
@@ -114,12 +155,43 @@
 - (void)setAttributes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setAuthTraits:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setBss:(id)arg1;
+- (void)setHasNetworkType:(bool)arg1;
 - (void)setHasUniqueIdentifier:(bool)arg1;
+- (void)setHasVenueGroup:(bool)arg1;
+- (void)setHasVenueType:(bool)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setName:(id)arg1;
+- (void)setNetworkType:(int)arg1;
+- (void)setOwnerIdentifiers:(id)arg1;
 - (void)setQualities:(id)arg1;
 - (void)setUniqueIdentifier:(long long)arg1;
+- (void)setVenueGroup:(int)arg1;
+- (void)setVenueType:(unsigned int)arg1;
 - (long long)uniqueIdentifier;
+- (int)venueGroup;
+- (id)venueGroupAsString:(int)arg1;
+- (unsigned int)venueType;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WiFiPolicy.framework/WiFiPolicy
+
++ (bool)supportsSecureCoding;
+
+- (id)SSID;
+- (bool)_hasAttribute:(int)arg1;
+- (id)accessPoints;
+- (id)attributesDescription;
+- (id)authDescription;
+- (unsigned long long)authMask;
+- (id)dictionaryRepresentation;
+- (void)encodeWithCoder:(id)arg1;
+- (bool)isCaptive;
+- (bool)isMoving;
+- (bool)isPublic;
+- (bool)isSuspicious;
+- (id)popularityScore;
+- (id)qualityScore;
+- (id)remoteIdentifier;
+- (unsigned long long)type;
 
 @end

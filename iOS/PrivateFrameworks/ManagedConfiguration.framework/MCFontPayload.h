@@ -17,7 +17,6 @@
 + (id)typeStrings;
 
 - (void).cxx_destruct;
-- (id)description;
 - (id)fontData;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)name;
@@ -29,5 +28,6 @@
 - (id)subtitle1Description;
 - (id)subtitle1Label;
 - (id)title;
+- (id)verboseDescription;
 
 @end

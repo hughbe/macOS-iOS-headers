@@ -6,6 +6,7 @@
     bool  _active;
     long long  _alignment;
     NSArray * _alignmentConstraints;
+    UITraitCollection * _augmentedTitleNavigationBarTraits;
     UIView<_UINavigationBarAugmentedTitleView> * _augmentedTitleView;
     NSArray * _augmentedTitleViewContraints;
     _UIButtonBarButton * _backButton;
@@ -69,6 +70,7 @@
 
 @property (nonatomic) bool active;
 @property (nonatomic) long long alignment;
+@property (nonatomic, retain) UITraitCollection *augmentedTitleNavigationBarTraits;
 @property (nonatomic, retain) UIView<_UINavigationBarAugmentedTitleView> *augmentedTitleView;
 @property (nonatomic, retain) _UIButtonBarButton *backButton;
 @property (nonatomic, copy) _UIBarButtonItemData *backButtonAppearance;
@@ -130,6 +132,7 @@
 - (void)_updateTrailingBarConstraints;
 - (bool)active;
 - (long long)alignment;
+- (id)augmentedTitleNavigationBarTraits;
 - (id)augmentedTitleView;
 - (id)backButton;
 - (id)backButtonAppearance;
@@ -171,6 +174,7 @@
 - (double)resolvedSize;
 - (void)setActive:(bool)arg1;
 - (void)setAlignment:(long long)arg1;
+- (void)setAugmentedTitleNavigationBarTraits:(id)arg1;
 - (void)setAugmentedTitleView:(id)arg1;
 - (void)setBackButton:(id)arg1;
 - (void)setBackButtonAppearance:(id)arg1;
@@ -204,6 +208,7 @@
 - (id)trailingBarGuide;
 - (id)trailingBarItems;
 - (id)trailingBarSnapshot;
+- (id)traitOverridesForChild:(id)arg1;
 - (void)unfreeze;
 - (void)updateAlphas;
 - (void)updateAugmentedTitleViewBackButtonConstraints;

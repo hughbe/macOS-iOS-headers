@@ -26,6 +26,7 @@
     bool  _appleMusicForce;
     int  _appleMusicState;
     NSObject<OS_dispatch_source> * _appleMusicTimeoutTimer;
+    int  _appleStoreMode;
     id /* block */  _audioPlayerCompletion;
     AVAudioPlayer * _audioPlayerStart;
     AVAudioPlayer * _audioPlayerStep;
@@ -219,6 +220,7 @@
 - (void)_homeKitUpdateiCloudSwitchState:(bool)arg1;
 - (void)_invalidate;
 - (void)_logMetrics;
+- (unsigned long long)_peerDeviceSupportedStereoPairVersions;
 - (void)_playLocalSoundID:(int)arg1 remoteSoundID:(int)arg2;
 - (void)_playLocalSoundID:(int)arg1 remoteSoundID:(int)arg2 completion:(id /* block */)arg3;
 - (void)_preflightAppleMusic;

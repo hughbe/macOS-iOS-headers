@@ -13,16 +13,6 @@
     NSObject<OS_dispatch_source> * _synchTimer;
 }
 
-+ (id)sharedInstance;
-
-- (void)clear;
-- (void)clear_alreadyLocked;
-- (const struct __CFSet { }*)copyDirtySourcesSnapshotAndClear;
-- (void)disableTimer_alreadyLocked;
-- (void)enableTimer_alreadyLocked;
 - (id)init;
-- (void)noteDirtySource:(id)arg1;
-- (void)synchronize;
-- (void)synchronizeForDaemonTermination;
 
 @end

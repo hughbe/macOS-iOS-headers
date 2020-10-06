@@ -29,7 +29,10 @@
 - (bool)hasLocation;
 - (bool)hasLocationId;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)location;
 - (unsigned long long)locationId;
 - (void)mergeFrom:(id)arg1;

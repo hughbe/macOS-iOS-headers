@@ -85,6 +85,7 @@
 - (int)cellularSocket;
 - (id)copyCurrentNetworkInterfaces;
 - (id)copyLinkStatsDict;
+- (void)dealloc;
 - (id)delegate;
 - (id)deviceUniqueID;
 - (id)generateLinkReport:(double)arg1 isCurrentLink:(bool)arg2;
@@ -111,6 +112,7 @@
 - (void)setCellularPort:(unsigned short)arg1;
 - (void)setDelegate:(id)arg1;
 - (bool)setDestinationAddress:(id)arg1 isFixedDestination:(bool)arg2 fromAddress:(id)arg3;
+- (bool)setDestinationAddress:(id)arg1 localIfIndex:(unsigned int)arg2 isFixedDestination:(bool)arg3 fromAddress:(id)arg4;
 - (bool)setDestinationAddressToDeviceIDMap:(id)arg1;
 - (void)setDeviceUniqueID:(id)arg1;
 - (void)setLastDestinationSent:(double)arg1;

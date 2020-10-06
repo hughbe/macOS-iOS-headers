@@ -81,6 +81,7 @@
     _UISearchBarTransitionerBase * _transitioner;
 }
 
+@property (nonatomic) double additionalPaddingForCancelButtonAtLeadingEdge;
 @property (nonatomic) bool allowsInlineScopeBar;
 @property (nonatomic, readonly) bool alwaysUsesLayoutMarginsForHorizontalContentInset;
 @property (nonatomic, readonly) UIBarButtonItem *animatedAppearanceBarButtonItem;
@@ -142,6 +143,7 @@
 @property (nonatomic, retain) UISearchBarTextField *searchField;
 @property (nonatomic) struct UIOffset { double x1; double x2; } searchFieldBackgroundPositionAdjustment;
 @property (nonatomic, readonly) double searchFieldHeight;
+@property (nonatomic, readonly) UITextField *searchFieldIfExists;
 @property (nonatomic) long long searchFieldLeftViewMode;
 @property (nonatomic, readonly) UINavigationItem *searchNavigationItem;
 @property (getter=isSearchResultsButtonSelected, nonatomic) bool searchResultsButtonSelected;
@@ -171,6 +173,7 @@
 - (void)_setShowsCancelButton:(bool)arg1;
 - (void)_setShowsScopeBar:(bool)arg1;
 - (void)_setShowsSearchResultsButton:(bool)arg1;
+- (double)additionalPaddingForCancelButtonAtLeadingEdge;
 - (void)allowCursorToAppear:(bool)arg1;
 - (bool)allowsInlineScopeBar;
 - (bool)alwaysUsesLayoutMarginsForHorizontalContentInset;
@@ -298,6 +301,7 @@
 - (long long)selectedScope;
 - (id)separator;
 - (id)separatorImage;
+- (void)setAdditionalPaddingForCancelButtonAtLeadingEdge:(double)arg1;
 - (void)setAllowsInlineScopeBar:(bool)arg1;
 - (void)setAutoDisableCancelButton:(bool)arg1;
 - (void)setBackdrop:(id)arg1;
@@ -325,9 +329,13 @@
 - (void)setDrawsBackgroundInPalette:(bool)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setEnabled:(bool)arg1 animated:(bool)arg2;
+- (void)setHelperPlaceholder:(id)arg1;
+- (void)setHelperPlaceholderHidden:(bool)arg1;
+- (void)setHelperPlaceholderOverride:(id)arg1;
 - (void)setHostedByNavigationBar:(bool)arg1;
 - (void)setImage:(id)arg1 forSearchBarIcon:(long long)arg2 state:(unsigned long long)arg3;
 - (void)setInNavigationPalette:(bool)arg1;
+- (void)setLayoutCustomizationDelegateSearchFieldContainerWillLayoutSubviewsCallback:(id /* block */)arg1;
 - (void)setMinimumContentInset:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setNavBarTitleViewDataSource:(id)arg1;
 - (void)setNavBarTitleViewLocation:(long long)arg1;
@@ -385,15 +393,19 @@
 - (bool)showsScopeBar;
 - (bool)showsSearchResultsButton;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
+- (bool)supportsDynamicType;
 - (double)tableViewIndexWidth;
 - (void)teardown;
 - (id)textColor;
 - (id)transitioner;
 - (void)updateBackgroundToBackdropStyle:(long long)arg1;
 - (void)updateDictationButton;
+- (void)updateDictationButtonForDynamicTypeWithSearchField:(id)arg1;
 - (void)updateEffectiveContentInset;
 - (void)updateForAllowedToShowDictationChange;
 - (void)updateForDrawsBackgroundInPalette;
+- (void)updateForDynamicType;
+- (void)updateForSemanticContext;
 - (void)updateIfNecessaryForOldSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)updateMagnifyingGlassView;
 - (void)updateNavigationBarLayoutInsertDataForSearchBar:(id)arg1 collapsibleScopeBar:(id)arg2 forLayoutState:(long long)arg3;
@@ -404,6 +416,8 @@
 - (void)updateScopeBarForSelectedScope;
 - (void)updateSearchBarOpacity;
 - (void)updateSearchFieldArt;
+- (void)updateSearchFieldControlSize;
+- (void)updateSearchFieldForDynamicType;
 - (bool)usesBackdrop;
 - (bool)usesEmbeddedAppearance;
 - (bool)wantsDictationButton;

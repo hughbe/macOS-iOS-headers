@@ -12,10 +12,13 @@
 @property (nonatomic) bool perservesAlpha;
 @property (nonatomic) bool preservesRange;
 
+// Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
+
 + (id)SDOFV2MetalKernelNamed:(id)arg1;
 + (id)SDOFV3MetalKernelNamed:(id)arg1;
 + (id)allocForType:(int)arg1;
 + (id)colorMatrixBiasKernel;
++ (id)kernelNamesFromMetalLibraryData:(id)arg1;
 + (id)kernelWithFunctionName:(id)arg1 fromMetalLibraryData:(id)arg2 constants:(id)arg3 error:(id*)arg4;
 + (id)kernelWithFunctionName:(id)arg1 fromMetalLibraryData:(id)arg2 error:(id*)arg3;
 + (id)kernelWithFunctionName:(id)arg1 fromMetalLibraryData:(id)arg2 options:(id)arg3 error:(id*)arg4;
@@ -35,7 +38,7 @@
 - (SEL)ROISelector;
 - (id)_initWithInternalRepresentation:(void*)arg1;
 - (id)_initWithReflection:(struct CIKernelReflection { int x1; int x2; char *x3; char *x4; struct vector<CI::KernelArgumentType, std::__1::allocator<CI::KernelArgumentType> > { int *x_5_1_1; int *x_5_1_2; struct __compressed_pair<CI::KernelArgumentType *, std::__1::allocator<CI::KernelArgumentType> > { int *x_3_2_1; } x_5_1_3; } x5; struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > > { struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_6_1_1; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_6_1_2; struct __compressed_pair<std::__1::basic_string<char> *, std::__1::allocator<std::__1::basic_string<char> > > { struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_3_2_1; } x_6_1_3; } x6; id x7; unsigned int x8; int x9; unsigned long long x10; unsigned long long x11; bool x12; })arg1;
-- (id)_initWithReflection:(struct CIKernelReflection { int x1; int x2; char *x3; char *x4; struct vector<CI::KernelArgumentType, std::__1::allocator<CI::KernelArgumentType> > { int *x_5_1_1; int *x_5_1_2; struct __compressed_pair<CI::KernelArgumentType *, std::__1::allocator<CI::KernelArgumentType> > { int *x_3_2_1; } x_5_1_3; } x5; struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > > { struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_6_1_1; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_6_1_2; struct __compressed_pair<std::__1::basic_string<char> *, std::__1::allocator<std::__1::basic_string<char> > > { struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_3_2_1; } x_6_1_3; } x6; id x7; unsigned int x8; int x9; unsigned long long x10; unsigned long long x11; bool x12; })arg1 constants:(id)arg2;
+- (id)_initWithReflection:(struct CIKernelReflection { int x1; int x2; char *x3; char *x4; struct vector<CI::KernelArgumentType, std::__1::allocator<CI::KernelArgumentType> > { int *x_5_1_1; int *x_5_1_2; struct __compressed_pair<CI::KernelArgumentType *, std::__1::allocator<CI::KernelArgumentType> > { int *x_3_2_1; } x_5_1_3; } x5; struct vector<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> > > { struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_6_1_1; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_6_1_2; struct __compressed_pair<std::__1::basic_string<char> *, std::__1::allocator<std::__1::basic_string<char> > > { struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x_3_2_1; } x_6_1_3; } x6; id x7; unsigned int x8; int x9; unsigned long long x10; unsigned long long x11; bool x12; })arg1 constants:(id)arg2 constantTypes:(id)arg3;
 - (id)_initWithString:(id)arg1 andMetalLibrary:(id)arg2 usingCruftCompatibility:(bool)arg3;
 - (id)_initWithString:(id)arg1 usingCruftCompatibility:(bool)arg2;
 - (void*)_internalRepresentation;
@@ -59,5 +62,9 @@
 - (void)setPerservesAlpha:(bool)arg1;
 - (void)setPreservesRange:(bool)arg1;
 - (void)setROISelector:(SEL)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoImaging.framework/PhotoImaging
+
++ (id)kernelsDictionaryWithString:(id)arg1;
 
 @end

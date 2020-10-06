@@ -14,6 +14,7 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
+- (void)generateAndSetMapTile;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
 - (id)mapImageView;
 - (void)prepareForReuse;
@@ -26,6 +27,7 @@
 - (bool)supportsTintColorValue;
 - (void)tapGesture:(id)arg1;
 - (id)tileGeneratorToken;
+- (void)traitCollectionDidChange:(id)arg1;
 - (id)variableConstraints;
 
 @end

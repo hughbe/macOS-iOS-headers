@@ -12,11 +12,13 @@
 @property (readonly) bool has_enableTravelAdvisoriesForAutomaticBehavior;
 @property (readonly) bool has_kCalPreferredDaysToSyncKey;
 @property (readonly) bool has_kCalRemindersPreferredDaysToSyncKey;
+@property (readonly) bool has_privacyPaneHasBeenAcknowledgedVersion;
 @property (readonly) bool has_sqlProfileLoggingEnabled;
 @property (readonly) bool has_suggestEventLocations;
 @property (readonly) bool has_suggestedLocationsTestMode;
 @property (getter=get_kCalPreferredDaysToSyncKey, setter=set_kCalPreferredDaysToSyncKey:, nonatomic) long long kCalPreferredDaysToSyncKey;
 @property (getter=get_kCalRemindersPreferredDaysToSyncKey, setter=set_kCalRemindersPreferredDaysToSyncKey:, nonatomic) long long kCalRemindersPreferredDaysToSyncKey;
+@property (getter=get_privacyPaneHasBeenAcknowledgedVersion, setter=set_privacyPaneHasBeenAcknowledgedVersion:, nonatomic) long long privacyPaneHasBeenAcknowledgedVersion;
 @property (getter=get_sqlProfileLoggingEnabled, setter=set_sqlProfileLoggingEnabled:, nonatomic) bool sqlProfileLoggingEnabled;
 @property (getter=get_suggestEventLocations, setter=set_suggestEventLocations:, nonatomic) bool suggestEventLocations;
 @property (getter=get_suggestedLocationsTestMode, setter=set_suggestedLocationsTestMode:, nonatomic) bool suggestedLocationsTestMode;
@@ -30,6 +32,7 @@
 - (bool)get_enableTravelAdvisoriesForAutomaticBehavior;
 - (long long)get_kCalPreferredDaysToSyncKey;
 - (long long)get_kCalRemindersPreferredDaysToSyncKey;
+- (long long)get_privacyPaneHasBeenAcknowledgedVersion;
 - (bool)get_sqlProfileLoggingEnabled;
 - (bool)get_suggestEventLocations;
 - (bool)get_suggestedLocationsTestMode;
@@ -37,6 +40,7 @@
 - (bool)has_enableTravelAdvisoriesForAutomaticBehavior;
 - (bool)has_kCalPreferredDaysToSyncKey;
 - (bool)has_kCalRemindersPreferredDaysToSyncKey;
+- (bool)has_privacyPaneHasBeenAcknowledgedVersion;
 - (bool)has_sqlProfileLoggingEnabled;
 - (bool)has_suggestEventLocations;
 - (bool)has_suggestedLocationsTestMode;
@@ -47,6 +51,7 @@
 - (void)set_enableTravelAdvisoriesForAutomaticBehavior:(bool)arg1;
 - (void)set_kCalPreferredDaysToSyncKey:(long long)arg1;
 - (void)set_kCalRemindersPreferredDaysToSyncKey:(long long)arg1;
+- (void)set_privacyPaneHasBeenAcknowledgedVersion:(long long)arg1;
 - (void)set_sqlProfileLoggingEnabled:(bool)arg1;
 - (void)set_suggestEventLocations:(bool)arg1;
 - (void)set_suggestedLocationsTestMode:(bool)arg1;

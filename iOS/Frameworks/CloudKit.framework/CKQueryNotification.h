@@ -10,7 +10,6 @@
 }
 
 @property (nonatomic) long long databaseScope;
-@property (nonatomic, readonly) bool isPublicDatabase;
 @property (nonatomic) long long queryNotificationReason;
 @property (nonatomic, copy) NSDictionary *recordFields;
 @property (nonatomic, copy) CKRecordID *recordID;

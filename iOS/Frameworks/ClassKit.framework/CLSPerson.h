@@ -4,6 +4,7 @@
 
 @interface CLSPerson : CLSObject <CLSContactsSearchable> {
     NSString * _appleID;
+    long long  _axmAccountStatus;
     NSString * _emailAddress;
     NSString * _familyName;
     bool  _federatedAccount;
@@ -24,6 +25,7 @@
 }
 
 @property (nonatomic, copy) NSString *appleID;
+@property (nonatomic) long long axmAccountStatus;
 @property (nonatomic, readonly) NSString *displayName;
 @property (nonatomic, copy) NSString *emailAddress;
 @property (nonatomic, copy) NSString *familyName;
@@ -45,6 +47,8 @@
 @property (nonatomic, copy) NSString *searchText;
 @property (nonatomic) long long sourceType;
 
+// Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
+
 + (unsigned long long)roleFromString:(id)arg1;
 + (id)stringForRole:(unsigned long long)arg1;
 + (bool)supportsSecureCoding;
@@ -52,6 +56,7 @@
 - (void).cxx_destruct;
 - (id)_init;
 - (id)appleID;
+- (long long)axmAccountStatus;
 - (id)dictionaryRepresentation;
 - (id)displayName;
 - (id)emailAddress;
@@ -74,6 +79,7 @@
 - (id)phoneticMiddleName;
 - (id)searchText;
 - (void)setAppleID:(id)arg1;
+- (void)setAxmAccountStatus:(long long)arg1;
 - (void)setEmailAddress:(id)arg1;
 - (void)setFamilyName:(id)arg1;
 - (void)setFederatedAccount:(bool)arg1;
@@ -92,5 +98,9 @@
 - (void)setSearchText:(id)arg1;
 - (void)setSourceType:(long long)arg1;
 - (long long)sourceType;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAutocomplete.framework/ContactsAutocomplete
+
+- (void)acceptVisitor:(id)arg1;
 
 @end

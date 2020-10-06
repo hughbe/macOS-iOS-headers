@@ -53,6 +53,7 @@
 - (void).cxx_destruct;
 - (long long)bluetoothEndpointType;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)customDescription;
 - (id)description;
 - (long long)deviceType;
 - (void)encodeWithCoder:(id)arg1;

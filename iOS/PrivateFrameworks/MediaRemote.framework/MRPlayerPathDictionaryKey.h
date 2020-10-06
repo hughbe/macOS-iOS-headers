@@ -3,10 +3,10 @@
  */
 
 @interface MRPlayerPathDictionaryKey : NSObject <NSCopying> {
-    _MRNowPlayingPlayerPathProtobuf * _playerPath;
+    MRPlayerPath * _playerPath;
 }
 
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 
 + (id)dictionaryKeyWithPlayerPath:(id)arg1;
 

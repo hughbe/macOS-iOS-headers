@@ -14,7 +14,7 @@
         unsigned long long length; 
     }  _interactedDateRange;
     NSArray * _keywordFeatures;
-    NSString * _lowercaseText;
+    NSString * _lowercaseTextTruncated;
     NSIndexSet * _neutralRanges;
     IPMessage * _originalMessage;
     IPMessageUnit * _previous;
@@ -30,7 +30,7 @@
 @property (readonly) long long indexInOriginalMessage;
 @property struct _NSRange { unsigned long long x1; unsigned long long x2; } interactedDateRange;
 @property (readonly) NSArray *keywordFeatures;
-@property (readonly, copy) NSString *lowercaseText;
+@property (readonly, copy) NSString *lowercaseTextTruncated;
 @property (readonly) IPMessage *originalMessage;
 @property (readonly) IPMessageUnit *previous;
 @property (readonly) NSArray *sentenceFeatures;
@@ -47,7 +47,7 @@
 - (id)initWithText:(id)arg1 originalMessage:(id)arg2 index:(long long)arg3;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })interactedDateRange;
 - (id)keywordFeatures;
-- (id)lowercaseText;
+- (id)lowercaseTextTruncated;
 - (id)neutralRanges;
 - (id)originalMessage;
 - (id)previous;

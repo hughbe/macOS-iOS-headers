@@ -4,18 +4,16 @@
 
 @interface VSSpeechRequest : NSObject <NSCopying, NSSecureCoding> {
     NSAttributedString * _attributedText;
-    unsigned int  _audioQueueFlags;
     unsigned int  _audioSessionID;
-    bool  _audioSessionIDIsValid;
     bool  _canUseServerTTS;
     NSString * _clientBundleIdentifier;
     NSDictionary * _contextInfo;
+    NSArray * _customResourceURLs;
     bool  _disableCompactVoiceFallback;
     long long  _footprint;
     bool  _forceServerTTS;
     long long  _gender;
     NSString * _languageCode;
-    bool  _maintainsInput;
     NSURL * _outputPath;
     id /* block */  _pauseHandler;
     double  _pitch;
@@ -28,7 +26,6 @@
     bool  _shouldCache;
     id /* block */  _stopHandler;
     NSString * _text;
-    bool  _useCustomVoice;
     NSString * _utterance;
     NSString * _voiceName;
     long long  _voiceType;
@@ -36,18 +33,16 @@
 }
 
 @property (nonatomic, copy) NSAttributedString *attributedText;
-@property (nonatomic) unsigned int audioQueueFlags;
 @property (nonatomic) unsigned int audioSessionID;
-@property (nonatomic) bool audioSessionIDIsValid;
 @property (nonatomic) bool canUseServerTTS;
 @property (nonatomic, copy) NSString *clientBundleIdentifier;
 @property (nonatomic, copy) NSDictionary *contextInfo;
+@property (nonatomic, retain) NSArray *customResourceURLs;
 @property (nonatomic) bool disableCompactVoiceFallback;
 @property (nonatomic) long long footprint;
 @property (nonatomic) bool forceServerTTS;
 @property (nonatomic) long long gender;
 @property (nonatomic, copy) NSString *languageCode;
-@property (nonatomic) bool maintainsInput;
 @property (nonatomic, copy) NSURL *outputPath;
 @property (nonatomic, copy) id /* block */ pauseHandler;
 @property (nonatomic) double pitch;
@@ -60,7 +55,6 @@
 @property (nonatomic) bool shouldCache;
 @property (nonatomic, copy) id /* block */ stopHandler;
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic) bool useCustomVoice;
 @property (nonatomic, copy) NSString *utterance;
 @property (nonatomic, copy) NSString *voiceName;
 @property (nonatomic) long long voiceType;
@@ -70,15 +64,14 @@
 
 - (void).cxx_destruct;
 - (id)attributedText;
-- (unsigned int)audioQueueFlags;
 - (unsigned int)audioSessionID;
-- (bool)audioSessionIDIsValid;
 - (bool)canLogRequestText;
 - (bool)canUseServerTTS;
 - (id)clientBundleIdentifier;
 - (id)contextInfo;
 - (id)contextInfoString;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)customResourceURLs;
 - (id)description;
 - (bool)disableCompactVoiceFallback;
 - (void)encodeWithCoder:(id)arg1;
@@ -89,7 +82,8 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isSimilarTo:(id)arg1;
 - (id)languageCode;
-- (bool)maintainsInput;
+- (id)logText;
+- (id)logUtterance;
 - (id)outputPath;
 - (id /* block */)pauseHandler;
 - (double)pitch;
@@ -100,18 +94,16 @@
 - (id)resourceSearchPathURL;
 - (bool)retryDeviceOnNetworkStall;
 - (void)setAttributedText:(id)arg1;
-- (void)setAudioQueueFlags:(unsigned int)arg1;
 - (void)setAudioSessionID:(unsigned int)arg1;
-- (void)setAudioSessionIDIsValid:(bool)arg1;
 - (void)setCanUseServerTTS:(bool)arg1;
 - (void)setClientBundleIdentifier:(id)arg1;
 - (void)setContextInfo:(id)arg1;
+- (void)setCustomResourceURLs:(id)arg1;
 - (void)setDisableCompactVoiceFallback:(bool)arg1;
 - (void)setFootprint:(long long)arg1;
 - (void)setForceServerTTS:(bool)arg1;
 - (void)setGender:(long long)arg1;
 - (void)setLanguageCode:(id)arg1;
-- (void)setMaintainsInput:(bool)arg1;
 - (void)setOutputPath:(id)arg1;
 - (void)setPauseHandler:(id /* block */)arg1;
 - (void)setPitch:(double)arg1;
@@ -124,7 +116,6 @@
 - (void)setShouldCache:(bool)arg1;
 - (void)setStopHandler:(id /* block */)arg1;
 - (void)setText:(id)arg1;
-- (void)setUseCustomVoice:(bool)arg1;
 - (void)setUtterance:(id)arg1;
 - (void)setVoiceName:(id)arg1;
 - (void)setVoiceType:(long long)arg1;
@@ -132,7 +123,6 @@
 - (bool)shouldCache;
 - (id /* block */)stopHandler;
 - (id)text;
-- (bool)useCustomVoice;
 - (id)utterance;
 - (id)voiceName;
 - (long long)voiceType;

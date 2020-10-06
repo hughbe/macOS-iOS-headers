@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOETATrafficUpdateResponse : PBCodable <NSCopying> {
+@interface GEOETATrafficUpdateResponse : PBCodable <NSCopying, _GEOEnrouteNoticesProvider> {
     NSMutableArray * _arrivalParameters;
     NSMutableArray * _cameras;
     GEOClientMetrics * _clientMetrics;
@@ -14,6 +14,7 @@
         unsigned int has_debugServerLatencyMs : 1; 
         unsigned int has_status : 1; 
         unsigned int read_unknownFields : 1; 
+        unsigned int read_problemDetails : 1; 
         unsigned int read_arrivalParameters : 1; 
         unsigned int read_cameras : 1; 
         unsigned int read_clientMetrics : 1; 
@@ -24,20 +25,12 @@
         unsigned int read_routes : 1; 
         unsigned int read_sessionState : 1; 
         unsigned int read_trafficSignals : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_arrivalParameters : 1; 
-        unsigned int wrote_cameras : 1; 
-        unsigned int wrote_clientMetrics : 1; 
-        unsigned int wrote_datasetAbStatus : 1; 
-        unsigned int wrote_debugData : 1; 
-        unsigned int wrote_debugServerLatencyMs : 1; 
-        unsigned int wrote_etaServiceSummary : 1; 
-        unsigned int wrote_responseId : 1; 
-        unsigned int wrote_routes : 1; 
-        unsigned int wrote_sessionState : 1; 
-        unsigned int wrote_trafficSignals : 1; 
-        unsigned int wrote_status : 1; 
+        unsigned int read_waypointRoute : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
+    struct GEOProblemDetail { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; } * _problemDetails;
+    unsigned long long  _problemDetailsCount;
+    unsigned long long  _problemDetailsSpace;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -50,6 +43,7 @@
     int  _status;
     NSMutableArray * _trafficSignals;
     PBUnknownFields * _unknownFields;
+    GEOETATrafficUpdateWaypointRoute * _waypointRoute;
 }
 
 @property (nonatomic, retain) NSMutableArray *arrivalParameters;
@@ -57,7 +51,9 @@
 @property (nonatomic, retain) GEOClientMetrics *clientMetrics;
 @property (nonatomic, retain) GEOPDDatasetABStatus *datasetAbStatus;
 @property (nonatomic, retain) NSString *debugData;
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) unsigned long long debugServerLatencyMs;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, retain) GEOETAServiceResponseSummary *etaServiceSummary;
 @property (nonatomic, readonly) bool hasClientMetrics;
 @property (nonatomic, readonly) bool hasDatasetAbStatus;
@@ -67,12 +63,20 @@
 @property (nonatomic, readonly) bool hasResponseId;
 @property (nonatomic, readonly) bool hasSessionState;
 @property (nonatomic) bool hasStatus;
+@property (nonatomic, readonly) bool hasWaypointRoute;
+@property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) struct GEOProblemDetail { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*problemDetails;
+@property (nonatomic, readonly) unsigned long long problemDetailsCount;
 @property (nonatomic, retain) NSData *responseId;
 @property (nonatomic, retain) NSMutableArray *routes;
 @property (nonatomic, retain) NSData *sessionState;
 @property (nonatomic) int status;
+@property (readonly) Class superclass;
 @property (nonatomic, retain) NSMutableArray *trafficSignals;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
+@property (nonatomic, retain) GEOETATrafficUpdateWaypointRoute *waypointRoute;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (Class)arrivalParametersType;
 + (Class)cameraType;
@@ -82,22 +86,11 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatus:(id)arg1;
-- (void)_addNoFlagsArrivalParameters:(id)arg1;
-- (void)_addNoFlagsCamera:(id)arg1;
-- (void)_addNoFlagsRoute:(id)arg1;
-- (void)_addNoFlagsTrafficSignal:(id)arg1;
-- (void)_readArrivalParameters;
-- (void)_readCameras;
-- (void)_readClientMetrics;
-- (void)_readDatasetAbStatus;
-- (void)_readDebugData;
-- (void)_readEtaServiceSummary;
-- (void)_readResponseId;
-- (void)_readRoutes;
-- (void)_readSessionState;
-- (void)_readTrafficSignals;
+- (id)_geoTrafficCameras;
+- (id)_geoTrafficSignals;
 - (void)addArrivalParameters:(id)arg1;
 - (void)addCamera:(id)arg1;
+- (void)addProblemDetail:(struct GEOProblemDetail { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
 - (void)addRoute:(id)arg1;
 - (void)addTrafficSignal:(id)arg1;
 - (id)arrivalParameters;
@@ -108,6 +101,7 @@
 - (unsigned long long)camerasCount;
 - (void)clearArrivalParameters;
 - (void)clearCameras;
+- (void)clearProblemDetails;
 - (void)clearRoutes;
 - (void)clearTrafficSignals;
 - (void)clearUnknownFields:(bool)arg1;
@@ -115,6 +109,7 @@
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)datasetAbStatus;
+- (void)dealloc;
 - (id)debugData;
 - (unsigned long long)debugServerLatencyMs;
 - (id)description;
@@ -128,11 +123,18 @@
 - (bool)hasResponseId;
 - (bool)hasSessionState;
 - (bool)hasStatus;
+- (bool)hasWaypointRoute;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
+- (struct GEOProblemDetail { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })problemDetailAtIndex:(unsigned long long)arg1;
+- (struct GEOProblemDetail { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)problemDetails;
+- (unsigned long long)problemDetailsCount;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (id)responseId;
@@ -149,17 +151,25 @@
 - (void)setEtaServiceSummary:(id)arg1;
 - (void)setHasDebugServerLatencyMs:(bool)arg1;
 - (void)setHasStatus:(bool)arg1;
+- (void)setProblemDetails:(struct GEOProblemDetail { int x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)arg1 count:(unsigned long long)arg2;
 - (void)setResponseId:(id)arg1;
 - (void)setRoutes:(id)arg1;
 - (void)setSessionState:(id)arg1;
 - (void)setStatus:(int)arg1;
 - (void)setTrafficSignals:(id)arg1;
+- (void)setWaypointRoute:(id)arg1;
 - (int)status;
 - (id)statusAsString:(int)arg1;
 - (id)trafficSignalAtIndex:(unsigned long long)arg1;
 - (id)trafficSignals;
 - (unsigned long long)trafficSignalsCount;
 - (id)unknownFields;
+- (id)waypointRoute;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
+
+- (void)_addDebugArguments:(id)arg1;
+- (void)addFakeTrafficIncidentAlert:(unsigned long long)arg1 mainRouteInfo:(id)arg2 alternateRouteInfo:(id)arg3;
 
 @end

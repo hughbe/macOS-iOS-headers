@@ -33,7 +33,6 @@
 - (id)init;
 - (void)loginDelegates:(id)arg1 parameters:(id)arg2 completion:(id /* block */)arg3;
 - (void)registerAccount:(id)arg1 withHSA:(bool)arg2 completion:(id /* block */)arg3;
-- (void)registerAccount:(id)arg1 withHSA:(bool)arg2 usingCookieHeaders:(id)arg3 completion:(id /* block */)arg4;
 - (id)session;
 - (void)setSession:(id)arg1;
 - (void)setSigningSession:(id)arg1;

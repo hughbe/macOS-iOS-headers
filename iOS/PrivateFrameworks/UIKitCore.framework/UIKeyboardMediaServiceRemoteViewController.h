@@ -12,8 +12,6 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)__shouldHostRemoteTextEffectsWindow;
 + (id)exportedInterface;
 + (id)requestCardViewControllerWithConnectionHandler:(id /* block */)arg1;
@@ -22,9 +20,6 @@
 
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)delegate;
 - (void)dismissCard;
 - (void)draggedStickerToPoint:(struct CGPoint { double x1; double x2; })arg1;

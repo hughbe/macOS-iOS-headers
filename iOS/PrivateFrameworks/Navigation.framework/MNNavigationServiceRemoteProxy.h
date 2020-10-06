@@ -5,6 +5,7 @@
 @interface MNNavigationServiceRemoteProxy : NSObject <MNNavigationServiceProxy> {
     bool  _applicationActive;
     NSHashTable * _clients;
+    geo_isolater * _clientsLock;
     NSXPCConnection * _connection;
     <MNNavigationServiceClientInterface> * _delegate;
     NSMutableArray * _interruptionDates;
@@ -13,6 +14,7 @@
     long long  _sandboxHandle;
     NSObject<OS_dispatch_queue> * _serialQueue;
     MNSettings * _settings;
+    MNStartNavigationDetails * _startNavigationDetails;
 }
 
 @property (nonatomic, readonly) unsigned long long clientCount;
@@ -34,6 +36,7 @@
 - (void)_restoreNavigationSession;
 - (void)_restorePredictionSession;
 - (bool)_shouldReconnectWithInterruptionOnDate:(id)arg1;
+- (void)_startNavigationWithDetails:(id)arg1;
 - (void)_updateConnection;
 - (void)acceptReroute:(bool)arg1 forTrafficIncidentAlert:(id)arg2;
 - (void)changeSettings:(id)arg1;
@@ -68,7 +71,7 @@
 - (void)setHeadingOrientation:(int)arg1;
 - (void)setIsConnectedToCarplay:(bool)arg1;
 - (void)setJunctionViewImageWidth:(double)arg1 height:(double)arg2;
-- (void)setRideIndex:(unsigned long long)arg1 forLegIndex:(unsigned long long)arg2;
+- (void)setRideIndex:(unsigned long long)arg1 forSegmentIndex:(unsigned long long)arg2;
 - (void)setRoutesForPreview:(id)arg1 selectedRouteIndex:(unsigned long long)arg2;
 - (void)setTraceIsPlaying:(bool)arg1;
 - (void)setTracePlaybackSpeed:(double)arg1;
@@ -80,7 +83,6 @@
 - (void)stopPredictingDestinations;
 - (void)switchToRoute:(id)arg1;
 - (void)updateDestination:(id)arg1;
-- (void)updateGuidanceWithData:(id)arg1 reply:(id /* block */)arg2;
 - (void)vibrateForPrompt:(unsigned long long)arg1 withReply:(id /* block */)arg2;
 
 @end

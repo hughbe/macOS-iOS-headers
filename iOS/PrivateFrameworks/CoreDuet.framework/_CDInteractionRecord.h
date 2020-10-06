@@ -17,6 +17,7 @@
 @property (nonatomic) bool isResponse;
 @property (nonatomic, retain) NSSet *keywords;
 @property (nonatomic, retain) NSString *locationUUID;
+@property (nonatomic) bool mailShareSheetDeletionCandidate;
 @property (nonatomic) long long mechanism;
 @property (nonatomic) long long recipientCount;
 @property (nonatomic, retain) NSSet *recipients;

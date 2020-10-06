@@ -16,7 +16,7 @@
 - (id)daysOfTheWeekFromREMRecurrenceRule;
 - (long long)ekWeekdayToREMWeekday:(long long)arg1;
 - (id)endDate;
-- (int)firstDayOfTheWeek;
+- (int)firstDayOfTheWeekRaw;
 - (int)frequency;
 - (id)initWithAlternateUniverseObject:(id)arg1 inEventStore:(id)arg2 withUpdatedChildObjects:(id)arg3;
 - (id)initWithREMObject:(id)arg1 inStore:(id)arg2;

@@ -4,17 +4,20 @@
 
 @interface _GEOPlaceSearchCompletionItem : NSObject <GEOCompletionItemPrivate> {
     GEOSearchCategory * _category;
+    GEOCollectionResult * _collectionResult;
     NSArray * _displayLines;
     GEOPDAutocompleteEntry * _entry;
     int  _entryIndex;
     int  _entryListIndex;
     NSArray * _lineHighlights;
     <GEOMapItem> * _mapItem;
+    GEOPublisherResult * _publisherResult;
     GEOMapServiceTraits * _traits;
 }
 
 @property (nonatomic, readonly) long long autocompleteCellType;
 @property (nonatomic, readonly) GEOResolvedItem *clientResolved;
+@property (nonatomic, readonly) GEOCollectionResult *collectionResult;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) GEODirectionIntent *directionIntent;
@@ -32,6 +35,7 @@
 @property (nonatomic, readonly) NSData *metadata;
 @property (getter=_placeDataAutocompleteEntry, nonatomic, readonly) GEOPDAutocompleteEntry *placeDataAutocompleteEntry;
 @property (nonatomic, readonly) int placeType;
+@property (nonatomic, readonly) GEOPublisherResult *publisherResult;
 @property (nonatomic, readonly) NSString *queryAcceleratorCompletionString;
 @property (nonatomic, readonly) GEORetainedSearchMetadata *retainedSearchMetadata;
 @property (nonatomic, readonly) GEOSearchCategory *searchCategory;
@@ -45,6 +49,7 @@
 - (long long)autocompleteCellType;
 - (id)calloutTitle;
 - (id)clientResolved;
+- (id)collectionResult;
 - (id)directionIntent;
 - (float)disambiguationRadiusMeters;
 - (id)displayLines;
@@ -59,10 +64,11 @@
 - (unsigned long long)hash;
 - (id)highlightsForLine:(unsigned long long)arg1;
 - (id)identifier;
-- (id)initWithEntry:(id)arg1 traits:(id)arg2 entryListIndex:(int)arg3 entryIndex:(int)arg4 mapItems:(id)arg5;
+- (id)initWithEntry:(id)arg1 traits:(id)arg2 entryListIndex:(int)arg3 entryIndex:(int)arg4 mapItems:(id)arg5 collections:(id)arg6 publishers:(id)arg7;
 - (bool)isEqual:(id)arg1;
 - (id)metadata;
 - (int)placeType;
+- (id)publisherResult;
 - (id)queryAcceleratorCompletionString;
 - (id)queryLine;
 - (id)retainedSearchMetadata;

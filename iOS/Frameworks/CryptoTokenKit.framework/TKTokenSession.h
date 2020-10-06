@@ -6,6 +6,9 @@
     LAContext * _LAContext;
     NSXPCConnection * _caller;
     NSNumber * _callerPID;
+    struct { 
+        unsigned int val[8]; 
+    }  _creatorAuditToken;
     <TKTokenSessionDelegate> * _delegate;
     id  _keepAlive;
     NSDictionary * _parameters;
@@ -16,6 +19,7 @@
 @property (nonatomic, readonly) LAContext *LAContext;
 @property (nonatomic, readonly) NSXPCConnection *caller;
 @property (retain) NSNumber *callerPID;
+@property (nonatomic) struct { unsigned int x1[8]; } creatorAuditToken;
 @property <TKTokenSessionDelegate> *delegate;
 @property (nonatomic, retain) id keepAlive;
 @property (nonatomic, readonly) NSString *name;
@@ -36,6 +40,7 @@
 - (bool)checkOperation:(long long)arg1 usingKey:(id)arg2 algorithm:(id)arg3 parameters:(id)arg4;
 - (void)commitKey:(id)arg1 reply:(id /* block */)arg2;
 - (void)createObjectWithAttributes:(id)arg1 reply:(id /* block */)arg2;
+- (struct { unsigned int x1[8]; })creatorAuditToken;
 - (void)decryptData:(id)arg1 usingKey:(id)arg2 algorithm:(id)arg3 parameters:(id)arg4 reply:(id /* block */)arg5;
 - (id)delegate;
 - (void)deleteObject:(id)arg1 reply:(id /* block */)arg2;
@@ -46,7 +51,7 @@
 - (void)evaluateAuthOperation:(id)arg1 retry:(bool)arg2 reply:(id /* block */)arg3;
 - (void)finalizeAuthOperation:(id)arg1 evaluatedAuthOperation:(id)arg2 reply:(id /* block */)arg3;
 - (void)getAdvertisedItemsWithReply:(id /* block */)arg1;
-- (void)getAttributesOfObject:(id)arg1 reply:(id /* block */)arg2;
+- (void)getAttributesOfObject:(id)arg1 isCertificate:(bool)arg2 reply:(id /* block */)arg3;
 - (id)initWithToken:(id)arg1;
 - (id)keepAlive;
 - (id)name;
@@ -57,6 +62,7 @@
 - (id)queue;
 - (void)setCaller:(id)arg1;
 - (void)setCallerPID:(id)arg1;
+- (void)setCreatorAuditToken:(struct { unsigned int x1[8]; })arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setKeepAlive:(id)arg1;
 - (void)setLAContext:(id)arg1;

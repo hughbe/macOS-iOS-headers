@@ -82,6 +82,7 @@
 - (void)setInputShiftmapImage:(id)arg1;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (id)smoothShiftMapV2:(id)arg1;
+- (id)unifiedRenderingOutputImage:(struct CGImageMetadata { }*)arg1;
 - (id)upsampledShiftMap:(id)arg1;
 
 @end

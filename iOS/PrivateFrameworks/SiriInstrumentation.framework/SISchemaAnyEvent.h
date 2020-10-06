@@ -4,16 +4,24 @@
 
 @interface SISchemaAnyEvent : PBCodable {
     int  _anyEventType;
+    struct { 
+        unsigned int anyEventType : 1; 
+    }  _has;
+    bool  _hasPayload;
     NSData * _payload;
 }
 
 @property (nonatomic) int anyEventType;
+@property (nonatomic) bool hasAnyEventType;
+@property (nonatomic) bool hasPayload;
 @property (nonatomic, readonly) NSData *jsonData;
 @property (nonatomic, copy) NSData *payload;
 
 - (void).cxx_destruct;
 - (int)anyEventType;
 - (id)dictionaryRepresentation;
+- (bool)hasAnyEventType;
+- (bool)hasPayload;
 - (unsigned long long)hash;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithJSON:(id)arg1;
@@ -22,6 +30,8 @@
 - (id)payload;
 - (bool)readFrom:(id)arg1;
 - (void)setAnyEventType:(int)arg1;
+- (void)setHasAnyEventType:(bool)arg1;
+- (void)setHasPayload:(bool)arg1;
 - (void)setPayload:(id)arg1;
 - (void)writeTo:(id)arg1;
 

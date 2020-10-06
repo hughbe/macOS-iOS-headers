@@ -6,12 +6,14 @@
     long long  _backgroundStyle;
     bool  _canChangeBackgroundStyle;
     NSArray * _canvasDefinitions;
+    NSArray * _deviceFamilies;
     bool  _disableLayoutAwareShortcuts;
     bool  _fakingRequiresHighResolution;
     int  _ignoredOverrides;
     long long  _interfaceOrientation;
     bool  _isExitsOnSuspend;
     bool  _isYukonLinked;
+    NSString * _keyColorAssetName;
     NSString * _launchImageFile;
     long long  _launchingInterfaceOrientationForSpringBoard;
     bool  _optOutOfRTL;
@@ -33,11 +35,13 @@
 @property (nonatomic, readonly) long long backgroundStyle;
 @property (nonatomic, readonly) bool canChangeBackgroundStyle;
 @property (nonatomic, readonly, copy) NSArray *canvasDefinitions;
+@property (nonatomic, readonly, copy) NSArray *deviceFamilies;
 @property (nonatomic, readonly) bool disableLayoutAwareShortcuts;
 @property (nonatomic, readonly) bool fakingRequiresHighResolution;
 @property (nonatomic, readonly) int ignoredOverrides;
 @property (nonatomic, readonly) long long interfaceOrientation;
 @property (nonatomic, readonly) bool isExitsOnSuspend;
+@property (nonatomic, readonly, copy) NSString *keyColorAssetName;
 @property (nonatomic, readonly, copy) NSString *launchImageFile;
 @property (nonatomic, readonly) long long launchingInterfaceOrientationForSpringBoard;
 @property (nonatomic, readonly) bool optOutOfRTL;
@@ -55,21 +59,25 @@
 @property (nonatomic, readonly) unsigned long long viewControllerBasedStatusBarAppearance;
 @property (nonatomic, readonly) long long whitePointAdaptivityStyle;
 
++ (id)mainBundleInfoParser;
+
 - (void).cxx_destruct;
 - (void)_computeSupportedInterfaceOrientationsWithInfo:(id)arg1;
 - (void)_computeSupportedUserInterfaceStyleFromInfo:(id)arg1;
 - (id)_initWithApplicationPlistData:(id)arg1;
+- (id)_initWithBundle:(id)arg1;
 - (bool)_isLinkedOnOrAfterYukon;
 - (long long)backgroundStyle;
 - (bool)canChangeBackgroundStyle;
 - (id)canvasDefinitions;
+- (id)deviceFamilies;
 - (bool)disableLayoutAwareShortcuts;
 - (bool)fakingRequiresHighResolution;
 - (int)ignoredOverrides;
 - (id)initWithApplicationProxy:(id)arg1;
-- (id)initWithbundle:(id)arg1;
 - (long long)interfaceOrientation;
 - (bool)isExitsOnSuspend;
+- (id)keyColorAssetName;
 - (id)launchImageFile;
 - (long long)launchingInterfaceOrientationForSpringBoard;
 - (bool)optOutOfRTL;

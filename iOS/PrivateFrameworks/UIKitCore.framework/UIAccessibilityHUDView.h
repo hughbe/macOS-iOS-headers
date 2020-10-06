@@ -15,17 +15,12 @@
 
 @property (nonatomic, copy) UIAccessibilityHUDItem *item;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (struct CGSize { double x1; double x2; })preferredHUDSize;
 
 - (void).cxx_destruct;
 - (id)_contentEffectsForItem:(id)arg1;
 - (void)_show:(bool)arg1 animated:(bool)arg2 completion:(id /* block */)arg3;
 - (void)_updateLabelForItem;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)containerViewForLayout;
 - (id)customView;
 - (void)dismissAnimated:(bool)arg1 completion:(id /* block */)arg2;

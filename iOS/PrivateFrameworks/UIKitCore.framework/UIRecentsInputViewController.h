@@ -32,17 +32,9 @@
 @property (nonatomic, retain) UILexicon *recentInputs;
 @property (nonatomic, retain) NSLayoutConstraint *widthConstraint;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_delete:(id)arg1;
 - (void)_overrideTraitCollectionForHeaderViewController;
-- (id)_uiktest_FocusedCellLabel;
-- (id)_uiktest_UnfocusedCellBackgroundView;
-- (id)_uiktest_UnfocusedCellLabel;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)canManageList;
 - (id)clearAllString;
 - (long long)containingEffectStyle;

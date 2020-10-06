@@ -22,7 +22,9 @@
         unsigned int expressionsValidated : 1; 
         unsigned int disableCaching : 1; 
         unsigned int allocationType : 3; 
-        unsigned int _RESERVED : 15; 
+        unsigned int batchLRUEntries : 4; 
+        unsigned int asyncRequest : 1; 
+        unsigned int _RESERVED : 10; 
     }  _flags;
     NSArray * _groupByProperties;
     NSPredicate * _havingPredicate;
@@ -59,20 +61,16 @@
 + (void)initialize;
 + (bool)supportsSecureCoding;
 
-- (id)_XPCEncodedFlags;
 - (id)_asyncResultHandle;
-- (void)_bindExpressionDescriptionProperties:(id)arg1;
 - (id)_copyForDirtyContext;
-- (bool)_disablePersistentStoreResultCaching;
+- (unsigned long long)_fetchBatchLRUEntriesLimit;
 - (void)_incrementInUseCounter;
+- (bool)_isAsyncRequest;
 - (bool)_isCachingFetchRequest;
 - (bool)_isEditable;
-- (id)_newNormalizedFetchProperties:(id)arg1;
-- (id)_newValidatedProperties:(id)arg1 groupBy:(bool)arg2 error:(id*)arg3;
 - (void)_resolveEntityWithContext:(id)arg1;
 - (void)_setAsyncResultHandle:(id)arg1;
-- (void)_setDisablePersistentStoreResultCaching:(bool)arg1;
-- (void)_setFlagsFromXPCEncoding:(id)arg1;
+- (void)_setFetchBatchLRUEntriesLimit:(unsigned long long)arg1;
 - (void)_throwIfNotEditable;
 - (void)_writeIntoData:(id)arg1 propertiesDict:(id)arg2 uniquedPropertyNames:(id)arg3 uniquedStrings:(id)arg4 uniquedData:(id)arg5 uniquedMappings:(id)arg6 entities:(id)arg7;
 - (id)affectedStores;
@@ -89,8 +87,6 @@
 - (unsigned long long)fetchBatchSize;
 - (unsigned long long)fetchLimit;
 - (unsigned long long)fetchOffset;
-- (id)groupByProperties;
-- (bool)hasChanges;
 - (unsigned long long)hash;
 - (id)havingPredicate;
 - (bool)includesPendingChanges;
@@ -115,7 +111,6 @@
 - (void)setFetchBatchSize:(unsigned long long)arg1;
 - (void)setFetchLimit:(unsigned long long)arg1;
 - (void)setFetchOffset:(unsigned long long)arg1;
-- (void)setGroupByProperties:(id)arg1;
 - (void)setHavingPredicate:(id)arg1;
 - (void)setIncludesPendingChanges:(bool)arg1;
 - (void)setIncludesPropertyValues:(bool)arg1;
@@ -131,6 +126,5 @@
 - (void)setSortDescriptors:(id)arg1;
 - (bool)shouldRefreshRefetchedObjects;
 - (id)sortDescriptors;
-- (id)stores;
 
 @end

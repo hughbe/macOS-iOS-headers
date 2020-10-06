@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKAsset : NSObject <CKRecordValue, NSSecureCoding> {
+@interface CKAsset : NSObject <CKRecordValue, HMBModelObjectStorage, NSSecureCoding> {
     NSString * _UUID;
     long long  _arrayIndex;
     NSDictionary * _assetChunkerOptions;
@@ -16,6 +16,7 @@
     NSData * _boundaryKey;
     NSData * _clearAssetKey;
     NSFileHandle * _clientOpenedFileHandle;
+    NSData * _constructedAssetDownloadParameters;
     NSURL * _constructedAssetDownloadURL;
     NSString * _constructedAssetDownloadURLTemplate;
     unsigned long long  _constructedAssetEstimatedSize;
@@ -56,9 +57,8 @@
 @property (nonatomic, retain) NSString *UUID;
 @property (nonatomic) long long arrayIndex;
 @property (nonatomic, retain) NSDictionary *assetChunkerOptions;
-@property (nonatomic, copy) NSData *assetContent;
+@property (nonatomic, retain) NSData *assetContent;
 @property (nonatomic, retain) CKAssetCopyInfo *assetCopyInfo;
-@property (nonatomic, readonly) NSString *assetHandleUUID;
 @property (nonatomic, retain) NSData *assetKey;
 @property (nonatomic, retain) CKAssetReference *assetReference;
 @property (nonatomic, retain) CKAssetRereferenceInfo *assetRereferenceInfo;
@@ -67,28 +67,26 @@
 @property (nonatomic, copy) NSData *boundaryKey;
 @property (nonatomic, retain) NSData *clearAssetKey;
 @property (nonatomic, retain) NSFileHandle *clientOpenedFileHandle;
+@property (nonatomic, retain) NSData *constructedAssetDownloadParameters;
 @property (nonatomic, retain) NSURL *constructedAssetDownloadURL;
 @property (nonatomic, retain) NSString *constructedAssetDownloadURLTemplate;
 @property (nonatomic) unsigned long long constructedAssetEstimatedSize;
 @property (nonatomic, retain) NSURL *contentBaseURL;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, readonly) NSNumber *deviceID;
+@property (nonatomic, retain) NSNumber *deviceID;
 @property (nonatomic, retain) NSString *downloadBaseURL;
 @property (nonatomic, retain) CKAssetDownloadPreauthorization *downloadPreauthorization;
 @property (nonatomic) unsigned long long downloadTokenExpiration;
-@property (nonatomic, readonly) NSURL *downloadURL;
 @property (nonatomic, retain) NSDate *downloadURLExpiration;
 @property (nonatomic, retain) NSString *downloadURLTemplate;
 @property (nonatomic) bool downloaded;
-@property (nonatomic, readonly) NSNumber *fileID;
+@property (nonatomic, retain) NSNumber *fileID;
 @property (nonatomic, copy) NSURL *fileURL;
 @property (nonatomic, retain) NSNumber *generationCountToSave;
 @property (nonatomic) bool hasSize;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly) bool isConstructedAsset;
-@property (nonatomic, readonly) bool isRereferencedAssetUpload;
-@property (nonatomic, retain) NSString *itemTypeHint;
+@property (nonatomic, copy) NSString *itemTypeHint;
 @property (nonatomic, copy) NSURL *nullableFileURL;
 @property (nonatomic, retain) NSString *owner;
 @property (nonatomic) unsigned long long paddedFileSize;
@@ -98,7 +96,7 @@
 @property (nonatomic, copy) NSString *recordKey;
 @property (nonatomic, retain) NSData *referenceSignature;
 @property (nonatomic, retain) NSString *requestor;
-@property (nonatomic, readonly) bool shouldReadAssetContentUsingClientProxy;
+@property (nonatomic) bool shouldReadAssetContentUsingClientProxy;
 @property (nonatomic) bool shouldReadRawEncryptedData;
 @property (nonatomic, copy) NSData *signature;
 @property (nonatomic) unsigned long long size;
@@ -110,6 +108,8 @@
 @property (nonatomic) bool uploaded;
 @property (nonatomic) bool wasCached;
 @property (nonatomic, retain) NSData *wrappedAssetKey;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (id)_canonicalizeTemplateURL:(id)arg1;
 + (id)_expandTemplateURL:(id)arg1 fieldValues:(id)arg2;
@@ -140,6 +140,7 @@
 - (id)boundaryKey;
 - (id)clearAssetKey;
 - (id)clientOpenedFileHandle;
+- (id)constructedAssetDownloadParameters;
 - (id)constructedAssetDownloadURL;
 - (id)constructedAssetDownloadURLTemplate;
 - (unsigned long long)constructedAssetEstimatedSize;
@@ -194,16 +195,19 @@
 - (void)setBoundaryKey:(id)arg1;
 - (void)setClearAssetKey:(id)arg1;
 - (void)setClientOpenedFileHandle:(id)arg1;
+- (void)setConstructedAssetDownloadParameters:(id)arg1;
 - (void)setConstructedAssetDownloadURL:(id)arg1;
 - (void)setConstructedAssetDownloadURLTemplate:(id)arg1;
 - (void)setConstructedAssetEstimatedSize:(unsigned long long)arg1;
 - (void)setContentBaseURL:(id)arg1;
+- (void)setDeviceID:(id)arg1;
 - (void)setDownloadBaseURL:(id)arg1;
 - (void)setDownloadPreauthorization:(id)arg1;
 - (void)setDownloadTokenExpiration:(unsigned long long)arg1;
 - (void)setDownloadURLExpiration:(id)arg1;
 - (void)setDownloadURLTemplate:(id)arg1;
 - (void)setDownloaded:(bool)arg1;
+- (void)setFileID:(id)arg1;
 - (void)setFileURL:(id)arg1;
 - (void)setGenerationCountToSave:(id)arg1;
 - (void)setHasSize:(bool)arg1;
@@ -217,6 +221,7 @@
 - (void)setRecordKey:(id)arg1;
 - (void)setReferenceSignature:(id)arg1;
 - (void)setRequestor:(id)arg1;
+- (void)setShouldReadAssetContentUsingClientProxy:(bool)arg1;
 - (void)setShouldReadRawEncryptedData:(bool)arg1;
 - (void)setSignature:(id)arg1;
 - (void)setSize:(unsigned long long)arg1;
@@ -239,5 +244,15 @@
 - (bool)uploaded;
 - (bool)wasCached;
 - (id)wrappedAssetKey;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (bool)fillInDownloadURLsForAssetWithFieldName:(id)arg1 fileName:(id)arg2 recordPCS:(struct _OpaquePCSShareProtection { }*)arg3 pcsManager:(id)arg4 useEncryption:(bool)arg5 useClearAssetEncryption:(bool)arg6 outError:(id*)arg7;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
++ (id)hmbDecodeData:(id)arg1 fromStorageLocation:(unsigned long long)arg2 error:(id*)arg3;
+
+- (id)hmbEncodeForStorageLocation:(unsigned long long)arg1 error:(id*)arg2;
 
 @end

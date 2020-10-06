@@ -56,6 +56,7 @@
 }
 
 @property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{Box<double' */ struct  bounds; /* unknown property attribute:  1>=[2d]}} */
+@property (nonatomic, readonly) GEOComposedRoute *composedRoute;
 @property bool hasNewRoadMatches;
 @property (nonatomic) <VKRouteLineObserverProtocol> *observer;
 @property (nonatomic, readonly) VKPolylineOverlay *overlay;
@@ -70,6 +71,7 @@
 - (struct Box<double, 2> { struct Matrix<double, 2, 1> { double x_1_1_1[2]; } x1; struct Matrix<double, 2, 1> { double x_2_1_1[2]; } x2; })bounds;
 - (double)boundsUnitsPerMeter;
 - (bool)buildRouteLine:(id)arg1 matchToRoads:(bool)arg2 viewUnitsPerPoint:(double)arg3 force:(bool)arg4;
+- (id)composedRoute;
 - (void)createMeshIfNecessary:(long long)arg1;
 - (void)dealloc;
 - (void)forEachSection:(id /* block */)arg1;

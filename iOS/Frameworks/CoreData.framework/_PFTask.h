@@ -18,7 +18,6 @@
 }
 
 + (int)getNumActiveProcessors;
-+ (unsigned long long)getPhysicalMemory;
 + (double)getProcessorSpeed;
 
 - (bool)_isDeallocating;

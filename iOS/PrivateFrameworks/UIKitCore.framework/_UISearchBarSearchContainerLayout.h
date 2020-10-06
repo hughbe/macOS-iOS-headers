@@ -3,6 +3,7 @@
  */
 
 @interface _UISearchBarSearchContainerLayout : _UISearchBarLayoutBase {
+    double  _additionalPaddingForCancelButtonAtLeadingEdge;
     UIView * _cancelButton;
     struct CGRect { 
         struct CGPoint { 
@@ -27,6 +28,7 @@
             double height; 
         } size; 
     }  _deleteButtonLayoutFrame;
+    id /* block */  _layoutCustomizationDelegateSearchFieldContainerWillLayoutSubviewsCallback;
     UIView * _leftButton;
     struct CGRect { 
         struct CGPoint { 
@@ -45,6 +47,7 @@
         unsigned int hasLeftButton : 1; 
         unsigned int allowSearchFieldShrinkage : 1; 
         unsigned int searchFieldUsesCustomBackgroundImage : 1; 
+        unsigned int searchFieldEffectivelySupportsDynamicType : 1; 
         unsigned int searchFieldRespectsReadableWidth : 1; 
         unsigned int searchFieldWidthIsReduced : 1; 
     }  _searchContainerLayoutFlags;
@@ -77,6 +80,7 @@
     }  _visibleCancelButtonSearchFieldLayoutFrame;
 }
 
+@property (nonatomic) double additionalPaddingForCancelButtonAtLeadingEdge;
 @property (nonatomic) bool allowSearchFieldShrinkage;
 @property (nonatomic, retain) UIView *cancelButton;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } cancelButtonLayoutFrame;
@@ -87,6 +91,7 @@
 @property (nonatomic) bool hasCancelButton;
 @property (nonatomic) bool hasDeleteButton;
 @property (nonatomic) bool hasLeftButton;
+@property (nonatomic, copy) id /* block */ layoutCustomizationDelegateSearchFieldContainerWillLayoutSubviewsCallback;
 @property (nonatomic, retain) UIView *leftButton;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } leftButtonLayoutFrame;
 @property (nonatomic, readonly) double naturalBarHeight;
@@ -94,6 +99,7 @@
 @property (nonatomic) double searchBarReadableWidth;
 @property (nonatomic, retain) UISearchBarTextField *searchField;
 @property (nonatomic) struct UIOffset { double x1; double x2; } searchFieldBackgroundPositionAdjustment;
+@property (nonatomic) bool searchFieldEffectivelySupportsDynamicType;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } searchFieldLayoutFrame;
 @property (nonatomic) bool searchFieldRespectsReadableWidth;
 @property (nonatomic) bool searchFieldUsesCustomBackgroundImage;
@@ -101,6 +107,7 @@
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } visibleCancelButtonSearchFieldLayoutFrame;
 
 - (void).cxx_destruct;
+- (double)additionalPaddingForCancelButtonAtLeadingEdge;
 - (bool)allowSearchFieldShrinkage;
 - (void)applyLayout;
 - (id)cancelButton;
@@ -113,6 +120,7 @@
 - (bool)hasCancelButton;
 - (bool)hasDeleteButton;
 - (bool)hasLeftButton;
+- (id /* block */)layoutCustomizationDelegateSearchFieldContainerWillLayoutSubviewsCallback;
 - (id)leftButton;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })leftButtonLayoutFrame;
 - (double)naturalBarHeight;
@@ -120,11 +128,14 @@
 - (double)searchBarReadableWidth;
 - (id)searchField;
 - (struct UIOffset { double x1; double x2; })searchFieldBackgroundPositionAdjustment;
+- (bool)searchFieldEffectivelySupportsDynamicType;
 - (double)searchFieldHeightUpdatingShrinkageAndFadeAlphas;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })searchFieldLayoutFrame;
 - (bool)searchFieldRespectsReadableWidth;
 - (bool)searchFieldUsesCustomBackgroundImage;
 - (bool)searchFieldWidthIsReduced;
+- (void)sendWillLayoutSubviewsForSearchFieldContainerView:(id)arg1;
+- (void)setAdditionalPaddingForCancelButtonAtLeadingEdge:(double)arg1;
 - (void)setAllowSearchFieldShrinkage:(bool)arg1;
 - (void)setCancelButton:(id)arg1;
 - (void)setDelegate:(id)arg1;
@@ -133,10 +144,12 @@
 - (void)setHasCancelButton:(bool)arg1;
 - (void)setHasDeleteButton:(bool)arg1;
 - (void)setHasLeftButton:(bool)arg1;
+- (void)setLayoutCustomizationDelegateSearchFieldContainerWillLayoutSubviewsCallback:(id /* block */)arg1;
 - (void)setLeftButton:(id)arg1;
 - (void)setSearchBarReadableWidth:(double)arg1;
 - (void)setSearchField:(id)arg1;
 - (void)setSearchFieldBackgroundPositionAdjustment:(struct UIOffset { double x1; double x2; })arg1;
+- (void)setSearchFieldEffectivelySupportsDynamicType:(bool)arg1;
 - (void)setSearchFieldRespectsReadableWidth:(bool)arg1;
 - (void)setSearchFieldUsesCustomBackgroundImage:(bool)arg1;
 - (void)updateLayout;

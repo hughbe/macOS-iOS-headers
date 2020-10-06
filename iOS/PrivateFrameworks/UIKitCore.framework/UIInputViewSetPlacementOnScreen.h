@@ -7,6 +7,7 @@
 + (bool)supportsSecureCoding;
 
 - (bool)inputViewWillAppear;
+- (bool)showsInputOrAssistantViews;
 - (bool)showsInputViews;
 - (bool)showsKeyboard;
 

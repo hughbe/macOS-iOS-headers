@@ -60,11 +60,13 @@
 @property (nonatomic, readonly) unsigned long long withinAppSourceOperationMask;
 
 - (void).cxx_destruct;
+- (bool)_canHandOffCancelledItems:(id)arg1;
 - (void)_didBeginDrag;
 - (void)_getOperationMaskFromDelegate;
 - (void)_handOffCancelledItems:(id)arg1;
 - (void)_hostDidDeactivate;
 - (void)_hostWillBecomeActive;
+- (bool)_routingPolicyHasSpecificTouchContextIDs;
 - (void)_sendDataTransferFinished;
 - (void)_sendDidEndWithOperation:(unsigned long long)arg1;
 - (void)_sendDidMove;

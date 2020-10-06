@@ -7,16 +7,15 @@
     GEOApplicationAuditToken * _auditToken;
     GEOCommonOptions * _commonOptions;
     GEOETATrafficUpdateRequest * _currentETARequest;
-    GEOComposedRouteStep * _currentStepAtRequestStart;
     double  _debugTimeWindowDuration;
     <GEOETAUpdaterDelegate> * _delegate;
     GEOComposedWaypoint * _destination;
     NSData * _directionsResponseID;
     NSTimer * _etaIdleTimer;
+    GEOComposedETARoute * _etaRoute;
     long long  _etaState;
     double  _lastETARequestTime;
     unsigned long long  _maxAlternateRoutesCount;
-    double  _percentageOfCurrentStepRemainingAtRequestStart;
     double  _requestInterval;
     NSString * _requestingAppIdentifier;
     GEOComposedRoute * _route;
@@ -45,6 +44,7 @@
 @property (nonatomic, retain) GEOLocation *userLocation;
 
 - (void).cxx_destruct;
+- (void)_addRouteAttributesToRequest:(id)arg1 completion:(id /* block */)arg2;
 - (double)_calculateNextTransitionTime;
 - (void)_clearTimer;
 - (void)_continueUpdateRequests;
@@ -54,10 +54,8 @@
 - (void)_startConditionalConnectionETARequest;
 - (void)_startStateWaitingForBestTimeStart:(id)arg1;
 - (void)_trafficRequest:(id)arg1 finished:(id)arg2;
-- (bool)_updateETAResponse:(id)arg1 withRemainingDistanceFromRequest:(id)arg2;
 - (id)_updateOrCreateRequest:(id)arg1;
 - (void)_updateRequest:(id)arg1;
-- (bool)_updateRouteWithETATrafficUpdateResponse:(id)arg1;
 - (bool)allowRequests;
 - (id)auditToken;
 - (void)cancelRequest;
@@ -70,7 +68,6 @@
 - (id)init;
 - (id)initWithRoute:(id)arg1 destination:(id)arg2 routeAttributes:(id)arg3;
 - (unsigned long long)maxAlternateRoutesCount;
-- (double)percentageOfCurrentStepRemaining;
 - (bool)requestInProgress;
 - (double)requestInterval;
 - (void)requestUpdate;
@@ -79,7 +76,6 @@
 - (id)route;
 - (id)routeAttributes;
 - (id)routeMatch;
-- (id)routesForETAUpdateRequest;
 - (void)setAllowRequests:(bool)arg1;
 - (void)setAuditToken:(id)arg1;
 - (void)setDebugTimeWindowDuration:(double)arg1;
@@ -99,7 +95,6 @@
 - (bool)shouldUseConditionalRequest;
 - (void)startUpdateRequests;
 - (void)stopUpdateRequests;
-- (bool)updateRouteWithETATrafficUpdateResponse:(id)arg1 step:(id)arg2 percentOfStepRemaining:(double)arg3;
 - (id)userLocation;
 
 @end

@@ -3,18 +3,18 @@
  */
 
 @interface GEOConfigPersistence : NSObject {
-    GEODefaultsDBDict * _cache;
-    geo_isolater * _cacheIsolator;
+    _GEOConfigDB * _configDB;
     GEOSQLiteDB * _db;
+    _GEOConfigDBOperationQueue * _operationQueue;
 }
 
 + (bool)_setup:(id)arg1;
 + (id)shared;
 
 - (void).cxx_destruct;
-- (id)_valueForKeyPath:(id)arg1 key:(id*)arg2 createOrUpdate:(id /* block */)arg3;
 - (void)dealloc;
 - (id)defaultForKeyPath:(id)arg1;
+- (id)defaultForKeyPathComponents:(id)arg1;
 - (id)initWithDBPath:(id)arg1;
 - (void)setDefault:(id)arg1 forKeyPath:(id)arg2;
 - (void)tearDown;

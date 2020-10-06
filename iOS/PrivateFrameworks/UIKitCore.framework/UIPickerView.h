@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIPickerView : UIView <DebugHierarchyObject_Fallback, NSCoding, UIPickerTableViewContainerDelegate, UIPickerViewScrollTesting, UITableViewDataSource, UITableViewDelegate> {
-    UIView * _backgroundView;
-    UIImageView * _bottomGradient;
+@interface UIPickerView : UIView <NSCoding, UIPickerTableViewContainerDelegate, UIPickerViewScrollTesting, UITableViewDataSource, UITableViewDelegate> {
     UIView * _bottomLineView;
     _UIPickerViewTestParameters * _currentTestParameters;
     <UIPickerViewDataSource> * _dataSource;
     <UIPickerViewDelegate> * _delegate;
-    NSMutableArray * _dividers;
     bool  _enabled;
     UIView * _foregroundView;
     bool  _magnifierEnabled;
     UIColor * _magnifierLineColor;
+    long long  _magnifierStyle;
     CALayer * _maskGradientLayer;
     long long  _numberOfComponents;
     struct { 
@@ -35,14 +33,11 @@
         unsigned int isInLayoutSubviews : 1; 
         unsigned int usesDynamicRowHeight : 1; 
     }  _pickerViewFlags;
-    NSMutableArray * _selectionBars;
     UISelectionFeedbackGenerator * _selectionFeedbackGenerator;
     NSMutableArray * _tables;
     UIColor * _textColor;
     UIColor * _textShadowColor;
-    UIView * _topFrame;
-    UIImageView * _topGradient;
-    UIView * _topLineView;
+    UIView * _topLineOrFillView;
 }
 
 @property (setter=_setMagnifierEnabled:, nonatomic) bool _magnifierEnabled;
@@ -54,6 +49,7 @@
 @property (readonly) unsigned long long hash;
 @property (getter=_highlightColor, setter=_setHighlightColor:, nonatomic, retain) UIColor *highlightColor;
 @property (getter=_magnifierLineColor, setter=_setMagnifierLineColor:, nonatomic, retain) UIColor *magnifierLineColor;
+@property (getter=_magnifierStyle, setter=_setMagnifierStyle:, nonatomic) long long magnifierStyle;
 @property (nonatomic, readonly) long long numberOfComponents;
 @property (getter=_selectionFeedbackGenerator, setter=_setSelectionFeedbackGenerator:, nonatomic, retain) UISelectionFeedbackGenerator *selectionFeedbackGenerator;
 @property (nonatomic) bool showsSelectionIndicator;
@@ -73,6 +69,7 @@
 
 - (void).cxx_destruct;
 - (void)__scalarStatisticsForUserValueChangedEvent;
+- (void)_addHighlightRectForRowHeight:(double)arg1;
 - (void)_addMagnifierLinesForRowHeight:(double)arg1;
 - (bool)_canHostViewControllerContentScrollView;
 - (void)_completeCurrentTest;
@@ -82,7 +79,6 @@
 - (id)_contentView;
 - (id)_createColumnWithTableFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 rowHeight:(double)arg2;
 - (id)_createTableWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 forComponent:(long long)arg2;
-- (id)_createViewForPickerPiece:(long long)arg1;
 - (id)_delegateAttributedTitleForRow:(long long)arg1 forComponent:(long long)arg2;
 - (long long)_delegateNumberOfComponents;
 - (long long)_delegateNumberOfRowsInComponent:(long long)arg1;
@@ -99,6 +95,7 @@
 - (void)_iterateOnCurrentTest;
 - (bool)_magnifierEnabled;
 - (id)_magnifierLineColor;
+- (long long)_magnifierStyle;
 - (bool)_needsLayout;
 - (void)_noteScrollingFinishedForComponent:(long long)arg1;
 - (id)_orientationImageSuffix;
@@ -122,6 +119,7 @@
 - (void)_setHighlightColor:(id)arg1;
 - (void)_setMagnifierEnabled:(bool)arg1;
 - (void)_setMagnifierLineColor:(id)arg1;
+- (void)_setMagnifierStyle:(long long)arg1;
 - (void)_setSelectionFeedbackGenerator:(id)arg1;
 - (void)_setTextColor:(id)arg1;
 - (void)_setTextShadowColor:(id)arg1;
@@ -140,19 +138,10 @@
 - (bool)_usesDynamicRowHeight;
 - (double)_wheelShift;
 - (void)_willPlayClickSound;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowsMultipleSelection;
 - (long long)columnForTableView:(id)arg1;
-- (id)createDividerWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)dataSource;
+- (void)dealloc;
 - (struct CGSize { double x1; double x2; })defaultSize;
 - (id)delegate;
 - (void)didMoveToWindow;
@@ -198,5 +187,10 @@
 - (void)traitCollectionDidChange:(id)arg1;
 - (id)viewForRow:(long long)arg1 forComponent:(long long)arg2;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })visibleRowsForColumn:(int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
 
 @end

@@ -8,6 +8,7 @@
 - (oneway void)aceConnectionWillRetryOnError:(NSError *)arg1;
 - (oneway void)acousticIDRequestDidFinishWithSuccess:(bool)arg1;
 - (oneway void)acousticIDRequestWillStart;
+- (oneway void)appLaunchFailedWithBundleIdentifier:(NSString *)arg1;
 - (oneway void)audioPlaybackRequestDidStart:(AFAudioPlaybackRequest *)arg1;
 - (oneway void)audioPlaybackRequestDidStop:(AFAudioPlaybackRequest *)arg1 error:(NSError *)arg2;
 - (oneway void)audioPlaybackRequestWillStart:(AFAudioPlaybackRequest *)arg1;
@@ -47,6 +48,7 @@
 - (oneway void)startPlaybackDidFail:(long long)arg1;
 - (oneway void)startUIRequestWithInfo:(void *)arg1 completion:(void *)arg2; // needs 2 arg types, found 7: AFRequestInfo *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, bool, void*
 - (oneway void)startUIRequestWithText:(void *)arg1 completion:(void *)arg2; // needs 2 arg types, found 7: NSString *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, bool, void*
+- (oneway void)willProcessAppLaunchWithBundleIdentifier:(NSString *)arg1;
 - (oneway void)willProcessStartPlayback:(void *)arg1 intent:(void *)arg2 completion:(void *)arg3; // needs 3 arg types, found 9: long long, INIntent *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, bool, bool, void*
 
 @end

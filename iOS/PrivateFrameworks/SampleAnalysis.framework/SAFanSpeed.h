@@ -16,9 +16,7 @@
 @property (readonly) SATimestamp *timestamp;
 
 + (id)classDictionaryKey;
-+ (id)fanSpeedWithPAStyleSerializedFanSpeed:(const struct { unsigned long long x1; double x2; int x3; }*)arg1;
-+ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const struct { unsigned char x1; unsigned char x2; int x3; unsigned long long x4; }*)arg1 bufferLength:(unsigned long long)arg2;
-+ (int)numFans;
++ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2;
 
 - (void).cxx_destruct;
 - (bool)addSelfToBuffer:(struct { unsigned char x1; unsigned char x2; int x3; unsigned long long x4; }*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
@@ -28,7 +26,7 @@
 - (id)init;
 - (id)initEmpty;
 - (id)initWithTimestamp:(id)arg1;
-- (void)populateReferencesUsingBuffer:(struct { unsigned char x1; unsigned char x2; int x3; unsigned long long x4; }*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
+- (void)populateReferencesUsingBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 - (id)timestamp;
 

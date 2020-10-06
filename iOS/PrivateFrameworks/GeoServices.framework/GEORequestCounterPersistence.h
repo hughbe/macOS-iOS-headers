@@ -21,9 +21,8 @@
 - (bool)enabled;
 - (void)fetchAnalyticsHandlingDataFrom:(id)arg1 completion:(id /* block */)arg2 completionQueue:(id)arg3;
 - (void)fetchRoutePreloadSessionsFrom:(id)arg1 completion:(id /* block */)arg2 completionQueue:(id)arg3;
-- (void)fetchTrafficProbeCollectionsStartingFrom:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)finishedProactiveTileDownloadForIdentifier:(id)arg1 policy:(unsigned char)arg2 tilesConsidered:(unsigned int)arg3 tileDownloadAttempts:(unsigned int)arg4 successes:(unsigned int)arg5 failures:(unsigned int)arg6 bytesDownloaded:(unsigned long long)arg7;
-- (void)incrementForApp:(id)arg1 time:(id)arg2 requestId:(id)arg3 requestType:(unsigned char)arg4 result:(unsigned char)arg5 xmitBytes:(long long)arg6 recvBytes:(long long)arg7 withCompletion:(id /* block */)arg8;
+- (void)incrementForApp:(id)arg1 time:(id)arg2 requestId:(id)arg3 requestType:(int)arg4 result:(unsigned char)arg5 xmitBytes:(long long)arg6 recvBytes:(long long)arg7 withCompletion:(id /* block */)arg8;
 - (id)init;
 - (id)initWithDBFilePath:(id)arg1 maxCountAge:(double)arg2;
 - (void)logsStartingFrom:(id)arg1 withCompletion:(id /* block */)arg2;
@@ -34,7 +33,6 @@
 - (void)recordAnalyticsUploadFailureCount:(long long)arg1 logMsgType:(long long)arg2 at:(id)arg3;
 - (void)recordAnalyticsUploadSuccessCount:(long long)arg1 bytes:(long long)arg2 logMsgType:(long long)arg3 usedCellular:(bool)arg4 at:(id)arg5;
 - (void)recordRoutePreloadSessionAt:(id)arg1 transportType:(long long)arg2 tilesPreloaded:(unsigned long long)arg3 tilesUsed:(unsigned long long)arg4 tilesMissed:(unsigned long long)arg5;
-- (void)recordTrafficProbeCollectionAt:(id)arg1 tripId:(id)arg2 locationCount:(int)arg3 result:(unsigned char)arg4;
 - (void)setEnabled:(bool)arg1;
 - (void)startedProactiveTileDownloadForIdentifier:(id)arg1 policy:(unsigned char)arg2;
 

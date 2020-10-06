@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_offlineMarkets : 1; 
         unsigned int read_transitMarkets : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_offlineMarkets : 1; 
-        unsigned int wrote_transitMarkets : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _offlineMarkets;
     PBDataReader * _reader;
@@ -35,10 +33,6 @@
 + (Class)transitMarketType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsOfflineMarket:(id)arg1;
-- (void)_addNoFlagsTransitMarket:(id)arg1;
-- (void)_readOfflineMarkets;
-- (void)_readTransitMarkets;
 - (void)addOfflineMarket:(id)arg1;
 - (void)addTransitMarket:(id)arg1;
 - (void)clearOfflineMarkets;
@@ -51,7 +45,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)offlineMarketAtIndex:(unsigned long long)arg1;
 - (id)offlineMarkets;

@@ -40,6 +40,7 @@
     UIKeyboardCandidateViewConfiguration * _keyConfiguration;
     NSDictionary * _opacities;
     UIPanGestureRecognizer * _panGestureRecognizer;
+    UIKBRenderConfig * _renderConfig;
     bool  _reuseArrowButtonToExpandAssistantBarItems;
     UIKBScreenTraits * _screenTraits;
     double  _splitGap;
@@ -83,6 +84,7 @@
 @property (nonatomic, retain) UIKeyboardCandidateViewConfiguration *keyConfiguration;
 @property (nonatomic, retain) NSDictionary *opacities;
 @property (nonatomic, retain) UIPanGestureRecognizer *panGestureRecognizer;
+@property (nonatomic, retain) UIKBRenderConfig *renderConfig;
 @property (nonatomic) bool reuseArrowButtonToExpandAssistantBarItems;
 @property (nonatomic, retain) UIKBScreenTraits *screenTraits;
 @property (nonatomic) double splitGap;
@@ -160,6 +162,7 @@
 - (id)key;
 - (id)keyConfiguration;
 - (id)keyboardBehaviors;
+- (long long)layoutDirectionForCurrentInputMode;
 - (id)loadCandidateBar;
 - (void)loadDefaultStates;
 - (id)loadInlineCandidateView;
@@ -169,6 +172,7 @@
 - (id)panGestureRecognizer;
 - (void)panGestureRecognizerAction:(id)arg1;
 - (void)removeInlineView;
+- (id)renderConfig;
 - (void)resetSortControlIndexAfterCandidatesChanged;
 - (bool)reuseArrowButtonToExpandAssistantBarItems;
 - (void)revealHiddenCandidates;
@@ -207,6 +211,7 @@
 - (void)setKeyConfiguration:(id)arg1;
 - (void)setOpacities:(id)arg1;
 - (void)setPanGestureRecognizer:(id)arg1;
+- (void)setRenderConfig:(id)arg1;
 - (void)setReuseArrowButtonToExpandAssistantBarItems:(bool)arg1;
 - (void)setScreenTraits:(id)arg1;
 - (void)setSplitGap:(double)arg1;

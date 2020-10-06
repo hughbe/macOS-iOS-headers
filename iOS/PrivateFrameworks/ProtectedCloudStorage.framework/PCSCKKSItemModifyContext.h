@@ -12,7 +12,6 @@
     PCSLockAssertion * _lockAssertion;
     struct __PCSLogContext { } * _log;
     PCSMTT * _mtt;
-    struct _PCSIdentityData { } * _relocateIdentity;
     int  _retryLeftCount;
     bool  _returnedExistingIdentity;
     bool  _roll;
@@ -37,7 +36,6 @@
 @property (retain) PCSLockAssertion *lockAssertion;
 @property struct __PCSLogContext { }*log;
 @property (readonly) PCSMTT *mtt;
-@property struct _PCSIdentityData { }*relocateIdentity;
 @property int retryLeftCount;
 @property bool returnedExistingIdentity;
 @property bool roll;
@@ -63,7 +61,6 @@
 - (id)lockAssertion;
 - (struct __PCSLogContext { }*)log;
 - (id)mtt;
-- (struct _PCSIdentityData { }*)relocateIdentity;
 - (void)resetIdentities;
 - (int)retryLeftCount;
 - (bool)returnedExistingIdentity;
@@ -82,7 +79,6 @@
 - (void)setExistingItemSHA1:(id)arg1;
 - (void)setLockAssertion:(id)arg1;
 - (void)setLog:(struct __PCSLogContext { }*)arg1;
-- (void)setRelocateIdentity:(struct _PCSIdentityData { }*)arg1;
 - (void)setRetryLeftCount:(int)arg1;
 - (void)setReturnedExistingIdentity:(bool)arg1;
 - (void)setRoll:(bool)arg1;

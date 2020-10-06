@@ -13,6 +13,5 @@
 }
 
 - (void)dealloc;
-- (bool)expandIntoBuffer:(id)arg1 error:(id*)arg2;
 
 @end

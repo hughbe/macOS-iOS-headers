@@ -5,6 +5,7 @@
 @interface NEPolicyResult : NSObject <NEPrettyDescription> {
     NSUUID * _agentUUID;
     unsigned int  _controlUnit;
+    unsigned int  _dropFlags;
     NSString * _interfaceName;
     unsigned int  _passFlags;
     long long  _resultType;
@@ -17,6 +18,7 @@
 
 @property (copy) NSUUID *agentUUID;
 @property unsigned int controlUnit;
+@property unsigned int dropFlags;
 @property (copy) NSString *interfaceName;
 @property unsigned int passFlags;
 @property long long resultType;
@@ -29,6 +31,7 @@
 + (id)allowUnentitled;
 + (id)divertSocketToControlUnit:(unsigned int)arg1;
 + (id)drop;
++ (id)dropWithFlags:(unsigned int)arg1;
 + (id)filterWithControlUnit:(unsigned int)arg1;
 + (id)netAgentUUID:(id)arg1;
 + (id)pass;
@@ -48,6 +51,7 @@
 - (unsigned int)controlUnit;
 - (id)description;
 - (id)descriptionWithIndent:(int)arg1 options:(unsigned long long)arg2;
+- (unsigned int)dropFlags;
 - (id)init;
 - (id)initInternal;
 - (id)interfaceName;
@@ -63,6 +67,7 @@
 - (id)serviceUUID;
 - (void)setAgentUUID:(id)arg1;
 - (void)setControlUnit:(unsigned int)arg1;
+- (void)setDropFlags:(unsigned int)arg1;
 - (void)setInterfaceName:(id)arg1;
 - (void)setPassFlags:(unsigned int)arg1;
 - (void)setResultType:(long long)arg1;

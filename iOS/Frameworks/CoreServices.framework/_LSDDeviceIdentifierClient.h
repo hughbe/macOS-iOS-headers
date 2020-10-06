@@ -4,6 +4,7 @@
 
 @interface _LSDDeviceIdentifierClient : _LSDClient <_LSDDeviceIdentifierProtocol>
 
+- (bool)canAccessAdvertisingIdentifier;
 - (void)clearAllIdentifiersOfType:(long long)arg1;
 - (void)clearIdentifiersForUninstallationWithVendorName:(id)arg1 bundleIdentifier:(id)arg2;
 - (unsigned int)findAppBundleForExecutableURL:(id)arg1 withContext:(struct LSContext { id x1; }*)arg2;

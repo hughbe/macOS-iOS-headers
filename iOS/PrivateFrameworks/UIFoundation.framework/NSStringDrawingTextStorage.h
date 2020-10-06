@@ -32,15 +32,14 @@
 
 + (bool)_hasCustomSettings;
 + (void)_setHasCustomSettings:(bool)arg1;
-+ (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (void)initialize;
++ (void)performLayoutOperation:(id /* block */)arg1;
 + (id)stringDrawingTextStorage;
 
 - (long long)_applicationFrameworkContext;
 - (double)_baselineDelta;
 - (bool)_baselineMode;
 - (bool)_forceWordWrapping;
-- (bool)_isDeallocating;
 - (bool)_isStringDrawingTextStorage;
 - (void)_setApplicationFrameworkContext:(long long)arg1;
 - (void)_setBaselineDelta:(double)arg1;
@@ -48,7 +47,6 @@
 - (void)_setForceWordWrapping:(bool)arg1;
 - (void)_setUsesSimpleTextEffects:(bool)arg1;
 - (bool)_shouldSetOriginalFontAttribute;
-- (bool)_tryRetain;
 - (bool)_usesSimpleTextEffects;
 - (void)addAttribute:(id)arg1 value:(id)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
 - (id)attribute:(id)arg1 atIndex:(unsigned long long)arg2 effectiveRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg3;
@@ -66,7 +64,6 @@
 - (id)layoutManager;
 - (unsigned long long)length;
 - (void)processEditing;
-- (oneway void)release;
 - (void)replaceCharactersInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 withAttributedString:(id)arg2;
 - (void)replaceCharactersInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 withString:(id)arg2;
 - (void)setAttributes:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;

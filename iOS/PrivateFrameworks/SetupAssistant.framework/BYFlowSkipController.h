@@ -12,7 +12,6 @@
 + (id)_actionIdentifierForFlowSkipIdentifier:(id)arg1;
 + (void)_clearShouldObserveChangeFromNetworkSSID;
 + (id)_flowSkipIdentifierFromActionIdentifier:(id)arg1;
-+ (id)_localizedStringListOfStrings:(id)arg1;
 + (id)_localizedStringListingFlowSkipIdentifiers:(id)arg1;
 + (id)_modelSpecificLocalizedStringKeyForKey:(id)arg1;
 + (void)_setShouldObserveChangeFromNetworkSSID:(id)arg1;

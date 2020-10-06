@@ -7,6 +7,7 @@
     NSMapTable * _addressToSymbolNameMap;
     NSArray * _binaryImages;
     NSString * _binaryImagesDescription;
+    unsigned long long  _cambriaRuntimeObjectID;
     unsigned long long  _options;
     VMUSampler * _sampler;
     <VMUStackLogReader> * _stackLogReader;
@@ -16,6 +17,7 @@
     }  _symbolicator;
     NSMapTable * _threadPortToNameMap;
     NSMutableSet * _uniqueNodeNames;
+    NSArray * _vmRegions;
 }
 
 @property (nonatomic, copy) NSString *binaryImagesDescription;
@@ -35,6 +37,8 @@
 - (id)initWithCallGraphFile:(id)arg1 fileHeader:(id*)arg2 topFunctionsList:(id*)arg3 binaryImagesList:(id*)arg4;
 - (id)initWithSymbolicator:(struct _CSTypeRef { unsigned long long x1; unsigned long long x2; })arg1 sampler:(id)arg2 options:(unsigned long long)arg3;
 - (void)setBinaryImagesDescription:(id)arg1;
+- (void)setCambriaRuntimeVMObjectID:(unsigned long long)arg1;
 - (void)setStackLogReader:(id)arg1;
+- (void)setVMRegions:(id)arg1;
 
 @end

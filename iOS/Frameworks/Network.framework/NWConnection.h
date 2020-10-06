@@ -43,7 +43,6 @@
 - (id)copyError;
 - (id)currentPath;
 - (id)description;
-- (void)dumpTimestamps;
 - (id)endpoint;
 - (id)error;
 - (void)forceCancel;

@@ -10,8 +10,8 @@
 
 + (id)protobufSchema;
 
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (int)pid;
 - (void)setPid:(int)arg1;
 

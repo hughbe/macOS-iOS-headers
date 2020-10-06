@@ -50,6 +50,7 @@
     NSObject<OS_nw_protocol_definition> * multiplexed_message_definition;
     struct nw_protocol { unsigned char x1[16]; struct nw_protocol_identifier {} *x2; struct nw_protocol_callbacks {} *x3; struct nw_protocol {} *x4; void *x5; struct nw_protocol {} *x6; void *x7; } * multiplexed_message_protocol;
     NSObject<OS_nw_read_request> * new_flow_read_requests;
+    unsigned int  path_is_direct;
     unsigned int  pending_write_bytes;
     int  pre_connected_fd;
     struct nw_protocol_callbacks { 
@@ -124,6 +125,7 @@
         NSObject<OS_nw_protocol_metadata> *input_metadata; 
         NSObject<OS_nw_content_context> *output_context; 
         NSObject<OS_nw_dictionary> *input_contexts; 
+        NSObject<OS_nw_content_context> *single_input_context; 
         struct nw_frame_array_s { 
             struct nw_frame {} *tqh_first; 
             struct nw_frame {} **tqh_last; 
@@ -136,8 +138,12 @@
         unsigned int servicing_reads : 1; 
         unsigned int input_finished : 1; 
         unsigned int waiting_for_initial_read : 1; 
-        unsigned int __pad_bits : 3; 
-        unsigned char __pad[7]; 
+        unsigned int delivered_final_read : 1; 
+        unsigned int flow_unregistered : 1; 
+        unsigned int flow_disconnected : 1; 
+        unsigned int waiting_for_connected : 1; 
+        unsigned int unused : 7; 
+        unsigned char __pad[6]; 
     }  shared_protocol;
     struct _DNSServiceRef_t { } * sleep_proxy_ref;
     unsigned int  snapshot_count;

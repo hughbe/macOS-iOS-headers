@@ -10,10 +10,12 @@
 @property (nonatomic, readonly) CNContact *contact;
 @property (nonatomic, readonly) NSString *containerIdentifier;
 
++ (unsigned long long)instanceSortOrder;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (void)acceptEventVisitor:(id)arg1;
+- (long long)comparisonResultWithinSameClass:(id)arg1;
 - (id)contact;
 - (id)containerIdentifier;
 - (id)description;

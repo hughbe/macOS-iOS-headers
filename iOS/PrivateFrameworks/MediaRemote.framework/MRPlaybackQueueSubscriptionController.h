@@ -4,18 +4,17 @@
 
 @interface MRPlaybackQueueSubscriptionController : NSObject <NSSecureCoding> {
     MSVMutableBidirectionalDictionary * _offsets;
-    _MRNowPlayingPlayerPathProtobuf * _playerPath;
+    MRPlayerPath * _playerPath;
     NSObject<OS_dispatch_queue> * _queue;
     NSMutableArray * _requestFilters;
     NSMutableSet * _requests;
 }
 
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (void)_removeRequestID:(id)arg1;
 - (void)addRequest:(id)arg1;
 - (void)augmentCommandOptions:(id)arg1 forCommand:(unsigned int)arg2;
 - (id)contentItemIdentifierForOffset:(long long)arg1;
@@ -30,7 +29,6 @@
 - (id)offsetForIdentifier:(id)arg1;
 - (id)playerPath;
 - (void)removeRequest:(id)arg1;
-- (id)requestForContentItemIdentifier:(id)arg1;
 - (id)requestForSubscribedContentItemIdentifier:(id)arg1;
 - (void)restoreStateFromController:(id)arg1;
 - (void)subscribeToPlaybackQueue:(id)arg1 forRequest:(id)arg2;

@@ -5,12 +5,15 @@
 @interface NEConfiguration : NSObject <NEConfigurationValidating, NEProfilePayloadHandlerDelegate, NSCopying, NSSecureCoding> {
     NEVPN * _VPN;
     NEAOVPN * _alwaysOnVPN;
+    long long  _appPermissionType;
+    NEAppPush * _appPush;
     NEVPNApp * _appVPN;
     NSString * _application;
     NSString * _applicationIdentifier;
     NSString * _applicationName;
     NEContentFilter * _contentFilter;
     NEDNSProxy * _dnsProxy;
+    NEDNSSettingsBundle * _dnsSettings;
     NSString * _externalIdentifier;
     long long  _grade;
     NSUUID * _identifier;
@@ -21,12 +24,15 @@
 
 @property (copy) NEVPN *VPN;
 @property (copy) NEAOVPN *alwaysOnVPN;
+@property (nonatomic) long long appPermissionType;
+@property (copy) NEAppPush *appPush;
 @property (copy) NEVPNApp *appVPN;
 @property (copy) NSString *application;
 @property (copy) NSString *applicationIdentifier;
 @property (copy) NSString *applicationName;
 @property (copy) NEContentFilter *contentFilter;
 @property (copy) NEDNSProxy *dnsProxy;
+@property (copy) NEDNSSettingsBundle *dnsSettings;
 @property (copy) NSString *externalIdentifier;
 @property (readonly) long long grade;
 @property (readonly) NSUUID *identifier;
@@ -47,6 +53,8 @@
 - (void).cxx_destruct;
 - (id)VPN;
 - (id)alwaysOnVPN;
+- (long long)appPermissionType;
+- (id)appPush;
 - (id)appVPN;
 - (id)application;
 - (id)applicationIdentifier;
@@ -70,6 +78,7 @@
 - (id)description;
 - (id)descriptionWithOptions:(unsigned long long)arg1;
 - (id)dnsProxy;
+- (id)dnsSettings;
 - (void)encodeWithCoder:(id)arg1;
 - (id)externalIdentifier;
 - (id)generateSignature;
@@ -99,6 +108,7 @@
 - (id)initWithConfiguration:(id)arg1;
 - (id)initWithContentFilterPayload:(id)arg1 configurationName:(id)arg2 grade:(long long)arg3;
 - (id)initWithDNSProxyPayload:(id)arg1 configurationName:(id)arg2 grade:(long long)arg3;
+- (id)initWithDNSSettingsPayload:(id)arg1 configurationName:(id)arg2 grade:(long long)arg3;
 - (id)initWithIdentifier:(id)arg1;
 - (id)initWithName:(id)arg1 grade:(long long)arg2;
 - (id)initWithPathControllerPayload:(id)arg1 configurationName:(id)arg2 grade:(long long)arg3;
@@ -114,10 +124,13 @@
 - (void)setAlwaysOnVPN:(id)arg1;
 - (bool)setAppLayerVPNRuleSettings:(id)arg1 withAppIdentifier:(id)arg2;
 - (bool)setAppLayerVPNUUID:(id)arg1 andSafariDomains:(id)arg2;
+- (void)setAppPermissionType:(long long)arg1;
+- (void)setAppPush:(id)arg1;
 - (void)setAppVPN:(id)arg1;
 - (void)setApplication:(id)arg1;
 - (void)setApplicationIdentifier:(id)arg1;
 - (void)setApplicationName:(id)arg1;
+- (bool)setAssociatedDomains:(id)arg1;
 - (bool)setCalendarDomains:(id)arg1;
 - (bool)setCalendarDomains:(id)arg1 accountIdentifiers:(id)arg2;
 - (bool)setCertificateContentFilter:(id)arg1;
@@ -131,6 +144,8 @@
 - (bool)setContactsDomains:(id)arg1 accountIdentifiers:(id)arg2;
 - (void)setContentFilter:(id)arg1;
 - (void)setDnsProxy:(id)arg1;
+- (void)setDnsSettings:(id)arg1;
+- (bool)setExcludedDomains:(id)arg1;
 - (void)setExternalIdentifier:(id)arg1;
 - (bool)setMailDomains:(id)arg1;
 - (bool)setMailDomains:(id)arg1 accountIdentifiers:(id)arg2;

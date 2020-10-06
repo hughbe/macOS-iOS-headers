@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIDevice : NSObject <DebugHierarchyEntryPoint_Fallback, DebugHierarchyObject_Fallback> {
+@interface UIDevice : NSObject {
     float  _batteryLevel;
     struct { 
         unsigned int batteryMonitoringEnabled : 1; 
@@ -23,11 +23,8 @@
 @property (getter=isBatteryMonitoringEnabled, nonatomic) bool batteryMonitoringEnabled;
 @property (nonatomic, readonly) long long batteryState;
 @property (nonatomic, readonly, retain) NSString *buildVersion;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (getter=_feedbackSupportLevel, nonatomic, readonly) long long feedbackSupportLevel;
 @property (getter=isGeneratingDeviceOrientationNotifications, nonatomic, readonly) bool generatesDeviceOrientationNotifications;
-@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) NSUUID *identifierForVendor;
 @property (nonatomic, readonly) NSString *localizedModel;
 @property (nonatomic, readonly) NSString *model;
@@ -37,7 +34,6 @@
 @property (nonatomic, readonly) long long orientation;
 @property (getter=isProximityMonitoringEnabled, nonatomic) bool proximityMonitoringEnabled;
 @property (nonatomic, readonly) bool proximityState;
-@property (readonly) Class superclass;
 @property (nonatomic, readonly) NSString *systemName;
 @property (nonatomic, readonly) NSString *systemVersion;
 @property (nonatomic, readonly) long long userInterfaceIdiom;
@@ -107,11 +103,162 @@
 - (id)systemVersion;
 - (long long)userInterfaceIdiom;
 
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
 
-+ (id)fallback_debugHierarchyGroupingIDs;
-+ (id)fallback_debugHierarchyObjectsInGroupWithID:(id)arg1 outOptions:(id*)arg2;
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
++ (bool)mf_isSmalliPhone;
+
+// Image: /System/Library/PrivateFrameworks/BiometricKitUI.framework/BiometricKitUI
+
+- (bool)bkui_IsInternalInstall;
+- (bool)bkui_isRTL;
+
+// Image: /System/Library/PrivateFrameworks/CameraEffectsKit.framework/CameraEffectsKit
+
+- (unsigned long long)jfx_cpuFamily;
+- (id)jfx_deviceCharacteristicsDict;
+- (id)jfx_displayColorSpace;
+- (bool)jfx_hasDualBackCamera;
+- (bool)jfx_hasTrueDepthFrontCamera;
+- (long long)jfx_memorySize;
+- (int)jfx_numberOfCPU;
+- (id)jfx_recommendedDisplayColorSpaceForColorSpace:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (long long)cam_initialLayoutStyle;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (bool)__ck_currentDeviceIsPadOrMac;
+
+// Image: /System/Library/PrivateFrameworks/ControlCenterUIKit.framework/ControlCenterUIKit
+
++ (id)_ccuiDevicesIncapableOfGroupRendering;
+
+- (bool)ccuiSupportsGroupRendering;
+
+// Image: /System/Library/PrivateFrameworks/DrawingKit.framework/DrawingKit
+
+- (bool)dk_deviceSupportsGL;
+
+// Image: /System/Library/PrivateFrameworks/Memories.framework/Memories
+
+- (bool)canEncode2160P;
+- (bool)canSupportHEVC;
+- (bool)enoughMemoryFor2160P;
+- (bool)enoughMemoryForRendering12MPPhoto;
+- (bool)enoughPowerFor2160P;
+- (bool)enoughPowerForLargerPhotoThumbnails;
+- (long long)freeMemory;
+- (bool)hasMoreThan1GBOfMemory;
+- (bool)hasPlentyOfMemory;
+- (bool)isLargePhone;
+- (bool)isWidePhone;
+- (long long)memorySize;
+- (int)numberOfCPU;
+- (id)orientationString;
+- (bool)osVersionAtLeast:(id)arg1;
+- (bool)screenCanShow2160P;
+- (bool)sufficientOomphForZoomedRenderScale;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
++ (bool)ic_isLargeiPad;
++ (bool)ic_isLocked;
++ (bool)ic_isPlusiPhone;
++ (bool)ic_isSmalliPhone;
++ (bool)ic_isiPad;
++ (bool)ic_isiPhone;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (id)platformString;
+
+// Image: /System/Library/PrivateFrameworks/RemindersUICore.framework/RemindersUICore
+
++ (bool)ttr_isLargeiPad;
+
+// Image: /System/Library/PrivateFrameworks/Settings/WallpaperSettings.framework/WallpaperSettings
+
+- (bool)ws_hasFaceID;
+
+// Image: /System/Library/PrivateFrameworks/SettingsFoundation.framework/SettingsFoundation
+
+- (id)sf_colorCodedSerialNumber;
+- (id)sf_configString;
+- (id)sf_deviceSubTypeString;
+- (bool)sf_deviceSupportsDisplayZoom;
+- (id)sf_deviceType;
+- (bool)sf_isAppleTV;
+- (bool)sf_isAudioAccessory;
+- (bool)sf_isCarrierInstall;
+- (bool)sf_isChinaRegionCellularDevice;
+- (bool)sf_isInternalInstall;
+- (bool)sf_isiPad;
+- (bool)sf_isiPhone;
+- (id)sf_monthAndYearOfManufacture;
+- (id)sf_plantCode;
+- (id)sf_productType;
+- (id)sf_regionCode;
+- (id)sf_regulatoryDeviceVariant;
+- (id)sf_screenClassString;
+- (id)sf_serialNumber;
+- (id)sf_serialNumberQRImage;
+- (id)sf_udidString;
+- (unsigned long long)sf_weekOfManufacture;
+- (unsigned long long)sf_yearOfManufacture;
+
+// Image: /System/Library/PrivateFrameworks/Silex.framework/Silex
+
++ (bool)sx_isSpectreDevice;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
++ (id)platform;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (id)_currentProduct;
+- (id)_deviceInfoForKey:(struct __CFString { }*)arg1;
+- (id)_lowQualityDevicesForFeatherBlur;
+- (id)_mediumQualityDevicesForHomeScreenBlur;
+- (long long)sbf_animatedBlurRadiusGraphicsQuality;
+- (long long)sbf_featherBlurGraphicsQuality;
+- (long long)sbf_homeGrabberGraphicsQuality;
+
+// Image: /System/Library/PrivateFrameworks/Stocks/StocksAnalytics.framework/StocksAnalytics
+
+- (id)sa_buildVersion;
+
+// Image: /System/Library/PrivateFrameworks/TSUtility.framework/TSUtility
+
++ (id)platformString;
+
+// Image: /System/Library/PrivateFrameworks/TestFlightCore.framework/TestFlightCore
+
++ (bool)tf_deviceHasFaceID;
++ (bool)tf_deviceHasTopPowerButton;
++ (id)tf_screenshotInstructionImageName;
+
+// Image: /System/Library/PrivateFrameworks/WiFiKitUI.framework/WiFiKitUI
+
++ (bool)currentIsIPad;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSKit.framework/TSKit
+
++ (bool)tsk_iPadDevice;
++ (bool)tsk_iPodTouchDevice;
++ (bool)tsk_landscapePhoneUI;
++ (bool)tsk_padUI;
++ (bool)tsk_phoneDevice;
++ (bool)tsk_phoneUI;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)platformString;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)platformString;
 
 @end

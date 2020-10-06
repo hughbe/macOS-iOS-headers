@@ -41,6 +41,7 @@
 @property (copy) NSString *albumPersistentID;
 @property (copy) NSString *applicationName;
 @property (readonly) NSDictionary *attributes;
+@property (copy) NSArray *autocompleteTriggers;
 @property (retain) NSNumber *backgroundRunnable;
 @property (copy) NSString *bundleID;
 @property (nonatomic, readonly) struct { char *x1; struct { unsigned int x_2_1_1; unsigned char x_2_1_2; } x2; } codedAttributes;
@@ -70,6 +71,15 @@
 @property (copy) NSString *filename;
 @property (nonatomic, readonly) bool hasCodedCustomAttributes;
 @property (nonatomic, readonly) bool hasKnownKeysDictionary;
+@property (nonatomic, copy) NSString *ic_dataSourceIdentifier;
+@property (nonatomic) bool ic_hasAttachments;
+@property (nonatomic) bool ic_hasChecklists;
+@property (nonatomic) bool ic_hasDrawings;
+@property (nonatomic) bool ic_hasScannedDocuments;
+@property (nonatomic) bool ic_isLocked;
+@property (nonatomic) bool ic_isShared;
+@property (nonatomic, retain) NSString *ic_relatedNoteUniqueIdentifier;
+@property (nonatomic) unsigned long long ic_searchResultType;
 @property (copy) NSData *intentData;
 @property (retain) NSNumber *isPlaceholder;
 @property (retain) NSNumber *isZombie;
@@ -106,6 +116,7 @@
 @property long long searchableItemFlags;
 @property (getter=isShared, nonatomic, retain) NSNumber *shared;
 @property (copy) NSString *sharedItemCurrentUserRole;
+@property (retain) NSNumber *shortcutAvailability;
 @property (retain) NSNumber *subItemCount;
 @property (copy) NSString *subtitle;
 @property (copy) NSString *suggestedInvocationPhrase;
@@ -120,6 +131,8 @@
 @property (copy) NSString *userActivityType;
 @property (copy) NSArray *userTags;
 @property (copy) NSString *versionIdentifier;
+
+// Image: /System/Library/Frameworks/CoreSpotlight.framework/CoreSpotlight
 
 + (id)_allKeys;
 + (id)_requiredAttributesForContentType:(id)arg1;
@@ -198,6 +211,7 @@
 - (id)authorEmailAddresses;
 - (id)authorNames;
 - (id)authors;
+- (id)autocompleteTriggers;
 - (id)backgroundRunnable;
 - (id)bitsPerSample;
 - (id)bundleID;
@@ -299,6 +313,7 @@
 - (id)initWithAttributeSet:(id)arg1;
 - (id)initWithAttributes:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithContentType:(id)arg1;
 - (id)initWithDecoder:(id)arg1 obj:(struct { char *x1; struct { unsigned int x_2_1_1; unsigned char x_2_1_2; } x2; })arg2;
 - (id)initWithItemContentType:(id)arg1;
 - (id)initWithKnownKeysDictionary:(id)arg1;
@@ -461,6 +476,7 @@
 - (void)setAuthorEmailAddresses:(id)arg1;
 - (void)setAuthorNames:(id)arg1;
 - (void)setAuthors:(id)arg1;
+- (void)setAutocompleteTriggers:(id)arg1;
 - (void)setBackgroundRunnable:(id)arg1;
 - (void)setBitsPerSample:(id)arg1;
 - (void)setBundleID:(id)arg1;
@@ -662,6 +678,7 @@
 - (void)setSecurityMethod:(id)arg1;
 - (void)setShared:(id)arg1;
 - (void)setSharedItemCurrentUserRole:(id)arg1;
+- (void)setShortcutAvailability:(id)arg1;
 - (void)setSpeed:(id)arg1;
 - (void)setStartDate:(id)arg1;
 - (void)setStateOrProvince:(id)arg1;
@@ -706,6 +723,7 @@
 - (void)setWeakRelatedUniqueIdentifier:(id)arg1;
 - (void)setWhiteBalance:(id)arg1;
 - (id)sharedItemCurrentUserRole;
+- (id)shortcutAvailability;
 - (id)speed;
 - (id)startDate;
 - (id)stateOrProvince;
@@ -762,5 +780,47 @@
 - (id)videoBitRate;
 - (id)weakRelatedUniqueIdentifier;
 - (id)whiteBalance;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (id)__ck_itemContentCreationDate;
+- (id)__ck_privateMutableAttributesDictionary;
+- (id)__ck_spotlightItemSnippet;
+
+// Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
+
++ (id)ic_customAttributeKeyDictionary;
++ (id)ic_customAttributeKeyWithName:(id)arg1 searchable:(bool)arg2 searchableByDefault:(bool)arg3 unique:(bool)arg4 multiValued:(bool)arg5;
++ (id)ic_dataSourceIdentifierCustomKey;
++ (id)ic_itemHasAttachmentsCustomKey;
++ (id)ic_itemHasChecklistsCustomKey;
++ (id)ic_itemHasDrawingsCustomKey;
++ (id)ic_itemHasScannedDocumentsCustomKey;
++ (id)ic_itemIsLockedCustomKey;
++ (id)ic_itemIsSharedCustomKey;
++ (id)ic_relatedNoteUniqueIdentifierCustomKey;
++ (id)ic_searchResultTypeCustomKey;
++ (id)ic_specializedIndexFieldAttributeKeyForStringField:(id)arg1;
+
+- (id)ic_dataSourceIdentifier;
+- (bool)ic_hasAttachments;
+- (bool)ic_hasChecklists;
+- (bool)ic_hasDrawings;
+- (bool)ic_hasScannedDocuments;
+- (bool)ic_isLocked;
+- (bool)ic_isShared;
+- (void)ic_populateValuesForSpecializedFields;
+- (id)ic_relatedNoteUniqueIdentifier;
+- (unsigned long long)ic_relevance;
+- (unsigned long long)ic_searchResultType;
+- (void)setIc_dataSourceIdentifier:(id)arg1;
+- (void)setIc_hasAttachments:(bool)arg1;
+- (void)setIc_hasChecklists:(bool)arg1;
+- (void)setIc_hasDrawings:(bool)arg1;
+- (void)setIc_hasScannedDocuments:(bool)arg1;
+- (void)setIc_isLocked:(bool)arg1;
+- (void)setIc_isShared:(bool)arg1;
+- (void)setIc_relatedNoteUniqueIdentifier:(id)arg1;
+- (void)setIc_searchResultType:(unsigned long long)arg1;
 
 @end

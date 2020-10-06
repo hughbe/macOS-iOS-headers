@@ -17,20 +17,13 @@
 + (id)defaultName;
 + (unsigned long long)defaultSize;
 + (id)keyValueStoreWithName:(id)arg1 size:(unsigned long long)arg2;
-+ (id)log;
-+ (void*)openOrCreateSharedMemoryWithName:(id)arg1 size:(unsigned long long)arg2;
-+ (id)readKeyedDataDictionaryFromMemory:(void*)arg1 size:(unsigned long long)arg2;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
 - (id)allKeys;
-- (bool)asyncPersistToShMemWithCompletionBlock:(id /* block */)arg1;
 - (id)dataForKey:(id)arg1;
 - (id)description;
-- (id)errorForExceedingSizeLimits;
-- (id)initWithName:(id)arg1 size:(unsigned long long)arg2;
 - (void*)memoryPointer;
-- (bool)persistToShMemWithCompletionBlock:(id /* block */)arg1;
 - (bool)removeDataForKey:(id)arg1;
 - (bool)removeDataForKeys:(id)arg1;
 - (bool)setData:(id)arg1 forKey:(id)arg2;

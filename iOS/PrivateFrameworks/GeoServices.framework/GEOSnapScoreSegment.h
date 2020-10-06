@@ -12,12 +12,7 @@
         unsigned int read_attributes : 1; 
         unsigned int read_categoryScores : 1; 
         unsigned int read_pointOnLine : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_attributes : 1; 
-        unsigned int wrote_categoryScores : 1; 
-        unsigned int wrote_geoId : 1; 
-        unsigned int wrote_pointOnLine : 1; 
-        unsigned int wrote_overallScore : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned long long  _geoId;
     float  _overallScore;
@@ -46,11 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAttribute:(id)arg1;
-- (void)_addNoFlagsCategoryScore:(id)arg1;
-- (void)_readAttributes;
-- (void)_readCategoryScores;
-- (void)_readPointOnLine;
 - (void)addAttribute:(id)arg1;
 - (void)addCategoryScore:(id)arg1;
 - (id)attributeAtIndex:(unsigned long long)arg1;
@@ -73,7 +63,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (float)overallScore;
 - (id)pointOnLine;

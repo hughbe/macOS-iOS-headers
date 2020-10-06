@@ -10,10 +10,7 @@
         unsigned int read_boundingBoxs : 1; 
         unsigned int read_geohashes : 1; 
         unsigned int read_name : 1; 
-        unsigned int wrote_area : 1; 
-        unsigned int wrote_boundingBoxs : 1; 
-        unsigned int wrote_geohashes : 1; 
-        unsigned int wrote_name : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _geohashes;
     NSString * _name;
@@ -37,12 +34,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsBoundingBox:(id)arg1;
-- (void)_addNoFlagsGeohashes:(id)arg1;
-- (void)_readArea;
-- (void)_readBoundingBoxs;
-- (void)_readGeohashes;
-- (void)_readName;
 - (void)addBoundingBox:(id)arg1;
 - (void)addGeohashes:(id)arg1;
 - (id)area;
@@ -63,7 +54,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)name;
 - (void)readAll:(bool)arg1;

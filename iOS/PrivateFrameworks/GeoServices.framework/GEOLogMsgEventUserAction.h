@@ -8,10 +8,7 @@
         unsigned int has_userActionEventTarget : 1; 
         unsigned int read_userActionEventKey : 1; 
         unsigned int read_userActionEventValue : 1; 
-        unsigned int wrote_userActionEventKey : 1; 
-        unsigned int wrote_userActionEventValue : 1; 
-        unsigned int wrote_userActionEventAction : 1; 
-        unsigned int wrote_userActionEventTarget : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -39,8 +36,6 @@
 - (void).cxx_destruct;
 - (int)StringAsUserActionEventAction:(id)arg1;
 - (int)StringAsUserActionEventTarget:(id)arg1;
-- (void)_readUserActionEventKey;
-- (void)_readUserActionEventValue;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -52,7 +47,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

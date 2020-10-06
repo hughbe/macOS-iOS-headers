@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_labelLanguage : 1; 
         unsigned int read_labelText : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_labelLanguage : 1; 
-        unsigned int wrote_labelText : 1; 
-        unsigned int wrote_minZoom : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _labelLanguage;
     NSString * _labelText;
@@ -36,8 +33,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readLabelLanguage;
-- (void)_readLabelText;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -49,7 +44,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)labelLanguage;
 - (id)labelText;
 - (void)mergeFrom:(id)arg1;

@@ -92,14 +92,26 @@
         unsigned int supportsReadSubdivCache : 1; 
         unsigned int supportsWriteSubdivCache : 1; 
     }  _privateRendererOwnerDelegationConformance;
-    unsigned int  _privateRendererShouldForwardSceneRendererDelegationMessagesToOwner;
     SCNMTLRenderContext * _renderContext;
     unsigned long long  _renderingAPI;
     unsigned int  _renderingPrepare;
     unsigned int  _renderingSnapshot;
     unsigned int  _rendersContinuously;
     SCNScene * _scene;
+    struct { 
+        unsigned int supportsUpdate : 1; 
+        unsigned int supportsDidApplyAnimations : 1; 
+        unsigned int supportsDidSimulatePhysics : 1; 
+        unsigned int supportsDidApplyConstraints : 1; 
+        unsigned int supportsWillRender : 1; 
+        unsigned int supportsDidRender : 1; 
+        unsigned int supportsInputTime : 1; 
+        unsigned int supportsReadSubdivCache : 1; 
+        unsigned int supportsWriteSubdivCache : 1; 
+    }  _selfDelegationConformance;
     unsigned int  _shouldDeleteFramebuffer;
+    unsigned int  _shouldForwardSceneRendererDelegationMessagesToPrivateRendererOwner;
+    unsigned int  _shouldForwardSceneRendererDelegationMessagesToSelf;
     bool  _showAuthoringEnvironment;
     bool  _showStatistics;
     SCNRenderer * _snapshotRenderer;
@@ -108,7 +120,6 @@
     unsigned int  _temporalAntialiasingEnabled;
     SCNRendererTransitionContext * _transitionContext;
     NSArray * _viewPoints;
-    bool  _watchAppInForeground;
 }
 
 @property (nonatomic, readonly) AVAudioEngine *audioEngine;
@@ -119,6 +130,7 @@
 @property (nonatomic, readonly) <MTLCommandQueue> *commandQueue;
 @property (nonatomic, readonly) void*context;
 @property (nonatomic, readonly) <MTLRenderCommandEncoder> *currentRenderCommandEncoder;
+@property (nonatomic, readonly) MTLRenderPassDescriptor *currentRenderPassDescriptor;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } currentViewport;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) unsigned long long debugOptions;
@@ -208,11 +220,10 @@
 - (void)_prepareGLRenderTarget;
 - (bool)_prepareObject:(id)arg1 shouldAbortBlock:(id /* block */)arg2;
 - (unsigned long long)_preparePixelFormat;
-- (bool)_preparePreloadRenderer;
+- (bool)_preparePreloadRenderer:(id)arg1;
 - (void)_prepareRenderTarget;
 - (id)_prepareSKRenderer;
 - (void)_presentFramebuffer;
-- (bool)_privateRendererShouldForwardSceneRendererDelegationMessagesToOwner;
 - (struct SCNVector3 { float x1; float x2; float x3; })_projectPoint:(struct SCNVector3 { float x1; float x2; float x3; })arg1 viewport:(struct SCNVector4 { float x1; float x2; float x3; float x4; })arg2;
 - (void)_projectPoints:(struct SCNVector3 { float x1; float x2; float x3; }*)arg1 count:(unsigned long long)arg2 viewport:(struct SCNVector4 { float x1; float x2; float x3; float x4; })arg3;
 - (id)_readSubdivCacheForHash:(id)arg1;
@@ -237,6 +248,7 @@
 - (void)_setupOffscreenRendererWithSize:(struct CGSize { double x1; double x2; })arg1;
 - (id)_setupSKRendererIfNeeded;
 - (bool)_shouldDelegateARCompositing;
+- (bool)_shouldForwardSceneRendererDelegationMessagesToPrivateRendererOwner;
 - (bool)_showsAuthoringEnvironment;
 - (void)_stop;
 - (double)_superSamplingFactor;
@@ -249,6 +261,7 @@
 - (void)_updateSystemTimeAndDeltaTimeWithCurrentTime:(double)arg1;
 - (void)_updateWithSystemTime:(double)arg1;
 - (struct SCNVector4 { float x1; float x2; float x3; float x4; })_viewport;
+- (bool)_wantsSceneRendererDelegationMessages;
 - (void)_willRenderScene:(id)arg1;
 - (void)_writeSubdivCacheForHash:(id)arg1 dataProvider:(id /* block */)arg2;
 - (void)adjustViewportForRendering;
@@ -348,15 +361,16 @@
 - (void)set_enablesDeferredShading:(bool)arg1;
 - (void)set_nextFrameTime:(double)arg1;
 - (void)set_preparePixelFormat:(unsigned long long)arg1;
-- (void)set_privateRendererShouldForwardSceneRendererDelegationMessagesToOwner:(bool)arg1;
 - (void)set_recordWithoutExecute:(bool)arg1;
 - (void)set_screenTransform:(struct SCNMatrix4 { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; })arg1;
 - (void)set_shouldDelegateARCompositing:(bool)arg1;
+- (void)set_shouldForwardSceneRendererDelegationMessagesToPrivateRendererOwner:(bool)arg1;
 - (void)set_showsAuthoringEnvironment:(bool)arg1;
 - (void)set_superSamplingFactor:(double)arg1;
 - (void)set_systemTime:(double)arg1;
 - (void)set_viewport:(struct SCNVector4 { float x1; float x2; float x3; float x4; })arg1;
-- (void)setupAuthoringEnvironement;
+- (void)set_wantsSceneRendererDelegationMessages:(bool)arg1;
+- (void)setupAuthoringEnvironment;
 - (bool)showsStatistics;
 - (id)snapshotAtTime:(double)arg1;
 - (id)snapshotAtTime:(double)arg1 withSize:(struct CGSize { double x1; double x2; })arg2 antialiasingMode:(unsigned long long)arg3;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBTrainTrip : PBCodable <NSCopying, NSSecureCoding, _INPBTrainTrip> {
-    bool  __encodeLegacyGloryData;
     NSString * _arrivalPlatform;
     _INPBLocationValue * _arrivalStationLocation;
     NSString * _departurePlatform;
@@ -16,7 +15,6 @@
     _INPBDateTimeRange * _tripDuration;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *arrivalPlatform;
 @property (nonatomic, retain) _INPBLocationValue *arrivalStationLocation;
 @property (readonly, copy) NSString *debugDescription;
@@ -43,8 +41,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)arrivalPlatform;
 - (id)arrivalStationLocation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

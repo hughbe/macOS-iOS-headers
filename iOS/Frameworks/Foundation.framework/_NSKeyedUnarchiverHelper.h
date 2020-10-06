@@ -7,6 +7,8 @@
     NSError * _decodeError;
     unsigned int  _lastRef;
     NSArray * _white;
+    bool  decodedCollection;
+    bool  expectsUnnestedCollection;
 }
 
 @property (copy) NSError *decodeError;

@@ -37,6 +37,7 @@
 - (NSNumber *)contactCountForFetchRequest:(CNContactFetchRequest *)arg1 error:(id*)arg2;
 - (NSString *)contactIdentifierWithMatchingDictionary:(NSDictionary *)arg1;
 - (CNContact *)contactWithUserActivityUserInfo:(NSDictionary *)arg1 keysToFetch:(NSArray *)arg2;
+- (CNResult *)currentHistoryAnchor;
 - (NSData *)currentHistoryToken;
 - (<CNKeyDescriptor> *)descriptorForRequiredKeysForMatchingDictionary;
 - (bool)executeChangeHistoryClearRequest:(CNChangeHistoryClearRequest *)arg1 error:(id*)arg2;

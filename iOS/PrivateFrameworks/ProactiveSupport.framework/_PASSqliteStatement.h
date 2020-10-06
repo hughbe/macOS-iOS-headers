@@ -11,12 +11,18 @@
 @property (nonatomic, readonly) struct sqlite3_stmt { }*stmt;
 
 - (void).cxx_destruct;
+- (int)_bindParam:(int)arg1 toCollection:(id)arg2 sqliteMethodName:(const char *)arg3;
 - (int)bindNamedParam:(const char *)arg1 toDouble:(double)arg2;
 - (int)bindNamedParam:(const char *)arg1 toDoubleAsNSNumber:(id)arg2;
 - (int)bindNamedParam:(const char *)arg1 toInt64:(long long)arg2;
 - (int)bindNamedParam:(const char *)arg1 toInt64AsNSNumber:(id)arg2;
 - (int)bindNamedParam:(const char *)arg1 toInteger:(long long)arg2;
+- (int)bindNamedParam:(const char *)arg1 toNSArray:(id)arg2;
 - (int)bindNamedParam:(const char *)arg1 toNSData:(id)arg2;
+- (int)bindNamedParam:(const char *)arg1 toNSDictionary:(id)arg2;
+- (int)bindNamedParam:(const char *)arg1 toNSIndexSet:(id)arg2;
+- (int)bindNamedParam:(const char *)arg1 toNSOrderedSet:(id)arg2;
+- (int)bindNamedParam:(const char *)arg1 toNSSet:(id)arg2;
 - (int)bindNamedParam:(const char *)arg1 toNSString:(id)arg2;
 - (int)bindNamedParamToNull:(const char *)arg1;
 - (int)bindParam:(int)arg1 toDouble:(double)arg2;
@@ -24,7 +30,12 @@
 - (int)bindParam:(int)arg1 toInt64:(long long)arg2;
 - (int)bindParam:(int)arg1 toInt64AsNSNumber:(id)arg2;
 - (int)bindParam:(int)arg1 toInteger:(long long)arg2;
+- (int)bindParam:(int)arg1 toNSArray:(id)arg2;
 - (int)bindParam:(int)arg1 toNSData:(id)arg2;
+- (int)bindParam:(int)arg1 toNSDictionary:(id)arg2;
+- (int)bindParam:(int)arg1 toNSIndexSet:(id)arg2;
+- (int)bindParam:(int)arg1 toNSOrderedSet:(id)arg2;
+- (int)bindParam:(int)arg1 toNSSet:(id)arg2;
 - (int)bindParam:(int)arg1 toNSString:(id)arg2;
 - (int)bindParamToNull:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

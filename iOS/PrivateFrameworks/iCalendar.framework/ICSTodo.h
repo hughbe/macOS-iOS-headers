@@ -39,6 +39,8 @@
 @property (nonatomic) unsigned long long x_apple_sort_order;
 @property (retain) ICSStructuredLocation *x_apple_structured_location;
 
+// Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
+
 + (id)name;
 
 - (id)completed;
@@ -56,5 +58,9 @@
 - (id)x_apple_activity;
 - (id)x_apple_appLinkData;
 - (unsigned long long)x_apple_sort_order;
+
+// Image: /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
+
+- (id)rem_nonNilSummary;
 
 @end

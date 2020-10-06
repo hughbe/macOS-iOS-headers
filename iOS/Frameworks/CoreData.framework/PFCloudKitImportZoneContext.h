@@ -14,6 +14,7 @@
     NSArray * _modifiedRecords;
     NSMutableDictionary * _recordTypeToRecordIDToObjectID;
     NSMutableDictionary * _recordTypeToUnresolvedRecordIDs;
+    CKRecordZone * _recordZone;
     NSArray * _updatedRecords;
     NSMutableArray * _updatedRelationships;
 }
@@ -25,6 +26,7 @@
 @property (nonatomic, readonly) NSArray *importOperations;
 @property (nonatomic, readonly) NSCloudKitMirroringDelegateOptions *mirroringOptions;
 @property (nonatomic, readonly) NSArray *modifiedRecords;
+@property (nonatomic, readonly) CKRecordZone *recordZone;
 @property (nonatomic, readonly) NSArray *updatedRelationships;
 
 - (void)addMirroredRelationshipToLink:(id)arg1;
@@ -37,13 +39,14 @@
 - (id)deletedRelationships;
 - (id)fileBackedFuturesDirectory;
 - (id)importOperations;
-- (id)initWithUpdatedRecords:(id)arg1 deletedRecordTypeToRecordIDs:(id)arg2 options:(id)arg3 fileBackedFuturesDirectory:(id)arg4;
+- (id)initWithRecordZone:(id)arg1 updatedRecords:(id)arg2 deletedRecordTypeToRecordIDs:(id)arg3 options:(id)arg4 fileBackedFuturesDirectory:(id)arg5;
 - (bool)initializeCachesWithManagedObjectContext:(id)arg1 andObservedStore:(id)arg2 error:(id*)arg3;
 - (bool)linkInsertedObjectsAndMetadataInContext:(id)arg1 error:(id*)arg2;
 - (id)mirroringOptions;
 - (id)modifiedRecords;
 - (id)objectIDForRecordWithID:(id)arg1 ofType:(id)arg2;
 - (bool)populateUnresolvedIDsInStore:(id)arg1 withManagedObjectContext:(id)arg2 error:(id*)arg3;
+- (id)recordZone;
 - (void)registerObject:(id)arg1 forInsertedRecord:(id)arg2 withMetadata:(id)arg3;
 - (id)updatedRelationships;
 

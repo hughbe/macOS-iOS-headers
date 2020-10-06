@@ -14,6 +14,7 @@
 @property (nonatomic, readonly) NSString *systemDisplayLanguage;
 @property (nonatomic, readonly) NSArray *systemLanguages;
 
++ (bool)canRemoveLanguages:(id)arg1 fromPreferredLanguages:(id)arg2;
 + (id)effectiveSystemLanguagesWithUnsupportedVariant:(bool)arg1 forPreferredLanguages:(id)arg2;
 + (id)generator;
 + (void)preheat;

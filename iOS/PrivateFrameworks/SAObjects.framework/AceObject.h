@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface AceObject : NSObject <AFAnalyticsContextVending, AFSecurityDigestibleChunksProviding, AceObject> {
+@interface AceObject : NSObject <AFAnalyticsContextVending, AFSecurityDigestibleChunksProviding, AceObject, SiriCoreThunking, SiriUIUUFRSayable, SiriUIUUFRShowable> {
     NSString * _aceId;
     NSNumber * _deserializationDuration;
     NSMutableDictionary * _dict;
@@ -25,15 +25,21 @@
 
 // Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
++ (id)_aceObjectWithMutableDictionary:(id)arg1;
 + (id)_aceObjectWithMutableDictionary:(id)arg1 context:(id)arg2;
 + (id)_filteredDictionaryForKeySet:(id)arg1 plistData:(id)arg2;
 + (id)_newAceObjectWithMutableDictionary:(id)arg1;
++ (id)aceObjectArrayWithDictionaryArray:(id)arg1 baseClass:(Class)arg2;
 + (id)aceObjectArrayWithDictionaryArray:(id)arg1 baseClass:(Class)arg2 context:(id)arg3;
++ (id)aceObjectArrayWithDictionaryArray:(id)arg1 baseProtocol:(id)arg2;
 + (id)aceObjectArrayWithDictionaryArray:(id)arg1 baseProtocol:(id)arg2 context:(id)arg3;
++ (id)aceObjectDictionaryWithDictionary:(id)arg1 baseClass:(Class)arg2;
 + (id)aceObjectDictionaryWithDictionary:(id)arg1 baseClass:(Class)arg2 context:(id)arg3;
++ (id)aceObjectDictionaryWithDictionary:(id)arg1 baseProtocol:(id)arg2;
 + (id)aceObjectDictionaryWithDictionary:(id)arg1 baseProtocol:(id)arg2 context:(id)arg3;
 + (id)aceObjectWithDictionary:(id)arg1;
 + (id)aceObjectWithDictionary:(id)arg1 context:(id)arg2;
++ (id)aceObjectWithGenericCommand:(id)arg1;
 + (id)aceObjectWithGenericCommand:(id)arg1 context:(id)arg2;
 + (id)aceObjectWithPlistData:(id)arg1;
 + (id)dictionaryArrayWithAceObjectArray:(id)arg1;
@@ -98,5 +104,27 @@
 - (bool)af_isUtterance;
 - (id)af_speakableText;
 - (id)af_text;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (long long)_afui_usefulUserResultType;
+- (id)afui_insertionContext;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (void)siriCore_invokeThunk;
+
+// Image: /System/Library/PrivateFrameworks/SiriTape.framework/SiriTape
+
+- (id)st_CFScripts;
+- (bool)st_hasRequestCompleted;
+- (id)st_replaceRefIDsWithID:(id)arg1;
+- (id)st_setCFScripts:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (void)_siriui_applyUserInfoDictionary:(id)arg1;
+- (id)_uufrSaid;
+- (id)_uufrShownRequestedByInstrumentationManager:(id)arg1;
 
 @end

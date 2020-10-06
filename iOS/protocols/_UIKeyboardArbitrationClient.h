@@ -11,7 +11,7 @@
 - (void)queue_keyboardIAVChanged:(void *)arg1 onComplete:(void *)arg2; // needs 2 arg types, found 6: double, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)queue_keyboardSuppressed:(void *)arg1 withCompletion:(void *)arg2; // needs 2 arg types, found 6: bool, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)queue_keyboardTransition:(void *)arg1 event:(void *)arg2 withInfo:(void *)arg3 onComplete:(void *)arg4; // needs 4 arg types, found 8: NSString *, unsigned long long, NSDictionary *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
-- (void)queue_sceneBecameFocused:(void *)arg1 withCompletion:(void *)arg2; // needs 2 arg types, found 6: NSString *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
+- (void)queue_sceneBecameFocused:(void *)arg1 withCompletion:(void *)arg2; // needs 2 arg types, found 6: FBSSceneIdentityToken *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)queue_setKeyboardDisabled:(void *)arg1 withCompletion:(void *)arg2; // needs 2 arg types, found 6: bool, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 - (void)queue_setLastEventSource:(void *)arg1 withCompletion:(void *)arg2; // needs 2 arg types, found 6: long long, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 

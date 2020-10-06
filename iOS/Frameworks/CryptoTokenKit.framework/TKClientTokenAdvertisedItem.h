@@ -15,6 +15,7 @@
 @property (nonatomic, readonly) NSDictionary *keychainAttributes;
 @property (nonatomic, readonly) id keychainClass;
 @property (nonatomic, readonly) NSString *localizedName;
+@property (nonatomic, readonly) NSData *objectID;
 @property (nonatomic, readonly) TKClientTokenSession *session;
 
 - (void).cxx_destruct;
@@ -26,6 +27,7 @@
 - (id)keychainAttributes;
 - (id)keychainClass;
 - (id)localizedName;
+- (id)objectID;
 - (id)session;
 
 @end

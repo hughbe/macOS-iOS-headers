@@ -19,6 +19,7 @@
 + (void)_removeSnoozedAlarmsFromReminder:(id)arg1 usingDueDate:(id)arg2;
 + (Class)frozenClass;
 + (id)generateUniqueIDWithReminder:(id)arg1 calendar:(id)arg2;
++ (id)knownSingleValueKeysForComparison;
 + (id)reminderWithEventStore:(id)arg1;
 
 - (void).cxx_destruct;
@@ -35,6 +36,7 @@
 - (id)dueDateComponents;
 - (id)dueDateComponents;
 - (id)dueDateTimeZone;
+- (unsigned long long)entityType;
 - (id)externalURI;
 - (id)firstAlertDate;
 - (void)forceUpdateFrozenCalendar:(id)arg1;

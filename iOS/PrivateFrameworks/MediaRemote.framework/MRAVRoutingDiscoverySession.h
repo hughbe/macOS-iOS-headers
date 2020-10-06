@@ -4,34 +4,51 @@
 
 @interface MRAVRoutingDiscoverySession : NSObject {
     bool  _alwaysAllowUpdates;
+    NSObject<OS_dispatch_queue> * _calloutQueue;
+    NSMapTable * _clientDiscoveryStates;
     NSMutableDictionary * _endpointsChangedCallbacks;
     NSMutableDictionary * _outputDevicesChangedCallbacks;
+    bool  _populatesExternalDevice;
     NSObject<OS_dispatch_queue> * _serialQueue;
 }
 
 @property (nonatomic) bool alwaysAllowUpdates;
 @property (nonatomic, readonly) NSArray *availableEndpoints;
 @property (nonatomic, readonly) NSArray *availableOutputDevices;
+@property (nonatomic, retain) NSMapTable *clientDiscoveryStates;
 @property (nonatomic, readonly) bool devicePresenceDetected;
 @property (nonatomic) unsigned int discoveryMode;
-@property (nonatomic, readonly) unsigned int endpointFeatures;
+@property (nonatomic) unsigned int endpointFeatures;
 @property (nonatomic, readonly) NSArray *endpointsChangedCallbacks;
 @property (nonatomic, readonly) NSArray *outputDevicesChangedCallbacks;
+@property (nonatomic) bool populatesExternalDevice;
 @property (nonatomic, copy) NSString *routingContextUID;
 @property (nonatomic) unsigned int targetAudioSessionID;
 
++ (id)discoverySessionWithConfiguration:(id)arg1;
 + (id)discoverySessionWithEndpointFeatures:(unsigned int)arg1;
 + (id)discoverySessionWithEndpointFeatures:(unsigned int)arg1 enableThrottling:(bool)arg2;
++ (id)sharedDiscoverySessionForClass:(Class)arg1 configuration:(id)arg2;
 
 - (void).cxx_destruct;
-- (id)_init;
 - (id)addEndpointsChangedCallback:(id /* block */)arg1;
 - (id)addOutputDevicesChangedCallback:(id /* block */)arg1;
 - (bool)alwaysAllowUpdates;
+- (id)clientDiscoveryStates;
 - (id)endpointsChangedCallbacks;
+- (id)initWithConfiguration:(id)arg1;
+- (id)initWithFeatures:(unsigned int)arg1;
+- (void)logEndpointsChanged:(id)arg1 oldEndpoints:(id)arg2;
+- (void)logOutputDevicesChanged:(id)arg1 oldOutputDevices:(id)arg2;
+- (void)notifyEndpointsChanged:(id)arg1;
+- (void)notifyOutputDevicesChanged:(id)arg1 forFeature:(unsigned int)arg2;
 - (id)outputDevicesChangedCallbacks;
+- (bool)populatesExternalDevice;
 - (void)removeEndpointsChangedCallback:(id)arg1;
 - (void)removeOutputDevicesChangedCallback:(id)arg1;
 - (void)setAlwaysAllowUpdates:(bool)arg1;
+- (void)setClientDiscoveryStates:(id)arg1;
+- (void)setEndpointFeatures:(unsigned int)arg1;
+- (void)setPopulatesExternalDevice:(bool)arg1;
 
 @end

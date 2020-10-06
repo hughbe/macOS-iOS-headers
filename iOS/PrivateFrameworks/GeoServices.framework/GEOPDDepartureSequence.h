@@ -16,15 +16,7 @@
         unsigned int read_departures : 1; 
         unsigned int read_directionNameString : 1; 
         unsigned int read_headsignString : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_nextStopIds : 1; 
-        unsigned int wrote_operatingHours : 1; 
-        unsigned int wrote_departureFrequencys : 1; 
-        unsigned int wrote_departures : 1; 
-        unsigned int wrote_directionNameString : 1; 
-        unsigned int wrote_headsignString : 1; 
-        unsigned int wrote_lineId : 1; 
-        unsigned int wrote_stopId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _headsignString;
     unsigned long long  _lineId;
@@ -67,16 +59,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsDeparture:(id)arg1;
-- (void)_addNoFlagsDepartureFrequency:(id)arg1;
-- (void)_addNoFlagsNextStopId:(unsigned long long)arg1;
-- (void)_addNoFlagsOperatingHours:(struct GEOPDTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
-- (void)_readDepartureFrequencys;
-- (void)_readDepartures;
-- (void)_readDirectionNameString;
-- (void)_readHeadsignString;
-- (void)_readNextStopIds;
-- (void)_readOperatingHours;
 - (void)addDeparture:(id)arg1;
 - (void)addDepartureFrequency:(id)arg1;
 - (void)addNextStopId:(unsigned long long)arg1;
@@ -106,7 +88,10 @@
 - (id)headsignString;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned long long)lineId;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)nextStopIdAtIndex:(unsigned long long)arg1;

@@ -16,6 +16,7 @@
 - (bool)minimumIntervalFallbackEnabled;
 - (double)minimumIntervalFallbackStateTimeout;
 - (double)minimumKeepAliveInterval;
+- (int)previousAction;
 - (void)processNextAction:(int)arg1;
 - (double)serverStatsExpectedKeepAliveInterval;
 - (double)serverStatsMaxKeepAliveInterval;

@@ -32,7 +32,10 @@
 - (bool)hasComponentValueIndex;
 - (bool)hasProblematicDepartureSequenceIndex;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)problematicDepartureSequenceIndex;
 - (void)readAll:(bool)arg1;

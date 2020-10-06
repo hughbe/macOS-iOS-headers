@@ -8,7 +8,10 @@
 
 @property (nonatomic, copy) NSString *name;
 
++ (void)_asynchronouslyEnumerateItemSet:(id)arg1 itemsCompletionHandler:(id /* block */)arg2 usingItemBlock:(id /* block */)arg3;
 + (void)_clearPinnedItemProvidersForPasteboardNamed:(id)arg1;
++ (void)_detectPatternsForPatterns:(id)arg1 atIndex:(unsigned long long)arg2 itemCollection:(id)arg3 completionHandler:(id /* block */)arg4;
++ (void)_detectValuesForPatterns:(id)arg1 atIndex:(unsigned long long)arg2 itemCollection:(id)arg3 completionHandler:(id /* block */)arg4;
 + (id)_pasteboardNamed:(id)arg1 createIfNotFound:(bool)arg2;
 + (id)_pasteboardWithName:(id)arg1 create:(bool)arg2;
 + (id)_pasteboardWithUniqueName;
@@ -23,6 +26,8 @@
 - (id)URLs;
 - (long long)_changeCountIgnoringPinningActivity;
 - (void)_clearPinnedItemProviders;
+- (id)_detectedPasteboardTypeStringsForTypes:(id)arg1;
+- (id)_detectedPasteboardTypesForTypes:(id)arg1;
 - (id)_initWithName:(id)arg1;
 - (id)_itemsCoercibleToClass:(Class)arg1;
 - (bool)_pasteboardCacheQueue_isPersistent;
@@ -46,6 +51,10 @@
 - (bool)containsPasteboardTypes:(id)arg1 inItemSet:(id)arg2;
 - (id)dataForPasteboardType:(id)arg1;
 - (id)dataForPasteboardType:(id)arg1 inItemSet:(id)arg2;
+- (void)detectPatternsForPatterns:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)detectPatternsForPatterns:(id)arg1 inItemSet:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)detectValuesForPatterns:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)detectValuesForPatterns:(id)arg1 inItemSet:(id)arg2 completionHandler:(id /* block */)arg3;
 - (bool)hasColors;
 - (bool)hasImages;
 - (bool)hasStrings;
@@ -55,6 +64,7 @@
 - (bool)isPersistent;
 - (id)itemProviders;
 - (id)itemProvidersForInstantiatingObjectsOfClass:(Class)arg1;
+- (id)itemProvidersWithRetryBehavior:(bool)arg1;
 - (id)itemSetWithPasteboardTypes:(id)arg1;
 - (id)items;
 - (id)name;

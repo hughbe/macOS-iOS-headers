@@ -12,12 +12,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_comments : 1; 
         unsigned int read_weeklyHours : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_comments : 1; 
-        unsigned int wrote_end : 1; 
-        unsigned int wrote_start : 1; 
-        unsigned int wrote_weeklyHours : 1; 
-        unsigned int wrote_hoursType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _hoursType;
     PBDataReader * _reader;
@@ -47,8 +42,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsHoursType:(id)arg1;
-- (void)_readComments;
-- (void)_readWeeklyHours;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)comments;
 - (void)copyTo:(id)arg1;
@@ -66,7 +59,10 @@
 - (id)hoursTypeAsString:(int)arg1;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

@@ -15,6 +15,7 @@
 @property bool allowsConstrainedNetworkAccess;
 @property bool allowsExpensiveNetworkAccess;
 @property unsigned long long cachePolicy;
+@property (getter=isKnownHTTP3Capable) bool knownHTTP3Capable;
 @property (copy) NSURL *mainDocumentURL;
 @property unsigned long long networkServiceType;
 @property double timeoutInterval;
@@ -48,6 +49,7 @@
 - (void)setHTTPShouldHandleCookies:(bool)arg1;
 - (void)setHTTPShouldUsePipelining:(bool)arg1;
 - (void)setHTTPUserAgent:(id)arg1;
+- (void)setKnownHTTP3Capable:(bool)arg1;
 - (void)setMainDocumentURL:(id)arg1;
 - (void)setNetworkServiceType:(unsigned long long)arg1;
 - (void)setRequestPriority:(unsigned long long)arg1;
@@ -61,9 +63,13 @@
 
 // Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
 
+- (void)aa_addAltDSIDAndRepairStateWithAccount:(id)arg1;
+- (void)aa_addAppProvidedContext:(id)arg1;
 - (bool)aa_addAuthTokenOrBasicAuthHeaderWithAccount:(id)arg1 preferUsingPassword:(bool)arg2;
 - (void)aa_addBasicAuthPasswordWithAccount:(id)arg1;
+- (void)aa_addBasicAuthorizationHeaderWithAccount:(id)arg1 authToken:(id)arg2;
 - (void)aa_addBasicAuthorizationHeaderWithAccount:(id)arg1 preferUsingPassword:(bool)arg2;
+- (void)aa_addClientInfoHeaders;
 - (void)aa_addContentTypeHeaders:(id)arg1;
 - (void)aa_addDeviceIDHeader;
 - (void)aa_addDeviceInternalDevHeaderIfEnabled;
@@ -77,6 +83,7 @@
 - (void)aa_addLocationSharingAllowedHeader;
 - (void)aa_addLoggedInAppleIDHeaderWithAccount:(id)arg1;
 - (void)aa_addMultiUserDeviceHeaderIfEnabled;
+- (void)aa_addProxiedAuthHeaderWithAccount:(id)arg1;
 - (void)aa_addTokenAuthHeaderWithAccount:(id)arg1;
 - (void)aa_setBodyWithParameters:(id)arg1;
 - (id)aa_setXMLBodyWithParameters:(id)arg1;
@@ -90,6 +97,7 @@
 - (void)ams_addAcceptLanguageHeader;
 - (void)ams_addAnisetteHeadersForAccount:(id)arg1 type:(long long)arg2 bag:(id)arg3;
 - (void)ams_addAuthKitHeaders;
+- (void)ams_addAuthorizationHeaderForAccount:(id)arg1;
 - (void)ams_addBiometricsHeadersForAccount:(id)arg1 options:(id)arg2;
 - (void)ams_addCacheBusterParameter;
 - (void)ams_addCachePolicyHeader;
@@ -115,6 +123,10 @@
 - (void)ams_addXTokenHeaderWithAccount:(id)arg1;
 - (void)ams_removeAnisetteHeaders;
 
+// Image: /System/Library/PrivateFrameworks/AskPermission.framework/AskPermission
+
+- (void)ap_setNullableValue:(id)arg1 forHTTPHeaderField:(id)arg2;
+
 // Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
 + (id)ak_anisetteHeadersWithCompanionData:(id)arg1;
@@ -124,6 +136,8 @@
 + (id)ak_deviceUDIDHeader;
 + (id)ak_localeHeader;
 + (id)ak_proxiedAnisetteHeadersWithData:(id)arg1;
++ (id)ak_proxiedClientInfoHeadersWithDevice:(id)arg1;
++ (id)ak_proxiedHeadersForDevice:(id)arg1 anisetteData:(id)arg2;
 + (id)ak_timeZoneHeader;
 
 - (void)_setAuthorizationHeaderWithToken:(id)arg1 altDSID:(id)arg2 key:(id)arg3;
@@ -145,6 +159,7 @@
 - (void)ak_addContextHeaderForServiceType:(long long)arg1;
 - (void)ak_addContinutationKeyHeader:(id)arg1;
 - (void)ak_addCountryHeader;
+- (void)ak_addDataCenterHeaderWithIdentifier:(id)arg1;
 - (void)ak_addDeviceConfigurationModeHeader;
 - (void)ak_addDeviceMLBHeader;
 - (void)ak_addDeviceModel;
@@ -159,6 +174,7 @@
 - (void)ak_addLocalUserUUIDHashHeader;
 - (void)ak_addLocaleHeader;
 - (void)ak_addLoggedInServicesHeaderForServices:(id)arg1;
+- (void)ak_addOfferSecurityUpgrade:(bool)arg1;
 - (void)ak_addPRKRequestHeader;
 - (void)ak_addPasswordResetKeyHeader:(id)arg1;
 - (void)ak_addPhoneInformationHeaderWithValue:(id)arg1;
@@ -175,6 +191,8 @@
 - (void)ak_addProxiedDeviceUDIDHeader:(id)arg1;
 - (void)ak_addProxyApp:(id)arg1;
 - (void)ak_addRecoveryHeaderWithIdentityToken:(id)arg1 forAltDSID:(id)arg2;
+- (void)ak_addRequestUUIDHeader:(id)arg1;
+- (void)ak_addSKUCountryHeader;
 - (void)ak_addShortLivedTokenHeaderWithIdentityToken:(id)arg1 forAltDSID:(id)arg2;
 - (void)ak_addShowWarranty;
 - (void)ak_addTimeZoneHeaders;
@@ -187,14 +205,78 @@
 
 - (void)bindToCommand:(struct __CNPluginCommand { struct __CFRuntimeBase { unsigned long long x_1_1_1; _Atomic unsigned long long x_1_1_2; } x1; struct __CFDictionary {} *x2; unsigned int x3; }*)arg1;
 
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
+- (void)wf_setBodyWithQueryItems:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreCDPInternal.framework/CoreCDPInternal
+
+- (void)cdp_addAuthHeaderWithContext:(id)arg1;
+- (void)cdp_addClientInfoHeader;
+
 // Image: /System/Library/PrivateFrameworks/FamilyCircle.framework/FamilyCircle
 
 - (void)fam_addiTunesHeadersWithAccount:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
++ (id)_gkHTTPRequestWithURL:(id)arg1 method:(id)arg2 postData:(id)arg3;
++ (int)hashForPlayerID:(id)arg1;
+
+- (void)setBuildVersion:(id)arg1;
+- (void)setDeviceUniqueID:(id)arg1;
+- (void)setGameDescriptor:(id)arg1;
+- (void)setInternal:(bool)arg1;
+- (void)setLocale:(id)arg1;
+- (void)setPlayerID:(id)arg1 hash:(int)arg2 authToken:(id)arg3;
+- (void)setProcessName:(id)arg1;
+- (void)setProtocolVersion:(id)arg1;
+- (void)setPushToken:(id)arg1;
+- (void)setRestrictions:(id)arg1;
+- (void)setSAPSignature:(id)arg1;
+- (void)setSAPversion:(id)arg1;
+- (void)setStoreMode:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewDeviceOutreachUI.framework/NewDeviceOutreachUI
+
+- (bool)_addGSHeadersForAccount:(id)arg1 withStore:(id)arg2 forceReprovisioning:(bool)arg3 avoidUI:(bool)arg4;
+- (id)_userAgent;
+- (id)bodyDescription;
+- (id)headerDescription;
+- (void)ndo_addOASHeadersWithOfferID:(id)arg1 serialNumber:(id)arg2;
+- (void)ndo_setCoverageRequestBodyWithSerialNumber:(id)arg1;
+- (bool)ndo_signWithAccountHeaders:(bool)arg1 avoidUI:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PromotedContentProxy.framework/PromotedContentProxy
+
+- (void)removeRecursiveRequestFlag;
+- (void)setAdIdentifier:(id)arg1;
+- (void)setMaximumRequestCount:(id)arg1;
+- (void)setRecursiveRequestFlag;
+- (void)setRequestType:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ShazamInsights.framework/ShazamInsights
+
++ (id)JSONRequestWithURL:(id)arg1 profile:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
 
 - (void)_web_setHTTPContentType:(id)arg1;
 - (void)_web_setHTTPReferrer:(id)arg1;
 - (void)_web_setHTTPUserAgent:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iAdServices.framework/iAdServices
+
+- (id)adSpaceIdentifier;
+- (id)advertisingIdentifier;
+- (id)maximumRequestCount;
+- (void)setAdSpaceIdentifier:(id)arg1;
+- (void)setAdvertisingIdentifier:(id)arg1;
+- (void)setMaximumRequestCount:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesCloud.framework/iTunesCloud
+
+- (void)ic_appendHTTPCookieWithName:(id)arg1 value:(id)arg2;
+- (void)ic_appendHTTPCookies:(id)arg1;
 
 @end

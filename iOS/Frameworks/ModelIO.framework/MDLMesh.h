@@ -38,7 +38,7 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_calculateFaceNormalsFromPositions:(float*)arg1 positionStride:(long long)arg2 normals:(float*)arg3 normalStride:(long long)arg4 creaseThreshold:(float)arg5;
-- (void)_calculateTangentBasisFromPositions:(float*)arg1 positionStride:(long long)arg2 normals:(float*)arg3 normalStride:(long long)arg4 uvs:(float*)arg5 uvStride:(long long)arg6 tangents:(float*)arg7 tangentsStride:(long long)arg8 bitagents:(float*)arg9 bitangentStride:(long long)arg10 tangentFormat:(unsigned long long)arg11;
+- (void)_calculateTangentBasisFromPositions:(float*)arg1 positionStride:(long long)arg2 normals:(float*)arg3 normalStride:(long long)arg4 uvs:(float*)arg5 uvStride:(long long)arg6 tangents:(float*)arg7 tangentsStride:(long long)arg8 bitagents:(float*)arg9 bitangentStride:(long long)arg10 tangentFormat:(unsigned long long)arg11 selector:(SEL)arg12;
 - (void)_createWithVertexBuffer:(id)arg1 vertexCount:(unsigned long long)arg2 descriptor:(id)arg3 submeshes:(id)arg4;
 - (void)_enumerateSubmeshesUsingBlock:(id /* block */)arg1 stopPointer:(bool*)arg2;
 - (void)addAttributeWithName:(id)arg1 format:(unsigned long long)arg2;

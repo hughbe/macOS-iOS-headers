@@ -9,6 +9,7 @@
     NSData * _mostRecentEffectiveRootLocation;
     NSData * _mostRecentlyVisitedLocation;
     NSDictionary * _sortingMode;
+    NSNumber * _userPrefersTiledSidebarHidden;
 }
 
 @property (nonatomic, retain) NSNumber *browseTabSelected;
@@ -17,6 +18,7 @@
 @property (nonatomic, retain) NSData *mostRecentEffectiveRootLocation;
 @property (nonatomic, retain) NSData *mostRecentlyVisitedLocation;
 @property (nonatomic, retain) NSDictionary *sortingMode;
+@property (nonatomic, retain) NSNumber *userPrefersTiledSidebarHidden;
 
 + (bool)supportsSecureCoding;
 
@@ -38,6 +40,8 @@
 - (void)setMostRecentEffectiveRootLocation:(id)arg1;
 - (void)setMostRecentlyVisitedLocation:(id)arg1;
 - (void)setSortingMode:(id)arg1;
+- (void)setUserPrefersTiledSidebarHidden:(id)arg1;
 - (id)sortingMode;
+- (id)userPrefersTiledSidebarHidden;
 
 @end

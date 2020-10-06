@@ -48,12 +48,14 @@
 - (void)setSecondaryTitle:(_SFPBFormattedText *)arg1;
 - (void)setSecondaryTitleImage:(_SFPBImage *)arg1;
 - (void)setSeparatorStyle:(int)arg1;
+- (void)setShouldUseCompactDisplay:(bool)arg1;
 - (void)setThumbnail:(_SFPBImage *)arg1;
 - (void)setTitle:(_SFPBRichText *)arg1;
 - (void)setTrailingBottomText:(_SFPBFormattedText *)arg1;
 - (void)setTrailingMiddleText:(_SFPBFormattedText *)arg1;
 - (void)setTrailingTopText:(_SFPBFormattedText *)arg1;
 - (void)setType:(NSString *)arg1;
+- (bool)shouldUseCompactDisplay;
 - (_SFPBImage *)thumbnail;
 - (_SFPBRichText *)title;
 - (_SFPBFormattedText *)trailingBottomText;

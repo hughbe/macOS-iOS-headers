@@ -3,9 +3,15 @@
  */
 
 @interface GEOPDQuickLinkFilter : PBCodable <NSCopying> {
+    struct { 
+        unsigned int has_quickLinkItemsCount : 1; 
+    }  _flags;
+    int  _quickLinkItemsCount;
     PBUnknownFields * _unknownFields;
 }
 
+@property (nonatomic) bool hasQuickLinkItemsCount;
+@property (nonatomic) int quickLinkItemsCount;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
@@ -16,11 +22,18 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (bool)hasQuickLinkItemsCount;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
+- (int)quickLinkItemsCount;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setHasQuickLinkItemsCount:(bool)arg1;
+- (void)setQuickLinkItemsCount:(int)arg1;
 - (id)unknownFields;
 - (void)writeTo:(id)arg1;
 

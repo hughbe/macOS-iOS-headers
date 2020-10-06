@@ -19,8 +19,12 @@
 - (unsigned long long)characterIndex;
 - (long long)compare:(id)arg1;
 - (id)description;
+- (unsigned long long)hash;
 - (id)initWithIndex:(unsigned long long)arg1;
 - (bool)isEndOfDocument;
+- (bool)isEqual:(id)arg1;
+- (bool)isEqualToTextLocation:(id)arg1;
+- (id)shortDescription;
 - (id)type;
 
 @end

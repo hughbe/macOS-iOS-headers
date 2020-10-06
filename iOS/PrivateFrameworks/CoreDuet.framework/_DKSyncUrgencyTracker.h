@@ -7,14 +7,7 @@
     unsigned long long  _urgency;
 }
 
-+ (id)sharedInstance;
-
 - (void).cxx_destruct;
-- (void)ageUrgencies;
-- (id)allUrgencies;
-- (unsigned long long)currentUrgency;
 - (void)recomputeUrgency;
-- (void)updateUrgency:(unsigned long long)arg1 forClient:(id)arg2;
-- (unsigned long long)urgencyForClient:(id)arg1;
 
 @end

@@ -11,13 +11,13 @@
 @property (nonatomic, readonly) NSString *UUID;
 @property (nonatomic, readonly) NSDate *cachedEndDate;
 @property (nonatomic, readonly) NSString *calendarIdentifier;
+@property (nonatomic, readonly) NSDateComponents *dateComponents;
 @property (nonatomic, readonly) NSArray *daysOfTheMonth;
 @property (nonatomic, readonly) NSArray *daysOfTheWeek;
 @property (nonatomic, readonly) NSArray *daysOfTheYear;
 @property (nonatomic, readonly) bool dirtyStateMayAffectExceptionDates;
 @property (nonatomic, readonly) long long firstDayOfTheWeek;
 @property (nonatomic, readonly) long long frequency;
-@property (nonatomic, readonly) struct { int x1; int x2; int x3; int x4; int x5; double x6; } gregorianUnits;
 @property (nonatomic, readonly) long long interval;
 @property (nonatomic, readonly) NSArray *monthsOfTheYear;
 @property (nonatomic, copy) EKRecurrenceEnd *recurrenceEnd;
@@ -28,10 +28,13 @@
 
 + (int)_calDayOfWeekFromEKWeekday:(long long)arg1;
 + (long long)_ekWeekdayFromCalDayOfWeek:(int)arg1;
++ (long long)daysTypeForDayArray:(id)arg1;
 + (Class)frozenClass;
 + (id)iCalendarValueFromDate:(id)arg1 isDateOnly:(bool)arg2 isFloating:(bool)arg3;
 + (id)iCalendarValueFromDayOfTheWeek:(unsigned long long)arg1;
 + (id)iCalendarValueFromRecurrenceType:(long long)arg1;
++ (id)knownIdentityKeysForComparison;
++ (id)knownSingleValueKeysForComparison;
 + (id)recurrenceRuleWithType:(long long)arg1 interval:(unsigned long long)arg2 end:(id)arg3;
 
 - (void).cxx_destruct;
@@ -42,6 +45,7 @@
 - (id)calendarIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;
+- (id)dateComponents;
 - (id)daysOfTheMonth;
 - (id)daysOfTheWeek;
 - (id)daysOfTheYear;
@@ -51,7 +55,8 @@
 - (long long)firstDayOfTheWeek;
 - (int)firstDayOfTheWeekRaw;
 - (long long)frequency;
-- (struct { int x1; int x2; int x3; int x4; int x5; double x6; })gregorianUnits;
+- (id)humanReadableDescriptionWithStartDate:(id)arg1;
+- (id)humanReadableDescriptionWithStartDate:(id)arg1 isConcise:(bool)arg2;
 - (id)init;
 - (id)initRecurrenceWithFrequency:(long long)arg1 interval:(long long)arg2 daysOfTheWeek:(id)arg3 daysOfTheMonth:(id)arg4 monthsOfTheYear:(id)arg5 weeksOfTheYear:(id)arg6 daysOfTheYear:(id)arg7 setPositions:(id)arg8 end:(id)arg9;
 - (id)initRecurrenceWithFrequency:(long long)arg1 interval:(long long)arg2 end:(id)arg3;

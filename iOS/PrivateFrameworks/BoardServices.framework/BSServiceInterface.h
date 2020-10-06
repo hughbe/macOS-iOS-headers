@@ -21,7 +21,6 @@
 + (id)interfaceWithServer:(id)arg1 client:(id)arg2;
 
 - (void).cxx_destruct;
-- (id)_initWithIdentifier:(id)arg1 server:(id)arg2 client:(id)arg3 clientWaitsForActivation:(struct __CFBoolean { }*)arg4;
 - (id)client;
 - (long long)clientMessagingExpectation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

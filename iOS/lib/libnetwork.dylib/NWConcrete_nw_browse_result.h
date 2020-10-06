@@ -5,6 +5,7 @@
 @interface NWConcrete_nw_browse_result : NSObject <OS_nw_browse_result> {
     unsigned int  __pad_bits;
     char * description;
+    unsigned int  discovered_from_path;
     NSObject<OS_nw_endpoint> * endpoint;
     unsigned int  immutable;
     NSObject<OS_nw_array> * interfaces;
@@ -23,7 +24,6 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithEndpoint:(id)arg1;
 - (id)redactedDescription;
 
 @end

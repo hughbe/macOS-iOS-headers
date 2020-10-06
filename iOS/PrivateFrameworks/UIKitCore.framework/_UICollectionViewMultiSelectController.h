@@ -22,10 +22,11 @@
 - (id)_collectionViewDelegate;
 - (void)_deselectIndexPaths:(id)arg1;
 - (void)_extendSelectionToPoint:(struct CGPoint { double x1; double x2; })arg1;
-- (bool)_isPointInsideEditControl:(struct CGPoint { double x1; double x2; })arg1;
+- (unsigned long long)_hitTestForSystemEditControlAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)_isUsingTableViewLayout;
 - (bool)_point:(struct CGPoint { double x1; double x2; })arg1 liesBeyondFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 inDirection:(double)arg3;
 - (void)_selectIndexPaths:(id)arg1;
+- (bool)_shouldBeginInteractionAtIndexPath:(id)arg1;
 - (bool)_shouldBeginInteractionAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)automaticallyTransitionToMultiSelectModeKeepingCurrentSelection:(bool)arg1;
 - (unsigned long long)axisConstraint;
@@ -48,6 +49,7 @@
 - (void)setCollectionView:(id)arg1;
 - (void)setMultiSelectInteraction:(id)arg1;
 - (void)setSelectionState:(id)arg1;
+- (bool)shouldAllowSelectionExtensionAtIndexPath:(id)arg1;
 - (bool)shouldAllowSelectionExtensionAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)shouldBeginMultiSelectInteraction:(id)arg1 ofType:(long long)arg2 atPoint:(struct CGPoint { double x1; double x2; })arg3 withVelocity:(struct CGPoint { double x1; double x2; })arg4;
 - (bool)supportsMultiSelectInteraction:(id)arg1;

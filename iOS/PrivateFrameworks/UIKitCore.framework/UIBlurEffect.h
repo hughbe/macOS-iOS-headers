@@ -12,6 +12,8 @@
 @property (nonatomic, readonly) long long _style;
 @property (nonatomic, readonly) UIColor *_tintColor;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)_coreUIImplementationForStyle:(long long)arg1;
 + (id)_effectForLightMaterial:(id)arg1 darkMaterial:(id)arg2 bundle:(id)arg3;
 + (id)_effectWithBlurRadius:(double)arg1 scale:(double)arg2;
@@ -45,5 +47,13 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_defaultPopoverBackgroundEffect;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
+- (id)initWithStyle:(long long)arg1;
 
 @end

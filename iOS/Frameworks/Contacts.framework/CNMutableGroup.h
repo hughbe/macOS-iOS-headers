@@ -8,6 +8,7 @@
 @property (nonatomic, copy) NSString *externalIdentifier;
 @property (nonatomic, copy) NSString *externalModificationTag;
 @property (nonatomic, copy) NSData *externalRepresentation;
+@property (nonatomic, copy) NSString *externalURI;
 @property (nonatomic, copy) NSString *externalUUID;
 @property (nonatomic) int iOSLegacyIdentifier;
 @property (nonatomic, copy) NSString *identifier;
@@ -32,6 +33,7 @@
 - (void)setExternalIdentifier:(id)arg1;
 - (void)setExternalModificationTag:(id)arg1;
 - (void)setExternalRepresentation:(id)arg1;
+- (void)setExternalURI:(id)arg1;
 - (void)setExternalUUID:(id)arg1;
 - (void)setIOSLegacyIdentifier:(int)arg1;
 - (void)setIdentifier:(id)arg1;

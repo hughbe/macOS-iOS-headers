@@ -30,6 +30,7 @@
 - (void)handleMTUChanged:(id)arg1;
 - (void)handleMsg:(int)arg1 args:(id)arg2;
 - (bool)hasTag:(id)arg1;
+- (unsigned long long)hash;
 - (long long)hostState;
 - (id)identifier;
 - (id)initWithInfo:(id)arg1 manager:(id)arg2;
@@ -37,6 +38,7 @@
 - (id)manager;
 - (unsigned long long)mtuLength;
 - (long long)pairingState;
+- (id)peerStateToString:(long long)arg1;
 - (long long)role;
 - (void)sendInternalMsg:(int)arg1 args:(id)arg2;
 - (id)sendInternalSyncMsg:(int)arg1 args:(id)arg2;

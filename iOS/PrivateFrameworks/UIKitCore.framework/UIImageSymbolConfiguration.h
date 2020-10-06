@@ -16,18 +16,16 @@
     long long  _weight;
 }
 
-@property (setter=_setPointSizeScaleFactor:, nonatomic) double customFontPointSizeMultiplier;
-@property (setter=_setFixedPointSize:, nonatomic) double fixedPointSize;
-@property (setter=_setPointSizeForScalingWithTextStyle:, nonatomic) double pointSizeForScalingWithTextStyle;
-@property (setter=_setProvider:, nonatomic) <UIImageSymbolConfigurationProvider> *provider;
-@property (setter=_setScale:, nonatomic) long long scale;
-@property (setter=_setTextStyle:, nonatomic, copy) NSString *textStyle;
-@property (setter=_setWeight:, nonatomic) long long weight;
+@property (nonatomic, readonly) double customFontPointSizeMultiplier;
+@property (nonatomic, readonly) double pointSizeForScalingWithTextStyle;
+@property (nonatomic, readonly) <UIImageSymbolConfigurationProvider> *provider;
+@property (nonatomic, readonly) long long scale;
+@property (nonatomic, readonly, copy) NSString *textStyle;
+@property (nonatomic, readonly) long long weight;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_defaultConfiguration;
-+ (id)configurationFromProvider:(id)arg1;
-+ (id)configurationFromProvider:(id)arg1 scale:(long long)arg2;
-+ (id)configurationWithConfiguration:(id)arg1 and:(id)arg2;
 + (id)configurationWithFont:(id)arg1;
 + (id)configurationWithFont:(id)arg1 scale:(long long)arg2;
 + (id)configurationWithPointSize:(double)arg1;
@@ -40,34 +38,14 @@
 + (id)defaultConfiguration;
 + (bool)supportsSecureCoding;
 + (id)unspecifiedConfiguration;
-+ (id)updatingConfigurationFromProvider:(id)arg1;
-+ (id)updatingConfigurationFromProvider:(id)arg1 scale:(long long)arg2;
 
 - (void).cxx_destruct;
 - (void)_applyConfigurationValuesTo:(id)arg1;
-- (void)_clearSpecificsExceptScale;
 - (void)_deriveGlyphSize:(long long*)arg1 weight:(long long*)arg2 pointSize:(double*)arg3;
-- (bool)_hasFixedPointSize;
-- (bool)_hasSpecifiedProvider;
 - (bool)_hasSpecifiedScale;
-- (bool)_hasSpecifiedTextStyle;
-- (bool)_hasSpecifiedWeight;
 - (id)_initWithTraitCollection:(id)arg1;
 - (bool)_isUnspecified;
-- (bool)_isUpdatingProvider;
-- (void)_setFixedPointSize:(double)arg1;
-- (void)_setPointSizeForScalingWithTextStyle:(double)arg1;
-- (void)_setPointSizeScaleFactor:(double)arg1;
-- (void)_setProvider:(id)arg1;
-- (void)_setProvider:(id)arg1 updating:(bool)arg2;
-- (void)_setScale:(long long)arg1;
-- (void)_setTextStyle:(id)arg1;
-- (void)_setWeight:(long long)arg1;
 - (bool)_shouldApplyConfiguration:(id)arg1;
-- (id)configurationWithUnspecifiedPointSizeAndWeight;
-- (id)configurationWithUnspecifiedScale;
-- (id)configurationWithUnspecifiedTextStyle;
-- (id)configurationWithUnspecifiedWeight;
 - (id)configurationWithoutPointSizeAndWeight;
 - (id)configurationWithoutScale;
 - (id)configurationWithoutTextStyle;
@@ -77,7 +55,6 @@
 - (id)debugDescription;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
-- (double)fixedPointSize;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
@@ -89,5 +66,19 @@
 - (long long)scale;
 - (id)textStyle;
 - (long long)weight;
+
+// Image: /System/Library/Frameworks/PencilKit.framework/PencilKit
+
++ (id)pk_defaultImageSymbolConfiguration;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_staticConfigurationWithTextStyle:(id)arg1 scale:(long long)arg2;
++ (id)_sf_staticConfigurationWithTextStyle:(id)arg1 scale:(long long)arg2 compatibleWithTraitCollection:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
++ (id)tpConfigurationWithStaticTextStyle:(id)arg1 scale:(long long)arg2;
++ (id)tpConfigurationWithStaticTextStyle:(id)arg1 scale:(long long)arg2 symbolWeight:(long long)arg3;
 
 @end

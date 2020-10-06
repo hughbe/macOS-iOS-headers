@@ -29,6 +29,7 @@
 
 - (void).cxx_destruct;
 - (void)beginUsingPlugIn:(id)arg1 ready:(id /* block */)arg2;
+- (double)cleanExitTimeout;
 - (id)connection;
 - (id)defaultPrincipalObject;
 - (id)description;
@@ -48,7 +49,7 @@
 - (void)setHostPrincipal:(id)arg1;
 - (void)setPlugInPrincipal:(id)arg1;
 - (void)setPreferences:(id)arg1;
-- (id)setupWithIdentifier:(id)arg1;
+- (id)setupWithIdentifier:(id)arg1 extensionPointPlatform:(unsigned int)arg2;
 - (void)shutdownPlugIn;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKOperationGroupSystemImposedInfo : NSObject <NSSecureCoding> {
+@interface CKOperationGroupSystemImposedInfo : NSObject <NSCopying, NSSecureCoding> {
     long long  _expectedReceiveSize;
     long long  _expectedSendSize;
     NSDictionary * _networkServiceTypePerConfig;
@@ -10,11 +10,12 @@
 
 @property (nonatomic) long long expectedReceiveSize;
 @property (nonatomic) long long expectedSendSize;
-@property (nonatomic, retain) NSDictionary *networkServiceTypePerConfig;
+@property (nonatomic, copy) NSDictionary *networkServiceTypePerConfig;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (long long)expectedReceiveSize;
 - (long long)expectedSendSize;

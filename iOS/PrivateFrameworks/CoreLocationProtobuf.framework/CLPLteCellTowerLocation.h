@@ -9,12 +9,14 @@
     double  _cellLatitude;
     double  _cellLongitude;
     int  _ci;
+    unsigned int  _deploymentType;
     int  _ecn0;
     struct { 
         unsigned int cellLatitude : 1; 
         unsigned int cellLongitude : 1; 
         unsigned int bandInfo : 1; 
         unsigned int bandwidth : 1; 
+        unsigned int deploymentType : 1; 
         unsigned int ecn0 : 1; 
         unsigned int pid : 1; 
         unsigned int rscp : 1; 
@@ -45,12 +47,14 @@
 @property (nonatomic) double cellLatitude;
 @property (nonatomic) double cellLongitude;
 @property (nonatomic) int ci;
+@property (nonatomic) unsigned int deploymentType;
 @property (nonatomic) int ecn0;
 @property (nonatomic, readonly) bool hasAppBundleId;
 @property (nonatomic) bool hasBandInfo;
 @property (nonatomic) bool hasBandwidth;
 @property (nonatomic) bool hasCellLatitude;
 @property (nonatomic) bool hasCellLongitude;
+@property (nonatomic) bool hasDeploymentType;
 @property (nonatomic) bool hasEcn0;
 @property (nonatomic) bool hasIsLimitedService;
 @property (nonatomic, readonly) bool hasNeighborGroup;
@@ -89,6 +93,7 @@
 - (void)clearNeighbors;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (unsigned int)deploymentType;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (int)ecn0;
@@ -97,6 +102,7 @@
 - (bool)hasBandwidth;
 - (bool)hasCellLatitude;
 - (bool)hasCellLongitude;
+- (bool)hasDeploymentType;
 - (bool)hasEcn0;
 - (bool)hasIsLimitedService;
 - (bool)hasNeighborGroup;
@@ -131,11 +137,13 @@
 - (void)setCellLatitude:(double)arg1;
 - (void)setCellLongitude:(double)arg1;
 - (void)setCi:(int)arg1;
+- (void)setDeploymentType:(unsigned int)arg1;
 - (void)setEcn0:(int)arg1;
 - (void)setHasBandInfo:(bool)arg1;
 - (void)setHasBandwidth:(bool)arg1;
 - (void)setHasCellLatitude:(bool)arg1;
 - (void)setHasCellLongitude:(bool)arg1;
+- (void)setHasDeploymentType:(bool)arg1;
 - (void)setHasEcn0:(bool)arg1;
 - (void)setHasIsLimitedService:(bool)arg1;
 - (void)setHasPid:(bool)arg1;

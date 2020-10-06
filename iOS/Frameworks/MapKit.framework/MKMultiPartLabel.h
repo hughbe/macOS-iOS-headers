@@ -61,6 +61,7 @@
 - (void)setTextAlignment:(long long)arg1;
 - (void)setTextColor:(id)arg1;
 - (void)setTextInset:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (id)text;
 - (long long)textAlignment;
 - (id)textColor;

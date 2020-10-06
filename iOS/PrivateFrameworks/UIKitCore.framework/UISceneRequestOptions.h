@@ -7,6 +7,7 @@
     bool  _preserveLayout;
     bool  _requestBackground;
     bool  _requestFullscreen;
+    long long  _sceneRequestIntent;
     NSString * _sourceIdentifier;
 }
 
@@ -17,6 +18,7 @@
 @property (nonatomic) bool preserveLayout;
 @property (nonatomic) bool requestBackground;
 @property (nonatomic) bool requestFullscreen;
+@property (nonatomic) long long sceneRequestIntent;
 @property (nonatomic, copy) NSString *sourceIdentifier;
 @property (readonly) Class superclass;
 
@@ -29,10 +31,12 @@
 - (bool)preserveLayout;
 - (bool)requestBackground;
 - (bool)requestFullscreen;
+- (long long)sceneRequestIntent;
 - (void)setActions:(id)arg1;
 - (void)setPreserveLayout:(bool)arg1;
 - (void)setRequestBackground:(bool)arg1;
 - (void)setRequestFullscreen:(bool)arg1;
+- (void)setSceneRequestIntent:(long long)arg1;
 - (void)setSourceIdentifier:(id)arg1;
 - (id)sourceIdentifier;
 

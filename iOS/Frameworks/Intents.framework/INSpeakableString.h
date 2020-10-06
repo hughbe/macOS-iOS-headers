@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INSpeakableString : NSObject <INSpeakable, INSpeakableStringExport, NSCopying, NSSecureCoding> {
+@interface INSpeakableString : NSObject <INSpeakable, INSpeakableStringExport, NSCopying, NSSecureCoding, REDonatedActionIdentifierProviding, WFINObject, WFNaming> {
     NSArray * _alternativeSpeakableMatches;
     NSString * _pronunciationHint;
     NSString * _spokenPhrase;
@@ -14,10 +14,17 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSString *identifier;
+@property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, retain) NSString *pronunciationHint;
+@property (nonatomic, readonly) NSString *pronunciationHint;
+@property (nonatomic, readonly) NSString *spokenPhrase;
 @property (nonatomic, retain) NSString *spokenPhrase;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) NSString *vocabularyIdentifier;
 @property (nonatomic, retain) NSString *vocabularyIdentifier;
+@property (nonatomic, readonly, copy) NSString *wfName;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (bool)supportsSecureCoding;
 
@@ -25,7 +32,7 @@
 - (id)_effectiveNSStringValue;
 - (id)_initWithVocabularyIdentifier:(id)arg1 spokenPhrase:(id)arg2 pronunciationHint:(id)arg3 alternativeMatches:(id)arg4;
 - (id)_intents_localizedCopyWithLocalizer:(id)arg1;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
 - (id)alternativeSpeakableMatches;
 - (unsigned short)characterAtIndex:(unsigned long long)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -50,5 +57,14 @@
 - (id)spokenPhrases;
 - (id)string;
 - (id)vocabularyIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (unsigned long long)re_actionIdentifierHashValue;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (id)wfName;
+- (id)wf_initWithIdentifier:(id)arg1 displayString:(id)arg2;
 
 @end

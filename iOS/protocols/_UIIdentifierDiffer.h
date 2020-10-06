@@ -5,6 +5,7 @@
 
 @required
 
+- (NSOrderedCollectionDifference *)collectionDifference;
 - (NSIndexSet *)deletedIndexes;
 - (bool)hasChanges;
 - (NSIndexSet *)insertedIndexes;

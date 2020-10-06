@@ -4,6 +4,7 @@
 
 @interface CLSHandoutAttachment : CLSObject <CLSCollaborationStateRepresentable, CLSRelationable> {
     NSURL * _URL;
+    NSString * _applicationName;
     NSString * _bundleIdentifier;
     int  _completionStatus;
     NSString * _contentStoreIdentifier;
@@ -22,6 +23,7 @@
 }
 
 @property (nonatomic, copy) NSURL *URL;
+@property (nonatomic, copy) NSString *applicationName;
 @property (nonatomic, readonly) NSArray *assets;
 @property (nonatomic, copy) NSString *bundleIdentifier;
 @property (nonatomic, readonly) NSArray *collaborationStates;
@@ -54,6 +56,7 @@
 - (id)URL;
 - (id)_init;
 - (void)addAsset:(id)arg1;
+- (id)applicationName;
 - (id)assets;
 - (id)bundleIdentifier;
 - (id)collaborationStates;
@@ -75,6 +78,7 @@
 - (void)mergeWithObject:(id)arg1;
 - (int)permissionType;
 - (void)removeAsset:(id)arg1;
+- (void)setApplicationName:(id)arg1;
 - (void)setBundleIdentifier:(id)arg1;
 - (void)setCompletionStatus:(int)arg1;
 - (void)setContentStoreIdentifier:(id)arg1;

@@ -17,6 +17,7 @@
     NSMutableDictionary * _remoteDevicesByDeviceID;
     bool  _remoteDevicesHaveBeenActivated;
     _CDInMemoryUserContext * _userContext;
+    NSObject<OS_dispatch_queue> * _workQueue;
 }
 
 @property (nonatomic, retain) NSMutableSet *clients;
@@ -37,6 +38,7 @@
 @property (nonatomic) bool remoteDevicesHaveBeenActivated;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) _CDInMemoryUserContext *userContext;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *workQueue;
 
 + (id)sharedInstanceWithPersistence:(id)arg1;
 + (id)sharedInstanceWithSharedMemoryStore:(id)arg1;
@@ -93,10 +95,12 @@
 - (void)setRemoteDevicesHaveBeenActivated:(bool)arg1;
 - (void)setToken:(unsigned long long)arg1 forUserID:(unsigned int)arg2;
 - (void)setUserContext:(id)arg1;
+- (void)setWorkQueue:(id)arg1;
 - (void)start;
 - (id)subscriberForSourceDeviceUUID:(id)arg1;
 - (id)subscribersForClientIdentifier:(id)arg1;
 - (unsigned long long)tokenForSourceDeviceUUID:(id)arg1;
 - (id)userContext;
+- (id)workQueue;
 
 @end

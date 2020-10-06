@@ -98,8 +98,8 @@
 - (void)closeIfNotCurrentView;
 - (long long)conversationIdentifier;
 - (void)copy:(id)arg1;
-- (struct Command { struct EditorInternalCommand {} *x1; int x2; struct RefPtr<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x_3_1_1; } x3; })coreCommandByName:(const char *)arg1;
-- (struct Command { struct EditorInternalCommand {} *x1; int x2; struct RefPtr<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x_3_1_1; } x3; })coreCommandBySelector:(SEL)arg1;
+- (struct Command { struct EditorInternalCommand {} *x1; int x2; struct RefPtr<WebCore::Document, WTF::DumbPtrTraits<WebCore::Document> > { struct Document {} *x_3_1_1; } x3; struct RefPtr<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x_4_1_1; } x4; })coreCommandByName:(const char *)arg1;
+- (struct Command { struct EditorInternalCommand {} *x1; int x2; struct RefPtr<WebCore::Document, WTF::DumbPtrTraits<WebCore::Document> > { struct Document {} *x_3_1_1; } x3; struct RefPtr<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x_4_1_1; } x4; })coreCommandBySelector:(SEL)arg1;
 - (unsigned long long)countMatchesForText:(id)arg1 inDOMRange:(id)arg2 options:(unsigned long long)arg3 limit:(unsigned long long)arg4 markMatches:(bool)arg5;
 - (void)cut:(id)arg1;
 - (void)dataSourceUpdated:(id)arg1;

@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_mapsCategoryId : 1; 
         unsigned int read_walletCategoryId : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_industryCode : 1; 
-        unsigned int wrote_mapsCategoryId : 1; 
-        unsigned int wrote_walletCategoryId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     long long  _industryCode;
     NSString * _mapsCategoryId;
@@ -36,8 +33,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readMapsCategoryId;
-- (void)_readWalletCategoryId;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -50,7 +45,10 @@
 - (long long)industryCode;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapsCategoryId;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

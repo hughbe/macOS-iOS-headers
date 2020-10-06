@@ -9,11 +9,7 @@
         unsigned int has_scheduledDeparture : 1; 
         unsigned int read_stopFrom : 1; 
         unsigned int read_stopTo : 1; 
-        unsigned int wrote_lineID : 1; 
-        unsigned int wrote_scheduledArrival : 1; 
-        unsigned int wrote_scheduledDeparture : 1; 
-        unsigned int wrote_stopFrom : 1; 
-        unsigned int wrote_stopTo : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned long long  _lineID;
     PBDataReader * _reader;
@@ -42,8 +38,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readStopFrom;
-- (void)_readStopTo;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -56,8 +50,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithTransitTripRouteStep:(id)arg1 originSummary:(id)arg2 destinationSummary:(id)arg3;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned long long)lineID;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

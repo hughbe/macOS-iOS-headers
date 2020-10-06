@@ -51,9 +51,7 @@
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (void)initialize;
 
-- (bool)_isDeallocating;
 - (void)_setUsesSimpleTextEffects:(bool)arg1;
-- (bool)_tryRetain;
 - (bool)_usesSimpleTextEffects;
 - (long long)applicationFrameworkContext;
 - (id)cuiCatalog;

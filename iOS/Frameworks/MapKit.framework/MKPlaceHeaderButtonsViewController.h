@@ -3,20 +3,22 @@
  */
 
 @interface MKPlaceHeaderButtonsViewController : MKPlaceSectionViewController <MKETAProviderObserver, MKModuleViewControllerProtocol, MKStackingViewControllerFixedHeightAware> {
+    UIButton<_MKPlaceActionControlledButton> * _alternatePrimaryButton;
+    _MKPlaceActionButtonController * _alternatePrimaryButtonController;
     MKPlaceSectionRowView * _buttonsContainerView;
     NSArray * _constraints;
-    NSString * _currentETAString;
+    NSMutableAttributedString * _currentETAString;
     <MKPlaceHeaderButtonsViewControllerDelegate> * _delegate;
     <GEOTransitLineItem> * _lineItem;
     <_MKPlaceItem> * _placeItem;
-    NSAttributedString * _primaryAttributedString;
-    MKPlaceHeaderButton * _primaryButton;
+    UIButton<_MKPlaceActionControlledButton> * _primaryButton;
     unsigned long long  _primaryButtonType;
     bool  _resizableViewsDisabled;
-    MKPlaceHeaderButton * _secondaryButton;
+    UIButton<_MKPlaceActionControlledButton> * _secondaryButton;
     _MKPlaceActionButtonController * _secondaryButtonController;
 }
 
+@property (nonatomic, retain) _MKPlaceActionButtonController *alternatePrimaryButtonController;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MKPlaceHeaderButtonsViewControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -33,6 +35,7 @@
 - (bool)_canShowWhileLocked;
 - (void)_commonInit;
 - (void)_contentSizeDidChange;
+- (id)alternatePrimaryButtonController;
 - (id)attributedStringWith:(id)arg1;
 - (id)delegate;
 - (id)directionAttributedStringWithETAString;
@@ -48,6 +51,7 @@
 - (id)rerouteAttributedString;
 - (bool)resizableViewsDisabled;
 - (id)secondaryButtonController;
+- (void)setAlternatePrimaryButtonController:(id)arg1;
 - (void)setConstraints;
 - (void)setDelegate:(id)arg1;
 - (void)setLineItem:(id)arg1;

@@ -9,15 +9,15 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (id)_entitiesWithTooManyTombstonesInModel:(id)arg1;
 + (bool)_hasTombstonesInUserInfo:(id)arg1;
++ (void)_invalidateStaticCaches;
 + (unsigned long long)_maxCountOfTombstonesInModel:(id)arg1;
 + (id)_tombstonesColumnsForEntity:(id)arg1;
 + (id)_tombstonesForEntity:(id)arg1;
 + (unsigned long long)ancillaryEntityCount;
 + (unsigned long long)ancillaryEntityOffset;
 + (id)ancillaryModelNamespace;
-+ (void)createModelsWithTombstoneCount:(int)arg1 andOptions:(id)arg2;
++ (void)initialize;
 + (id)newPersistentHistoryManagedObjectModelForSQLModel:(id)arg1 options:(id)arg2;
 + (id)newPersistentHistorySQLModelForSQLModel:(id)arg1 options:(id)arg2;
 + (void)resetCaches;

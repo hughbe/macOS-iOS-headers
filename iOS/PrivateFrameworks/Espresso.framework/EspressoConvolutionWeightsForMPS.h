@@ -35,6 +35,8 @@
             short r; 
             short t; 
             short b; 
+            short front; 
+            short back; 
         } pad; 
         short stride_x; 
         short stride_y; 
@@ -94,7 +96,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)dataType;
 - (id)descriptor;
-- (id)initWithParams:(struct convolution_uniforms { int x1; int x2; int x3; int x4; int x5; int x6; int x7; int x8; int x9; float x10; int x11; int x12; int x13; int x14; int x15; int x16; float x17; float x18; struct padding_params_t { short x_19_1_1; short x_19_1_2; float x_19_1_3; short x_19_1_4; short x_19_1_5; short x_19_1_6; short x_19_1_7; } x19; short x20; short x21; short x22; short x23; unsigned short x24; unsigned short x25; int x26; int x27; int x28; int x29; int x30; unsigned short x31; unsigned short x32; unsigned short x33; unsigned short x34; unsigned short x35; short x36; int x37; int x38; int x39; int x40; int x41; short x42; })arg1;
+- (id)initWithParams:(struct convolution_uniforms { int x1; int x2; int x3; int x4; int x5; int x6; int x7; int x8; int x9; float x10; int x11; int x12; int x13; int x14; int x15; int x16; float x17; float x18; struct padding_params_t { short x_19_1_1; short x_19_1_2; float x_19_1_3; short x_19_1_4; short x_19_1_5; short x_19_1_6; short x_19_1_7; short x_19_1_8; short x_19_1_9; } x19; short x20; short x21; short x22; short x23; unsigned short x24; unsigned short x25; int x26; int x27; int x28; int x29; int x30; unsigned short x31; unsigned short x32; unsigned short x33; unsigned short x34; unsigned short x35; short x36; int x37; int x38; int x39; int x40; int x41; short x42; })arg1;
 - (id)label;
 - (bool)load;
 - (float*)lookupTableForUInt8Kernel;

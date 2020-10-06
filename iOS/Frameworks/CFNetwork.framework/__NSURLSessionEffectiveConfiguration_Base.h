@@ -15,15 +15,18 @@
 @property (readonly) unsigned long long _TCPAdaptiveWriteTimeout;
 @property (readonly) bool _allowsConstrainedNetworkAccess;
 @property (readonly) bool _allowsExpensiveAccess;
+@property (readonly) bool _allowsHTTP3;
 @property (readonly) bool _allowsIndefiniteConnections;
 @property (readonly) bool _allowsMultipathTCP;
 @property (readonly) bool _allowsPowerNapScheduling;
+@property (readonly) bool _allowsReachabilityCheck;
 @property (readonly) bool _allowsResponseMonitoringDuringBodyTranmission;
 @property (readonly) bool _allowsTCPFastOpen;
 @property (readonly) bool _allowsTLSFalseStart;
 @property (readonly) bool _allowsTLSSessionResumption;
 @property (readonly) bool _allowsTLSSessionTickets;
 @property (readonly) bool _allowsWCA;
+@property (readonly, retain) _NSHTTPAlternativeServicesStorage *_alternativeServicesStorage;
 @property (readonly) bool _alwaysPerformDefaultTrustEvaluation;
 @property (readonly, copy) <NSURLSessionAppleIDContext> *_appleIDContext;
 @property (readonly, copy) NSSet *_authenticatorStatusCodes;
@@ -70,7 +73,6 @@
 
 - (const void*)_copyAttribute:(struct __CFString { }*)arg1;
 - (id)_initWithConfiguration:(id)arg1;
-- (id)_initWithMeOther:(id)arg1;
 - (id)_sessionConfiguration;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;

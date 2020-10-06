@@ -31,8 +31,6 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSURL *uploadURL;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_childViewController;
 - (void)_commonInitWithCompletion:(id /* block */)arg1;
@@ -51,9 +49,6 @@
 - (void)_setSourceIsManaged:(bool)arg1;
 - (bool)_sourceIsManaged;
 - (void)_stitchFileCreationAtURL:(id)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)actionSheetPresentationControllerDidDismissActionSheet:(id)arg1;
 - (void)addOptionWithTitle:(id)arg1 image:(id)arg2 order:(unsigned long long)arg3 handler:(id /* block */)arg4;
 - (id)allowedUTIs;

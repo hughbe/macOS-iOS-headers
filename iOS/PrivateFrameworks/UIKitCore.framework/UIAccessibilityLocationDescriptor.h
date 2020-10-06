@@ -16,6 +16,8 @@
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } point;
 @property (nonatomic, readonly) UIView *view;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 - (void).cxx_destruct;
 - (id)attributedName;
 - (unsigned long long)hash;
@@ -26,5 +28,10 @@
 - (id)name;
 - (struct CGPoint { double x1; double x2; })point;
 - (id)view;
+
+// Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
+
+- (id)dictionaryRepresentation;
+- (bool)matchesDictionaryRepresentation:(id)arg1;
 
 @end

@@ -83,6 +83,8 @@
 @property (nonatomic) bool wantsManualAck;
 @property (nonatomic, readonly) NSError *wpConnectionError;
 
+// Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+
 - (void).cxx_destruct;
 - (double)averageLocalRTT;
 - (id)boostContext;
@@ -154,5 +156,21 @@
 - (bool)wantsAppAck;
 - (bool)wantsManualAck;
 - (id)wpConnectionError;
+
+// Image: /System/Library/PrivateFrameworks/NanoLeash.framework/NanoLeash
+
+- (id)nfmDescription;
+
+// Image: /System/Library/PrivateFrameworks/NanoPassKit.framework/NanoPassKit
+
+- (id)npkDescription;
+
+// Image: /System/Library/PrivateFrameworks/PBBridgeSupport.framework/PBBridgeSupport
+
+- (id)pbDescription;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pkDescription;
 
 @end

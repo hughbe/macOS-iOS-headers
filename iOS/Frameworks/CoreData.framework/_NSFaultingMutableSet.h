@@ -25,13 +25,11 @@
 
 - (bool)_isDeallocating;
 - (bool)_isIdenticalFault:(id)arg1;
-- (bool)_shouldProcessKVOChange;
 - (bool)_tryRetain;
 - (void)addObject:(id)arg1;
 - (void)addObjectsFromArray:(id)arg1;
 - (id)allObjects;
 - (id)anyObject;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (bool)containsObject:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

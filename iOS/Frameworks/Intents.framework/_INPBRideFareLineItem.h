@@ -3,14 +3,12 @@
  */
 
 @interface _INPBRideFareLineItem : PBCodable <NSCopying, NSSecureCoding, _INPBRideFareLineItem> {
-    bool  __encodeLegacyGloryData;
     NSString * _currencyCode;
     struct { }  _has;
     _INPBDecimalNumberValue * _price;
     NSString * _title;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *currencyCode;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)currencyCode;
 - (id)dictionaryRepresentation;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBConfidenceScore : PBCodable <NSCopying, NSSecureCoding, _INPBConfidenceScore> {
-    bool  __encodeLegacyGloryData;
     float  _aggregateScore;
     NSArray * _components;
     struct { 
@@ -11,7 +10,6 @@
     }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) float aggregateScore;
 @property (nonatomic, copy) NSArray *components;
 @property (nonatomic, readonly) unsigned long long componentsCount;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addComponents:(id)arg1;
 - (float)aggregateScore;
 - (void)clearComponents;

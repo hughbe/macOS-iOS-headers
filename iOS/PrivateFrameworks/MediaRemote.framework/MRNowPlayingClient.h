@@ -3,19 +3,25 @@
  */
 
 @interface MRNowPlayingClient : NSObject <MRNowPlayingClientState> {
-    _MRNowPlayingPlayerProtobuf * _activePlayer;
+    MRPlayer * _activePlayer;
+    bool  _isForeground;
     NSMutableArray * _playerClients;
-    _MRNowPlayingPlayerPathProtobuf * _playerPath;
+    MRPlayerPath * _playerPath;
+    bool  _useMediaRemoteActivePlayerHeuristic;
 }
 
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *activePlayerPath;
-@property (nonatomic, retain) _MRNowPlayingClientProtobuf *client;
+@property (nonatomic, readonly) MRPlayerPath *activePlayerPath;
+@property (nonatomic, retain) MRClient *client;
 @property (nonatomic, readonly) NSArray *playerClients;
-@property (nonatomic, retain) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, retain) MRPlayerPath *playerPath;
+@property (nonatomic) bool useMediaRemoteActivePlayerHeuristic;
 
 - (void).cxx_destruct;
 - (id)activePlayerPath;
+- (void)applicationDidEnterBackground;
+- (void)applicationWillEnterForeground;
 - (id)client;
+- (void)dealloc;
 - (id)debugDescription;
 - (id)description;
 - (id)initWithPlayerPath:(id)arg1;
@@ -23,10 +29,15 @@
 - (id)nowPlayingPlayerClientForPlayerPath:(id)arg1;
 - (id)playerClients;
 - (id)playerPath;
+- (void)reevaluateActivePlayerWithReason:(id)arg1 completion:(id /* block */)arg2;
 - (void)removePlayer:(id)arg1;
+- (void)requestActiveForPlayerPath:(id)arg1 completion:(id /* block */)arg2;
 - (void)restoreNowPlayingClientState;
+- (void)setActivePlayerPath:(id)arg1 completion:(id /* block */)arg2;
 - (void)setClient:(id)arg1;
 - (void)setPlayerPath:(id)arg1;
-- (bool)updateActivePlayerPath:(id)arg1;
+- (void)setUseMediaRemoteActivePlayerHeuristic:(bool)arg1;
+- (void)updateActivePlayerPath:(id)arg1 completion:(id /* block */)arg2;
+- (bool)useMediaRemoteActivePlayerHeuristic;
 
 @end

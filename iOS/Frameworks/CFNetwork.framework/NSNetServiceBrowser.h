@@ -13,7 +13,6 @@
 @property bool includesPeerToPeer;
 
 - (void)_dispatchCallBack:(void*)arg1 flags:(unsigned long long)arg2 error:(struct { long long x1; int x2; })arg3;
-- (bool)_includesAWDL;
 - (struct __CFNetServiceBrowser { }*)_internalNetServiceBrowser;
 - (void)_setIncludesAWDL:(bool)arg1;
 - (void)dealloc;

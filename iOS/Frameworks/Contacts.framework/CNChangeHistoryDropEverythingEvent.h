@@ -4,6 +4,7 @@
 
 @interface CNChangeHistoryDropEverythingEvent : CNChangeHistoryEvent
 
++ (unsigned long long)instanceSortOrder;
 + (bool)supportsSecureCoding;
 
 - (void)acceptEventVisitor:(id)arg1;

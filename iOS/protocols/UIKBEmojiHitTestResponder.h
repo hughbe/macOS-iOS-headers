@@ -10,5 +10,6 @@
 - (bool)isTrackpadMode;
 - (void)prepareSliderBehaviorFeedback;
 - (void)provideSliderBehaviorFeedback;
+- (void)updateState:(int)arg1 forKey:(UIKBTree *)arg2;
 
 @end

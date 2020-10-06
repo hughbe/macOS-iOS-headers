@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSetSeatSettingsInCarIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSetSeatSettingsInCarIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBDataString * _carName;
     bool  _enableCooling;
     bool  _enableHeating;
@@ -21,7 +20,6 @@
     int  _seat;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBDataString *carName;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -48,8 +46,6 @@
 - (void).cxx_destruct;
 - (int)StringAsRelativeLevelSetting:(id)arg1;
 - (int)StringAsSeat:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)carName;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

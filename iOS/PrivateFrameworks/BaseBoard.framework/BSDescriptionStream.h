@@ -15,13 +15,7 @@
     bool  _verboseSingleItemCollections;
 }
 
-@property (nonatomic) long long emitPhase;
-@property (nonatomic) long long groupItemCount;
-@property (nonatomic) long long groupVerbosityOptions;
-@property (nonatomic) long long indentLevel;
-@property (nonatomic, retain) NSString *pendingFieldTerminator;
 @property (nonatomic) bool sortKeys;
-@property (nonatomic, retain) NSMutableString *string;
 @property (nonatomic) bool verboseSingleItemCollections;
 
 + (id)descriptionForRootObject:(id)arg1;
@@ -44,7 +38,6 @@
 - (id)appendInt64:(long long)arg1 withName:(id)arg2;
 - (id)appendInt:(int)arg1 withName:(id)arg2;
 - (id)appendInteger:(long long)arg1 withName:(id)arg2;
-- (void)appendItem:(id /* block */)arg1;
 - (id)appendObject:(id)arg1 withName:(id)arg2;
 - (id)appendObject:(id)arg1 withName:(id)arg2 skipIfNil:(bool)arg3;
 - (id)appendPoint:(struct CGPoint { double x1; double x2; })arg1 withName:(id)arg2;
@@ -53,7 +46,6 @@
 - (id)appendQueue:(id)arg1 withName:(id)arg2;
 - (id)appendRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 withName:(id)arg2;
 - (void)appendRightArrow;
-- (void)appendSectionWithItemCount:(long long)arg1 openDelimiter:(id)arg2 closeDelimiter:(id)arg3 block:(id /* block */)arg4;
 - (id)appendSelector:(SEL)arg1 withName:(id)arg2;
 - (id)appendSize:(struct CGSize { double x1; double x2; })arg1 withName:(id)arg2;
 - (void)appendString:(id)arg1;
@@ -65,26 +57,13 @@
 - (id)appendUnsignedInt:(unsigned int)arg1 withName:(id)arg2;
 - (id)appendUnsignedInteger:(unsigned long long)arg1 withName:(id)arg2;
 - (id)appendUnsignedInteger:(unsigned long long)arg1 withName:(id)arg2 format:(long long)arg3;
-- (void)defaultLineBreakTreatment:(id /* block */)arg1;
+- (id)appendVersionedPID:(long long)arg1 withName:(id)arg2;
 - (id)description;
-- (long long)emitPhase;
-- (long long)groupItemCount;
-- (long long)groupVerbosityOptions;
-- (long long)indentLevel;
 - (id)init;
-- (void)multipleLines:(id /* block */)arg1;
-- (id)pendingFieldTerminator;
 - (void)sameLine:(id /* block */)arg1;
-- (void)setEmitPhase:(long long)arg1;
-- (void)setGroupItemCount:(long long)arg1;
-- (void)setGroupVerbosityOptions:(long long)arg1;
-- (void)setIndentLevel:(long long)arg1;
-- (void)setPendingFieldTerminator:(id)arg1;
 - (void)setSortKeys:(bool)arg1;
-- (void)setString:(id)arg1;
 - (void)setVerboseSingleItemCollections:(bool)arg1;
 - (bool)sortKeys;
-- (id)string;
 - (bool)verboseSingleItemCollections;
 
 @end

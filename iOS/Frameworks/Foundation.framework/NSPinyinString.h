@@ -16,6 +16,8 @@
     unsigned long long  _transpositionCount;
 }
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (id)alternativesForInputString:(id)arg1;
 + (id)prefixesForInputString:(id)arg1;
 
@@ -42,5 +44,11 @@
 - (unsigned long long)score;
 - (id)string;
 - (unsigned long long)syllableCount;
+
+// Image: /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+
++ (id)_alternativesForInputString:(id)arg1;
++ (id)_correctionsForInputString:(id)arg1;
++ (id)_prefixesForInputString:(id)arg1;
 
 @end

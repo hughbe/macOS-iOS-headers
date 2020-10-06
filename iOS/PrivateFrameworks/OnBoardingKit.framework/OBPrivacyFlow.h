@@ -26,7 +26,10 @@
 @property (nonatomic, readonly) bool platformSupported;
 @property (nonatomic, readonly) bool showInCombinedList;
 
+// Image: /System/Library/PrivateFrameworks/OnBoardingKit.framework/OnBoardingKit
+
 + (id)_modelSpecificLocalizedStringKeyForKey:(id)arg1 preferredDeviceType:(unsigned long long)arg2;
++ (id)_splashPlistFromBundle:(id)arg1 forContentName:(id)arg2;
 + (id)flowWithBundle:(id)arg1;
 
 - (void).cxx_destruct;
@@ -37,6 +40,7 @@
 - (id)_iconType;
 - (id)_splashLocalizedStringForKey:(id)arg1 language:(id)arg2 preferredDeviceType:(unsigned long long)arg3;
 - (id)_splashLocalizedStringForKey:(id)arg1 language:(id)arg2 table:(id)arg3 preferredDeviceType:(unsigned long long)arg4;
+- (id)_splashPlist;
 - (id)_textForConditionalItem:(id)arg1 language:(id)arg2 preferredDeviceType:(unsigned long long)arg3;
 - (id)buttonIcon;
 - (unsigned long long)contentVersion;
@@ -57,5 +61,9 @@
 - (bool)platformSupported;
 - (void)setButtonIcon:(id)arg1;
 - (bool)showInCombinedList;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
++ (id)pk_privacyFlowForContext:(unsigned long long)arg1;
 
 @end

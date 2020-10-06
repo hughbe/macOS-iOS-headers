@@ -11,6 +11,8 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)currentHome;
 + (id)currentHomeWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -20,5 +22,9 @@
 - (id)groupIdentifier;
 - (void)setCurrentHomeIdentifier:(id)arg1;
 - (void)setCurrentHomeName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

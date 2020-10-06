@@ -23,6 +23,7 @@
 - (void)animateOffsetOfScrollableContainer:(id)arg1 toShowFocusItem:(id)arg2;
 - (void)cancelScrollingForScrollableContainer:(id)arg1;
 - (struct CGPoint { double x1; double x2; })contentOffsetForScrollableContainer:(id)arg1 toShowFocusItem:(id)arg2 targetOffset:(struct CGPoint { double x1; double x2; })arg3 targetBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4;
+- (struct CGPoint { double x1; double x2; })contentOffsetForScrollableContainer:(id)arg1 toShowFocusItemWithInfo:(id)arg2;
 - (struct CGPoint { double x1; double x2; })contentOffsetForScrollableContainer:(id)arg1 toShowRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 targetOffset:(struct CGPoint { double x1; double x2; })arg3 targetBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4;
 - (struct CGPoint { double x1; double x2; })currentVelocityForScrollableContainer:(id)arg1;
 - (id)initWithScreen:(id)arg1;

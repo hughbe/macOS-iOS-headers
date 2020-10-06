@@ -10,14 +10,10 @@
     }  _lock;
     struct __CFDictionary { } * _progressTable;
     struct __CFDictionary { } * _replyDictionaryTable;
-    unsigned long long  _requestedReplyCount;
+    struct __CFDictionary { } * _replyTransactionTable;
 }
 
-- (void)beginTransactionForSequence:(unsigned long long)arg1 reply:(id)arg2 withProgress:(id)arg3;
 - (void)dealloc;
-- (void)endTransactionForSequence:(unsigned long long)arg1 completionHandler:(id /* block */)arg2;
 - (id)init;
-- (void)invalidate;
-- (id)progressForSequence:(unsigned long long)arg1;
 
 @end

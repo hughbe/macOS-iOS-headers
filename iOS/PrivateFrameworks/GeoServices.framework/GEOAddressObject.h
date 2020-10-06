@@ -58,5 +58,6 @@
 - (id)venueLevel;
 - (id)venueShortAddress;
 - (id)weatherDisplayName;
+- (id)weatherLocationName;
 
 @end

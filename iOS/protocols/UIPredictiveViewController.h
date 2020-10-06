@@ -8,5 +8,6 @@
 - (NSArray *)displayedCandidates;
 - (bool)hidesExpandableButton;
 - (bool)isVisibleForInputDelegate:(id <UIKeyInput>)arg1 inputViews:(UIInputViewSet *)arg2;
+- (double)preferredHeightForTraitCollection:(UITraitCollection *)arg1;
 
 @end

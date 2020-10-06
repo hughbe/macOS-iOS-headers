@@ -9,11 +9,7 @@
         unsigned int read_phoneNumber : 1; 
         unsigned int read_styleAttributes : 1; 
         unsigned int read_url : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_mapRegion : 1; 
-        unsigned int wrote_phoneNumber : 1; 
-        unsigned int wrote_styleAttributes : 1; 
-        unsigned int wrote_url : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOMapRegion * _mapRegion;
     NSString * _phoneNumber;
@@ -41,10 +37,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readMapRegion;
-- (void)_readPhoneNumber;
-- (void)_readStyleAttributes;
-- (void)_readUrl;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -57,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapRegion;
 - (void)mergeFrom:(id)arg1;
 - (id)phoneNumber;

@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_photoInfos : 1; 
         unsigned int read_uid : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_photoInfos : 1; 
-        unsigned int wrote_uid : 1; 
-        unsigned int wrote_photoType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _photoInfos;
     int  _photoType;
@@ -37,9 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsPhotoType:(id)arg1;
-- (void)_addNoFlagsPhotoInfo:(id)arg1;
-- (void)_readPhotoInfos;
-- (void)_readUid;
 - (void)addPhotoInfo:(id)arg1;
 - (void)clearPhotoInfos;
 - (void)clearUnknownFields:(bool)arg1;
@@ -52,8 +46,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithPlaceDataPhoto:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)photoInfoAtIndex:(unsigned long long)arg1;
 - (id)photoInfos;

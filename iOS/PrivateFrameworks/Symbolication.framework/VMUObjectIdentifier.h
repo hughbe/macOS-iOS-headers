@@ -3,13 +3,13 @@
  */
 
 @interface VMUObjectIdentifier : NSObject {
+    struct VMUAutoreleasePoolPageLayout { unsigned int x1; unsigned int x2; unsigned int x3; unsigned long long x4; unsigned int x5; } * _autoreleasePoolPageLayout;
     unsigned long long  _cfBooleanFalseAddress;
     unsigned long long  _cfBooleanTrueAddress;
     unsigned long long  _cfClassCount;
     VMUClassInfoMap * _cfTypeIDToClassInfo;
     unsigned long long  _coreFoundationCFTypeIsa;
     bool  _debugSwiftRemoteMirror;
-    unsigned long long  _foundationCFTypeIsa;
     bool  _fragileNonPointerIsas;
     NSMapTable * _isaToObjectLabelHandlerMap;
     id /* block */  _isaTranslator;
@@ -19,6 +19,7 @@
     unsigned long long  _lastCPlusPlusIsa;
     NSMutableDictionary * _libSwiftRemoteMirrors;
     id /* block */  _memoryReader;
+    NSMutableDictionary * _moduleNameToBinaryPathDict;
     bool  _needToValidateAddressRange;
     NSHashTable * _nonObjectIsaHash;
     NSMutableDictionary * _nonobjectClassInfosDict;
@@ -43,15 +44,18 @@
     }  _symbolicator;
     unsigned long long  _taggedPointerMask;
     unsigned long long  _taggedPointerObfuscator;
+    unsigned char  _taggedPointerPermutations;
     bool  _targetProcessContainsMallocStackLoggingLiteZone;
     VMUNonOverlappingRangeArray * _targetProcessVMranges;
     unsigned int  _task;
     VMUClassInfoMap * _unrealizedClassInfos;
 }
 
+@property (nonatomic, readonly) struct VMUAutoreleasePoolPageLayout { unsigned int x1; unsigned int x2; unsigned int x3; unsigned long long x4; unsigned int x5; }*autoreleasePoolPageLayout;
 @property (readonly) bool hasSwiftContent;
 @property (readonly) bool hasSwiftReflection;
 @property (nonatomic, readonly) id /* block */ memoryReader;
+@property (readonly) NSMutableDictionary *moduleNameToBinaryPathDict;
 @property (readonly) bool needToValidateAddressRange;
 @property (readonly) unsigned int objcABI;
 @property (nonatomic) unsigned int objectContentLevel;
@@ -85,6 +89,7 @@
 - (id)_scanner;
 - (struct _CSTypeRef { unsigned long long x1; unsigned long long x2; })_symbolicator;
 - (unsigned long long)addressOfSymbol:(const char *)arg1 inLibrary:(const char *)arg2;
+- (struct VMUAutoreleasePoolPageLayout { unsigned int x1; unsigned int x2; unsigned int x3; unsigned long long x4; unsigned int x5; }*)autoreleasePoolPageLayout;
 - (void)buildIsaToObjectLabelHandlerMap;
 - (id)classInfoForMemory:(void*)arg1 length:(unsigned long long)arg2;
 - (id)classInfoForMemory:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
@@ -93,16 +98,19 @@
 - (id)classInfoForObjectWithRange:(struct _VMURange { unsigned long long x1; unsigned long long x2; })arg1;
 - (unsigned int)classInfoIndexForObjCClassStructurePointerType:(unsigned int)arg1;
 - (id)classNameForTaggedPointer:(void*)arg1;
+- (struct VMUAutoreleasePoolPageLayout { unsigned int x1; unsigned int x2; unsigned int x3; unsigned long long x4; unsigned int x5; }*)createAutoreleasePoolPageLayout;
 - (void)dealloc;
 - (void)enumerateAllClassInfosWithBlock:(id /* block */)arg1;
 - (void)enumerateRealizedClassInfosWithBlock:(id /* block */)arg1;
 - (void)findCFTypes;
 - (void)findObjCAndSwiftClasses;
+- (id)formattedDateLabel:(id)arg1;
 - (bool)hasSwiftContent;
 - (bool)hasSwiftReflection;
 - (id)initWithTask:(unsigned int)arg1;
 - (id)initWithTask:(unsigned int)arg1 symbolicator:(struct _CSTypeRef { unsigned long long x1; unsigned long long x2; })arg2;
 - (id)initWithTask:(unsigned int)arg1 symbolicator:(struct _CSTypeRef { unsigned long long x1; unsigned long long x2; })arg2 scanner:(id)arg3;
+- (bool)isTaggedPointer:(void*)arg1;
 - (id)labelForCFBundle:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForClassDataExtRW:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForClassDataRO:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
@@ -133,6 +141,7 @@
 - (id)labelForNSSet:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForNSString:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForNSString:(void*)arg1 mappedSize:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3 printDetail:(bool)arg4;
+- (id)labelForNSTaggedPointerStringCStringContainer:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForNSURL:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForNSXPCConnection:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (id)labelForNSXPCInterface:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
@@ -150,6 +159,7 @@
 - (id)labelFor__NSMallocBlock__:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (void)loadSwiftReflectionLibraries;
 - (id /* block */)memoryReader;
+- (id)moduleNameToBinaryPathDict;
 - (bool)needToValidateAddressRange;
 - (id)noLabelForOSXPCObject:(void*)arg1 length:(unsigned long long)arg2 remoteAddress:(unsigned long long)arg3;
 - (unsigned int)objcABI;

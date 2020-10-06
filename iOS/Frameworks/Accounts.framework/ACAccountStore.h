@@ -4,10 +4,20 @@
 
 @interface ACAccountStore : NSObject {
     NSMutableDictionary * _accountCache;
+    NSMutableDictionary * _accountsWithAccountTypeCache;
     id  _daemonAccountStoreDidChangeObserver;
     NSString * _effectiveBundleID;
+    NSXPCListenerEndpoint * _endpoint;
     ACRemoteAccountStoreSession * _longLivedRemoteAccountStoreSession;
+    ACTimedExpirer * _longLivedRemoteAccountStoreSessionExpirer;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _longLivedRemoteAccountStoreSessionLock;
     ACRemoteAccountStoreSession * _remoteAccountStoreSession;
+    ACTimedExpirer * _remoteAccountStoreSessionExpirer;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _remoteAccountStoreSessionLock;
     NSObject<OS_dispatch_queue> * _replyQueue;
 }
 
@@ -19,19 +29,28 @@
 @property (nonatomic, readonly) NSArray *ams_iTunesAccountsWithHomeUserIdentifiers;
 @property (nonatomic, readonly) ACAccount *ams_localiTunesAccount;
 @property (nonatomic, readonly) NSString *ams_mediaType;
+@property (readonly) <ACRemoteAccountStoreSessionDelegate> *connectionDelegate;
 @property (readonly) NSString *effectiveBundleID;
+@property (setter=ic_setActiveLockerAccount:, nonatomic, retain) ACAccount *ic_activeLockerAccount;
+@property (setter=ic_setActiveStoreAccount:, nonatomic, retain) ACAccount *ic_activeStoreAccount;
+@property (nonatomic, readonly, copy) NSArray *ic_allStoreAccounts;
+@property (nonatomic, readonly) ACAccount *ic_primaryAppleAccount;
 @property (nonatomic, readonly) ACRemoteAccountStoreSession *longLivedRemoteAccountStoreSession;
 @property (nonatomic, readonly) ACRemoteAccountStoreSession *remoteAccountStoreSession;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *replyQueue;
 
 // Image: /System/Library/Frameworks/Accounts.framework/Accounts
 
 + (id)_defaultStore;
++ (id)_obsoleteAccountTypeIDsToRemove;
++ (void)_setConnectionTimeout:(unsigned long long)arg1;
 + (void)_setDefaultStore:(id)arg1;
 + (int)accountsWithAccountTypeIdentifierExist:(id)arg1;
 + (bool)canSaveAccountsOfAccountTypeIdentifier:(id)arg1;
 + (long long)countOfAccountsWithAccountTypeIdentifier:(id)arg1;
 
 - (void).cxx_destruct;
+- (void)_clearAccountCaches;
 - (id)_connectionFailureError;
 - (id)_createSMTPAccountForServerAccount:(id)arg1;
 - (void)_removeObsoleteAccountsInternal:(id)arg1 completion:(id /* block */)arg2;
@@ -66,6 +85,7 @@
 - (id)allDataclasses;
 - (id)appPermissionsForAccountType:(id)arg1;
 - (void)cachedAccountWithIdentifier:(id)arg1 completion:(id /* block */)arg2;
+- (void)cachedAccountsWithAccountType:(id)arg1 options:(unsigned long long)arg2 completion:(id /* block */)arg3;
 - (void)canSaveAccount:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (id)childAccountsForAccount:(id)arg1;
 - (id)childAccountsForAccount:(id)arg1 error:(id*)arg2;
@@ -73,7 +93,7 @@
 - (void)clearAllPermissionsGrantedForAccountType:(id)arg1;
 - (void)clearGrantedPermissionsForAccountType:(id)arg1;
 - (id)clientTokenForAccount:(id)arg1;
-- (void)connectToRemoteAccountStoreUsingEndpoint:(id)arg1;
+- (id)connectionDelegate;
 - (id)credentialForAccount:(id)arg1;
 - (id)credentialForAccount:(id)arg1 bundleID:(id)arg2;
 - (id)credentialForAccount:(id)arg1 error:(id*)arg2;
@@ -106,6 +126,7 @@
 - (bool)isTetheredSyncingEnabledForDataclass:(id)arg1;
 - (void)kerberosAccountsForDomainFromURL:(id)arg1 completion:(id /* block */)arg2;
 - (id)longLivedRemoteAccountStoreSession;
+- (void)migrateCredentialForAccount:(id)arg1 completion:(id /* block */)arg2;
 - (void)notifyRemoteDevicesOfModifiedAccount:(id)arg1;
 - (void)notifyRemoteDevicesOfNewAccount:(id)arg1;
 - (void)notifyRemoteDevicesOfNewAccount:(id)arg1 withCompletion:(id /* block */)arg2;
@@ -131,6 +152,7 @@
 - (void)renewCredentialsForAccount:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
 - (void)renewCredentialsForAccount:(id)arg1 reason:(id)arg2 completion:(id /* block */)arg3;
 - (void)renewCredentialsForAccount:(id)arg1 services:(id)arg2 completion:(id /* block */)arg3;
+- (id)replyQueue;
 - (void)reportTelemetryForLandmarkEvent:(id /* block */)arg1;
 - (void)requestAccessToAccountsWithType:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
 - (void)requestAccessToAccountsWithType:(id)arg1 withCompletionHandler:(id /* block */)arg2;
@@ -146,6 +168,7 @@
 - (void)setCredential:(id)arg1 forAccount:(id)arg2 serviceID:(id)arg3 error:(id*)arg4;
 - (void)setNotificationsEnabled:(bool)arg1;
 - (void)setPermissionGranted:(bool)arg1 forBundleID:(id)arg2 onAccountType:(id)arg3;
+- (void)shutdownAccountsD:(id /* block */)arg1;
 - (id)supportedDataclassesForAccountType:(id)arg1;
 - (id)syncableDataclassesForAccountType:(id)arg1;
 - (id)tetheredSyncSourceTypeForDataclass:(id)arg1;
@@ -167,6 +190,16 @@
 - (id)fp_primaryAppleAccount;
 - (id)personaIdentifierForACAccountID:(id)arg1;
 
+// Image: /System/Library/Frameworks/Social.framework/Social
+
++ (bool)SLDuplicateAccountExistsForAccount:(id)arg1 withTypeIdentifier:(id)arg2 andAccountPropertyIDKey:(id)arg3;
+
+- (void)sl_openGoogleAuthenticationSheetForAccount:(id)arg1 shouldConfirm:(bool)arg2 completion:(id /* block */)arg3;
+- (void)sl_openGoogleAuthenticationSheetForAccount:(id)arg1 shouldConfirm:(bool)arg2 delegateClassName:(id)arg3 completion:(id /* block */)arg4;
+- (void)sl_openGoogleAuthenticationSheetWithAccountDescription:(id)arg1 completion:(id /* block */)arg2;
+- (void)sl_openYouTubeAuthenticationSheetWithAccountDescription:(id)arg1 completion:(id /* block */)arg2;
+- (void)sl_openYouTubeAuthenticationSheetWithUsername:(id)arg1 accountDescription:(id)arg2 completion:(id /* block */)arg3;
+
 // Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
 
 - (void)_performUpdateRequestWithAccount:(id)arg1 completion:(id /* block */)arg2;
@@ -184,13 +217,14 @@
 - (id)aa_grandSlamAccountForAltDSID:(id)arg1;
 - (id)aa_grandSlamAccountForiCloudAccount:(id)arg1;
 - (bool)aa_isUsingiCloud;
+- (void)aa_loginAndUpdateiCloudAccount:(id)arg1 delegateParams:(id)arg2 withCompletion:(id /* block */)arg3;
+- (void)aa_loginAndUpdateiCloudAccount:(id)arg1 withCompletion:(id /* block */)arg2;
 - (id)aa_primaryAppleAccount;
 - (void)aa_primaryAppleAccountWithCompletion:(id /* block */)arg1;
 - (id)aa_primaryAppleAccountWithPreloadedDataclasses;
 - (id)aa_recommendedAppleIDForAccountSignInWithTypeIdentifier:(id)arg1;
 - (void)aa_registerAppleAccount:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)aa_registerAppleAccountWithHSA:(id)arg1 completion:(id /* block */)arg2;
-- (void)aa_registerAppleAccountWithHSA:(id)arg1 usingCookieHeaders:(id)arg2 completion:(id /* block */)arg3;
 - (void)aa_updatePropertiesForAppleAccount:(id)arg1 completion:(id /* block */)arg2;
 - (void)aa_updatePropertiesForAppleAccount:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
 - (id)accountWithAppleID:(id)arg1;
@@ -213,15 +247,19 @@
 + (id)_secureTokenForIdentifier:(id)arg1;
 + (id)ams_accountTypeIdentifierForMediaType:(id)arg1;
 + (id)ams_sharedAccountStore;
++ (id)ams_sharedAccountStoreForClient:(id)arg1;
 + (id)ams_sharedAccountStoreForMediaType:(id)arg1;
 + (id)ams_sharedAccountStoreForProcessInfo:(id)arg1;
 
+- (id)_accountTypeForMediaType:(id)arg1;
 - (bool)_addGlobalCookiesForResponse:(id)arg1 error:(id*)arg2;
 - (bool)_addUserCookiesForResponse:(id)arg1 account:(id)arg2 error:(id*)arg3;
 - (id)_alliTunesAccounts;
 - (id)_cachedAccountWithIdentifier:(id)arg1;
 - (id)_correspondingAccountWithAccountTypeIdentifier:(id)arg1 forAccount:(id)arg2;
-- (void)_createLocalAccount;
+- (id)_createLocaliTunesAccountForAccountType:(id)arg1;
+- (id)_fetchLocaliTunesAccountForAccountType:(id)arg1;
+- (id)_iTunesAccountsForAccountType:(id)arg1;
 - (bool)_isAccountNew:(id)arg1;
 - (id)_saveAccount:(id)arg1 verifyCredentials:(bool)arg2;
 - (id)_storeClientIdentifier;
@@ -253,6 +291,9 @@
 - (id)ams_iTunesSandboxAccounts;
 - (bool)ams_isActiveAccountCombined;
 - (id)ams_localiTunesAccount;
+- (id)ams_localiTunesAccountForAccountMediaType:(id)arg1;
+- (id)ams_localiTunesAccountForAccountType:(id)arg1;
+- (id)ams_mediaAccountForHomeWithIdentifier:(id)arg1;
 - (id)ams_mediaType;
 - (bool)ams_removeCookiesMatchingProperties:(id)arg1 error:(id*)arg2;
 - (id)ams_saveAccount:(id)arg1;
@@ -262,12 +303,101 @@
 - (bool)ams_setSecureToken:(id)arg1 forAccount:(id)arg2 error:(id*)arg3;
 - (id)ams_setiTunesAccount:(id)arg1 forHomeWithIdentifier:(id)arg2;
 
+// Image: /System/Library/PrivateFrameworks/BookUtility.framework/BookUtility
+
++ (id)bu_sharedAccountStore;
+
+// Image: /System/Library/PrivateFrameworks/CDDataAccess.framework/CDDataAccess
+
+- (void)_daAccountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2 filterOnDataclasses:(bool)arg3 withCompletion:(id /* block */)arg4;
+- (id)da_accounts;
+- (id)da_accountsEnabledForDADataclasses:(long long)arg1;
+- (id)da_accountsWithAccountTypeIdentifiers:(id)arg1;
+- (id)da_accountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2;
+- (id)da_accountsWithAccountTypeIdentifiers:(id)arg1 outError:(id*)arg2;
+- (void)da_loadDAAccountsEnabledForDADataclasses:(long long)arg1 withCompletion:(id /* block */)arg2;
+- (void)da_loadDAAccountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2 withCompletion:(id /* block */)arg3;
+- (void)da_loadDAAccountsWithAccountTypeIdentifiers:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)da_loadDAAccountsWithCompletion:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
+- (id)br_appleAccountWithPersonID:(id)arg1;
+- (id)br_primaryAppleAccount;
+
 // Image: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
 
 - (id)_cn_canSaveAccount:(id)arg1;
 - (id)_cn_removeAccount:(id)arg1;
 - (id)_cn_saveVerifiedAccount:(id)arg1;
 - (id)cardDAVAccountForPrimaryAppleAccountWithAppleID:(id)arg1 logger:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
+
+- (void)_daAccountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2 filterOnDataclasses:(bool)arg3 withCompletion:(id /* block */)arg4;
+- (id)da_accounts;
+- (id)da_accountsWithAccountTypeIdentifiers:(id)arg1;
+- (id)da_accountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2;
+- (id)da_accountsWithAccountTypeIdentifiers:(id)arg1 outError:(id*)arg2;
+- (void)da_loadDAAccountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2 withCompletion:(id /* block */)arg3;
+- (void)da_loadDAAccountsWithAccountTypeIdentifiers:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)da_loadDAAccountsWithCompletion:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DataAccess.framework/Frameworks/DACardDAV.framework/DACardDAV
+
+- (id)_cn_canSaveAccount:(id)arg1;
+- (id)_cn_removeAccount:(id)arg1;
+- (id)_cn_saveVerifiedAccount:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ExchangeSync.framework/ExchangeSync
+
+- (void)_esAccountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2 filterOnDataclasses:(bool)arg3 withCompletion:(id /* block */)arg4;
+- (id)es_accountsWithAccountTypeIdentifiers:(id)arg1 outError:(id*)arg2;
+- (void)es_loadESAccountsEnabledForDADataclasses:(long long)arg1 withCompletion:(id /* block */)arg2;
+- (void)es_loadESAccountsWithAccountTypeIdentifiers:(id)arg1 enabledForDADataclasses:(long long)arg2 withCompletion:(id /* block */)arg3;
+- (void)es_loadESAccountsWithAccountTypeIdentifiers:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)es_loadESAccountsWithCompletion:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
+- (void)_getAltDSIDFromIDMSForCredential:(id)arg1 completionHandler:(id /* block */)arg2;
+- (id)_gkAccountForAppleID:(id)arg1;
+- (id)_gkAllCredentials;
+- (id)_gkAllCredentialsForEnvironment:(long long)arg1;
+- (id)_gkCredentialForUsername:(id)arg1 environment:(long long)arg2;
+- (void)_gkDeleteCredential:(id)arg1 completionHandler:(id /* block */)arg2;
+- (id)_gkMapAccountsWithBlock:(id /* block */)arg1;
+- (id)_gkPrimaryCredentialForEnvironment:(long long)arg1;
+- (void)_gkSaveCredential:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_gkSetScope:(unsigned int)arg1 forCredential:(id)arg2 completionHandler:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/MobileSync.framework/MobileSync
+
+- (id)_mailAccountTypeIdentifiers;
+- (bool)hasMailAccountsForSync;
+- (id)mailAccountsForSync;
+
+// Image: /System/Library/PrivateFrameworks/RemoteManagement.framework/RemoteManagement
+
+- (id)_rm_AccountAssociatedWithRemoteManagementWithAccountTypeIdentifier:(id)arg1;
+- (id)_rm_AccountAssociatedWithRemoteManagementWithAccountTypeIdentifier:(id)arg1 altDSID:(id)arg2;
+- (id)rm_RemoteManagementAccountType;
+- (id)rm_RemoteManagementAccounts;
+- (id)rm_iCloudAccountForRemoteManagingAccount;
+- (id)rm_iCloudAccountForRemoteManagingAccountWithAltDSID:(id)arg1;
+- (id)rm_iTunesAccountForRemoteManagingAccount;
+- (id)rm_iTunesAccountForRemoteManagingAccountWithAltDSID:(id)arg1;
+- (id)rm_remoteManagementAccountForAltDSID:(id)arg1;
+- (id)rm_remoteManagementAccountForDSID:(id)arg1;
+- (id)rm_remoteManagementAccountForIdentifier:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SocialServices.framework/SocialServices
+
+- (void)sl_openGoogleAuthenticationSheetForAccount:(id)arg1 shouldConfirm:(bool)arg2 completion:(id /* block */)arg3;
+- (void)sl_openGoogleAuthenticationSheetForAccount:(id)arg1 shouldConfirm:(bool)arg2 delegateClassName:(id)arg3 completion:(id /* block */)arg4;
+- (void)sl_openGoogleAuthenticationSheetWithAccountDescription:(id)arg1 completion:(id /* block */)arg2;
+- (void)sl_openYouTubeAuthenticationSheetWithAccountDescription:(id)arg1 completion:(id /* block */)arg2;
+- (void)sl_openYouTubeAuthenticationSheetWithUsername:(id)arg1 accountDescription:(id)arg2 completion:(id /* block */)arg3;
 
 // Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
@@ -279,5 +409,38 @@
 - (id)_ss_appleAuthenticationAccountForAccount:(id)arg1 error:(id*)arg2;
 - (id)_ss_iCloudAccountForAccount:(id)arg1 error:(id*)arg2;
 - (id)_ss_iTunesAccountForAccount:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iTunesCloud.framework/iTunesCloud
+
++ (id)ic_sharedAccountStore;
+
+- (id)_ic_storeAccountType;
+- (id)ic_activeLockerAccount;
+- (void)ic_activeLockerAccountWithCompletion:(id /* block */)arg1;
+- (id)ic_activeLockerAccountWithError:(id*)arg1;
+- (id)ic_activeStoreAccount;
+- (void)ic_activeStoreAccountWithCompletion:(id /* block */)arg1;
+- (id)ic_activeStoreAccountWithError:(id*)arg1;
+- (id)ic_allStoreAccounts;
+- (void)ic_allStoreAccountsWithCompletion:(id /* block */)arg1;
+- (id)ic_allStoreAccountsWithError:(id*)arg1;
+- (void)ic_localStoreAccountWithCompletion:(id /* block */)arg1;
+- (id)ic_localStoreAccountWithError:(id*)arg1;
+- (id)ic_primaryAppleAccount;
+- (void)ic_primaryAppleAccountWithCompletion:(id /* block */)arg1;
+- (id)ic_primaryAppleAccountWithError:(id*)arg1;
+- (void)ic_setActiveLockerAccount:(id)arg1;
+- (void)ic_setActiveLockerAccount:(id)arg1 completion:(id /* block */)arg2;
+- (bool)ic_setActiveLockerAccount:(id)arg1 error:(id*)arg2;
+- (void)ic_setActiveStoreAccount:(id)arg1;
+- (void)ic_setActiveStoreAccount:(id)arg1 completion:(id /* block */)arg2;
+- (bool)ic_setActiveStoreAccount:(id)arg1 error:(id*)arg2;
+- (void)ic_storeAccountForHomeUserIdentifier:(id)arg1 completion:(id /* block */)arg2;
+- (id)ic_storeAccountForHomeUserIdentifier:(id)arg1 error:(id*)arg2;
+- (id)ic_storeAccountForStoreAccountID:(id)arg1;
+- (void)ic_storeAccountForStoreAccountID:(id)arg1 completion:(id /* block */)arg2;
+- (id)ic_storeAccountForStoreAccountID:(id)arg1 error:(id*)arg2;
+- (void)ic_storeAccountTypeWithCompletion:(id /* block */)arg1;
+- (id)ic_storeAccountTypeWithError:(id*)arg1;
 
 @end

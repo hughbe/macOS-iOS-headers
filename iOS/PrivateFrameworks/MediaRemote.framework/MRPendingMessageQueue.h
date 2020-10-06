@@ -10,7 +10,6 @@
 }
 
 - (void).cxx_destruct;
-- (void)_purge;
 - (void)dealloc;
 - (id)initWithMaxLowPriorityMessagesAllowed:(unsigned long long)arg1;
 - (id)peek;

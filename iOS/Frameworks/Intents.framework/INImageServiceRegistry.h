@@ -5,6 +5,7 @@
 @interface INImageServiceRegistry : NSObject {
     NSMutableDictionary * _imageServicesByServiceIdentifier;
     NSMutableArray * _prioritySortedImageServices;
+    NSObject<OS_dispatch_queue> * _registryQueue;
 }
 
 @property (nonatomic, readonly, copy) NSArray *imageLoaders;

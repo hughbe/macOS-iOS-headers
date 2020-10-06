@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
  */
 
-@interface SFCardSectionEngagementFeedback : SFCardSectionFeedback {
+@interface SFCardSectionEngagementFeedback : SFCardSectionFeedback <CRCardSectionEngagementFeedback> {
     unsigned long long  _actionCardType;
     unsigned long long  _actionTarget;
     SFPunchout * _destination;
@@ -11,8 +11,15 @@
 
 @property (nonatomic) unsigned long long actionCardType;
 @property (nonatomic) unsigned long long actionTarget;
+@property (nonatomic, readonly) SFCardSectionEngagementFeedback *backingFeedback;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, retain) SFPunchout *destination;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
 @property (nonatomic) unsigned long long triggerEvent;
+
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
 
 + (bool)supportsSecureCoding;
 
@@ -28,5 +35,9 @@
 - (void)setDestination:(id)arg1;
 - (void)setTriggerEvent:(unsigned long long)arg1;
 - (unsigned long long)triggerEvent;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
+- (id)backingFeedback;
 
 @end

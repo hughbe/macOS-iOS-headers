@@ -9,6 +9,7 @@
 @property (nonatomic, copy) NSArray *attachments;
 @property (nonatomic, copy) NSString *chatIdentifier;
 @property (nonatomic, copy) NSDate *dateLastMessageReadInThread;
+@property (nonatomic, copy) NSDate *dateReadingStarted;
 @property (nonatomic, copy) NSDate *dateSent;
 @property (nonatomic, copy) NSString *effect;
 @property (nonatomic, copy) NSString *groupName;
@@ -36,6 +37,7 @@
 - (id)attachments;
 - (id)chatIdentifier;
 - (id)dateLastMessageReadInThread;
+- (id)dateReadingStarted;
 - (id)dateSent;
 - (id)effect;
 - (id)encodedClassName;
@@ -57,6 +59,7 @@
 - (void)setAttachments:(id)arg1;
 - (void)setChatIdentifier:(id)arg1;
 - (void)setDateLastMessageReadInThread:(id)arg1;
+- (void)setDateReadingStarted:(id)arg1;
 - (void)setDateSent:(id)arg1;
 - (void)setEffect:(id)arg1;
 - (void)setGroupName:(id)arg1;

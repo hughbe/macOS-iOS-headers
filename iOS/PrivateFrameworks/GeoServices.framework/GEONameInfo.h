@@ -12,14 +12,7 @@
         unsigned int read_name : 1; 
         unsigned int read_phoneticName : 1; 
         unsigned int read_shield : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_locale : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_phoneticName : 1; 
-        unsigned int wrote_shield : 1; 
-        unsigned int wrote_phoneticType : 1; 
-        unsigned int wrote_shieldType : 1; 
-        unsigned int wrote_signType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _locale;
     NSString * _name;
@@ -58,10 +51,6 @@
 - (void).cxx_destruct;
 - (int)StringAsPhoneticType:(id)arg1;
 - (int)StringAsSignType:(id)arg1;
-- (void)_readLocale;
-- (void)_readName;
-- (void)_readPhoneticName;
-- (void)_readShield;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -77,7 +66,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)locale;
 - (void)mergeFrom:(id)arg1;
 - (id)name;

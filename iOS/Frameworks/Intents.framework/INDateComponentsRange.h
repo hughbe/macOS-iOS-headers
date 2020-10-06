@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INDateComponentsRange : NSObject <INDateComponentsRangeExport, NSCopying, NSSecureCoding> {
+@interface INDateComponentsRange : NSObject <CMSCoding, INDateComponentsRangeExport, NSCopying, NSSecureCoding> {
     NSNumber * _allDay;
     NSDateComponents * _endDateComponents;
     INRecurrenceRule * _recurrenceRule;
@@ -23,12 +23,14 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly, copy) NSString *userInput;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)EKRecurrenceRule;
 - (id)_dictionaryRepresentation;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
 - (id)_userInput;
 - (id)allDay;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -52,5 +54,16 @@
 - (id)startDate;
 - (id)startDateComponents;
 - (id)userInput;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)fromStartDate:(id)arg1;
++ (id)fromStartDate:(id)arg1 endDate:(id)arg2;
 
 @end

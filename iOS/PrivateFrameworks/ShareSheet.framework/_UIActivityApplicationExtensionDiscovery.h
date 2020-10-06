@@ -5,14 +5,10 @@
 @interface _UIActivityApplicationExtensionDiscovery : NSObject {
     NSArray * _extensionPointIdentifiers;
     id /* block */  _fetchShortcutsBlock;
-    NSObject<OS_dispatch_queue> * _primedExtensionsQueue;
-    _UIMatchingExtensionsResult * _primedExtensionsResult;
 }
 
 @property (nonatomic, copy) NSArray *extensionPointIdentifiers;
 @property (nonatomic, copy) id /* block */ fetchShortcutsBlock;
-@property (retain) NSObject<OS_dispatch_queue> *primedExtensionsQueue;
-@property (retain) _UIMatchingExtensionsResult *primedExtensionsResult;
 
 + (id)extensionBasedActivityForExtension:(id)arg1;
 + (id)extensionMatchingDictionariesForExtensionItems:(id)arg1;
@@ -25,11 +21,9 @@
 - (id)init;
 - (id)initWithExtensionPointIdentifiers:(id)arg1;
 - (void)primeWithDiscoveryContext:(id)arg1;
-- (id)primedExtensionsQueue;
-- (id)primedExtensionsResult;
+- (void)registerPendingContinuousExtensionsDiscovery;
+- (id)reportExtensionsCacheResult;
 - (void)setExtensionPointIdentifiers:(id)arg1;
 - (void)setFetchShortcutsBlock:(id /* block */)arg1;
-- (void)setPrimedExtensionsQueue:(id)arg1;
-- (void)setPrimedExtensionsResult:(id)arg1;
 
 @end

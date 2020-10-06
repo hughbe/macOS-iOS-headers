@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchDatabaseChangesOperation : CKDatabaseOperation {
+@interface CKFetchDatabaseChangesOperation : CKDatabaseOperation <CKFetchDatabaseChangesOperationCallbacks> {
     id /* block */  _changeTokenUpdatedBlock;
     bool  _fetchAllChanges;
     id /* block */  _fetchDatabaseChangesCompletionBlock;
@@ -16,8 +16,10 @@
 }
 
 @property (nonatomic, copy) id /* block */ changeTokenUpdatedBlock;
+@property (nonatomic, readonly) <CKFetchDatabaseChangesOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic) bool fetchAllChanges;
 @property (nonatomic, copy) id /* block */ fetchDatabaseChangesCompletionBlock;
+@property (nonatomic, readonly) CKFetchDatabaseChangesOperationInfo *operationInfo;
 @property (nonatomic, copy) CKServerChangeToken *previousServerChangeToken;
 @property (nonatomic, copy) id /* block */ recordZoneWithIDChangedBlock;
 @property (nonatomic, copy) id /* block */ recordZoneWithIDWasDeletedBlock;
@@ -26,16 +28,22 @@
 @property (nonatomic, retain) CKServerChangeToken *serverChangeToken;
 @property (nonatomic) long long status;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleCompletionCallback:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id /* block */)changeTokenUpdatedBlock;
 - (bool)fetchAllChanges;
 - (id /* block */)fetchDatabaseChangesCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleChangeForRecordZoneID:(id)arg1;
+- (void)handleChangeSetCompletionWithServerChangeToken:(id)arg1 databaseChangesStatus:(long long)arg2 error:(id)arg3 reply:(id /* block */)arg4;
+- (void)handleDeleteForRecordZoneID:(id)arg1;
+- (void)handlePurgeForRecordZoneID:(id)arg1;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithPreviousServerChangeToken:(id)arg1;
@@ -57,5 +65,10 @@
 - (void)setServerChangeToken:(id)arg1;
 - (void)setStatus:(long long)arg1;
 - (long long)status;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (id)ic_loggingValues;
+- (void)ic_removeAllCompletionBlocks;
 
 @end

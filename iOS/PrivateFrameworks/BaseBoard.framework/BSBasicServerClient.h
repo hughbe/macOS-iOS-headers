@@ -9,7 +9,7 @@
     int  _resumed;
 }
 
-@property (nonatomic, retain) NSObject<OS_xpc_object> *connection;
+@property (nonatomic, readonly) NSObject<OS_xpc_object> *connection;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -27,7 +27,6 @@
 - (void)sendMessage:(id)arg1;
 - (void)sendMessageWithPacker:(id /* block */)arg1;
 - (void)sendMessageWithPacker:(id /* block */)arg1 replyHandler:(id /* block */)arg2 onQueue:(id)arg3;
-- (void)setConnection:(id)arg1;
 - (void)suspend;
 
 @end

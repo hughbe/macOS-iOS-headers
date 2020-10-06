@@ -36,8 +36,8 @@
 - (bool)isPlaceholder;
 - (bool)isSystemApp;
 - (id)placeholderDomainWithCache:(id)arg1;
-- (id)placeholderDomainZip;
 - (id)plugins;
 - (void)setBundleDir:(id)arg1;
+- (id)zipPlaceholderDomain;
 
 @end

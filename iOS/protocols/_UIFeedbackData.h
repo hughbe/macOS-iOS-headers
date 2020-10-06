@@ -7,9 +7,12 @@
 
 - (_UIFeedbackParameters *)audioParameters;
 - (double)effectiveDelay;
+- (double)effectiveDuration;
 - (unsigned long long)effectiveEnabledFeedbackTypes;
 - (unsigned long long)effectiveEventType;
 - (unsigned int)effectiveSystemSoundID;
+- (unsigned long long)fileFeedbackType;
+- (NSURL *)fileURL;
 - (_UIFeedbackParameters *)hapticParameters;
 
 @end

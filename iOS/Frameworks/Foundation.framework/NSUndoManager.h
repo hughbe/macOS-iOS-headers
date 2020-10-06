@@ -17,6 +17,7 @@
 @property (readonly) bool canUndo;
 @property (readonly) long long groupingLevel;
 @property bool groupsByEvent;
+@property (nonatomic, readonly) bool ic_isUndoingOrRedoing;
 @property unsigned long long levelsOfUndo;
 @property (readonly) bool redoActionIsDiscardable;
 @property (readonly, copy) NSString *redoActionName;
@@ -28,6 +29,8 @@
 @property (readonly, copy) NSString *undoMenuItemTitle;
 @property (getter=isUndoRegistrationEnabled, readonly) bool undoRegistrationEnabled;
 @property (getter=isUndoing, readonly) bool undoing;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (void)_endTopLevelGroupings;
 + (void)_setEndsTopLevelGroupingsAfterRunLoopIterations:(bool)arg1;
@@ -85,5 +88,15 @@
 - (id)undoMenuItemTitle;
 - (id)undoMenuTitleForUndoActionName:(id)arg1;
 - (void)undoNestedGroup;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (bool)ic_isUndoingOrRedoing;
+- (void)ic_performUndoGroup:(id /* block */)arg1;
+- (void)ic_performUndoGroupWithActionName:(id)arg1 undoGroup:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/RemindersUICore.framework/RemindersUICore
+
+- (id)ttr_saveRequestIn:(id)arg1;
 
 @end

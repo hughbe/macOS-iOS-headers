@@ -26,6 +26,7 @@
     }  _delegateFlags;
     NSMutableArray * _discoveredPeripherals;
     bool  _isScanning;
+    bool  _observingKeyPaths;
     NSMapTable * _peripherals;
 }
 
@@ -43,12 +44,14 @@
 - (void)cancelPeripheralConnection:(id)arg1 force:(bool)arg2;
 - (void)cancelPeripheralConnection:(id)arg1 options:(id)arg2;
 - (void)connectPeripheral:(id)arg1 options:(id)arg2;
+- (void)createOfflineLEPairing:(unsigned short)arg1;
 - (id)createPeripheralWithAddress:(id)arg1 andIdentifier:(id)arg2;
 - (id)dataArrayToUUIDArray:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
 - (id)discoveredPeripherals;
 - (void)enablePrivateModeForPeripheral:(id)arg1 forDuration:(unsigned short)arg2;
+- (void)enablePrivateModeForSessionWithIdentifier:(id)arg1 forDuration:(unsigned short)arg2;
 - (void)forEachPeripheral:(id /* block */)arg1;
 - (unsigned short)getRemainingAdvancedMatchingRule;
 - (unsigned short)getTotalSupportedAdvancedMatchingRules;
@@ -110,6 +113,7 @@
 - (void)setEnhancedSetScanParamtersMultiCore:(id)arg1;
 - (void)setIsScanning:(bool)arg1;
 - (void)setLESetPhy:(id)arg1 options:(id)arg2;
+- (void)setLeAFHMap:(id)arg1;
 - (void)setMatchActionRules:(id)arg1;
 - (id)startConnectionEventCounterForPeripheral:(id)arg1;
 - (void)startTrackingPeripheral:(id)arg1 options:(id)arg2;

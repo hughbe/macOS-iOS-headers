@@ -9,6 +9,7 @@
     NSString * _feedId;
     struct { 
         unsigned int has_publishTime : 1; 
+        unsigned int has_maxAgeSeconds : 1; 
         unsigned int has_vendor : 1; 
         unsigned int read_basemapId : 1; 
         unsigned int read_branchId : 1; 
@@ -17,17 +18,11 @@
         unsigned int read_isoCountryCode : 1; 
         unsigned int read_regions : 1; 
         unsigned int read_snapshotId : 1; 
-        unsigned int wrote_basemapId : 1; 
-        unsigned int wrote_branchId : 1; 
-        unsigned int wrote_environment : 1; 
-        unsigned int wrote_feedId : 1; 
-        unsigned int wrote_isoCountryCode : 1; 
-        unsigned int wrote_publishTime : 1; 
-        unsigned int wrote_regions : 1; 
-        unsigned int wrote_snapshotId : 1; 
-        unsigned int wrote_vendor : 1; 
+        unsigned int read_vendorSnapshotId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _isoCountryCode;
+    unsigned int  _maxAgeSeconds;
     unsigned long long  _publishTime;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -38,6 +33,7 @@
     NSMutableArray * _regions;
     NSString * _snapshotId;
     int  _vendor;
+    NSString * _vendorSnapshotId;
 }
 
 @property (nonatomic, retain) NSString *basemapId;
@@ -49,28 +45,24 @@
 @property (nonatomic, readonly) bool hasEnvironment;
 @property (nonatomic, readonly) bool hasFeedId;
 @property (nonatomic, readonly) bool hasIsoCountryCode;
+@property (nonatomic) bool hasMaxAgeSeconds;
 @property (nonatomic) bool hasPublishTime;
 @property (nonatomic, readonly) bool hasSnapshotId;
 @property (nonatomic) bool hasVendor;
+@property (nonatomic, readonly) bool hasVendorSnapshotId;
 @property (nonatomic, retain) NSString *isoCountryCode;
+@property (nonatomic) unsigned int maxAgeSeconds;
 @property (nonatomic) unsigned long long publishTime;
 @property (nonatomic, retain) NSMutableArray *regions;
 @property (nonatomic, retain) NSString *snapshotId;
 @property (nonatomic) int vendor;
+@property (nonatomic, retain) NSString *vendorSnapshotId;
 
 + (bool)isValid:(id)arg1;
 + (Class)regionsType;
 
 - (void).cxx_destruct;
 - (int)StringAsVendor:(id)arg1;
-- (void)_addNoFlagsRegions:(id)arg1;
-- (void)_readBasemapId;
-- (void)_readBranchId;
-- (void)_readEnvironment;
-- (void)_readFeedId;
-- (void)_readIsoCountryCode;
-- (void)_readRegions;
-- (void)_readSnapshotId;
 - (void)addRegions:(id)arg1;
 - (id)basemapId;
 - (id)branchId;
@@ -86,14 +78,20 @@
 - (bool)hasEnvironment;
 - (bool)hasFeedId;
 - (bool)hasIsoCountryCode;
+- (bool)hasMaxAgeSeconds;
 - (bool)hasPublishTime;
 - (bool)hasSnapshotId;
 - (bool)hasVendor;
+- (bool)hasVendorSnapshotId;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)isoCountryCode;
+- (id)jsonRepresentation;
+- (unsigned int)maxAgeSeconds;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)publishTime;
 - (void)readAll:(bool)arg1;
@@ -105,16 +103,20 @@
 - (void)setBranchId:(id)arg1;
 - (void)setEnvironment:(id)arg1;
 - (void)setFeedId:(id)arg1;
+- (void)setHasMaxAgeSeconds:(bool)arg1;
 - (void)setHasPublishTime:(bool)arg1;
 - (void)setHasVendor:(bool)arg1;
 - (void)setIsoCountryCode:(id)arg1;
+- (void)setMaxAgeSeconds:(unsigned int)arg1;
 - (void)setPublishTime:(unsigned long long)arg1;
 - (void)setRegions:(id)arg1;
 - (void)setSnapshotId:(id)arg1;
 - (void)setVendor:(int)arg1;
+- (void)setVendorSnapshotId:(id)arg1;
 - (id)snapshotId;
 - (int)vendor;
 - (id)vendorAsString:(int)arg1;
+- (id)vendorSnapshotId;
 - (void)writeTo:(id)arg1;
 
 @end

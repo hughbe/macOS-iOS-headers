@@ -20,6 +20,6 @@
 - (id)layouts;
 - (id)newSerializedDescriptor;
 - (void)reset;
-- (bool)validateWithVertexFunction:(id)arg1 error:(id*)arg2;
+- (bool)validateWithVertexFunction:(id)arg1 error:(id*)arg2 renderPipelineDescriptor:(id)arg3;
 
 @end

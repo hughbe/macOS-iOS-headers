@@ -48,6 +48,7 @@
 - (void)endSessionWithReply:(id /* block */)arg1;
 - (void)handleApduResponse:(id)arg1 body:(id)arg2 le:(unsigned long long)arg3 isCase4:(bool)arg4 error:(id)arg5 reply:(id /* block */)arg6;
 - (bool)inSessionWithError:(id*)arg1 executeBlock:(id /* block */)arg2;
+- (void)inSlotQueueExecuteBlock:(id /* block */)arg1;
 - (id)initWithSlot:(id)arg1;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)querySessionWithReply:(id /* block */)arg1;

@@ -13,6 +13,7 @@
 - (bool)acceptsDictationSearchResults;
 - (bool)acceptsEmoji;
 - (bool)acceptsFloatingKeyboard;
+- (bool)acceptsInitialEmojiKeyboard;
 - (bool)acceptsPayloads;
 - (bool)acceptsSplitKeyboard;
 - (NSString *)autocorrectionContext;
@@ -40,6 +41,7 @@
 - (bool)isSingleLineDocument;
 - (bool)learnsCorrections;
 - (bool)loadKeyboardsForSiriLanguage;
+- (bool)preferOnlineDictation;
 - (NSString *)recentInputIdentifier;
 - (NSString *)responseContext;
 - (bool)returnKeyGoesToNextResponder;
@@ -49,6 +51,7 @@
 - (void)setAcceptsDictationSearchResults:(bool)arg1;
 - (void)setAcceptsEmoji:(bool)arg1;
 - (void)setAcceptsFloatingKeyboard:(bool)arg1;
+- (void)setAcceptsInitialEmojiKeyboard:(bool)arg1;
 - (void)setAcceptsPayloads:(bool)arg1;
 - (void)setAcceptsSplitKeyboard:(bool)arg1;
 - (void)setAutocorrectionContext:(NSString *)arg1;
@@ -77,6 +80,7 @@
 - (void)setLearnsCorrections:(bool)arg1;
 - (void)setLoadKeyboardsForSiriLanguage:(bool)arg1;
 - (void)setPINEntrySeparatorIndexes:(NSIndexSet *)arg1;
+- (void)setPreferOnlineDictation:(bool)arg1;
 - (void)setRecentInputIdentifier:(NSString *)arg1;
 - (void)setResponseContext:(NSString *)arg1;
 - (void)setReturnKeyGoesToNextResponder:(bool)arg1;

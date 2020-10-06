@@ -6,6 +6,7 @@
     long long  _buttonType;
     unsigned int  _delaysRecognitionForGreaterTapCounts;
     UITapRecognizer * _imp;
+    bool  _isSingleKeyPressGesture;
     struct CGPoint { 
         double x; 
         double y; 
@@ -13,17 +14,21 @@
 }
 
 @property (setter=_setButtonType:, nonatomic) long long _buttonType;
+@property (readonly) unsigned long long akNumberOfTapsRequired;
 @property (nonatomic) long long buttonMaskRequired;
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } centroid;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic) bool isSingleKeyPressGesture;
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } location;
 @property (nonatomic) double maximumTapDuration;
 @property (nonatomic) unsigned long long numberOfTapsRequired;
 @property (nonatomic) unsigned long long numberOfTouchesRequired;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSArray *touches;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (bool)_supportsTouchContinuation;
 + (bool)supportsSecureCoding;
@@ -37,6 +42,7 @@
 - (bool)_delaysRecognitionForGreaterTapCounts;
 - (struct CGPoint { double x1; double x2; })_digitizerLocation;
 - (long long)_finalStateForRecognition;
+- (bool)_isGestureType:(long long)arg1;
 - (void)_resetGestureRecognizer;
 - (void)_setAllowableSeparation:(double)arg1;
 - (void)_setAllowableTouchTimeSeparation:(double)arg1;
@@ -54,6 +60,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;
+- (bool)isSingleKeyPressGesture;
 - (struct CGPoint { double x1; double x2; })location;
 - (struct CGPoint { double x1; double x2; })locationInView:(id)arg1;
 - (struct CGPoint { double x1; double x2; })locationOfTouch:(unsigned long long)arg1 inView:(id)arg2;
@@ -70,6 +77,7 @@
 - (void)setAllowableMovement:(double)arg1;
 - (void)setAllowedPressTypes:(id)arg1;
 - (void)setButtonMaskRequired:(long long)arg1;
+- (void)setIsSingleKeyPressGesture:(bool)arg1;
 - (void)setMaximumIntervalBetweenSuccessiveTaps:(double)arg1;
 - (void)setMaximumSingleTapDuration:(double)arg1;
 - (void)setMaximumTapDuration:(double)arg1;
@@ -84,5 +92,9 @@
 - (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
+- (unsigned long long)akNumberOfTapsRequired;
 
 @end

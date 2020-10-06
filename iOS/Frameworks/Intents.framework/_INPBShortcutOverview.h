@@ -3,7 +3,6 @@
  */
 
 @interface _INPBShortcutOverview : PBCodable <NSCopying, NSSecureCoding, _INPBShortcutOverview> {
-    bool  __encodeLegacyGloryData;
     _INPBDataString * _descriptiveText;
     struct { }  _has;
     _INPBImageValue * _icon;
@@ -12,7 +11,6 @@
     _INPBDataString * _voiceCommand;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBDataString *descriptiveText;
@@ -32,8 +30,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addSteps:(id)arg1;
 - (void)clearSteps;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

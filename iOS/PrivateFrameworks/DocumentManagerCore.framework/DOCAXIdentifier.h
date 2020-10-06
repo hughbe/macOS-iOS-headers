@@ -4,11 +4,20 @@
 
 @interface DOCAXIdentifier : NSObject
 
++ (id)browsingModeTabBar;
++ (id)browsingRoot;
++ (id)browsingRootIdentifierForSourceIdentifier:(id)arg1;
 + (id)displayOptionsBar;
 + (id)fullNavBar;
 + (id)idBase;
++ (id)inlineRenameField;
++ (id)itemCollectionMenuButtonShowing:(id)arg1;
 + (id)itemCollectionView;
++ (id)itemInfoNavigationRoot;
 + (Class)itemInfoView;
++ (id)searchMenuButtonShowing:(id)arg1;
++ (Class)sidebar;
++ (id)tagEditorContainer;
 + (Class)viewStyleSelector;
 
 @end

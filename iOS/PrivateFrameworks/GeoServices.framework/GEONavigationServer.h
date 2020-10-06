@@ -18,7 +18,6 @@
     unsigned long long  _state;
     NSData * _stepIndexData;
     NSData * _stepNameInfoData;
-    NSData * _trafficIncidentAlertDetailsData;
     NSData * _transitSummaryData;
     int  _transportType;
 }
@@ -33,6 +32,7 @@
 - (void).cxx_destruct;
 - (void)_closePushStatePeerConnection;
 - (void)_forEachValidPeerProxy:(id /* block */)arg1;
+- (void)_forEachValidPeerProxyOnMainQueue:(id /* block */)arg1;
 - (void)_notifyListenersOpenConnection;
 - (void)_openPushStatePeerConnection:(id)arg1;
 - (void)_requestActiveRouteDetailsDataWithPeer:(id)arg1;
@@ -45,7 +45,6 @@
 - (void)_requestRouteSummaryWithPeer:(id)arg1;
 - (void)_requestStepIndexWithPeer:(id)arg1;
 - (void)_requestStepNameInfoWithPeer:(id)arg1;
-- (void)_requestTrafficIncidentDetailsDataWithPeer:(id)arg1;
 - (void)_requestTransitSummaryWithPeer:(id)arg1;
 - (void)_sendMessage:(long long)arg1 data:(id)arg2 toPeer:(id)arg3;
 - (void)_updateAllPeersWithMessage:(long long)arg1 data:(id)arg2;
@@ -64,7 +63,6 @@
 - (void)setRouteSummaryWithRideSelectionsData:(id)arg1;
 - (void)setRouteSummaryWithStepIndexData:(id)arg1;
 - (void)setRouteSummaryWithStepNameInfoData:(id)arg1;
-- (void)setRouteSummaryWithTrafficIncidentAlertDetailsData:(id)arg1;
 - (void)setRouteSummaryWithTransitSummaryData:(id)arg1;
 - (bool)shouldAcceptNewConnection:(id)arg1 shouldCreateNavigationPeer:(bool)arg2;
 

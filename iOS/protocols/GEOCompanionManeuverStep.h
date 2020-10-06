@@ -14,6 +14,7 @@
 - (struct GEOJunctionElement { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*)junctionElements;
 - (unsigned long long)junctionElementsCount;
 - (int)junctionType;
+- (<GEOTransitArtworkDataSource> *)maneuverArtworkOverride;
 - (GEONameInfoList *)maneuverNameAtIndex:(unsigned long long)arg1;
 - (NSMutableArray *)maneuverNames;
 - (unsigned long long)maneuverNamesCount;

@@ -9,12 +9,7 @@
 
 @property (nonatomic) bool shadowHidden;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)layoutSubviews;
 - (void)setShadowHidden:(bool)arg1;
 - (bool)shadowHidden;

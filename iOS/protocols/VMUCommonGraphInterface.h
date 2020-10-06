@@ -15,6 +15,7 @@
 - (NSString *)executablePath;
 - (bool)hasLabelsForNodes;
 - (bool)is64bit;
+- (unsigned int)kernelPageSize;
 - (NSString *)labelForNode:(unsigned int)arg1;
 - (void)markReachableNodesFromRoots:(void*)arg1 inMap:(void*)arg2;
 - (unsigned int)nodeCount;

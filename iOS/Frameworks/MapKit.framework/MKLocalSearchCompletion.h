@@ -19,7 +19,9 @@
 @property (getter=_alreadySentFeedback, nonatomic, readonly) bool alreadySentFeedback;
 @property (nonatomic, readonly) long long autocompleteCellType;
 @property (nonatomic, readonly) GEOSearchCategory *category;
+@property (nonatomic, readonly) NSArray *childItems;
 @property (nonatomic, readonly) GEOResolvedItem *clientResolved;
+@property (nonatomic, readonly) GEOCollectionResult *collectionResult;
 @property (nonatomic, readonly) GEODirectionIntent *directionIntent;
 @property (nonatomic, retain) MKLocalSearchCompletion *directionIntentDestination;
 @property (nonatomic, retain) MKLocalSearchCompletion *directionIntentOrigin;
@@ -33,6 +35,7 @@
 @property (nonatomic, copy) NSString *localizedSectionHeader;
 @property (nonatomic, readonly) MKMapItem *mapItem;
 @property (getter=_placeType, nonatomic, readonly) int placeType;
+@property (nonatomic, readonly) GEOPublisherResult *publisherResult;
 @property (nonatomic, readonly) NSString *queryAcceleratorCompletionString;
 @property (nonatomic, readonly) GEORetainedSearchMetadata *retainedSearchMetadata;
 @property (nonatomic, readonly) unsigned long long serverItemIndexInSection;
@@ -56,7 +59,9 @@
 - (long long)autocompleteCellType;
 - (id)calloutTitle;
 - (id)category;
+- (id)childItems;
 - (id)clientResolved;
+- (id)collectionResult;
 - (id)copyStorage;
 - (id)description;
 - (id)directionIntent;
@@ -76,6 +81,7 @@
 - (bool)isKindOfClass:(Class)arg1;
 - (id)localizedSectionHeader;
 - (id)mapItem;
+- (id)publisherResult;
 - (id)queryAcceleratorCompletionString;
 - (id)queryLine;
 - (id)retainedSearchMetadata;

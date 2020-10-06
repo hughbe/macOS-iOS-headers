@@ -10,6 +10,7 @@
 @property (nonatomic) bool didBeginOutput;
 @property (nonatomic) long long positionOffset;
 
++ (id)outputWithKeyboardOutput:(id)arg1;
 + (bool)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

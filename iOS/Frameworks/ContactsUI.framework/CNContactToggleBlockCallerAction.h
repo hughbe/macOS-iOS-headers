@@ -2,14 +2,19 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNContactToggleBlockCallerAction : CNContactAction
+@interface CNContactToggleBlockCallerAction : CNContactAction {
+    NSNumber * _isBlockedCachedValue;
+}
 
-@property (nonatomic, readonly) bool isBlocked;
+@property (nonatomic, retain) NSNumber *isBlockedCachedValue;
 
+- (void).cxx_destruct;
 - (id)allNumbersAndEmails;
-- (void)block;
-- (bool)isBlocked;
+- (id)checkIsContactBlocked;
+- (id)isBlockedCachedValue;
+- (bool)isContactBlockedPreservingChanges:(bool)arg1;
 - (void)performActionWithSender:(id)arg1;
-- (void)unblock;
+- (void)setContactBlocked:(bool)arg1;
+- (void)setIsBlockedCachedValue:(id)arg1;
 
 @end

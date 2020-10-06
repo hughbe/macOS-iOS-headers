@@ -27,7 +27,7 @@
 - (bool)_shouldReceivePress:(id)arg1;
 - (bool)_shouldReceiveTouch:(id)arg1 forEvent:(id)arg2 recognizerView:(id)arg3;
 - (long long)_trackpadFingerDownCount;
-- (bool)_wantsHoverEvents;
+- (bool)_wantsHoverEventsWhilePointerIsLocked;
 - (bool)canBePreventedByGestureRecognizer:(id)arg1;
 - (bool)canPreventGestureRecognizer:(id)arg1;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;

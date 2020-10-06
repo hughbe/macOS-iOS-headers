@@ -28,7 +28,7 @@
     }  _localPortraitAspectRatio;
     NSUUID * _localSenderIdentityAccountUUID;
     NSUUID * _localSenderIdentityUUID;
-    long long  _originatingUIType;
+    int  _originatingUIType;
     bool  _performDialAssist;
     bool  _performLocalDialAssist;
     BSProcessHandle * _processHandle;
@@ -72,7 +72,7 @@
 @property (nonatomic, readonly, copy) TUSenderIdentity *localSenderIdentity;
 @property (nonatomic, copy) NSUUID *localSenderIdentityAccountUUID;
 @property (nonatomic, copy) NSUUID *localSenderIdentityUUID;
-@property (nonatomic) long long originatingUIType;
+@property (nonatomic) int originatingUIType;
 @property (nonatomic) bool performDialAssist;
 @property (nonatomic) bool performLocalDialAssist;
 @property (nonatomic, retain) BSProcessHandle *processHandle;
@@ -104,12 +104,12 @@
 + (long long)handleTypeForQueryItem:(id)arg1;
 + (long long)intentTTYTypeForTTYType:(long long)arg1;
 + (id /* block */)legacyAddressBookIdentifierToContactIdentifierTransformBlock;
-+ (long long)originatingUITypeForString:(id)arg1;
++ (int)originatingUITypeForString:(id)arg1;
 + (id)providerForIntentPreferredCallProvider:(long long)arg1 callCapability:(long long)arg2 providerManager:(id)arg3;
 + (void)setCallProviderManagerGeneratorBlock:(id /* block */)arg1;
 + (void)setLegacyAddressBookIdentifierToContactIdentifierTransformBlock:(id /* block */)arg1;
 + (id)stringForDialType:(long long)arg1;
-+ (id)stringForOriginatingUIType:(long long)arg1;
++ (id)stringForOriginatingUIType:(int)arg1;
 + (id)stringForTTYType:(long long)arg1;
 + (bool)supportsSecureCoding;
 + (long long)ttyTypeForIntentTTYType:(long long)arg1;
@@ -188,7 +188,7 @@
 - (id)localSenderIdentityUUID;
 - (id)localSenderIdentityUUIDURLQueryItem;
 - (id)noPromptURLQueryItem;
-- (long long)originatingUIType;
+- (int)originatingUIType;
 - (id)originatingUIURLQueryItem;
 - (bool)performDialAssist;
 - (bool)performLocalDialAssist;
@@ -220,7 +220,7 @@
 - (void)setLocalPortraitAspectRatio:(struct CGSize { double x1; double x2; })arg1;
 - (void)setLocalSenderIdentityAccountUUID:(id)arg1;
 - (void)setLocalSenderIdentityUUID:(id)arg1;
-- (void)setOriginatingUIType:(long long)arg1;
+- (void)setOriginatingUIType:(int)arg1;
 - (void)setPerformDialAssist:(bool)arg1;
 - (void)setPerformLocalDialAssist:(bool)arg1;
 - (void)setProcessHandle:(id)arg1;

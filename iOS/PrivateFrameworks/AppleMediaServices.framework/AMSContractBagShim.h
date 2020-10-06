@@ -12,6 +12,7 @@
 @property (nonatomic, readonly) NSDate *expirationDate;
 @property (getter=isExpired, nonatomic, readonly) bool expired;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly, copy) AMSProcessInfo *processInfo;
 @property (nonatomic, readonly, copy) NSString *profile;
 @property (nonatomic, readonly, copy) NSString *profileVersion;
 @property (readonly) Class superclass;

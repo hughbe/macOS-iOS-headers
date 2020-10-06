@@ -18,14 +18,9 @@
 @property (nonatomic, readonly, retain) Protocol *protocol;
 @property (readonly) Class superclass;
 
-+ (id)_gatherAdoptedProtocolsForProtocol:(id)arg1;
-+ (id)_gatherMethodMetadataForProtocol:(id)arg1;
-+ (id)_gatherMethodMetadataForProtocol:(id)arg1 required:(bool)arg2;
 + (id)protocolForProtocol:(id)arg1;
 
 - (void).cxx_destruct;
-- (id)_initWithName:(id)arg1 protocol:(id)arg2 inherited:(id)arg3 methods:(id)arg4;
-- (id)_unionMethodsIgnoringObjCProtocols:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;

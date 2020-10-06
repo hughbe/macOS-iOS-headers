@@ -111,6 +111,7 @@
     }  _eint;
     struct { unsigned int x1; unsigned long long x2; union { struct { struct tracev3_chunk_s {} *x_1_2_1; struct catalog_s {} *x_1_2_2; struct _OSLogEventChunkContext { struct tracev3_chunk_s {} *x_3_3_1; struct _firehose_unaligned_chunk_s {} *x_3_3_2; struct iovec { void *x_3_4_1; unsigned long long x_3_4_2; } x_3_3_3; struct catalog_procinfo_s {} *x_3_3_4; } x_1_2_3; struct _firehose_unaligned_tracepoint_s {} *x_1_2_4; } x_3_1_1; struct { unsigned char x_2_2_1[16]; struct os_timesync_time_entry_s { struct os_timesync_header_s { unsigned short x_1_4_1; unsigned short x_1_4_2; unsigned int x_1_4_3; } x_2_3_1; unsigned long long x_2_3_2; unsigned long long x_2_3_3; struct timezone { int x_4_4_1; int x_4_4_2; } x_2_3_4; } x_2_2_2; } x_3_1_2; struct { unsigned char x_3_2_1[16]; unsigned char x_3_2_2; bool x_3_2_3; } x_3_1_3; } x3; } * _event;
     NSString * _logMessage;
+    bool  _logMessageIsHidden;
     NSString * _processImagePath;
     unsigned long long  _retainCount;
     NSString * _senderImagePath;

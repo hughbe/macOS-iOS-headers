@@ -20,6 +20,7 @@
 - (bool)hasArtwork;
 - (bool)hasAssetInfo;
 - (bool)hasIdentifier;
+- (bool)hasPrivateMediaItemValueData;
 - (bool)hasTitle;
 - (bool)hasType;
 - (bool)hasValueMetadata;
@@ -27,12 +28,14 @@
 - (NSArray *)namedEntities;
 - (_INPBScoredValue *)namedEntitiesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)namedEntitiesCount;
+- (_INPBPrivateMediaItemValueData *)privateMediaItemValueData;
 - (void)setArtist:(NSString *)arg1;
 - (void)setArtwork:(_INPBImageValue *)arg1;
 - (void)setAssetInfo:(NSString *)arg1;
 - (void)setHasType:(bool)arg1;
 - (void)setIdentifier:(NSString *)arg1;
 - (void)setNamedEntities:(NSArray *)arg1;
+- (void)setPrivateMediaItemValueData:(_INPBPrivateMediaItemValueData *)arg1;
 - (void)setTitle:(NSString *)arg1;
 - (void)setTopics:(NSArray *)arg1;
 - (void)setType:(int)arg1;

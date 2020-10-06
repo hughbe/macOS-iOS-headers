@@ -6,13 +6,10 @@
     NSUUID * _identifier;
 }
 
-@property (nonatomic, readonly) NSUUID *identifier;
-
 + (bool)supportsSecureCoding;
 
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
-- (id)identifier;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 

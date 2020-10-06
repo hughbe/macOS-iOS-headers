@@ -15,7 +15,7 @@
 }
 
 @property (nonatomic, retain) id context;
-@property (nonatomic, readonly) id /* block */ daemonInvokeBlock;
+@property (nonatomic, readonly, copy) id /* block */ daemonInvokeBlock;
 @property (nonatomic) bool finishInvoked;
 @property (nonatomic) bool isExecuting;
 @property (nonatomic) bool isFinished;

@@ -9,6 +9,11 @@
         unsigned int audioSessionType : 1; 
     }  _has;
     NSString * _identifier;
+    struct { 
+        long long *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _mxSessionIDs;
 }
 
 @property (nonatomic) int audioSessionType;
@@ -17,13 +22,18 @@
 @property (nonatomic, readonly) bool hasDisplayName;
 @property (nonatomic, readonly) bool hasIdentifier;
 @property (nonatomic, retain) NSString *identifier;
+@property (nonatomic, readonly) long long*mxSessionIDs;
+@property (nonatomic, readonly) unsigned long long mxSessionIDsCount;
 
 - (void).cxx_destruct;
 - (int)StringAsAudioSessionType:(id)arg1;
+- (void)addMxSessionID:(long long)arg1;
 - (int)audioSessionType;
 - (id)audioSessionTypeAsString:(int)arg1;
+- (void)clearMxSessionIDs;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)displayName;
@@ -34,11 +44,15 @@
 - (id)identifier;
 - (bool)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
+- (long long)mxSessionIDAtIndex:(unsigned long long)arg1;
+- (long long*)mxSessionIDs;
+- (unsigned long long)mxSessionIDsCount;
 - (bool)readFrom:(id)arg1;
 - (void)setAudioSessionType:(int)arg1;
 - (void)setDisplayName:(id)arg1;
 - (void)setHasAudioSessionType:(bool)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setMxSessionIDs:(long long*)arg1 count:(unsigned long long)arg2;
 - (void)writeTo:(id)arg1;
 
 @end

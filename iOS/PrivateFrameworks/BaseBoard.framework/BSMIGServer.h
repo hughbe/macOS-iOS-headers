@@ -15,13 +15,8 @@
 @property (nonatomic) int threadPriority;
 
 - (void).cxx_destruct;
-- (unsigned int)_createPortNamed:(id)arg1;
-- (void)_installAutoreleasePoolsIfNecessaryForMode:(struct __CFString { }*)arg1;
-- (void*)_start;
 - (id)init;
 - (id)initWithPortName:(id)arg1 subsystem:(struct mig_subsystem { int (*x1)(); int x2; int x3; unsigned int x4; unsigned long long x5; struct routine_descriptor { int (*x_6_1_1)(); int (*x_6_1_2)(); unsigned int x_6_1_3; unsigned int x_6_1_4; struct { /* ? */ } *x_6_1_5; unsigned int x_6_1_6; } x6[1]; }*)arg2 separateThread:(bool)arg3;
-- (unsigned int)port;
-- (void)setThreadName:(id)arg1;
 - (void)setThreadPriority:(int)arg1;
 - (id)threadName;
 - (int)threadPriority;

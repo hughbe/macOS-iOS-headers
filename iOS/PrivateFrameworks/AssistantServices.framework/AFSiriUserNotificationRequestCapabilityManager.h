@@ -9,6 +9,7 @@
     bool  _inWirelessSplitterSession;
     bool  _inWirelessSplitterSessionStateValid;
     bool  _lastKnownEligibilityState;
+    bool  _localVoiceAssetAvailable;
     NSHashTable * _observers;
     AFNotifyObserver * _pairedInfoChangeObserver;
     NSObject<OS_dispatch_queue> * _queue;
@@ -23,8 +24,13 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (id)requiredIntentIDInNotificationCategory;
++ (id)_announceableIntentIdentifiersForAnnouncementType:(long long)arg1;
++ (bool)_isRouteAvailableForAnnouncement:(id)arg1;
++ (id)_requiredIntentIdentifiersForAnnouncementType:(long long)arg1;
++ (long long)announcementTypeForBundleID:(id)arg1;
++ (bool)applicationWithBundleID:(id)arg1 canAnnounceNotificationWithIntentIdentifiers:(id)arg2;
 + (id)sharedManager;
++ (bool)supportedByApplicationWithBundleID:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_fetchPairedBluetoothDevicesFromSourceWithCompletion:(id /* block */)arg1;
@@ -35,7 +41,9 @@
 - (bool)_updateAudioRouteAvailabilityForSpokenMessagesAndBroadcast:(bool)arg1;
 - (void)addObserver:(id)arg1;
 - (void)fetchEligibleSetupStateWithCompletion:(id /* block */)arg1;
+- (void)fetchElligibleSetupStateAndNotifyObservers:(id)arg1;
 - (void)fetchInitialState;
+- (void)fetchLocalVoiceAssetAvailabilityWithCompletion:(id /* block */)arg1;
 - (void)fetchRequestCanBeHandledStateWithCompletion:(id /* block */)arg1;
 - (void)fetchWirelessSplitterSessionInfoAndStartObservingSync;
 - (bool)hasEligibleSetup;
@@ -43,10 +51,8 @@
 - (void)notifyObserver:(id)arg1 didReceiveNotificationWithToken:(int)arg2;
 - (void)notifyObserversOfCurrentEligibleSetupState:(bool)arg1;
 - (void)notifyObserversOfCurrentRequestCanBeHandledState;
-- (void)pairedDevicesChanged:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (bool)requestCanBeHandled;
-- (bool)supportedByApplicationWithBundleID:(id)arg1;
 - (void)systemControllerDied:(id)arg1;
 - (void)updateAudioRouteAvailabilityForSpokenMessages:(id)arg1;
 - (void)updateWirelessSplitterSessionInfoAndObserve;

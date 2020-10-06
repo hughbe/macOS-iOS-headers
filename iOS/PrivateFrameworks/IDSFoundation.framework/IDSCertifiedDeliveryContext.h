@@ -22,8 +22,8 @@
 @property (nonatomic, readonly) long long certifiedDeliveryVersion;
 @property (nonatomic, retain) NSDictionary *deliveryStatusContext;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
-@property (nonatomic, readonly) NSNumber *failureReason;
-@property (nonatomic, readonly) NSString *failureReasonMessage;
+@property (nonatomic, retain) NSNumber *failureReason;
+@property (nonatomic, retain) NSString *failureReasonMessage;
 @property (nonatomic) bool generateDeliveryReceipt;
 @property (nonatomic, readonly) NSString *localURI;
 @property (nonatomic, readonly) NSString *originalGUID;
@@ -57,6 +57,8 @@
 - (id)senderToken;
 - (id)service;
 - (void)setDeliveryStatusContext:(id)arg1;
+- (void)setFailureReason:(id)arg1;
+- (void)setFailureReasonMessage:(id)arg1;
 - (void)setGenerateDeliveryReceipt:(bool)arg1;
 
 @end

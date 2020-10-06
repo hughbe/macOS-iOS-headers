@@ -8,9 +8,9 @@
     NSDictionary * _w3cNavigationTiming;
 }
 
-@property (nonatomic, readonly) NSString *requestUUID;
-@property (nonatomic, readonly) NSDictionary *responseHTTPHeaders;
-@property (nonatomic, readonly) NSDictionary *w3cNavigationTiming;
+@property (nonatomic, readonly, copy) NSString *requestUUID;
+@property (nonatomic, readonly, copy) NSDictionary *responseHTTPHeaders;
+@property (nonatomic, readonly, copy) NSDictionary *w3cNavigationTiming;
 
 + (bool)supportsSecureCoding;
 

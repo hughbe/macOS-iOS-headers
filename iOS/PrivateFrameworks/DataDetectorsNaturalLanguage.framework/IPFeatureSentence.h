@@ -25,7 +25,10 @@
 @property (copy) NSString *storedEventVocabularyRejectionKeyword;
 @property unsigned long long storedPolarity;
 
++ (struct _NSRange { unsigned long long x1; unsigned long long x2; })_rangeExcludingLeadingAndTrailingCharacters:(id)arg1 inRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 ofString:(id)arg3;
++ (id)_substringWithRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 ofString:(id)arg2 removingCharactersFromSet:(id)arg3;
 + (id)bestLanguageIDFromText:(id)arg1;
++ (id)bestLanguageIDFromText:(id)arg1 linesElided:(unsigned long long)arg2;
 + (id)buildRegexForType:(id)arg1 languageID:(id)arg2;
 + (id)eventVocabularyIgnoreDateKeywordInString:(id)arg1 languageID:(id)arg2;
 + (id)eventVocabularyIgnoreDateRegexForLanguageID:(id)arg1;
@@ -37,7 +40,7 @@
 + (id)eventVocabularySubjectTitleRegexForLanguageID:(id)arg1;
 + (id)humanReadableFeaturePolarity:(unsigned long long)arg1;
 + (unsigned long long)numberOfMatchesForEventVocabularySubjectTitleInString:(id)arg1 languageID:(id)arg2;
-+ (id)regexSetForType:(id)arg1 languageID:(id)arg2;
++ (id)regexArrayForType:(id)arg1 languageID:(id)arg2;
 
 - (void).cxx_destruct;
 - (void)addFragment:(id)arg1;

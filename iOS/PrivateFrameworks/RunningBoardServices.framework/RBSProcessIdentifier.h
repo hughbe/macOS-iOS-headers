@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessIdentifier : NSObject <BSXPCSecureCoding, NSCopying, NSSecureCoding, RBSProcessIdentifier> {
+@interface RBSProcessIdentifier : NSObject <NSCopying, NSSecureCoding, RBSProcessIdentifier, RBSXPCSecureCoding> {
     NSString * _description;
     int  _pid;
 }
@@ -16,19 +16,19 @@
 + (id)identifierForCurrentProcess;
 + (id)identifierForIdentifier:(id)arg1;
 + (id)identifierWithPid:(int)arg1;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithPid:(int)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)matchesProcess:(id)arg1;
 - (int)pid;

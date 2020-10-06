@@ -7,14 +7,22 @@
     long long  _accountStatus;
     long long  _deviceToDeviceEncryptionAvailability;
     bool  _hasValidCredentials;
+    bool  _isFromCache;
+    long long  _validationCounter;
 }
 
 @property (nonatomic) long long accountPartition;
 @property (nonatomic) long long accountStatus;
 @property (nonatomic) long long deviceToDeviceEncryptionAvailability;
 @property (nonatomic) bool hasValidCredentials;
+@property (nonatomic) bool isFromCache;
 @property (nonatomic) bool supportsDeviceToDeviceEncryption;
+@property long long validationCounter;
 
++ (id)cachedAccountInfoByContainerSetupHash;
++ (id)cachedAccountInfoForSetupInfoHash:(id)arg1;
++ (void)invalidateCachedAccountInfo;
++ (void)setCachedAccountInfoByContainerSetupHash:(id)arg1;
 + (bool)supportsSecureCoding;
 
 - (id)CKPropertiesDescription;
@@ -28,11 +36,16 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (bool)isFromCache;
 - (void)setAccountPartition:(long long)arg1;
 - (void)setAccountStatus:(long long)arg1;
+- (void)setAsCachedAccountInfoForSetupInfoHash:(id)arg1;
 - (void)setDeviceToDeviceEncryptionAvailability:(long long)arg1;
 - (void)setHasValidCredentials:(bool)arg1;
+- (void)setIsFromCache:(bool)arg1;
 - (void)setSupportsDeviceToDeviceEncryption:(bool)arg1;
+- (void)setValidationCounter:(long long)arg1;
 - (bool)supportsDeviceToDeviceEncryption;
+- (long long)validationCounter;
 
 @end

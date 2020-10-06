@@ -6,13 +6,6 @@
     <NSCollectionLayoutContainer> * _container;
     unsigned long long  _containerLayoutAxis;
     long long  _frameCount;
-    struct vector<CGRect, std::__1::allocator<CGRect> > { 
-        struct CGRect {} *__begin_; 
-        struct CGRect {} *__end_; 
-        struct __compressed_pair<CGRect *, std::__1::allocator<CGRect> > { 
-            struct CGRect {} *__value_; 
-        } __end_cap_; 
-    }  _itemFrames;
     unsigned long long  _layoutAxis;
     bool  _layoutRTL;
     NSCollectionLayoutSection * _layoutSection;
@@ -26,11 +19,23 @@
         double dy; 
     }  _orthogonalScrollingPrefetchingUnitVector;
     <_UICollectionPreferredSizes> * _preferredSizes;
+    struct vector<_UIRegionSolveResult, std::__1::allocator<_UIRegionSolveResult> > { 
+        struct _UIRegionSolveResult {} *__begin_; 
+        struct _UIRegionSolveResult {} *__end_; 
+        struct __compressed_pair<_UIRegionSolveResult *, std::__1::allocator<_UIRegionSolveResult> > { 
+            struct _UIRegionSolveResult {} *__value_; 
+        } __end_cap_; 
+    }  _regions;
     _UICollectionLayoutAuxillaryItemSolver * _sectionAuxillarySolution;
     _UICollectionLayoutSectionGeometryTranslator * _sectionGeometryTranslator;
     _UICollectionLayoutSupplementaryRegistrar * _sectionSupplementaryRegistrar;
     bool  _shouldAdjustContentSizeForPartialLastGroupSolution;
     _UICollectionLayoutItemSolver * _solution;
+    struct unique_ptr<_UIItemSolveResult, std::__1::default_delete<_UIItemSolveResult> > { 
+        struct __compressed_pair<_UIItemSolveResult *, std::__1::default_delete<_UIItemSolveResult> > { 
+            struct _UIItemSolveResult {} *__value_; 
+        } __ptr_; 
+    }  _templateItemSolveResult;
     UITraitCollection * _traitCollection;
 }
 
@@ -60,13 +65,21 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (long long)_binarySearchInitialFrameIndexForStartIndex:(long long)arg1 endIndex:(long long)arg2 lowIndex:(long long)arg3 queryRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4;
+- (long long)_anchorIndexForSolveParameters:(id)arg1;
 - (double)_dimensionForRootGroupAlongAxis:(unsigned long long)arg1;
+- (void)_initialSolve;
 - (id)_queryFramesIntersectingRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 frameOffset:(struct CGPoint { double x1; double x2; })arg2;
+- (void)_recomputeRegionOffsetsStartingAtFrameIndex:(long long)arg1;
+- (struct _UIRegionSolveResult { struct _NSRange { unsigned long long x_1_1_1; unsigned long long x_1_1_2; } x1; double x2; double x3; struct _UIItemSolveResult { struct CGRect { struct CGPoint { double x_1_3_1; double x_1_3_2; } x_1_2_1; struct CGSize { double x_2_3_1; double x_2_3_2; } x_1_2_2; } x_4_1_1; struct CGRect { struct CGPoint { double x_1_3_1; double x_1_3_2; } x_2_2_1; struct CGSize { double x_2_3_1; double x_2_3_2; } x_2_2_2; } x_4_1_2; struct vector<_UIAuxillarySolveResult, std::__1::allocator<_UIAuxillarySolveResult> > { struct _UIAuxillarySolveResult {} *x_3_2_1; struct _UIAuxillarySolveResult {} *x_3_2_2; struct __compressed_pair<_UIAuxillarySolveResult *, std::__1::allocator<_UIAuxillarySolveResult> > { struct _UIAuxillarySolveResult {} *x_3_3_1; } x_3_2_3; } x_4_1_3; struct vector<_UIAuxillarySolveResult, std::__1::allocator<_UIAuxillarySolveResult> > { struct _UIAuxillarySolveResult {} *x_4_2_1; struct _UIAuxillarySolveResult {} *x_4_2_2; struct __compressed_pair<_UIAuxillarySolveResult *, std::__1::allocator<_UIAuxillarySolveResult> > { struct _UIAuxillarySolveResult {} *x_3_3_1; } x_4_2_3; } x_4_1_4; id x_4_1_5; } x4; }*)_regionForFrameIndex:(long long)arg1;
+- (unsigned long long)_regionIndexForFrameIndex:(long long)arg1;
+- (long long)_regionIndexForFrameIndex:(long long)arg1 startRegionIndex:(long long)arg2 endRegionIndex:(long long)arg3;
+- (long long)_regionIndexForQueryRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (long long)_regionIndexForQueryRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 startRegionIndex:(long long)arg2 endRegionIndex:(long long)arg3;
 - (id)_resolveWithParameters:(id)arg1;
 - (id)_sectionContainer;
 - (void)_setOrthogonalOffset:(struct CGPoint { double x1; double x2; })arg1;
-- (id)allSupplementaryKeys;
+- (long long)_splitRegionAtRegionIndex:(long long)arg1 forFrameIndex:(long long)arg2;
+- (void)_updatePreferredSizeForFrameIndex:(long long)arg1;
 - (id)auxillaryHostAuxillaryItems;
 - (long long)auxillaryHostAuxillaryKind;
 - (id)auxillaryHostContainer;
@@ -122,7 +135,6 @@
 - (void)solveForContainer:(id)arg1 traitCollection:(id)arg2 layoutAxis:(unsigned long long)arg3 frameCount:(long long)arg4 preferredSizes:(id)arg5;
 - (void)solveForContainer:(id)arg1 traitCollection:(id)arg2 layoutAxis:(unsigned long long)arg3 frameCount:(long long)arg4 preferredSizes:(id)arg5 layoutRTL:(bool)arg6;
 - (id)supplementaryFrameWithKind:(id)arg1 index:(long long)arg2;
-- (id)supplementaryKeysAssociatedWithItemAtIndex:(long long)arg1;
 - (id)traitCollection;
 - (void)updatePinnedSupplementaryItemsWithVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)visualDescription;

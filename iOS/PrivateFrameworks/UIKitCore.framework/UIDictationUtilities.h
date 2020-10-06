@@ -22,6 +22,7 @@
 + (unsigned long long)maxLoggableLengthOfInsertionWithoutDeletion:(id)arg1;
 + (id)metadataDictionaryForCorrectionIdentifier:(id)arg1;
 + (bool)needsLeadingSpaceForPhrases:(id)arg1 secureInput:(bool)arg2;
++ (bool)needsLeadingSpaceForText:(id)arg1 secureInput:(bool)arg2;
 + (bool)needsTrailingSpaceForPhrases:(id)arg1 secureInput:(bool)arg2;
 + (id)phraseFromAFPhrase:(id)arg1;
 + (id)tokenFromAFToken:(id)arg1;

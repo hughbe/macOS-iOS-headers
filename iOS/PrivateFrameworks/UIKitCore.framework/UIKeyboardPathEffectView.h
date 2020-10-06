@@ -20,8 +20,6 @@
 @property (nonatomic, retain) UIKBHandwritingQuadCurvePointFIFO *pointInterpolator;
 @property (nonatomic) double startTime;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_addDrawingPoint:(struct CGPoint { double x1; double x2; })arg1 force:(double)arg2 sentinel:(bool)arg3;
 - (void)_clearPointInterpolators;
@@ -29,9 +27,6 @@
 - (struct { double x1; double x2; double x3; double x4; })_currentThemeSettings;
 - (void)_displayLinkFired:(id)arg1;
 - (id)_pushNewPath;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)accessibilityValueChanged:(id)arg1;
 - (void)addPoint:(struct CGPoint { double x1; double x2; })arg1 force:(double)arg2 timestamp:(double)arg3;
 - (void)buildOut;

@@ -28,7 +28,7 @@
 - (id)date;
 - (void)deleteAllItems;
 - (void)deleteItemsWithIDs:(id)arg1;
-- (void)endGrouping;
+- (void)endGroupingWithOptions:(unsigned long long)arg1;
 - (unsigned long long)generation;
 - (id)identifier;
 - (id)initWithIdentifier:(id)arg1 delegate:(id)arg2;

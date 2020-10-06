@@ -11,7 +11,6 @@
         unsigned int needsAppearanceUpdate : 1; 
         unsigned int plainAppearanceChanged : 1; 
         unsigned int doneAppearanceChanged : 1; 
-        unsigned int needsUpdateHitRects : 1; 
         unsigned int denyPointerInteractions : 1; 
     }  _buttonBarFlags;
     UIView * _centeredView;
@@ -85,10 +84,9 @@
 - (void)_itemCustomViewDidChange:(id)arg1 fromView:(id)arg2;
 - (void)_itemDidChangeEnabledState:(id)arg1;
 - (void)_itemDidChangeHiddenState:(id)arg1;
-- (void)_itemDidChangeSecondaryActionState:(id)arg1;
-- (void)_itemDidChangeSecondaryActions:(id)arg1;
 - (void)_itemDidChangeSelectionState:(id)arg1;
 - (void)_itemDidChangeWidth:(id)arg1;
+- (bool)_itemDidUpdateMenu:(id)arg1 fromMenu:(id)arg2;
 - (void)_itemStandardViewNeedsUpdate:(id)arg1;
 - (bool)_itemsInGroupUseSameSize;
 - (void)_layoutBar;

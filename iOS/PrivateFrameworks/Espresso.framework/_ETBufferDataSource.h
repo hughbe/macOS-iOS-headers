@@ -67,8 +67,12 @@
 @property unsigned long long batchSize;
 @property /* Warning: unhandled struct encoding: '{unordered_map<std::__1::basic_string<char>' */ struct  blobShapes; /* unknown property attribute:  true> >=f}}} */
 @property /* Warning: unhandled struct encoding: '{unordered_map<std::__1::basic_string<char>' */ struct  dataStorage; /* unknown property attribute:  true> >=f}}} */
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property /* Warning: unhandled struct encoding: '{vector<std::__1::basic_string<char>' */ struct  nonBatchBlobNames; /* unknown property attribute:  std::__1::allocator<char> >}}} */
 @property unsigned long long number_of_data_points;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;

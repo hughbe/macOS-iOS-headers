@@ -3,9 +3,10 @@
  */
 
 @interface _INPBStartCallIntent : PBCodable <NSCopying, NSSecureCoding, _INPBStartCallIntent> {
-    bool  __encodeLegacyGloryData;
     int  _audioRoute;
     int  _callCapability;
+    _INPBCallRecordFilter * _callRecordFilter;
+    _INPBCallRecordValue * _callRecordToCallBack;
     NSArray * _contacts;
     int  _destinationType;
     struct { 
@@ -22,9 +23,10 @@
     int  _ttyType;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int audioRoute;
 @property (nonatomic) int callCapability;
+@property (nonatomic, retain) _INPBCallRecordFilter *callRecordFilter;
+@property (nonatomic, retain) _INPBCallRecordValue *callRecordToCallBack;
 @property (nonatomic, copy) NSArray *contacts;
 @property (nonatomic, readonly) unsigned long long contactsCount;
 @property (readonly, copy) NSString *debugDescription;
@@ -32,6 +34,8 @@
 @property (nonatomic) int destinationType;
 @property (nonatomic) bool hasAudioRoute;
 @property (nonatomic) bool hasCallCapability;
+@property (nonatomic, readonly) bool hasCallRecordFilter;
+@property (nonatomic, readonly) bool hasCallRecordToCallBack;
 @property (nonatomic) bool hasDestinationType;
 @property (nonatomic, readonly) bool hasIntentMetadata;
 @property (nonatomic) bool hasPreferredCallProvider;
@@ -54,13 +58,13 @@
 - (int)StringAsPreferredCallProvider:(id)arg1;
 - (int)StringAsRecordTypeForRedialing:(id)arg1;
 - (int)StringAsTTYType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addContacts:(id)arg1;
 - (int)audioRoute;
 - (id)audioRouteAsString:(int)arg1;
 - (int)callCapability;
 - (id)callCapabilityAsString:(int)arg1;
+- (id)callRecordFilter;
+- (id)callRecordToCallBack;
 - (void)clearContacts;
 - (id)contacts;
 - (id)contactsAtIndex:(unsigned long long)arg1;
@@ -72,6 +76,8 @@
 - (void)encodeWithCoder:(id)arg1;
 - (bool)hasAudioRoute;
 - (bool)hasCallCapability;
+- (bool)hasCallRecordFilter;
+- (bool)hasCallRecordToCallBack;
 - (bool)hasDestinationType;
 - (bool)hasIntentMetadata;
 - (bool)hasPreferredCallProvider;
@@ -88,6 +94,8 @@
 - (id)recordTypeForRedialingAsString:(int)arg1;
 - (void)setAudioRoute:(int)arg1;
 - (void)setCallCapability:(int)arg1;
+- (void)setCallRecordFilter:(id)arg1;
+- (void)setCallRecordToCallBack:(id)arg1;
 - (void)setContacts:(id)arg1;
 - (void)setDestinationType:(int)arg1;
 - (void)setHasAudioRoute:(bool)arg1;

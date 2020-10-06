@@ -3,12 +3,10 @@
  */
 
 @interface _INPBMediaItemGroup : PBCodable <NSCopying, NSSecureCoding, _INPBMediaItemGroup> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     NSArray * _values;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -20,8 +18,6 @@
 + (Class)valuesType;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addValues:(id)arg1;
 - (void)clearValues;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

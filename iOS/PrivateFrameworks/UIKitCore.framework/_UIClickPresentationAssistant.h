@@ -4,12 +4,12 @@
 
 @interface _UIClickPresentationAssistant : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate, _UIClickPresentationAssisting> {
     <UIViewControllerContextTransitioning> * _currentContext;
+    unsigned long long  _currentState;
     UIViewPropertyAnimator * _presentationAnimator;
     _UIPortalView * _presentationSourcePortalView;
     UITargetedPreview * _sourcePreview;
     UIViewController * _stashedParentViewController;
     UIView * _stashedSuperView;
-    _UIStateMachine * _stateMachine;
     id /* block */  _transitionCompletion;
     id /* block */  lifecycleCompletion;
     _UIClickPresentation * presentation;
@@ -25,7 +25,6 @@
 @property (nonatomic, retain) UITargetedPreview *sourcePreview;
 @property (nonatomic, retain) UIViewController *stashedParentViewController;
 @property (nonatomic, retain) UIView *stashedSuperView;
-@property (nonatomic, retain) _UIStateMachine *stateMachine;
 @property (readonly) Class superclass;
 @property (nonatomic, copy) id /* block */ transitionCompletion;
 
@@ -35,11 +34,10 @@
 - (void)_applyStashedParentViewControllerIfNecessary;
 - (void)_createPropertyAnimatorIfNecessaryForTransition:(id)arg1 isAppearing:(bool)arg2;
 - (void)_didTransitionToDismissingFromState:(unsigned long long)arg1;
-- (void)_didTransitionToPossibleEndingTransition:(id)arg1;
+- (void)_didTransitionToPossibleEndingTransition:(bool)arg1;
 - (void)_didTransitionToPresented;
 - (void)_didTransitionToPresenting;
 - (void)_postInteractionCleanup;
-- (void)_prepareStateMachine;
 - (id)_sourcePreviewPortal;
 - (void)_stashParentViewControllerIfNecessary;
 - (void)animateTransition:(id)arg1;
@@ -59,12 +57,10 @@
 - (void)setSourcePreview:(id)arg1;
 - (void)setStashedParentViewController:(id)arg1;
 - (void)setStashedSuperView:(id)arg1;
-- (void)setStateMachine:(id)arg1;
 - (void)setTransitionCompletion:(id /* block */)arg1;
 - (id)sourcePreview;
 - (id)stashedParentViewController;
 - (id)stashedSuperView;
-- (id)stateMachine;
 - (id /* block */)transitionCompletion;
 - (double)transitionDuration:(id)arg1;
 

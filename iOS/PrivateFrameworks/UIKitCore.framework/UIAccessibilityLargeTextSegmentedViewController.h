@@ -16,15 +16,10 @@
 @property (nonatomic, retain) UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) NSArray *segments;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
 - (void)_configureSegmentViews;
 - (void)_orientationChanged:(id)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)buttonPress:(id)arg1;
 - (void)buttonTouchDown:(id)arg1;
 - (void)buttonTouchUp:(id)arg1;

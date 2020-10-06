@@ -8,15 +8,15 @@
 
 @property (nonatomic, readonly) RBSProcessIdentity *identity;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)identity;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithIdentity:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)matchesProcess:(id)arg1;
 - (id)processPredicate;

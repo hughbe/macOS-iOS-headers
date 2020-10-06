@@ -32,13 +32,8 @@
 @property (nonatomic, retain) AVPlayerLayer *videoLayer;
 @property (nonatomic, retain) NSLayoutConstraint *videoWidth;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_introductionMovieAssetURL;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)extraButtonTapAction;
 - (id)initWithKeyboardAppearance:(long long)arg1;
 - (id)keyboardView;

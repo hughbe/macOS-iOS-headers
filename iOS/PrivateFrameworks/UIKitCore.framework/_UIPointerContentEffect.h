@@ -54,7 +54,6 @@
 - (void).cxx_destruct;
 - (void)_anchorPlatterView:(id)arg1 toPreview:(id)arg2 updateBounds:(bool)arg3;
 - (void)_cleanUpObservation;
-- (void)_clearArbiterPointerStyleWithCompletion:(id /* block */)arg1;
 - (void)_commitPointerStyleToArbiterWithCompletion:(id /* block */)arg1;
 - (void)_createAndInstallPlatterView;
 - (void)_ensureRelativeEffectViewOrderInContainer;
@@ -72,7 +71,7 @@
 - (id)boundsObservationView;
 - (id /* block */)completion;
 - (void)dealloc;
-- (void)end;
+- (void)end:(bool)arg1;
 - (id)entranceAnimator;
 - (id)exitAnimator;
 - (unsigned long long)hash;

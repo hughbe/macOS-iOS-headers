@@ -24,10 +24,10 @@
 - (void)setFirstName:(id)arg1;
 - (void)setLastName:(id)arg1;
 - (void)setOwner:(id)arg1;
-- (void)setShareeAccessLevel:(int)arg1;
-- (void)setShareeStatus:(int)arg1;
+- (void)setShareeAccessLevelRaw:(int)arg1;
+- (void)setShareeStatusRaw:(int)arg1;
 - (void)setUUID:(id)arg1;
-- (int)shareeAccessLevel;
-- (int)shareeStatus;
+- (int)shareeAccessLevelRaw;
+- (int)shareeStatusRaw;
 
 @end

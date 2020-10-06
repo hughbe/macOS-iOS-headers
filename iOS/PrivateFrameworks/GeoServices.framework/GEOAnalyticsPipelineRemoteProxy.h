@@ -15,14 +15,22 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_enqueueOperation:(id)arg1;
+- (void)_reportCuratedCollectionActionType:(unsigned long long)arg1 collectionId:(unsigned long long)arg2 completion:(id /* block */)arg3 completionQueue:(id)arg4;
+- (void)_reportDailySettingsStates:(id)arg1 completion:(id /* block */)arg2 completionQueue:(id)arg3;
+- (void)_reportDailyUsageCountType:(int)arg1 usageString:(id)arg2 usageBool:(id)arg3 appId:(id)arg4 completion:(id /* block */)arg5 completionQueue:(id)arg6;
 - (void)_reportLogMsgType:(int)arg1 handlingPolicyId:(int)arg2 logMsg:(id)arg3 completion:(id /* block */)arg4 completionQueue:(id)arg5;
 - (void)_reportMapKitCountType:(int)arg1 appId:(id)arg2 completion:(id /* block */)arg3 completionQueue:(id)arg4;
 - (void)flushEvalData;
 - (id)getEvalStatus;
 - (id)init;
 - (void)initiateUploadOfType:(int)arg1;
+- (void)reportCuratedCollectionActionType:(unsigned long long)arg1 collectionId:(unsigned long long)arg2 completion:(id /* block */)arg3 completionQueue:(id)arg4;
+- (void)reportDailySettingsStates:(id)arg1 completion:(id /* block */)arg2 completionQueue:(id)arg3;
+- (void)reportDailyUsageCountType:(int)arg1 usageString:(id)arg2 usageBool:(id)arg3 appId:(id)arg4 completion:(id /* block */)arg5 completionQueue:(id)arg6;
 - (void)reportLogMsgType:(int)arg1 handlingPolicyId:(int)arg2 logMsg:(id)arg3 completion:(id /* block */)arg4 completionQueue:(id)arg5;
 - (void)reportMapKitCountType:(int)arg1 appId:(id)arg2 completion:(id /* block */)arg3 completionQueue:(id)arg4;
+- (void)runAggregationTasks;
 - (void)setEvalMode:(bool)arg1;
 - (void)setShortSessionValues:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)shortSessionValuesWithCompletion:(id /* block */)arg1;

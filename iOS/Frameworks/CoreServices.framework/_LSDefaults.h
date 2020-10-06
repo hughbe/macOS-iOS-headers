@@ -36,6 +36,7 @@
 @property (readonly) NSURL *databaseStoreFileURL;
 @property (readonly) NSURL *dbRecoveryFileURL;
 @property (readonly) NSURL *dbSentinelFileURL;
+@property (readonly) NSURL *dbSyncInterruptedFileURL;
 @property (readonly) bool hasPersistentPreferences;
 @property bool hasServer;
 @property (readonly) NSURL *identifiersFileURL;
@@ -51,8 +52,10 @@
 @property (getter=isRegionChina, readonly) bool regionChina;
 @property (readonly) NSURL *securePeferencesFileURL;
 @property (getter=isServer) bool server;
+@property (readonly) bool surrogatesOnlyFindBundleContainerizedBundles;
 @property (readonly) NSURL *systemContainerURL;
 @property (readonly) NSURL *systemGroupContainerURL;
+@property (getter=isSystemServer, readonly) bool systemServer;
 @property (readonly) NSURL *userContainerURL;
 
 + (bool)appleInternal;
@@ -73,15 +76,17 @@
 - (id)classesWithNameForXCTests:(const char *)arg1;
 - (long long)concurrentInstallOperations;
 - (unsigned int)currentSchemaVersion;
-- (id)darwinNotificationNameForCurrentUser:(id)arg1;
+- (id)darwinNotificationNameForCurrentUser:(id)arg1 userID:(const unsigned int*)arg2;
 - (double)databaseSaveInterval;
 - (double)databaseSaveLatency;
 - (unsigned short)databaseStoreFileMode;
 - (id)databaseStoreFileURL;
 - (id)databaseStoreFileURLWithUID:(unsigned int)arg1;
 - (id)databaseUpdateNotificationName;
+- (id)databaseUpdateNotificationNameForUserID:(unsigned int)arg1;
 - (id)dbRecoveryFileURL;
 - (id)dbSentinelFileURL;
+- (id)dbSyncInterruptedFileURL;
 - (id)debugDescription;
 - (bool)hasPersistentPreferences;
 - (bool)hasServer;
@@ -94,6 +99,7 @@
 - (bool)isInXCTestRigInsecure;
 - (bool)isRegionChina;
 - (bool)isServer;
+- (bool)isSystemServer;
 - (bool)issueSandboxExceptionsIfMayNotMapDatabase;
 - (bool)markLocalizationsStoredInDatabase;
 - (id)preferencesFileChangeNotificationName;
@@ -110,6 +116,7 @@
 - (id)simulatorRootURL;
 - (id)simulatorRuntimeBuildVersion;
 - (id)simulatorRuntimeVersion;
+- (bool)surrogatesOnlyFindBundleContainerizedBundles;
 - (id)systemContainerURL;
 - (id)systemGroupContainerURL;
 - (id)userContainerURL;

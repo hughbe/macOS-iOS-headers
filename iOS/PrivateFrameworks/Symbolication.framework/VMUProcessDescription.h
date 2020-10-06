@@ -23,6 +23,7 @@
     unsigned long long  _physicalFootprint;
     unsigned long long  _physicalFootprintPeak;
     int  _pid;
+    unsigned int  _platform;
     int  _ppid;
     struct timeval { 
         long long tv_sec; 

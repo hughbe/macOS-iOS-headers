@@ -8,6 +8,7 @@
     ACAccount * _authkitAccount;
     NSString * _clientID;
     long long  _existingStatus;
+    bool  _isEligibleForUpgradeFromPassword;
     bool  _isSilentAppTransfer;
     NSString * _nonce;
     NSArray * _requestedScopes;
@@ -21,6 +22,7 @@
 @property (nonatomic, copy) NSString *clientID;
 @property (nonatomic) long long existingStatus;
 @property (nonatomic, readonly) ACAccount *internalAuthKitAccount;
+@property (nonatomic) bool isEligibleForUpgradeFromPassword;
 @property (nonatomic, copy) NSString *nonce;
 @property (nonatomic, copy) NSArray *requestedScopes;
 @property (nonatomic, copy) NSString *state;
@@ -43,12 +45,14 @@
 - (id)initWithAltDSID:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)internalAuthKitAccount;
+- (bool)isEligibleForUpgradeFromPassword;
 - (id)nonce;
 - (id)requestedScopes;
 - (void)setAppProvidedData:(id)arg1;
 - (void)setAuthkitAccount:(id)arg1;
 - (void)setClientID:(id)arg1;
 - (void)setExistingStatus:(long long)arg1;
+- (void)setIsEligibleForUpgradeFromPassword:(bool)arg1;
 - (void)setNonce:(id)arg1;
 - (void)setRequestedScopes:(id)arg1;
 - (void)setState:(id)arg1;

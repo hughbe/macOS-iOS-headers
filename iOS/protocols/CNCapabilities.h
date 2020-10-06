@@ -5,6 +5,8 @@
 
 @required
 
++ (bool)shouldUseLegacyMessages;
+
 - (bool)areTelephonyCallsSupported;
 - (bool)isFaceTimeAudioSupported;
 - (bool)isFaceTimeVideoSupported;

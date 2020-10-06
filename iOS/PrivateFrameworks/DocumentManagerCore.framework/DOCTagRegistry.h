@@ -23,12 +23,12 @@
 @property (nonatomic) long long tagSerialNumber;
 @property (nonatomic, retain) NSMutableOrderedSet *userTags;
 
++ (id)sanitizedTagName:(id)arg1;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
 - (bool)_canAddTag:(id)arg1;
 - (id)_memberTag:(id)arg1;
-- (id)_sanitizedTagName:(id)arg1;
 - (id)_setForTagType:(long long)arg1;
 - (id)_tagNameForComparing:(id)arg1;
 - (bool)addTag:(id)arg1;

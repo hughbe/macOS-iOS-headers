@@ -13,16 +13,13 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (bool)_canShowWhileLocked;
 - (id)customView;
 - (id)displayedCandidates;
 - (bool)hidesExpandableButton;
 - (bool)isVisibleForInputDelegate:(id)arg1 inputViews:(id)arg2;
+- (double)preferredHeightForTraitCollection:(id)arg1;
 - (void)setCustomView:(id)arg1;
 - (void)viewDidLayoutSubviews;
 

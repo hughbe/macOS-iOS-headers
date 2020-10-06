@@ -18,15 +18,12 @@
 @property (nonatomic, readonly, retain) NSObject<OS_xpc_object> *message;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
-
 + (id)coder;
 + (id)coderWithMessage:(id)arg1;
 + (bool)supportsBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)XPCConnection;
-- (void)_appendXPCObject:(id)arg1 withName:(const char *)arg2 toBuilder:(id)arg3;
 - (id)_finishCoding;
 - (id)_implicitDecodeXPCObjectForKey:(id)arg1;
 - (void)_removeValueForKey:(id)arg1;
@@ -64,9 +61,5 @@
 - (id)message;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
-
-// Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
-
-+ (id)rbs_testEncode:(id)arg1 andDecodeOfExpectedClass:(Class)arg2;
 
 @end

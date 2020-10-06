@@ -3,12 +3,14 @@
  */
 
 @interface AMSCommandLineDialogTask : AMSTask {
+    long long  _automaticButtonSelection;
     double  _dialogPadding;
     double  _maximumDialogWidth;
     double  _minimumDialogWidth;
     AMSDialogRequest * _request;
 }
 
+@property (nonatomic) long long automaticButtonSelection;
 @property (nonatomic) double dialogPadding;
 @property (nonatomic) double maximumDialogWidth;
 @property (nonatomic) double minimumDialogWidth;
@@ -23,12 +25,14 @@
 - (id)_gatherTextfieldInput;
 - (id)_getUserInput;
 - (void)_printMessage:(id)arg1;
+- (long long)automaticButtonSelection;
 - (double)dialogPadding;
 - (id)initWithRequest:(id)arg1;
 - (double)maximumDialogWidth;
 - (double)minimumDialogWidth;
 - (id)present;
 - (id)request;
+- (void)setAutomaticButtonSelection:(long long)arg1;
 - (void)setDialogPadding:(double)arg1;
 - (void)setMaximumDialogWidth:(double)arg1;
 - (void)setMinimumDialogWidth:(double)arg1;

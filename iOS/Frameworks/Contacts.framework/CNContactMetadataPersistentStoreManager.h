@@ -22,7 +22,7 @@
 - (bool)createStoreDirectoryIfNeeded:(id*)arg1;
 - (id)init;
 - (id)initWithStoreLocation:(id)arg1;
-- (void)performWorkWithManagedObjectContext:(id /* block */)arg1 error:(id*)arg2;
+- (bool)performWorkWithManagedObjectContext:(id /* block */)arg1 error:(id*)arg2;
 - (id)persistentStoreCoordinator;
 - (bool)setupIfNeeded:(id*)arg1;
 - (id)storeDescription;

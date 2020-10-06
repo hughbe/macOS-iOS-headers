@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
  */
 
-@interface SFCard : NSObject <NSCopying, NSSecureCoding, SFCard> {
+@interface SFCard : NSObject <CRCard, NSCopying, NSSecureCoding, SFCard> {
     NSString * _cardId;
     NSArray * _cardSections;
     NSString * _contextReferenceIdentifier;
@@ -30,22 +30,31 @@
     NSURL * _urlValue;
 }
 
+@property (setter=acs_setInteraction:, nonatomic, retain) INInteraction *acs_interaction;
+@property (nonatomic, readonly) bool asynchronous;
+@property (nonatomic, readonly) SFCard *backingCard;
+@property (nonatomic, readonly) unsigned long long cardFormat;
 @property (nonatomic, copy) NSString *cardId;
+@property (nonatomic, readonly, copy) NSString *cardIdentifier;
+@property (nonatomic, readonly) NSArray *cardSections;
 @property (copy) NSArray *cardSections;
 @property (nonatomic, copy) NSString *contextReferenceIdentifier;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
+@property (nonatomic, readonly) NSArray *dismissalCommands;
 @property (nonatomic, copy) NSArray *dismissalCommands;
 @property (nonatomic, copy) NSData *entityIdentifier;
 @property (nonatomic, copy) NSArray *entityProtobufMessages;
 @property (nonatomic, copy) NSString *fbr;
+@property (nonatomic, readonly) bool flexibleSectionOrder;
 @property (nonatomic) bool flexibleSectionOrder;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSData *intentMessageData;
 @property (nonatomic, copy) NSString *intentMessageName;
 @property (nonatomic, copy) NSData *intentResponseMessageData;
 @property (nonatomic, copy) NSString *intentResponseMessageName;
+@property (nonatomic, readonly) NSSet *interactions;
 @property (nonatomic, readonly) NSData *jsonData;
 @property (getter=_originalCardData, setter=_setOriginalCardData:, nonatomic, copy) NSData *originalCardData;
 @property (nonatomic) unsigned long long queryId;
@@ -55,6 +64,8 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic) int type;
 @property (nonatomic, copy) NSURL *urlValue;
+
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
 
 + (bool)supportsSecureCoding;
 
@@ -76,6 +87,7 @@
 - (bool)hasQueryId;
 - (bool)hasSource;
 - (bool)hasType;
+- (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProtobuf:(id)arg1;
 - (id)intentMessageData;
@@ -110,5 +122,30 @@
 - (id)title;
 - (int)type;
 - (id)urlValue;
+
+// Image: /System/Library/PrivateFrameworks/AssistantCardServiceSupport.framework/AssistantCardServiceSupport
+
++ (id)acs_uniquelyIdentifiedCard;
+
+- (id)acs_interaction;
+- (void)acs_setInteraction:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (bool)afui_hasContentEqualTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
++ (id)_interactionsByIntentDataHashes;
+
+- (id)_interactionDataKey;
+- (bool)asynchronous;
+- (id)backingCard;
+- (unsigned long long)cardFormat;
+- (id)cardIdentifier;
+- (id)interaction;
+- (id)interactions;
+- (void)loadCardWithCompletion:(id /* block */)arg1;
+- (id)underlyingInteraction;
 
 @end

@@ -23,7 +23,6 @@
 + (id)dispatchQueue;
 + (bool)isEnabled;
 + (id)replacementObjectForXPCConnection:(id)arg1 encoder:(id)arg2 object:(id)arg3;
-+ (id)synchronous:(bool)arg1 XPCProxyWithErrorHandler:(id /* block */)arg2;
 + (id)synchronousXPCProxyWithErrorHandler:(id /* block */)arg1;
 
 - (void).cxx_destruct;

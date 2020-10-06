@@ -3,10 +3,15 @@
  */
 
 @interface _UICollectionLayoutSolveResult : NSObject <_UICollectionLayoutSolveResult> {
+    struct CGPoint { 
+        double x; 
+        double y; 
+    }  _contentOffsetAdjustment;
     NSMutableDictionary * _invalidatedAuxillaryIndexesDict;
     NSMutableIndexSet * _invalidatedIndexes;
 }
 
+@property (nonatomic) struct CGPoint { double x1; double x2; } contentOffsetAdjustment;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -21,10 +26,12 @@
 - (void)addInvalidatedItemIndexes:(id)arg1;
 - (void)addInvalidatedItemIndexesInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)addInvalidatedSupplementariesWithOffsets:(id)arg1;
+- (struct CGPoint { double x1; double x2; })contentOffsetAdjustment;
 - (id)indexesForInvalidatedAuxillariesOfKind:(id)arg1;
 - (id)init;
 - (id)invalidatedAuxillaryKinds;
 - (id)invalidatedAuxillaryOffsets;
 - (id)invalidatedIndexes;
+- (void)setContentOffsetAdjustment:(struct CGPoint { double x1; double x2; })arg1;
 
 @end

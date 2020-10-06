@@ -6,5 +6,6 @@
 @required
 
 - (long long)compare:(id <NSTextLocation>)arg1;
+- (NSString *)shortDescription;
 
 @end

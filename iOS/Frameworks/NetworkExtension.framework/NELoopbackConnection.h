@@ -10,7 +10,6 @@
         struct nw_frame {} *tqh_first; 
         struct nw_frame {} **tqh_last; 
     }  _currentInputFrames;
-    bool  _outputFinished;
     struct nw_protocol { 
         unsigned char flow_id[16]; 
         struct nw_protocol_identifier {} *identifier; 
@@ -25,12 +24,11 @@
 
 @property (readonly) NSObject<OS_nw_context> *context;
 @property unsigned long long currentBlobSizeIndex;
-@property bool outputFinished;
 @property (readonly) struct nw_protocol { unsigned char x1[16]; struct nw_protocol_identifier {} *x2; struct nw_protocol_callbacks {} *x3; struct nw_protocol {} *x4; void *x5; struct nw_protocol {} *x6; void *x7; }*protocol;
 @property unsigned long long totalBytesReceived;
 
 - (void).cxx_destruct;
-- (unsigned int)addInputFramesToArray:(struct nw_frame_array_s { struct nw_frame {} *x1; struct nw_frame {} **x2; }*)arg1 maximumBytes:(unsigned int)arg2 minimumBytes:(unsigned int)arg3 maximumFrameCount:(unsigned int)arg4 outIsEOF:(bool*)arg5;
+- (unsigned int)addInputFramesToArray:(struct nw_frame_array_s { struct nw_frame {} *x1; struct nw_frame {} **x2; }*)arg1 maximumBytes:(unsigned int)arg2 minimumBytes:(unsigned int)arg3 maximumFrameCount:(unsigned int)arg4;
 - (unsigned int)addOutputFramesToArray:(struct nw_frame_array_s { struct nw_frame {} *x1; struct nw_frame {} **x2; }*)arg1 maximumBytes:(unsigned int)arg2 minimumBytes:(unsigned int)arg3 maximumFrameCount:(unsigned int)arg4;
 - (id)context;
 - (unsigned long long)currentBlobSizeIndex;
@@ -40,10 +38,8 @@
 - (void)handleOutputFrame:(id)arg1;
 - (id)initWithContext:(id)arg1;
 - (void)notifyInputHandler;
-- (bool)outputFinished;
 - (struct nw_protocol { unsigned char x1[16]; struct nw_protocol_identifier {} *x2; struct nw_protocol_callbacks {} *x3; struct nw_protocol {} *x4; void *x5; struct nw_protocol {} *x6; void *x7; }*)protocol;
 - (void)setCurrentBlobSizeIndex:(unsigned long long)arg1;
-- (void)setOutputFinished:(bool)arg1;
 - (void)setTotalBytesReceived:(unsigned long long)arg1;
 - (unsigned long long)totalBytesReceived;
 

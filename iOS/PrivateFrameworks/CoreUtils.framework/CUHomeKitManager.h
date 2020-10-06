@@ -74,6 +74,7 @@
 - (void).cxx_destruct;
 - (void)_activateIfNeeded;
 - (id)_bestUserAndLabel:(id*)arg1;
+- (void)_clearHomeKitState;
 - (id)_cuPairingIdentityWithHMFPairingIdentity:(id)arg1 options:(unsigned long long)arg2 error:(id*)arg3;
 - (void)_findPairedPeer:(id)arg1 options:(unsigned long long)arg2 completion:(id /* block */)arg3;
 - (void)_findPairedPeerWithContext:(id)arg1;

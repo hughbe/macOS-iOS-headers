@@ -28,6 +28,7 @@
 @property (readonly, retain) NSURL *outputURL;
 @property (nonatomic, readonly) bool wasCancelled;
 
+- (void).cxx_destruct;
 - (void*)_BOMCopier;
 - (id /* block */)_callback;
 - (void)_fillOutputURLFromInputURL;

@@ -5,6 +5,7 @@
 
 @required
 
+- (oneway void)handshakeWithRemnants:(NSSet<__FBSWorkspaceSceneRemnant__> *)arg1;
 - (oneway void)requestSceneWithOptions:(void *)arg1 completion:(void *)arg2; // needs 2 arg types, found 8: FBSWorkspaceSceneRequestOptions *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSString *, NSError *, void*
 - (oneway void)sceneID:(NSString *)arg1 didReceiveActions:(NSSet<__BSAction__> *)arg2;
 - (oneway void)sceneID:(NSString *)arg1 didUpdateClientSettingsWithDiff:(FBSSceneClientSettingsDiff *)arg2 transitionContext:(FBSSceneTransitionContext *)arg3;

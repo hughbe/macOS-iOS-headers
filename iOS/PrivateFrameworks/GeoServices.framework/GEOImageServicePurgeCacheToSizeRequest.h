@@ -13,11 +13,10 @@
 @property (nonatomic) unsigned long long targetSize;
 
 + (Class)replyClass;
-+ (bool)supportsSecureCoding;
 
-- (void)encodeWithCoder:(id)arg1;
+- (void)encodeToXPCDictionary:(id)arg1;
 - (bool)expectsReply;
-- (id)initWithCoder:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (bool)isValid;
 - (void)setTargetSize:(unsigned long long)arg1;
 - (unsigned long long)targetSize;

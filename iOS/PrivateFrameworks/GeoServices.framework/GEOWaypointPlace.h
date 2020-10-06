@@ -9,10 +9,7 @@
         unsigned int read_center : 1; 
         unsigned int read_mapRegion : 1; 
         unsigned int read_roadAccessPoints : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_center : 1; 
-        unsigned int wrote_mapRegion : 1; 
-        unsigned int wrote_roadAccessPoints : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOMapRegion * _mapRegion;
     PBDataReader * _reader;
@@ -36,10 +33,6 @@
 + (Class)roadAccessPointType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsRoadAccessPoint:(id)arg1;
-- (void)_readCenter;
-- (void)_readMapRegion;
-- (void)_readRoadAccessPoints;
 - (void)addRoadAccessPoint:(id)arg1;
 - (id)center;
 - (void)clearRoadAccessPoints;
@@ -53,7 +46,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapRegion;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

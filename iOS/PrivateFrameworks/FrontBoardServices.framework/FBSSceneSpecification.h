@@ -6,6 +6,7 @@
     bool  _forLocalSynchronousSceneClientProvider;
 }
 
+@property (nonatomic, readonly) bool affectsAppLifecycleIfInternal;
 @property (nonatomic, readonly) NSDictionary *baseSceneComponentClassDictionary;
 @property (nonatomic, readonly) Class clientAgentClass;
 @property (nonatomic, readonly) Class clientSettingsClass;
@@ -51,6 +52,7 @@
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
+- (bool)affectsAppLifecycleIfInternal;
 - (id)baseSceneComponentClassDictionary;
 - (id)connectionHandlers;
 - (id)disconnectionHandlers;

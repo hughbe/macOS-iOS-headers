@@ -6,6 +6,7 @@
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, retain) SAIntentGroupDirectInvocation *directInvocation;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *jsonIntent;
 @property (nonatomic, copy) NSString *jsonIntentTypeName;
@@ -14,11 +15,16 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSString *type;
 
++ (id)parse;
++ (id)parseWithDictionary:(id)arg1 context:(id)arg2;
+
+- (id)directInvocation;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)jsonIntent;
 - (id)jsonIntentTypeName;
 - (id)nlv3Parse;
+- (void)setDirectInvocation:(id)arg1;
 - (void)setJsonIntent:(id)arg1;
 - (void)setJsonIntentTypeName:(id)arg1;
 - (void)setNlv3Parse:(id)arg1;

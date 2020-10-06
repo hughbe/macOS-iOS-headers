@@ -37,6 +37,7 @@
 + (id)textureNamed:(id)arg1 assetResolver:(id)arg2;
 + (id)textureNamed:(id)arg1 bundle:(id)arg2;
 + (id)textureResourceNamed:(id)arg1 assetResolver:(id)arg2;
++ (id)textureWithData:(id)arg1 offset:(unsigned long long)arg2 size:(unsigned long long)arg3;
 + (id)textureWithURL:(id)arg1;
 + (id)textureWithURL:(id)arg1 offset:(unsigned long long)arg2 size:(unsigned long long)arg3;
 
@@ -46,15 +47,15 @@
 - (long long)channelEncoding;
 - (void)clearTexelData;
 - (void)dimensions;
-- (id)generateDataAtLevel:(long long)arg1;
+- (id)generateDataAtLevel:(long long)arg1 selector:(SEL)arg2;
 - (bool)hasAlphaValues;
 - (struct CGImage { }*)imageFromTexture;
 - (struct CGImage { }*)imageFromTextureAtLevel:(unsigned long long)arg1;
 - (id)init;
 - (id)initWithData:(void *)arg1 topLeftOrigin:(void *)arg2 name:(void *)arg3 dimensions:(void *)arg4 rowStride:(void *)arg5 channelCount:(void *)arg6 channelEncoding:(void *)arg7 isCube:(void *)arg8; // needs 8 arg types, found 7: id, bool, id, long long, unsigned long long, long long, bool
 - (bool)isCube;
-- (void)loadDataWithBottomLeftOriginAtMipLevel:(long long)arg1 create:(bool)arg2;
-- (void)loadDataWithTopLeftOriginAtMipLevel:(long long)arg1 create:(bool)arg2;
+- (void)loadDataWithBottomLeftOriginAtMipLevel:(long long)arg1 create:(bool)arg2 selector:(SEL)arg3;
+- (void)loadDataWithTopLeftOriginAtMipLevel:(long long)arg1 create:(bool)arg2 selector:(SEL)arg3;
 - (unsigned long long)mipLevelCount;
 - (id)name;
 - (long long)rowStride;

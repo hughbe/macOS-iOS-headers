@@ -40,6 +40,7 @@
 
 - (void).cxx_destruct;
 - (void)_calculateBounds;
+- (bool)_determineSelfIntersecting;
 - (void)_determineSimple;
 - (id)_initWithGeoJSONCoordinateArrays:(id)arg1 error:(id*)arg2;
 - (id)_initWithGeoJSONObject:(id)arg1 error:(id*)arg2;

@@ -3,6 +3,17 @@
  */
 
 @interface UIKBRenderer : NSObject {
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  __layerPaddedFrame;
+    double  __layerRoundRectRadius;
     long long  _assetIdiom;
     NSString * _cacheKey;
     struct CGContext { } * _cachingContext;
@@ -24,6 +35,8 @@
     }  _size;
 }
 
+@property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _layerPaddedFrame;
+@property (nonatomic) double _layerRoundRectRadius;
 @property (nonatomic, readonly) long long assetIdiom;
 @property (nonatomic, retain) NSString *cacheKey;
 @property (nonatomic) bool colorDetectMode;
@@ -49,6 +62,8 @@
 - (bool)_drawKeyString:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 withStyle:(id)arg3;
 - (void)_drawLinearGradient:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (bool)_drawSingleSymbol:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 withStyle:(id)arg3;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_layerPaddedFrame;
+- (double)_layerRoundRectRadius;
 - (void)_renderVariantsFromKeyContents:(id)arg1 withTraits:(id)arg2;
 - (struct CGPath { }*)_thickShiftGlyphPath;
 - (struct CGPath { }*)_thinShiftGlyphPath;
@@ -99,6 +114,8 @@
 - (void)setCacheKey:(id)arg1;
 - (void)setColorDetectMode:(bool)arg1;
 - (void)setDisableInternalCaching:(bool)arg1;
+- (void)set_layerPaddedFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)set_layerRoundRectRadius:(double)arg1;
 - (id)singleColor;
 - (struct CGSize { double x1; double x2; })size;
 

@@ -26,6 +26,8 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (int)bindInput:(id)arg1 fromImageAttachment:(id)arg2 toNetwork:(struct { void *x1; int x2; })arg3;
+- (int)bindInput:(id)arg1 fromTensorAttachment:(id)arg2 toNetwork:(struct { void *x1; int x2; })arg3;
 - (int)bindInputsFromFrame:(id)arg1 toNetwork:(struct { void *x1; int x2; })arg2;
 - (int)bindOutputsFromFrame:(id)arg1 toNetwork:(struct { void *x1; int x2; })arg2;
 - (int)bindOutputsFromFrame:(id)arg1 toNetwork:(struct { void *x1; int x2; })arg2 executionStatus:(int)arg3;

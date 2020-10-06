@@ -19,6 +19,7 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
+- (id)adjustDictionaryToBeValidPropertyList:(id)arg1;
 - (void)clientConnectedWithExpObj:(id)arg1;
 - (void)clientDisconnectedWithExpObj:(id)arg1;
 - (id)copyPropertyForKey:(id)arg1 client:(id)arg2;

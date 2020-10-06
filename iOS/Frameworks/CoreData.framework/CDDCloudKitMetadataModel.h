@@ -4,8 +4,6 @@
 
 @interface CDDCloudKitMetadataModel : NSObject
 
-+ (void)addAttributes:(id)arg1 toPropertiesOfEntity:(id)arg2;
-+ (void)addRelationships:(id)arg1 toPropertiesOfEntity:(id)arg2;
 + (id)newMetadataModel;
 
 @end

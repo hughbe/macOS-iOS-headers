@@ -4,6 +4,8 @@
 
 @interface GEOAnalyticsPipelineFuzzers : NSObject
 
++ (double)dayResolution:(double)arg1;
++ (unsigned int)fuzzCount:(unsigned int)arg1 forDailyUsageType:(unsigned int)arg2;
 + (double)fuzzParkedCarTimestamp:(double)arg1;
 + (double)fuzzTime:(double)arg1 bySeconds:(unsigned int)arg2;
 + (id)twoDecimalLocation:(id)arg1;

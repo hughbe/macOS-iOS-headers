@@ -16,11 +16,7 @@
         unsigned int read_bounds : 1; 
         unsigned int read_center : 1; 
         unsigned int read_placeId : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_categorys : 1; 
-        unsigned int wrote_bounds : 1; 
-        unsigned int wrote_center : 1; 
-        unsigned int wrote_placeId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDMapsIdentifier * _placeId;
     PBDataReader * _reader;
@@ -46,11 +42,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCategorys:(id)arg1;
-- (void)_addNoFlagsCategory:(int)arg1;
-- (void)_readBounds;
-- (void)_readCategorys;
-- (void)_readCenter;
-- (void)_readPlaceId;
 - (void)addCategory:(int)arg1;
 - (id)bounds;
 - (int)categoryAtIndex:(unsigned long long)arg1;
@@ -71,7 +62,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)placeId;
 - (void)readAll:(bool)arg1;

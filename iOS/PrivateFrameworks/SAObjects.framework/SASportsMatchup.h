@@ -46,6 +46,8 @@
 @property (nonatomic, copy) NSArray *tvChannels;
 @property (nonatomic, copy) NSString *winningEntity;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)matchup;
 + (id)matchupWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -133,5 +135,20 @@
 - (id)tournamentSeriesDescription;
 - (id)tvChannels;
 - (id)winningEntity;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (id)siriui_channelsString;
+- (id)siriui_firstEntity;
+- (id)siriui_firstLineScores;
+- (id)siriui_firstScore;
+- (bool)siriui_homeIsFirst;
+- (bool)siriui_isInTheFuture;
+- (id)siriui_localizedScheduleStatusForLeague:(id)arg1 sport:(id)arg2 showTimeIfToday:(bool)arg3;
+- (id)siriui_secondEntity;
+- (id)siriui_secondLineScores;
+- (id)siriui_secondScore;
+- (id)siriui_teamVsTeam;
+- (id)siriui_venueLocation;
 
 @end

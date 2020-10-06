@@ -43,7 +43,7 @@
 - (id)infoCardChildUnactionableUIElements;
 - (void)infoCardThemeChanged;
 - (id)initWithChildViewController:(id)arg1 title:(id)arg2 attribution:(id)arg3;
-- (id)initWithPictureItemContainer:(id)arg1 title:(id)arg2 attribution:(id)arg3;
+- (id)initWithPictureItemContainer:(id)arg1 title:(id)arg2 attribution:(id)arg3 presentingProtocol:(id)arg4;
 - (id)initWithTextItemContainer:(id)arg1 title:(id)arg2 attribution:(id)arg3;
 - (bool)isBottomSeparatorHidden;
 - (bool)isTopSeparatorHidden;

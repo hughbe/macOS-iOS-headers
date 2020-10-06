@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@interface BKSHIDEventDeferringTarget : NSObject <BSProtobufSerializable, NSCopying, NSMutableCopying, NSSecureCoding> {
+@interface BKSHIDEventDeferringTarget : NSObject <BSDescriptionStreamable, BSProtobufSerializable, NSCopying, NSMutableCopying, NSSecureCoding> {
     int  _pid;
     BKSHIDEventDeferringToken * _token;
 }
@@ -19,6 +19,7 @@
 
 - (void).cxx_destruct;
 - (id)_initWithPID:(int)arg1 token:(id)arg2;
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

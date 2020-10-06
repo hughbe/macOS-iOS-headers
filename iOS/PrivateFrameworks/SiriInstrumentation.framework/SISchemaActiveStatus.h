@@ -5,10 +5,14 @@
 @interface SISchemaActiveStatus : PBCodable {
     NSArray * _audioDevicesActiveWithin24Hours;
     bool  _carPlayActiveWithin24Hours;
+    struct { 
+        unsigned int carPlayActiveWithin24Hours : 1; 
+    }  _has;
 }
 
 @property (nonatomic, copy) NSArray *audioDevicesActiveWithin24Hours;
 @property (nonatomic) bool carPlayActiveWithin24Hours;
+@property (nonatomic) bool hasCarPlayActiveWithin24Hours;
 @property (nonatomic, readonly) NSData *jsonData;
 
 - (void).cxx_destruct;
@@ -19,6 +23,7 @@
 - (bool)carPlayActiveWithin24Hours;
 - (void)clearAudioDevicesActiveWithin24Hours;
 - (id)dictionaryRepresentation;
+- (bool)hasCarPlayActiveWithin24Hours;
 - (unsigned long long)hash;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithJSON:(id)arg1;
@@ -27,6 +32,7 @@
 - (bool)readFrom:(id)arg1;
 - (void)setAudioDevicesActiveWithin24Hours:(id)arg1;
 - (void)setCarPlayActiveWithin24Hours:(bool)arg1;
+- (void)setHasCarPlayActiveWithin24Hours:(bool)arg1;
 - (void)writeTo:(id)arg1;
 
 @end

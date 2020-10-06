@@ -4,33 +4,33 @@
 
 @interface GEOUserSessionSnapshot : NSObject {
     GEOUserSessionEntity * _cohortSessionEntity;
+    GEOUserSessionEntity * _fifteenMonthSessionEntity;
     GEOUserSessionEntity * _longSessionEntity;
     GEOUserSessionEntity * _navSessionEntity;
     GEOUserSessionEntity * _shortSessionEntity;
-    GEOUserSessionEntity * _thirtyDayCountsSessionEntity;
     double  _usageEventTime;
 }
 
 @property (nonatomic, retain) GEOUserSessionEntity *cohortSessionEntity;
+@property (nonatomic, retain) GEOUserSessionEntity *fifteenMonthSessionEntity;
 @property (nonatomic, retain) GEOUserSessionEntity *longSessionEntity;
 @property (nonatomic, retain) GEOUserSessionEntity *navSessionEntity;
 @property (nonatomic, retain) GEOUserSessionEntity *shortSessionEntity;
-@property (nonatomic, retain) GEOUserSessionEntity *thirtyDayCountsSessionEntity;
 @property (nonatomic) double usageEventTime;
 
 - (void).cxx_destruct;
 - (id)cohortSessionEntity;
-- (id)initWithShortSessionEntity:(id)arg1 longSessionEntity:(id)arg2 thirtyDayCountsSessionEntity:(id)arg3 navSessionEntity:(id)arg4 cohortSessionEntity:(id)arg5;
+- (id)fifteenMonthSessionEntity;
+- (id)initWithShortSessionEntity:(id)arg1 longSessionEntity:(id)arg2 navSessionEntity:(id)arg3 cohortSessionEntity:(id)arg4 fifteenMonthSessionEntity:(id)arg5;
 - (id)longSessionEntity;
 - (id)navSessionEntity;
 - (void)setCohortSessionEntity:(id)arg1;
+- (void)setFifteenMonthSessionEntity:(id)arg1;
 - (void)setLongSessionEntity:(id)arg1;
 - (void)setNavSessionEntity:(id)arg1;
 - (void)setShortSessionEntity:(id)arg1;
-- (void)setThirtyDayCountsSessionEntity:(id)arg1;
 - (void)setUsageEventTime:(double)arg1;
 - (id)shortSessionEntity;
-- (id)thirtyDayCountsSessionEntity;
 - (double)usageEventTime;
 
 @end

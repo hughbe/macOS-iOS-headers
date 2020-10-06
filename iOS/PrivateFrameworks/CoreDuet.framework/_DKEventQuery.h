@@ -15,6 +15,7 @@
     bool  _readMetadata;
     long long  _resultType;
     id /* block */  _resultsHandler;
+    bool  _returnsDistinctResults;
     NSArray * _sortDescriptors;
 }
 
@@ -29,6 +30,7 @@
 @property bool readMetadata;
 @property long long resultType;
 @property (copy) id /* block */ resultsHandler;
+@property bool returnsDistinctResults;
 @property (retain) NSArray *sortDescriptors;
 
 + (id)eventQueryWithPredicate:(id)arg1 eventStreams:(id)arg2 offset:(unsigned long long)arg3 limit:(unsigned long long)arg4 sortDescriptors:(id)arg5;
@@ -60,6 +62,7 @@
 - (bool)readMetadata;
 - (long long)resultType;
 - (id /* block */)resultsHandler;
+- (bool)returnsDistinctResults;
 - (void)setDeduplicateValues:(bool)arg1;
 - (void)setDeviceIDs:(id)arg1;
 - (void)setEventStreams:(id)arg1;
@@ -71,6 +74,7 @@
 - (void)setReadMetadata:(bool)arg1;
 - (void)setResultType:(long long)arg1;
 - (void)setResultsHandler:(id /* block */)arg1;
+- (void)setReturnsDistinctResults:(bool)arg1;
 - (void)setSortDescriptors:(id)arg1;
 - (id)sortDescriptors;
 

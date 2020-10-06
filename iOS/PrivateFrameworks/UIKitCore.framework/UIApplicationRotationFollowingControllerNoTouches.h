@@ -4,14 +4,9 @@
 
 @interface UIApplicationRotationFollowingControllerNoTouches : UIApplicationRotationFollowingController
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void)_finishRotationFromInterfaceOrientation:(long long)arg1;
 - (void)_prepareForRotationToOrientation:(long long)arg1 duration:(double)arg2;
 - (void)_rotateToOrientation:(long long)arg1 duration:(double)arg2;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)loadView;
 
 @end

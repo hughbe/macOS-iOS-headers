@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIInputResponderController : NSObject <_UISceneComponentProviding> {
+@interface UIInputResponderController : NSObject <UITextInputSessionActionAnalyticsDelegateSource, _UISceneComponentProviding> {
     bool  _allowNilResponderReload;
     NSMutableArray * _animationStyleStack;
     bool  _automaticAppearanceEnabled;
@@ -13,6 +13,7 @@
     unsigned long long  _deactivationCount;
     int  _disableAnimationsCount;
     bool  _dontNeedAssistantBar;
+    bool  _hasCustomAnimationProperties;
     bool  _hideSystemInputAssistantView;
     unsigned long long  _hostedUseCount;
     int  _ignoredReloads;
@@ -23,6 +24,8 @@
     id  _keyForPreservingInputViews;
     id  _keyForRestoringInputViews;
     NSMutableDictionary * _keyboardSnapshots;
+    int  _nextAutomaticOrderInDirection;
+    double  _nextAutomaticOrderInDuration;
     NSMutableArray * _persistentInputAccessoryResponderOrder;
     NSMutableDictionary * _persistentInputAccessoryResponders;
     NSMutableSet * _pinningResponders;
@@ -34,6 +37,8 @@
     UIKBRenderConfig * _restorableRenderConfig;
     UIScene * _scene;
     UIResponder * _selfHostingTrigger;
+    UITextInputSessionActionAnalytics * _sessionAnalytics;
+    bool  _shouldSuppressInputAssistantUpdates;
     UISystemInputAssistantViewController * _systemInputAssistantViewController;
     UITextFormattingCoordinator * _textFormattingCoordinator;
     UIInputViewSet * _transientInputViewSet;
@@ -54,6 +59,7 @@
 @property (nonatomic) unsigned long long deactivationCount;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) UIInputWindowController *existingContainerRootController;
 @property (nonatomic, readonly) UITextEffectsWindow *existingContainerWindow;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool hideSystemInputAssistantView;
@@ -64,6 +70,7 @@
 @property (nonatomic, readonly) UIResponder *responder;
 @property (nonatomic, retain) UIKBRenderConfig *restorableRenderConfig;
 @property (nonatomic, readonly) UIWindowScene *scene;
+@property (nonatomic) bool shouldSuppressInputAssistantUpdates;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UISystemInputAssistantViewController *systemInputAssistantViewController;
 @property (nonatomic, readonly) UITextFormattingCoordinator *textFormattingCoordinator;
@@ -72,8 +79,12 @@
 
 + (void)_pinInputViewsForInputResponderController:(id)arg1 onBehalfOfResponder:(id)arg2 duringBlock:(id /* block */)arg3;
 + (id)activeInputResponderController;
++ (id)applicationConnectedWindowScenes;
 + (void)initialize;
++ (long long)interfaceOrientation;
++ (void)logInterfaceOrientation:(long long)arg1 withDescription:(id)arg2;
 + (void)performOnControllers:(id /* block */)arg1;
++ (void)setInterfaceOrientation:(long long)arg1;
 
 - (void).cxx_destruct;
 - (void)_beginDisablingAnimations;
@@ -84,6 +95,7 @@
 - (void)_clearPinningResponders;
 - (void)_clearPreservedInputViewsWithId:(id)arg1 clearKeyboard:(bool)arg2;
 - (void)_clearPreservedInputViewsWithRestorableResponder:(id)arg1;
+- (id)_delegateAsResponder;
 - (void)_endDisablingAnimations;
 - (int)_endIgnoringReloadInputViews;
 - (void)_endPersistingInputAccessoryViewWithId:(id)arg1;
@@ -92,8 +104,10 @@
 - (id)_inputViewsForResponder:(id)arg1 withAutomaticKeyboard:(bool)arg2;
 - (bool)_isIgnoringReloadInputViews;
 - (bool)_isPinningInputViewsOnBehalfOfResponder:(id)arg1;
+- (bool)_isPreservedRestorableResponder:(id)arg1;
 - (bool)_isTrackingResponder:(id)arg1;
-- (id)_placementForDeactivatedKeyboard:(bool)arg1;
+- (id)_placementForDeactivatedKeyboard:(bool)arg1 currentPlacement:(id)arg2;
+- (long long)_preferredAppearanceForResponder:(id)arg1;
 - (void)_preserveInputViewsWithId:(id)arg1;
 - (void)_preserveInputViewsWithId:(id)arg1 animated:(bool)arg2;
 - (void)_preserveInputViewsWithId:(id)arg1 animated:(bool)arg2 reset:(bool)arg3;
@@ -111,15 +125,20 @@
 - (void)_setIgnoresPinning:(bool)arg1 allowImmediateReload:(bool)arg2;
 - (void)_setReloadInputViewsForcedIsAllowed:(bool)arg1;
 - (void)_setScene:(id)arg1;
+- (bool)_showKeyboardWindowForInputViewSet:(id)arg1 placement:(id)arg2 windowScene:(id)arg3;
 - (void)_stopPinningInputViewsOnBehalfOfResponder:(id)arg1;
+- (id)_textInputSessionAnalytics;
 - (id)_transitionStartTime;
 - (void)_updateContainerWindowLevel;
+- (void)_updateTextInputSession;
 - (void)_updateVisibilityObserversWithVisibility:(bool)arg1 reset:(bool)arg2;
+- (id)_windowScene;
 - (void)addVisibilityObserver:(id)arg1;
 - (bool)animationsEnabled;
 - (bool)automaticAppearanceEnabled;
 - (bool)automaticAppearanceInternalEnabled;
 - (bool)automaticAppearanceReallyEnabled;
+- (void)clearAnimationStyleForUserDrivenPresentation;
 - (id)containerRootController;
 - (id)containerView;
 - (id)containerWindow;
@@ -128,7 +147,9 @@
 - (bool)deactivated;
 - (unsigned long long)deactivationCount;
 - (void)dealloc;
+- (void)destroyWindowForKeyboardPopoverIfNecessary;
 - (void)disableInterfaceAutorotation:(bool)arg1;
+- (id)existingContainerRootController;
 - (id)existingContainerWindow;
 - (void)forceOrderInAutomaticAnimated:(bool)arg1;
 - (void)forceOrderInAutomaticFromDirection:(int)arg1 withDuration:(double)arg2;
@@ -149,8 +170,10 @@
 - (bool)maximize;
 - (bool)maximizeWithAnimation:(bool)arg1;
 - (bool)maximizeWithAnimationStyle:(id)arg1;
+- (bool)maximizeWithAnimationStyle:(id)arg1 force:(bool)arg2;
 - (bool)minimize;
 - (bool)minimizeWithAnimationStyle:(id)arg1;
+- (bool)minimizeWithAnimationStyle:(id)arg1 force:(bool)arg2;
 - (id)nextAnimationStyle;
 - (id)nextAnimationStyle:(bool)arg1;
 - (void)orderInWithAnimationStyle:(id)arg1;
@@ -163,6 +186,8 @@
 - (void)prepareForAlongsideTransitionWithContext:(id)arg1;
 - (void)prepareToMoveKeyboardForInputViewSet:(id)arg1 animationStyle:(id)arg2;
 - (void)pushAnimationStyle:(id)arg1;
+- (void)refreshWithLocalMinimumKeyboardHeight:(double)arg1;
+- (void)reloadPlacement;
 - (void)removeVisibilityObserver:(id)arg1;
 - (id)responder;
 - (id)restorableRenderConfig;
@@ -177,11 +202,15 @@
 - (void)setInputViews:(id)arg1 animationStyle:(id)arg2;
 - (void)setKeyWindowSceneInputViews:(id)arg1 animationStyle:(id)arg2;
 - (void)setKeyboardSnapshot:(id)arg1 inWindow:(long long)arg2;
+- (void)setNextAutomaticOrderInDirection:(int)arg1 duration:(double)arg2;
 - (void)setRestorableRenderConfig:(id)arg1;
+- (void)setShouldSuppressInputAssistantUpdates:(bool)arg1;
 - (void)setTextEffectsWindowLevelForInputView:(id)arg1 responder:(id)arg2;
 - (void)setUseHostedInstance:(bool)arg1;
 - (void)setWindowSceneInputViews:(id)arg1 animationStyle:(id)arg2;
+- (bool)shouldSuppressInputAssistantUpdates;
 - (id)systemInputAssistantViewController;
+- (id)systemInputAssistantViewControllerForResponder:(id)arg1;
 - (id)textFormattingCoordinator;
 - (void)traitCollectionDidChange;
 - (id)transientInputViews;
@@ -191,5 +220,6 @@
 - (double)verticalOverlapForView:(id)arg1 usingKeyboardInfo:(id)arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })visibleFrameInView:(id)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })visibleInputViewFrameInView:(id)arg1;
+- (id)windowForKeyboardPopover;
 
 @end

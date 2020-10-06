@@ -12,12 +12,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_availableTiles : 1; 
         unsigned int read_genericTiles : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_availableTiles : 1; 
-        unsigned int wrote_genericTiles : 1; 
-        unsigned int wrote_identifier : 1; 
-        unsigned int wrote_supportedLanguagesVersion : 1; 
-        unsigned int wrote_timeToLiveSeconds : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct GEOGenericTile { unsigned int x1; unsigned int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; } * _genericTiles;
     unsigned long long  _genericTilesCount;
@@ -48,10 +43,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAvailableTiles:(struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; })arg1;
-- (void)_addNoFlagsGenericTile:(struct GEOGenericTile { unsigned int x1; unsigned int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
-- (void)_readAvailableTiles;
-- (void)_readGenericTiles;
 - (void)addAvailableTiles:(struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; })arg1;
 - (void)addGenericTile:(struct GEOGenericTile { unsigned int x1; unsigned int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
 - (struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; }*)availableTiles;
@@ -74,7 +65,10 @@
 - (unsigned int)identifier;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

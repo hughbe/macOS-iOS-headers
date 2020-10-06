@@ -17,7 +17,7 @@
         unsigned int allocations[64]; 
         unsigned int count; 
     }  _bufferHeaps;
-    struct MTLIOAccelCommandBufferStoragePool { struct storageQueue { struct MTLIOAccelCommandBufferStorage {} *x_1_1_1; struct MTLIOAccelCommandBufferStorage {} **x_1_1_2; } x1; struct os_unfair_lock_s { unsigned int x_2_1_1; } x2; int x3; int x4; id x5; } * _commandBufferStoragePool;
+    struct MTLIOAccelCommandBufferStoragePool { struct storageQueue { struct MTLIOAccelCommandBufferStorage {} *x_1_1_1; struct MTLIOAccelCommandBufferStorage {} **x_1_1_2; } x1; struct os_unfair_lock_s { unsigned int x_2_1_1; } x2; int x3; _Atomic int x4; id x5; } * _commandBufferStoragePool;
     unsigned int  _configBits;
     unsigned int  _deviceBits;
     struct __IOAccelDevice { } * _deviceRef;
@@ -31,7 +31,7 @@
     unsigned int  _fenceBitmapCount;
     unsigned int  _fenceBitmapSearchStart;
     unsigned int  _fenceMaximumCount;
-    int  _numCommandBuffers;
+    _Atomic int  _numCommandBuffers;
     unsigned long long  _registryID;
     unsigned long long  _segmentByteThreshold;
     unsigned long long  _sharedMemorySize;
@@ -56,11 +56,11 @@
 @property (readonly) unsigned long long recommendedMaxWorkingSetSize;
 @property (readonly) unsigned long long registryID;
 @property (readonly) unsigned long long sharedMemorySize;
+@property (readonly) bool supportLazyInitialization;
 @property (readonly) bool supportPriorityBand;
 @property (readonly) bool supportsVertexAmplification;
 
 + (void)registerDevices;
-+ (void)registerService:(unsigned int)arg1;
 
 - (void).cxx_destruct;
 - (void)_addResource:(id)arg1;
@@ -86,8 +86,10 @@
 - (unsigned int)initialKernelCommandShmemSize;
 - (unsigned int)initialSegmentListShmemSize;
 - (void)kickCleanupQueue;
+- (bool)lazyInitialize;
 - (unsigned long long)maxBufferLength;
 - (id)memoryInfo;
+- (id)newAccelerationStructureWithSize:(unsigned long long)arg1;
 - (id)newArgumentEncoderWithLayout:(id)arg1;
 - (id)newCommandQueueWithDescriptor:(id)arg1;
 - (id)newEvent;
@@ -95,6 +97,7 @@
 - (id)newIndirectArgumentBufferLayoutWithStructType:(id)arg1;
 - (id)newIndirectArgumentEncoderWithLayout:(id)arg1;
 - (id)newIndirectCommandBufferWithDescriptor:(id)arg1 maxCommandCount:(unsigned long long)arg2 options:(unsigned long long)arg3;
+- (id)newIntersectionFunctionTableWithDescriptor:(id)arg1;
 - (int)numCommandBuffers;
 - (unsigned long long)recommendedMaxWorkingSetSize;
 - (unsigned long long)registryID;
@@ -106,6 +109,7 @@
 - (void)setSegmentListShmemSize:(unsigned int)arg1;
 - (unsigned long long)sharedMemorySize;
 - (struct __IOAccelShared { }*)sharedRef;
+- (bool)supportLazyInitialization;
 - (bool)supportPriorityBand;
 - (bool)supportsVertexAmplification;
 - (bool)supportsVertexAmplificationCount:(unsigned long long)arg1;

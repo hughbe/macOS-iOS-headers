@@ -15,6 +15,7 @@
     UIGestureRecognizer * _pendingSwipeGesture;
     NSMutableSet * _recognizingGestures;
     FBSDisplayIdentity * _rootDisplayIdentity;
+    <BSInvalidatable> * _stateCaptureToken;
     _UISystemGestureWindow * _systemGestureWindow;
     BKSTouchStream * _touchStream;
 }

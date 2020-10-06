@@ -13,33 +13,24 @@
     int  _cd_version;
 }
 
-@property (nonatomic, readonly) NSEntityDescription *entity;
-@property (nonatomic, readonly) NSManagedObjectID *objectID;
-
 + (void)_entityDeallocated;
++ (void)_invalidateStaticCaches;
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (Class)classForEntity:(id)arg1;
 + (void)initialize;
 + (unsigned int)newBatchAllocation:(id*)arg1 count:(unsigned int)arg2 withOwnedObjectIDs:(id*)arg3;
-+ (void)resetGeneratedClasses;
 
-- (id)_descriptionValues;
 - (bool)_isDeallocating;
-- (id)_snapshot_;
 - (bool)_tryRetain;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
-- (id)entity;
-- (void)finalize;
 - (unsigned long long)hash;
-- (id)initWithObjectID:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)mutableCopy;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
-- (id)objectID;
 - (oneway void)release;
 - (id)retain;
 - (unsigned long long)retainCount;

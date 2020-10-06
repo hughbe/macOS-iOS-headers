@@ -12,10 +12,8 @@
 @property (nonatomic) unsigned long long size;
 @property (readonly) Class superclass;
 
-+ (bool)supportsSecureCoding;
-
-- (void)encodeWithCoder:(id)arg1;
-- (id)initWithCoder:(id)arg1;
+- (void)encodeToXPCDictionary:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (bool)isValid;
 - (void)setSize:(unsigned long long)arg1;
 - (unsigned long long)size;

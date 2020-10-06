@@ -4,11 +4,13 @@
 
 @interface CLSActivity : CLSObject <CLSRelationable> {
     NSDate * _activityStartDate;
+    bool  _backgroundTimeTrackingEnabled;
     bool  _paused;
     NSString * _primaryActivityItemIdentifier;
 }
 
 @property (nonatomic, readonly) NSArray *additionalActivityItems;
+@property (getter=isBackgroudTimeTrackingEnabled, nonatomic) bool backgroundTimeTrackingEnabled;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) double duration;
@@ -36,6 +38,7 @@
 - (long long)effectiveAuthorizationStatus;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (bool)isBackgroudTimeTrackingEnabled;
 - (bool)isStarted;
 - (void)pause;
 - (id)primaryActivityItem;
@@ -43,6 +46,7 @@
 - (double)progress;
 - (void)resume;
 - (double)runningDelta;
+- (void)setBackgroundTimeTrackingEnabled:(bool)arg1;
 - (void)setPrimaryActivityItem:(id)arg1;
 - (void)setPrimaryActivityItemIdentifier:(id)arg1;
 - (void)setProgress:(double)arg1;

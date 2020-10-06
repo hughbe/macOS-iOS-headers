@@ -3,22 +3,38 @@
  */
 
 @interface WebCoreAVFPullDelegate : NSObject <AVPlayerItemOutputPullDelegate> {
-    struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC> { 
-        struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-            struct WeakPtrImpl {} *m_ptr; 
-        } m_impl; 
-    }  m_player;
+    struct BinarySemaphore { 
+        bool m_isSet; 
+        struct Lock { 
+            struct Atomic<unsigned char> { 
+                struct atomic<unsigned char> { 
+                    struct __cxx_atomic_impl<unsigned char, std::__1::__cxx_atomic_base_impl<unsigned char> > { 
+                        _Atomic unsigned char __a_value; 
+                    } __a_; 
+                } value; 
+            } m_byte; 
+        } m_lock; 
+        struct Condition { 
+            struct Atomic<bool> { 
+                struct atomic<bool> { 
+                    struct __cxx_atomic_impl<bool, std::__1::__cxx_atomic_base_impl<bool> > { 
+                        _Atomic bool __a_value; 
+                    } __a_; 
+                } value; 
+            } m_hasWaiters; 
+        } m_condition; 
+    }  m_semaphore;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{BinarySemaphore=B{Lock={Atomic<unsigned char>={atomic<unsigned char>={__cxx_atomic_impl<unsigned char' */ struct *semaphore; /* unknown property attribute:  std::__1::__cxx_atomic_base_impl<bool> >=AB}}}}} */
 @property (readonly) Class superclass;
 
 - (id).cxx_construct;
-- (void).cxx_destruct;
-- (id)initWithPlayer:(struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_1_1; } x1; }*)arg1;
 - (void)outputMediaDataWillChange:(id)arg1;
 - (void)outputSequenceWasFlushed:(id)arg1;
+- (struct BinarySemaphore { bool x1; struct Lock { struct Atomic<unsigned char> { struct atomic<unsigned char> { struct __cxx_atomic_impl<unsigned char, std::__1::__cxx_atomic_base_impl<unsigned char> > { _Atomic unsigned char x_1_4_1; } x_1_3_1; } x_1_2_1; } x_2_1_1; } x2; struct Condition { struct Atomic<bool> { struct atomic<bool> { struct __cxx_atomic_impl<bool, std::__1::__cxx_atomic_base_impl<bool> > { _Atomic bool x_1_4_1; } x_1_3_1; } x_1_2_1; } x_3_1_1; } x3; }*)semaphore;
 
 @end

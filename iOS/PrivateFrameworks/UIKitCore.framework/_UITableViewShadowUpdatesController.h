@@ -27,10 +27,6 @@
 - (id)_rebasedShadowUpdatesForUpdate:(id)arg1 initialSnapshot:(id)arg2;
 - (bool)_tableView:(id)arg1 canFocusRowAtIndexPath:(id)arg2;
 - (bool)_tableView:(id)arg1 canHandleDropSession:(id)arg2;
-- (id)_tableView:(id)arg1 cursorRegionForRowAtIndexPath:(id)arg2 defaultRegion:(id)arg3;
-- (id)_tableView:(id)arg1 cursorStyleForModifiers:(long long)arg2 atIndexPath:(id)arg3;
-- (void)_tableView:(id)arg1 cursorWillEnterRowAtIndexPath:(id)arg2;
-- (void)_tableView:(id)arg1 cursorWillExitRowAtIndexPath:(id)arg2;
 - (long long)_tableView:(id)arg1 dataOwnerForDragSession:(id)arg2 atIndexPath:(id)arg3;
 - (long long)_tableView:(id)arg1 dataOwnerForDropSession:(id)arg2 withDestinationIndexPath:(id)arg3;
 - (void)_tableView:(id)arg1 dragSessionDidEnd:(id)arg2;
@@ -182,8 +178,10 @@
 - (void)tableView:(id)arg1 willCommitMenuWithAnimator:(id)arg2;
 - (id)tableView:(id)arg1 willDeselectRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
+- (void)tableView:(id)arg1 willDisplayContextMenuWithConfiguration:(id)arg2 animator:(id)arg3;
 - (void)tableView:(id)arg1 willDisplayFooterView:(id)arg2 forSection:(long long)arg3;
 - (void)tableView:(id)arg1 willDisplayHeaderView:(id)arg2 forSection:(long long)arg3;
+- (void)tableView:(id)arg1 willEndContextMenuInteractionWithConfiguration:(id)arg2 animator:(id)arg3;
 - (void)tableView:(id)arg1 willPerformPreviewActionForMenuWithConfiguration:(id)arg2 animator:(id)arg3;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
 - (void)tableViewDidFinishReload:(id)arg1;

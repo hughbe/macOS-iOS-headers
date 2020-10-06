@@ -4,6 +4,6 @@
 
 @interface PFCloudKitStoreMonitorProvider : NSObject
 
-- (id)createMonitorForObservedStore:(id)arg1;
+- (id)createMonitorForObservedStore:(id)arg1 inTransactionWithLabel:(id)arg2;
 
 @end

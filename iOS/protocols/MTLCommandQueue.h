@@ -6,6 +6,7 @@
 @required
 
 - (<MTLCommandBuffer> *)commandBuffer;
+- (<MTLCommandBuffer> *)commandBufferWithDescriptor:(MTLCommandBufferDescriptor *)arg1;
 - (<MTLCommandBuffer> *)commandBufferWithUnretainedReferences;
 - (<MTLDevice> *)device;
 - (void)insertDebugCaptureBoundary;

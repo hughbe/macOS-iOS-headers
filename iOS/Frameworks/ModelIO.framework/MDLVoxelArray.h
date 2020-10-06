@@ -87,7 +87,7 @@
 - (unsigned long long)count;
 - (void)differenceWithVoxels:(id)arg1;
 - (void)dilateNarrowBandInteriorWidthTo:(float)arg1 AndExteriorWidthTo:(float)arg2;
-- (void)erodeNarrowBandInteriorWidthTo:(float)arg1 AndExteriorWidthTo:(float)arg2;
+- (void)erodeNarrowBandInteriorWidthTo:(float)arg1 AndExteriorWidthTo:(float)arg2 selector:(SEL)arg3;
 - (void)indexOfSpatialLocation;
 - (id)init;
 - (id)initWithAsset:(id)arg1 divisions:(int)arg2 interiorNBWidth:(float)arg3 exteriorNBWidth:(float)arg4 patchRadius:(float)arg5;

@@ -12,4 +12,8 @@
 - (void)_itemDidChangeWidth:(UIBarButtonItem *)arg1;
 - (void)_itemStandardViewNeedsUpdate:(UIBarButtonItem *)arg1;
 
+@optional
+
+- (bool)_itemDidUpdateMenu:(UIBarButtonItem *)arg1 fromMenu:(UIMenu *)arg2;
+
 @end

@@ -17,6 +17,8 @@
 @property (nonatomic) bool lockOnRead;
 @property (nonatomic, readonly) int version;
 
+// Image: /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
+
 - (struct CGImage { }*)_copyAndStoreImageForKey:(id)arg1 inGroup:(id)arg2 withSize:(struct CGSize { double x1; double x2; })arg3 format:(unsigned char)arg4 scale:(double)arg5 fillMem:(id /* block */)arg6 alternateCompletion:(id /* block */)arg7;
 - (id)_versionPath;
 - (id)allGroups;
@@ -49,5 +51,9 @@
 - (void)storeImageDataForKey:(id)arg1 inGroup:(id)arg2 withSize:(struct CGSize { double x1; double x2; })arg3 opaque:(bool)arg4 scale:(double)arg5 data:(id)arg6;
 - (void)storeImageForKey:(id)arg1 inGroup:(id)arg2 opaque:(bool)arg3 image:(struct CGImage { }*)arg4;
 - (int)version;
+
+// Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
+
+- (int)setVersion:(int)arg1 withOptions:(unsigned long long)arg2;
 
 @end

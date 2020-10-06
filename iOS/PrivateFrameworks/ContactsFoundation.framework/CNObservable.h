@@ -12,6 +12,8 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
+
 + (id)amb:(id)arg1;
 + (id)asyncScannerResultsInString:(id)arg1;
 + (id)binderTypeForResultType:(unsigned long long)arg1;
@@ -124,5 +126,13 @@
 - (id)timestampWithScheduler:(id)arg1;
 - (id)toArray;
 - (id)using:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAutocomplete.framework/ContactsAutocomplete
+
+- (id)activityIndicatingObservableWithActivityDidStartHandler:(id /* block */)arg1 activityDidStopHandler:(id /* block */)arg2;
+- (id)autocompleteTimeoutAfterDelay:(double)arg1 doOnTimeout:(id /* block */)arg2 scheduler:(id)arg3;
+- (id)localObservableWithScheduler:(id)arg1;
+- (id)localObservableWithScheduler:(id)arg1 doOnTimeout:(id /* block */)arg2;
+- (id)networkObservableWithActivityDidStartHandler:(id /* block */)arg1 activityDidStopHandler:(id /* block */)arg2 timeoutDelay:(double)arg3 subscriptionDelay:(double)arg4 scheduler:(id)arg5;
 
 @end

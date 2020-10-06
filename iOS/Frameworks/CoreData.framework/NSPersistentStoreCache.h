@@ -6,7 +6,9 @@
     unsigned long long  _capacity;
     id  _externalData;
     struct { long long x1; int (*x2)(); int (*x3)(); int (*x4)(); int (*x5)(); } * _externalDataValueCallbacks;
-    int  _lock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
     struct persistentStoreCacheFlags { 
         unsigned int _preserveToManyRelationships : 1; 
         unsigned int _reserved : 31; 
@@ -19,6 +21,7 @@
 - (void)_forgetRowForObjectID:(id)arg1;
 - (void)_registerRow:(id)arg1 forObjectID:(id)arg2 options:(unsigned int)arg3;
 - (void)_registerToMany:(id)arg1 withOrderKeys:(id)arg2 forSourceObjectID:(id)arg3 forProperty:(id)arg4 options:(unsigned int)arg5 andTimestamp:(double)arg6;
+- (unsigned long long)allCachedRowsCount;
 - (id)ancillaryOrderKeysForSourceObjectID:(id)arg1 forProperty:(id)arg2 afterTimestamp:(double)arg3;
 - (void)dealloc;
 - (void)decrementRefCountForObjectID:(id)arg1;

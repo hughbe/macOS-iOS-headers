@@ -3,6 +3,7 @@
  */
 
 @interface GEOEncyclopedicInfoUserLocation : NSObject <GEOEncyclopedicInfo> {
+    bool  _isUserLocation;
     MKMapItem * _mapItem;
 }
 
@@ -25,7 +26,7 @@
 - (bool)hasPairOfFactoids;
 - (bool)hasStandAloneFactoids;
 - (bool)hasTextBlock;
-- (id)initWithMapItem:(id)arg1;
+- (id)initWithMapItem:(id)arg1 isUserLocation:(bool)arg2;
 - (id)mapItem;
 - (void)setMapItem:(id)arg1;
 - (id)textBlockText;

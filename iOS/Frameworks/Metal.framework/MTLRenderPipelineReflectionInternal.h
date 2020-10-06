@@ -18,6 +18,7 @@
         unsigned int reserved : 55; 
     }  _flags;
     NSArray * _fragmentArguments;
+    NSData * _fragmentPluginReturnData;
     MTLArgument * _imageBlockDataReturn;
     NSArray * _inferredInputs;
     NSDictionary * _performanceStatistics;
@@ -28,6 +29,7 @@
     unsigned int  _traceBufferIndex;
     NSArray * _vertexArguments;
     NSArray * _vertexBuiltInArguments;
+    NSData * _vertexPluginReturnData;
 }
 
 - (id)constantSamplerDescriptors;
@@ -36,6 +38,7 @@
 - (id)description;
 - (id)formattedDescription:(unsigned long long)arg1;
 - (id)fragmentArguments;
+- (id)fragmentPluginReturnData;
 - (id)imageBlockDataReturn;
 - (id)inferredInputs;
 - (id)initWithTileArguments:(id*)arg1 argumentCount:(unsigned int)arg2 builtInArgumentCount:(unsigned int)arg3 imageBlockDataReturn:(id)arg4 device:(id)arg5 traceBufferIndex:(unsigned int)arg6 flags:(struct { unsigned int x1 : 1; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 1; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 55; })arg7;
@@ -53,5 +56,6 @@
 - (struct { unsigned int x1 : 1; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 1; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 55; })usageFlags;
 - (id)vertexArguments;
 - (id)vertexBuiltInArguments;
+- (id)vertexPluginReturnData;
 
 @end

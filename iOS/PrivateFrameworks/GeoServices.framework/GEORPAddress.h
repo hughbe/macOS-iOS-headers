@@ -9,9 +9,7 @@
         unsigned int read_addressObject : 1; 
         unsigned int read_addressString : 1; 
         unsigned int read_geoAddress : 1; 
-        unsigned int wrote_addressObject : 1; 
-        unsigned int wrote_addressString : 1; 
-        unsigned int wrote_geoAddress : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOAddress * _geoAddress;
     PBDataReader * _reader;
@@ -32,9 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readAddressObject;
-- (void)_readAddressString;
-- (void)_readGeoAddress;
 - (id)addressObject;
 - (id)addressString;
 - (void)copyTo:(id)arg1;
@@ -48,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

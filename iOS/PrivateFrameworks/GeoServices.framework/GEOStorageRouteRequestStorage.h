@@ -2,16 +2,13 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOStorageRouteRequestStorage : PBCodable <NSCopying> {
+@interface GEOStorageRouteRequestStorage : PBCodable <MSPRouteInformationSource, NSCopying> {
     struct { 
         unsigned int has_transportType : 1; 
         unsigned int read_unknownFields : 1; 
         unsigned int read_routeHandle : 1; 
         unsigned int read_waypoints : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_routeHandle : 1; 
-        unsigned int wrote_waypoints : 1; 
-        unsigned int wrote_transportType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -25,21 +22,24 @@
     NSMutableArray * _waypoints;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasRouteHandle;
 @property (nonatomic) bool hasTransportType;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) GEOURLRouteHandle *routeHandle;
+@property (readonly) Class superclass;
 @property (nonatomic) int transportType;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 @property (nonatomic, retain) NSMutableArray *waypoints;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (bool)isValid:(id)arg1;
 + (Class)waypointsType;
 
 - (void).cxx_destruct;
 - (int)StringAsTransportType:(id)arg1;
-- (void)_addNoFlagsWaypoints:(id)arg1;
-- (void)_readRouteHandle;
-- (void)_readWaypoints;
 - (void)addWaypoints:(id)arg1;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)clearWaypoints;
@@ -52,7 +52,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
@@ -68,5 +71,10 @@
 - (id)waypointsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)waypointsCount;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MapsSupport.framework/MapsSupport
+
+- (id)ifGEOStorageRouteRequestStorage;
+- (id)ifRidesharingInformationSource;
 
 @end

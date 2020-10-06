@@ -8,9 +8,7 @@
         unsigned int read_clientMetadata : 1; 
         unsigned int read_locationSearches : 1; 
         unsigned int read_networkSearches : 1; 
-        unsigned int wrote_clientMetadata : 1; 
-        unsigned int wrote_locationSearches : 1; 
-        unsigned int wrote_networkSearches : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _locationSearches;
     NSMutableArray * _networkSearches;
@@ -32,11 +30,6 @@
 + (Class)networkSearchesType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsLocationSearches:(id)arg1;
-- (void)_addNoFlagsNetworkSearches:(id)arg1;
-- (void)_readClientMetadata;
-- (void)_readLocationSearches;
-- (void)_readNetworkSearches;
 - (void)addLocationSearches:(id)arg1;
 - (void)addNetworkSearches:(id)arg1;
 - (void)clearLocationSearches;
@@ -50,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)locationSearches;
 - (id)locationSearchesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)locationSearchesCount;

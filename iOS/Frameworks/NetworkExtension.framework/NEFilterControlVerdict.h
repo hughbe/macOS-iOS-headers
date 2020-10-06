@@ -18,7 +18,6 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)descriptionWithIndent:(int)arg1 options:(unsigned long long)arg2;
 - (void)encodeWithCoder:(id)arg1;
-- (long long)filterAction;
 - (bool)handledByDataProvider;
 - (id)init;
 - (id)initWithCoder:(id)arg1;

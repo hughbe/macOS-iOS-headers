@@ -20,8 +20,6 @@
 @property (nonatomic) bool presentedAutofill;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void)_applicationDidBecomeActive:(id)arg1;
 - (void)_applicationWillDeactivate:(id)arg1;
 - (bool)_canShowWhileLocked;
@@ -33,11 +31,8 @@
 - (void)_sceneDidChange;
 - (void)_setDeferred:(bool)arg1 forDisplayUUID:(id)arg2;
 - (void)_willChangeToFirstResponder:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)autofillVC;
+- (void)dealloc;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)passwordViewControllerDidFinish:(id)arg1;
 - (void)presentAutofillVCWithAnimation:(bool)arg1;

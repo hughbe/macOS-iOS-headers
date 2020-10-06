@@ -15,7 +15,9 @@
 - (void)contactNavigationControllerClearContactSelection:(CNContactNavigationController *)arg1;
 - (void)contactNavigationControllerDidCancel:(CNContactNavigationController *)arg1;
 - (void)contactNavigationControllerDidComplete:(CNContactNavigationController *)arg1;
+- (void)contactNavigationControllerDidUpdateAccountsAndGroupsState:(CNContactNavigationController *)arg1;
 - (bool)contactNavigationControllerShouldAddNewContact:(CNContactNavigationController *)arg1;
 - (bool)contactNavigationControllerShouldShowContactsOnKeyCommands:(CNContactNavigationController *)arg1;
+- (bool)contactNavigationControllerShouldShowGroupsViewController:(CNContactNavigationController *)arg1;
 
 @end

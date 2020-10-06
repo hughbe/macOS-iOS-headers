@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSaveHealthSampleIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBSaveHealthSampleIntentResponse> {
-    bool  __encodeLegacyGloryData;
     _INPBString * _defaultUnit;
     struct { }  _has;
     _INPBString * _punchoutUrl;
@@ -14,7 +13,6 @@
     NSArray * _valuesUserProvidedUnits;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, retain) _INPBString *defaultUnit;
 @property (readonly, copy) NSString *description;
@@ -40,8 +38,6 @@
 + (Class)valuesUserProvidedUnitType;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addSampleUuids:(id)arg1;
 - (void)addValuesDefaultUnit:(id)arg1;
 - (void)addValuesUserProvidedUnit:(id)arg1;

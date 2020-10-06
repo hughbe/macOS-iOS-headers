@@ -11,6 +11,7 @@
     id /* block */  _animationIntervalCompletionProcessingBlock;
     id /* block */  _beginEventProcessingBlock;
     NSObject<OS_dispatch_semaphore> * _completionSemaphore;
+    NSUUID * _currentBootUUID;
     id /* block */  _deviceRebootProcessingBlock;
     id /* block */  _emitEventProcessingBlock;
     id /* block */  _endEventProcessingBlock;
@@ -40,6 +41,7 @@
 @property (nonatomic, copy) id /* block */ beginEventProcessingBlock;
 @property (nonatomic) bool buildAnimationCompositeIntervalTimelines;
 @property (nonatomic, readonly) NSObject<OS_dispatch_semaphore> *completionSemaphore;
+@property (nonatomic, retain) NSUUID *currentBootUUID;
 @property (nonatomic, copy) id /* block */ deviceRebootProcessingBlock;
 @property (nonatomic, copy) id /* block */ emitEventProcessingBlock;
 @property (nonatomic, copy) id /* block */ endEventProcessingBlock;
@@ -66,6 +68,7 @@
 - (bool)_eventPassesWithPid:(int)arg1 uniquePid:(unsigned long long)arg2 processName:(id)arg3 subsystem:(id)arg4 category:(id)arg5;
 - (bool)_generateIntervalFromEnd:(id)arg1 shouldReport:(bool)arg2;
 - (bool)_hasNonObjectFilters;
+- (bool)_hasProcessingBlock;
 - (bool)_hasSignpostProcessingBlock;
 - (id /* block */)_intervalEndHandler;
 - (bool)_isTrackingIntervals;
@@ -83,6 +86,7 @@
 - (id /* block */)beginEventProcessingBlock;
 - (bool)buildAnimationCompositeIntervalTimelines;
 - (id)completionSemaphore;
+- (id)currentBootUUID;
 - (void)dealloc;
 - (id /* block */)deviceRebootProcessingBlock;
 - (id /* block */)emitEventProcessingBlock;
@@ -104,6 +108,7 @@
 - (void)setAnimationIntervalCompletionProcessingBlock:(id /* block */)arg1;
 - (void)setBeginEventProcessingBlock:(id /* block */)arg1;
 - (void)setBuildAnimationCompositeIntervalTimelines:(bool)arg1;
+- (void)setCurrentBootUUID:(id)arg1;
 - (void)setDeviceRebootProcessingBlock:(id /* block */)arg1;
 - (void)setEmitEventProcessingBlock:(id /* block */)arg1;
 - (void)setEndEventProcessingBlock:(id /* block */)arg1;
@@ -134,8 +139,10 @@
 
 // Image: /System/Library/PrivateFrameworks/SignpostCollection.framework/SignpostCollection
 
+- (bool)_processLogEventStream:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 errorOut:(id*)arg4;
 - (void)_processOSLogEventProxy:(id)arg1;
 - (void)_processStreamedOSLogEventProxy:(id)arg1 shouldCalculateFramerate:(bool)arg2;
+- (bool)_processTraceUsingKtraceLoggingDataSource:(id)arg1 errorOut:(id*)arg2;
 - (bool)processLogArchiveWithPath:(id)arg1 startDate:(id)arg2 endDate:(id)arg3 errorOut:(id*)arg4;
 - (bool)processNotificationsWithIntervalTimeoutInSeconds:(unsigned long long)arg1 errorOut:(id*)arg2;
 - (bool)processNotificationsWithIntervalTimeoutInSeconds:(unsigned long long)arg1 shouldCalculateAnimationFramerate:(bool)arg2 targetQueue:(id)arg3 errorOut:(id*)arg4;

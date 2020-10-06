@@ -12,7 +12,6 @@
 - (UIImage *)backIndicatorImage;
 - (UIImage *)backIndicatorMaskImage;
 - (long long)barType;
-- (bool)barWantsLetterpress;
 - (bool)centerTextButtons;
 - (bool)compactMetrics;
 - (double)defaultEdgeSpacing;

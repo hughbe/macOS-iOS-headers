@@ -17,6 +17,8 @@
 @property bool shouldHideUserPrompts;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+
 - (id)URLRequest;
 - (id)copyXPCEncoding;
 - (void)dealloc;
@@ -30,5 +32,9 @@
 - (bool)start;
 - (void)startWithCompletionBlock:(id /* block */)arg1;
 - (void)startWithManifestResponseBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BookLibrary.framework/BookLibrary
+
+- (void)adaptStartWithManifestResponseBlock:(id /* block */)arg1;
 
 @end

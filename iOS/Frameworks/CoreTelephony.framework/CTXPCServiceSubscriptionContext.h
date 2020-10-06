@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
  */
 
-@interface CTXPCServiceSubscriptionContext : NSObject <IDSCTSIM, NSCopying, NSSecureCoding, TUTelephonySubscription> {
+@interface CTXPCServiceSubscriptionContext : NSObject <NSCopying, NSSecureCoding, TPSTelephonySubscription, TUTelephonySubscription> {
     bool  _isSimGood;
     bool  _isSimPresent;
     NSString * _label;
@@ -14,21 +14,20 @@
     NSUUID * _uuid;
 }
 
-@property (nonatomic, readonly) NSString *SIMIdentifier;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool isSimGood;
 @property (nonatomic) bool isSimPresent;
 @property (nonatomic, retain) NSString *label;
-@property (nonatomic, readonly) NSString *label;
 @property (nonatomic, readonly) NSString *labelID;
 @property (nonatomic, retain) NSString *labelID;
 @property (nonatomic, retain) NSString *phoneNumber;
-@property (nonatomic, readonly) NSString *phoneNumber;
-@property (nonatomic, readonly) unsigned long long slot;
 @property (nonatomic, readonly) long long slotID;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSString *tps_isoCountryCode;
+@property (nonatomic, readonly, copy) NSString *tps_localizedLabel;
+@property (nonatomic, readonly, copy) NSString *tps_localizedPhoneNumber;
 @property (nonatomic, retain) NSNumber *userDataPreferred;
 @property (nonatomic, retain) NSNumber *userDefaultVoice;
 @property (nonatomic, readonly) NSUUID *uuid;
@@ -67,9 +66,13 @@
 - (id)userDefaultVoice;
 - (id)uuid;
 
-// Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+// Image: /System/Library/PrivateFrameworks/TelephonyPreferences.framework/TelephonyPreferences
 
-- (id)SIMIdentifier;
-- (unsigned long long)slot;
++ (id)telephonyClient;
+
+- (bool)tps_isEquivalentToSubscriptionContext:(id)arg1;
+- (id)tps_isoCountryCode;
+- (id)tps_localizedLabel;
+- (id)tps_localizedPhoneNumber;
 
 @end

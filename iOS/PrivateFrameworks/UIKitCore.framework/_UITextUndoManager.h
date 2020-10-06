@@ -9,6 +9,8 @@
 @property (nonatomic) UITextInputController *inputController;
 
 - (void).cxx_destruct;
+- (bool)canRedo;
+- (bool)canUndo;
 - (id)inputController;
 - (void)removeAllActions;
 - (void)setInputController:(id)arg1;

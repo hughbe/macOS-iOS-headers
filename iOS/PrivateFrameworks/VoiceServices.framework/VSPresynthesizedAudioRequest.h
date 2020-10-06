@@ -53,6 +53,7 @@
 - (void).cxx_destruct;
 - (id)audioData;
 - (unsigned int)audioSessionID;
+- (bool)canLogRequestText;
 - (id)clientBundleIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (struct AudioStreamBasicDescription { double x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; unsigned int x7; unsigned int x8; unsigned int x9; })decoderStreamDescription;
@@ -66,6 +67,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;
 - (bool)isValid;
+- (id)logText;
 - (unsigned long long)pcmDataSize;
 - (struct AudioStreamBasicDescription { double x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; unsigned int x7; unsigned int x8; unsigned int x9; })playerStreamDescription;
 - (unsigned long long)requestCreatedTimestamp;

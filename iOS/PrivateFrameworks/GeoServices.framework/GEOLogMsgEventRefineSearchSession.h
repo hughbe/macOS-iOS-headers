@@ -8,10 +8,7 @@
         unsigned int has_searchType : 1; 
         unsigned int read_searchString : 1; 
         unsigned int read_suggestionItems : 1; 
-        unsigned int wrote_searchString : 1; 
-        unsigned int wrote_suggestionItems : 1; 
-        unsigned int wrote_refineSearchType : 1; 
-        unsigned int wrote_searchType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -39,9 +36,6 @@
 - (void).cxx_destruct;
 - (int)StringAsRefineSearchType:(id)arg1;
 - (int)StringAsSearchType:(id)arg1;
-- (void)_addNoFlagsSuggestionItem:(id)arg1;
-- (void)_readSearchString;
-- (void)_readSuggestionItems;
 - (void)addSuggestionItem:(id)arg1;
 - (void)clearSuggestionItems;
 - (void)copyTo:(id)arg1;
@@ -54,7 +48,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

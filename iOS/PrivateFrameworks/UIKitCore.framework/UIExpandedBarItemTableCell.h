@@ -4,8 +4,6 @@
 
 @interface UIExpandedBarItemTableCell : UITableViewCell
 
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)layoutSubviews;
 
 @end

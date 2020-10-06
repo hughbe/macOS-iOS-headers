@@ -5,7 +5,6 @@
 @interface GEONavdDefaults : NSObject
 
 @property (nonatomic, readonly) unsigned long long accessValueThresholdToUpdateCacheEntries;
-@property (nonatomic, readonly) double ageForRefresh;
 @property (nonatomic, readonly) double automaticTrafficIncidentRerouteDelay;
 @property (nonatomic, readonly) double averageWalkingSpeed;
 @property (nonatomic, readonly) double defaultExpirationOffset;
@@ -75,7 +74,6 @@
 + (id)sharedInstance;
 
 - (unsigned long long)accessValueThresholdToUpdateCacheEntries;
-- (double)ageForRefresh;
 - (double)automaticTrafficIncidentRerouteDelay;
 - (double)averageWalkingSpeed;
 - (double)defaultExpirationOffset;

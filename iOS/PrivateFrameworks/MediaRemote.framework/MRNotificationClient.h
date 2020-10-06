@@ -38,6 +38,7 @@
 
 - (void).cxx_destruct;
 - (bool)_postNotification:(id)arg1 userInfo:(id)arg2 object:(id)arg3 withHandler:(id /* block */)arg4;
+- (bool)_processAlwaysNeedsNowPlayingNotifications;
 - (void)dispatchNotification:(id)arg1 userInfo:(id)arg2 object:(id)arg3;
 - (id)init;
 - (bool)isRegisteredForNowPlayingNotifications;

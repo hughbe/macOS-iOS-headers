@@ -11,11 +11,13 @@
 @property double stiffness;
 @property double velocity;
 
+// Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+
 + (id)defaultValueForKey:(id)arg1;
 
-- (struct Animation { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; float x3; struct Ref<CA::Render::Timing> { struct Timing {} *x_4_1_1; } x4; struct Ref<CA::Render::Vector> { struct Vector {} *x_5_1_1; } x5; struct __CFString {} *x6; unsigned long long x7; unsigned int x8; unsigned int x9; unsigned int x10; unsigned int x11; }*)_copyRenderAnimationForLayer:(id)arg1;
+- (struct Animation { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; unsigned long long x3; float x4; struct Ref<CA::Render::Timing> { struct Timing {} *x_5_1_1; } x5; struct Ref<CA::Render::Vector> { struct Vector {} *x_6_1_1; } x6; struct __CFString {} *x7; unsigned long long x8; unsigned int x9; unsigned int x10; unsigned int x11; unsigned int x12; }*)_copyRenderAnimationForLayer:(id)arg1;
 - (unsigned int)_propertyFlagsForLayer:(id)arg1;
-- (bool)_setCARenderAnimation:(struct Animation { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; float x3; struct Ref<CA::Render::Timing> { struct Timing {} *x_4_1_1; } x4; struct Ref<CA::Render::Vector> { struct Vector {} *x_5_1_1; } x5; struct __CFString {} *x6; unsigned long long x7; unsigned int x8; unsigned int x9; unsigned int x10; unsigned int x11; }*)arg1 layer:(id)arg2;
+- (bool)_setCARenderAnimation:(struct Animation { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; unsigned long long x3; float x4; struct Ref<CA::Render::Timing> { struct Timing {} *x_5_1_1; } x5; struct Ref<CA::Render::Vector> { struct Vector {} *x_6_1_1; } x6; struct __CFString {} *x7; unsigned long long x8; unsigned int x9; unsigned int x10; unsigned int x11; unsigned int x12; }*)arg1 layer:(id)arg2;
 - (float)_solveForInput:(float)arg1;
 - (double)_timeFunction:(double)arg1;
 - (double)damping;
@@ -30,5 +32,13 @@
 - (double)settlingDuration;
 - (double)stiffness;
 - (double)velocity;
+
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
+
++ (id)_lp_springWithMass:(double)arg1 stiffness:(double)arg2 damping:(double)arg3;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
++ (id)cps_animationForKeyPath:(id)arg1 from:(id)arg2 to:(id)arg3 beginAfter:(double)arg4 duration:(double)arg5 mass:(double)arg6 stiffness:(double)arg7 damping:(double)arg8 keepFinalFrame:(bool)arg9;
 
 @end

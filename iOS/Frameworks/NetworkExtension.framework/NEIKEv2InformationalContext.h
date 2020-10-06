@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
  */
 
-@interface NEIKEv2InformationalContext : NSObject {
+@interface NEIKEv2InformationalContext : NEIKEv2RequestContext {
     id /* block */  _callback;
     NSObject<OS_dispatch_queue> * _callbackQueue;
     unsigned int  _maxRetries;
@@ -20,6 +20,7 @@
 - (id /* block */)callback;
 - (id)callbackQueue;
 - (id)description;
+- (id)initWithPrivateNotifies:(id)arg1 maxRetries:(unsigned int)arg2 retryIntervalMilliseconds:(unsigned long long)arg3 callbackQueue:(id)arg4 callback:(id /* block */)arg5;
 - (unsigned int)maxRetries;
 - (id)privateNotifies;
 - (unsigned long long)retryIntervalInMilliseconds;

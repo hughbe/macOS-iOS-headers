@@ -3,7 +3,6 @@
  */
 
 @interface _INPBHomeFilter : PBCodable <NSCopying, NSSecureCoding, _INPBHomeFilter> {
-    bool  __encodeLegacyGloryData;
     _INPBDataString * _accessory;
     int  _deviceType;
     NSArray * _entityIdentifiers;
@@ -13,11 +12,13 @@
     struct { 
         unsigned int deviceType : 1; 
         unsigned int entityType : 1; 
+        unsigned int hasAllQuantifier : 1; 
         unsigned int isExcludeFilter : 1; 
         unsigned int outerDeviceType : 1; 
         unsigned int serviceType : 1; 
         unsigned int subServiceType : 1; 
     }  _has;
+    bool  _hasAllQuantifier;
     _INPBDataString * _home;
     bool  _isExcludeFilter;
     _INPBDataString * _outerDeviceName;
@@ -30,7 +31,6 @@
     _INPBDataString * _zone;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBDataString *accessory;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -41,10 +41,12 @@
 @property (nonatomic) int entityType;
 @property (nonatomic, retain) _INPBDataString *group;
 @property (nonatomic, readonly) bool hasAccessory;
+@property (nonatomic) bool hasAllQuantifier;
 @property (nonatomic) bool hasDeviceType;
 @property (nonatomic, readonly) bool hasEntityName;
 @property (nonatomic) bool hasEntityType;
 @property (nonatomic, readonly) bool hasGroup;
+@property (nonatomic) bool hasHasAllQuantifier;
 @property (nonatomic, readonly) bool hasHome;
 @property (nonatomic) bool hasIsExcludeFilter;
 @property (nonatomic, readonly) bool hasOuterDeviceName;
@@ -76,8 +78,6 @@
 - (int)StringAsOuterDeviceType:(id)arg1;
 - (int)StringAsServiceType:(id)arg1;
 - (int)StringAsSubServiceType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)accessory;
 - (void)addEntityIdentifiers:(id)arg1;
 - (void)clearEntityIdentifiers;
@@ -94,10 +94,12 @@
 - (id)entityTypeAsString:(int)arg1;
 - (id)group;
 - (bool)hasAccessory;
+- (bool)hasAllQuantifier;
 - (bool)hasDeviceType;
 - (bool)hasEntityName;
 - (bool)hasEntityType;
 - (bool)hasGroup;
+- (bool)hasHasAllQuantifier;
 - (bool)hasHome;
 - (bool)hasIsExcludeFilter;
 - (bool)hasOuterDeviceName;
@@ -128,8 +130,10 @@
 - (void)setEntityName:(id)arg1;
 - (void)setEntityType:(int)arg1;
 - (void)setGroup:(id)arg1;
+- (void)setHasAllQuantifier:(bool)arg1;
 - (void)setHasDeviceType:(bool)arg1;
 - (void)setHasEntityType:(bool)arg1;
+- (void)setHasHasAllQuantifier:(bool)arg1;
 - (void)setHasIsExcludeFilter:(bool)arg1;
 - (void)setHasOuterDeviceType:(bool)arg1;
 - (void)setHasServiceType:(bool)arg1;

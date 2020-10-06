@@ -12,9 +12,11 @@
     NSMutableArray * _defaultValueStatements;
     NSMutableArray * _derivationsToDrop;
     NSMutableArray * _derivationsToRun;
+    NSString * _destinationConfigurationForCloudKitValidation;
     NSSQLModel * _dstModel;
     NSArray * _existingTableNames;
     bool  _hasCloudKitTables;
+    bool  _hasDeferredLightweightMigration;
     bool  _hasPKTableChanges;
     NSMutableDictionary * _historyMigrationPropertyDataForEntityCache;
     NSMutableArray * _indexesToCreate;
@@ -32,55 +34,13 @@
     NSMutableDictionary * _transformedEntityMigrations;
 }
 
-@property (nonatomic, readonly) NSSQLiteAdapter *adapter;
-@property (nonatomic, readonly) NSSQLiteConnection *connection;
-@property (nonatomic, readonly) NSSQLModel *dstModel;
-@property (nonatomic) bool hasCloudKitTables;
-@property (nonatomic, retain) NSMutableDictionary *historyMigrationCache;
-@property (nonatomic, readonly) NSSQLModel *srcModel;
+@property (nonatomic, retain) NSString *destinationConfigurationForCloudKitValidation;
 
 + (bool)_annotatesMigrationMetadata;
 + (void)_setAnnotatesMigrationMetadata:(bool)arg1;
 
-- (void)_addEntityMigration:(id)arg1 toTableMigrationForRootEntity:(id)arg2 tableMigrationType:(int)arg3;
-- (void)_addReindexedProperty:(id)arg1 toSetForEntity:(id)arg2;
-- (long long)_countNullsInColumn:(id)arg1 forEntity:(id)arg2;
-- (long long)_countUnreferencedPrimaryKeysForEntity:(id)arg1 inForeignKeyColumnName:(id)arg2 fromTable:(id)arg3;
-- (void)_determineAttributeTriggerToMigrateForAttributeNamed:(id)arg1 withSourceEntity:(id)arg2 andDestinationEntity:(id)arg3;
-- (void)_determineDerivedAttributesToMigrateForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
-- (void)_determineIndexesToMigrateForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
-- (void)_determinePropertyDependenciesOnIDForEntity:(id)arg1;
-- (void)_determineRTreeExtensionsToMigrateForAttributeNamed:(id)arg1 withSourceEntity:(id)arg2 andDestinationEntity:(id)arg3;
-- (void)_determineReindexedEntitiesAndAffectedProperties;
-- (void)_determineUniquenessConstraintsToMigrateForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
-- (void)_disconnect;
-- (id /* block */)_indexMigrationBlockForSourceEntity:(id)arg1 andDestinationEntity:(id)arg2;
-- (id)_originalRootsForAddedEntity:(id)arg1;
-- (void)_populateEntityMigrationDescriptionsAndEntityMap;
-- (void)_populateTableMigrationDescriptions;
-- (bool)_sourceTableIsClean:(id)arg1;
-- (id)adapter;
-- (bool)clearTombstoneColumnsForRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
-- (id)connection;
-- (id)createEntityMigrationStatements;
-- (id)createStatementsForUpdatingEntityKeys;
 - (void)dealloc;
-- (bool)deleteStatementsForHistory;
-- (id)dstModel;
-- (id)entityMigrationDescriptionForEntity:(id)arg1;
-- (void)generatePKTableUpdateStatements;
-- (bool)hasCloudKitTables;
-- (id)historyMigrationCache;
-- (id)initWithStore:(id)arg1 destinationModel:(id)arg2 mappingModel:(id)arg3;
-- (bool)performMigration:(id*)arg1;
-- (void)setHasCloudKitTables:(bool)arg1;
-- (void)setHistoryMigrationCache:(id)arg1;
-- (bool)shiftTombstones;
-- (id)srcModel;
-- (id)tableMigrationDescriptionForEntity:(id)arg1;
-- (id)updateStatementsForHistoryChanges;
-- (bool)validateMandatoryAttribute:(id)arg1 onEntity:(id)arg2 error:(id*)arg3;
-- (bool)validateMandatoryRelationship:(id)arg1 onEntity:(id)arg2 error:(id*)arg3;
-- (bool)validateMigratedDataFromEntityMapping:(id)arg1 error:(id*)arg2;
+- (id)destinationConfigurationForCloudKitValidation;
+- (void)setDestinationConfigurationForCloudKitValidation:(id)arg1;
 
 @end

@@ -8,6 +8,8 @@
 
 @property (getter=_vibrancyStyle, nonatomic, readonly) long long _vibrancyStyle;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)_darkVibrantEffectWithLightenColor:(id)arg1 dodgeColor:(id)arg2 compositingColor:(id)arg3;
 + (id)_effectForBlurEffect:(id)arg1 vibrancyStyle:(long long)arg2;
 + (id)_effectWithStyle:(long long)arg1 ignoreSimpleVibrancy:(bool)arg2;
@@ -48,5 +50,34 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
+
+// Image: /System/Library/Frameworks/NotificationCenter.framework/NotificationCenter
+
++ (id)_widgetEffectForPrivateVibrancyStyle:(long long)arg1;
++ (id)notificationCenterVibrancyEffect;
++ (id)widgetEffectForVibrancyStyle:(long long)arg1;
++ (id)widgetPrimaryHighlightVibrancyEffect;
++ (id)widgetPrimaryVibrancyEffect;
++ (id)widgetQuaternaryVibrancyEffect;
++ (id)widgetSecondaryHighlightVibrancyEffect;
++ (id)widgetSecondaryVibrancyEffect;
++ (id)widgetTertiaryVibrancyEffect;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_effectWithStyle:(long long)arg1 forBarTintStyle:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ControlCenterUIKit.framework/ControlCenterUIKit
+
++ (id)controlCenterKeyLineOnDarkVibrancyEffect;
++ (id)controlCenterKeyLineOnLightVibrancyEffect;
++ (id)controlCenterPrimaryVibrancyEffect;
++ (id)controlCenterScrollViewDarkeningVibrancyEffect;
++ (id)controlCenterSecondaryVibrancyEffect;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
++ (id)siriui_platterVibrancyEffect;
++ (id)siriui_userUtteranceEditModeVibrancyEffect;
 
 @end

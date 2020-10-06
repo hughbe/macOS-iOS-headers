@@ -37,7 +37,7 @@
 + (bool)regionCursorIsPill;
 + (double)regionSpacing;
 + (struct CGSize { double x1; double x2; })smallPillSize;
-+ (Class)visualProviderSubclassForScreen:(id)arg1;
++ (Class)visualProviderSubclassForScreen:(id)arg1 visualProviderInfo:(id)arg2;
 
 - (void).cxx_destruct;
 - (void)_dateTimePreferencesUpdated;
@@ -66,6 +66,7 @@
 - (void)setTrailingRegionLeadingAnchorConstraint:(id)arg1;
 - (id)setupInContainerView:(id)arg1;
 - (void)sizeUpdatedFromSize:(struct CGSize { double x1; double x2; })arg1;
+- (void)statusBarEnabledPartsUpdated;
 - (id)styleAttributesForStyle:(long long)arg1;
 - (id)timePlacement;
 - (id)trailingRegionLeadingAnchorConstraint;

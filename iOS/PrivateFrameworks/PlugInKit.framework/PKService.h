@@ -5,6 +5,7 @@
 @interface PKService : NSObject <NSXPCListenerDelegate> {
     NSObject<OS_dispatch_queue> * __sync;
     <PKServiceDelegate> * _delegate;
+    unsigned int  _extensionPointPlatform;
     NSObject<OS_dispatch_source> * _firstHostRequestTimer;
     bool  _isSystemService;
     NSMutableDictionary * _personalities;
@@ -19,6 +20,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (retain) <PKServiceDelegate> *delegate;
 @property (readonly, copy) NSString *description;
+@property unsigned int extensionPointPlatform;
 @property (retain) NSObject<OS_dispatch_source> *firstHostRequestTimer;
 @property (readonly) unsigned long long hash;
 @property bool isSystemService;
@@ -50,6 +52,7 @@
 - (id)discoverSubsystemNamed:(id)arg1 options:(id)arg2 logMissing:(bool)arg3;
 - (void)discoverSubsystems;
 - (id)embeddedPrincipalForPlugInNamed:(id)arg1;
+- (unsigned int)extensionPointPlatform;
 - (id)firstHostRequestTimer;
 - (id)hostPrincipalForPlugInNamed:(id)arg1;
 - (id)init;
@@ -67,6 +70,7 @@
 - (void)scheduleTermination:(double)arg1;
 - (id)serviceListener;
 - (void)setDelegate:(id)arg1;
+- (void)setExtensionPointPlatform:(unsigned int)arg1;
 - (void)setFirstHostRequestTimer:(id)arg1;
 - (void)setIsSystemService:(bool)arg1;
 - (void)setPersonalities:(id)arg1;

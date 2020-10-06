@@ -55,13 +55,20 @@
 
 + (id)componentsForContact:(id)arg1;
 + (id)descriptorForUsedKeys;
-+ (id)keyPathMapping;
-+ (id)keyVectorForUsedKeys;
 
 - (void)overrideComponentsInContact:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/CloudDocs.framework/CloudDocs
 
 - (id)br_formattedName;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
+- (bool)isGivenNameFirst;
+
+// Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
+
+- (id)ic_componentsForSearchHighlighting;
+- (id)ic_localizedNameWithDefaultFormattingStyle;
 
 @end

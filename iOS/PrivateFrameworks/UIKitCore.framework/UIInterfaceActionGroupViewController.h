@@ -19,12 +19,7 @@
 @property (nonatomic, readonly) UIInterfaceActionVisualStyle *visualStyle;
 @property (nonatomic) <UIInterfaceActionVisualStyleProviding> *visualStyleProvider;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)actionGroup;
 - (id)actionGroupView;
 - (id)defaultVisualStyleForTraitCollection:(id)arg1 presentationStyle:(long long)arg2;

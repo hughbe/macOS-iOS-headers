@@ -6,7 +6,10 @@
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSData *etaFilter;
+@property (nonatomic, copy) NSData *evChargingMetadata;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, copy) NSData *originalWaypointRoute;
 @property (nonatomic, copy) NSData *routeAsZilchBinary;
 @property (nonatomic, copy) NSData *routeId;
 @property (nonatomic, copy) NSData *sessionState;
@@ -16,10 +19,16 @@
 + (id)routeWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;
+- (id)etaFilter;
+- (id)evChargingMetadata;
 - (id)groupIdentifier;
+- (id)originalWaypointRoute;
 - (id)routeAsZilchBinary;
 - (id)routeId;
 - (id)sessionState;
+- (void)setEtaFilter:(id)arg1;
+- (void)setEvChargingMetadata:(id)arg1;
+- (void)setOriginalWaypointRoute:(id)arg1;
 - (void)setRouteAsZilchBinary:(id)arg1;
 - (void)setRouteId:(id)arg1;
 - (void)setSessionState:(id)arg1;

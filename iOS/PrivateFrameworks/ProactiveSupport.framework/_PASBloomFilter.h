@@ -10,6 +10,8 @@
     int  _numHashFunctions;
 }
 
+// Image: /System/Library/PrivateFrameworks/ProactiveSupport.framework/ProactiveSupport
+
 + (id)bloomFilterWithPathToFile:(id)arg1;
 
 - (void).cxx_destruct;
@@ -23,5 +25,12 @@
 - (id)initWithData:(id)arg1 numBits:(unsigned int)arg2 hashFunctionCode:(unsigned int)arg3 numHashFunctions:(int)arg4;
 - (id)newHashesArray;
 - (int)numHashes;
+
+// Image: /System/Library/PrivateFrameworks/BusinessChatService.framework/BusinessChatService
+
++ (id)bloomFilterWithData:(id)arg1;
+
+- (id)_bloomFilterStringWithJSONObj:(id)arg1;
+- (id)initWithJSONObj:(id)arg1;
 
 @end

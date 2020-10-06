@@ -4,6 +4,7 @@
 
 @interface _UISystemAppearanceManager : NSObject <_UISceneComponentProviding> {
     bool  _homeIndicatorAutoHidden;
+    NSArray * _multitaskingDragExclusionRects;
     unsigned long long  _screenEdgesDeferringSystemGestures;
     long long  _userInterfaceStyle;
     long long  _whitePointAdaptivityStyle;
@@ -15,6 +16,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) bool homeIndicatorAutoHidden;
+@property (nonatomic, readonly) NSArray *multitaskingDragExclusionRects;
 @property (nonatomic, readonly) unsigned long long screenEdgesDeferringSystemGestures;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) long long userInterfaceStyle;
@@ -26,9 +28,11 @@
 - (void)_setScene:(id)arg1;
 - (bool)homeIndicatorAutoHidden;
 - (id)initWithScene:(id)arg1;
+- (id)multitaskingDragExclusionRects;
 - (unsigned long long)screenEdgesDeferringSystemGestures;
 - (void)setWindowScene:(id)arg1;
 - (void)updateHomeIndicatorAutoHidden;
+- (void)updateMultitaskingDragExclusionRects;
 - (void)updateScreenEdgesDeferringSystemGestures;
 - (void)updateUserInterfaceStyle;
 - (void)updateWhitePointAdaptivityStyle;

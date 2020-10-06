@@ -18,7 +18,6 @@
 - (id)additionChangeSets;
 - (id)deletionChangeSets;
 - (id)endDate;
-- (id)initWithAdditionChangeSets:(id)arg1 deletionChangeSets:(id)arg2 startDate:(id)arg3 endDate:(id)arg4;
 - (id)startDate;
 
 @end

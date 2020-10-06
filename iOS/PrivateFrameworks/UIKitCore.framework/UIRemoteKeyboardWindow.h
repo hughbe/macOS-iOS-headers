@@ -5,8 +5,8 @@
 @interface UIRemoteKeyboardWindow : UITextEffectsWindow <_UIContextCustomBinding, _UIScreenBasedObject> {
     FBSScene * _activeScene;
     bool  _arePlaceholdersInitialised;
-    FBSSceneLayer * _externalSceneLayer;
     UIScreen * _intendedScreen;
+    FBSSceneLayer * _keyboardSceneLayer;
     NSDictionary * _perScreenOptions;
     bool  _resetRequired;
 }
@@ -20,8 +20,6 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)remoteKeyboardWindowForScreen:(id)arg1 create:(bool)arg2;
 
@@ -45,11 +43,8 @@
 - (void)_setRotatableClient:(id)arg1 toOrientation:(long long)arg2 updateStatusBar:(bool)arg3 duration:(double)arg4 force:(bool)arg5 isRotating:(bool)arg6;
 - (bool)_usesWindowServerHitTesting;
 - (bool)_wantsSceneAssociation;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)attachBindable;
+- (void)dealloc;
 - (void)detachBindable;
 - (void)endDisablingInterfaceAutorotation;
 - (void)invalidate;

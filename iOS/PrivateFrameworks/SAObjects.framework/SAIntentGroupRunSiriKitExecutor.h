@@ -9,6 +9,7 @@
 @property (nonatomic) bool directAction;
 @property (nonatomic) bool eyesFree;
 @property (nonatomic, copy) NSString *goalID;
+@property (nonatomic, retain) SAPerson *identifiedUserMeCard;
 @property (nonatomic, copy) NSString *inputOrigin;
 @property (nonatomic, copy) NSString *interactionType;
 @property (nonatomic) bool multiUser;
@@ -26,6 +27,9 @@
 @property (nonatomic, copy) NSString *usoVerb;
 @property (nonatomic) bool voiceTriggerEnabled;
 
++ (id)runSiriKitExecutor;
++ (id)runSiriKitExecutorWithDictionary:(id)arg1 context:(id)arg2;
+
 - (id)appSelectionState;
 - (id)confirmationState;
 - (bool)directAction;
@@ -33,6 +37,7 @@
 - (bool)eyesFree;
 - (id)goalID;
 - (id)groupIdentifier;
+- (id)identifiedUserMeCard;
 - (id)inputOrigin;
 - (id)interactionType;
 - (bool)multiUser;
@@ -51,6 +56,7 @@
 - (void)setDirectAction:(bool)arg1;
 - (void)setEyesFree:(bool)arg1;
 - (void)setGoalID:(id)arg1;
+- (void)setIdentifiedUserMeCard:(id)arg1;
 - (void)setInputOrigin:(id)arg1;
 - (void)setInteractionType:(id)arg1;
 - (void)setMultiUser:(bool)arg1;

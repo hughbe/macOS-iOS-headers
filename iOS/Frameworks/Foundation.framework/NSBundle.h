@@ -3,7 +3,7 @@
  */
 
 @interface NSBundle : NSObject {
-    id  _cfBundle;
+    _Atomic struct __CFBundle {} * _cfBundle;
     NSString * _firstClassName;
     unsigned long long  _flags;
     id  _initialPath;
@@ -16,30 +16,40 @@
 }
 
 @property (readonly, copy) NSURL *appStoreReceiptURL;
+@property (getter=wf_applicationGroups, nonatomic, readonly) NSArray *applicationGroups;
+@property (getter=wf_apsEnvironment, nonatomic, readonly) NSString *apsEnvironment;
 @property (readonly, copy) NSString *builtInPlugInsPath;
 @property (readonly, copy) NSURL *builtInPlugInsURL;
 @property (readonly, copy) NSString *bundleIdentifier;
 @property (readonly, copy) NSString *bundlePath;
 @property (readonly, copy) NSURL *bundleURL;
 @property (readonly, copy) NSString *developmentLocalization;
+@property (getter=wf_entitlements, nonatomic, readonly) NSDictionary *entitlements;
 @property (readonly, copy) NSArray *executableArchitectures;
 @property (readonly, copy) NSString *executablePath;
 @property (readonly, copy) NSURL *executableURL;
+@property (nonatomic, readonly) bool ic_isAppExtension;
+@property (nonatomic, readonly) UIImage *icon;
 @property (readonly, copy) NSDictionary *infoDictionary;
+@property (getter=wf_keychainAccessGroups, nonatomic, readonly) NSArray *keychainAccessGroups;
 @property (getter=isLoaded, readonly) bool loaded;
 @property (readonly, copy) NSArray *localizations;
 @property (readonly, copy) NSDictionary *localizedInfoDictionary;
 @property (readonly, copy) NSArray *normalizedLocalizations;
+@property (nonatomic, readonly) NSLocale *preferredLocale;
 @property (readonly, copy) NSArray *preferredLocalizations;
 @property (readonly) Class principalClass;
 @property (readonly, copy) NSString *privateFrameworksPath;
 @property (readonly, copy) NSURL *privateFrameworksURL;
 @property (readonly, copy) NSString *resourcePath;
 @property (readonly, copy) NSURL *resourceURL;
+@property (nonatomic, readonly) bool safari_isSafariFamilyApplicationBundle;
+@property (nonatomic, readonly, copy) NSString *safari_normalizedVersion;
 @property (readonly, copy) NSString *sharedFrameworksPath;
 @property (readonly, copy) NSURL *sharedFrameworksURL;
 @property (readonly, copy) NSString *sharedSupportPath;
 @property (readonly, copy) NSURL *sharedSupportURL;
+@property (getter=wf_teamIdentifier, nonatomic, readonly) NSString *teamIdentifier;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -76,6 +86,8 @@
 - (id)_pathsForResourcesOfType:(id)arg1 inDirectory:(id)arg2 forRegion:(id)arg3;
 - (id)_regionsArray;
 - (bool)_searchForLocalizedString:(id)arg1 foundKey:(id*)arg2 foundTable:(id*)arg3;
+- (id)_wrappedBundleURL;
+- (id)_wrapperContainerURL;
 - (id)appStoreReceiptURL;
 - (id)builtInPlugInsPath;
 - (id)builtInPlugInsURL;
@@ -99,6 +111,8 @@
 - (bool)load;
 - (bool)loadAndReturnError:(id*)arg1;
 - (id)localizations;
+- (id)localizedAttributedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+- (id)localizedAttributedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 locale:(id)arg4;
 - (id)localizedInfoDictionary;
 - (id)localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
 - (id)objectForInfoDictionaryKey:(id)arg1;
@@ -127,9 +141,27 @@
 - (bool)unload;
 - (unsigned long long)versionNumber;
 
-// Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
+// Image: /System/Library/Frameworks/AVKit.framework/AVKit
 
-+ (bool)cls_isDaemon;
+- (id)URLForMovieResource:(id)arg1;
+- (id)imageForResource:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2;
+
+// Image: /System/Library/Frameworks/BusinessChat.framework/BusinessChat
+
+- (id)businessBundle;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_findContainedBundleWithIdentifier:(id)arg1 directoryURL:(id)arg2;
+
+- (id)hk_displayName;
+- (id)hk_extensionPointIdentifier;
+- (id)hk_findContainedBundleWithIdentifier:(id)arg1;
+- (id)hk_localizedClinicalReadAuthorizationUsageDescription;
+- (id)hk_localizedReadAuthorizationUsageDescription;
+- (id)hk_localizedResearchStudyUsageDescription;
+- (id)hk_localizedWriteAuthorizationUsageDescription;
+- (id)hk_name;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
@@ -137,15 +169,144 @@
 
 - (id)_mapkit_localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
 
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+
++ (id)mediaPlayerBundle;
+
+// Image: /System/Library/Frameworks/Photos.framework/Photos
+
+- (bool)ph_isFirstPartyBundle;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)pu_PhotosUIFrameworkBundle;
+
+// Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
+
++ (bool)mainBundleRequiresStatusBarHidden;
++ (bool)mainBundleSupportsBackgroundAudio;
+
+- (id)ql_applicationName;
+
+// Image: /System/Library/Frameworks/ReplayKit.framework/ReplayKit
+
++ (id)_rpFrameworkBundle;
++ (id)_rpLocalizedAppNameFromBundleID:(id)arg1;
++ (id)_rpLocalizedStringFromFrameworkBundleWithKey:(id)arg1;
++ (id)baseIdentifier:(id)arg1;
++ (id)bundleWithPID:(int)arg1;
++ (id)executablePathWithPID:(int)arg1;
++ (id)fallbackBundle;
++ (id)localizedBundle;
+
+- (id)_rpLocalizedAppName;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (bool)_sf_isSafariViewServiceBundle;
++ (bool)_sf_isWebSheetApplicationBundle;
++ (id)_sf_safariServicesBundle;
+
+// Image: /System/Library/Frameworks/SensorKit.framework/SensorKit
+
++ (id)sk_bundleWithIdentifier:(id)arg1;
++ (id)sk_bundleWithIdentifier:(id)arg1 partnerAppDirectoryURL:(id)arg2;
+
+- (id)sk_appName;
+- (id)sk_perCategoryDetailDescription;
+- (id)sk_privacyURL;
+- (id)sk_requiredCategories;
+- (id)sk_studyName;
+- (id)sk_usageDescription;
+- (bool)sk_validateInfoPlistForSensors:(id)arg1 error:(id*)arg2;
+
 // Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
 
 + (id)un_safeBundleWithURL:(id)arg1;
 + (id)userNotificationsBundleWithIdentifier:(id)arg1;
 
+// Image: /System/Library/Frameworks/VideoSubscriberAccount.framework/VideoSubscriberAccount
+
++ (id)vs_bundleForProcessIdentifier:(int)arg1;
++ (id)vs_frameworkBundle;
+
+// Image: /System/Library/PrivateFrameworks/ARKitCore.framework/ARKitCore
+
+- (id)ar_pathForPrivateResource:(id)arg1 ofType:(id)arg2;
+- (id)ar_pathForPrivateResourceBundlePath;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreComponents.framework/AppStoreComponents
+
++ (id)asc_frameworkBundle;
++ (id)asc_localizedStringKeyPlatformSuffix;
++ (id)asc_realMainBundle;
+
+- (id)__asc_localizedStringForKey:(id)arg1 inTable:(id)arg2 withLanguage:(id)arg3;
+
 // Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
 
 + (id)ams_AppleMediaServicesBundle;
 + (id)ams_MusicBundle;
+
+// Image: /System/Library/PrivateFrameworks/AppleMediaServicesUI.framework/AppleMediaServicesUI
+
+- (id)icon;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
++ (id)afui_assistantUIFrameworkBundle;
+
+- (id)_assistantUILocalizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 language:(id)arg4;
+- (id)_assistantUIStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 localizationLanguageCode:(id)arg4;
+- (id)_assistantUIlocalizationArrayForLanguageCode:(id)arg1;
+- (bool)assistantLanguageIsRTL;
+- (id)assistantUILocale;
+- (id)assistantUILocalizedStringForKey:(id)arg1 table:(id)arg2;
+- (id)assistantUILocalizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+- (id)assistantUILocalizedStringFromSiriLanguageForKey:(id)arg1 table:(id)arg2;
+- (id)assistantUILocalizedStringFromSystemLanguageForKey:(id)arg1 table:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/BatteryCenterUI.framework/BatteryCenterUI
+
+- (id)bsui_imageForIconInfo:(struct BCUIIconImageInfo { struct CGSize { double x_1_1_1; double x_1_1_2; } x1; double x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/BrailleTranslation.framework/BrailleTranslation
+
++ (id)brl_brailleTableBundleWithIdentifier:(id)arg1;
+
+- (id)brl_brailleTablesDictionary;
+- (id)brl_languageAgnosticTables;
+- (id)brl_supportedLocales;
+- (id)brl_supportedLocalesForTableWithIdentifier:(id)arg1;
+- (id)brl_supportedTablesForLocale:(id)arg1;
+- (bool)brl_tableIsLanguageAgnosticWithIdentifier:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CameraEffectsKit.framework/CameraEffectsKit
+
++ (id)jfxBundle;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
+- (id)cat_localizedStringsForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
++ (id)cps_clipUIServicesBundle;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
+- (id)wf_applicationGroups;
+- (id)wf_apsEnvironment;
+- (id)wf_entitlements;
+- (id)wf_keychainAccessGroups;
+- (id)wf_teamIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/ControlCenterUIKit.framework/ControlCenterUIKit
+
++ (id)ccui_bundleForModuleInstance:(id)arg1;
+
+- (void)ccui_associateWithModuleInstance:(id)arg1;
+- (id)ccui_displayName;
 
 // Image: /System/Library/PrivateFrameworks/CoreMaterial.framework/CoreMaterial
 
@@ -159,9 +320,60 @@
 - (id)URLsForMaterialRecipes;
 - (id)URLsForVisualStyleSets;
 
+// Image: /System/Library/PrivateFrameworks/CoreRoutine.framework/CoreRoutine
+
++ (id)_coreroutineBundle;
++ (id)_coreroutine_LocalizedStringForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DoNotDisturb.framework/DoNotDisturb
+
++ (id)dnd_locationBundle;
+
+// Image: /System/Library/PrivateFrameworks/DoNotDisturbKit.framework/DoNotDisturbKit
+
++ (id)dndk_localizationBundle;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
++ (id)_gkBundleWithIdentifier:(id)arg1;
++ (id)_gkLocalizedMessageFromDictionary:(id)arg1;
++ (id)_gkLocalizedMessageFromDictionary:(id)arg1 forBundleID:(id)arg2;
++ (id)_gkLocalizedMessageFromPushDictionary:(id)arg1 forBundleID:(id)arg2;
++ (bool)_gkMainBundleIsGameCenterSystemProcess;
+
+- (id)_gkBundleShortVersion;
+- (id)_gkBundleVersion;
+- (id)_gkFrameworkVersionDescription;
+- (bool)_gkIsBadgingEnabled;
+- (bool)_gkIsDaemon;
+- (bool)_gkIsFirstParty;
+- (bool)_gkIsGameCenter;
+- (bool)_gkIsGameCenterExtension;
+- (bool)_gkIsPreferences;
+- (id)_gkLocalizedName;
+- (id)_gkLocalizedStringForKey:(id)arg1 defaultValue:(id)arg2 arguments:(id)arg3;
+- (id)_gkLocalizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 language:(id)arg4;
+- (id)_gkLocalizedStringFromLocaleName:(id)arg1 key:(id)arg2 tableName:(id)arg3 value:(id)arg4;
+- (id)_gkPathForChallengeSound;
+- (id)_gkPathForImageWithName:(id)arg1;
+- (id)_gkPathForInviteSound;
+- (id)_gkPathForMessageImage;
+- (id)_gkPathForSoundWithName:(id)arg1;
+- (id)_gkPreferredLanguage;
+- (id)_gkSystemLocalizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (id)__geoBundle;
+
+// Image: /System/Library/PrivateFrameworks/HealthMenstrualCyclesUI.framework/HealthMenstrualCyclesUI
+
++ (id)hkmcui_bundle;
+
+// Image: /System/Library/PrivateFrameworks/HelpKit.framework/HelpKit
+
++ (id)HLPBundle;
++ (void)removeHLPBundle;
 
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
@@ -182,6 +394,43 @@
 
 - (id)normalizedLocalizations;
 
+// Image: /System/Library/PrivateFrameworks/MediaControls.framework/MediaControls
+
++ (id)mediaControlsBundle;
+
+- (id)mediaControls_localizedStringForKey:(id)arg1 inTable:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/MediaPlaybackCore.framework/MediaPlaybackCore
+
++ (id)mediaPlaybackCoreBundle;
+
+// Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
+
++ (id)mediaPlayerUIBundle;
+
+// Image: /System/Library/PrivateFrameworks/Memories.framework/Memories
+
++ (id)localizedString:(id)arg1;
++ (float)localizedValue:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoMediaBridgeUI.framework/NanoMediaBridgeUI
+
++ (id)nanoMediaBridgeUIBundle;
+
+// Image: /System/Library/PrivateFrameworks/NanoMediaRemote.framework/NanoMediaRemote
+
++ (id)nanoMediaRemoteBundle;
+
+- (id)matchingPlaybackAppBundleIdentifierForOrigin:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoMusicSync.framework/NanoMusicSync
+
++ (id)nanoMusicSyncBundle;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
+- (id)preferredLocale;
+
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 + (id)_navigationBundle;
@@ -190,9 +439,120 @@
 
 - (id)_navigation_localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
 
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)fc_feldsparCoreInternalExtrasBundle;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (bool)ic_isAppExtension;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
+- (id)localizedDocumentStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+- (id)localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 locale:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)PKSanitizedBundleIdentifier;
+
 // Image: /System/Library/PrivateFrameworks/PersonaUI.framework/PersonaUI
 
 + (id)pr_personaUIBundle;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_bundle;
+
+// Image: /System/Library/PrivateFrameworks/PlacesKit.framework/PlacesKit
+
++ (id)pk_PlacesKitFrameworkBundle;
+
+// Image: /System/Library/PrivateFrameworks/SAML.framework/SAML
+
++ (id)saml_frameworkBundle;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
++ (id)safari_safariApplicationPlatformBundleIdentifier;
++ (id)safari_safariCoreBundle;
+
+- (bool)safari_isSafariFamilyApplicationBundle;
+- (id)safari_normalizedVersion;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (id)safari_safariSharedBundle;
+
+- (bool)safari_primaryLocalizationIsEnglish;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
+
++ (id)coreFrameworkBundle;
++ (id)localeForString:(id)arg1;
++ (id)localizedCoreStringForKey:(id)arg1;
++ (id)localizedScreenReaderStringForKey:(id)arg1 table:(id)arg2;
++ (id)screenReaderFrameworkBundle;
+
+- (id)bundleLocale;
+- (id)localizedStringForKey:(id)arg1 table:(id)arg2 locale:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderOutput.framework/ScreenReaderOutput
+
++ (id)_brailleTableBundles;
++ (id)_brailleTableDictionaryForBrailleTableIdentifier:(id)arg1;
++ (id)brailleDriverBundleWithIdentifier:(id)arg1;
++ (id)brailleDriverBundles;
++ (id)brailleDriverDeviceDetectionInfo;
++ (id)brailleTableBundleWithTableIdentifier:(id)arg1;
++ (bool)doesBrailleTableSupportContractions:(id)arg1;
++ (bool)doesBrailleTableSupportEightDot:(id)arg1;
++ (id)languageIdentifiersForBrailleTableIdentifier:(id)arg1;
+
+- (id)tableIdentifierForBundleSpecificTableIdentifier:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ScreenshotServices.framework/ScreenshotServices
+
++ (id)_screenshotServicesServiceBundle;
+
+// Image: /System/Library/PrivateFrameworks/SensorKitUI.framework/SensorKitUI
+
++ (id)skui_bundleForAuthorizationService:(id)arg1;
++ (id)skui_viewServiceBundle;
+
+// Image: /System/Library/PrivateFrameworks/ShazamKitUI.framework/ShazamKitUI
+
++ (id)sh_UIBundle;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (id)siriUILocalizedStringForKey:(id)arg1;
+- (id)siriUILocalizedStringForKey:(id)arg1 table:(id)arg2;
+- (id)siriUILocalizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/SiriUICore.framework/SiriUICore
+
+- (id)suic_localizedStringForKey:(id)arg1;
+- (id)suic_localizedStringForKey:(id)arg1 table:(id)arg2;
+- (id)suic_localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
+- (id)tv_imageNamed:(id)arg1;
+- (id)tv_launchImage;
+
+// Image: /System/Library/PrivateFrameworks/TipsUI.framework/TipsUI
+
++ (id)tps_bundleWithPath:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
+
++ (id)accessibilityBundleWithLastPathComponent:(id)arg1;
++ (id)accessibilityInternalBundleWithLastPathComponent:(id)arg1;
++ (id)accessibilityLocalBundleWithLastPathComponent:(id)arg1;
+
+- (void)_loadAXBundleForBundleOffMainThread;
+- (id)accessibilityBundlePath;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
@@ -203,11 +563,53 @@
 + (void)pushNibLoadingBundle:(id)arg1;
 + (void)pushNibPath:(id)arg1;
 
+- (id)_preferredEnglishLocalizationBundle;
 - (id)dataForResourceName:(id)arg1;
 - (id)loadNibNamed:(id)arg1 owner:(id)arg2 options:(id)arg3;
 
 // Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
 
 + (id)__vkBundle;
+
+// Image: /System/Library/PrivateFrameworks/VideoProcessing.framework/VideoProcessing
+
++ (id)vcp_mediaAnalysisBundle;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
++ (id)vui_videosUIBundle;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
+
++ (id)pathForITunesStoreResource:(id)arg1 ofType:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
++ (id)pathForITunesResource:(id)arg1 ofType:(id)arg2;
+
+- (id)newDataURLForResource:(id)arg1 ofType:(id)arg2 withMIMEType:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSApplication.framework/TSApplication
+
++ (id)tsa_templatesMetadataBundle;
++ (id)tsa_templatesMetadataURL;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_resourcesBundle;
+
+- (id)localizedDocumentStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+- (id)localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 locale:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_resourcesBundle;
+
+- (id)localizedDocumentStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;
+- (id)localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3 locale:(id)arg4;
+
+// Image: /usr/lib/swift/libswiftFoundation.dylib
+
++ (id)_swift_bundleWithExecutablePath:(const char *)arg1;
 
 @end

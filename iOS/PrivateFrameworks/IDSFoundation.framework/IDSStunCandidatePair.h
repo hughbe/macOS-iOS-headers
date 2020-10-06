@@ -17,6 +17,7 @@
     NSData * _encKey;
     NSString * _groupID;
     unsigned short  _hbCounter;
+    double  _hbStartTime;
     bool  _hbStarted;
     NSData * _hmacKey;
     bool  _isAcceptedRelaySession;
@@ -36,6 +37,7 @@
     bool  _pendingNoSessionStateAllocbind;
     bool  _pendingRealloc;
     NSMutableArray * _pendingStunRequests;
+    NSObject<OS_dispatch_source> * _probingTimer;
     unsigned char  _protocolVersion;
     NSObject<OS_dispatch_source> * _reallocTimer;
     bool  _recvDisconnected;
@@ -90,6 +92,7 @@
 @property (readonly) NSData *encKey;
 @property (copy) NSString *groupID;
 @property (nonatomic, readonly) unsigned short hbCounter;
+@property (nonatomic) double hbStartTime;
 @property (nonatomic) bool hbStarted;
 @property (readonly) NSData *hmacKey;
 @property (nonatomic) bool isAcceptedRelaySession;
@@ -140,6 +143,7 @@
 + (id)candidatePairWithLocalCandidate:(id)arg1 remoteCandidate:(id)arg2 sessionID:(id)arg3 delegate:(id)arg4 sendMsgBlock:(id /* block */)arg5;
 
 - (void).cxx_destruct;
+- (void)_handleLinkProbingTimer;
 - (void)_handleNoSessionStateTimer;
 - (void)_handleReallocTimer;
 - (void)_handleSessionConnectedtTimer;
@@ -171,8 +175,10 @@
 - (unsigned long long)getParticipantIDHash:(id)arg1;
 - (unsigned long long)getStunSentBytes:(id)arg1;
 - (id)groupID;
+- (bool)hasNoSessionStateTestOptions;
 - (bool)hasValidCapabilityFlags;
 - (unsigned short)hbCounter;
+- (double)hbStartTime;
 - (bool)hbStarted;
 - (id)hmacKey;
 - (void)initParticipantIDMap;
@@ -242,6 +248,7 @@
 - (void)setDefaultLocalDeviceCBUUID:(id)arg1;
 - (void)setDefaultRemoteDeviceCBUUID:(id)arg1;
 - (void)setGroupID:(id)arg1;
+- (void)setHbStartTime:(double)arg1;
 - (void)setHbStarted:(bool)arg1;
 - (void)setIsAcceptedRelaySession:(bool)arg1;
 - (void)setIsActive:(bool)arg1;
@@ -278,11 +285,13 @@
 - (bool)shouldRexmitStunRequest:(id)arg1;
 - (id)skeData;
 - (id)softwareData;
+- (void)startLinkProbingTimer:(unsigned int)arg1;
 - (void)startSessionConnectedTimer:(int)arg1 block:(id /* block */)arg2;
 - (void)startSessionConvergenceTimer:(int)arg1 block:(id /* block */)arg2;
 - (void)startSessionGoAwayTimer:(int)arg1 block:(id /* block */)arg2;
 - (unsigned long long)state;
 - (unsigned char)statsIntervalInSeconds;
+- (void)stopLinkProbingTimer;
 - (void)stopSessionConnectedTimer;
 - (void)stopSessionConvergenceTimer;
 - (void)stopSessionGoAwayTimer;

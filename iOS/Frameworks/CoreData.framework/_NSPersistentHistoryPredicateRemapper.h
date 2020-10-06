@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface _NSPersistentHistoryPredicateRemapper : NSObject {
+@interface _NSPersistentHistoryPredicateRemapper : NSObject <NSPredicateVisitor> {
     NSString * _storeID;
 }
 
@@ -12,9 +12,8 @@
 - (id)createPredicateForFetchFromPredicate:(id)arg1 withContext:(id)arg2;
 - (void)dealloc;
 - (id)initWithStoreIdentifier:(id)arg1;
-- (id)replacementValueForKeyPath:(id)arg1;
-- (id)replacementValueForValue:(id)arg1;
 - (void)visitPredicate:(id)arg1;
 - (void)visitPredicateExpression:(id)arg1;
+- (void)visitPredicateOperator:(id)arg1;
 
 @end

@@ -56,6 +56,8 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, retain) SFUserReportRequest *userReportRequest;
 
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -99,5 +101,10 @@
 - (id)team2;
 - (id)title;
 - (id)type;
+
+// Image: /System/Library/PrivateFrameworks/CardKit.framework/CardKit
+
+- (int)_crk_leadingCardSectionSeparatorStyle;
+- (int)_crk_trailingCardSectionSeparatorStyle;
 
 @end

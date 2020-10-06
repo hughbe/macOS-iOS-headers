@@ -9,6 +9,8 @@
 @property (nonatomic, readonly) unsigned long long count;
 @property (nonatomic, readonly) NSSet *keys;
 
+// Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
+
 + (id)bagKeySetCache;
 + (id)bagKeySetCacheAccessQueue;
 + (void)registerBagKeySet:(id)arg1 forProfile:(id)arg2 profileVersion:(id)arg3;
@@ -28,5 +30,10 @@
 - (bool)isEqual:(id)arg1;
 - (id)keys;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MetricsKit.framework/MetricsKit
+
++ (void)registerBagKeySetForMetricsConfiguration:(id)arg1;
++ (void)registerBagKeySetForMetricsRecorder:(id)arg1;
 
 @end

@@ -4,6 +4,7 @@
 
 @interface GEOXPCActivity : NSObject {
     NSObject<OS_xpc_object> * _activity;
+    NSObject<OS_xpc_object> * _criteria;
     id /* block */  _handler;
     bool  _isRepeating;
     geo_isolater * _isolation;

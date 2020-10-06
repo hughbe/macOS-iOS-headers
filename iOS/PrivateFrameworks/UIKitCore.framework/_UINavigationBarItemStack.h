@@ -60,6 +60,7 @@
 - (id)previousTopEntry;
 - (id)previousTopItem;
 - (void)pushItem:(id)arg1 withTransitionAssistant:(id)arg2;
+- (void)reverseIterateEntries:(id /* block */)arg1;
 - (void)setChangeObserver:(id)arg1;
 - (void)setItems:(id)arg1 withTransitionAssistant:(id)arg2;
 - (bool)stackItemsAreEqualTo:(id)arg1;

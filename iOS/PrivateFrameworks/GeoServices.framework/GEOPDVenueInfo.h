@@ -13,13 +13,7 @@
         unsigned int read_itemList : 1; 
         unsigned int read_locatedInside : 1; 
         unsigned int read_venueFeatureIds : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_filterElements : 1; 
-        unsigned int wrote_itemList : 1; 
-        unsigned int wrote_locatedInside : 1; 
-        unsigned int wrote_venueFeatureIds : 1; 
-        unsigned int wrote_featureType : 1; 
-        unsigned int wrote_goInsideLevel : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _goInsideLevel;
     GEOPDVenueItemList * _itemList;
@@ -53,12 +47,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsFeatureType:(id)arg1;
-- (void)_addNoFlagsFilterElement:(id)arg1;
-- (void)_addNoFlagsVenueFeatureId:(id)arg1;
-- (void)_readFilterElements;
-- (void)_readItemList;
-- (void)_readLocatedInside;
-- (void)_readVenueFeatureIds;
 - (void)addFilterElement:(id)arg1;
 - (void)addVenueFeatureId:(id)arg1;
 - (void)clearFilterElements;
@@ -81,8 +69,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)itemList;
+- (id)jsonRepresentation;
 - (id)locatedInside;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

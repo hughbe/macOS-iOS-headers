@@ -17,6 +17,7 @@
     TIKeyboardCandidate * _currentCandidate;
     NSUUID * _documentIdentifier;
     TIDocumentState * _documentState;
+    BKSHIDEventAuthenticationMessage * _eventAuthenticationMessage;
     TIInputContextHistory * _inputContextHistory;
     NSString * _inputForMarkedText;
     NSString * _inputMode;
@@ -44,6 +45,9 @@
             unsigned int needAutofill : 1; 
             unsigned int needOneTimeCodeAutofill : 1; 
             unsigned int landscapeOrientation : 1; 
+            unsigned int omitEmojiCandidates : 1; 
+            unsigned int emojiSearchMode : 1; 
+            unsigned int emojiPopoverMode : 1; 
         } fields; 
     }  _mask;
     NSString * _recipientIdentifier;
@@ -51,6 +55,7 @@
     NSString * _searchStringForMarkedText;
     TIKeyboardSecureCandidateRenderTraits * _secureCandidateRenderTraits;
     int  _shiftState;
+    NSArray * _statisticChanges;
     NSArray * _supportedPayloadIds;
     TITextInputTraits * _textInputTraits;
 }
@@ -69,6 +74,9 @@
 @property (nonatomic, retain) TIKeyboardCandidate *currentCandidate;
 @property (nonatomic, retain) NSUUID *documentIdentifier;
 @property (nonatomic, retain) TIDocumentState *documentState;
+@property (nonatomic) bool emojiPopoverMode;
+@property (nonatomic) bool emojiSearchMode;
+@property (nonatomic, copy) BKSHIDEventAuthenticationMessage *eventAuthenticationMessage;
 @property (nonatomic) bool floatingKeyboardMode;
 @property (nonatomic) bool hardwareKeyboardMode;
 @property (nonatomic, retain) TIInputContextHistory *inputContextHistory;
@@ -82,8 +90,10 @@
 @property (nonatomic, copy) TIKeyboardLayoutState *layoutState;
 @property (nonatomic) bool longPredictionListEnabled;
 @property (nonatomic) bool needAutofill;
+@property (nonatomic, readonly) bool needContactAutofill;
 @property (nonatomic) bool needOneTimeCodeAutofill;
 @property (nonatomic) bool needsCandidateMetadata;
+@property (nonatomic) bool omitEmojiCandidates;
 @property (nonatomic, copy) NSString *recipientIdentifier;
 @property (nonatomic, copy) NSString *responseContext;
 @property (nonatomic, copy) NSString *searchStringForMarkedText;
@@ -94,6 +104,7 @@
 @property (nonatomic, readonly) bool shouldOutputFullwidthSpace;
 @property (nonatomic) bool shouldSkipCandidateSelection;
 @property (nonatomic) bool splitKeyboardMode;
+@property (nonatomic, copy) NSArray *statisticChanges;
 @property (nonatomic, copy) NSArray *supportedPayloadIds;
 @property (nonatomic) bool suppressingCandidateSelection;
 @property (nonatomic, retain) TITextInputTraits *textInputTraits;
@@ -120,7 +131,10 @@
 - (id)description;
 - (id)documentIdentifier;
 - (id)documentState;
+- (bool)emojiPopoverMode;
+- (bool)emojiSearchMode;
 - (void)encodeWithCoder:(id)arg1;
+- (id)eventAuthenticationMessage;
 - (bool)floatingKeyboardMode;
 - (bool)hardwareKeyboardMode;
 - (id)initWithCoder:(id)arg1;
@@ -136,8 +150,10 @@
 - (id)layoutState;
 - (bool)longPredictionListEnabled;
 - (bool)needAutofill;
+- (bool)needContactAutofill;
 - (bool)needOneTimeCodeAutofill;
 - (bool)needsCandidateMetadata;
+- (bool)omitEmojiCandidates;
 - (id)recipientIdentifier;
 - (id)responseContext;
 - (id)searchStringForMarkedText;
@@ -157,6 +173,9 @@
 - (void)setCurrentCandidate:(id)arg1;
 - (void)setDocumentIdentifier:(id)arg1;
 - (void)setDocumentState:(id)arg1;
+- (void)setEmojiPopoverMode:(bool)arg1;
+- (void)setEmojiSearchMode:(bool)arg1;
+- (void)setEventAuthenticationMessage:(id)arg1;
 - (void)setFloatingKeyboardMode:(bool)arg1;
 - (void)setHardwareKeyboardMode:(bool)arg1;
 - (void)setInputContextHistory:(id)arg1;
@@ -172,6 +191,7 @@
 - (void)setNeedAutofill:(bool)arg1;
 - (void)setNeedOneTimeCodeAutofill:(bool)arg1;
 - (void)setNeedsCandidateMetadata:(bool)arg1;
+- (void)setOmitEmojiCandidates:(bool)arg1;
 - (void)setRecipientIdentifier:(id)arg1;
 - (void)setResponseContext:(id)arg1;
 - (void)setSearchStringForMarkedText:(id)arg1;
@@ -181,6 +201,7 @@
 - (void)setShortcutConversionEnabled:(bool)arg1;
 - (void)setShouldSkipCandidateSelection:(bool)arg1;
 - (void)setSplitKeyboardMode:(bool)arg1;
+- (void)setStatisticChanges:(id)arg1;
 - (void)setSupportedPayloadIds:(id)arg1;
 - (void)setSuppressingCandidateSelection:(bool)arg1;
 - (void)setTextInputTraits:(id)arg1;
@@ -191,6 +212,7 @@
 - (bool)shouldOutputFullwidthSpace;
 - (bool)shouldSkipCandidateSelection;
 - (bool)splitKeyboardMode;
+- (id)statisticChanges;
 - (id)supportedPayloadIds;
 - (bool)suppressingCandidateSelection;
 - (id)textInputTraits;

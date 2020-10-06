@@ -15,9 +15,9 @@
 
 + (id)alloc;
 
+- (void).cxx_destruct;
 - (void)_setup;
 - (void)clear;
-- (void)dealloc;
 - (id)delegate;
 - (void)goConnectedWithLocalSocketAddress:(id)arg1 remoteSocketAddress:(id)arg2;
 - (void)goDisconnected;

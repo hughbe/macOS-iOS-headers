@@ -4,17 +4,23 @@
 
 @interface _UITextFieldClearButton : UIButton {
     bool  _hasCustomImage;
+    <_UITextFieldClearButtonImageProviding> * _imageProvider;
 }
 
 @property (nonatomic) bool hasCustomImage;
+@property (nonatomic) <_UITextFieldClearButtonImageProviding> *imageProvider;
 
 + (bool)_cursorInteractionEnabled;
 
+- (void).cxx_destruct;
+- (id)_defaultImageForState:(unsigned long long)arg1 withConfiguration:(id)arg2;
 - (bool)_isModernButton;
 - (bool)_shouldDefaultToTemplatesForImageViewBackground:(bool)arg1;
 - (id)cursorInteraction:(id)arg1 regionForLocation:(struct CGPoint { double x1; double x2; })arg2 defaultRegion:(id)arg3;
 - (id)cursorInteraction:(id)arg1 styleForRegion:(id)arg2 modifiers:(long long)arg3;
 - (bool)hasCustomImage;
+- (id)imageProvider;
 - (void)setHasCustomImage:(bool)arg1;
+- (void)setImageProvider:(id)arg1;
 
 @end

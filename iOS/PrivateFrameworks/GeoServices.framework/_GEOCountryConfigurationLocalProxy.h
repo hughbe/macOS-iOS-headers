@@ -4,8 +4,11 @@
 
 @interface _GEOCountryConfigurationLocalProxy : NSObject <CoreTelephonyClientDataDelegate, _GEOCountryConfigurationServerProxy> {
     id  _countryCodeOverrideChangeListener;
+    CTXPCServiceSubscriptionContext * _currentDataContext;
+    geo_isolater * _currentDataContextIsolation;
     <_GEOCountryConfigurationServerProxyDelegate> * _delegate;
     NSObject<OS_dispatch_queue> * _delegateQueue;
+    bool  _loadedCurrentDataContext;
     NSObject<OS_dispatch_queue> * _queue;
     NSObject<OS_dispatch_source> * _scheduledUpdateTimer;
     CoreTelephonyClient * _telephonyClient;
@@ -23,6 +26,7 @@
 - (void)_reachabilityChanged:(id)arg1;
 - (void)_scheduleUpdate;
 - (void)_updateCountryCodeWithCallbackQueue:(id)arg1 callback:(id /* block */)arg2;
+- (void)currentDataSimChanged:(id)arg1;
 - (void)dealloc;
 - (id)initWithDelegate:(id)arg1 delegateQueue:(id)arg2;
 - (void)servingNetworkChanged:(id)arg1;

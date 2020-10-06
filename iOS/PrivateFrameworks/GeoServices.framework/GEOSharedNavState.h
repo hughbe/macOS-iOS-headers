@@ -22,20 +22,7 @@
         unsigned int read_groupIdentifier : 1; 
         unsigned int read_routeInfo : 1; 
         unsigned int read_senderInfo : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_destinationInfo : 1; 
-        unsigned int wrote_etaInfo : 1; 
-        unsigned int wrote_groupIdentifier : 1; 
-        unsigned int wrote_localUpdatedTimestamp : 1; 
-        unsigned int wrote_routeInfo : 1; 
-        unsigned int wrote_senderInfo : 1; 
-        unsigned int wrote_updatedTimestamp : 1; 
-        unsigned int wrote_protocolVersion : 1; 
-        unsigned int wrote_referenceFrame : 1; 
-        unsigned int wrote_transportType : 1; 
-        unsigned int wrote_arrived : 1; 
-        unsigned int wrote_closed : 1; 
-        unsigned int wrote_muted : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _groupIdentifier;
     double  _localUpdatedTimestamp;
@@ -83,15 +70,12 @@
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 @property (nonatomic) double updatedTimestamp;
 
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
 - (int)StringAsReferenceFrame:(id)arg1;
-- (void)_readDestinationInfo;
-- (void)_readEtaInfo;
-- (void)_readGroupIdentifier;
-- (void)_readRouteInfo;
-- (void)_readSenderInfo;
 - (bool)arrived;
 - (void)clearSensitiveFields;
 - (void)clearUnknownFields:(bool)arg1;
@@ -119,7 +103,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)localUpdatedTimestamp;
 - (void)mergeFrom:(id)arg1;
 - (bool)muted;
@@ -155,5 +142,16 @@
 - (id)unknownFields;
 - (double)updatedTimestamp;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MapsSupport.framework/MapsSupport
+
+- (id)composedRoute;
+- (id)destinationName;
+- (id /* block */)equalityTest;
+- (void)merge:(id)arg1;
+- (id)mspDescription;
+- (id)senderName;
+- (void)stripArrivedOrClosedTrip;
+- (void)truncatePointDataForPrivacy;
 
 @end

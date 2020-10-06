@@ -11,11 +11,7 @@
         unsigned int read_destinationPoints : 1; 
         unsigned int read_originAccessPoints : 1; 
         unsigned int read_originPoint : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_destinationAccessPoints : 1; 
-        unsigned int wrote_destinationPoints : 1; 
-        unsigned int wrote_originAccessPoints : 1; 
-        unsigned int wrote_originPoint : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _originAccessPoints;
     GEOSnapScorePoint * _originPoint;
@@ -41,13 +37,6 @@
 + (Class)originAccessPointType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsDestinationAccessPoint:(id)arg1;
-- (void)_addNoFlagsDestinationPoint:(id)arg1;
-- (void)_addNoFlagsOriginAccessPoint:(id)arg1;
-- (void)_readDestinationAccessPoints;
-- (void)_readDestinationPoints;
-- (void)_readOriginAccessPoints;
-- (void)_readOriginPoint;
 - (void)addDestinationAccessPoint:(id)arg1;
 - (void)addDestinationPoint:(id)arg1;
 - (void)addOriginAccessPoint:(id)arg1;
@@ -69,7 +58,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)originAccessPointAtIndex:(unsigned long long)arg1;
 - (id)originAccessPoints;

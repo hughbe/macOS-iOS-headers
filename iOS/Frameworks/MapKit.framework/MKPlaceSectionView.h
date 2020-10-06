@@ -26,6 +26,7 @@
 - (void)_touchesCancelledForRow:(id)arg1 at:(unsigned long long)arg2;
 - (void)_updateHairlineInsets;
 - (void)_updateViewsAnimated:(bool)arg1;
+- (void)_updateViewsAnimated:(bool)arg1 isNeedLayout:(bool)arg2;
 - (id)delegate;
 - (id)footerView;
 - (id)headerView;
@@ -45,6 +46,7 @@
 - (void)setHighlightsTouches:(bool)arg1;
 - (void)setRowViews:(id)arg1;
 - (void)setRowViews:(id)arg1 animated:(bool)arg2;
+- (void)setRowViews:(id)arg1 animated:(bool)arg2 isNeedLayout:(bool)arg3;
 - (void)setShowsBottomHairline:(bool)arg1;
 - (bool)showsBottomHairline;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;

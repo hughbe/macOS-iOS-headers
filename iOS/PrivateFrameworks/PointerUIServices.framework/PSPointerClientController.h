@@ -8,6 +8,9 @@
     NSObject<OS_dispatch_queue> * _connectionQueue;
     <PSPointerClientControllerDelegate> * _delegate;
     bool  _hasActivatedLaunchingConnection;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _invalidationAndConfigurationLock;
     bool  _isConnectionActive;
     BSServiceConnection * _launchingConnection;
     BSServiceConnection * _nonLaunchingConnection;

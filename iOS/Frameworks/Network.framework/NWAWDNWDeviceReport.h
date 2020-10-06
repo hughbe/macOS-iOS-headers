@@ -4,6 +4,7 @@
 
 @interface NWAWDNWDeviceReport : PBCodable <NSCopying> {
     unsigned int  _batteryAbsoluteCapacity;
+    NWAWDNWAccumulator * _batteryAccumulator;
     bool  _batteryAtCriticalLevel;
     bool  _batteryAtWarnLevel;
     unsigned int  _batteryCurrentCapacity;
@@ -25,6 +26,7 @@
         unsigned int batteryPercentage : 1; 
         unsigned int batteryTimeRemaining : 1; 
         unsigned int batteryVoltage : 1; 
+        unsigned int motionState : 1; 
         unsigned int thermalPressure : 1; 
         unsigned int batteryAtCriticalLevel : 1; 
         unsigned int batteryAtWarnLevel : 1; 
@@ -34,10 +36,13 @@
         unsigned int devicePluggedIn : 1; 
         unsigned int deviceScreenOn : 1; 
     }  _has;
+    int  _motionState;
+    NSString * _serialNumber;
     int  _thermalPressure;
 }
 
 @property (nonatomic) unsigned int batteryAbsoluteCapacity;
+@property (nonatomic, retain) NWAWDNWAccumulator *batteryAccumulator;
 @property (nonatomic) bool batteryAtCriticalLevel;
 @property (nonatomic) bool batteryAtWarnLevel;
 @property (nonatomic) unsigned int batteryCurrentCapacity;
@@ -52,6 +57,7 @@
 @property (nonatomic) bool devicePluggedIn;
 @property (nonatomic) bool deviceScreenOn;
 @property (nonatomic) bool hasBatteryAbsoluteCapacity;
+@property (nonatomic, readonly) bool hasBatteryAccumulator;
 @property (nonatomic) bool hasBatteryAtCriticalLevel;
 @property (nonatomic) bool hasBatteryAtWarnLevel;
 @property (nonatomic) bool hasBatteryCurrentCapacity;
@@ -65,11 +71,18 @@
 @property (nonatomic) bool hasBatteryVoltage;
 @property (nonatomic) bool hasDevicePluggedIn;
 @property (nonatomic) bool hasDeviceScreenOn;
+@property (nonatomic) bool hasMotionState;
+@property (nonatomic, readonly) bool hasSerialNumber;
 @property (nonatomic) bool hasThermalPressure;
+@property (nonatomic) int motionState;
+@property (nonatomic, retain) NSString *serialNumber;
 @property (nonatomic) int thermalPressure;
 
+- (void).cxx_destruct;
+- (int)StringAsMotionState:(id)arg1;
 - (int)StringAsThermalPressure:(id)arg1;
 - (unsigned int)batteryAbsoluteCapacity;
+- (id)batteryAccumulator;
 - (bool)batteryAtCriticalLevel;
 - (bool)batteryAtWarnLevel;
 - (unsigned int)batteryCurrentCapacity;
@@ -88,6 +101,7 @@
 - (bool)deviceScreenOn;
 - (id)dictionaryRepresentation;
 - (bool)hasBatteryAbsoluteCapacity;
+- (bool)hasBatteryAccumulator;
 - (bool)hasBatteryAtCriticalLevel;
 - (bool)hasBatteryAtWarnLevel;
 - (bool)hasBatteryCurrentCapacity;
@@ -101,12 +115,18 @@
 - (bool)hasBatteryVoltage;
 - (bool)hasDevicePluggedIn;
 - (bool)hasDeviceScreenOn;
+- (bool)hasMotionState;
+- (bool)hasSerialNumber;
 - (bool)hasThermalPressure;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
+- (int)motionState;
+- (id)motionStateAsString:(int)arg1;
 - (bool)readFrom:(id)arg1;
+- (id)serialNumber;
 - (void)setBatteryAbsoluteCapacity:(unsigned int)arg1;
+- (void)setBatteryAccumulator:(id)arg1;
 - (void)setBatteryAtCriticalLevel:(bool)arg1;
 - (void)setBatteryAtWarnLevel:(bool)arg1;
 - (void)setBatteryCurrentCapacity:(unsigned int)arg1;
@@ -134,7 +154,10 @@
 - (void)setHasBatteryVoltage:(bool)arg1;
 - (void)setHasDevicePluggedIn:(bool)arg1;
 - (void)setHasDeviceScreenOn:(bool)arg1;
+- (void)setHasMotionState:(bool)arg1;
 - (void)setHasThermalPressure:(bool)arg1;
+- (void)setMotionState:(int)arg1;
+- (void)setSerialNumber:(id)arg1;
 - (void)setThermalPressure:(int)arg1;
 - (int)thermalPressure;
 - (id)thermalPressureAsString:(int)arg1;

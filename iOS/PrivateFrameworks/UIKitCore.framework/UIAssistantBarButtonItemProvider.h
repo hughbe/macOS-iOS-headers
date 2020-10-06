@@ -4,10 +4,16 @@
 
 @interface UIAssistantBarButtonItemProvider : NSObject
 
++ (bool)_isDictationButtonVisible;
 + (bool)_isDismissButtonVisible;
++ (bool)_isEmojiButtonVisible;
++ (bool)_isKeyboardGroupVisible;
 + (bool)_isShowKeyboardButtonVisible;
 + (id)barButtonItemForAssistantItemStyle:(long long)arg1 target:(id)arg2;
-+ (id)imageSymbolConfigurationForAssistantBar;
++ (id)configuredSymbolImageWithName:(id)arg1 size:(double)arg2;
++ (id)imageSymbolConfigurationForAssistantBarWithPointSize:(double)arg1;
++ (id)newPencilTextInputLeadingGroupWithTarget:(id)arg1;
++ (id)newPencilTextInputTrailingGroupWithTarget:(id)arg1;
 + (id)systemDefaultAssistantItem;
 + (id)unmodifiableSystemAssistantItem;
 

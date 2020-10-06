@@ -15,6 +15,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSDictionary *timings;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)metrics;
 + (id)metricsWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -30,5 +32,12 @@
 - (void)setOriginalCommandId:(id)arg1;
 - (void)setTimings:(id)arg1;
 - (id)timings;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (bool)siriCore_isRetryable;
+- (id)siriCore_requestId;
+- (void)siriCore_setSessionRequestId:(id)arg1;
+- (bool)siriCore_supportedByLocalSession;
 
 @end

@@ -6,11 +6,6 @@
     NSMapTable * _dispatchTable;
 }
 
-@property (nonatomic, retain) NSMapTable *dispatchTable;
-
 - (void).cxx_destruct;
-- (id)dispatchTable;
-- (void)enumerateWithBlock:(id /* block */)arg1;
-- (void)setDispatchTable:(id)arg1;
 
 @end

@@ -21,7 +21,6 @@
     PBCodable * _response;
     Class  _responseClass;
     GEOProtobufSession * _session;
-    unsigned long long  _taskIdentifier;
     GEODataRequestThrottlerToken * _throttleToken;
 }
 
@@ -49,7 +48,6 @@
 @property (nonatomic, readonly) Class responseClass;
 @property (nonatomic) GEOProtobufSession *session;
 @property (readonly) Class superclass;
-@property (nonatomic, readonly) unsigned long long taskIdentifier;
 
 - (void).cxx_destruct;
 - (void)_decodeResponseFromTask:(id)arg1 completion:(id /* block */)arg2;
@@ -69,7 +67,7 @@
 - (id)error;
 - (unsigned long long)incomingPayloadSize;
 - (id)init;
-- (id)initWithSession:(id)arg1 taskIdentifier:(unsigned long long)arg2 requestTypeCode:(unsigned int)arg3 responseClass:(Class)arg4 delegate:(id)arg5 delegateQueue:(id)arg6 requestKind:(struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })arg7 auditToken:(id)arg8 throttleToken:(id)arg9;
+- (id)initWithSession:(id)arg1 requestTypeCode:(unsigned int)arg2 responseClass:(Class)arg3 delegate:(id)arg4 delegateQueue:(id)arg5 requestKind:(struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })arg6 auditToken:(id)arg7 throttleToken:(id)arg8;
 - (bool)mptcpNegotiated;
 - (unsigned long long)outgoingPayloadSize;
 - (id)parseInnerProtobufFromData:(id)arg1;
@@ -92,7 +90,6 @@
 - (void)setResponse:(id)arg1;
 - (void)setSession:(id)arg1;
 - (void)start;
-- (unsigned long long)taskIdentifier;
 - (void)updateDataRequest:(id)arg1 withNewProtobufRequest:(id)arg2 completionHandler:(id /* block */)arg3;
 
 @end

@@ -38,8 +38,11 @@
 - (bool)hasInteractedItemIndex;
 - (bool)hasListType;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (int)interactedItemIndex;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)listType;
 - (id)listTypeAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;

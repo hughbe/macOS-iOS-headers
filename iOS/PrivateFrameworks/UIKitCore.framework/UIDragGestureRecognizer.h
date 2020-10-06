@@ -13,7 +13,6 @@
 
 - (void).cxx_destruct;
 - (id)_dragEvent;
-- (bool)_shouldReceiveDragEvent:(id)arg1;
 - (bool)_shouldReceivePress:(id)arg1;
 - (bool)_shouldReceiveTouch:(id)arg1 forEvent:(id)arg2 recognizerView:(id)arg3;
 - (bool)canBePreventedByGestureRecognizer:(id)arg1;
@@ -22,5 +21,6 @@
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;
 - (struct CGPoint { double x1; double x2; })locationInView:(id)arg1;
 - (id)sessionDestination;
+- (bool)shouldReceiveEvent:(id)arg1;
 
 @end

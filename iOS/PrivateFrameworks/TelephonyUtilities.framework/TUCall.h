@@ -22,8 +22,12 @@
     bool  _hasUpdatedAudio;
     double  _hostCreationTime;
     double  _hostMessageSendTime;
+    long long  _identificationCategory;
+    bool  _isKnownCaller;
     NSString * _isoCountryCode;
+    long long  _junkConfidence;
     TUCallModel * _model;
+    int  _originatingUIType;
     long long  _priority;
     NSDictionary * _providerContext;
     long long  _provisionalHoldStatus;
@@ -106,13 +110,17 @@
 @property (nonatomic) double hostCreationTime;
 @property (nonatomic) double hostMessageSendTime;
 @property (getter=isHostedOnCurrentDevice, nonatomic, readonly) bool hostedOnCurrentDevice;
+@property (nonatomic, readonly) long long identificationCategory;
 @property (getter=isIncoming, nonatomic, readonly) bool incoming;
 @property (nonatomic, readonly) long long inputAudioPowerSpectrumToken;
 @property (nonatomic, readonly) bool isActive;
+@property (nonatomic, readonly) bool isKnownCaller;
 @property (nonatomic, readonly) bool isOnHold;
 @property (nonatomic, readonly) bool isSendingAudio;
 @property (nonatomic) bool isSendingVideo;
 @property (nonatomic, copy) NSString *isoCountryCode;
+@property (getter=isJunk, nonatomic, readonly) bool junk;
+@property (nonatomic, readonly) long long junkConfidence;
 @property (nonatomic, readonly) NSData *localFrequency;
 @property (nonatomic, readonly) float localMeterLevel;
 @property (nonatomic, readonly, copy) TUSenderIdentity *localSenderIdentity;
@@ -123,6 +131,7 @@
 @property (nonatomic, copy) TUCallModel *model;
 @property (getter=isMutuallyExclusiveCall, nonatomic, readonly) bool mutuallyExclusiveCall;
 @property (nonatomic, readonly) bool needsManualInCallSounds;
+@property (nonatomic, readonly) int originatingUIType;
 @property (getter=isOutgoing, nonatomic, readonly) bool outgoing;
 @property (nonatomic, readonly) long long outputAudioPowerSpectrumToken;
 @property (nonatomic, readonly) bool prefersExclusiveAccessToCellularNetwork;
@@ -159,6 +168,7 @@
 @property (nonatomic, readonly) bool supportsDTMFTones;
 @property (nonatomic) bool supportsRecents;
 @property (nonatomic, readonly) bool supportsTTYWithVoice;
+@property (setter=tc_setUseUnderlyingRemoteUplinkMuted:, nonatomic) bool tc_useUnderlyingRemoteUplinkMuted;
 @property (getter=isThirdPartyVideo, nonatomic, readonly) bool thirdPartyVideo;
 @property (nonatomic) int transitionStatus;
 @property (getter=isTTY, nonatomic, readonly) bool tty;
@@ -183,8 +193,13 @@
 @property (nonatomic) bool wasPulledToCurrentDevice;
 @property (getter=isWiFiCall, nonatomic, readonly) bool wiFiCall;
 
+// Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
+
 + (id)_supplementalDialTelephonyCallStringForLocString:(id)arg1 destination:(id)arg2 isPhoneNumber:(bool)arg3 includeFaceTimeAudio:(bool)arg4;
++ (long long)acceptableJunkConfidence;
 + (id)faceTimeSupplementalDialTelephonyCallStringIncludingFTA:(bool)arg1;
++ (bool)isJunkConfidenceLevelJunk:(long long)arg1;
++ (long long)maxJunkConfidence;
 + (id)supplementalDialTelephonyCallString;
 + (id)supplementalDialTelephonyCallStringForDestination:(id)arg1 isPhoneNumber:(bool)arg2;
 + (bool)supportsSecureCoding;
@@ -250,6 +265,7 @@
 - (void)hold;
 - (double)hostCreationTime;
 - (double)hostMessageSendTime;
+- (long long)identificationCategory;
 - (id)init;
 - (id)initWithCall:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -271,6 +287,8 @@
 - (bool)isEqualToCall:(id)arg1;
 - (bool)isHostedOnCurrentDevice;
 - (bool)isIncoming;
+- (bool)isJunk;
+- (bool)isKnownCaller;
 - (bool)isMediaStalled;
 - (bool)isMuted;
 - (bool)isMutuallyExclusiveCall;
@@ -294,6 +312,7 @@
 - (bool)isVoicemail;
 - (bool)isWiFiCall;
 - (id)isoCountryCode;
+- (long long)junkConfidence;
 - (struct CGSize { double x1; double x2; })localAspectRatioForOrientation:(long long)arg1;
 - (id)localFrequency;
 - (float)localMeterLevel;
@@ -303,8 +322,10 @@
 - (id)localizedLabel;
 - (id)model;
 - (bool)needsManualInCallSounds;
+- (int)originatingUIType;
 - (long long)outputAudioPowerSpectrumToken;
 - (void)playDTMFToneForKey:(unsigned char)arg1;
+- (void)postNotificationsAfterUpdatesInBlock:(id /* block */)arg1;
 - (bool)prefersExclusiveAccessToCellularNetwork;
 - (long long)priority;
 - (id)provider;
@@ -381,7 +402,6 @@
 - (id)sourceIdentifier;
 - (double)startTime;
 - (int)status;
-- (id)statusDisplayStringWithLabel:(id)arg1;
 - (bool)statusIsProvisional;
 - (id)suggestedDisplayName;
 - (id)supplementalInCallString;
@@ -406,5 +426,10 @@
 - (bool)wasDeclined;
 - (bool)wasDialAssisted;
 - (bool)wasPulledToCurrentDevice;
+
+// Image: /System/Library/PrivateFrameworks/TinCanShared.framework/TinCanShared
+
+- (void)tc_setUseUnderlyingRemoteUplinkMuted:(bool)arg1;
+- (bool)tc_useUnderlyingRemoteUplinkMuted;
 
 @end

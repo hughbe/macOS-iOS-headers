@@ -67,10 +67,13 @@
 - (bool)hasMaxDepartureFrequency;
 - (bool)hasMinDepartureFrequency;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isEstimate;
 - (bool)isEstimated;
 - (bool)isValidAtDate:(id)arg1;
+- (id)jsonRepresentation;
 - (id)lastTimeInFrequency;
 - (unsigned int)latestDepartureTime;
 - (unsigned int)maxDepartureFrequency;

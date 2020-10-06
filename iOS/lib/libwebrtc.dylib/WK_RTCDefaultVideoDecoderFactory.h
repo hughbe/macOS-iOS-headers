@@ -2,7 +2,10 @@
    Image: /System/Library/PrivateFrameworks/WebCore.framework/Frameworks/libwebrtc.dylib
  */
 
-@interface WK_RTCDefaultVideoDecoderFactory : NSObject <RTCVideoDecoderFactory>
+@interface WK_RTCDefaultVideoDecoderFactory : NSObject <RTCVideoDecoderFactory> {
+    bool  _supportsH265;
+    bool  _supportsVP9;
+}
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -10,6 +13,7 @@
 @property (readonly) Class superclass;
 
 - (id)createDecoder:(id)arg1;
+- (id)initWithH265:(bool)arg1 vp9:(bool)arg2;
 - (id)supportedCodecs;
 
 @end

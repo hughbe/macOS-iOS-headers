@@ -16,12 +16,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_buildingIds : 1; 
         unsigned int read_label : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_buildingIds : 1; 
-        unsigned int wrote_label : 1; 
-        unsigned int wrote_muid : 1; 
-        unsigned int wrote_venueId : 1; 
-        unsigned int wrote_browseType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDVenueLabel * _label;
     unsigned long long  _muid;
@@ -51,9 +46,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsBrowseType:(id)arg1;
-- (void)_addNoFlagsBuildingId:(unsigned long long)arg1;
-- (void)_readBuildingIds;
-- (void)_readLabel;
 - (void)addBuildingId:(unsigned long long)arg1;
 - (int)browseType;
 - (id)browseTypeAsString:(int)arg1;
@@ -74,7 +66,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)label;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muid;

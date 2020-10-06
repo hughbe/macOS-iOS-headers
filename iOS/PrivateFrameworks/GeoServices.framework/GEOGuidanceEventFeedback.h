@@ -20,18 +20,8 @@
         unsigned int read_routeID : 1; 
         unsigned int read_signGuidanceFeedback : 1; 
         unsigned int read_spokenGuidanceFeedback : 1; 
-        unsigned int wrote_junctionViewGuidanceFeedback : 1; 
-        unsigned int wrote_routeID : 1; 
-        unsigned int wrote_signGuidanceFeedback : 1; 
-        unsigned int wrote_spokenGuidanceFeedback : 1; 
-        unsigned int wrote_distanceToManeuver : 1; 
-        unsigned int wrote_duration : 1; 
-        unsigned int wrote_enrouteNoticeIndex : 1; 
-        unsigned int wrote_eventIndex : 1; 
-        unsigned int wrote_stepID : 1; 
-        unsigned int wrote_timeToManeuver : 1; 
-        unsigned int wrote_trafficSpeed : 1; 
-        unsigned int wrote_vehicleSpeed : 1; 
+        unsigned int read_trafficCameraGuidanceFeedback : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOJunctionViewGuidanceFeedback * _junctionViewGuidanceFeedback;
     PBDataReader * _reader;
@@ -45,6 +35,7 @@
     GEOSpokenGuidanceFeedback * _spokenGuidanceFeedback;
     unsigned int  _stepID;
     float  _timeToManeuver;
+    GEOTrafficCameraInformation * _trafficCameraGuidanceFeedback;
     int  _trafficSpeed;
     float  _vehicleSpeed;
 }
@@ -63,6 +54,7 @@
 @property (nonatomic, readonly) bool hasSpokenGuidanceFeedback;
 @property (nonatomic) bool hasStepID;
 @property (nonatomic) bool hasTimeToManeuver;
+@property (nonatomic, readonly) bool hasTrafficCameraGuidanceFeedback;
 @property (nonatomic) bool hasTrafficSpeed;
 @property (nonatomic) bool hasVehicleSpeed;
 @property (nonatomic, retain) GEOJunctionViewGuidanceFeedback *junctionViewGuidanceFeedback;
@@ -71,6 +63,7 @@
 @property (nonatomic, retain) GEOSpokenGuidanceFeedback *spokenGuidanceFeedback;
 @property (nonatomic) unsigned int stepID;
 @property (nonatomic) float timeToManeuver;
+@property (nonatomic, retain) GEOTrafficCameraInformation *trafficCameraGuidanceFeedback;
 @property (nonatomic) int trafficSpeed;
 @property (nonatomic) float vehicleSpeed;
 
@@ -78,10 +71,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsTrafficSpeed:(id)arg1;
-- (void)_readJunctionViewGuidanceFeedback;
-- (void)_readRouteID;
-- (void)_readSignGuidanceFeedback;
-- (void)_readSpokenGuidanceFeedback;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -100,12 +89,16 @@
 - (bool)hasSpokenGuidanceFeedback;
 - (bool)hasStepID;
 - (bool)hasTimeToManeuver;
+- (bool)hasTrafficCameraGuidanceFeedback;
 - (bool)hasTrafficSpeed;
 - (bool)hasVehicleSpeed;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)junctionViewGuidanceFeedback;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
@@ -129,12 +122,14 @@
 - (void)setSpokenGuidanceFeedback:(id)arg1;
 - (void)setStepID:(unsigned int)arg1;
 - (void)setTimeToManeuver:(float)arg1;
+- (void)setTrafficCameraGuidanceFeedback:(id)arg1;
 - (void)setTrafficSpeed:(int)arg1;
 - (void)setVehicleSpeed:(float)arg1;
 - (id)signGuidanceFeedback;
 - (id)spokenGuidanceFeedback;
 - (unsigned int)stepID;
 - (float)timeToManeuver;
+- (id)trafficCameraGuidanceFeedback;
 - (int)trafficSpeed;
 - (id)trafficSpeedAsString:(int)arg1;
 - (float)vehicleSpeed;

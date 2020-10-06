@@ -14,6 +14,7 @@
 - (void)_deleteBackwardAndNotify:(bool)arg1;
 - (void)_deleteByWord;
 - (void)_deleteForwardAndNotify:(bool)arg1;
+- (void)_deleteForwardByWord;
 - (void)_deleteToEndOfLine;
 - (void)_deleteToEndOfParagraph;
 - (void)_deleteToStartOfLine;
@@ -71,7 +72,6 @@
 - (bool)_selectionAtDocumentEnd;
 - (bool)_selectionAtDocumentStart;
 - (bool)_selectionAtWordStart;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_selectionClipRect;
 - (void)_setAttributedMarkedText:(NSAttributedString *)arg1 selectedRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)_setCaretSelectionAtEndOfSelection;
 - (void)_setGestureRecognizers;
@@ -90,6 +90,7 @@
 
 - (bool)_isInteractiveTextSelectionDisabled;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_lastRectForRange:(UITextRange *)arg1;
+- (<UIPointerInteractionDelegate> *)_pointerInteractionDelegate;
 - (void)_setInternalGestureRecognizers;
 - (bool)_shouldSuppressSelectionHandles;
 - (UIView<UITextInputPrivate> *)_textSelectingContainer;

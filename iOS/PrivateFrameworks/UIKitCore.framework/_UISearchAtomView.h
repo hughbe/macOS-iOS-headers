@@ -36,14 +36,12 @@
 @property (nonatomic, copy) NSArray *withImageConstraints;
 @property (nonatomic, copy) NSArray *withoutImageConstraints;
 
-+ (id)defaultAtomBackgroundColor;
++ (id)_defaultFont;
++ (id)defaultAtomBackgroundColorForTraitCollection:(id)arg1;
 + (bool)requiresConstraintBasedLayout;
 
 - (void).cxx_destruct;
-- (double)_bottomMargin;
 - (void)_dynamicUserInterfaceTraitDidChange;
-- (id)_font;
-- (double)_topToBaselineDelta;
 - (void)_updateColors;
 - (id)atomBackgroundColor;
 - (id)atomFont;

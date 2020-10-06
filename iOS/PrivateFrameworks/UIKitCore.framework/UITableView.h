@@ -2,7 +2,8 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UITableView : UIScrollView <DebugHierarchyObject_Fallback, NSCoding, UIContextMenuInteractionDelegate, UIDataSourceTranslating, UIGestureRecognizerDelegatePrivate, UIScrollViewDelegate, UISwipeActionHost, UITable_ForMailOnly, UITable_RowDataSource, UITable_UITableViewCellDelegate, _UICursorInteractionDelegate, _UIDataSourceBackedView, _UIKeyboardAutoRespondingScrollView, _UITableViewDragControllerDelegate, _UITableViewDropControllerDelegate, _UITableViewSubviewManagerDelegate> {
+@interface UITableView : UIScrollView <NSCoding, UIContextMenuInteractionDelegate, UIDataSourceTranslating, UIGestureRecognizerDelegatePrivate, UIScrollViewDelegate, UISwipeActionHost_Internal, UITable_ForMailOnly, UITable_RowDataSource, UITable_UITableViewCellDelegate, _UIDataSourceBackedView, _UIKeyboardAutoRespondingScrollView, _UITableViewDragControllerDelegate, _UITableViewDropControllerDelegate, _UITableViewSubviewManagerDelegate> {
+    bool  __allowsCursorInteraction;
     UIColor * _accessoryBaseColor;
     UIView * _backgroundView;
     double  _bottomPadding;
@@ -21,11 +22,9 @@
     UIFocusContainerGuide * _contentFocusContainerGuide;
     UIContextMenuInteraction * _contextMenuInteraction;
     UITableViewCountView * _countLabel;
-    _UICursorRegion * _currentDefaultRegion;
     long long  _currentIndexTitleIndex;
     UITouch * _currentTouch;
     _UITableViewUpdateSupport * _currentUpdate;
-    _UICursorInteraction * _cursorInteraction;
     UIColor * _darkenedSeparatorColor;
     <UITableViewDataSource> * _dataSource;
     NSArray * _defaultSectionIndexTitles;
@@ -70,7 +69,6 @@
     UISelectionFeedbackGenerator * _indexRetargetFeedbackGenerator;
     UIColor * _indexTrackingBackgroundColor;
     NSMutableArray * _insertItems;
-    long long  _lastFloatingSection;
     int  _longPressAutoscrollDirection;
     NSTimer * _longPressAutoscrollTimer;
     UILongPressGestureRecognizer * _longPressGestureRecognizer;
@@ -99,7 +97,6 @@
     UITableViewRowData * _rowData;
     double  _rowHeight;
     UIColor * _sectionBorderColor;
-    UIImpactFeedbackGenerator * _sectionChangeFeedbackGenerator;
     struct UIEdgeInsets { 
         double top; 
         double left; 
@@ -108,6 +105,7 @@
     }  _sectionContentInset;
     double  _sectionCornerRadius;
     double  _sectionFooterHeight;
+    double  _sectionHeaderFooterPadding;
     double  _sectionHeaderHeight;
     long long  _sectionIndexMinimumDisplayRowCount;
     NSArray * _sectionIndexTitlesForTableView;
@@ -230,6 +228,8 @@
         unsigned int delegatePreviewForDismissingContextMenuWithConfiguration : 1; 
         unsigned int delegateWillCommitMenuWithAnimator : 1; 
         unsigned int delegatewillPerformPreviewActionForMenuWithConfiguration : 1; 
+        unsigned int delegateWillDisplayContextMenuWithConfiguration : 1; 
+        unsigned int delegateWillEndContextMenuInteractionWithConfiguration : 1; 
         unsigned int delegateCursorRegionForRowAtIndexPathSPI : 1; 
         unsigned int delegateCursorStyleForModifiersAtIndexPathSPI : 1; 
         unsigned int delegateCursorWillEnterRowAtIndexPathSPI : 1; 
@@ -247,6 +247,7 @@
         unsigned int needsReload : 1; 
         unsigned int needsRebuildGeometry : 1; 
         unsigned int scheduledUpdateVisibleCells : 1; 
+        unsigned int lastScheduledUpdateVisibleCellsIgnored : 1; 
         unsigned int scheduledUpdateVisibleCellsFrames : 1; 
         unsigned int displayTopSeparator : 1; 
         unsigned int countStringInsignificantRowCount : 4; 
@@ -259,7 +260,8 @@
         unsigned int allowsSelectionDuringEditing : 1; 
         unsigned int allowsMultipleSelection : 1; 
         unsigned int allowsMultipleSelectionDuringEditing : 1; 
-        unsigned int selectionFollowsFocusSPI : 1; 
+        unsigned int selectionFollowsFocus : 2; 
+        unsigned int shouldBecomeFocusedOnSelection : 1; 
         unsigned int allowsCursorInteractionSPI : 1; 
         unsigned int indexHidden : 1; 
         unsigned int indexHiddenForSearch : 1; 
@@ -273,7 +275,7 @@
         unsigned int hideScrollIndicators : 1; 
         unsigned int sendReloadFinished : 1; 
         unsigned int keepFirstResponderWhenInteractionDisabled : 1; 
-        unsigned int keepFirstResponderVisibleOnBoundsChange : 1; 
+        unsigned int keepsFirstResponderVisibleOnBoundsChange : 1; 
         unsigned int forceStaticHeadersAndFooters : 1; 
         unsigned int displaysCellContentStringsOnTapAndHold : 1; 
         unsigned int displayingCellContentStringCallout : 1; 
@@ -338,6 +340,7 @@
         unsigned int disableReuseQueuePurgeOnTextSizeChanges : 1; 
         unsigned int doFirstResponderUpdatesAfterVisibleCellsUpdate : 1; 
         unsigned int useUnifiedSelectionBehavior : 1; 
+        unsigned int preserveSelectionStateDuringReload : 1; 
     }  _tableFlags;
     UIView * _tableFooterView;
     UIView * _tableHeaderBackgroundView;
@@ -381,7 +384,6 @@
 
 @property (setter=_setAllowsCursorInteraction:, nonatomic) bool _allowsCursorInteraction;
 @property (getter=_contentInset, nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } _contentInset;
-@property (setter=_setSelectionFollowsFocus:, nonatomic) bool _selectionFollowsFocus;
 @property (getter=_accessoryBaseColor, nonatomic, readonly) UIColor *accessoryBaseColor;
 @property (nonatomic) bool allowsMultipleSelection;
 @property (nonatomic) bool allowsMultipleSelectionDuringEditing;
@@ -393,8 +395,10 @@
 @property (getter=_cachedSectionIndexBarInsets, setter=_setCachedSectionIndexBarInsets:, nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } cachedSectionIndexBarInsets;
 @property (nonatomic, readonly) bool canBeEdited;
 @property (nonatomic) bool cellLayoutMarginsFollowReadableWidth;
+@property (nonatomic) bool cellRegistered;
 @property (getter=_cellSafeAreaInsets, nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } cellSafeAreaInsets;
 @property (getter=_constants, nonatomic, readonly) <UITableConstants> *constants;
+@property (nonatomic, readonly) UIContextMenuInteraction *contextMenuInteraction;
 @property (nonatomic, retain) UITouch *currentTouch;
 @property (nonatomic) <UITableViewDataSource> *dataSource;
 @property (readonly, copy) NSString *debugDescription;
@@ -432,6 +436,7 @@
 @property (getter=_headerFooterTrailingMarginWidth, nonatomic, readonly) double headerFooterTrailingMarginWidth;
 @property (getter=_heightForTableFooter, nonatomic, readonly) double heightForTableFooter;
 @property (getter=_heightForTableHeader, nonatomic, readonly) double heightForTableHeader;
+@property (nonatomic, readonly) NSIndexPath *ic_middleVisibleIndexPath;
 @property (getter=_isInModalViewController, nonatomic, readonly) bool inModalViewController;
 @property (getter=_indexBarExtentFromEdge, nonatomic, readonly) double indexBarExtentFromEdge;
 @property (getter=_indexFrame, nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } indexFrame;
@@ -456,15 +461,20 @@
 @property (nonatomic) double rowHeight;
 @property (getter=_rowSpacing, nonatomic, readonly) double rowSpacing;
 @property (getter=_scrollView, nonatomic, readonly) UIScrollView *scrollView;
+@property (getter=_sectionContentInset, setter=_setSectionContentInset:, nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } sectionContentInset;
 @property (getter=_sectionContentInset, nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } sectionContentInset;
+@property (getter=_sectionContentInsetFollowsLayoutMargins, setter=_setSectionContentInsetFollowsLayoutMargins:, nonatomic) bool sectionContentInsetFollowsLayoutMargins;
 @property (getter=_sectionContentInsetFollowsLayoutMargins, nonatomic, readonly) bool sectionContentInsetFollowsLayoutMargins;
 @property (getter=_sectionCornerRadius, nonatomic, readonly) double sectionCornerRadius;
 @property (nonatomic) double sectionFooterHeight;
+@property (getter=_sectionFooterPadding, nonatomic, readonly) double sectionFooterPadding;
 @property (nonatomic) double sectionHeaderHeight;
+@property (getter=_sectionHeaderPadding, nonatomic, readonly) double sectionHeaderPadding;
 @property (nonatomic, retain) UIColor *sectionIndexBackgroundColor;
 @property (nonatomic, retain) UIColor *sectionIndexColor;
 @property (nonatomic) long long sectionIndexMinimumDisplayRowCount;
 @property (nonatomic, retain) UIColor *sectionIndexTrackingBackgroundColor;
+@property (nonatomic) bool selectionFollowsFocus;
 @property (nonatomic, retain) UIColor *separatorColor;
 @property (nonatomic, copy) UIVisualEffect *separatorEffect;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } separatorInset;
@@ -492,15 +502,18 @@
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
++ (void)_ensureInitializeSystemAppearanceModifications;
 + (void)_initializeForIdiom:(long long)arg1;
 + (bool)_isInternalTableView;
 + (void)_setupIdiom:(long long)arg1 forTableViewStyle:(long long)arg2 includingBackground:(bool)arg3;
-+ (void)initialize;
 
 - (void).cxx_destruct;
 - (void)_Bug_Detected_In_Client_Of_UITableView_Invalid_Number_Of_Rows_In_Section:(id)arg1;
 - (void)_Bug_Detected_In_Client_Of_UITableView_Invalid_Number_Of_Sections:(id)arg1;
+- (void)_UIAppearance_setBackgroundColor:(id)arg1;
 - (void)_UIAppearance_setBackgroundEffects:(id)arg1;
+- (void)_UIAppearance_setSeparatorColor:(id)arg1;
+- (void)_UIAppearance_setSeparatorStyle:(long long)arg1;
 - (void)_accessibilitySetInterfaceStyleIntent:(unsigned long long)arg1;
 - (id)_accessoryBaseColor;
 - (void)_accessoryButtonAction:(id)arg1;
@@ -529,7 +542,6 @@
 - (void)_animateSwipeOccurrenceAction:(id)arg1 alongsideCell:(id)arg2 animation:(id)arg3;
 - (void)_animateTableViewContentToNewLayout;
 - (void)_animateTableViewContentToNewLayoutWithDuration:(double)arg1 reorderingCell:(id)arg2 additionalAnimations:(id /* block */)arg3;
-- (float)_animationDuration;
 - (void)_applyAppearanceDefaultsForStyle:(long long)arg1;
 - (bool)_applyCoalescedContentSizeUpdates;
 - (void)_applyContentSizeDeltaImmediately:(double)arg1;
@@ -558,6 +570,7 @@
 - (bool)_canBeginMenuInteractionAtLocation:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)_canEditRowAtIndexPath:(id)arg1;
 - (bool)_canFocusCell:(id)arg1;
+- (bool)_canFocusCellAtIndexPathBasedOnSelection:(id)arg1 guessIfUnsure:(bool)arg2;
 - (bool)_canHandleDropSession:(id)arg1;
 - (bool)_canMoveRowAtIndexPath:(id)arg1;
 - (bool)_canPerformAction:(SEL)arg1 forCell:(id)arg2 sender:(id)arg3;
@@ -588,7 +601,6 @@
 - (void)_configureBackgroundView;
 - (void)_configureCellForDisplay:(id)arg1 forIndexPath:(id)arg2;
 - (void)_configureContextMenuInteractionIfNeeded;
-- (void)_configureCursorInteractionIfNeeded;
 - (void)_configureIndexOverlayIndicatorViewIfNecessary;
 - (void)_configureIndexOverlaySelectionViewIfNecessary;
 - (id)_constants;
@@ -658,7 +670,6 @@
 - (id)_delegateProxy;
 - (id)_delegateViewForFooterInSection:(long long)arg1;
 - (id)_delegateViewForHeaderInSection:(long long)arg1;
-- (bool)_delegateWantsCustomFooterForSection:(long long)arg1;
 - (bool)_delegateWantsFooterForSection:(long long)arg1;
 - (bool)_delegateWantsFooterTitleForSection:(long long)arg1;
 - (bool)_delegateWantsHeaderForSection:(long long)arg1;
@@ -721,6 +732,7 @@
 - (void)_endSwipeToDeleteRowDidDelete:(bool)arg1;
 - (void)_endUpdatingVisibleCells:(bool)arg1 originalContentOffset:(struct CGPoint { double x1; double x2; })arg2 focusedView:(id)arg3 focusedViewType:(int)arg4;
 - (void)_ensurePreReloadVisibleRowRangeIsValidWithPostReloadRowCount:(long long)arg1;
+- (void)_ensureReturnedView:(id)arg1 isNotContainedInReusePoolForViewType:(int)arg2;
 - (void)_ensureRowDataIsLoaded;
 - (void)_ensureViewsAreLoadedInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (double)_estimatedHeightForFooterInSection:(long long)arg1;
@@ -752,6 +764,7 @@
 - (void)_handleNudgeInDirection:(long long)arg1;
 - (bool)_hasActiveDrag;
 - (bool)_hasActiveDrop;
+- (bool)_hasContentForBarInteractions;
 - (bool)_hasFocusedCellForIndexPath:(id)arg1;
 - (bool)_hasHeaderFooterBelowRowAtIndexPath:(id)arg1;
 - (bool)_hasSwipeToDeleteRow;
@@ -784,7 +797,6 @@
 - (double)_indexBarExtentFromEdge;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_indexFrame;
 - (id)_indexPathForCell:(id)arg1 usingPresentationValues:(bool)arg2;
-- (id)_indexPathForCursorRegion:(id)arg1 inInteraction:(id)arg2;
 - (id)_indexPathForRowAtPoint:(struct CGPoint { double x1; double x2; })arg1 usingPresentationValues:(bool)arg2;
 - (id)_indexPathForSelectedRowUsingPresentationValues:(bool)arg1;
 - (id)_indexPathForSpringLoadingAtPoint:(struct CGPoint { double x1; double x2; })arg1;
@@ -801,6 +813,7 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_insetsForIndexBar;
 - (void)_installTableViewGestureRecognizers;
 - (void)_invalidateForTopOrBottomPaddingChange:(bool)arg1;
+- (void)_invalidateLayoutForVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 oldVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (bool)_isCellReorderable:(id)arg1;
 - (bool)_isEditingForSwipeDeletion;
 - (bool)_isEditingRowAtIndexPath:(id)arg1;
@@ -812,6 +825,7 @@
 - (bool)_isReorderControlActiveForCell:(id)arg1;
 - (bool)_isReordering;
 - (bool)_isRowMultiSelect:(id)arg1;
+- (bool)_isRowMultiSelect:(id)arg1 followingMacBehavior:(bool)arg2;
 - (bool)_isScrolledToTop;
 - (bool)_isScrolledToTopAtContentOffsetY:(double)arg1;
 - (bool)_isShowingIndex;
@@ -866,10 +880,12 @@
 - (void)_populateArchivedSubviews:(id)arg1;
 - (id)_prefetchDataSourceActual;
 - (id)_prefetchDataSourceProxy;
+- (void)_prepareForRowDataHeaderFooterSizing;
 - (void)_prepareHighlightForCell:(id)arg1 withInteraction:(id)arg2;
 - (void)_prepareToLiftRowsAtIndexPaths:(id)arg1;
 - (id)_presentationIndexPathForDataSourceIndexPath:(id)arg1;
 - (long long)_presentationSectionIndexForDataSourceSectionIndex:(long long)arg1;
+- (id)_primaryFocusItemForFocusGroup:(id)arg1;
 - (void)_prolongIndexOverlayTimer;
 - (bool)_providesRowHeights;
 - (void)_purgeReuseQueues;
@@ -932,18 +948,18 @@
 - (void)_scrollToTopHidingTableHeaderIfNecessary:(bool)arg1;
 - (id)_scrollView;
 - (void)_scrollViewAnimationEnded:(id)arg1 finished:(bool)arg2;
-- (void)_scrollViewDidEndDecelerating;
 - (void)_scrollViewDidEndDraggingWithDeceleration:(bool)arg1;
-- (void)_scrollViewWillBeginDragging;
 - (void)_scrollViewWillEndDraggingWithVelocity:(struct CGPoint { double x1; double x2; })arg1 targetContentOffset:(struct CGPoint { double x1; double x2; }*)arg2;
 - (bool)_scrollsToMakeFirstResponderVisible;
-- (id)_sectionChangeFeedbackGenerator;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_sectionContentInset;
 - (bool)_sectionContentInsetFollowsLayoutMargins;
 - (double)_sectionCornerRadius;
+- (double)_sectionFooterPadding;
 - (id)_sectionFooterViewWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 forSection:(long long)arg2 floating:(bool)arg3 reuseViewIfPossible:(bool)arg4 willDisplay:(bool)arg5;
 - (long long)_sectionForFooterView:(id)arg1;
 - (long long)_sectionForHeaderView:(id)arg1;
+- (double)_sectionHeaderFooterPadding;
+- (double)_sectionHeaderPadding;
 - (id)_sectionHeaderView:(bool)arg1 withFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 forSection:(long long)arg3 floating:(bool)arg4 reuseViewIfPossible:(bool)arg5 willDisplay:(bool)arg6;
 - (id)_sectionHeaderViewWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 forSection:(long long)arg2 floating:(bool)arg3 reuseViewIfPossible:(bool)arg4 willDisplay:(bool)arg5;
 - (id)_sectionIndex;
@@ -958,7 +974,6 @@
 - (void)_selectRowAtIndexPath:(id)arg1 animated:(bool)arg2 scrollPosition:(long long)arg3 notifyDelegate:(bool)arg4 isCellMultiSelect:(bool)arg5;
 - (void)_selectRowsAtIndexPaths:(id)arg1 animated:(bool)arg2 scrollPosition:(long long)arg3 notifyDelegate:(bool)arg4;
 - (void)_selectedIndexPathsDidChange;
-- (bool)_selectionFollowsFocus;
 - (void)_sendDidEndEditingForIndexPath:(id)arg1;
 - (void)_sendWillBeginEditingForIndexPath:(id)arg1;
 - (long long)_separatorBackdropOverlayBlendMode;
@@ -1008,17 +1023,17 @@
 - (void)_setRemembersPreviouslyFocusedItem:(bool)arg1;
 - (void)_setReorderFeedbackGenerator:(id)arg1;
 - (void)_setRowCount:(unsigned long long)arg1;
-- (void)_setSectionChangeFeedbackGenerator:(id)arg1;
 - (void)_setSectionContentInset:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)_setSectionContentInsetFollowsLayoutMargins:(bool)arg1;
 - (void)_setSectionCornerRadius:(double)arg1;
+- (void)_setSectionHeaderFooterPadding:(double)arg1;
 - (void)_setSectionIndexColor:(id)arg1;
 - (void)_setSectionIndexTrackingBackgroundColor:(id)arg1;
-- (void)_setSelectionFollowsFocus:(bool)arg1;
 - (void)_setSeparatorBackdropOverlayBlendMode:(long long)arg1;
 - (void)_setSeparatorInsetIsRelativeToCellEdges:(bool)arg1;
 - (void)_setSeparatorsDrawAsOverlay:(bool)arg1;
 - (void)_setSeparatorsDrawInVibrantLightModeUIAppearance:(id)arg1;
+- (void)_setShouldBecomeFocusedOnSelection:(bool)arg1;
 - (void)_setSwipeToDeleteCell:(id)arg1;
 - (void)_setTopPadding:(double)arg1;
 - (void)_setUpContentFocusContainerGuide;
@@ -1036,6 +1051,7 @@
 - (void)_shiftSectionIndexTitleIndexByAmount:(long long)arg1;
 - (bool)_shouldAllowInternalDrop;
 - (bool)_shouldApplyReadableWidthInsets;
+- (bool)_shouldBecomeFocusedOnSelection;
 - (bool)_shouldChangeIndexBasedOnValueChanged;
 - (bool)_shouldConfigureCellForDisplayDuringDequeueForIndexPath:(id)arg1;
 - (bool)_shouldConsumePressEvent:(id)arg1;
@@ -1069,7 +1085,6 @@
 - (void)_showSeparatorForRowAtIndexPath:(id)arg1;
 - (void)_showSeparatorForRowBeforeIndexPath:(id)arg1;
 - (double)_sidePadding;
-- (id)_sidebarVariantOfConstants:(id)arg1;
 - (double)_spacingForExtraSeparators;
 - (void)_startIndexOverlayIndicatorIgnoreTimer;
 - (void)_startIndexOverlayTimerWithDelay:(double)arg1;
@@ -1115,7 +1130,6 @@
 - (void)_transitionIndexOverlaySelectionViewToVisible:(bool)arg1;
 - (void)_transitionIndexOverlayToVisible:(bool)arg1 shouldFadeBackToInvisible:(bool)arg2;
 - (void)_unhighlightAllRowsAndHighlightGlobalRow:(long long)arg1;
-- (void)_unhighlightAllRowsExceptSpringLoadingRowAnimated:(bool)arg1;
 - (void)_unhighlightSpringLoadedRow;
 - (void)_upArrowLongPress:(id)arg1;
 - (void)_upArrowTap:(id)arg1;
@@ -1131,6 +1145,7 @@
 - (void)_updateContentSizeSkippingContentOffsetAdjustment:(bool)arg1;
 - (void)_updateDragControllerEnabledState;
 - (void)_updateDragStateForCell:(id)arg1 atIndexPath:(id)arg2;
+- (void)_updateDropStateForVisibleCellsForActiveDrop:(bool)arg1 dropTargetIndexPath:(id)arg2;
 - (void)_updateDropTargetAppearanceWithTargetIndexPath:(id)arg1 dropProposal:(id)arg2 dropSession:(id)arg3;
 - (void)_updateFocusAfterLoadingCellsWithFocusedView:(id)arg1 viewType:(int)arg2;
 - (void)_updateFocusedCellIndexPathIfNecessaryWithLastFocusedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
@@ -1175,8 +1190,6 @@
 - (void)_userSelectRowAtPendingSelectionIndexPath:(id)arg1;
 - (bool)_usingCustomBackgroundView;
 - (struct CGPoint { double x1; double x2; })_validContentOffsetForProposedOffset:(struct CGPoint { double x1; double x2; })arg1;
-- (id)_viewForFooterInSection:(long long)arg1;
-- (id)_viewForHeaderInSection:(long long)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_visibleBounds;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_visibleBoundsIncludingRowsOnly;
 - (id)_visibleCellForGlobalRow:(long long)arg1;
@@ -1191,6 +1204,7 @@
 - (id)_visibleHeaderViewForSection:(long long)arg1;
 - (bool)_visibleHeaderViewsContainsView:(id)arg1;
 - (long long)_visibleSectionForSectionAdjustedForCurrentUpdate:(long long)arg1;
+- (id)_visibleViews;
 - (bool)_wantsSwipes;
 - (bool)_wasEditing;
 - (bool)_wasEditingRowAtIndexPath:(id)arg1;
@@ -1198,22 +1212,6 @@
 - (double)_widthForContentInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_willChangeToIdiom:(long long)arg1 onScreen:(id)arg2;
 - (id)_wrapperView;
-- (void)dealloc;
-- (id)description;
-- (void)setBackgroundColor:(id)arg1;
-- (void)setSeparatorColor:(id)arg1;
-- (void)setSeparatorStyle:(long long)arg1;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
-- (void)_UIAppearance_setBackgroundColor:(id)arg1;
-- (void)_UIAppearance_setSeparatorColor:(id)arg1;
-- (void)_UIAppearance_setSeparatorStyle:(long long)arg1;
 - (void)accessoryInsetsDidChange:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)adjustIndexPaths:(id)arg1 forMoveOfIndexPath:(id)arg2 toIndexPath:(id)arg3;
 - (bool)allowsFooterViewsToFloat;
@@ -1231,20 +1229,19 @@
 - (bool)cancelTouchTracking;
 - (id)cellForRowAtIndexPath:(id)arg1;
 - (bool)cellLayoutMarginsFollowReadableWidth;
-- (id)constants;
+- (id)contextMenuInteraction;
 - (id)contextMenuInteraction:(id)arg1 configurationForMenuAtLocation:(struct CGPoint { double x1; double x2; })arg2;
 - (id)contextMenuInteraction:(id)arg1 previewForDismissingMenuWithConfiguration:(id)arg2;
 - (id)contextMenuInteraction:(id)arg1 previewForHighlightingMenuWithConfiguration:(id)arg2;
+- (void)contextMenuInteraction:(id)arg1 willDisplayMenuForConfiguration:(id)arg2 animator:(id)arg3;
+- (void)contextMenuInteraction:(id)arg1 willEndForConfiguration:(id)arg2 animator:(id)arg3;
 - (void)contextMenuInteraction:(id)arg1 willPerformPreviewActionForMenuWithConfiguration:(id)arg2 animator:(id)arg3;
 - (id)contextualActionForDeletingRowAtIndexPath:(id)arg1;
 - (id)currentTouch;
-- (id)cursorInteraction:(id)arg1 regionForLocation:(struct CGPoint { double x1; double x2; })arg2 defaultRegion:(id)arg3;
-- (id)cursorInteraction:(id)arg1 styleForRegion:(id)arg2 modifiers:(long long)arg3;
-- (void)cursorInteraction:(id)arg1 willEnterRegion:(id)arg2;
-- (void)cursorInteraction:(id)arg1 willExitRegion:(id)arg2;
 - (id)dataSource;
 - (id)dataSourceIndexPathForPresentationIndexPath:(id)arg1;
 - (long long)dataSourceSectionIndexForPresentationSectionIndex:(long long)arg1;
+- (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (id)delegate;
 - (id)deleteConfirmationIndexPath;
@@ -1253,6 +1250,7 @@
 - (id)dequeueReusableCellWithIdentifier:(id)arg1;
 - (id)dequeueReusableCellWithIdentifier:(id)arg1 forIndexPath:(id)arg2;
 - (id)dequeueReusableHeaderFooterViewWithIdentifier:(id)arg1;
+- (id)description;
 - (void)deselectRowAtIndexPath:(id)arg1 animated:(bool)arg2;
 - (void)didMoveToWindow;
 - (id)dragDelegate;
@@ -1351,6 +1349,7 @@
 - (long long)sectionIndexMinimumDisplayRowCount;
 - (id)sectionIndexTrackingBackgroundColor;
 - (void)selectRowAtIndexPath:(id)arg1 animated:(bool)arg2 scrollPosition:(long long)arg3;
+- (bool)selectionFollowsFocus;
 - (void)sendSubviewToBack:(id)arg1;
 - (id)separatorBottomShadowColor;
 - (id)separatorColor;
@@ -1363,6 +1362,7 @@
 - (void)setAllowsMultipleSelectionDuringEditing:(bool)arg1;
 - (void)setAllowsSelection:(bool)arg1;
 - (void)setAllowsSelectionDuringEditing:(bool)arg1;
+- (void)setBackgroundColor:(id)arg1;
 - (void)setBackgroundView:(id)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setCellLayoutMarginsFollowReadableWidth:(bool)arg1;
@@ -1408,11 +1408,14 @@
 - (void)setSectionIndexColor:(id)arg1;
 - (void)setSectionIndexMinimumDisplayRowCount:(long long)arg1;
 - (void)setSectionIndexTrackingBackgroundColor:(id)arg1;
+- (void)setSelectionFollowsFocus:(bool)arg1;
 - (void)setSemanticContentAttribute:(long long)arg1;
 - (void)setSeparatorBottomShadowColor:(id)arg1;
+- (void)setSeparatorColor:(id)arg1;
 - (void)setSeparatorEffect:(id)arg1;
 - (void)setSeparatorInset:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setSeparatorInsetReference:(long long)arg1;
+- (void)setSeparatorStyle:(long long)arg1;
 - (void)setSeparatorTopShadowColor:(id)arg1;
 - (void)setShowsHorizontalScrollIndicator:(bool)arg1;
 - (void)setShowsVerticalScrollIndicator:(bool)arg1;
@@ -1426,6 +1429,7 @@
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (long long)style;
 - (id)swipeActionController:(id)arg1 backgroundColorForItemAtIndexPath:(id)arg2;
+- (void)swipeActionController:(id)arg1 cleanupActionsView:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (void)swipeActionController:(id)arg1 didCompleteAction:(id)arg2 cancelled:(bool)arg3 atIndexPath:(id)arg4;
 - (void)swipeActionController:(id)arg1 didCompleteAnimationOfAction:(id)arg2 canceled:(bool)arg3 atIndexPath:(id)arg4;
 - (void)swipeActionController:(id)arg1 didEndSwipeForItemAtIndexPath:(id)arg2;
@@ -1464,5 +1468,80 @@
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
 - (id)_mapkit_dequeueReusableCellWithIdentifier:(id)arg1;
+
+// Image: /System/Library/Frameworks/SwiftUI.framework/SwiftUI
+
+- (double)horizontalMargin;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
+- (id)selectedCell;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (struct CGSize { double x1; double x2; })__ck_contentSize;
+- (id)__ck_indexPathForLastRow;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimerUI.framework/MobileTimerUI
+
++ (id)wordWrapParagraphStyle;
+
+- (double)mtui_sectionHeaderHeightWithString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NetAppsUtilitiesUI.framework/NetAppsUtilitiesUI
+
+- (void)naui_applyGroupedItemDiff:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
+- (id)ic_middleVisibleIndexPath;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
++ (long long)pkui_groupedStyleWithRoundedCorners:(bool)arg1;
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
+- (void)pkui_setupForReadableContentGuide;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
+
+- (id)pl_indexPathForLastRow;
+- (bool)pl_lastRowIsVisible;
+- (void)pl_resetContentOffsetFromContentInsets;
+- (void)pl_scrollToBottom:(bool)arg1;
+- (void)pl_scrollToTop:(bool)arg1;
+- (void)pl_scrollToVisibleRowAtIndexPath:(id)arg1 animated:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (void)px_performUpdatesForChangeDetails:(id)arg1 dataSourceUpdate:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngineUI.framework/RelevanceEngineUI
+
+- (bool)cellRegistered;
+- (void)setCellRegistered:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
++ (long long)ts_bridgedAnimationForAnimation:(unsigned long long)arg1;
+
+- (void)deferWhenTouchingWithBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
+
+- (id)_accessibilityIndicesOfVisibleHeadersAndFooters;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
++ (id)_vui_indexPathsWithIndexSet:(id)arg1 andSection:(unsigned long long)arg2;
+
+- (void)_vui_applyDeleteChange:(id)arg1 inSection:(unsigned long long)arg2 rowAnimation:(long long)arg3;
+- (void)_vui_applyInsertChange:(id)arg1 inSection:(unsigned long long)arg2 rowAnimation:(long long)arg3;
+- (void)_vui_applyMoveChanges:(id)arg1 inSection:(unsigned long long)arg2 rowAnimation:(long long)arg3;
+- (void)_vui_applyUpdateChanges:(id)arg1 inSection:(unsigned long long)arg2 rowAnimation:(long long)arg3;
+- (void)vui_applyChangeSet:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)vui_applyChangeSet:(id)arg1 inSection:(unsigned long long)arg2 completionHandler:(id /* block */)arg3;
+- (void)vui_applyChangeSet:(id)arg1 inSection:(unsigned long long)arg2 rowAnimation:(long long)arg3 updateDataSourceBlock:(id /* block */)arg4 completionHandler:(id /* block */)arg5;
 
 @end

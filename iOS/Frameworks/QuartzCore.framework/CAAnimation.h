@@ -49,7 +49,7 @@
 - (bool)CAMLTypeSupportedForKey:(id)arg1;
 - (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (unsigned int)_propertyFlagsForLayer:(id)arg1;
-- (bool)_setCARenderAnimation:(struct Animation { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; float x3; struct Ref<CA::Render::Timing> { struct Timing {} *x_4_1_1; } x4; struct Ref<CA::Render::Vector> { struct Vector {} *x_5_1_1; } x5; struct __CFString {} *x6; unsigned long long x7; unsigned int x8; unsigned int x9; unsigned int x10; unsigned int x11; }*)arg1 layer:(id)arg2;
+- (bool)_setCARenderAnimation:(struct Animation { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; unsigned long long x3; float x4; struct Ref<CA::Render::Timing> { struct Timing {} *x_5_1_1; } x5; struct Ref<CA::Render::Vector> { struct Vector {} *x_6_1_1; } x6; struct __CFString {} *x7; unsigned long long x8; unsigned int x9; unsigned int x10; unsigned int x11; unsigned int x12; }*)arg1 layer:(id)arg2;
 - (void)applyForTime:(double)arg1 presentationObject:(id)arg2 modelObject:(id)arg3;
 - (bool)autoreverses;
 - (double)beginTime;
@@ -101,6 +101,10 @@
 - (id)valueForKeyPath:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
 
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
+
+- (id)_lp_copyWithBeginTime:(double)arg1;
+
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
 - (long long)_mapkit_ID;
@@ -120,5 +124,48 @@
 - (void)setFadeOutDuration:(double)arg1;
 - (void)setUsesSceneTimeBase:(bool)arg1;
 - (bool)usesSceneTimeBase;
+
+// Image: /System/Library/PrivateFrameworks/AuthKitUI.framework/AuthKitUI
+
++ (id)ak_jiggleAnimation;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
+- (void)cps_setDelegateWithDidStartHandler:(id /* block */)arg1 didStopHandler:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/LocalAuthenticationPrivateUI.framework/LocalAuthenticationPrivateUI
+
+- (id /* block */)laui_didStartHandler;
+- (id /* block */)laui_didStopHandler;
+- (void)laui_setDidStartHandler:(id /* block */)arg1;
+- (void)laui_setDidStopHandler:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)pkui_shakeAnimation;
++ (id)pkui_shakeAnimationWithInitalOffest:(double)arg1 springStiffness:(double)arg2 springDamping:(double)arg3;
++ (id)pkui_smallShakeAnimation;
+
+- (id /* block */)pkui_completionHandler;
+- (id /* block */)pkui_didStartHandler;
+- (void)pkui_setCompletionHandler:(id /* block */)arg1;
+- (void)pkui_setDidStartHandler:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
++ (id)TSD_supportedKeyPaths;
+
+- (id)TSD_animationForKeyPath:(id)arg1 atTime:(double)arg2;
+- (double)TSD_animationPercentByApplyingTimingFunctionForKeyPath:(id)arg1 atTime:(double)arg2;
+- (bool)TSD_containsAnimationForKeyPath:(id)arg1;
+- (id)TSD_valueAtTime:(double)arg1 initialValue:(id)arg2;
+- (id)TSD_valueForKeyPath:(id)arg1 atTime:(double)arg2;
+- (id)TSD_valueForKeyPath:(id)arg1 atTime:(double)arg2 animationCache:(id)arg3;
+- (void)p_getValue:(id*)arg1 animationPercent:(double*)arg2 atTime:(double)arg3 initialValue:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSDrawables.framework/TSDrawables
+
+- (id)TSDCAAnimationContextCache;
+- (id)TSD_valueForKeyPath:(id)arg1 atTime:(double)arg2;
 
 @end

@@ -2,16 +2,27 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INCodableEnumAttributeMetadata : INCodableAttributeMetadata {
+@interface INCodableEnumAttributeMetadata : INCodableAttributeMetadata <INCodableAttributeDefaultValueProviding> {
     INCodableEnumValue * _defaultValue;
 }
 
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, retain) INCodableEnumValue *defaultValue;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableDescriptionDefaultValueKey;
+- (id)__INCodableDescriptionKey;
+- (id)__INIntentResponseCodableDescriptionDefaultValueKey;
+- (id)__INIntentResponseCodableDescriptionKey;
+- (id)__INTypeCodableDescriptionDefaultValueKey;
+- (id)__INTypeCodableDescriptionKey;
 - (id)defaultValue;
+- (id)defaultValueForIntentDefaultValueProvider;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

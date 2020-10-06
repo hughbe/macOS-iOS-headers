@@ -14,6 +14,7 @@
 
 @property (nonatomic, readonly) double secondsToRun;
 
+- (void).cxx_destruct;
 - (void)_doPingWithSocket:(int)arg1 address:(struct sockaddr_in { unsigned char x1; unsigned char x2; unsigned short x3; struct in_addr { unsigned int x_4_1_1; } x4; BOOL x5[8]; })arg2 timeToRunTestInSeconds:(double)arg3 pingTimeout:(double)arg4 queue:(id)arg5 completionHandler:(id /* block */)arg6;
 - (int)_setupAndPerformPing:(double)arg1 queue:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)_setupReadSource:(int)arg1 address:(struct sockaddr_in { unsigned char x1; unsigned char x2; unsigned short x3; struct in_addr { unsigned int x_4_1_1; } x4; BOOL x5[8]; })arg2 icmID:(unsigned short)arg3 queue:(id)arg4 completionHander:(id /* block */)arg5;

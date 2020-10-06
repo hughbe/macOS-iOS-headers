@@ -5,8 +5,8 @@
 @interface MRPlaybackSessionMigrateEndMessage : MRProtocolMessage
 
 @property (nonatomic, readonly) NSError *error;
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
-@property (nonatomic, readonly) _MRPlaybackSessionRequestProtobuf *request;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
+@property (nonatomic, readonly) MRPlaybackSessionRequest *request;
 
 - (id)error;
 - (id)initWithRequest:(id)arg1 error:(id)arg2 playerPath:(id)arg3;

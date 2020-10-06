@@ -3,6 +3,16 @@
  */
 
 @interface _UIContextMenuStyle : NSObject <NSCopying> {
+    bool  __allowsImmediateSelection;
+    bool  __inheritTraitsFromPresentingViewController;
+    struct { 
+        unsigned long long attachment; 
+        unsigned long long alignment; 
+        double attachmentOffset; 
+        double alignmentOffset; 
+    }  __preferredAnchor;
+    bool  __prefersActualContentSize;
+    bool  __shouldAvoidInputViews;
     UIView * _containerView;
     UIWindow * _containerWindow;
     bool  _hasInteractivePreview;
@@ -22,9 +32,17 @@
     unsigned long long  _preferredLayout;
     UITraitCollection * _preferredTraitCollection;
     bool  _preventPreviewRasterization;
+    bool  _previewOverlapsMenu;
     bool  _reversesActionOrderWhenAttachedToTop;
 }
 
+@property (getter=_allowsImmediateSelection, nonatomic) bool _allowsImmediateSelection;
+@property (getter=_inheritTraitsFromPresentingViewController, nonatomic) bool _inheritTraitsFromPresentingViewController;
+@property (getter=_layoutAllowsMenu, nonatomic, readonly) bool _layoutAllowsMenu;
+@property (getter=_layoutAllowsPreview, nonatomic, readonly) bool _layoutAllowsPreview;
+@property (getter=_preferredAnchor, nonatomic) struct { unsigned long long x1; unsigned long long x2; double x3; double x4; } _preferredAnchor;
+@property (setter=_setPrefersActualContentSize:, nonatomic) bool _prefersActualContentSize;
+@property (getter=_shouldAvoidInputViews, nonatomic) bool _shouldAvoidInputViews;
 @property (nonatomic, retain) UIView *containerView;
 @property (nonatomic, retain) UIWindow *containerWindow;
 @property (nonatomic) bool hasInteractivePreview;
@@ -34,11 +52,20 @@
 @property (nonatomic) unsigned long long preferredLayout;
 @property (nonatomic, retain) UITraitCollection *preferredTraitCollection;
 @property (nonatomic) bool preventPreviewRasterization;
+@property (nonatomic) bool previewOverlapsMenu;
 @property (nonatomic) bool reversesActionOrderWhenAttachedToTop;
 
 + (id)defaultStyle;
 
 - (void).cxx_destruct;
+- (bool)_allowsImmediateSelection;
+- (bool)_inheritTraitsFromPresentingViewController;
+- (bool)_layoutAllowsMenu;
+- (bool)_layoutAllowsPreview;
+- (struct { unsigned long long x1; unsigned long long x2; double x3; double x4; })_preferredAnchor;
+- (bool)_prefersActualContentSize;
+- (void)_setPrefersActualContentSize:(bool)arg1;
+- (bool)_shouldAvoidInputViews;
 - (id)containerView;
 - (id)containerWindow;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -49,6 +76,7 @@
 - (unsigned long long)preferredLayout;
 - (id)preferredTraitCollection;
 - (bool)preventPreviewRasterization;
+- (bool)previewOverlapsMenu;
 - (bool)reversesActionOrderWhenAttachedToTop;
 - (void)setContainerView:(id)arg1;
 - (void)setContainerWindow:(id)arg1;
@@ -59,6 +87,11 @@
 - (void)setPreferredLayout:(unsigned long long)arg1;
 - (void)setPreferredTraitCollection:(id)arg1;
 - (void)setPreventPreviewRasterization:(bool)arg1;
+- (void)setPreviewOverlapsMenu:(bool)arg1;
 - (void)setReversesActionOrderWhenAttachedToTop:(bool)arg1;
+- (void)set_allowsImmediateSelection:(bool)arg1;
+- (void)set_inheritTraitsFromPresentingViewController:(bool)arg1;
+- (void)set_preferredAnchor:(struct { unsigned long long x1; unsigned long long x2; double x3; double x4; })arg1;
+- (void)set_shouldAvoidInputViews:(bool)arg1;
 
 @end

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBStartAudioCallIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBStartAudioCallIntentResponse> {
-    bool  __encodeLegacyGloryData;
     int  _audioRoute;
     struct { 
         unsigned int audioRoute : 1; 
@@ -13,7 +12,6 @@
     NSArray * _targetContacts;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int audioRoute;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -31,8 +29,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsAudioRoute:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addTargetContacts:(id)arg1;
 - (int)audioRoute;
 - (id)audioRouteAsString:(int)arg1;

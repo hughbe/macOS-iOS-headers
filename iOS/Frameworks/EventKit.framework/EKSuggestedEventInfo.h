@@ -12,10 +12,12 @@
 @property (nonatomic, copy) NSString *uniqueKey;
 
 + (Class)frozenClass;
++ (id)knownIdentityKeysForComparison;
++ (id)knownSingleValueKeysForComparison;
 
 - (unsigned long long)changedFields;
 - (bool)changesAcknowledged;
-- (id)copy;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)extractionGroupIdentifier;
 - (id)initWithEventStore:(id)arg1 opaqueKey:(id)arg2 uniqueKey:(id)arg3;

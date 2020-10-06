@@ -31,7 +31,6 @@
 - (id)initWithData:(id)arg1 direction:(long long)arg2 context:(void*)arg3 interpose:(id)arg4;
 - (id)initWithData:(id)arg1 protocolFamily:(unsigned char)arg2;
 - (id)initWithData:(id)arg1 protocolFamily:(unsigned char)arg2 metadata:(id)arg3;
-- (id)initWithData:(id)arg1 protocolFamily:(unsigned char)arg2 signingIdentifier:(id)arg3 processUUID:(id)arg4;
 - (id)interpose;
 - (id)metadata;
 - (unsigned char)protocolFamily;

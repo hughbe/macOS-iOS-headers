@@ -6,15 +6,15 @@
     struct ConnectionInfo { 
         NSXPCConnection *mConnection; 
         int mExtUsePermission; 
-        int mSDKLinkVersion; 
+        bool mLinkedSDKRequiresEntitlement; 
     }  mConnInfo;
-    struct AudioComponentRegistrarImpl { bool x1; bool x2; bool x3; bool x4; id x5; struct function<void (const AudioComponentVector &, AudioComponentVector &)>={__value_func<void (const AudioComponentVector &, AudioComponentVector &)>={type=[24C] {} x6; struct __base<void (const AudioComponentVector &, AudioComponentVector &)> {} *x7; } * mImpl;
+    struct AudioComponentRegistrarImpl { bool x1; bool x2; bool x3; struct atomic<bool> { struct __cxx_atomic_impl<bool, std::__1::__cxx_atomic_base_impl<bool> > { _Atomic bool x_1_2_1; } x_4_1_1; } x4; id x5; struct function<void (const AudioComponentVector &, AudioComponentVector &)>={__value_func<void (const AudioComponentVector &, AudioComponentVector &)>={type=[24C] {} x6; struct __base<void (const AudioComponentVector &, AudioComponentVector &)> {} *x7; } * mImpl;
 }
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)canRegisterComponent:(id)arg1 reply:(id /* block */)arg2;
-- (void)getComponentList:(id)arg1 linkedSDKVersion:(int)arg2 includeExtensions:(bool)arg3 reply:(id /* block */)arg4;
-- (id)initWithRegistrar:(struct AudioComponentRegistrarImpl { bool x1; bool x2; bool x3; bool x4; id x5; struct function<void (const AudioComponentVector &, AudioComponentVector &)>={__value_func<void (const AudioComponentVector &, AudioComponentVector &)>={type=[24C] {} x6; struct __base<void (const AudioComponentVector &, AudioComponentVector &)> {} *x7; }*)arg1 connection:(id)arg2;
+- (void)getComponentList:(id)arg1 linkedSDKRequiresEntitlement:(bool)arg2 includeExtensions:(bool)arg3 reply:(id /* block */)arg4;
+- (id)initWithRegistrar:(struct AudioComponentRegistrarImpl { bool x1; bool x2; bool x3; struct atomic<bool> { struct __cxx_atomic_impl<bool, std::__1::__cxx_atomic_base_impl<bool> > { _Atomic bool x_1_2_1; } x_4_1_1; } x4; id x5; struct function<void (const AudioComponentVector &, AudioComponentVector &)>={__value_func<void (const AudioComponentVector &, AudioComponentVector &)>={type=[24C] {} x6; struct __base<void (const AudioComponentVector &, AudioComponentVector &)> {} *x7; }*)arg1 connection:(id)arg2;
 
 @end

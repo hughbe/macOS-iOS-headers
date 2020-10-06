@@ -4,6 +4,7 @@
 
 @interface NSTimeZone : NSObject <INJSONSerializable, NSCopying, NSSecureCoding>
 
+@property (nonatomic, readonly, copy) NSString *ISO8601TimeZoneOffsetFromUTC;
 @property (readonly, copy) NSData *data;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -54,9 +55,19 @@
 - (long long)secondsFromGMT;
 - (long long)secondsFromGMTForDate:(id)arg1;
 
+// Image: /System/Library/Frameworks/ClockKit.framework/ClockKit
+
+- (id)JSONObjectRepresentation;
+- (id)initWithJSONObjectRepresentation:(id)arg1;
+
 // Image: /System/Library/Frameworks/EventKit.framework/EventKit
 
 + (id)calendarTimeZone;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)cityName;
+- (void)setCityName:(id)arg1;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -73,6 +84,14 @@
 
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+
+- (id)ISO8601TimeZoneOffsetFromUTC;
+
+// Image: /System/Library/Frameworks/VideoSubscriberAccount.framework/VideoSubscriberAccount
+
++ (bool)vs_isTimeZoneSet;
+
 // Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
 
 - (id)descriptionForDate:(id)arg1;
@@ -83,11 +102,34 @@
 
 + (id)timeZoneForAddress:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)gmtOffsetTimeZoneFromString:(id)arg1 forDate:(id)arg2;
++ (id)gmtOffsetTimeZoneWithHour:(long long)arg1 withMinute:(long long)arg2 forDate:(id)arg3;
++ (id)systemTimeZoneFromString:(id)arg1;
++ (id)systemTimeZoneWithWindowsName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ExchangeSync.framework/Frameworks/DAEAS.framework/DAEAS
+
++ (id)gmt;
+
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
++ (id)hmf_unarchiveFromData:(id)arg1 error:(id*)arg2;
+
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 - (bool)_navigation_hasSameOffsetFromGMTAsTimeZone:(id)arg1;
 - (bool)_navigation_isEquivalentToTimeZone:(id)arg1 forDate:(id)arg2;
 - (bool)_navigation_isEquivalentToTimeZone:(id)arg1 forDates:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
+
++ (id)remDebugTimeZone_GMT;
++ (id)remDebugTimeZone_LosAngeles;
++ (id)remDebugTimeZone_NewYork;
+
+- (bool)rem_isEquivalentTo:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

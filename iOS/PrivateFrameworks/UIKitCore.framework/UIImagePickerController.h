@@ -131,9 +131,6 @@
 - (void)_updateCameraCaptureMode;
 - (id)_valueForProperty:(id)arg1;
 - (void)_viewControllerPresentationDidInitiate;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowsEditing;
 - (bool)allowsImageEditing;
 - (long long)cameraCaptureMode;
@@ -185,5 +182,13 @@
 - (void)viewWillAppear:(bool)arg1;
 - (void)viewWillDisappear:(bool)arg1;
 - (void)viewWillUnload;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_systemImagePickerWithSourceType:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
++ (id)aaui_fixedCropRect:(id)arg1 forOriginalImage:(id)arg2;
 
 @end

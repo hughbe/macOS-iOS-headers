@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_optionDescription : 1; 
         unsigned int read_optionId : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_optionDescription : 1; 
-        unsigned int wrote_optionId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _optionDescription;
     NSString * _optionId;
@@ -31,8 +29,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readOptionDescription;
-- (void)_readOptionId;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -43,7 +39,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)optionDescription;
 - (id)optionId;

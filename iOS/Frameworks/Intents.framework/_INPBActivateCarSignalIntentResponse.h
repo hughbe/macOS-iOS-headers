@@ -3,7 +3,6 @@
  */
 
 @interface _INPBActivateCarSignalIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBActivateCarSignalIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     struct { 
         int *list; 
@@ -12,7 +11,6 @@
     }  _signals;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (int)StringAsSignals:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addSignals:(int)arg1;
 - (void)clearSignals;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

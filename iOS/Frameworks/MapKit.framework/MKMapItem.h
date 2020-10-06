@@ -4,6 +4,7 @@
 
 @interface MKMapItem : NSObject <GEOURLSerializable, NSItemProviderReading, NSItemProviderWriting, NSSecureCoding> {
     _MKMapItemPlaceAttribution * _attribution;
+    NSDictionary * _cachedHoursBuilder;
     <GEOMapItemTransitInfo> * _defaultTransitInfo;
     <NSObject> * _didResolveAttributionToken;
     NSString * _firstLocalizedCategoryName;
@@ -38,6 +39,8 @@
 @property (getter=_browseCategories, nonatomic, readonly) NSArray *browseCategories;
 @property (getter=_businessClaim, nonatomic, readonly) GEOPDBusinessClaim *businessClaim;
 @property (getter=_businessHours, nonatomic, readonly) NSArray *businessHours;
+@property (getter=_chargerNumberString, nonatomic, readonly) NSString *chargerNumberString;
+@property (getter=_placeCollectionIds, nonatomic, readonly) NSArray *collectionIds;
 @property (getter=_coordinate, nonatomic, readonly) struct CLLocationCoordinate2D { double x1; double x2; } coordinate;
 @property (getter=_customIconID, nonatomic, readonly) unsigned long long customIconID;
 @property (readonly, copy) NSString *debugDescription;
@@ -64,6 +67,7 @@
 @property (getter=_hasBrandMUID, nonatomic, readonly) bool hasBrandMUID;
 @property (getter=_hasBusinessClaim, nonatomic, readonly) bool hasBusinessClaim;
 @property (getter=_hasBusinessHours, nonatomic, readonly) bool hasBusinessHours;
+@property (getter=_hasChargerNumberString, nonatomic, readonly) bool hasChargerNumberString;
 @property (getter=_hasCorrectedHomeWorkAddress, nonatomic, readonly) bool hasCorrectedHomeWorkAddress;
 @property (getter=_hasCorrectedHomeWorkCoordinate, nonatomic, readonly) bool hasCorrectedHomeWorkCoordinate;
 @property (getter=_hasDisplayMaxZoom, nonatomic, readonly) bool hasDisplayMaxZoom;
@@ -142,6 +146,7 @@
 @property (nonatomic, readonly) NSString *reviewsProviderDisplayName;
 @property (getter=_sampleSizeForUserRatingScore, nonatomic, readonly) unsigned int sampleSizeForUserRatingScore;
 @property (getter=_secondaryName, nonatomic, readonly) NSString *secondaryName;
+@property (getter=_secondaryQuickLinks, nonatomic, readonly) NSArray *secondaryQuickLinks;
 @property (getter=_secondarySpokenName, nonatomic, readonly) NSString *secondarySpokenName;
 @property (getter=_shortAddress, nonatomic, readonly) NSString *shortAddress;
 @property (getter=_styleAttributes, nonatomic, readonly) GEOFeatureStyleAttributes *styleAttributes;
@@ -221,6 +226,7 @@
 - (id)_addressFormattedAsStreetOnly;
 - (id)_addressFormattedAsTitlesForMapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)_addressFormattedAsWeatherDisplayName;
+- (id)_addressFormattedAsWeatherLocationName;
 - (id)_addressOrNil:(id)arg1;
 - (id)_alternativeAppAdamIds;
 - (id)_amenities;
@@ -232,9 +238,14 @@
 - (id)_bestNavbarBrandIconURLForSize:(struct CGSize { double x1; double x2; })arg1 allowSmaller:(bool)arg2;
 - (unsigned long long)_brandMUID;
 - (id)_browseCategories;
+- (bool)_browseCategory_canDisplayBrowseCategoriesForPlace;
+- (bool)_browseCategory_canDisplayBrowseCategoriesForVenue;
+- (bool)_browseCategory_isVenueItem;
+- (int)_browseCategory_placeCardType;
 - (id)_businessClaim;
 - (id)_businessHours;
 - (bool)_canGetDirections;
+- (id)_chargerNumberString;
 - (id)_cnPostalAddress;
 - (struct CLLocationCoordinate2D { double x1; double x2; })_coordinate;
 - (unsigned long long)_customIconID;
@@ -255,12 +266,18 @@
 - (id)_geoMapItemStorageForDragAndDrop;
 - (id)_geoMapItemStorageForPersistence;
 - (id)_getBusiness;
+- (void)_getFirstAvailableAppClipLinkFromQuickLinks:(id)arg1 completion:(id /* block */)arg2;
+- (void)_getFirstAvailableAppClipLinkWithCompletion:(id /* block */)arg1;
+- (void)_getFirstAvailableSecondaryAppClipLinkWithCompletion:(id /* block */)arg1;
+- (void)_getHasAvailableAppClipWithCompletion:(id /* block */)arg1;
+- (void)_getHasAvailableSecondaryAppClipWithCompletion:(id /* block */)arg1;
 - (id)_handle;
 - (bool)_hasAcceptsApplePayAmenity;
 - (bool)_hasAnyAmenities;
 - (bool)_hasBrandMUID;
 - (bool)_hasBusinessClaim;
 - (bool)_hasBusinessHours;
+- (bool)_hasChargerNumberString;
 - (bool)_hasCorrectedHomeWorkAddress;
 - (bool)_hasCorrectedHomeWorkCoordinate;
 - (bool)_hasDisplayMaxZoom;
@@ -319,6 +336,7 @@
 - (bool)_phoneNumberOptsOutOfAds;
 - (id)_photosAttribution;
 - (id)_placeCardContact;
+- (id)_placeCollectionIds;
 - (id)_placeCollections;
 - (id)_placeDataAsData;
 - (int)_placeDisplayStyle;
@@ -349,6 +367,7 @@
 - (id)_reviewsDisplayName;
 - (unsigned int)_sampleSizeForUserRatingScore;
 - (id)_secondaryName;
+- (id)_secondaryQuickLinks;
 - (id)_secondarySpokenName;
 - (id)_shortAddress;
 - (id)_styleAttributes;
@@ -365,6 +384,7 @@
 - (long long)_venueFeatureType;
 - (id)_venueInfo;
 - (id)_weatherDisplayName;
+- (id)_weatherLocationName;
 - (id)_webURL;
 - (void)dealloc;
 - (id)description;
@@ -375,6 +395,7 @@
 - (id)formattedNumberOfReviewsIncludingProvider:(bool)arg1 formatter:(id)arg2;
 - (bool)hasAmenityType:(int)arg1;
 - (unsigned long long)hash;
+- (id)hoursBuilderForSearchResultCellForOptions:(unsigned long long)arg1;
 - (id)initWithAddressDictionary:(id)arg1;
 - (id)initWithCLLocation:(id)arg1;
 - (id)initWithCLLocation:(id)arg1 placeType:(int)arg2;

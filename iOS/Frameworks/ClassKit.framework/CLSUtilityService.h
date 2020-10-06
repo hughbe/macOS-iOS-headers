@@ -14,9 +14,12 @@
 
 - (void).cxx_destruct;
 - (void)addAuthorizationStatus:(unsigned long long)arg1 forContextAtPath:(id)arg2 completion:(id /* block */)arg3;
+- (void)addDevModePerson:(id)arg1 role:(long long)arg2 completion:(id /* block */)arg3;
 - (void)authorizationStatusForContextAtPath:(id)arg1 completion:(id /* block */)arg2;
 - (void)databasePathWithCompletion:(id /* block */)arg1;
 - (id)endpointConnection;
+- (void)fetchReportsWithPredicate:(id)arg1 completion:(id /* block */)arg2;
+- (void)getClassKitCatalogEnvironmentWithCompletion:(id /* block */)arg1;
 - (void)getDevModeWithCompletion:(id /* block */)arg1;
 - (void)getUserDefaultForDefaultNamed:(id)arg1 completion:(id /* block */)arg2;
 - (id)initWithEndpoint:(id)arg1;
@@ -24,13 +27,20 @@
 - (void)recreateDatabaseWithCompletion:(id /* block */)arg1;
 - (void)recreateDevelopmentDatabaseWithCompletion:(id /* block */)arg1;
 - (void)removeAuthorizationStatus:(unsigned long long)arg1 forContextAtPath:(id)arg2 completion:(id /* block */)arg3;
+- (void)setClassKitCatalogEnvironment:(long long)arg1 completion:(id /* block */)arg2;
 - (void)setDevMode:(int)arg1 completion:(id /* block */)arg2;
 - (void)setEndpointConnection:(id)arg1;
 - (void)setUserDefaultValue:(id)arg1 forDefaultNamed:(id)arg2 completion:(id /* block */)arg3;
 - (void)statusWithCompletion:(id /* block */)arg1;
 - (void)syncFetchWithCompletion:(id /* block */)arg1;
+- (void)syncGetClassKitCatalogEnvironmentWithCompletion:(id /* block */)arg1;
+- (void)syncGetDevModeWithCompletion:(id /* block */)arg1;
 - (void)syncPushWithCompletion:(id /* block */)arg1;
+- (void)syncRecreateDevelopmentDatabaseWithCompletion:(id /* block */)arg1;
+- (void)syncSetClassKitCatalogEnvironment:(long long)arg1 completion:(id /* block */)arg2;
+- (void)syncSetDevMode:(int)arg1 completion:(id /* block */)arg2;
 - (void)syncStatsWithCompletion:(id /* block */)arg1;
+- (id)syncUtilityServer:(id /* block */)arg1;
 - (void)userDefaultsConfigurationDictionaryWithCompletion:(id /* block */)arg1;
 - (id)utilityServer:(id /* block */)arg1;
 

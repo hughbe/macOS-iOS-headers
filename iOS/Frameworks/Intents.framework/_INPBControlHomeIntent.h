@@ -3,7 +3,6 @@
  */
 
 @interface _INPBControlHomeIntent : PBCodable <NSCopying, NSSecureCoding, _INPBControlHomeIntent> {
-    bool  __encodeLegacyGloryData;
     NSArray * _contents;
     NSArray * _filters;
     struct { }  _has;
@@ -12,7 +11,6 @@
     _INPBHomeUserTask * _userTask;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *contents;
 @property (nonatomic, readonly) unsigned long long contentsCount;
 @property (readonly, copy) NSString *debugDescription;
@@ -33,8 +31,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addContents:(id)arg1;
 - (void)addFilters:(id)arg1;
 - (void)clearContents;

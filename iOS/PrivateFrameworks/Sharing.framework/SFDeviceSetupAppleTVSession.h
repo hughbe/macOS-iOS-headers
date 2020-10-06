@@ -18,6 +18,7 @@
     double  _homeKitSetupSecs;
     int  _homeKitSetupState;
     int  _homeKitUserInputState;
+    HMHomeManager * _homeManager;
     bool  _homeiCloudEnabled;
     bool  _iCloudAccountMatches;
     NSString * _iTunesUserID;
@@ -109,6 +110,7 @@
 - (void)_runTVLatencySetupProgressEvent:(unsigned long long)arg1 info:(id)arg2;
 - (void)_runTVLatencySetupRequest;
 - (bool)_verifyiCloudMatch:(unsigned long long)arg1 error:(id*)arg2;
+- (id)_videoSubscriberAccountData;
 - (void)activate;
 - (void)dealloc;
 - (id)dispatchQueue;

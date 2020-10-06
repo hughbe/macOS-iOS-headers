@@ -38,6 +38,7 @@
 
 - (void).cxx_destruct;
 - (id)copyBootArgs;
+- (id)copyBootSessionUUID;
 - (id)copyDeviceTreeInt:(id)arg1 key:(id)arg2 defaultValue:(int)arg3;
 - (id)copyDeviceTreeProperty:(id)arg1 key:(id)arg2;
 - (id)device_class;

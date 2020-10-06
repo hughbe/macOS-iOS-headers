@@ -22,10 +22,13 @@
 
 - (void).cxx_destruct;
 - (bool)_MapsCarPlay_isEqual:(id)arg1;
+- (id)arrivalParametersAtIndex:(unsigned long long)arg1;
 - (id)directionsRequest;
 - (id)directionsResponse;
 - (void)encodeWithCoder:(id)arg1;
 - (id)etaTrafficUpdateResponse;
+- (id)incidentAtIndex:(unsigned long long)arg1 forGeoRoute:(id)arg2;
+- (id)incidentAtIndex:(unsigned long long)arg1 forGeoWaypointRoute:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithWaypoints:(id)arg1 routeAttributes:(id)arg2 ETATrafficUpdateResponse:(id)arg3;
 - (id)initWithWaypoints:(id)arg1 routeAttributes:(id)arg2 directionsResponse:(id)arg3;
@@ -35,9 +38,12 @@
 
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
-- (id)_allRouteInfosWithTypes:(id)arg1;
+- (id)_allRouteInfosWithTypes:(id)arg1 maxCount:(unsigned long long)arg2;
+- (id)allETAUAlternateRouteInfos;
 - (id)allRouteInfos;
 - (id)allRoutes;
+- (id)mainRouteInfo;
 - (id)nonRecommendedRoutes;
+- (id)routeInfosWithMaxCount:(unsigned long long)arg1;
 
 @end

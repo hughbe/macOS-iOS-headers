@@ -7,10 +7,12 @@
     NSDictionary * _entityNameToAttributeNamesToFetch;
     NSDictionary * _entityNameToAttributesToFetch;
     NSArray * _objectIDsToFetch;
+    unsigned long long  _perOperationObjectThreshold;
 }
 
 @property (nonatomic, readonly, copy) NSDictionary *entityNameToAttributesToFetch;
 @property (nonatomic, copy) NSArray *objectIDsToFetch;
+@property (nonatomic) unsigned long long perOperationObjectThreshold;
 
 - (id)_entityNameToAttributeNamesToFetch;
 - (bool)_isEditable;
@@ -18,10 +20,11 @@
 - (id)entityNameToAttributesToFetch;
 - (id)initWithOptions:(id)arg1 completionBlock:(id /* block */)arg2;
 - (id)objectIDsToFetch;
+- (unsigned long long)perOperationObjectThreshold;
 - (void)setEntityNameToAttributeNamesToFetch:(id)arg1;
 - (void)setEntityNameToAttributesToFetch:(id)arg1;
 - (void)setObjectIDsToFetch:(id)arg1;
-- (void)throwNotEditable:(SEL)arg1;
+- (void)setPerOperationObjectThreshold:(unsigned long long)arg1;
 - (bool)validateForUseWithStore:(id)arg1 error:(id*)arg2;
 
 @end

@@ -2,13 +2,13 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@interface EKExceptionDate : EKObject <NSCopying>
+@interface EKExceptionDate : EKObject
 
 @property (nonatomic, retain) NSDate *date;
 
 + (Class)frozenClass;
++ (id)knownIdentityKeysForComparison;
 
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)date;
 - (id)description;
 - (id)initWithDate:(id)arg1;

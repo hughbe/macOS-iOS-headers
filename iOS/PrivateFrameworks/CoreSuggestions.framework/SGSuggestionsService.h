@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
  */
 
-@interface SGSuggestionsService : NSObject <SGSuggestionsServiceContactsProtocol, SGSuggestionsServiceEventsProtocol, SGSuggestionsServiceFidesProtocol, SGSuggestionsServiceInternalProtocol, SGSuggestionsServiceIpsosProtocol, SGSuggestionsServiceMailProtocol, SGSuggestionsServiceRemindersProtocol> {
+@interface SGSuggestionsService : NSObject <SGSuggestionsServiceContactsProtocol, SGSuggestionsServiceDeliveriesProtocol, SGSuggestionsServiceEventsProtocol, SGSuggestionsServiceFidesProtocol, SGSuggestionsServiceInternalProtocol, SGSuggestionsServiceIpsosProtocol, SGSuggestionsServiceMailProtocol, SGSuggestionsServiceRemindersProtocol, SGSuggestionsServiceURLsProtocol> {
     SGDaemonConnection * _daemonConnection;
     bool  _keepDirty;
     NSString * _machServiceName;
     <SGDSuggestManagerAllProtocol> * _managerForTesting;
     bool  _queuesRequestsIfBusy;
+    SGFuture * _snapshotFuture;
     double  _syncTimeout;
     struct _opaque_pthread_mutex_t { 
         long long __sig; 
@@ -18,10 +19,12 @@
 + (id)_daemonConnectionForMachServiceName:(id)arg1 protocol:(id)arg2 useCache:(bool)arg3;
 + (id)filteredSearchableItemsFromItems:(id)arg1;
 + (bool)hasEntitlement:(id)arg1;
++ (id)inProcessSuggestManager;
 + (void)initialize;
 + (bool)isHarvestingSupported;
 + (void)prepareForQuery;
 + (id)serviceForContacts;
++ (id)serviceForDeliveries;
 + (id)serviceForEvents;
 + (id)serviceForFides;
 + (id)serviceForInternal;
@@ -30,10 +33,12 @@
 + (id)serviceForMessages;
 + (id)serviceForReminders;
 + (id)serviceForURLs;
++ (void)setInProcessSuggestManager:(id)arg1;
 + (id)wantedSearchableItemsFromItems:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_addSearchableItemMetadata:(id)arg1 htmlData:(id)arg2 completion:(id /* block */)arg3;
+- (void)_clearHarvestStoreCache;
 - (id)_remoteSuggestionManager;
 - (bool)addInteractions:(id)arg1 bundleId:(id)arg2 error:(id*)arg3;
 - (void)addInteractions:(id)arg1 bundleId:(id)arg2 withCompletion:(id /* block */)arg3;
@@ -41,6 +46,10 @@
 - (void)addSearchableItems:(id)arg1 withCompletion:(id /* block */)arg2;
 - (id)allContactsLimitedTo:(unsigned long long)arg1 error:(id*)arg2;
 - (void)allContactsLimitedTo:(unsigned long long)arg1 withCompletion:(id /* block */)arg2;
+- (id)allContactsWithSnippets:(bool)arg1 limitTo:(unsigned long long)arg2 error:(id*)arg3;
+- (void)allContactsWithSnippets:(bool)arg1 limitTo:(unsigned long long)arg2 withCompletion:(id /* block */)arg3;
+- (id)allDeliveriesWithLimit:(unsigned long long)arg1 error:(id*)arg2;
+- (void)allDeliveriesWithLimit:(unsigned long long)arg1 withCompletion:(id /* block */)arg2;
 - (id)allEventsLimitedTo:(unsigned long long)arg1 error:(id*)arg2;
 - (void)allEventsLimitedTo:(unsigned long long)arg1 withCompletion:(id /* block */)arg2;
 - (id)allRemindersLimitedTo:(unsigned long long)arg1 error:(id*)arg2;
@@ -75,10 +84,6 @@
 - (id)contactMatchesByPhoneNumber:(id)arg1;
 - (id)contactMatchesByPhoneNumber:(id)arg1 error:(id*)arg2;
 - (void)contactMatchesByPhoneNumber:(id)arg1 withCompletion:(id /* block */)arg2;
-- (id)contactMatchesOrLookupIdByEmailAddress:(id)arg1 error:(id*)arg2;
-- (void)contactMatchesOrLookupIdByEmailAddress:(id)arg1 withCompletion:(id /* block */)arg2;
-- (id)contactMatchesOrLookupIdByPhoneNumber:(id)arg1 error:(id*)arg2;
-- (void)contactMatchesOrLookupIdByPhoneNumber:(id)arg1 withCompletion:(id /* block */)arg2;
 - (id)contactMatchesWithContact:(id)arg1 limitTo:(unsigned long long)arg2 error:(id*)arg3;
 - (void)contactMatchesWithContact:(id)arg1 limitTo:(unsigned long long)arg2 withCompletion:(id /* block */)arg3;
 - (id)contactMatchesWithContactIdentifier:(id)arg1 limitTo:(unsigned long long)arg2 error:(id*)arg3;
@@ -88,6 +93,8 @@
 - (bool)daemonExit:(id*)arg1;
 - (void)daemonExitWithCompletion:(id /* block */)arg1;
 - (void)deleteCloudKitZoneWithCompletion:(id /* block */)arg1;
+- (bool)deleteEventByRecordId:(id)arg1 error:(id*)arg2;
+- (void)deleteEventByRecordId:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)deleteInteractionsWithBundleId:(id)arg1 completion:(id /* block */)arg2;
 - (void)deleteInteractionsWithBundleId:(id)arg1 groupIdentifiers:(id)arg2 completion:(id /* block */)arg3;
 - (void)deleteInteractionsWithBundleId:(id)arg1 identifiers:(id)arg2 completion:(id /* block */)arg3;
@@ -100,6 +107,7 @@
 - (void)drainQueueCompletelyWithCompletion:(id /* block */)arg1;
 - (id)emailAddressIsSignificant:(id)arg1 error:(id*)arg2;
 - (void)emailAddressIsSignificant:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)evaluateRecipe:(id)arg1 attachments:(id)arg2 completion:(id /* block */)arg3;
 - (id)eventFromRecordID:(id)arg1 error:(id*)arg2;
 - (void)eventFromRecordID:(id)arg1 withCompletion:(id /* block */)arg2;
 - (id)eventFromUniqueId:(id)arg1 error:(id*)arg2;
@@ -116,6 +124,7 @@
 - (id)ipsosMessagesWithSearchableItems:(id)arg1 error:(id*)arg2;
 - (void)ipsosMessagesWithSearchableItems:(id)arg1 withCompletion:(id /* block */)arg2;
 - (bool)isEnabledWithError:(id*)arg1;
+- (void)isEventCandidateForURL:(id)arg1 andTitle:(id)arg2 containsSchemaOrg:(bool)arg3 withCompletion:(id /* block */)arg4;
 - (void)isEventCandidateForURL:(id)arg1 andTitle:(id)arg2 withCompletion:(id /* block */)arg3;
 - (void)keepDirty:(bool)arg1;
 - (void)keysForSchemas:(id)arg1 completion:(id /* block */)arg2;
@@ -143,6 +152,7 @@
 - (id)originFromRecordId:(id)arg1 error:(id*)arg2;
 - (void)originFromRecordId:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)planReceivedFromServerWithPayload:(id)arg1 completion:(id /* block */)arg2;
+- (id)powerState;
 - (id)predictedCCEmailAddressesWithToAddresses:(id)arg1 ccAddresses:(id)arg2 fromAddress:(id)arg3 date:(double)arg4 bounds:(id)arg5 error:(id*)arg6;
 - (void)predictedCCEmailAddressesWithToAddresses:(id)arg1 ccAddresses:(id)arg2 fromAddress:(id)arg3 date:(double)arg4 bounds:(id)arg5 withCompletion:(id /* block */)arg6;
 - (id)predictedToEmailAddressesWithToAddresses:(id)arg1 ccAddresses:(id)arg2 fromAddress:(id)arg3 date:(double)arg4 bounds:(id)arg5 error:(id*)arg6;
@@ -157,11 +167,13 @@
 - (id)registerContactsChangeObserver:(id /* block */)arg1;
 - (id)registerEventsChangeObserver:(id /* block */)arg1;
 - (bool)rejectContact:(id)arg1 error:(id*)arg2;
+- (bool)rejectContact:(id)arg1 rejectionUI:(int)arg2 error:(id*)arg3;
+- (void)rejectContact:(id)arg1 rejectionUI:(int)arg2 withCompletion:(id /* block */)arg3;
 - (void)rejectContact:(id)arg1 withCompletion:(id /* block */)arg2;
 - (bool)rejectContactDetailRecord:(id)arg1 error:(id*)arg2;
+- (bool)rejectContactDetailRecord:(id)arg1 rejectionUI:(int)arg2 error:(id*)arg3;
+- (void)rejectContactDetailRecord:(id)arg1 rejectionUI:(int)arg2 withCompletion:(id /* block */)arg3;
 - (void)rejectContactDetailRecord:(id)arg1 withCompletion:(id /* block */)arg2;
-- (bool)rejectCuratedContactDetail:(id)arg1 from:(id)arg2 error:(id*)arg3;
-- (void)rejectCuratedContactDetail:(id)arg1 from:(id)arg2 withCompletion:(id /* block */)arg3;
 - (bool)rejectEvent:(id)arg1 error:(id*)arg2;
 - (void)rejectEvent:(id)arg1 withCompletion:(id /* block */)arg2;
 - (bool)rejectEventByRecordId:(id)arg1 error:(id*)arg2;
@@ -169,6 +181,8 @@
 - (bool)rejectRealtimeReminder:(id)arg1 error:(id*)arg2;
 - (void)rejectRealtimeReminder:(id)arg1 withCompletion:(id /* block */)arg2;
 - (bool)rejectRecord:(id)arg1 error:(id*)arg2;
+- (bool)rejectRecord:(id)arg1 rejectionUI:(int)arg2 error:(id*)arg3;
+- (void)rejectRecord:(id)arg1 rejectionUI:(int)arg2 withCompletion:(id /* block */)arg3;
 - (void)rejectRecord:(id)arg1 withCompletion:(id /* block */)arg2;
 - (bool)rejectReminderByRecordId:(id)arg1 error:(id*)arg2;
 - (void)rejectReminderByRecordId:(id)arg1 withCompletion:(id /* block */)arg2;
@@ -215,6 +229,8 @@
 - (void)suggestionsFromRFC822Data:(id)arg1 source:(id)arg2 options:(unsigned long long)arg3 withCompletion:(id /* block */)arg4;
 - (id)suggestionsFromSearchableItem:(id)arg1 options:(unsigned long long)arg2 error:(id*)arg3;
 - (void)suggestionsFromSearchableItem:(id)arg1 options:(unsigned long long)arg2 withCompletion:(id /* block */)arg3;
+- (id)suggestionsFromSimpleMailMessage:(id)arg1 headers:(id)arg2 options:(unsigned long long)arg3 error:(id*)arg4;
+- (void)suggestionsFromSimpleMailMessage:(id)arg1 headers:(id)arg2 options:(unsigned long long)arg3 withCompletion:(id /* block */)arg4;
 - (void)suggestionsFromURL:(id)arg1 title:(id)arg2 HTMLPayload:(id)arg3 withCompletion:(id /* block */)arg4;
 - (double)syncTimeout;
 - (bool)updateMessages:(id)arg1 state:(unsigned long long)arg2 error:(id*)arg3;

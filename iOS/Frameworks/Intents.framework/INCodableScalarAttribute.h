@@ -8,8 +8,16 @@
 
 @property (nonatomic) long long type;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (bool)supportsSecureCoding;
 
+- (id)__INCodableDescriptionKey;
+- (id)__INCodableDescriptionTypeKey;
+- (id)__INIntentResponseCodableDescriptionKey;
+- (id)__INIntentResponseCodableDescriptionTypeKey;
+- (id)__INTypeCodableDescriptionKey;
+- (id)__INTypeCodableDescriptionTypeKey;
 - (Class)_relationshipValueTransformerClass;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
@@ -24,5 +32,13 @@
 - (long long)type;
 - (void)updateWithDictionary:(id)arg1;
 - (long long)valueType;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (id)wf_contentItemForValue:(id)arg1;
+- (Class)wf_objectClass;
+- (Class)wf_parameterClass;
+- (id)wf_parameterStateForIntentValue:(id)arg1 parameterDefinition:(id)arg2;
+- (void)wf_updateParameterDictionary:(id)arg1 parameterClass:(Class)arg2;
 
 @end

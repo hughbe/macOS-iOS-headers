@@ -8,5 +8,6 @@
 - (id)featuresForTextString:(id)arg1 inMessageUnit:(id)arg2 context:(id)arg3;
 - (id)matchesForTextString:(id)arg1 inMessageUnit:(id)arg2 eventType:(id)arg3;
 - (id)matchesForTextString:(id)arg1 inMessageUnit:(id)arg2 eventType:(id)arg3 keywordType:(unsigned long long)arg4;
+- (id)queue;
 
 @end

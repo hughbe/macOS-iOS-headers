@@ -11,7 +11,7 @@
     struct { 
         char *data; 
         unsigned long long dataLen; 
-        struct __CFString {} *tempString; 
+        struct __CFDictionary {} *objectReferences; 
     }  _decoder;
     unsigned long long  _genericIndex;
     NSObject<OS_xpc_object> * _oolObjects;
@@ -19,6 +19,8 @@
         unsigned long long offset; 
         int type; 
     }  _rootObject;
+    bool  decodedCollection;
+    bool  expectsUnnestedCollection;
 }
 
 @property NSXPCConnection *_connection;
@@ -27,6 +29,7 @@
 - (id)_connection;
 - (id)_decodeArrayOfObjectsForKey:(id)arg1;
 - (const char *)_decodeCStringForKey:(id)arg1;
+- (id)_decodeCollectionOfClass:(Class)arg1 allowedClasses:(id)arg2 forKey:(id)arg3;
 - (int)_decodeMessageFromXPCObject:(id)arg1 allowingSimpleMessageSend:(bool)arg2 outInvocation:(id*)arg3 outArguments:(id*)arg4 outArgumentsMaxCount:(unsigned long long)arg5 outMethodSignature:(id*)arg6 outSelector:(SEL*)arg7 interface:(id)arg8;
 - (id)_decodeObjectOfClasses:(id)arg1 atObject:(struct { unsigned long long x1; int x2; }*)arg2;
 - (id)_decodeReplyFromXPCObject:(id)arg1 forSelector:(SEL)arg2 interface:(id)arg3;
@@ -40,8 +43,10 @@
 - (bool)containsValueForKey:(id)arg1;
 - (void)dealloc;
 - (id)debugDescription;
+- (id)decodeArrayOfObjectsOfClasses:(id)arg1 forKey:(id)arg2;
 - (bool)decodeBoolForKey:(id)arg1;
 - (const char *)decodeBytesForKey:(id)arg1 returnedLength:(unsigned long long*)arg2;
+- (id)decodeDictionaryWithKeysOfClasses:(id)arg1 objectsOfClasses:(id)arg2 forKey:(id)arg3;
 - (double)decodeDoubleForKey:(id)arg1;
 - (float)decodeFloatForKey:(id)arg1;
 - (int)decodeInt32ForKey:(id)arg1;

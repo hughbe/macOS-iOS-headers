@@ -16,6 +16,7 @@
     double  _unitsWidth;
     NSString * _unpaddedUnitsString;
     bool  _useLightText;
+    NSString * _zeroUnitsString;
 }
 
 @property (getter=isRTL, nonatomic) bool RTL;
@@ -26,6 +27,7 @@
 @property (nonatomic, readonly) double unitsWidth;
 @property (nonatomic, copy) NSString *unpaddedUnitsString;
 @property (nonatomic) bool useLightText;
+@property (nonatomic, readonly) NSString *zeroUnitsString;
 
 - (void).cxx_destruct;
 - (void)_calculateLegend:(bool)arg1;
@@ -50,5 +52,6 @@
 - (double)unitsWidth;
 - (id)unpaddedUnitsString;
 - (bool)useLightText;
+- (id)zeroUnitsString;
 
 @end

@@ -47,10 +47,10 @@
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRecordId:(id)arg1 origin:(id)arg2 title:(id)arg3 dueDateComponents:(id)arg4 dueLocationType:(unsigned char)arg5 dueLocation:(id)arg6 dueLocationTrigger:(unsigned char)arg7 sourceURL:(id)arg8 reminderStatus:(unsigned char)arg9 opaqueKey:(id)arg10 uniqueKey:(id)arg11 contactIdentifier:(id)arg12 creationDate:(id)arg13;
-- (id)initWithTitle:(id)arg1 dueDateComponents:(id)arg2 dueLocationType:(unsigned char)arg3 dueLocation:(id)arg4 dueLocationTrigger:(unsigned char)arg5 sourceURL:(id)arg6 reminderStatus:(unsigned char)arg7;
 - (bool)isAllDay;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToReminder:(id)arg1;
+- (id)loggingIdentifier;
 - (id)opaqueKey;
 - (unsigned char)reminderStatus;
 - (id)sourceURL;

@@ -6,6 +6,7 @@
 
 - (id)_immutableCopy;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)setAccessibilityIdentifier:(id)arg1;
 - (void)setAttributes:(unsigned long long)arg1;
 - (void)setDiscoverabilityTitle:(id)arg1;
 - (void)setImage:(id)arg1;

@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSXPCServiceIdentity : NSObject <BSXPCSecureCoding, NSSecureCoding> {
+@interface RBSXPCServiceIdentity : NSObject <NSSecureCoding, RBSXPCSecureCoding> {
     RBSXPCServiceDefinition * _definition;
     RBSProcessInstance * _host;
     NSString * _sessionID;
+    NSUUID * _uuid;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -15,20 +16,23 @@
 @property (nonatomic, readonly) RBSProcessInstance *host;
 @property (nonatomic, readonly, copy) NSString *sessionID;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) NSUUID *uuid;
 
-+ (id)identityWithDefinition:(id)arg1 sessionID:(id)arg2 host:(id)arg3;
-+ (bool)supportsBSXPCSecureCoding;
++ (id)identityWithDefinition:(id)arg1 sessionID:(id)arg2 host:(id)arg3 UUID:(id)arg4;
++ (bool)supportsRBSXPCSecureCoding;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)definition;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
+- (unsigned long long)hash;
 - (id)host;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)sessionID;
+- (id)uuid;
 
 @end

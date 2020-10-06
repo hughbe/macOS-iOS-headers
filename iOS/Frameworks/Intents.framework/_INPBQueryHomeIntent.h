@@ -3,13 +3,11 @@
  */
 
 @interface _INPBQueryHomeIntent : PBCodable <NSCopying, NSSecureCoding, _INPBQueryHomeIntent> {
-    bool  __encodeLegacyGloryData;
     NSArray * _entities;
     struct { }  _has;
     _INPBIntentMetadata * _intentMetadata;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSArray *entities;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addEntities:(id)arg1;
 - (void)clearEntities;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

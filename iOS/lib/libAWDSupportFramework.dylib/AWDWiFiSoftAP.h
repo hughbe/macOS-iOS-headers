@@ -20,6 +20,7 @@
         unsigned int otherDeviceConnectCount : 1; 
         unsigned int otherDeviceDisconnectCount : 1; 
         unsigned int reasonCode : 1; 
+        unsigned int securityTypes : 1; 
         unsigned int ssidChanged : 1; 
         unsigned int teardownReason : 1; 
         unsigned int familyDevice : 1; 
@@ -29,6 +30,7 @@
     unsigned int  _otherDeviceConnectCount;
     unsigned int  _otherDeviceDisconnectCount;
     unsigned int  _reasonCode;
+    unsigned int  _securityTypes;
     unsigned long long  _sessionDuration;
     unsigned int  _ssidChanged;
     unsigned int  _teardownReason;
@@ -50,6 +52,7 @@
 @property (nonatomic) bool hasOtherDeviceConnectCount;
 @property (nonatomic) bool hasOtherDeviceDisconnectCount;
 @property (nonatomic) bool hasReasonCode;
+@property (nonatomic) bool hasSecurityTypes;
 @property (nonatomic) bool hasSessionDuration;
 @property (nonatomic) bool hasSsidChanged;
 @property (nonatomic) bool hasTeardownReason;
@@ -59,6 +62,7 @@
 @property (nonatomic) unsigned int otherDeviceConnectCount;
 @property (nonatomic) unsigned int otherDeviceDisconnectCount;
 @property (nonatomic) unsigned int reasonCode;
+@property (nonatomic) unsigned int securityTypes;
 @property (nonatomic) unsigned long long sessionDuration;
 @property (nonatomic) unsigned int ssidChanged;
 @property (nonatomic) unsigned int teardownReason;
@@ -83,6 +87,7 @@
 - (bool)hasOtherDeviceConnectCount;
 - (bool)hasOtherDeviceDisconnectCount;
 - (bool)hasReasonCode;
+- (bool)hasSecurityTypes;
 - (bool)hasSessionDuration;
 - (bool)hasSsidChanged;
 - (bool)hasTeardownReason;
@@ -96,6 +101,7 @@
 - (unsigned int)otherDeviceDisconnectCount;
 - (bool)readFrom:(id)arg1;
 - (unsigned int)reasonCode;
+- (unsigned int)securityTypes;
 - (unsigned long long)sessionDuration;
 - (void)setAppleDeviceConnectCount:(unsigned int)arg1;
 - (void)setAppleDeviceDisconnectCount:(unsigned int)arg1;
@@ -112,6 +118,7 @@
 - (void)setHasOtherDeviceConnectCount:(bool)arg1;
 - (void)setHasOtherDeviceDisconnectCount:(bool)arg1;
 - (void)setHasReasonCode:(bool)arg1;
+- (void)setHasSecurityTypes:(bool)arg1;
 - (void)setHasSessionDuration:(bool)arg1;
 - (void)setHasSsidChanged:(bool)arg1;
 - (void)setHasTeardownReason:(bool)arg1;
@@ -121,6 +128,7 @@
 - (void)setOtherDeviceConnectCount:(unsigned int)arg1;
 - (void)setOtherDeviceDisconnectCount:(unsigned int)arg1;
 - (void)setReasonCode:(unsigned int)arg1;
+- (void)setSecurityTypes:(unsigned int)arg1;
 - (void)setSessionDuration:(unsigned long long)arg1;
 - (void)setSsidChanged:(unsigned int)arg1;
 - (void)setTeardownReason:(unsigned int)arg1;

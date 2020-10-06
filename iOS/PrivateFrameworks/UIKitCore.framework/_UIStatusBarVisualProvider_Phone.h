@@ -14,7 +14,7 @@
 @property (nonatomic, retain) _UIStatusBarDisplayItemPlacement *pillIconPlacement;
 @property (nonatomic, retain) _UIStatusBarRegion *pillRegion;
 
-+ (Class)visualProviderSubclassForScreen:(id)arg1;
++ (Class)visualProviderSubclassForScreen:(id)arg1 visualProviderInfo:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)_animationForBackgroundActivityIcon;

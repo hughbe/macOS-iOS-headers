@@ -7,6 +7,7 @@
     NSArray * _cells;
     <MKPlaceRelatedViewControllerDelegate> * _delegate;
     NSArray * _fetchedMapItems;
+    bool  _isExpanded;
     MKMapItem * _mapItem;
 }
 
@@ -15,10 +16,8 @@
 @property (nonatomic) <MKPlaceRelatedViewControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, retain) MKMapItem *mapItem;
+@property (nonatomic, readonly) MKMapItem *mapItem;
 @property (readonly) Class superclass;
-
-+ (id)placeRelatedViewControllerFor:(id)arg1;
 
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
@@ -27,18 +26,20 @@
 - (id)_moduleTitle;
 - (void)_reloadRelatedMapItems:(id)arg1;
 - (void)_seeAllAction:(id)arg1;
+- (void)_setExpanded:(bool)arg1;
 - (void)_updateHeightConstraints;
 - (void)_updateRows;
 - (void)_updateTitle;
 - (id)analyticsDelegate;
 - (id)delegate;
 - (void)fetchPOIs;
+- (id)initWithMapItem:(id)arg1;
 - (id)mapItem;
+- (unsigned long long)maxItems;
 - (void)preferredContentSizeChanged:(id)arg1;
 - (void)sectionView:(id)arg1 didSelectRow:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)setAnalyticsDelegate:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setMapItem:(id)arg1;
 - (void)viewDidLoad;
 
 @end

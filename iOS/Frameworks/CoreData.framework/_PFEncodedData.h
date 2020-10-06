@@ -13,7 +13,6 @@
 - (bool)_isDeallocating;
 - (bool)_tryRetain;
 - (const void*)bytes;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -25,7 +24,6 @@
 - (unsigned long long)length;
 - (id)mutableCopy;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
-- (id)privateCopy;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })rangeOfData:(id)arg1 options:(unsigned long long)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
 - (oneway void)release;
 - (id)retain;

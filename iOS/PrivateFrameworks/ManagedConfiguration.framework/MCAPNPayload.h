@@ -20,7 +20,6 @@
 - (id)_strippedAPNDefaults;
 - (id)_validationErrorType:(long long)arg1 forInvalidKey:(id)arg2;
 - (id)apnDefaults;
-- (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)payloadDescriptionKeyValueSections;
 - (void)setWasInstalled:(bool)arg1;
@@ -29,6 +28,7 @@
 - (id)subtitle1Label;
 - (id)subtitle2Description;
 - (id)subtitle2Label;
+- (id)verboseDescription;
 - (bool)wasInstalled;
 
 @end

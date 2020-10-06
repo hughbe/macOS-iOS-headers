@@ -11,8 +11,8 @@
 
 + (id)actionsContainer;
 + (id)idBase;
++ (id)infoContainer;
 + (id)levelOfDetailButton;
-+ (id)mainContainer;
 + (id)metadataRowWithLabel:(id)arg1;
 
 @end

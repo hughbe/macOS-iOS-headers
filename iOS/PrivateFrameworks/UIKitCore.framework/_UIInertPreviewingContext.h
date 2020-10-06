@@ -21,7 +21,7 @@
 
 @property (nonatomic, retain) UIView *customViewForInteractiveHighlight;
 @property (readonly, copy) NSString *debugDescription;
-@property (nonatomic, readonly) <UIViewControllerPreviewingDelegate> *delegate;
+@property (nonatomic) <UIViewControllerPreviewingDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) UIGestureRecognizer *previewingGestureRecognizerForFailureRelationship;

@@ -3,24 +3,24 @@
  */
 
 @interface NSFilesystemItemRemoveOperation : NSOperation {
-    id  _delegate;
     NSError * _error;
-    bool  _filterUnderbars;
+    NSFileManager * _fm;
     NSString * _removePath;
     void * _state;
 }
 
-+ (id)_errorWithErrno:(int)arg1 atPath:(id)arg2;
-+ (id)filesystemItemRemoveOperationWithPath:(id)arg1;
+@property (readonly) NSFileManager *fileManager;
 
-- (bool)_filtersUnderbars;
++ (id)_errorWithErrno:(int)arg1 atPath:(id)arg2;
++ (id)filesystemItemRemoveOperationWithPath:(id)arg1 fileManager:(id)arg2;
+
+- (bool)_delegateSaysProceedAfterError:(id)arg1 removingItemAtPath:(id)arg2;
+- (bool)_delegateSaysShouldRemoveItemAtPath:(id)arg1;
 - (void)_setError:(id)arg1;
-- (void)_setFilterUnderbars:(bool)arg1;
 - (void)dealloc;
-- (id)delegate;
 - (id)error;
-- (id)initWithPath:(id)arg1;
+- (id)fileManager;
+- (id)initWithPath:(id)arg1 fileManager:(id)arg2;
 - (void)main;
-- (void)setDelegate:(id)arg1;
 
 @end

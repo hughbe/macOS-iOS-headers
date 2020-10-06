@@ -15,7 +15,7 @@
 + (id)logDirectory;
 + (void)sendMessage:(struct shared_ptr<CLConnectionMessage> { struct CLConnectionMessage {} *x1; struct __shared_weak_count {} *x2; })arg1 withReplyClasses:(id)arg2 callback:(id /* block */)arg3;
 + (id)sendMessage:(struct shared_ptr<CLConnectionMessage> { struct CLConnectionMessage {} *x1; struct __shared_weak_count {} *x2; })arg1 withReplyClassesSync:(id)arg2;
-+ (bool)sendMessageSync:(struct shared_ptr<CLConnectionMessage> { struct CLConnectionMessage {} *x1; struct __shared_weak_count {} *x2; })arg1 onConnection:(struct CLConnectionClient { id x1; struct CLCallbackDropManager { int (**x_2_1_1)(); struct shared_ptr<int> { int *x_2_2_1; struct __shared_weak_count {} *x_2_2_2; } x_2_1_2; } x2; struct shared_ptr<CLConnectionClientInternal> { struct CLConnectionClientInternal {} *x_3_1_1; struct __shared_weak_count {} *x_3_1_2; } x3; struct CLConnectionClientNotificationContext {} *x4; }*)arg2 timeoutAfter:(double)arg3 withReplyHandler:(id /* block */)arg4;
++ (struct shared_ptr<CLConnectionMessage> { struct CLConnectionMessage {} *x1; struct __shared_weak_count {} *x2; })sendMessageSync:(struct shared_ptr<CLConnectionMessage> { struct CLConnectionMessage {} *x1; struct __shared_weak_count {} *x2; })arg1;
 + (void)tccServiceMotionAccessWithBlock:(id /* block */)arg1;
 + (void)tccServiceMotionAccessWithLabel:(id)arg1;
 

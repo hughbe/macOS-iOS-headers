@@ -3,7 +3,7 @@
  */
 
 @interface NEAppRule : NSObject <NEConfigurationLegacySupport, NEConfigurationValidating, NEPrettyDescription, NSCopying, NSSecureCoding> {
-    NSArray * _additionalExecutables;
+    NSArray * _cachedMachOUUIDs;
     NSArray * _matchAccountIdentifiers;
     NSString * _matchDesignatedRequirement;
     NSArray * _matchDomains;
@@ -14,7 +14,7 @@
     bool  _noRestriction;
 }
 
-@property (copy) NSArray *additionalExecutables;
+@property (retain) NSArray *cachedMachOUUIDs;
 @property (copy) NSArray *matchAccountIdentifiers;
 @property (readonly) NSString *matchDesignatedRequirement;
 @property (copy) NSArray *matchDomains;
@@ -27,7 +27,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)additionalExecutables;
+- (id)cachedMachOUUIDs;
 - (bool)checkValidityAndCollectErrors:(id)arg1;
 - (id)copyLegacyDictionary;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -47,7 +47,7 @@
 - (bool)noDivertDNS;
 - (bool)noRestriction;
 - (bool)overlapsWithRule:(id)arg1;
-- (void)setAdditionalExecutables:(id)arg1;
+- (void)setCachedMachOUUIDs:(id)arg1;
 - (void)setMatchAccountIdentifiers:(id)arg1;
 - (void)setMatchDomains:(id)arg1;
 - (void)setMatchPath:(id)arg1;

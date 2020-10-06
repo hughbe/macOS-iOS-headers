@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UICompactContextMenuPresentationAnimation : _UIPreviewPlatterPresentationAnimator {
+@interface _UICompactContextMenuPresentationAnimation : _UIContextMenuPresentationAnimation {
     _UIContextMenuLayoutArbiterOutput * _expandedLayout;
     bool  _isDismissTransition;
 }
@@ -11,6 +11,7 @@
 @property (nonatomic) bool isDismissTransition;
 
 - (void).cxx_destruct;
+- (id)_backgroundView;
 - (void)_setBackgroundVisible:(bool)arg1;
 - (id)expandedLayout;
 - (bool)isDismissTransition;

@@ -18,11 +18,7 @@
 
 - (void).cxx_destruct;
 - (void)endOperation;
-- (void)endPerfMetrics;
-- (id)initWithParent:(id)arg1 localStorage:(id)arg2 transport:(id)arg3 policy:(id)arg4 type:(id)arg5 insertedEvents:(id)arg6 deletedEvents:(id)arg7;
 - (bool)isAsynchronous;
 - (void)main;
-- (void)performSyncUpChange;
-- (void)startPerfMetrics;
 
 @end

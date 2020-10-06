@@ -5,6 +5,7 @@
 @interface MNKeepAliveManager : NSObject {
     unsigned long long  _counter;
     NSFileManager * _fileManager;
+    geo_isolater * _isolator;
     NSString * _launchdKeepAliveFile;
 }
 

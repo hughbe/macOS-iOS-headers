@@ -6,11 +6,9 @@
     NSString * _accountTypeDescription;
     NSString * _credentialProtectionPolicy;
     NSString * _credentialType;
-    bool  _encryptAccountProperties;
     struct { 
         unsigned int supportsAuthentication : 1; 
         unsigned int visibility : 1; 
-        unsigned int encryptAccountProperties : 1; 
         unsigned int obsolete : 1; 
         unsigned int supportsMultipleAccounts : 1; 
     }  _has;
@@ -26,10 +24,8 @@
 @property (nonatomic, retain) NSString *accountTypeDescription;
 @property (nonatomic, retain) NSString *credentialProtectionPolicy;
 @property (nonatomic, retain) NSString *credentialType;
-@property (nonatomic) bool encryptAccountProperties;
 @property (nonatomic, readonly) bool hasCredentialProtectionPolicy;
 @property (nonatomic, readonly) bool hasCredentialType;
-@property (nonatomic) bool hasEncryptAccountProperties;
 @property (nonatomic, readonly) bool hasObjectID;
 @property (nonatomic) bool hasObsolete;
 @property (nonatomic, readonly) bool hasOwningBundleID;
@@ -52,10 +48,8 @@
 - (id)credentialType;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (bool)encryptAccountProperties;
 - (bool)hasCredentialProtectionPolicy;
 - (bool)hasCredentialType;
-- (bool)hasEncryptAccountProperties;
 - (bool)hasObjectID;
 - (bool)hasObsolete;
 - (bool)hasOwningBundleID;
@@ -73,8 +67,6 @@
 - (void)setAccountTypeDescription:(id)arg1;
 - (void)setCredentialProtectionPolicy:(id)arg1;
 - (void)setCredentialType:(id)arg1;
-- (void)setEncryptAccountProperties:(bool)arg1;
-- (void)setHasEncryptAccountProperties:(bool)arg1;
 - (void)setHasObsolete:(bool)arg1;
 - (void)setHasSupportsAuthentication:(bool)arg1;
 - (void)setHasSupportsMultipleAccounts:(bool)arg1;

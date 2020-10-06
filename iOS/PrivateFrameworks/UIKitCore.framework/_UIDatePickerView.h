@@ -51,7 +51,6 @@
 - (bool)_contentHuggingDefault_isUsuallyFixedHeight;
 - (bool)_contentHuggingDefault_isUsuallyFixedWidth;
 - (id)_contentViewForSizingLabelForPositioningInComponent:(long long)arg1;
-- (void)_datePickerReset:(id)arg1;
 - (void)_doneLoadingDateOrTime;
 - (id)_existingLabelForCalendarUnit:(unsigned long long)arg1;
 - (void)_fadeLabelForCalendarUnit:(unsigned long long)arg1 toText:(id)arg2 animated:(bool)arg3;
@@ -80,7 +79,6 @@
 - (void)_setUsesBlackChrome:(bool)arg1;
 - (bool)_showingDate;
 - (double)_tableRowHeight;
-- (void)_todayChanged:(id)arg1;
 - (bool)_updateDateOrTime;
 - (void)_updateEnabledCellsIncludingWMDCells:(bool)arg1;
 - (void)_updateLabelColors;
@@ -103,6 +101,8 @@
 - (void)didChangeMinuteInterval;
 - (void)didChangeMode;
 - (void)didChangeTimeZone;
+- (void)didChangeToday;
+- (void)didReset;
 - (bool)hasDefaultSize;
 - (bool)highlightsToday;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;

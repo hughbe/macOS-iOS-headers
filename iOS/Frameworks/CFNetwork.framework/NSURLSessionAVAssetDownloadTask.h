@@ -13,7 +13,5 @@
 - (unsigned long long)AVAssetDownloadToken;
 - (id)URL;
 - (id)destinationURL;
-- (void)setDestinationURL:(id)arg1;
-- (void)setURL:(id)arg1;
 
 @end

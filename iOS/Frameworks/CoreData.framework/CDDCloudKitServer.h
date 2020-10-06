@@ -4,44 +4,34 @@
 
 @interface CDDCloudKitServer : NSObject <CDDCloudKitServerProxy, NSXPCListenerDelegate, _PFCoreDataCloudKitServer> {
     CDDCloudKitServerConfiguration * _configuration;
+    PFCloudKitContainerProvider * _containerProvider;
     NSObject<OS_dispatch_group> * _initializationGroup;
     bool  _initialized;
     NSError * _lastInitializationError;
     NSXPCListener * _listener;
     NSPersistentContainer * _metadataContainer;
+    CKScheduler * _scheduler;
 }
 
 @property (nonatomic, readonly, copy) CDDCloudKitServerConfiguration *configuration;
+@property (nonatomic, readonly) PFCloudKitContainerProvider *containerProvider;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly) NSObject<OS_dispatch_group> *initializationGroup;
-@property (nonatomic, readonly) bool initialized;
-@property (nonatomic, readonly) NSError *lastInitializationError;
 @property (nonatomic, readonly) NSXPCListener *listener;
-@property (nonatomic, readonly) NSPersistentContainer *metadataContainer;
+@property (nonatomic, readonly) CKScheduler *scheduler;
 @property (readonly) Class superclass;
 
-+ (bool)checkAndCreateDirectoryAtURL:(id)arg1 wipeIfExists:(bool)arg2 error:(id*)arg3;
-
-- (id)_handleRegistrationMessage:(id)arg1;
-- (id)_handleScheduleMessage:(id)arg1;
-- (void)_setUpAsync;
 - (id)configuration;
-- (id)createRealPathForPath:(id)arg1 error:(id*)arg2;
+- (id)containerProvider;
 - (void)dealloc;
 - (void)finishedActivity:(id)arg1 withResult:(id)arg2 inManagedObjectContext:(id)arg3;
 - (oneway void)handleMessage:(id)arg1 reply:(id /* block */)arg2;
 - (id)initWithListener:(id)arg1 configuration:(id)arg2;
-- (id)initializationGroup;
-- (bool)initialized;
-- (id)lastInitializationError;
 - (id)listener;
 - (bool)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
-- (id)metadataContainer;
-- (void)runActivity:(id)arg1 completionHandler:(id /* block */)arg2;
+- (id)scheduler;
 - (void)setUp;
 - (void)tearDown;
-- (bool)verifyFileHandle:(id)arg1 matchesPath:(id)arg2 error:(id*)arg3;
 
 @end

@@ -37,7 +37,6 @@
 - (void)dealloc;
 - (id)executeCountRequest:(id)arg1 withContext:(id)arg2;
 - (id)executeFetchRequest:(id)arg1 withContext:(id)arg2;
-- (id)executeRefreshRequest:(id)arg1 withContext:(id)arg2;
 - (id)executeRequest:(id)arg1 withContext:(id)arg2 error:(id*)arg3;
 - (id)executeSaveChangesRequest:(id)arg1 withContext:(id)arg2;
 - (id)init;

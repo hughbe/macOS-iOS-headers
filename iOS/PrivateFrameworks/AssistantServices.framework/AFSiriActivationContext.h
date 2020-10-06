@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@interface AFSiriActivationContext : NSObject <NSCopying, NSSecureCoding> {
+@interface AFSiriActivationContext : NSObject <AFDictionaryConvertible, NSCopying, NSSecureCoding> {
     NSString * _deviceID;
     long long  _event;
     unsigned long long  _options;
@@ -11,10 +11,14 @@
     NSDictionary * _userInfo;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSString *deviceID;
 @property (nonatomic, readonly) long long event;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) unsigned long long options;
 @property (nonatomic, readonly) long long source;
+@property (readonly) Class superclass;
 @property (nonatomic, readonly) unsigned long long timestamp;
 @property (nonatomic, readonly, copy) NSDictionary *userInfo;
 
@@ -23,6 +27,7 @@
 
 - (void).cxx_destruct;
 - (id)_descriptionWithIndent:(unsigned long long)arg1;
+- (id)buildDictionaryRepresentation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)deviceID;
@@ -30,6 +35,7 @@
 - (long long)event;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithDictionaryRepresentation:(id)arg1;
 - (id)initWithTimestamp:(unsigned long long)arg1 source:(long long)arg2 event:(long long)arg3 options:(unsigned long long)arg4 deviceID:(id)arg5 userInfo:(id)arg6;
 - (bool)isEqual:(id)arg1;
 - (id)mutatedCopyWithMutator:(id /* block */)arg1;

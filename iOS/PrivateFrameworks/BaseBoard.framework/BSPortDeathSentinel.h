@@ -20,7 +20,6 @@
 @property (readonly) Class superclass;
 @property (getter=isValid, nonatomic, readonly) bool valid;
 
-+ (id)_callOutQueue;
 + (void)monitorSendRight:(id)arg1 withHandler:(id /* block */)arg2;
 
 - (void).cxx_destruct;

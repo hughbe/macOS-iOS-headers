@@ -3,6 +3,7 @@
  */
 
 @interface UIActivityItemsConfiguration : NSObject <UIActivityItemsConfigurationReading> {
+    NSArray * __excludedInteractions;
     NSArray * _activityItems;
     id /* block */  _applicationActivitiesProvider;
     NSArray * _excludedActivityTypes;
@@ -17,6 +18,7 @@
 
 @property (nonatomic, readonly, copy) NSArray *_activityItems;
 @property (setter=_setExcludedActivityTypes:, nonatomic, copy) NSArray *_excludedActivityTypes;
+@property (setter=_setExcludedInteractions:, nonatomic, copy) NSArray *_excludedInteractions;
 @property (nonatomic, readonly) bool _hasItemsForActivityItemsConfiguration;
 @property (nonatomic, readonly, copy) NSArray *applicationActivitiesForActivityItemsConfiguration;
 @property (nonatomic, copy) id /* block */ applicationActivitiesProvider;
@@ -31,6 +33,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSArray *supportedInteractions;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)_itemsForSystemSharingFromActivityItemsConfiguration:(id)arg1 wrapperBlock:(id /* block */)arg2;
 + (id)activityItemsConfigurationWithItemProviders:(id)arg1;
 + (id)activityItemsConfigurationWithObjects:(id)arg1;
@@ -39,10 +43,12 @@
 - (id)_activityItems;
 - (void)_commonInit;
 - (id)_excludedActivityTypes;
+- (id)_excludedInteractions;
 - (bool)_hasItemsForActivityItemsConfiguration;
 - (id)_initWithActivityItemSources:(id)arg1;
 - (id)_initWithActivityItems:(id)arg1 applicationActivities:(id)arg2;
 - (void)_setExcludedActivityTypes:(id)arg1;
+- (void)_setExcludedInteractions:(id)arg1;
 - (id)activityItemsConfigurationMetadataForItemAtIndex:(long long)arg1 key:(id)arg2;
 - (id)activityItemsConfigurationMetadataForKey:(id)arg1;
 - (id)activityItemsConfigurationPreviewForItemAtIndex:(long long)arg1 intent:(id)arg2 suggestedSize:(struct CGSize { double x1; double x2; })arg3;
@@ -65,5 +71,14 @@
 - (void)setPreviewProvider:(id /* block */)arg1;
 - (void)setSupportedInteractions:(id)arg1;
 - (id)supportedInteractions;
+
+// Image: /System/Library/PrivateFrameworks/NewsArticles.framework/NewsArticles
+
+- (id)initNAWithActivityItemSources:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (id)initTSWithActivityItemSources:(id)arg1;
+- (void)ts_setExcludedActivityTypes:(id)arg1;
 
 @end

@@ -2,9 +2,10 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UICollectionViewLayout : NSObject <NSCoding, _UICollectionViewLayoutOrthogonalScrolling> {
+@interface UICollectionViewLayout : NSObject <AVTCollectionViewLayout, NSCoding, _UICollectionViewLayoutOrthogonalScrolling, _UICollectionViewLayoutSwipeActions> {
     UIDynamicAnimator * _animator;
     UICollectionView * _collectionView;
+    _UICollectionViewAnimationContext * _collectionViewAnimationContext;
     struct CGSize { 
         double width; 
         double height; 
@@ -39,6 +40,7 @@
         unsigned int inTransitionToTransitionLayout : 1; 
         unsigned int prepared : 1; 
         unsigned int wantsRightToLeftHorizontalMirroringIfNeeded : 1; 
+        unsigned int isEditing : 1; 
     }  _layoutFlags;
     struct CGPoint { 
         double x; 
@@ -48,11 +50,13 @@
     NSIndexSet * _sections;
     UICollectionViewLayout * _siblingLayout;
     long long  _sublayoutType;
+    _UICollectionViewLayoutSwipeActionsModule * _swipeActionsModule;
     UICollectionViewLayout * _transitioningFromLayout;
     UICollectionViewLayout * _transitioningToLayout;
 }
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
+@property (getter=_collectionViewAnimationContext, setter=_setCollectionViewAnimationContext:, nonatomic, retain) _UICollectionViewAnimationContext *collectionViewAnimationContext;
 @property (getter=_compositionLayout, setter=_setCompositionLayout:, nonatomic) _UICollectionViewCompositionLayout *compositionLayout;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -68,21 +72,30 @@
 @property (getter=_siblingLayout, setter=_setSiblingLayout:, nonatomic) UICollectionViewLayout *siblingLayout;
 @property (getter=_sublayoutType, setter=_setSublayoutType:, nonatomic) long long sublayoutType;
 @property (readonly) Class superclass;
+@property (nonatomic) bool ts_sortItemsLogicallyForAccessibility;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (Class)invalidationContextClass;
 + (Class)layoutAttributesClass;
 
 - (void).cxx_destruct;
+- (double)_alignedContentMarginGivenMargin:(double)arg1;
+- (bool)_allowsItemInteractionsToBegin;
 - (id /* block */)_animationForReusableView:(id)arg1 toLayoutAttributes:(id)arg2;
 - (id /* block */)_animationForReusableView:(id)arg1 toLayoutAttributes:(id)arg2 type:(unsigned long long)arg3;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_bounds;
+- (void)_backgroundChangedForInteractionAtIndexPath:(id)arg1;
 - (bool)_cellsShouldConferWithAutolayoutEngineForSizingInfo;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_centerInsertionIndicatorFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 targetAttributes:(id)arg2 axis:(unsigned long long)arg3 edges:(unsigned long long)arg4;
+- (id)_collectionViewAnimationContext;
 - (id)_compositionLayout;
 - (struct CGPoint { double x1; double x2; })_contentOffsetForScrollingToSection:(long long)arg1;
 - (struct CGPoint { double x1; double x2; })_contentOffsetFromProposedContentOffset:(struct CGPoint { double x1; double x2; })arg1 forScrollingToItemAtIndexPath:(id)arg2 atScrollPosition:(unsigned long long)arg3;
 - (id)_decorationViewForLayoutAttributes:(id)arg1;
+- (void)_didEndSwiping;
 - (void)_didFinishLayoutTransitionAnimations:(bool)arg1;
-- (void)_didPerformUpdateVisibleCellsPass;
+- (void)_didPerformUpdateVisibleCellsPassWithLayoutOffset:(struct CGPoint { double x1; double x2; })arg1;
+- (bool)_disablesDoubleSidedAnimations;
 - (bool)_disallowsFadeCellsForBoundsChange;
 - (id)_dynamicAnimator;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_dynamicReferenceBounds;
@@ -92,15 +105,20 @@
 - (bool)_estimatesSupplementaryItems;
 - (id)_extendedAttributesQueryIncludingOrthogonalScrollingRegions:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGSize { double x1; double x2; })_fallbackItemSize;
+- (id)_finalLayoutAttributesForDisappearingItemAtIndexPath:(id)arg1;
 - (void)_finalizeCollectionViewItemAnimations;
 - (void)_finalizeLayoutTransition;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_focusFastScrollingIndexBarInsets;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_frame;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_frameForInsertionIndicatorForTargetFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 axis:(unsigned long long)arg2 edges:(unsigned long long)arg3;
 - (bool)_hasOrthogonalScrollingSections;
+- (id)_indexPathForInsertionIndicatorForTargetAttributes:(id)arg1 axis:(unsigned long long)arg2 edges:(unsigned long long)arg3 previousAttributes:(id)arg4 nextAttributes:(id)arg5;
 - (id)_indexPathsToDeleteForDecorationViewOfKind:(id)arg1;
 - (id)_indexPathsToDeleteForSupplementaryViewOfKind:(id)arg1;
 - (id)_indexPathsToInsertForDecorationViewOfKind:(id)arg1;
 - (id)_indexPathsToInsertForSupplementaryViewOfKind:(id)arg1;
+- (bool)_initialAppearingLayoutAttributesCanBeOverriddenForEstimatedSizing;
+- (id)_initialLayoutAttributesForAppearingItemAtIndexPath:(id)arg1;
 - (void)_invalidateLayoutUsingContext:(id)arg1;
 - (id)_invalidationContextForEndingReorderingItemToFinalIndexPaths:(id)arg1 previousIndexPaths:(id)arg2 reorderingCancelled:(bool)arg3;
 - (id)_invalidationContextForReorderingTargetPosition:(struct CGPoint { double x1; double x2; })arg1 targetIndexPaths:(id)arg2 withPreviousPosition:(struct CGPoint { double x1; double x2; })arg3 previousIndexPaths:(id)arg4;
@@ -108,11 +126,16 @@
 - (bool)_isPrepared;
 - (id)_items;
 - (id)_layoutAttributesForElementsInProjectedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 withProjectionVector:(struct CGVector { double x1; double x2; })arg2 projectionDistance:(double)arg3;
+- (id)_layoutAttributesForInsertionIndicatorAtTargetPosition:(struct CGPoint { double x1; double x2; })arg1 sourceIndexPath:(id)arg2;
+- (id)_layoutAttributesForItemNearestPosition:(struct CGPoint { double x1; double x2; })arg1 maximumDistance:(double)arg2;
 - (id)_layoutAttributesForReorderedItemAtIndexPath:(id)arg1 withTargetPosition:(struct CGPoint { double x1; double x2; })arg2;
 - (unsigned long long)_layoutAxis;
+- (unsigned long long)_layoutAxisForAttributes:(id)arg1 previousAttributes:(id)arg2 nextAttributes:(id)arg3;
 - (struct CGPoint { double x1; double x2; })_layoutOffset;
 - (unsigned long long)_layoutOffsetEdges;
+- (id)_leadingSwipeActionsConfigurationForIndexPath:(id)arg1;
 - (bool)_needsRecomputeOfPreferredAttributesForVisibleEstimatedItemsDuringUpdate;
+- (id)_nextLayoutAttributesForGlobalIndex:(long long)arg1;
 - (struct CGPoint { double x1; double x2; })_offsetForOrthogonalScrollingSection:(long long)arg1;
 - (struct CGPoint { double x1; double x2; })_offsetInTopParentLayout:(id*)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_orthogonalFrameWithOffsetElidedForItemWithLayoutAttributes:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
@@ -125,10 +148,12 @@
 - (double)_orthogonalScrollingPagingDimensionForSection:(long long)arg1;
 - (id)_orthogonalScrollingSections;
 - (bool)_orthogonalScrollingShouldCenterCustomPagingSizeForSection:(long long)arg1;
+- (id)_orthogonalScrollingStateForSection:(long long)arg1;
 - (struct CGPoint { double x1; double x2; })_orthogonalScrollingTargetContentOffsetForOffset:(struct CGPoint { double x1; double x2; })arg1 section:(long long)arg2;
 - (id)_orthogonalScrollingTrace;
 - (bool)_orthogonalScrollingUsesTargetContentOffsetForSection:(long long)arg1;
 - (bool)_overridesSafeAreaPropagationToDescendants;
+- (void)_postProcessPreferredAttributes:(id)arg1 forView:(id)arg2;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_preferredLayoutMargins;
 - (void)_prepareForCollectionViewUpdates:(id)arg1 withDataSourceTranslator:(id)arg2;
 - (void)_prepareForPreferredAttributesQueryForView:(id)arg1 withLayoutAttributes:(id)arg2;
@@ -136,10 +161,13 @@
 - (void)_prepareForTransitionToLayout:(id)arg1;
 - (void)_prepareToAnimateFromCollectionViewItems:(id)arg1 atContentOffset:(struct CGPoint { double x1; double x2; })arg2 toItems:(id)arg3 atContentOffset:(struct CGPoint { double x1; double x2; })arg4;
 - (bool)_preparedForBoundsChanges;
+- (id)_previousLayoutAttributesForGlobalIndex:(long long)arg1;
+- (id)_propertyAnimatorForCollectionViewUpdates:(id)arg1 withCustomAnimator:(id)arg2;
 - (id)_reorderingTargetItemIndexPathForPosition:(struct CGPoint { double x1; double x2; })arg1 withPreviousIndexPath:(id)arg2;
 - (struct CGVector { double x1; double x2; })_scrollingUnitVectorForOrthogonalScrollingSection:(long long)arg1;
 - (id)_sections;
 - (void)_setCollectionView:(id)arg1;
+- (void)_setCollectionViewAnimationContext:(id)arg1;
 - (void)_setCollectionViewBoundsSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)_setCompositionLayout:(id)arg1;
 - (void)_setDynamicAnimator:(id)arg1;
@@ -155,6 +183,7 @@
 - (void)_setSiblingLayout:(id)arg1;
 - (void)_setSublayoutType:(long long)arg1;
 - (void)_setWantsRightToLeftHorizontalMirroringIfNeeded:(bool)arg1;
+- (bool)_shouldAdjustTargetContentOffsetToValidateContentExtents;
 - (bool)_shouldConfigureForPagingForOrthogonalScrollingSection:(long long)arg1;
 - (bool)_shouldOrthogonalScrollingSectionDecorationScrollWithContentForIndexPath:(id)arg1 elementKind:(id)arg2;
 - (bool)_shouldOrthogonalScrollingSectionSupplementaryScrollWithContentForIndexPath:(id)arg1 elementKind:(id)arg2;
@@ -162,9 +191,13 @@
 - (id)_siblingLayout;
 - (long long)_sublayoutType;
 - (bool)_supportsAdvancedTransitionAnimations;
+- (struct CGPoint { double x1; double x2; })_targetPositionForInteractiveMovementOfItemAtIndexPath:(id)arg1 withProposedTargetPosition:(struct CGPoint { double x1; double x2; })arg2;
+- (id)_trailingSwipeActionsConfigurationForIndexPath:(id)arg1;
 - (void)_traitCollectionDidChangeFromPreviousCollection:(id)arg1 newTraitCollection:(id)arg2;
+- (bool)_wantsAnimationsForOffscreenAuxillaries;
 - (bool)_wantsRightToLeftHorizontalMirroringIfNeeded;
 - (bool)_wantsUntrackedAnimationCleanupForAuxillaryItems;
+- (void)_willBeginSwiping;
 - (void)_willPerformUpdateVisibleCellsPass;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })bounds;
 - (bool)canBeEdited;
@@ -218,5 +251,24 @@
 - (id)targetIndexPathForInteractivelyMovingItem:(id)arg1 withPosition:(struct CGPoint { double x1; double x2; })arg2;
 - (struct CGPoint { double x1; double x2; })transitionContentOffsetForProposedContentOffset:(struct CGPoint { double x1; double x2; })arg1 keyItemIndexPath:(id)arg2;
 - (struct CGPoint { double x1; double x2; })updatesContentOffsetForProposedContentOffset:(struct CGPoint { double x1; double x2; })arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_layoutAttributesForElementClosestToPoint:(struct CGPoint { double x1; double x2; })arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 passingTest:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/AvatarUI.framework/AvatarUI
+
+- (struct CGPoint { double x1; double x2; })centerForCenteringElementAtIndex:(long long)arg1 visibleBoundsSize:(struct CGSize { double x1; double x2; })arg2 proposedOrigin:(struct CGPoint { double x1; double x2; })arg3;
+- (struct CGSize { double x1; double x2; })contentSizeForVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 numberOfItems:(long long)arg2;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })finalFrameForDisappearingElementAtOriginForVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frameForElementAtIndex:(long long)arg1 visibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
+- (id)indexesForElementsInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 visibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 numberOfItems:(long long)arg3;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })initialFrameForAppearingElementAtOriginForVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (bool)_accessibilitySortCollectionViewLogically;
+- (void)setTs_sortItemsLogicallyForAccessibility:(bool)arg1;
+- (bool)ts_sortItemsLogicallyForAccessibility;
 
 @end

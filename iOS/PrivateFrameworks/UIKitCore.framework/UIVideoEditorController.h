@@ -17,8 +17,6 @@
 @property (nonatomic, copy) NSString *videoPath;
 @property (nonatomic) long long videoQuality;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)canEditVideoAtPath:(id)arg1;
 
 - (void)_autoDismiss;
@@ -34,9 +32,6 @@
 - (void)_setupControllers;
 - (id)_valueForProperty:(id)arg1;
 - (id)_videoURL;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)editVideoViewController:(id)arg1 didFailWithError:(id)arg2;
 - (void)editVideoViewController:(id)arg1 didTrimVideoWithOptions:(id)arg2;
 - (void)editVideoViewControllerDidCancel:(id)arg1;

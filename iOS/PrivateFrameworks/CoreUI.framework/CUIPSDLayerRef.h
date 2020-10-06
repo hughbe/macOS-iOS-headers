@@ -6,6 +6,7 @@
 
 - (id)colorFill;
 - (struct CGImage { }*)createCGImage;
+- (void)dealloc;
 - (id)fillSample;
 - (id)gradient;
 - (id)image;

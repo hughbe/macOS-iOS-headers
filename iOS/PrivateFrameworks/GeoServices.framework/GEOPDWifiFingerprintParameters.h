@@ -30,7 +30,10 @@
 - (id)dictionaryRepresentation;
 - (bool)hasMaxLabels;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)maxLabels;
 - (id)measurementAtIndex:(unsigned long long)arg1;
 - (id)measurements;

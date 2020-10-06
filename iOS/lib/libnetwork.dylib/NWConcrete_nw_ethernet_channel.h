@@ -38,13 +38,6 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)close;
-- (void)closeChannel:(int)arg1;
-- (bool)createChannel;
 - (void)dealloc;
-- (id)initWithEtherType:(unsigned short)arg1 interface:(id)arg2 nw_context:(id)arg3;
-- (bool)matchesNexusInstance:(id)arg1;
-- (void)resetFlow:(id)arg1;
-- (void)updateClientState:(int)arg1 error:(id)arg2;
 
 @end

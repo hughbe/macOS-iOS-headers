@@ -20,18 +20,7 @@
         unsigned int read_latLng : 1; 
         unsigned int read_modeShield : 1; 
         unsigned int read_styleAttributes : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_artwork : 1; 
-        unsigned int wrote_color : 1; 
-        unsigned int wrote_directionName : 1; 
-        unsigned int wrote_headsign : 1; 
-        unsigned int wrote_latLng : 1; 
-        unsigned int wrote_modeShield : 1; 
-        unsigned int wrote_styleAttributes : 1; 
-        unsigned int wrote_time : 1; 
-        unsigned int wrote_tripId : 1; 
-        unsigned int wrote_bearing : 1; 
-        unsigned int wrote_speed : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _headsign;
     GEOLatLng * _latLng;
@@ -89,13 +78,6 @@
 + (id)transitVehiclePositionForPlaceData:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readArtwork;
-- (void)_readColor;
-- (void)_readDirectionName;
-- (void)_readHeadsign;
-- (void)_readLatLng;
-- (void)_readModeShield;
-- (void)_readStyleAttributes;
 - (id)artwork;
 - (id)artworkDataSource;
 - (float)bearing;
@@ -125,7 +107,10 @@
 - (id)headsign;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)latLng;
 - (void)mergeFrom:(id)arg1;
 - (id)modeShield;

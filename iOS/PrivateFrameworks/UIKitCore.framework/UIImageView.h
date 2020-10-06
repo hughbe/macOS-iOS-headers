@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIImageView : UIView <DebugHierarchyObject_Fallback, UIAccessibilityContentSizeCategoryImageAdjusting, UIAccessibilityContentSizeCategoryImageAdjustingInternal, _UIImageContentEffect, _UIImageContentLayoutTarget> {
+@interface UIImageView : UIView <NUCrossFadeViewAnimatable, UIAccessibilityContentSizeCategoryImageAdjusting, UIAccessibilityContentSizeCategoryImageAdjustingInternal, _UIImageContentEffect, _UIImageContentLayoutTarget> {
     bool  __animatesContents;
     bool  __symbolImagesIgnoreAccessibilitySizes;
     bool  _adjustsImageWhenAncestorFocused;
@@ -20,10 +20,12 @@
         unsigned int suppressPixelAlignment : 1; 
         unsigned int previousPixelAlignment : 1; 
         unsigned int previousEdgeAntialiasing : 1; 
+        unsigned int actionForLayerForKeyOverridden : 1; 
     }  _imageViewFlags;
     long long  _lastResolvedLayoutDirectionTrait;
     UITraitCollection * _lastResolvedTraitCollection;
     bool  _masksFocusEffectToContents;
+    _UIImageContentLayout * _pendingImageContentLayout;
     double  _previousBaselineOffsetFromBottom;
     double  _previousFirstBaselineOffsetFromTop;
     id  _storage;
@@ -35,11 +37,13 @@
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } _edgeInsetsForEffects;
 @property (setter=_setEdgeInsetsForEffectsAreValid:, nonatomic) bool _edgeInsetsForEffectsAreValid;
 @property (nonatomic, readonly) bool _hasContentGravity;
+@property (nonatomic, readonly) _UIImageLoader *_imageLoader;
 @property (nonatomic, readonly) _UIStackedImageContainerView *_layeredImageContainer;
 @property (setter=_setLayeredImageCornerRadius:, nonatomic) double _layeredImageCornerRadius;
 @property (nonatomic, readonly) bool _layoutShouldFlipHorizontalOrientations;
 @property (setter=_setMasksTemplateImages:, nonatomic) bool _masksTemplateImages;
 @property (setter=_setOverridingSymbolConfiguration:, nonatomic, retain) UIImageSymbolConfiguration *_overridingSymbolConfiguration;
+@property (setter=_setPlaceholderView:, nonatomic, retain) UIView *_placeholderView;
 @property (setter=_setSuppressPixelAlignment:, nonatomic) bool _suppressPixelAlignment;
 @property (setter=_setSymbolImagesIgnoreAccessibilitySizes:, nonatomic) bool _symbolImagesIgnoreAccessibilitySizes;
 @property (setter=_setTemplateImageRenderingEffects:, nonatomic) unsigned long long _templateImageRenderingEffects;
@@ -74,6 +78,7 @@
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (bool)_canReuseIOSurface:(struct __IOSurface { }*)arg1 forRenderingCIImageWithIOSurfaceProperties:(id)arg2;
++ (id)_sharedDecodingQueue;
 + (id)_surfacePropertiesForRenderingCIImageWithSize:(struct CGSize { double x1; double x2; })arg1 pixelFormat:(unsigned int)arg2 bytesPerElement:(unsigned long long)arg3;
 
 - (void).cxx_destruct;
@@ -97,6 +102,7 @@
 - (id)_currentAnimationKeyframeImage;
 - (id)_currentHighlightedImage;
 - (id)_currentImage;
+- (void)_decodeQ_imageLoader:(id)arg1 decodeImage:(id)arg2 layout:(id)arg3;
 - (id)_decompressingImageForType:(unsigned long long)arg1;
 - (long long)_defaultRenderingMode;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
@@ -114,23 +120,31 @@
 - (bool)_hasContentGravity;
 - (id)_imageContentGuideAllowingCreation:(bool)arg1;
 - (void)_imageContentParametersDidChange;
+- (id)_imageLoader;
 - (id)_imageResolvingTraitCollectionForTraitCollection:(id)arg1 layoutDirection:(long long)arg2;
 - (struct CGSize { double x1; double x2; })_intrinsicSizeWithinSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)_invalidateImageLayouts;
 - (void)_invalidateTemplateSettings;
 - (bool)_isHasBaselinePropertyChangeable;
+- (void)_kickoffQ_beginLoadingWithImageLoader:(id)arg1;
 - (id)_layeredImageContainer;
 - (double)_layeredImageCornerRadius;
 - (id)_layoutForImage:(id)arg1 inSize:(struct CGSize { double x1; double x2; })arg2;
 - (id)_layoutForImage:(id)arg1 inSize:(struct CGSize { double x1; double x2; })arg2 cachePerSize:(bool)arg3 forBaselineOffset:(bool)arg4;
 - (bool)_layoutShouldFlipHorizontalOrientations;
+- (void)_loadImage:(id)arg1 delegate:(id)arg2;
+- (void)_loadImageWithURL:(id)arg1;
+- (void)_mainQ_beginLoadingIfApplicable;
+- (void)_mainQ_imageLoader:(id)arg1 finishedOrSkippedDecodingImage:(id)arg2 layout:(id)arg3;
+- (void)_mainQ_imageLoader:(id)arg1 finishedWithImage:(id)arg2 error:(id)arg3;
+- (void)_mainQ_resetForLoader:(id)arg1 delegate:(id)arg2;
 - (bool)_masksTemplateImages;
 - (bool)_needsImageEffectsForImage:(id)arg1;
 - (bool)_needsImageEffectsForImage:(id)arg1 suppressColorizing:(bool)arg2;
 - (id)_overridingSymbolConfiguration;
+- (id)_placeholderView;
 - (bool)_recomputePretilingState;
 - (id)_renditionForSource:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2 withCGImageProvider:(id /* block */)arg3 lazy:(bool)arg4;
-- (bool)_resolveImageForTrait:(id)arg1;
 - (bool)_resolveImageForTrait:(id)arg1 previouslyDisplayedImage:(id)arg2;
 - (id)_resolvedImageFromImage:(id)arg1;
 - (id)_resolvedImageFromImage:(id)arg1 forTrait:(id)arg2;
@@ -147,6 +161,7 @@
 - (void)_setMasksTemplateImages:(bool)arg1;
 - (void)_setOverlayContentView:(id)arg1;
 - (void)_setOverridingSymbolConfiguration:(id)arg1;
+- (void)_setPlaceholderView:(id)arg1;
 - (void)_setSuppressPixelAlignment:(bool)arg1;
 - (void)_setSymbolImagesIgnoreAccessibilitySizes:(bool)arg1;
 - (void)_setTemplateImageRenderingEffects:(unsigned long long)arg1;
@@ -154,6 +169,7 @@
 - (bool)_shouldAnimatePropertyWithKey:(id)arg1;
 - (bool)_shouldInvalidateBaselineConstraintsForSize:(struct CGSize { double x1; double x2; })arg1 oldSize:(struct CGSize { double x1; double x2; })arg2;
 - (bool)_shouldTreatImageAsTemplate:(id)arg1;
+- (void)_stopLoading;
 - (bool)_suppressPixelAlignment;
 - (id)_symbolConfigurationForImage:(id)arg1;
 - (bool)_symbolImagesIgnoreAccessibilitySizes;
@@ -166,25 +182,20 @@
 - (void)_updateLayeredImageIsFocusedWithFocusedView:(id)arg1 focusAnimationCoordinator:(id)arg2;
 - (void)_updateMasking;
 - (void)_updatePretiledImageCacheForImage:(id)arg1;
+- (void)_updateResolvedImage;
 - (void)_updateState;
 - (void)_updateTemplateProperties;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (void)_updateVisibilityAndFrameOfPlaceholderView;
 - (bool)adjustsImageSizeForAccessibilityContentSizeCategory;
 - (bool)adjustsImageWhenAncestorFocused;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })alignmentRectInsets;
 - (double)animationDuration;
 - (id)animationImages;
 - (long long)animationRepeatCount;
+- (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (unsigned long long)defaultAccessibilityTraits;
+- (void)displayLayer:(id)arg1;
 - (unsigned int)drawMode;
 - (void)drawRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
@@ -225,6 +236,7 @@
 - (void)setContentScaleFactor:(double)arg1;
 - (void)setDrawMode:(unsigned int)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)setHidden:(bool)arg1;
 - (void)setHighlighted:(bool)arg1;
 - (void)setHighlightedAnimationImages:(id)arg1;
 - (void)setHighlightedImage:(id)arg1;
@@ -242,9 +254,69 @@
 - (void)traitCollectionDidChange:(id)arg1;
 - (bool)useBlockyMagnificationInClassic;
 
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
+
+- (void)_lp_setTintColor:(id)arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_extractPlayOverlayBackgroundImageFromCenter:(struct CGPoint { double x1; double x2; })arg1 asynchronously:(bool)arg2 handler:(id /* block */)arg3;
+
 // Image: /System/Library/PrivateFrameworks/AppSupportUI.framework/AppSupportUI
 
 - (long long)_nui_baselineViewType;
 - (bool)_nui_isImageView;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
++ (id)cps_imageViewWithImage:(id)arg1 tintColor:(id)arg2 backgroundColor:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/HealthRecordsUI.framework/HealthRecordsUI
+
++ (double)largeLogoViewDimension;
++ (double)logoDimensionForImageViewSize:(struct CGSize { double x1; double x2; })arg1;
++ (double)mediumLogoViewDimension;
++ (double)smallLogoViewDimension;
+
+- (void)applyAccountLogoStyleForIsMonogram:(bool)arg1 imageViewSize:(struct CGSize { double x1; double x2; })arg2;
+
+// Image: /System/Library/PrivateFrameworks/MaterialKit.framework/MaterialKit
+
+- (void)mt_applyVisualStyling:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoMediaBridgeUI.framework/NanoMediaBridgeUI
+
+- (id)_imageFromImage:(id)arg1 scaledToSize:(struct CGSize { double x1; double x2; })arg2;
+- (void)setArtworkCatalog:(id)arg1 withPlaceholderImage:(id)arg2 withDesiredSize:(struct CGSize { double x1; double x2; })arg3;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
+- (id)ntk_createNightMaskForDate:(id)arg1 offset:(struct CGPoint { double x1; double x2; })arg2;
+- (struct CGPoint { double x1; double x2; })ntk_pointForCoordinates:(struct { double x1; double x2; })arg1 offset:(struct CGPoint { double x1; double x2; })arg2;
+
+// Image: /System/Library/PrivateFrameworks/NewsUI.framework/NewsUI
+
+- (void)nu_crossFadeViewClearVisibleState;
+- (void)nu_crossFadeViewSetValue:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })alignmentRect;
+- (struct CGSize { double x1; double x2; })alignmentSize;
+- (void)setAlignmentRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/SearchToShareCore.framework/SearchToShareCore
+
+- (void)sts_addAnimationsForSTSAnimatedImageInfo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SensorKitUI.framework/SensorKitUI
+
++ (id)skui_imageViewForAuthGroup:(id)arg1 parentSize:(struct CGSize { double x1; double x2; })arg2;
+
+// Image: /System/Library/PrivateFrameworks/TouchML.framework/TouchML
+
++ (void)tmlLoadCategory;
+
+- (void)tmlTraitCollectionDidChange:(id)arg1;
 
 @end

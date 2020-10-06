@@ -17,16 +17,12 @@
 @property (readonly) long long port;
 @property (readonly, copy) NSString *type;
 
+// Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+
 + (id)dataFromTXTRecordDictionary:(id)arg1;
 + (id)dictionaryFromTXTRecordData:(id)arg1;
 
 - (id)TXTRecordData;
-- (void)_dispatchCallBackWithError:(struct { long long x1; int x2; })arg1;
-- (bool)_includesAWDL;
-- (struct __CFNetService { }*)_internalNetService;
-- (void)_internal_publishWithOptions:(unsigned long long)arg1;
-- (id)_monitors;
-- (void)_scheduleInDefaultRunLoopForMode:(id)arg1;
 - (void)_setIncludesAWDL:(bool)arg1;
 - (id)addresses;
 - (void)dealloc;
@@ -43,11 +39,9 @@
 - (id)initWithDomain:(id)arg1 type:(id)arg2 name:(id)arg3 port:(int)arg4;
 - (bool)isEqual:(id)arg1;
 - (id)name;
-- (id)normalizedType;
 - (long long)port;
 - (void)publish;
 - (void)publishWithOptions:(unsigned long long)arg1;
-- (void)publishWithServer:(unsigned long long)arg1;
 - (void)removeFromRunLoop:(id)arg1 forMode:(id)arg2;
 - (void)resolve;
 - (void)resolveWithTimeout:(double)arg1;
@@ -59,5 +53,10 @@
 - (void)stop;
 - (void)stopMonitoring;
 - (id)type;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_dataFromDictionary:(id)arg1;
++ (id)cat_dictionaryFromData:(id)arg1;
 
 @end

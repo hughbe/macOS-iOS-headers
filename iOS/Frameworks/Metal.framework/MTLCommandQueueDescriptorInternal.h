@@ -6,6 +6,7 @@
     NSObject<OS_dispatch_queue> * _commitQueue;
     bool  _commitSynchronously;
     NSObject<OS_dispatch_queue> * _completionQueue;
+    unsigned long long  _devicePartition;
     bool  _disableCrossQueueHazardTracking;
     unsigned long long  _maxCommandBufferCount;
     bool  _openGLQueue;
@@ -18,6 +19,7 @@
 - (bool)commitSynchronously;
 - (id)completionQueue;
 - (id)description;
+- (unsigned long long)devicePartition;
 - (bool)disableCrossQueueHazardTracking;
 - (id)formattedDescription:(unsigned long long)arg1;
 - (id)init;
@@ -27,6 +29,7 @@
 - (void)setCommitQueue:(id)arg1;
 - (void)setCommitSynchronously:(bool)arg1;
 - (void)setCompletionQueue:(id)arg1;
+- (void)setDevicePartition:(unsigned long long)arg1;
 - (void)setDisableCrossQueueHazardTracking:(bool)arg1;
 - (void)setIsOpenGLQueue:(bool)arg1;
 - (void)setMaxCommandBufferCount:(unsigned long long)arg1;

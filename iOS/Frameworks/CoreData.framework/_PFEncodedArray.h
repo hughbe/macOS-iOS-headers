@@ -14,7 +14,6 @@
 - (void)_replaceObject:(id)arg1 atIndex:(unsigned long long)arg2;
 - (bool)_tryRetain;
 - (const id*)_values;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copy;
 - (unsigned long long)count;

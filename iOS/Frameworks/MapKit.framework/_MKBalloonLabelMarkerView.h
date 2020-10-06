@@ -14,9 +14,12 @@
     double  _smallBalloonScaleFactor;
 }
 
+@property (getter=_balloonCalloutShouldCenterWhenOffscreen, nonatomic, readonly) bool balloonCalloutShouldCenterWhenOffscreen;
+@property (getter=_balloonCalloutShouldShowArrow, nonatomic, readonly) bool balloonCalloutShouldShowArrow;
 @property (getter=_balloonCalloutStyle, nonatomic, readonly) long long balloonCalloutStyle;
 @property (getter=_balloonContentView, nonatomic, readonly) UIView *balloonContentView;
 @property (getter=_balloonImage, nonatomic, readonly) UIImage *balloonImage;
+@property (getter=_balloonImageTintColor, nonatomic, readonly) UIColor *balloonImageTintColor;
 @property (getter=_balloonInnerStrokeColor, nonatomic, readonly) UIColor *balloonInnerStrokeColor;
 @property (getter=_balloonStrokeColor, nonatomic, readonly) UIColor *balloonStrokeColor;
 @property (getter=_balloonTintColor, nonatomic, readonly) UIColor *balloonTintColor;
@@ -24,8 +27,6 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
-
-+ (Class)calloutViewClass;
 
 - (void).cxx_destruct;
 - (void)_addAnchorDotViewIfNeeded;

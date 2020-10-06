@@ -11,7 +11,7 @@
     int  _downloadState;
     bool  _enabled;
     bool  _finished;
-    NSTimer * _geodCrashTimer;
+    NSObject<OS_dispatch_source> * _geodCrashTimer;
     bool  _hadEnoughTilesToDisableNetworking;
     double  _maneuverSizeInMeters;
     double  _mostRecentErrorTime;
@@ -42,7 +42,7 @@
 - (void)_cancelRequestsInPast;
 - (void)_cancelStep:(id)arg1;
 - (id)_descriptionForStep:(id)arg1;
-- (void)_geodCrashed:(id)arg1;
+- (void)_geodCrashed;
 - (void)_incrementErrorForStep:(id)arg1;
 - (bool)_loadStep:(id)arg1 requireWiFi:(bool)arg2;
 - (void)_performNextRequests;

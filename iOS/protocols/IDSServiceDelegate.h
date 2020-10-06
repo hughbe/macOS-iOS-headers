@@ -27,6 +27,7 @@
 - (void)service:(IDSService *)arg1 devicesChanged:(NSArray *)arg2;
 - (void)service:(IDSService *)arg1 didSendOpportunisticDataWithIdentifier:(NSString *)arg2 toIDs:(NSArray *)arg3;
 - (void)service:(void *)arg1 didSwitchActivePairedDevice:(void *)arg2 acknowledgementBlock:(void *)arg3; // needs 3 arg types, found 7: IDSService *, IDSDevice *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
+- (void)service:(IDSService *)arg1 linkedDevicesChanged:(NSArray *)arg2;
 - (void)service:(IDSService *)arg1 nearbyDevicesChanged:(NSArray *)arg2;
 - (void)serviceAllowedTrafficClassifiersDidReset:(IDSService *)arg1;
 - (void)serviceSpaceDidBecomeAvailable:(IDSService *)arg1;

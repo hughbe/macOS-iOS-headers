@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSMutableOrderedSet : NSOrderedSet
+@interface NSMutableOrderedSet : NSOrderedSet <FCOrderedMutableCollectionAdditions>
 
 // Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
 
@@ -82,5 +82,35 @@
 - (void)applyDifference:(id)arg1;
 - (void)filterUsingPredicate:(id)arg1;
 - (void)sortUsingDescriptors:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
+- (void)ef_insertObjects:(id)arg1 after:(id)arg2;
+- (void)ef_insertObjects:(id)arg1 before:(id)arg2;
+- (void)ef_removeObjectsInArray:(id)arg1;
+- (id)ef_uniquedObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (void)fc_insertObjects:(id)arg1 atIndex:(unsigned long long)arg2;
+- (id)fc_mergeSortedOrderedCollection:(id)arg1 usingComparator:(id /* block */)arg2;
+- (id)fc_removeAndReturnObjectsPassingTest:(id /* block */)arg1;
+- (void)fc_transformWithBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (void)ic_addNonNilObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (void)pl_addObjectsFromArray:(id)arg1;
+- (void)pl_insertObjects:(id)arg1 atIndex:(unsigned long long)arg2;
+- (void)pl_removeObjectsInArray:(id)arg1;
+- (void)pl_removeObjectsPassingTest:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (void)safari_insertObject:(id)arg1 inSortedOrderUsingComparator:(id /* block */)arg2;
+- (bool)safari_isSortedInAscendingOrDescendingOrderUsingComparator:(id /* block */)arg1;
 
 @end

@@ -2,39 +2,32 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface PFCloudKitImporterFetchRecordsWorkItem : PFCloudKitImporterWorkItem <PFCloudKitSerializerDelegate> {
-    NSMutableDictionary * _assetPathToSafeSaveURL;
-    NSMutableArray * _encounteredErrors;
-    unsigned long long  _totalAssetBytes;
-    NSMutableArray * _updatedRecordIDs;
-    NSMutableArray * _updatedRecords;
+@interface PFCloudKitImporterFetchRecordsWorkItem : PFCloudKitImportRecordsWorkItem {
+    NSMutableDictionary * _failedObjectIDsToError;
+    NSMutableDictionary * _operationsToExecute;
+    NSMutableDictionary * _recordIDToObjectID;
+    NSMutableArray * _updatedObjectIDs;
 }
 
-@property (nonatomic, readonly) NSDictionary *assetPathToSafeSaveURL;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
-@property (nonatomic, readonly) NSArray *encounteredErrors;
-@property (readonly) unsigned long long hash;
-@property (readonly) Class superclass;
-@property (nonatomic, readonly) unsigned long long totalAssetBytes;
-@property (nonatomic, readonly) NSArray *updatedRecordIDs;
-@property (nonatomic, readonly) NSArray *updatedRecords;
+@property (nonatomic, readonly) NSDictionary *failedObjectIDsToError;
+@property (nonatomic, readonly) NSDictionary *operationsToExecute;
+@property (nonatomic, readonly) NSDictionary *recordIDToObjectID;
+@property (nonatomic, readonly) NSArray *updatedObjectIDs;
 
-- (void)addUpdatedRecord:(id)arg1;
-- (id)assetPathToSafeSaveURL;
-- (void)cloudKitSerializer:(id)arg1 failedToUpdateRelationship:(id)arg2 withError:(id)arg3;
-- (id)cloudKitSerializer:(id)arg1 safeSaveURLForAsset:(id)arg2;
+- (id)batchRecordIDsIfNecessary:(id)arg1;
+- (id)createMirroringResultForRequest:(id)arg1 success:(bool)arg2 madeChanges:(bool)arg3 error:(id)arg4;
 - (void)dealloc;
-- (void)doWorkWithCompletion:(id /* block */)arg1;
-- (id)encounteredErrors;
+- (id)description;
+- (id)entityNameToAttributesToUpdate;
+- (id)entityNameToRelationshipsToUpdate;
+- (void)executeImportOperationsAndAccumulateRecordsWithManagedObjectContext:(id)arg1 completion:(id /* block */)arg2;
+- (id)failedObjectIDsToError;
 - (void)fetchFinishedForRecord:(id)arg1 withID:(id)arg2 error:(id)arg3;
-- (void)fetchOperationFinishedWithError:(id)arg1 completion:(id /* block */)arg2;
+- (void)fetchRecordsOperationWithID:(id)arg1 finishedWithError:(id)arg2 completion:(id /* block */)arg3;
 - (id)fetchRecordsRequest;
 - (id)initWithOptions:(id)arg1 request:(id)arg2;
-- (id)newMirroringResultByApplyingAccumulatedChanges:(id*)arg1;
-- (void)removeDownloadedAssetFiles;
-- (unsigned long long)totalAssetBytes;
-- (id)updatedRecordIDs;
-- (id)updatedRecords;
+- (id)operationsToExecute;
+- (id)recordIDToObjectID;
+- (id)updatedObjectIDs;
 
 @end

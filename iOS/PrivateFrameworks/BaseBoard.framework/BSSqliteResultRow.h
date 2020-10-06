@@ -14,12 +14,7 @@
 @property (readonly) Class superclass;
 @property (getter=isValid, nonatomic, readonly) bool valid;
 
-+ (id)resultRowWithStatement:(struct sqlite3_stmt { }*)arg1;
-
 - (void).cxx_destruct;
-- (id)_columnNames;
-- (unsigned long long)_indexForKey:(id)arg1;
-- (id)_initWithStatement:(struct sqlite3_stmt { }*)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;
 - (id)dataAtIndex:(unsigned long long)arg1;

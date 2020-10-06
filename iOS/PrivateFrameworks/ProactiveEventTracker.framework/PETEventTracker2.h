@@ -5,56 +5,82 @@
 @interface PETEventTracker2 : NSObject {
     PETAggregateState * _aggregateState;
     PETConfig * _config;
-    NSUUID * _deviceId;
-    bool  _isInternalDevice;
-    bool  _isWhitelistEnabled;
-    NSDate * _lastCheckConfigTime;
+    bool  _inited;
+    bool  _isAsyncEnabled;
+    bool  _isDaemon;
     NSString * _logStoresDir;
+    NSObject<OS_dispatch_queue> * _loggingQueue;
+    struct _opaque_pthread_mutex_t { 
+        long long __sig; 
+        BOOL __opaque[56]; 
+    }  _loggingQueueLock;
+    int  _loggingQueueSize;
+    NSDictionary * _pet1HistogramBuckets;
+    RBSAssertion * _rbsAssertion;
+    struct _opaque_pthread_mutex_t { 
+        long long __sig; 
+        BOOL __opaque[56]; 
+    }  _rbsAssertionLock;
+    bool  _rbsShouldInvalidate;
+    RBSTarget * _rbsTarget;
     NSString * _rootDir;
     NSMutableDictionary * _storeCache;
 }
 
-@property (retain) PETAggregateState *aggregateState;
+@property (nonatomic, readonly) PETAggregateState *aggregateState;
 @property (retain) PETConfig *config;
+@property bool isAsyncEnabled;
 @property (retain) NSString *logStoresDir;
+@property (retain) NSDictionary *pet1HistogramBuckets;
 @property (retain) NSString *rootDir;
 @property (retain) NSMutableDictionary *storeCache;
 
++ (bool)_isPET1Key:(id)arg1;
++ (id)defaultRootDir;
++ (id)formattedTextForAggregatedMessage:(id)arg1;
++ (id)formattedTextForUnaggregatedMessage:(id)arg1 messageGroup:(id)arg2 config:(id)arg3;
 + (double)roundToSigFigs:(double)arg1 sigFigs:(unsigned long long)arg2;
 + (id)sharedInstance;
 + (unsigned int)typeIdForMessageName:(id)arg1;
 
 - (void).cxx_destruct;
-- (bool)_canLog:(id)arg1;
-- (void)_checkConfigUpdate;
-- (bool)_checkSampling:(id)arg1;
-- (id)_filteredDataForMessage:(id)arg1 withWhitelist:(id)arg2;
+- (void)_dispatchAsyncForLogging:(id /* block */)arg1 txnName:(const char *)arg2;
+- (id)_findBucketsForPET1Key:(id)arg1;
 - (id)_getLogStore:(id)arg1;
+- (void)_init;
+- (void)_initWithRootDir:(id)arg1 config:(id)arg2;
+- (void)_logMessage:(id)arg1 subGroup:(id)arg2;
 - (double)_roundToSigFigs:(double)arg1 forRawMessage:(id)arg2;
-- (id)_writeMessage:(id)arg1 withWhitelist:(id)arg2;
+- (void)_runBlockWithRBSAssertion:(id /* block */)arg1;
+- (void)_trackDistributionForMessage:(id)arg1 value:(double)arg2;
+- (void)_trackScalarForMessage:(id)arg1 count:(int)arg2 overwrite:(bool)arg3;
+- (id)_writeMessage:(id)arg1;
 - (id)aggregateState;
-- (bool)checkMessageSampling:(id)arg1;
-- (bool)checkSampling:(id)arg1 deviceId:(id)arg2;
+- (void)clearLogStores;
 - (id)config;
 - (void)enumerateAggregatedMessagesWithBlock:(id /* block */)arg1 clearStore:(bool)arg2;
 - (void)enumerateMessageGroups:(id /* block */)arg1;
 - (void)enumerateMessagesWithBlock:(id /* block */)arg1 clearStore:(bool)arg2;
 - (void)enumerateMessagesWithBlock:(id /* block */)arg1 messageGroup:(id)arg2 clearStore:(bool)arg3;
-- (void)forceEnableWhitelist;
-- (id)initWithRootDir:(id)arg1;
+- (id)initForTestingWithRootDir:(id)arg1;
+- (id)initWithAsyncEnabled:(bool)arg1;
 - (id)initWithRootDir:(id)arg1 config:(id)arg2;
+- (bool)isAsyncEnabled;
 - (void)logMessage:(id)arg1;
+- (void)logMessage:(id)arg1 subGroup:(id)arg2;
 - (id)logStoresDir;
-- (void)markAsPublicDevice;
+- (id)pet1HistogramBuckets;
 - (id)rootDir;
-- (void)setAggregateState:(id)arg1;
 - (void)setConfig:(id)arg1;
+- (void)setIsAsyncEnabled:(bool)arg1;
 - (void)setLogStoresDir:(id)arg1;
+- (void)setPet1HistogramBuckets:(id)arg1;
 - (void)setRootDir:(id)arg1;
 - (void)setStoreCache:(id)arg1;
 - (id)storeCache;
 - (void)trackDistributionForMessage:(id)arg1 value:(double)arg2;
 - (void)trackScalarForMessage:(id)arg1;
 - (void)trackScalarForMessage:(id)arg1 count:(int)arg2;
+- (void)trackScalarForMessage:(id)arg1 updateCount:(int)arg2;
 
 @end

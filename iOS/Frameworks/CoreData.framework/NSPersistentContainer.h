@@ -25,7 +25,8 @@
 + (id)persistentContainerWithPath:(id)arg1 modelNamed:(id)arg2;
 + (Class)persistentStoreDescriptionClass;
 
-- (void)_loadStoreDescriptons:(id)arg1 withCompletionHandler:(id /* block */)arg2;
+- (id)_createDefaultStoreDescriptions;
+- (void)_loadStoreDescriptions:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)dealloc;
 - (id)init;
 - (id)initWithName:(id)arg1;

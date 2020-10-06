@@ -14,6 +14,8 @@
 @property (nonatomic, readonly) bool isiMessageSupported;
 @property (readonly) Class superclass;
 
++ (bool)shouldUseLegacyMessages;
+
 - (bool)areTelephonyCallsSupported;
 - (bool)isFaceTimeAudioSupported;
 - (bool)isFaceTimeVideoSupported;

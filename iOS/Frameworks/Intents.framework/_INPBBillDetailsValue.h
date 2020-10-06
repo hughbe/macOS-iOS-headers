@@ -3,7 +3,6 @@
  */
 
 @interface _INPBBillDetailsValue : PBCodable <NSCopying, NSSecureCoding, _INPBBillDetailsValue> {
-    bool  __encodeLegacyGloryData;
     _INPBCurrencyAmountValue * _amountDue;
     _INPBBillPayeeValue * _billPayee;
     int  _billType;
@@ -19,7 +18,6 @@
     _INPBValueMetadata * _valueMetadata;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBCurrencyAmountValue *amountDue;
 @property (nonatomic, retain) _INPBBillPayeeValue *billPayee;
 @property (nonatomic) int billType;
@@ -48,8 +46,6 @@
 - (void).cxx_destruct;
 - (int)StringAsBillType:(id)arg1;
 - (int)StringAsStatus:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)amountDue;
 - (id)billPayee;
 - (int)billType;

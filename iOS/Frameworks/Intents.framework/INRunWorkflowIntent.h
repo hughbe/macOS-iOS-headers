@@ -10,6 +10,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly, copy) INSpeakableString *workflow;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 - (id)_categoryVerb;
 - (id)_dictionaryRepresentation;
 - (long long)_intentCategory;
@@ -26,5 +28,13 @@
 - (void)setWorkflow:(id)arg1;
 - (id)verb;
 - (id)workflow;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (id)initWithWorkflowReference:(id)arg1;
+- (id)initWithWorkflowReference:(id)arg1 includeIcon:(bool)arg2;
+- (id)initWithWorkflowReference:(id)arg1 includeIcon:(bool)arg2 iconDrawerContext:(id)arg3;
+- (void)setIconForAssociatedApplicationInWorkflow:(id)arg1;
+- (id)workflowForIntentInDatabase:(id)arg1;
 
 @end

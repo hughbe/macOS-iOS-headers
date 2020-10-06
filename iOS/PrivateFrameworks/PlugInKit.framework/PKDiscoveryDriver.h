@@ -31,6 +31,7 @@
 @property (retain) NSObject<OS_dispatch_queue> *sync;
 
 - (void).cxx_destruct;
+- (void)_performWithPreviousResults:(id)arg1 forceNotify:(bool)arg2 uninstalledProxies:(id)arg3;
 - (int)annotationNotifyToken;
 - (id)attributes;
 - (void)cancel;

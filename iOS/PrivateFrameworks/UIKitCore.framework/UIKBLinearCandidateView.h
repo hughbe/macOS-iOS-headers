@@ -4,8 +4,6 @@
 
 @interface UIKBLinearCandidateView : UIKBHandwritingCandidateView
 
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (unsigned long long)focusableVariantCount;
 - (void)refreshSelectedCandidate;
 - (void)updateCandidateKey;

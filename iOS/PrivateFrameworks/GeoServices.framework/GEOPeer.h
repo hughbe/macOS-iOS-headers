@@ -8,6 +8,7 @@
     GEODaemon * _daemon;
     NSString * _debugIdentifier;
     NSMutableDictionary * _entitlementCache;
+    NSMutableDictionary * _entitlementValueCache;
     NSString * _peerID;
     <NSObject> * _peerTransaction;
     bool  _preloading;
@@ -46,5 +47,6 @@
 - (void)setEntitlementCache:(id)arg1;
 - (void)setPreloading:(bool)arg1;
 - (void)setPreloadingExclusively:(bool)arg1;
+- (id)valueForEntitlement:(id)arg1;
 
 @end

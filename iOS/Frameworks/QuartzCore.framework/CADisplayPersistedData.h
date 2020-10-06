@@ -22,13 +22,13 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)latencies;
-- (double)latencyForUUID:(id)arg1 andMode:(struct Mode { union { struct { unsigned int x_1_2_1 : 16; unsigned int x_1_2_2 : 16; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 23; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })arg2;
-- (struct Mode { union { struct { unsigned int x_1_2_1 : 16; unsigned int x_1_2_2 : 16; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 23; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })preferredModeForUUID:(id)arg1;
+- (double)latencyForUUID:(id)arg1 andMode:(struct Mode { union { struct { unsigned int x_1_2_1 : 14; unsigned int x_1_2_2 : 14; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 24; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 5; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })arg2;
+- (struct Mode { union { struct { unsigned int x_1_2_1 : 14; unsigned int x_1_2_2 : 14; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 24; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 5; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })preferredModeForUUID:(id)arg1;
 - (id)preferredModes;
 - (void)save;
 - (void)setLatencies:(id)arg1;
-- (void)setLatency:(double)arg1 forUUID:(id)arg2 andMode:(struct Mode { union { struct { unsigned int x_1_2_1 : 16; unsigned int x_1_2_2 : 16; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 23; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })arg3;
-- (void)setPreferredMode:(struct Mode { union { struct { unsigned int x_1_2_1 : 16; unsigned int x_1_2_2 : 16; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 23; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })arg1 forUUID:(id)arg2;
+- (void)setLatency:(double)arg1 forUUID:(id)arg2 andMode:(struct Mode { union { struct { unsigned int x_1_2_1 : 14; unsigned int x_1_2_2 : 14; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 24; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 5; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })arg3;
+- (void)setPreferredMode:(struct Mode { union { struct { unsigned int x_1_2_1 : 14; unsigned int x_1_2_2 : 14; unsigned int x_1_2_3 : 1; unsigned int x_1_2_4 : 24; unsigned int x_1_2_5 : 1; unsigned int x_1_2_6 : 5; unsigned int x_1_2_7 : 2; unsigned int x_1_2_8 : 1; } x_1_1_1; unsigned long long x_1_1_2; } x1; })arg1 forUUID:(id)arg2;
 - (void)setPreferredModes:(id)arg1;
 - (void)setVersion:(id)arg1;
 - (void)update;

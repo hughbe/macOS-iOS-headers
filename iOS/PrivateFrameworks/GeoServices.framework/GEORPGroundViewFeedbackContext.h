@@ -12,14 +12,7 @@
         unsigned int read_onscreenImageResources : 1; 
         unsigned int read_viewState : 1; 
         unsigned int read_visibleFeatureHandles : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_visiblePlaceMuids : 1; 
-        unsigned int wrote_imageId : 1; 
-        unsigned int wrote_imdataId : 1; 
-        unsigned int wrote_onscreenImageResources : 1; 
-        unsigned int wrote_viewState : 1; 
-        unsigned int wrote_visibleFeatureHandles : 1; 
-        unsigned int wrote_metadataTileBuildId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _imageId;
     unsigned long long  _imdataId;
@@ -60,14 +53,6 @@
 + (Class)visibleFeatureHandleType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsOnscreenImageResource:(id)arg1;
-- (void)_addNoFlagsVisibleFeatureHandle:(id)arg1;
-- (void)_addNoFlagsVisiblePlaceMuid:(unsigned long long)arg1;
-- (void)_readImageId;
-- (void)_readOnscreenImageResources;
-- (void)_readViewState;
-- (void)_readVisibleFeatureHandles;
-- (void)_readVisiblePlaceMuids;
 - (void)addOnscreenImageResource:(id)arg1;
 - (void)addVisibleFeatureHandle:(id)arg1;
 - (void)addVisiblePlaceMuid:(unsigned long long)arg1;
@@ -89,7 +74,10 @@
 - (unsigned long long)imdataId;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)metadataTileBuildId;
 - (id)onscreenImageResourceAtIndex:(unsigned long long)arg1;

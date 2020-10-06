@@ -6,17 +6,20 @@
     NSArray * _actionTypes;
     <CNUIUserActionListDataSource> * _actionsDataSource;
     long long  _actionsOrder;
+    CNContact * _contact;
     <CNContactActionsControllerDelegate> * _delegate;
     NSArray * _modelCancelables;
     NSDictionary * _modelsByActionTypes;
     <CNUINavigationListStyle> * _navigationListStyle;
+    bool  _shouldUseOutlinedActionGlyphStyle;
     UIViewController * _viewController;
 }
 
-@property (nonatomic, copy) NSArray *actionTypes;
+@property (nonatomic, readonly, copy) NSArray *actionTypes;
 @property (nonatomic, retain) <CNUIUserActionListDataSource> *actionsDataSource;
 @property (nonatomic) long long actionsOrder;
 @property (nonatomic) bool actionsReversed;
+@property (nonatomic, retain) CNContact *contact;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <CNContactActionsControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -24,6 +27,7 @@
 @property (nonatomic, retain) NSArray *modelCancelables;
 @property (nonatomic, copy) NSDictionary *modelsByActionTypes;
 @property (nonatomic) <CNUINavigationListStyle> *navigationListStyle;
+@property (nonatomic) bool shouldUseOutlinedActionGlyphStyle;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UIViewController *viewController;
 
@@ -31,17 +35,20 @@
 + (id)supportedActionTypes;
 
 - (void).cxx_destruct;
+- (id)actionForItem:(id)arg1 withImage:(id)arg2;
 - (id)actionTypes;
 - (id)actionsDataSource;
 - (long long)actionsOrder;
 - (bool)actionsReversed;
 - (void)cancelModels;
+- (id)contact;
 - (void)dealloc;
 - (id)delegate;
 - (id)displayedController;
+- (void)generateMenuForItem:(id)arg1 image:(id)arg2 withCurrentList:(id)arg3;
 - (id)imageForActionType:(id)arg1;
 - (id)initWithContact:(id)arg1 actionTypes:(id)arg2;
-- (id)initWithDataSource:(id)arg1 actionTypes:(id)arg2;
+- (id)initWithContact:(id)arg1 dataSource:(id)arg2 actionTypes:(id)arg3;
 - (id)modelCancelables;
 - (id)modelForActionType:(id)arg1;
 - (id)modelsByActionTypes;
@@ -50,15 +57,17 @@
 - (id)navigationListStyle;
 - (void)prepareNavigationListItems;
 - (void)retrieveModels;
-- (void)setActionTypes:(id)arg1;
 - (void)setActionsDataSource:(id)arg1;
 - (void)setActionsOrder:(long long)arg1;
 - (void)setActionsReversed:(bool)arg1;
+- (void)setContact:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setModelCancelables:(id)arg1;
 - (void)setModelsByActionTypes:(id)arg1;
 - (void)setNavigationListStyle:(id)arg1;
+- (void)setShouldUseOutlinedActionGlyphStyle:(bool)arg1;
 - (void)setViewController:(id)arg1;
+- (bool)shouldUseOutlinedActionGlyphStyle;
 - (void)styleUpdated;
 - (id)viewController;
 

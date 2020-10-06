@@ -3,20 +3,36 @@
  */
 
 @interface BSAnimationSettings : NSObject <BSXPCCoding, NSCopying, NSMutableCopying, NSSecureCoding> {
-    double  _delay;
-    double  _duration;
-    double  _frameInterval;
-    float  _speed;
-    CAMediaTimingFunction * _timingFunction;
+    bool  _isSpring;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
+    double  _lock_damping;
+    double  _lock_delay;
+    double  _lock_epsilon;
+    double  _lock_frameInterval;
+    double  _lock_initialVelocity;
+    double  _lock_mass;
+    float  _lock_speed;
+    double  _lock_stiffness;
+    double  _lock_storedDuration;
+    bool  _lock_storedDurationIsDirty;
+    CAMediaTimingFunction * _lock_timingFunction;
+    bool  _mutable;
 }
 
+@property (nonatomic, readonly) double damping;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, readonly) double delay;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) double duration;
+@property (nonatomic, readonly) double epsilon;
 @property (nonatomic, readonly) double frameInterval;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) double initialVelocity;
+@property (nonatomic, readonly) double mass;
 @property (nonatomic, readonly) float speed;
+@property (nonatomic, readonly) double stiffness;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) CAMediaTimingFunction *timingFunction;
 
@@ -29,28 +45,27 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_initWithDuration:(double)arg1 delay:(double)arg2 frameInterval:(double)arg3 timingFunction:(id)arg4 speed:(float)arg5;
-- (void)_setDelay:(double)arg1;
-- (void)_setDuration:(double)arg1;
-- (void)_setFrameInterval:(double)arg1;
-- (void)_setSpeed:(float)arg1;
-- (void)_setTimingFunction:(id)arg1;
 - (void)applyToCAAnimation:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (double)damping;
 - (double)delay;
 - (id)description;
 - (double)duration;
 - (void)encodeWithCoder:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
+- (double)epsilon;
 - (double)frameInterval;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithXPCDictionary:(id)arg1;
+- (double)initialVelocity;
 - (bool)isEqual:(id)arg1;
 - (bool)isSpringAnimation;
+- (double)mass;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (float)speed;
+- (double)stiffness;
 - (id)timingFunction;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore

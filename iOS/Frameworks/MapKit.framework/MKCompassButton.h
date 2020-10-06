@@ -3,7 +3,7 @@
  */
 
 @interface MKCompassButton : UIView {
-    MKCompassView * _compassView;
+    UIView<MKCompassView> * _compassView;
     long long  _compassVisibility;
     MKMapView * _mapView;
     bool  _visible;

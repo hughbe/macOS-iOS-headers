@@ -7,6 +7,7 @@
 
 - (void)guidanceManager:(void *)arg1 announce:(void *)arg2 shortPromptType:(void *)arg3 ignorePromptStyle:(void *)arg4 stage:(void *)arg5 hasSecondaryManeuver:(void *)arg6 completionBlock:(void *)arg7; // needs 7 arg types, found 12: <MNGuidanceManager> *, NSString *, unsigned long long, bool, unsigned long long, bool, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, int, void*
 - (void)guidanceManager:(id <MNGuidanceManager>)arg1 didArriveWithAnnouncement:(NSString *)arg2;
+- (void)guidanceManager:(id <MNGuidanceManager>)arg1 didProcessSpeechEvent:(GEOComposedGuidanceEvent *)arg2;
 - (void)guidanceManager:(id <MNGuidanceManager>)arg1 didStartWithAnnouncement:(NSString *)arg2;
 - (void)guidanceManager:(id <MNGuidanceManager>)arg1 displayManeuverAlertForAnnouncementStage:(unsigned long long)arg2;
 - (void)guidanceManager:(id <MNGuidanceManager>)arg1 displayPrimaryStep:(GEOStep *)arg2 instructions:(NSArray *)arg3 shieldType:(int)arg4 shieldText:(NSString *)arg5 drivingSide:(int)arg6 maneuverStepIndex:(unsigned long long)arg7 isSynthetic:(bool)arg8;
@@ -21,6 +22,7 @@
 - (void)guidanceManager:(id <MNGuidanceManager>)arg1 updatedGuidanceEventFeedback:(MNGuidanceEventFeedback *)arg2;
 - (void)guidanceManager:(id <MNGuidanceManager>)arg1 usePersistentDisplay:(bool)arg2;
 - (void)guidanceManager:(id <MNGuidanceManager>)arg1 willAnnounce:(unsigned long long)arg2 inSeconds:(double)arg3;
+- (void)guidanceManager:(id <MNGuidanceManager>)arg1 willProcessSpeechEvent:(GEOComposedGuidanceEvent *)arg2;
 - (void)guidanceManagerBeginGuidanceUpdate:(id <MNGuidanceManager>)arg1;
 - (void)guidanceManagerDidUpdateProgress:(id <MNGuidanceManager>)arg1 currentStepIndex:(unsigned long long)arg2 distanceUntilSign:(double)arg3 timeUntilSign:(double)arg4;
 - (void)guidanceManagerEndGuidanceUpdate:(id <MNGuidanceManager>)arg1;

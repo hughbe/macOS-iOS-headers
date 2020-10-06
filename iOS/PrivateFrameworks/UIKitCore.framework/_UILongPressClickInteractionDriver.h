@@ -6,6 +6,7 @@
     unsigned long long  _behavior;
     bool  _cancelsTouchesInView;
     double  _clickDownDuration;
+    unsigned long long  _currentState;
     <_UIClickInteractionDriverDelegate> * _delegate;
     struct { 
         bool didUpdateHighlightProgress; 
@@ -14,7 +15,6 @@
     double  _forceMultiplier;
     _UITouchDurationObservingGestureRecognizer * _gestureRecognizer;
     bool  _reachedClickDownThreshold;
-    _UIStateMachine * _stateMachine;
     UIView * _view;
 }
 
@@ -36,7 +36,6 @@
 @property (nonatomic, readonly) double maximumEffectProgress;
 @property (nonatomic, readonly) UIGestureRecognizer *primaryGestureRecognizer;
 @property (nonatomic) bool reachedClickDownThreshold;
-@property (nonatomic, retain) _UIStateMachine *stateMachine;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) double touchDuration;
 @property (nonatomic) UIView *view;
@@ -49,7 +48,6 @@
 - (void)_gestureRecognizerFailed:(id)arg1;
 - (void)_handleGestureRecognizer:(id)arg1;
 - (void)_notifyDelegateOfUpdatedClickDownProgress:(double)arg1 forceAdjustedClickDownDuration:(double)arg2;
-- (void)_prepareStateMachine;
 - (void)_updateForActiveGestureRecognizer;
 - (double)allowableMovement;
 - (unsigned long long)behavior;
@@ -81,9 +79,7 @@
 - (void)setForceMultiplier:(double)arg1;
 - (void)setGestureRecognizer:(id)arg1;
 - (void)setReachedClickDownThreshold:(bool)arg1;
-- (void)setStateMachine:(id)arg1;
 - (void)setView:(id)arg1;
-- (id)stateMachine;
 - (double)touchDuration;
 - (id)view;
 

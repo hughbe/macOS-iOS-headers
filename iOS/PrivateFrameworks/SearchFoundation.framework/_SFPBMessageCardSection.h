@@ -3,10 +3,12 @@
  */
 
 @interface _SFPBMessageCardSection : PBCodable <NSSecureCoding, _SFPBMessageCardSection> {
+    _SFPBURL * _audioMessageURL;
     _SFPBColor * _backgroundColor;
     bool  _canBeHidden;
     bool  _hasBottomPadding;
     bool  _hasTopPadding;
+    _SFPBMessageAttachment * _messageAttachment;
     int  _messageServiceType;
     int  _messageStatus;
     NSString * _messageText;
@@ -17,6 +19,7 @@
     NSString * _type;
 }
 
+@property (nonatomic, retain) _SFPBURL *audioMessageURL;
 @property (nonatomic, retain) _SFPBColor *backgroundColor;
 @property (nonatomic) bool canBeHidden;
 @property (readonly, copy) NSString *debugDescription;
@@ -25,6 +28,7 @@
 @property (nonatomic) bool hasTopPadding;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) NSData *jsonData;
+@property (nonatomic, retain) _SFPBMessageAttachment *messageAttachment;
 @property (nonatomic) int messageServiceType;
 @property (nonatomic) int messageStatus;
 @property (nonatomic, copy) NSString *messageText;
@@ -37,6 +41,7 @@
 
 - (void).cxx_destruct;
 - (void)addPunchoutOptions:(id)arg1;
+- (id)audioMessageURL;
 - (id)backgroundColor;
 - (bool)canBeHidden;
 - (void)clearPunchoutOptions;
@@ -49,6 +54,7 @@
 - (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)jsonData;
+- (id)messageAttachment;
 - (int)messageServiceType;
 - (int)messageStatus;
 - (id)messageText;
@@ -59,10 +65,12 @@
 - (id)punchoutPickerTitle;
 - (bool)readFrom:(id)arg1;
 - (int)separatorStyle;
+- (void)setAudioMessageURL:(id)arg1;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setCanBeHidden:(bool)arg1;
 - (void)setHasBottomPadding:(bool)arg1;
 - (void)setHasTopPadding:(bool)arg1;
+- (void)setMessageAttachment:(id)arg1;
 - (void)setMessageServiceType:(int)arg1;
 - (void)setMessageStatus:(int)arg1;
 - (void)setMessageText:(id)arg1;

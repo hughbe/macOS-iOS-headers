@@ -27,12 +27,15 @@
 - (bool)interfaceOrientationChangesDisabled;
 - (bool)isReachabilitySupported;
 - (bool)isStatusBarForegroundTransparent;
+- (NSArray *)multitaskingDragExclusionRects;
 - (long long)notificationCenterRevealMode;
+- (long long)preferredPointerLockStatus;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })primaryWindowOverlayInsets;
 - (unsigned long long)proximityDetectionModes;
 - (FBSDisplayMode *)requestedDisplayMode;
 - (long long)sceneActivationBias;
 - (unsigned long long)screenEdgesDeferringSystemGestures;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })screenFocusedFrame;
 - (double)statusBarAlpha;
 - (unsigned int)statusBarContextID;
 - (bool)statusBarHidden;

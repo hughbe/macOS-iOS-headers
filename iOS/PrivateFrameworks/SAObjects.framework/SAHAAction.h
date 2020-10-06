@@ -11,6 +11,8 @@
 @property (nonatomic) bool includeCompleteInformation;
 @property (nonatomic, retain) SAHAAttributeValue *value;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)action;
 + (id)actionWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -28,5 +30,9 @@
 - (void)setIncludeCompleteInformation:(bool)arg1;
 - (void)setValue:(id)arg1;
 - (id)value;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

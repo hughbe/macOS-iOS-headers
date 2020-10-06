@@ -30,6 +30,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UIView *transitionContainerView;
 
++ (id)log;
+
 - (void).cxx_destruct;
 - (id)actionsModel;
 - (void)actionsModel:(id)arg1 didAssignToContact:(id)arg2 atIndexPath:(id)arg3;

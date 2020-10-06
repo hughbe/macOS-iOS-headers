@@ -3,11 +3,13 @@
  */
 
 @interface _MTLHeap : _MTLObjectWithLabel {
+    unsigned long long  _gpuAddress;
     unsigned long long  _heapResourceOptions;
     long long  _heapType;
 }
 
 @property (readonly) unsigned long long cpuCacheMode;
+@property (nonatomic, readonly) unsigned long long gpuAddress;
 @property (readonly) unsigned long long hazardTrackingMode;
 @property (readonly) unsigned long long resourceOptions;
 @property (readonly) unsigned long long storageMode;
@@ -17,6 +19,7 @@
 - (unsigned long long)cpuCacheMode;
 - (id)description;
 - (id)formattedDescription:(unsigned long long)arg1;
+- (unsigned long long)gpuAddress;
 - (unsigned long long)hazardTrackingMode;
 - (id)init;
 - (id)initWithType:(long long)arg1 options:(unsigned long long)arg2;

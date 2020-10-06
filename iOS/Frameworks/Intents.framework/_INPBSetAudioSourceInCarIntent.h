@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSetAudioSourceInCarIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSetAudioSourceInCarIntent> {
-    bool  __encodeLegacyGloryData;
     int  _audioSource;
     struct { 
         unsigned int audioSource : 1; 
@@ -13,7 +12,6 @@
     int  _relativeAudioSourceReference;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int audioSource;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -30,8 +28,6 @@
 - (void).cxx_destruct;
 - (int)StringAsAudioSource:(id)arg1;
 - (int)StringAsRelativeAudioSourceReference:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)audioSource;
 - (id)audioSourceAsString:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

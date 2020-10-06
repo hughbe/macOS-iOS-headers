@@ -3,6 +3,8 @@
  */
 
 @interface _UISheetLayoutInfo : NSObject {
+    double  __additionalMinimumTopInset;
+    bool  __allowsInteractiveDismissWhenFullScreen;
     double  __alpha;
     bool  __anyDescendantDragging;
     bool  __bottomAttached;
@@ -59,6 +61,7 @@
             double height; 
         } size; 
     }  __dismissSourceFrame;
+    bool  __dismissible;
     bool  __dragging;
     bool  __draggingAndDismissing;
     struct CGRect { 
@@ -92,6 +95,17 @@
         } size; 
     }  __fullHeightUntransformedFrame;
     double  __grabberAlpha;
+    double  __grabberTopSpacing;
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  __hostedUntransformedFrame;
     bool  __hosting;
     long long  __indexOfActiveDimmingDetent;
     long long  __indexOfCurrentActiveDetent;
@@ -122,10 +136,12 @@
     double  __percentDimmedFromOffset;
     double  __percentFullScreen;
     double  __percentPresented;
+    double  __preferredCornerRadius;
     struct CGSize { 
         double width; 
         double height; 
     }  __preferredSize;
+    bool  __prefersScrollingExpandsToLargerDetentWhenScrolledToEdge;
     bool  __presented;
     UIViewController * __presentedViewController;
     UIViewController * __presentingViewController;
@@ -158,7 +174,15 @@
             double height; 
         } size; 
     }  __stackAlignmentFrame;
+    bool  __stacksWithChild;
+    double  __systemMinimumTopInset;
     double  __tearOffset;
+    struct UIEdgeInsets { 
+        double top; 
+        double left; 
+        double bottom; 
+        double right; 
+    }  __touchInsets;
     struct CGAffineTransform { 
         double a; 
         double b; 
@@ -183,6 +207,7 @@
     bool  __wantsGrabber;
     bool  __widthFollowsPreferredContentSizeWhenBottomAttached;
     struct { 
+        unsigned int systemMinimumTopInset : 1; 
         unsigned int minimumTopInset : 1; 
         unsigned int maximumWidth : 1; 
         unsigned int preferredSize : 1; 
@@ -194,6 +219,7 @@
         unsigned int bottomAttachedUntransformedFrame : 1; 
         unsigned int fullHeightUntransformedFrame : 1; 
         unsigned int stackAlignmentFrame : 1; 
+        unsigned int stacksWithChild : 1; 
         unsigned int dismissOffset : 1; 
         unsigned int activeDetents : 1; 
         unsigned int rubberBandExtentBeyondMinimumOffset : 1; 
@@ -202,6 +228,8 @@
         unsigned int percentPresented : 1; 
         unsigned int anyDescendantDragging : 1; 
         unsigned int untransformedFrame : 1; 
+        unsigned int hostedUntransformedFrame : 1; 
+        unsigned int touchInsets : 1; 
         unsigned int cornerRadii : 1; 
         unsigned int transform : 1; 
         unsigned int percentDimmedFromOffset : 1; 
@@ -214,10 +242,15 @@
         unsigned int dimmedPassthroughViews : 1; 
         unsigned int grabberAlpha : 1; 
     }  _clean;
+    struct { 
+        unsigned int activeDetents : 1; 
+    }  _computing;
 }
 
 @property (nonatomic, readonly) NSArray *_activeDetentValues;
 @property (nonatomic, readonly) NSArray *_activeReversedDetentIndexes;
+@property (setter=_setAdditionalMinimumTopInset:, nonatomic) double _additionalMinimumTopInset;
+@property (setter=_setAllowsInteractiveDismissWhenFullScreen:, nonatomic) bool _allowsInteractiveDismissWhenFullScreen;
 @property (nonatomic, readonly) double _alpha;
 @property (getter=_isAnyDescendantDragging, nonatomic, readonly) bool _anyDescendantDragging;
 @property (getter=_isBottomAttached, nonatomic, readonly) bool _bottomAttached;
@@ -238,12 +271,15 @@
 @property (setter=_setDismissCornerRadius:, nonatomic) double _dismissCornerRadius;
 @property (nonatomic, readonly) double _dismissOffset;
 @property (setter=_setDismissSourceFrame:, nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _dismissSourceFrame;
+@property (getter=_isDismissible, setter=_setDismissible:, nonatomic) bool _dismissible;
 @property (getter=_isDragging, setter=_setDragging:, nonatomic) bool _dragging;
 @property (getter=_isDraggingAndDismissing, setter=_setDraggingAndDismissing:, nonatomic) bool _draggingAndDismissing;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _effectiveKeyboardFrame;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _floatingUntransformedFrame;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _fullHeightUntransformedFrame;
 @property (nonatomic, readonly) double _grabberAlpha;
+@property (setter=_setGrabberTopSpacing:, nonatomic) double _grabberTopSpacing;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _hostedUntransformedFrame;
 @property (getter=_isHosting, setter=_setHosting:, nonatomic) bool _hosting;
 @property (nonatomic, readonly) long long _indexOfActiveDimmingDetent;
 @property (nonatomic, readonly) long long _indexOfCurrentActiveDetent;
@@ -265,7 +301,9 @@
 @property (nonatomic, readonly) double _percentDimmedFromOffset;
 @property (nonatomic, readonly) double _percentFullScreen;
 @property (nonatomic, readonly) double _percentPresented;
+@property (setter=_setPreferredCornerRadius:, nonatomic) double _preferredCornerRadius;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } _preferredSize;
+@property (setter=_setPrefersScrollingExpandsToLargerDetentWhenScrolledToEdge:, nonatomic) bool _prefersScrollingExpandsToLargerDetentWhenScrolledToEdge;
 @property (getter=_isPresented, setter=_setPresented:, nonatomic) bool _presented;
 @property (nonatomic, retain) UIViewController *_presentedViewController;
 @property (nonatomic) UIViewController *_presentingViewController;
@@ -283,7 +321,10 @@
 @property (setter=_setShouldScaleDownBehindDescendants:, nonatomic) bool _shouldScaleDownBehindDescendants;
 @property (setter=_setSourceFrame:, nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _sourceFrame;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _stackAlignmentFrame;
+@property (nonatomic, readonly) bool _stacksWithChild;
+@property (nonatomic, readonly) double _systemMinimumTopInset;
 @property (setter=_setTearOffset:, nonatomic) double _tearOffset;
+@property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } _touchInsets;
 @property (nonatomic, readonly) struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; } _transform;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } _untransformedFrame;
 @property (setter=_setWantsBottomAttached:, nonatomic) bool _wantsBottomAttached;
@@ -295,6 +336,8 @@
 - (void).cxx_destruct;
 - (id)_activeDetentValues;
 - (id)_activeReversedDetentIndexes;
+- (double)_additionalMinimumTopInset;
+- (bool)_allowsInteractiveDismissWhenFullScreen;
 - (double)_alpha;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_bottomAttachedUntransformedFrame;
 - (id)_childLayoutInfo;
@@ -317,6 +360,8 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_floatingUntransformedFrame;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_fullHeightUntransformedFrame;
 - (double)_grabberAlpha;
+- (double)_grabberTopSpacing;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_hostedUntransformedFrame;
 - (long long)_indexOfActiveDimmingDetent;
 - (long long)_indexOfCurrentActiveDetent;
 - (long long)_indexOfCurrentDetent;
@@ -324,6 +369,7 @@
 - (void)_invalidatePreferredSize;
 - (bool)_isAnyDescendantDragging;
 - (bool)_isBottomAttached;
+- (bool)_isDismissible;
 - (bool)_isDragging;
 - (bool)_isDraggingAndDismissing;
 - (bool)_isHosting;
@@ -346,7 +392,9 @@
 - (double)_percentDimmedFromOffset;
 - (double)_percentFullScreen;
 - (double)_percentPresented;
+- (double)_preferredCornerRadius;
 - (struct CGSize { double x1; double x2; })_preferredSize;
+- (bool)_prefersScrollingExpandsToLargerDetentWhenScrolledToEdge;
 - (id)_presentedViewController;
 - (id)_presentingViewController;
 - (id)_reversedDetents;
@@ -355,6 +403,8 @@
 - (double)_rubberBandExtentBeyondMaximumOffset;
 - (double)_rubberBandExtentBeyondMinimumOffset;
 - (bool)_scalesDownBehindDescendants;
+- (void)_setAdditionalMinimumTopInset:(double)arg1;
+- (void)_setAllowsInteractiveDismissWhenFullScreen:(bool)arg1;
 - (void)_setChildSheetLayoutInfo:(id)arg1;
 - (void)_setContainerBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_setContainerSafeAreaInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
@@ -362,8 +412,10 @@
 - (void)_setDetents:(id)arg1;
 - (void)_setDismissCornerRadius:(double)arg1;
 - (void)_setDismissSourceFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)_setDismissible:(bool)arg1;
 - (void)_setDragging:(bool)arg1;
 - (void)_setDraggingAndDismissing:(bool)arg1;
+- (void)_setGrabberTopSpacing:(double)arg1;
 - (void)_setHosting:(bool)arg1;
 - (void)_setIndexOfCurrentDetent:(long long)arg1;
 - (void)_setIndexOfLastUndimmedDetent:(long long)arg1;
@@ -372,6 +424,8 @@
 - (void)_setMode:(long long)arg1;
 - (void)_setParentSheetLayoutInfo:(id)arg1;
 - (void)_setPassthroughViews:(id)arg1;
+- (void)_setPreferredCornerRadius:(double)arg1;
+- (void)_setPrefersScrollingExpandsToLargerDetentWhenScrolledToEdge:(bool)arg1;
 - (void)_setPresented:(bool)arg1;
 - (void)_setReduceMotionEnabled:(bool)arg1;
 - (void)_setReversedDetents:(id)arg1;
@@ -392,7 +446,10 @@
 - (bool)_shouldScaleDownBehindDescendants;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_sourceFrame;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_stackAlignmentFrame;
+- (bool)_stacksWithChild;
+- (double)_systemMinimumTopInset;
 - (double)_tearOffset;
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_touchInsets;
 - (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })_transform;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_untransformedFrame;
 - (bool)_wantsBottomAttached;

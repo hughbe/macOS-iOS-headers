@@ -9,6 +9,7 @@
     <MDLMeshBufferAllocator> * _bufferAllocator;
     NSMapTable * _components;
     double  _endTime;
+    MDLAnimatedVector3Array * _extents;
     double  _frameInterval;
     bool  _isSceneKitBridged;
     <MDLObjectContainerComponent> * _masters;
@@ -31,6 +32,7 @@
 @property (nonatomic, readonly, retain) <MDLMeshBufferAllocator> *bufferAllocator;
 @property (nonatomic, readonly) unsigned long long count;
 @property (nonatomic) double endTime;
+@property (nonatomic, retain) MDLAnimatedVector3Array *extents;
 @property (nonatomic) double frameInterval;
 @property (nonatomic, retain) <MDLObjectContainerComponent> *masters;
 @property (nonatomic) float metersPerUnit;
@@ -73,10 +75,12 @@
 - (void)enumerateChildObjectsOfClass:(Class)arg1 usingBlock:(id /* block */)arg2 stopPointer:(bool*)arg3;
 - (bool)exportAssetToURL:(id)arg1;
 - (bool)exportAssetToURL:(id)arg1 error:(id*)arg2;
+- (id)extents;
 - (double)frameInterval;
 - (id)init;
 - (id)initThroughSCNKitBridgeWithURL:(id)arg1 preserveTopology:(bool)arg2 error:(id)arg3;
 - (id)initWithBufferAllocator:(id)arg1;
+- (id)initWithData:(id)arg1 name:(id)arg2 vertexDescriptor:(id)arg3 bufferAllocator:(id)arg4 preserveTopology:(bool)arg5 error:(id*)arg6;
 - (id)initWithURL:(id)arg1;
 - (id)initWithURL:(id)arg1 bufferAllocator:(id)arg2 preserveIndexing:(bool)arg3 error:(id*)arg4;
 - (id)initWithURL:(id)arg1 options:(id)arg2 error:(id*)arg3;
@@ -96,6 +100,7 @@
 - (void)setAnimations:(id)arg1;
 - (void)setComponent:(id)arg1 forProtocol:(id)arg2;
 - (void)setEndTime:(double)arg1;
+- (void)setExtents:(id)arg1;
 - (void)setFrameInterval:(double)arg1;
 - (void)setMasters:(id)arg1;
 - (void)setMetersPerUnit:(float)arg1;

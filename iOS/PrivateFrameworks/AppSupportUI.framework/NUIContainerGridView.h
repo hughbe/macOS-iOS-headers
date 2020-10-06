@@ -92,14 +92,6 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)_baselineViewVendForFirstBaseline:(bool)arg1 fromViews:(id)arg2;
-- (struct CGSize { double x1; double x2; })_calculateArrangedSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 forLayout:(bool)arg2;
-- (double)_heightOfRowAtIndex:(long long)arg1;
-- (long long)_horizontalAlignmentOfView:(id)arg1 inColumn:(long long)arg2;
-- (void)_setupViewRangesIfNeeded;
-- (bool)_verifyInternalGridConsistencyWarningOnly:(bool)arg1;
-- (long long)_verticalAlignmentOfView:(id)arg1 row:(long long)arg2;
-- (double)_widthOfColumnAtIndex:(long long)arg1;
 - (id)addColumnWithArrangedSubviews:(id)arg1;
 - (id)addRowWithArrangedSubviews:(id)arg1;
 - (id)arrangedDescription;
@@ -113,9 +105,7 @@
 - (double)columnSpacing;
 - (double)columnWidth;
 - (void)dealloc;
-- (id)debugArrayForDimension:(id)arg1;
 - (id)debugDictionary;
-- (id)debugDictionaryForDimensionConfiguration:(id)arg1;
 - (id)debugDictionaryForVisibleArrangedSubview:(id)arg1;
 - (void)didInsertArrangedSubview:(id)arg1 atIndex:(long long)arg2;
 - (void)didRemoveArrangedSubview:(id)arg1 atIndex:(long long)arg2;

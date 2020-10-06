@@ -6,6 +6,11 @@
     struct GEOSessionID { 
         unsigned long long _high; 
         unsigned long long _low; 
+    }  _15MonthSessionID;
+    double  _15MonthSessionIDGenerationTime;
+    struct GEOSessionID { 
+        unsigned long long _high; 
+        unsigned long long _low; 
     }  _cohortSessionID;
     double  _cohortSessionStartTime;
     struct os_unfair_lock_s { 
@@ -49,16 +54,13 @@
     struct GEOSessionID { 
         unsigned long long _high; 
         unsigned long long _low; 
-    }  _thirtyDayCountsSessionID;
-    double  _thirtyDayCountsSessionIDGenerationTime;
-    struct GEOSessionID { 
-        unsigned long long _high; 
-        unsigned long long _low; 
     }  _zeroSessionID;
     bool  _zeroSessionIDMode;
 }
 
 @property (nonatomic, readonly) GEOUserSessionEntity *cohortSessionEntity;
+@property (nonatomic, readonly) GEOUserSessionEntity *fifteenMonthSessionEntity;
+@property (nonatomic, readonly) struct GEOSessionID { unsigned long long x1; unsigned long long x2; } fifteenMonthSessionID;
 @property (nonatomic, readonly) GEOUserSessionEntity *longSessionEntity;
 @property (nonatomic, readonly) struct GEOSessionID { unsigned long long x1; unsigned long long x2; } longSessionID;
 @property (nonatomic, retain) GEOUserSessionEntity *mapsUserSessionEntity;
@@ -67,29 +69,32 @@
 @property (nonatomic, readonly) GEOUserSessionSnapshot *userSessionSnapshot;
 @property (nonatomic) bool zeroSessionIDMode;
 
++ (bool)initialShareSessionWithMaps;
 + (bool)isGeod;
++ (void)setInitialShareSessionWithMaps:(bool)arg1;
 + (void)setIsGeod;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
+- (void)_create15MonthSessionFirstTime:(bool)arg1;
 - (void)_createLongSessionWithOffset:(bool)arg1;
 - (void)_generateNewNavSessionID;
 - (double)_getCurrentTime;
 - (void)_overrideShortSessionId:(struct GEOSessionID { unsigned long long x1; unsigned long long x2; })arg1 sessionMachBasisTime:(unsigned long long)arg2 sessionStartTime:(double)arg3;
-- (void)_renewCohortSessionID;
+- (void)_renew15MonthSessionId;
 - (void)_renewLongSessionID;
-- (void)_renewThirtyDayCountsSessionID;
 - (void)_resetSessionID;
+- (void)_rollInitial15MonthSessionId;
 - (void)_rollInitialLongSessionId;
-- (void)_safe_renewCohortSessionID;
 - (void)_safe_renewLongSessionID;
-- (void)_safe_renewThirtyDayCountsSessionID;
 - (void)_shortSessionWithBasisComponentsCompletion:(id /* block */)arg1;
 - (void)_updateNavSessionID;
 - (void)_updateWithNewUUIDForSessionID:(struct GEOSessionID { unsigned long long x1; unsigned long long x2; }*)arg1;
 - (id)cohortSessionEntity;
 - (void)dealloc;
 - (void)endNavigationSession;
+- (id)fifteenMonthSessionEntity;
+- (struct GEOSessionID { unsigned long long x1; unsigned long long x2; })fifteenMonthSessionID;
 - (id)init;
 - (id)longSessionEntity;
 - (struct GEOSessionID { unsigned long long x1; unsigned long long x2; })longSessionID;
@@ -104,8 +109,6 @@
 - (bool)shareSessionWithMaps;
 - (id)shortSessionEntity;
 - (void)startNavigationSessionWithDirectionsID:(id)arg1 originalDirectionsID:(id)arg2;
-- (id)thirtyDayCountsEntity;
-- (struct GEOSessionID { unsigned long long x1; unsigned long long x2; })thirtyDayCountsSessionID;
 - (id)userSessionSnapshot;
 - (bool)zeroSessionIDMode;
 

@@ -13,6 +13,7 @@
 
 + (id)displayIdentifierFromStringRepresentation:(id)arg1;
 + (id)identifierForObject:(id)arg1 string:(id)arg2;
++ (id)uninternedIdentifierForObject:(id)arg1 string:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

@@ -9,15 +9,9 @@
         unsigned int has_ordinal : 1; 
         unsigned int has_type : 1; 
         unsigned int has_enabled : 1; 
-        unsigned int read_unknownFields : 1; 
         unsigned int read_displayText : 1; 
         unsigned int read_name : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_displayText : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_ordinal : 1; 
-        unsigned int wrote_type : 1; 
-        unsigned int wrote_enabled : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEORPFeedbackLayoutFieldName * _name;
     unsigned int  _ordinal;
@@ -28,7 +22,6 @@
     unsigned int  _readerMarkLength;
     unsigned int  _readerMarkPos;
     int  _type;
-    PBUnknownFields * _unknownFields;
 }
 
 @property (nonatomic, retain) NSString *displayText;
@@ -41,15 +34,11 @@
 @property (nonatomic, retain) GEORPFeedbackLayoutFieldName *name;
 @property (nonatomic) unsigned int ordinal;
 @property (nonatomic) int type;
-@property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (void)_readDisplayText;
-- (void)_readName;
-- (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -64,7 +53,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)name;
 - (unsigned int)ordinal;
@@ -80,7 +72,6 @@
 - (void)setType:(int)arg1;
 - (int)type;
 - (id)typeAsString:(int)arg1;
-- (id)unknownFields;
 - (void)writeTo:(id)arg1;
 
 @end

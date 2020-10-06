@@ -29,8 +29,9 @@
 - (bool)_performNext;
 - (void)_performNextFromRunLoopSource;
 - (void)_queue_performAsync:(id /* block */)arg1;
-- (bool)_queue_performNextIfPossible;
 - (void)_setSynchronizingEnqueueSemaphore:(id)arg1 forWorkspaceWithName:(unsigned long long)arg2;
+- (bool)_targetQueue_performNextIfPossible;
+- (void)assertBarrierOnQueue;
 - (void)assertOnQueue;
 - (id)backingQueueIfExists;
 - (void)dealloc;

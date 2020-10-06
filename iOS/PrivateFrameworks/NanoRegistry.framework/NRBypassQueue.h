@@ -12,7 +12,6 @@
 }
 
 - (void).cxx_destruct;
-- (void)assertOnQueue;
 - (void)enqueueBlock:(id /* block */)arg1;
 - (void)enqueueBlockAsync:(id /* block */)arg1;
 - (void)enqueueBypassBlock:(id /* block */)arg1;

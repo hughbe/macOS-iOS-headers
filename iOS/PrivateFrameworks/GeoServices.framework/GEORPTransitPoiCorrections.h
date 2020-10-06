@@ -6,6 +6,7 @@
     GEORPAccessPointCorrections * _accessPoint;
     GEORPAmenityCorrections * _amenity;
     NSMutableArray * _businessHours;
+    GEORPPlaceContainmentCorrections * _containmentCorrections;
     GEORPCorrectedCoordinate * _coordinate;
     struct { 
         unsigned int has_lineScheduleDelay : 1; 
@@ -14,20 +15,12 @@
         unsigned int read_accessPoint : 1; 
         unsigned int read_amenity : 1; 
         unsigned int read_businessHours : 1; 
+        unsigned int read_containmentCorrections : 1; 
         unsigned int read_coordinate : 1; 
         unsigned int read_mapLocation : 1; 
         unsigned int read_name : 1; 
         unsigned int read_originalName : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_accessPoint : 1; 
-        unsigned int wrote_amenity : 1; 
-        unsigned int wrote_businessHours : 1; 
-        unsigned int wrote_coordinate : 1; 
-        unsigned int wrote_mapLocation : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_originalName : 1; 
-        unsigned int wrote_lineScheduleDelay : 1; 
-        unsigned int wrote_lineShapeIncorrect : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _lineScheduleDelay;
     bool  _lineShapeIncorrect;
@@ -46,9 +39,11 @@
 @property (nonatomic, retain) GEORPAccessPointCorrections *accessPoint;
 @property (nonatomic, retain) GEORPAmenityCorrections *amenity;
 @property (nonatomic, retain) NSMutableArray *businessHours;
+@property (nonatomic, retain) GEORPPlaceContainmentCorrections *containmentCorrections;
 @property (nonatomic, retain) GEORPCorrectedCoordinate *coordinate;
 @property (nonatomic, readonly) bool hasAccessPoint;
 @property (nonatomic, readonly) bool hasAmenity;
+@property (nonatomic, readonly) bool hasContainmentCorrections;
 @property (nonatomic, readonly) bool hasCoordinate;
 @property (nonatomic) bool hasLineScheduleDelay;
 @property (nonatomic) bool hasLineShapeIncorrect;
@@ -66,14 +61,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsBusinessHours:(id)arg1;
-- (void)_readAccessPoint;
-- (void)_readAmenity;
-- (void)_readBusinessHours;
-- (void)_readCoordinate;
-- (void)_readMapLocation;
-- (void)_readName;
-- (void)_readOriginalName;
 - (id)accessPoint;
 - (void)addBusinessHours:(id)arg1;
 - (id)amenity;
@@ -82,6 +69,7 @@
 - (unsigned long long)businessHoursCount;
 - (void)clearBusinessHours;
 - (void)clearUnknownFields:(bool)arg1;
+- (id)containmentCorrections;
 - (id)coordinate;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -89,6 +77,7 @@
 - (id)dictionaryRepresentation;
 - (bool)hasAccessPoint;
 - (bool)hasAmenity;
+- (bool)hasContainmentCorrections;
 - (bool)hasCoordinate;
 - (bool)hasLineScheduleDelay;
 - (bool)hasLineShapeIncorrect;
@@ -98,7 +87,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (bool)lineScheduleDelay;
 - (bool)lineShapeIncorrect;
 - (id)mapLocation;
@@ -110,6 +102,7 @@
 - (void)setAccessPoint:(id)arg1;
 - (void)setAmenity:(id)arg1;
 - (void)setBusinessHours:(id)arg1;
+- (void)setContainmentCorrections:(id)arg1;
 - (void)setCoordinate:(id)arg1;
 - (void)setHasLineScheduleDelay:(bool)arg1;
 - (void)setHasLineShapeIncorrect:(bool)arg1;

@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@interface BSMutableAnimationSettings : BSAnimationSettings
+@interface BSMutableAnimationSettings : BSAnimationSettings <BSAnimationSettingsMutating>
 
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) double delay;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) double duration;
 @property (nonatomic) double frameInterval;
+@property (readonly) unsigned long long hash;
 @property (nonatomic) float speed;
+@property (readonly) Class superclass;
 @property (nonatomic, retain) CAMediaTimingFunction *timingFunction;
 
-+ (id)settingsWithDuration:(double)arg1;
-+ (id)settingsWithDuration:(double)arg1 delay:(double)arg2;
-+ (id)settingsWithDuration:(double)arg1 delay:(double)arg2 timingFunction:(id)arg3;
-+ (id)settingsWithDuration:(double)arg1 timingFunction:(id)arg2;
-
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)setDelay:(double)arg1;
 - (void)setDuration:(double)arg1;
 - (void)setFrameInterval:(double)arg1;

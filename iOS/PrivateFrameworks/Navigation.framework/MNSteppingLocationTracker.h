@@ -14,7 +14,7 @@
 
 - (void).cxx_destruct;
 - (id)_matchedLocationForLocation:(id)arg1;
-- (void)arrivalUpdaterDidArrive:(id)arg1;
+- (void)arrivalUpdaterDidArrive:(id)arg1 atEndOfLegAtIndex:(unsigned long long)arg2;
 - (id)initWithNavigationSession:(id)arg1;
 - (id)matchedLocationForLocation:(id)arg1;
 - (void)resetForTracePlayerAtLocation:(id)arg1;

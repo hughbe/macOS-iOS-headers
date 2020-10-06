@@ -6,20 +6,25 @@
     NSAttributedString * _annotatedText;
     NSObject * _contextAfter;
     NSObject * _contextBefore;
+    struct _NSRange { 
+        unsigned long long location; 
+        unsigned long long length; 
+    }  _lastRectRange;
     NSObject * _markedText;
+    bool  _rectsAreInCharacterOrder;
     struct _NSRange { 
         unsigned long long location; 
         unsigned long long length; 
     }  _selectedRangeInMarkedText;
     NSObject * _selectedText;
-    NSMutableDictionary * _selectionRects;
+    NSMutableData * _selectionRects;
 }
 
 @property (nonatomic, readonly) NSString *_contextAfterString;
 @property (nonatomic, readonly) NSString *_contextBeforeString;
 @property (nonatomic, readonly) NSString *_markedTextString;
 @property (nonatomic, readonly) NSString *_selectedTextString;
-@property (nonatomic, retain) NSMutableDictionary *_selectionRects;
+@property (nonatomic, retain) NSMutableData *_selectionRects;
 @property (nonatomic, copy) NSAttributedString *annotatedText;
 @property (nonatomic, copy) NSObject *contextAfter;
 @property (nonatomic, copy) NSObject *contextBefore;
@@ -43,6 +48,7 @@
 - (void)dealloc;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })deltaForSelectionRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)enumerateLayoutRects:(id /* block */)arg1;
+- (void)enumerateLayoutRectsWithOptions:(unsigned long long)arg1 characterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 block:(id /* block */)arg3;
 - (id)init;
 - (id)markedText;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })markedTextRange;
@@ -58,6 +64,7 @@
 - (void)setSelectedRangeInMarkedText:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)setSelectedText:(id)arg1;
 - (void)set_selectionRects:(id)arg1;
+- (void)sortTextRectsByCharacterRange;
 - (id)stringContainedWithinRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 
 @end

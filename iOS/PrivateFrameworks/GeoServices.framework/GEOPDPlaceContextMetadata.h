@@ -10,11 +10,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_autocompletePlaceContextMetadata : 1; 
         unsigned int read_searchPlaceContextMetadata : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_autocompletePlaceContextMetadata : 1; 
-        unsigned int wrote_muid : 1; 
-        unsigned int wrote_searchPlaceContextMetadata : 1; 
-        unsigned int wrote_placeContextMetadataType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned long long  _muid;
     int  _placeContextMetadataType;
@@ -42,8 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsPlaceContextMetadataType:(id)arg1;
-- (void)_readAutocompletePlaceContextMetadata;
-- (void)_readSearchPlaceContextMetadata;
 - (id)autocompletePlaceContextMetadata;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
@@ -57,7 +51,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muid;
 - (int)placeContextMetadataType;

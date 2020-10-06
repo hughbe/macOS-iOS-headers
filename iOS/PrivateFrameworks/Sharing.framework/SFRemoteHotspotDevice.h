@@ -28,6 +28,8 @@
 @property (retain) NSNumber *signalStrength;
 @property (nonatomic) bool supportsCompanionLink;
 
+// Image: /System/Library/PrivateFrameworks/Sharing.framework/Sharing
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -64,5 +66,9 @@
 - (id)signalStrengthFromInfo:(unsigned int)arg1;
 - (bool)supportsCompanionLink;
 - (void)updateWithHotspotInfo:(unsigned int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WiFiKit.framework/WiFiKit
+
+- (id)cellularProtocolString;
 
 @end

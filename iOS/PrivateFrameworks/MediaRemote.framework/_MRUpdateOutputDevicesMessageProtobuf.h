@@ -3,9 +3,12 @@
  */
 
 @interface _MRUpdateOutputDevicesMessageProtobuf : PBCodable <NSCopying> {
+    NSString * _endpointUID;
     NSMutableArray * _outputDevices;
 }
 
+@property (nonatomic, retain) NSString *endpointUID;
+@property (nonatomic, readonly) bool hasEndpointUID;
 @property (nonatomic, retain) NSMutableArray *outputDevices;
 
 + (Class)outputDevicesType;
@@ -17,6 +20,8 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (id)endpointUID;
+- (bool)hasEndpointUID;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
@@ -24,6 +29,7 @@
 - (id)outputDevicesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)outputDevicesCount;
 - (bool)readFrom:(id)arg1;
+- (void)setEndpointUID:(id)arg1;
 - (void)setOutputDevices:(id)arg1;
 - (void)writeTo:(id)arg1;
 

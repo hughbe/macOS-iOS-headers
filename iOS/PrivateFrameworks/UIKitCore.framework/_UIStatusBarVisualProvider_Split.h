@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UIStatusBarVisualProvider_Split : _UIStatusBarVisualProvider_Phone <_UIStatusBarCellularItemTypeStringProvider> {
+@interface _UIStatusBarVisualProvider_Split : _UIStatusBarVisualProvider_Phone <_UIStatusBarCellularItemTypeStringProvider, _UIStatusBarFixedWidthVisualProvider> {
     NSTimer * _airplaneModeIgnoreChangesTimer;
     _UIStatusBarDisplayItemPlacement * _batteryChargingPlacement;
     NSTimer * _batteryExpansionTimer;
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSTimer *airplaneModeIgnoreChangesTimer;
 @property (nonatomic, retain) _UIStatusBarDisplayItemPlacement *batteryChargingPlacement;
 @property (nonatomic, retain) NSTimer *batteryExpansionTimer;
+@property (nonatomic, readonly) bool canFixupDisplayItemAttributes;
 @property (nonatomic, retain) UILayoutGuide *cutoutLayoutGuide;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) bool delayedSystemUpdateData;
@@ -35,19 +36,25 @@
 @property (nonatomic, retain) UILayoutGuide *mainRegionsLayoutGuide;
 @property (nonatomic, retain) NSDictionary *orderedDisplayItemPlacements;
 @property (nonatomic, retain) _UIStatusBarDisplayItemPlacement *serviceNamePlacement;
+@property (nonatomic) _UIStatusBar *statusBar;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) bool supportsIndirectPointerTouchActions;
 @property (nonatomic, retain) NSTimer *systemUpdatesTimer;
 
 + (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })_edgeInsetsFromCenteringEdgeInset:(double)arg1 trailing:(bool)arg2;
-+ (double)baseIconScale;
 + (double)baselineBottomInset;
++ (double)bottomLeadingBaseline;
++ (double)bottomLeadingSpace;
 + (double)bottomLeadingTopOffset;
 + (double)bottomLeadingWidth;
 + (double)condensedPointSizeForCellularType:(long long)arg1 defaultPointSize:(double)arg2 baselineOffset:(double*)arg3;
 + (double)cornerRadius;
++ (Class)defaultFallbackVisualProviderSubclass;
 + (id)emphasizedFont;
 + (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })expandedEdgeInsets;
 + (id)expandedFont;
++ (double)expandedIconScale;
++ (long long)expandedIconSize;
 + (double)height;
 + (struct CGSize { double x1; double x2; })intrinsicContentSizeForOrientation:(long long)arg1;
 + (double)leadingCenteringEdgeInset;
@@ -57,7 +64,10 @@
 + (double)leadingPillSpacing;
 + (double)leadingSmallPillSpacing;
 + (double)lowerExpandedBaselineOffset;
++ (double)nativeDisplayWidth;
 + (id)normalFont;
++ (double)normalIconScale;
++ (long long)normalIconSize;
 + (double)notchBottomCornerRadius;
 + (struct CGSize { double x1; double x2; })notchSize;
 + (double)notchTopCornerRadius;
@@ -69,9 +79,10 @@
 + (double)referenceWidth;
 + (id)smallFont;
 + (struct CGSize { double x1; double x2; })smallPillSize;
++ (id)systemUpdateFont;
 + (double)trailingCenteringEdgeInset;
 + (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })trailingEdgeInsets;
-+ (Class)visualProviderSubclassForScreen:(id)arg1;
++ (Class)visualProviderSubclassForScreen:(id)arg1 visualProviderInfo:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)_additionAnimationForBatteryCharging;

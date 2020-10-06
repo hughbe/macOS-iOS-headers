@@ -32,7 +32,10 @@
 - (id)eventLookupCategoryAsString:(int)arg1;
 - (bool)hasEventLookupCategory;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)localizedCategoryAtIndex:(unsigned long long)arg1;
 - (id)localizedCategorys;
 - (unsigned long long)localizedCategorysCount;

@@ -26,7 +26,9 @@
 @property (nonatomic, retain) _CDInMemoryUserContext *userContext;
 @property (nonatomic, retain) NSMutableSet *wakingRegistrations;
 
++ (id)clientInterface;
 + (id)clientOfService:(id)arg1 withConnection:(id)arg2 andContext:(id)arg3;
++ (id)serverInterface;
 
 - (void).cxx_destruct;
 - (void)_hasKnowledgeOfPath:(id)arg1 handler:(id /* block */)arg2;
@@ -70,6 +72,7 @@
 - (id)remoteUserContextProxySourceDeviceUUIDByDeviceID;
 - (id)remoteUserContextProxySourceDeviceUUIDForKeyPath:(id)arg1;
 - (void)removeObjects:(id)arg1 fromArrayAtPath:(id)arg2 handler:(id /* block */)arg3;
+- (void)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtPath:(id)arg2 handler:(id /* block */)arg3;
 - (id)service;
 - (void)setActivateMonitorQueue:(id)arg1;
 - (void)setClientConnection:(id)arg1;

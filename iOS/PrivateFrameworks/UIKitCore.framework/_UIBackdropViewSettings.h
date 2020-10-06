@@ -118,6 +118,8 @@
 @property (nonatomic) double zoom;
 @property (nonatomic) bool zoomsBack;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)darkeningTintColor;
 + (id)settingsForPrivateStyle:(long long)arg1;
 + (id)settingsForPrivateStyle:(long long)arg1 graphicsQuality:(long long)arg2;
@@ -253,5 +255,9 @@
 - (unsigned long long)version;
 - (double)zoom;
 - (bool)zoomsBack;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
++ (id)pkui_createTransparentSettingsFromSettings:(id)arg1;
 
 @end

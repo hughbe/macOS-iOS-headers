@@ -2,25 +2,25 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSTarget : NSObject <BSXPCSecureCoding, NSCopying, RBSProcessMatching> {
+@interface RBSTarget : NSObject <NSCopying, RBSProcessMatching, RBSXPCSecureCoding> {
     NSString * _environment;
-    NSString * _picoDesc;
     RBSProcessIdentifier * _processIdentifier;
     RBSProcessIdentity * _processIdentity;
+    NSString * _shortDescription;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSString *environment;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly) NSString *picoDesc;
 @property (nonatomic, readonly) RBSProcessIdentifier *processIdentifier;
 @property (nonatomic, readonly) RBSProcessIdentity *processIdentity;
+@property (nonatomic, readonly) NSString *shortDescription;
 @property (readonly) Class superclass;
 @property (getter=isSystem, nonatomic, readonly) bool system;
 
 + (id)currentProcess;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 + (id)systemTarget;
 + (id)targetWithPid:(int)arg1;
 + (id)targetWithPid:(int)arg1 environmentIdentifier:(id)arg2;
@@ -30,23 +30,21 @@
 + (id)targetWithProcessIdentity:(id)arg1 environmentIdentifier:(id)arg2;
 
 - (void).cxx_destruct;
-- (id)_initWithProcessIdentifier:(id)arg1 processIdentity:(id)arg2 environmentIdentifier:(id)arg3 euid:(unsigned int)arg4;
 - (id)copyWithEuid:(unsigned int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)debugDescription;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)environment;
-- (unsigned int)euid;
 - (unsigned long long)hash;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isSystem;
 - (bool)matchesProcess:(id)arg1;
-- (id)picoDesc;
 - (id)processIdentifier;
 - (id)processIdentity;
 - (id)processPredicate;
+- (id)shortDescription;
 
 @end

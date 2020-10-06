@@ -13,7 +13,6 @@
 + (id)exclamationMark;
 
 - (void).cxx_destruct;
-- (void)prepareForReuse;
 - (void)setShouldDisplayWarningIcon:(bool)arg1;
 - (void)setWarningText:(id)arg1;
 - (bool)shouldDisplayWarningIcon;

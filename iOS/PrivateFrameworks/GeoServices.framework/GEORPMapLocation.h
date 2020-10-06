@@ -10,11 +10,7 @@
         unsigned int read_image : 1; 
         unsigned int read_mapScreenshotId : 1; 
         unsigned int read_viewportInfo : 1; 
-        unsigned int wrote_coordinate : 1; 
-        unsigned int wrote_image : 1; 
-        unsigned int wrote_mapScreenshotId : 1; 
-        unsigned int wrote_viewportInfo : 1; 
-        unsigned int wrote_zoomLevel : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSData * _image;
     NSString * _mapScreenshotId;
@@ -44,10 +40,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readCoordinate;
-- (void)_readImage;
-- (void)_readMapScreenshotId;
-- (void)_readViewportInfo;
 - (void)_setMapMode:(int)arg1 region:(id)arg2;
 - (id)coordinate;
 - (void)copyTo:(id)arg1;
@@ -63,7 +55,10 @@
 - (id)image;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapScreenshotId;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

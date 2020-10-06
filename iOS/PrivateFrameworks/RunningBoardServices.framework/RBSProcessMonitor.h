@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessMonitor : NSObject <RBSProcessMonitorConfiguring> {
+@interface RBSProcessMonitor : NSObject <NSCopying, RBSProcessMonitorConfiguring> {
     RBSProcessMonitorConfiguration * _configuration;
     bool  _configuring;
     struct os_unfair_lock_s { 
@@ -14,27 +14,33 @@
 }
 
 @property (nonatomic, readonly) RBSProcessMonitorConfiguration *configuration;
-@property (nonatomic, readonly, copy) RBSProcessPredicate *predicate;
+@property (nonatomic, readonly) unsigned long long events;
 @property (nonatomic, readonly) unsigned int serviceClass;
 @property (nonatomic, readonly, copy) NSSet *states;
 
++ (id)_monitorWithService:(id)arg1;
++ (id)_monitorWithService:(id)arg1 configuration:(id /* block */)arg2;
 + (id)monitor;
 + (id)monitorWithConfiguration:(id /* block */)arg1;
 + (id)monitorWithPredicate:(id)arg1 updateHandler:(id /* block */)arg2;
 
 - (void).cxx_destruct;
+- (void)_handleExitEvent:(id)arg1;
+- (void)_handlePreventLaunchUpdate:(id)arg1;
 - (void)_handleProcessStateChange:(id)arg1;
 - (id)_initWithService:(id)arg1;
 - (void)_reconnect;
 - (id)configuration;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
+- (unsigned long long)events;
 - (id)init;
 - (void)invalidate;
-- (bool)isValid;
-- (id)predicates;
 - (unsigned int)serviceClass;
+- (void)setEvents:(unsigned long long)arg1;
 - (void)setPredicates:(id)arg1;
+- (void)setPreventLaunchUpdateHandle:(id /* block */)arg1;
 - (void)setServiceClass:(unsigned int)arg1;
 - (void)setStateDescriptor:(id)arg1;
 - (void)setUpdateHandler:(id /* block */)arg1;

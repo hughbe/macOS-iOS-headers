@@ -3,6 +3,7 @@
  */
 
 @interface AWDNWL2Report : PBCodable <NSCopying> {
+    int  _cellularBand;
     int  _cellularBandInfo;
     int  _cellularBandwidth;
     int  _cellularBars;
@@ -18,6 +19,7 @@
     int  _cellularTac;
     int  _cellularUarfcn;
     struct { 
+        unsigned int cellularBand : 1; 
         unsigned int cellularBandInfo : 1; 
         unsigned int cellularBandwidth : 1; 
         unsigned int cellularBars : 1; 
@@ -42,6 +44,7 @@
     int  _wifiRssi;
 }
 
+@property (nonatomic) int cellularBand;
 @property (nonatomic) int cellularBandInfo;
 @property (nonatomic) int cellularBandwidth;
 @property (nonatomic) int cellularBars;
@@ -56,6 +59,7 @@
 @property (nonatomic) int cellularRadioTechnology;
 @property (nonatomic) int cellularTac;
 @property (nonatomic) int cellularUarfcn;
+@property (nonatomic) bool hasCellularBand;
 @property (nonatomic) bool hasCellularBandInfo;
 @property (nonatomic) bool hasCellularBandwidth;
 @property (nonatomic) bool hasCellularBars;
@@ -79,10 +83,13 @@
 @property (nonatomic) int wifiRadioTechnology;
 @property (nonatomic) int wifiRssi;
 
+- (int)StringAsCellularBand:(id)arg1;
 - (int)StringAsCellularPowerCostDownload:(id)arg1;
 - (int)StringAsCellularPowerCostUpload:(id)arg1;
 - (int)StringAsCellularRadioTechnology:(id)arg1;
 - (int)StringAsWifiRadioTechnology:(id)arg1;
+- (int)cellularBand;
+- (id)cellularBandAsString:(int)arg1;
 - (int)cellularBandInfo;
 - (int)cellularBandwidth;
 - (int)cellularBars;
@@ -105,6 +112,7 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (bool)hasCellularBand;
 - (bool)hasCellularBandInfo;
 - (bool)hasCellularBandwidth;
 - (bool)hasCellularBars;
@@ -127,6 +135,7 @@
 - (bool)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setCellularBand:(int)arg1;
 - (void)setCellularBandInfo:(int)arg1;
 - (void)setCellularBandwidth:(int)arg1;
 - (void)setCellularBars:(int)arg1;
@@ -141,6 +150,7 @@
 - (void)setCellularRadioTechnology:(int)arg1;
 - (void)setCellularTac:(int)arg1;
 - (void)setCellularUarfcn:(int)arg1;
+- (void)setHasCellularBand:(bool)arg1;
 - (void)setHasCellularBandInfo:(bool)arg1;
 - (void)setHasCellularBandwidth:(bool)arg1;
 - (void)setHasCellularBars:(bool)arg1;

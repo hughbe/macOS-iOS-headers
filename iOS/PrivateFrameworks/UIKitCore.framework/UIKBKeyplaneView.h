@@ -3,13 +3,13 @@
  */
 
 @interface UIKBKeyplaneView : UIKBSplitImageView <UIKBCacheableView> {
-    NSTimer * _activatedTimer;
     NSMutableDictionary * _activeViewIndex;
     UIKBCacheToken * _cacheToken;
     UIKBKeyView * _candidateGapView;
     UIKBTree * _defaultKeyplane;
     UIKBCacheToken * _defaultKeyplaneCacheToken;
     NSMutableDictionary * _delayedDeactivationKeys;
+    <UIKBKeyplaneViewDelegate> * _delegate;
     UIKeyboardEmojiKeyDisplayController * _emojiKeyManager;
     UIKBRenderFactory * _factory;
     UIKBSplitImageView * _keyBackgrounds;
@@ -18,14 +18,16 @@
     UIKBKeyViewAnimator * _keyViewAnimator;
     UIKBTree * _keyplane;
     UIView * _keyplaneMaskView;
-    bool  _performingDeactivation;
+    UIKBScreenTraits * _overrideScreenTraits;
     UIKBRenderConfig * _renderConfig;
     NSMutableDictionary * _renderedKeyViews;
     UIKBRenderingContext * _renderingContext;
     bool  _shouldDrawRect;
     NSMutableDictionary * _subviewIndex;
+    bool  _suppressDrawing;
 }
 
+@property (nonatomic, readonly) long long assetIdiom;
 @property (nonatomic, readonly) long long cacheDeferPriority;
 @property (nonatomic, readonly) bool cacheDeferable;
 @property (nonatomic, readonly) NSString *cacheKey;
@@ -34,6 +36,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, retain) UIKBTree *defaultKeyplane;
 @property (nonatomic, retain) UIKBCacheToken *defaultKeyplaneCacheToken;
+@property (nonatomic) <UIKBKeyplaneViewDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) UIKeyboardEmojiKeyDisplayController *emojiKeyManager;
 @property (nonatomic, retain) UIKBRenderFactory *factory;
@@ -42,26 +45,24 @@
 @property (nonatomic, retain) UIKBKeyViewAnimator *keyViewAnimator;
 @property (nonatomic, retain) UIKBTree *keyplane;
 @property (nonatomic, readonly) UIView *keyplaneMaskView;
+@property (nonatomic, retain) UIKBScreenTraits *overrideScreenTraits;
 @property (nonatomic, retain) UIKBRenderConfig *renderConfig;
 @property (nonatomic, retain) UIKBRenderingContext *renderingContext;
 @property (readonly) Class superclass;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+@property (nonatomic) bool suppressDrawing;
 
 - (bool)_canDrawContent;
 - (id)_existingVariantsKeyViewForKey:(id)arg1;
 - (void)_generateFactoryIfNeeded;
 - (void)_generateRenderingContextIfNeeded;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_safeFrameForKeyViewFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 inContainer:(id)arg2 forKey:(id)arg3;
 - (bool)_shouldAllowKey:(id)arg1;
 - (bool)_shouldInheritScreenScaleAsContentScaleFactor;
 - (void)_updateKeyplaneMaskView;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)activateKeys;
 - (id)activeKeyViews;
 - (void)addKeyToDelayedDeactivationSet:(id)arg1;
+- (long long)assetIdiom;
 - (long long)cacheDeferPriority;
 - (bool)cacheDeferable;
 - (id)cacheIdentifierForKey:(id)arg1;
@@ -76,8 +77,10 @@
 - (void)deactivateAdaptiveKey:(id)arg1;
 - (void)deactivateKey:(id)arg1 previousState:(int)arg2;
 - (void)deactivateKeys;
+- (void)dealloc;
 - (id)defaultKeyplane;
 - (id)defaultKeyplaneCacheToken;
+- (id)delegate;
 - (void)dimKeys:(id)arg1;
 - (void)displayLayer:(id)arg1;
 - (void)drawContentsOfRenderers:(id)arg1;
@@ -92,7 +95,7 @@
 - (id)keyplane;
 - (id)keyplaneMaskView;
 - (void)layoutSubviews;
-- (void)performDelayedDeactivation:(id)arg1;
+- (id)overrideScreenTraits;
 - (void)prepareForDisplay;
 - (void)purgeActiveKeyViews;
 - (void)purgeFactory;
@@ -105,21 +108,24 @@
 - (id)renderingContext;
 - (void)retestForTouchUpSelectedVariantIndexForKey:(id)arg1 atPoint:(struct CGPoint { double x1; double x2; })arg2;
 - (void)retestSelectedVariantIndexForKey:(id)arg1 atPoint:(struct CGPoint { double x1; double x2; })arg2;
-- (void)scheduleDelayedDeactivation;
 - (void)setCacheToken:(id)arg1;
 - (void)setContentScaleFactor:(double)arg1;
 - (void)setDefaultKeyplane:(id)arg1;
 - (void)setDefaultKeyplaneCacheToken:(id)arg1;
+- (void)setDelegate:(id)arg1;
 - (void)setEmojiKeyManager:(id)arg1;
 - (void)setFactory:(id)arg1;
 - (void)setKeyViewAnimator:(id)arg1;
 - (void)setKeyplane:(id)arg1;
+- (void)setOverrideScreenTraits:(id)arg1;
 - (void)setRenderConfig:(id)arg1;
 - (void)setRenderingContext:(id)arg1;
 - (void)setState:(int)arg1 forKey:(id)arg2;
+- (void)setSuppressDrawing:(bool)arg1;
 - (bool)shouldAnimateInKeyView:(id)arg1;
 - (bool)shouldAnimateOutKeyView:(id)arg1;
 - (int)stateForKey:(id)arg1;
+- (bool)suppressDrawing;
 - (void)updateFrameForKey:(id)arg1;
 - (bool)useDefaultKeyplaneCacheTokenForRenderFlags:(long long)arg1;
 - (bool)validForKeyplane:(id)arg1 withVisualStyle:(int)arg2;

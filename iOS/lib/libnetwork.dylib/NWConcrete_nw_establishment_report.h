@@ -11,8 +11,7 @@
     NSObject<OS_nw_array> * protocol_reports;
     unsigned int  proxy_configured;
     NSObject<OS_nw_endpoint> * proxy_endpoint;
-    unsigned int  resolution_report_count;
-    struct nw_establishment_resolution_report { unsigned long long x1; id x2; id x3; unsigned int x4; int x5; } * resolution_reports;
+    NSObject<OS_nw_array> * resolution_reports;
     unsigned long long  resolution_started_after_milliseconds;
     unsigned int  used_proxy;
 }

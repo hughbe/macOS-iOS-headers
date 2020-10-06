@@ -15,6 +15,7 @@
 + (Class)__class;
 + (id)alloc;
 
+- (void).cxx_destruct;
 - (id)attributes;
 - (id)category;
 - (id)string;

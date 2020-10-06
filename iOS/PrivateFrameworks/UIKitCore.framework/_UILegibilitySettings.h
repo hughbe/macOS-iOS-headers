@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UILegibilitySettings : NSObject <BSXPCCoding, NSCopying, NSSecureCoding> {
+@interface _UILegibilitySettings : NSObject <BSDescriptionProviding, BSXPCCoding, NSCopying, NSSecureCoding> {
     UIColor * _contentColor;
     double  _imageOutset;
     double  _minFillHeight;
@@ -29,6 +29,8 @@
 @property (nonatomic) double shadowRadius;
 @property (nonatomic) long long style;
 @property (readonly) Class superclass;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)sharedInstanceForStyle:(long long)arg1;
 + (bool)supportsSecureCoding;
@@ -67,5 +69,16 @@
 - (id)shadowCompositingFilterName;
 - (double)shadowRadius;
 - (long long)style;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
+- (id)descriptionWithMultilinePrefix:(id)arg1;
+- (id)sb_copy;
+- (id)sb_description;
+- (bool)sb_isEqualToLegibilitySettings:(id)arg1;
+- (id)sb_styleString;
+- (id)succinctDescription;
+- (id)succinctDescriptionBuilder;
 
 @end

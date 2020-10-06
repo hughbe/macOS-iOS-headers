@@ -36,12 +36,7 @@
 @property (nonatomic, readonly) UIFont *textTitleFont;
 @property (nonatomic, retain) NSLayoutConstraint *widthAdjustmentConstraint;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)adjustableConstraints;
 - (long long)appearance;
 - (id)backgroundBlurView;

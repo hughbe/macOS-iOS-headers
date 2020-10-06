@@ -21,6 +21,7 @@
 - (void)drawPrimitives:(unsigned long long)arg1 vertexStart:(unsigned long long)arg2 vertexCount:(unsigned long long)arg3 instanceCount:(unsigned long long)arg4 baseInstance:(unsigned long long)arg5;
 - (unsigned long long)getCommandType;
 - (void*)getFragmentBufferAtIndex:(unsigned long long)arg1;
+- (unsigned long long)getOptimizedStatus;
 - (unsigned long long)getPipelineStateUniqueIdentifier;
 - (id)getTessellationFactorArguments;
 - (void*)getVertexBufferAtIndex:(unsigned long long)arg1;

@@ -16,13 +16,8 @@
 @property (nonatomic, readonly) NSString *outputDeviceUID;
 
 - (void).cxx_destruct;
-- (id)_endpointContainingOutputDevice:(id)arg1;
-- (void)_handleEndpointsDidChange:(id)arg1;
 - (void)_handleOutputContextDidChangeNotification;
-- (id)_initializeDiscoverySession;
-- (void)_reevaluateEndpoint;
 - (void)begin;
-- (id)discoveredEndpoints;
 - (void)end;
 - (id)endpoint;
 - (id /* block */)endpointChangedCallback;

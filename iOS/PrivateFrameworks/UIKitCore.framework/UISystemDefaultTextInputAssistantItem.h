@@ -15,10 +15,15 @@
 - (void)assistantBold;
 - (void)assistantCopy;
 - (void)assistantCut;
+- (void)assistantDictation;
 - (void)assistantDismiss;
+- (void)assistantEmoji;
 - (void)assistantItalic;
 - (void)assistantPaste;
 - (void)assistantRedo;
+- (void)assistantReturn;
+- (void)assistantSelectPencilTextInputLanguage;
+- (void)assistantSelectPencilTextInputLanguage:(id)arg1;
 - (void)assistantShowKeyboard;
 - (void)assistantUnderline;
 - (void)assistantUndo;

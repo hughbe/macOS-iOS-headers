@@ -9,7 +9,6 @@
 + (bool)_removesDependenciesAfterFinish;
 
 - (void)dealloc;
-- (id)initWithBlock:(id /* block */)arg1;
 - (void)main;
 - (long long)queuePriority;
 

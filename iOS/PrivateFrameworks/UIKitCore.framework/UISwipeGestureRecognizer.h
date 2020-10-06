@@ -24,21 +24,14 @@
 
 @property (nonatomic) unsigned long long direction;
 @property (nonatomic) double maximumDuration;
-@property (nonatomic) double maximumPrimaryMovement;
-@property (nonatomic) double maximumSecondaryMovement;
-@property (nonatomic) double minimumPrimaryMovement;
-@property (nonatomic) double minimumSecondaryMovement;
 @property (nonatomic) unsigned long long numberOfTouchesRequired;
-@property (nonatomic) double rateOfMaximumMovementDecay;
-@property (nonatomic) double rateOfMinimumMovementDecay;
-@property (nonatomic, readonly) struct CGPoint { double x1; double x2; } startPoint;
 
 + (bool)_shouldDefaultToTouches;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (void)_appendSubclassDescription:(id)arg1;
-- (bool)_checkForSwipeWithDelta:(struct CGPoint { double x1; double x2; })arg1 time:(double)arg2;
+- (bool)_isGestureType:(long long)arg1;
 - (void)_resetGestureRecognizer;
 - (void)dealloc;
 - (unsigned long long)direction;
@@ -48,24 +41,11 @@
 - (struct CGPoint { double x1; double x2; })locationInView:(id)arg1;
 - (struct CGPoint { double x1; double x2; })locationOfTouch:(unsigned long long)arg1 inView:(id)arg2;
 - (double)maximumDuration;
-- (double)maximumPrimaryMovement;
-- (double)maximumSecondaryMovement;
-- (double)minimumPrimaryMovement;
-- (double)minimumSecondaryMovement;
 - (unsigned long long)numberOfTouches;
 - (unsigned long long)numberOfTouchesRequired;
-- (double)rateOfMaximumMovementDecay;
-- (double)rateOfMinimumMovementDecay;
 - (void)setDirection:(unsigned long long)arg1;
 - (void)setMaximumDuration:(double)arg1;
-- (void)setMaximumPrimaryMovement:(double)arg1;
-- (void)setMaximumSecondaryMovement:(double)arg1;
-- (void)setMinimumPrimaryMovement:(double)arg1;
-- (void)setMinimumSecondaryMovement:(double)arg1;
 - (void)setNumberOfTouchesRequired:(unsigned long long)arg1;
-- (void)setRateOfMaximumMovementDecay:(double)arg1;
-- (void)setRateOfMinimumMovementDecay:(double)arg1;
-- (struct CGPoint { double x1; double x2; })startPoint;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;
 - (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;

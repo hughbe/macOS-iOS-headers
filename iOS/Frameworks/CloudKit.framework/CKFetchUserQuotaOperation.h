@@ -2,22 +2,25 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchUserQuotaOperation : CKDatabaseOperation {
+@interface CKFetchUserQuotaOperation : CKDatabaseOperation <CKFetchUserQuotaOperationCallbacks> {
     id /* block */  _fetchUserQuotaCompletionBlock;
     unsigned long long  _quotaAvailable;
 }
 
+@property (nonatomic, readonly) <CKFetchUserQuotaOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) id /* block */ fetchUserQuotaCompletionBlock;
 @property (nonatomic) unsigned long long quotaAvailable;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
++ (SEL)daemonCallbackCompletionSelector;
+
 - (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleCompletionCallback:(id)arg1;
 - (id)activityCreate;
 - (id /* block */)fetchUserQuotaCompletionBlock;
+- (void)handleOperationDidCompleteWithQuotaAvailable:(unsigned long long)arg1 metrics:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
-- (Class)operationInfoClass;
 - (void)performCKOperation;
 - (unsigned long long)quotaAvailable;
 - (void)setFetchUserQuotaCompletionBlock:(id /* block */)arg1;

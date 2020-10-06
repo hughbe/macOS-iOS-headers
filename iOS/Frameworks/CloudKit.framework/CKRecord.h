@@ -2,7 +2,8 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKRecord : NSObject <CKRecordKeyValueSetting, NSCopying, NSSecureCoding> {
+@interface CKRecord : NSObject <CKContainerAssignment, HMBModelObjectStorage, ICHasDatabaseScope, NSCopying, NSSecureCoding, PQLBindable, PQLValuable> {
+    NSArray * _allPCSKeyIDs;
     NSString * _baseToken;
     NSData * _chainParentPublicKeyID;
     CKEncryptedData * _chainPrivateKey;
@@ -50,14 +51,17 @@
 }
 
 @property (nonatomic, readonly, copy) NSURL *URL;
+@property (nonatomic, retain) NSArray *allPCSKeyIDs;
 @property (nonatomic, readonly) unsigned long long assetCount;
 @property (nonatomic, readonly) unsigned long long assetDiskSize;
-@property (nonatomic, retain) NSString *baseToken;
+@property (nonatomic, retain) NSString *basePunctuationGroup;
+@property (nonatomic, copy) NSString *baseToken;
+@property (nonatomic, readonly) NSData *brc_containerMetadataPropertiesData;
 @property (nonatomic, retain) NSData *chainParentPublicKeyID;
 @property (nonatomic, retain) CKEncryptedData *chainPrivateKey;
 @property (nonatomic, retain) NSData *chainProtectionInfo;
-@property (nonatomic, retain) NSSet *changedKeysSet;
-@property (nonatomic, retain) NSArray *conflictLoserEtags;
+@property (nonatomic, copy) NSSet *changedKeysSet;
+@property (nonatomic, copy) NSArray *conflictLoserEtags;
 @property (nonatomic, copy) CKContainerID *containerID;
 @property (nonatomic, readonly) bool containsAssetValues;
 @property (nonatomic, readonly) bool containsPackageValues;
@@ -67,11 +71,21 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSString *displayedHostname;
 @property (nonatomic, readonly) NSData *encryptedFullTokenData;
-@property (nonatomic, readonly) NSData *encryptedPublicSharingKey;
-@property (nonatomic, retain) CKEncryptedRecordValueStore *encryptedValueStore;
-@property (nonatomic, readonly) <CKRecordKeyValueSetting> *encryptedValuesByKey;
-@property (nonatomic, retain) NSString *etag;
+@property (nonatomic, readonly, copy) NSData *encryptedPublicSharingKey;
+@property (nonatomic, copy) CKEncryptedRecordValueStore *encryptedValueStore;
+@property (nonatomic, readonly, copy) <CKRecordKeyValueSetting> *encryptedValuesByKey;
+@property (nonatomic, retain) NSArray *entries;
+@property (nonatomic, copy) NSString *etag;
+@property (nonatomic, retain) NSData *fc_secureSentinel_encryptionKey;
+@property (nonatomic) unsigned long long fc_secureSentinel_version;
+@property (nonatomic, retain) NSData *fc_sentinel_encryptionKey;
+@property (nonatomic) bool fc_sentinel_finishedDeletion;
+@property (nonatomic) bool fc_sentinel_finishedMigration;
+@property (nonatomic) bool fc_sentinel_finishedSubscriptionDeletion;
+@property (nonatomic) bool fc_sentinel_finishedSubscriptionMigration;
+@property (nonatomic) unsigned long long fc_sentinel_version;
 @property (nonatomic, readonly) NSString *fullToken;
+@property (nonatomic, retain) NSUUID *groupUUID;
 @property (nonatomic, readonly) bool hasChainPCS;
 @property (nonatomic, readonly) bool hasEncryptedData;
 @property (nonatomic, readonly) bool hasModifiedEncryptedData;
@@ -85,11 +99,13 @@
 @property (nonatomic, copy) CKRecordID *lastModifiedUserRecordID;
 @property (nonatomic, copy) NSDate *modificationDate;
 @property (nonatomic, copy) NSString *modifiedByDevice;
+@property (getter=mt_isSynchronized, setter=mt_setSynchronized:, nonatomic) bool mt_isSynchronized;
 @property (nonatomic, retain) CKEncryptedData *mutableEncryptedPSK;
-@property (nonatomic, retain) CKEncryptedData *mutableEncryptedPublicSharingKey;
-@property (nonatomic, retain) NSData *mutableEncryptedPublicSharingKeyData;
+@property (nonatomic, copy) CKEncryptedData *mutableEncryptedPublicSharingKey;
+@property (nonatomic, copy) NSData *mutableEncryptedPublicSharingKeyData;
 @property (nonatomic, copy) NSURL *mutableURL;
-@property (nonatomic, readonly) NSDictionary *originalValues;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, readonly, copy) NSDictionary *originalValues;
 @property (nonatomic, copy) CKReference *parent;
 @property (nonatomic, retain) NSData *pcsKeyID;
 @property long long permission;
@@ -99,32 +115,40 @@
 @property (nonatomic, retain) NSString *previousProtectionEtagFromUnitTest;
 @property (nonatomic, retain) CKReference *previousShare;
 @property (nonatomic, readonly) NSString *privateToken;
-@property (nonatomic, retain) NSData *protectionData;
+@property (nonatomic, copy) NSData *protectionData;
 @property (nonatomic, retain) NSString *protectionEtag;
+@property (nonatomic, retain) NSString *punctuation;
 @property (nonatomic, readonly, copy) NSString *recordChangeTag;
 @property (nonatomic, copy) CKRecordID *recordID;
-@property (nonatomic, copy) NSString *recordType;
-@property (nonatomic, retain) NSString *routingKey;
+@property (nonatomic) struct _OpaquePCSShareProtection { }*recordPCS;
+@property (nonatomic, readonly, copy) NSString *recordType;
+@property (nonatomic, retain) NSString *replacement;
+@property (nonatomic, copy) NSString *routingKey;
+@property (nonatomic, retain) NSString *rule;
 @property (nonatomic) bool serializeProtectionData;
 @property (nonatomic, copy) CKReference *share;
 @property (nonatomic, retain) NSString *shareEtag;
 @property (nonatomic, readonly) NSData *shortSharingTokenData;
 @property (nonatomic, readonly) NSData *shortSharingTokenHashData;
-@property (nonatomic, readonly) NSString *shortToken;
+@property (nonatomic, readonly, copy) NSString *shortToken;
 @property (nonatomic, readonly) unsigned long long size;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) NSArray *tombstonedPublicKeyIDs;
 @property (nonatomic) bool trackChanges;
-@property (nonatomic, readonly) NSURL *uncachedURL;
+@property (nonatomic, readonly, copy) NSURL *uncachedURL;
 @property (nonatomic) bool useLightweightPCS;
-@property (nonatomic, retain) CKRecordValueStore *valueStore;
-@property (nonatomic, readonly) NSDictionary *values;
-@property (nonatomic, readonly) <CKRecordKeyValueSetting> *valuesByKey;
+@property (nonatomic, retain) NSString *uuid;
+@property (nonatomic, copy) CKRecordValueStore *valueStore;
+@property (nonatomic, readonly, copy) NSDictionary *values;
+@property (nonatomic, readonly, copy) <CKRecordKeyValueSetting> *valuesByKey;
+@property (nonatomic, retain) NSNumber *version;
 @property (nonatomic) bool wantsChainPCS;
 @property (nonatomic) bool wantsPublicSharingKey;
 @property (nonatomic) bool wasCached;
 @property (nonatomic, retain) NSString *zoneProtectionEtag;
 @property (nonatomic, retain) NSData *zoneishKeyID;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (bool)accessInstanceVariablesDirectly;
 + (id)decryptFullToken:(id)arg1 shortSharingTokenData:(id)arg2;
@@ -151,6 +175,7 @@
 - (void)_validateRecordType:(id)arg1;
 - (bool)_valueIsUsingCKEncryptedData:(id)arg1;
 - (id)allKeys;
+- (id)allPCSKeyIDs;
 - (id)allTokens;
 - (id)allValues;
 - (unsigned long long)assetCount;
@@ -193,6 +218,7 @@
 - (bool)hasUpdatedShare;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithRecordTransport:(id)arg1;
 - (id)initWithRecordType:(id)arg1;
 - (id)initWithRecordType:(id)arg1 recordID:(id)arg2;
 - (id)initWithRecordType:(id)arg1 zoneID:(id)arg2;
@@ -211,6 +237,7 @@
 - (id)pcsKeyID;
 - (long long)permission;
 - (id)pluginFields;
+- (void)preTiboEncodeWithCoder:(id)arg1;
 - (id)previousParent;
 - (id)previousProtectionEtag;
 - (id)previousProtectionEtagFromUnitTest;
@@ -226,6 +253,7 @@
 - (void)resetChangedKeys;
 - (id)routingKey;
 - (bool)serializeProtectionData;
+- (void)setAllPCSKeyIDs:(id)arg1;
 - (void)setBaseToken:(id)arg1;
 - (void)setChainParentPublicKeyID:(id)arg1;
 - (void)setChainPrivateKey:(id)arg1;
@@ -301,5 +329,225 @@
 - (bool)wasCached;
 - (id)zoneProtectionEtag;
 - (id)zoneishKeyID;
+
+// Image: /System/Library/PrivateFrameworks/AccessibilitySharedSupport.framework/AccessibilitySharedSupport
+
+- (id)basePunctuationGroup;
+- (id)entries;
+- (id)groupUUID;
+- (id)name;
+- (id)punctuation;
+- (id)replacement;
+- (id)rule;
+- (void)setBasePunctuationGroup:(id)arg1;
+- (void)setEntries:(id)arg1;
+- (void)setGroupUUID:(id)arg1;
+- (void)setName:(id)arg1;
+- (void)setPunctuation:(id)arg1;
+- (void)setReplacement:(id)arg1;
+- (void)setRule:(id)arg1;
+- (void)setUuid:(id)arg1;
+- (void)setVersion:(id)arg1;
+- (id)uuid;
+- (id)version;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
++ (id)brc_containerMetadataRecordWithContainer:(id)arg1;
++ (id)brc_containerMetadataZoneID;
++ (id)brc_fakeRecordWithErrorMarkerFor20716676;
++ (id)brc_zoneHealthZoneID;
++ (id)desiredKeysWithMask:(unsigned short)arg1;
++ (id)newFromSqliteStatement:(struct sqlite3_stmt { }*)arg1 atIndex:(int)arg2;
++ (id)newFromSqliteValue:(struct sqlite3_value { }*)arg1;
++ (id)rootAppLibraryRecordForAppLibraryID:(id)arg1 zoneID:(id)arg2;
++ (id)rootDirectoryRecordForZoneID:(id)arg1;
+
+- (id)_createAppLibraryIfNecessary:(id)arg1 session:(id)arg2;
+- (void)_deserializeRootSharingOptions:(unsigned long long*)arg1;
+- (bool)_deserializeValue:(id*)arg1 forKey:(id)arg2 encrypted:(bool)arg3 expectClass:(Class)arg4 allowNil:(bool)arg5 errorDescription:(id*)arg6;
+- (bool)_locateSideCarServerZone:(id*)arg1 withShareAliasReference:(id)arg2 withSession:(id)arg3;
+- (id)brc_containerMetadataIconNames;
+- (id)brc_containerMetadataIconPaths;
+- (id)brc_containerMetadataPropertiesData;
+- (bool)brc_currentUserOwnsLastEditorDeviceWithSession:(id)arg1;
+- (bool)brc_isInterestingRecordForSyncDown;
+- (bool)brc_isfakeRecordWithErrorMarkerFor20716676;
+- (id)brc_lastEditorDeviceName;
+- (id)brc_lastModifiedUserRecordNameWithCurrentUserRecordName:(id)arg1 personNameComponents:(id*)arg2;
+- (id)brc_oplockMergeEtag;
+- (bool)brc_safeToGetURL;
+- (id)brc_sharedLinkDisplayName;
+- (id)brc_sharedRootDisplayName;
+- (id)brc_sharedRootExtension;
+- (id)brc_updateDroppedReason;
+- (void)brc_updateWithLogicalName:(id)arg1 isFolder:(bool)arg2;
+- (bool)deserializeAliasInfo:(id*)arg1 serverZone:(id)arg2 error:(id*)arg3;
+- (bool)deserializeFilename:(id*)arg1 basename:(id*)arg2 bounceno:(id*)arg3 extension:(id*)arg4 userInfo:(id)arg5 error:(id*)arg6;
+- (void)deserializeFolderSharingOptions:(unsigned long long*)arg1;
+- (bool)deserializeSideCarInfo:(id*)arg1 error:(id*)arg2;
+- (bool)deserializeStatInfo:(id*)arg1 serverMetrics:(id*)arg2 itemID:(id)arg3 session:(id)arg4 error:(id*)arg5;
+- (bool)deserializeSymlinkTarget:(id*)arg1 error:(id*)arg2;
+- (bool)deserializeVersion:(id*)arg1 fakeStatInfo:(id*)arg2 clientZone:(id)arg3 error:(id*)arg4;
+- (bool)deserializeiWorkSharingOptions:(unsigned long long*)arg1 error:(id*)arg2;
+- (bool)isFolderShare;
+- (bool)locateSideCarServerZone:(id*)arg1 shareRecordName:(id*)arg2 withSession:(id)arg3;
+- (void)processAppLibraryDataWithMovedZoneNames:(id)arg1 serverZone:(id)arg2;
+- (void)sanitizeShortTokenFields;
+- (void)serializeFilename:(id)arg1 forCreation:(bool)arg2;
+- (void)serializeFilename:(id)arg1 forCreation:(bool)arg2 setExtension:(bool)arg3;
+- (void)serializeFilename:(id)arg1 forCreation:(bool)arg2 setExtension:(bool)arg3 inSharedAlias:(bool)arg4;
+- (void)serializeFinderTags:(id)arg1 forCreation:(bool)arg2;
+- (void)serializeSideCarInfo:(id)arg1 filenameExtension:(id)arg2 diffs:(unsigned long long)arg3 deadInServerTruth:(bool)arg4;
+- (void)serializeStatInfo:(id)arg1 diffs:(unsigned long long)arg2 stageID:(id)arg3 deadInServerTruth:(bool)arg4 shouldPCSChainStatus:(unsigned char)arg5;
+- (void)serializeSystemFields:(id)arg1;
+- (void)serializeVersion:(id)arg1 diffs:(unsigned long long)arg2 deadInServerTruth:(bool)arg3;
+- (void)sqliteBind:(struct sqlite3_stmt { }*)arg1 index:(int)arg2;
+- (void)sqliteBind:(struct sqlite3_stmt { }*)arg1 index:(int)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)fillOutPCSMetadataInfo;
+- (struct _OpaquePCSShareProtection { }*)recordPCS;
+- (void)setRecordPCS:(struct _OpaquePCSShareProtection { }*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (bool)hd_equivalentRecord:(id)arg1;
+- (bool)hd_isCKShare;
+- (id)hd_optionalEncryptedValueForKey:(id)arg1 type:(Class)arg2 error:(id*)arg3;
+- (id)hd_optionalValueForKey:(id)arg1 type:(Class)arg2 error:(id*)arg3;
+- (id)hd_requiredEncryptedValueForKey:(id)arg1 type:(Class)arg2 error:(id*)arg3;
+- (id)hd_requiredValueForKey:(id)arg1 type:(Class)arg2 error:(id*)arg3;
+- (bool)hd_setEncryptedValue:(id)arg1 ifChangedForKey:(id)arg2;
+- (bool)hd_setEncryptedValuesIfChanged:(id)arg1;
+- (bool)hd_setValue:(id)arg1 ifChangedForKey:(id)arg2;
+- (bool)hd_setValuesIfChanged:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
++ (id)hmbDecodeData:(id)arg1 fromStorageLocation:(unsigned long long)arg2 error:(id*)arg3;
++ (id)recordFromExternalData:(id)arg1 error:(id*)arg2;
+
+- (id)externalData:(id*)arg1;
+- (id)externalID:(id*)arg1;
+- (id)hmbDescription;
+- (id)hmbEncodeForStorageLocation:(unsigned long long)arg1 error:(id*)arg2;
+- (id)hmbObjectForKey:(id)arg1 encrypted:(bool)arg2;
+- (void)hmbSetObject:(id)arg1 forKey:(id)arg2 encrypted:(bool)arg3;
+
+// Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
+
+- (id)_arrayForKey:(id)arg1;
+- (id)_assetForKey:(id)arg1;
+- (id)_dataForKey:(id)arg1;
+- (id)_dateForKey:(id)arg1;
+- (id)_numberForKey:(id)arg1;
+- (void)_setCKRecordArray:(id)arg1 forKey:(id)arg2;
+- (void)_setCKRecordAsset:(id)arg1 forKey:(id)arg2;
+- (void)_setCKRecordData:(id)arg1 forKey:(id)arg2;
+- (void)_setCKRecordDate:(id)arg1 forKey:(id)arg2;
+- (void)_setCKRecordNumber:(id)arg1 forKey:(id)arg2;
+- (void)_setCKRecordString:(id)arg1 forKey:(id)arg2;
+- (void)_setUnencryptedCKRecordNumber:(id)arg1 forKey:(id)arg2;
+- (void)_setValue:(id)arg1 forKey:(id)arg2;
+- (id)_stringForKey:(id)arg1;
+- (id)_valueForKey:(id)arg1;
+- (id)copyEncodedSystemFields;
+
+// Image: /System/Library/PrivateFrameworks/MetricsKit.framework/MetricsKit
+
+- (bool)mt_isSynchronized;
+- (void)mt_setSynchronized:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)secureSentinelRecordWithEncryptionKey:(id)arg1;
+
+- (bool)fc_isDifferentFromRecord:(id)arg1 forKey:(id)arg2;
+- (id)fc_secureSentinel_encryptionKey;
+- (unsigned long long)fc_secureSentinel_version;
+- (id)fc_sentinel_encryptionKey;
+- (bool)fc_sentinel_finishedDeletion;
+- (bool)fc_sentinel_finishedMigration;
+- (bool)fc_sentinel_finishedSubscriptionDeletion;
+- (bool)fc_sentinel_finishedSubscriptionMigration;
+- (unsigned long long)fc_sentinel_version;
+- (void)setFc_secureSentinel_encryptionKey:(id)arg1;
+- (void)setFc_secureSentinel_version:(unsigned long long)arg1;
+- (void)setFc_sentinel_encryptionKey:(id)arg1;
+- (void)setFc_sentinel_finishedDeletion:(bool)arg1;
+- (void)setFc_sentinel_finishedMigration:(bool)arg1;
+- (void)setFc_sentinel_finishedSubscriptionDeletion:(bool)arg1;
+- (void)setFc_sentinel_finishedSubscriptionMigration:(bool)arg1;
+- (void)setFc_sentinel_version:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (long long)databaseScope;
+- (bool)ic_isOwnedByCurrentUser;
+- (id)ic_loggingDescription;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)_arrayFromStringValue:(id)arg1;
+- (id)_copyArray:(id)arg1 forNewRecordZone:(id)arg2;
+- (id)_copyReference:(id)arg1 forNewRecordZone:(id)arg2;
+- (id)_dictionaryFromStringValue:(id)arg1;
+- (id)description;
+- (id)pk_arrayForKey:(id)arg1;
+- (bool)pk_boolForKey:(id)arg1;
+- (id)pk_copyRecordForNewRecordZone:(id)arg1;
+- (id)pk_dataForKey:(id)arg1;
+- (id)pk_dateForKey:(id)arg1;
+- (id)pk_decimalNumberForKey:(id)arg1;
+- (id)pk_description;
+- (id)pk_dictionaryForKey:(id)arg1;
+- (id)pk_encryptedArrayOfClasses:(id)arg1 forKey:(id)arg2;
+- (bool)pk_encryptedBoolForKey:(id)arg1;
+- (id)pk_encryptedDataForKey:(id)arg1;
+- (id)pk_encryptedDateForKey:(id)arg1;
+- (id)pk_encryptedDecimalNumberForKey:(id)arg1;
+- (id)pk_encryptedDictionaryForKey:(id)arg1;
+- (int)pk_encryptedIntForKey:(id)arg1;
+- (long long)pk_encryptedIntegerForKey:(id)arg1;
+- (id)pk_encryptedLocationForKey:(id)arg1;
+- (id)pk_encryptedNumberForKey:(id)arg1;
+- (id)pk_encryptedObjectForKey:(id)arg1 ofClass:(Class)arg2;
+- (id)pk_encryptedStringForKey:(id)arg1;
+- (id)pk_encryptedUUIDForKey:(id)arg1;
+- (unsigned long long)pk_encryptedUint64ForKey:(id)arg1;
+- (unsigned long long)pk_encryptedUnsignedIntegerForKey:(id)arg1;
+- (id)pk_encryptedUrlForKey:(id)arg1;
+- (int)pk_intForKey:(id)arg1;
+- (long long)pk_integerForKey:(id)arg1;
+- (id)pk_locationForKey:(id)arg1;
+- (id)pk_numberForKey:(id)arg1;
+- (id)pk_objectForKey:(id)arg1 ofClass:(Class)arg2;
+- (id)pk_participantWithEmailAddress:(id)arg1;
+- (id)pk_participantWithLookupInfo:(id)arg1;
+- (id)pk_participantWithPhoneNumber:(id)arg1;
+- (id)pk_participantWithRecipientHandle:(id)arg1;
+- (id)pk_referenceForKey:(id)arg1;
+- (id)pk_share;
+- (id)pk_stringForKey:(id)arg1;
+- (unsigned long long)pk_uint64ForKey:(id)arg1;
+- (unsigned long long)pk_unsignedIntegerForKey:(id)arg1;
+- (id)pk_urlForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (id)safari_arrayForKey:(id)arg1;
+- (bool)safari_boolForKey:(id)arg1;
+- (id)safari_dataForKey:(id)arg1;
+- (id)safari_dateForKey:(id)arg1;
+- (id)safari_encryptedDataForKey:(id)arg1;
+- (id)safari_numberForKey:(id)arg1;
+- (id)safari_referenceForKey:(id)arg1;
+- (id)safari_stringForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (id)wf_decryptedStringForKey:(id)arg1;
 
 @end

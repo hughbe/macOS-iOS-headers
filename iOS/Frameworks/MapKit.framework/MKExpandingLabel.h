@@ -2,11 +2,15 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKExpandingLabel : UIView <UIGestureRecognizerDelegate> {
+@interface MKExpandingLabel : UIView <UIGestureRecognizerDelegate, UITextViewDelegate> {
+    bool  _allowLessText;
     unsigned long long  _expansionMode;
     bool  _isPerformingLayout;
     id /* block */  _labelResizedBlock;
     unsigned long long  _numberOfLinesWhenCollapsed;
+    UIFont * _showLessFont;
+    NSString * _showLessText;
+    UIColor * _showLessTextColor;
     _MKUILabel * _showMoreLabel;
     UITapGestureRecognizer * _showMoreTapRecognizer;
     UIColor * _showMoreTextColor;
@@ -16,6 +20,7 @@
     UITextView * _textView;
 }
 
+@property (nonatomic) bool allowLessText;
 @property (nonatomic, copy) NSAttributedString *attributedText;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -24,6 +29,9 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) id /* block */ labelResizedBlock;
 @property (nonatomic) unsigned long long numberOfLinesWhenCollapsed;
+@property (nonatomic, retain) UIFont *showLessFont;
+@property (nonatomic, copy) NSString *showLessText;
+@property (nonatomic, retain) UIColor *showLessTextColor;
 @property (nonatomic, retain) UIFont *showMoreFont;
 @property (nonatomic, copy) NSString *showMoreText;
 @property (nonatomic, retain) UIColor *showMoreTextColor;
@@ -35,10 +43,14 @@
 
 - (void).cxx_destruct;
 - (bool)_canShowAllText;
+- (bool)_canShowLess;
 - (void)_expand;
+- (bool)_isShowingUserExpanded;
 - (void)_mkExpandingLabelComonInit;
 - (void)_setExpansionMode:(unsigned long long)arg1;
 - (void)_setTextExclusionPath;
+- (id)_showLessTextSeparator;
+- (bool)allowLessText;
 - (id)attributedText;
 - (id)font;
 - (bool)gestureRecognizerShouldBegin:(id)arg1;
@@ -51,11 +63,15 @@
 - (id /* block */)labelResizedBlock;
 - (void)layoutSubviews;
 - (unsigned long long)numberOfLinesWhenCollapsed;
+- (void)setAllowLessText:(bool)arg1;
 - (void)setAttributedText:(id)arg1;
 - (void)setExpanded:(bool)arg1;
 - (void)setFont:(id)arg1;
 - (void)setLabelResizedBlock:(id /* block */)arg1;
 - (void)setNumberOfLinesWhenCollapsed:(unsigned long long)arg1;
+- (void)setShowLessFont:(id)arg1;
+- (void)setShowLessText:(id)arg1;
+- (void)setShowLessTextColor:(id)arg1;
 - (void)setShowMoreFont:(id)arg1;
 - (void)setShowMoreText:(id)arg1;
 - (void)setShowMoreTextColor:(id)arg1;
@@ -63,6 +79,9 @@
 - (void)setTextAlignment:(long long)arg1;
 - (void)setTextColor:(id)arg1;
 - (void)setTextView:(id)arg1;
+- (id)showLessFont;
+- (id)showLessText;
+- (id)showLessTextColor;
 - (id)showMoreFont;
 - (id)showMoreText;
 - (id)showMoreTextColor;
@@ -70,6 +89,7 @@
 - (long long)textAlignment;
 - (id)textColor;
 - (id)textView;
+- (bool)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3 interaction:(long long)arg4;
 - (id)viewForFirstBaselineLayout;
 - (id)viewForLastBaselineLayout;
 

@@ -5,6 +5,7 @@
 @interface SFImage : NSObject <NSCopying, NSSecureCoding, SFImage> {
     NSString * _contentType;
     double  _cornerRadius;
+    int  _cornerRoundingStyle;
     struct { 
         unsigned int isTemplate : 1; 
         unsigned int shouldCropToCircle : 1; 
@@ -12,6 +13,7 @@
         unsigned int scale : 1; 
         unsigned int size : 1; 
         unsigned int source : 1; 
+        unsigned int cornerRoundingStyle : 1; 
     }  _has;
     NSString * _identifier;
     NSData * _imageData;
@@ -28,6 +30,7 @@
 
 @property (nonatomic, copy) NSString *contentType;
 @property (nonatomic) double cornerRadius;
+@property (nonatomic) int cornerRoundingStyle;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
@@ -43,6 +46,8 @@
 @property (nonatomic) int source;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
+
 + (id)imageWithData:(id)arg1;
 + (bool)supportsSecureCoding;
 
@@ -50,9 +55,11 @@
 - (id)contentType;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (double)cornerRadius;
+- (int)cornerRoundingStyle;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (bool)hasCornerRadius;
+- (bool)hasCornerRoundingStyle;
 - (bool)hasIsTemplate;
 - (bool)hasScale;
 - (bool)hasShouldCropToCircle;
@@ -72,6 +79,7 @@
 - (double)scale;
 - (void)setContentType:(id)arg1;
 - (void)setCornerRadius:(double)arg1;
+- (void)setCornerRoundingStyle:(int)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setImageData:(id)arg1;
 - (void)setIsTemplate:(bool)arg1;
@@ -83,5 +91,9 @@
 - (bool)shouldCropToCircle;
 - (struct CGSize { double x1; double x2; })size;
 - (int)source;
+
+// Image: /System/Library/Frameworks/IntentsUI.framework/IntentsUI
+
+- (id)downcastToIntentsUIVariantIfApplicable;
 
 @end

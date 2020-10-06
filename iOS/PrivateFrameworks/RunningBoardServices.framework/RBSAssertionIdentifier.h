@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSAssertionIdentifier : NSObject <BSXPCSecureCoding, NSCopying> {
+@interface RBSAssertionIdentifier : NSObject <NSCopying, RBSXPCSecureCoding> {
     int  _clientPid;
     unsigned long long  _count;
     NSString * _desc;
@@ -18,21 +18,18 @@
 @property (nonatomic, readonly) int serverPid;
 @property (readonly) Class superclass;
 
-+ (unsigned long long)_next;
 + (id)identifierWithClientPid:(int)arg1;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_initWithServerPid:(int)arg1 clientPid:(int)arg2 count:(unsigned long long)arg3;
 - (int)clientPid;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;
-- (id)debugDescription;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (int)serverPid;
 

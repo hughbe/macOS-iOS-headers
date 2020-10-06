@@ -10,7 +10,7 @@
 @property (nonatomic, copy) id /* block */ pendingDictationCommand;
 @property (nonatomic) struct __CFString { }*transform;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id /* block */)pendingDictationCommand;
 - (void)setPendingDictationCommand:(id /* block */)arg1;
 - (void)setTransform:(struct __CFString { }*)arg1;

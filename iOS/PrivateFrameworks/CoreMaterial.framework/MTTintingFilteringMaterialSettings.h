@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CoreMaterial.framework/CoreMaterial
  */
 
-@interface MTTintingFilteringMaterialSettings : MTTintingMaterialSettings <MTMaterialFiltering> {
+@interface MTTintingFilteringMaterialSettings : MTTintingMaterialSettings <MTMaterialFilteringInternal> {
     bool  _averageColorEnabled;
     double  _backdropScale;
     bool  _blurAtEnd;
@@ -34,6 +34,8 @@
     double  _luminanceAmount;
     NSArray * _luminanceValues;
     double  _saturation;
+    struct CGImage { } * _variableBlurInputMask;
+    NSString * _variableBlurInputMaskName;
     double  _zoom;
 }
 
@@ -51,21 +53,25 @@
 @property (nonatomic, readonly, copy) NSArray *luminanceValues;
 @property (nonatomic, readonly) double saturation;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSString *variableBlurInputMaskName;
 @property (nonatomic, readonly) double zoom;
 
 - (void).cxx_destruct;
-- (void)_processMaterialFilteringDescription:(id)arg1 defaultingToIdentity:(bool)arg2;
+- (void)_processMaterialFilteringDescription:(id)arg1 defaultingToIdentity:(bool)arg2 bundle:(id)arg3;
 - (double)backdropScale;
 - (id)blurInputQuality;
 - (double)blurRadius;
 - (double)brightness;
 - (struct CAColorMatrix { float x1; float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; float x16; float x17; float x18; float x19; float x20; })colorMatrix;
-- (id)initWithMaterialDescription:(id)arg1 andDescendantDescriptions:(id)arg2;
+- (void)dealloc;
+- (id)initWithMaterialDescription:(id)arg1 andDescendantDescriptions:(id)arg2 bundle:(id)arg3;
 - (bool)isAverageColorEnabled;
 - (bool)isBlurAtEnd;
 - (double)luminanceAmount;
 - (id)luminanceValues;
 - (double)saturation;
+- (struct CGImage { }*)variableBlurInputMask;
+- (id)variableBlurInputMaskName;
 - (double)zoom;
 
 @end

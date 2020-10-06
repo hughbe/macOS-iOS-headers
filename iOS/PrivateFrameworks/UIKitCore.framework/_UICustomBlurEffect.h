@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UICustomBlurEffect : UIBlurEffect {
-    _UIBackdropViewSettings * _blurEffect;
-}
+@interface _UICustomBlurEffect : UIBlurEffect
 
 @property (nonatomic) double blurRadius;
 @property (nonatomic) double colorBurnTintAlpha;
@@ -24,13 +22,11 @@
 
 + (id)effectWithStyle:(long long)arg1;
 
-- (void).cxx_destruct;
 - (double)blurRadius;
 - (double)colorBurnTintAlpha;
 - (double)colorBurnTintLevel;
 - (id)colorTint;
 - (double)colorTintAlpha;
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)darkenWithSourceOver;
 - (double)darkeningTintAlpha;
 - (double)darkeningTintHue;
@@ -38,9 +34,6 @@
 - (id)effectSettings;
 - (double)grayscaleTintAlpha;
 - (double)grayscaleTintLevel;
-- (unsigned long long)hash;
-- (id)init;
-- (bool)isEqual:(id)arg1;
 - (bool)lightenGrayscaleWithSourceOver;
 - (double)saturationDeltaFactor;
 - (double)scale;

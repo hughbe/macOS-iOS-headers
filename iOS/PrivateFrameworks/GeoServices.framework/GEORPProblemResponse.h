@@ -31,8 +31,11 @@
 - (bool)hasProblemId;
 - (bool)hasStatusCode;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isNotificationSupported;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)problemId;
 - (void)readAll:(bool)arg1;

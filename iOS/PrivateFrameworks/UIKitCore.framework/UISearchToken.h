@@ -12,6 +12,8 @@
 @property (nonatomic, retain) id representedObject;
 @property (nonatomic, copy) NSString *text;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)tokenWithIcon:(id)arg1 text:(id)arg2;
 + (id)tokenWithImage:(id)arg1;
 
@@ -23,5 +25,9 @@
 - (void)setRepresentedObject:(id)arg1;
 - (void)setText:(id)arg1;
 - (id)text;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_searchTokenWithRepresentedObjectToken:(id)arg1;
 
 @end

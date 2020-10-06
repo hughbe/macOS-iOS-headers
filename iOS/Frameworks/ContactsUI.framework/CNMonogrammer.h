@@ -29,6 +29,8 @@
 @property (nonatomic, retain) UIColor *textColor;
 @property (nonatomic) bool textKnockout;
 
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
+
 + (id)_initialsForContact:(id)arg1;
 + (id)descriptorForRequiredKeysIncludingImage:(bool)arg1;
 + (long long)monogramTypeForContact:(id)arg1;
@@ -67,5 +69,9 @@
 - (id)silhouetteMonogram;
 - (id)textColor;
 - (bool)textKnockout;
+
+// Image: /System/Library/PrivateFrameworks/HealthRecordsUI.framework/HealthRecordsUI
+
+- (id)monogramForFirstWordFromText:(id)arg1;
 
 @end

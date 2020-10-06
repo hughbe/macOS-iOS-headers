@@ -6,14 +6,18 @@
 
 @property (readonly) long long ITUCountryCode;
 @property (readonly) long long _calendarDirection;
+@property (nonatomic, readonly) bool asc_prefersRightToLeftLayout;
 @property (readonly, copy) NSArray *availableNumberingSystems;
 @property (readonly, copy) NSString *explanationTextForSelectableScripts;
+@property (nonatomic, readonly) bool hk_isUSLocale;
 @property (readonly) NSString *languageIdentifier;
 @property (nonatomic, readonly) NSString *languageIdentifier;
+@property (readonly, copy) NSString *nationalDirectDialingPrefix;
 @property (readonly, copy) NSString *numberingSystem;
 @property (readonly, copy) NSString *optionNameForSelectableScripts;
 @property (readonly, copy) NSString *optionNameWithColonForSelectableScripts;
 @property (readonly, copy) NSArray *selectableScriptCodes;
+@property (nonatomic) int wf_temperatureUnit;
 
 // Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
 
@@ -90,6 +94,8 @@
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
++ (id)__effectiveLanguageForBundle:(id)arg1;
++ (id)_deviceLanguage;
 + (id)_preferredMeasurementSystem;
 + (id)_preferredTemperatureUnit;
 + (void)_setPreferredMeasurementSystem:(id)arg1;
@@ -108,12 +114,65 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (bool)hk_isUSLocale;
++ (void)hk_setTestLocale:(id)arg1;
++ (void)hk_setTestPreferredLanguages:(id)arg1;
++ (id)hk_testableAutoupdatingCurrentLocale;
++ (id)hk_testableCurrentLocale;
++ (id)hk_testablePreferredLanguages;
+
+- (bool)hk_isEquivalent:(id)arg1;
+- (bool)hk_isUSLocale;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (unsigned long long)pu_currentCharacterDirection;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (bool)_sf_isRTL;
+
+// Image: /System/Library/Frameworks/VideoSubscriberAccount.framework/VideoSubscriberAccount
+
++ (id)vs_systemLanaguage;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreComponents.framework/AppStoreComponents
+
++ (id)asc_storefrontLocale;
+
+- (bool)asc_prefersRightToLeftLayout;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreKit.framework/AppStoreKit
+
++ (id)ISO3CharacterLanguageCodes;
++ (id)ISO3CharacterRegionCodes;
++ (id)ISO3CharacterTerritoryGroupCodes;
++ (id)ISOScriptCodes;
++ (id)ISOTerritoryGroupCodes;
++ (id)threeCharacterLanguageCodeFromTwoCharacterCode:(id)arg1;
++ (id)threeCharacterRegionCodeFromTwoCharacterCode:(id)arg1;
++ (id)twoCharacterLanguageCodeFromThreeCharacterCode:(id)arg1;
++ (id)twoCharacterRegionCodeFromThreeCharacterCode:(id)arg1;
+
+- (id)threeCharacterLanguageCode;
+- (id)threeCharacterRegionCode;
+
 // Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
 
 + (void)af_setAceTemperatureUnit:(id)arg1;
 + (id)af_temperatureUnitForAceTemperatureUnit:(id)arg1;
 
 - (id)af_aceTemperatureUnit;
+
+// Image: /System/Library/PrivateFrameworks/BusinessChatService.framework/BusinessChatService
+
++ (id)currentCountry;
++ (id)currentLanguage;
+
+- (id)country;
+- (id)language;
 
 // Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
 
@@ -126,6 +185,22 @@
 - (bool)_calendarIsIslamic;
 - (bool)_languageIsArabic;
 
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)__ck_currentLocale;
++ (void)__ck_setTestLocale:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
++ (bool)crk_showPhoneticNames;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
++ (id)ef_localesFromLanguages:(id)arg1;
++ (id)ef_posixLocale;
++ (id)ef_quotePairsForLanguages:(id)arg1;
++ (id)ef_quotePairsForLocales:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/IconServices.framework/IconServices
 
 + (unsigned long long)_IS_currentLanguageDirection;
@@ -134,25 +209,33 @@
 
 + (id)_ICUdisplayNameForLanguage:(id)arg1 capitalization:(struct ULocaleDisplayNames { }*)arg2;
 + (id)_addLikelySubtagsForLocaleIdentifier:(id)arg1;
++ (id)_availableRegionsOfType:(int)arg1;
++ (id)_containingRegionOfType:(int)arg1 forRegion:(id)arg2;
 + (id)_displayNameForLanguage:(id)arg1 displayLanguage:(id)arg2 context:(long long)arg3;
 + (id)_displayNameForNormalizedLanguage:(id)arg1 context:(long long)arg2 displayLanguage:(id)arg3;
 + (id)_displayNameForRegion:(id)arg1 displayLanguage:(id)arg2 context:(long long)arg3 short:(bool)arg4;
++ (id)_generateMinimizedLanguages;
 + (id)_globalPreferredLanguages;
 + (id)_languageNameOverrides;
 + (id)_languagesForRegion:(id)arg1 subdivision:(id)arg2 withThreshold:(long long)arg3;
 + (id)_languagesToExemplarStrings;
++ (id)_minimizeSubtagsForLocaleIdentifier:(id)arg1;
++ (id)_minimizedLanguages;
 + (id)_normalizedLanguageIdentifierFromString:(id)arg1;
 + (id)_parentLocaleIdentifierForIdentifier:(id)arg1;
 + (id)_regionLanguageDataForRegionCode:(id)arg1 subdivisionCode:(id)arg2;
 + (id)_supportedKeyboardLanguages;
++ (id)availableContinents;
 + (id)availableSpokenLanguages;
 + (id)baseLanguageFromLanguage:(id)arg1;
 + (id)baseSystemLanguages;
++ (id)containingContinentOfRegion:(id)arg1;
 + (id)deviceLanguage;
 + (id)deviceLanguages;
 + (id)displayNameForLanguage:(id)arg1 displayLanguage:(id)arg2 context:(long long)arg3;
 + (id)displayNameForRegion:(id)arg1 displayLanguage:(id)arg2 context:(long long)arg3 short:(bool)arg4;
 + (id)exemplarForLanguage:(id)arg1;
++ (id)exemplarRegionForLanguage:(id)arg1;
 + (id)languageFromLanguage:(id)arg1 byReplacingRegion:(id)arg2;
 + (id)languagesByAddingRelatedLanguagesToLanguages:(id)arg1;
 + (id)languagesForRegion:(id)arg1 subdivision:(id)arg2 withThreshold:(long long)arg3 filter:(long long)arg4;
@@ -179,9 +262,11 @@
 // Image: /System/Library/PrivateFrameworks/IntlPreferences.framework/IntlPreferences
 
 + (id)_sanitizedLanguageIdentifierFromKeyboardLanguage:(id)arg1;
++ (id)_sanitizedLanguageIdentifierFromKeyboardLanguage:(id)arg1 currentLocale:(id)arg2;
 + (id)_subdivisionCodeFromSubdivisionTag:(id)arg1 restrictedToRegionCode:(id)arg2;
 + (id)addLikelySubtagsForLocaleIdentifier:(id)arg1;
 + (id)archivedPreferences;
++ (id)archivedPreferencesWithHash:(out id*)arg1;
 + (id)canonicalLanguageAndScriptCodeIdentifierForIdentifier:(id)arg1;
 + (id)canonicalLocaleIdentifier:(id)arg1 withNewLanguageIdentifier:(id)arg2;
 + (id)canonicalLocaleIdentifierFromComponents:(id)arg1;
@@ -220,6 +305,16 @@
 - (bool)requiresMultilingualSetup;
 - (id)selectableScriptCodes;
 
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
+- (bool)mtIsIn24HourTime;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
++ (void)__loadSwizzledCurrentLocaleIfNeeded;
++ (void)__setCurrentLocal:(id)arg1;
++ (id)__userCurrentLocale;
+
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 + (id)_localeOverridesForLocaleWithCountryCode:(id)arg1;
@@ -233,18 +328,104 @@
 - (id)_navigation_objectForKey:(id)arg1;
 - (bool)_navigation_useYardsForShortDistances;
 
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)fc_preferredLanguageCodes;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (id)tsu_firstPreferredLocalization;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)pk_deviceLanguage;
++ (id)pk_preferredLocale;
+
 // Image: /System/Library/PrivateFrameworks/PhoneNumbers.framework/PhoneNumbers
 
 + (long long)ITUCountryCodeForISOCountryCode:(id)arg1;
++ (id)nationalDirectDialingPrefixForISOCountryCode:(id)arg1;
 
 - (long long)ITUCountryCode;
+- (id)nationalDirectDialingPrefix;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (bool)psi_languageIsGerman;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (unsigned long long)px_currentCharacterDirection;
++ (long long)px_currentLeadingTextAlignment;
+
+// Image: /System/Library/PrivateFrameworks/RemoteConfiguration.framework/RemoteConfiguration
+
++ (id)rc_preferredLanguageCodes;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (id)safari_localeIdentifiersForMostWidelyUsedLanguages;
+
+// Image: /System/Library/PrivateFrameworks/SafariSharedUI.framework/SafariSharedUI
+
++ (bool)safari_currentLocaleHasSameBaseLanguageAsLocaleIdentifier:(id)arg1;
++ (id)safari_displayNameForLocaleIdentifier:(id)arg1;
++ (id)safari_displayNameForLocaleIdentifier:(id)arg1 inNativeLanguage:(bool)arg2;
++ (id)safari_displayNameForLocaleIdentifier:(id)arg1 usingLanguageForLocalization:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
+
++ (id)_nonRomanLanguages;
+
+- (bool)usesRomanTextProcessing;
+
+// Image: /System/Library/PrivateFrameworks/Sleep.framework/Sleep
+
+- (bool)hksp_isIn24HourTime;
+
+// Image: /System/Library/PrivateFrameworks/TVPlayback.framework/TVPlayback
+
+- (id)tvp_subtitleLanguageCode;
 
 // Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
 
 + (id)localeForBundleLanguage:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/TipsCore.framework/TipsCore
+
++ (id)tps_userLanguageCode;
++ (id)tps_userPreferredLocalizations;
+
+// Image: /System/Library/PrivateFrameworks/Translation.framework/Translation
+
+- (id)_ltCsLocaleIdentifier;
+- (bool)_ltEqual:(id)arg1;
+- (id)_ltLocaleIdentifier;
+- (id)_vsLocaleIdentifier;
+
 // Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
 
 + (long long)_vk_indexForLocale:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
+
+- (bool)isEqualToLocaleForWeather:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WeatherFoundation.framework/WeatherFoundation
+
+- (void)setWf_temperatureUnit:(int)arg1;
+- (int)wf_temperatureUnit;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
++ (bool)isGerman;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_firstPreferredLocalization;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_firstPreferredLocalization;
 
 @end

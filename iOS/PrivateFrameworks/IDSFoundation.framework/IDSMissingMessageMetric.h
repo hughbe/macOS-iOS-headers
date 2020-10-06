@@ -17,8 +17,10 @@
 @property (nonatomic, readonly) NSString *service;
 
 - (void).cxx_destruct;
+- (bool)_isInternal;
 - (bool)_shouldReportMetricForExternal;
 - (bool)_shouldReportReason;
+- (bool)_shouldReportReasonForExternal;
 - (id)additionalInfo;
 - (id)command;
 - (id)guid;

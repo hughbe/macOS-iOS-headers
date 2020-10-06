@@ -43,6 +43,7 @@
 - (id)initWithAuditToken:(id)arg1 traits:(id)arg2;
 - (id)protobufSession;
 - (void)protobufSession:(id)arg1 didCompleteTask:(id)arg2;
+- (id)protobufSession:(id)arg1 validateResponse:(id)arg2;
 - (void)protobufSession:(id)arg1 willSendRequestForTask:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)setCurrentRequest:(id)arg1;
 - (void)setErrorHandler:(id /* block */)arg1;

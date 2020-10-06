@@ -20,6 +20,7 @@
         unsigned int hasAlarmURL : 1; 
         unsigned int hasIsFiring : 1; 
         unsigned int hasTitle : 1; 
+        unsigned int hasType : 1; 
         unsigned int hasHour : 1; 
         unsigned int hasMinute : 1; 
         unsigned int hasRepeatOptions : 1; 
@@ -31,6 +32,7 @@
     }  _mutationFlags;
     unsigned long long  _repeatOptions;
     NSString * _title;
+    unsigned long long  _type;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -54,5 +56,6 @@
 - (void)setMinute:(unsigned long long)arg1;
 - (void)setRepeatOptions:(unsigned long long)arg1;
 - (void)setTitle:(id)arg1;
+- (void)setType:(unsigned long long)arg1;
 
 @end

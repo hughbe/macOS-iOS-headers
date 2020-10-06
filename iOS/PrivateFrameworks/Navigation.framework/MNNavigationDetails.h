@@ -28,14 +28,11 @@
     NSArray * _previewRoutes;
     double  _proceedToRouteDistance;
     unsigned long long  _reconnectionRouteIndex;
-    double  _remainingDistance;
-    double  _remainingTime;
     NSMapTable * _routeIDLookup;
     unsigned long long  _routeIndex;
     NSMutableDictionary * _routeLookup;
     geo_isolater * _routeLookupLock;
     unsigned long long  _selectedPreviewRouteIndex;
-    MNStartNavigationDetails * _startNavigationDetails;
     unsigned long long  _state;
     double  _timeUntilManeuver;
     double  _timeUntilSign;
@@ -56,6 +53,7 @@
 @property (nonatomic) int desiredTransportType;
 @property (nonatomic, retain) GEODirectionsRequest *directionsRequest;
 @property (nonatomic, retain) GEODirectionsResponse *directionsResponse;
+@property (nonatomic, readonly) MNDisplayETAInfo *displayETAInfo;
 @property (nonatomic, retain) NSString *displayString;
 @property (nonatomic) double distanceUntilManeuver;
 @property (nonatomic) double distanceUntilSign;
@@ -64,7 +62,6 @@
 @property (nonatomic) int headingOrientation;
 @property (nonatomic) bool isDetour;
 @property (nonatomic) bool isInPreArrivalState;
-@property (nonatomic, readonly) unsigned long long legIndex;
 @property (nonatomic, retain) MNLocation *location;
 @property (nonatomic) int navigationState;
 @property (nonatomic) int navigationType;
@@ -74,11 +71,11 @@
 @property (nonatomic, readonly) NSArray *previewRoutes;
 @property (nonatomic) double proceedToRouteDistance;
 @property (nonatomic, readonly) unsigned long long reconnectionRouteIndex;
-@property (nonatomic) double remainingDistance;
-@property (nonatomic) double remainingTime;
+@property (nonatomic, readonly) MNRouteDistanceInfo *remainingDistanceInfo;
 @property (nonatomic, readonly) NSMapTable *routeIDLookup;
 @property (nonatomic, readonly) unsigned long long routeIndex;
 @property (nonatomic, readonly) NSMutableDictionary *routeLookup;
+@property (nonatomic, readonly) unsigned long long segmentIndex;
 @property (nonatomic, readonly) unsigned long long selectedPreviewRouteIndex;
 @property (nonatomic) unsigned long long state;
 @property (nonatomic, readonly) unsigned long long stepIndex;
@@ -105,6 +102,7 @@
 - (int)desiredTransportType;
 - (id)directionsRequest;
 - (id)directionsResponse;
+- (id)displayETAInfo;
 - (id)displayString;
 - (double)distanceUntilManeuver;
 - (double)distanceUntilSign;
@@ -116,7 +114,6 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isDetour;
 - (bool)isInPreArrivalState;
-- (unsigned long long)legIndex;
 - (id)location;
 - (int)navigationState;
 - (int)navigationType;
@@ -126,8 +123,7 @@
 - (id)previewRoutes;
 - (double)proceedToRouteDistance;
 - (unsigned long long)reconnectionRouteIndex;
-- (double)remainingDistance;
-- (double)remainingTime;
+- (id)remainingDistanceInfo;
 - (id)removeTrafficIncidentAlert:(id)arg1;
 - (id)routeIDLookup;
 - (unsigned long long)routeIndex;
@@ -135,6 +131,7 @@
 - (id)routeInfoForRoute:(id)arg1;
 - (id)routeLookup;
 - (id)routeLookupIDs;
+- (unsigned long long)segmentIndex;
 - (unsigned long long)selectedPreviewRouteIndex;
 - (void)setAlternateRoutes:(id)arg1;
 - (void)setClosestStepIndex:(unsigned long long)arg1;
@@ -159,8 +156,6 @@
 - (void)setOriginalOrigin:(id)arg1;
 - (void)setPreviewRoutes:(id)arg1 withSelectedRouteIndex:(unsigned long long)arg2;
 - (void)setProceedToRouteDistance:(double)arg1;
-- (void)setRemainingDistance:(double)arg1;
-- (void)setRemainingTime:(double)arg1;
 - (void)setState:(unsigned long long)arg1;
 - (void)setTimeUntilManeuver:(double)arg1;
 - (void)setTimeUntilSign:(double)arg1;
@@ -181,7 +176,6 @@
 - (double)tracePosition;
 - (id)trackedCommuteDestinations;
 - (void)updateETATrafficForRoute:(id)arg1;
-- (void)updateLocationFromDetails:(id)arg1;
 - (void)updatePossibleCommuteDestinations:(id)arg1;
 - (id)updateWithTrafficIncidentAlert:(id)arg1;
 

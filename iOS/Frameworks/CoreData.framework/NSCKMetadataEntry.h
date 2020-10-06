@@ -12,8 +12,6 @@
 @property (nonatomic, retain) NSString *stringValue;
 @property (nonatomic, retain) NSObject<NSSecureCoding> *transformedValue;
 
-+ (id)_insertMetadataEntryWithKey:(id)arg1 forStore:(id)arg2 intoManagedObjectContext:(id)arg3;
-+ (id)_updateOrInsertMetadataEntryWithKey:(id)arg1 valueSettingBlock:(id /* block */)arg2 forStore:(id)arg3 intoManagedObjectContext:(id)arg4 error:(id*)arg5;
 + (id)entityPath;
 + (id)entriesForKeys:(id)arg1 fromStore:(id)arg2 inManagedObjectContext:(id)arg3 error:(id*)arg4;
 + (id)entriesForKeys:(id)arg1 onlyFetchingProperties:(id)arg2 fromStore:(id)arg3 inManagedObjectContext:(id)arg4 error:(id*)arg5;

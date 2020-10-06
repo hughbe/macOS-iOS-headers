@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchRecordZoneChangesOperation : CKDatabaseOperation {
+@interface CKFetchRecordZoneChangesOperation : CKDatabaseOperation <CKFetchRecordZoneChangesOperationCallbacks> {
     NSDictionary * _assetTransferOptionsByRecordTypeAndKey;
     NSDictionary * _configurationsByRecordZoneID;
     bool  _fetchAllChanges;
@@ -21,9 +21,11 @@
 }
 
 @property (nonatomic, retain) NSDictionary *assetTransferOptionsByRecordTypeAndKey;
+@property (nonatomic, readonly) <CKFetchRecordZoneChangesOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) NSDictionary *configurationsByRecordZoneID;
 @property (nonatomic) bool fetchAllChanges;
 @property (nonatomic, copy) id /* block */ fetchRecordZoneChangesCompletionBlock;
+@property (nonatomic, readonly) CKFetchRecordZoneChangesOperationInfo *operationInfo;
 @property (nonatomic, copy) NSDictionary *optionsByRecordZoneID;
 @property (nonatomic, retain) NSMutableDictionary *perItemErrors;
 @property (nonatomic, copy) id /* block */ perRecordChangeCompletionBlock;
@@ -37,10 +39,13 @@
 @property (nonatomic, retain) NSMutableDictionary *statusByZoneID;
 @property (nonatomic, retain) NSMutableSet *zoneIDsWithPendingArchivedRecords;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)assetTransferOptionsByRecordTypeAndKey;
 - (long long)changeTypesFromSetCallbacks;
@@ -49,6 +54,9 @@
 - (id /* block */)fetchRecordZoneChangesCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleChangeForRecordID:(id)arg1 record:(id)arg2 error:(id)arg3;
+- (void)handleChangeSetCompletionForRecordZoneID:(id)arg1 serverChangeToken:(id)arg2 clientChangeTokenData:(id)arg3 recordChangesStatus:(long long)arg4 hasPendingArchivedRecords:(bool)arg5 error:(id)arg6 reply:(id /* block */)arg7;
+- (void)handleDeleteForRecordID:(id)arg1 recordType:(id)arg2;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordZoneIDs:(id)arg1 configurationsByRecordZoneID:(id)arg2;
@@ -65,6 +73,7 @@
 - (id /* block */)recordZoneFetchCompletionBlock;
 - (id)recordZoneIDs;
 - (id)recordZoneIDsWithPendingArchivedRecords;
+- (id)relevantZoneIDs;
 - (void)setAssetTransferOptionsByRecordTypeAndKey:(id)arg1;
 - (void)setConfigurationsByRecordZoneID:(id)arg1;
 - (void)setFetchAllChanges:(bool)arg1;
@@ -85,5 +94,11 @@
 - (bool)shouldReportAllPerItemFailures;
 - (id)statusByZoneID;
 - (id)zoneIDsWithPendingArchivedRecords;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (id)ic_loggingValues;
+- (void)ic_removeAllCompletionBlocks;
+- (id)ic_shortLoggingDescription;
 
 @end

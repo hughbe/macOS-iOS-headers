@@ -42,6 +42,7 @@
 - (void)setNeedsDisplayInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 levelOfDetail:(int)arg2;
 - (void)setNeedsDisplayInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 levelOfDetail:(int)arg2 options:(id)arg3;
 - (void)setTileSize:(struct CGSize { double x1; double x2; })arg1;
+- (void)setUnsafeUnretainedDelegate:(id)arg1;
 - (bool)shouldArchiveValueForKey:(id)arg1;
 - (struct CGSize { double x1; double x2; })tileSize;
 

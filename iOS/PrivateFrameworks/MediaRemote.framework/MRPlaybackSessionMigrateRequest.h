@@ -4,7 +4,6 @@
 
 @interface MRPlaybackSessionMigrateRequest : NSObject <NSCopying> {
     NSString * _appBundleIdentifier;
-    _MRPlaybackSessionMigrateRequestProtobuf * _descriptor;
     unsigned int  _destinationTypes;
     NSError * _fallbackError;
     unsigned long long  _fallbackReason;
@@ -12,12 +11,12 @@
     NSError * _migrateError;
     unsigned int  _originatorType;
     long long  _playbackSessionSize;
+    _MRPlaybackSessionMigrateRequestProtobuf * _protobuf;
     unsigned long long  _requestType;
 }
 
 @property (nonatomic, retain) NSString *appBundleIdentifier;
-@property (nonatomic, retain) _MRContentItemProtobuf *contentItem;
-@property (nonatomic, readonly) _MRPlaybackSessionMigrateRequestProtobuf *descriptor;
+@property (nonatomic, retain) MRContentItem *contentItem;
 @property (nonatomic) unsigned int destinationTypes;
 @property (nonatomic, readonly) double duration;
 @property (nonatomic) long long endpointOptions;
@@ -26,10 +25,11 @@
 @property (nonatomic) unsigned int originatorType;
 @property (nonatomic) double playbackPosition;
 @property (nonatomic) double playbackRate;
-@property (nonatomic, retain) _MRPlaybackSessionRequestProtobuf *playbackSessionRequest;
+@property (nonatomic, retain) MRPlaybackSessionRequest *playbackSessionRequest;
 @property (nonatomic) long long playbackSessionSize;
 @property (nonatomic) unsigned int playbackState;
 @property (nonatomic) long long playerOptions;
+@property (nonatomic, readonly) _MRPlaybackSessionMigrateRequestProtobuf *protobuf;
 @property (nonatomic, readonly) NSString *report;
 @property (nonatomic, retain) NSString *requestID;
 @property (nonatomic) unsigned long long requestType;
@@ -37,12 +37,10 @@
 - (void).cxx_destruct;
 - (void)addDestinationType:(unsigned int)arg1;
 - (void)addDestinationTypesFromDevices:(id)arg1;
-- (id)analyticsPayload;
 - (id)appBundleIdentifier;
 - (id)contentItem;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)descriptor;
 - (unsigned int)destinationTypes;
 - (double)duration;
 - (void)endEvent:(id)arg1;
@@ -51,7 +49,8 @@
 - (unsigned long long)fallbackReason;
 - (void)finalize;
 - (id)init;
-- (id)initWithDescriptor:(id)arg1;
+- (id)initWithData:(id)arg1;
+- (id)initWithProtobuf:(id)arg1;
 - (id)initiator;
 - (void)merge:(id)arg1;
 - (unsigned int)originatorType;
@@ -61,6 +60,7 @@
 - (long long)playbackSessionSize;
 - (unsigned int)playbackState;
 - (long long)playerOptions;
+- (id)protobuf;
 - (id)report;
 - (id)requestID;
 - (unsigned long long)requestType;

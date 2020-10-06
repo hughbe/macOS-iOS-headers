@@ -30,7 +30,7 @@
 - (void)allocationDone:(NSString *)arg1 sessionInfo:(NSDictionary *)arg2;
 - (void)applecareResponseForRequestID:(NSString *)arg1 withError:(NSError *)arg2;
 - (void)checkTransportLogWithReason:(long long)arg1;
-- (void)connectionComplete:(bool)arg1;
+- (void)connectionComplete:(bool)arg1 withResponse:(NSDictionary *)arg2;
 - (void)consentTokens:(NSArray *)arg1 error:(NSError *)arg2;
 - (void)continuityDidConnectToPeer:(NSString *)arg1 withError:(NSError *)arg2;
 - (void)continuityDidDisconnectFromPeer:(NSString *)arg1 withError:(NSError *)arg2;
@@ -88,9 +88,14 @@
 - (void)registrationControlResponseForRequestID:(NSString *)arg1 withError:(NSError *)arg2;
 - (void)registrationControlStatusResponseForRequestID:(long long)arg1 requestID:(NSString *)arg2 withError:(NSError *)arg3;
 - (void)registrationFailedForAccount:(NSString *)arg1 needsDeletion:(NSNumber *)arg2;
+- (void)service:(NSString *)arg1 linkedDevicesUpdated:(NSArray *)arg2;
+- (void)service:(NSString *)arg1 tinkerDeviceAdded:(NSDictionary *)arg2;
+- (void)service:(NSString *)arg1 tinkerDeviceRemoved:(NSDictionary *)arg2;
+- (void)service:(NSString *)arg1 tinkerDeviceUpdated:(NSDictionary *)arg2;
 - (void)serviceUserIDs:(NSArray *)arg1 error:(NSError *)arg2;
 - (void)session:(NSString *)arg1 audioEnabled:(bool)arg2;
 - (void)session:(NSString *)arg1 didReceiveActiveParticipants:(NSArray *)arg2 success:(bool)arg3;
+- (void)session:(NSString *)arg1 didReceivePluginAllocationInfo:(NSDictionary *)arg2;
 - (void)session:(NSString *)arg1 didReceiveReport:(NSArray *)arg2;
 - (void)session:(NSString *)arg1 invitationSentToTokens:(NSSet *)arg2 shouldBreakBeforeMake:(bool)arg3;
 - (void)session:(NSString *)arg1 muted:(bool)arg2;

@@ -2,55 +2,11 @@
    Image: /System/Library/Frameworks/CoreServices.framework/CoreServices
  */
 
-@interface LSApplicationProxy : LSBundleProxy <NSSecureCoding> {
-    NSArray * _activityTypes;
-    _LSApplicationState * _appState;
-    NSString * _appStoreToolsBuildVersion;
-    NSString * _applicationVariant;
-    NSArray * _backgroundTaskSchedulerPermittedIdentifiers;
-    int  _bundleModTime;
-    NSDictionary * _claimHandlerRanks;
-    NSSet * _claimedDocumentContentTypes;
-    NSSet * _claimedURLSchemes;
-    NSString * _companionApplicationIdentifier;
-    NSString * _complicationPrincipalClass;
-    NSArray * _counterpartIdentifiers;
-    NSArray * _deviceFamily;
+@interface LSApplicationProxy : LSBundleProxy <LSDetachable, NSSecureCoding> {
     NSString * _deviceIdentifierVendorName;
-    _LSDiskUsage * _diskUsage;
-    NSNumber * _downloaderDSID;
-    NSNumber * _familyID;
-    NSString * _genre;
-    NSNumber * _genreID;
-    NSNumber * _installFailureReason;
-    unsigned long long  _installType;
-    NSNumber * _itemID;
-    NSString * _itemName;
-    NSArray * _managedPersonas;
-    NSString * _maximumSystemVersion;
-    NSString * _minimumSystemVersion;
-    unsigned long long  _originalInstallType;
-    unsigned int  _platform;
     NSArray * _plugInKitPlugins;
-    NSArray * _pluginUUIDs;
-    NSString * _preferredArchitecture;
-    NSNumber * _purchaserDSID;
-    NSString * _ratingLabel;
-    NSNumber * _ratingRank;
-    NSDate * _registeredDate;
-    bool  _runsIndependentlyOfCompanionApp;
-    NSString * _shortVersionString;
-    NSString * _signerOrganization;
-    _LSLazyPropertyList * _siriActionDefinitionURLs;
-    NSString * _sourceAppIdentifier;
-    bool  _standaloneWatchApp;
-    NSNumber * _storeFront;
-    NSArray * _supportedComplicationFamilies;
-    NSString * _teamID;
+    LSApplicationRecord * _record;
     bool  _userInitiatedUninstall;
-    NSString * _vendorName;
-    NSNumber * _versionID;
-    NSString * _watchKitVersion;
 }
 
 @property (nonatomic, readonly) NSNumber *ODRDiskUsage;
@@ -80,8 +36,8 @@
 @property (nonatomic, readonly) NSSet *claimedURLSchemes;
 @property (nonatomic, readonly) NSString *companionApplicationIdentifier;
 @property (nonatomic, readonly) NSString *complicationPrincipalClass;
+@property (nonatomic, readonly) LSApplicationRecord *correspondingApplicationRecord;
 @property (nonatomic, readonly) NSArray *counterpartIdentifiers;
-@property (nonatomic, readonly) bool cx_hasVoIPBackgroundMode;
 @property (getter=isDeletable, nonatomic, readonly) bool deletable;
 @property (getter=isDeviceBasedVPP, nonatomic, readonly) bool deviceBasedVPP;
 @property (nonatomic, readonly) NSArray *deviceFamily;
@@ -106,6 +62,7 @@
 @property (nonatomic, readonly) bool hasMIDBasedSINF;
 @property (nonatomic, readonly) bool hasParallelPlaceholder;
 @property (nonatomic, readonly) bool hasSettingsBundle;
+@property (nonatomic, readonly) bool hf_isInstalledForLaunching;
 @property (nonatomic, readonly) bool iconIsPrerendered;
 @property (nonatomic, readonly) bool iconUsesAssetCatalog;
 @property (readonly) NSArray *if_userActivityTypes;
@@ -172,15 +129,13 @@
 + (id)applicationProxyForItemID:(id)arg1;
 + (id)applicationProxyForSystemPlaceholder:(id)arg1;
 + (id)applicationProxyWithBundleUnitID:(unsigned int)arg1 withContext:(struct LSContext { id x1; }*)arg2;
-+ (id)iconQueue;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)ODRDiskUsage;
-- (id)UIBackgroundModes;
 - (bool)UPPValidated;
-- (id)VPNPlugins;
-- (id)_initWithBundleUnit:(unsigned int)arg1 context:(struct LSContext { id x1; }*)arg2 applicationIdentifier:(id)arg3;
+- (id)_initWithBundleUnit:(unsigned int)arg1 context:(struct LSContext { id x1; }*)arg2 bundleIdentifier:(id)arg3;
+- (id)_initWithContext:(struct LSContext { id x1; }*)arg1 bundleUnit:(unsigned int)arg2 applicationRecord:(id)arg3 bundleID:(id)arg4 resolveAndDetach:(bool)arg5;
 - (id)_localizedNameWithPreferredLocalizations:(id)arg1 useShortNameOnly:(bool)arg2;
 - (id)_managedPersonas;
 - (bool)_usesSystemPersona;
@@ -188,50 +143,42 @@
 - (id)alternateIconName;
 - (id)appIDPrefix;
 - (id)appState;
-- (id)appStoreToolsBuildVersion;
-- (id)appTags;
 - (id)applicationDSID;
 - (id)applicationIdentifier;
 - (id)applicationType;
 - (id)applicationVariant;
-- (id)audioComponents;
-- (id)backgroundTaskSchedulerPermittedIdentifiers;
 - (id)betaExternalVersionIdentifier;
 - (int)bundleModTime;
-- (bool)canHandleWebAuthentication;
-- (id)carPlayInstrumentClusterURLSchemes;
+- (id)bundleType;
 - (id)claimedDocumentContentTypes;
 - (id)claimedURLSchemes;
 - (void)clearAdvertisingIdentifier;
 - (id)companionApplicationIdentifier;
 - (id)complicationPrincipalClass;
-- (id)counterpartIdentifiers;
+- (id)correspondingApplicationRecord;
+- (id)dataContainerURL;
 - (id)description;
+- (void)detach;
 - (id)deviceFamily;
-- (id)deviceIdentifierForAdvertising;
-- (id)deviceIdentifierForVendor;
 - (long long)deviceManagementPolicy;
-- (id)directionsModes;
-- (id)diskUsage;
 - (id)downloaderDSID;
 - (id)dynamicDiskUsage;
 - (void)encodeWithCoder:(id)arg1;
-- (id)externalAccessoryProtocols;
+- (id)environmentVariables;
 - (id)externalVersionIdentifier;
 - (id)familyID;
 - (bool)fileSharingEnabled;
+- (id)forwardingTargetForSelector:(SEL)arg1;
+- (bool)freeProfileValidated;
 - (bool)gameCenterEverEnabled;
 - (id)genre;
 - (id)genreID;
 - (id)getBundleMetadata;
 - (void)getDeviceManagementPolicyWithCompletionHandler:(id /* block */)arg1;
+- (bool)getGenericTranslocationTargetURL:(id*)arg1 error:(id*)arg2;
+- (id)groupContainerURLs;
 - (id)handlerRankOfClaimForContentType:(id)arg1;
-- (bool)hasComplication;
-- (bool)hasCustomNotification;
-- (bool)hasGlance;
 - (bool)hasMIDBasedSINF;
-- (bool)hasParallelPlaceholder;
-- (bool)hasSettingsBundle;
 - (id)iconDataForVariant:(int)arg1;
 - (id)iconDataForVariant:(int)arg1 withOptions:(int)arg2;
 - (bool)iconIsPrerendered;
@@ -241,17 +188,12 @@
 - (id)installProgress;
 - (id)installProgressSync;
 - (unsigned long long)installType;
-- (bool)isAdHocCodeSigned;
-- (bool)isAppStoreVendable;
 - (bool)isAppUpdate;
-- (bool)isArcadeApp;
 - (bool)isBetaApp;
-- (bool)isDeletable;
 - (bool)isDeletableIgnoringRestrictions;
 - (bool)isDeviceBasedVPP;
 - (bool)isGameCenterEnabled;
 - (bool)isInstalled;
-- (bool)isLaunchProhibited;
 - (bool)isNewsstandApp;
 - (bool)isPlaceholder;
 - (bool)isPurchasedReDownload;
@@ -267,8 +209,7 @@
 - (id)localizedNameForContext:(id)arg1 preferredLocalizations:(id)arg2;
 - (id)localizedNameForContext:(id)arg1 preferredLocalizations:(id)arg2 useShortNameOnly:(bool)arg3;
 - (id)managedPersonas;
-- (id)maximumSystemVersion;
-- (id)minimumSystemVersion;
+- (id)methodSignatureForSelector:(SEL)arg1;
 - (bool)missingRequiredSINF;
 - (unsigned long long)originalInstallType;
 - (id)platform;
@@ -281,43 +222,45 @@
 - (id)ratingRank;
 - (id)registeredDate;
 - (id)requiredDeviceCapabilities;
-- (bool)runsIndependentlyOfCompanionApp;
+- (bool)respondsToSelector:(SEL)arg1;
 - (void)setAlternateIconName:(id)arg1 withResult:(id /* block */)arg2;
 - (void)setUserInitiatedUninstall:(bool)arg1;
-- (id)shortVersionString;
-- (bool)shouldSkipWatchAppInstall;
-- (id)signerOrganization;
 - (id)siriActionDefinitionURLs;
 - (id)sourceAppIdentifier;
 - (id)staticDiskUsage;
-- (id)staticShortcutItems;
 - (id)storeCohortMetadata;
 - (id)storeFront;
 - (id)subgenres;
-- (id)supportedComplicationFamilies;
-- (bool)supportsAlternateIconNames;
-- (bool)supportsAudiobooks;
-- (bool)supportsExternallyPlayableContent;
-- (bool)supportsMultiwindow;
 - (bool)supportsODR;
-- (bool)supportsOpenInPlace;
-- (bool)supportsPurgeableLocalStorage;
 - (id)teamID;
-- (id)uniqueIdentifier;
 - (bool)userInitiatedUninstall;
+- (id)valueForUndefinedKey:(id)arg1;
 - (id)vendorName;
-- (id)watchKitVersion;
-
-// Image: /System/Library/Frameworks/CallKit.framework/CallKit
-
-- (bool)cx_hasVoIPBackgroundMode;
 
 // Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
 
 - (id)un_applicationBundleIdentifier;
 - (id)un_applicationBundleURL;
 
+// Image: /System/Library/PrivateFrameworks/AppStoreDaemon.framework/AppStoreDaemon
+
+- (bool)asd_isOcelot;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (id)__ck_messagesPluginKitProxy;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
++ (id)hf_applicationProxyForAccessory:(id)arg1;
+
+- (bool)hf_isInstalledForLaunching;
+
 // Image: /System/Library/PrivateFrameworks/IconServices.framework/IconServices
+
++ (id)__IS_appClipIconDataWithUnmaskedIconData:(id)arg1 variant:(int)arg2;
++ (bool)appClipMetadataAvailableForBundleIdentifier:(id)arg1;
++ (bool)clipTreatmentIsWhitelisted;
 
 - (id)__IS_iconDataForVariant:(int)arg1 preferredIconName:(id)arg2 withOptions:(int)arg3;
 - (id)__IS_iconDataForVariant:(int)arg1 withOptions:(int)arg2;
@@ -325,5 +268,29 @@
 // Image: /System/Library/PrivateFrameworks/IntentsFoundation.framework/IntentsFoundation
 
 - (id)if_userActivityTypes;
+
+// Image: /System/Library/PrivateFrameworks/MDM.framework/MDM
+
+- (bool)isMISAuthorized;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
+- (id)appIconForTableCell;
+- (bool)hasAppVPN;
+- (bool)hasAssociatedDomains;
+- (bool)hasManagedRestrictions;
+- (bool)isBlacklisted;
+- (bool)isExcludedFromBackup;
+- (bool)isExcludedFromCloudSync;
+- (bool)isNotRemovable;
+- (bool)isUnableToExportToUnmanaged;
+- (bool)isUnableToImportFromUnmanaged;
+- (bool)isUnableToUseCellData;
+- (bool)isUnableToUseRoamingCellData;
+- (bool)isUninstalledOnMDMRemoval;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (bool)wf_isUserFacing;
 
 @end

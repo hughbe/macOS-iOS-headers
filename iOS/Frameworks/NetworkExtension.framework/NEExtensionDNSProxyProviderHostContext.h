@@ -11,6 +11,7 @@
 
 + (id)_extensionAuxiliaryVendorProtocol;
 
+- (int)requiredEntitlement;
 - (void)setSystemDNSSettings:(id)arg1;
 
 @end

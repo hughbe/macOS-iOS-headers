@@ -10,6 +10,7 @@
     NSString * _extensionID;
     NSSet * _identifiers;
     NSObject<OS_dispatch_queue> * _queue;
+    NSSet * _supportedFileTypes;
 }
 
 @property (nonatomic, retain) NSString *containerID;
@@ -23,6 +24,7 @@
 @property (readonly) bool isEnabled;
 @property (readonly) bool isInternal;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
+@property (copy) NSSet *supportedFileTypes;
 
 - (void).cxx_destruct;
 - (void)_performJob:(id)arg1 completionBlock:(id /* block */)arg2;
@@ -37,6 +39,7 @@
 - (id)identifiers;
 - (id)infoDictionary;
 - (id)initWithExtension:(id)arg1 queue:(id)arg2 containerPath:(id)arg3 containerID:(id)arg4;
+- (id)initWithExtension:(id)arg1 queue:(id)arg2 containerPath:(id)arg3 containerID:(id)arg4 supportedFileTypes:(id)arg5;
 - (bool)isEnabled;
 - (bool)isInternal;
 - (void)performJob:(id)arg1 completionBlock:(id /* block */)arg2;
@@ -48,5 +51,7 @@
 - (void)setExtensionID:(id)arg1;
 - (void)setIdentifiers:(id)arg1;
 - (void)setQueue:(id)arg1;
+- (void)setSupportedFileTypes:(id)arg1;
+- (id)supportedFileTypes;
 
 @end

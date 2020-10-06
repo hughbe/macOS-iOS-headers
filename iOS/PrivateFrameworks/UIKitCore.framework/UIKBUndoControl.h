@@ -24,17 +24,9 @@
 @property (nonatomic, retain) UIKBUndoStyling *style;
 @property (nonatomic) long long type;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
-+ (id)controlLableTextByType:(long long)arg1 available:(bool)arg2;
-+ (id)undoInteractiveControlLabelFont;
-+ (id)undoStateControlLabelFont;
-+ (id)undoStateControlUnavailableLabelFont;
++ (id)controlLableTextByType:(long long)arg1 style:(id)arg2 available:(bool)arg3;
 
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)controlImageByType:(long long)arg1;
 - (id)controlLabelImageNameByType:(long long)arg1 isRTL:(bool)arg2;
 - (id)coverConstraintBottomAnchor;
@@ -62,5 +54,7 @@
 - (long long)type;
 - (void)updateCoverWithTavelProcess:(double)arg1 isRTL:(bool)arg2;
 - (void)updateUndoControlStyleForState:(unsigned long long)arg1;
+- (id)viewForFirstBaselineLayout;
+- (id)viewForLastBaselineLayout;
 
 @end

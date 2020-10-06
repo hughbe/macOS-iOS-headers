@@ -3,9 +3,15 @@
  */
 
 @interface GEOPDBrowseCategoriesFilter : PBCodable <NSCopying> {
+    struct { 
+        unsigned int has_includeAllCategoriesForVenue : 1; 
+    }  _flags;
+    bool  _includeAllCategoriesForVenue;
     PBUnknownFields * _unknownFields;
 }
 
+@property (nonatomic) bool hasIncludeAllCategoriesForVenue;
+@property (nonatomic) bool includeAllCategoriesForVenue;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
@@ -16,11 +22,18 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (bool)hasIncludeAllCategoriesForVenue;
 - (unsigned long long)hash;
+- (bool)includeAllCategoriesForVenue;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setHasIncludeAllCategoriesForVenue:(bool)arg1;
+- (void)setIncludeAllCategoriesForVenue:(bool)arg1;
 - (id)unknownFields;
 - (void)writeTo:(id)arg1;
 

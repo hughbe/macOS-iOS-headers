@@ -6,8 +6,7 @@
     struct { 
         unsigned int read_localizedText : 1; 
         unsigned int read_localizedTitle : 1; 
-        unsigned int wrote_localizedText : 1; 
-        unsigned int wrote_localizedTitle : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _localizedText;
     NSString * _localizedTitle;
@@ -27,8 +26,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readLocalizedText;
-- (void)_readLocalizedTitle;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -38,7 +35,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)localizedText;
 - (id)localizedTitle;
 - (void)mergeFrom:(id)arg1;

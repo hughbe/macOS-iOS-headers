@@ -4,6 +4,8 @@
 
 @interface CUUserNotificationSession : NSObject <UNUserNotificationCenterDelegate> {
     id /* block */  _actionHandler;
+    NSMutableDictionary * _actions;
+    bool  _actionsChanged;
     bool  _activateCalled;
     NSArray * _bodyArguments;
     NSString * _bodyKey;
@@ -69,8 +71,10 @@
 - (bool)_runInit:(id*)arg1;
 - (bool)_runRequestAddStart:(id*)arg1;
 - (bool)_runResponse:(id)arg1 error:(id*)arg2;
+- (void)_updateActionCategories;
 - (id /* block */)actionHandler;
 - (void)activate;
+- (void)addActionWithIdentifier:(id)arg1 title:(id)arg2 flags:(unsigned int)arg3 handler:(id /* block */)arg4;
 - (id)bodyArguments;
 - (id)bodyKey;
 - (id)bundleID;
@@ -87,6 +91,8 @@
 - (id)init;
 - (void)invalidate;
 - (id)label;
+- (void)removeActionWithIdentifier:(id)arg1;
+- (void)removeAllActions;
 - (void)setActionHandler:(id /* block */)arg1;
 - (void)setBodyArguments:(id)arg1;
 - (void)setBodyKey:(id)arg1;

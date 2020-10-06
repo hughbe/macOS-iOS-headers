@@ -17,12 +17,12 @@
 @property (nonatomic, retain) NSMutableDictionary *xpcActivitiesByCKActivityIdentifier;
 
 + (id)activityFromXPCActivity:(id)arg1;
-+ (id)baseCoreAnalyticsEventPayloadForActivity:(id)arg1;
++ (id)baseCoreAnalyticsEventPayloadForActivity:(id)arg1 xpcActivityCriteria:(id)arg2;
 + (double)gracePeriodForPriority:(long long)arg1 deviceCount:(long long)arg2;
 + (id)identifierWithImmediateInvocationForIdentifier:(id)arg1;
 + (id)sharedScheduler;
 + (bool)shouldReportAnalyticsForActivity:(id)arg1;
-+ (bool)shouldReportAnalyticsForContainerIdentifier:(id)arg1;
++ (const char *)stringForDeviceCount:(long long)arg1;
 + (id)xpcActivityIdentifierForCKActivityIdentifier:(id)arg1;
 + (const char *)xpcActivityPriorityForPriority:(long long)arg1 deviceCount:(long long)arg2;
 

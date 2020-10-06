@@ -17,6 +17,7 @@
 - (void)networkReselectionNeeded:(CTXPCServiceSubscriptionContext *)arg1;
 - (void)networkSelected:(CTXPCServiceSubscriptionContext *)arg1 success:(bool)arg2 mode:(NSString *)arg3;
 - (void)operatorNameChanged:(CTXPCServiceSubscriptionContext *)arg1 name:(NSString *)arg2;
+- (void)ratSelectionChanged:(CTServiceDescriptor *)arg1 selection:(CTRatSelection *)arg2;
 - (void)rejectCauseCodeChanged:(CTXPCServiceSubscriptionContext *)arg1 causeCode:(NSNumber *)arg2;
 - (void)signalStrengthChanged:(CTXPCServiceSubscriptionContext *)arg1 info:(CTSignalStrengthInfo *)arg2;
 - (void)voiceLinkQualityChanged:(CTXPCServiceSubscriptionContext *)arg1 metric:(CTVoiceLinkQualityMetric *)arg2;

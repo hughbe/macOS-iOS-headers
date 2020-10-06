@@ -4,14 +4,14 @@
 
 @interface _UIPreviewPlatterView : UIView {
     bool  _alwaysCompact;
-    UIView * _collapsedClippingView;
+    _UIPlatterClippingView * _collapsedClippingView;
     UIViewFloatAnimatableProperty * _collapsedContentHeight;
     UIViewFloatAnimatableProperty * _collapsedContentWidth;
     UITargetedPreview * _collapsedPreview;
     _UIPlatterTransformView * _collapsedTransformView;
     bool  _contentSizeDidChange;
     bool  _expanded;
-    UIView * _expandedClippingView;
+    _UIPlatterClippingView * _expandedClippingView;
     UIViewFloatAnimatableProperty * _expandedContentHeight;
     UIViewFloatAnimatableProperty * _expandedContentWidth;
     UITargetedPreview * _expandedPreview;
@@ -32,14 +32,14 @@
 @property (nonatomic) bool allowsUserInteractionInExpandedPreview;
 @property (nonatomic) bool alwaysCompact;
 @property (nonatomic, readonly) bool bothViewsAreLikelyOpaque;
-@property (nonatomic, retain) UIView *collapsedClippingView;
+@property (nonatomic, retain) _UIPlatterClippingView *collapsedClippingView;
 @property (nonatomic, retain) UIViewFloatAnimatableProperty *collapsedContentHeight;
 @property (nonatomic, retain) UIViewFloatAnimatableProperty *collapsedContentWidth;
 @property (nonatomic, retain) UITargetedPreview *collapsedPreview;
 @property (nonatomic, retain) _UIPlatterTransformView *collapsedTransformView;
 @property (nonatomic) bool contentSizeDidChange;
 @property (nonatomic) bool expanded;
-@property (nonatomic, retain) UIView *expandedClippingView;
+@property (nonatomic, retain) _UIPlatterClippingView *expandedClippingView;
 @property (nonatomic, retain) UIViewFloatAnimatableProperty *expandedContentHeight;
 @property (nonatomic, retain) UIViewFloatAnimatableProperty *expandedContentWidth;
 @property (nonatomic, retain) UITargetedPreview *expandedPreview;
@@ -48,6 +48,7 @@
 @property (getter=isFrozen, nonatomic) bool frozen;
 @property (nonatomic) bool hideChromeWhenCollapsed;
 @property (nonatomic) bool hideShadowWhenCollapsed;
+@property (nonatomic) bool hidesCollapsedSourceView;
 @property (nonatomic, retain) _UIPlatterSoftShadowView *pathShadowView;
 @property (nonatomic, retain) UIViewFloatAnimatableProperty *platterHeight;
 @property (nonatomic, retain) UIViewFloatAnimatableProperty *platterWidth;
@@ -58,8 +59,8 @@
 
 - (void).cxx_destruct;
 - (void)_installPreview:(id)arg1 inClippingView:(id)arg2 transformView:(id)arg3;
+- (id)_interfaceLevelOverrideTraitCollectionForView:(id)arg1 expanded:(bool)arg2;
 - (void)_modelUpdates;
-- (id)_overrideTraitCollectionForView:(id)arg1 combinedWithTraits:(id)arg2;
 - (double)_pathShadowAlphaForExpansionProgress:(double)arg1;
 - (void)_prepareAnimatableProperties;
 - (bool)_previewIsLikelyOpaque:(id)arg1;
@@ -78,6 +79,7 @@
 - (id)collapsedPreview;
 - (id)collapsedTransformView;
 - (bool)contentSizeDidChange;
+- (void)didMoveToWindow;
 - (void)didTearOffForDrag;
 - (bool)expanded;
 - (id)expandedClippingView;
@@ -89,6 +91,7 @@
 - (void)freezeExpandedPreview;
 - (bool)hideChromeWhenCollapsed;
 - (bool)hideShadowWhenCollapsed;
+- (bool)hidesCollapsedSourceView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (bool)isFrozen;
 - (void)layoutSubviews;
@@ -116,6 +119,7 @@
 - (void)setFrozen:(bool)arg1;
 - (void)setHideChromeWhenCollapsed:(bool)arg1;
 - (void)setHideShadowWhenCollapsed:(bool)arg1;
+- (void)setHidesCollapsedSourceView:(bool)arg1;
 - (void)setPathShadowView:(id)arg1;
 - (void)setPlatterHeight:(id)arg1;
 - (void)setPlatterWidth:(id)arg1;

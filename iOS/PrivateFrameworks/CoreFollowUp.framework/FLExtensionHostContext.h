@@ -18,6 +18,7 @@
 - (void).cxx_destruct;
 - (id)delegate;
 - (void)extensionDidFinish;
+- (void)extensionDidFinishWithCompletionHandler:(id /* block */)arg1;
 - (id)remoteContextWithErrorHandler:(id /* block */)arg1;
 - (void)setDelegate:(id)arg1;
 

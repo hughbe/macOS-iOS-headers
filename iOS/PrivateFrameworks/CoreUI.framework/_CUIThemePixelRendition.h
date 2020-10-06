@@ -24,13 +24,12 @@
 - (void)dealloc;
 - (bool)edgesOnly;
 - (id)imageForSliceIndex:(long long)arg1;
-- (id)initWithCSIData:(id)arg1 forKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg2 artworkStatus:(long long)arg3;
+- (id)initWithCSIData:(id)arg1 forKey:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg2;
 - (bool)isScaled;
 - (bool)isTiled;
 - (id)layerReferences;
 - (id)maskForSliceIndex:(long long)arg1;
 - (id)metrics;
-- (struct CGImage { }*)newImageFromCSIDataSlice:(struct _slice { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; })arg1 ofBitmap:(struct _csibitmap { unsigned int x1; union { unsigned int x_2_1_1; struct _csibitmapflags { unsigned int x_2_2_1 : 1; unsigned int x_2_2_2 : 1; unsigned int x_2_2_3 : 30; } x_2_1_2; } x2; unsigned int x3; unsigned int x4; unsigned char x5[0]; }*)arg2 usingColorspace:(struct CGColorSpace { }*)arg3;
 - (int)pixelFormat;
 - (void)setSharedBlockData:(id)arg1;
 - (id)sliceInformation;

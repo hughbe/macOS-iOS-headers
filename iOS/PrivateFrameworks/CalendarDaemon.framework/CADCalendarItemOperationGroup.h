@@ -11,7 +11,7 @@
 - (void)CADDatabaseAddContactWithIdentifier:(id)arg1 forCalendarItem:(id)arg2 withReply:(id /* block */)arg3;
 - (void)CADDatabaseCancelFetchRequestWithIdentifier:(unsigned int)arg1;
 - (void)CADDatabaseCountEntitiesOfType:(int)arg1 withContactIdentifier:(id)arg2 withReply:(id /* block */)arg3;
-- (void)CADDatabaseExportCalendarItemAsICS:(id)arg1 reply:(id /* block */)arg2;
+- (void)CADDatabaseExportCalendarItemAsICS:(id)arg1 withOptions:(long long)arg2 reply:(id /* block */)arg3;
 - (void)CADDatabaseFetchCalendarItemsWithPredicate:(id)arg1 entityType:(int)arg2 fetchIdentifier:(int)arg3 reply:(id /* block */)arg4;
 - (void)CADDatabaseFetchEntitiesOfType:(int)arg1 withContactIdentifier:(id)arg2 withReply:(id /* block */)arg3;
 - (void)CADDatabaseGetCalendarItemWithUUID:(id)arg1 reply:(id /* block */)arg2;

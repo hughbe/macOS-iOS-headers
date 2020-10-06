@@ -32,6 +32,8 @@
 @property bool shouldMescalSign;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+
 - (id)SAPSession;
 - (id)SAPSignaturePolicy;
 - (id)URLRequest;
@@ -62,5 +64,9 @@
 - (bool)start;
 - (void)startWithCompletionBlock:(id /* block */)arg1;
 - (void)startWithConnectionResponseBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
+
++ (id)newRadioRequestWithRequestContext:(id)arg1 requestProperties:(id)arg2 storeBag:(id)arg3;
 
 @end

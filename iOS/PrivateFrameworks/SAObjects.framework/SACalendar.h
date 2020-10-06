@@ -11,6 +11,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSString *timeZoneId;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)calendar;
 + (id)calendarWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -20,5 +22,9 @@
 - (void)setDate:(id)arg1;
 - (void)setTimeZoneId:(id)arg1;
 - (id)timeZoneId;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)afui_timeZone;
 
 @end

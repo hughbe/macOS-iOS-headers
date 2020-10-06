@@ -20,6 +20,7 @@
     NSNumber * _deviceToDeviceMigrationVersion;
     NSNumber * _findMyDeviceOptIn;
     NSString * _firstName;
+    bool  _hasHomeButton;
     NSNumber * _hasTransferrableTelephonyPlan;
     NSArray * _keyboards;
     NSDictionary * _localePreferences;
@@ -58,6 +59,7 @@
 @property (retain) NSNumber *deviceToDeviceMigrationVersion;
 @property (retain) NSNumber *findMyDeviceOptIn;
 @property (copy) NSString *firstName;
+@property bool hasHomeButton;
 @property NSNumber *hasTransferrableTelephonyPlan;
 @property (copy) NSArray *keyboards;
 @property (copy) NSDictionary *localePreferences;
@@ -99,6 +101,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)findMyDeviceOptIn;
 - (id)firstName;
+- (bool)hasHomeButton;
 - (id)hasTransferrableTelephonyPlan;
 - (id)initWithCoder:(id)arg1;
 - (bool)isBackupEnabled;
@@ -133,6 +136,7 @@
 - (void)setDeviceToDeviceMigrationVersion:(id)arg1;
 - (void)setFindMyDeviceOptIn:(id)arg1;
 - (void)setFirstName:(id)arg1;
+- (void)setHasHomeButton:(bool)arg1;
 - (void)setHasTransferrableTelephonyPlan:(id)arg1;
 - (void)setKeyboards:(id)arg1;
 - (void)setLocalePreferences:(id)arg1;

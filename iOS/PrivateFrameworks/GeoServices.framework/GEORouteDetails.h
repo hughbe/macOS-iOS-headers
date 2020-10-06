@@ -48,11 +48,14 @@
 - (bool)hasStepID;
 - (bool)hasTimeSinceRouteResponse;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithResultIndex:(int)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isNearCurrentlyDisplayedStep;
 - (bool)isNearRoute;
 - (bool)isUserTrackingOn;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

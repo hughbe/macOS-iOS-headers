@@ -15,6 +15,7 @@
     bool  _placeInShortcuts;
     bool  _showContactActions;
     id  _transitCardDelegate;
+    MKPlaceCardActionItem * _websiteActionItem;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -38,19 +39,21 @@
 - (bool)_showHomeShortcutItem;
 - (bool)_showMapItemIdentifier;
 - (bool)_showReportAProblem;
-- (bool)_showSuggestAnEdit;
+- (bool)_showReportAnIssue;
 - (void)addLayoutInfoIfNeeded:(id)arg1;
 - (id)addtoHomeItem;
 - (id)collectionItemForFooter:(bool)arg1;
 - (id)contact;
 - (id)createFooterActions;
-- (id)createRowActions;
+- (id)createMenuActions;
+- (id)createRowActionsWithStyle:(unsigned long long)arg1;
 - (id)delegate;
 - (id)favoriteItemForFooter;
 - (id)init;
 - (bool)isCurrentLocation;
 - (id)mapItem;
 - (void)openURL:(id)arg1;
+- (id)optIntoAddingContributionsAction;
 - (unsigned long long)options;
 - (void)performAction:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
 - (id)placeCardDelegate;

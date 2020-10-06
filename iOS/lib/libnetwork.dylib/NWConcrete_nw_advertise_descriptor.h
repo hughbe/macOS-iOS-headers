@@ -19,6 +19,5 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithName:(const char *)arg1 type:(const char *)arg2 domain:(const char *)arg3;
 
 @end

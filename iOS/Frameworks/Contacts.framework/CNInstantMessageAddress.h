@@ -20,6 +20,7 @@
 @property (nonatomic, copy) NSString *userIdentifier;
 @property (nonatomic, copy) NSString *username;
 
++ (id /* block */)Username;
 + (id)instantMessageAddressWithDictionaryRepresentation:(id)arg1;
 + (id)localizedStringForKey:(id)arg1;
 + (id)localizedStringForService:(id)arg1;

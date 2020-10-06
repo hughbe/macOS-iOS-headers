@@ -3,13 +3,11 @@
  */
 
 @interface _INPBDeleteHealthSampleIntent : PBCodable <NSCopying, NSSecureCoding, _INPBDeleteHealthSampleIntent> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     _INPBIntentMetadata * _intentMetadata;
     NSArray * _sampleUuids;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasIntentMetadata;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addSampleUuids:(id)arg1;
 - (void)clearSampleUuids;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

@@ -4,12 +4,20 @@
 
 @interface AFConnection : NSObject <AFAccessibilityListening, AFAudioPowerUpdaterDelegate, AFDeviceRingerSwitchListening, AFInterstitialProviderDelegate, NSXPCListenerDelegate> {
     long long  _activeRequestActivationEvent;
+    double  _activeRequestBeginTime;
     bool  _activeRequestHasSpeechRecognition;
+    double  _activeRequestInitialInterstitialBeginTimeInterval;
     bool  _activeRequestIsDucking;
     bool  _activeRequestIsTwoShot;
     unsigned long long  _activeRequestNumberOfPresentedInterstitials;
     unsigned long long  _activeRequestSpeechEndHostTime;
     long long  _activeRequestSpeechEvent;
+    double  _activeRequestSpeechRecognitionTimeInterval;
+    double  _activeRequestSpeechRecordingEndTimeInterval;
+    double  _activeRequestStartSpeechTimeAPICalled;
+    double  _activeRequestStartSpeechTimeRequested;
+    double  _activeRequestStopSpeechTimeAPICalled;
+    double  _activeRequestStopSpeechTimeRequested;
     long long  _activeRequestType;
     NSUUID * _activeRequestUUID;
     long long  _activeRequestUsefulUserResultType;
@@ -85,18 +93,18 @@
 - (id)_connection;
 - (void)_connectionFailedWithError:(id)arg1;
 - (void)_dispatchCallbackGroupBlock:(id /* block */)arg1;
-- (void)_dispatchCommand:(id)arg1 isInterstitial:(bool)arg2 reply:(id /* block */)arg3;
+- (void)_dispatchCommand:(id)arg1 isInterstitial:(bool)arg2 interstitialPhase:(long long)arg3 interstitialDelay:(double)arg4 reply:(id /* block */)arg5;
 - (void)_endInterstitialsForReason:(id)arg1;
 - (void)_enqueueInterstitialCommand:(id)arg1;
 - (void)_extendExistingRequestTimeoutForReason:(id)arg1;
 - (void)_extendRequestTimeoutForReason:(id)arg1;
 - (void)_handleCommand:(id)arg1 reply:(id /* block */)arg2;
-- (void)_handleInterstitialPhase:(long long)arg1 fromProvider:(id)arg2 displayText:(id)arg3 speakableText:(id)arg4 context:(id)arg5 completion:(id /* block */)arg6;
+- (void)_handleInterstitialPhase:(long long)arg1 fromProvider:(id)arg2 displayText:(id)arg3 speakableText:(id)arg4 expectedDelay:(double)arg5 context:(id)arg6 completion:(id /* block */)arg7;
 - (void)_invokeRequestTimeoutForReason:(id)arg1;
-- (bool)_isInterstitialsRunning;
 - (void)_markIsDucking;
 - (void)_markIsTwoShot;
 - (void)_markSpeechRecognized;
+- (id)_metricContextValueForUseDeviceSpeakerForTTS:(long long)arg1;
 - (void)_pauseRequestTimeoutForReason:(id)arg1;
 - (void)_requestDidEnd;
 - (void)_requestWillBeginWithRequestClass:(id)arg1 isSpeechRequest:(bool)arg2 speechRequestOptions:(id)arg3 requestInfo:(id)arg4 analyticsEventProvider:(id /* block */)arg5;
@@ -108,6 +116,7 @@
 - (void)_setShouldSpeak:(bool)arg1;
 - (void)_speechRecordingDidFailWithError:(id)arg1;
 - (bool)_startInputAudioPowerUpdatesWithXPCWrapper:(id)arg1;
+- (id)_startRequestMetricSettings;
 - (void)_startRequestWithAceCommand:(id)arg1 turnIdentifier:(id)arg2 suppressAlert:(bool)arg3;
 - (void)_startRequestWithInfo:(id)arg1;
 - (void)_startUIRequestWithInfo:(id)arg1 completion:(id /* block */)arg2;
@@ -126,11 +135,13 @@
 - (void)_tellDelegateDidFinishAcousticIDRequestWithSuccess:(bool)arg1;
 - (void)_tellDelegateExtensionRequestFinishedForApplication:(id)arg1 error:(id)arg2;
 - (void)_tellDelegateExtensionRequestWillStartForApplication:(id)arg1;
+- (void)_tellDelegateFailedToLaunchAppWithBundleIdentifier:(id)arg1;
 - (void)_tellDelegateInvalidateCurrentUserActivity;
 - (void)_tellDelegateRequestWillStart;
 - (void)_tellDelegateSetUserActivityInfo:(id)arg1 webpageURL:(id)arg2;
 - (void)_tellDelegateShouldSpeakChanged:(bool)arg1;
 - (void)_tellDelegateStartPlaybackDidFail:(long long)arg1;
+- (void)_tellDelegateWillProcessAppLaunchWithBundleIdentifier:(id)arg1;
 - (void)_tellDelegateWillProcessStartPlayback:(long long)arg1 intent:(id)arg2 completion:(id /* block */)arg3;
 - (void)_tellDelegateWillStartAcousticIDRequest;
 - (void)_tellSpeechDelegateRecognitionDidFail:(id)arg1;
@@ -191,7 +202,7 @@
 - (bool)hasActiveRequest;
 - (id)init;
 - (id)initWithTargetQueue:(id)arg1;
-- (void)interstitialProvider:(id)arg1 handlePhase:(long long)arg2 displayText:(id)arg3 speakableText:(id)arg4 context:(id)arg5 completion:(id /* block */)arg6;
+- (void)interstitialProvider:(id)arg1 handlePhase:(long long)arg2 displayText:(id)arg3 speakableText:(id)arg4 expectedDelay:(double)arg5 context:(id)arg6 completion:(id /* block */)arg7;
 - (void)invalidate;
 - (bool)isRecording;
 - (float)peakPower;
@@ -201,6 +212,8 @@
 - (void)recordRequestMetric:(id)arg1 withTimestamp:(double)arg2;
 - (void)recordUIMetrics:(id)arg1;
 - (void)reportIssueForError:(id)arg1 type:(long long)arg2 context:(id)arg3;
+- (void)reportIssueForError:(id)arg1 type:(long long)arg2 subtype:(id)arg3 context:(id)arg4;
+- (void)reportIssueForType:(id)arg1 subtype:(id)arg2 context:(id)arg3;
 - (void)requestBarrier:(id /* block */)arg1;
 - (void)resumeInterruptedAudioPlaybackIfNeeded;
 - (void)rollbackClearContext;
@@ -238,6 +251,7 @@
 - (void)startRecordingForPendingSpeechRequestWithOptions:(id)arg1 completion:(id /* block */)arg2;
 - (void)startRequestWithAceCommand:(id)arg1;
 - (void)startRequestWithCorrectedText:(id)arg1 forSpeechIdentifier:(id)arg2 userSelectionResults:(id)arg3;
+- (void)startRequestWithCorrectedText:(id)arg1 forSpeechIdentifier:(id)arg2 userSelectionResults:(id)arg3 turnIdentifier:(id)arg4;
 - (void)startRequestWithInfo:(id)arg1;
 - (void)startRequestWithInfo:(id)arg1 activationEvent:(long long)arg2;
 - (void)startRequestWithText:(id)arg1;

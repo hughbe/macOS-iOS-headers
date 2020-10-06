@@ -10,8 +10,8 @@
 @property (nonatomic) long long participantType;
 @property (nonatomic) int pendingStatus;
 @property (nonatomic) bool proposedStartDateChanged;
-@property (nonatomic) int status;
 @property (nonatomic) bool statusChanged;
+@property (nonatomic) int statusRaw;
 
 + (id)attendeeWithEmailAddress:(id)arg1 name:(id)arg2;
 + (id)attendeeWithName:(id)arg1 emailAddress:(id)arg2 address:(id)arg3;
@@ -26,18 +26,16 @@
 - (id)initWithAddress:(id)arg1 name:(id)arg2;
 - (id)initWithEmailAddress:(id)arg1 name:(id)arg2;
 - (id)initWithName:(id)arg1 emailAddress:(id)arg2 address:(id)arg3;
-- (id)lastModified;
-- (id)owner;
+- (id)lastModifiedParticipationStatus;
 - (long long)participantRole;
 - (long long)participantType;
-- (int)pendingStatus;
+- (int)pendingStatusRaw;
 - (void)setFlags:(unsigned int)arg1;
-- (void)setLastModified:(id)arg1;
-- (void)setOwner:(id)arg1;
+- (void)setLastModifiedParticipationStatus:(id)arg1;
 - (void)setParticipantRole:(long long)arg1;
 - (void)setParticipantType:(long long)arg1;
-- (void)setPendingStatus:(int)arg1;
-- (void)setStatus:(int)arg1;
-- (int)status;
+- (void)setPendingStatusRaw:(int)arg1;
+- (void)setStatusRaw:(int)arg1;
+- (int)statusRaw;
 
 @end

@@ -28,6 +28,10 @@
 - (id)name;
 - (id)value;
 
+// Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
+
++ (id)queryItemsFromDictionary:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 - (id)_geo_unescapedValue;

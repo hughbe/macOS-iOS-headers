@@ -26,6 +26,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) NSString *title;
 
+// Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+
 + (id)moduleWithSettings:(id)arg1;
 + (id)moduleWithTitle:(id)arg1 contents:(id)arg2;
 + (id)sectionWithRows:(id)arg1;
@@ -73,5 +75,9 @@
 - (id)settings;
 - (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)title;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_restoreDefaultsSection;
 
 @end

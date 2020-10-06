@@ -11,26 +11,13 @@
 }
 
 @property (nonatomic, retain) _DKContentProviderCache *contentProviderCache;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *defaultResponseQueue;
-@property (nonatomic, retain) _DKKnowledgeContentProvider *knowledgeContentProvider;
-@property (nonatomic, retain) <_DKKnowledgeQuerying> *knowledgeStore;
-@property (nonatomic, retain) NSObject<OS_dispatch_queue> *queryQueue;
 
 - (void).cxx_destruct;
 - (id)contentProviderCache;
-- (id)contentProviderQueriesFromQuery:(id)arg1 error:(id*)arg2;
-- (id)defaultResponseQueue;
 - (id)executeQuery:(id)arg1 error:(id*)arg2;
 - (void)executeQuery:(id)arg1 responseQueue:(id)arg2;
 - (void)executeQuery:(id)arg1 responseQueue:(id)arg2 withCompletion:(id /* block */)arg3;
 - (id)initWithKnowledgeStore:(id)arg1;
-- (id)knowledgeContentProvider;
-- (id)knowledgeStore;
-- (id)queryQueue;
 - (void)setContentProviderCache:(id)arg1;
-- (void)setDefaultResponseQueue:(id)arg1;
-- (void)setKnowledgeContentProvider:(id)arg1;
-- (void)setKnowledgeStore:(id)arg1;
-- (void)setQueryQueue:(id)arg1;
 
 @end

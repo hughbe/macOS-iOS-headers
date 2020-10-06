@@ -21,7 +21,7 @@
 - (bool)allowsFocusRestoration;
 - (id)debugReport;
 - (id)deepestPreferredFocusEnvironmentForEnvironment:(id)arg1;
-- (id)deepestPreferredFocusableItemForEnvironment:(id)arg1 inFocusSystem:(id)arg2;
+- (id)deepestPreferredFocusableItemForEnvironment:(id)arg1 withRequest:(id)arg2;
 - (void)setAllowsFocusRestoration:(bool)arg1;
 - (void)setDebugReport:(id)arg1;
 

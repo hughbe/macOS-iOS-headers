@@ -104,7 +104,6 @@
 - (bool)_updateGuidanceStateWithLocation:(id)arg1 withMatch:(id)arg2 withNavigatorState:(int)arg3 stepChanged:(bool*)arg4;
 - (void)_updatePrepareForNextStep;
 - (id)_updateValidateRouteMatchForLocation:(id)arg1;
-- (void)addInjectedEvent:(id)arg1;
 - (struct { long long x1; double x2; bool x3; bool x4; bool x5; bool x6; int x7; int x8; })currentInstructionOptions;
 - (id)currentRoadName;
 - (id)currentShieldText;

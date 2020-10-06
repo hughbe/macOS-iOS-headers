@@ -9,6 +9,7 @@
 - (id)destinationIdentifier;
 - (bool)destinationIdentifierIsSectionIdentifier;
 - (NSOrderedSet *)identifiers;
+- (bool)isDeleteAll;
 - (bool)isSectionOperation;
 - (long long)relativePosition;
 

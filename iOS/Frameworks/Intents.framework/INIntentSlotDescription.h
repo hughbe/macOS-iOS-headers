@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INIntentSlotDescription : NSObject <INIntentSlotDescriptionExport, NSCopying> {
+@interface INIntentSlotDescription : NSObject <INIntentSlotDescriptionExport, NSCopying, WFIntentParameterDescription> {
     INCodableAttribute * _codableAttribute;
     NSString * _dataPropertyName;
     NSArray * _defaultValueSelectorStrings;
@@ -40,6 +40,14 @@
 @property (nonatomic, readonly) unsigned long long tag;
 @property (nonatomic, readonly) long long valueStyle;
 @property (nonatomic, readonly) long long valueType;
+@property (nonatomic, readonly) Class wf_contentItemClass;
+@property (nonatomic, readonly) Class wf_facadeClass;
+@property (nonatomic, readonly) bool wf_multipleValues;
+@property (nonatomic, readonly) Class wf_objectClass;
+@property (nonatomic, readonly) Class wf_parameterClass;
+@property (nonatomic, readonly) NSString *wf_slotName;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 - (void).cxx_destruct;
 - (id)codableAttribute;
@@ -70,5 +78,21 @@
 - (id)valueForSlotComposer:(id)arg1;
 - (long long)valueStyle;
 - (long long)valueType;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (Class)wf_contentItemClass;
+- (id)wf_contentItemForValue:(id)arg1;
+- (Class)wf_facadeClass;
+- (void)wf_getProcessedIntentValueForParameterValue:(id)arg1 parameter:(id)arg2 completionHandler:(id /* block */)arg3;
+- (bool)wf_multipleValues;
+- (Class)wf_objectClass;
+- (id)wf_outputContentItemForOutput:(id)arg1;
+- (id)wf_outputDisplayNameWithLocalizer:(id)arg1;
+- (Class)wf_parameterClass;
+- (id)wf_parameterStateForIntentValue:(id)arg1 parameterDefinition:(id)arg2;
+- (id)wf_processedParameterValueForValue:(id)arg1;
+- (id)wf_slotName;
+- (void)wf_updateParameterDictionary:(id)arg1 parameterClass:(Class)arg2;
 
 @end

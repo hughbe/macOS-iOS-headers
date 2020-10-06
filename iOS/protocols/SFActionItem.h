@@ -8,9 +8,12 @@
 - (NSString *)applicationBundleIdentifier;
 - (SFImage *)baseIcon;
 - (NSString *)contactIdentifier;
+- (SFPunchout *)customDirectionsPunchout;
 - (NSDictionary *)dictionaryRepresentation;
+- (int)directionsMode;
 - (NSString *)email;
 - (SFImage *)icon;
+- (NSString *)interactionContentType;
 - (bool)isITunes;
 - (bool)isOverlay;
 - (NSData *)jsonData;
@@ -34,8 +37,11 @@
 - (void)setApplicationBundleIdentifier:(NSString *)arg1;
 - (void)setBaseIcon:(SFImage *)arg1;
 - (void)setContactIdentifier:(NSString *)arg1;
+- (void)setCustomDirectionsPunchout:(SFPunchout *)arg1;
+- (void)setDirectionsMode:(int)arg1;
 - (void)setEmail:(NSString *)arg1;
 - (void)setIcon:(SFImage *)arg1;
+- (void)setInteractionContentType:(NSString *)arg1;
 - (void)setIsITunes:(bool)arg1;
 - (void)setIsOverlay:(bool)arg1;
 - (void)setLabel:(NSString *)arg1;
@@ -55,9 +61,11 @@
 - (void)setProvider:(NSString *)arg1;
 - (void)setPunchout:(SFPunchout *)arg1;
 - (void)setRequiresLocalMedia:(bool)arg1;
+- (void)setShouldSearchDirectionsAlongCurrentRoute:(bool)arg1;
 - (void)setStoreIdentifiers:(NSArray *)arg1;
 - (void)setType:(NSString *)arg1;
 - (void)setUniversalLibraryID:(NSString *)arg1;
+- (bool)shouldSearchDirectionsAlongCurrentRoute;
 - (NSArray *)storeIdentifiers;
 - (NSString *)type;
 - (NSString *)universalLibraryID;

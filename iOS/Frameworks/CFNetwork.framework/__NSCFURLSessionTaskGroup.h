@@ -4,7 +4,7 @@
 
 @interface __NSCFURLSessionTaskGroup : NSObject <__NSURLSessionTaskGroupForConfiguration> {
     NSURLSessionConfiguration * _groupConfiguration_ivar;
-    __NSCFURLSession * _groupSession_ivar;
+    NSURLSession * _groupSession_ivar;
 }
 
 @property (readonly) NSURLSessionConfiguration *_groupConfiguration;
@@ -16,7 +16,6 @@
 
 - (id)_groupConfiguration;
 - (id)_groupSession;
-- (id)_initWithTarget:(id)arg1 configuration:(id)arg2;
 - (id)dataTaskWithRequest:(id)arg1;
 - (id)dataTaskWithRequest:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)dealloc;

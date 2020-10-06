@@ -12,6 +12,7 @@
     int  alternate_path_state;
     id /* block */  alternate_path_state_handler;
     NSObject<OS_nw_array> * attempted_endpoints;
+    unsigned int  attempted_probe;
     NSObject<OS_nw_read_request> * batched_receives;
     NSObject<OS_nw_write_request> * batched_sends;
     bool  batching;
@@ -25,11 +26,14 @@
     NSObject<OS_dispatch_queue> * client_queue;
     NSObject<OS_nw_endpoint_handler> * connected_endpoint_handler;
     unsigned int  connected_fallback_generation;
+    NSObject<OS_nw_context> * context;
     NSObject<OS_nw_array> * data_transfer_reports;
     NSObject<OS_nw_endpoint_handler> * dry_run_endpoint_handler;
     NSObject<OS_nw_endpoint> * endpoint;
     NSObject<OS_nw_array> * errors;
     NSObject<OS_nw_establishment_report> * establishment_report;
+    unsigned long long  estimated_bytes_download;
+    unsigned long long  estimated_bytes_upload;
     unsigned int  excessive_keepalive_count;
     id /* block */  excessive_keepalive_handler;
     unsigned int  excessive_keepalive_interval;
@@ -57,8 +61,10 @@
     bool  prohibit_set_queue;
     id /* block */  read_close_handler;
     NSObject<OS_nw_endpoint_handler> * ready_dry_run_endpoint_handler;
+    NSObject<OS_dispatch_queue> * request_queue;
     unsigned int  should_report_activities;
     unsigned int  should_report_generic_stats;
+    unsigned int  should_report_probe_stats;
     unsigned int  should_report_stats;
     unsigned long long  start_time;
     int  state;
@@ -74,12 +80,13 @@
         unsigned int minimum; 
         unsigned char __pad[4]; 
     }  throughput_monitor;
-    struct nw_connection_timestamp_s { unsigned long long x1; unsigned long long x2; struct nw_endpoint_handler_event_s { unsigned int x_3_1_1; unsigned int x_3_1_2; } x3; unsigned long long x4; unsigned char x5[0]; } * timestamps;
+    struct nw_connection_timestamp_s { unsigned long long x1; struct nw_endpoint_handler_event_s { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; union { struct { unsigned short x_1_2_1; unsigned char x_1_2_2; unsigned char x_1_2_3; } x_3_1_1; struct { unsigned short x_2_2_1; } x_3_1_2; } x3; unsigned char x4[0]; } * timestamps;
     unsigned int  top_id;
     unsigned char  top_uuid;
     NSObject<OS_nw_endpoint_handler> * transport_endpoint_handler;
     unsigned short  used_timestamps;
     id /* block */  viability_changed_handler;
+    NSObject<OS_dispatch_workloop> * workloop;
     id /* block */  write_close_handler;
 }
 
@@ -91,7 +98,6 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithEndpoint:(id)arg1 parameters:(id)arg2 identifier:(unsigned int)arg3;
 - (id)redactedDescription;
 
 @end

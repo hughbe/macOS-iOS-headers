@@ -7,16 +7,21 @@
     GEOQuickETARequester * _etaRequester;
     GEODirectionsRequest * _geoRequest;
     <MKLocationManagerOperation> * _locationOperation;
+    NSError * _previousError;
     MKDirectionsRequest * _request;
+    GEORouteAttributes * _routeAttributes;
     NSObject<OS_dispatch_group> * _waypointsDispatchGroup;
 }
 
 @property (getter=isCalculating, nonatomic, readonly) bool calculating;
 
 - (void).cxx_destruct;
+- (void)_calculateDirectionsWithTraits:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)_calculateETAWithTraits:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)_cleanupLocationOperation;
 - (void)_establishCurrentLocationAndThen:(id /* block */)arg1;
+- (void)_issueDirectionsRequestForOrigin:(id)arg1 destination:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)_issueETARequestForOrigin:(id)arg1 destination:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)_performWithValidCurrentLocationAndWaypointsForQuickETA:(bool)arg1 traits:(id)arg2 handler:(id /* block */)arg3;
 - (void)calculateDirectionsWithCompletionHandler:(id /* block */)arg1;
 - (void)calculateETAWithCompletionHandler:(id /* block */)arg1;

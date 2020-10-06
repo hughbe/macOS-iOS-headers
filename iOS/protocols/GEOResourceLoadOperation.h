@@ -7,11 +7,11 @@
 
 - (void)cancel;
 - (NSData *)data;
-- (id)initWithResource:(GEOResourceInfo *)arg1 existingPartialData:(NSData *)arg2 auditToken:(GEOApplicationAuditToken *)arg3 baseURL:(NSURL *)arg4 proxyURL:(NSURL *)arg5 log:(NSObject<OS_os_log> *)arg6;
+- (id)initWithResource:(GEOResourceInfo *)arg1 existingPartialData:(NSData *)arg2 eTag:(NSString *)arg3 auditToken:(GEOApplicationAuditToken *)arg4 baseURL:(NSURL *)arg5 alternateURLs:(NSArray *)arg6 proxyURL:(NSURL *)arg7 log:(NSObject<OS_os_log> *)arg8;
 - (bool)preferDirectNetworking;
 - (bool)requiresWiFi;
 - (void)setPreferDirectNetworking:(bool)arg1;
 - (void)setRequiresWiFi:(bool)arg1;
-- (void)startWithCompletionHandler:(void *)arg1 callbackQueue:(void *)arg2; // needs 2 arg types, found 8: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSData *, NSError *, void*, NSObject<OS_dispatch_queue> *
+- (void)startWithCompletionHandler:(void *)arg1 callbackQueue:(void *)arg2; // needs 2 arg types, found 9: id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSData *, NSString *, NSError *, void*, NSObject<OS_dispatch_queue> *
 
 @end

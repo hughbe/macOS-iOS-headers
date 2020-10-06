@@ -4,8 +4,10 @@
 
 @interface CalStructuredDataArchiver : NSObject
 
-+ (id)_whiteListedClassesForArchiving;
 + (id)archiveDictionary:(id)arg1 error:(id*)arg2;
++ (id)archiveDictionary:(id)arg1 whitelistedClasses:(id)arg2 error:(id*)arg3;
++ (id)defaultWhitelistedClasses;
 + (id)unarchiveDictionaryFromData:(id)arg1 error:(id*)arg2;
++ (id)unarchiveDictionaryFromData:(id)arg1 whitelistedClasses:(id)arg2 error:(id*)arg3;
 
 @end

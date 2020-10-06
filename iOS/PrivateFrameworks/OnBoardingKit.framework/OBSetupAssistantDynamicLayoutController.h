@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OnBoardingKit.framework/OnBoardingKit
  */
 
-@interface OBSetupAssistantDynamicLayoutController : UIViewController {
+@interface OBSetupAssistantDynamicLayoutController : UIViewController <OBSetupAssistantSupport> {
     OBWelcomeController * _backingController;
     id /* block */  _constraintForLayoutFactory;
     bool  _enableStickyHeader;
@@ -15,12 +15,16 @@
 
 @property (nonatomic, retain) OBWelcomeController *backingController;
 @property (nonatomic, copy) id /* block */ constraintForLayoutFactory;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) bool enableStickyHeader;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *localDetailText;
 @property (nonatomic, retain) UIImage *localImage;
 @property (nonatomic, copy) NSString *localTitle;
 @property (nonatomic, retain) UIView *mainContentSubview;
 @property (nonatomic, retain) UIView *outerContentView;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_relayoutContentSubviewIfNeeded;

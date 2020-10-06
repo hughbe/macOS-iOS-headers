@@ -6,14 +6,14 @@
     <CNDelegateAccountSink> * _accountSink;
     <CNDelegateAccountSource> * _accountSource;
     ACAccountStore * _accountStore;
-    NSMutableArray * _delegateAccounts;
+    NSArray * _delegateAccounts;
     CNResult * _result;
 }
 
 @property (nonatomic, readonly) <CNDelegateAccountSink> *accountSink;
 @property (nonatomic, readonly) <CNDelegateAccountSource> *accountSource;
 @property (nonatomic, readonly) ACAccountStore *accountStore;
-@property (nonatomic, readonly) NSMutableArray *delegateAccounts;
+@property (nonatomic, readonly) NSArray *delegateAccounts;
 @property (nonatomic, retain) CNResult *result;
 
 + (id)os_log;

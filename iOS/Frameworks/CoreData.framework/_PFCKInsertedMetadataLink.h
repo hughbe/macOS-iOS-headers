@@ -7,13 +7,7 @@
     NSCKRecordMetadata * _recordMetadata;
 }
 
-@property (nonatomic, readonly) NSManagedObject *insertedObject;
-@property (nonatomic, readonly) NSCKRecordMetadata *recordMetadata;
-
 - (void)dealloc;
 - (id)description;
-- (id)initWithManagedObject:(id)arg1 andRecordMetadata:(id)arg2;
-- (id)insertedObject;
-- (id)recordMetadata;
 
 @end

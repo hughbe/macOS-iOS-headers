@@ -24,6 +24,7 @@
 - (void)observeInterfaceOrientationChangesDisabledWithBlock:(id /* block */)arg1;
 - (void)observeInterfaceOrientationWithBlock:(id /* block */)arg1;
 - (void)observeNotificationCenterRevealModeWithBlock:(id /* block */)arg1;
+- (void)observePreferredPointerLockStateWithBlock:(id /* block */)arg1;
 - (void)observeProximityDetectionModesWithBlock:(id /* block */)arg1;
 - (void)observeReachabilitySupportedWithBlock:(id /* block */)arg1;
 - (void)observeSceneActivationBiasWithBlock:(id /* block */)arg1;
@@ -39,6 +40,7 @@
 - (void)observeVisibleMiniAlertCountWithBlock:(id /* block */)arg1;
 - (void)observeWantsExclusiveForegroundWithBlock:(id /* block */)arg1;
 - (void)observeWhitePointAdaptivityStyleWithBlock:(id /* block */)arg1;
+- (void)observeWindowFocusedFrameWithBlock:(id /* block */)arg1;
 - (void)observeWindowOverlayInsetsWithBlock:(id /* block */)arg1;
 
 @end

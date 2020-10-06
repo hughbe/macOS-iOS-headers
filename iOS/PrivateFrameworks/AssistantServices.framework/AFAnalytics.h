@@ -21,6 +21,7 @@
 - (void)endEventsGrouping;
 - (id)init;
 - (void)logClientFeedbackPresented:(id)arg1;
+- (void)logClientFeedbackPresented:(id)arg1 dialogIdentifierProvider:(id)arg2;
 - (void)logEvent:(id)arg1;
 - (void)logEventWithType:(long long)arg1 context:(id)arg2;
 - (void)logEventWithType:(long long)arg1 context:(id)arg2 contextNoCopy:(bool)arg3;
@@ -38,7 +39,6 @@
 - (void)logInstrumentationOfType:(Class)arg1 machAbsoluteTime:(unsigned long long)arg2 turnIdentifier:(id)arg3;
 - (void)logInstrumentationOfType:(Class)arg1 turnIdentifier:(id)arg2;
 - (id)newTurnBasedInstrumentationContext;
-- (void)sampleDictationRequestIfNeeded:(id)arg1 sessionId:(id)arg2 forLanguageCode:(id)arg3;
 - (void)setService:(id)arg1;
 
 @end

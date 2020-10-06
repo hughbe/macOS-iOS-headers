@@ -35,5 +35,6 @@
 - (id)appendUnsignedInt:(unsigned int)arg1 withName:(NSString *)arg2;
 - (id)appendUnsignedInteger:(unsigned long long)arg1 withName:(NSString *)arg2;
 - (id)appendUnsignedInteger:(unsigned long long)arg1 withName:(NSString *)arg2 format:(long long)arg3;
+- (id)appendVersionedPID:(long long)arg1 withName:(NSString *)arg2;
 
 @end

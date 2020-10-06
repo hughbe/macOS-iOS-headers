@@ -27,17 +27,21 @@
 - (id)accessibilityLoginKeywordList;
 - (id)accessibilitySignupKeywordList;
 - (void)addTemporaryTextColorToTextField:(id)arg1;
+- (id)addressKeywordSet;
 - (id)autofillContextForInputDelegate:(id)arg1;
 - (id)autofillGroup;
 - (void)clearASPInPasswordFields;
 - (void)clearASPVisualEffectsInTextField:(id)arg1;
 - (void)clearAutofillGroup;
 - (void)clearFallbackAutofillGroup;
+- (id)contactAutoFillKeywordsForKey:(id)arg1 value:(id)arg2 localizedKeywords:(id)arg3;
+- (long long)contactAutofillModeWithAutofillGroup:(id)arg1 responders:(id)arg2;
 - (long long)containsIndicationInText:(id)arg1 withAccessibilityHints:(bool)arg2;
 - (bool)containsUsernamePasswordPairsInAutofillGroup:(id)arg1;
 - (long long)delegateNeedsAutofillMode;
 - (void)didOptOutOfAutofillSignup;
 - (long long)doTraits:(id)arg1 matchTextContentType:(id)arg2;
+- (id)emailKeywordSet;
 - (void)enumeratePasswordFieldsUsingBlock:(id /* block */)arg1;
 - (id)fallbackAutofillGroup;
 - (void)handleAutofillCredentialSaveIfNeeded:(id)arg1 fromASP:(bool)arg2;
@@ -46,8 +50,11 @@
 - (id)loginKeywordList;
 - (long long)needAutofillCandidate:(id)arg1 delegateAsResponder:(id)arg2 keyboardState:(id)arg3;
 - (void)optOutASPInTextField;
+- (id)phoneKeywordSet;
 - (bool)preferFallbackAutofillGroup;
+- (id)processLocalizedString:(id)arg1;
 - (void)removeTemporaryTextColorFromTextField:(id)arg1;
+- (id)searchKeywordSet;
 - (void)setDelegateNeedsAutofillMode:(long long)arg1;
 - (void)setFallbackAutofillGroup:(id)arg1;
 - (void)setShouldSaveAutofill:(bool)arg1;
@@ -61,6 +68,7 @@
 - (bool)signupHintForUsername:(id)arg1 password:(id)arg2 responder:(id)arg3;
 - (id)signupKeywordList;
 - (id)textFieldOrigColor;
+- (id)textSignalsForResponder:(id)arg1;
 - (void)trackResponderForAutofillIfNeeded:(id)arg1;
 - (void)updateAutofillContextForInputDelegate:(id)arg1;
 

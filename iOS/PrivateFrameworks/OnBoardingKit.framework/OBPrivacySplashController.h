@@ -18,7 +18,6 @@
     bool  _suppressPerPageAnalyticsLogging;
     UIButton * _unifiedAboutButton;
     bool  _useModalStyle;
-    bool  _useSmallTitle;
 }
 
 @property bool allowsOpeningSafari;
@@ -35,7 +34,6 @@
 @property bool suppressPerPageAnalyticsLogging;
 @property (retain) UIButton *unifiedAboutButton;
 @property bool useModalStyle;
-@property bool useSmallTitle;
 
 + (id)splashPageWithBundleIdentifier:(id)arg1;
 
@@ -70,7 +68,6 @@
 - (void)setSuppressPerPageAnalyticsLogging:(bool)arg1;
 - (void)setUnifiedAboutButton:(id)arg1;
 - (void)setUseModalStyle:(bool)arg1;
-- (void)setUseSmallTitle:(bool)arg1;
 - (bool)showLinkToPrivacyGateway;
 - (void)showPrivacyGateway:(id)arg1;
 - (void)showUnifiedAbout:(id)arg1;
@@ -81,7 +78,6 @@
 - (void)updateFontForPrivacyGateway;
 - (void)updateFontForUnifiedAboutButton;
 - (bool)useModalStyle;
-- (bool)useSmallTitle;
 - (void)viewDidAppear:(bool)arg1;
 - (void)viewDidLoad;
 

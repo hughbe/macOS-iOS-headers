@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INControlHomeIntent : INIntent <INControlHomeIntentExport>
+@interface INControlHomeIntent : INIntent <INControlHomeIntentExport, REDonatedActionIdentifierProviding>
 
 @property (nonatomic, readonly, copy) NSArray *contents;
 @property (readonly, copy) NSString *debugDescription;
@@ -12,6 +12,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly, copy) INDateComponentsRange *time;
 @property (nonatomic, readonly, copy) INHomeUserTask *userTask;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 - (id)_categoryVerb;
 - (id)_dictionaryRepresentation;
@@ -40,5 +42,13 @@
 - (id)time;
 - (id)userTask;
 - (id)verb;
+
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
+- (id)shortDescriptionWithOutcome:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (unsigned long long)re_actionIdentifierHashValue;
 
 @end

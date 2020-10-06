@@ -22,7 +22,6 @@
 @property (nonatomic, copy) NSArray *additionalContactKeyDescriptors;
 @property (nonatomic, readonly) NSString *clientIdentifier;
 @property (nonatomic, retain) NSString *containerIdentifier;
-@property (getter=shouldEnforceClientIdentifer, nonatomic, readonly) bool enforceClientIdentifier;
 @property (nonatomic, copy) NSArray *excludedTransactionAuthors;
 @property (nonatomic) bool includeChangeAnchors;
 @property (nonatomic) bool includeChangeIDs;
@@ -32,7 +31,6 @@
 @property (nonatomic) bool includeLabeledValueChanges;
 @property (nonatomic) bool mutableObjects;
 @property (nonatomic) bool shouldUnifyResults;
-@property (nonatomic, readonly) CNChangeHistoryAnchor *startingAnchor;
 @property (nonatomic, copy) NSData *startingToken;
 @property (nonatomic) bool unifyResults;
 
@@ -53,7 +51,6 @@
 - (bool)includeLabeledValueChanges;
 - (id)initWithClientIdentifier:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithStartingAnchor:(id)arg1;
 - (bool)mutableObjects;
 - (void)setAdditionalContactKeyDescriptors:(id)arg1;
 - (void)setContainerIdentifier:(id)arg1;
@@ -69,9 +66,7 @@
 - (void)setStartingAnchor:(id)arg1;
 - (void)setStartingToken:(id)arg1;
 - (void)setUnifyResults:(bool)arg1;
-- (bool)shouldEnforceClientIdentifer;
 - (bool)shouldUnifyResults;
-- (id)startingAnchor;
 - (id)startingToken;
 - (bool)unifyResults;
 

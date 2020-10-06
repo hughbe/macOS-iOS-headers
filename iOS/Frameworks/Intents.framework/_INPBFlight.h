@@ -3,7 +3,6 @@
  */
 
 @interface _INPBFlight : PBCodable <NSCopying, NSSecureCoding, _INPBFlight> {
-    bool  __encodeLegacyGloryData;
     _INPBAirline * _airline;
     _INPBAirportGate * _arrivalAirportGate;
     _INPBDateTimeRange * _boardingTime;
@@ -13,7 +12,6 @@
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBAirline *airline;
 @property (nonatomic, retain) _INPBAirportGate *arrivalAirportGate;
 @property (nonatomic, retain) _INPBDateTimeRange *boardingTime;
@@ -34,8 +32,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)airline;
 - (id)arrivalAirportGate;
 - (id)boardingTime;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBMassValue : PBCodable <NSCopying, NSSecureCoding, _INPBMassValue> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int magnitude : 1; 
         unsigned int unit : 1; 
@@ -13,7 +12,6 @@
     _INPBValueMetadata * _valueMetadata;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasMagnitude;
@@ -29,8 +27,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsUnit:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

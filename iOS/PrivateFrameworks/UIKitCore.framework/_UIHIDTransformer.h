@@ -16,39 +16,24 @@
         double tx; 
         double ty; 
     }  _eventTransform;
+    _UIHIDContext * _hidContext;
+    NSMutableDictionary * _hidContextByContextId;
     struct __IOHIDEvent { } * _hidEvent;
     NSMutableArray * _hidEvents;
-    NSMutableDictionary * _pathCollectionByContextId;
-    NSMutableDictionary * _scaleEventTrackerByContextId;
-    NSMutableDictionary * _stateMachineByContextId;
 }
 
 @property (nonatomic) struct CGSize { double x1; double x2; } canvasSize;
 @property (nonatomic) unsigned int contextId;
-@property (nonatomic, readonly) unsigned long long currentState;
-@property (nonatomic) struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; } eventTransform;
-@property (nonatomic, readonly) struct __IOHIDEvent { }*hidEvent;
-@property (nonatomic, readonly) _UIHIDPathCollection *pathCollection;
-@property (nonatomic, readonly) _UIHIDScaleEventTracker *scaleEventTracker;
-@property (nonatomic, readonly) _UIStateMachine *stateMachine;
 
 - (void).cxx_destruct;
 - (id)_inputEventsForHIDEvent:(struct __IOHIDEvent { }*)arg1;
-- (void)_setupSchemaForStateMachine:(id)arg1;
 - (void)addOutputHIDEvent:(id)arg1;
 - (struct CGSize { double x1; double x2; })canvasSize;
 - (unsigned int)contextId;
-- (unsigned long long)currentState;
 - (id)drainOutputHIDEvents;
-- (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })eventTransform;
 - (id)handleHIDEvent:(struct __IOHIDEvent { }*)arg1;
-- (struct __IOHIDEvent { }*)hidEvent;
 - (id)initWithRunLoop:(struct __CFRunLoop { }*)arg1;
-- (id)pathCollection;
-- (id)scaleEventTracker;
 - (void)setCanvasSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)setContextId:(unsigned int)arg1;
-- (void)setEventTransform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
-- (id)stateMachine;
 
 @end

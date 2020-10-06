@@ -4,14 +4,12 @@
 
 @interface INPortableImageLoader : NSObject <INImageLoading, NSSecureCoding> {
     <INPortableImageLoaderHelping> * _helper;
-    NSString * _helperClassName;
 }
 
-@property (setter=_setHelperClassName:, nonatomic, copy) NSString *_helperClassName;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, copy) <INPortableImageLoaderHelping> *helper;
+@property (nonatomic, readonly, copy) <INPortableImageLoaderHelping> *helper;
 @property (nonatomic, readonly) NSString *serviceIdentifier;
 @property (nonatomic, readonly) unsigned long long servicePriority;
 @property (readonly) Class superclass;
@@ -20,7 +18,6 @@
 
 - (void).cxx_destruct;
 - (id)_helperClassName;
-- (void)_setHelperClassName:(id)arg1;
 - (bool)canLoadImageDataForImage:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)helper;
@@ -29,6 +26,5 @@
 - (void)loadImageDataFromImage:(id)arg1 accessSpecifier:(id)arg2 completion:(id /* block */)arg3;
 - (id)serviceIdentifier;
 - (unsigned long long)servicePriority;
-- (void)setHelper:(id)arg1;
 
 @end

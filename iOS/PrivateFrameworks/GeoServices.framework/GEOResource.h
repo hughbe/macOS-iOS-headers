@@ -3,27 +3,25 @@
  */
 
 @interface GEOResource : PBCodable <NSCopying> {
+    unsigned int  _alternateResourceURLIndex;
     NSData * _checksum;
     int  _connectionType;
     NSString * _filename;
     NSMutableArray * _filters;
     struct { 
+        unsigned int has_alternateResourceURLIndex : 1; 
         unsigned int has_connectionType : 1; 
         unsigned int has_preferWiFiAllowedStaleThreshold : 1; 
         unsigned int has_resourceType : 1; 
+        unsigned int has_timeToLiveSeconds : 1; 
+        unsigned int has_updateMethod : 1; 
+        unsigned int has_validationMethod : 1; 
         unsigned int read_unknownFields : 1; 
         unsigned int read_regions : 1; 
         unsigned int read_checksum : 1; 
         unsigned int read_filename : 1; 
         unsigned int read_filters : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_regions : 1; 
-        unsigned int wrote_checksum : 1; 
-        unsigned int wrote_filename : 1; 
-        unsigned int wrote_filters : 1; 
-        unsigned int wrote_connectionType : 1; 
-        unsigned int wrote_preferWiFiAllowedStaleThreshold : 1; 
-        unsigned int wrote_resourceType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _preferWiFiAllowedStaleThreshold;
     PBDataReader * _reader;
@@ -36,23 +34,34 @@
     unsigned long long  _regionsCount;
     unsigned long long  _regionsSpace;
     int  _resourceType;
+    unsigned int  _timeToLiveSeconds;
     PBUnknownFields * _unknownFields;
+    int  _updateMethod;
+    int  _validationMethod;
 }
 
+@property (nonatomic) unsigned int alternateResourceURLIndex;
 @property (nonatomic, retain) NSData *checksum;
 @property (nonatomic) int connectionType;
 @property (nonatomic, retain) NSString *filename;
 @property (nonatomic, retain) NSMutableArray *filters;
+@property (nonatomic) bool hasAlternateResourceURLIndex;
 @property (nonatomic, readonly) bool hasChecksum;
 @property (nonatomic) bool hasConnectionType;
 @property (nonatomic, readonly) bool hasFilename;
 @property (nonatomic) bool hasPreferWiFiAllowedStaleThreshold;
 @property (nonatomic) bool hasResourceType;
+@property (nonatomic) bool hasTimeToLiveSeconds;
+@property (nonatomic) bool hasUpdateMethod;
+@property (nonatomic) bool hasValidationMethod;
 @property (nonatomic) unsigned int preferWiFiAllowedStaleThreshold;
 @property (nonatomic, readonly) struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; }*regions;
 @property (nonatomic, readonly) unsigned long long regionsCount;
 @property (nonatomic) int resourceType;
+@property (nonatomic) unsigned int timeToLiveSeconds;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
+@property (nonatomic) int updateMethod;
+@property (nonatomic) int validationMethod;
 
 + (Class)filterType;
 + (bool)isValid:(id)arg1;
@@ -60,15 +69,12 @@
 - (void).cxx_destruct;
 - (int)StringAsConnectionType:(id)arg1;
 - (int)StringAsResourceType:(id)arg1;
-- (void)_addNoFlagsFilter:(id)arg1;
-- (void)_addNoFlagsRegion:(struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; })arg1;
+- (int)StringAsUpdateMethod:(id)arg1;
+- (int)StringAsValidationMethod:(id)arg1;
 - (bool)_geo_isRelevantForScales:(id)arg1 scenarios:(id)arg2;
-- (void)_readChecksum;
-- (void)_readFilename;
-- (void)_readFilters;
-- (void)_readRegions;
 - (void)addFilter:(id)arg1;
 - (void)addRegion:(struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; })arg1;
+- (unsigned int)alternateResourceURLIndex;
 - (id)checksum;
 - (void)clearFilters;
 - (void)clearRegions;
@@ -84,15 +90,22 @@
 - (id)filterAtIndex:(unsigned long long)arg1;
 - (id)filters;
 - (unsigned long long)filtersCount;
+- (bool)hasAlternateResourceURLIndex;
 - (bool)hasChecksum;
 - (bool)hasConnectionType;
 - (bool)hasFilename;
 - (bool)hasPreferWiFiAllowedStaleThreshold;
 - (bool)hasResourceType;
+- (bool)hasTimeToLiveSeconds;
+- (bool)hasUpdateMethod;
+- (bool)hasValidationMethod;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)preferWiFiAllowedStaleThreshold;
 - (void)readAll:(bool)arg1;
@@ -102,17 +115,30 @@
 - (unsigned long long)regionsCount;
 - (int)resourceType;
 - (id)resourceTypeAsString:(int)arg1;
+- (void)setAlternateResourceURLIndex:(unsigned int)arg1;
 - (void)setChecksum:(id)arg1;
 - (void)setConnectionType:(int)arg1;
 - (void)setFilename:(id)arg1;
 - (void)setFilters:(id)arg1;
+- (void)setHasAlternateResourceURLIndex:(bool)arg1;
 - (void)setHasConnectionType:(bool)arg1;
 - (void)setHasPreferWiFiAllowedStaleThreshold:(bool)arg1;
 - (void)setHasResourceType:(bool)arg1;
+- (void)setHasTimeToLiveSeconds:(bool)arg1;
+- (void)setHasUpdateMethod:(bool)arg1;
+- (void)setHasValidationMethod:(bool)arg1;
 - (void)setPreferWiFiAllowedStaleThreshold:(unsigned int)arg1;
 - (void)setRegions:(struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; }*)arg1 count:(unsigned long long)arg2;
 - (void)setResourceType:(int)arg1;
+- (void)setTimeToLiveSeconds:(unsigned int)arg1;
+- (void)setUpdateMethod:(int)arg1;
+- (void)setValidationMethod:(int)arg1;
+- (unsigned int)timeToLiveSeconds;
 - (id)unknownFields;
+- (int)updateMethod;
+- (id)updateMethodAsString:(int)arg1;
+- (int)validationMethod;
+- (id)validationMethodAsString:(int)arg1;
 - (void)writeTo:(id)arg1;
 
 @end

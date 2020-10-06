@@ -15,6 +15,7 @@
     unsigned int  qos_class;
     double  relative_priority;
     unsigned int  reported;
+    NWConcrete_nw_write_request * tail;
     unsigned int  write_close;
 }
 

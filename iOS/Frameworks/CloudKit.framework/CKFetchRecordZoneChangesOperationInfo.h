@@ -31,6 +31,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (bool)fetchAllChanges;
 - (bool)forcePCSDecryptionAttempt;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)recordZoneIDs;
 - (void)setAssetTransferOptionsByRecordTypeAndKey:(id)arg1;

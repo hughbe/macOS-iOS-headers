@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
  */
 
-@interface CMNatalieData : CMLogItem {
+@interface CMNatalieData : CMLogItem <HDCoreMotionDatum> {
     long long  fActivityType;
     double  fBasalNatalies;
     double  fMets;
@@ -14,12 +14,17 @@
 
 @property (nonatomic, readonly) long long activityType;
 @property (nonatomic, readonly) NSNumber *basalNatalies;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) NSNumber *mets;
 @property (nonatomic, readonly) NSNumber *natalies;
 @property (nonatomic, readonly) long long recordId;
-@property (nonatomic, readonly) long long session;
 @property (nonatomic, readonly) NSUUID *sourceId;
 @property (nonatomic, readonly) NSDate *startDate;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
 
 + (id)maxNatalieEntries;
 + (bool)supportsSecureCoding;
@@ -35,8 +40,16 @@
 - (id)mets;
 - (id)natalies;
 - (long long)recordId;
-- (long long)session;
 - (id)sourceId;
 - (id)startDate;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (double)hd_activeNatalies;
+- (long long)hd_compare:(id)arg1;
+- (id)hd_datestamp;
+- (id)hd_epochDatestamp;
+- (id)hd_sourceID;
+- (id)hd_unitForType:(id)arg1;
 
 @end

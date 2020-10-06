@@ -20,6 +20,8 @@
 @property (nonatomic, copy) NSArray *toRemove;
 @property (nonatomic, copy) NSString *validity;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)chunk;
 + (id)chunkWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -45,5 +47,10 @@
 - (id)toAdd;
 - (id)toRemove;
 - (id)validity;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (bool)siriCore_bufferingAllowedDuringActiveSession;
+- (bool)siriCore_isRetryable;
 
 @end

@@ -16,6 +16,8 @@
 @property (nonatomic, readonly) Class provider;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
 - (void).cxx_destruct;
 - (void*)ABMultiValueValueFromCNLabeledValueValue:(id)arg1;
 - (id)CNLabeledValueValueFromABMultiValueValue:(void*)arg1;
@@ -46,5 +48,12 @@
 - (void)setCachedLabels:(id)arg1;
 - (id)standardLabels;
 - (id)standardLabelsWithOptions:(unsigned long long)arg1;
+
+// Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
+
+- (id /* block */)ABSMultiValueLabeledValueFromCNLabeledValueTransform;
+- (id /* block */)CNLabeledValueFromABSMultiValueTranform;
+- (bool)absPropertyID:(int*)arg1;
+- (unsigned int)absPropertyType;
 
 @end

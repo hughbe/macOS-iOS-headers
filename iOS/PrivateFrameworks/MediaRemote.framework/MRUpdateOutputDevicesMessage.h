@@ -6,9 +6,11 @@
     NSArray * _outputDevices;
 }
 
+@property (nonatomic, readonly) NSArray *externalOutputDevices;
 @property (nonatomic, readonly) NSArray *outputDevices;
 
 - (void).cxx_destruct;
+- (id)externalOutputDevices;
 - (id)initWithOutputDevices:(id)arg1;
 - (id)outputDevices;
 - (unsigned long long)type;

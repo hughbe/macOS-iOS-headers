@@ -2,19 +2,22 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@interface BSMutableSpringAnimationSettings : BSSpringAnimationSettings
+@interface BSMutableSpringAnimationSettings : BSSpringAnimationSettings <BSAnimationSettingsMutating>
 
 @property (nonatomic) double damping;
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) double delay;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) double epsilon;
 @property (nonatomic) double frameInterval;
+@property (readonly) unsigned long long hash;
 @property (nonatomic) double initialVelocity;
 @property (nonatomic) double mass;
 @property (nonatomic) float speed;
 @property (nonatomic) double stiffness;
+@property (readonly) Class superclass;
 @property (nonatomic, retain) CAMediaTimingFunction *timingFunction;
 
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)setDamping:(double)arg1;
 - (void)setDelay:(double)arg1;
 - (void)setEpsilon:(double)arg1;

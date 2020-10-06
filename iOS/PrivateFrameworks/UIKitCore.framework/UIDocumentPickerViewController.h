@@ -2,8 +2,9 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIDocumentPickerViewController : UIViewController <UIDocumentBrowserViewControllerPrivateDelegate> {
+@interface UIDocumentPickerViewController : UIViewController <UIDocumentBrowserViewControllerPrivateDelegate, _UIRemoteViewControllerContaining> {
     bool  _allowsMultipleSelection;
+    bool  _automaticallyDismissesAfterCompletion;
     UIViewController * _childViewController;
     DOCConfiguration * _configuration;
     <UIDocumentPickerDelegate> * _delegate;
@@ -17,9 +18,11 @@
     <UIDocumentPickerDelegate> * _weak_delegate;
 }
 
+@property (nonatomic, readonly) _UIRemoteViewController *_containedRemoteViewController;
 @property (getter=_ignoreApplicationEntitlementForImport, setter=_setIgnoreApplicationEntitlementForImport:, nonatomic) bool _ignoreApplicationEntitlementForImport;
 @property (nonatomic, retain) NSMutableArray *_securityScopedURLs;
 @property (nonatomic) bool allowsMultipleSelection;
+@property (getter=_automaticallyDismissesAfterCompletion, setter=_setAutomaticallyDismissesAfterCompletion:, nonatomic) bool automaticallyDismissesAfterCompletion;
 @property (getter=_childViewController, setter=_setChildViewController:, nonatomic, retain) UIViewController *childViewController;
 @property (nonatomic, retain) DOCConfiguration *configuration;
 @property (readonly, copy) NSString *debugDescription;
@@ -40,17 +43,19 @@
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 - (void).cxx_destruct;
+- (bool)_automaticallyDismissesAfterCompletion;
 - (void)_callDelegateWithSelectedURLsAndDismiss:(id)arg1;
 - (id)_childViewController;
 - (void)_commonInitWithDocumentTypes:(id)arg1;
 - (void)_consumeSandboxExtensionForURL:(id)arg1;
+- (id)_containedRemoteViewController;
 - (void)_didTapCancel;
 - (bool)_forPickingDownloadsFolder;
 - (bool)_ignoreApplicationEntitlementForImport;
 - (id)_initIgnoringApplicationEntitlementForImportOfTypes:(id)arg1;
-- (id)_initWithViewController:(id)arg1 inMode:(unsigned long long)arg2 uploadURLOrNil:(id)arg3;
 - (bool)_isContentManaged;
 - (id)_securityScopedURLs;
+- (void)_setAutomaticallyDismissesAfterCompletion:(bool)arg1;
 - (void)_setChildViewController:(id)arg1;
 - (void)_setForPickingDownloadsFolder:(bool)arg1;
 - (void)_setIgnoreApplicationEntitlementForImport:(bool)arg1;
@@ -58,12 +63,9 @@
 - (void)_setSourceIsManaged:(bool)arg1;
 - (bool)_sourceIsManaged;
 - (void)_tellDelegateDocumentPickerWasCancelled;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowsMultipleSelection;
 - (id)configuration;
+- (void)dealloc;
 - (id)delegate;
 - (id)directoryURL;
 - (void)dismissViewControllerAnimated:(bool)arg1 completion:(id /* block */)arg2;
@@ -71,6 +73,10 @@
 - (void)documentManagerWasCancelled:(id)arg1;
 - (unsigned long long)documentPickerMode;
 - (id)documentTypes;
+- (id)initForExportingURLs:(id)arg1;
+- (id)initForExportingURLs:(id)arg1 asCopy:(bool)arg2;
+- (id)initForOpeningContentTypes:(id)arg1;
+- (id)initForOpeningContentTypes:(id)arg1 asCopy:(bool)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDocumentTypes:(id)arg1 inMode:(unsigned long long)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
@@ -92,5 +98,9 @@
 - (void)viewDidDisappear:(bool)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)arg1;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_documentPickerViewControllerWithURL:(id)arg1 inMode:(unsigned long long)arg2 sourceURL:(id)arg3;
 
 @end

@@ -7,6 +7,7 @@
     bool  acceptsDictationSearchResults;
     bool  acceptsEmoji;
     bool  acceptsFloatingKeyboard;
+    bool  acceptsInitialEmojiKeyboard;
     bool  acceptsPayloads;
     bool  acceptsSplitKeyboard;
     long long  autocapitalizationType;
@@ -46,6 +47,7 @@
     bool  loadKeyboardsForSiriLanguage;
     bool  manageRecentInputs;
     UITextInputPasswordRules * passwordRules;
+    bool  preferOnlineDictation;
     NSString * recentInputIdentifier;
     NSString * responseContext;
     bool  returnKeyGoesToNextResponder;
@@ -81,6 +83,7 @@
 @property (nonatomic) bool acceptsDictationSearchResults;
 @property (nonatomic) bool acceptsEmoji;
 @property (nonatomic) bool acceptsFloatingKeyboard;
+@property (nonatomic) bool acceptsInitialEmojiKeyboard;
 @property (nonatomic) bool acceptsPayloads;
 @property (nonatomic) bool acceptsSplitKeyboard;
 @property (nonatomic) long long autocapitalizationType;
@@ -120,6 +123,7 @@
 @property (nonatomic) bool loadKeyboardsForSiriLanguage;
 @property (nonatomic) bool manageRecentInputs;
 @property (nonatomic, copy) UITextInputPasswordRules *passwordRules;
+@property (nonatomic) bool preferOnlineDictation;
 @property (nonatomic, copy) NSString *recentInputIdentifier;
 @property (nonatomic, copy) NSString *responseContext;
 @property (nonatomic) bool returnKeyGoesToNextResponder;
@@ -170,6 +174,7 @@
 - (bool)acceptsDictationSearchResults;
 - (bool)acceptsEmoji;
 - (bool)acceptsFloatingKeyboard;
+- (bool)acceptsInitialEmojiKeyboard;
 - (bool)acceptsPayloads;
 - (bool)acceptsSplitKeyboard;
 - (long long)autocapitalizationType;
@@ -215,7 +220,9 @@
 - (bool)loadKeyboardsForSiriLanguage;
 - (bool)manageRecentInputs;
 - (void)overlayWithTITextInputTraits:(id)arg1;
+- (void)overrideWithTraits:(id)arg1;
 - (id)passwordRules;
+- (bool)preferOnlineDictation;
 - (bool)publicTraitsMatchTraits:(id)arg1;
 - (id)recentInputIdentifier;
 - (id)responseContext;
@@ -227,6 +234,7 @@
 - (void)setAcceptsDictationSearchResults:(bool)arg1;
 - (void)setAcceptsEmoji:(bool)arg1;
 - (void)setAcceptsFloatingKeyboard:(bool)arg1;
+- (void)setAcceptsInitialEmojiKeyboard:(bool)arg1;
 - (void)setAcceptsPayloads:(bool)arg1;
 - (void)setAcceptsSplitKeyboard:(bool)arg1;
 - (void)setAutocapitalizationType:(long long)arg1;
@@ -262,6 +270,7 @@
 - (void)setManageRecentInputs:(bool)arg1;
 - (void)setPINEntrySeparatorIndexes:(id)arg1;
 - (void)setPasswordRules:(id)arg1;
+- (void)setPreferOnlineDictation:(bool)arg1;
 - (void)setRecentInputIdentifier:(id)arg1;
 - (void)setResponseContext:(id)arg1;
 - (void)setReturnKeyGoesToNextResponder:(bool)arg1;

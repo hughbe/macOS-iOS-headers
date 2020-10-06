@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Contacts.framework/Contacts
  */
 
-@interface CNContainer : NSObject <NSCopying, NSSecureCoding> {
+@interface CNContainer : NSObject <ABSCNLegacyIdentifiable, NSCopying, NSSecureCoding> {
     NSString * _accountIdentifier;
     NSString * _constraintsPath;
     bool  _enabled;
@@ -25,6 +25,8 @@
 
 @property (nonatomic, readonly, copy) NSString *accountIdentifier;
 @property (nonatomic, readonly, copy) NSString *constraintsPath;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (getter=isEnabled, nonatomic, readonly) bool enabled;
 @property (nonatomic, readonly, copy) NSString *externalIdentifier;
 @property (nonatomic, readonly, copy) NSString *externalModificationTag;
@@ -32,7 +34,9 @@
 @property (nonatomic, readonly, copy) NSString *externalSyncTag;
 @property (getter=isGuardianRestricted, nonatomic, readonly) bool guardianRestricted;
 @property (getter=isGuardianStateDirty, nonatomic, readonly) bool guardianStateDirty;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) int iOSLegacyIdentifier;
+@property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly, copy) NSString *identifier;
 @property (nonatomic, readonly) NSDate *lastSyncDate;
 @property (nonatomic, readonly, copy) NSString *meIdentifier;
@@ -41,6 +45,7 @@
 @property (nonatomic, readonly, copy) CNContainerPermissions *permissions;
 @property (nonatomic, readonly) unsigned long long restrictions;
 @property (nonatomic, readonly, copy) CNContainer *snapshot;
+@property (readonly) Class superclass;
 @property (nonatomic, readonly) long long type;
 
 + (id)identifierProvider;

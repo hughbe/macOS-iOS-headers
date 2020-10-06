@@ -13,6 +13,7 @@
     unsigned int  isPending;
     unsigned int  isWaitingForActiveConnection;
     unsigned int  isWaitingForListenerReady;
+    unsigned int  isWaitingForPathUpdate;
     NSObject<OS_nw_path_evaluator> * pathEvaluator;
     unsigned int  pendingRequestAccepted;
     id /* block */  requestCompletionBlock;

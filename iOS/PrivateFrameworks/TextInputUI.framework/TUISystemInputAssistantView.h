@@ -105,6 +105,7 @@
 - (void)setShowsExpandableButtonBarItems:(bool)arg1;
 - (void)setSystemInputAssistantItem:(id)arg1;
 - (void)setUnifiedButtonBar:(id)arg1;
+- (bool)shouldSkipValidation;
 - (bool)showsButtonBarItemsInline;
 - (bool)showsExpandableButtonBarItems;
 - (id)systemInputAssistantItem;

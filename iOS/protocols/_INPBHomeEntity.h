@@ -5,12 +5,16 @@
 
 @required
 
++ (Class)zonesType;
+
 - (int)StringAsDeviceType:(NSString *)arg1;
 - (int)StringAsDeviceTypes:(NSString *)arg1;
 - (int)StringAsEntityType:(NSString *)arg1;
 - (int)StringAsSceneType:(NSString *)arg1;
 - (void)addDeviceTypes:(int)arg1;
+- (void)addZones:(_INPBDataString *)arg1;
 - (void)clearDeviceTypes;
+- (void)clearZones;
 - (int)deviceType;
 - (NSString *)deviceTypeAsString:(int)arg1;
 - (int*)deviceTypes;
@@ -51,6 +55,10 @@
 - (void)setRoom:(_INPBDataString *)arg1;
 - (void)setSceneType:(int)arg1;
 - (void)setZone:(_INPBDataString *)arg1;
+- (void)setZones:(NSArray *)arg1;
 - (_INPBDataString *)zone;
+- (NSArray *)zones;
+- (_INPBDataString *)zonesAtIndex:(unsigned long long)arg1;
+- (unsigned long long)zonesCount;
 
 @end

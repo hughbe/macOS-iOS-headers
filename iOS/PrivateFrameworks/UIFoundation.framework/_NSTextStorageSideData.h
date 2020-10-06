@@ -10,10 +10,6 @@
     }  _lazyFixRange;
 }
 
-@property id delegate;
-
 - (void)dealloc;
-- (id)delegate;
-- (void)setDelegate:(id)arg1;
 
 @end

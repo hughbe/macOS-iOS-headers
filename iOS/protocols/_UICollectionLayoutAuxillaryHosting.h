@@ -18,5 +18,6 @@
 @optional
 
 - (struct CGPoint { double x1; double x2; })auxillaryHostAdditionalFrameOffset;
+- (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })auxillaryHostEdgeInsetsForAuxillaryOfKind:(NSString *)arg1;
 
 @end

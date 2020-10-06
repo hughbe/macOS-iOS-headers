@@ -16,6 +16,7 @@
     bool  _requiresLegacyFormat;
     unsigned int  _tileGroupIdentifier;
     NSArray * _tileSetOverrides;
+    NSString * _urlTemplate;
 }
 
 @property (nonatomic, copy) NSString *applicationIdentifier;
@@ -32,6 +33,7 @@
 @property (nonatomic, readonly) bool requiresLegacyFormat;
 @property (nonatomic) unsigned int tileGroupIdentifier;
 @property (nonatomic, copy) NSArray *tileSetOverrides;
+@property (nonatomic, copy) NSString *urlTemplate;
 
 + (id)configurationWithPairedDevice:(id)arg1;
 + (id)defaultConfiguration;
@@ -69,7 +71,9 @@
 - (void)setOsVersion:(id)arg1;
 - (void)setTileGroupIdentifier:(unsigned int)arg1;
 - (void)setTileSetOverrides:(id)arg1;
+- (void)setUrlTemplate:(id)arg1;
 - (unsigned int)tileGroupIdentifier;
 - (id)tileSetOverrides;
+- (id)urlTemplate;
 
 @end

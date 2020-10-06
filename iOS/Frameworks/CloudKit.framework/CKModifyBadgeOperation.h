@@ -9,6 +9,7 @@
 
 @property (nonatomic) unsigned long long badgeValue;
 @property (nonatomic, copy) id /* block */ modifyBadgeCompletionBlock;
+@property (nonatomic, readonly) CKModifyBadgeOperationInfo *operationInfo;
 
 - (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;

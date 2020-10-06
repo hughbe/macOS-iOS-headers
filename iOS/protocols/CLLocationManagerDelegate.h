@@ -21,6 +21,7 @@
 - (void)locationManager:(CLLocationManager *)arg1 didVisit:(CLVisit *)arg2;
 - (void)locationManager:(CLLocationManager *)arg1 monitoringDidFailForRegion:(CLRegion *)arg2 withError:(NSError *)arg3;
 - (void)locationManager:(CLLocationManager *)arg1 rangingBeaconsDidFailForRegion:(CLBeaconRegion *)arg2 withError:(NSError *)arg3;
+- (void)locationManagerDidChangeAuthorization:(CLLocationManager *)arg1;
 - (void)locationManagerDidPauseLocationUpdates:(CLLocationManager *)arg1;
 - (void)locationManagerDidResumeLocationUpdates:(CLLocationManager *)arg1;
 - (bool)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)arg1;

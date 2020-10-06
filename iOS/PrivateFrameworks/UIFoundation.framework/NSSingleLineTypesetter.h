@@ -22,7 +22,7 @@
 
 + (bool)_validateAttributes:(id)arg1 measuringOnly:(bool)arg2;
 + (void)initialize;
-+ (id)singleLineTypesetter;
++ (void)performWithSingleLineTypesetterContext:(id /* block */)arg1;
 
 - (bool)_allowsEllipsisGlyphSubstitution;
 - (bool)_mirrorsTextAlignment;
@@ -35,7 +35,6 @@
 - (id)createRenderingContextForCharacterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 typesetterBehavior:(long long)arg2 usesScreenFonts:(bool)arg3 hasStrongRight:(bool)arg4 syncDirection:(bool)arg5 mirrorsTextAlignment:(bool)arg6 maximumWidth:(double)arg7;
 - (void)dealloc;
 - (void)deleteGlyphsInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
-- (void)done;
 - (unsigned long long)getGlyphsInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 glyphs:(unsigned short*)arg2 properties:(long long*)arg3 characterIndexes:(unsigned long long*)arg4 bidiLevels:(char *)arg5;
 - (void)getLineFragmentRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; }*)arg1 usedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; }*)arg2 remainingRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; }*)arg3 forStartingGlyphAtIndex:(unsigned long long)arg4 proposedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg5 lineSpacing:(double)arg6 paragraphSpacingBefore:(double)arg7 paragraphSpacingAfter:(double)arg8;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })glyphRangeForCharacterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 actualCharacterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg2;

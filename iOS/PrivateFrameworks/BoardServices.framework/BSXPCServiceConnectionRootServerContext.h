@@ -4,8 +4,6 @@
 
 @interface BSXPCServiceConnectionRootServerContext : BSXPCServiceConnectionRootContext
 
-+ (id)uniqueServerContextWithEndpointDescription:(id)arg1;
-
 - (bool)isServer;
 
 @end

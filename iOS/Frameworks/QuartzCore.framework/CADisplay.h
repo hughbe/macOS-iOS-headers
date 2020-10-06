@@ -50,6 +50,7 @@
 + (bool)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)displays;
 + (id)mainDisplay;
++ (void)updateDisplays;
 
 - (id)_initWithDisplay:(struct Display { int (**x1)(); struct Mutex { struct _opaque_pthread_mutex_t { long long x_1_2_1; BOOL x_1_2_2[56]; } x_2_1_1; } x2; struct SpinLock { struct { int x_1_2_1; } x_3_1_1; } x3; id x4; struct __CFString {} *x5; struct __CFString {} *x6; unsigned int x7; unsigned int x8; unsigned int x9; struct __CFString {} *x10; struct __CFString {} *x11; struct __CFString {} *x12; struct ModeSet { struct vector<CA::WindowServer::Display::Mode, std::__1::allocator<CA::WindowServer::Display::Mode> > { struct Mode {} *x_1_2_1; struct Mode {} *x_1_2_2; struct __compressed_pair<CA::WindowServer::Display::Mode *, std::__1::allocator<CA::WindowServer::Display::Mode> > { struct Mode {} *x_3_3_1; } x_1_2_3; } x_13_1_1; struct set<std::__1::tuple<unsigned short, unsigned short>, std::__1::less<std::__1::tuple<unsigned short, unsigned short> >, std::__1::allocator<std::__1::tuple<unsigned short, unsigned short> > > { struct __tree<std::__1::tuple<unsigned short, unsigned short>, std::__1::less<std::__1::tuple<unsigned short, unsigned short> >, std::__1::allocator<std::__1::tuple<unsigned short, unsigned short> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> {} *x_1_3_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::tuple<unsigned short, unsigned short>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_5_1; } x_2_4_1; } x_1_3_2; struct __compressed_pair<unsigned long, std::__1::less<std::__1::tuple<unsigned short, unsigned short> > > { unsigned long long x_3_4_1; } x_1_3_3; } x_2_2_1; } x_13_1_2; } x13; }*)arg1;
 - (void)_invalidate;
@@ -68,6 +69,7 @@
 - (unsigned int)displayId;
 - (long long)displayType;
 - (id)externalDisplayAttributes;
+- (id)flipBookWithCapacity:(unsigned long long)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frame;
 - (double)heartbeatRate;
 - (id)immutableCopy;

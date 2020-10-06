@@ -3,13 +3,11 @@
  */
 
 @interface _INPBHomeEntityResponse : PBCodable <NSCopying, NSSecureCoding, _INPBHomeEntityResponse> {
-    bool  __encodeLegacyGloryData;
     _INPBHomeEntity * _entity;
     struct { }  _has;
     NSArray * _taskResponses;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBHomeEntity *entity;
@@ -23,8 +21,6 @@
 + (Class)taskResponsesType;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addTaskResponses:(id)arg1;
 - (void)clearTaskResponses;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

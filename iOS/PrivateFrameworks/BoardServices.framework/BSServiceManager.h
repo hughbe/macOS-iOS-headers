@@ -25,20 +25,10 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (id)sharedInstance;
-
 - (void).cxx_destruct;
-- (void)_callOutLock_noteEndpointsChangedForServices:(id)arg1;
-- (id)_initWithConfiguration:(id)arg1;
-- (id)_lock_rootConnectionWithEndpoint:(id)arg1 nonLaunching:(bool)arg2 description:(id)arg3;
 - (id)debugDescription;
-- (void)disableLaunchWhitelist;
-- (id)domainWithIdentifier:(id)arg1;
 - (id)init;
-- (id)newConnectionWithEndpoint:(id)arg1 nonLaunching:(bool)arg2 description:(id)arg3;
-- (id)registerMonitor:(id)arg1;
 - (void)service:(id)arg1 didLoseInheritances:(id)arg2;
 - (void)service:(id)arg1 didReceiveInheritances:(id)arg2;
-- (void)serviceWillTerminateProcess:(id)arg1;
 
 @end

@@ -28,7 +28,9 @@
     NSMutableArray * _elements;
     HIDElement * _enableElement;
     HIDElement * _enableFadeSpeedElement;
+    bool  _forceDelayToTurnOnBacklight;
     NSObject<OS_dispatch_source> * _forceLuxUpdateTimer;
+    bool  _keyboardAvailable;
     unsigned long long  _keyboardID;
     NSMutableDictionary * _keyboardSpecificPreferences;
     unsigned long long  _lastBacklightUpdate;
@@ -56,6 +58,7 @@
     bool  _saturated;
     bool  _suspend;
     bool  _suspendDimming;
+    int  _turnOnBacklightDelayMS;
     unsigned int  _unitExponent;
     bool  _userActive;
 }
@@ -73,6 +76,7 @@
 @property int dimTime;
 @property bool dimmed;
 @property (readonly) unsigned long long hash;
+@property bool keyboardAvailable;
 @property unsigned long long keyboardID;
 @property (retain) NSMutableDictionary *keyboardSpecificPreferences;
 @property float levelMax;
@@ -95,11 +99,13 @@
 
 - (bool)KBAutoBrightnessEnablePropertyHandler:(id)arg1;
 - (bool)KBAutoBrightnessSuspendPropertyHandler:(id)arg1;
+- (bool)KBAvailabilityUpdateHandler:(id)arg1;
 - (bool)KBBrightnessPropertyHandler:(id)arg1;
 - (bool)KBDisplayBrightnessFactorPropertyHandler:(id)arg1;
 - (bool)KBIdleDimPropertyHandler:(id)arg1;
 - (bool)KBIdleDimTimeHandler:(id)arg1;
 - (bool)KBSuspendDimmingPropertyHandler:(id)arg1;
+- (bool)KBUpdateFrequencyHandler:(id)arg1;
 - (bool)KBUserActivityUpdateHandler:(id)arg1;
 - (bool)KBUserOffsetPropertyHandler:(id)arg1;
 - (bool)addHIDServiceClient:(struct __IOHIDServiceClient { }*)arg1;
@@ -133,6 +139,7 @@
 - (id)initWithQueue:(id)arg1;
 - (id)initWithQueue:(id)arg1 device:(id)arg2;
 - (id)initWithQueue:(id)arg1 device:(id)arg2 ambientOffset:(float)arg3;
+- (bool)keyboardAvailable;
 - (unsigned long long)keyboardID;
 - (id)keyboardSpecificPreferences;
 - (float)level;
@@ -162,6 +169,7 @@
 - (void)setDimTime:(int)arg1;
 - (void)setDimmed:(bool)arg1;
 - (void)setKBPreferenceBacklightMaxUser;
+- (void)setKeyboardAvailable:(bool)arg1;
 - (void)setKeyboardID:(unsigned long long)arg1;
 - (void)setKeyboardSpecificPreferences:(id)arg1;
 - (void)setLevelMax:(float)arg1;

@@ -29,6 +29,9 @@
 @property (nonatomic) long long preferredPresentationStyle;
 @property (copy) id /* block */ previewImageHandler;
 @property (readonly, copy) NSArray *registeredTypeIdentifiers;
+@property (getter=sbui_isIgnored, setter=sbui_setIgnored:, nonatomic) bool sbui_ignored;
+@property (setter=sbui_setPreferredApplicationBundleIdentifier:, nonatomic, copy) NSString *sbui_preferredApplicationBundleIdentifier;
+@property (setter=sbui_setRequiredApplicationBundleIdentifier:, nonatomic, copy) NSString *sbui_requiredApplicationBundleIdentifier;
 @property (copy) NSString *suggestedName;
 @property (nonatomic, copy) NSData *teamData;
 @property (copy) NSDictionary *userInfo;
@@ -102,6 +105,56 @@
 - (void)set_typeOrder:(id)arg1;
 - (id)suggestedName;
 - (id)userInfo;
+
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
+
++ (id)_lp_itemProviderWithData:(id)arg1 MIMEType:(id)arg2;
+
+- (void)_lp_loadFirstDataRepresentationMatchingMIMETypePredicate:(id /* block */)arg1 completionHandler:(id /* block */)arg2;
+
+// Image: /System/Library/Frameworks/Photos.framework/Photos
+
+- (id)initWithLivePhoto:(id)arg1;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (void)_sf_loadObjectsFromItemProviders:(id)arg1 usingLoader:(int (*)arg2 completionHandler:(id /* block */)arg3;
+
+- (void)_sf_loadObjectOfClasses:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_sf_registerFileRepresentationForQuickLookDocument:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (bool)supportedInQLController;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (void)px_asynchronousAddDragAndDropFileProviderDomain;
++ (id)px_dragAndDropFileProviderDomain;
++ (id)px_fileProviderItemProviderForAsset:(id)arg1 usage:(long long)arg2 domain:(id)arg3 registerFileRepresentations:(bool)arg4;
++ (id)px_fileProviderItemProviderForAsset:(id)arg1 usage:(long long)arg2 registerFileRepresentations:(bool)arg3 domain:(id)arg4 shouldRequestCurrentIfPossible:(bool)arg5;
++ (id)px_fileProviderItemProviderForDisplayAsset:(id)arg1 usage:(long long)arg2 domain:(id)arg3;
++ (id)px_synchronousAddPhotosPickerFileProviderDomain:(id*)arg1;
+
+- (id)_px_assetResourceBagsFromUniformTypeIdentifier:(id)arg1 atURL:(id)arg2;
+- (long long)_px_assetResourceTypeFromUniformTypeIdentifier:(id)arg1;
+- (id)_px_bestTypeIdentifierForItemProvider:(id)arg1;
+- (bool)_px_isSupportedUniformTypeIdentifier:(id)arg1;
+- (void)_px_registerFileRepresentationForTypeIdentifier:(id)arg1 visibility:(long long)arg2 domain:(id)arg3 assetUUID:(id)arg4 shouldRequestCurrentIfPossible:(bool)arg5;
+- (void)_px_registerFileRepresentationsForAsset:(id)arg1 domain:(id)arg2 shouldRequestCurrentIfPossible:(bool)arg3;
+- (long long)_px_shareMediaTypeFromUniformTypeIdentifier:(id)arg1;
+- (id)_px_sharedMediaVideoComplementFromURL:(id)arg1;
+- (void)px_createAssetWithImportSessionID:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)px_createStreamShareSourceWithCompletionBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
+
+- (bool)sbui_isIgnored;
+- (id)sbui_preferredApplicationBundleIdentifier;
+- (id)sbui_requiredApplicationBundleIdentifier;
+- (void)sbui_setIgnored:(bool)arg1;
+- (void)sbui_setPreferredApplicationBundleIdentifier:(id)arg1;
+- (void)sbui_setRequiredApplicationBundleIdentifier:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

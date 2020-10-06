@@ -15,6 +15,7 @@
     id /* block */  _perRecordSaveCompletionBlock;
     id /* block */  _populateNextBatchBlock;
     id /* block */  _willEnqueueOperationBlock;
+    NSSet * _zoneIDs;
 }
 
 @property (nonatomic, copy) id /* block */ batchCompletionBlock;
@@ -29,6 +30,7 @@
 @property (nonatomic, copy) id /* block */ perRecordSaveCompletionBlock;
 @property (nonatomic, copy) id /* block */ populateNextBatchBlock;
 @property (nonatomic, copy) id /* block */ willEnqueueOperationBlock;
+@property (nonatomic, retain) NSSet *zoneIDs;
 
 - (void).cxx_destruct;
 - (void)addNextModifyOperationOrFinishIfNoRemainingWork;
@@ -61,7 +63,9 @@
 - (void)setPerRecordSaveCompletionBlock:(id /* block */)arg1;
 - (void)setPopulateNextBatchBlock:(id /* block */)arg1;
 - (void)setWillEnqueueOperationBlock:(id /* block */)arg1;
+- (void)setZoneIDs:(id)arg1;
 - (void)start;
 - (id /* block */)willEnqueueOperationBlock;
+- (id)zoneIDs;
 
 @end

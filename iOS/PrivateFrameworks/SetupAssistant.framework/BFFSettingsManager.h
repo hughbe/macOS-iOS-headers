@@ -4,11 +4,12 @@
 
 @interface BFFSettingsManager : NSObject {
     NSData * _stashedAccessibilityData;
+    NSMutableArray * _stashedAnalytics;
     NSNumber * _stashedAssistantEnabled;
     NSNumber * _stashedAssistantVoiceTriggerEnabled;
+    NSNumber * _stashedAutoDownloadEnabled;
     NSNumber * _stashedAutoUpdateEnabled;
     NSMutableArray * _stashedButtonHaptics;
-    NSDictionary * _stashedDeviceToDeviceMigrationSuccessInfo;
     NSArray * _stashedFlowSkipIdentifiers;
     NSNumber * _stashedLocationServicesEnabled;
     NSData * _stashedLocationServicesSettings;
@@ -25,7 +26,6 @@
 
 - (void).cxx_destruct;
 - (void)_applyAssistantPreferences;
-- (void)_applyAutoUpdatePreferences;
 - (void)_applyLocationServices;
 - (void)_applyLocationServicesSettings;
 - (void)_applyScreenTimePreferences;
@@ -33,11 +33,13 @@
 - (void)_applyStashedFlowSkipIdentifiers;
 - (void)_applyStashedManagedConfiguration;
 - (void)_applyStashedPreferences;
+- (void)_applyUpdatePreferences;
 - (void)_applyUserInterfaceStyleMode;
 - (bool)_commitStash;
 - (id)_preferencesForDomain:(id)arg1;
 - (void)_reset:(bool)arg1;
 - (void)_restoreAccessibilityData;
+- (void)_restoreAnalyticsData;
 - (unsigned long long)_restoreConfiguration;
 - (void)_restoreStashedFiles;
 - (void)_restoreWatchData;
@@ -59,6 +61,7 @@
 - (void)reset;
 - (void)setAssistantEnabled:(bool)arg1;
 - (void)setAssistantVoiceTriggerEnabled:(bool)arg1;
+- (void)setAutoDownloadEnabled:(bool)arg1;
 - (void)setAutoUpdateEnabled:(bool)arg1;
 - (void)setBool:(bool)arg1 forDomain:(id)arg2 key:(id)arg3;
 - (void)setBool:(bool)arg1 forManagedConfigurationSetting:(id)arg2;
@@ -66,9 +69,9 @@
 - (void)setScreenTimeEnabled:(bool)arg1;
 - (void)setUserInterfaceStyleMode:(long long)arg1;
 - (void)stashAccessibilityData:(id)arg1;
+- (void)stashAnalyticEvent:(id)arg1 payload:(id)arg2;
 - (id)stashBuildVersion;
 - (long long)stashConfigurationType;
-- (void)stashDeviceToDeviceMigrationSuccessInfo:(id)arg1;
 - (void)stashFlowSkipIdentifiers:(id)arg1;
 - (void)stashHapticType:(long long)arg1 forButtonKind:(long long)arg2;
 - (void)stashLocationServicesChoice:(bool)arg1;

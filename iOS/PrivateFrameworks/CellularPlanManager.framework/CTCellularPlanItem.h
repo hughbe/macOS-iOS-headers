@@ -19,6 +19,7 @@
     bool  _shouldAppearDisabled;
     bool  _shouldAutoSelectWhenInRange;
     bool  _shouldDisplay;
+    bool  _shouldDisplayExtendedConsentInfo;
     bool  _shouldDisplayType;
     long long  _type;
     CTUserLabel * _userLabel;
@@ -45,7 +46,8 @@
 @property (nonatomic, readonly) CTCellularPlan *plan;
 @property (nonatomic) bool shouldAppearDisabled;
 @property (nonatomic) bool shouldAutoSelectWhenInRange;
-@property (nonatomic, readonly) bool shouldDisplay;
+@property (nonatomic) bool shouldDisplay;
+@property (nonatomic) bool shouldDisplayExtendedConsentInfo;
 @property (nonatomic) bool shouldDisplayType;
 @property (nonatomic) long long type;
 @property (nonatomic, retain) CTUserLabel *userLabel;
@@ -59,6 +61,7 @@
 - (id)companionSlotUuid;
 - (long long)compare:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)customDescription;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)iccid;
@@ -93,12 +96,15 @@
 - (void)setPhoneNumber:(id)arg1;
 - (void)setShouldAppearDisabled:(bool)arg1;
 - (void)setShouldAutoSelectWhenInRange:(bool)arg1;
+- (void)setShouldDisplay:(bool)arg1;
+- (void)setShouldDisplayExtendedConsentInfo:(bool)arg1;
 - (void)setShouldDisplayType:(bool)arg1;
 - (void)setType:(long long)arg1;
 - (void)setUserLabel:(id)arg1;
 - (bool)shouldAppearDisabled;
 - (bool)shouldAutoSelectWhenInRange;
 - (bool)shouldDisplay;
+- (bool)shouldDisplayExtendedConsentInfo;
 - (bool)shouldDisplayType;
 - (long long)type;
 - (id)typeAsString:(long long)arg1;

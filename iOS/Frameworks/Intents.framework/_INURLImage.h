@@ -7,7 +7,6 @@
     NSData * _sandboxExtensionData;
 }
 
-@property (setter=_setSandboxExtensionData:, nonatomic, copy) NSData *_sandboxExtensionData;
 @property (nonatomic, readonly, copy) NSURL *imageURL;
 
 + (bool)supportsSecureCoding;

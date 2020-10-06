@@ -50,20 +50,12 @@
 @property (nonatomic) unsigned long long triggeredSyncDelayInSeconds;
 @property (nonatomic, retain) NSNumber *version;
 
-+ (id)_policyForSyncTransportType:(long long)arg1;
 + (bool)cloudSyncDisabled;
-+ (id)configurationPlistForFilename:(id)arg1;
 + (id)disabledFeaturesForSyncType:(id)arg1 transports:(long long)arg2;
-+ (void)handleDownloadSyncPolicyResponse:(id)arg1 data:(id)arg2 error:(id)arg3;
-+ (id)policyCache;
 + (id)policyForSyncTransportType:(long long)arg1;
 + (id)policyFromDictionary:(id)arg1;
-+ (void)possiblyDownloadSyncPolicyWithPolicyDownloadIntervalInDays:(unsigned long long)arg1;
-+ (id)productVersion;
 + (bool)rapportSyncDisabled;
 + (void)setOkToDownloadPolicyUpdates:(bool)arg1;
-+ (id)syncPolicyConfigPathForFilename:(id)arg1;
-+ (id)userDefaults;
 
 - (void).cxx_destruct;
 - (bool)canDeferSyncOperationWithSyncType:(id)arg1;
@@ -73,7 +65,6 @@
 - (bool)highPriorityForSyncUpWithSyncType:(id)arg1 lastSyncDate:(id)arg2;
 - (double)hoursBetweenSyncsWhenIsSingleDevice:(bool)arg1;
 - (double)hoursBetweenSyncsWhenIsSingleDevice:(bool)arg1 urgency:(unsigned long long)arg2;
-- (id)initWithDictionary:(id)arg1;
 - (unsigned long long)maxBatchesPerSync;
 - (unsigned long long)maxSyncDownIntervalInDays;
 - (unsigned long long)maxSyncPeriodInDays;
@@ -85,7 +76,6 @@
 - (unsigned long long)numChangesTriggeringSync;
 - (unsigned long long)policyDownloadIntervalInDays;
 - (bool)pushTriggersSync;
-- (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3;
 - (id)queryStartDateWithSyncType:(id)arg1 lastSyncDate:(id)arg2 lastDaySyncCount:(unsigned long long)arg3 previousHighWaterMark:(id)arg4;
 - (id)queryStartDateWithSyncType:(id)arg1 previousHighWaterMark:(id)arg2;
 - (bool)requireCharging;

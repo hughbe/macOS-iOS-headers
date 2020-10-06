@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKRepairAssetsOperation : CKDatabaseOperation {
+@interface CKRepairAssetsOperation : CKDatabaseOperation <CKRepairAssetsOperationCallbacks> {
     NSArray * _assetMetadata;
     NSArray * _assets;
     NSArray * _packageMetadata;
@@ -16,6 +16,8 @@
 
 @property (nonatomic, retain) NSArray *assetMetadata;
 @property (nonatomic, retain) NSArray *assets;
+@property (nonatomic, readonly) <CKRepairAssetsOperationCallbacks> *clientOperationCallbackProxy;
+@property (nonatomic, readonly) CKRepairAssetsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSArray *packageMetadata;
 @property (nonatomic, retain) NSArray *packages;
 @property (nonatomic, retain) NSMutableDictionary *perItemErrorsByRecordID;
@@ -25,15 +27,17 @@
 @property (nonatomic, retain) NSArray *unavailablePackages;
 @property (nonatomic, copy) CKUploadRequestConfiguration *uploadRequestConfiguration;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)assetMetadata;
 - (id)assets;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleAssetRepairCompletionForRecordID:(id)arg1 error:(id)arg2;
 - (bool)hasCKOperationCallbacksSet;
 - (id)includedMetadata;
 - (id)initWithAssets:(id)arg1 packages:(id)arg2 assetMetadata:(id)arg3 packageMetadata:(id)arg4 unavailableAssets:(id)arg5 unavailablePackages:(id)arg6;

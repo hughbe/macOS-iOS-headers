@@ -16,12 +16,7 @@
         unsigned int read_alternateFormatStrings : 1; 
         unsigned int read_separator : 1; 
         unsigned int read_timezone : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_alternateCountdownTypes : 1; 
-        unsigned int wrote_timestampValues : 1; 
-        unsigned int wrote_alternateFormatStrings : 1; 
-        unsigned int wrote_separator : 1; 
-        unsigned int wrote_timezone : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -63,15 +58,7 @@
 
 - (void).cxx_destruct;
 - (int)StringAsAlternateCountdownTypes:(id)arg1;
-- (void)_addNoFlagsAlternateCountdownType:(int)arg1;
-- (void)_addNoFlagsAlternateFormatString:(id)arg1;
-- (void)_addNoFlagsTimestampValue:(unsigned int)arg1;
 - (long long)_convertFrom:(int)arg1;
-- (void)_readAlternateCountdownTypes;
-- (void)_readAlternateFormatStrings;
-- (void)_readSeparator;
-- (void)_readTimestampValues;
-- (void)_readTimezone;
 - (void)addAlternateCountdownType:(int)arg1;
 - (void)addAlternateFormatString:(id)arg1;
 - (void)addTimestampValue:(unsigned int)arg1;
@@ -98,7 +85,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

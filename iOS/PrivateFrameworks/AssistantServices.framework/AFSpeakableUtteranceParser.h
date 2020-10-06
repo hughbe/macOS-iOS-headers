@@ -11,6 +11,8 @@
 @property (nonatomic) bool handleTTSCodes;
 @property (nonatomic) bool handlesFunctions;
 
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
 + (bool)_shouldAutomaticallyProvideFunctions;
 + (id)parseUserGeneratedMessage:(id)arg1;
 
@@ -33,5 +35,13 @@
 - (void)registerProvider:(id)arg1 forNamespace:(id)arg2;
 - (void)setHandleTTSCodes:(bool)arg1;
 - (void)setHandlesFunctions:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
++ (id)_domainsForStringWithFormat:(id)arg1;
++ (id)afui_speakableUtteranceParserForCurrentLanguage;
+
+- (id)_builtInDomains;
+- (bool)afui_hasExternalDomainsForStringWithFormat:(id)arg1;
 
 @end

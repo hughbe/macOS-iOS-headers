@@ -3,10 +3,14 @@
 
 @protocol MTLSamplerStateSPI <MTLSamplerState>
 
+@required
+
+- (unsigned long long)pixelFormat;
+
 @optional
 
+- (unsigned long long)gpuAddress;
 - (unsigned long long)resourceIndex;
-- (void)setResourceIndex:(unsigned long long)arg1;
 - (unsigned long long)uniqueIdentifier;
 
 @end

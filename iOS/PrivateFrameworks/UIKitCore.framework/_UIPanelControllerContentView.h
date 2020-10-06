@@ -11,5 +11,6 @@
 - (void).cxx_destruct;
 - (id)_panelController;
 - (void)_setPanelController:(id)arg1;
+- (id)description;
 
 @end

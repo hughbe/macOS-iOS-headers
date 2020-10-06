@@ -3,11 +3,9 @@
  */
 
 @interface _INPBUpdateMediaAffinityIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBUpdateMediaAffinityIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -15,8 +13,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

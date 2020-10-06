@@ -12,12 +12,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_eventName : 1; 
         unsigned int read_loiIdentifierString : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_eventDate : 1; 
-        unsigned int wrote_eventName : 1; 
-        unsigned int wrote_loiIdentifierString : 1; 
-        unsigned int wrote_loiType : 1; 
-        unsigned int wrote_isEventAllDay : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isEventAllDay;
     NSString * _loiIdentifierString;
@@ -48,8 +43,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsLoiType:(id)arg1;
-- (void)_readEventName;
-- (void)_readLoiIdentifierString;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -65,8 +58,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isEventAllDay;
+- (id)jsonRepresentation;
 - (id)loiIdentifier;
 - (id)loiIdentifierString;
 - (int)loiType;

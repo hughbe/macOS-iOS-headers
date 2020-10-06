@@ -9,6 +9,8 @@
 + (id)duration;
 + (id)elapsed;
 + (id)genre;
++ (id)iTunesStoreIdentifier;
++ (id)iTunesSubscriptionIdentifier;
 + (id)identifier;
 + (id)isAirPlayVideo;
 + (id)mediaType;

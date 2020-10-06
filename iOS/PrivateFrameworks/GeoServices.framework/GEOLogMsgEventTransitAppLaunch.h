@@ -10,10 +10,7 @@
         unsigned int read_bundleIdentifier : 1; 
         unsigned int read_destination : 1; 
         unsigned int read_source : 1; 
-        unsigned int wrote_bundleIdentifier : 1; 
-        unsigned int wrote_destination : 1; 
-        unsigned int wrote_source : 1; 
-        unsigned int wrote_timestamp : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,9 +34,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readBundleIdentifier;
-- (void)_readDestination;
-- (void)_readSource;
 - (id)bundleIdentifier;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -53,7 +47,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

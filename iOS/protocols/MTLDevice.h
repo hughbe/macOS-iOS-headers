@@ -5,9 +5,12 @@
 
 @required
 
+- (struct { unsigned long long x1; unsigned long long x2; unsigned long long x3; })accelerationStructureSizesWithDescriptor:(MTLAccelerationStructureDescriptor *)arg1;
+- (bool)areBarycentricCoordsSupported;
 - (bool)areProgrammableSamplePositionsSupported;
 - (bool)areRasterOrderGroupsSupported;
 - (unsigned long long)argumentBuffersSupport;
+- (NSArray *)counterSets;
 - (unsigned long long)currentAllocatedSize;
 - (void)getDefaultSamplePositions:(struct { float x1; float x2; }*)arg1 count:(unsigned long long)arg2;
 - (bool)hasUnifiedMemory;
@@ -24,7 +27,10 @@
 - (unsigned long long)minimumLinearTextureAlignmentForPixelFormat:(unsigned long long)arg1;
 - (unsigned long long)minimumTextureBufferAlignmentForPixelFormat:(unsigned long long)arg1;
 - (NSString *)name;
+- (<MTLAccelerationStructure> *)newAccelerationStructureWithDescriptor:(MTLAccelerationStructureDescriptor *)arg1;
+- (<MTLAccelerationStructure> *)newAccelerationStructureWithSize:(unsigned long long)arg1;
 - (<MTLArgumentEncoder> *)newArgumentEncoderWithArguments:(NSArray *)arg1;
+- (<MTLBinaryArchive> *)newBinaryArchiveWithDescriptor:(MTLBinaryArchiveDescriptor *)arg1 error:(id*)arg2;
 - (<MTLBuffer> *)newBufferWithBytes:(const void*)arg1 length:(unsigned long long)arg2 options:(unsigned long long)arg3;
 - (<MTLBuffer> *)newBufferWithBytesNoCopy:(void *)arg1 length:(void *)arg2 options:(void *)arg3 deallocator:(void *)arg4; // needs 4 arg types, found 10: void*, unsigned long long, unsigned long long, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*, unsigned long long, void*
 - (<MTLBuffer> *)newBufferWithLength:(unsigned long long)arg1 options:(unsigned long long)arg2;
@@ -36,9 +42,12 @@
 - (<MTLComputePipelineState> *)newComputePipelineStateWithFunction:(id <MTLFunction>)arg1 error:(id*)arg2;
 - (void)newComputePipelineStateWithFunction:(void *)arg1 options:(void *)arg2 completionHandler:(void *)arg3; // needs 3 arg types, found 10: <MTLFunction> *, unsigned long long, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, <MTLComputePipelineState> *, MTLComputePipelineReflection *, NSError *, void*
 - (<MTLComputePipelineState> *)newComputePipelineStateWithFunction:(id <MTLFunction>)arg1 options:(unsigned long long)arg2 reflection:(id*)arg3 error:(id*)arg4;
+- (<MTLCounterSampleBuffer> *)newCounterSampleBufferWithDescriptor:(MTLCounterSampleBufferDescriptor *)arg1 error:(id*)arg2;
 - (<MTLLibrary> *)newDefaultLibrary;
 - (<MTLLibrary> *)newDefaultLibraryWithBundle:(NSBundle *)arg1 error:(id*)arg2;
 - (<MTLDepthStencilState> *)newDepthStencilStateWithDescriptor:(MTLDepthStencilDescriptor *)arg1;
+- (<MTLDynamicLibrary> *)newDynamicLibrary:(id <MTLLibrary>)arg1 error:(id*)arg2;
+- (<MTLDynamicLibrary> *)newDynamicLibraryWithURL:(NSURL *)arg1 error:(id*)arg2;
 - (<MTLEvent> *)newEvent;
 - (<MTLFence> *)newFence;
 - (<MTLHeap> *)newHeapWithDescriptor:(MTLHeapDescriptor *)arg1;
@@ -65,11 +74,21 @@
 - (unsigned long long)readWriteTextureSupport;
 - (unsigned long long)recommendedMaxWorkingSetSize;
 - (unsigned long long)registryID;
+- (void)sampleTimestamps:(unsigned long long*)arg1 gpuTimestamp:(unsigned long long*)arg2;
 - (unsigned long long)sparseTileSizeInBytes;
 - (struct { unsigned long long x1; unsigned long long x2; unsigned long long x3; })sparseTileSizeWithTextureType:(unsigned long long)arg1 pixelFormat:(unsigned long long)arg2 sampleCount:(unsigned long long)arg3;
+- (bool)supports32BitFloatFiltering;
+- (bool)supports32BitMSAA;
+- (bool)supportsBCTextureCompression;
+- (bool)supportsCounterSampling:(unsigned long long)arg1;
+- (bool)supportsDynamicLibraries;
 - (bool)supportsFamily:(long long)arg1;
 - (bool)supportsFeatureSet:(unsigned long long)arg1;
+- (bool)supportsFunctionPointers;
+- (bool)supportsPullModelInterpolation;
 - (bool)supportsRasterizationRateMapWithLayerCount:(unsigned long long)arg1;
+- (bool)supportsRaytracing;
+- (bool)supportsShaderBarycentricCoordinates;
 - (bool)supportsTextureSampleCount:(unsigned long long)arg1;
 - (bool)supportsVertexAmplificationCount:(unsigned long long)arg1;
 

@@ -41,6 +41,7 @@
 - (double)expectedCoordinateUpdateInterval;
 - (double)expectedHeadingUpdateInterval;
 - (id)fixedLocation;
+- (bool)hasValidHeading;
 - (id)heading;
 - (double)headingDegrees;
 - (id)init;

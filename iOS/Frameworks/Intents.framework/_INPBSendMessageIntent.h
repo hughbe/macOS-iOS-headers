@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSendMessageIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSendMessageIntent> {
-    bool  __encodeLegacyGloryData;
     NSArray * _attachments;
     _INPBString * _content;
     NSString * _conversationIdentifier;
@@ -11,17 +10,16 @@
     _INPBString * _groupName;
     struct { 
         unsigned int effect : 1; 
-        unsigned int messageType : 1; 
+        unsigned int outgoingMessageType : 1; 
     }  _has;
     _INPBIntentMetadata * _intentMetadata;
-    int  _messageType;
+    int  _outgoingMessageType;
     NSArray * _recipients;
     _INPBContact * _sender;
     NSString * _serviceName;
     _INPBDataString * _speakableGroupName;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *attachments;
 @property (nonatomic, readonly) unsigned long long attachmentsCount;
 @property (nonatomic, retain) _INPBString *content;
@@ -35,13 +33,13 @@
 @property (nonatomic) bool hasEffect;
 @property (nonatomic, readonly) bool hasGroupName;
 @property (nonatomic, readonly) bool hasIntentMetadata;
-@property (nonatomic) bool hasMessageType;
+@property (nonatomic) bool hasOutgoingMessageType;
 @property (nonatomic, readonly) bool hasSender;
 @property (nonatomic, readonly) bool hasServiceName;
 @property (nonatomic, readonly) bool hasSpeakableGroupName;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) _INPBIntentMetadata *intentMetadata;
-@property (nonatomic) int messageType;
+@property (nonatomic) int outgoingMessageType;
 @property (nonatomic, copy) NSArray *recipients;
 @property (nonatomic, readonly) unsigned long long recipientsCount;
 @property (nonatomic, retain) _INPBContact *sender;
@@ -55,9 +53,7 @@
 
 - (void).cxx_destruct;
 - (int)StringAsEffect:(id)arg1;
-- (int)StringAsMessageType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
+- (int)StringAsOutgoingMessageType:(id)arg1;
 - (void)addAttachments:(id)arg1;
 - (void)addRecipient:(id)arg1;
 - (id)attachments;
@@ -78,7 +74,7 @@
 - (bool)hasEffect;
 - (bool)hasGroupName;
 - (bool)hasIntentMetadata;
-- (bool)hasMessageType;
+- (bool)hasOutgoingMessageType;
 - (bool)hasSender;
 - (bool)hasServiceName;
 - (bool)hasSpeakableGroupName;
@@ -86,8 +82,8 @@
 - (id)initWithCoder:(id)arg1;
 - (id)intentMetadata;
 - (bool)isEqual:(id)arg1;
-- (int)messageType;
-- (id)messageTypeAsString:(int)arg1;
+- (int)outgoingMessageType;
+- (id)outgoingMessageTypeAsString:(int)arg1;
 - (bool)readFrom:(id)arg1;
 - (id)recipientAtIndex:(unsigned long long)arg1;
 - (id)recipients;
@@ -100,9 +96,9 @@
 - (void)setEffect:(int)arg1;
 - (void)setGroupName:(id)arg1;
 - (void)setHasEffect:(bool)arg1;
-- (void)setHasMessageType:(bool)arg1;
+- (void)setHasOutgoingMessageType:(bool)arg1;
 - (void)setIntentMetadata:(id)arg1;
-- (void)setMessageType:(int)arg1;
+- (void)setOutgoingMessageType:(int)arg1;
 - (void)setRecipients:(id)arg1;
 - (void)setSender:(id)arg1;
 - (void)setServiceName:(id)arg1;

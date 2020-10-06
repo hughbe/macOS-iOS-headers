@@ -9,7 +9,6 @@
 + (id)builder;
 + (id)builderWithObject:(id)arg1 ofExpectedClass:(Class)arg2;
 
-- (id)_initWithInitialState:(bool)arg1;
 - (id)appendArray:(id)arg1 counterpart:(id /* block */)arg2;
 - (id)appendBool:(bool)arg1 counterpart:(id /* block */)arg2;
 - (id)appendCGFloat:(double)arg1 counterpart:(id /* block */)arg2;

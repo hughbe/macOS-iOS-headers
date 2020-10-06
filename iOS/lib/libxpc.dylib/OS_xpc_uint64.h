@@ -9,8 +9,6 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (void)load;
-
 - (bool)allowsWeakReference;
 - (oneway void)release;
 - (id)retain;

@@ -8,6 +8,7 @@
         unsigned long long location; 
         unsigned long long length; 
     }  _editedRange;
+    bool  _ensuresFixingAttributes;
     struct { 
         unsigned int editedMask : 8; 
         unsigned int postWillProcess : 1; 
@@ -17,13 +18,14 @@
     }  _flags;
     NSMutableArray * _layoutManagers;
     id  _sideData;
-    <NSTextStorageController> * _textStorageController;
+    <NSTextStorageControllerPrivate> * _textStorageController;
 }
 
 @property (nonatomic, readonly) long long changeInLength;
 @property (nonatomic) <NSTextStorageDelegate> *delegate;
 @property (nonatomic, readonly) unsigned long long editedMask;
 @property (nonatomic, readonly) struct _NSRange { unsigned long long x1; unsigned long long x2; } editedRange;
+@property bool ensuresFixingAttributes;
 @property (nonatomic, readonly) bool fixesAttributesLazily;
 @property (nonatomic, readonly, copy) NSArray *layoutManagers;
 
@@ -65,6 +67,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)endEditing;
 - (void)ensureAttributesAreFixedInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (bool)ensuresFixingAttributes;
 - (void)finalize;
 - (bool)fixesAttributesLazily;
 - (void)fontSetChanged;
@@ -76,12 +79,28 @@
 - (void)removeLayoutManager:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setEditedMask:(unsigned long long)arg1;
+- (void)setEnsuresFixingAttributes:(bool)arg1;
 - (void)setTextStorageController:(id)arg1;
 - (id)textStorageController;
 
+// Image: /System/Library/PrivateFrameworks/AppStoreKit.framework/AppStoreKit
+
+- (long long)writingDirectionOfLine:(long long)arg1 usingLayoutManager:(id)arg2 textContainer:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUI.framework/IMSharedUI
+
++ (id)createLayoutTextStorage;
++ (id)defaultLayoutTextStorage;
+
+- (struct IMTextLayoutResults { struct CGSize { double x_1_1_1; double x_1_1_2; } x1; bool x2; })sizeForAttributedString:(id)arg1 maxWidth:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsUI.framework/PodcastsUI
+
+- (long long)writingDirectionOfLine:(long long)arg1 usingLayoutManager:(id)arg2 textContainer:(id)arg3;
+
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
-- (id)_undoRedoAttributedSubstringFromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
-- (void)_undoRedoTextOperation:(id)arg1;
+- (id)_UIUndoRedoAttributedSubstringFromRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)_UIUndoRedoTextOperation:(id)arg1;
 
 @end

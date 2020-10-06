@@ -12,6 +12,7 @@
 @property (readonly, copy) NSArray *eraSymbols;
 @property unsigned long long firstWeekday;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) NSArray *hksp_orderedSleepDays;
 @property (copy) NSLocale *locale;
 @property (readonly, copy) NSArray *longEraSymbols;
 @property unsigned long long minimumDaysInFirstWeek;
@@ -137,6 +138,50 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_canonicalDateOfBirthDateComponentsWithDate:(id)arg1;
++ (id)hk_gregorianCalendar;
++ (id)hk_gregorianCalendarWithCupertinoTimeZone;
++ (id)hk_gregorianCalendarWithLocalTimeZone;
++ (id)hk_gregorianCalendarWithUTCTimeZone;
+
+- (double)_hk_cachedLengthOfUnitForUnitStartDate:(id)arg1 calendarUnit:(unsigned long long)arg2;
+- (long long)_hk_cachedValueSinceTimeZoneDependentReferenceDateForUnitStartDate:(id)arg1 calendarUnit:(unsigned long long)arg2;
+- (id)_hk_weekendDaysForDate:(id)arg1;
+- (id)hk_activitySummaryDateComponentsFromDate:(id)arg1;
+- (id)hk_dateByAddingDays:(unsigned long long)arg1 toDate:(id)arg2;
+- (id)hk_dateByShiftingFromGregorianCalendarWithUTCTimeZone:(id)arg1;
+- (id)hk_dateByShiftingToGregorianCalendarWithUTCTimeZone:(id)arg1;
+- (id)hk_dateBySubtractingDays:(unsigned long long)arg1 fromDate:(id)arg2;
+- (id)hk_dateFromComponentsWithYear:(long long)arg1 month:(long long)arg2 day:(long long)arg3 hour:(long long)arg4;
+- (id)hk_dateFromComponentsWithYear:(long long)arg1 month:(long long)arg2 day:(long long)arg3 hour:(long long)arg4 minute:(long long)arg5;
+- (id)hk_dateFromComponentsWithYear:(long long)arg1 month:(long long)arg2 day:(long long)arg3 hour:(long long)arg4 minute:(long long)arg5 second:(long long)arg6;
+- (id)hk_dateOfBirthDateComponentsWithDate:(id)arg1;
+- (id)hk_dateWithDurationSinceReferenceDate:(double)arg1 calendarUnit:(unsigned long long)arg2;
+- (double)hk_durationSinceReferenceDateForDate:(id)arg1 calendarUnit:(unsigned long long)arg2;
+- (void)hk_enumerateDateInterval:(id)arg1 byDateComponents:(id)arg2 block:(id /* block */)arg3;
+- (id)hk_firstDateWithHour:(long long)arg1 minute:(long long)arg2 afterDate:(id)arg3;
+- (bool)hk_isDate:(id)arg1 withinNumberOfCalendarDays:(unsigned long long)arg2 ofDate:(id)arg3;
+- (double)hk_lengthOfDayForDate:(id)arg1;
+- (id)hk_nearestNoonBeforeDateOrEqualToDate:(id)arg1;
+- (id)hk_nearestStartOfDayForDate:(id)arg1;
+- (id)hk_nearestStartOfMonthForDate:(id)arg1;
+- (id)hk_nearestStartOfWeekWithFirstWeekDay:(long long)arg1 date:(id)arg2;
+- (id)hk_startOfDateByAddingDays:(long long)arg1 toDate:(id)arg2;
+- (id)hk_startOfDateBySubtractingDays:(long long)arg1 fromDate:(id)arg2;
+- (id)hk_startOfFitnessWeekBeforeDate:(id)arg1;
+- (id)hk_startOfHourForDate:(id)arg1 addingHours:(long long)arg2;
+- (id)hk_startOfMinuteForDate:(id)arg1 moduloMinutes:(long long)arg2 addingModuloCount:(long long)arg3;
+- (id)hk_startOfMonthForDate:(id)arg1;
+- (id)hk_startOfMonthForDate:(id)arg1 addingMonths:(long long)arg2;
+- (id)hk_startOfUnitForDate:(id)arg1 calendarUnit:(unsigned long long)arg2;
+- (id)hk_startOfWeekWithFirstWeekday:(long long)arg1 beforeDate:(id)arg2 addingWeeks:(long long)arg3;
+- (id)hk_startOfYearForDate:(id)arg1 addingYears:(long long)arg2;
+- (double)hk_timeIntervalSinceStartOfDayForDate:(id)arg1;
+- (id)hk_timeZoneDependentReferenceDate;
+- (id)hk_weekendDays;
+
 // Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
@@ -145,8 +190,6 @@
 
 // Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
 
-- (id)_dateOnlyComponentsForDate:(id)arg1;
-- (id)_timeOnlyComponentsForDate:(id)arg1;
 - (unsigned long long)bs_dayPeriodForDate:(id)arg1 inLocale:(id)arg2;
 - (bool)date:(id)arg1 isSameDayAsDate:(id)arg2;
 - (bool)date:(id)arg1 isSameYearAsDate:(id)arg2;
@@ -162,7 +205,9 @@
 
 - (id)CalDateBySubtractingComponents:(id)arg1 fromDate:(id)arg2;
 - (id)CalDateFromComponents:(id)arg1 inTimeZone:(id)arg2;
+- (long long)CalDaysInYearContainingDate:(id)arg1;
 - (id)CalOccurrencesForBirthday:(id)arg1 inDateRange:(id)arg2;
+- (long long)CalWeeksInYearContainingDate:(id)arg1;
 - (long long)calendarDaysFromDate:(id)arg1 toDate:(id)arg2;
 - (id)dateBySanityCheckingDateRoundedToDay:(id)arg1;
 - (bool)dateIsFirstOfMonth:(id)arg1;
@@ -176,9 +221,47 @@
 - (long long)secondsInDay;
 - (long long)secondsInMinute;
 
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)__ck_currentCalendar;
++ (void)__ck_setTestCalendar:(id)arg1;
+
+- (unsigned long long)__ck_unitOfDisambiguityFromDate:(id)arg1 toDate:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
++ (id)hmf_unarchiveFromData:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (id)hd_predicateForDeletedObjectsCreatedBeforeDate:(id)arg1 minusDays:(unsigned long long)arg2;
+- (id)hd_predicateForDeletedObjectsCreatedOnOrAfterDate:(id)arg1 minusDays:(unsigned long long)arg2;
+- (id)hd_predicateForSamplesWithTypes:(id)arg1 endingAfterDate:(id)arg2 minusDays:(unsigned long long)arg3;
+- (id)hd_predicateForSamplesWithTypes:(id)arg1 endingBeforeDate:(id)arg2 minusDays:(unsigned long long)arg3;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
+- (id)hk_disambiguatedDSTDatesForComponents:(id)arg1;
+- (id)hk_startOfTomorrowForDate:(id)arg1;
+- (id)hk_yesterdayAtNoonForDate:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/IntentsFoundation.framework/IntentsFoundation
 
 + (id)if_currentCalendarWithLanguageCode:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
++ (unsigned long long)_optionsForBackwards:(bool)arg1;
++ (id)mtGregorianCalendar;
+
+- (id)_mtNextDateAfterDate:(id)arg1 matchingComponents:(id)arg2 backwards:(bool)arg3;
+- (id)_mtNextDateAfterDate:(id)arg1 matchingUnit:(unsigned long long)arg2 value:(long long)arg3 backwards:(bool)arg4;
+- (id)_nextDateHelperAfterDate:(id)arg1 nextDateBlock:(id /* block */)arg2;
+- (bool)mtDateRequiresSingularTimeString:(id)arg1;
+- (id)mtNextDateAfterDate:(id)arg1 matchingComponents:(id)arg2;
+- (id)mtNextDateAfterDate:(id)arg1 matchingUnit:(unsigned long long)arg2 value:(long long)arg3;
+- (id)mtPreviousDateBeforeDate:(id)arg1 matchingComponents:(id)arg2;
+- (id)mtPreviousDateBeforeDate:(id)arg1 matchingUnit:(unsigned long long)arg2 value:(long long)arg3;
 
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
@@ -188,5 +271,54 @@
 - (id)_navigation_offsetDate:(id)arg1 toTimeZone:(id)arg2;
 - (id)_navigation_relativeDateStringForDate:(id)arg1 context:(long long)arg2 inTimeZone:(id)arg3;
 - (id)_navigation_transitRelativeDateStringForDate:(id)arg1 context:(long long)arg2 inTimeZone:(id)arg3 outUsedFormat:(out unsigned long long*)arg4;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (id)pl_dateByAddingDays:(long long)arg1 toDate:(id)arg2;
+- (id)pl_endOfDayForDate:(id)arg1;
+- (id)pl_endOfPreviousDayForDate:(id)arg1;
+- (id)pl_endOfWeekForDate:(id)arg1;
+- (bool)pl_isDateValid:(id)arg1;
+- (id)pl_startOfDayForDate:(id)arg1;
+- (id)pl_startOfMonthForDate:(id)arg1;
+- (id)pl_startOfNextDayForDate:(id)arg1;
+- (id)pl_startOfWeekForDate:(id)arg1;
+- (id)pl_validDateForDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SchoolTime.framework/SchoolTime
+
+- (void)SCL_enumerateWeekdaysUsingBlock:(id /* block */)arg1;
+- (long long)SCL_nonWeekendDays;
+- (id)SCL_orderedWeekdays;
+
+// Image: /System/Library/PrivateFrameworks/Sleep.framework/Sleep
+
++ (unsigned long long)_hksp_optionsForBackwards:(bool)arg1;
+
+- (id)_hksp_nextDateAfterDate:(id)arg1 matchingComponents:(id)arg2 backwards:(bool)arg3;
+- (id)_hksp_nextDateAfterDate:(id)arg1 matchingUnit:(unsigned long long)arg2 value:(long long)arg3 backwards:(bool)arg4;
+- (id)_hksp_nextDateHelperAfterDate:(id)arg1 nextDateBlock:(id /* block */)arg2;
+- (id)hksp_componentsByAddingTimeInterval:(double)arg1 toComponents:(id)arg2;
+- (bool)hksp_dateRequiresSingularTimeString:(id)arg1;
+- (unsigned long long)hksp_dayPeriodForDate:(id)arg1 locale:(id)arg2;
+- (unsigned long long)hksp_firstNonWeekendDay;
+- (id)hksp_localizedGroupingStringForWeekdays:(unsigned long long)arg1;
+- (id)hksp_nextDateAfterDate:(id)arg1 matchingComponents:(id)arg2;
+- (id)hksp_nextDateAfterDate:(id)arg1 matchingUnit:(unsigned long long)arg2 value:(long long)arg3;
+- (id)hksp_orderedSleepDays;
+- (id)hksp_orderedSleepWeekdaysForWeekdays:(unsigned long long)arg1;
+- (id)hksp_previousDateBeforeDate:(id)arg1 matchingComponents:(id)arg2;
+- (id)hksp_previousDateBeforeDate:(id)arg1 matchingUnit:(unsigned long long)arg2 value:(long long)arg3;
+- (double)hksp_timeIntervalFromComponents:(id)arg1 toComponents:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/WeatherFoundation.framework/WeatherFoundation
+
+- (id)wf_dateComponentsForEpochDateNumber:(id)arg1 toUnitGranularity:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (id)wf_weekdays;
+- (id)wf_weekendDays;
+- (id)wf_workweekDays;
 
 @end

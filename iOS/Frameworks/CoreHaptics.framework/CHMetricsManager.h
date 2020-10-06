@@ -55,6 +55,8 @@
 - (id)copyDataForDictionary:(id)arg1;
 - (void)dealloc;
 - (void)destroyForEngine:(id)arg1;
+- (void)disableOnCapabilitiesForEngine:(id)arg1;
+- (void)disableOnDefaultsWrite;
 - (void)dispatchOnLocal:(id /* block */)arg1;
 - (id)getKeyForEngine:(id)arg1;
 - (id)getKeyForPlayer:(id)arg1;
@@ -83,8 +85,6 @@
 - (void)removePlaybackData:(id)arg1 player:(id)arg2;
 - (void)resetAdvancedPlaybackData:(id)arg1;
 - (void)resetPlaybackData:(id)arg1;
-- (void)setMetricsDisabledByDefault;
-- (void)setMetricsEnabledByDefault;
 - (void)setMetricsTestModeEnabled;
 - (id)setReporterForEngine:(id)arg1 audioSessionID:(unsigned int)arg2 sessionIsShared:(bool)arg3;
 - (void)startReporter:(id)arg1;

@@ -3,6 +3,7 @@
  */
 
 @interface GEOSharedNavRouteInfo : PBCodable <NSCopying> {
+    NSMutableArray * _chargingStations;
     struct { 
         double *list; 
         unsigned long long count; 
@@ -13,10 +14,8 @@
         unsigned int read_coordinates : 1; 
         unsigned int read_trafficColorOffsets : 1; 
         unsigned int read_trafficColors : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_coordinates : 1; 
-        unsigned int wrote_trafficColorOffsets : 1; 
-        unsigned int wrote_trafficColors : 1; 
+        unsigned int read_chargingStations : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,6 +36,7 @@
     PBUnknownFields * _unknownFields;
 }
 
+@property (nonatomic, retain) NSMutableArray *chargingStations;
 @property (nonatomic, readonly) double*coordinates;
 @property (nonatomic, readonly) unsigned long long coordinatesCount;
 @property (nonatomic, readonly) unsigned int*trafficColorOffsets;
@@ -45,18 +45,18 @@
 @property (nonatomic, readonly) unsigned long long trafficColorsCount;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
++ (Class)chargingStationsType;
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsCoordinates:(double)arg1;
-- (void)_addNoFlagsTrafficColor:(unsigned int)arg1;
-- (void)_addNoFlagsTrafficColorOffset:(unsigned int)arg1;
-- (void)_readCoordinates;
-- (void)_readTrafficColorOffsets;
-- (void)_readTrafficColors;
+- (void)addChargingStations:(id)arg1;
 - (void)addCoordinates:(double)arg1;
 - (void)addTrafficColor:(unsigned int)arg1;
 - (void)addTrafficColorOffset:(unsigned int)arg1;
+- (id)chargingStations;
+- (id)chargingStationsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)chargingStationsCount;
+- (void)clearChargingStations;
 - (void)clearCoordinates;
 - (void)clearTrafficColorOffsets;
 - (void)clearTrafficColors;
@@ -72,10 +72,14 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setChargingStations:(id)arg1;
 - (void)setCoordinates:(double*)arg1 count:(unsigned long long)arg2;
 - (void)setTrafficColorOffsets:(unsigned int*)arg1 count:(unsigned long long)arg2;
 - (void)setTrafficColors:(unsigned int*)arg1 count:(unsigned long long)arg2;

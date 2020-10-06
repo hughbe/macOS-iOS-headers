@@ -8,6 +8,7 @@
     NSMutableArray * _cellTowerLocations;
     NSMutableArray * _lteCellTowerLocations;
     CLPMeta * _meta;
+    NSMutableArray * _nrCellTowerLocations;
     NSMutableArray * _scdmaCellTowerLocations;
     NSMutableArray * _wifiAPLocations;
 }
@@ -17,6 +18,7 @@
 @property (nonatomic, retain) NSMutableArray *cellTowerLocations;
 @property (nonatomic, retain) NSMutableArray *lteCellTowerLocations;
 @property (nonatomic, retain) CLPMeta *meta;
+@property (nonatomic, retain) NSMutableArray *nrCellTowerLocations;
 @property (nonatomic, retain) NSMutableArray *scdmaCellTowerLocations;
 @property (nonatomic, retain) NSMutableArray *wifiAPLocations;
 
@@ -24,6 +26,7 @@
 + (Class)cellOutOfServiceInfoType;
 + (Class)cellTowerLocationType;
 + (Class)lteCellTowerLocationType;
++ (Class)nrCellTowerLocationType;
 + (Class)scdmaCellTowerLocationType;
 + (Class)wifiAPLocationType;
 
@@ -32,6 +35,7 @@
 - (void)addCellOutOfServiceInfo:(id)arg1;
 - (void)addCellTowerLocation:(id)arg1;
 - (void)addLteCellTowerLocation:(id)arg1;
+- (void)addNrCellTowerLocation:(id)arg1;
 - (void)addScdmaCellTowerLocation:(id)arg1;
 - (void)addWifiAPLocation:(id)arg1;
 - (id)cdmaCellTowerLocationAtIndex:(unsigned long long)arg1;
@@ -47,6 +51,7 @@
 - (void)clearCellOutOfServiceInfos;
 - (void)clearCellTowerLocations;
 - (void)clearLteCellTowerLocations;
+- (void)clearNrCellTowerLocations;
 - (void)clearScdmaCellTowerLocations;
 - (void)clearWifiAPLocations;
 - (void)copyTo:(id)arg1;
@@ -60,6 +65,9 @@
 - (unsigned long long)lteCellTowerLocationsCount;
 - (void)mergeFrom:(id)arg1;
 - (id)meta;
+- (id)nrCellTowerLocationAtIndex:(unsigned long long)arg1;
+- (id)nrCellTowerLocations;
+- (unsigned long long)nrCellTowerLocationsCount;
 - (bool)readFrom:(id)arg1;
 - (unsigned int)requestTypeCode;
 - (Class)responseClass;
@@ -71,6 +79,7 @@
 - (void)setCellTowerLocations:(id)arg1;
 - (void)setLteCellTowerLocations:(id)arg1;
 - (void)setMeta:(id)arg1;
+- (void)setNrCellTowerLocations:(id)arg1;
 - (void)setScdmaCellTowerLocations:(id)arg1;
 - (void)setWifiAPLocations:(id)arg1;
 - (id)wifiAPLocationAtIndex:(unsigned long long)arg1;

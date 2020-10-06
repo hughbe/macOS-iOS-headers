@@ -10,6 +10,8 @@
     int  _saveFlag;
 }
 
+@property (readonly) NSObject<OS_dispatch_queue> *queue;
+
 + (id)sharedCache;
 
 - (void).cxx_destruct;
@@ -23,6 +25,7 @@
 - (void)getIdentifierOfType:(long long)arg1 vendorName:(id)arg2 bundleIdentifier:(id)arg3 completionHandler:(id /* block */)arg4;
 - (id)identifiersOfTypeNotDispatched:(long long)arg1;
 - (id)init;
+- (id)queue;
 - (void)save;
 
 @end

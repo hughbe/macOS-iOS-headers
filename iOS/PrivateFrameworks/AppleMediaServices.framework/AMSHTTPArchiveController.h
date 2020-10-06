@@ -5,10 +5,14 @@
 @interface AMSHTTPArchiveController : NSObject
 
 + (bool)_disabled;
++ (id)_harURLFilters;
++ (bool)_shouldAddRequest:(id)arg1;
++ (void)_updateHarFileFilters;
 + (void)_updateMaxBufferSize;
 + (void)_writeHTTPArchivesToDiskCompressed:(bool)arg1;
 + (void)addHTTPArchive:(id)arg1;
 + (id)buffer;
++ (id)harURLFilters;
 + (void)initialize;
 + (bool)isRemoveDisabled;
 + (id)maxBufferSizeOverride;

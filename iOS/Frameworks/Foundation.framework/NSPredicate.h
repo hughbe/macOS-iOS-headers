@@ -10,7 +10,10 @@
     unsigned int  reserved;
 }
 
+@property (nonatomic, readonly) bool ef_matchesEverything;
+@property (nonatomic, readonly) bool ef_matchesNothing;
 @property (readonly, copy) NSString *predicateFormat;
+@property (nonatomic, readonly) NSPredicate *wf_photoLibraryFilteringPredicate;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -47,6 +50,19 @@
 - (id)_keypathsForDerivedPropertyValidation:(id*)arg1;
 - (id)minimalFormInContext:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_predicateForSamplesInDayIndexRange:(struct { long long x1; long long x2; })arg1;
+
+- (id)hk_filterRepresentationForDataTypes:(id)arg1;
+
+// Image: /System/Library/Frameworks/Photos.framework/Photos
+
++ (id)predicateForAssetsInAssetCollectionWithID:(id)arg1;
++ (id)predicateForCloudInvitationsInAssetCollection:(id)arg1;
++ (id)predicateForCommentsInAsset:(id)arg1;
++ (id)predicateForLikesInAsset:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/AddressBookLegacy.framework/AddressBookLegacy
 
 - (void)ab_addCallbackContextToArray:(id)arg1;
@@ -64,5 +80,88 @@
 - (id)br_urlWithWatchedChildren;
 - (id)br_watchedFileObjectID;
 - (id)br_watchedURL;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
++ (id)predicateWithCKDPQueryFilters:(id)arg1 translator:(id)arg2;
++ (id)predicateWithSortedCKDPQueryFilters:(id)arg1 translator:(id)arg2;
+
+- (id)CKDPQueryFiltersWithTranslator:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
+- (id)wf_photoLibraryFilteringPredicate;
+
+// Image: /System/Library/PrivateFrameworks/Email.framework/Email
+
+- (id)em_searchableIndexQueryGenerator;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
++ (id)ef_matchEverythingPredicate;
++ (id)ef_matchNothingPredicate;
+
+- (bool)ef_matchesEverything;
+- (bool)ef_matchesNothing;
+- (id)predicateNodeFromPropertyMapper:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (id)hd_sqlPredicateForSelect;
+
+// Image: /System/Library/PrivateFrameworks/HomeRecommendationEngine.framework/HomeRecommendationEngine
+
+- (bool)isEqualToPredicate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)predicateWithFCCKPQueryFilters:(id)arg1 translator:(id)arg2;
++ (id)predicateWithSortedFCCKPQueryFilters:(id)arg1 translator:(id)arg2;
+
+- (id)FCCKPQueryFiltersWithTranslator:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsFoundation.framework/PodcastsFoundation
+
++ (id)falsePredicate;
++ (id)predicateForDateKey:(id)arg1 isGreaterThanDate:(id)arg2;
++ (id)predicateForDateKey:(id)arg1 isGreaterThanOrEqualToDate:(id)arg2;
++ (id)predicateForDateKey:(id)arg1 isLessThanDate:(id)arg2;
++ (id)predicateForDateKey:(id)arg1 isLessThanOrEqualToDate:(id)arg2;
++ (id)predicateForNilValueForKey:(id)arg1;
++ (id)truePredicate;
+
+- (id)AND:(id)arg1;
+- (id)NOT;
+- (id)OR:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SpotlightServices.framework/SpotlightServices
+
++ (id)_predicateForItemsWithAttribute:(int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TrackingAvoidance.framework/TrackingAvoidance
+
++ (id)predicateForTAEventsClass:(Class)arg1;
++ (id)predicateForTAEventsClass:(Class)arg1 andEventSubtype:(unsigned long long)arg2;
++ (id)predicateForTAEventsInDateInterval:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/VideoProcessing.framework/VideoProcessing
+
++ (id)vcp_imagesPredicate:(bool)arg1;
++ (id)vcp_livePhotosPredicate:(bool)arg1;
++ (id)vcp_moviesPredicate:(bool)arg1;
++ (id)vcp_stillImagesPredicate:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/VideosUICore.framework/VideosUICore
+
++ (id)_vui_keyPathsInComparisonPredicate:(id)arg1;
++ (id)_vui_keyPathsInCompoundPredicate:(id)arg1;
++ (id)_vui_keyPathsInPredicate:(id)arg1;
++ (id)vui_equalPredicateWithKeyPath:(id)arg1 value:(id)arg2;
++ (id)vui_inPredicateWithKeyPath:(id)arg1 value:(id)arg2;
++ (id)vui_keyPathBitTestPredicateWithKeyPath:(id)arg1 value:(id)arg2;
++ (id)vui_notEqualPredicateWithKeyPath:(id)arg1 value:(id)arg2;
++ (id)vui_predicateWithSubpredicates:(id)arg1 type:(unsigned long long)arg2;
+
+- (id)vui_keyPathsInPredicate;
 
 @end

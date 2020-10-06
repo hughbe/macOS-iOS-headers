@@ -4,6 +4,7 @@
 
 @interface __NSOrderedSetI : NSOrderedSet {
     id  _list;
+    unsigned int  _stride;
     unsigned int  _szidx;
     unsigned int  _used;
 }

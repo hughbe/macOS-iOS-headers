@@ -10,6 +10,7 @@
     NSDate * _expireDate;
     NSError * _identityContainerDeserializationError;
     BOOL  _legacyVersion;
+    bool  _mismatchedAccountFlag;
     short  _ngmVersion;
     IDSMPPublicDeviceIdentityContainer * _publicDeviceIdentityContainer;
     NSData * _pushToken;
@@ -30,6 +31,7 @@
 @property (nonatomic, readonly) NSDate *expireDate;
 @property (nonatomic, readonly) NSError *identityContainerDeserializationError;
 @property (nonatomic, readonly) BOOL legacyVersion;
+@property (nonatomic, readonly) bool mismatchedAccountFlag;
 @property (nonatomic, readonly) short ngmVersion;
 @property (nonatomic, retain) IDSMPPublicDeviceIdentityContainer *publicDeviceIdentityContainer;
 @property (nonatomic, retain) NSData *pushToken;
@@ -57,12 +59,13 @@
 - (unsigned long long)hash;
 - (id)identityContainerDeserializationError;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithURI:(id)arg1 capabilities:(id)arg2 ngmVersion:(short)arg3 legacyVersion:(BOOL)arg4 KTLoggableData:(id)arg5 pushToken:(id)arg6 sessionToken:(id)arg7 expireDate:(id)arg8 refreshDate:(id)arg9 anonymizedSenderID:(id)arg10 verifiedBusiness:(bool)arg11 serializedPublicMessageProtectionIdentity:(id)arg12 senderCorrelationIdentifier:(id)arg13 queryTimeInterval:(double)arg14 serializedNGMDeviceIdentity:(id)arg15 serializedNGMDevicePrekey:(id)arg16;
-- (id)initWithURI:(id)arg1 clientData:(id)arg2 KTLoggableData:(id)arg3 pushToken:(id)arg4 sessionToken:(id)arg5 expireDate:(id)arg6 refreshDate:(id)arg7 anonymizedSenderID:(id)arg8 verifiedBusiness:(bool)arg9 serializedPublicMessageProtectionIdentity:(id)arg10 senderCorrelationIdentifier:(id)arg11 queryTimeInterval:(double)arg12 serializedNGMDeviceIdentity:(id)arg13 serializedNGMDevicePrekey:(id)arg14;
+- (id)initWithURI:(id)arg1 capabilities:(id)arg2 ngmVersion:(short)arg3 legacyVersion:(BOOL)arg4 KTLoggableData:(id)arg5 mismatchedAccountFlag:(bool)arg6 pushToken:(id)arg7 sessionToken:(id)arg8 expireDate:(id)arg9 refreshDate:(id)arg10 anonymizedSenderID:(id)arg11 verifiedBusiness:(bool)arg12 serializedPublicMessageProtectionIdentity:(id)arg13 senderCorrelationIdentifier:(id)arg14 queryTimeInterval:(double)arg15 serializedNGMDeviceIdentity:(id)arg16 serializedNGMDevicePrekey:(id)arg17;
+- (id)initWithURI:(id)arg1 clientData:(id)arg2 KTLoggableData:(id)arg3 mismatchedAccountFlag:(bool)arg4 pushToken:(id)arg5 sessionToken:(id)arg6 expireDate:(id)arg7 refreshDate:(id)arg8 anonymizedSenderID:(id)arg9 verifiedBusiness:(bool)arg10 serializedPublicMessageProtectionIdentity:(id)arg11 senderCorrelationIdentifier:(id)arg12 queryTimeInterval:(double)arg13 serializedNGMDeviceIdentity:(id)arg14 serializedNGMDevicePrekey:(id)arg15;
 - (id)initWithURI:(id)arg1 clientData:(id)arg2 pushToken:(id)arg3 sessionToken:(id)arg4 expireDate:(id)arg5 refreshDate:(id)arg6;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToEndpoint:(id)arg1;
 - (BOOL)legacyVersion;
+- (bool)mismatchedAccountFlag;
 - (short)ngmVersion;
 - (id)publicDeviceIdentityContainer;
 - (id)pushToken;

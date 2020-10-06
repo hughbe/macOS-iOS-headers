@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
  */
 
-@interface CoreTelephonyClient : NSObject {
+@interface CoreTelephonyClient : NSObject <TPSTelephonyClient> {
     id  _delegate;
     CoreTelephonyClientMux * _mux;
     struct queue { 
@@ -13,9 +13,15 @@
     id  fDelegateAddr;
 }
 
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) id delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) CoreTelephonyClientMux *mux;
+@property (readonly) Class superclass;
 @property (nonatomic) struct queue { struct object { struct dispatch_object_s {} *x_1_1_1; } x1; } userQueue;
+
+// Image: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
 
 + (id)sharedMultiplexer;
 
@@ -23,13 +29,17 @@
 - (void).cxx_destruct;
 - (void)SIMUnlockProcedureDidComplete;
 - (void)addPlanWith:(id)arg1 appName:(id)arg2 appType:(unsigned long long)arg3 completionHandler:(id /* block */)arg4;
+- (void)addPlanWith:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)addPlanWith:(id)arg1 request:(id)arg2 appName:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)authenticate:(id)arg1 request:(id)arg2 completion:(id /* block */)arg3;
 - (void)automaticallySelectNetwork:(id)arg1 completion:(id /* block */)arg2;
 - (id)billingCycleEndDatesForLastPeriods:(unsigned long long)arg1 error:(id*)arg2;
 - (id)bootstrapPlanTransferForEndpoint:(unsigned long long)arg1;
 - (id)bootstrapPlanTransferForEndpoint:(unsigned long long)arg1 usingMessageSession:(id)arg2;
+- (void)bootstrapPlanTransferForEndpoint:(unsigned long long)arg1 usingMessageSession:(id)arg2 completion:(id /* block */)arg3;
+- (id)cancelCellularPlanTransfer:(id)arg1 fromDevice:(id)arg2;
 - (id)cancelPlanTransfer:(id)arg1 fromDevice:(id)arg2;
+- (id)cancelSIMToolkitUSSDSession:(id)arg1;
 - (void)changePIN:(id)arg1 oldPin:(id)arg2 newPin:(id)arg3 completion:(id /* block */)arg4;
 - (void)changePIN:(id)arg1 oldPin:(id)arg2 newPin:(id)arg3 error:(id*)arg4;
 - (void)checkRadioBootHealth:(id /* block */)arg1;
@@ -56,8 +66,10 @@
 - (id)context:(id)arg1 getPseudoIdentityFor:(id)arg2 error:(id*)arg3;
 - (id)context:(id)arg1 getSystemCapabilities:(id*)arg2;
 - (void)context:(id)arg1 getSystemCapabilitiesWithCompletion:(id /* block */)arg2;
+- (bool)context:(id)arg1 isMandatoryDisabledVoLTE:(id*)arg2;
 - (void)context:(id)arg1 isProtectedIdentitySupported:(id)arg2 completion:(id /* block */)arg3;
 - (bool)context:(id)arg1 isProtectedIdentitySupported:(id)arg2 error:(id*)arg3;
+- (id)context:(id)arg1 mandatoryDisableVoLTE:(bool)arg2;
 - (id)context:(id)arg1 modifyAttachApnSettings:(id)arg2;
 - (void)context:(id)arg1 modifyAttachApnSettings:(id)arg2 completion:(id /* block */)arg3;
 - (id)context:(id)arg1 recheckPhoneServicesAccountStatus:(id)arg2;
@@ -151,9 +163,10 @@
 - (id)delegate;
 - (id)deletePersonalWallet:(id)arg1;
 - (void)deletePersonalWallet:(id)arg1 completion:(id /* block */)arg2;
-- (void)deleteTransferPlansForEid:(id)arg1 completion:(id /* block */)arg2;
+- (void)deleteTransferPlansForImei:(id)arg1 completion:(id /* block */)arg2;
 - (void)deleteZone:(id)arg1 completion:(id /* block */)arg2;
 - (id)endPlanTransferForEndPoint:(unsigned long long)arg1;
+- (id)enterLoopBackMode;
 - (void)evaluateMobileSubscriberIdentity:(id)arg1 identity:(id)arg2 completion:(id /* block */)arg3;
 - (id)fetchCallBarringValue:(id)arg1 facility:(int)arg2 callClass:(int)arg3 password:(id)arg4;
 - (void)fetchCallBarringValue:(id)arg1 facility:(int)arg2 callClass:(int)arg3 password:(id)arg4 completion:(id /* block */)arg5;
@@ -174,11 +187,13 @@
 - (void)fetchSIMLockValue:(id)arg1 completion:(id /* block */)arg2;
 - (id)fetchSIMLockValue:(id)arg1 error:(id*)arg2;
 - (void)generateAuthenticationInfoUsingSim:(id)arg1 authParams:(id)arg2 completion:(id /* block */)arg3;
-- (void)generateUICCAuthenticationInfo:(id)arg1 authParams:(id)arg2 completion:(id /* block */)arg3;
+- (id)getActivationPolicyState:(id*)arg1;
 - (void)getActiveConnections:(id)arg1 completion:(id /* block */)arg2;
 - (id)getActiveConnections:(id)arg1 error:(id*)arg2;
 - (id)getActiveContexts:(id*)arg1;
 - (void)getActiveContextsWithCallback:(id /* block */)arg1;
+- (id)getBandInfo:(id)arg1 error:(id*)arg2;
+- (id)getBasebandRadioFrequencyFrontEndScanData:(id*)arg1;
 - (void)getCallCapabilities:(id)arg1 completion:(id /* block */)arg2;
 - (id)getCallCapabilities:(id)arg1 error:(id*)arg2;
 - (void)getCameraScanInfoForCardData:(id)arg1 completionHandler:(id /* block */)arg2;
@@ -193,6 +208,7 @@
 - (void)getCurrentDataSubscriptionContext:(id /* block */)arg1;
 - (id)getCurrentDataSubscriptionContextSync:(id*)arg1;
 - (void)getCurrentIMessageIccidsWithCompletion:(id /* block */)arg1;
+- (id)getCurrentRat:(id)arg1 error:(id*)arg2;
 - (id)getDataMode:(id)arg1 error:(id*)arg2;
 - (void)getDataStatus:(id)arg1 completion:(id /* block */)arg2;
 - (id)getDataStatus:(id)arg1 error:(id*)arg2;
@@ -247,17 +263,21 @@
 - (id)getPreferredDataSubscriptionContextSync:(id*)arg1;
 - (id)getPublicSignalStrength:(id)arg1 error:(id*)arg2;
 - (void)getRatSelection:(id)arg1 completion:(id /* block */)arg2;
+- (id)getRatSelectionMask:(id)arg1 error:(id*)arg2;
 - (id)getRejectCauseCode:(id)arg1 error:(id*)arg2;
 - (void)getRemainingPINAttemptCount:(id)arg1 completion:(id /* block */)arg2;
 - (id)getRemainingPINAttemptCount:(id)arg1 error:(id*)arg2;
 - (void)getRemainingPUKAttemptCount:(id)arg1 completion:(id /* block */)arg2;
 - (id)getRemainingPUKAttemptCount:(id)arg1 error:(id*)arg2;
-- (void)getRemoteDeviceOfType:(unsigned long long)arg1 withEID:(id)arg2 completion:(id /* block */)arg3;
+- (id)getRemoteDeviceForTransferWithEID:(id)arg1 error:(id*)arg2;
 - (id)getRemoteDeviceOfType:(unsigned long long)arg1 withEID:(id)arg2 error:(id*)arg3;
-- (void)getRemoteDevicesOfType:(unsigned long long)arg1 completion:(id /* block */)arg2;
+- (id)getRemoteDevicesForTransferOrError:(id*)arg1;
 - (id)getRemoteDevicesOfType:(unsigned long long)arg1 error:(id*)arg2;
 - (void)getSIMStatus:(id)arg1 completion:(id /* block */)arg2;
 - (id)getSIMStatus:(id)arg1 error:(id*)arg2;
+- (id)getSIMToolkitListItems:(id)arg1 items:(id*)arg2;
+- (id)getSIMToolkitMenu:(id)arg1 menu:(id*)arg2;
+- (id)getSIMToolkitUSSDString:(id)arg1 ussdString:(id*)arg2 needRsp:(bool*)arg3;
 - (void)getSIMTrayStatus:(id /* block */)arg1;
 - (id)getSIMTrayStatusOrError:(id*)arg1;
 - (void)getShortLabel:(id)arg1 completion:(id /* block */)arg2;
@@ -288,6 +308,8 @@
 - (void)getSweetgumPlans:(id)arg1 completion:(id /* block */)arg2;
 - (void)getSweetgumUsage:(id)arg1 completion:(id /* block */)arg2;
 - (void)getSweetgumUserConsentInfo:(id)arg1 completion:(id /* block */)arg2;
+- (void)getTetheringStatus:(id /* block */)arg1;
+- (id)getTetheringStatusSync:(id*)arg1;
 - (void)getTransferPlanListWithCompletion:(id /* block */)arg1;
 - (void)getTransferPlansWithCompletion:(id /* block */)arg1;
 - (id)getTypeAllocationCode:(id)arg1 error:(id*)arg2;
@@ -299,10 +321,15 @@
 - (void)getVoicemailInfo:(id)arg1 completion:(id /* block */)arg2;
 - (void)getWiFiCallingSettingPreferences:(id)arg1 key:(id)arg2 completion:(id /* block */)arg3;
 - (id)getWiFiCallingSettingPreferences:(id)arg1 key:(id)arg2 error:(id*)arg3;
+- (void)hiddenTransferPlans:(id /* block */)arg1;
+- (void)hideTransferCellularPlan:(id)arg1 fromDevice:(id)arg2 completion:(id /* block */)arg3;
+- (void)hideTransferPlan:(id)arg1 fromDevice:(id)arg2 completion:(id /* block */)arg3;
 - (id)init;
 - (id)initWithQueue:(struct dispatch_queue_s { }*)arg1;
 - (id)initWithQueue:(struct dispatch_queue_s { }*)arg1 multiplexer:(id)arg2;
 - (void)installPendingPlan:(id)arg1 completion:(id /* block */)arg2;
+- (void)installPendingPlanList:(id)arg1 completion:(id /* block */)arg2;
+- (bool)interfaceCostExpensive:(id)arg1 error:(id*)arg2;
 - (void)isAnyPlanOfTransferCapability:(unsigned long long)arg1 availableForThisDeviceWithCompletion:(id /* block */)arg2;
 - (bool)isAnyPlanTransferableFromThisDeviceOrError:(id*)arg1;
 - (void)isAttachApnSettingAllowed:(id)arg1 completion:(id /* block */)arg2;
@@ -312,17 +339,20 @@
 - (void)isEmergencyNumberWithWhitelistIncluded:(id)arg1 number:(id)arg2 completion:(id /* block */)arg3;
 - (bool)isEmergencyNumberWithWhitelistIncluded:(id)arg1 number:(id)arg2 error:(id*)arg3;
 - (long long)isEsimFor:(id)arg1 error:(id*)arg2;
+- (bool)isHighDataModeSupported:(id)arg1 error:(id*)arg2;
 - (void)isNetworkReselectionNeeded:(id)arg1 completion:(id /* block */)arg2;
 - (void)isNetworkSelectionMenuAvailable:(id)arg1 completion:(id /* block */)arg2;
 - (id)isNetworkSelectionMenuAvailable:(id)arg1 error:(id*)arg2;
 - (void)isPNRSupported:(id)arg1 completion:(id /* block */)arg2;
 - (bool)isPNRSupported:(id)arg1 outError:(id*)arg2;
 - (bool)isPhoneNumberCredentialValid:(id)arg1 outError:(id*)arg2;
+- (bool)isSmartDataModeSupported:(id*)arg1;
 - (void)isTetheringEditingSupported:(id)arg1 completion:(id /* block */)arg2;
 - (bool)isTetheringEditingSupported:(id)arg1 error:(id*)arg2;
 - (void)isUnconditionalCallForwardingActive:(id)arg1 completion:(id /* block */)arg2;
 - (void)issuePNRRequest:(id)arg1 pnrReqType:(id)arg2 completion:(id /* block */)arg3;
 - (id)listPersonalWallets:(id*)arg1;
+- (bool)lowDataMode:(id)arg1 error:(id*)arg2;
 - (id)mux;
 - (void)ping:(id /* block */)arg1;
 - (void)plansPendingInstallWithCompletion:(id /* block */)arg1;
@@ -342,6 +372,7 @@
 - (void)refreshSweetgumUsage:(id)arg1 completion:(id /* block */)arg2;
 - (void)refreshUserAuthToken:(id)arg1 error:(id*)arg2;
 - (struct { bool x1; bool x2; })reliableNetworkFallback:(id)arg1 error:(id*)arg2;
+- (void)remotePlanSignupInfoFor:(id)arg1 completion:(id /* block */)arg2;
 - (id)renamePersonalWallet:(id)arg1 to:(id)arg2;
 - (id)resetAPNSettings;
 - (void)resetAPNSettings:(id /* block */)arg1;
@@ -360,12 +391,24 @@
 - (void)saveSIMLockValue:(id)arg1 enabled:(bool)arg2 pin:(id)arg3 error:(id*)arg4;
 - (void)selectNetwork:(id)arg1 network:(id)arg2 completion:(id /* block */)arg3;
 - (void)selectPhonebook:(id)arg1 forPhonebookName:(int)arg2 withPassword:(id)arg3 completion:(id /* block */)arg4;
+- (id)selectSIMToolkitListItem:(id)arg1 session:(id)arg2 response:(id)arg3 index:(id)arg4;
+- (id)selectSIMToolkitMenuItem:(id)arg1 index:(id)arg2;
+- (id)sendDeadPeerDetection;
+- (void)sendDeadPeerDetection:(id /* block */)arg1;
+- (id)sendSIMToolkitBooleanResponse:(id)arg1 session:(id)arg2 response:(id)arg3 yesNo:(bool)arg4;
+- (id)sendSIMToolkitDisplayReady:(id)arg1;
+- (id)sendSIMToolkitResponse:(id)arg1 session:(id)arg2 response:(id)arg3;
+- (id)sendSIMToolkitStringResponse:(id)arg1 session:(id)arg2 response:(id)arg3 string:(id)arg4;
+- (id)sendSIMToolkitUSSDResponse:(id)arg1 response:(id)arg2;
+- (id)sendSIMToolkitUserActivity:(id)arg1;
+- (void)setActiveBandInfo:(id)arg1 bands:(id)arg2 error:(id*)arg3;
 - (void)setActiveUserDataSelection:(id)arg1 completion:(id /* block */)arg2;
 - (void)setActiveUserDataSelection:(id)arg1 error:(id*)arg2;
 - (void)setBandInfo:(id)arg1 bands:(id)arg2 completion:(id /* block */)arg3;
 - (void)setDefaultVoice:(id)arg1 completion:(id /* block */)arg2;
 - (void)setDefaultVoice:(id)arg1 error:(id*)arg2;
 - (void)setDelegate:(id)arg1;
+- (id)setInterfaceCost:(id)arg1 expensive:(bool)arg2;
 - (void)setInternationalDataAccess:(id)arg1 status:(bool)arg2 completion:(id /* block */)arg3;
 - (id)setInternationalDataAccessStatus:(bool)arg1;
 - (void)setInternationalDataAccessStatus:(bool)arg1 completion:(id /* block */)arg2;
@@ -374,6 +417,7 @@
 - (void)setInternetActive:(bool)arg1 completion:(id /* block */)arg2;
 - (void)setLabel:(id)arg1 label:(id)arg2 completion:(id /* block */)arg3;
 - (void)setLabel:(id)arg1 label:(id)arg2 error:(id*)arg3;
+- (id)setLowDataMode:(id)arg1 enable:(bool)arg2;
 - (id)setMaxDataRate:(id)arg1 rate:(long long)arg2;
 - (void)setMaxDataRate:(id)arg1 rate:(long long)arg2 completion:(id /* block */)arg3;
 - (void)setMux:(id)arg1;
@@ -382,12 +426,15 @@
 - (void)setRatSelection:(id)arg1 selection:(id)arg2 preferred:(id)arg3 completion:(id /* block */)arg4;
 - (id)setReliableNetworkFallback:(id)arg1 enable:(bool)arg2;
 - (id)setSaveDataMode:(id)arg1 enable:(bool)arg2;
+- (id)setSmartDataMode:(id)arg1 enable:(bool)arg2;
 - (id)setSupportDynamicDataSimSwitch:(bool)arg1;
 - (void)setSupportDynamicDataSimSwitch:(bool)arg1 completion:(id /* block */)arg2;
 - (void)setSupportDynamicDataSimSwitch:(bool)arg1 forIccid:(id)arg2 completion:(id /* block */)arg3;
 - (id)setSupportDynamicDataSimSwitchOnBBCall:(bool)arg1;
 - (void)setSupportDynamicDataSimSwitchOnBBCall:(bool)arg1 completion:(id /* block */)arg2;
 - (void)setSweetgumUserConsent:(id)arg1 userConsent:(bool)arg2 completion:(id /* block */)arg3;
+- (id)setTetheringActive:(bool)arg1;
+- (void)setTetheringActive:(bool)arg1 completion:(id /* block */)arg2;
 - (void)setUIConfiguredApns:(id)arg1 apns:(id)arg2 completion:(id /* block */)arg3;
 - (void)setUserEntered:(id)arg1 monthlyBudget:(id)arg2 completion:(id /* block */)arg3;
 - (void)setUserEntered:(id)arg1 monthlyBudget:(id)arg2 error:(id*)arg3;
@@ -400,13 +447,18 @@
 - (void)setVoLTEAudioCodec:(id)arg1 codecInfo:(id)arg2 completion:(id /* block */)arg3;
 - (id)setWiFiCallingSettingPreferences:(id)arg1 key:(id)arg2 value:(id)arg3;
 - (void)setWiFiCallingSettingPreferences:(id)arg1 key:(id)arg2 value:(id)arg3 completion:(id /* block */)arg4;
+- (id)shouldAllowSimLockFor:(id)arg1;
 - (void)shouldShowUserWarningWhenDialingCallOnContext:(id)arg1 completion:(id /* block */)arg2;
 - (bool)shouldShowUserWarningWhenDialingCallOnContext:(id)arg1 error:(id*)arg2;
+- (bool)smartDataMode:(id)arg1 error:(id*)arg2;
 - (bool)supportsPlanProvisioning:(id)arg1 carrierDescriptors:(id)arg2 smdpUrl:(id)arg3 iccidPrefix:(id)arg4;
 - (id)synchronousProxyWithErrorHandler:(id /* block */)arg1;
+- (void)transferCellularPlan:(id)arg1 fromDevice:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)transferCellularPlans:(id)arg1 fromDevice:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)transferPlan:(id)arg1 fromDevice:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)transferPlans:(id)arg1 fromDevice:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)transferRemotePlan:(id)arg1 fromDevice:(id)arg2 completion:(id /* block */)arg3;
+- (void)unhideTransferPlan:(id)arg1 completion:(id /* block */)arg2;
 - (void)unlockPIN:(id)arg1 pin:(id)arg2 completion:(id /* block */)arg3;
 - (void)unlockPIN:(id)arg1 pin:(id)arg2 error:(id*)arg3;
 - (void)unlockPUK:(id)arg1 puk:(id)arg2 newPin:(id)arg3 completion:(id /* block */)arg4;
@@ -419,5 +471,10 @@
 - (id)userEnteredMonthlyRoamingBudget:(id)arg1 error:(id*)arg2;
 - (struct queue { struct object { struct dispatch_object_s {} *x_1_1_1; } x1; })userQueue;
 - (id)wifiCallingCTFollowUpComplete:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyPreferences.framework/TelephonyPreferences
+
+- (id)carrierBundleForSubscription:(id)arg1 error:(id*)arg2;
+- (id)localizedCarrierBundleStringForKey:(id)arg1 subscription:(id)arg2 error:(id*)arg3;
 
 @end

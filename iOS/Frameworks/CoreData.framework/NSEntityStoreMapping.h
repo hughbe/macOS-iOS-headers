@@ -11,21 +11,15 @@
     unsigned int  _subentityID;
 }
 
-- (id)attributeColumnDefinitions;
-- (id)attributeMappings;
 - (id)createTableStatement;
 - (void)dealloc;
 - (id)description;
 - (id)entity;
-- (id)foreignKeyColumnDefinitions;
-- (id)foreignKeyConstraintDefinitions;
 - (id)initWithEntity:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isSingleTableEntity;
-- (id)primaryKeyColumnDefinitions;
 - (id)primaryKeys;
 - (id)propertyMappings;
-- (id)relationshipMappings;
 - (void)setEntity:(id)arg1;
 - (void)setPrimaryKeys:(id)arg1;
 - (void)setPropertyMappings:(id)arg1;

@@ -16,7 +16,8 @@
 - (void)_validateKeychainItemClass:(id)arg1;
 - (id)allKeychainItems;
 - (id)init;
+- (id)keychainItemsForAccounts:(id)arg1;
 - (void)migrateAllKeychainItems;
-- (bool)migrateKeychainItem:(id)arg1;
+- (bool)migrateKeychainItem:(id)arg1 toKeybag:(bool)arg2;
 
 @end

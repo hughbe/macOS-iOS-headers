@@ -30,6 +30,8 @@
 @property (nonatomic) double remainingTime;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
@@ -45,7 +47,10 @@
 - (bool)hasRemainingDistance;
 - (bool)hasRemainingTime;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)latitude;
 - (double)longitude;
 - (void)mergeFrom:(id)arg1;
@@ -65,5 +70,9 @@
 - (void)setRemainingTime:(double)arg1;
 - (id)unknownFields;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MapsSupport.framework/MapsSupport
+
+- (id)mspDescription;
 
 @end

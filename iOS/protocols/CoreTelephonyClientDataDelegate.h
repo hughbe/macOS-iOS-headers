@@ -18,6 +18,8 @@
 - (void)internetDataStatus:(CTDataStatus *)arg1;
 - (void)preferredDataServiceDescriptorChanged:(CTServiceDescriptor *)arg1;
 - (void)preferredDataSimChanged:(CTXPCServiceSubscriptionContext *)arg1;
+- (void)serviceDisconnection:(CTXPCServiceSubscriptionContext *)arg1 status:(CTServiceDisconnectionStatus *)arg2;
 - (void)servingNetworkChanged:(CTXPCServiceSubscriptionContext *)arg1;
+- (void)tetheringStatus:(CTTetheringStatus *)arg1;
 
 @end

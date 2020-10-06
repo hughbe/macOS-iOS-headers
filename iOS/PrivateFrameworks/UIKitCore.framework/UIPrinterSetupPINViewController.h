@@ -14,17 +14,12 @@
 @property (nonatomic, retain) PKPrinter *printer;
 @property (nonatomic, retain) UIScrollView *scrollView;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)PINView;
 - (void)connectToPrinter;
 - (void)connected:(bool)arg1;
 - (id)connectingView;
+- (void)dealloc;
 - (id)initWithPrinter:(id)arg1;
 - (void)loadView;
 - (id)printer;

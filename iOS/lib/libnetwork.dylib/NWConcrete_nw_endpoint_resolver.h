@@ -10,6 +10,7 @@
     NSObject<OS_nw_array> * failed_child_endpoint_handlers;
     unsigned int  failed_to_start_next_child;
     int  last_resolver_status;
+    NSObject<OS_nw_endpoint> * modified_endpoint;
     unsigned int  next_child_endpoint_index;
     NSObject<OS_nw_array> * path_resolved_endpoints;
     NSObject<OS_nw_array> * ready_child_endpoint_handlers;

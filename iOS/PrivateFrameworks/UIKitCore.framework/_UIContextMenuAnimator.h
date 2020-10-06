@@ -9,8 +9,8 @@
     UIViewController * _previewViewController;
 }
 
-@property (nonatomic, retain) NSMutableArray *animations;
-@property (nonatomic, retain) NSMutableArray *completions;
+@property (nonatomic, readonly) NSMutableArray *animations;
+@property (nonatomic, readonly) NSMutableArray *completions;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasAnyActions;
@@ -31,8 +31,6 @@
 - (void)performAllCompletions;
 - (long long)preferredCommitStyle;
 - (id)previewViewController;
-- (void)setAnimations:(id)arg1;
-- (void)setCompletions:(id)arg1;
 - (void)setPreferredCommitStyle:(long long)arg1;
 
 @end

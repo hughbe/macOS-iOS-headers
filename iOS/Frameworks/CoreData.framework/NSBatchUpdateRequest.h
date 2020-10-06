@@ -30,11 +30,9 @@
 + (id)batchUpdateRequestWithEntityName:(id)arg1;
 + (id)decodeFromXPCArchive:(id)arg1 withContext:(id)arg2;
 
-- (id)_newValidatedPropertiesToUpdate:(id)arg1 error:(id*)arg2;
 - (void)_resolveEntityWithContext:(id)arg1;
 - (bool)_secureOperation;
 - (void)_setSecureOperation:(bool)arg1;
-- (void)_setValidatedPropertiesToUpdate:(id)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)encodeForXPC;

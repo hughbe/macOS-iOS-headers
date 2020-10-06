@@ -14,9 +14,9 @@
 @property (nonatomic, copy) id /* block */ invalidationHandler;
 @property (nonatomic, copy) id /* block */ messageHandler;
 @property (nonatomic, readonly) int pid;
+@property (nonatomic, readonly) unsigned int uid;
 
 - (void).cxx_destruct;
-- (void)_registerCallbacks;
 - (void)addCustomXPCHandler:(id /* block */)arg1 forKey:(unsigned long long)arg2;
 - (id)connection;
 - (void)dealloc;
@@ -30,5 +30,6 @@
 - (id)sendSyncMessage:(id)arg1 error:(id*)arg2;
 - (void)setInvalidationHandler:(id /* block */)arg1;
 - (void)setMessageHandler:(id /* block */)arg1;
+- (unsigned int)uid;
 
 @end

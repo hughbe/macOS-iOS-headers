@@ -4,13 +4,17 @@
 
 @interface _MTLCommandEncoder : _MTLObjectWithLabel {
     _MTLCommandBuffer<MTLCommandBuffer> * _commandBuffer;
+    NSMutableArray * _debugSignposts;
     <MTLDevice> * _device;
     unsigned long long  _globalTraceObjectID;
+    bool  _isProgressTrackingEncoder;
     unsigned long long  _labelTraceID;
+    bool  _needsFrameworkAssistedErrorTracking;
     unsigned long long  _numThisEncoder;
+    <MTLFence> * _progressFence;
 }
 
-@property (nonatomic, readonly) <MTLDevice> *device;
+@property (readonly) <MTLDevice> *device;
 @property (readonly) unsigned long long dispatchType;
 @property (nonatomic, readonly) unsigned long long globalTraceObjectID;
 @property (copy) NSString *label;
@@ -25,6 +29,7 @@
 - (void)endEncoding;
 - (void)filterCounterRangeWithFirstBatch:(unsigned int)arg1 lastBatch:(unsigned int)arg2 filterIndex:(unsigned int)arg3;
 - (id)formattedDescription:(unsigned long long)arg1;
+- (unsigned long long)getDriverUniqueID;
 - (unsigned long long)getType;
 - (unsigned long long)globalTraceObjectID;
 - (id)initWithCommandBuffer:(id)arg1;
@@ -33,7 +38,9 @@
 - (void)memoryBarrierNotificationWithScope:(unsigned long long)arg1;
 - (unsigned long long)numThisEncoder;
 - (void)popDebugGroup;
+- (void)preEndEncoding;
 - (void)pushDebugGroup:(id)arg1;
+- (void)setAccelerationStructure:(id)arg1 atBufferIndex:(unsigned long long)arg2;
 - (void)setNumThisEncoder:(unsigned long long)arg1;
 
 @end

@@ -2,19 +2,25 @@
    Image: /System/Library/PrivateFrameworks/NanoPreferencesSync.framework/NanoPreferencesSync
  */
 
-@interface NPSDomainAccessor : NSObject {
+@interface NPSDomainAccessor : NSObject <HKSPUserDefaults> {
     NSObject<OS_dispatch_queue> * _externalQueue;
     bool  _initializedWithActiveDevice;
     NPSDomainAccessorInternal * _internalAccessor;
     NSObject<OS_dispatch_queue> * _invalidationQueue;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSString *domain;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *externalQueue;
+@property (readonly) unsigned long long hash;
 @property (nonatomic) bool initializedWithActiveDevice;
 @property (nonatomic, retain) NPSDomainAccessorInternal *internalAccessor;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *invalidationQueue;
 @property (nonatomic, readonly) NSUUID *pairingID;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/PrivateFrameworks/NanoPreferencesSync.framework/NanoPreferencesSync
 
 + (id)copyDomainList;
 + (id)copyDomainListForPairingID:(id)arg1 pairingDataStore:(id)arg2;
@@ -33,6 +39,7 @@
 - (id)dictionaryForKey:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)domain;
+- (unsigned long long)domainSize;
 - (double)doubleForKey:(id)arg1;
 - (double)doubleForKey:(id)arg1 keyExistsAndHasValidFormat:(bool*)arg2;
 - (id)externalQueue;
@@ -57,6 +64,7 @@
 - (id)pairingID;
 - (id)queue;
 - (void)removeObjectForKey:(id)arg1;
+- (bool)requiresDeviceUnlockedSinceBoot;
 - (void)setBool:(bool)arg1 forKey:(id)arg2;
 - (void)setDouble:(double)arg1 forKey:(id)arg2;
 - (void)setExternalQueue:(id)arg1;
@@ -73,5 +81,12 @@
 - (id)stringForKey:(id)arg1;
 - (id)synchronize;
 - (void)synchronizeWithCompletionHandler:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DoNotDisturbServer.framework/DoNotDisturbServer
+
+- (id)dnds_bypassSettings;
+- (id)dnds_scheduleSettingsWithLastUpdated:(id)arg1;
+- (void)dnds_setBypassSettings:(id)arg1;
+- (void)dnds_setScheduleSettings:(id)arg1;
 
 @end

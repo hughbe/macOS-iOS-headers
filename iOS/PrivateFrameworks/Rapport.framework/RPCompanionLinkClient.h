@@ -7,6 +7,7 @@
     NSString * _appID;
     NSMutableSet * _assertions;
     id /* block */  _authCompletionHandler;
+    long long  _bleClientUseCase;
     unsigned int  _clientID;
     NSString * _cloudServiceID;
     unsigned long long  _controlFlags;
@@ -44,6 +45,7 @@
 @property (readonly) RPCompanionLinkDevice *activePersonalCompanion;
 @property (nonatomic, copy) NSString *appID;
 @property (nonatomic, copy) id /* block */ authCompletionHandler;
+@property (nonatomic) long long bleClientUseCase;
 @property (nonatomic) unsigned int clientID;
 @property (nonatomic, copy) NSString *cloudServiceID;
 @property (nonatomic) unsigned long long controlFlags;
@@ -92,6 +94,7 @@
 - (id)activePersonalCompanion;
 - (id)appID;
 - (id /* block */)authCompletionHandler;
+- (long long)bleClientUseCase;
 - (unsigned int)clientID;
 - (id)cloudServiceID;
 - (void)companionLinkAuthCompleted:(id)arg1;
@@ -141,6 +144,7 @@
 - (id)serviceType;
 - (void)setAppID:(id)arg1;
 - (void)setAuthCompletionHandler:(id /* block */)arg1;
+- (void)setBleClientUseCase:(long long)arg1;
 - (void)setClientID:(unsigned int)arg1;
 - (void)setCloudServiceID:(id)arg1;
 - (void)setControlFlags:(unsigned long long)arg1;

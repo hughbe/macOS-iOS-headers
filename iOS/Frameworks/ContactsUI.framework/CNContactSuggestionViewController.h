@@ -39,6 +39,7 @@
 - (void)addToContact:(id)arg1;
 - (id)addToContactButton;
 - (id)addToContactLeadingMargin;
+- (id)alertMessageForIgnoreContactDetail;
 - (id)contentLabel;
 - (id)dataSource;
 - (id)dateLabel;
@@ -50,7 +51,6 @@
 - (id)ignoreTrailingMargin;
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (id)propertyCell;
-- (bool)sectionAtIndexContainsAddAndIgnoreControls:(unsigned long long)arg1;
 - (void)setAction:(id)arg1;
 - (void)setAddToContactButton:(id)arg1;
 - (void)setAddToContactLeadingMargin:(id)arg1;
@@ -64,7 +64,7 @@
 - (void)setIgnoreTrailingMargin:(id)arg1;
 - (void)setPropertyCell:(id)arg1;
 - (void)setSubjectLabel:(id)arg1;
-- (bool)shouldShowAddIgnoreControls;
+- (bool)shouldShowAddRejectActions;
 - (bool)shouldShowPreview;
 - (void)showSource:(id)arg1;
 - (id)subjectLabel;
@@ -75,6 +75,7 @@
 - (bool)tableView:(id)arg1 shouldHighlightRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 titleForHeaderInSection:(long long)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
+- (id)titleForIgnoreContactDetail;
 - (void)updatePreview;
 - (void)viewDidDisappear:(bool)arg1;
 - (void)viewDidLoad;

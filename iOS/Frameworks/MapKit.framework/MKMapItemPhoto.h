@@ -10,7 +10,7 @@
 
 @property (nonatomic, readonly) bool displayFullScreenPhotoGallery;
 @property (nonatomic, readonly) long long format;
-@property (nonatomic, retain) <GEOMapItemPhoto> *geoMapItemPhoto;
+@property (nonatomic, readonly) <GEOMapItemPhoto> *geoMapItemPhoto;
 @property (nonatomic, readonly) NSURL *largestPhotoURL;
 @property (nonatomic, readonly) NSString *license;
 @property (nonatomic, readonly) NSString *photoID;
@@ -28,7 +28,6 @@
 - (id)largestPhotoURL;
 - (id)license;
 - (id)photoID;
-- (void)setGeoMapItemPhoto:(id)arg1;
 - (void)setSubtitle:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (id)subtitle;

@@ -8,8 +8,7 @@
     NSBundle * _bundle;
     NSString * _bundleID;
     NSArray * _descriptions;
-    MKSearchFoundationBusinessHoursAndDistanceRichText * _fourthLineDisplayedText;
-    NSMutableArray * _fourthLineText;
+    MKSearchFoundationRichText * _fourthLineDisplayedText;
     unsigned long long  _iconSize;
     MKLocationManager * _locationManager;
     MKMapItem * _mapItem;
@@ -17,7 +16,8 @@
     unsigned long long  _mksfResultType;
     bool  _optionSmallerScreen;
     MKSearchFoundationRichText * _secondLineDisplayedText;
-    MKSearchFoundationRichText * _thirdLineDisplayedText;
+    MKSearchFoundationBusinessHoursAndDistanceRichText * _thirdLineDisplayedText;
+    NSMutableArray * _thirdLineText;
     SFImage * _thumbnail;
     SFText * _title;
 }
@@ -27,8 +27,7 @@
 @property (nonatomic, copy) NSString *bundleID;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, retain) MKSearchFoundationBusinessHoursAndDistanceRichText *fourthLineDisplayedText;
-@property (nonatomic, retain) NSMutableArray *fourthLineText;
+@property (nonatomic, retain) MKSearchFoundationRichText *fourthLineDisplayedText;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) unsigned long long iconSize;
 @property (nonatomic, retain) MKLocationManager *locationManager;
@@ -38,20 +37,21 @@
 @property (nonatomic) bool optionSmallerScreen;
 @property (nonatomic, retain) MKSearchFoundationRichText *secondLineDisplayedText;
 @property (readonly) Class superclass;
-@property (nonatomic, retain) MKSearchFoundationRichText *thirdLineDisplayedText;
+@property (nonatomic, retain) MKSearchFoundationBusinessHoursAndDistanceRichText *thirdLineDisplayedText;
+@property (nonatomic, retain) NSMutableArray *thirdLineText;
 
 + (id)styledStringFromStringArray:(id)arg1;
 
 - (void).cxx_destruct;
+- (id)_appleRatingsDescription;
 - (id)_brandURL;
 - (id)_businessAddress;
 - (id)_businessCategory;
 - (id)_businessHoursAndDistance;
-- (id)_businessPriceAndReviewText;
+- (id)_businessReviewText;
 - (void)_commonInit;
 - (id)_defaultRichTextItems;
 - (bool)_isSmallerScreen;
-- (id)_localizedMessageBusinessHours;
 - (void)_locationApprovalDidChange;
 - (id)action;
 - (id)attributionObserver;
@@ -60,7 +60,6 @@
 - (void)dealloc;
 - (id)descriptions;
 - (id)fourthLineDisplayedText;
-- (id)fourthLineText;
 - (unsigned long long)iconSize;
 - (id)initWithMapsData:(id)arg1 iconSize:(unsigned long long)arg2 bundleID:(id)arg3;
 - (id)locationManager;
@@ -83,7 +82,6 @@
 - (void)setBundleID:(id)arg1;
 - (void)setDescriptions:(id)arg1;
 - (void)setFourthLineDisplayedText:(id)arg1;
-- (void)setFourthLineText:(id)arg1;
 - (void)setIconSize:(unsigned long long)arg1;
 - (void)setLocationManager:(id)arg1;
 - (void)setMapItem:(id)arg1;
@@ -92,9 +90,11 @@
 - (void)setOptionSmallerScreen:(bool)arg1;
 - (void)setSecondLineDisplayedText:(id)arg1;
 - (void)setThirdLineDisplayedText:(id)arg1;
+- (void)setThirdLineText:(id)arg1;
 - (void)setThumbnail:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (id)thirdLineDisplayedText;
+- (id)thirdLineText;
 - (id)thumbnail;
 - (id)title;
 

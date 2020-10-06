@@ -24,7 +24,6 @@
 
 - (void).cxx_destruct;
 - (bool)cancel;
-- (id)initWithPath:(id)arg1 flow:(id)arg2 parameters:(id)arg3 delegate:(id)arg4;
-- (bool)matchesFlow:(id)arg1 parameters:(id)arg2;
+- (id)description;
 
 @end

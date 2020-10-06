@@ -11,9 +11,8 @@
     unsigned long long  _options;
     NSArray * _recentCalls;
     TUDispatcher * _simpleIvarDispatcher;
-    unsigned long long  _unreadAudioCallCount;
+    NSArray * _thirdPartyCallProviders;
     unsigned long long  _unreadCallCount;
-    unsigned long long  _unreadVideoCallCount;
 }
 
 @property (nonatomic, retain) CHManager *callHistoryManager;
@@ -28,14 +27,12 @@
 @property (nonatomic, retain) NSArray *recentCalls;
 @property (nonatomic, retain) TUDispatcher *simpleIvarDispatcher;
 @property (readonly) Class superclass;
-@property (nonatomic) unsigned long long unreadAudioCallCount;
+@property (nonatomic, copy) NSArray *thirdPartyCallProviders;
 @property (nonatomic) unsigned long long unreadCallCount;
-@property (nonatomic) unsigned long long unreadVideoCallCount;
 
 + (id)callHistoryControllerWithCoalescingStrategy:(unsigned long long)arg1 options:(unsigned long long)arg2;
 + (id)sharedController;
 + (id)sharedControllerWithCoalescingStrategy:(unsigned long long)arg1 options:(unsigned long long)arg2;
-+ (id)tuHandleFromCHHandle:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)_callHistoryCoalescingStrategyForCoalescingStrategy:(unsigned long long)arg1;
@@ -46,8 +43,6 @@
 - (id /* block */)callHistoryManagerInitializationDispatchBlock;
 - (id /* block */)callHistoryManagerRecentCallsDispatchBlock;
 - (id)callProviderManager;
-- (bool)canCoalesceCall:(id)arg1 withCall:(id)arg2;
-- (bool)coalesceCall:(id)arg1 withCall:(id)arg2;
 - (unsigned long long)coalescingStrategy;
 - (void)dealloc;
 - (void)deleteAllRecentCalls;
@@ -63,7 +58,6 @@
 - (void)markRecentCallsAsReadWithPredicate:(id)arg1;
 - (void)markRecentVideoCallsAsRead;
 - (id)metadataPreCachedOptions;
-- (id)mostRecentCallWithHandle:(id)arg1;
 - (unsigned long long)options;
 - (void)providersChangedForProviderManager:(id)arg1;
 - (id)recentCalls;
@@ -77,12 +71,10 @@
 - (void)setOptions:(unsigned long long)arg1;
 - (void)setRecentCalls:(id)arg1;
 - (void)setSimpleIvarDispatcher:(id)arg1;
-- (void)setUnreadAudioCallCount:(unsigned long long)arg1;
+- (void)setThirdPartyCallProviders:(id)arg1;
 - (void)setUnreadCallCount:(unsigned long long)arg1;
-- (void)setUnreadVideoCallCount:(unsigned long long)arg1;
 - (id)simpleIvarDispatcher;
-- (unsigned long long)unreadAudioCallCount;
+- (id)thirdPartyCallProviders;
 - (unsigned long long)unreadCallCount;
-- (unsigned long long)unreadVideoCallCount;
 
 @end

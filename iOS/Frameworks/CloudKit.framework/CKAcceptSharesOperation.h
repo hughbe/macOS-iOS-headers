@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKAcceptSharesOperation : CKOperation {
+@interface CKAcceptSharesOperation : CKOperation <CKAcceptSharesOperationCallbacks> {
     id /* block */  _acceptSharesCompletionBlock;
     NSMutableDictionary * _errorsByShareURL;
     id /* block */  _perShareCompletionBlock;
@@ -11,20 +11,24 @@
 }
 
 @property (nonatomic, copy) id /* block */ acceptSharesCompletionBlock;
+@property (nonatomic, readonly) <CKAcceptSharesOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSMutableDictionary *errorsByShareURL;
+@property (nonatomic, readonly) CKAcceptSharesOperationInfo *operationInfo;
 @property (nonatomic, copy) id /* block */ perShareCompletionBlock;
 @property (nonatomic, copy) NSArray *shareMetadatas;
 @property (nonatomic, retain) NSMutableDictionary *shareMetadatasByShareURL;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id /* block */)acceptSharesCompletionBlock;
 - (id)activityCreate;
 - (id)errorsByShareURL;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleShareAcceptanceForURL:(id)arg1 share:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithShareMetadatas:(id)arg1;

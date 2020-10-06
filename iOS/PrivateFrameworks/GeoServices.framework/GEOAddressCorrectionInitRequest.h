@@ -7,9 +7,7 @@
         unsigned int has_supportsMultipleAddresses : 1; 
         unsigned int read_personID : 1; 
         unsigned int read_token : 1; 
-        unsigned int wrote_personID : 1; 
-        unsigned int wrote_token : 1; 
-        unsigned int wrote_supportsMultipleAddresses : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _personID;
     PBDataReader * _reader;
@@ -32,8 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readPersonID;
-- (void)_readToken;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -44,7 +40,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)personID;
 - (void)readAll:(bool)arg1;

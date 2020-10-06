@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchRecordsOperation : CKDatabaseOperation {
+@interface CKFetchRecordsOperation : CKDatabaseOperation <CKFetchRecordsOperationCallbacks, CKOperationInMemoryAssets> {
     NSMutableDictionary * _assetInfoByArrayIndexByRecordKeyByRecordID;
     NSDictionary * _assetTransferOptionsByRecordTypeAndKey;
     NSArray * _desiredKeys;
@@ -24,33 +24,36 @@
 }
 
 @property (nonatomic, retain) NSMutableDictionary *assetInfoByArrayIndexByRecordKeyByRecordID;
-@property (nonatomic, retain) NSDictionary *assetTransferOptionsByRecordTypeAndKey;
+@property (nonatomic, copy) NSDictionary *assetTransferOptionsByRecordTypeAndKey;
+@property (nonatomic, readonly) <CKFetchRecordsOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) NSArray *desiredKeys;
 @property (nonatomic, copy) NSDictionary *desiredPackageFileIndices;
 @property (nonatomic) bool dropInMemoryAssetContentASAP;
 @property (nonatomic, copy) id /* block */ fetchRecordsCompletionBlock;
 @property (nonatomic) bool isFetchCurrentUserOperation;
+@property (nonatomic, readonly) CKFetchRecordsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableSet *packagesToDestroy;
 @property (nonatomic, copy) id /* block */ perRecordCompletionBlock;
 @property (nonatomic, copy) id /* block */ perRecordProgressBlock;
 @property (nonatomic, retain) NSMutableDictionary *recordErrors;
 @property (nonatomic, copy) NSArray *recordIDs;
-@property (nonatomic, retain) NSDictionary *recordIDsToETags;
+@property (nonatomic, copy) NSDictionary *recordIDsToETags;
 @property (nonatomic, retain) NSMutableDictionary *recordIDsToRecords;
-@property (nonatomic, retain) NSDictionary *recordIDsToVersionETags;
+@property (nonatomic, copy) NSDictionary *recordIDsToVersionETags;
 @property (nonatomic) bool shouldFetchAssetContent;
 @property (nonatomic) bool shouldFetchAssetContentInMemory;
 @property (nonatomic, retain) NSDictionary *webSharingIdentityDataByRecordID;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
 + (id)fetchCurrentUserRecordOperation;
 
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)assetInfoByArrayIndexByRecordKeyByRecordID;
-- (id)assetInfoForRecordID:(id)arg1 recordKey:(id)arg2 arrayIndex:(id)arg3;
 - (id)assetTransferOptionsByRecordTypeAndKey;
 - (bool)claimPackagesInRecord:(id)arg1 error:(id*)arg2;
 - (id)desiredKeys;
@@ -59,6 +62,9 @@
 - (id /* block */)fetchRecordsCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleAssetDataForRecordID:(id)arg1 recordKey:(id)arg2 arrayIndex:(long long)arg3 data:(id)arg4 offset:(unsigned long long)arg5;
+- (void)handleFetchForRecordID:(id)arg1 didProgress:(double)arg2;
+- (void)handleFetchForRecordID:(id)arg1 record:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordIDs:(id)arg1;
@@ -93,5 +99,9 @@
 - (bool)shouldFetchAssetContent;
 - (bool)shouldFetchAssetContentInMemory;
 - (id)webSharingIdentityDataByRecordID;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (void)ic_removeAllCompletionBlocks;
 
 @end

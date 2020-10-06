@@ -8,6 +8,7 @@
     NSObject<OS_nw_dictionary> * advertise_flow_registrations;
     NSObject<OS_nw_path> * advertise_path;
     id /* block */  advertised_endpoint_changed_handler;
+    unsigned int  cancelling;
     unsigned int  client_qos_class;
     NSObject<OS_dispatch_queue> * client_queue;
     NSObject<OS_nw_parameters> * current_derived_parameters;
@@ -29,8 +30,10 @@
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  lock;
+    NSObject<OS_nw_group_descriptor> * multicast_descriptor;
     id /* block */  new_connection_handler;
     unsigned int  new_connection_limit;
+    id /* block */  new_packet_handler;
     NSObject<OS_nw_parameters> * parameters;
     NSObject<OS_nw_path> * path;
     int  state;
@@ -47,8 +50,8 @@
 - (void)dealloc;
 - (id)description;
 - (void)handleInbound:(id)arg1 addProtocolInbox:(bool)arg2;
+- (void)handleInboundPacket:(const char *)arg1 length:(unsigned short)arg2 from:(id)arg3 to:(id)arg4 interface:(id)arg5 socket:(id)arg6;
 - (void)handleInboxCancelComplete:(id)arg1;
 - (void)handleInboxFailed:(id)arg1 error:(id)arg2;
-- (id)initWithParameters:(id)arg1;
 
 @end

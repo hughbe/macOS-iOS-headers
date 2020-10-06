@@ -3,14 +3,12 @@
  */
 
 @interface _INPBWellnessValue : PBCodable <NSCopying, NSSecureCoding, _INPBWellnessValue> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     _INPBInteger * _ordinalValue;
     _INPBDouble * _pbDoubleValue;
     _INPBValueMetadata * _valueMetadata;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasOrdinalValue;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

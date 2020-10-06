@@ -4,16 +4,16 @@
 
 @interface GEOComposedWalkingUncertainArrivalRouteStep : GEOComposedWalkingRouteStep {
     NSArray * _aggregatedGEOSteps;
-    unsigned int  _aggregatedStepsDistance;
+    double  _aggregatedStepsDistance;
     unsigned int  _aggregatedStepsDuration;
 }
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (unsigned int)_calculateAggregatedStepsDistance;
+- (double)_calculateAggregatedStepsDistance;
 - (unsigned int)_calculateAggregatedStepsDuration;
-- (unsigned int)distance;
+- (double)distance;
 - (unsigned int)duration;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -9,6 +9,7 @@
         unsigned int timestamp : 1; 
     }  _has;
     NSMutableArray * _probeResults;
+    AWDWiFiDPSSnapshot * _snapshot;
     NSMutableArray * _stallNotifications;
     unsigned long long  _timestamp;
 }
@@ -16,8 +17,10 @@
 @property (nonatomic, retain) NSMutableArray *dpsCounterSamples;
 @property (nonatomic, retain) AWDWiFiDPSEpilogue *dpsEpiloge;
 @property (nonatomic, readonly) bool hasDpsEpiloge;
+@property (nonatomic, readonly) bool hasSnapshot;
 @property (nonatomic) bool hasTimestamp;
 @property (nonatomic, retain) NSMutableArray *probeResults;
+@property (nonatomic, retain) AWDWiFiDPSSnapshot *snapshot;
 @property (nonatomic, retain) NSMutableArray *stallNotifications;
 @property (nonatomic) unsigned long long timestamp;
 
@@ -41,6 +44,7 @@
 - (unsigned long long)dpsCounterSamplesCount;
 - (id)dpsEpiloge;
 - (bool)hasDpsEpiloge;
+- (bool)hasSnapshot;
 - (bool)hasTimestamp;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
@@ -53,8 +57,10 @@
 - (void)setDpsEpiloge:(id)arg1;
 - (void)setHasTimestamp:(bool)arg1;
 - (void)setProbeResults:(id)arg1;
+- (void)setSnapshot:(id)arg1;
 - (void)setStallNotifications:(id)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;
+- (id)snapshot;
 - (id)stallNotificationAtIndex:(unsigned long long)arg1;
 - (id)stallNotifications;
 - (unsigned long long)stallNotificationsCount;

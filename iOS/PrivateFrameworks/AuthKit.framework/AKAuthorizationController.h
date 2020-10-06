@@ -18,10 +18,13 @@
 - (void).cxx_destruct;
 - (id)_appleIDAuthorizationURLs;
 - (id)_appleOwnedDomains;
+- (bool)_shouldOverrideProxiedBundleIDForContext:(id)arg1;
 - (void)continueFetchingIconForRequestContext:(id)arg1 completion:(id /* block */)arg2;
 - (void)dealloc;
 - (void)establishConnectionWithNotificationHandlerEndpoint:(id)arg1 completion:(id /* block */)arg2;
+- (void)establishConnectionWithStateBroadcastHandlerEndpoint:(id)arg1 completion:(id /* block */)arg2;
 - (void)fetchAppleIDAuthorizeHTMLResponseTemplateWithCompletion:(id /* block */)arg1;
+- (void)getCredentialStateForClientID:(id)arg1 completion:(id /* block */)arg2;
 - (void)getCredentialStateForRequest:(id)arg1 completion:(id /* block */)arg2;
 - (void)getPresentationContextForRequestContext:(id)arg1 completion:(id /* block */)arg2;
 - (id)init;
@@ -29,6 +32,7 @@
 - (void)performAuthorizationWithContext:(id)arg1 completion:(id /* block */)arg2;
 - (void)performAuthorizationWithContext:(id)arg1 withUserProvidedInformation:(id)arg2 completion:(id /* block */)arg3;
 - (id)primaryApplicationInformationForWebServiceWithInfo:(id)arg1 error:(id*)arg2;
+- (void)revokeAuthorizationWithContext:(id)arg1 completion:(id /* block */)arg2;
 - (void)setUiProvider:(id)arg1;
 - (id)uiProvider;
 

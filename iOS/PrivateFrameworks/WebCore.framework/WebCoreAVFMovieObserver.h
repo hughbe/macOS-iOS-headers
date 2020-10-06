@@ -4,27 +4,26 @@
 
 @interface WebCoreAVFMovieObserver : NSObject <AVPlayerItemLegibleOutputPushDelegate, AVPlayerItemMetadataCollectorPushDelegate, AVPlayerItemMetadataOutputPushDelegate> {
     int  m_delayCallbacks;
-    struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC> { 
-        struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-            struct WeakPtrImpl {} *m_ptr; 
+    struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC, WTF::EmptyCounter> { 
+        struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { 
+            struct WeakPtrImpl<WTF::EmptyCounter> {} *m_ptr; 
         } m_impl; 
     }  m_player;
     struct GenericTaskQueue<WebCore::Timer> { 
-        struct WeakPtrFactory<WebCore::GenericTaskQueue<WebCore::Timer> > { 
-            struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-                struct WeakPtrImpl {} *m_ptr; 
+        struct WeakPtrFactory<WebCore::GenericTaskQueue<WebCore::Timer>, WTF::EmptyCounter> { 
+            struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { 
+                struct WeakPtrImpl<WTF::EmptyCounter> {} *m_ptr; 
             } m_impl; 
         } m_weakPtrFactory; 
-        struct TaskDispatcher<WebCore::Timer> { 
-            struct WeakPtrFactory<WebCore::TaskDispatcher<WebCore::Timer> > { 
-                struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-                    struct WeakPtrImpl {} *m_ptr; 
-                } m_impl; 
-            } m_weakPtrFactory; 
-            struct Deque<WTF::Function<void ()>, 0>="m_start"Q"m_end"Q"m_buffer"{VectorBuffer<WTF::Function<void ()>, 0, WTF::FastMalloc>="m_buffer"^{Function<void ()> {} m_pendingTasks; 
-            unsigned int m_capacity; 
-            unsigned int m_size; 
+        struct UniqueRef<WebCore::TaskDispatcher<WebCore::Timer> > { 
+            struct unique_ptr<WebCore::TaskDispatcher<WebCore::Timer>, std::__1::default_delete<WebCore::TaskDispatcher<WebCore::Timer> > > { 
+                struct __compressed_pair<WebCore::TaskDispatcher<WebCore::Timer> *, std::__1::default_delete<WebCore::TaskDispatcher<WebCore::Timer> > > { 
+                    struct TaskDispatcher<WebCore::Timer> {} *__value_; 
+                } __ptr_; 
+            } m_ref; 
         } m_dispatcher; 
+        unsigned int m_pendingTasks; 
+        bool m_isClosed; 
     }  m_taskQueue;
 }
 
@@ -37,7 +36,7 @@
 - (void).cxx_destruct;
 - (void)didEnd:(id)arg1;
 - (void)disconnect;
-- (id)initWithPlayer:(struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_1_1; } x1; }*)arg1;
+- (id)initWithPlayer:(struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_1_1; } x1; }*)arg1;
 - (void)legibleOutput:(id)arg1 didOutputAttributedStrings:(id)arg2 nativeSampleBuffers:(id)arg3 forItemTime:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg4;
 - (void)metadataCollector:(id)arg1 didCollectDateRangeMetadataGroups:(id)arg2 indexesOfNewGroups:(id)arg3 indexesOfModifiedGroups:(id)arg4;
 - (void)metadataLoaded;

@@ -5,6 +5,7 @@
 @interface UIDictationLandingView : UIView <_UIBasicAnimationFactory> {
     NSOperation * _afterShrinkCompletionInvocation;
     double  _angle;
+    <UITextCursorAssertion> * _blinkAssertion;
     double  _diameter;
     bool  _didHaveText;
     CADisplayLink * _displayLink;
@@ -16,13 +17,12 @@
     bool  _willInsertResult;
 }
 
+@property (nonatomic, retain) <UITextCursorAssertion> *blinkAssertion;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 @property (nonatomic) bool willInsertResult;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)activeInstance;
 + (double)diameterForLineHeight:(double)arg1;
@@ -32,12 +32,10 @@
 
 - (id)_basicAnimationForView:(id)arg1 withKeyPath:(id)arg2;
 - (id)_timingFunctionForAnimation;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)advanceLanding:(id)arg1;
+- (id)blinkAssertion;
 - (void)clearRotation;
+- (void)dealloc;
 - (bool)delegateWasEmpty;
 - (void)drawRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)errorShakeDidFinish;
@@ -46,6 +44,7 @@
 - (void)hideCursor;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)rotateBy:(double)arg1;
+- (void)setBlinkAssertion:(id)arg1;
 - (void)setWillInsertResult:(bool)arg1;
 - (void)showCursor;
 - (void)shrinkWithCompletion:(id)arg1;

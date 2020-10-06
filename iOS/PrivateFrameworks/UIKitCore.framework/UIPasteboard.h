@@ -23,8 +23,12 @@
 @property (nonatomic, readonly) long long numberOfItems;
 @property (nonatomic, readonly) NSArray *pasteboardTypes;
 @property (getter=isPersistent, nonatomic, readonly) bool persistent;
+@property (nonatomic, readonly) bool px_containsAssets;
+@property (nonatomic, readonly) bool safari_canPasteAndNavigate;
 @property (nonatomic, copy) NSString *string;
 @property (nonatomic, copy) NSArray *strings;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (void)_clearPinnedItemProvidersForPasteboardNamed:(id)arg1;
 + (id)_pasteboardWithName:(id)arg1 create:(bool)arg2;
@@ -39,6 +43,8 @@
 - (id)URLs;
 - (long long)_changeCountIgnoringPinningActivity;
 - (void)_clearPinnedItemProviders;
+- (id)_detectedPasteboardTypeStringsForTypes:(id)arg1;
+- (id)_detectedPasteboardTypesForTypes:(id)arg1;
 - (bool)_hasStrings;
 - (void)_pinItemProviders:(id)arg1 expirationDate:(id)arg2;
 - (void)addItems:(id)arg1;
@@ -51,6 +57,10 @@
 - (bool)containsPasteboardTypes:(id)arg1 inItemSet:(id)arg2;
 - (id)dataForPasteboardType:(id)arg1;
 - (id)dataForPasteboardType:(id)arg1 inItemSet:(id)arg2;
+- (void)detectPatternsForPatterns:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)detectPatternsForPatterns:(id)arg1 inItemSet:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)detectValuesForPatterns:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)detectValuesForPatterns:(id)arg1 inItemSet:(id)arg2 completionHandler:(id /* block */)arg3;
 - (bool)hasColors;
 - (bool)hasImages;
 - (bool)hasStrings;
@@ -90,5 +100,46 @@
 - (id)strings;
 - (id)valueForPasteboardType:(id)arg1;
 - (id)valuesForPasteboardType:(id)arg1 inItemSet:(id)arg2;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (void)mf_addPasteboardRepresentationsForAttachments:(id)arg1;
+- (id)mf_getAttachmentsPasteboardRepresentations;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (unsigned long long)safari_bestInputTypeForPastingIntoURLField;
+- (id)safari_bestStringForPastingIntoURLField;
+- (bool)safari_canPasteAndNavigate;
+- (id)safari_pasteAndNavigateButtonTitle;
+- (void)safari_setSensitiveString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
+- (void)akClearContents;
+- (id)akPasteboardAnnotations;
+- (bool)akPasteboardContainsAnnotations;
+- (void)akPasteboardSetAnnotations:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)__ck_pasteboardTypeListRTFD;
+
+- (bool)__ck_canCreateComposition;
+- (void)__ck_compositionWithCompletionHandler:(id /* block */)arg1;
+- (id)__ck_mediaObjectManager;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_newPasteboardRepresentationForAsset:(id)arg1 data:(id)arg2 utiType:(id)arg3;
+
+- (id)px_assets;
+- (bool)px_containsAssets;
+- (void)px_setAssetRepresentation:(id)arg1;
+- (void)px_setAssetRepresentations:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
+- (id)objectsForPasteboardType:(id)arg1;
 
 @end

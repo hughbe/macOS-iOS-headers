@@ -9,7 +9,6 @@
 + (void)initialize;
 
 - (id)_archivedData;
-- (id)_nodeFromObject:(id)arg1 objectIDMap:(id)arg2;
 - (id)_theDictionary;
 - (void)addObject:(id)arg1 objectIDMap:(id)arg2;
 - (id)dataForKey:(id)arg1;

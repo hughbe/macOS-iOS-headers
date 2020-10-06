@@ -29,6 +29,7 @@
 @property (nonatomic, readonly) NSString *identifierWithLayouts;
 @property (nonatomic, readonly) bool isDefaultRightToLeft;
 @property (nonatomic) bool isDisplayed;
+@property (nonatomic, readonly) bool isEmojiInputMode;
 @property (nonatomic, readonly) bool isExtensionInputMode;
 @property (nonatomic, readonly) bool isSpecializedInputMode;
 @property (nonatomic, readonly) bool isStalledExtensionInputMode;
@@ -38,6 +39,7 @@
 @property (nonatomic, readonly, retain) NSArray *normalizedIdentifierLevels;
 @property (nonatomic, retain) NSString *primaryLanguage;
 @property (nonatomic, retain) NSString *softwareLayout;
+@property (nonatomic, readonly) bool supportsEmojiSearch;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
@@ -73,6 +75,7 @@
 - (bool)isDefaultRightToLeft;
 - (bool)isDesiredForTraits:(id)arg1;
 - (bool)isDisplayed;
+- (bool)isEmojiInputMode;
 - (bool)isEqual:(id)arg1;
 - (bool)isExtensionInputMode;
 - (bool)isSpecializedInputMode;
@@ -94,6 +97,7 @@
 - (void)setPrimaryLanguage:(id)arg1;
 - (void)setSoftwareLayout:(id)arg1;
 - (id)softwareLayout;
+- (bool)supportsEmojiSearch;
 
 // Image: /System/Library/PrivateFrameworks/TextInputUI.framework/TextInputUI
 

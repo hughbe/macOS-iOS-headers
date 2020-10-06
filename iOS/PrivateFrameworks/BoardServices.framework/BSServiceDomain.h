@@ -13,19 +13,7 @@
     BSXPCServiceConnectionListener * _xpcListener;
 }
 
-@property (nonatomic, readonly, copy) NSString *identifier;
-@property (nonatomic, readonly) NSObject<OS_xpc_object> *listenerEndpoint;
-@property (nonatomic, readonly) NSString *listenerEndpointDescription;
-@property (nonatomic, readonly) bool listenerEndpointIsNonLaunching;
-
 - (void).cxx_destruct;
-- (void)_disableLaunchWhitelist;
-- (id)_initWithSpecification:(id)arg1;
-- (id)identifier;
 - (id)init;
-- (id)listenerEndpoint;
-- (id)listenerEndpointDescription;
-- (bool)listenerEndpointIsNonLaunching;
-- (id)registerListener:(id)arg1;
 
 @end

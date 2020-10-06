@@ -13,7 +13,6 @@
 - (id)driverInterface;
 - (void)extension:(id)arg1 didRequestFlowDivertControlSocketWithCompletionHandler:(id /* block */)arg2;
 - (id)managerInterface;
-- (int)requiredEntitlement;
 - (void)setDelegateInterface:(unsigned int)arg1;
 
 @end

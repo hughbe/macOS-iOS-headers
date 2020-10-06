@@ -31,6 +31,7 @@
 - (void)getInPlaceFileRepresentationForTypeIdentifier:(id)arg1 options:(id)arg2 completionBlock:(id /* block */)arg3;
 - (id)getInPlaceFileRepresentationForTypeIdentifier:(id)arg1 options:(id)arg2 error:(id*)arg3;
 - (id)initWithPBItem:(id)arg1;
+- (id)initWithPBItem:(id)arg1 secureRetryHandler:(id /* block */)arg2;
 - (void)instantiateObjectOfClass:(Class)arg1 options:(id)arg2 completionBlock:(id /* block */)arg3;
 - (id)instantiateObjectOfClass:(Class)arg1 options:(id)arg2 error:(id*)arg3;
 - (id)loadObjectOfClass:(Class)arg1 completionHandler:(id /* block */)arg2;

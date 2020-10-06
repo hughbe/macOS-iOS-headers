@@ -50,6 +50,7 @@
 - (void)setInvalidationHandler:(id /* block */)arg1;
 - (void)setupDevice:(id)arg1 home:(id)arg2 completion:(id /* block */)arg3;
 - (void)showDevicePickerWithInfo:(id)arg1 completion:(id /* block */)arg2;
+- (void)startProxCardTransactionWithOptions:(unsigned long long)arg1 completion:(id /* block */)arg2;
 - (void)subCredentialPresentCardWithParams:(id)arg1 completion:(id /* block */)arg2;
 - (void)testContinuityKeyboardBegin:(bool)arg1;
 - (void)triggerHomeKitDeviceDetectedWithURL:(id)arg1 completion:(id /* block */)arg2;

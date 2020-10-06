@@ -3,6 +3,7 @@
  */
 
 @interface OBPrivacyLinkButton : UIButton {
+    UILabel * _buttonLabel;
     NSString * _buttonText;
     NSString * _captionText;
     UIView * _containerView;
@@ -10,23 +11,27 @@
         double width; 
         double height; 
     }  _contentSize;
-    OBTintInheritingImageView * _iconView;
+    UIImageView * _iconView;
     bool  _largeIcon;
     UITextView * _textView;
 }
 
+@property (readonly) UILabel *buttonLabel;
 @property (readonly) NSString *buttonText;
 @property (readonly) NSString *captionText;
 @property (readonly) UIView *containerView;
 @property struct CGSize { double x1; double x2; } contentSize;
-@property (readonly) OBTintInheritingImageView *iconView;
+@property (readonly) UIImageView *iconView;
 @property bool largeIcon;
 @property (readonly) UITextView *textView;
 
 - (void).cxx_destruct;
+- (id)_font;
+- (bool)_isButtonAboveCaptionText;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_rangeForButtonText;
-- (id)_textViewFont;
 - (void)_updateButtonColorWithColor:(id)arg1;
+- (id)buttonColor;
+- (id)buttonLabel;
 - (id)buttonText;
 - (id)captionText;
 - (id)containerView;

@@ -31,6 +31,7 @@
         int workoutDetectionType; 
         double workoutDetectionTime; 
         unsigned long long workoutEscalationTime; 
+        int typeYouth; 
     }  fState;
 }
 
@@ -58,14 +59,14 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMotionActivity:(struct CLMotionActivity { int x1; int x2; int x3; int x4; bool x5; float x6; double x7; bool x8; int x9; double x10; double x11; int x12; int x13; struct { unsigned int x_14_1_1 : 1; unsigned int x_14_1_2 : 1; unsigned int x_14_1_3 : 1; unsigned int x_14_1_4 : 1; unsigned int x_14_1_5 : 1; } x14; int x15; float x16; float x17; float x18; int x19; double x20; unsigned long long x21; })arg1;
+- (id)initWithMotionActivity:(struct CLMotionActivity { int x1; int x2; int x3; int x4; bool x5; float x6; double x7; bool x8; int x9; double x10; double x11; int x12; int x13; struct { unsigned int x_14_1_1 : 1; unsigned int x_14_1_2 : 1; unsigned int x_14_1_3 : 1; unsigned int x_14_1_4 : 1; unsigned int x_14_1_5 : 1; } x14; int x15; float x16; float x17; float x18; int x19; double x20; unsigned long long x21; int x22; })arg1;
 - (bool)isVehicleBTHint;
 - (bool)isVehicleBasebandHint;
 - (bool)isVehicleConnected;
 - (bool)isVehicleGpsHint;
 - (bool)isVehicleMotionHint;
 - (bool)isVehicleWifiHint;
-- (struct CLMotionActivity { int x1; int x2; int x3; int x4; bool x5; float x6; double x7; bool x8; int x9; double x10; double x11; int x12; int x13; struct { unsigned int x_14_1_1 : 1; unsigned int x_14_1_2 : 1; unsigned int x_14_1_3 : 1; unsigned int x_14_1_4 : 1; unsigned int x_14_1_5 : 1; } x14; int x15; float x16; float x17; float x18; int x19; double x20; unsigned long long x21; }*)motionActivity;
+- (struct CLMotionActivity { int x1; int x2; int x3; int x4; bool x5; float x6; double x7; bool x8; int x9; double x10; double x11; int x12; int x13; struct { unsigned int x_14_1_1 : 1; unsigned int x_14_1_2 : 1; unsigned int x_14_1_3 : 1; unsigned int x_14_1_4 : 1; unsigned int x_14_1_5 : 1; } x14; int x15; float x16; float x17; float x18; int x19; double x20; unsigned long long x21; int x22; }*)motionActivity;
 - (bool)running;
 - (id)startDate;
 - (bool)stationary;

@@ -21,6 +21,8 @@
 @property (nonatomic) unsigned long long postCount;
 @property (nonatomic, retain) NSMutableDictionary *uidToEntry;
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
 + (id)favoritesPath;
 + (void)flushSingleton;
 + (id)sharedInstance;
@@ -68,5 +70,9 @@
 - (bool)shouldSimulateCrashReportForError:(id)arg1;
 - (id)uidToEntry;
 - (bool)writeFavoritesToFile:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
+- (id)entriesMatchingPredicate:(id)arg1;
 
 @end

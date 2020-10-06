@@ -9,14 +9,9 @@
 @property (nonatomic, readonly) long long appearance;
 @property (nonatomic, retain) NSLayoutConstraint *topPaddingConstraint;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)shouldShowEditingIntroduction;
 
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)animatedTutorialViewNamed:(id)arg1 ofType:(id)arg2 needsFrame:(bool)arg3;
 - (id)buttonTitle;
 - (void)extraButtonTapAction;

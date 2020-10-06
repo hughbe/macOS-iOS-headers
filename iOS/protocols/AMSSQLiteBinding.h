@@ -15,6 +15,7 @@
 - (void)bindInt64:(long long)arg1 atPosition:(int)arg2;
 - (void)bindInt:(int)arg1 atPosition:(int)arg2;
 - (void)bindNullAtPosition:(int)arg1;
+- (void)bindNullableString:(NSString *)arg1 atPosition:(int)arg2;
 - (void)bindNumber:(NSNumber *)arg1 atPosition:(int)arg2;
 - (void)bindString:(NSString *)arg1 atPosition:(int)arg2;
 - (void)bindStringCopy:(NSString *)arg1 atPosition:(int)arg2;

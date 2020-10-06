@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_attributionURLs : 1; 
         unsigned int read_sourceIdentifier : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_attributionURLs : 1; 
-        unsigned int wrote_sourceIdentifier : 1; 
-        unsigned int wrote_sourceVersion : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -33,9 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAttributionURLs:(id)arg1;
-- (void)_readAttributionURLs;
-- (void)_readSourceIdentifier;
 - (void)addAttributionURLs:(id)arg1;
 - (id)attributionURLs;
 - (id)attributionURLsAtIndex:(unsigned long long)arg1;
@@ -49,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

@@ -45,7 +45,10 @@
 - (bool)hasMaxChildPlaces;
 - (bool)hasSupportChildItems;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)maxChildItems;
 - (int)maxChildPlaces;
 - (void)mergeFrom:(id)arg1;

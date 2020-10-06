@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSearchCallHistoryIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSearchCallHistoryIntent> {
-    bool  __encodeLegacyGloryData;
     struct { 
         int *list; 
         unsigned long long count; 
@@ -33,7 +32,6 @@
     bool  _unseen;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, readonly) int*callCapabilities;
 @property (nonatomic, readonly) unsigned long long callCapabilitiesCount;
 @property (nonatomic) int callType;
@@ -67,8 +65,6 @@
 - (int)StringAsCallTypes:(id)arg1;
 - (int)StringAsCapabilities:(id)arg1;
 - (int)StringAsPreferredCallProvider:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addCallCapabilities:(int)arg1;
 - (void)addCallTypes:(int)arg1;
 - (void)addCapabilities:(int)arg1;

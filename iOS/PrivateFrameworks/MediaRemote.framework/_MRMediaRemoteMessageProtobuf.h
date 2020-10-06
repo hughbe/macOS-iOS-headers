@@ -9,6 +9,7 @@
     _MRPlaybackQueueProtobuf * _contentItemsChangedNotificationMessage;
     _MRCryptoPairingMessageProtobuf * _cryptoPairingMessage;
     _MRDeviceInfoMessageProtobuf * _deviceInfoMessage;
+    _MRSetDiscoveryModeProtobufMessage * _discoveryModeMessage;
     unsigned int  _errorCode;
     NSString * _errorDescription;
     _MRGameControllerMessageProtobuf * _gameController;
@@ -33,6 +34,7 @@
     _MRVolumeControlAvailabilityProtobuf * _masterVolumeControlCapabilitiesDidChangeMessage;
     _MRAVModifyOutputContextRequestProtobuf * _modifyOutputContextRequestMessage;
     _MRNotificationMessageProtobuf * _notificationMessage;
+    _MROriginClientPropertiesMessageProtobuf * _originClientPropertiesMessage;
     _MRPlaybackQueueRequestProtobuf * _playbackQueueRequest;
     _MRPlaybackSessionMigrateBeginMessageProtobuf * _playbackSessionMigrateBeginMessage;
     _MRPlaybackSessionMigrateEndMessageProtobuf * _playbackSessionMigrateEndMessage;
@@ -40,6 +42,7 @@
     _MRPlaybackSessionMigrateResponseMessageProtobuf * _playbackSessionMigrateResponseMessage;
     _MRPlaybackSessionRequestMessageProtobuf * _playbackSessionRequestMessage;
     _MRPlaybackSessionResponseMessageProtobuf * _playbackSessionResponseMessage;
+    _MRPlayerClientPropertiesMessageProtobuf * _playerClientPropertiesMessage;
     _MRPresentRouteAuthorizationStatusMessageProtobuf * _presentRouteAuthorizationStatusMessage;
     _MRPromptForRouteAuthorizationMessageProtobuf * _promptForRouteAuthorizationMessage;
     _MRPromptForRouteAuthorizationResponseMessageProtobuf * _promptForRouteAuthorizationResponseMessage;
@@ -53,6 +56,7 @@
     _MRRegisterVoiceInputDeviceResponseMessageProtobuf * _registerVoiceInputDeviceResponseMessage;
     _MRRemoteTextInputMessageProtobuf * _remoteTextInputMessage;
     _MRRemoveClientMessageProtobuf * _removeClientMessage;
+    _MRRemoveEndpointsMessageProtobuf * _removeEndpointsMessage;
     _MRRemoveOutputDevicesMessageProtobuf * _removeOutputDevicesMessage;
     _MRRemovePlayerMessageProtobuf * _removePlayerMessage;
     _MRSendButtonEventMessageProtobuf * _sendButtonEventMessage;
@@ -76,11 +80,13 @@
     unsigned long long  _timestamp;
     _MRTransactionMessageProtobuf * _transactionPackets;
     int  _type;
+    NSString * _uniqueIdentifier;
     _MRUnregisterGameControllerMessageProtobuf * _unregisterGameController;
     _MRUpdateActiveSystemEndpointMessageProtobuf * _updateActiveSystemEndpointMessage;
     _MRUpdateClientMessageProtobuf * _updateClientMessage;
     _MRUpdateContentItemArtworkMessageProtobuf * _updateContentItemArtworkMessage;
     _MRUpdateContentItemMessageProtobuf * _updateContentItemMessage;
+    _MRUpdateEndpointsMessageProtobuf * _updateEndpointsMessage;
     _MRUpdateOutputDevicesMessageProtobuf * _updateOutputDevicesMessage;
     _MRUpdatePlayerMessageProtobuf * _updatePlayerMessage;
     _MRVolumeControlCapabilitiesDidChangeMessageProtobuf * _volumeControlCapabilitiesDidChangeMessage;
@@ -94,6 +100,7 @@
 @property (nonatomic, retain) _MRPlaybackQueueProtobuf *contentItemsChangedNotificationMessage;
 @property (nonatomic, retain) _MRCryptoPairingMessageProtobuf *cryptoPairingMessage;
 @property (nonatomic, retain) _MRDeviceInfoMessageProtobuf *deviceInfoMessage;
+@property (nonatomic, retain) _MRSetDiscoveryModeProtobufMessage *discoveryModeMessage;
 @property (nonatomic) unsigned int errorCode;
 @property (nonatomic, retain) NSString *errorDescription;
 @property (nonatomic, retain) _MRGameControllerMessageProtobuf *gameController;
@@ -114,6 +121,7 @@
 @property (nonatomic, readonly) bool hasContentItemsChangedNotificationMessage;
 @property (nonatomic, readonly) bool hasCryptoPairingMessage;
 @property (nonatomic, readonly) bool hasDeviceInfoMessage;
+@property (nonatomic, readonly) bool hasDiscoveryModeMessage;
 @property (nonatomic) bool hasErrorCode;
 @property (nonatomic, readonly) bool hasErrorDescription;
 @property (nonatomic, readonly) bool hasGameController;
@@ -133,6 +141,7 @@
 @property (nonatomic, readonly) bool hasMasterVolumeControlCapabilitiesDidChangeMessage;
 @property (nonatomic, readonly) bool hasModifyOutputContextRequestMessage;
 @property (nonatomic, readonly) bool hasNotificationMessage;
+@property (nonatomic, readonly) bool hasOriginClientPropertiesMessage;
 @property (nonatomic, readonly) bool hasPlaybackQueueRequest;
 @property (nonatomic, readonly) bool hasPlaybackSessionMigrateBeginMessage;
 @property (nonatomic, readonly) bool hasPlaybackSessionMigrateEndMessage;
@@ -140,6 +149,7 @@
 @property (nonatomic, readonly) bool hasPlaybackSessionMigrateResponseMessage;
 @property (nonatomic, readonly) bool hasPlaybackSessionRequestMessage;
 @property (nonatomic, readonly) bool hasPlaybackSessionResponseMessage;
+@property (nonatomic, readonly) bool hasPlayerClientPropertiesMessage;
 @property (nonatomic, readonly) bool hasPresentRouteAuthorizationStatusMessage;
 @property (nonatomic, readonly) bool hasPromptForRouteAuthorizationMessage;
 @property (nonatomic, readonly) bool hasPromptForRouteAuthorizationResponseMessage;
@@ -153,6 +163,7 @@
 @property (nonatomic, readonly) bool hasRegisterVoiceInputDeviceResponseMessage;
 @property (nonatomic, readonly) bool hasRemoteTextInputMessage;
 @property (nonatomic, readonly) bool hasRemoveClientMessage;
+@property (nonatomic, readonly) bool hasRemoveEndpointsMessage;
 @property (nonatomic, readonly) bool hasRemoveOutputDevicesMessage;
 @property (nonatomic, readonly) bool hasRemovePlayerMessage;
 @property (nonatomic, readonly) bool hasSendButtonEventMessage;
@@ -176,11 +187,13 @@
 @property (nonatomic) bool hasTimestamp;
 @property (nonatomic, readonly) bool hasTransactionPackets;
 @property (nonatomic) bool hasType;
+@property (nonatomic, readonly) bool hasUniqueIdentifier;
 @property (nonatomic, readonly) bool hasUnregisterGameController;
 @property (nonatomic, readonly) bool hasUpdateActiveSystemEndpointMessage;
 @property (nonatomic, readonly) bool hasUpdateClientMessage;
 @property (nonatomic, readonly) bool hasUpdateContentItemArtworkMessage;
 @property (nonatomic, readonly) bool hasUpdateContentItemMessage;
+@property (nonatomic, readonly) bool hasUpdateEndpointsMessage;
 @property (nonatomic, readonly) bool hasUpdateOutputDevicesMessage;
 @property (nonatomic, readonly) bool hasUpdatePlayerMessage;
 @property (nonatomic, readonly) bool hasVolumeControlCapabilitiesDidChangeMessage;
@@ -191,6 +204,7 @@
 @property (nonatomic, retain) _MRVolumeControlAvailabilityProtobuf *masterVolumeControlCapabilitiesDidChangeMessage;
 @property (nonatomic, retain) _MRAVModifyOutputContextRequestProtobuf *modifyOutputContextRequestMessage;
 @property (nonatomic, retain) _MRNotificationMessageProtobuf *notificationMessage;
+@property (nonatomic, retain) _MROriginClientPropertiesMessageProtobuf *originClientPropertiesMessage;
 @property (nonatomic, retain) _MRPlaybackQueueRequestProtobuf *playbackQueueRequest;
 @property (nonatomic, retain) _MRPlaybackSessionMigrateBeginMessageProtobuf *playbackSessionMigrateBeginMessage;
 @property (nonatomic, retain) _MRPlaybackSessionMigrateEndMessageProtobuf *playbackSessionMigrateEndMessage;
@@ -198,6 +212,7 @@
 @property (nonatomic, retain) _MRPlaybackSessionMigrateResponseMessageProtobuf *playbackSessionMigrateResponseMessage;
 @property (nonatomic, retain) _MRPlaybackSessionRequestMessageProtobuf *playbackSessionRequestMessage;
 @property (nonatomic, retain) _MRPlaybackSessionResponseMessageProtobuf *playbackSessionResponseMessage;
+@property (nonatomic, retain) _MRPlayerClientPropertiesMessageProtobuf *playerClientPropertiesMessage;
 @property (nonatomic, retain) _MRPresentRouteAuthorizationStatusMessageProtobuf *presentRouteAuthorizationStatusMessage;
 @property (nonatomic, retain) _MRPromptForRouteAuthorizationMessageProtobuf *promptForRouteAuthorizationMessage;
 @property (nonatomic, retain) _MRPromptForRouteAuthorizationResponseMessageProtobuf *promptForRouteAuthorizationResponseMessage;
@@ -211,6 +226,7 @@
 @property (nonatomic, retain) _MRRegisterVoiceInputDeviceResponseMessageProtobuf *registerVoiceInputDeviceResponseMessage;
 @property (nonatomic, retain) _MRRemoteTextInputMessageProtobuf *remoteTextInputMessage;
 @property (nonatomic, retain) _MRRemoveClientMessageProtobuf *removeClientMessage;
+@property (nonatomic, retain) _MRRemoveEndpointsMessageProtobuf *removeEndpointsMessage;
 @property (nonatomic, retain) _MRRemoveOutputDevicesMessageProtobuf *removeOutputDevicesMessage;
 @property (nonatomic, retain) _MRRemovePlayerMessageProtobuf *removePlayerMessage;
 @property (nonatomic, retain) _MRSendButtonEventMessageProtobuf *sendButtonEventMessage;
@@ -234,11 +250,13 @@
 @property (nonatomic) unsigned long long timestamp;
 @property (nonatomic, retain) _MRTransactionMessageProtobuf *transactionPackets;
 @property (nonatomic) int type;
+@property (nonatomic, retain) NSString *uniqueIdentifier;
 @property (nonatomic, retain) _MRUnregisterGameControllerMessageProtobuf *unregisterGameController;
 @property (nonatomic, retain) _MRUpdateActiveSystemEndpointMessageProtobuf *updateActiveSystemEndpointMessage;
 @property (nonatomic, retain) _MRUpdateClientMessageProtobuf *updateClientMessage;
 @property (nonatomic, retain) _MRUpdateContentItemArtworkMessageProtobuf *updateContentItemArtworkMessage;
 @property (nonatomic, retain) _MRUpdateContentItemMessageProtobuf *updateContentItemMessage;
+@property (nonatomic, retain) _MRUpdateEndpointsMessageProtobuf *updateEndpointsMessage;
 @property (nonatomic, retain) _MRUpdateOutputDevicesMessageProtobuf *updateOutputDevicesMessage;
 @property (nonatomic, retain) _MRUpdatePlayerMessageProtobuf *updatePlayerMessage;
 @property (nonatomic, retain) _MRVolumeControlCapabilitiesDidChangeMessageProtobuf *volumeControlCapabilitiesDidChangeMessage;
@@ -257,6 +275,7 @@
 - (id)description;
 - (id)deviceInfoMessage;
 - (id)dictionaryRepresentation;
+- (id)discoveryModeMessage;
 - (unsigned int)errorCode;
 - (id)errorDescription;
 - (id)gameController;
@@ -277,6 +296,7 @@
 - (bool)hasContentItemsChangedNotificationMessage;
 - (bool)hasCryptoPairingMessage;
 - (bool)hasDeviceInfoMessage;
+- (bool)hasDiscoveryModeMessage;
 - (bool)hasErrorCode;
 - (bool)hasErrorDescription;
 - (bool)hasGameController;
@@ -296,6 +316,7 @@
 - (bool)hasMasterVolumeControlCapabilitiesDidChangeMessage;
 - (bool)hasModifyOutputContextRequestMessage;
 - (bool)hasNotificationMessage;
+- (bool)hasOriginClientPropertiesMessage;
 - (bool)hasPlaybackQueueRequest;
 - (bool)hasPlaybackSessionMigrateBeginMessage;
 - (bool)hasPlaybackSessionMigrateEndMessage;
@@ -303,6 +324,7 @@
 - (bool)hasPlaybackSessionMigrateResponseMessage;
 - (bool)hasPlaybackSessionRequestMessage;
 - (bool)hasPlaybackSessionResponseMessage;
+- (bool)hasPlayerClientPropertiesMessage;
 - (bool)hasPresentRouteAuthorizationStatusMessage;
 - (bool)hasPromptForRouteAuthorizationMessage;
 - (bool)hasPromptForRouteAuthorizationResponseMessage;
@@ -316,6 +338,7 @@
 - (bool)hasRegisterVoiceInputDeviceResponseMessage;
 - (bool)hasRemoteTextInputMessage;
 - (bool)hasRemoveClientMessage;
+- (bool)hasRemoveEndpointsMessage;
 - (bool)hasRemoveOutputDevicesMessage;
 - (bool)hasRemovePlayerMessage;
 - (bool)hasSendButtonEventMessage;
@@ -339,11 +362,13 @@
 - (bool)hasTimestamp;
 - (bool)hasTransactionPackets;
 - (bool)hasType;
+- (bool)hasUniqueIdentifier;
 - (bool)hasUnregisterGameController;
 - (bool)hasUpdateActiveSystemEndpointMessage;
 - (bool)hasUpdateClientMessage;
 - (bool)hasUpdateContentItemArtworkMessage;
 - (bool)hasUpdateContentItemMessage;
+- (bool)hasUpdateEndpointsMessage;
 - (bool)hasUpdateOutputDevicesMessage;
 - (bool)hasUpdatePlayerMessage;
 - (bool)hasVolumeControlCapabilitiesDidChangeMessage;
@@ -357,6 +382,7 @@
 - (void)mergeFrom:(id)arg1;
 - (id)modifyOutputContextRequestMessage;
 - (id)notificationMessage;
+- (id)originClientPropertiesMessage;
 - (id)playbackQueueRequest;
 - (id)playbackSessionMigrateBeginMessage;
 - (id)playbackSessionMigrateEndMessage;
@@ -364,6 +390,7 @@
 - (id)playbackSessionMigrateResponseMessage;
 - (id)playbackSessionRequestMessage;
 - (id)playbackSessionResponseMessage;
+- (id)playerClientPropertiesMessage;
 - (id)presentRouteAuthorizationStatusMessage;
 - (id)promptForRouteAuthorizationMessage;
 - (id)promptForRouteAuthorizationResponseMessage;
@@ -378,6 +405,7 @@
 - (id)registerVoiceInputDeviceResponseMessage;
 - (id)remoteTextInputMessage;
 - (id)removeClientMessage;
+- (id)removeEndpointsMessage;
 - (id)removeOutputDevicesMessage;
 - (id)removePlayerMessage;
 - (id)sendButtonEventMessage;
@@ -397,6 +425,7 @@
 - (void)setCryptoPairingMessage:(id)arg1;
 - (id)setDefaultSupportedCommandsMessage;
 - (void)setDeviceInfoMessage:(id)arg1;
+- (void)setDiscoveryModeMessage:(id)arg1;
 - (void)setErrorCode:(unsigned int)arg1;
 - (void)setErrorDescription:(id)arg1;
 - (void)setGameController:(id)arg1;
@@ -422,6 +451,7 @@
 - (void)setNotificationMessage:(id)arg1;
 - (id)setNowPlayingClientMessage;
 - (id)setNowPlayingPlayerMessage;
+- (void)setOriginClientPropertiesMessage:(id)arg1;
 - (void)setPlaybackQueueRequest:(id)arg1;
 - (void)setPlaybackSessionMigrateBeginMessage:(id)arg1;
 - (void)setPlaybackSessionMigrateEndMessage:(id)arg1;
@@ -429,6 +459,7 @@
 - (void)setPlaybackSessionMigrateResponseMessage:(id)arg1;
 - (void)setPlaybackSessionRequestMessage:(id)arg1;
 - (void)setPlaybackSessionResponseMessage:(id)arg1;
+- (void)setPlayerClientPropertiesMessage:(id)arg1;
 - (void)setPresentRouteAuthorizationStatusMessage:(id)arg1;
 - (void)setPromptForRouteAuthorizationMessage:(id)arg1;
 - (void)setPromptForRouteAuthorizationResponseMessage:(id)arg1;
@@ -443,6 +474,7 @@
 - (void)setRegisterVoiceInputDeviceResponseMessage:(id)arg1;
 - (void)setRemoteTextInputMessage:(id)arg1;
 - (void)setRemoveClientMessage:(id)arg1;
+- (void)setRemoveEndpointsMessage:(id)arg1;
 - (void)setRemoveOutputDevicesMessage:(id)arg1;
 - (void)setRemovePlayerMessage:(id)arg1;
 - (void)setSendButtonEventMessage:(id)arg1;
@@ -467,11 +499,13 @@
 - (void)setTimestamp:(unsigned long long)arg1;
 - (void)setTransactionPackets:(id)arg1;
 - (void)setType:(int)arg1;
+- (void)setUniqueIdentifier:(id)arg1;
 - (void)setUnregisterGameController:(id)arg1;
 - (void)setUpdateActiveSystemEndpointMessage:(id)arg1;
 - (void)setUpdateClientMessage:(id)arg1;
 - (void)setUpdateContentItemArtworkMessage:(id)arg1;
 - (void)setUpdateContentItemMessage:(id)arg1;
+- (void)setUpdateEndpointsMessage:(id)arg1;
 - (void)setUpdateOutputDevicesMessage:(id)arg1;
 - (void)setUpdatePlayerMessage:(id)arg1;
 - (void)setVolumeControlCapabilitiesDidChangeMessage:(id)arg1;
@@ -483,11 +517,13 @@
 - (id)transactionPackets;
 - (int)type;
 - (id)typeAsString:(int)arg1;
+- (id)uniqueIdentifier;
 - (id)unregisterGameController;
 - (id)updateActiveSystemEndpointMessage;
 - (id)updateClientMessage;
 - (id)updateContentItemArtworkMessage;
 - (id)updateContentItemMessage;
+- (id)updateEndpointsMessage;
 - (id)updateOutputDevicesMessage;
 - (id)updatePlayerMessage;
 - (id)volumeControlCapabilitiesDidChangeMessage;

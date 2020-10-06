@@ -8,20 +8,9 @@
     bool  _invalidated;
 }
 
-@property (nonatomic, readonly) NSXPCConnection *connection;
-@property (nonatomic, readonly) bool interrupted;
-@property (nonatomic, readonly) bool invalidated;
-
-- (void)_setInterrupted;
-- (void)_setInvalidated;
 - (bool)_valid;
-- (id)connection;
 - (void)dealloc;
 - (void)handleMessage:(id)arg1 reply:(id /* block */)arg2;
 - (id)initWithMachServiceName:(id)arg1;
-- (bool)interrupted;
-- (bool)invalidated;
-- (bool)registerClientStore:(id)arg1 withMirroringOptions:(id)arg2 error:(id*)arg3;
-- (bool)scheduleBackupTaskForClientStore:(id)arg1 error:(id*)arg2;
 
 @end

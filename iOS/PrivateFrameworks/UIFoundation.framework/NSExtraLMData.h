@@ -34,6 +34,7 @@
         } size; 
     }  _currentAttachmentRect;
     long long  _currentChangeInLength;
+    id /* block */  _didCompleteLayoutObserverBlock;
     NSLock * _fillHoleLock;
     NSTextContainer * _firstTextContainer;
     struct _NSRange { 

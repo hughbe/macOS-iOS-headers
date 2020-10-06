@@ -26,6 +26,10 @@
 @property (readonly) NSString *title;
 
 - (void).cxx_destruct;
+- (void)_mainQueue_endProgress;
+- (void)_mainQueue_hideProgressAnimated:(bool)arg1;
+- (void)_mainQueue_presentProgressAlert;
+- (void)_mainQueue_showProgress:(id)arg1 immediately:(bool)arg2;
 - (void)_presentProgressAlert;
 - (bool)creatingPDF;
 - (void)endProgress;

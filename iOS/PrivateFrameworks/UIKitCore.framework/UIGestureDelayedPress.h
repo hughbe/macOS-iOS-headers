@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIGestureDelayedPress : NSObject <NSCopying> {
+@interface UIGestureDelayedPress : NSObject <NSCopying, _UIGestureDelaying> {
     bool  _cloneForSecondDelivery;
     long long  _delayCount;
     UIPressesEvent * _event;
@@ -11,31 +11,16 @@
     UIPress * _stateWhenDelivered;
 }
 
-@property bool cloneForSecondDelivery;
-@property (nonatomic, retain) UIPressesEvent *event;
-@property (nonatomic, retain) UIPress *press;
-@property (nonatomic, retain) UIPress *stateWhenDelayed;
-@property (nonatomic, retain) UIPress *stateWhenDelivered;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (bool)cloneForSecondDelivery;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (long long)decrementDelayCount;
-- (long long)delayCount;
 - (id)description;
-- (id)event;
-- (void)incrementDelayCount;
 - (id)init;
 - (long long)phaseForDelivery;
-- (id)press;
-- (void)saveCurrentPressState;
-- (void)setCloneForSecondDelivery:(bool)arg1;
-- (void)setEvent:(id)arg1;
-- (void)setPress:(id)arg1;
-- (void)setStateWhenDelayed:(id)arg1;
-- (void)setStateWhenDelivered:(id)arg1;
-- (id)stateWhenDelayed;
-- (id)stateWhenDelivered;
 - (double)timestampForDelivery;
 
 @end

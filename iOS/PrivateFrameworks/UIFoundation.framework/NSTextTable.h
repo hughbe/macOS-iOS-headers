@@ -3,11 +3,8 @@
  */
 
 @interface NSTextTable : NSTextBlock <NSSecureCoding> {
-    id  _lcache;
     unsigned long long  _numCols;
     unsigned long long  _tableFlags;
-    void * _tablePrimary;
-    void * _tableSecondary;
 }
 
 + (void)initialize;

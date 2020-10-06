@@ -9,10 +9,7 @@
         unsigned int read_actionComponentMapEntries : 1; 
         unsigned int read_searchAttributionSources : 1; 
         unsigned int read_sourceURL : 1; 
-        unsigned int wrote_actionComponentMapEntries : 1; 
-        unsigned int wrote_searchAttributionSources : 1; 
-        unsigned int wrote_sourceURL : 1; 
-        unsigned int wrote_timestamp : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,11 +34,6 @@
 + (Class)searchAttributionSourcesType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsActionComponentMapEntries:(id)arg1;
-- (void)_addNoFlagsSearchAttributionSources:(id)arg1;
-- (void)_readActionComponentMapEntries;
-- (void)_readSearchAttributionSources;
-- (void)_readSourceURL;
 - (id)actionComponentMapEntries;
 - (id)actionComponentMapEntriesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)actionComponentMapEntriesCount;
@@ -58,7 +50,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

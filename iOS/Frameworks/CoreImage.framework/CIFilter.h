@@ -18,6 +18,7 @@
 // Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
 
 + (id)CMYKHalftone;
++ (id)KMeansFilter;
 + (id)LabDeltaE;
 + (id)PDF417BarcodeGenerator;
 + (id)QRCodeGenerator;
@@ -32,6 +33,14 @@
 + (id)affineClampFilter;
 + (id)affineTileFilter;
 + (id)allCategories:(bool)arg1;
++ (id)areaAverageFilter;
++ (id)areaHistogramFilter;
++ (id)areaMaximumAlphaFilter;
++ (id)areaMaximumFilter;
++ (id)areaMinMaxFilter;
++ (id)areaMinMaxRedFilter;
++ (id)areaMinimumAlphaFilter;
++ (id)areaMinimumFilter;
 + (id)attributedTextImageGeneratorFilter;
 + (id)aztecCodeGeneratorFilter;
 + (id)barcodeGeneratorFilter;
@@ -44,9 +53,14 @@
 + (id)bloomFilter;
 + (id)bokehBlurFilter;
 + (id)boxBlurFilter;
++ (id)bumpDistortionFilter;
++ (id)bumpDistortionLinearFilter;
 + (id)checkerboardGeneratorFilter;
++ (id)circleSplashDistortionFilter;
 + (id)circularScreenFilter;
++ (id)circularWrapFilter;
 + (id)code128BarcodeGeneratorFilter;
++ (id)colorAbsoluteDifferenceFilter;
 + (id)colorBlendModeFilter;
 + (id)colorBurnBlendModeFilter;
 + (id)colorClampFilter;
@@ -63,6 +77,9 @@
 + (id)colorMonochromeFilter;
 + (id)colorPolynomialFilter;
 + (id)colorPosterizeFilter;
++ (id)colorThresholdFilter;
++ (id)colorThresholdOtsuFilter;
++ (id)columnAverageFilter;
 + (id)comicEffectFilter;
 + (id)convolution3X3Filter;
 + (id)convolution5X5Filter;
@@ -80,11 +97,13 @@
 + (id)discBlurFilter;
 + (id)disintegrateWithMaskTransitionFilter;
 + (id)disparityToDepthFilter;
++ (id)displacementDistortionFilter;
 + (id)dissolveTransitionFilter;
 + (id)ditherFilter;
 + (id)divideBlendModeFilter;
 + (id)documentEnhancerFilter;
 + (id)dotScreenFilter;
++ (id)drosteFilter;
 + (id)edgePreserveUpsampleFilter;
 + (id)edgeWorkFilter;
 + (id)edgesFilter;
@@ -119,6 +138,8 @@
 + (id)gaussianBlurFilter;
 + (id)gaussianGradientFilter;
 + (int)getMinMaxSimulatedApertureFrom:(struct __CFData { }*)arg1 minValue:(float*)arg2 maxValue:(float*)arg3 version:(int*)arg4;
++ (id)glassDistortionFilter;
++ (id)glassLozengeFilter;
 + (id)glideReflectedTileFilter;
 + (id)gloomFilter;
 + (id)hardLightBlendModeFilter;
@@ -126,6 +147,8 @@
 + (id)heightFieldFromMaskFilter;
 + (id)hexagonalPixellateFilter;
 + (id)highlightShadowAdjustFilter;
++ (id)histogramDisplayFilter;
++ (id)holeDistortionFilter;
 + (id)hueAdjustFilter;
 + (id)hueBlendModeFilter;
 + (id)hueSaturationValueGradientFilter;
@@ -137,6 +160,7 @@
 + (id)keystoneCorrectionVerticalFilter;
 + (id)lanczosScaleTransformFilter;
 + (id)lenticularHaloGeneratorFilter;
++ (id)lightTunnelFilter;
 + (id)lightenBlendModeFilter;
 + (id)lineOverlayFilter;
 + (id)lineScreenFilter;
@@ -144,7 +168,6 @@
 + (id)linearDodgeBlendModeFilter;
 + (id)linearGradientFilter;
 + (id)linearToSRGBToneCurveFilter;
-+ (void)load;
 + (id)localizedDescriptionForFilterName:(id)arg1;
 + (id)localizedNameForCategory:(id)arg1;
 + (id)localizedNameForFilterName:(id)arg1;
@@ -170,6 +193,8 @@
 + (id)motionBlurFilter;
 + (id)multiplyBlendModeFilter;
 + (id)multiplyCompositingFilter;
++ (id)ninePartStretchedFilter;
++ (id)ninePartTiledFilter;
 + (id)noiseReductionFilter;
 + (id)opTileFilter;
 + (id)overlayBlendModeFilter;
@@ -192,6 +217,7 @@
 + (id)photoEffectTonalFilter;
 + (id)photoEffectTransferFilter;
 + (id)pinLightBlendModeFilter;
++ (id)pinchDistortionFilter;
 + (id)pixellateFilter;
 + (id)pointillizeFilter;
 + (id)radialGradientFilter;
@@ -199,6 +225,7 @@
 + (void)registerFilterName:(id)arg1 constructor:(id)arg2 classAttributes:(id)arg3;
 + (id)rippleTransitionFilter;
 + (id)roundedRectangleGeneratorFilter;
++ (id)rowAverageFilter;
 + (id)sRGBToneCurveToLinearFilter;
 + (id)saliencyMapFilter;
 + (id)saturationBlendModeFilter;
@@ -219,6 +246,7 @@
 + (id)spotLightFilter;
 + (id)starShineGeneratorFilter;
 + (id)straightenFilter;
++ (id)stretchCropFilter;
 + (id)stripesGeneratorFilter;
 + (id)subtractBlendModeFilter;
 + (id)sunbeamsGeneratorFilter;
@@ -229,13 +257,17 @@
 + (id)textImageGeneratorFilter;
 + (id)thermalFilter;
 + (id)toneCurveFilter;
++ (id)torusLensDistortionFilter;
 + (id)triangleKaleidoscopeFilter;
 + (id)triangleTileFilter;
 + (id)twelvefoldReflectedTileFilter;
++ (id)twirlDistortionFilter;
++ (void)unregisterFilterName:(id)arg1;
 + (id)unsharpMaskFilter;
 + (id)vibranceFilter;
 + (id)vignetteEffectFilter;
 + (id)vignetteFilter;
++ (id)vortexDistortionFilter;
 + (id)whitePointAdjustFilter;
 + (bool)wrapClassIfNeeded:(Class)arg1;
 + (id)xRayFilter;
@@ -375,5 +407,20 @@
 // Image: /System/Library/CoreServices/RawCamera.bundle/RawCamera
 
 - (id)outputInputImageWithFixmeWarning;
+
+// Image: /System/Library/PrivateFrameworks/NeutrinoCore.framework/NeutrinoCore
+
++ (id)_dataExtractionOverrrides;
++ (id)autoRedEyeExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)extractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)faceBalanceExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)localLightExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)perspectiveExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)reductionFilterExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)smartColorExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)smartToneExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
++ (id)straightenExtractDataToDictionary:(id)arg1 dataExtractor:(id)arg2 options:(id)arg3 context:(id)arg4 colorSpace:(struct CGColorSpace { }*)arg5 error:(id*)arg6;
+
+- (id)extractDataToDictionary:(id)arg1 options:(id)arg2 context:(id)arg3 colorSpace:(struct CGColorSpace { }*)arg4 error:(id*)arg5;
 
 @end

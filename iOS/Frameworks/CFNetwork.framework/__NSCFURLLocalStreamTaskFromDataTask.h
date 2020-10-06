@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@interface __NSCFURLLocalStreamTaskFromDataTask : __NSCFURLLocalStreamTask <SessionConnectionDelegate> {
+@interface __NSCFURLLocalStreamTaskFromDataTask : __NSCFURLLocalStreamTask <__NSCFURLSessionConnectionDelegate> {
     struct __CFReadStream { } * _myReadToHisWrite;
     bool  _myReadToHisWriteEOF;
     struct { 
@@ -25,18 +25,11 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-- (void)_onqueue_didFinishLoadingWithError:(id)arg1;
-- (void)_onqueue_ioTickFromDataTask;
-- (void)_onqueue_ioTickFromDataTaskConversion:(const char *)arg1;
-- (void)_onqueue_stFromDataTaskReadCallback:(unsigned long long)arg1;
-- (void)_onqueue_stFromDataTaskWriteCallback:(unsigned long long)arg1;
-- (void)_unimp:(const char *)arg1;
 - (void)connection:(id)arg1 _conditionalRequirementsChanged:(bool)arg2;
 - (void)connection:(id)arg1 _willSendRequestForEstablishedConnection:(id)arg2 completion:(id /* block */)arg3;
 - (void)connection:(id)arg1 challenged:(id)arg2 authCallback:(id /* block */)arg3;
 - (void)connection:(id)arg1 didFinishCollectingMetrics:(id)arg2 completion:(id /* block */)arg3;
 - (void)connection:(id)arg1 didFinishLoadingWithError:(id)arg2;
-- (void)connection:(id)arg1 didReceiveConnectionCacheKey:(struct HTTPConnectionCacheKey { int (**x1)(); struct __CFAllocator {} *x2; int x3; unsigned long long x4; struct __CFString {} *x5; int x6; int x7; struct __CFDictionary {} *x8; unsigned long long x9; struct __CFDictionary {} *x10; struct shared_ptr<NetworkProxy> { struct NetworkProxy {} *x_11_1_1; struct __shared_weak_count {} *x_11_1_2; } x11; struct shared_ptr<const __CFString> { struct __CFString {} *x_12_1_1; struct __shared_weak_count {} *x_12_1_2; } x12; int x13; int x14; struct unique_ptr<const __CFDictionary, Deleter_CFRelease> { struct __compressed_pair<const __CFDictionary *, Deleter_CFRelease> { struct __CFDictionary {} *x_1_2_1; } x_15_1_1; } x15; struct unique_ptr<const __CFString, Deleter_CFRelease> { struct __compressed_pair<const __CFString *, Deleter_CFRelease> { struct __CFString {} *x_1_2_1; } x_16_1_1; } x16; }*)arg2;
 - (void)connection:(id)arg1 didReceiveData:(id)arg2 completion:(id /* block */)arg3;
 - (void)connection:(id)arg1 didReceiveResponse:(id)arg2 completion:(id /* block */)arg3;
 - (void)connection:(id)arg1 didReceiveSocketInputStream:(id)arg2 outputStream:(id)arg3;

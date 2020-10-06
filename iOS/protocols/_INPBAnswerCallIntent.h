@@ -5,8 +5,14 @@
 
 @required
 
+- (int)StringAsAudioRoute:(NSString *)arg1;
+- (int)audioRoute;
+- (NSString *)audioRouteAsString:(int)arg1;
+- (bool)hasAudioRoute;
 - (bool)hasIntentMetadata;
 - (_INPBIntentMetadata *)intentMetadata;
+- (void)setAudioRoute:(int)arg1;
+- (void)setHasAudioRoute:(bool)arg1;
 - (void)setIntentMetadata:(_INPBIntentMetadata *)arg1;
 
 @end

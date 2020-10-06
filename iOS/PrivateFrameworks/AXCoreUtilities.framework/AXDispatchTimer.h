@@ -17,13 +17,13 @@
 
 @property (getter=isActive, nonatomic) bool active;
 @property (nonatomic) bool automaticallyCancelPendingBlockUponSchedulingNewBlock;
-@property (nonatomic, copy) id /* block */ cancelBlock;
+@property (copy) id /* block */ cancelBlock;
 @property (getter=isCancelled, nonatomic) bool cancelled;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *dispatchQueue;
 @property (nonatomic, retain) NSObject<OS_dispatch_source> *dispatchTimer;
 @property (nonatomic, retain) NSString *label;
 @property (getter=isPending, nonatomic) bool pending;
-@property (nonatomic, copy) id /* block */ processBlock;
+@property (copy) id /* block */ processBlock;
 @property (nonatomic) bool useWallTime;
 
 - (void).cxx_destruct;

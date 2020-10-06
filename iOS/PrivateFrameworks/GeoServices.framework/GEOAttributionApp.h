@@ -10,11 +10,7 @@
         unsigned int has_supportsRestaurantReservations : 1; 
         unsigned int read_appBundleIdentifier : 1; 
         unsigned int read_handledSchemes : 1; 
-        unsigned int wrote_appBundleIdentifier : 1; 
-        unsigned int wrote_handledSchemes : 1; 
-        unsigned int wrote_restaurantReservationExtensionSupport : 1; 
-        unsigned int wrote_supportsRestaurantQueueing : 1; 
-        unsigned int wrote_supportsRestaurantReservations : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _handledSchemes;
     PBDataReader * _reader;
@@ -42,9 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsRestaurantReservationExtensionSupport:(id)arg1;
-- (void)_addNoFlagsHandledSchemes:(id)arg1;
-- (void)_readAppBundleIdentifier;
-- (void)_readHandledSchemes;
 - (void)addHandledSchemes:(id)arg1;
 - (id)appBundleIdentifier;
 - (void)clearHandledSchemes;
@@ -61,7 +54,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

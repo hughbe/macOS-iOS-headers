@@ -21,6 +21,7 @@
 - (void)dealloc;
 - (void)encodeBool:(bool)arg1;
 - (void)encodeData:(const void*)arg1 length:(long long)arg2;
+- (void)encodeDouble:(double)arg1;
 - (void)encodeInt32:(int)arg1;
 - (void)encodeInt64:(long long)arg1;
 - (void)encodeMDPlistObject:(struct { char *x1; struct { unsigned int x_2_1_1; unsigned char x_2_1_2; } x2; })arg1;

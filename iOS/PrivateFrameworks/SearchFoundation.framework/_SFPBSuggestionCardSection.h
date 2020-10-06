@@ -5,6 +5,7 @@
 @interface _SFPBSuggestionCardSection : PBCodable <NSSecureCoding, _SFPBSuggestionCardSection> {
     _SFPBColor * _backgroundColor;
     bool  _canBeHidden;
+    _SFPBRichText * _detailText;
     bool  _hasBottomPadding;
     bool  _hasTopPadding;
     bool  _isContact;
@@ -15,6 +16,7 @@
     int  _separatorStyle;
     _SFPBRichText * _suggestionText;
     int  _suggestionType;
+    _SFPBImage * _thumbnail;
     NSString * _type;
 }
 
@@ -22,6 +24,7 @@
 @property (nonatomic) bool canBeHidden;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, retain) _SFPBRichText *detailText;
 @property (nonatomic) bool hasBottomPadding;
 @property (nonatomic) bool hasTopPadding;
 @property (readonly) unsigned long long hash;
@@ -35,6 +38,7 @@
 @property (nonatomic, retain) _SFPBRichText *suggestionText;
 @property (nonatomic) int suggestionType;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) _SFPBImage *thumbnail;
 @property (nonatomic, copy) NSString *type;
 
 - (void).cxx_destruct;
@@ -42,6 +46,7 @@
 - (id)backgroundColor;
 - (bool)canBeHidden;
 - (void)clearPunchoutOptions;
+- (id)detailText;
 - (id)dictionaryRepresentation;
 - (bool)hasBottomPadding;
 - (bool)hasTopPadding;
@@ -62,6 +67,7 @@
 - (int)separatorStyle;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setCanBeHidden:(bool)arg1;
+- (void)setDetailText:(id)arg1;
 - (void)setHasBottomPadding:(bool)arg1;
 - (void)setHasTopPadding:(bool)arg1;
 - (void)setIsContact:(bool)arg1;
@@ -72,9 +78,11 @@
 - (void)setSeparatorStyle:(int)arg1;
 - (void)setSuggestionText:(id)arg1;
 - (void)setSuggestionType:(int)arg1;
+- (void)setThumbnail:(id)arg1;
 - (void)setType:(id)arg1;
 - (id)suggestionText;
 - (int)suggestionType;
+- (id)thumbnail;
 - (id)type;
 - (void)writeTo:(id)arg1;
 

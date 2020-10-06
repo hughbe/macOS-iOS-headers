@@ -6,6 +6,8 @@
     struct CAMediaTimingFunctionPrivate { float x1[2]; float x2[2]; } * _priv;
 }
 
+@property (nonatomic, readonly) TSDBezierPath *bezierPath;
+
 // Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
 
 + (void)CAMLParserEndElement:(id)arg1 content:(id)arg2;
@@ -30,9 +32,19 @@
 
 + (id)sigmoidFunction;
 
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
+- (double)TSD_valueAtPercent:(double)arg1;
+- (id)bezierPath;
+- (double)solveForTime:(double)arg1;
+
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_kbTimingFunction;
 + (id)uiFunctionWithControlPoints:(const struct CGPoint { double x1; double x2; }*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSDrawables.framework/TSDrawables
+
+- (double)TSD_valueAtPercent:(double)arg1;
 
 @end

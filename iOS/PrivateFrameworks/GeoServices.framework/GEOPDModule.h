@@ -3,17 +3,14 @@
  */
 
 @interface GEOPDModule : PBCodable <NSCopying> {
-    NSString * _debugDescription;
     struct { 
         unsigned int has_type : 1; 
         unsigned int read_unknownFields : 1; 
-        unsigned int read_debugDescription : 1; 
+        unsigned int read_moduleDebugDescription : 1; 
         unsigned int read_options : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_debugDescription : 1; 
-        unsigned int wrote_options : 1; 
-        unsigned int wrote_type : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
+    NSString * _moduleDebugDescription;
     GEOPDModuleOptions * _options;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -25,10 +22,10 @@
     PBUnknownFields * _unknownFields;
 }
 
-@property (nonatomic, retain) NSString *debugDescription;
-@property (nonatomic, readonly) bool hasDebugDescription;
+@property (nonatomic, readonly) bool hasModuleDebugDescription;
 @property (nonatomic, readonly) bool hasOptions;
 @property (nonatomic) bool hasType;
+@property (nonatomic, retain) NSString *moduleDebugDescription;
 @property (nonatomic, retain) GEOPDModuleOptions *options;
 @property (nonatomic) int type;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
@@ -37,27 +34,28 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (void)_readDebugDescription;
-- (void)_readOptions;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)debugDescription;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (bool)hasDebugDescription;
+- (bool)hasModuleDebugDescription;
 - (bool)hasOptions;
 - (bool)hasType;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
+- (id)moduleDebugDescription;
 - (id)options;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
-- (void)setDebugDescription:(id)arg1;
 - (void)setHasType:(bool)arg1;
+- (void)setModuleDebugDescription:(id)arg1;
 - (void)setOptions:(id)arg1;
 - (void)setType:(int)arg1;
 - (int)type;

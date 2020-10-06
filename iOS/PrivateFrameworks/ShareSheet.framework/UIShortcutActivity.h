@@ -2,12 +2,13 @@
    Image: /System/Library/PrivateFrameworks/ShareSheet.framework/ShareSheet
  */
 
-@interface UIShortcutActivity : UIApplicationExtensionActivity <NSSecureCoding> {
+@interface UIShortcutActivity : UIApplicationExtensionActivity {
     UIImage * _iconImage;
     NSString * _identifier;
     NSString * _name;
     NSArray * _photosAssetIdentifiers;
     NSString * _singleUseToken;
+    NSNumber * _sortValue;
 }
 
 @property (nonatomic, retain) UIImage *iconImage;
@@ -15,20 +16,17 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSArray *photosAssetIdentifiers;
 @property (nonatomic, retain) NSString *singleUseToken;
-
-+ (bool)supportsSecureCoding;
+@property (nonatomic, retain) NSNumber *sortValue;
 
 - (void).cxx_destruct;
 - (id)_actionImage;
 - (long long)_defaultSortGroup;
 - (id)activityTitle;
 - (id)activityType;
-- (void)encodeWithCoder:(id)arg1;
 - (id)iconImage;
 - (id)identifier;
-- (id)initPartialShortcutFromXPCHelperWithName:(id)arg1 identifier:(id)arg2 image:(id)arg3;
+- (id)initPartialShortcutWithName:(id)arg1 identifier:(id)arg2 image:(id)arg3 sortValue:(id)arg4;
 - (id)initWithApplicationExtension:(id)arg1 singleUseToken:(id)arg2 photosAssetIdentifiers:(id)arg3;
-- (id)initWithCoder:(id)arg1;
 - (id)initWithPartial:(id)arg1;
 - (id)name;
 - (id)photosAssetIdentifiers;
@@ -38,6 +36,8 @@
 - (void)setName:(id)arg1;
 - (void)setPhotosAssetIdentifiers:(id)arg1;
 - (void)setSingleUseToken:(id)arg1;
+- (void)setSortValue:(id)arg1;
 - (id)singleUseToken;
+- (id)sortValue;
 
 @end

@@ -4,6 +4,7 @@
 
 @interface BKSTerminationAssertionObserverManager : NSObject {
     NSObject<OS_dispatch_queue> * _calloutQueue;
+    NSMutableSet * _launchPreventedBundleIDs;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _lock;

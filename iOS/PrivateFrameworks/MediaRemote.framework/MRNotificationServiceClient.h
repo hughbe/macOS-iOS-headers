@@ -31,6 +31,7 @@
 - (void)_handlePlayerSupportedCommandsDidChangeNotification:(id)arg1;
 - (void)_handleVolumeControlCapabilitiesDidChangeNotification:(id)arg1;
 - (void)_handleVolumeDidChangeNotification:(id)arg1;
+- (void)_notificationFired:(id)arg1 clientNotification:(id)arg2 originNotification:(id)arg3 nowPlayingNotification:(id)arg4;
 - (void)_notificationFired:(id)arg1 originNotification:(id)arg2 nowPlayingNotification:(id)arg3;
 - (void)_notificationFired:(id)arg1 playerPathNotifcation:(id)arg2 originNotification:(id)arg3 nowPlayingNotification:(id)arg4;
 - (void)_postDefaultAppilicationNotifications:(id)arg1;

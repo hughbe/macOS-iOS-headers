@@ -35,6 +35,7 @@
 - (id)debugDescription;
 - (void)didStartPreviewForProvider:(id)arg1;
 - (void)didStopPreviewForProvider:(id)arg1;
+- (void)flipCamera;
 - (bool)hasRefreshedPreviewAfterError;
 - (id)init;
 - (id)initWithProvider:(id)arg1 serialQueue:(id)arg2;

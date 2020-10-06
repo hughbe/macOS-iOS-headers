@@ -2,12 +2,14 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@interface EKCalendarEventInvitationNotification : EKCalendarNotification {
+@interface EKCalendarEventInvitationNotification : EKCalendarNotification <NSCopying> {
     bool  _allDay;
     bool  _attendeeReplyChanged;
     NSArray * _attendees;
     bool  _dateChanged;
     NSDate * _endDate;
+    bool  _expanded;
+    EKCalendarEventInvitationNotificationAttendee * _expandedProposedTimeAttendee;
     NSString * _invitedBy;
     NSString * _location;
     bool  _locationChanged;
@@ -28,6 +30,8 @@
 @property (nonatomic) bool couldBeJunk;
 @property (nonatomic) bool dateChanged;
 @property (nonatomic, retain) NSDate *endDate;
+@property (nonatomic) bool expanded;
+@property (nonatomic, retain) EKCalendarEventInvitationNotificationAttendee *expandedProposedTimeAttendee;
 @property (nonatomic, readonly) NSString *invitedBy;
 @property (nonatomic, retain) NSString *location;
 @property (nonatomic) bool locationChanged;
@@ -41,27 +45,38 @@
 @property (nonatomic) bool timeChanged;
 @property (nonatomic, retain) NSTimeZone *timeZone;
 
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
+
 - (void).cxx_destruct;
 - (bool)attendeeReplyChanged;
 - (id)attendees;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)dateChanged;
 - (id)endDate;
 - (id)eventFromEventStore:(id)arg1;
+- (bool)expanded;
+- (id)expandedProposedTimeAttendee;
 - (bool)hasRecurrenceRules;
 - (id)initWithEvent:(id)arg1;
 - (id)invitedBy;
 - (bool)isAllDay;
+- (bool)isInvitation;
+- (bool)isProposedNewTime;
 - (id)location;
 - (bool)locationChanged;
+- (bool)needsReply;
 - (id)owner;
 - (long long)participationStatus;
 - (id)participationStatusModifiedDate;
+- (bool)proposedStartDateIsInFutureForAttendee:(id)arg1;
 - (id)recurrenceRule;
 - (void)setAllDay:(bool)arg1;
 - (void)setAttendeeReplyChanged:(bool)arg1;
 - (void)setAttendees:(id)arg1;
 - (void)setDateChanged:(bool)arg1;
 - (void)setEndDate:(id)arg1;
+- (void)setExpanded:(bool)arg1;
+- (void)setExpandedProposedTimeAttendee:(id)arg1;
 - (void)setLocation:(id)arg1;
 - (void)setLocationChanged:(bool)arg1;
 - (void)setOwner:(id)arg1;
@@ -78,5 +93,22 @@
 - (long long)status;
 - (bool)timeChanged;
 - (id)timeZone;
+
+// Image: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
+
+- (id)_allDescriptionStringsDictionaryWithStyle:(unsigned long long)arg1 options:(unsigned long long)arg2;
+- (id)_attachmentString;
+- (id)_attendeeReplyStringWithOptions:(unsigned long long)arg1 descriptions:(id)arg2;
+- (id)_attendeeString:(unsigned long long)arg1;
+- (id)_dateString:(unsigned long long)arg1;
+- (id)_errorString:(unsigned long long)arg1;
+- (id)_identityStringWithOptions:(unsigned long long)arg1;
+- (id)_locationString:(unsigned long long)arg1;
+- (id)_organizerString:(unsigned long long)arg1;
+- (id)allDescriptionStringsWithOptions:(unsigned long long)arg1;
+- (id)descriptionStrings:(unsigned long long)arg1;
+- (id)importantDescriptionStringWithOptions:(unsigned long long)arg1;
+- (id)senderStringWithOptions:(unsigned long long)arg1;
+- (bool)supportsDisplay;
 
 @end

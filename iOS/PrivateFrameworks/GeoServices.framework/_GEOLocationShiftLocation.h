@@ -11,7 +11,6 @@
     id /* block */  _functionHandler;
     GEOLatLng * _latLng;
     id /* block */  _mustGoToNetworkCallback;
-    bool  _recordCacheInfo;
 }
 
 @property (nonatomic, readonly) double accuracy;
@@ -27,7 +26,7 @@
 - (id)initWithLatLng:(id)arg1 accuracy:(double)arg2 completionHandler:(id /* block */)arg3 errorHandler:(id /* block */)arg4 mustGoToNetworkCallback:(id /* block */)arg5 callbackQueue:(id)arg6 auditToken:(id)arg7;
 - (id)initWithLatLng:(id)arg1 auditToken:(id)arg2 functionHandler:(id /* block */)arg3 errorHandler:(id /* block */)arg4 callbackQueue:(id)arg5;
 - (id)latLng;
-- (void)performCompletionHandlerWithShiftedCoordinate:(struct { double x1; double x2; })arg1 accuracy:(double)arg2 function:(id)arg3 wasFunctionCached:(bool)arg4;
+- (void)performCompletionHandlerWithShiftedCoordinate:(struct { double x1; double x2; })arg1 accuracy:(double)arg2 function:(id)arg3;
 - (void)performErrorHandler:(id)arg1;
 - (void)performMustGoToNetwork;
 

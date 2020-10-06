@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INCodableStringAttributeMetadata : INCodableAttributeMetadata {
+@interface INCodableStringAttributeMetadata : INCodableAttributeMetadata <INCodableAttributeDefaultValueProviding> {
     long long  _capitalization;
     NSString * _defaultValue;
     NSString * _defaultValueID;
@@ -13,19 +13,45 @@
 }
 
 @property (nonatomic) long long capitalization;
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, copy) NSString *defaultValue;
 @property (nonatomic, copy) NSString *defaultValueID;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) bool disableAutocorrect;
 @property (nonatomic) bool disableSmartDashes;
 @property (nonatomic) bool disableSmartQuotes;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, copy) NSString *localizedDefaultValue;
 @property (getter=isMultiline, nonatomic) bool multiline;
+@property (readonly) Class superclass;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableDescriptionCapitalizationKey;
+- (id)__INCodableDescriptionDefaultValueIDKey;
+- (id)__INCodableDescriptionDefaultValueKey;
+- (id)__INCodableDescriptionDisableAutocorrectKey;
+- (id)__INCodableDescriptionDisableSmartDashesKey;
+- (id)__INCodableDescriptionDisableSmartQuotesKey;
+- (id)__INCodableDescriptionMultilineKey;
+- (id)__INIntentResponseCodableDescriptionCapitalizationKey;
+- (id)__INIntentResponseCodableDescriptionDefaultValueIDKey;
+- (id)__INIntentResponseCodableDescriptionDefaultValueKey;
+- (id)__INIntentResponseCodableDescriptionDisableAutocorrectKey;
+- (id)__INIntentResponseCodableDescriptionDisableSmartDashesKey;
+- (id)__INIntentResponseCodableDescriptionDisableSmartQuotesKey;
+- (id)__INIntentResponseCodableDescriptionMultilineKey;
+- (id)__INTypeCodableDescriptionCapitalizationKey;
+- (id)__INTypeCodableDescriptionDefaultValueIDKey;
+- (id)__INTypeCodableDescriptionDefaultValueKey;
+- (id)__INTypeCodableDescriptionDisableAutocorrectKey;
+- (id)__INTypeCodableDescriptionDisableSmartDashesKey;
+- (id)__INTypeCodableDescriptionDisableSmartQuotesKey;
+- (id)__INTypeCodableDescriptionMultilineKey;
 - (long long)capitalization;
 - (id)defaultValue;
+- (id)defaultValueForIntentDefaultValueProvider;
 - (id)defaultValueID;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (bool)disableAutocorrect;

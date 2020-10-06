@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AssertionServices.framework/AssertionServices
  */
 
-@interface BKSLaunchdJobSpecification : NSObject <BSXPCCoding, NSCopying, NSSecureCoding> {
+@interface BKSLaunchdJobSpecification : NSObject <NSCopying, NSSecureCoding> {
     NSArray * _arguments;
     NSString * _bundleIdentifier;
     NSString * _bundlePath;
@@ -19,18 +19,14 @@
 @property (nonatomic, copy) NSArray *arguments;
 @property (nonatomic, copy) NSString *bundleIdentifier;
 @property (nonatomic, copy) NSString *bundlePath;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSDictionary *environment;
 @property (nonatomic, copy) NSString *executablePath;
 @property (nonatomic) unsigned long long executionOptions;
-@property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *labelPrefix;
 @property (nonatomic, copy) NSArray *machServices;
 @property (nonatomic, copy) NSString *managedPersona;
 @property (nonatomic, copy) NSString *standardError;
 @property (nonatomic, copy) NSString *standardOutput;
-@property (readonly) Class superclass;
 
 + (id)specification;
 + (bool)supportsSecureCoding;

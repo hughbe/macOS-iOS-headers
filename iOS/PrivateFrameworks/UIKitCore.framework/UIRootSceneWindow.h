@@ -3,9 +3,7 @@
  */
 
 @interface UIRootSceneWindow : _UIRootWindow <UIMutableTransformerDelegate> {
-    CALayer * _bezelLayer;
     FBSDisplayConfiguration * _displayConfiguration;
-    CALayer * _maskLayer;
     UIView * _sceneContainerView;
     UIMutableTransformer * _sceneTransformer;
 }
@@ -18,8 +16,6 @@
 @property (nonatomic, readonly) UIMutableTransformer *sceneTransformer;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)_isSecure;
 
 - (void).cxx_destruct;
@@ -31,9 +27,6 @@
 - (void)_updateTransforms;
 - (bool)_usesWindowServerHitTesting;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)displayConfiguration;
 - (id)hitTest:(struct CGPoint { double x1; double x2; })arg1 withEvent:(id)arg2;
 - (id)initWithDisplay:(id)arg1;

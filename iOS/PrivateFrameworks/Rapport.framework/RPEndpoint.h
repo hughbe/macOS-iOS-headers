@@ -3,6 +3,7 @@
  */
 
 @interface RPEndpoint : NSObject <NSSecureCoding> {
+    NSString * _accountID;
     SFDevice * _bleDevice;
     CUBonjourDevice * _bonjourDevice;
     NSString * _homeKitUserIdentifier;
@@ -24,6 +25,7 @@
     unsigned long long  _statusFlags;
 }
 
+@property (nonatomic, copy) NSString *accountID;
 @property (nonatomic, retain) SFDevice *bleDevice;
 @property (nonatomic, retain) CUBonjourDevice *bonjourDevice;
 @property (nonatomic, readonly, copy) NSString *homeKitUserIdentifier;
@@ -48,6 +50,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)accountID;
 - (id)bleDevice;
 - (id)bonjourDevice;
 - (id)description;
@@ -72,6 +75,7 @@
 - (id)serviceInfo;
 - (id)serviceType;
 - (id)serviceTypes;
+- (void)setAccountID:(id)arg1;
 - (void)setBleDevice:(id)arg1;
 - (void)setBonjourDevice:(id)arg1;
 - (void)setIdentifier:(id)arg1;

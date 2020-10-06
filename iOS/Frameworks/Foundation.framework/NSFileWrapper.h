@@ -22,6 +22,8 @@
 @property (getter=isSymbolicLink, readonly) bool symbolicLink;
 @property (readonly, copy) NSURL *symbolicLinkDestinationURL;
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (bool)_canSafelyMapFilesAtPath:(id)arg1;
 + (bool)_finishWritingToURL:(id)arg1 byMovingItemAtURL:(id)arg2 addingAttributes:(id)arg3 error:(id*)arg4;
 + (bool)_finishWritingToURL:(id)arg1 byTakingContentsFromItemAtURL:(id)arg2 addingAttributes:(id)arg3 usingTemporaryDirectoryAtURL:(id)arg4 backupFileName:(id)arg5 error:(id*)arg6;
@@ -81,5 +83,9 @@
 - (void)setPreferredFilename:(id)arg1;
 - (id)symbolicLinkDestinationURL;
 - (bool)writeToURL:(id)arg1 options:(unsigned long long)arg2 originalContentsURL:(id)arg3 error:(id*)arg4;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (unsigned long long)sb_fileSize;
 
 @end

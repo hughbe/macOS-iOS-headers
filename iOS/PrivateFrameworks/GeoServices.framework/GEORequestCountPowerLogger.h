@@ -12,14 +12,14 @@
 
 + (void)cancelOldActivities;
 + (id)sharedInstance;
-+ (bool)shouldIgnoreRequestType:(unsigned char)arg1 fromClientWithId:(id)arg2;
++ (bool)shouldIgnoreRequestType:(int)arg1 fromClientWithId:(id)arg2;
 
 - (void).cxx_destruct;
 - (void)_cancelXpcActivity;
 - (void)_flushToPowerLog;
 - (void)_scheduleXpcActivity;
 - (void)dealloc;
-- (void)incrementCountForClient:(id)arg1 requestType:(unsigned char)arg2;
+- (void)incrementCountForClient:(id)arg1 requestType:(int)arg2;
 - (id)init;
 - (void)startNewSessionWithName:(id)arg1;
 

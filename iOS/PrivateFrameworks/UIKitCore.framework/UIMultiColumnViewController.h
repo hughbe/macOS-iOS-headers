@@ -45,8 +45,6 @@
 @property (nonatomic, retain) NSArray *navControllers;
 @property (nonatomic, retain) NSArray *viewControllers;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_addSecondColumnBarButton:(long long)arg1 toNavItem:(id)arg2;
 - (void)_adjustNonOverlayScrollViewsForKeyboardInfo:(id)arg1;
@@ -79,14 +77,12 @@
 - (void)_updateButtonsForColumnCount:(unsigned long long)arg1 animatingChange:(bool)arg2;
 - (void)_updateLayoutForStatusBarAndInterfaceOrientation;
 - (void)_willShowColumnCount:(unsigned long long)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)childViewControllerForStatusBarStyle;
 - (unsigned long long)columnCount;
 - (id)columnWidths;
+- (void)dealloc;
 - (id)delegate;
+- (id)description;
 - (id)initWithNavController:(id)arg1 viewControllers:(id)arg2;
 - (id)initWithNavController:(id)arg1 viewControllers:(id)arg2 columnWidths:(id)arg3;
 - (double)keyboardInset;

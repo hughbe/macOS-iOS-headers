@@ -18,6 +18,7 @@
 @property (readonly, copy) NSString *description;
 @property (getter=_isEligibleForFocusInteraction, nonatomic, readonly) bool eligibleForFocusInteraction;
 @property (getter=isEnabled, nonatomic) bool enabled;
+@property (nonatomic, readonly, copy) NSString *focusGroupIdentifier;
 @property (nonatomic, readonly) <UIFocusItemContainer> *focusItemContainer;
 @property (nonatomic, readonly) <UIFocusItem> *focusItemForSorting;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } frame;
@@ -44,6 +45,7 @@
 - (bool)_isEligibleForFocusInteraction;
 - (bool)_isPromiseFocusRegion;
 - (bool)_isTransparentFocusRegion;
+- (bool)_isUnoccludable;
 - (bool)_legacy_isEligibleForFocusInteraction;
 - (id)_preferredFocusRegionCoordinateSpace;
 - (id)_regionForFocusedItem:(id)arg1 inCoordinateSpace:(id)arg2;

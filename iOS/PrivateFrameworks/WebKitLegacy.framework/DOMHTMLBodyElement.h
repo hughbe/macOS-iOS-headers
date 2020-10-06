@@ -22,7 +22,6 @@
 - (void)setText:(id)arg1;
 - (void)setVLink:(id)arg1;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (id)text;
 - (id)vLink;
 

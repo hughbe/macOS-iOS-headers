@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIContextMenuInteraction : NSObject <UIInteraction, _UIClickPresentationInteractionDelegateInternal, _UIPreviewPlatterPresentationAnimatorDelegate, _UIPreviewPlatterPresentationControllerDelegate> {
+@interface UIContextMenuInteraction : NSObject <UIDeferredMenuElementDelegate, UIInteraction, _UIClickPresentationInteractionDelegateInternal, _UIContextMenuPresentationAnimationDelegate, _UIPreviewPlatterPresentationControllerDelegate> {
     NSMutableDictionary * _configurationsByIdentifier;
     <UIContextMenuInteractionDelegate> * _delegate;
     struct { 
@@ -39,6 +39,7 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) UIGestureRecognizer *gestureRecognizerForFailureRelationships;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) long long menuAppearance;
 @property (nonatomic, retain) _UIContextMenuAnimator *pendingCommitAnimator;
 @property (nonatomic, retain) UIContextMenuConfiguration *pendingConfiguration;
 @property (nonatomic, retain) _UIClickPresentationInteraction *presentationInteraction;
@@ -55,6 +56,7 @@
 - (void)_clickPresentationInteraction:(id)arg1 dragSessionDidEndForItems:(id)arg2;
 - (id)_clickPresentationInteraction:(id)arg1 interactionEffectForTargetedPreview:(id)arg2;
 - (void)_clickPresentationInteraction:(id)arg1 item:(id)arg2 willAnimateDragCancelWithAnimator:(id)arg3;
+- (id)_clickPresentationInteraction:(id)arg1 liveDragPreviewForPresentation:(id)arg2;
 - (id)_clickPresentationInteraction:(id)arg1 previewForCancellingDragItem:(id)arg2;
 - (void)_clickPresentationInteraction:(id)arg1 shouldBegin:(id /* block */)arg2;
 - (void)_clickPresentationInteractionEnded:(id)arg1 forPresentation:(id)arg2 reason:(unsigned long long)arg3;
@@ -65,36 +67,47 @@
 - (id)_delegate_contextMenuInteractionWillDisplayForConfiguration:(id)arg1;
 - (id)_delegate_contextMenuInteractionWillEndForConfiguration:(id)arg1 presentation:(id)arg2;
 - (bool)_delegate_failedToBeginForSecondaryClickAtLocation:(struct CGPoint { double x1; double x2; })arg1;
-- (id)_delegate_previewForDismissingForConfiguration:(id)arg1;
+- (id)_delegate_previewForDismissingForConfiguration:(id)arg1 clientReturnedPreview:(bool*)arg2;
 - (id)_delegate_previewForHighlightingForConfiguration:(id)arg1;
 - (void)_delegate_tappedPreviewForConfiguration:(id)arg1 withAnimator:(id)arg2;
 - (void)_dragMorphDidCompleteForConfiguration:(id)arg1;
 - (id)_fulfilledConfigurationForConfiguration:(id)arg1 activationMode:(unsigned long long)arg2;
 - (unsigned long long)_inputPrecision;
+- (id)_interactionDrivers;
 - (void)_interactionShouldBeginAtLocation:(struct CGPoint { double x1; double x2; })arg1 completion:(id /* block */)arg2;
 - (id)_liveDragPreviewForConfiguration:(id)arg1 dragItem:(id)arg2;
+- (id)_menuPreparedForDisplayWithMenu:(id)arg1;
 - (id)_overrideTargetedPreviewForCompactStyle:(id)arg1;
 - (void)_performCleanupForConfigurationWithIdentifier:(id)arg1;
 - (void)_presentMenuAtLocation:(struct CGPoint { double x1; double x2; })arg1;
 - (void)_previewPlatterPresentationController:(id)arg1 beginDragWithTouch:(id)arg2;
+- (void)_previewPlatterPresentationController:(id)arg1 didSelectMenuLeaf:(id)arg2;
+- (id)_previewPlatterPresentationController:(id)arg1 willDisplayMenu:(id)arg2;
 - (void)_previewPlatterPresentationControllerDidBeginPanInteraction:(id)arg1;
 - (void)_previewPlatterPresentationControllerDidEndPanInteraction:(id)arg1;
 - (void)_previewPlatterPresentationControllerDidTapPreview:(id)arg1;
+- (bool)_previewPlatterPresentationControllerShouldHandlePreviewAction:(id)arg1;
 - (void)_previewPlatterPresentationControllerWantsToBeDismissed:(id)arg1 withReason:(unsigned long long)arg2 alongsideActions:(id /* block */)arg3 completion:(id /* block */)arg4;
+- (id)_proxySender;
+- (bool)_shouldKeepInputViewVisibleForLayout:(unsigned long long)arg1;
 - (id)_suggestedMenuForConfiguration:(id)arg1;
+- (void)_updateInteractionDrivers;
 - (void)_updateVisibleMenuWithBlock:(id /* block */)arg1;
+- (void)_willBeginWithConfiguration:(id)arg1;
 - (id)actualPlatterContainerViewForPresentationController:(id)arg1;
 - (bool)allowSimultaneousRecognition;
 - (id)clickPresentationInteraction:(id)arg1 presentationForPresentingViewController:(id)arg2;
 - (id)clickPresentationInteraction:(id)arg1 previewForHighlightingAtLocation:(struct CGPoint { double x1; double x2; })arg2;
 - (id)configurationsByIdentifier;
 - (void)dealloc;
+- (void)deferredMenuElementWasFulfilled:(id)arg1;
 - (id)delegate;
 - (void)didMoveToView:(id)arg1;
 - (void)dismissMenu;
 - (id)gestureRecognizerForFailureRelationships;
 - (id)initWithDelegate:(id)arg1;
 - (struct CGPoint { double x1; double x2; })locationInView:(id)arg1;
+- (long long)menuAppearance;
 - (id)pendingCommitAnimator;
 - (id)pendingConfiguration;
 - (id)presentationInteraction;
@@ -107,7 +120,8 @@
 - (void)setPresentationsByIdentifier:(id)arg1;
 - (void)setStashedPreview:(id)arg1;
 - (id)stashedPreview;
-- (id)targetedPreviewForAnimator:(id)arg1 dismissingWithStyle:(unsigned long long)arg2;
+- (id)targetedPreviewForAnimator:(id)arg1 dismissingWithStyle:(unsigned long long)arg2 clientReturnedPreview:(bool*)arg3;
+- (void)updateVisibleMenuWithBlock:(id /* block */)arg1;
 - (id)view;
 - (void)willMoveToView:(id)arg1;
 

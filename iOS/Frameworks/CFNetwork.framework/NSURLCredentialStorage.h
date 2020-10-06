@@ -8,11 +8,13 @@
 
 @property (nonatomic) bool _useSystemKeychain;
 @property (readonly, copy) NSDictionary *allCredentials;
+@property (nonatomic, readonly) NSDictionary *safari_allSafariCredentials;
+
+// Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
 
 + (id)sharedCredentialStorage;
 
 - (struct _CFURLCredentialStorage { }*)_CFURLCredentialStorage;
-- (id)__allCredentialsWithAccessControlGroup:(id)arg1 includeLegacyKeychain:(bool)arg2;
 - (id)_allCredentialsWithAccessControlGroup:(id)arg1 includeLegacyKeychain:(bool)arg2;
 - (id)_initWithCFURLCredentialStorage:(struct _CFURLCredentialStorage { }*)arg1;
 - (id)_initWithIdentifier:(id)arg1 private:(bool)arg2;
@@ -32,5 +34,11 @@
 - (void)setDefaultCredential:(id)arg1 forProtectionSpace:(id)arg2;
 - (void)setDefaultCredential:(id)arg1 forProtectionSpace:(id)arg2 task:(id)arg3;
 - (void)set_useSystemKeychain:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (id)safari_allSafariCredentials;
+- (void)safari_deleteSynchronizableCredentialWithEmptyServerHost:(id)arg1 forHTMLFormProtectionSpace:(id)arg2;
+- (void)safari_setSynchronizableCredential:(id)arg1 forHTMLFormProtectionSpace:(id)arg2;
 
 @end

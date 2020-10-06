@@ -11,7 +11,6 @@
     NSURL * _modelURL;
     NSXPCStoreServerRequestHandlingPolicy * _policy;
     bool  _postRemoteChangeNotifications;
-    NSObject<OS_dispatch_queue> * _queue;
     NSDictionary * _storeOptions;
     NSURL * _storeURL;
 }

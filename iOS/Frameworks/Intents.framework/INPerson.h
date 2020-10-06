@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INPerson : NSObject <INCacheableContainer, INCodableAttributeRelationComparing, INImageProxyInjecting, INKeyImageProducing, INPersonExport, INSpeakable, NSCopying, NSMutableCopying, NSSecureCoding> {
+@interface INPerson : NSObject <INCacheableContainer, INCodableAttributeRelationComparing, INImageProxyInjecting, INKeyImageProducing, INPersonExport, INSpeakable, NSCopying, NSMutableCopying, NSSecureCoding, REDonatedActionIdentifierProviding> {
     NSArray * _aliases;
-    NSArray * _alternatives;
     NSString * _contactIdentifier;
     NSString * _customIdentifier;
     NSString * _displayName;
@@ -14,6 +13,7 @@
     INPersonHandle * _personHandle;
     NSString * _phonemeData;
     NSString * _relationship;
+    NSArray * _scoredAlternatives;
     NSString * _sourceAppBundleIdentifier;
     long long  _suggestionType;
     NSString * _userInput;
@@ -44,6 +44,7 @@
 @property (nonatomic, copy) NSString *phonemeData;
 @property (nonatomic, readonly) NSString *pronunciationHint;
 @property (nonatomic, copy) NSString *relationship;
+@property (nonatomic, copy) NSArray *scoredAlternatives;
 @property (nonatomic, readonly, copy) NSArray *siriMatches;
 @property (nonatomic, readonly) NSString *spokenPhrase;
 @property (nonatomic, readonly) long long suggestionType;
@@ -54,8 +55,11 @@
 @property (nonatomic, readonly, copy) NSString *userURIString;
 @property (nonatomic, readonly) NSString *vocabularyIdentifier;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (id)expectedCNContactKeys;
 + (bool)supportsSecureCoding;
++ (id)toNilScoredPersons:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)_aliases;
@@ -64,11 +68,12 @@
 - (id)_displayName;
 - (id)_initWithUserInput:(id)arg1 personHandle:(id)arg2 nameComponents:(id)arg3 displayName:(id)arg4 image:(id)arg5 contactIdentifier:(id)arg6 customIdentifier:(id)arg7 relationship:(id)arg8 aliases:(id)arg9 suggestionType:(long long)arg10 isMe:(bool)arg11 alternatives:(id)arg12 sourceAppBundleIdentifier:(id)arg13;
 - (id)_initWithUserInput:(id)arg1 personHandle:(id)arg2 nameComponents:(id)arg3 displayName:(id)arg4 image:(id)arg5 contactIdentifier:(id)arg6 customIdentifier:(id)arg7 relationship:(id)arg8 aliases:(id)arg9 suggestionType:(long long)arg10 isMe:(bool)arg11 alternatives:(id)arg12 sourceAppBundleIdentifier:(id)arg13 phonemeData:(id)arg14;
+- (id)_initWithUserInput:(id)arg1 personHandle:(id)arg2 nameComponents:(id)arg3 displayName:(id)arg4 image:(id)arg5 contactIdentifier:(id)arg6 customIdentifier:(id)arg7 relationship:(id)arg8 aliases:(id)arg9 suggestionType:(long long)arg10 isMe:(bool)arg11 scoredAlternatives:(id)arg12 sourceAppBundleIdentifier:(id)arg13 phonemeData:(id)arg14;
 - (void)_injectProxiesForImages:(id /* block */)arg1 completion:(id /* block */)arg2;
 - (id)_intents_cacheableObjects;
 - (bool)_intents_compareValue:(id)arg1 relation:(unsigned long long)arg2;
 - (id)_intents_indexingRepresentation;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
 - (void)_intents_updateContainerWithCache:(id)arg1;
 - (id)_keyImage;
 - (id)_sourceAppBundleIdentifier;
@@ -98,6 +103,7 @@
 - (id)initWithPersonHandle:(id)arg1 nameComponents:(id)arg2 displayName:(id)arg3 image:(id)arg4 contactIdentifier:(id)arg5 customIdentifier:(id)arg6;
 - (id)initWithPersonHandle:(id)arg1 nameComponents:(id)arg2 displayName:(id)arg3 image:(id)arg4 contactIdentifier:(id)arg5 customIdentifier:(id)arg6 aliases:(id)arg7 suggestionType:(long long)arg8;
 - (id)initWithPersonHandle:(id)arg1 nameComponents:(id)arg2 displayName:(id)arg3 image:(id)arg4 contactIdentifier:(id)arg5 customIdentifier:(id)arg6 isMe:(bool)arg7;
+- (id)initWithPersonHandle:(id)arg1 nameComponents:(id)arg2 displayName:(id)arg3 image:(id)arg4 contactIdentifier:(id)arg5 customIdentifier:(id)arg6 relationship:(id)arg7;
 - (bool)isEqual:(id)arg1;
 - (bool)isMe;
 - (id)lastName;
@@ -107,6 +113,7 @@
 - (id)phonemeData;
 - (id)pronunciationHint;
 - (id)relationship;
+- (id)scoredAlternatives;
 - (void)setAliases:(id)arg1;
 - (void)setAlternatives:(id)arg1;
 - (void)setContactIdentifier:(id)arg1;
@@ -119,6 +126,7 @@
 - (void)setPersonHandle:(id)arg1;
 - (void)setPhonemeData:(id)arg1;
 - (void)setRelationship:(id)arg1;
+- (void)setScoredAlternatives:(id)arg1;
 - (void)setSuggestionType:(long long)arg1;
 - (id)siriMatches;
 - (id)spokenPhrase;
@@ -128,5 +136,26 @@
 - (id)userName;
 - (id)userURIString;
 - (id)vocabularyIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/AssistantCardServiceSupport.framework/AssistantCardServiceSupport
+
+- (id)acs_formattedPersonName;
+
+// Image: /System/Library/PrivateFrameworks/IMAssistantCore.framework/IMAssistantCore
+
+- (id)__im_assistant_allContactIdentifiers;
+- (id)__im_assistant_displayNameForContact:(id)arg1 displayFormattedHandle:(id)arg2 normalizedHandle:(id)arg3;
+- (id)__im_assistant_imCoreBundle;
+- (id)__im_assistant_initAnonymousRecipientWithIMHandle:(id)arg1;
+- (id)__im_assistant_initForContactResolutionResultWithContact:(id)arg1 type:(long long)arg2 label:(id)arg3;
+- (id)__im_assistant_initWithContact:(id)arg1 displayFormattedHandle:(id)arg2 normalizedHandle:(id)arg3 type:(long long)arg4 label:(id)arg5;
+- (id)__im_assistant_initWithContact:(id)arg1 imHandle:(id)arg2;
+- (id)__im_assistant_initWithContact:(id)arg1 imHandle:(id)arg2 type:(long long)arg3 label:(id)arg4;
+- (id)__im_assistant_initWithContact:(id)arg1 unformattedPersonHandle:(id)arg2 accountDataSource:(id)arg3;
+- (id)__im_assistant_initWithHandleFromContact:(id)arg1 accountDataSource:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (unsigned long long)re_actionIdentifierHashValue;
 
 @end

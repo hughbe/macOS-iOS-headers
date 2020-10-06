@@ -16,11 +16,11 @@
 + (id)typeStrings;
 
 - (void).cxx_destruct;
-- (id)description;
 - (id)domainRules;
 - (id)hashDictionaries;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)stubDictionary;
 - (id)subtitle1Label;
+- (id)verboseDescription;
 
 @end

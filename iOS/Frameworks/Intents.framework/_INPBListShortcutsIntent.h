@@ -3,7 +3,6 @@
  */
 
 @interface _INPBListShortcutsIntent : PBCodable <NSCopying, NSSecureCoding, _INPBListShortcutsIntent> {
-    bool  __encodeLegacyGloryData;
     NSArray * _appTitles;
     struct { 
         unsigned int originDevice : 1; 
@@ -12,7 +11,6 @@
     int  _originDevice;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *appTitles;
 @property (nonatomic, readonly) unsigned long long appTitlesCount;
 @property (readonly, copy) NSString *debugDescription;
@@ -29,8 +27,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsOriginDevice:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAppTitle:(id)arg1;
 - (id)appTitleAtIndex:(unsigned long long)arg1;
 - (id)appTitles;

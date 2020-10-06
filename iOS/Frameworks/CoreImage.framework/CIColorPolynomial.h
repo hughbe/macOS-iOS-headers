@@ -19,7 +19,9 @@
 + (id)customAttributes;
 
 - (bool)_isIdentity;
+- (bool)_isIdentityAlpha;
 - (id)_kernel;
+- (id)_kernelRGB;
 - (id)inputAlphaCoefficients;
 - (id)inputBlueCoefficients;
 - (id)inputGreenCoefficients;

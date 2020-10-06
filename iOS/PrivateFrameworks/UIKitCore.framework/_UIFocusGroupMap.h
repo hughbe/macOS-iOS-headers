@@ -3,14 +3,16 @@
  */
 
 @interface _UIFocusGroupMap : NSObject {
-    NSMapTable * _descriptorToGroupMap;
     NSMapTable * _environmentToGroupMap;
+    NSMapTable * _identifierToGroupMap;
+    NSMapTable * _identifierToPrimaryItemMap;
     _UIFocusGroup * _nullGroup;
 }
 
 - (void).cxx_destruct;
-- (id)_focusGroupForDescriptor:(id)arg1 withParent:(id)arg2;
+- (id)_focusGroupForIdentifier:(id)arg1 withParent:(id)arg2 groupRootEnvironment:(id)arg3;
 - (id)focusGroupForEnvironment:(id)arg1;
 - (id)init;
+- (id)primaryFocusItemForGroup:(id)arg1;
 
 @end

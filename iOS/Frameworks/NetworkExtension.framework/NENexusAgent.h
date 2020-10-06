@@ -25,6 +25,7 @@
 @property (nonatomic) bool requiresAssert;
 @property (getter=isSpecificUseOnly, nonatomic) bool specificUseOnly;
 @property (nonatomic) bool supportsBrowseRequests;
+@property (nonatomic) bool supportsListenRequests;
 @property (nonatomic) bool supportsResolveRequests;
 @property (nonatomic) bool updateClientsImmediately;
 @property (getter=isUserActivated, nonatomic) bool userActivated;

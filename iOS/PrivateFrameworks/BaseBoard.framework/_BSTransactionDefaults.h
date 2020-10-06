@@ -6,8 +6,6 @@
 
 @property (getter=isAuditHistoryEnabled, nonatomic) bool auditHistoryEnabled;
 
-+ (id)sharedInstance;
-
 - (void)_bindAndRegisterDefaults;
 
 @end

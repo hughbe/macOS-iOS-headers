@@ -3,18 +3,22 @@
  */
 
 @interface PFCloudKitHistoryAnalyzerOptions : PFHistoryAnalyzerOptions {
+    CKSchedulerActivity * _activity;
     bool  _includePrivateTransactions;
     CKRecordZone * _recordZone;
 }
 
+@property (nonatomic, retain) CKSchedulerActivity *activity;
 @property (nonatomic) bool includePrivateTransactions;
 @property (nonatomic, retain) CKRecordZone *recordZone;
 
+- (id)activity;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (bool)includePrivateTransactions;
 - (id)initWithRecordZone:(id)arg1;
 - (id)recordZone;
+- (void)setActivity:(id)arg1;
 - (void)setIncludePrivateTransactions:(bool)arg1;
 - (void)setRecordZone:(id)arg1;
 

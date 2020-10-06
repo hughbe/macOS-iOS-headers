@@ -19,8 +19,6 @@
 @property (nonatomic) struct CGPoint { double x1; double x2; } offsetOrigin;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)_notifyOnExplicitLayout;
 + (bool)_shouldHitTestInputViewFirst;
 
@@ -32,11 +30,8 @@
 - (bool)_isTransparentFocusRegion;
 - (void)_setAccessoryViewFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_setRenderConfig:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addHostedView:(id)arg1 withViewRemovalHandler:(id /* block */)arg2;
+- (void)dealloc;
 - (void)didAddSubview:(id)arg1;
 - (bool)hasHostedViews;
 - (id)hostingScreen;

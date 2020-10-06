@@ -3,7 +3,6 @@
  */
 
 @interface VKCamera : NSObject {
-    bool  _allowDatelineWraparound;
     double  _aspectRatio;
     double  _canonicalPitch;
     double  _distanceToGroundAndFarClipPlaneIntersection;
@@ -94,7 +93,6 @@
     }  _worldMatrix;
 }
 
-@property (nonatomic) bool allowDatelineWraparound;
 @property (nonatomic) double aspectRatio;
 @property (nonatomic) /* Warning: unhandled struct encoding: '{VKCameraState={RigidTransform<double' */ struct  cameraState; /* unknown property attribute:  double>=d}d} */
 @property (nonatomic) double canonicalPitch;
@@ -138,7 +136,6 @@
 - (void).cxx_destruct;
 - (void)_setPosition:(const struct Matrix<double, 3, 1> { double x1[3]; }*)arg1;
 - (void)adjustClipPlanes;
-- (bool)allowDatelineWraparound;
 - (id /* block */)annotationCoordinateTest;
 - (id /* block */)annotationRectTest;
 - (double)aspectRatio;
@@ -159,18 +156,15 @@
 - (struct { bool x1; double x2; double x3; double x4; double x5; double x6; })frustum;
 - (struct Matrix<double, 3, 1> { double x1[3]; })groundPlaneIntersectionPoint;
 - (struct Matrix<double, 3, 1> { double x1[3]; })groundPoint;
-- (struct Matrix<double, 3, 1> { double x1[3]; })groundPointFromScreenPoint:(struct CGPoint { double x1; double x2; })arg1;
-- (struct Matrix<double, 3, 1> { double x1[3]; })groundPointFromScreenPoint:(struct CGPoint { double x1; double x2; })arg1 atGroundLevel:(double)arg2;
+- (struct optional<gm::Matrix<double, 3, 1> > { bool x1; union ValueUnion { unsigned char x_2_1_1[24]; struct Matrix<double, 3, 1> { double x_2_2_1[3]; } x_2_1_2; } x2; })groundPointFromScreenPoint:(struct CGPoint { double x1; double x2; })arg1;
+- (struct optional<gm::Matrix<double, 3, 1> > { bool x1; union ValueUnion { unsigned char x_2_1_1[24]; struct Matrix<double, 3, 1> { double x_2_2_1[3]; } x_2_1_2; } x2; })groundPointFromScreenPoint:(struct CGPoint { double x1; double x2; })arg1 atGroundLevel:(double)arg2;
 - (struct Unit<RadianUnitDescription, double> { double x1; })horizontalFieldOfView;
 - (double)horizontalOffset;
 - (id)initWithRunLoopController:(struct RunLoopController { struct MapEngine {} *x1; long long x2; long long x3; }*)arg1;
-- (bool)isOuterWorldBoundsVisible;
-- (bool)isWorldSpaceRectVisible:(const struct Box<double, 2> { struct Matrix<double, 2, 1> { double x_1_1_1[2]; } x1; struct Matrix<double, 2, 1> { double x_2_1_1[2]; } x2; }*)arg1;
 - (struct optional<double> { bool x1; union ValueUnion { unsigned char x_2_1_1[8]; double x_2_1_2; } x2; })maxDistanceToGroundRestriction;
 - (double)maxHeight;
 - (double)maxHeightNoPitch;
 - (double)maxPitch;
-- (float)maximumStyleZForRect:(const struct Box<double, 2> { struct Matrix<double, 2, 1> { double x_1_1_1[2]; } x1; struct Matrix<double, 2, 1> { double x_2_1_1[2]; } x2; }*)arg1;
 - (struct Mercator3<double> { double x1[3]; })mercatorPosition;
 - (struct optional<double> { bool x1; union ValueUnion { unsigned char x_2_1_1[8]; double x_2_1_2; } x2; })minDistanceToGroundRestriction;
 - (double)minHeight;
@@ -185,7 +179,7 @@
 - (const struct Matrix<double, 4, 4> { double x1[16]; }*)scaledViewMatrix;
 - (const struct Matrix<double, 4, 4> { double x1[16]; }*)scaledViewProjectionMatrix;
 - (double)screenHeightOfGroundAndFarClipPlaneIntersection;
-- (void)setAllowDatelineWraparound:(bool)arg1;
+- (struct CGPoint { double x1; double x2; })screenPointFromGroundPoint:(const struct Mercator3<double> { double x1[3]; }*)arg1;
 - (void)setAspectRatio:(double)arg1;
 - (void)setCameraState:(struct VKCameraState { struct RigidTransform<double, double> { struct Matrix<double, 3, 1> { double x_1_2_1[3]; } x_1_1_1; struct Quaternion<double> { struct Matrix<double, 3, 1> { double x_1_3_1[3]; } x_2_2_1; double x_2_2_2; } x_1_1_2; } x1; double x2; struct Unit<RadianUnitDescription, double> { double x_3_1_1; } x3; double x4; })arg1;
 - (void)setCanonicalPitch:(double)arg1;

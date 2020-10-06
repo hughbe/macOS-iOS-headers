@@ -10,6 +10,7 @@
     NSString * _eventName;
     bool  _hasBeenSubmitted;
     bool  _inferredAllowsCellular;
+    NSString * _inferredDeviceIdentifier;
     bool  _inferredPreferAnonymousRequests;
     NSString * _inferredSourceApplicationBundleIdentifier;
     NSString * _inferredSourceApplicationSecondaryIdentifier;
@@ -22,17 +23,18 @@
 @property (nonatomic, readonly) NSMutableDictionary *associatedOperationGroups;
 @property (nonatomic, readonly) NSMutableDictionary *associatedOperations;
 @property (nonatomic, readonly) NSMutableDictionary *attributes;
-@property (retain) NSDate *endTime;
-@property (nonatomic, readonly) NSString *eventName;
+@property (copy) NSDate *endTime;
+@property (nonatomic, readonly, copy) NSString *eventName;
 @property (nonatomic) bool hasBeenSubmitted;
 @property (nonatomic) bool inferredAllowsCellular;
+@property (nonatomic, retain) NSString *inferredDeviceIdentifier;
 @property (nonatomic) bool inferredPreferAnonymousRequests;
 @property (nonatomic, retain) NSString *inferredSourceApplicationBundleIdentifier;
 @property (nonatomic, retain) NSString *inferredSourceApplicationSecondaryIdentifier;
 @property (nonatomic) bool isCKInternalMetric;
 @property (nonatomic) bool isPushTriggerFired;
 @property (nonatomic, readonly) NSUUID *metricUUID;
-@property (retain) NSDate *startTime;
+@property (copy) NSDate *startTime;
 
 + (bool)supportsSecureCoding;
 
@@ -47,6 +49,7 @@
 - (id)generateEventMetricInfo;
 - (bool)hasBeenSubmitted;
 - (bool)inferredAllowsCellular;
+- (id)inferredDeviceIdentifier;
 - (bool)inferredPreferAnonymousRequests;
 - (id)inferredSourceApplicationBundleIdentifier;
 - (id)inferredSourceApplicationSecondaryIdentifier;
@@ -59,6 +62,7 @@
 - (void)setEndTime:(id)arg1;
 - (void)setHasBeenSubmitted:(bool)arg1;
 - (void)setInferredAllowsCellular:(bool)arg1;
+- (void)setInferredDeviceIdentifier:(id)arg1;
 - (void)setInferredPreferAnonymousRequests:(bool)arg1;
 - (void)setInferredSourceApplicationBundleIdentifier:(id)arg1;
 - (void)setInferredSourceApplicationSecondaryIdentifier:(id)arg1;

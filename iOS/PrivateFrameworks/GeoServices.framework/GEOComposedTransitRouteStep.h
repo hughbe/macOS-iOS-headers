@@ -48,14 +48,14 @@
 - (id)destinationStop;
 - (id)destinationStopIntermediateListName;
 - (unsigned long long)destinationTransitEntityMuid;
-- (unsigned int)distance;
+- (double)distance;
 - (unsigned int)duration;
 - (void)encodeWithCoder:(id)arg1;
 - (struct { double x1; double x2; double x3; })endGeoCoordinate;
 - (id)endingStop;
 - (bool)hasDuration;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithComposedRoute:(id)arg1 decoderData:(id)arg2 routeLegType:(long long)arg3 step:(id)arg4 stepIndex:(unsigned long long)arg5 duration:(unsigned int)arg6 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg7;
+- (id)initWithComposedRoute:(id)arg1 decoderData:(id)arg2 routeSegmentType:(long long)arg3 step:(id)arg4 stepIndex:(unsigned long long)arg5 duration:(unsigned int)arg6 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg7;
 - (id)instructions;
 - (bool)isArrivalStep;
 - (int)maneuver;

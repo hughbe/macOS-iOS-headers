@@ -9,11 +9,13 @@
         unsigned int keyboardUpdates : 1; 
         unsigned int nowPlayingUpdates : 1; 
         unsigned int outputDeviceUpdates : 1; 
+        unsigned int systemEndpointUpdates : 1; 
         unsigned int volumeUpdates : 1; 
     }  _has;
     bool  _keyboardUpdates;
     bool  _nowPlayingUpdates;
     bool  _outputDeviceUpdates;
+    bool  _systemEndpointUpdates;
     bool  _volumeUpdates;
 }
 
@@ -22,10 +24,12 @@
 @property (nonatomic) bool hasKeyboardUpdates;
 @property (nonatomic) bool hasNowPlayingUpdates;
 @property (nonatomic) bool hasOutputDeviceUpdates;
+@property (nonatomic) bool hasSystemEndpointUpdates;
 @property (nonatomic) bool hasVolumeUpdates;
 @property (nonatomic) bool keyboardUpdates;
 @property (nonatomic) bool nowPlayingUpdates;
 @property (nonatomic) bool outputDeviceUpdates;
+@property (nonatomic) bool systemEndpointUpdates;
 @property (nonatomic) bool volumeUpdates;
 
 - (bool)artworkUpdates;
@@ -37,6 +41,7 @@
 - (bool)hasKeyboardUpdates;
 - (bool)hasNowPlayingUpdates;
 - (bool)hasOutputDeviceUpdates;
+- (bool)hasSystemEndpointUpdates;
 - (bool)hasVolumeUpdates;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
@@ -50,11 +55,14 @@
 - (void)setHasKeyboardUpdates:(bool)arg1;
 - (void)setHasNowPlayingUpdates:(bool)arg1;
 - (void)setHasOutputDeviceUpdates:(bool)arg1;
+- (void)setHasSystemEndpointUpdates:(bool)arg1;
 - (void)setHasVolumeUpdates:(bool)arg1;
 - (void)setKeyboardUpdates:(bool)arg1;
 - (void)setNowPlayingUpdates:(bool)arg1;
 - (void)setOutputDeviceUpdates:(bool)arg1;
+- (void)setSystemEndpointUpdates:(bool)arg1;
 - (void)setVolumeUpdates:(bool)arg1;
+- (bool)systemEndpointUpdates;
 - (bool)volumeUpdates;
 - (void)writeTo:(id)arg1;
 

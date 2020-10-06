@@ -7,6 +7,7 @@
     long long  _generateIdentifierOnce;
     NWEndpoint * _localEndpoint;
     NWEndpoint * _remoteEndpoint;
+    NSString * _remoteHostname;
     int  _socketFamily;
     unsigned long long  _socketID;
     int  _socketProtocol;
@@ -18,6 +19,7 @@
 @property (nonatomic, copy) NSUUID *euuid;
 @property (copy) NWEndpoint *localEndpoint;
 @property (copy) NWEndpoint *remoteEndpoint;
+@property (copy) NSString *remoteHostname;
 @property int socketFamily;
 @property unsigned long long socketID;
 @property int socketProtocol;
@@ -42,11 +44,13 @@
 - (id)initWithSocketFamily:(int)arg1 socketType:(int)arg2 socketProtocol:(int)arg3 pid:(int)arg4 epid:(int)arg5 uuid:(unsigned char)arg6 euuid:(unsigned char)arg7 socketID:(unsigned long long)arg8;
 - (id)localEndpoint;
 - (id)remoteEndpoint;
+- (id)remoteHostname;
 - (void)setEuuid:(id)arg1;
 - (void)setLocalAddress:(struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*)arg1;
 - (void)setLocalEndpoint:(id)arg1;
 - (void)setRemoteAddress:(struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*)arg1;
 - (void)setRemoteEndpoint:(id)arg1;
+- (void)setRemoteHostname:(id)arg1;
 - (void)setSocketFamily:(int)arg1;
 - (void)setSocketID:(unsigned long long)arg1;
 - (void)setSocketProtocol:(int)arg1;

@@ -15,13 +15,12 @@
 @property (readonly) Class superclass;
 
 + (Class)replyClass;
-+ (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)connectionProperties;
-- (void)encodeWithCoder:(id)arg1;
+- (void)encodeToXPCDictionary:(id)arg1;
 - (bool)expectsReply;
-- (id)initWithCoder:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (bool)isValid;
 - (id)request;
 - (void)setConnectionProperties:(id)arg1;

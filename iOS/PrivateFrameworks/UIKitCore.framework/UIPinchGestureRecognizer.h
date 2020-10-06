@@ -27,7 +27,7 @@
         double tx; 
         double ty; 
     }  _transform;
-    id  _transformAnalyzer;
+    _UIGestureRecognizerTransformAnalyzer * _transformAnalyzer;
     double  _velocity;
 }
 
@@ -54,7 +54,6 @@
 - (void)_resetGestureRecognizer;
 - (void)_setEndsOnSingleTouch:(bool)arg1;
 - (void)_setHysteresis:(double)arg1;
-- (bool)_shouldReceiveTransformEvent:(id)arg1;
 - (void)_transformChangedWithEvent:(id)arg1;
 - (struct CGPoint { double x1; double x2; })anchorPoint;
 - (id)initWithCoder:(id)arg1;

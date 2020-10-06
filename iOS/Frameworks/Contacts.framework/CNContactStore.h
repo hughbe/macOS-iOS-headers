@@ -2,12 +2,12 @@
    Image: /System/Library/Frameworks/Contacts.framework/Contacts
  */
 
-@interface CNContactStore : NSObject <TUContactsDataSource> {
+@interface CNContactStore : NSObject <IMAssistantContactsDataSource, TUContactsDataSource> {
     CNContainerCache * _containerCache;
 }
 
 @property (nonatomic, readonly) CNiOSAddressBook *addressBook;
-@property (nonatomic, retain) CNContainerCache *containerCache;
+@property (nonatomic, readonly, copy) CNResult *currentHistoryAnchor;
 @property (nonatomic, readonly, copy) NSData *currentHistoryToken;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -18,7 +18,6 @@
 // Image: /System/Library/Frameworks/Contacts.framework/Contacts
 
 + (id)_contactStoreForPublicAddressBook:(void*)arg1;
-+ (id)allLabelsForPropertyWithKey:(id)arg1;
 + (long long)authorizationStatusForEntityType:(long long)arg1;
 + (id)contactIdentifierFromInternalIdentifier:(id)arg1;
 + (id)contactStoreForPublicAddressBook:(void*)arg1;
@@ -50,7 +49,6 @@
 - (id)_labeledValueFromPublicMultiValueIdentifier:(int)arg1 contact:(id)arg2 key:(id)arg3;
 - (void*)_publicABPersonFromContact:(id)arg1 publicAddressBook:(const void**)arg2;
 - (int)_publicMultiValueIdentifierFromLabeledValue:(id)arg1;
-- (id)_unifiedMeContactWithKeysToFetch:(id)arg1 error:(id*)arg2;
 - (id)accountsMatchingPredicate:(id)arg1 error:(id*)arg2;
 - (id)addressBook;
 - (id)authorizedKeysForContactKeys:(id)arg1;
@@ -71,9 +69,9 @@
 - (id)contactWithMatchingDictionary:(id)arg1 keysToFetch:(id)arg2;
 - (id)contactWithUserActivityUserInfo:(id)arg1 keysToFetch:(id)arg2;
 - (id)contactsMatchingPropertiesOfContact:(id)arg1 unifyResults:(bool)arg2 keysToFetch:(id)arg3 error:(id*)arg4;
-- (id)containerCache;
 - (id)containersMatchingPredicate:(id)arg1 error:(id*)arg2;
 - (id)countForFetchRequest:(id)arg1 error:(id*)arg2;
+- (id)currentHistoryAnchor;
 - (id)currentHistoryToken;
 - (id)defaultContainerIdentifier;
 - (id)descriptorForRequiredKeysForMatchingDictionary;
@@ -102,8 +100,6 @@
 - (id)labeledValueFromMultiValueIdentifier:(int)arg1 contact:(id)arg2 key:(id)arg3;
 - (id)labeledValueFromPublicMultiValueIdentifier:(int)arg1 contact:(id)arg2 key:(id)arg3;
 - (id)latestConsumedChangeHistoryAnchorForClientIdentifier:(id)arg1 error:(id*)arg2;
-- (id)legacyTetheredSyncComputerAnchor;
-- (id)legacyTetheredSyncDeviceAnchor;
 - (id)mainContactStore;
 - (id)matchingDictionaryForContact:(id)arg1;
 - (id)meContactIdentifiers:(id*)arg1;
@@ -126,11 +122,8 @@
 - (id)sectionListOffsetsForSortOrder:(long long)arg1 error:(id*)arg2;
 - (id)serverSearchContainersMatchingPredicate:(id)arg1 error:(id*)arg2;
 - (bool)setBestMeIfNeededForGivenName:(id)arg1 familyName:(id)arg2 email:(id)arg3 error:(id*)arg4;
-- (void)setContainerCache:(id)arg1;
 - (bool)setDefaultAccountIdentifier:(id)arg1 error:(id*)arg2;
 - (bool)setDefaultContainer:(id)arg1 forAccount:(id)arg2 error:(id*)arg3;
-- (void)setLegacyTetheredSyncComputerAnchor:(id)arg1;
-- (void)setLegacyTetheredSyncDeviceAnchor:(id)arg1;
 - (bool)setMeContact:(id)arg1 error:(id*)arg2;
 - (bool)setMeContact:(id)arg1 forContainer:(id)arg2 error:(id*)arg3;
 - (id)subgroupsOfGroupWithIdentifier:(id)arg1 error:(id*)arg2;
@@ -148,6 +141,28 @@
 - (id)userActivityUserInfoForContact:(id)arg1;
 - (bool)verifyChangeHistoryForClientIdentifier:(id)arg1 error:(id*)arg2;
 - (id)verifyIndexWithError:(id*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAssistantServices.framework/ContactsAssistantServices
+
+- (id)contactWithIdentifier:(id)arg1 keysToFetch:(id)arg2 error:(id*)arg3;
+
+// Image: /System/Library/PrivateFrameworks/Email.framework/Email
+
+- (id)_contactForEmailAddress:(id)arg1 keysToFetch:(id)arg2 error:(id*)arg3;
+- (id)em_fetchContactForEmailAddress:(id)arg1 keysToFetch:(id)arg2 createIfNeeded:(bool)arg3;
+- (id)em_fetchContactForEmailAddress:(id)arg1 keysToFetch:(id)arg2 createIfNeeded:(bool)arg3 error:(id*)arg4;
+- (id)em_onScheduler:(id)arg1 contactFutureForEmailAddress:(id)arg2 keysToFetch:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (id)contactsMatchingEmailAddress:(id)arg1 keysToFetch:(id)arg2;
+- (id)contactsMatchingPhoneNumber:(id)arg1 keysToFetch:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (id)safari_sharedContactStore;
+
+- (id)safari_contactForHandle:(id)arg1 error:(id*)arg2;
 
 // Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
 

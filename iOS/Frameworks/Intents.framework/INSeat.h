@@ -18,6 +18,8 @@
 @property (nonatomic, readonly, copy) NSString *seatingType;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (bool)supportsSecureCoding;
 
@@ -36,5 +38,11 @@
 - (id)seatRow;
 - (id)seatSection;
 - (id)seatingType;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)fromSchema:(id)arg1;
+
+- (id)schema;
 
 @end

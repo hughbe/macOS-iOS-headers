@@ -17,6 +17,7 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 + (bool)primeTheConnectionWithBag:(id)arg1 error:(id*)arg2;
 + (bool)primeTheConnectionWithContract:(id)arg1 error:(id*)arg2;
 + (bool)primeTheConnectionWithContract:(id)arg1 logKey:(id)arg2 error:(id*)arg3;

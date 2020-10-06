@@ -5,6 +5,8 @@
 
 @required
 
-- (void)_enrichLayoutAttributes:(UICollectionViewLayoutAttributes *)arg1;
+- (void)_enrichLayoutAttributes:(UICollectionViewLayoutAttributes *)arg1 interactionState:(id <_UICollectionViewLayoutInteractionStateProviding>)arg2;
+- (void)_enrichPreferredLayoutAttributes:(UICollectionViewLayoutAttributes *)arg1 interactionState:(id <_UICollectionViewLayoutInteractionStateProviding>)arg2;
+- (UICollectionViewLayoutInvalidationContext *)_invalidationContextForBackgroundChangeAtIndexPath:(NSIndexPath *)arg1 interactionState:(id <_UICollectionViewLayoutInteractionStateProviding>)arg2;
 
 @end

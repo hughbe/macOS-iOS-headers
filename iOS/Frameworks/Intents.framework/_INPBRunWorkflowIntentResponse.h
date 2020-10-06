@@ -3,7 +3,6 @@
  */
 
 @interface _INPBRunWorkflowIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBRunWorkflowIntentResponse> {
-    bool  __encodeLegacyGloryData;
     bool  _continueRunning;
     struct { 
         unsigned int continueRunning : 1; 
@@ -18,7 +17,6 @@
     bool  _waitingForResume;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) bool continueRunning;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -42,8 +40,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addStep:(id)arg1;
 - (void)clearSteps;
 - (bool)continueRunning;

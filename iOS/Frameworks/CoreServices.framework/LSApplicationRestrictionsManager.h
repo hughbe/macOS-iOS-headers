@@ -16,6 +16,7 @@
 
 @property (getter=isAdTrackingEnabled, readonly) bool adTrackingEnabled;
 @property (readonly) NSSet *blacklistedBundleIDs;
+@property (getter=isLimitAdTrackingForced, readonly) bool limitAdTrackingForced;
 @property (readonly) NSNumber *maximumRating;
 @property (getter=isOpenInRestrictionInEffect, readonly) bool openInRestrictionInEffect;
 @property (nonatomic, copy) NSSet *removedSystemApplicationIdentifiers;
@@ -41,14 +42,14 @@
 - (bool)cleanRemovedSystemApplicationsList;
 - (void)clearAllValues;
 - (void)handleMCEffectiveSettingsChanged;
-- (id)identifierForRemovedAppPrompt:(id)arg1;
 - (id)init;
 - (bool)isAdTrackingEnabled;
 - (bool)isAppExtensionRestricted:(id)arg1;
 - (bool)isApplicationRestricted:(id)arg1;
 - (bool)isApplicationRestricted:(id)arg1 checkFeatureRestrictions:(bool)arg2;
 - (bool)isApplicationRestricted:(id)arg1 checkFlags:(unsigned long long)arg2;
-- (bool)isFeatureAllowed:(unsigned long long)arg1;
+- (bool)isFeatureAllowed:(id)arg1;
+- (bool)isLimitAdTrackingForced;
 - (bool)isOpenInRestrictionInEffect;
 - (bool)isRatingAllowed:(id)arg1;
 - (bool)isSystemAppDeletionEnabled;

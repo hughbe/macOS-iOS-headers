@@ -32,8 +32,10 @@
 
 - (unsigned long long)PID;
 - (unsigned long long)VID;
+- (id)copyIdentifiers;
 - (id)copyPropertyForKey:(id)arg1;
 - (id)copyPropertyForKey:(id)arg1 withParameter:(id)arg2;
+- (id)copyPropertyInternalForKey:(id)arg1;
 - (void)dealloc;
 - (float)getLinearBrightness;
 - (bool)getNits:(float*)arg1;

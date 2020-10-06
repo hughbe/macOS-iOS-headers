@@ -19,14 +19,7 @@
         unsigned int read_stepIndexs : 1; 
         unsigned int read_actionSheetName : 1; 
         unsigned int read_ticketingSegments : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_actionSheetArtworkIndexs : 1; 
-        unsigned int wrote_routeDetailsArtworkIndexs : 1; 
-        unsigned int wrote_stepIndexs : 1; 
-        unsigned int wrote_actionSheetName : 1; 
-        unsigned int wrote_ticketingSegments : 1; 
-        unsigned int wrote_nextOptionsIndex : 1; 
-        unsigned int wrote_disableAlightNotifications : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _nextOptionsIndex;
     PBDataReader * _reader;
@@ -68,15 +61,6 @@
 + (Class)ticketingSegmentType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsActionSheetArtworkIndex:(unsigned int)arg1;
-- (void)_addNoFlagsRouteDetailsArtworkIndex:(unsigned int)arg1;
-- (void)_addNoFlagsStepIndex:(unsigned int)arg1;
-- (void)_addNoFlagsTicketingSegment:(id)arg1;
-- (void)_readActionSheetArtworkIndexs;
-- (void)_readActionSheetName;
-- (void)_readRouteDetailsArtworkIndexs;
-- (void)_readStepIndexs;
-- (void)_readTicketingSegments;
 - (unsigned int)actionSheetArtworkIndexAtIndex:(unsigned long long)arg1;
 - (unsigned int*)actionSheetArtworkIndexs;
 - (unsigned long long)actionSheetArtworkIndexsCount;
@@ -102,7 +86,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (int)nextOptionsIndex;
 - (void)readAll:(bool)arg1;

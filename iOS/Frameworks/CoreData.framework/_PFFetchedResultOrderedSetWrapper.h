@@ -18,7 +18,6 @@
 - (id)allObjects;
 - (id)array;
 - (id)arrayFromObjectIDs;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (bool)containsObject:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -50,6 +49,5 @@
 - (unsigned long long)retainCount;
 - (id)sortedArrayUsingComparator:(id /* block */)arg1;
 - (id)sortedArrayWithOptions:(unsigned long long)arg1 usingComparator:(id /* block */)arg2;
-- (void)willRead;
 
 @end

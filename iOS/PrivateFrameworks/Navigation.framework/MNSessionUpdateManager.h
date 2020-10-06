@@ -4,63 +4,63 @@
 
 @interface MNSessionUpdateManager : NSObject <GEOTransitRouteUpdaterDelegate> {
     GEOApplicationAuditToken * _auditToken;
+    NSDate * _dateOfLastUpdate;
     <MNSessionUpdateManagerDelegate> * _delegate;
     double  _etaRequestInterval;
     NSTimer * _etaTimer;
     double  _initialRequestDelay;
     bool  _isPaused;
+    bool  _lastRequestWasServerDriven;
     unsigned long long  _maxAlternateRoutesCount;
     double  _opportunisticRequestTimeWindow;
     GEOETATrafficUpdateRequest * _pendingETARequest;
+    GEOComposedETARoute * _pendingETARoute;
     NSString * _requestingAppIdentifier;
+    NSError * _retryError;
     NSMutableDictionary * _subscribers;
     GEODataRequestThrottlerToken * _throttleToken;
     GEOTransitRouteUpdater * _transitUpdater;
+    GEOLatLng * _tripOrigin;
 }
 
 @property (nonatomic, retain) GEOApplicationAuditToken *auditToken;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MNSessionUpdateManagerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
-@property (nonatomic) double etaRequestInterval;
 @property (readonly) unsigned long long hash;
-@property (nonatomic) double initialRequestDelay;
 @property (nonatomic) unsigned long long maxAlternateRoutesCount;
-@property (nonatomic) double opportunisticRequestTimeWindow;
 @property (nonatomic, copy) NSString *requestingAppIdentifier;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) GEODataRequestThrottlerToken *throttleToken;
+@property (nonatomic, retain) GEOLatLng *tripOrigin;
 
 - (void).cxx_destruct;
 - (id)_baseETARequest;
 - (void)_continueETARequests;
-- (void)_handleETAResponse:(id)arg1 forRouteInfo:(id)arg2 request:(id)arg3 error:(id)arg4;
+- (void)_handleETAResponse:(id)arg1 forRouteInfo:(id)arg2 etaRoute:(id)arg3 request:(id)arg4 error:(id)arg5;
 - (bool)_hasAtLeastOneActiveSubscriber;
 - (void)_scheduleETATimerWithInterval:(double)arg1;
 - (void)_sendETARequest;
+- (void)_sendETARequestWithRouteAttributes:(id)arg1;
 - (void)_terminateETARequests;
-- (bool)_updateETARequest:(id)arg1 withRouteInfo:(id)arg2 andUserLocation:(id)arg3;
-- (void)_updateETAResponse:(id)arg1 withRemainingDistanceFromRequest:(id)arg2;
+- (id)_updateETARequest:(id)arg1 withRouteInfo:(id)arg2 andUserLocation:(id)arg3;
+- (void)_updateRouteAttributesFor:(id)arg1 route:(id)arg2 updatedLocation:(id)arg3 completion:(id /* block */)arg4;
 - (id)auditToken;
 - (void)dealloc;
 - (id)delegate;
-- (double)etaRequestInterval;
 - (id)init;
-- (double)initialRequestDelay;
 - (unsigned long long)maxAlternateRoutesCount;
-- (double)opportunisticRequestTimeWindow;
 - (void)pauseUpdateRequestsForSubscriber:(id)arg1;
+- (void)requestUpdateForETAUPosition:(id)arg1;
 - (id)requestingAppIdentifier;
 - (void)restartUpdateTimer;
 - (void)resumeUpdateRequestsForSubscriber:(id)arg1;
 - (void)setAuditToken:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setEtaRequestInterval:(double)arg1;
-- (void)setInitialRequestDelay:(double)arg1;
 - (void)setMaxAlternateRoutesCount:(unsigned long long)arg1;
-- (void)setOpportunisticRequestTimeWindow:(double)arg1;
 - (void)setRequestingAppIdentifier:(id)arg1;
 - (void)setThrottleToken:(id)arg1;
+- (void)setTripOrigin:(id)arg1;
 - (void)startUpdateRequestsForRoutes:(id)arg1 andNavigationType:(int)arg2;
 - (void)stopUpdateRequests;
 - (id)throttleToken;
@@ -69,5 +69,6 @@
 - (void)transitRouteUpdater:(id)arg1 didUpdateTransitRoutes:(id)arg2;
 - (void)transitRouteUpdater:(id)arg1 willSendRequests:(id)arg2;
 - (void)transitRouteUpdater:(id)arg1 willUpdateTransitForRouteIDs:(id)arg2;
+- (id)tripOrigin;
 
 @end

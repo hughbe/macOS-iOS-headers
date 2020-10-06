@@ -7,6 +7,7 @@
     NSInputStream * _inputStream;
     NSOutputStream * _outputStream;
     CBPeer * _peer;
+    CBUUID * _serviceUUID;
     int  _socketFD;
 }
 
@@ -14,6 +15,7 @@
 @property (nonatomic, readonly) NSInputStream *inputStream;
 @property (nonatomic, readonly) NSOutputStream *outputStream;
 @property (nonatomic, readonly) CBPeer *peer;
+@property (nonatomic, retain) CBUUID *serviceUUID;
 @property (nonatomic, readonly) int socketFD;
 
 - (void).cxx_destruct;
@@ -24,6 +26,8 @@
 - (id)inputStream;
 - (id)outputStream;
 - (id)peer;
+- (id)serviceUUID;
+- (void)setServiceUUID:(id)arg1;
 - (int)socketFD;
 
 @end

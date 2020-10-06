@@ -6,11 +6,15 @@
     bool  _deviceDarkMode;
     struct { 
         unsigned int has_deviceDarkMode : 1; 
+        unsigned int has_isAltAccountPairedDevice : 1; 
     }  _flags;
+    bool  _isAltAccountPairedDevice;
 }
 
 @property (nonatomic) bool deviceDarkMode;
 @property (nonatomic) bool hasDeviceDarkMode;
+@property (nonatomic) bool hasIsAltAccountPairedDevice;
+@property (nonatomic) bool isAltAccountPairedDevice;
 
 + (bool)isValid:(id)arg1;
 
@@ -20,13 +24,20 @@
 - (bool)deviceDarkMode;
 - (id)dictionaryRepresentation;
 - (bool)hasDeviceDarkMode;
+- (bool)hasIsAltAccountPairedDevice;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
+- (bool)isAltAccountPairedDevice;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setDeviceDarkMode:(bool)arg1;
 - (void)setHasDeviceDarkMode:(bool)arg1;
+- (void)setHasIsAltAccountPairedDevice:(bool)arg1;
+- (void)setIsAltAccountPairedDevice:(bool)arg1;
 - (void)writeTo:(id)arg1;
 
 @end

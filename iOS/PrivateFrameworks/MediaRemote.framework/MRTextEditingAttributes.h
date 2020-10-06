@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRTextEditingAttributes : NSObject <NSMutableCopying> {
+@interface MRTextEditingAttributes : NSObject <NSCopying, NSMutableCopying> {
     struct _MRTextInputTraits { 
         unsigned int autocapitalizationType; 
         unsigned int autocorrectionType; 
@@ -27,7 +27,6 @@
 @property (nonatomic, readonly) NSString *title;
 
 - (void).cxx_destruct;
-- (id)_copyWithZone:(struct _NSZone { }*)arg1 usingConcreteClass:(Class)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)initWithTitle:(id)arg1 prompt:(id)arg2;

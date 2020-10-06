@@ -6,6 +6,7 @@
 
 @property (nonatomic, retain) NSString *contactIdentifier;
 @property (nonatomic, retain) NSString *cropRectString;
+@property (nonatomic, retain) NSString *displayString;
 @property (nonatomic, retain) NSUUID *identifier;
 @property (nonatomic, retain) NSData *imageData;
 @property (nonatomic, retain) NSDate *lastUsedDate;

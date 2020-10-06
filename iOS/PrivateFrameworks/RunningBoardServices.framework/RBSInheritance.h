@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSInheritance : NSObject <BSDescriptionProviding, BSXPCSecureCoding, NSCopying> {
+@interface RBSInheritance : NSObject <NSCopying, RBSXPCSecureCoding> {
     NSObject<OS_xpc_object> * _encodedEndowment;
     NSString * _endowmentNamespace;
     NSString * _environment;
@@ -21,26 +21,22 @@
 @property (nonatomic, readonly, copy) RBSAssertionIdentifier *originatingIdentifier;
 @property (readonly) Class superclass;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)_initWithNamespace:(id)arg1 environment:(id)arg2 encodedEndowment:(id)arg3 originatingIdentifier:(id)arg4 attributePath:(unsigned long long)arg5;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)encodedEndowment;
 - (id)endowment;
 - (id)endowmentNamespace;
 - (id)environment;
 - (unsigned long long)hash;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (unsigned long long)originatingAttributePath;
 - (id)originatingIdentifier;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 
 @end

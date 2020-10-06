@@ -9,7 +9,6 @@
     NSDictionary * _servicesByIdentifier;
 }
 
-@property (nonatomic, readonly, copy) NSOrderedSet *_orderedServices;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -19,9 +18,6 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (id)_domainWithAdditionalServices:(id)arg1;
-- (id)_initWithIdentifier:(id)arg1 machName:(id)arg2 servicesByIdentifier:(id)arg3;
-- (id)_orderedServices;
 - (id)description;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;

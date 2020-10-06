@@ -2,40 +2,36 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNAddressComponentTextFieldCell : UITableViewCell {
+@interface CNAddressComponentTextFieldCell : NUITableViewContainerCell {
     UIImageView * _chevron;
-    NSArray * _componentConstraints;
+    bool  _showsChevron;
     UITextField * _textField;
-    UITextField * _textFieldForChevron;
 }
 
 @property (nonatomic, retain) UIImageView *chevron;
-@property (nonatomic, retain) NSArray *componentConstraints;
+@property (nonatomic) bool showsChevron;
 @property (nonatomic, copy) NSDictionary *textAttributes;
 @property (nonatomic, retain) UITextField *textField;
-@property (nonatomic) UITextField *textFieldForChevron;
 @property (nonatomic, readonly) NSArray *textFields;
 
 + (id)cellIdentifier;
++ (Class)containerViewClass;
 
 - (void).cxx_destruct;
-- (id)addTextField;
 - (id)chevron;
-- (id)componentConstraints;
 - (void)contentSizeCategoryDidChange:(id)arg1;
-- (id)currentConstraintsForMetrics:(id)arg1;
 - (id)initWithStyle:(long long)arg1 reuseIdentifier:(id)arg2;
+- (id)newTextField;
 - (void)prepareForReuse;
 - (void)setChevron:(id)arg1;
-- (void)setComponentConstraints:(id)arg1;
+- (void)setShowsChevron:(bool)arg1;
 - (void)setTextAttributes:(id)arg1;
 - (void)setTextField:(id)arg1;
-- (void)setTextFieldForChevron:(id)arg1;
 - (void)setupTextFields;
+- (bool)showsChevron;
 - (id)textAttributes;
 - (id)textField;
-- (id)textFieldForChevron;
 - (id)textFields;
-- (void)updateConstraints;
+- (void)updateMargins;
 
 @end

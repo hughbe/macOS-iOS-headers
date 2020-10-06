@@ -4,8 +4,7 @@
 
 @interface _PASLRUCache : NSObject {
     unsigned long long  _countLimit;
-    NSMutableDictionary * _items;
-    NSMutableArray * _keysMRU;
+    _PASLock * _lock;
 }
 
 - (void).cxx_destruct;

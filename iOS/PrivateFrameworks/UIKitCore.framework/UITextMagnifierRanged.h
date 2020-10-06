@@ -16,13 +16,9 @@
 
 @property (nonatomic) bool isHorizontal;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)activeRangedMagnifier;
 + (Class)renderClass;
 + (id)sharedRangedMagnifier;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
 
 - (struct CGPoint { double x1; double x2; })adjustMagnificationPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)beginMagnifyingTarget:(id)arg1 text:(id)arg2 magnificationPoint:(struct CGPoint { double x1; double x2; })arg3 offset:(struct CGPoint { double x1; double x2; })arg4 animated:(bool)arg5;

@@ -7,12 +7,11 @@
     <_DKSimpleKeyValueStore> * _store;
 }
 
-@property (nonatomic, retain) <_DKSimpleKeyValueStore> *store;
+@property (nonatomic, readonly) <_DKSimpleKeyValueStore> *store;
 
 + (id)standardInstance;
 
 - (void).cxx_destruct;
-- (id)activityThrottler;
 - (void)clearHistoryForName:(id)arg1;
 - (id)description;
 - (id)initWithStore:(id)arg1 namespace:(id)arg2;
@@ -33,7 +32,6 @@
 - (void)performWithMinimumIntervalInMinutesOf:(double)arg1 name:(id)arg2 queue:(id)arg3 activityBlock:(id /* block */)arg4;
 - (void)performWithMinimumIntervalInSecondsOf:(double)arg1 name:(id)arg2 queue:(id)arg3 activityBlock:(id /* block */)arg4;
 - (void)setDate:(id)arg1 forName:(id)arg2;
-- (void)setStore:(id)arg1;
 - (id)store;
 
 @end

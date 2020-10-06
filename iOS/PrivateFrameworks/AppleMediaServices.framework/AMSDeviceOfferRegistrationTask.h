@@ -24,6 +24,7 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 
 - (void).cxx_destruct;
 - (id)_bucketedOffers:(id)arg1;

@@ -5,6 +5,7 @@
 @interface CBPreferencesHandler : NSObject
 
 + (void)consistencyCheckForUser:(id)arg1;
++ (id)copyNestedPreferenceForKey1:(id)arg1 key2:(id)arg2;
 + (id)copyNestedPreferenceForKey1:(id)arg1 key2:(id)arg2 key3:(id)arg3;
 + (struct __CFDictionary { }*)copyPreferenceDictionaryForUser:(id)arg1;
 + (id)copyPreferenceForAllUsersForKey:(id)arg1;

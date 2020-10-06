@@ -61,6 +61,7 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_TEST_validLayoutRect;
+- (long long)_extantNumberOfItems;
 - (id)_layoutAttributesForElementsInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_loadEverything;
 - (void)_prepareToLoadData;
@@ -92,6 +93,7 @@
 - (id)knownSupplementaryElementKinds;
 - (id)layoutAttributesForCellsInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 validateLayout:(bool)arg2;
 - (id)layoutAttributesForDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;
+- (id)layoutAttributesForDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2 nilAttributesArePermitted:(bool)arg3;
 - (id)layoutAttributesForElementsInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)layoutAttributesForElementsInSection:(long long)arg1;
 - (id)layoutAttributesForGlobalItemIndex:(long long)arg1;

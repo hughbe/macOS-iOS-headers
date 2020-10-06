@@ -26,7 +26,7 @@
 
 - (void).cxx_destruct;
 - (void)_commonInitWithDecoderData:(id)arg1;
-- (unsigned int)distance;
+- (double)distance;
 - (void)encodeWithCoder:(id)arg1;
 - (struct { double x1; double x2; double x3; })endGeoCoordinate;
 - (id)initWithCoder:(id)arg1;

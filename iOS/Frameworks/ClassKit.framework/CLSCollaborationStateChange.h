@@ -51,6 +51,7 @@
 - (void)setDeletedDomains:(id)arg1;
 - (bool)setDomainVersion:(long long)arg1 forDomain:(long long)arg2;
 - (bool)setFlags:(unsigned long long)arg1 forDomain:(long long)arg2;
+- (bool)setInfoValue:(id)arg1 forKey:(id)arg2 forDomain:(long long)arg3;
 - (bool)setNote:(id)arg1 forDomain:(long long)arg2;
 - (void)setOwnerPersonID:(id)arg1;
 - (void)setRecipientPersonID:(id)arg1;

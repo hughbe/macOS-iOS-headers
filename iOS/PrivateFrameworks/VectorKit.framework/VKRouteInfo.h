@@ -6,12 +6,14 @@
     VKRouteEtaDescription * _etaDescription;
     bool  _hasFocus;
     GEOComposedRoute * _route;
+    NSArray * _waypoints;
 }
 
 @property (nonatomic, retain) VKRouteEtaDescription *etaDescription;
 @property (nonatomic) bool hasFocus;
 @property (nonatomic, readonly) bool hasRouteEta;
 @property (nonatomic, readonly) GEOComposedRoute *route;
+@property (nonatomic, readonly) NSArray *waypoints;
 
 - (void)dealloc;
 - (id)etaDescription;
@@ -22,5 +24,6 @@
 - (id)route;
 - (void)setEtaDescription:(id)arg1;
 - (void)setHasFocus:(bool)arg1;
+- (id)waypoints;
 
 @end

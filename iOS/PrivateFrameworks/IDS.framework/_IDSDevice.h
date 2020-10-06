@@ -13,6 +13,7 @@
     CUTWeakReference * _serviceReference;
 }
 
+@property (nonatomic, readonly) IDSEndpointCapabilities *capabilities;
 @property (getter=isCloudConnected, nonatomic, readonly) bool cloudConnected;
 @property (getter=isConnected, nonatomic, readonly) bool connected;
 @property (nonatomic, readonly) NSString *deviceColor;
@@ -36,6 +37,7 @@
 @property (nonatomic, readonly) NSString *productName;
 @property (nonatomic, readonly) NSString *productVersion;
 @property (nonatomic, readonly) NSData *pushToken;
+@property (nonatomic, readonly) long long relationship;
 @property (nonatomic, readonly) NSString *service;
 @property (nonatomic, readonly) unsigned long long serviceMinCompatibilityVersion;
 @property (nonatomic, readonly) bool supportsApplePay;
@@ -55,6 +57,9 @@
 - (void)_nearbyStateChanged;
 - (void)_setAccount:(id)arg1;
 - (void)_setService:(id)arg1;
+- (void)_stateChanged;
+- (id)capabilities;
+- (id)compactDescription;
 - (void)dealloc;
 - (id)description;
 - (id)deviceColor;
@@ -69,6 +74,7 @@
 - (bool)isHSATrusted;
 - (bool)isLocallyPaired;
 - (bool)isNearby;
+- (bool)isTinker;
 - (id)lastActivityDate;
 - (id)linkedUserURIs;
 - (bool)locallyPresent;
@@ -82,6 +88,7 @@
 - (id)productName;
 - (id)productVersion;
 - (id)pushToken;
+- (long long)relationship;
 - (id)service;
 - (unsigned long long)serviceMinCompatibilityVersion;
 - (void)setNSUUID:(id)arg1;

@@ -31,7 +31,10 @@
 - (id)dictionaryRepresentation;
 - (bool)hasType;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapsIdAtIndex:(unsigned long long)arg1;
 - (id)mapsIds;
 - (unsigned long long)mapsIdsCount;

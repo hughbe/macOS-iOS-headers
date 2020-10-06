@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSAssertionDescriptor : NSObject <BSDescriptionProviding, BSXPCSecureCoding, NSCopying> {
+@interface RBSAssertionDescriptor : NSObject <NSCopying, RBSXPCSecureCoding> {
     NSArray * _attributes;
     NSString * _explanation;
     RBSAssertionIdentifier * _identifier;
@@ -19,26 +19,22 @@
 @property (nonatomic, copy) RBSTarget *target;
 
 + (id)descriptorWithIdentifier:(id)arg1 target:(id)arg2 explanation:(id)arg3 attributes:(id)arg4;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_initWithIdentifier:(id)arg1 target:(id)arg2 explanation:(id)arg3 attributes:(id)arg4;
 - (id)attributes;
 - (id)copyWithIdentifier:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)debugDescription;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)explanation;
 - (unsigned long long)hash;
 - (id)identifier;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (void)setTarget:(id)arg1;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 - (id)target;
 
 @end

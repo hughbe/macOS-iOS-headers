@@ -8,7 +8,6 @@
 
 @property (nonatomic, readonly) NSString *aliasTargetContainerString;
 @property (nonatomic, readonly) NSString *appLibraryOrZoneName;
-@property (nonatomic, readonly) bool isBRTestMangledID;
 @property (nonatomic, readonly) bool isCloudDocsMangledID;
 @property (nonatomic, readonly) bool isDesktopMangledID;
 @property (nonatomic, readonly) bool isDocumentsMangledID;
@@ -47,7 +46,6 @@
 - (id)initWithMangledString:(id)arg1;
 - (id)initWithRecordZoneID:(id)arg1;
 - (id)initWithZoneName:(id)arg1 ownerName:(id)arg2;
-- (bool)isBRTestMangledID;
 - (bool)isCloudDocsMangledID;
 - (bool)isDesktopMangledID;
 - (bool)isDocumentsMangledID;

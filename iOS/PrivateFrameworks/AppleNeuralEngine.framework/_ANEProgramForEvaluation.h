@@ -7,7 +7,6 @@
     long long  _currentAsyncRequestsInFlight;
     unsigned long long  _intermediateBufferHandle;
     unsigned long long  _programHandle;
-    NSObject<OS_dispatch_queue> * _q;
     BOOL  _queueDepth;
     NSObject<OS_dispatch_semaphore> * _requestsInFlight;
 }
@@ -16,7 +15,6 @@
 @property (nonatomic) long long currentAsyncRequestsInFlight;
 @property (nonatomic) unsigned long long intermediateBufferHandle;
 @property (nonatomic) unsigned long long programHandle;
-@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *q;
 @property (nonatomic, readonly) BOOL queueDepth;
 @property (nonatomic, readonly) NSObject<OS_dispatch_semaphore> *requestsInFlight;
 
@@ -31,9 +29,8 @@
 - (id)init;
 - (id)initWithHandle:(unsigned long long)arg1 intermediateBufferHandle:(unsigned long long)arg2 queueDepth:(BOOL)arg3;
 - (unsigned long long)intermediateBufferHandle;
-- (bool)processRequest:(id)arg1 qos:(unsigned int)arg2 qIndex:(unsigned long long)arg3 error:(id*)arg4;
+- (bool)processRequest:(id)arg1 qos:(unsigned int)arg2 qIndex:(unsigned long long)arg3 modelStringID:(unsigned long long)arg4 options:(id)arg5 error:(id*)arg6;
 - (unsigned long long)programHandle;
-- (id)q;
 - (BOOL)queueDepth;
 - (id)requestsInFlight;
 - (void)setCurrentAsyncRequestsInFlight:(long long)arg1;

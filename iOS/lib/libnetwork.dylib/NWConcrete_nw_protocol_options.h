@@ -18,7 +18,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithDefinition:(id)arg1;
-- (id)initWithOptions:(id)arg1;
 
 @end

@@ -4,8 +4,8 @@
 
 @interface _UITextFieldPasscodeCutoutBackground : UITextFieldBackgroundView {
     double  _cornerRadius;
-    bool  _customFillColor;
-    bool  _customStrokeColor;
+    bool  _hasCustomFillColor;
+    bool  _hasCustomStrokeColor;
     CAShapeLayer * _lighteningOutline;
     double  _outlineAlpha;
 }

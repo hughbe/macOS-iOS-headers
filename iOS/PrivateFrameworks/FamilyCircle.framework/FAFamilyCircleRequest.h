@@ -23,6 +23,7 @@
 - (void)setConnectionProvider:(id)arg1;
 - (void)setPasswordOrToken:(id)arg1;
 - (void)setUsernameOrDSID:(id)arg1;
+- (id)synchronousRemoteObjectWithErrorHandler:(id /* block */)arg1;
 - (id)usernameOrDSID;
 
 @end

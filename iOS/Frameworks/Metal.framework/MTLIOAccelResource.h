@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@interface MTLIOAccelResource : NSObject <MTLResourceSPI> {
+@interface MTLIOAccelResource : _MTLResource <MTLResourceSPI> {
     struct _MTLIOAccelResource { 
         union { 
             unsigned long long reserved[4]; 
@@ -48,7 +48,6 @@
 
 @property (readonly) unsigned long long allocatedSize;
 @property (readonly) unsigned long long allocationID;
-@property (readonly) MTLResourceAllocationInfo *cachedAllocationInfo;
 @property (readonly) unsigned long long cpuCacheMode;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -65,7 +64,6 @@
 @property (readonly) struct __IOAccelResource { }*resourceRef;
 @property (nonatomic, readonly) unsigned long long resourceSize;
 @property int responsibleProcess;
-@property (readonly) MTLResourceAllocationInfo *sharedAllocationInfo;
 @property (readonly) unsigned long long storageMode;
 @property (readonly) Class superclass;
 @property (readonly) unsigned long long unfilteredResourceOptions;
@@ -74,7 +72,6 @@
 - (unsigned long long)allocatedSize;
 - (unsigned long long)allocationID;
 - (void)annotateResource:(struct __CFDictionary { }*)arg1;
-- (id)cachedAllocationInfo;
 - (struct __CFDictionary { }*)copyAnnotationDictionary:(unsigned long long)arg1 obj_key_name:(struct __CFString { }*)arg2 obj_dict:(struct __CFDictionary { }*)arg3;
 - (struct __CFArray { }*)copyAnnotations;
 - (unsigned long long)cpuCacheMode;
@@ -89,7 +86,7 @@
 - (unsigned long long)heapOffset;
 - (id)initMemoryless:(id)arg1 descriptor:(id)arg2;
 - (id)initStandinWithDevice:(id)arg1;
-- (id)initWithDevice:(id)arg1 options:(unsigned long long)arg2 args:(struct IOAccelNewResourceArgs { struct IOAccelNewResourceData { unsigned int x_1_1_1; unsigned int x_1_1_2; unsigned short x_1_1_3; unsigned short x_1_1_4; unsigned short x_1_1_5; unsigned short x_1_1_6; unsigned long long x_1_1_7; unsigned long long x_1_1_8; unsigned char x_1_1_9; unsigned char x_1_1_10; unsigned char x_1_1_11; unsigned char x_1_1_12; unsigned int x_1_1_13; unsigned long long x_1_1_14; unsigned long long x_1_1_15[1]; union { struct { unsigned long long x_1_3_1; unsigned long long x_1_3_2; unsigned long long x_1_3_3; unsigned long long x_1_3_4; unsigned int x_1_3_5; } x_16_2_1; struct { unsigned int x_2_3_1; unsigned int x_2_3_2; unsigned long long x_2_3_3[3]; } x_16_2_2; struct { unsigned int x_3_3_1; unsigned int x_3_3_2; unsigned int x_3_3_3; unsigned int x_3_3_4; unsigned long long x_3_3_5[2]; } x_16_2_3; struct { unsigned int x_4_3_1; unsigned int x_4_3_2; unsigned long long x_4_3_3[3]; } x_16_2_4; } x_1_1_16; } x1; }*)arg3 argsSize:(unsigned int)arg4;
+- (id)initWithDevice:(id)arg1 options:(unsigned long long)arg2 args:(struct IOAccelNewResourceArgs { struct IOAccelNewResourceData { unsigned int x_1_1_1; unsigned int x_1_1_2; unsigned short x_1_1_3; unsigned short x_1_1_4; unsigned short x_1_1_5; unsigned short x_1_1_6; unsigned long long x_1_1_7; unsigned long long x_1_1_8; unsigned char x_1_1_9; unsigned char x_1_1_10; unsigned char x_1_1_11; unsigned char x_1_1_12; unsigned int x_1_1_13; unsigned long long x_1_1_14; unsigned long long x_1_1_15; unsigned long long x_1_1_16; union { struct { unsigned long long x_1_3_1; unsigned long long x_1_3_2; unsigned long long x_1_3_3; unsigned long long x_1_3_4; unsigned int x_1_3_5; } x_17_2_1; struct { unsigned int x_2_3_1; unsigned int x_2_3_2; unsigned long long x_2_3_3[3]; } x_17_2_2; struct { unsigned int x_3_3_1; unsigned int x_3_3_2; unsigned int x_3_3_3; unsigned int x_3_3_4; unsigned long long x_3_3_5[2]; } x_17_2_3; struct { unsigned int x_4_3_1; unsigned int x_4_3_2; unsigned long long x_4_3_3[3]; } x_17_2_4; } x_1_1_17; } x1; }*)arg3 argsSize:(unsigned int)arg4;
 - (id)initWithResource:(id)arg1;
 - (bool)isAliasable;
 - (bool)isComplete;
@@ -103,11 +100,9 @@
 - (unsigned long long)resourceSize;
 - (int)responsibleProcess;
 - (id)retainedLabel;
-- (void)setAllocationInfoShared:(id)arg1 andCached:(id)arg2;
 - (void)setLabel:(id)arg1;
 - (unsigned long long)setPurgeableState:(unsigned long long)arg1;
 - (void)setResponsibleProcess:(int)arg1;
-- (id)sharedAllocationInfo;
 - (unsigned long long)storageMode;
 - (unsigned long long)unfilteredResourceOptions;
 - (void*)virtualAddress;

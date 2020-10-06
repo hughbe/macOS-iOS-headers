@@ -34,9 +34,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)formattedTextPieces;
 - (bool)hasStarRating;
+- (unsigned long long)hash;
 - (id)icons;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProtobuf:(id)arg1;
+- (bool)isEqual:(id)arg1;
 - (id)jsonData;
 - (void)loadRichTextWithCompletionHandler:(id /* block */)arg1;
 - (void)setContentAdvisory:(id)arg1;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSearchForNotebookItemsIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSearchForNotebookItemsIntent> {
-    bool  __encodeLegacyGloryData;
     NSString * _content;
     int  _dateSearchType;
     _INPBDateTimeRange * _dateTime;
@@ -32,7 +31,6 @@
     _INPBDataString * _title;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic) int dateSearchType;
 @property (nonatomic, retain) _INPBDateTimeRange *dateTime;
@@ -75,8 +73,6 @@
 - (int)StringAsStatus:(id)arg1;
 - (int)StringAsTaskPriority:(id)arg1;
 - (int)StringAsTemporalEventTriggerTypes:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addTemporalEventTriggerType:(int)arg1;
 - (void)clearTemporalEventTriggerTypes;
 - (id)content;

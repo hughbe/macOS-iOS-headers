@@ -17,6 +17,7 @@
 - (id)avAudioRouteName;
 - (long long)bluetoothEndpointType;
 - (id)bluetoothProductIdentifier;
+- (id)customDescription;
 - (long long)deviceType;
 - (id)identifiersOfOtherConnectedDevices;
 - (id)initWithDictionary:(id)arg1;

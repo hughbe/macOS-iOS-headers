@@ -4,12 +4,16 @@
 
 @interface PFHistoryAnalyzerOptions : NSObject <NSCopying> {
     bool  _automaticallyPruneTransientRecords;
+    unsigned long long  _transactionLimit;
 }
 
 @property (nonatomic) bool automaticallyPruneTransientRecords;
+@property (nonatomic) unsigned long long transactionLimit;
 
 - (bool)automaticallyPruneTransientRecords;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)setAutomaticallyPruneTransientRecords:(bool)arg1;
+- (void)setTransactionLimit:(unsigned long long)arg1;
+- (unsigned long long)transactionLimit;
 
 @end

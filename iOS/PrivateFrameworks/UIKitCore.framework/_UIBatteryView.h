@@ -71,8 +71,10 @@
 + (struct CGSize { double x1; double x2; })_statusBarIntrinsicContentSizeForIconSize:(long long)arg1;
 
 - (void).cxx_destruct;
+- (void)__resetBoltLayers;
 - (void)__updateFillLayer;
 - (double)_batteryBoltLargeScaleFactor;
+- (double)_batteryBoltScaleFactorMultiplier;
 - (double)_batteryBoltSmallScaleFactor;
 - (id)_batteryFillColor;
 - (struct CGSize { double x1; double x2; })_batterySizeForTraitCollection:(id)arg1;

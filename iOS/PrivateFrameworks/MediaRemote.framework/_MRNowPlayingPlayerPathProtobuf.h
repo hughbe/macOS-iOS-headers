@@ -12,19 +12,13 @@
 @property (nonatomic, readonly) bool hasClient;
 @property (nonatomic, readonly) bool hasOrigin;
 @property (nonatomic, readonly) bool hasPlayer;
-@property (nonatomic, readonly) bool isLocal;
-@property (nonatomic, readonly) bool isResolved;
 @property (nonatomic, retain) _MROriginProtobuf *origin;
 @property (nonatomic, retain) _MRNowPlayingPlayerProtobuf *player;
-
-+ (void)initialize;
 
 - (void).cxx_destruct;
 - (id)client;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)customDescription;
-- (id)customDictionaryRepresentation;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (bool)hasClient;
@@ -32,8 +26,6 @@
 - (bool)hasPlayer;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
-- (bool)isLocal;
-- (bool)isResolved;
 - (void)mergeFrom:(id)arg1;
 - (id)origin;
 - (id)player;

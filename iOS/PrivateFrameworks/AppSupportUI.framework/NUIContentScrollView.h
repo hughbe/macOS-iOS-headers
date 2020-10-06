@@ -7,7 +7,6 @@
     bool  _canScrollDocumentViewVertically;
     UIView * _documentView;
     long long  _horizontalAlignment;
-    NUIMultilineSizingHelper * _multilineSizeHelper;
     long long  _verticalAlignment;
 }
 
@@ -18,14 +17,14 @@
 @property (nonatomic) long long horizontalAlignment;
 @property (nonatomic) long long verticalAlignment;
 
++ (bool)requiresConstraintBasedLayout;
+
 - (void).cxx_destruct;
+- (unsigned long long)_axesForDerivingIntrinsicContentSizeFromLayoutSize;
+- (struct { double x1; double x2; })_baselineOffsetsAtSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)_intrinsicContentSizeInvalidatedForChildView:(id)arg1;
 - (struct CGSize { double x1; double x2; })_intrinsicSizeWithinSize:(struct CGSize { double x1; double x2; })arg1;
-- (bool)_needsDoubleUpdateConstraintsPass;
-- (void)_prepareForFirstIntrinsicContentSizeCalculation;
-- (void)_prepareForSecondIntrinsicContentSizeCalculationWithLayoutEngineBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
-- (void)_resetToBeginningOfDoublePass;
-- (void)_setInSecondConstraintsPass:(bool)arg1;
+- (bool)_layoutHeightDependsOnWidth;
 - (bool)canScrollDocumentViewHorizontally;
 - (bool)canScrollDocumentViewVertically;
 - (id)contentView;
@@ -34,7 +33,6 @@
 - (id)initWithContentView:(id)arg1;
 - (id)initWithDocumentView:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
-- (struct CGSize { double x1; double x2; })intrinsicContentSize;
 - (bool)isLayoutSizeDependentOnPerpendicularAxis;
 - (void)layoutSubviews;
 - (void)setCanScrollDocumentViewHorizontally:(bool)arg1;
@@ -44,7 +42,6 @@
 - (void)setHorizontalAlignment:(long long)arg1;
 - (void)setVerticalAlignment:(long long)arg1;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
-- (void)updateConstraints;
 - (long long)verticalAlignment;
 - (id)viewForFirstBaselineLayout;
 - (id)viewForLastBaselineLayout;

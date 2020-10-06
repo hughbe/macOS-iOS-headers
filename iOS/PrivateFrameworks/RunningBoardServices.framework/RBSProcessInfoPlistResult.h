@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessInfoPlistResult : NSObject <BSXPCSecureCoding> {
+@interface RBSProcessInfoPlistResult : NSObject <RBSXPCSecureCoding> {
     id  _value;
 }
 
@@ -12,11 +12,11 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) id value;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
-- (void)encodeWithBSXPCCoder:(id)arg1;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (void)setValue:(id)arg1;
 - (id)value;
 

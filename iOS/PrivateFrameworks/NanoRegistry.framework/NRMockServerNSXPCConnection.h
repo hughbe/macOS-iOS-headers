@@ -21,17 +21,14 @@
 @property (nonatomic, retain) id exportedObject;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) id /* block */ interruptionHandler;
-@property (nonatomic, readonly) bool invalidated;
 @property (nonatomic, copy) id /* block */ invalidationHandler;
 @property (nonatomic, readonly) int processIdentifier;
 @property (nonatomic, readonly, retain) NSString *processName;
-@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *queue;
 @property (nonatomic, retain) NSXPCInterface *remoteObjectInterface;
 @property (nonatomic, readonly, retain) id remoteObjectProxy;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)_invalidate;
 - (void)_setQueue:(id)arg1;
 - (void)dealloc;
 - (id)exportedInterface;
@@ -40,11 +37,9 @@
 - (id)initWithMachServiceName:(id)arg1 options:(unsigned long long)arg2;
 - (id /* block */)interruptionHandler;
 - (void)invalidate;
-- (bool)invalidated;
 - (id /* block */)invalidationHandler;
 - (int)processIdentifier;
 - (id)processName;
-- (id)queue;
 - (id)remoteObjectInterface;
 - (id)remoteObjectProxy;
 - (id)remoteObjectProxyAsync:(bool)arg1;

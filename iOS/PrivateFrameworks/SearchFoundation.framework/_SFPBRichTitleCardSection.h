@@ -33,6 +33,7 @@
     _SFPBRichText * _richSubtitle;
     int  _separatorStyle;
     NSString * _subtitle;
+    bool  _subtitleIsEmphasized;
     bool  _thumbnailCropCircle;
     NSString * _title;
     int  _titleAlign;
@@ -76,6 +77,7 @@
 @property (nonatomic, retain) _SFPBRichText *richSubtitle;
 @property (nonatomic) int separatorStyle;
 @property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic) bool subtitleIsEmphasized;
 @property (readonly) Class superclass;
 @property (nonatomic) bool thumbnailCropCircle;
 @property (nonatomic, copy) NSString *title;
@@ -165,6 +167,7 @@
 - (void)setRichSubtitle:(id)arg1;
 - (void)setSeparatorStyle:(int)arg1;
 - (void)setSubtitle:(id)arg1;
+- (void)setSubtitleIsEmphasized:(bool)arg1;
 - (void)setThumbnailCropCircle:(bool)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setTitleAlign:(int)arg1;
@@ -173,6 +176,7 @@
 - (void)setTitleWeight:(int)arg1;
 - (void)setType:(id)arg1;
 - (id)subtitle;
+- (bool)subtitleIsEmphasized;
 - (bool)thumbnailCropCircle;
 - (id)title;
 - (int)titleAlign;

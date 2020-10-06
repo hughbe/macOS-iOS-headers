@@ -2,8 +2,9 @@
    Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
  */
 
-@interface AMSDialogAction : NSObject <NSSecureCoding> {
+@interface AMSDialogAction : NSObject <NSCopying, NSSecureCoding> {
     NSURL * _deepLink;
+    AMSDialogRequest * _dialogRequest;
     NSString * _identifier;
     bool  _inferLinkDestination;
     AMSMetricsEvent * _metricsEvent;
@@ -16,8 +17,14 @@
 
 @property (setter=ams_setURLType:, nonatomic) long long ams_URLType;
 @property (setter=ams_setActionType:, nonatomic) long long ams_actionType;
+@property (setter=ams_setButtonDictionary:, nonatomic, retain) NSDictionary *ams_buttonDictionary;
+@property (setter=ams_setBuyParams:, nonatomic, retain) NSString *ams_buyParams;
+@property (setter=ams_setCommerceUIURL:, nonatomic) bool ams_commerceUIURL;
+@property (setter=ams_setRawURL:, nonatomic, retain) NSURL *ams_rawURL;
+@property (setter=ams_setResolvedInterruption:, nonatomic) bool ams_resolvedInterruption;
 @property (setter=ams_setSubtarget:, nonatomic, retain) NSString *ams_subtarget;
 @property (nonatomic, copy) NSURL *deepLink;
+@property (nonatomic, copy) AMSDialogRequest *dialogRequest;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic) bool inferLinkDestination;
 @property (nonatomic, copy) AMSMetricsEvent *metricsEvent;
@@ -35,12 +42,24 @@
 - (void).cxx_destruct;
 - (long long)ams_URLType;
 - (long long)ams_actionType;
+- (id)ams_buttonDictionary;
+- (id)ams_buyParams;
+- (bool)ams_commerceUIURL;
+- (id)ams_rawURL;
+- (bool)ams_resolvedInterruption;
 - (void)ams_setActionType:(long long)arg1;
+- (void)ams_setButtonDictionary:(id)arg1;
+- (void)ams_setBuyParams:(id)arg1;
+- (void)ams_setCommerceUIURL:(bool)arg1;
+- (void)ams_setRawURL:(id)arg1;
+- (void)ams_setResolvedInterruption:(bool)arg1;
 - (void)ams_setSubtarget:(id)arg1;
 - (void)ams_setURLType:(long long)arg1;
 - (id)ams_subtarget;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)deepLink;
 - (id)description;
+- (id)dialogRequest;
 - (void)encodeWithCoder:(id)arg1;
 - (id)identifier;
 - (bool)inferLinkDestination;
@@ -49,6 +68,7 @@
 - (id)metricsEvent;
 - (id)request;
 - (void)setDeepLink:(id)arg1;
+- (void)setDialogRequest:(id)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setInferLinkDestination:(bool)arg1;
 - (void)setMetricsEvent:(id)arg1;

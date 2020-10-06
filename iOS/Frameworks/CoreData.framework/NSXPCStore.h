@@ -12,7 +12,9 @@
     NSXPCStoreNotificationObserver * _observer;
     NSString * _remoteStoreChangedNotificationName;
     NSString * _sanityCheckToken;
-    int  _stateLock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _stateLock;
 }
 
 @property (readonly, copy) NSString *remoteStoreChangedNotificationName;

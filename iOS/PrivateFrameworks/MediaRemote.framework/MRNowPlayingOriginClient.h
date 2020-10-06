@@ -3,7 +3,7 @@
  */
 
 @interface MRNowPlayingOriginClient : NSObject <MRNowPlayingClientState> {
-    _MRNowPlayingClientProtobuf * _activeNowPlayingClient;
+    MRClient * _activeNowPlayingClient;
     MRApplicationActivity * _activity;
     NSMutableArray * _applicationPickedRoutes;
     id /* block */  _beginLyricsEventCallback;
@@ -11,13 +11,13 @@
     double  _canBeNowPlayingAppTimestamp;
     id /* block */  _capabilitiesCallback;
     id /* block */  _commandCallback;
-    _MRDeviceInfoMessageProtobuf * _deviceInfo;
+    MRDeviceInfo * _deviceInfo;
     id /* block */  _endLyricsEventCallback;
     unsigned int  _hardwareRemoteBehavior;
     unsigned int  _inputMode;
     bool  _isOverrideApp;
     NSMutableArray * _nowPlayingClients;
-    _MROriginProtobuf * _origin;
+    MROrigin * _origin;
     id /* block */  _playbackQueueCallback;
     id /* block */  _playbackQueueTransactionCallback;
     id /* block */  _playbackSessionCallback;
@@ -30,19 +30,19 @@
     unsigned int  _volumeCapabilities;
 }
 
-@property (nonatomic, retain) _MRNowPlayingClientProtobuf *activeNowPlayingClient;
+@property (nonatomic, retain) MRClient *activeNowPlayingClient;
 @property (nonatomic, retain) MRApplicationActivity *activity;
 @property (nonatomic, copy) NSArray *applicationPickedRoutes;
 @property (nonatomic, copy) id /* block */ beginLyricsEventCallback;
 @property (nonatomic) bool canBeNowPlayingApp;
 @property (nonatomic, copy) id /* block */ commandCallback;
-@property (nonatomic, retain) _MRDeviceInfoMessageProtobuf *deviceInfo;
+@property (nonatomic, retain) MRDeviceInfo *deviceInfo;
 @property (nonatomic, copy) id /* block */ endLyricsEventCallback;
 @property (nonatomic) unsigned int hardwareRemoteBehavior;
 @property (nonatomic) unsigned int inputMode;
 @property (nonatomic) bool isOverrideApp;
 @property (nonatomic, readonly) NSArray *nowPlayingClients;
-@property (nonatomic, readonly) _MROriginProtobuf *origin;
+@property (nonatomic, readonly) MROrigin *origin;
 @property (nonatomic, copy) id /* block */ playbackQueueCallback;
 @property (nonatomic, copy) id /* block */ playbackQueueTransactionCallback;
 @property (nonatomic, copy) id /* block */ playbackSessionCallback;

@@ -10,7 +10,6 @@
 
 - (id)URL;
 - (id)URLRelativeToURL:(id)arg1;
-- (struct __CFURLComponents { }*)__cfComponents;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;

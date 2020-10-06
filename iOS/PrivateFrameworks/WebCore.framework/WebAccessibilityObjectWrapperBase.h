@@ -3,36 +3,38 @@
  */
 
 @interface WebAccessibilityObjectWrapperBase : NSObject {
-    unsigned int  _identifier;
-    struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; } * m_object;
+    unsigned long long  _identifier;
+    struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; } * m_axObject;
 }
 
-@property (nonatomic) unsigned int identifier;
+@property (nonatomic) unsigned long long identifier;
 
 + (void)accessibilitySetShouldRepostNotifications:(bool)arg1;
 
 - (id)_accessibilityWebDocumentView;
 - (id)accessibilityMathPostscriptPairs;
 - (id)accessibilityMathPrescriptPairs;
-- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)accessibilityObject;
 - (id)accessibilityPlatformMathSubscriptKey;
 - (id)accessibilityPlatformMathSuperscriptKey;
 - (void)accessibilityPostedNotification:(id)arg1;
 - (void)accessibilityPostedNotification:(id)arg1 userInfo:(id)arg2;
 - (id)ariaLandmarkRoleDescription;
+- (void)attachAXObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)arg1;
 - (id)attachmentView;
-- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)axBackingObject;
+- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)axBackingObject;
 - (id)baseAccessibilityDescription;
 - (id)baseAccessibilityHelpText;
+- (id)baseAccessibilityResolvedEditingStyles;
 - (void)baseAccessibilitySetFocus:(bool)arg1;
 - (id)baseAccessibilitySpeechHint;
 - (id)baseAccessibilityTitle;
-- (struct CGPath { }*)convertPathToScreenSpace:(struct Path { struct CGPath {} *x1; }*)arg1;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })convertRectToSpace:(struct FloatRect { struct FloatPoint { float x_1_1_1; float x_1_1_2; } x1; struct FloatSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg1 space:(int)arg2;
+- (struct CGPath { }*)convertPathToScreenSpace:(const struct Path { struct RetainPtr<CGPath *> { void *x_1_1_1; } x1; struct Variant<WTF::Monostate, WebCore::MoveData, WebCore::LineData, WebCore::ArcData, WebCore::QuadCurveData, WebCore::BezierCurveData> { union __variant_data<WTF::Monostate, WebCore::MoveData, WebCore::LineData, WebCore::ArcData, WebCore::QuadCurveData, WebCore::BezierCurveData> { union __variant_data<WTF::Monostate> { struct Monostate { } x_1_3_1; struct __dummy_type { } x_1_3_2; } x_1_2_1; union __variant_data<WebCore::MoveData, WebCore::LineData, WebCore::ArcData, WebCore::QuadCurveData, WebCore::BezierCurveData> { union __variant_data<WebCore::MoveData> { struct __storage_wrapper<WebCore::MoveData> { struct type { unsigned char x_1_6_1[8]; } x_1_5_1; } x_1_4_1; struct __dummy_type { } x_1_4_2; } x_2_3_1; union __variant_data<WebCore::LineData, WebCore::ArcData, WebCore::QuadCurveData, WebCore::BezierCurveData> { union __variant_data<WebCore::LineData> { struct __storage_wrapper<WebCore::LineData> { struct type { unsigned char x_1_7_1[16]; } x_1_6_1; } x_1_5_1; struct __dummy_type { } x_1_5_2; } x_2_4_1; union __variant_data<WebCore::ArcData, WebCore::QuadCurveData, WebCore::BezierCurveData> { union __variant_data<WebCore::ArcData> { struct __storage_wrapper<WebCore::ArcData> { struct type { unsigned char x_1_8_1[32]; } x_1_7_1; } x_1_6_1; struct __dummy_type { } x_1_6_2; } x_2_5_1; union __variant_data<WebCore::QuadCurveData, WebCore::BezierCurveData> { union __variant_data<WebCore::QuadCurveData> { struct __storage_wrapper<WebCore::QuadCurveData> { struct type { unsigned char x_1_9_1[24]; } x_1_8_1; } x_1_7_1; struct __dummy_type { } x_1_7_2; } x_2_6_1; union __variant_data<WebCore::BezierCurveData> { struct __storage_wrapper<WebCore::BezierCurveData> { struct type { unsigned char x_1_9_1[32]; } x_1_8_1; } x_2_7_1; struct __dummy_type { } x_2_7_2; } x_2_6_2; } x_2_5_2; } x_2_4_2; } x_2_3_2; } x_1_2_2; } x_2_1_1; } x2; }*)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })convertRectToSpace:(const struct FloatRect { struct FloatPoint { float x_1_1_1; float x_1_1_2; } x1; struct FloatSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg1 space:(int)arg2;
 - (void)detach;
-- (unsigned int)identifier;
-- (id)initWithAccessibilityObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; }*)arg1;
-- (void)setIdentifier:(unsigned int)arg1;
-- (bool)updateObjectBackingStore;
+- (void)detachAXObject;
+- (unsigned long long)identifier;
+- (id)initWithAccessibilityObject:(struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)arg1;
+- (void)setIdentifier:(unsigned long long)arg1;
+- (struct AXCoreObject { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct RetainPtr<WebAccessibilityObjectWrapper> { void *x_3_1_1; } x3; }*)updateObjectBackingStore;
 
 @end

@@ -4,6 +4,8 @@
 
 @interface CKException : NSException
 
+@property (nonatomic, readonly) int errorCode;
+
 - (id)error;
 - (int)errorCode;
 - (id)initWithCode:(int)arg1 format:(id)arg2;

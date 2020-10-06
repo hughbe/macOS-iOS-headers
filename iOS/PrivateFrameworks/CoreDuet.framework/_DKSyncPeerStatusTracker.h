@@ -16,13 +16,8 @@
 + (id)peerStatusTrackerWithContext:(id)arg1;
 + (id)sharedInstance;
 + (id)stringForTransports:(long long)arg1;
-+ (id)syncPeerTransportsStrings;
 
 - (void).cxx_destruct;
-- (void)_loadPeers;
-- (void)_modifyActiveTransportInPeer:(id)arg1 withNewTransportsBlock:(id /* block */)arg2;
-- (id)_observerBlocks;
-- (id)_peerInfoForPeer:(id)arg1;
 - (long long)activeTransportsForPeer:(id)arg1;
 - (void)addActiveTransports:(long long)arg1 toPeer:(id)arg2;
 - (id)addStatusChangeObserverWithBlock:(id /* block */)arg1;
@@ -40,9 +35,7 @@
 - (id)peerWithZoneName:(id)arg1 sourceDeviceID:(id)arg2;
 - (id)peersWithActiveTransports:(long long)arg1;
 - (id)peersWithAnyActiveTransports;
-- (void)postCloudDeviceCountChangedNotification;
 - (id)pseudoPeerForSyncTransportCloudUp;
-- (void)registerNewPeer:(id)arg1;
 - (void)removeActiveTransports:(long long)arg1 fromPeer:(id)arg2;
 - (void)removePeer:(id)arg1;
 - (void)removeStatusChangeObserver:(id)arg1;
@@ -51,6 +44,5 @@
 - (void)setSourceDeviceID:(id)arg1 version:(id)arg2 peer:(id)arg3;
 - (void)setStorage:(id)arg1;
 - (id)storage;
-- (id)uuidWithUUIDString:(id)arg1;
 
 @end

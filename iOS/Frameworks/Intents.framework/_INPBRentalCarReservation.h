@@ -3,7 +3,6 @@
  */
 
 @interface _INPBRentalCarReservation : PBCodable <NSCopying, NSSecureCoding, _INPBRentalCarReservation> {
-    bool  __encodeLegacyGloryData;
     _INPBLocationValue * _dropOffLocation;
     struct { }  _has;
     _INPBLocationValue * _pickupLocation;
@@ -12,7 +11,6 @@
     _INPBReservation * _reservation;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBLocationValue *dropOffLocation;
@@ -31,8 +29,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (id)dropOffLocation;

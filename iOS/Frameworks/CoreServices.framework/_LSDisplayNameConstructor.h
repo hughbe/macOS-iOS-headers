@@ -19,17 +19,15 @@
 + (id)concatenateBaseName:(id)arg1 andExtension:(id)arg2;
 + (id)displayNameConstructorWithContext:(struct LSContext { id x1; }*)arg1 bundle:(unsigned int)arg2 bundleClass:(const unsigned int*)arg3 node:(id)arg4 preferredLocalizations:(id)arg5 error:(id*)arg6;
 + (id)displayNameConstructorWithContext:(struct LSContext { id x1; }*)arg1 node:(id)arg2 error:(id*)arg3;
++ (id)displayNameConstructorsWithContext:(struct LSContext { id x1; }*)arg1 bundle:(unsigned int)arg2 bundleClass:(const unsigned int*)arg3 node:(id)arg4 error:(id*)arg5;
 + (id)displayNameConstructorsWithContext:(struct LSContext { id x1; }*)arg1 node:(id)arg2 error:(id*)arg3;
 + (void)getExtensionRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg1 secondaryExtensionRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg2 fromFileName:(id)arg3 considerConfusables:(bool)arg4;
 + (void)setShowAllExtensions:(bool)arg1;
 + (void)setSuffixForRemoteXCTests:(id)arg1;
 + (bool)showAllExtensions;
 + (id)suffixForRemoteXCTests;
-+ (id)visuallyOrderCharactersInString:(id)arg1 error:(id*)arg2;
 
 - (void).cxx_destruct;
-- (id)balanceBiDiControlCharacter:(unsigned short)arg1 inString:(id)arg2 imbalanceAmount:(long long)arg3;
-- (id)balanceBiDiControlCharacters:(id)arg1;
 - (bool)canSetExtensionHiddenWithContext:(struct LSContext { id x1; }*)arg1;
 - (id)cleanSecondaryExtension:(id)arg1;
 - (id)combineBaseName:(id)arg1 extension:(id)arg2;
@@ -44,7 +42,6 @@
 - (id)insertNameComponentBiDiControlCharacters:(id)arg1;
 - (bool)isStringNaturallyRTL:(id)arg1;
 - (bool)mayHideExtensionWithContext:(struct LSContext { id x1; }*)arg1;
-- (id)replaceForbiddenCharacters:(id)arg1;
 - (bool)showExtensionWithContext:(struct LSContext { id x1; }*)arg1 asIfShowingAllExtensions:(id)arg2;
 - (id)transformBeforeCombining:(id)arg1 needsBiDiControlCharacters:(bool*)arg2;
 - (id)unlocalizedNameWithContext:(struct LSContext { id x1; }*)arg1;

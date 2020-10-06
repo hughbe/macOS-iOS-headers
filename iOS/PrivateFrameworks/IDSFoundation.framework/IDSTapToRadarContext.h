@@ -3,16 +3,14 @@
  */
 
 @interface IDSTapToRadarContext : NSObject {
-    NSString * _problemDescription;
-    NSString * _title;
+    NSDictionary * _rawContext;
 }
 
-@property (nonatomic, readonly) NSString *problemDescription;
-@property (nonatomic, readonly) NSString *title;
-
 - (void).cxx_destruct;
+- (bool)_isValidClassification:(id)arg1;
+- (bool)_isValidReproducibility:(id)arg1;
+- (id)getTapToRadarURL;
+- (id)initWithDictionary:(id)arg1;
 - (id)initWithTitle:(id)arg1 problemDescription:(id)arg2;
-- (id)problemDescription;
-- (id)title;
 
 @end

@@ -14,8 +14,6 @@
 @property (nonatomic, retain) NSArray *moreViewControllers;
 @property (nonatomic) bool moreViewControllersChanged;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (Class)_moreListControllerClass;
 
 - (void).cxx_destruct;
@@ -25,9 +23,6 @@
 - (void)_restoreOriginalNavigationController;
 - (id)_stateRestorationParentForChildViewController:(id)arg1 index:(unsigned long long*)arg2;
 - (void)_willChangeToIdiom:(long long)arg1 onScreen:(id)arg2;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowsCustomizing;
 - (void)didShowViewController:(id)arg1 animated:(bool)arg2;
 - (id)displayedViewController;

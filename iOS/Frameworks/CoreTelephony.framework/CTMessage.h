@@ -37,6 +37,7 @@
 @property (nonatomic, copy) NSString *subject;
 @property (nonatomic, retain) NSUUID *uniqueIdentifier;
 
+- (void).cxx_destruct;
 - (void)addContentTypeParameterWithName:(id)arg1 value:(id)arg2;
 - (id)addData:(id)arg1 withContentType:(id)arg2;
 - (void)addEmailRecipient:(id)arg1;
@@ -51,7 +52,6 @@
 - (id)context;
 - (id)countryCode;
 - (id)date;
-- (void)dealloc;
 - (id)description;
 - (id)init;
 - (id)initWithDate:(id)arg1;

@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic) int type;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
 - (void)copyTo:(id)arg1;
@@ -34,5 +36,9 @@
 - (int)type;
 - (id)typeAsString:(int)arg1;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
 
 @end

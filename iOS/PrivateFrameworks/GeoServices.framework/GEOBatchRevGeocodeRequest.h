@@ -18,12 +18,7 @@
         unsigned int read_displayRegion : 1; 
         unsigned int read_locations : 1; 
         unsigned int read_serviceTags : 1; 
-        unsigned int wrote_additionalPlaceTypes : 1; 
-        unsigned int wrote_deviceCountryCode : 1; 
-        unsigned int wrote_deviceSku : 1; 
-        unsigned int wrote_displayRegion : 1; 
-        unsigned int wrote_locations : 1; 
-        unsigned int wrote_serviceTags : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _locations;
     PBDataReader * _reader;
@@ -52,15 +47,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsAdditionalPlaceTypes:(id)arg1;
-- (void)_addNoFlagsAdditionalPlaceType:(int)arg1;
-- (void)_addNoFlagsLocation:(id)arg1;
-- (void)_addNoFlagsServiceTag:(id)arg1;
-- (void)_readAdditionalPlaceTypes;
-- (void)_readDeviceCountryCode;
-- (void)_readDeviceSku;
-- (void)_readDisplayRegion;
-- (void)_readLocations;
-- (void)_readServiceTags;
 - (void)addAdditionalPlaceType:(int)arg1;
 - (void)addLocation:(id)arg1;
 - (void)addServiceTag:(id)arg1;
@@ -86,7 +72,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)locationAtIndex:(unsigned long long)arg1;
 - (id)locations;
 - (unsigned long long)locationsCount;

@@ -15,6 +15,7 @@
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 + (id)handleResponse:(id)arg1 bag:(id)arg2;
 + (id)headersForRequest:(id)arg1 buyParams:(id)arg2 bag:(id)arg3;
 

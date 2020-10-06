@@ -9,8 +9,8 @@
     unsigned int  dry_run;
     NSObject<OS_nw_endpoint> * endpoint;
     struct nw_endpoint_handler_event_s { 
-        unsigned int domain; 
-        unsigned int event; 
+        unsigned short domain; 
+        unsigned short event; 
     }  event;
     void * fallback_timer;
     unsigned int  has_better_path;
@@ -19,23 +19,20 @@
     BOOL  id_str;
     NSObject<OS_xpc_object> * inactive_agent_dictionaries;
     NSObject<OS_xpc_object> * inactive_agent_uuids;
-    int  last_child_id;
+    _Atomic unsigned int  last_child_id;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  lock;
+    unsigned int  logging_disabled;
     int  mode;
     NSObject<NWConcrete_nw_endpoint_mode_handler> * mode_handler;
     NSObject<OS_nw_path_evaluator> * override_evaluator;
     NSObject<OS_nw_parameters> * parameters;
     NWConcrete_nw_endpoint_handler * parent_handler;
-    int  privacy_level;
     int (* report_callback;
     unsigned int  reuse_association;
     unsigned long long  start_time;
     int  state;
-    NSObject<OS_dispatch_queue> * tls_client_queue;
-    id /* block */  tls_message_block;
-    id /* block */  tls_prepare_block;
     unsigned int  top_id;
     NSObject<OS_xpc_object> * triggered_agent_uuids;
     unsigned int  triggering_voluntary_agents;
@@ -48,6 +45,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithEndpoint:(id)arg1 parameters:(id)arg2 reportCallback:(int (*)arg3 context:(id)arg4 parent:(id)arg5 identifier:(unsigned int)arg6;
 
 @end

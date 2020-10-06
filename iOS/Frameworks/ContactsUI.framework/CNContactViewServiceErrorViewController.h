@@ -17,7 +17,9 @@
 - (void).cxx_destruct;
 - (id)delegate;
 - (void)didChangeToEditMode:(bool)arg1;
+- (void)didChangeToShowTitle:(bool)arg1;
 - (void)editCancel;
+- (void)performConfirmedCancel;
 - (id)pptDelegate;
 - (void)setDelegate:(id)arg1;
 - (void)setPptDelegate:(id)arg1;

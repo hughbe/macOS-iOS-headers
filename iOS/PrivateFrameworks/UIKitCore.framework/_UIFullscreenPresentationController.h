@@ -27,7 +27,6 @@
 - (void)_placeCounterRotationViewWithView:(id)arg1 inWindow:(id)arg2 fromOrientation:(long long)arg3 toOrientation:(long long)arg4 force:(bool)arg5;
 - (void)_removeCounterRotation;
 - (void)_setPresentedViewController:(id)arg1;
-- (bool)_shouldPresentedViewControllerControlStatusBarAppearance;
 - (bool)_shouldRespectDefinesPresentationContext;
 - (void)dealloc;
 - (void)dismissalTransitionDidEnd:(bool)arg1;

@@ -3,7 +3,7 @@
  */
 
 @interface INIntentResponseCodableCode : NSObject <INCodableCoding, NSSecureCoding> {
-    INIntentResponseCodableDescription * __responseCodableDescription;
+    INIntentResponseCodableDescription * __codableDescription;
     NSString * _conciseFormatString;
     NSString * _conciseFormatStringLocID;
     NSString * _formatString;
@@ -13,8 +13,7 @@
     long long  _value;
 }
 
-@property (setter=_setResponseCodableDescription:, nonatomic) INIntentResponseCodableDescription *_responseCodableDescription;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
+@property (setter=_setCodableDescription:, nonatomic) INIntentResponseCodableDescription *_codableDescription;
 @property (nonatomic, copy) NSString *conciseFormatString;
 @property (nonatomic, copy) NSString *conciseFormatStringLocID;
 @property (readonly, copy) NSString *debugDescription;
@@ -22,7 +21,6 @@
 @property (nonatomic, copy) NSString *formatString;
 @property (nonatomic, copy) NSString *formatStringLocID;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, readonly) NSArray *parameterNames;
 @property (getter=isSuccess, nonatomic) bool success;
@@ -32,13 +30,23 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableDescriptionConciseFormatStringDictionaryKey;
+- (id)__INCodableDescriptionConciseFormatStringDictionaryLanguageCodeKey;
+- (id)__INCodableDescriptionConciseFormatStringIDKey;
+- (id)__INCodableDescriptionConciseFormatStringKey;
+- (id)__INCodableDescriptionConciseFormatStringLanguageCodeKey;
+- (id)__INCodableDescriptionFormatStringDictionaryKey;
+- (id)__INCodableDescriptionFormatStringDictionaryLanguageCodeKey;
+- (id)__INCodableDescriptionFormatStringIDKey;
+- (id)__INCodableDescriptionFormatStringKey;
+- (id)__INCodableDescriptionFormatStringLanguageCodeKey;
+- (id)__INCodableDescriptionNameKey;
+- (id)__INCodableDescriptionSuccessKey;
+- (id)_codableDescription;
 - (id)_parameterNamesFromString:(id)arg1;
-- (id)_responseCodableDescription;
-- (void)_setResponseCodableDescription:(id)arg1;
-- (id)cacheGroup;
+- (void)_setCodableDescription:(id)arg1;
 - (id)conciseFormatString;
 - (id)conciseFormatStringLocID;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -46,7 +54,6 @@
 - (id)formatStringLocID;
 - (id)initWithCoder:(id)arg1;
 - (bool)isSuccess;
-- (id)keyPrefix;
 - (id)name;
 - (id)parameterNames;
 - (void)setConciseFormatString:(id)arg1;

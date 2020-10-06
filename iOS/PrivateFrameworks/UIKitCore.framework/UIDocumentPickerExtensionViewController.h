@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIDocumentPickerExtensionViewController : UIViewController <DebugHierarchyObject_Fallback, _UIDocumentPickerExtensionViewController> {
+@interface UIDocumentPickerExtensionViewController : UIViewController <_UIDocumentPickerExtensionViewController> {
     unsigned long long  _documentPickerMode;
     NSURL * _documentStorageURL;
     NSURL * _originalURL;
@@ -20,8 +20,6 @@
 @property (readonly) Class superclass;
 @property (setter=_setPickableTypes:, nonatomic, copy) NSArray *validTypes;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)_exportedInterface;
 + (id)_remoteViewControllerInterface;
 
@@ -35,14 +33,6 @@
 - (void)_setTintColor:(id)arg1;
 - (void)_setUploadURL:(id)arg1;
 - (void)_setUploadURLWrapper:(id)arg1;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)dismissGrantingAccessToURL:(id)arg1;
 - (unsigned long long)documentPickerMode;
 - (id)documentStorageURL;

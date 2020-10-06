@@ -4,7 +4,7 @@
 
 @interface MRAVOutputContextTransport : MRExternalDeviceTransport {
     AVOutputDevice * _avOutputDevice;
-    _MRDeviceInfoMessageProtobuf * _deviceInfo;
+    MRDeviceInfo * _deviceInfo;
     NSError * _error;
     MRAVInputStream * _inputStream;
     AVOutputContext * _outputContext;
@@ -19,19 +19,13 @@
 @property (nonatomic, readonly) MRAVOutputDevice *outputDevice;
 
 - (void).cxx_destruct;
-- (void)_destroyRemoteControlContext;
-- (id)_onQueue_createRemoteControlContextWithID:(id)arg1;
-- (void)_onQueue_initializeOutputContext;
-- (void)_onQueue_resetStreams;
 - (void)_outputContextDevicesDidChangeNotification:(id)arg1;
-- (void)_registerNotificationsForOutputContext:(id)arg1;
-- (void)_unregisterNotificationsForOutputContext:(id)arg1;
 - (id)avOutputDevice;
 - (void)dealloc;
 - (id)description;
 - (id)deviceInfo;
 - (id)error;
-- (bool)getInputStream:(id*)arg1 outputStream:(id*)arg2;
+- (bool)getInputStream:(id*)arg1 outputStream:(id*)arg2 userInfo:(id)arg3;
 - (id)hostname;
 - (id)initWithOutputDevice:(id)arg1 avOutputDevice:(id)arg2 connectionType:(long long)arg3;
 - (id)name;

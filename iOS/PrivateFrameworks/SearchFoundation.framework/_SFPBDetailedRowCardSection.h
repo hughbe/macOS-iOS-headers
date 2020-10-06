@@ -19,6 +19,7 @@
     _SFPBFormattedText * _secondaryTitle;
     _SFPBImage * _secondaryTitleImage;
     int  _separatorStyle;
+    bool  _shouldUseCompactDisplay;
     _SFPBImage * _thumbnail;
     _SFPBRichText * _title;
     _SFPBFormattedText * _trailingBottomText;
@@ -47,6 +48,7 @@
 @property (nonatomic, retain) _SFPBFormattedText *secondaryTitle;
 @property (nonatomic, retain) _SFPBImage *secondaryTitleImage;
 @property (nonatomic) int separatorStyle;
+@property (nonatomic) bool shouldUseCompactDisplay;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) _SFPBImage *thumbnail;
 @property (nonatomic, retain) _SFPBRichText *title;
@@ -104,12 +106,14 @@
 - (void)setSecondaryTitle:(id)arg1;
 - (void)setSecondaryTitleImage:(id)arg1;
 - (void)setSeparatorStyle:(int)arg1;
+- (void)setShouldUseCompactDisplay:(bool)arg1;
 - (void)setThumbnail:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setTrailingBottomText:(id)arg1;
 - (void)setTrailingMiddleText:(id)arg1;
 - (void)setTrailingTopText:(id)arg1;
 - (void)setType:(id)arg1;
+- (bool)shouldUseCompactDisplay;
 - (id)thumbnail;
 - (id)title;
 - (id)trailingBottomText;

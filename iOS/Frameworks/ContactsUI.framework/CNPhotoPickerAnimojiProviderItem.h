@@ -68,7 +68,7 @@
 - (void)set_originalImageData:(id)arg1;
 - (bool)shouldShowCaption;
 - (id)stickerGeneratorProvider;
-- (void)updateContact:(id)arg1;
+- (void)updateVisualIdentity:(id)arg1;
 - (id)variantIdentifier;
 
 @end

@@ -6,6 +6,7 @@
     CNFuture * _addContactsToWhitelistFuture;
     <CNCancelable> * _contactStoreDidChangeToken;
     CNFuture * _deleteContactsFromWhitelistFuture;
+    <CNDowntimeWhitelistContainerFetching> * _downtimeContainerFetcher;
     NSArray * _familyMemberContactItems;
     CNFuture * _familyMemberContactItemsFuture;
     <CNUICoreContactStoreFacade> * _mainContactStoreFacade;
@@ -21,6 +22,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, retain) CNFuture *deleteContactsFromWhitelistFuture;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) <CNDowntimeWhitelistContainerFetching> *downtimeContainerFetcher;
 @property (nonatomic, retain) NSArray *familyMemberContactItems;
 @property (nonatomic, retain) CNFuture *familyMemberContactItemsFuture;
 @property (nonatomic, readonly) bool familyMemberContainerIsEmpty;
@@ -44,13 +46,14 @@
 - (id)contactStoreDidChangeToken;
 - (void)dealloc;
 - (id)deleteContactsFromWhitelistFuture;
+- (id)downtimeContainerFetcher;
 - (id)familyMemberContactItems;
 - (id)familyMemberContactItemsFuture;
 - (bool)familyMemberContainerIsEmpty;
 - (long long)fetchStatus;
 - (void)finishWhitelistedContactsTasks;
 - (id)init;
-- (id)initWithModelFetcher:(id)arg1 mainContactStoreFacade:(id)arg2 schedulerProvider:(id)arg3;
+- (id)initWithModelFetcher:(id)arg1 mainContactStoreFacade:(id)arg2 downtimeContainerFetcher:(id)arg3 schedulerProvider:(id)arg4;
 - (id)initWiththOptions:(id)arg1 mainContactStoreFacade:(id)arg2 schedulerProvider:(id)arg3;
 - (id)mainContactStoreFacade;
 - (id)modelFetcher;

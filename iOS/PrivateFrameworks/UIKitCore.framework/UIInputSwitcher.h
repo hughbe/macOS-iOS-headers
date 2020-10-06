@@ -3,6 +3,7 @@
  */
 
 @interface UIInputSwitcher : NSObject {
+    bool  _dismissingEmojiPopover;
     bool  _isGlobeKeyDown;
     NSString * _loadedIdentifier;
     NSString * _newMode;
@@ -15,6 +16,7 @@
     UIInputSwitcherView * m_switcherView;
 }
 
+@property (nonatomic) bool dismissingEmojiPopover;
 @property (nonatomic) bool isGlobeKeyDown;
 @property (nonatomic, copy) NSString *loadedIdentifier;
 @property (nonatomic) bool usingCapsLockLanguageSwitch;
@@ -22,13 +24,20 @@
 + (id)activeInstance;
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (void)_showSwitcherViewAsHUD;
+- (void)cancelHideSwitcherTimer;
 - (void)cancelShowSwitcherTimer;
+- (void)cleanUpAfterHide;
 - (void)clearHideSwitcherTimer;
 - (void)clearKeyHoldTimer;
 - (void)clearShowSwitcherTimer;
 - (void)dealloc;
+- (bool)dismissingEmojiPopover;
+- (bool)handleEmojiPicker;
+- (bool)handleGlobeKeyEvent:(id)arg1 switcherIsVisible:(bool)arg2;
 - (bool)handleModifiersChangedEvent:(id)arg1;
+- (bool)handleNavigationEvent:(id)arg1;
 - (void)handleRotate:(id)arg1;
 - (bool)handleSwitchCommand:(bool)arg1;
 - (bool)handleSwitchCommand:(bool)arg1 withHUD:(bool)arg2 withDelay:(bool)arg3;
@@ -41,6 +50,8 @@
 - (bool)isVisible;
 - (bool)isVisibleOrHiding;
 - (id)loadedIdentifier;
+- (bool)needsFullHUD;
+- (void)setDismissingEmojiPopover:(bool)arg1;
 - (void)setIsGlobeKeyDown:(bool)arg1;
 - (void)setLoadedIdentifier:(id)arg1;
 - (void)setUsingCapsLockLanguageSwitch:(bool)arg1;

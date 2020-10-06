@@ -4,6 +4,8 @@
 
 @interface NSMutableCharacterSet : NSCharacterSet <NSCopying, NSMutableCopying, NSSecureCoding>
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (id)alphanumericCharacterSet;
 + (id)capitalizedLetterCharacterSet;
 + (id)characterSetWithBitmapRepresentation:(id)arg1;
@@ -37,5 +39,13 @@
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (void)removeCharactersInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (void)removeCharactersInString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
+- (id)initWithCharacters:(const unsigned short*)arg1 length:(unsigned long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSText.framework/TSText
+
+- (id)tswp_initWithCharacters:(const unsigned short*)arg1 length:(unsigned long long)arg2;
 
 @end

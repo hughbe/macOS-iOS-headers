@@ -3,7 +3,7 @@
  */
 
 @interface UIDeviceRGBColor : UIColor {
-    struct CGColor { } * _cachedColor;
+    _Atomic struct CGColor {} * _cachedColor;
     double  alphaComponent;
     double  blueComponent;
     double  greenComponent;

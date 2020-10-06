@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UITabBarItem : UIBarItem <DebugHierarchyObject_Fallback, _UIBarAppearanceChangeObserver> {
+@interface UITabBarItem : UIBarItem <_UIBarAppearanceChangeObserver> {
     long long  __barMetrics;
     long long  __imageStyle;
     UIColor * __tintColor;
@@ -161,9 +161,8 @@
 - (id)unselectedImage;
 - (id)view;
 
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
 
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
+- (void)setBadgeValue:(id)arg1 animated:(bool)arg2 blink:(bool)arg3;
 
 @end

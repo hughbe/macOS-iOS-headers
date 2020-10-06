@@ -9,10 +9,7 @@
         unsigned int read_entryPoints : 1; 
         unsigned int read_location : 1; 
         unsigned int read_placeSearchRequest : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_entryPoints : 1; 
-        unsigned int wrote_location : 1; 
-        unsigned int wrote_placeSearchRequest : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOLocation * _location;
     GEOPlaceSearchRequest * _placeSearchRequest;
@@ -36,10 +33,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsEntryPoint:(id)arg1;
-- (void)_readEntryPoints;
-- (void)_readLocation;
-- (void)_readPlaceSearchRequest;
 - (void)addEntryPoint:(id)arg1;
 - (void)clearEntryPoints;
 - (void)clearSensitiveFields;
@@ -56,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)location;
 - (void)mergeFrom:(id)arg1;
 - (id)placeSearchRequest;

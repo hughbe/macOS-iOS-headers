@@ -42,6 +42,7 @@
 @property (nonatomic, readonly, copy) NSArray *bestGuessPickableRoutesForAnyCall;
 @property (nonatomic) <TUAudioSystemControllerDelegate> *delegate;
 @property (getter=isDownlinkMuted, nonatomic) bool downlinkMuted;
+@property (nonatomic, readonly) bool otherSessionsRequestNoRingtoneInterruption;
 @property (nonatomic, readonly, copy) NSArray *pickableRoutesForTTY;
 @property (nonatomic, readonly, copy) NSDictionary *pickedRouteAttribute;
 @property (getter=isTTY, nonatomic, readonly) bool tty;
@@ -77,6 +78,7 @@
 - (bool)isDownlinkMuted;
 - (bool)isTTY;
 - (bool)isUplinkMuted;
+- (bool)otherSessionsRequestNoRingtoneInterruption;
 - (bool)pickRoute:(id)arg1 error:(id*)arg2;
 - (id)pickableRouteWithUniqueIdentifier:(id)arg1;
 - (id)pickableRoutesForActiveCall;

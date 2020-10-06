@@ -49,7 +49,7 @@
     UIStackView * _secondaryTextStackView;
     bool  _showIncidentIcon;
     bool  _showNoConnectionEmDash;
-    _MKUILabel * _tertiaryLabel;
+    MKThemeMultiPartLabel * _tertiaryLabel;
     bool  _useCompressedGutter;
     bool  _useCompressedLeading;
 }

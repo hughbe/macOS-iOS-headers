@@ -3,14 +3,12 @@
  */
 
 @interface _INPBUserActivity : PBCodable <NSCopying, NSSecureCoding, _INPBUserActivity> {
-    bool  __encodeLegacyGloryData;
     NSData * _data;
     struct { }  _has;
     NSString * _title;
     NSString * _uri;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSData *data;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)data;
 - (id)dictionaryRepresentation;

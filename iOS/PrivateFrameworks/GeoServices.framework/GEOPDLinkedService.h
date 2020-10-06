@@ -9,10 +9,7 @@
         unsigned int read_entity : 1; 
         unsigned int read_hours : 1; 
         unsigned int read_placeInfo : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_entity : 1; 
-        unsigned int wrote_hours : 1; 
-        unsigned int wrote_placeInfo : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _hours;
     GEOPDPlaceInfo * _placeInfo;
@@ -37,10 +34,6 @@
 + (id)linkedServicesForPlaceData:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsHours:(id)arg1;
-- (void)_readEntity;
-- (void)_readHours;
-- (void)_readPlaceInfo;
 - (void)addHours:(id)arg1;
 - (void)clearHours;
 - (void)clearUnknownFields:(bool)arg1;
@@ -57,7 +50,10 @@
 - (unsigned long long)hoursCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)placeInfo;
 - (void)readAll:(bool)arg1;

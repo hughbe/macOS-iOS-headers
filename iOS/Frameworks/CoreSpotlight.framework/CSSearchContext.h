@@ -19,6 +19,7 @@
 @property (readonly) NSArray *preferredLanguages;
 @property (readonly) unsigned long long queryID;
 @property (readonly) NSString *userQuery;
+@property (nonatomic, readonly) NSObject<OS_xpc_object> *xpc_dictionary;
 
 + (bool)supportsSecureCoding;
 
@@ -30,6 +31,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithQueryID:(unsigned long long)arg1 userQuery:(id)arg2 maxItemsCount:(unsigned long long)arg3 keyboardLanguage:(id)arg4 preferredLanguages:(id)arg5;
 - (id)initWithQueryID:(unsigned long long)arg1 userQuery:(id)arg2 maxItemsCount:(unsigned long long)arg3 keyboardLanguage:(id)arg4 preferredLanguages:(id)arg5 markedText:(id)arg6 markedTextStart:(unsigned long long)arg7;
+- (id)initWithXPCDictionary:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)keyboardLanguage;
 - (id)markedText;
@@ -38,5 +40,6 @@
 - (id)preferredLanguages;
 - (unsigned long long)queryID;
 - (id)userQuery;
+- (id)xpc_dictionary;
 
 @end

@@ -26,6 +26,6 @@
 - (void)reset;
 - (void)setIndexBufferIndex:(unsigned long long)arg1;
 - (void)setIndexType:(unsigned long long)arg1;
-- (bool)validateWithVertexFunction:(id)arg1 error:(id*)arg2;
+- (bool)validateWithVertexFunction:(id)arg1 error:(id*)arg2 renderPipelineDescriptor:(id)arg3;
 
 @end

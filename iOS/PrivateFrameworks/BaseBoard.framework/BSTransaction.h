@@ -28,7 +28,6 @@
     unsigned long long  _state;
 }
 
-@property (getter=isAborted, nonatomic, readonly) bool aborted;
 @property (nonatomic, readonly) NSArray *allErrors;
 @property (getter=isAuditHistoryEnabled, nonatomic) bool auditHistoryEnabled;
 @property (nonatomic, readonly) NSArray *childTransactions;
@@ -46,39 +45,18 @@
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *queue;
 @property (getter=isRunning, nonatomic, readonly) bool running;
 @property (getter=hasStarted, nonatomic, readonly) bool started;
-@property (nonatomic, readonly) unsigned long long state;
 @property (readonly) Class superclass;
 
-+ (id)_defaultTransactionLog;
-
 - (void).cxx_destruct;
-- (void)_abortForError:(id)arg1;
 - (void)_addAuditHistoryItem:(id)arg1;
-- (void)_addChildTransactionRelationship:(id)arg1;
 - (void)_addDebugLogCategory:(id)arg1;
-- (void)_addLifeAssertion:(id)arg1 ignoringAuditHistory:(bool)arg2;
-- (void)_addParentTransaction:(id)arg1 withSchedulingPolicy:(unsigned long long)arg2;
-- (bool)_areChildTransactionsComplete;
-- (bool)_areConcurrentChildTransactionsFinishedWorking;
-- (bool)_areConcurrentParentTransactionsDoingWork;
-- (bool)_areSerialParentTransactionsFinishedWorking;
-- (id)_base64EncodedGraphDescription;
 - (void)_begin;
-- (void)_beginIfPossible;
-- (id)_buildGraphEdgeDescriptionWithType:(id)arg1 fromTransaction:(id)arg2 toTransaction:(id)arg3;
-- (id)_buildGraphNodeDescription;
 - (bool)_canBeInterrupted;
-- (void)_checkAndReportIfCompleted;
-- (id)_childRelationshipForTransaction:(id)arg1;
 - (void)_childTransactionDidComplete:(id)arg1;
 - (void)_childTransactionDidFinishWork:(id)arg1;
-- (id)_childTransactionsWithSchedulingPolicy:(unsigned long long)arg1;
-- (id)_createErrorWithCode:(long long)arg1 reason:(id)arg2 description:(id)arg3 precipitatingError:(id)arg4;
 - (id)_customizedDescriptionProperties;
 - (id)_debugLogCategories;
 - (bool)_debugLoggingEnabled;
-- (id)_descriptionForDebugging:(bool)arg1 indentLevel:(unsigned long long)arg2;
-- (id)_descriptionForDebugging:(bool)arg1 indentLevel:(unsigned long long)arg2 visited:(id)arg3;
 - (id)_descriptionProem;
 - (void)_didAddChildTransaction:(id)arg1;
 - (void)_didBegin;
@@ -89,51 +67,17 @@
 - (void)_didSatisfyMilestone:(id)arg1;
 - (void)_enumerateObserversWithBlock:(id /* block */)arg1;
 - (void)_evaluateCompletion;
-- (bool)_evaluateParentTransactionsWithSchedulingPolicy:(unsigned long long)arg1 evaluator:(id /* block */)arg2;
 - (void)_failForTimeoutWithDescription:(id)arg1;
-- (void)_failWithError:(id)arg1;
 - (void)_failWithReason:(id)arg1 description:(id)arg2;
 - (void)_failWithReason:(id)arg1 description:(id)arg2 precipitatingError:(id)arg3;
-- (void)_forceInterrupt;
-- (id)_graphDescription;
 - (id)_graphNodeDebugName;
-- (id)_graphNodeIdentifier;
-- (bool)_hasChildTransaction:(id)arg1;
-- (bool)_hasParentTransaction:(id)arg1;
-- (bool)_inFinishedWorkingState;
-- (id)_initForUnitTesting;
-- (void)_initializeAuditHistoryIfNecessary;
-- (void)_interruptWithReason:(id)arg1 force:(bool)arg2;
-- (bool)_isDoingWork;
 - (bool)_isRootTransaction;
 - (id)_loggingProem;
-- (void)_noteChildTransactionCompleted:(id)arg1;
-- (void)_noteChildTransactionFinishedWork:(id)arg1;
-- (void)_noteCompleted;
-- (void)_noteFinishedWork;
-- (void)_notifyObserversOfCompletion;
-- (void)_notifyObserversOfFinishedWork;
-- (id)_parentRelationshipForTransaction:(id)arg1;
-- (id)_parentTransactions;
-- (id)_parentTransactionsWithSchedulingPolicy:(unsigned long long)arg1;
-- (void)_populateGraphIntoNodes:(id)arg1 edges:(id)arg2;
-- (void)_preventTransactionCompletionForReason:(id)arg1 ignoringAuditHistory:(bool)arg2 andExecuteBlock:(id /* block */)arg3;
-- (void)_removeChildTransactionRelationship:(id)arg1;
 - (void)_removeDebugLogCategory:(id)arg1;
-- (void)_removeLifeAssertion:(id)arg1 ignoringAuditHistory:(bool)arg2;
-- (bool)_removeMilestones:(id)arg1 ignoringAuditHistory:(bool)arg2;
-- (void)_removeParentTransaction:(id)arg1;
 - (bool)_revertWithReason:(id)arg1;
-- (id)_sanitizedCustomDescriptionProperties;
-- (void)_setState:(unsigned long long)arg1;
 - (bool)_shouldComplete;
 - (bool)_shouldFailForChildTransaction:(id)arg1;
-- (unsigned long long)_state;
-- (id)_stringForInterruptReason:(id)arg1;
 - (id)_stringForMilestones:(id)arg1;
-- (void)_terminateNow;
-- (void)_unsafe_enumerateChildTransactionsWithBlock:(id /* block */)arg1;
-- (void)_unsafe_enumerateParentTransactionsWithBlock:(id /* block */)arg1;
 - (void)_willAddChildTransaction:(id)arg1;
 - (void)_willBegin;
 - (void)_willComplete;
@@ -146,7 +90,6 @@
 - (void)addMilestones:(id)arg1;
 - (void)addObserver:(id)arg1;
 - (id)allErrors;
-- (id)auditHistory;
 - (void)begin;
 - (id)childTransactions;
 - (id)childTransactionsOfClass:(Class)arg1;
@@ -162,7 +105,6 @@
 - (id)init;
 - (void)interrupt;
 - (void)interruptWithReason:(id)arg1;
-- (bool)isAborted;
 - (bool)isAuditHistoryEnabled;
 - (bool)isComplete;
 - (bool)isFailed;
@@ -187,7 +129,6 @@
 - (void)setAuditHistoryEnabled:(bool)arg1;
 - (void)setCompletionBlock:(id /* block */)arg1;
 - (bool)shouldWatchdog:(id*)arg1;
-- (unsigned long long)state;
 - (double)watchdogTimeout;
 
 @end

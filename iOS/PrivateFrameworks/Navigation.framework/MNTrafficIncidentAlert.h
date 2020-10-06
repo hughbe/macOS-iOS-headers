@@ -4,14 +4,16 @@
 
 @interface MNTrafficIncidentAlert : NSObject <NSSecureCoding> {
     NSDate * _alertDate;
+    double  _alertDisplayDuration;
     NSData * _alertID;
     unsigned long long  _alertType;
     struct { 
         unsigned int index; 
         float offset; 
     }  _alternateEndValidCoordinateRange;
-    GEOComposedRoute * _alternateRoute;
-    GEOComposedRouteTraffic * _alternateRouteTraffic;
+    MNActiveRouteInfo * _alternateRouteInfo;
+    NSString * _bannerDescription;
+    NSArray * _buttonActionTitles;
     double  _distanceToIncident;
     struct { 
         unsigned int index; 
@@ -19,14 +21,14 @@
     }  _endValidCoordinateRange;
     NSDate * _eta;
     NSData * _etaResponseID;
+    GEOTrafficBannerText * _geoTrafficBannerText;
     struct { 
         unsigned int index; 
         float offset; 
     }  _incidentCoordinate;
     bool  _isAutomaticReroute;
-    GEOETARoute * _oldETARoute;
-    GEOComposedRoute * _originalRoute;
-    GEOComposedRouteTraffic * _originalRouteTraffic;
+    MNActiveRouteInfo * _mainRouteInfo;
+    bool  _shouldShowTimer;
     struct { 
         unsigned int index; 
         float offset; 
@@ -41,31 +43,40 @@
 @property (nonatomic, readonly) unsigned long long alertType;
 @property (nonatomic, readonly) struct { unsigned int x1; float x2; } alternateEndValidCoordinateRange;
 @property (nonatomic, readonly) GEOComposedRoute *alternateRoute;
-@property (nonatomic, readonly) GEOComposedRouteTraffic *alternateRouteTraffic;
+@property (nonatomic, readonly) MNActiveRouteInfo *alternateRouteInfo;
+@property (nonatomic, readonly) NSString *bannerDescription;
 @property (nonatomic) double distanceToIncident;
 @property (nonatomic, readonly) struct { unsigned int x1; float x2; } endValidCoordinateRange;
 @property (nonatomic, retain) NSDate *eta;
 @property (nonatomic, readonly) NSData *etaResponseID;
+@property (nonatomic, readonly) GEORouteIncident *incident;
 @property (nonatomic, readonly) struct { unsigned int x1; float x2; } incidentCoordinate;
 @property (nonatomic, readonly) bool isAutomaticReroute;
+@property (nonatomic, readonly) bool isReroute;
+@property (nonatomic, readonly) MNActiveRouteInfo *mainRouteInfo;
 @property (nonatomic, readonly) double newEstimatedTime;
-@property (nonatomic, readonly) GEOETARoute *oldETARoute;
-@property (nonatomic, readonly) GEORouteIncident *oldETARouteIncident;
 @property (nonatomic, readonly) double oldEstimatedTime;
+@property (nonatomic, readonly) double oldHistoricTime;
+@property (nonatomic, readonly) NSMutableArray *oldRouteIncidents;
 @property (nonatomic, readonly) GEOComposedRoute *originalRoute;
-@property (nonatomic, readonly) GEOComposedRouteTraffic *originalRouteTraffic;
+@property (nonatomic, readonly) GEONavigabilityInfo *originalRouteNavigability;
+@property (nonatomic, readonly) int previousBannerChange;
 @property (nonatomic, readonly) unsigned long long secondsSaved;
+@property (nonatomic, readonly) bool shouldShowTimer;
 @property (nonatomic, readonly) NSArray *spokenTexts;
 @property (nonatomic, readonly) struct { unsigned int x1; float x2; } startValidCoordinateRange;
 
 + (bool)supportsSecureCoding;
-+ (id)trafficIncidentAlertForDetails:(id)arg1;
++ (id)validTrafficIncidentAlertForMainRouteInfo:(id)arg1 alternateRouteInfo:(id)arg2;
 
 - (void).cxx_destruct;
-- (struct { double x1; double x2; })_divergenceCoordinate;
+- (unsigned long long)_alertTypeForGeoBannerStyle:(int)arg1;
 - (id)_dynamicStringValues;
-- (void)_findRouteDivergence;
-- (struct { unsigned int x1; float x2; })_routeCoordinateAtDuration:(double)arg1 beforeRouteCoordinate:(struct { unsigned int x1; float x2; })arg2;
+- (void)_initRouteCoordinates;
+- (id)_initWithGeoTrafficBannerText:(id)arg1 mainRouteInfo:(id)arg2 alternateRouteInfo:(id)arg3;
+- (void)_populateButtonActionAndTitles:(id)arg1;
+- (void)_populateServerFields:(id)arg1;
+- (struct { unsigned int x1; float x2; })_routeCoordinateOnRoute:(id)arg1 distanceFromEnd:(double)arg2;
 - (id)alertDate;
 - (id)alertDescriptions;
 - (double)alertDisplayDuration;
@@ -74,27 +85,31 @@
 - (unsigned long long)alertType;
 - (struct { unsigned int x1; float x2; })alternateEndValidCoordinateRange;
 - (id)alternateRoute;
-- (id)alternateRouteTraffic;
+- (id)alternateRouteInfo;
+- (id)bannerDescription;
+- (id)buttonActionTitles;
 - (double)distanceToIncident;
 - (void)encodeWithCoder:(id)arg1;
 - (struct { unsigned int x1; float x2; })endValidCoordinateRange;
 - (id)eta;
 - (id)etaResponseID;
+- (id)incident;
 - (struct { unsigned int x1; float x2; })incidentCoordinate;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithRoute:(id)arg1 traffic:(id)arg2 etaRoute:(id)arg3 etaResponse:(id)arg4;
-- (id)initWithTrafficIncidentAlertDetails:(id)arg1;
 - (bool)isAutomaticReroute;
-- (bool)isSimilarTo:(id)arg1;
+- (bool)isReroute;
+- (id)mainRouteInfo;
 - (double)newEstimatedTime;
-- (id)oldETARoute;
-- (id)oldETARouteIncident;
 - (double)oldEstimatedTime;
+- (double)oldHistoricTime;
+- (id)oldRouteIncidents;
 - (id)originalRoute;
-- (id)originalRouteTraffic;
+- (id)originalRouteNavigability;
+- (int)previousBannerChange;
 - (unsigned long long)secondsSaved;
 - (void)setDistanceToIncident:(double)arg1;
 - (void)setEta:(id)arg1;
+- (bool)shouldShowTimer;
 - (id)spokenTexts;
 - (struct { unsigned int x1; float x2; })startValidCoordinateRange;
 - (void)updateAlertIDWithAlert:(id)arg1;

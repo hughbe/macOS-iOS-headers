@@ -3,7 +3,6 @@
  */
 
 @interface _INPBIntentExecutionRequest : PBCodable <NSCopying, NSSecureCoding, _INPBIntentExecutionRequest> {
-    bool  __encodeLegacyGloryData;
     _INPBAppIdentifier * _appIdentifier;
     NSString * _encodedIntent;
     NSString * _encodedIntentDefinition;
@@ -13,7 +12,6 @@
     }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBAppIdentifier *appIdentifier;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -31,8 +29,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsEncodingFormat:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)appIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

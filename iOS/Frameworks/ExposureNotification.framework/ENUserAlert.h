@@ -14,7 +14,7 @@
     id /* block */  _invalidationHandler;
     bool  _showOnLockScreen;
     NSString * _subTitleKey;
-    NSString * _subTitleParameter;
+    NSObject * _subTitleParameter;
     double  _timeoutSeconds;
     NSString * _titleKey;
     NSString * _titleParameter;
@@ -29,7 +29,7 @@
 @property (nonatomic, copy) id /* block */ invalidationHandler;
 @property (nonatomic) bool showOnLockScreen;
 @property (nonatomic, copy) NSString *subTitleKey;
-@property (nonatomic, copy) NSString *subTitleParameter;
+@property (nonatomic, copy) NSObject *subTitleParameter;
 @property (nonatomic) double timeoutSeconds;
 @property (nonatomic, copy) NSString *titleKey;
 @property (nonatomic, copy) NSString *titleParameter;

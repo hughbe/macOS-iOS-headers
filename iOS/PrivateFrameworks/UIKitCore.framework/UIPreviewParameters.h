@@ -5,6 +5,7 @@
 @interface UIPreviewParameters : NSObject <NSCopying> {
     bool  _appliesShadow;
     UIColor * _backgroundColor;
+    bool  _hidesSourceViewDuringDropAnimation;
     long long  _previewMode;
     UIBezierPath * _shadowPath;
     NSArray * _textLineRects;
@@ -21,6 +22,7 @@
 @property (nonatomic) bool appliesShadow;
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, readonly) UIBezierPath *effectiveShadowPath;
+@property (nonatomic) bool hidesSourceViewDuringDropAnimation;
 @property (getter=_previewMode, setter=_setPreviewMode:, nonatomic) long long previewMode;
 @property (nonatomic, copy) UIBezierPath *shadowPath;
 @property (getter=_isSingleLineText, nonatomic, readonly) bool singleLineText;
@@ -42,11 +44,13 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)effectiveShadowPath;
 - (unsigned long long)hash;
+- (bool)hidesSourceViewDuringDropAnimation;
 - (id)init;
 - (id)initWithTextLineRects:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (void)setAppliesShadow:(bool)arg1;
 - (void)setBackgroundColor:(id)arg1;
+- (void)setHidesSourceViewDuringDropAnimation:(bool)arg1;
 - (void)setShadowPath:(id)arg1;
 - (void)setVisiblePath:(id)arg1;
 - (id)shadowPath;

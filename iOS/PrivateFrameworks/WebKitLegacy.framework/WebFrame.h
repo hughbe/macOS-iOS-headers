@@ -7,6 +7,7 @@
 }
 
 @property (nonatomic, readonly) DOMDocument *DOMDocument;
+@property (nonatomic) struct CGColor { }*caretColor;
 @property (nonatomic, readonly, copy) NSArray *childFrames;
 @property (nonatomic, readonly) WebDataSource *dataSource;
 @property (nonatomic, readonly) DOMHTMLElement *frameElement;
@@ -22,10 +23,10 @@
 
 // Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
 
-+ (struct Ref<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x1; })_createFrameWithPage:(struct Page { struct HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > > { struct HashTable<const char *, WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > >, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >, WTF::PtrHash<const char *>, WTF::HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >::KeyValuePairTraits, WTF::HashTraits<const char *> > { struct KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > {} *x_1_2_1; } x_1_1_1; } x1; }*)arg1 frameName:(const struct String { struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl> > { struct StringImpl {} *x_1_1_1; } x1; }*)arg2 frameView:(id)arg3 ownerElement:(struct HTMLFrameOwnerElement { int (**x1)(); struct Weak<WebCore::JSDOMObject> { struct WeakImpl {} *x_2_1_1; } x2; unsigned int x3; unsigned int x4; struct ContainerNode {} *x5; struct TreeScope {} *x6; struct Node {} *x7; struct Node {} *x8; struct CompactPointerTuple<WebCore::RenderObject *, unsigned char> { unsigned long long x_9_1_1; } x9; struct unique_ptr<WebCore::NodeRareData, WebCore::Node::NodeRareDataDeleter> { struct __compressed_pair<WebCore::NodeRareData *, WebCore::Node::NodeRareDataDeleter> { struct NodeRareData {} *x_1_2_1; } x_10_1_1; } x10; struct WeakPtrFactory<WebCore::ContainerNode> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_11_1_1; } x11; struct Node {} *x12; struct Node {} *x13; struct QualifiedName { struct RefPtr<WebCore::QualifiedName::QualifiedNameImpl, WTF::DumbPtrTraits<WebCore::QualifiedName::QualifiedNameImpl> > { struct QualifiedNameImpl {} *x_1_2_1; } x_14_1_1; } x14; struct RefPtr<WebCore::ElementData, WTF::DumbPtrTraits<WebCore::ElementData> > { struct ElementData {} *x_15_1_1; } x15; }*)arg4;
++ (struct Ref<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x1; })_createFrameWithPage:(struct Page { struct HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > > { struct HashTable<const char *, WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > >, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >, WTF::PtrHash<const char *>, WTF::HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >::KeyValuePairTraits, WTF::HashTraits<const char *> > { struct KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > {} *x_1_2_1; } x_1_1_1; } x1; }*)arg1 frameName:(const struct String { struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl> > { struct StringImpl {} *x_1_1_1; } x1; }*)arg2 frameView:(id)arg3 ownerElement:(struct HTMLFrameOwnerElement { int (**x1)(); struct Weak<WebCore::JSDOMObject> { struct WeakImpl {} *x_2_1_1; } x2; unsigned int x3; unsigned int x4; struct ContainerNode {} *x5; struct TreeScope {} *x6; struct Node {} *x7; struct Node {} *x8; struct CompactPointerTuple<WebCore::RenderObject *, unsigned char> { unsigned long long x_9_1_1; } x9; struct unique_ptr<WebCore::NodeRareData, WebCore::Node::NodeRareDataDeleter> { struct __compressed_pair<WebCore::NodeRareData *, WebCore::Node::NodeRareDataDeleter> { struct NodeRareData {} *x_1_2_1; } x_10_1_1; } x10; struct WeakPtrFactory<WebCore::ContainerNode, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_11_1_1; } x11; struct Node {} *x12; struct Node {} *x13; struct QualifiedName { struct RefPtr<WebCore::QualifiedName::QualifiedNameImpl, WTF::DumbPtrTraits<WebCore::QualifiedName::QualifiedNameImpl> > { struct QualifiedNameImpl {} *x_1_2_1; } x_14_1_1; } x14; }*)arg4;
 + (void)_createMainFrameWithPage:(struct Page { struct HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > > { struct HashTable<const char *, WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > >, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >, WTF::PtrHash<const char *>, WTF::HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >::KeyValuePairTraits, WTF::HashTraits<const char *> > { struct KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > {} *x_1_2_1; } x_1_1_1; } x1; }*)arg1 frameName:(const struct String { struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl> > { struct StringImpl {} *x_1_1_1; } x1; }*)arg2 frameView:(id)arg3;
 + (void)_createMainFrameWithSimpleHTMLDocumentWithPage:(struct Page { struct HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > > { struct HashTable<const char *, WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > >, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >, WTF::PtrHash<const char *>, WTF::HashMap<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > >, WTF::PtrHash<const char *>, WTF::HashTraits<const char *>, WTF::HashTraits<std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > >::KeyValuePairTraits, WTF::HashTraits<const char *> > { struct KeyValuePair<const char *, std::__1::unique_ptr<WebCore::Supplement<WebCore::Page>, std::__1::default_delete<WebCore::Supplement<WebCore::Page> > > > {} *x_1_2_1; } x_1_1_1; } x1; }*)arg1 frameView:(id)arg2 style:(id)arg3;
-+ (struct Ref<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x1; })_createSubframeWithOwnerElement:(struct HTMLFrameOwnerElement { int (**x1)(); struct Weak<WebCore::JSDOMObject> { struct WeakImpl {} *x_2_1_1; } x2; unsigned int x3; unsigned int x4; struct ContainerNode {} *x5; struct TreeScope {} *x6; struct Node {} *x7; struct Node {} *x8; struct CompactPointerTuple<WebCore::RenderObject *, unsigned char> { unsigned long long x_9_1_1; } x9; struct unique_ptr<WebCore::NodeRareData, WebCore::Node::NodeRareDataDeleter> { struct __compressed_pair<WebCore::NodeRareData *, WebCore::Node::NodeRareDataDeleter> { struct NodeRareData {} *x_1_2_1; } x_10_1_1; } x10; struct WeakPtrFactory<WebCore::ContainerNode> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_11_1_1; } x11; struct Node {} *x12; struct Node {} *x13; struct QualifiedName { struct RefPtr<WebCore::QualifiedName::QualifiedNameImpl, WTF::DumbPtrTraits<WebCore::QualifiedName::QualifiedNameImpl> > { struct QualifiedNameImpl {} *x_1_2_1; } x_14_1_1; } x14; struct RefPtr<WebCore::ElementData, WTF::DumbPtrTraits<WebCore::ElementData> > { struct ElementData {} *x_15_1_1; } x15; }*)arg1 frameName:(const struct String { struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl> > { struct StringImpl {} *x_1_1_1; } x1; }*)arg2 frameView:(id)arg3;
++ (struct Ref<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x1; })_createSubframeWithOwnerElement:(struct HTMLFrameOwnerElement { int (**x1)(); struct Weak<WebCore::JSDOMObject> { struct WeakImpl {} *x_2_1_1; } x2; unsigned int x3; unsigned int x4; struct ContainerNode {} *x5; struct TreeScope {} *x6; struct Node {} *x7; struct Node {} *x8; struct CompactPointerTuple<WebCore::RenderObject *, unsigned char> { unsigned long long x_9_1_1; } x9; struct unique_ptr<WebCore::NodeRareData, WebCore::Node::NodeRareDataDeleter> { struct __compressed_pair<WebCore::NodeRareData *, WebCore::Node::NodeRareDataDeleter> { struct NodeRareData {} *x_1_2_1; } x_10_1_1; } x10; struct WeakPtrFactory<WebCore::ContainerNode, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_11_1_1; } x11; struct Node {} *x12; struct Node {} *x13; struct QualifiedName { struct RefPtr<WebCore::QualifiedName::QualifiedNameImpl, WTF::DumbPtrTraits<WebCore::QualifiedName::QualifiedNameImpl> > { struct QualifiedNameImpl {} *x_1_2_1; } x_14_1_1; } x14; }*)arg1 frameName:(const struct String { struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl> > { struct StringImpl {} *x_1_1_1; } x1; }*)arg2 frameView:(id)arg3;
 + (id)stringWithData:(id)arg1 textEncodingName:(id)arg2;
 
 - (id)DOMDocument;
@@ -35,7 +36,7 @@
 - (id)_cacheabilityDictionary;
 - (bool)_canProvideDocumentSource;
 - (bool)_canSaveAsWebArchive;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_caretRectAtPosition:(const struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_1_1; } x1; int x2; unsigned int x3 : 3; unsigned int x4 : 1; }*)arg1 affinity:(unsigned long long)arg2;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_caretRectAtPosition:(const struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_1_1; } x1; unsigned int x2; unsigned int x3 : 3; unsigned int x4 : 1; }*)arg1 affinity:(unsigned long long)arg2;
 - (id)_characterRangeAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)_clearCoreFrame;
 - (void)_clearOpener;
@@ -47,7 +48,7 @@
 - (id)_convertNSRangeToDOMRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (struct RefPtr<WebCore::Range, WTF::DumbPtrTraits<WebCore::Range> > { struct Range {} *x1; })_convertToDOMRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (struct RefPtr<WebCore::Range, WTF::DumbPtrTraits<WebCore::Range> > { struct Range {} *x1; })_convertToDOMRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 rangeIsRelativeTo:(unsigned char)arg2;
-- (struct _NSRange { unsigned long long x1; unsigned long long x2; })_convertToNSRange:(struct Range { unsigned int x1; struct Ref<WebCore::Document, WTF::DumbPtrTraits<WebCore::Document> > { struct Document {} *x_2_1_1; } x2; struct RangeBoundaryPoint { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_3_1_1; struct Optional<unsigned int> { bool x_2_2_1; union constexpr_storage_t<unsigned int> { unsigned char x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_3_1_2; struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_3_2_1; } x_3_1_3; } x3; struct RangeBoundaryPoint { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_4_1_1; struct Optional<unsigned int> { bool x_2_2_1; union constexpr_storage_t<unsigned int> { unsigned char x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_4_1_2; struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_3_2_1; } x_4_1_3; } x4; }*)arg1;
+- (struct _NSRange { unsigned long long x1; unsigned long long x2; })_convertToNSRange:(const struct SimpleRange { struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; unsigned int x_1_1_2; } x1; struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_2_1_1; unsigned int x_2_1_2; } x2; }*)arg1;
 - (id)_dataSource;
 - (void)_detachScriptDebugger;
 - (void)_dispatchDidReceiveTitle:(id)arg1;
@@ -81,7 +82,6 @@
 - (bool)_loadsSynchronously;
 - (id)_markDOMRange;
 - (bool)_needsLayout;
-- (id)_nodesFromList:(struct Vector<WebCore::Node *, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct Node {} **x1; unsigned int x2; unsigned int x3; }*)arg1;
 - (struct OptionSet<WebCore::PaintBehavior> { unsigned short x1; })_paintBehaviorForDestinationContext:(struct CGContext { }*)arg1;
 - (unsigned int)_pendingFrameUnloadEventCount;
 - (id)_rectsForRange:(id)arg1;
@@ -99,7 +99,7 @@
 - (void)_selectNSRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_selectedNSRange;
 - (id)_selectedString;
-- (int)_selectionGranularity;
+- (unsigned char)_selectionGranularity;
 - (id)_selectionRangeForFirstPoint:(struct CGPoint { double x1; double x2; })arg1 secondPoint:(struct CGPoint { double x1; double x2; })arg2;
 - (id)_selectionRangeForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)_setInternalLoadDelegate:(id)arg1;
@@ -121,11 +121,12 @@
 - (id)_unreachableURL;
 - (void)_updateBackgroundAndUpdatesWhileOffscreen;
 - (void)_userScrolled;
-- (struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })_visiblePositionForPoint:(struct CGPoint { double x1; double x2; })arg1;
+- (struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; unsigned int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })_visiblePositionForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)_webHTMLDocumentView;
 - (id)accessibilityRoot;
 - (void)aggressivelyExpandSelectionToWordContainingCaretSelection;
 - (id)approximateNodeAtViewportLocation:(struct CGPoint { double x1; double x2; }*)arg1;
+- (struct CGColor { }*)caretColor;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })caretRect;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })caretRectAtNode:(id)arg1 offset:(int)arg2 affinity:(unsigned long long)arg3;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })caretRectForPosition:(id)arg1;
@@ -137,12 +138,12 @@
 - (void)clearRangedSelectionInitialExtent;
 - (void)clearSelection;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })closestCaretRectInMarkedTextRangeForPoint:(struct CGPoint { double x1; double x2; })arg1;
-- (struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })closestWordBoundary:(struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })arg1;
+- (struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; unsigned int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })closestWordBoundary:(struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; unsigned int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })arg1;
 - (void)collapseSelection;
 - (void)confirmMarkedText:(id)arg1;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })convertDOMRangeToNSRange:(id)arg1;
 - (id)convertNSRangeToDOMRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
-- (struct Frame { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct Ref<WebCore::WindowProxy, WTF::DumbPtrTraits<WebCore::WindowProxy> > { struct WindowProxy {} *x_3_1_1; } x3; struct HashSet<WebCore::FrameDestructionObserver *, WTF::PtrHash<WebCore::FrameDestructionObserver *>, WTF::HashTraits<WebCore::FrameDestructionObserver *> > { struct HashTable<WebCore::FrameDestructionObserver *, WebCore::FrameDestructionObserver *, WTF::IdentityExtractor, WTF::PtrHash<WebCore::FrameDestructionObserver *>, WTF::HashTraits<WebCore::FrameDestructionObserver *>, WTF::HashTraits<WebCore::FrameDestructionObserver *> > { struct FrameDestructionObserver {} **x_1_2_1; } x_4_1_1; } x4; struct Frame {} *x5; struct Page {} *x6; struct RefPtr<WebCore::Settings, WTF::DumbPtrTraits<WebCore::Settings> > { struct Settings {} *x_7_1_1; } x7; struct FrameTree { struct Frame {} *x_8_1_1; struct Frame {} *x_8_1_2; struct AtomString { struct String { struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl> > { struct StringImpl {} *x_1_4_1; } x_1_3_1; } x_3_2_1; } x_8_1_3; struct AtomString { struct String { struct RefPtr<WTF::StringImpl, WTF::DumbPtrTraits<WTF::StringImpl> > { struct StringImpl {} *x_1_4_1; } x_1_3_1; } x_4_2_1; } x_8_1_4; struct RefPtr<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x_5_2_1; } x_8_1_5; struct Frame {} *x_8_1_6; struct RefPtr<WebCore::Frame, WTF::DumbPtrTraits<WebCore::Frame> > { struct Frame {} *x_7_2_1; } x_8_1_7; struct Frame {} *x_8_1_8; unsigned int x_8_1_9; unsigned long long x_8_1_10; } x8; }*)coreFrame;
+- (struct Frame { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct Ref<WebCore::WindowProxy, WTF::DumbPtrTraits<WebCore::WindowProxy> > { struct WindowProxy {} *x_3_1_1; } x3; struct HashSet<WebCore::FrameDestructionObserver *, WTF::DefaultHash<WebCore::FrameDestructionObserver *>, WTF::HashTraits<WebCore::FrameDestructionObserver *> > { struct HashTable<WebCore::FrameDestructionObserver *, WebCore::FrameDestructionObserver *, WTF::IdentityExtractor, WTF::DefaultHash<WebCore::FrameDestructionObserver *>, WTF::HashTraits<WebCore::FrameDestructionObserver *>, WTF::HashTraits<WebCore::FrameDestructionObserver *> > { struct FrameDestructionObserver {} **x_1_2_1; } x_4_1_1; } x4; struct Vector<std::__1::pair<WTF::Ref<WebCore::DOMWrapperWorld, WTF::DumbPtrTraits<WebCore::DOMWrapperWorld> >, WTF::UniqueRef<WebCore::UserScript> >, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { struct pair<WTF::Ref<WebCore::DOMWrapperWorld, WTF::DumbPtrTraits<WebCore::DOMWrapperWorld> >, WTF::UniqueRef<WebCore::UserScript> > {} *x_5_1_1; unsigned int x_5_1_2; unsigned int x_5_1_3; } x5; }*)coreFrame;
 - (id)dataSource;
 - (void)dealloc;
 - (id)deepestNodeAtViewportLocation:(struct CGPoint { double x1; double x2; })arg1;
@@ -194,12 +195,10 @@
 - (void)moveSelectionToStart;
 - (id)name;
 - (bool)needsLayout;
-- (id)nextUnperturbedDictationResultBoundaryFromPosition:(id)arg1;
 - (int)numberOfPagesWithPageWidth:(float)arg1 pageHeight:(float)arg2;
 - (id)parentFrame;
 - (int)preferredHeight;
 - (void)prepareForPause;
-- (id)previousUnperturbedDictationResultBoundaryFromPosition:(id)arg1;
 - (void)printToCGContext:(struct CGContext { }*)arg1 pageWidth:(float)arg2 pageHeight:(float)arg3;
 - (id)provisionalDataSource;
 - (id)rangeByExtendingCurrentSelection:(int)arg1;
@@ -230,7 +229,7 @@
 - (bool)selectionAtWordStart;
 - (int)selectionBaseWritingDirection;
 - (id)selectionRects;
-- (id)selectionRectsForCoreRange:(struct Range { unsigned int x1; struct Ref<WebCore::Document, WTF::DumbPtrTraits<WebCore::Document> > { struct Document {} *x_2_1_1; } x2; struct RangeBoundaryPoint { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_3_1_1; struct Optional<unsigned int> { bool x_2_2_1; union constexpr_storage_t<unsigned int> { unsigned char x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_3_1_2; struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_3_2_1; } x_3_1_3; } x3; struct RangeBoundaryPoint { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_4_1_1; struct Optional<unsigned int> { bool x_2_2_1; union constexpr_storage_t<unsigned int> { unsigned char x_2_3_1; unsigned int x_2_3_2; } x_2_2_2; } x_4_1_2; struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_3_2_1; } x_4_1_3; } x4; }*)arg1;
+- (id)selectionRectsForCoreRange:(const struct SimpleRange { struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; unsigned int x_1_1_2; } x1; struct BoundaryPoint { struct Ref<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_2_1_1; unsigned int x_2_1_2; } x2; }*)arg1;
 - (id)selectionRectsForRange:(id)arg1;
 - (int)selectionState;
 - (void)sendScrollEvent;
@@ -252,6 +251,7 @@
 - (void)setRangedSelectionInitialExtentToCurrentSelectionStart;
 - (void)setRangedSelectionWithExtentPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setSelectedDOMRange:(id)arg1 affinity:(unsigned long long)arg2 closeTyping:(bool)arg3;
+- (void)setSelectedDOMRange:(id)arg1 affinity:(unsigned long long)arg2 closeTyping:(bool)arg3 userTriggered:(bool)arg4;
 - (void)setSelectionChangeCallbacksDisabled:(bool)arg1;
 - (void)setSelectionGranularity:(int)arg1;
 - (bool)setSelectionWithBasePoint:(struct CGPoint { double x1; double x2; })arg1 extentPoint:(struct CGPoint { double x1; double x2; })arg2 baseIsStart:(bool)arg3;
@@ -267,7 +267,7 @@
 - (id)stringForRange:(id)arg1;
 - (void)toggleBaseWritingDirection;
 - (void)updateLayout;
-- (struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })visiblePositionForPoint:(struct CGPoint { double x1; double x2; })arg1;
+- (struct VisiblePosition { struct Position { struct RefPtr<WebCore::Node, WTF::DumbPtrTraits<WebCore::Node> > { struct Node {} *x_1_2_1; } x_1_1_1; unsigned int x_1_1_2; unsigned int x_1_1_3 : 3; unsigned int x_1_1_4 : 1; } x1; int x2; })visiblePositionForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)webView;
 - (id)webVisiblePositionForPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)windowObject;
@@ -276,6 +276,10 @@
 - (int)wordOffsetInRange:(id)arg1;
 - (id)wordRangeContainingCaretSelection;
 - (id)wordsInCurrentParagraph;
+
+// Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
+
+- (id)dd_newOperation;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

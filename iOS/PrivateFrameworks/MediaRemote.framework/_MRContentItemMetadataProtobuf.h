@@ -303,11 +303,7 @@
 @property (nonatomic) int trackNumber;
 @property (nonatomic, retain) NSData *userInfoData;
 
-+ (void)initialize;
-
 - (void).cxx_destruct;
-- (id)_init;
-- (id)_initWithData:(id)arg1;
 - (id)albumArtistName;
 - (id)albumName;
 - (id)albumYear;

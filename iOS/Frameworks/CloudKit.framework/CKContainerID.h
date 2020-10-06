@@ -5,25 +5,48 @@
 @interface CKContainerID : NSObject <NSCopying, NSSecureCoding> {
     NSString * _containerIdentifier;
     long long  _environment;
+    bool  _isAppleInternal;
+    bool  _isTestContainer;
+    long long  _specialContainerType;
 }
 
-@property (nonatomic, readonly) NSString *containerIdentifier;
+@property (nonatomic, readonly, copy) NSString *containerIdentifier;
 @property (nonatomic, readonly) long long environment;
+@property (readonly, copy) NSString *hmbDescription;
+@property (nonatomic) bool isAppleInternal;
+@property (nonatomic) bool isTestContainer;
+@property (nonatomic) long long specialContainerType;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)CKPropertiesDescription;
+- (void)_deriveContainerAttributes;
+- (id)ckShortDescription;
+- (void)ck_bindInStatement:(id)arg1 atIndex:(unsigned long long)arg2;
 - (id)containerIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (long long)environment;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithContainerIdentifier:(id)arg1 environment:(long long)arg2;
-- (id)initWithDictionaryRepresentation:(id)arg1;
+- (id)initWithSqliteRepresentation:(id)arg1;
+- (bool)isAppleInternal;
 - (bool)isEqual:(id)arg1;
+- (bool)isTestContainer;
+- (id)representativeDataclass;
+- (void)setIsAppleInternal:(bool)arg1;
+- (void)setIsTestContainer:(bool)arg1;
+- (void)setSpecialContainerType:(long long)arg1;
+- (long long)specialContainerType;
+- (id)sqliteRepresentation;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
+- (id)hmbDescription;
 
 @end

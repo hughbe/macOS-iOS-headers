@@ -20,6 +20,8 @@
 @property (nonatomic, retain) <MTLLibrary> *library;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
+
 + (bool)supportsSecureCoding;
 + (id)techniqueBySequencingTechniques:(id)arg1;
 + (id)techniqueWithDictionary:(id)arg1;
@@ -79,5 +81,9 @@
 - (void)unbindAnimatablePath:(id)arg1;
 - (id)valueForSymbolNamed:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
+
+// Image: /System/Library/Frameworks/ARKit.framework/ARKit
+
+- (id)passForName:(id)arg1;
 
 @end

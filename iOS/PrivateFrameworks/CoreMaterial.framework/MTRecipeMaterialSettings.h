@@ -36,7 +36,7 @@
 - (id)baseMaterialSettings;
 - (id)baseOverlaySettings;
 - (id)description;
-- (id)initWithRecipeName:(id)arg1 andDescription:(id)arg2 descendantDescriptions:(id)arg3;
+- (id)initWithRecipeName:(id)arg1 andDescription:(id)arg2 descendantDescriptions:(id)arg3 bundle:(id)arg4;
 - (long long)materialSettingsVersion;
 - (id)primaryOverlaySettings;
 - (id)recipeName;

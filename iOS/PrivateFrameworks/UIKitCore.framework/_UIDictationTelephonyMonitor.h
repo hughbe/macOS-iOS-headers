@@ -16,11 +16,11 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) bool telephonyActivity;
 
+- (void).cxx_destruct;
 - (void)_backgroundInit;
 - (void)_backgroundReset;
 - (id /* block */)activityChanged;
 - (void)callObserver:(id)arg1 callChanged:(id)arg2;
-- (void)dealloc;
 - (id)init;
 - (void)setActivityChanged:(id /* block */)arg1;
 - (void)start;

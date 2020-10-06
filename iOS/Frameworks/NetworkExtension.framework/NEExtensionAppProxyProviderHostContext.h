@@ -13,6 +13,7 @@
 + (id)_extensionAuxiliaryVendorProtocol;
 
 - (void)openFlowDivertControlSocketWithCompletionHandler:(id /* block */)arg1;
+- (int)requiredEntitlement;
 - (void)setDelegateInterface:(unsigned int)arg1;
 - (void)setInitialFlowDivertControlSocket:(id)arg1;
 

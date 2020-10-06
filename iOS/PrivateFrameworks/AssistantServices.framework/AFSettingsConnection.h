@@ -29,28 +29,30 @@
 - (void)_setSyncNeededForReason:(id)arg1;
 - (void)_setSyncVerificationNeededAndFullReportNeeded:(bool)arg1 shouldPostNotification:(bool)arg2 completion:(id /* block */)arg3;
 - (void)_setVoices:(id)arg1;
-- (id)_settingsService;
 - (id)_settingsServiceWithErrorHandler:(id /* block */)arg1;
-- (void)_startDeepSyncVerificationForKeys:(id)arg1;
 - (void)_syncDataWithAnchorKeys:(id)arg1 forceReset:(bool)arg2 reason:(id)arg3 completion:(id /* block */)arg4;
+- (id)_synchronousSettingsServiceWithErrorHandler:(id /* block */)arg1;
 - (void)_tellDelegatePartialVerificationResult:(id)arg1;
 - (void)_tellDelegateServerVerificationReport:(id)arg1;
 - (void)_updateMultiUserInfoForUser:(id)arg1 score:(id)arg2 companionId:(id)arg3 companionSpeechId:(id)arg4 idsIdentifier:(id)arg5 aceHost:(id)arg6 reset:(bool)arg7 completion:(id /* block */)arg8;
 - (void)_updateVoicesIncludingAssetInfo:(bool)arg1 completion:(id /* block */)arg2;
 - (id)_voices;
+- (void)accessRecordedAudioWithIdentifier:(id)arg1 completion:(id /* block */)arg2;
 - (id)accounts;
 - (void)addMultiUserUser:(id)arg1 sharedId:(id)arg2 loggableSharedId:(id)arg3 enrollmentName:(id)arg4 isPrimary:(bool)arg5 completion:(id /* block */)arg6;
 - (void)barrier;
 - (void)clearOpportuneSpeakingEdgeDetectorSignalOverride;
 - (void)clearSpokenNotificationTemporarilyDisabledStatus;
 - (void)configOverrides:(id /* block */)arg1;
-- (void)createOfflineSpeechProfileWithLanguage:(id)arg1 JSONData:(id)arg2 completion:(id /* block */)arg3;
+- (void)createOfflineSpeechProfileWithLanguage:(id)arg1 modelOverridePath:(id)arg2 JSONData:(id)arg3 completion:(id /* block */)arg4;
+- (void)currectNWActivityId:(id /* block */)arg1;
 - (void)dealloc;
 - (void)deleteAccountWithIdentifier:(id)arg1;
 - (void)deleteSiriHistoryWithCompletion:(id /* block */)arg1;
 - (void)deleteSiriHistoryWithContext:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)disableAndDeleteCloudSyncWithCompletion:(id /* block */)arg1;
 - (void)dismissUI;
+- (void)fetchAccountsSynchronously:(bool)arg1 completion:(id /* block */)arg2;
 - (void)fetchAccountsWithCompletion:(id /* block */)arg1;
 - (void)fetchEventRecordsFromAnalyticsStoreAtPath:(id)arg1 completion:(id /* block */)arg2;
 - (void)fetchExperimentConfigurationsWithCompletion:(id /* block */)arg1;
@@ -67,14 +69,19 @@
 - (void)getBluetoothDeviceInfoWithUID:(id)arg1 completion:(id /* block */)arg2;
 - (void)getBluetoothWirelessSplitterSessionInfoWithCompletion:(id /* block */)arg1;
 - (void)getConnectedBluetoothDeviceInfoArrayWithCompletion:(id /* block */)arg1;
+- (void)getContextCollectorsInfoWithCompletion:(id /* block */)arg1;
+- (void)getCrossDeviceContextWithCompletion:(id /* block */)arg1;
+- (void)getCurrentContextSnapshotWithCompletion:(id /* block */)arg1;
 - (void)getDevicesWithAvailablePHSAssetsForLanguage:(id)arg1 completion:(id /* block */)arg2;
 - (void)getDevicesWithAvailablePHSAssetsOnDeviceCheck:(id /* block */)arg1;
 - (void)getHomeUserIdForSharedUserId:(id)arg1 completion:(id /* block */)arg2;
 - (void)getHorsemanSupplementalLanguageDictionary:(id /* block */)arg1;
 - (void)getMeCard:(id /* block */)arg1;
 - (void)getOfflineDictationStatusWithCompletion:(id /* block */)arg1;
+- (void)getOriginDeviceInfoForContextIdentifier:(id)arg1 completion:(id /* block */)arg2;
 - (void)getPairedBluetoothDeviceInfoArrayWithCompletion:(id /* block */)arg1;
 - (void)getPeerIdentifiers:(id /* block */)arg1;
+- (void)getRecordedAudioDirectoryPathsWithCompletion:(id /* block */)arg1;
 - (void)getSharedUserIdForHomeUserId:(id)arg1 completion:(id /* block */)arg2;
 - (void)getSiriDataSharingOptInStatusWithCompletion:(id /* block */)arg1;
 - (void)getSiriOutputVolumeForAudioRoute:(id)arg1 completion:(id /* block */)arg2;
@@ -93,6 +100,7 @@
 - (id)init;
 - (void)killDaemon;
 - (void)purgeAnalyticsStoreWithCompletion:(id /* block */)arg1;
+- (void)pushMyriadAdvertisementContext:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)removeMultiUserUser:(id)arg1 completion:(id /* block */)arg2;
 - (void)removeMultiUserWithSharedUserID:(id)arg1 completion:(id /* block */)arg2;
 - (void)resetAnalyticsStoreWithCompletion:(id /* block */)arg1;
@@ -103,6 +111,7 @@
 - (void)setAssistantLoggingEnabled:(bool)arg1;
 - (void)setConfigOverrides:(id)arg1 completion:(id /* block */)arg2;
 - (void)setDictationEnabled:(bool)arg1;
+- (void)setHardcodedBluetoothProximity:(id)arg1;
 - (void)setHorsemanSupplementalLanguageDictionary:(id)arg1 completion:(id /* block */)arg2;
 - (void)setLanguage:(id)arg1;
 - (void)setLanguage:(id)arg1 outputVoice:(id)arg2;
@@ -119,6 +128,7 @@
 - (void)setNanoTTSSpeakerVolume:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)setNanoUseDeviceSpeakerForTTS:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)setOfflineDictationProfileOverridePath:(id)arg1 completion:(id /* block */)arg2;
+- (void)setOnDeviceDictationAvailableAlertPresented:(bool)arg1;
 - (void)setOpportuneSpeakingEdgeDetectorSignalOverride:(long long)arg1;
 - (void)setOutputVoice:(id)arg1;
 - (void)setOutputVoice:(id)arg1 withCompletion:(id /* block */)arg2;
@@ -138,6 +148,7 @@
 - (void)setXPCConnectionManagementQueue:(id)arg1;
 - (void)shouldSuppressSiriDataSharingOptInAlert:(id /* block */)arg1;
 - (void)showMultiUsers:(id /* block */)arg1;
+- (void)showPrimaryUserSharedUserIDWithCompletion:(id /* block */)arg1;
 - (void)shutdownSessionIfIdle;
 - (void)siriDesignModeIsEnabled:(id /* block */)arg1;
 - (void)siriGradingIsEnabled:(id /* block */)arg1;
@@ -155,6 +166,7 @@
 - (void)stopAllAudioPlaybackRequests:(bool)arg1;
 - (void)stopAudioPlaybackRequest:(id)arg1 immediately:(bool)arg2;
 - (void)stopObservingWirelessSplitterSession;
-- (void)updateOfflineSpeechProfileWithLanguage:(id)arg1 completion:(id /* block */)arg2;
+- (void)trimRecordedAudioWithIdentifier:(id)arg1 offset:(double)arg2 duration:(double)arg3 outputFileType:(long long)arg4 completion:(id /* block */)arg5;
+- (void)updateOfflineSpeechProfileWithLanguage:(id)arg1 modelOverridePath:(id)arg2 completion:(id /* block */)arg3;
 
 @end

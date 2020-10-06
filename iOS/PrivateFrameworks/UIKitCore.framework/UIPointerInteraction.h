@@ -20,6 +20,7 @@
     <_UIPointerInteractionDriver> * _driver;
     bool  _enabled;
     unsigned long long  _generationID;
+    bool  _observingPresentationNotification;
     bool  _pausesPointerUpdatesWhilePanning;
     UIView * _view;
 }

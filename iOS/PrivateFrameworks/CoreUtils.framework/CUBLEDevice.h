@@ -6,6 +6,7 @@
     NSData * _addressData;
     NSData * _appleManufacturerData;
     unsigned int  _changeFlags;
+    unsigned int  _deviceFlags;
     NSString * _identifier;
     NSData * _lgBTAddress;
     NSData * _lgDeviceID;
@@ -26,6 +27,10 @@
     unsigned int  _objectSetupFlags;
     NSString * _objectSetupFontCode;
     NSString * _objectSetupMessage;
+    unsigned char  _proximityPairingAudioSourceCount;
+    struct { 
+        unsigned char bytes[3]; 
+    }  _proximityPairingLastConnectedHost;
     unsigned short  _proximityPairingProductID;
     int  _proximityPairingSubType;
     int  _rawRSSI;
@@ -35,6 +40,7 @@
 @property (nonatomic, readonly, copy) NSData *addressData;
 @property (nonatomic, readonly, copy) NSData *appleManufacturerData;
 @property (nonatomic) unsigned int changeFlags;
+@property (nonatomic) unsigned int deviceFlags;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, readonly, copy) NSData *lgBTAddress;
 @property (nonatomic, readonly, copy) NSData *lgDeviceID;
@@ -55,6 +61,8 @@
 @property (nonatomic, readonly) unsigned int objectSetupFlags;
 @property (nonatomic, readonly, copy) NSString *objectSetupFontCode;
 @property (nonatomic, readonly, copy) NSString *objectSetupMessage;
+@property (nonatomic, readonly) unsigned char proximityPairingAudioSourceCount;
+@property (nonatomic, readonly) struct { unsigned char x1[3]; } proximityPairingLastConnectedHost;
 @property (nonatomic, readonly) unsigned short proximityPairingProductID;
 @property (nonatomic, readonly) int proximityPairingSubType;
 @property (nonatomic, readonly) int rawRSSI;
@@ -67,6 +75,7 @@
 - (void)_parseAppleObjectDiscoveryPtr:(const char *)arg1 end:(const char *)arg2;
 - (void)_parseAppleProximityPairingObjectSetupPtr:(const char *)arg1 end:(const char *)arg2;
 - (void)_parseAppleProximityPairingPtr:(const char *)arg1 end:(const char *)arg2;
+- (void)_parseAppleProximityPairingStatusPtr:(const char *)arg1 end:(const char *)arg2;
 - (void)_parseLGManufacturerPtr:(const char *)arg1 end:(const char *)arg2 fields:(id)arg3;
 - (void)_parseManufacturerData:(id)arg1 advertisementFields:(id)arg2;
 - (id)addressData;
@@ -74,6 +83,7 @@
 - (unsigned int)changeFlags;
 - (id)description;
 - (id)descriptionWithLevel:(int)arg1;
+- (unsigned int)deviceFlags;
 - (id)identifier;
 - (id)lgBTAddress;
 - (id)lgDeviceID;
@@ -94,11 +104,14 @@
 - (unsigned int)objectSetupFlags;
 - (id)objectSetupFontCode;
 - (id)objectSetupMessage;
+- (unsigned char)proximityPairingAudioSourceCount;
+- (struct { unsigned char x1[3]; })proximityPairingLastConnectedHost;
 - (unsigned short)proximityPairingProductID;
 - (int)proximityPairingSubType;
 - (int)rawRSSI;
 - (unsigned int)scanFlags;
 - (void)setChangeFlags:(unsigned int)arg1;
+- (void)setDeviceFlags:(unsigned int)arg1;
 - (void)setIdentifier:(id)arg1;
 - (unsigned int)updateWithAdvertisementData:(id)arg1 rssi:(int)arg2 oldDevice:(id)arg3;
 

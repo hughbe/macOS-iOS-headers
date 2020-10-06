@@ -7,6 +7,7 @@
     bool  _allowAllCaptiveNetworkPlugins;
     bool  _allowCaptiveWebSheet;
     NSDictionary * _allowedCaptiveNetworkPlugins;
+    NSDictionary * _applicationExceptions;
     bool  _enabled;
     NSDictionary * _interfaceProtocolMapping;
     NSDictionary * _serviceExceptions;
@@ -17,6 +18,7 @@
 @property (getter=isAllowAllCaptiveNetworkPlugins) bool allowAllCaptiveNetworkPlugins;
 @property (getter=isAllowCaptiveWebSheet) bool allowCaptiveWebSheet;
 @property (copy) NSDictionary *allowedCaptiveNetworkPlugins;
+@property (copy) NSDictionary *applicationExceptions;
 @property (getter=isEnabled) bool enabled;
 @property (copy) NSDictionary *interfaceProtocolMapping;
 @property (copy) NSDictionary *serviceExceptions;
@@ -27,6 +29,7 @@
 - (void).cxx_destruct;
 - (id)activeInterfaceProtocolKey;
 - (id)allowedCaptiveNetworkPlugins;
+- (id)applicationExceptions;
 - (bool)checkValidityAndCollectErrors:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)descriptionWithIndent:(int)arg1 options:(unsigned long long)arg2;
@@ -42,6 +45,7 @@
 - (void)setAllowAllCaptiveNetworkPlugins:(bool)arg1;
 - (void)setAllowCaptiveWebSheet:(bool)arg1;
 - (void)setAllowedCaptiveNetworkPlugins:(id)arg1;
+- (void)setApplicationExceptions:(id)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setInterfaceProtocolMapping:(id)arg1;
 - (void)setServiceExceptions:(id)arg1;

@@ -3,7 +3,7 @@
  */
 
 @interface MRNetServiceTransport : MRExternalDeviceTransport {
-    _MRDeviceInfoMessageProtobuf * _deviceInfo;
+    MRDeviceInfo * _deviceInfo;
     NSNetService * _netService;
     bool  _requiresCustomPairing;
 }
@@ -19,7 +19,7 @@
 - (id)description;
 - (id)deviceInfo;
 - (id)error;
-- (bool)getInputStream:(id*)arg1 outputStream:(id*)arg2;
+- (bool)getInputStream:(id*)arg1 outputStream:(id*)arg2 userInfo:(id)arg3;
 - (id)hostname;
 - (id)initWithNetService:(id)arg1;
 - (id)name;

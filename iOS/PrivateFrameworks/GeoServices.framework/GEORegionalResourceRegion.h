@@ -10,11 +10,7 @@
         unsigned int read_attributions : 1; 
         unsigned int read_iconChecksums : 1; 
         unsigned int read_icons : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_tileRanges : 1; 
-        unsigned int wrote_attributions : 1; 
-        unsigned int wrote_iconChecksums : 1; 
-        unsigned int wrote_icons : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _iconChecksums;
     NSMutableArray * _icons;
@@ -43,14 +39,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAttribution:(id)arg1;
-- (void)_addNoFlagsIcon:(id)arg1;
-- (void)_addNoFlagsIconChecksum:(id)arg1;
-- (void)_addNoFlagsTileRange:(struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; })arg1;
-- (void)_readAttributions;
-- (void)_readIconChecksums;
-- (void)_readIcons;
-- (void)_readTileRanges;
 - (void)addAttribution:(id)arg1;
 - (void)addIcon:(id)arg1;
 - (void)addIconChecksum:(id)arg1;
@@ -77,7 +65,10 @@
 - (unsigned long long)iconsCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

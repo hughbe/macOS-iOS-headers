@@ -19,6 +19,9 @@
 @property (nonatomic, readonly) bool suspendedEventsOnly;
 @property (nonatomic, readonly) bool suspendedUnderLock;
 
++ (long long)_compareLifecycleStateOfScene:(id)arg1 toScene:(id)arg2;
++ (id)_mostActiveSceneForApplicationState;
++ (id)_mostActiveSceneIncludingInternal:(bool)arg1 withTest:(id /* block */)arg2;
 + (void)configureInitialDeactivationReasons:(unsigned long long)arg1;
 + (id)mostActiveScene;
 + (id)mostActiveSceneWithTest:(id /* block */)arg1;

@@ -3,14 +3,12 @@
  */
 
 @interface _INPBLocalizedProject : PBCodable <NSCopying, NSSecureCoding, _INPBLocalizedProject> {
-    bool  __encodeLegacyGloryData;
     _INPBAppNames * _appNames;
     struct { }  _has;
     _INPBIntentVocabulary * _intentVocabulary;
     _INPBLanguageTag * _language;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBAppNames *appNames;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)appNames;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

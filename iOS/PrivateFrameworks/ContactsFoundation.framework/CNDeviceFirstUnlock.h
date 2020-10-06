@@ -31,6 +31,7 @@
 - (void)setUnlockHandlers:(id)arg1;
 - (void)setWorkQueue:(id)arg1;
 - (id)unlockHandlers;
+- (void)waitForAllOperationsToFinish;
 - (void)withHandlersLock_addHandlerWithIdentifier:(id)arg1 block:(id /* block */)arg2;
 - (void)withHandlersLock_cancelExistingOperationWithIdentifier:(id)arg1;
 - (void)withHandlersLock_registerForDeviceFirstUnlock;

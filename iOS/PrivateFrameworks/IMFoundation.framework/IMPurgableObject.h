@@ -9,6 +9,7 @@
     id /* block */  _setupBlock;
 }
 
+- (void).cxx_destruct;
 - (void)_cleanupInstance;
 - (void)_receivedMemoryWarning:(id)arg1;
 - (void)_setupInstance;

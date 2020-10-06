@@ -16,6 +16,8 @@
 @property (nonatomic, copy) NSString *serverValidity;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)commandCompleted;
 + (id)commandCompletedWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -32,5 +34,11 @@
 - (void)setCommandOutcome:(id)arg1;
 - (void)setHomeIdentifier:(id)arg1;
 - (void)setServerValidity:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)contentDescription;
+- (id)headerDescription;
+- (id)shortDescription;
 
 @end

@@ -10,12 +10,7 @@
         unsigned int read_layoutConfigParameters : 1; 
         unsigned int read_queryParameters : 1; 
         unsigned int read_submissionParameters : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_idLookupParameters : 1; 
-        unsigned int wrote_imageUploadParameters : 1; 
-        unsigned int wrote_layoutConfigParameters : 1; 
-        unsigned int wrote_queryParameters : 1; 
-        unsigned int wrote_submissionParameters : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEORPFeedbackIdLookupParameters * _idLookupParameters;
     GEORPFeedbackImageUploadParameters * _imageUploadParameters;
@@ -46,11 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readIdLookupParameters;
-- (void)_readImageUploadParameters;
-- (void)_readLayoutConfigParameters;
-- (void)_readQueryParameters;
-- (void)_readSubmissionParameters;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -66,8 +56,13 @@
 - (id)imageUploadParameters;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithIncidentLocation:(id)arg1 type:(int)arg2 historicalLocations:(id)arg3;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithMerchantIndustryCode:(long long)arg1 mapsIdentifier:(unsigned long long)arg2 merchantName:(id)arg3 merchantRawName:(id)arg4 merchantIndustryCategory:(id)arg5 merchantURL:(id)arg6 merchantFormattedAddress:(id)arg7 transactionTime:(double)arg8 transactionType:(id)arg9 transactionLocation:(struct { double x1; double x2; })arg10;
 - (bool)isEqual:(id)arg1;
+- (bool)isPOIEnrichment;
+- (id)jsonRepresentation;
 - (id)layoutConfigParameters;
 - (void)mergeFrom:(id)arg1;
 - (id)queryParameters;

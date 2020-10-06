@@ -51,6 +51,7 @@
 @property (nonatomic) int multipathService;
 @property (nonatomic) bool noProxy;
 @property (nonatomic, retain) NSUUID *parentID;
+@property (nonatomic, readonly) NSArray *parentIDs;
 @property (nonatomic) int pid;
 @property (nonatomic) bool preferNoProxy;
 @property (nonatomic, readonly, copy) NSString *privateDescription;
@@ -79,7 +80,6 @@
 @property (nonatomic) bool useAWDL;
 @property (nonatomic) bool useLongOutstandingQueries;
 @property (nonatomic) bool useP2P;
-@property (nonatomic) bool useTFOHeuristics;
 @property (getter=isValid, nonatomic, readonly) bool valid;
 
 + (id)parametersWithCParameters:(id)arg1;
@@ -150,6 +150,7 @@
 - (int)multipathService;
 - (bool)noProxy;
 - (id)parentID;
+- (id)parentIDs;
 - (int)pid;
 - (void)preferNetworkAgentWithDomain:(id)arg1 type:(id)arg2;
 - (void)preferNetworkAgentWithUUID:(id)arg1;
@@ -246,7 +247,6 @@
 - (void)setUseAWDL:(bool)arg1;
 - (void)setUseLongOutstandingQueries:(bool)arg1;
 - (void)setUseP2P:(bool)arg1;
-- (void)setUseTFOHeuristics:(bool)arg1;
 - (unsigned short)tlsVersionWithSSLProtocol:(int)arg1;
 - (unsigned long long)trafficClass;
 - (unsigned char)transportProtocol;
@@ -256,6 +256,5 @@
 - (bool)useAWDL;
 - (bool)useLongOutstandingQueries;
 - (bool)useP2P;
-- (bool)useTFOHeuristics;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Contacts.framework/Contacts
  */
 
-@interface CNGroup : NSObject <NSCopying, NSMutableCopying, NSSecureCoding> {
+@interface CNGroup : NSObject <ABSCNLegacyIdentifiable, NSCopying, NSMutableCopying, NSSecureCoding> {
     NSDate * _creationDate;
     NSString * _externalIdentifier;
     NSString * _externalModificationTag;
@@ -16,15 +16,21 @@
 }
 
 @property (nonatomic, readonly, copy) NSDate *creationDate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSString *externalIdentifier;
 @property (nonatomic, readonly, copy) NSString *externalModificationTag;
 @property (nonatomic, readonly, copy) NSData *externalRepresentation;
+@property (nonatomic, readonly, copy) NSString *externalURI;
 @property (nonatomic, readonly, copy) NSString *externalUUID;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) int iOSLegacyIdentifier;
+@property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly, copy) NSString *identifier;
 @property (nonatomic, readonly, copy) NSDate *modificationDate;
 @property (nonatomic, readonly, copy) NSString *name;
 @property (nonatomic, readonly, copy) CNGroup *snapshot;
+@property (readonly) Class superclass;
 
 + (id)identifierProvider;
 + (id)localizedStringForKey:(id)arg1;
@@ -46,6 +52,7 @@
 - (id)externalIdentifier;
 - (id)externalModificationTag;
 - (id)externalRepresentation;
+- (id)externalURI;
 - (id)externalUUID;
 - (unsigned long long)hash;
 - (int)iOSLegacyIdentifier;
@@ -54,7 +61,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithGroup:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 name:(id)arg2;
-- (id)initWithIdentifier:(id)arg1 name:(id)arg2 creationDate:(id)arg3 modificationDate:(id)arg4;
+- (id)initWithIdentifier:(id)arg1 name:(id)arg2 creationDate:(id)arg3 modificationDate:(id)arg4 iOSLegacyIdentifier:(int)arg5;
 - (id)initWithName:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)modificationDate;

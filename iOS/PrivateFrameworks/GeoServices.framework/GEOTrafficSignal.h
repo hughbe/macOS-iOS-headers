@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_identifier : 1; 
         unsigned int read_position : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_identifier : 1; 
-        unsigned int wrote_position : 1; 
-        unsigned int wrote_type : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _identifier;
     GEOLatLng * _position;
@@ -37,8 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (void)_readIdentifier;
-- (void)_readPosition;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -51,7 +46,10 @@
 - (id)identifier;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)position;
 - (void)readAll:(bool)arg1;

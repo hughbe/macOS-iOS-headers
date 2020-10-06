@@ -48,9 +48,11 @@
 @property (nonatomic, retain) UIColor *textColor;
 @property (nonatomic) unsigned long long visibleSeparatorEdges;
 
++ (id)cellHighlightColorForDarkStyle:(bool)arg1;
+
 - (void).cxx_destruct;
-- (long long)_currentInterfaceOrientation;
 - (id)_displayLabelForCandidate:(id)arg1;
+- (bool)_isEmojiCandidate:(id)arg1;
 - (bool)_isPad;
 - (bool)_isSecureCandidate:(id)arg1;
 - (bool)_renderConfigUsesDarkStyle:(id)arg1;

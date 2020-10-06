@@ -2,17 +2,33 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UICollectionViewCell : UICollectionReusableView <UIGestureRecognizerDelegate, _UILayoutEngineSuspending> {
+@interface UICollectionViewCell : UICollectionReusableView <UIGestureRecognizerDelegate, _UILayoutEngineSuspending, _UISystemBackgroundViewContainer> {
+    long long  __dropState;
     UIView * _backgroundView;
+    id /* block */  _backgroundViewConfigurationProvider;
     struct { 
         unsigned int selected : 1; 
         unsigned int highlighted : 1; 
+        unsigned int editing : 1; 
+        unsigned int swiped : 1; 
+        unsigned int reordering : 1; 
+        unsigned int needsConfigurationStateUpdate : 1; 
+        unsigned int hasCustomBackgroundColor : 1; 
+        unsigned int hasCustomBackgroundView : 1; 
+        unsigned int hasCustomSelectedBackgroundView : 1; 
+        unsigned int hasCustomBackgroundViewConfigurationProvider : 1; 
+        unsigned int hasCustomBackgroundViewConfiguration : 1; 
+        unsigned int automaticallyUpdatesBackgroundViewConfiguration : 1; 
+        unsigned int automaticallyUpdatesContentViewConfiguration : 1; 
         unsigned int showingMenu : 1; 
         unsigned int clearSelectionWhenMenuDisappears : 1; 
         unsigned int waitingForSelectionAnimationHalfwayPoint : 1; 
         unsigned int contentViewWantsSystemLayoutSizeFittingSize : 1; 
+        unsigned int selectionOrHighlightStateChangedSinceBackgroundUpdate : 1; 
     }  _collectionCellFlags;
     UIView * _contentView;
+    NSString * _contentViewConfigurationIdentifier;
+    id /* block */  _contentViewConfigurationProvider;
     long long  _dragState;
     bool  _dragging;
     long long  _focusStyle;
@@ -20,15 +36,30 @@
     bool  _highlighted;
     id  _highlightingSupport;
     bool  _isLayoutEngineSuspended;
+    <_UIBackgroundConfigurationInternal> * _lastNormalBackgroundViewConfiguration;
     UILongPressGestureRecognizer * _menuGesture;
     bool  _selected;
     UIView * _selectedBackgroundView;
     id  _selectionSegueTemplate;
+    _UISystemBackgroundView * _systemBackgroundView;
+    <_UIContentViewInternal> * _viewForContentConfiguration;
 }
 
+@property (getter=_backgroundFillIsCustomizedForSelectionOrHighlight, nonatomic, readonly) bool _backgroundFillIsCustomizedForSelectionOrHighlight;
+@property (getter=_backgroundIsVerticallyInset, nonatomic, readonly) bool _backgroundIsVerticallyInset;
+@property (nonatomic, readonly) UICellConfigurationState *_bridgedConfigurationState;
 @property (getter=_dragState, setter=_setDragState:, nonatomic) long long _dragState;
+@property (getter=_dropState, setter=_setDropState:, nonatomic) long long _dropState;
+@property (getter=_isDropTarget, setter=_setDropTarget:, nonatomic) bool _dropTarget;
 @property (getter=_isLayoutEngineSuspended, setter=_setLayoutEngineSuspended:, nonatomic) bool _layoutEngineSuspended;
+@property (getter=_isReordering, setter=_setReordering:, nonatomic) bool _reordering;
+@property (getter=_isSwiped, setter=_setSwiped:, nonatomic) bool _swiped;
+@property (nonatomic) bool automaticallyUpdatesBackgroundConfiguration;
+@property (nonatomic) bool automaticallyUpdatesContentConfiguration;
+@property (nonatomic, copy) UIBackgroundConfiguration *backgroundConfiguration;
 @property (nonatomic, retain) UIView *backgroundView;
+@property (nonatomic, readonly) UICellConfigurationState *configurationState;
+@property (nonatomic, copy) <UIContentConfiguration> *contentConfiguration;
 @property (nonatomic, retain) UIView *contentView;
 @property (getter=_contentViewInset, nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } contentViewInset;
 @property (readonly, copy) NSString *debugDescription;
@@ -46,14 +77,35 @@
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (Class)_contentViewClass;
++ (id)_createDefaultContentViewWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
++ (bool)_isInternalCell;
++ (bool)_subclassOverridesContentViewClass;
 
 - (void).cxx_destruct;
+- (bool)_appliesLayoutAttributesMaskingToReusableView;
+- (void)_applyBackgroundViewConfiguration:(id)arg1 withState:(id)arg2;
+- (void)_applyContentViewConfiguration:(id)arg1 withState:(id)arg2 usingSPI:(bool)arg3;
+- (bool)_automaticallyUpdatesBackgroundViewConfiguration;
+- (bool)_automaticallyUpdatesContentViewConfiguration;
+- (bool)_backgroundFillIsCustomizedForSelectionOrHighlight;
+- (bool)_backgroundIsVerticallyInset;
+- (id)_backgroundViewConfiguration;
+- (id /* block */)_backgroundViewConfigurationProvider;
 - (bool)_canFocusProgrammatically;
+- (id)_configurationState;
 - (void)_configureFocusedFloatingContentView:(id)arg1;
+- (struct CGSize { double x1; double x2; })_contentTargetSizeForTargetSize:(struct CGSize { double x1; double x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3 forUseWithSizeThatFits:(bool)arg4;
+- (id)_contentViewConfiguration;
+- (id /* block */)_contentViewConfigurationProvider;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_contentViewInset;
+- (id)_defaultBackgroundConfiguration;
+- (id)_defaultBackgroundView;
+- (id)_defaultSelectedBackgroundView;
 - (bool)_descendantsShouldHighlight;
 - (void)_didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (long long)_dragState;
+- (long long)_dropState;
+- (unsigned long long)_effectiveMaskedCornersForSystemBackgroundView;
 - (id)_encodableSubviews;
 - (void)_ensureFocusedFloatingContentView;
 - (long long)_focusStyle;
@@ -61,43 +113,80 @@
 - (bool)_forwardsSystemLayoutFittingSizeToContentView:(id)arg1;
 - (bool)_gestureRecognizerShouldBegin:(id)arg1;
 - (void)_handleMenuGesture:(id)arg1;
+- (bool)_hasCustomSelectionAction;
 - (bool)_highlightDescendantsWhenSelected;
+- (bool)_isDropTarget;
 - (bool)_isLayoutEngineSuspended;
+- (bool)_isReordering;
+- (bool)_isSwiped;
 - (bool)_isUsingOldStyleMultiselection;
+- (void)_layoutContentView;
+- (void)_layoutSystemBackgroundView;
+- (unsigned long long)_maskedCornersForSystemBackgroundView;
 - (void)_monitoredView:(id)arg1 didMoveFromSuperview:(id)arg2 toSuperview:(id)arg3;
 - (void)_monitoredView:(id)arg1 willMoveFromSuperview:(id)arg2 toSuperview:(id)arg3;
 - (void)_performAction:(SEL)arg1 sender:(id)arg2;
+- (void)_performConfigurationStateUpdate;
+- (bool)_performCustomSelectionAction;
+- (void)_populateArchivedSubviews:(id)arg1;
 - (id)_preferredConfigurationForFocusAnimation:(long long)arg1 inContext:(id)arg2;
+- (bool)_removesHighlightedAndSelectedStatesForBackground;
+- (void)_resetBackgroundViewConfiguration;
+- (void)_resetBackgroundViewsAndColor;
 - (double)_selectionAnimationDuration;
 - (id)_selectionSegueTemplate;
+- (void)_setAutomaticallyUpdatesBackgroundViewConfiguration:(bool)arg1;
+- (void)_setAutomaticallyUpdatesContentViewConfiguration:(bool)arg1;
+- (void)_setBackgroundViewConfiguration:(id)arg1;
+- (void)_setBackgroundViewConfigurationProvider:(id /* block */)arg1;
 - (void)_setContentView:(id)arg1 addToHierarchy:(bool)arg2;
+- (void)_setContentViewConfiguration:(id)arg1;
+- (void)_setContentViewConfigurationProvider:(id /* block */)arg1;
 - (void)_setDragState:(long long)arg1;
+- (void)_setDropState:(long long)arg1;
+- (void)_setDropTarget:(bool)arg1;
 - (void)_setFocusStyle:(long long)arg1;
 - (void)_setHighlighted:(bool)arg1 animated:(bool)arg2;
 - (void)_setLayoutAttributes:(id)arg1;
 - (void)_setLayoutEngineSuspended:(bool)arg1;
+- (void)_setNeedsConfigurationStateUpdate;
 - (void)_setOpaque:(bool)arg1 forSubview:(id)arg2;
+- (void)_setReordering:(bool)arg1;
 - (void)_setSelected:(bool)arg1 animated:(bool)arg2;
 - (void)_setSelectionSegueTemplate:(id)arg1;
+- (void)_setSwiped:(bool)arg1;
 - (void)_setupHighlightingSupport;
 - (bool)_shouldSaveOpaqueStateForView:(id)arg1;
+- (id)_stateForUpdatingBackgroundConfigurationWithState:(id)arg1;
+- (id)_systemBackgroundView;
 - (void)_teardownHighlightingSupportIfReady;
 - (void)_updateBackgroundView;
+- (void)_updateBackgroundViewConfigurationForState:(id)arg1;
+- (void)_updateConfigurationUsingState:(id)arg1;
+- (void)_updateContentViewConfigurationForState:(id)arg1;
+- (void)_updateDefaultBackgroundAppearance;
 - (void)_updateFocusedFloatingContentControlStateAnimated:(bool)arg1;
 - (void)_updateFocusedFloatingContentControlStateInContext:(id)arg1 withAnimationCoordinator:(id)arg2 animated:(bool)arg3;
 - (void)_updateGhostedAppearance;
 - (void)_updateHighlightColorsForAnimationHalfwayPoint;
 - (void)_updateHighlightColorsForView:(id)arg1 highlight:(bool)arg2;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (void)_updateViewConfigurationsWithState:(unsigned long long)arg1;
+- (bool)_usingBackgroundViewConfiguration;
+- (bool)_usingContentViewConfiguration;
+- (unsigned long long)_viewConfigurationState;
+- (id)_visiblePathForBackgroundConfiguration;
+- (bool)automaticallyUpdatesBackgroundConfiguration;
+- (bool)automaticallyUpdatesContentConfiguration;
+- (id)backgroundConfiguration;
 - (id)backgroundView;
 - (bool)canBecomeFocused;
 - (bool)canPerformAction:(SEL)arg1 withSender:(id)arg2;
+- (id)configurationState;
+- (id)contentConfiguration;
 - (id)contentView;
 - (void)copy:(id)arg1;
 - (void)cut:(id)arg1;
+- (void)dealloc;
 - (void)dragStateDidChange:(long long)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -110,15 +199,37 @@
 - (void)paste:(id)arg1;
 - (void)prepareForReuse;
 - (id)selectedBackgroundView;
+- (void)setAutomaticallyUpdatesBackgroundConfiguration:(bool)arg1;
+- (void)setAutomaticallyUpdatesContentConfiguration:(bool)arg1;
+- (void)setBackgroundColor:(id)arg1;
+- (void)setBackgroundConfiguration:(id)arg1;
 - (void)setBackgroundView:(id)arg1;
+- (void)setContentConfiguration:(id)arg1;
 - (void)setContentView:(id)arg1;
 - (void)setDragging:(bool)arg1;
 - (void)setEditing:(bool)arg1;
 - (void)setHighlighted:(bool)arg1;
+- (void)setNeedsUpdateConfiguration;
 - (void)setSelected:(bool)arg1;
 - (void)setSelectedBackgroundView:(id)arg1;
 - (void)setSemanticContentAttribute:(long long)arg1;
+- (void)setUserInteractionEnabled:(bool)arg1;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (struct CGSize { double x1; double x2; })systemLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
+- (void)traitCollectionDidChange:(id)arg1;
+- (void)updateConfigurationUsingState:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AvatarUI.framework/AvatarUI
+
+- (void)downcastWithCellHandler:(id /* block */)arg1 listCellHandler:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (void)unloadExpensiveViews;
+
+// Image: /usr/lib/swift/libswiftUIKit.dylib
+
+- (id)_bridgedConfigurationState;
+- (void)_bridgedUpdateConfigurationUsingState:(id)arg1;
 
 @end

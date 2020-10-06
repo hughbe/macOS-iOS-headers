@@ -10,16 +10,16 @@
     NSObject<OS_xpc_object> * _connection;
     NSObject<OS_dispatch_queue> * _connectionQueue;
     NSMutableDictionary * _deathHandlers;
-    NSHashTable * _expirationWarningAssertions;
+    NSHashTable * _expirationWarningClients;
     RBSProcessHandle * _handle;
     NSObject<OS_xpc_object> * _handleConnection;
-    RBSAssertionIdentifier * _handshakeIdentifier;
     NSObject<OS_dispatch_queue> * _handshakeQueue;
     NSMutableSet * _inheritances;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _lock;
     NSObject<OS_dispatch_queue> * _monitorCalloutQueue;
+    NSSet * _preventLaunchPredicates;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _processExpirationLock;
@@ -34,25 +34,17 @@
 
 + (id)connectionQueue;
 + (id)handshakeQueue;
++ (void)setInDaemon;
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
-- (id)_connection;
-- (void)_disconnect;
-- (void)_handleDaemonDidStart;
-- (void)_handleMessage:(id)arg1;
-- (void)_handshake;
-- (id)_handshakeDescriptor;
-- (id)_init;
-- (bool)_invalidateAssertionIdentifier:(id)arg1 error:(out id*)arg2;
-- (bool)_isPlugIn;
-- (id)_lock_connect;
-- (void)_subscribeToProcessDeath:(id)arg1 handler:(id /* block */)arg2;
 - (id)acquireAssertion:(id)arg1 error:(out id*)arg2;
 - (id)assertionDescriptorsByPidWithFlattenedAttributes:(bool)arg1 error:(out id*)arg2;
 - (oneway void)async_assertionWillInvalidate:(id)arg1;
 - (oneway void)async_assertionsDidInvalidate:(id)arg1 withError:(id)arg2;
 - (oneway void)async_didChangeInheritances:(id)arg1 completion:(id /* block */)arg2;
+- (oneway void)async_observedPreventLaunchPredicatesUpdate:(id)arg1 completion:(id /* block */)arg2;
+- (oneway void)async_observedProcessExitEvents:(id)arg1 completion:(id /* block */)arg2;
 - (oneway void)async_observedProcessStatesDidChange:(id)arg1 completion:(id /* block */)arg2;
 - (oneway void)async_processDidExit:(id)arg1 withContext:(id)arg2;
 - (oneway void)async_willExpireAssertionsSoon;
@@ -75,7 +67,9 @@
 - (id)lastExitContextForInstance:(id)arg1 error:(out id*)arg2;
 - (id)limitationsForInstance:(id)arg1 error:(out id*)arg2;
 - (id)observeProcessAssertionsExpirationWarningWithBlock:(id /* block */)arg1;
-- (void)plugInHandshakeComplete;
+- (id)portForIdentifier:(id)arg1;
+- (id)preventLaunchPredicatesWithError:(out id*)arg1;
+- (id)processName:(id)arg1;
 - (void)registerServiceDelegate:(id)arg1;
 - (void)reset;
 - (id)statesForPredicate:(id)arg1 withDescriptor:(id)arg2 error:(out id*)arg3;

@@ -37,6 +37,7 @@
 + (id)predicateForObjectsWithParentObjectID:(id)arg1;
 + (id)predicateForObjectsWithParentObjectID:(id)arg1 andRole:(unsigned long long)arg2;
 + (id)predicateForObjectsWithPersonID:(id)arg1 andRole:(unsigned long long)arg2;
++ (id)predicateForUnexpiredObjects;
 
 - (void).cxx_destruct;
 - (unsigned long long)changeTag;

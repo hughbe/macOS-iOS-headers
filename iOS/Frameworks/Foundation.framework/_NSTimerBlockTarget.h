@@ -8,6 +8,5 @@
 
 - (void)dealloc;
 - (void)fire:(id)arg1;
-- (id)initWithBlock:(id /* block */)arg1;
 
 @end

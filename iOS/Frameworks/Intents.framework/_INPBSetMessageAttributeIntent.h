@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSetMessageAttributeIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSetMessageAttributeIntent> {
-    bool  __encodeLegacyGloryData;
     int  _attribute;
     struct { 
         unsigned int attribute : 1; 
@@ -12,7 +11,6 @@
     _INPBIntentMetadata * _intentMetadata;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int attribute;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -28,8 +26,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsAttribute:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addIdentifier:(id)arg1;
 - (int)attribute;
 - (id)attributeAsString:(int)arg1;

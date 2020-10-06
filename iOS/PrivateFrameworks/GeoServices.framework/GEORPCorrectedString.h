@@ -8,9 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_correctedValue : 1; 
         unsigned int read_originalValue : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_correctedValue : 1; 
-        unsigned int wrote_originalValue : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _originalValue;
     PBDataReader * _reader;
@@ -31,8 +29,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readCorrectedValue;
-- (void)_readOriginalValue;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -44,7 +40,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)originalValue;
 - (void)readAll:(bool)arg1;

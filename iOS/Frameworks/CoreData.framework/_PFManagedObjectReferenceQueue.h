@@ -10,21 +10,15 @@
     struct __CFArray { } * _queue;
     struct __CFRunLoopObserver { } * _rlObserver;
     int  _signalRunloop;
-    int  _spinLock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _spinLock;
 }
 
-- (void)_contextDidDealloc;
 - (bool)_isDeallocating;
-- (void)_processReferenceQueue:(bool)arg1;
-- (bool)_queueBatchForDealloc:(struct __CFArray { }*)arg1;
-- (long long)_queueCount;
-- (bool)_queueForDealloc:(id)arg1;
-- (bool)_signal;
 - (bool)_tryRetain;
-- (void)_unregisterRunloopObservers;
 - (void)dealloc;
 - (void)finalize;
-- (id)initForContext:(id)arg1;
 - (oneway void)release;
 - (id)retain;
 - (unsigned long long)retainCount;

@@ -14,6 +14,7 @@
     NSMutableDictionary * _stitchedPlaceholders;
 }
 
+@property (nonatomic, readonly) NSArray *deletedIDs;
 @property (nonatomic, readonly) bool isActive;
 @property (nonatomic, readonly) NSArray *placeholderItems;
 @property (nonatomic, readonly) NSArray *placeholderReplacementsIDs;
@@ -30,6 +31,7 @@
 - (id)createPlaceholderWithName:(id)arg1 typeIdentifier:(id)arg2 contentAccessDate:(id)arg3 underParent:(id)arg4 inProviderDomainID:(id)arg5;
 - (void)dealloc;
 - (void)deleteItems:(id)arg1;
+- (id)deletedIDs;
 - (void)finish;
 - (void)finishWithItem:(id)arg1 error:(id)arg2;
 - (void)finishWithItems:(id)arg1 error:(id)arg2;

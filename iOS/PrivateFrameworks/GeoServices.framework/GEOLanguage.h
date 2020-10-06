@@ -25,7 +25,10 @@
 - (id)dictionaryRepresentation;
 - (unsigned long long)hash;
 - (unsigned int)identifier;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)languageAtIndex:(unsigned long long)arg1;
 - (id)languages;
 - (unsigned long long)languagesCount;

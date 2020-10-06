@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIInputViewSetPlacementOffScreenRight : UIInputViewSetPlacement <NSSecureCoding>
+@interface UIInputViewSetPlacementOffScreenRight : UIInputViewSetPlacementOffScreenLeftOrRight <NSSecureCoding>
 
 + (bool)supportsSecureCoding;
 

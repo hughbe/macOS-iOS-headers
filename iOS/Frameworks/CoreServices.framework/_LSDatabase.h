@@ -4,10 +4,9 @@
 
 @interface _LSDatabase : NSObject {
     NSObject<OS_dispatch_queue> * accessQueue;
-    NSMutableSet * changedBundleIDs;
-    NSMutableSet * changedTypeIDs;
-    bool  isForcedForXCTesting;
-    bool  needsUpdate;
+    unsigned int  isForcedForRemoteUpdates;
+    unsigned int  isForcedForXCTesting;
+    unsigned int  needsUpdate;
     FSNode * node;
     struct LSSchema { 
         unsigned int headerTable; 
@@ -87,7 +86,6 @@
 @property (nonatomic, readonly) NSString *seededModelCode;
 @property (nonatomic, readonly) NSString *seededSystemVersion;
 @property (getter=isSeedingComplete, nonatomic) bool seedingComplete;
-@property (nonatomic) unsigned long long sequenceNumber;
 @property (nonatomic, readonly) struct __CSStore { }*store;
 @property (nonatomic) bool typeDeclarationsChanged;
 @property (nonatomic, readonly) unsigned int userID;
@@ -100,7 +98,8 @@
 - (bool)URLTypesChanged;
 - (id)_init;
 - (id)accessQueue;
-- (void)applicationDidChange:(unsigned int)arg1;
+- (void)applicationWasInstalled:(unsigned int)arg1;
+- (void)applicationWillBeUninstalled:(unsigned int)arg1;
 - (bool)applicationsChanged;
 - (bool)arePrefsLoaded;
 - (id)cacheGUID;
@@ -109,6 +108,7 @@
 - (void)dealloc;
 - (id)description;
 - (bool)documentTypesChanged;
+- (void)getCacheGUIDBytes:(unsigned char)arg1;
 - (id)init;
 - (bool)isSeeded;
 - (bool)isSeedingComplete;
@@ -118,13 +118,11 @@
 - (struct LSSchema { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; struct { struct CSMap { unsigned int x_1_2_1; struct CSMapCallbacks { int (*x_2_3_1)(); int (*x_2_3_2)(); int (*x_2_3_3)(); int (*x_2_3_4)(); int (*x_2_3_5)(); int (*x_2_3_6)(); } x_1_2_2; struct CSMapContext {} *x_1_2_3; struct os_unfair_lock_s { unsigned int x_4_3_1; } x_1_2_4; unsigned int x_1_2_5; struct _CSMapHeader {} *x_1_2_6; unsigned int *x_1_2_7; unsigned int *x_1_2_8; } x_6_1_1; } x6; struct { struct CSMap { unsigned int x_1_2_1; struct CSMapCallbacks { int (*x_2_3_1)(); int (*x_2_3_2)(); int (*x_2_3_3)(); int (*x_2_3_4)(); int (*x_2_3_5)(); int (*x_2_3_6)(); } x_1_2_2; struct CSMapContext {} *x_1_2_3; struct os_unfair_lock_s { unsigned int x_4_3_1; } x_1_2_4; unsigned int x_1_2_5; struct _CSMapHeader {} *x_1_2_6; unsigned int *x_1_2_7; unsigned int *x_1_2_8; } x_7_1_1; unsigned int x_7_1_2; unsigned char x_7_1_3; } x7[12]; unsigned int x8; unsigned int x9; unsigned int x10; unsigned int x11; unsigned int x12; unsigned int x13; }*)schema;
 - (id)seededModelCode;
 - (id)seededSystemVersion;
-- (unsigned long long)sequenceNumber;
 - (void)setApplicationsChanged:(bool)arg1;
 - (void)setDocumentTypesChanged:(bool)arg1;
 - (void)setPrefsLoaded:(bool)arg1;
 - (void)setSeeded:(bool)arg1;
 - (void)setSeedingComplete:(bool)arg1;
-- (void)setSequenceNumber:(unsigned long long)arg1;
 - (void)setTypeDeclarationsChanged:(bool)arg1;
 - (void)setURLTypesChanged:(bool)arg1;
 - (struct __CSStore { }*)store;

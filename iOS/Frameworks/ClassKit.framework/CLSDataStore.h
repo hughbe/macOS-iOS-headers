@@ -40,6 +40,8 @@
 @property (nonatomic, readonly) CLSActivity *runningActivity;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
+
 + (Class)endpointClass;
 + (bool)isAvailable;
 + (bool)isDashboardApp;
@@ -80,7 +82,7 @@
 - (id)cachedMainAppContext;
 - (void)canSearchRostersWithCompletion:(id /* block */)arg1;
 - (void)classesForPersonID:(id)arg1 role:(unsigned long long)arg2 completion:(id /* block */)arg3;
-- (id)collaborationStatesForObjectWithID:(id)arg1 ownerPersonID:(id)arg2;
+- (void)collaborationStatesForObjectWithID:(id)arg1 classID:(id)arg2 forOwnersWithRole:(unsigned long long)arg3 completion:(id /* block */)arg4;
 - (void)collaborationStatesForObjectWithID:(id)arg1 ownerPersonID:(id)arg2 completion:(id /* block */)arg3;
 - (void)completeAllAssignedActivitiesMatching:(id)arg1;
 - (void)contextsMatchingIdentifier:(id)arg1 completion:(id /* block */)arg2;
@@ -91,7 +93,7 @@
 - (void)currentUserWithCompletion:(id /* block */)arg1;
 - (void)currentUserWithServer:(id)arg1 completion:(id /* block */)arg2;
 - (id)dataServer:(id /* block */)arg1;
-- (void)dataServer:(id)arg1 executeQuery:(id)arg2;
+- (void)dataServer:(id)arg1 executeQuery:(id)arg2 issueServerRequest:(bool)arg3;
 - (void)dealloc;
 - (id)delegate;
 - (void)deleteArchivedCollectionObjects:(id)arg1 withCompletion:(id /* block */)arg2;
@@ -100,12 +102,14 @@
 - (id)endpointConnection;
 - (void)enrolledClassesWithCompletion:(id /* block */)arg1;
 - (void)executeQuery:(id)arg1;
+- (void)executeQuery:(id)arg1 issueServerRequest:(bool)arg2;
 - (void)faultMainAppContext;
 - (bool)faultProcessor:(id)arg1 shouldFaultRelation:(id)arg2 fromObject:(id)arg3;
 - (void)featureIsEnabled:(int)arg1 completion:(id /* block */)arg2;
 - (void)fetchAndCompleteAllAssignedActivitiesForContextPath:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)fetchCollectionItemsWithCompletion:(id /* block */)arg1;
 - (void)fetchCollectionsWithCompletion:(id /* block */)arg1;
+- (void)fetchReportsWithPredicate:(id)arg1 completion:(id /* block */)arg2;
 - (void)fetchTransparencyMessageInfoWithCompletion:(id /* block */)arg1;
 - (id)graph;
 - (void)handoutAttachmentForDocumentURL:(id)arg1 completion:(id /* block */)arg2;
@@ -147,6 +151,8 @@
 - (void)saveClass:(id)arg1 completion:(id /* block */)arg2;
 - (void)saveObjects:(id)arg1 completion:(id /* block */)arg2;
 - (void)saveWithCompletion:(id /* block */)arg1;
+- (id)serverInternalState:(unsigned long long)arg1 error:(id*)arg2;
+- (unsigned long long)serverSyncStatus;
 - (void)setCachedCurrentUser:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setEndpointConnection:(id)arg1;
@@ -156,14 +162,22 @@
 - (void)shouldSyncTeacherBrowsedContextsWithCompletion:(id /* block */)arg1;
 - (void)studentActivityForAttachmentsWithIDs:(id)arg1 completion:(id /* block */)arg2;
 - (id)syncDataServer:(id /* block */)arg1;
+- (void)syncDeleteProgressReportingCapabilitiesForContextID:(id)arg1;
 - (void)syncDeleteThumbnailBlobForContext:(id)arg1;
+- (id)syncFetchProgressReportingCapabilitiesForContextID:(id)arg1;
 - (id)syncFetchSettingsForUserNotificationType:(long long)arg1;
 - (id)syncFetchThumbnailBlobForContext:(id)arg1;
 - (void)syncFetchWithCompletion:(id /* block */)arg1;
 - (bool)syncSetSettingsForUserNotificationType:(long long)arg1 settings:(id)arg2;
 - (id)syncUtilityServer:(id /* block */)arg1;
 - (void)triggerProgressTransparencyMessageIfNeeded;
+- (void)triggerUserNotificationHandoutPastDueSummaryWithReferenceDate:(id)arg1 completion:(id /* block */)arg2;
 - (void)unlock;
 - (id)utilityServer:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAutocomplete.framework/ContactsAutocomplete
+
+- (id)_cna_membersOfGroupWithIdentifier:(id)arg1;
+- (id)_cna_objectsMatching:(id)arg1;
 
 @end

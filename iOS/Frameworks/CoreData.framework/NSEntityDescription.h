@@ -23,7 +23,7 @@
         unsigned int _hasAttributesWithFileBackedFutures : 1; 
         unsigned int _reservedEntityDescription : 16; 
     }  _entityDescriptionFlags;
-    struct _ExtraEntityIVars { id x1; id x2; id x3; id x4; id x5; id x6; int x7; int x8; void *x9; } * _extraIvars;
+    struct _ExtraEntityIVars { id x1; id x2; id x3; id x4; id x5; id x6; struct os_unfair_lock_s { unsigned int x_7_1_1; } x7; int x8; void *x9; } * _extraIvars;
     id  _flattenedSubentities;
     Class  _instanceClass;
     id ** _kvcPropertyAccessors;
@@ -50,8 +50,10 @@
 @property (copy) NSString *managedObjectClassName;
 @property (readonly) NSManagedObjectModel *managedObjectModel;
 @property (copy) NSString *name;
+@property (readonly) NSEntityDescription *ph_baseEntity;
 @property (retain) NSArray *properties;
 @property (readonly, copy) NSDictionary *propertiesByName;
+@property (getter=vs_referenceValueAttribute, setter=vs_setReferenceValueAttribute:, nonatomic, retain) NSAttributeDescription *referenceValueAttribute;
 @property (readonly, copy) NSDictionary *relationshipsByName;
 @property (copy) NSString *renamingIdentifier;
 @property (retain) NSArray *subentities;
@@ -62,110 +64,29 @@
 @property (readonly, copy) NSData *versionHash;
 @property (copy) NSString *versionHashModifier;
 
+// Image: /System/Library/Frameworks/CoreData.framework/CoreData
+
 + (id)_MOClassName;
 + (id)entityForName:(id)arg1 inManagedObjectContext:(id)arg2;
 + (void)initialize;
 + (id)insertNewObjectForEntityForName:(id)arg1 inManagedObjectContext:(id)arg2;
 + (bool)supportsSecureCoding;
 
-- (void)_addFactoryToRetainList:(id)arg1;
-- (void)_addIndexForProperty:(id)arg1;
 - (void)_addProperty:(id)arg1;
 - (void)_addSubentity:(id)arg1;
-- (void)_addSupplementalIndexes:(id)arg1;
-- (id)_allPropertyNames;
-- (id)_attributeNamed:(id)arg1;
-- (id)_checkForNonCascadeNoInverses;
-- (id)_checkSelfForNonCascadeNoInverses;
-- (id)_collectSubentities;
-- (void)_commonCachesAndOptimizedState;
-- (id)_constraintAsIndex:(id)arg1;
-- (bool)_constraintIsExtension:(id)arg1;
 - (void)_createCachesAndOptimizeState;
-- (void)_dropIndexes;
-- (Class)_entityClass;
-- (id)_extensionsOfParentConstraint:(id)arg1;
-- (struct _ExtraEntityIVars { id x1; id x2; id x3; id x4; id x5; id x6; int x7; int x8; void *x9; }*)_extraIVars;
-- (void)_finalizeIndexes;
 - (void)_flattenProperties;
-- (id)_flattenedSubentities;
-- (bool)_hasAttributesWithExternalDataReferences;
-- (bool)_hasAttributesWithFileBackedFutures;
-- (bool)_hasCustomPrimitiveProperties;
-- (bool)_hasIndexForProperty:(id)arg1;
-- (bool)_hasPotentialHashSkew;
-- (bool)_hasPropertiesIndexedBySpotlight;
-- (bool)_hasPropertiesStoredInTruthFile;
-- (bool)_hasUniqueProperties;
-- (bool)_hasUniquePropertiesRaw;
-- (bool)_hasUniquedPropertyNamed:(id)arg1;
-- (id)_indexDescriptionFromJSONArray:(id)arg1;
-- (id)_indexElementFromJSONArray:(id)arg1;
-- (unsigned long long)_inheritanceDepth;
+- (bool)_hasDerivedAttributes;
 - (id)_initWithName:(id)arg1;
-- (void)_initializeExtraIVars;
 - (bool)_isDeallocating;
 - (bool)_isEditable;
 - (bool)_isFlattened;
-- (bool)_isInheritedPropertyNamed:(id)arg1;
-- (bool)_isPathologicalForConstraintMerging:(id*)arg1;
 - (bool)_isSchemaEqual:(id)arg1;
-- (id)_keypathsForDeletions;
-- (id)_keypathsToPrefetchForDeletePropagation;
-- (id)_keypathsToPrefetchForDeletePropagationPrefixedWith:(id)arg1 toDepth:(long long)arg2 processedEntities:(id)arg3;
-- (void*)_leopardStyleAttributesByName;
-- (void*)_leopardStyleRelationshipsByName;
-- (id)_localPropertyDescriptionNamed:(id)arg1;
 - (id)_localRelationshipNamed:(id)arg1;
-- (long long)_modelsReferenceID;
-- (id)_newMappingForPropertiesOfRange:(unsigned int)arg1;
-- (void*)_newSnowLeopardStyleDictionaryContainingPropertiesOfType:(unsigned long long)arg1;
-- (id)_newVersionHashInStyle:(unsigned long long)arg1;
-- (id)_new_implicitlyObservedKeys;
-- (void)_nukeMOClassName__;
-- (unsigned long long)_offsetRelationshipIndex:(unsigned long long)arg1 fromSuperEntity:(id)arg2 andIsToMany:(bool)arg3;
-- (id)_oldCompoundIndexStyleIndexes;
-- (id)_propertiesMatchingBlock:(id /* block */)arg1;
-- (id)_propertiesOfType:(unsigned long long)arg1;
-- (id)_propertiesOnlySubsetFromIndexes:(id)arg1;
-- (bool)_propertyKeys:(id)arg1 matchingBlock:(id /* block */)arg2;
-- (id)_propertyNamed:(id)arg1;
-- (struct _NSRange { unsigned long long x1; unsigned long long x2; }*)_propertyRangesByType;
-- (id)_propertySearchMapping;
-- (id)_propertyWithRenamingIdentifier:(id)arg1;
-- (id)_relationshipNamed:(id)arg1;
-- (id)_relationshipNamesByType:(bool)arg1;
-- (void)_removeIndexForProperty:(id)arg1;
-- (void)_removeProperty:(id)arg1;
-- (void)_removePropertyNamed:(id)arg1;
-- (void)_removeSubentity:(id)arg1;
-- (void)_restoreValidation;
-- (id)_rootEntity;
-- (void)_setHasUniqueProperties:(bool)arg1;
-- (void)_setHasUniquePropertiesUpInheritanceHierachy;
-- (void)_setIndexes:(id)arg1;
-- (void)_setIndexesFromJSONObject:(id)arg1 supplemental:(bool)arg2;
 - (void)_setIsEditable:(bool)arg1;
 - (void)_setIsFlattened:(bool)arg1;
-- (void)_setManagedObjectModel:(id)arg1;
-- (void)_setModelsReferenceID:(long long)arg1;
-- (void)_setProperties:(id)arg1 preserveIndices:(bool)arg2;
-- (void)_setSubentities:(id)arg1 preserveIndices:(bool)arg2;
-- (void)_setSuperentity:(id)arg1;
-- (void)_setUniquenessConstraints:(id)arg1;
-- (void)_setValidationRequiredUniquePropertiesUpInheritanceHierachy;
-- (bool)_skipValidation;
-- (Class)_snapshotClass;
-- (id)_sortedSubentities;
-- (void)_stripForMigration;
-- (bool)_subentitiesIncludes:(id)arg1;
-- (id)_subentityNamed:(id)arg1;
 - (void)_throwIfNotEditable;
 - (bool)_tryRetain;
-- (id)_uniquenessConstraints;
-- (id)_uniquenessConstraintsAsFetchIndexes;
-- (void)_validateIndex:(id)arg1;
-- (void)_validateIndexNameChangeFrom:(id)arg1 to:(id)arg2;
 - (id)_versionHashInStyle:(unsigned long long)arg1;
 - (void)_writeIntoData:(id)arg1 propertiesDict:(id)arg2 uniquedPropertyNames:(id)arg3 uniquedStrings:(id)arg4 uniquedData:(id)arg5 uniquedMappings:(id)arg6 entities:(id)arg7;
 - (id)attributeKeys;
@@ -187,7 +108,6 @@
 - (bool)isEqual:(id)arg1;
 - (bool)isKindOfEntity:(id)arg1;
 - (id)keypathsToPrefetchForDeletePropagation;
-- (id)knownKeysMappingStrategy;
 - (id)managedObjectClassName;
 - (id)managedObjectModel;
 - (id)name;
@@ -221,5 +141,18 @@
 - (id)userInfo;
 - (id)versionHash;
 - (id)versionHashModifier;
+
+// Image: /System/Library/Frameworks/Photos.framework/Photos
+
+- (id)ph_baseEntity;
+- (id)ph_relationshipDescriptionsForKeyPath:(id)arg1;
+
+// Image: /System/Library/Frameworks/VideoSubscriberAccount.framework/VideoSubscriberAccount
+
++ (id)vs_subscriptionEntityForVersion:(long long)arg1;
+
+- (id)vs_referenceValueAttribute;
+- (void)vs_setReferenceValueAttribute:(id)arg1;
+- (void)vs_setUserInfoValue:(id)arg1 forKey:(id)arg2;
 
 @end

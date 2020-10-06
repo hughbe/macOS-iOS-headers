@@ -16,6 +16,7 @@
 @property (getter=_scene, setter=_setScene:, nonatomic) UIScene *_scene;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, copy) id /* block */ debugMenuHandler;
+@property (nonatomic, readonly) double defaultStatusBarHeight;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (getter=isInStatusBarFadeAnimation, nonatomic, readonly) bool inStatusBarFadeAnimation;
@@ -47,6 +48,7 @@
 - (id)createLocalStatusBar;
 - (void)deactivateLocalStatusBar:(id)arg1;
 - (id /* block */)debugMenuHandler;
+- (double)defaultStatusBarHeight;
 - (double)defaultStatusBarHeightInOrientation:(long long)arg1;
 - (void)handleTapAction:(id)arg1;
 - (id)initWithScene:(id)arg1;
@@ -60,6 +62,7 @@
 - (double)statusBarAlpha;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })statusBarFrame;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })statusBarFrameForStatusBarHeight:(double)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })statusBarFrameForStatusBarHeight:(double)arg1 inOrientation:(long long)arg2;
 - (double)statusBarHeight;
 - (bool)statusBarHidden;
 - (id)statusBarPartStyles;

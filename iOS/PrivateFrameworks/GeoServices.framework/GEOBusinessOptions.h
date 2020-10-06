@@ -11,12 +11,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_attributeKeys : 1; 
         unsigned int read_photoOptions : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_attributeKeys : 1; 
-        unsigned int wrote_photoOptions : 1; 
-        unsigned int wrote_maxBusinessResults : 1; 
-        unsigned int wrote_includeBusinessHours : 1; 
-        unsigned int wrote_includeCenter : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _includeBusinessHours;
     bool  _includeCenter;
@@ -46,10 +41,6 @@
 + (Class)photoOptionsType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAttributeKey:(id)arg1;
-- (void)_addNoFlagsPhotoOptions:(id)arg1;
-- (void)_readAttributeKeys;
-- (void)_readPhotoOptions;
 - (void)addAttributeKey:(id)arg1;
 - (void)addPhotoOptions:(id)arg1;
 - (id)attributeKeyAtIndex:(unsigned long long)arg1;
@@ -70,7 +61,10 @@
 - (bool)includeCenter;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)maxBusinessResults;
 - (void)mergeFrom:(id)arg1;
 - (id)photoOptions;

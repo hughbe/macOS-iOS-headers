@@ -30,7 +30,6 @@
 - (id)initWithXPCDictionary:(id)arg1;
 - (bool)isCongruent;
 - (bool)isEqual:(id)arg1;
-- (bool)isEqualToCornerRadiusConfiguration:(id)arg1;
 - (double)topLeft;
 - (double)topRight;
 

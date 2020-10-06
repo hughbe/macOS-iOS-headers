@@ -8,11 +8,13 @@
     double  _suggestionUpdateFrequency;
 }
 
+@property (nonatomic, readonly) MNLocationProviderCLParameters *clParameters;
 @property (nonatomic, readonly) unsigned long long desiredLocationProviderType;
 @property (nonatomic, readonly) double locationUpdateInterval;
 @property (nonatomic, readonly) bool requiresHighMemoryThreshold;
 @property (nonatomic, readonly) bool requiresLocationAccess;
 @property (nonatomic, readonly) bool shouldClearStoredRoutes;
+@property (nonatomic, readonly) MNSimulationLocationProvider *simulationLocationProvider;
 @property (nonatomic, readonly) MNNavigationStateManager *stateManager;
 @property (nonatomic, readonly) double suggestionUpdateFrequency;
 @property (nonatomic, readonly) MNNavigationTraceManager *traceManager;
@@ -20,6 +22,7 @@
 
 - (void).cxx_destruct;
 - (bool)_isSelectorValidForForwarding:(SEL)arg1;
+- (id)clParameters;
 - (void)dealloc;
 - (unsigned long long)desiredLocationProviderType;
 - (void)enterState;
@@ -34,6 +37,7 @@
 - (bool)requiresLocationAccess;
 - (bool)respondsToSelector:(SEL)arg1;
 - (bool)shouldClearStoredRoutes;
+- (id)simulationLocationProvider;
 - (id)stateManager;
 - (double)suggestionUpdateFrequency;
 - (id)traceManager;

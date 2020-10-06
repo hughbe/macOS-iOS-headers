@@ -5,9 +5,10 @@
 @interface CPMSStateReader : NSObject
 
 + (id)copyCPMSControlStateSnapshots;
++ (id)copyCPMSPmaxState:(int*)arg1;
++ (id)getCPMSControlStateSnapshotDictionary:(struct CPMSPPMControlStateSnapshot { unsigned long long x1; float x2[5]; int x3; float x4; float x5; float x6; struct CPMSPPMPowerBudget { unsigned char x_7_1_1; unsigned char x_7_1_2; struct CPMSPPMPowerLevelScalar { BOOL x_3_2_1; unsigned short x_3_2_2; } x_7_1_3[3]; } x7[16]; struct CPMSPPMPowerBudget { unsigned char x_8_1_1; unsigned char x_8_1_2; struct CPMSPPMPowerLevelScalar { BOOL x_3_2_1; unsigned short x_3_2_2; } x_8_1_3[3]; } x8[16]; unsigned int x9[5]; unsigned char x10; int x11[3]; unsigned int x12; unsigned char x13; unsigned int x14; bool x15; unsigned int x16[3]; float x17; unsigned long long x18; unsigned long long x19; unsigned long long x20; unsigned long long x21; }*)arg1;
++ (id)getPowerBudgetDictionary:(struct CPMSPPMPowerBudget { unsigned char x1; unsigned char x2; struct CPMSPPMPowerLevelScalar { BOOL x_3_1_1; unsigned short x_3_1_2; } x3[3]; }*)arg1;
 + (id)log;
-+ (id)newCPMSControlStateSnapshotDictionary:(struct CPMSPPMControlStateSnapshot { unsigned long long x1; float x2[5]; float x3; float x4; struct CPMSPPMPowerBudget { unsigned char x_5_1_1; unsigned char x_5_1_2; struct CPMSPPMPowerLevelScalar { BOOL x_3_2_1; unsigned short x_3_2_2; } x_5_1_3[3]; } x5[14]; struct CPMSPPMPowerBudget { unsigned char x_6_1_1; unsigned char x_6_1_2; struct CPMSPPMPowerLevelScalar { BOOL x_3_2_1; unsigned short x_3_2_2; } x_6_1_3[3]; } x6[14]; unsigned int x7[5]; unsigned char x8; int x9[3]; unsigned int x10; unsigned char x11; unsigned int x12; bool x13; unsigned int x14[3]; float x15; unsigned long long x16; unsigned long long x17; unsigned long long x18; unsigned long long x19; }*)arg1;
-+ (id)newPowerBudgetDictionary:(struct CPMSPPMPowerBudget { unsigned char x1; unsigned char x2; struct CPMSPPMPowerLevelScalar { BOOL x_3_1_1; unsigned short x_3_1_2; } x3[3]; }*)arg1;
 + (id)timescaleDisplayName:(BOOL)arg1;
 
 @end

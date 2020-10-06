@@ -7,12 +7,16 @@
     unsigned int  _connectingServiceMask;
     struct BTDeviceImpl { } * _device;
     NSString * _name;
+    NSString * _productName;
 }
+
+// Image: /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
 
 - (unsigned int)SendSetupCommand:(unsigned char)arg1;
 - (void)_clearName;
 - (bool)_isNameCached;
 - (void)acceptSSP:(long long)arg1;
+- (id)accessoryInfo;
 - (int)accessorySettingFeatureBitMask;
 - (id)aclUID;
 - (id)address;
@@ -36,10 +40,13 @@
 - (unsigned int)doubleTapCapability;
 - (void)endVoiceCommand;
 - (bool)featureCapability:(int)arg1;
+- (bool)getAACPCapabilityBit:(int)arg1;
+- (id)getAACPCapabilityBits;
 - (int)getBehaviorForHIDDevice;
 - (unsigned int)getConnectingServiceMask;
 - (int)getLowSecurityStatus;
 - (id)getServiceSetting:(unsigned int)arg1 key:(id)arg2;
+- (unsigned char)getSpatialAudioPlatformSupport;
 - (bool)inEarDetectEnabled;
 - (bool)inEarStatusPrimary:(int*)arg1 secondary:(int*)arg2;
 - (id)initWithDevice:(struct BTDeviceImpl { }*)arg1 address:(id)arg2;
@@ -51,13 +58,14 @@
 - (unsigned int)listeningMode;
 - (unsigned int)listeningModeConfigs;
 - (bool)magicPaired;
-- (bool)magicPairedDeviceNameUpdated;
 - (unsigned int)majorClass;
 - (unsigned int)micMode;
 - (unsigned int)minorClass;
 - (id)name;
 - (bool)paired;
+- (bool)pairedDeviceNameUpdated;
 - (unsigned int)productId;
+- (id)productName;
 - (id)scoUID;
 - (bool)setClickHoldMode:(int)arg1 rightMode:(int)arg2;
 - (void)setConnectingServicemask:(unsigned int)arg1;
@@ -72,10 +80,12 @@
 - (void)setPIN:(id)arg1;
 - (void)setServiceSetting:(unsigned int)arg1 key:(id)arg2 value:(id)arg3;
 - (bool)setSingleClickMode:(int)arg1;
+- (bool)setSmartRouteMode:(unsigned char)arg1;
 - (void)setSyncGroup:(int)arg1 enabled:(bool)arg2;
 - (void)setSyncSettings:(struct { bool x1; bool x2; bool x3; bool x4; bool x5; })arg1;
 - (bool)setUserName:(id)arg1;
 - (int)singleClickMode;
+- (unsigned char)smartRouteMode;
 - (void)startVoiceCommand;
 - (bool)supportsBatteryLevel;
 - (bool)supportsHS;
@@ -84,5 +94,9 @@
 - (int)type;
 - (void)unpair;
 - (unsigned int)vendorId;
+
+// Image: /System/Library/PrivateFrameworks/SiriActivation.framework/SiriActivation
+
+- (bool)ac_isEyesFree;
 
 @end

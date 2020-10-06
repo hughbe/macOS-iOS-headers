@@ -32,8 +32,6 @@
 @property (readonly) NSString *string;
 @property (readonly) double totalElapsedTime;
 
-+ (id)perfMetricForFetchRequest:(id)arg1 type:(id)arg2;
-
 - (void).cxx_destruct;
 - (double)averageElapsedTime;
 - (unsigned long long)count;

@@ -52,6 +52,8 @@
     unsigned short  _outgoingDatabaseReqID;
     NSMutableData * _outgoingEncryptionKey;
     NSMutableData * _outgoingIntegrityKey;
+    NEIKEv2ESPSPI * _rekeyedRemoteSPI;
+    NEIKEv2ESPSPI * _rekeyedSPI;
     NSData * _remoteNonce;
     NSArray * _remoteTrafficSelectors;
     NEIKEv2ChildSAProposal * _responderRekeyProposal;
@@ -88,6 +90,8 @@
 @property unsigned short outgoingDatabaseReqID;
 @property (retain) NSMutableData *outgoingEncryptionKey;
 @property (retain) NSMutableData *outgoingIntegrityKey;
+@property (retain) NEIKEv2ESPSPI *rekeyedRemoteSPI;
+@property (retain) NEIKEv2ESPSPI *rekeyedSPI;
 @property (retain) NSData *remoteNonce;
 @property (retain) NSArray *remoteTrafficSelectors;
 @property (retain) NSData *responderNonce;
@@ -139,6 +143,8 @@
 - (unsigned short)outgoingDatabaseReqID;
 - (id)outgoingEncryptionKey;
 - (id)outgoingIntegrityKey;
+- (id)rekeyedRemoteSPI;
+- (id)rekeyedSPI;
 - (id)remoteNonce;
 - (id)remoteTrafficSelectors;
 - (void)reset;
@@ -175,6 +181,8 @@
 - (void)setOutgoingDatabaseReqID:(unsigned short)arg1;
 - (void)setOutgoingEncryptionKey:(id)arg1;
 - (void)setOutgoingIntegrityKey:(id)arg1;
+- (void)setRekeyedRemoteSPI:(id)arg1;
+- (void)setRekeyedSPI:(id)arg1;
 - (void)setRemoteNonce:(id)arg1;
 - (void)setRemoteTrafficSelectors:(id)arg1;
 - (void)setResponderNonce:(id)arg1;

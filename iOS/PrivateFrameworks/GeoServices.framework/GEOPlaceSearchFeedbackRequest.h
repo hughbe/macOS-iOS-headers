@@ -62,7 +62,10 @@
 - (bool)hasSessionGUID;
 - (bool)hasTimestamp;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)localSearchProviderID;
 - (void)mergeFrom:(id)arg1;
 - (int)numberOfResults;

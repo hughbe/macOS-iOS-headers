@@ -10,11 +10,7 @@
         unsigned int read_picItemContainer : 1; 
         unsigned int read_textItemContainer : 1; 
         unsigned int read_title : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_picItemContainer : 1; 
-        unsigned int wrote_textItemContainer : 1; 
-        unsigned int wrote_title : 1; 
-        unsigned int wrote_annotatedItemStyle : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDPictureItemContainer * _picItemContainer;
     PBDataReader * _reader;
@@ -43,9 +39,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsAnnotatedItemStyle:(id)arg1;
-- (void)_readPicItemContainer;
-- (void)_readTextItemContainer;
-- (void)_readTitle;
 - (int)annotatedItemStyle;
 - (id)annotatedItemStyleAsString:(int)arg1;
 - (void)clearUnknownFields:(bool)arg1;
@@ -60,7 +53,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)picItemContainer;
 - (void)readAll:(bool)arg1;

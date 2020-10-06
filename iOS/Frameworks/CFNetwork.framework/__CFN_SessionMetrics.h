@@ -4,35 +4,27 @@
 
 @interface __CFN_SessionMetrics : NSObject <_NSURLSessionEventDelegate> {
     NSUUID * _UUID;
-    <_NSURLSessionEventDelegate> * delegate;
+    <_NSURLSessionEventDelegate> * _delegate;
 }
 
-@property (nonatomic, retain) NSUUID *UUID;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (id)UUID;
 - (void)connectionBegin:(id)arg1 fromTransaction:(id)arg2 properties:(id)arg3 absoluteTime:(double)arg4;
 - (void)connectionEnd:(id)arg1 absoluteTime:(double)arg2;
 - (void)connectionEstablish:(id)arg1 properties:(id)arg2 absoluteTime:(double)arg3;
 - (void)connectionWait:(id)arg1 absoluteTime:(double)arg2;
-- (void)delegateBegin:(SEL)arg1;
-- (void)delegateEnd:(SEL)arg1;
-- (void)delegateEvent:(SEL)arg1;
-- (id)initWithSession:(id)arg1;
 - (void)sessionCreate:(id)arg1 pointer:(unsigned long long)arg2 absoluteTime:(double)arg3;
 - (void)sessionDelegateBegin:(id)arg1 selector:(SEL)arg2 absoluteTime:(double)arg3;
 - (void)sessionDelegateEnd:(id)arg1 selector:(SEL)arg2 absoluteTime:(double)arg3;
 - (void)sessionDelegateEvent:(id)arg1 selector:(SEL)arg2 absoluteTime:(double)arg3;
 - (void)sessionDestroy:(id)arg1 absoluteTime:(double)arg2;
-- (void)setUUID:(id)arg1;
 - (void)taskComplete:(id)arg1 withError:(id)arg2 absoluteTime:(double)arg3;
 - (void)taskCompletionHandlerEvent:(id)arg1 absoluteTime:(double)arg2;
 - (void)taskCreate:(id)arg1 pointer:(unsigned long long)arg2 withRequest:(id)arg3 fromSession:(id)arg4 absoluteTime:(double)arg5;
-- (void)taskCreate:(id)arg1 request:(id)arg2;
 - (void)taskDelegateBegin:(id)arg1 selector:(SEL)arg2 absoluteTime:(double)arg3;
 - (void)taskDelegateEnd:(id)arg1 selector:(SEL)arg2 absoluteTime:(double)arg3;
 - (void)taskDelegateEvent:(id)arg1 selector:(SEL)arg2 absoluteTime:(double)arg3;

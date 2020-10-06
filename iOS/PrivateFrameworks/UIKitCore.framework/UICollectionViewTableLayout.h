@@ -120,7 +120,9 @@
 @property (getter=_sectionContentInsetFollowsLayoutMargins, nonatomic, readonly) bool sectionContentInsetFollowsLayoutMargins;
 @property (getter=_sectionCornerRadius, nonatomic, readonly) double sectionCornerRadius;
 @property (nonatomic) double sectionFooterHeight;
+@property (getter=_sectionFooterPadding, nonatomic, readonly) double sectionFooterPadding;
 @property (nonatomic) double sectionHeaderHeight;
+@property (getter=_sectionHeaderPadding, nonatomic, readonly) double sectionHeaderPadding;
 @property (nonatomic, copy) UIColor *separatorColor;
 @property (nonatomic, retain) UIVisualEffect *separatorEffect;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } separatorInset;
@@ -209,6 +211,7 @@
 - (long long)_numberOfRowsInSection:(long long)arg1;
 - (long long)_numberOfSections;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_preferredLayoutMargins;
+- (void)_prepareForRowDataHeaderFooterSizing;
 - (bool)_providesRowHeights;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_rawSectionContentInset;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_rawSeparatorInset;
@@ -217,6 +220,8 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_sectionContentInset;
 - (bool)_sectionContentInsetFollowsLayoutMargins;
 - (double)_sectionCornerRadius;
+- (double)_sectionFooterPadding;
+- (double)_sectionHeaderPadding;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })_sectionRangeForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_separatorColorChanged;
 - (bool)_separatorInsetIsRelativeToCellEdges;
@@ -252,8 +257,6 @@
 - (id)_titleForFooterInSection:(long long)arg1;
 - (id)_titleForHeaderInSection:(long long)arg1;
 - (double)_topPadding;
-- (id)_viewForFooterInSection:(long long)arg1;
-- (id)_viewForHeaderInSection:(long long)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_visibleRect;
 - (bool)_wantsSwipes;
 - (bool)allowsMultipleSelection;
@@ -325,8 +328,8 @@
 - (bool)shouldInvalidateLayoutForBoundsChange:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (bool)shouldInvalidateLayoutForPreferredLayoutAttributes:(id)arg1 withOriginalAttributes:(id)arg2;
 - (void)swipeActionController:(id)arg1 animateView:(id)arg2 actionsView:(id)arg3 forDestructiveAction:(id)arg4 atIndexPath:(id)arg5 withSwipeInfo:(struct { unsigned long long x1; unsigned long long x2; bool x3; double x4; double x5; double x6; })arg6 completion:(id /* block */)arg7;
+- (void)swipeActionController:(id)arg1 didCompleteAction:(id)arg2 cancelled:(bool)arg3 atIndexPath:(id)arg4;
 - (void)swipeActionController:(id)arg1 didEndSwipeForItemAtIndexPath:(id)arg2;
-- (void)swipeActionController:(id)arg1 didPerformAction:(id)arg2 canceled:(bool)arg3 atIndexPath:(id)arg4;
 - (id)swipeActionController:(id)arg1 indexPathForTouchLocation:(struct CGPoint { double x1; double x2; })arg2;
 - (id)swipeActionController:(id)arg1 leadingSwipeConfigurationForItemAtIndexPath:(id)arg2;
 - (bool)swipeActionController:(id)arg1 mayBeginSwipeForItemAtIndexPath:(id)arg2;

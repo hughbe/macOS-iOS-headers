@@ -56,7 +56,6 @@
 - (id)_sectionContainer;
 - (void)_setOrthogonalOffset:(struct CGPoint { double x1; double x2; })arg1;
 - (void)_solve;
-- (id)allSupplementaryKeys;
 - (id)auxillaryHostAuxillaryItems;
 - (long long)auxillaryHostAuxillaryKind;
 - (id)auxillaryHostContainer;
@@ -110,7 +109,6 @@
 - (void)solveForContainer:(id)arg1 traitCollection:(id)arg2 layoutAxis:(unsigned long long)arg3 frameCount:(long long)arg4 preferredSizes:(id)arg5;
 - (void)solveForContainer:(id)arg1 traitCollection:(id)arg2 layoutAxis:(unsigned long long)arg3 frameCount:(long long)arg4 preferredSizes:(id)arg5 layoutRTL:(bool)arg6;
 - (id)supplementaryFrameWithKind:(id)arg1 index:(long long)arg2;
-- (id)supplementaryKeysAssociatedWithItemAtIndex:(long long)arg1;
 - (id)traitCollection;
 - (void)updatePinnedSupplementaryItemsWithVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)visualDescription;

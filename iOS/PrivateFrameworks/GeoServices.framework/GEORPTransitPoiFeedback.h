@@ -16,14 +16,7 @@
         unsigned int read_placeRequest : 1; 
         unsigned int read_place : 1; 
         unsigned int read_transitLineTileInfo : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_corrections : 1; 
-        unsigned int wrote_directionsRequests : 1; 
-        unsigned int wrote_directionsResponses : 1; 
-        unsigned int wrote_placeRequest : 1; 
-        unsigned int wrote_place : 1; 
-        unsigned int wrote_transitLineTileInfo : 1; 
-        unsigned int wrote_correctionType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDPlace * _place;
     GEOPDPlaceRequest * _placeRequest;
@@ -57,14 +50,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCorrectionType:(id)arg1;
-- (void)_addNoFlagsDirectionsRequest:(id)arg1;
-- (void)_addNoFlagsDirectionsResponse:(id)arg1;
-- (void)_readCorrections;
-- (void)_readDirectionsRequests;
-- (void)_readDirectionsResponses;
-- (void)_readPlace;
-- (void)_readPlaceRequest;
-- (void)_readTransitLineTileInfo;
 - (void)addDirectionsRequest:(id)arg1;
 - (void)addDirectionsResponse:(id)arg1;
 - (void)clearDirectionsRequests;
@@ -91,7 +76,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)place;
 - (id)placeRequest;

@@ -3,11 +3,14 @@
  */
 
 @interface NSSQLForeignEntityKey : NSSQLColumn {
+    NSNumber * _columnValue;
     NSSQLForeignKey * _foreignKey;
     NSString * _name;
 }
 
+- (void)_setColumnValue:(id)arg1;
 - (void)_setName:(id)arg1;
+- (id)columnValue;
 - (void)copyValuesForReadOnlyFetch:(id)arg1;
 - (void)dealloc;
 - (id)foreignKey;

@@ -5,9 +5,11 @@
 @interface UIHoverEvent : UIEvent {
     NSMapTable * _deliveryTableByTouch;
     bool  _hasOutstandingUpdates;
+    bool  _pointerLocked;
     NSMapTable * _touchesByContextId;
 }
 
+@property (getter=_isPointerLocked, setter=_setPointerLocked:, nonatomic) bool _pointerLocked;
 @property (nonatomic) bool hasOutstandingUpdates;
 
 - (void).cxx_destruct;
@@ -16,9 +18,12 @@
 - (void)_gestureRecognizerNoLongerNeedsSendEvent:(id)arg1;
 - (id)_gestureRecognizersForWindow:(id)arg1;
 - (id)_init;
+- (unsigned long long)_inputPrecision;
+- (bool)_isPointerLocked;
 - (void)_pointerStateDidChange:(id)arg1;
 - (bool)_sendEventToGestureRecognizer:(id)arg1;
 - (void)_setNeedsUpdateForWindow:(id)arg1 forcingHitTest:(bool)arg2;
+- (void)_setPointerLocked:(bool)arg1;
 - (id)_touchesByContextId:(unsigned int)arg1 createIfNeeded:(bool)arg2;
 - (void)_windowDidDetachContext:(id)arg1;
 - (id)_windows;
@@ -30,7 +35,6 @@
 - (void)removeTouch:(id)arg1 fromGestureRecognizer:(id)arg2;
 - (void)setHasOutstandingUpdates:(bool)arg1;
 - (void)setHoverTouch:(id)arg1 forContextId:(unsigned int)arg2 pathIndex:(long long)arg3;
-- (void)setNeedsHitTestReset;
 - (void)setNeedsHitTestResetForWindow:(id)arg1;
 - (void)setNeedsUpdateForWindow:(id)arg1;
 - (long long)subtype;

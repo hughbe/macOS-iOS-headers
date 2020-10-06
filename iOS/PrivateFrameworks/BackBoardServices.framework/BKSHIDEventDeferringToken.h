@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@interface BKSHIDEventDeferringToken : NSObject <BSProtobufSerializable, NSCopying, NSSecureCoding> {
+@interface BKSHIDEventDeferringToken : NSObject <BSDescriptionStreamable, BSProtobufSerializable, NSCopying, NSSecureCoding> {
     unsigned int  _CAContextID;
     NSString * _stringIdentifier;
 }
@@ -24,6 +24,7 @@
 - (bool)_isIdentifierOfCAContext;
 - (bool)_isString;
 - (id)_string;
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)didFinishProtobufDecodingWithError:(out id*)arg1;

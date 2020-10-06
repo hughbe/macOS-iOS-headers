@@ -22,7 +22,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (void)_freeIvars;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;

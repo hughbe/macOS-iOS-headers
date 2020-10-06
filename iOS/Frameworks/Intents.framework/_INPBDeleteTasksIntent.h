@@ -3,7 +3,6 @@
  */
 
 @interface _INPBDeleteTasksIntent : PBCodable <NSCopying, NSSecureCoding, _INPBDeleteTasksIntent> {
-    bool  __encodeLegacyGloryData;
     bool  _all;
     struct { 
         unsigned int all : 1; 
@@ -13,7 +12,6 @@
     NSArray * _tasks;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) bool all;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -31,8 +29,6 @@
 + (Class)tasksType;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addTasks:(id)arg1;
 - (bool)all;
 - (void)clearTasks;

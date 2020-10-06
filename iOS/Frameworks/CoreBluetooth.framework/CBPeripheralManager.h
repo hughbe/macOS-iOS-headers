@@ -27,6 +27,7 @@
     bool  _isAdvertising;
     NSHashTable * _l2capChannels;
     NSNumber * _multipleAdvertisingSupported;
+    bool  _observingKeyPaths;
     bool  _readyForUpdates;
     NSMutableArray * _services;
     NSLock * _updateLock;

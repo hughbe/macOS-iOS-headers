@@ -5,7 +5,7 @@
 @interface GEODaemon : NSObject {
     NSObject<OS_xpc_object> * _listener;
     NSMutableSet * _peers;
-    NSMutableSet * _servers;
+    NSMutableDictionary * _servers;
     NSObject<OS_dispatch_source> * _sigInfoSrc;
     NSObject<OS_dispatch_source> * _sigTermSrc;
 }

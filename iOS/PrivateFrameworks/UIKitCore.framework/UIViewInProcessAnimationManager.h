@@ -10,6 +10,7 @@
     bool  _animationsShouldCompleteImmediately;
     bool  _animationsSuspended;
     <_UIViewInProcessAnimationManagerDriver> * _animatorAdvancer;
+    bool  _appSuspended;
     NSObject<OS_dispatch_queue> * _backlightQueue;
     _UIAppCACommitFuture * _caCommitFuture;
     NSThread * _currentTickThread;
@@ -21,6 +22,7 @@
     NSObject<OS_dispatch_queue> * _entryLockingQueue;
     unsigned long long  _executionMode;
     NSMutableArray * _newlyAddedEntries;
+    NSMutableArray * _observedWindowScenes;
     NSMutableArray * _postTickBlocks;
     NSObject<OS_dispatch_semaphore> * _postTicksDelaySemaphore;
     NSMutableArray * _preCommitBlocks;
@@ -63,6 +65,7 @@
 - (void).cxx_destruct;
 - (void)_advanceWithTime:(double)arg1;
 - (void)_applicationBecameActive;
+- (void)_applicationDidEnterBackground;
 - (void)_applicationResignedActive;
 - (void)_cancelAllAnimationsImmediately;
 - (void)_cancelPresentationModifierGroupRequest:(id)arg1;
@@ -81,9 +84,13 @@
 - (void)_registerBacklightChangedNotification;
 - (id)_requestPresentationModifierGroup:(id /* block */)arg1;
 - (unsigned long long)_runPreCommitBlocks;
+- (void)_screenBasedSceneDidDisconnect:(id)arg1;
+- (void)_screenBasedSceneWillAttachWindow:(id)arg1;
 - (void)_setAnimationExecutionParameters;
+- (void)_setAnimationsSuspended:(bool)arg1;
 - (void)_setCurrentMediaTime:(double)arg1;
 - (bool)_shouldKeepAnimationThreadAlive;
+- (void)_updateAnimationSuspensionForAppStateChange;
 - (void)addEntry:(id /* block */)arg1;
 - (bool)advancingOnCommitDisabled;
 - (id)animationThread;

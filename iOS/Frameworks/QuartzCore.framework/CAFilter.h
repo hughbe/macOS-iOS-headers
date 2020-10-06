@@ -14,7 +14,11 @@
 @property bool cachesInputImage;
 @property (getter=isEnabled) bool enabled;
 @property (copy) NSString *name;
+@property (getter=px_isSnapshotCompatible, nonatomic, readonly) bool px_snapshotCompatible;
+@property (nonatomic, readonly) bool px_supportsAlphaBlending;
 @property (readonly) NSString *type;
+
+// Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
 
 + (void)CAMLParserStartElement:(id)arg1;
 + (bool)automaticallyNotifiesObserversForKey:(id)arg1;
@@ -48,5 +52,20 @@
 - (void)setValue:(id)arg1 forKey:(id)arg2;
 - (id)type;
 - (id)valueForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)ck_filterWithDictionary:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
++ (id)cps_filterWithType:(id)arg1 value:(double)arg2 forKey:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_filterWithPXCompositingFilterType:(long long)arg1;
+
+- (bool)px_isSnapshotCompatible;
+- (bool)px_supportsAlphaBlending;
 
 @end

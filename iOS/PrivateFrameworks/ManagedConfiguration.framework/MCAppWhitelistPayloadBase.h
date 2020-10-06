@@ -17,7 +17,6 @@
 
 - (void).cxx_destruct;
 - (bool)allowAccessWithoutPasscode;
-- (id)description;
 - (bool)forceAllowSupervisorAccess;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)payloadDescriptionKeyValueSections;
@@ -26,6 +25,7 @@
 - (void)setForceAllowSupervisorAccess:(bool)arg1;
 - (void)setWhitelistedAppsAndOptions:(id)arg1;
 - (id)stubDictionary;
+- (id)verboseDescription;
 - (id)whitelistedAppsAndOptions;
 
 @end

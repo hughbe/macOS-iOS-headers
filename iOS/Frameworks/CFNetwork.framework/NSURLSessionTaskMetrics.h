@@ -6,7 +6,6 @@
     __CFN_TaskMetrics * __metrics;
 }
 
-@property (nonatomic, readonly) __CFN_TaskMetrics *_metrics;
 @property (readonly) unsigned long long redirectCount;
 @property (readonly, copy) NSDateInterval *taskInterval;
 @property (readonly, copy) NSArray *transactionMetrics;
@@ -17,12 +16,10 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_metrics;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMetrics:(id)arg1;
 - (unsigned long long)redirectCount;
 - (id)taskInterval;
 - (id)transactionMetrics;

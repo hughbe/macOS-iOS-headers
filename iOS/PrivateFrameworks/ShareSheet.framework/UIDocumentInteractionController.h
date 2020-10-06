@@ -82,6 +82,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) NSString *uniqueIdentifier;
 
+// Image: /System/Library/PrivateFrameworks/ShareSheet.framework/ShareSheet
+
 + (id)_UTIForFileURL:(id)arg1;
 + (id)_archiveDecompressQueue;
 + (id)interactionControllerWithURL:(id)arg1;
@@ -94,6 +96,7 @@
 - (void)__openUsingInPlaceMechanismToTransferDocumentToApplication:(id)arg1;
 - (void)__performLaunchServiceDocumentOpenWithApplication:(id)arg1 launchServiceOptions:(id)arg2;
 - (bool)__presentPreviewAnimated:(bool)arg1;
+- (id)_appOpeningDocumentProxy;
 - (unsigned long long)_archiveExtractionOptions;
 - (bool)_canPreviewDecompressedArchive;
 - (bool)_canSaveToCameraRollForType;
@@ -110,7 +113,7 @@
 - (void)_dismissEverythingWithExtremePrejudiceAnimated:(bool)arg1;
 - (bool)_documentNeedsHelpDecompressingArchiveForPreview;
 - (id)_documentProxy;
-- (id)_documentProxyWithIsContentManaged:(bool)arg1;
+- (id)_documentProxyWithIsContentManaged:(bool)arg1 usingURL:(id)arg2;
 - (void)_fixupFileExtensionIfNeeded;
 - (void)_invalidate;
 - (void)_invokeDelegateDidFinishOpenWithApplicationIdentifier:(id)arg1;
@@ -167,6 +170,7 @@
 - (long long)numberOfPreviewItemsInPreviewController:(id)arg1;
 - (void)openDocumentWithDefaultApplication;
 - (void)openResourceOperation:(id)arg1 didFinishCopyingResource:(id)arg2;
+- (id)physicalURL;
 - (id)popoverController;
 - (void)popoverController:(id)arg1 animationCompleted:(long long)arg2;
 - (bool)presentOpenInMenuFromBarButtonItem:(id)arg1 animated:(bool)arg2;
@@ -203,5 +207,9 @@
 - (bool)sourceIsManaged;
 - (id)subitemsInArchive:(id /* block */)arg1;
 - (id)uniqueIdentifier;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_interactionControllerWithDocumentURL:(id)arg1 sourceURL:(id)arg2;
 
 @end

@@ -9,6 +9,7 @@
 @property (nonatomic, readonly) AMSBiometricsSignatureRequest *request;
 
 - (void).cxx_destruct;
+- (bool)_performCardEnrollmentCheck:(id*)arg1;
 - (id)initWithRequest:(id)arg1;
 - (id)performSignature;
 - (id)request;

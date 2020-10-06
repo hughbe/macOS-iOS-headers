@@ -10,7 +10,6 @@
     GEOComposedGuidanceEvent * _currentJunctionViewGuidanceEvent;
     GEOComposedGuidanceEvent * _currentLaneGuidanceEvent;
     <MNGuidanceManagerDelegate> * _delegate;
-    GEOComposedGuidanceEvent * _endSignGuidanceEvent;
     NSDictionary * _eventIndexes;
     NSMutableArray * _events;
     NSMutableSet * _exclusiveSetAnnouncementsSpoken;
@@ -18,7 +17,6 @@
     NSMutableDictionary * _hapticsTriggered;
     bool  _hasBeenOnRouteOnce;
     bool  _hasStickyEvents;
-    NSUUID * _injectedUUID;
     bool  _isInPreArrivalState;
     MNJunctionViewImageLoader * _junctionViewImageLoader;
     MNAnnouncementPlanEvent * _lastAnnouncementEvent;
@@ -27,15 +25,13 @@
     MNNavigationSession * _navigationSession;
     GEOComposedGuidanceEvent * _nextEvent;
     GEOComposedGuidanceEvent * _pendingJunctionViewGuidanceEvent;
-    GEOComposedGuidanceEvent * _preArrivalSignGuidanceEvent;
-    GEOComposedGuidanceEvent * _previousArrivalSignGuidanceEvent;
     GEOComposedGuidanceEvent * _previousLaneGuidanceEvent;
     NSArray * _previousSignEvents;
-    GEOComposedGuidanceEvent * _returnToRouteSignGuidanceEvent;
+    bool  _shouldShowChargingInfo;
     MNGuidanceSignInfo * _signInfo;
+    NSMutableDictionary * _specialSignEvents;
     NSMutableDictionary * _specialSpokenEvents;
     double  _speed;
-    NSMutableArray * _startSignGuidanceEvents;
     double  _timeLastAnnouncementEnded;
     double  _timeLastAnnouncementStarted;
     NSMutableArray * _validEvents;
@@ -48,6 +44,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool isInPreArrivalState;
 @property (nonatomic, retain) MNLocation *location;
+@property (nonatomic) bool shouldShowChargingInfo;
 @property (nonatomic) double speed;
 @property (readonly) Class superclass;
 
@@ -63,27 +60,31 @@
 - (void)_considerLaneGuidance;
 - (void)_considerSignGuidance;
 - (void)_considerStickiness;
+- (double)_distanceToEndOfRoute;
+- (double)_distanceToRouteCoordinate:(struct { unsigned int x1; float x2; })arg1;
 - (void)_filterValidEvents;
 - (void)_handleJunctionViewInfo:(id)arg1;
 - (bool)_hasSpokenEvent:(id)arg1;
 - (int)_indexForEventUUID:(id)arg1;
 - (void)_initSpecialGuidanceEvents;
-- (bool)_isEventValid:(id)arg1 start:(double)arg2 end:(double)arg3;
+- (bool)_isEVChargingEvent:(id)arg1;
+- (bool)_isSpecialGuidanceEvent:(id)arg1;
 - (bool)_isValidEvent:(id)arg1;
 - (id)_junctionViewEvents;
-- (id)_maneuverWithTitle:(id)arg1 detail:(id)arg2 type:(int)arg3 shieldText:(id)arg4 shieldID:(int)arg5;
 - (void)_markEventSpoken:(id)arg1;
 - (void)_notifyAnalyticsForNewEvents:(id)arg1 previousEvents:(id)arg2;
 - (void)_notifySpeechEvent:(id)arg1 variant:(unsigned long long)arg2 ignorePromptStyle:(bool)arg3;
 - (id)_selectAnnouncementForEvent:(id)arg1 withTimeRemaining:(double)arg2 withMinIndex:(unsigned long long)arg3 selectedIndex:(out unsigned long long*)arg4;
+- (id)_serverStringDictionaryForChargingEvent:(id)arg1;
 - (id)_serverStringDictionaryForEvent:(id)arg1 spoken:(bool)arg2;
 - (bool)_shouldUseLocation:(id)arg1;
+- (id)_specialSignEvents:(int)arg1 forLeg:(unsigned long long)arg2;
+- (id)_specialSpokenEvents:(int)arg1 forLeg:(unsigned long long)arg2;
 - (id)_spokenEventsRemainingInStep;
 - (void)_stepDidChange;
 - (double)_timeRemainingForEvent:(id)arg1;
 - (double)_timeUntilEventTrigger:(id)arg1;
 - (unsigned int)_trafficColorForRoute:(id)arg1 traffic:(id)arg2 distanceRemaining:(double)arg3;
-- (void)addInjectedEvent:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
 - (double)durationOfEvent:(id)arg1 announcementIndex:(unsigned long long)arg2 distance:(double)arg3;
@@ -97,7 +98,9 @@
 - (void)setIsInPreArrivalState:(bool)arg1;
 - (void)setJunctionViewImageWidth:(double)arg1 height:(double)arg2;
 - (void)setLocation:(id)arg1;
+- (void)setShouldShowChargingInfo:(bool)arg1;
 - (void)setSpeed:(double)arg1;
+- (bool)shouldShowChargingInfo;
 - (double)speed;
 - (void)stop;
 - (void)timeManagerDidChangeProvider:(id)arg1;
@@ -105,7 +108,6 @@
 - (double)timeUntilNextAnnouncement;
 - (void)updateDestination:(id)arg1;
 - (void)updateForReroute:(id)arg1;
-- (void)updateForReturnToRoute;
 - (void)updateGuidanceForLocation:(id)arg1 navigatorState:(int)arg2;
 
 @end

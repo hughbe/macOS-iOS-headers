@@ -11,13 +11,7 @@
         unsigned int read_nameType : 1; 
         unsigned int read_name : 1; 
         unsigned int read_phoneticName : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_languageCode : 1; 
-        unsigned int wrote_nameType : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_phoneticName : 1; 
-        unsigned int wrote_nameRank : 1; 
-        unsigned int wrote_isDefault : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isDefault;
     NSString * _languageCode;
@@ -51,10 +45,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readLanguageCode;
-- (void)_readName;
-- (void)_readNameType;
-- (void)_readPhoneticName;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -69,9 +59,12 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithPlaceDataLocalizedString:(id)arg1;
 - (bool)isDefault;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)languageCode;
 - (void)mergeFrom:(id)arg1;
 - (id)name;

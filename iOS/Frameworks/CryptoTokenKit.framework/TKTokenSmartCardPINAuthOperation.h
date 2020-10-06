@@ -7,7 +7,7 @@
     NSString * _PIN;
     long long  _PINByteOffset;
     TKSmartCardPINFormat * _PINFormat;
-    NSString * _localizedDescription;
+    NSString * _localizedPINLabel;
     TKSmartCard * _smartCard;
 }
 
@@ -15,7 +15,7 @@
 @property (copy) NSString *PIN;
 @property long long PINByteOffset;
 @property (retain) TKSmartCardPINFormat *PINFormat;
-@property (copy) NSString *localizedDescription;
+@property (copy) NSString *localizedPINLabel;
 @property (retain) TKSmartCard *smartCard;
 
 + (bool)supportsSecureCoding;
@@ -25,13 +25,15 @@
 - (id)PIN;
 - (long long)PINByteOffset;
 - (id)PINFormat;
+- (Class)baseClassForUI;
 - (void)encodeWithCoder:(id)arg1;
 - (bool)finishWithError:(id*)arg1;
+- (void)importOperation:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)localizedDescription;
+- (id)localizedPINLabel;
 - (void)setAPDUTemplate:(id)arg1;
-- (void)setLocalizedDescription:(id)arg1;
+- (void)setLocalizedPINLabel:(id)arg1;
 - (void)setPIN:(id)arg1;
 - (void)setPINByteOffset:(long long)arg1;
 - (void)setPINFormat:(id)arg1;

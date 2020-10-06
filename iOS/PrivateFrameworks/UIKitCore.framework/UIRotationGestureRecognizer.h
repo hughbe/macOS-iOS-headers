@@ -16,7 +16,7 @@
     float  _preRecognitionWeight;
     double  _previousVelocity;
     UITouch * _touches;
-    id  _transformAnalyzer;
+    _UIGestureRecognizerTransformAnalyzer * _transformAnalyzer;
     double  _velocity;
 }
 
@@ -34,7 +34,6 @@
 - (void)_resetGestureRecognizer;
 - (void)_setPostRecognitionWeight:(double)arg1;
 - (void)_setPreRecognitionWeight:(double)arg1;
-- (bool)_shouldReceiveTransformEvent:(id)arg1;
 - (void)_transformChangedWithEvent:(id)arg1;
 - (void)_updateTransformAnalyzerWeights;
 - (struct CGPoint { double x1; double x2; })anchorPoint;

@@ -3,12 +3,10 @@
  */
 
 @interface _INPBDeleteTimerIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBDeleteTimerIntentResponse> {
-    bool  __encodeLegacyGloryData;
     NSArray * _deletedTimers;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, copy) NSArray *deletedTimers;
 @property (nonatomic, readonly) unsigned long long deletedTimersCount;
@@ -20,8 +18,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addDeletedTimers:(id)arg1;
 - (void)clearDeletedTimers;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

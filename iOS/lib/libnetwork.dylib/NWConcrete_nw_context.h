@@ -8,7 +8,8 @@
     }  activate_lock;
     unsigned int  activated;
     struct nw_context_cache { struct _cache_entries_head { struct nw_association_cache_entry {} *x_1_1_1; struct nw_association_cache_entry {} **x_1_1_2; } x1; struct _idle_cache_entries_head { struct nw_association_cache_entry {} *x_2_1_1; struct nw_association_cache_entry {} **x_2_1_2; } x2; struct nw_hash_table {} *x3; struct nw_hash_table {} *x4; struct nw_hash_table {} *x5; void *x6; unsigned int x7; unsigned int x8; } * cache;
-    struct nw_context_globals { void *x1; struct nw_timer_list_head { struct nw_timer_entry {} *x_2_1_1; struct nw_timer_entry {} **x_2_1_2; } x2; struct nw_hash_table {} *x3; unsigned long long x4; struct os_unfair_lock_s { unsigned int x_5_1_1; } x5; struct os_unfair_lock_s { unsigned int x_6_1_1; } x6; struct os_unfair_lock_s { unsigned int x_7_1_1; } x7; struct nw_hash_table {} *x8; void *x9; void *x10; struct nw_mem_buffer_manager {} *x11; struct nw_mem_buffer_manager {} *x12; struct nw_mem_buffer_manager {} *x13; struct nw_mem_buffer_manager {} *x14; struct nw_mem_buffer_manager {} *x15; } * globals;
+    NSObject<OS_nw_resolver_config> * fallback_resolver_config;
+    struct nw_context_globals { void *x1; struct nw_timer_list_head { struct nw_timer_entry {} *x_2_1_1; struct nw_timer_entry {} **x_2_1_2; } x2; struct nw_hash_table {} *x3; unsigned long long x4; struct os_unfair_lock_s { unsigned int x_5_1_1; } x5; struct os_unfair_lock_s { unsigned int x_6_1_1; } x6; struct os_unfair_lock_s { unsigned int x_7_1_1; } x7; struct nw_hash_table {} *x8; void *x9; void *x10; unsigned long long x11; id x12; id /* block */ x13; struct nw_mem_buffer_manager {} *x14; struct nw_mem_buffer_manager {} *x15; struct nw_mem_buffer_manager {} *x16; struct nw_mem_buffer_manager {} *x17; struct nw_mem_buffer_manager {} *x18; struct nw_mem_buffer_manager {} *x19; struct nw_mem_buffer_manager {} *x20; } * globals;
     char * identifier;
     unsigned int  is_implicit;
     unsigned int  is_isolated_context;
@@ -18,6 +19,7 @@
     unsigned int  max_cache_entries;
     unsigned int  max_idle_cache_entries;
     int  privacy_level;
+    unsigned int  required_encrypted_resolution;
     int  scheduling_mode;
     unsigned int  target_cache_entries;
     NSObject<OS_dispatch_workloop> * workloop;
@@ -31,7 +33,6 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithIdentifier:(const char *)arg1;
 - (id)redactedDescription;
 
 @end

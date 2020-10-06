@@ -12,6 +12,8 @@
 @property (readonly) ISIconManager *manager;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/IconServices.framework/IconServices
+
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)applicationIcon;
 + (int)findVariantFromSet:(unsigned long long)arg1 deviceIdiom:(unsigned long long)arg2 size:(struct CGSize { double x1; double x2; })arg3 scale:(double)arg4;
@@ -21,6 +23,7 @@
 + (id)sizesFromSet:(unsigned long long)arg1;
 + (id)transparentIcon;
 + (struct _LIIconVariantInfo { int x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; double x3; unsigned long long x4; char *x5; }*)variantInfoForSet:(unsigned long long)arg1 count:(unsigned long long*)arg2;
++ (struct _LIIconVariantInfo { int x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; double x3; unsigned long long x4; char *x5; })variantInfoForVariant:(int)arg1;
 
 - (double)_aspectRatio;
 - (id)_identity;
@@ -32,5 +35,10 @@
 - (id)imageForSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
 - (id)manager;
 - (unsigned long long)variantOptions;
+
+// Image: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
+
+- (id)initWithDate:(id)arg1 calendar:(id)arg2 format:(long long)arg3;
+- (id)initWithDateComponents:(id)arg1 calendar:(id)arg2 format:(long long)arg3;
 
 @end

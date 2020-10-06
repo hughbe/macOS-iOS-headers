@@ -8,6 +8,8 @@
     NSString * _applicationBundleIdentifier;
     NSString * _applicationBundleVersion;
     NSData * _bluetoothAddress;
+    NSString * _clusterID;
+    NSString * _clusterLeaderID;
     bool  _connected;
     int  _deviceClass;
     NSString * _deviceUID;
@@ -60,6 +62,8 @@
 @property (nonatomic, retain) NSString *applicationBundleIdentifier;
 @property (nonatomic, retain) NSString *applicationBundleVersion;
 @property (nonatomic, retain) NSData *bluetoothAddress;
+@property (nonatomic, retain) NSString *clusterID;
+@property (nonatomic, retain) NSString *clusterLeaderID;
 @property (nonatomic) bool connected;
 @property (nonatomic) int deviceClass;
 @property (nonatomic, retain) NSString *deviceUID;
@@ -70,6 +74,8 @@
 @property (nonatomic, readonly) bool hasApplicationBundleIdentifier;
 @property (nonatomic, readonly) bool hasApplicationBundleVersion;
 @property (nonatomic, readonly) bool hasBluetoothAddress;
+@property (nonatomic, readonly) bool hasClusterID;
+@property (nonatomic, readonly) bool hasClusterLeaderID;
 @property (nonatomic) bool hasConnected;
 @property (nonatomic) bool hasDeviceClass;
 @property (nonatomic, readonly) bool hasDeviceUID;
@@ -136,6 +142,8 @@
 - (id)bluetoothAddress;
 - (void)clearAirplayReceivers;
 - (void)clearGroupedDevices;
+- (id)clusterID;
+- (id)clusterLeaderID;
 - (bool)connected;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -153,6 +161,8 @@
 - (bool)hasApplicationBundleIdentifier;
 - (bool)hasApplicationBundleVersion;
 - (bool)hasBluetoothAddress;
+- (bool)hasClusterID;
+- (bool)hasClusterLeaderID;
 - (bool)hasConnected;
 - (bool)hasDeviceClass;
 - (bool)hasDeviceUID;
@@ -200,6 +210,8 @@
 - (void)setApplicationBundleIdentifier:(id)arg1;
 - (void)setApplicationBundleVersion:(id)arg1;
 - (void)setBluetoothAddress:(id)arg1;
+- (void)setClusterID:(id)arg1;
+- (void)setClusterLeaderID:(id)arg1;
 - (void)setConnected:(bool)arg1;
 - (void)setDeviceClass:(int)arg1;
 - (void)setDeviceUID:(id)arg1;

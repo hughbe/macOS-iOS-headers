@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIPrintPanelViewController : NSObject <UIPrinterBrowserOwner> {
+@interface UIPrintPanelViewController : NSObject <UIPrintPanelAppearanceDelegate, UIPrinterBrowserOwner> {
     bool  _animated;
     bool  _canShowColor;
     bool  _contentLargerThanRollPaper;
@@ -49,7 +49,6 @@
 @property (nonatomic, readonly) bool showPaper;
 @property (nonatomic, readonly) bool showPaperSelection;
 @property (nonatomic, readonly) bool showPreview;
-@property (nonatomic, readonly) bool showPrinterWarning;
 @property (nonatomic, readonly) bool showPunch;
 @property (nonatomic, readonly) bool showScaleUp;
 @property (nonatomic, readonly) bool showStaple;
@@ -57,11 +56,8 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (struct CGSize { double x1; double x2; })_getPreferredContentSize:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 windowFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (void)_keyWindowWillRotate:(id)arg1;
-- (struct CGSize { double x1; double x2; })_makeContentSizeeWithLongSize:(double)arg1 shortSize:(double)arg2;
 - (void)_presentInParentAnimated:(bool)arg1;
-- (void)_printNavigationConrollerDidDismiss;
 - (id)_removeRollsFrom:(id)arg1;
 - (bool)annotationsImaged;
 - (void)cancelPrinting;
@@ -90,6 +86,7 @@
 - (void)presentPrintPanelFromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 inView:(id)arg2 animated:(bool)arg3;
 - (id)printInfo;
 - (void)printMoreOptionsViewDidDisappear;
+- (void)printNavigationConrollerDidDismiss;
 - (void)printPanelDidDisappear;
 - (void)printPaperViewDidDisappear;
 - (void)printRangeViewDidDisappear;
@@ -120,7 +117,6 @@
 - (bool)showPaper;
 - (bool)showPaperSelection;
 - (bool)showPreview;
-- (bool)showPrinterWarning;
 - (bool)showPunch;
 - (bool)showScaleUp;
 - (bool)showStaple;

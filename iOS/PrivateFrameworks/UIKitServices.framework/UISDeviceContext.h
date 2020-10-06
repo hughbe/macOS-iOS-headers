@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitServices.framework/UIKitServices
  */
 
-@interface UISDeviceContext : NSObject <BSXPCCoding, NSCopying, NSMutableCopying> {
+@interface UISDeviceContext : NSObject <BSXPCSecureCoding, NSCopying, NSMutableCopying> {
     NSDictionary * _deviceInfoKeysToValues;
 }
 
@@ -14,6 +14,7 @@
 + (id)_allKeys;
 + (id)_keysToValueTypes;
 + (id)defaultContext;
++ (bool)supportsBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)_dictionaryWithOnlyValidKeysFromDictionary:(id)arg1;
@@ -28,11 +29,11 @@
 - (double)deviceInfoFloatValueForKey:(id)arg1;
 - (long long)deviceInfoIntegerValueForKey:(id)arg1;
 - (id)deviceInfoStringValueForKey:(id)arg1;
-- (void)encodeWithXPCDictionary:(id)arg1;
+- (void)encodeWithBSXPCCoder:(id)arg1;
 - (bool)hasDeviceInfoValueForKey:(id)arg1;
 - (unsigned long long)hash;
+- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithDeviceInfoValues:(id)arg1;
-- (id)initWithXPCDictionary:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 

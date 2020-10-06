@@ -26,18 +26,12 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) <NSCopying> *userInfo;
 
-+ (id)_connectionFromIncomingConnection:(id)arg1;
-+ (id)_connectionWithEndpoint:(id)arg1 clientContextBuilder:(id /* block */)arg2;
-+ (id)_currentConnection;
-+ (id)_nameForService:(id)arg1 instance:(id)arg2 host:(bool)arg3;
 + (id)connectionWithEndpoint:(id)arg1;
 + (id)connectionWithEndpoint:(id)arg1 clientContextBuilder:(id /* block */)arg2;
 + (id)currentContext;
 
 - (void).cxx_destruct;
-- (id)_clientContext;
 - (void)_configureConnection:(id /* block */)arg1;
-- (id)_initWithConnection:(id)arg1 service:(id)arg2 instance:(id)arg3 clientContext:(id)arg4;
 - (void)activate;
 - (void)configureConnection:(id /* block */)arg1;
 - (id)createMessage;

@@ -19,13 +19,13 @@
 @property (nonatomic, retain) NSString *settingsClassName;
 @property (nonatomic) unsigned long long settingsClassVersion;
 
-+ (id)structureForSettingsClass:(Class)arg1;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (Class)_classForKey:(id)arg1;
 - (id)_decodeStringSetForKey:(id)arg1 withCoder:(id)arg2;
 - (id)_decodeStringStringDictionaryForKey:(id)arg1 withCoder:(id)arg2;
+- (void)_generateClassNamesIfNecessary;
 - (Class)childClassForKey:(id)arg1;
 - (id)childKeys;
 - (void)encodeWithCoder:(id)arg1;

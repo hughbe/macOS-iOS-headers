@@ -24,7 +24,6 @@
     bool  _shouldIgnoreDoNotDisturb;
     bool  _shouldIgnoreDowntime;
     bool  _shouldPreemptPresentedNotification;
-    bool  _shouldPreemptSTAR;
     bool  _shouldPreventNotificationDismissalAfterDefaultAction;
     bool  _shouldSuppressDefaultAction;
     bool  _shouldSuppressScreenLightUp;
@@ -63,7 +62,6 @@
 @property (nonatomic, readonly) bool shouldIgnoreDoNotDisturb;
 @property (nonatomic, readonly) bool shouldIgnoreDowntime;
 @property (nonatomic, readonly) bool shouldPreemptPresentedNotification;
-@property (nonatomic, readonly) bool shouldPreemptSTAR;
 @property (nonatomic, readonly) bool shouldPreventNotificationDismissalAfterDefaultAction;
 @property (nonatomic, readonly) bool shouldSuppressDefaultAction;
 @property (nonatomic, readonly) bool shouldSuppressScreenLightUp;
@@ -79,11 +77,13 @@
 @property (nonatomic, readonly, copy) NSSet *topicIdentifiers;
 @property (nonatomic, readonly, copy) NSDictionary *userInfo;
 
+// Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)_descriptionForDebug:(bool)arg1;
-- (id)_initWithAccessoryImageName:(id)arg1 attachments:(id)arg2 badge:(id)arg3 body:(id)arg4 categoryIdentifier:(id)arg5 date:(id)arg6 icon:(id)arg7 defaultActionTitle:(id)arg8 defaultActionURL:(id)arg9 expirationDate:(id)arg10 header:(id)arg11 launchImageName:(id)arg12 peopleIdentifiers:(id)arg13 shouldHideDate:(bool)arg14 shouldHideTime:(bool)arg15 shouldIgnoreDoNotDisturb:(bool)arg16 shouldIgnoreDowntime:(bool)arg17 shouldSuppressScreenLightUp:(bool)arg18 shouldAuthenticateDefaultAction:(bool)arg19 shouldBackgroundDefaultAction:(bool)arg20 shouldPreventNotificationDismissalAfterDefaultAction:(bool)arg21 shouldSuppressDefaultAction:(bool)arg22 shouldSuppressSyncDismissalWhenRemoved:(bool)arg23 shouldUseRequestIdentifierForDismissalSync:(bool)arg24 shouldPreemptPresentedNotification:(bool)arg25 shouldPreemptSTAR:(bool)arg26 sound:(id)arg27 subtitle:(id)arg28 threadIdentifier:(id)arg29 title:(id)arg30 topicIdentifiers:(id)arg31 realertCount:(unsigned long long)arg32 summaryArgument:(id)arg33 summaryArgumentCount:(unsigned long long)arg34 targetContentIdentifier:(id)arg35 userInfo:(id)arg36;
+- (id)_initWithAccessoryImageName:(id)arg1 attachments:(id)arg2 badge:(id)arg3 body:(id)arg4 categoryIdentifier:(id)arg5 date:(id)arg6 icon:(id)arg7 defaultActionTitle:(id)arg8 defaultActionURL:(id)arg9 expirationDate:(id)arg10 header:(id)arg11 launchImageName:(id)arg12 peopleIdentifiers:(id)arg13 shouldHideDate:(bool)arg14 shouldHideTime:(bool)arg15 shouldIgnoreDoNotDisturb:(bool)arg16 shouldIgnoreDowntime:(bool)arg17 shouldSuppressScreenLightUp:(bool)arg18 shouldAuthenticateDefaultAction:(bool)arg19 shouldBackgroundDefaultAction:(bool)arg20 shouldPreventNotificationDismissalAfterDefaultAction:(bool)arg21 shouldSuppressDefaultAction:(bool)arg22 shouldSuppressSyncDismissalWhenRemoved:(bool)arg23 shouldUseRequestIdentifierForDismissalSync:(bool)arg24 shouldPreemptPresentedNotification:(bool)arg25 sound:(id)arg26 subtitle:(id)arg27 threadIdentifier:(id)arg28 title:(id)arg29 topicIdentifiers:(id)arg30 realertCount:(unsigned long long)arg31 summaryArgument:(id)arg32 summaryArgumentCount:(unsigned long long)arg33 targetContentIdentifier:(id)arg34 userInfo:(id)arg35;
 - (id)_safeStringForString:(id)arg1 debug:(bool)arg2;
 - (id)accessoryImageName;
 - (id)attachments;
@@ -116,7 +116,6 @@
 - (bool)shouldIgnoreDoNotDisturb;
 - (bool)shouldIgnoreDowntime;
 - (bool)shouldPreemptPresentedNotification;
-- (bool)shouldPreemptSTAR;
 - (bool)shouldPreventNotificationDismissalAfterDefaultAction;
 - (bool)shouldSuppressDefaultAction;
 - (bool)shouldSuppressScreenLightUp;
@@ -131,5 +130,20 @@
 - (id)title;
 - (id)topicIdentifiers;
 - (id)userInfo;
+
+// Image: /System/Library/PrivateFrameworks/BulletinDistributorCompanion.framework/BulletinDistributorCompanion
+
++ (void)blt_swizzleEncodeWithCoder;
+
+- (id)_blt_encodedShouldAddToNotificationsList;
+- (void)_blt_setEncodedShouldAddToNotificationsList:(id)arg1;
+- (void)blt_encodeWithCoder:(id)arg1;
+- (void)blt_postEncode;
+- (void)blt_preEncodeShouldAddToNotificationsList:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/UserNotificationsServer.framework/UserNotificationsServer
+
+- (bool)uns_willAlertUser;
+- (bool)uns_willNotifyUser;
 
 @end

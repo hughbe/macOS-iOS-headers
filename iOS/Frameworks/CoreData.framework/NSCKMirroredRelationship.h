@@ -24,16 +24,13 @@
 + (id)fetchMirroredRelationshipsMatchingRelatingRecords:(id)arg1 andRelatingRecordIDs:(id)arg2 fromStore:(id)arg3 inManagedObjectContext:(id)arg4 error:(id*)arg5;
 + (id)fetchPendingMirroredRelationshipsInStore:(id)arg1 withManagedObjectContext:(id)arg2 error:(id*)arg3;
 + (id)insertMirroredRelationshipForManyToMany:(id)arg1 inZoneWithMetadata:(id)arg2 inStore:(id)arg3 withManagedObjectContext:(id)arg4;
-+ (id)markRelationshipsForDeletedRecordIDs:(id)arg1 withManagedObjectContext:(id)arg2 error:(id*)arg3;
++ (id)markRelationshipsForDeletedRecordIDs:(id)arg1 inStore:(id)arg2 withManagedObjectContext:(id)arg3 error:(id*)arg4;
 + (id)mirroredRelationshipForManyToMany:(id)arg1 inStore:(id)arg2 withManagedObjectContext:(id)arg3 error:(id*)arg4;
 + (id)mirroredRelationshipForObject:(id)arg1 relatedToObject:(id)arg2 relatedByRelationship:(id)arg3 error:(id*)arg4;
 + (id)orderRelationships:(id)arg1;
-+ (bool)purgeMirroredRelationshipsWithRecordIDs:(id)arg1 withManagedObjectContext:(id)arg2 error:(id*)arg3;
++ (bool)purgeMirroredRelationshipsWithRecordIDs:(id)arg1 fromStore:(id)arg2 withManagedObjectContext:(id)arg3 error:(id*)arg4;
 + (bool)updateMirroredRelationshipsMatchingRecords:(id)arg1 forStore:(id)arg2 withManagedObjectContext:(id)arg3 usingBlock:(id /* block */)arg4 error:(id*)arg5;
 
-- (id)createRecordID;
-- (id)createRecordIDForRecord;
-- (id)createRecordIDForRelatedRecord;
 - (bool)updateRelationshipValueUsingImportContext:(id)arg1 andManagedObjectContext:(id)arg2 isDelete:(bool)arg3 error:(id*)arg4;
 
 @end

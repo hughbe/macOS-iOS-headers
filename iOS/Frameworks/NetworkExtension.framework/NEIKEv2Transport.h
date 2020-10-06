@@ -33,6 +33,7 @@
 @property (readonly) Class superclass;
 @property unsigned long long transportType;
 
++ (bool)checkAddress:(id)arg1 interface:(id)arg2;
 + (id)copyExistingTransport:(unsigned long long)arg1 remote:(id)arg2 local:(id)arg3 localPort:(unsigned short)arg4 boundInterface:(id)arg5 packetDelegate:(id)arg6;
 + (id)createTransport:(unsigned long long)arg1 remote:(id)arg2 local:(id)arg3 localPort:(unsigned short)arg4 boundInterface:(id)arg5 queue:(id)arg6 socketGetBlock:(id /* block */)arg7 packetDelegate:(id)arg8;
 + (id)createTransportWithConnection:(id)arg1 queue:(id)arg2;

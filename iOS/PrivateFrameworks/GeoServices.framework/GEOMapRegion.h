@@ -68,12 +68,17 @@
 - (bool)hasWestLng;
 - (unsigned long long)hash;
 - (id)initWithCoordinateRegion:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithLatitude:(double)arg1 longitude:(double)arg2;
 - (id)initWithMapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)initWithRadialPlace:(id)arg1;
+- (id)intersectionsOnPolyline:(id)arg1;
 - (bool)intersectsMapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (bool)intersectsRegion:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isValid;
+- (id)jsonRepresentation;
 - (int)mapRegionSourceType;
 - (id)mapRegionSourceTypeAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;

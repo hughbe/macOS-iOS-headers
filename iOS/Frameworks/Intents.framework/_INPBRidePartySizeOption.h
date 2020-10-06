@@ -3,14 +3,12 @@
  */
 
 @interface _INPBRidePartySizeOption : PBCodable <NSCopying, NSSecureCoding, _INPBRidePartySizeOption> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     _INPBRangeValue * _partySizeRange;
     _INPBPriceRangeValue * _priceRange;
     NSString * _sizeDescription;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasPartySizeRange;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

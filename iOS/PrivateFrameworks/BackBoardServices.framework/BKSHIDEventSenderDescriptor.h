@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@interface BKSHIDEventSenderDescriptor : NSObject <BSProtobufSerializable, NSCopying, NSMutableCopying, NSSecureCoding> {
+@interface BKSHIDEventSenderDescriptor : NSObject <BSDescriptionStreamable, BSProtobufSerializable, NSCopying, NSMutableCopying, NSSecureCoding> {
     BKSHIDEventDisplay * _associatedDisplay;
     bool  _authenticated;
     long long  _hardwareType;
@@ -29,6 +29,7 @@
 
 - (void).cxx_destruct;
 - (id)_initWithHardwareType:(long long)arg1 associatedDisplay:(id)arg2 authenticated:(bool)arg3 primaryPage:(unsigned int)arg4 primaryUsage:(unsigned int)arg5 senderID:(unsigned long long)arg6;
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)associatedDisplay;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;

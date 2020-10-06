@@ -9,6 +9,7 @@
 @property (nonatomic, readonly) GEOCategorySearchResultSection *categorySearchResultSection;
 @property (getter=isChainResultSet, nonatomic, readonly) bool chainResultSet;
 @property (nonatomic, readonly) GEOResolvedItem *clientResolvedResult;
+@property (nonatomic, readonly) NSArray *collectionResults;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, readonly) GEORelatedSearchSuggestion *defaultRelatedSuggestion;
 @property (readonly, copy) NSString *description;
@@ -18,7 +19,9 @@
 @property (nonatomic, readonly) NSError *error;
 @property (nonatomic, readonly) NSArray *exactMapItems;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) NSArray *publisherResults;
 @property (nonatomic, readonly) NSArray *refinedMapItems;
+@property (nonatomic, readonly) NSArray *relatedEntitySections;
 @property (nonatomic, readonly) NSArray *relatedSearchSuggestions;
 @property (nonatomic, readonly) double requestResponseTime;
 @property (nonatomic, readonly) NSString *resultDisplayHeader;

@@ -45,6 +45,7 @@
 - (id)initWithDaemonXPCEndpoint:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 daemonXPCEndpoint:(id)arg2;
+- (void)isCreateAppleIDAllowedWithCompletion:(id /* block */)arg1;
 - (bool)isDevicePasscodeProtected:(id*)arg1;
 - (void)performCircleRequestWithContext:(id)arg1 completion:(id /* block */)arg2;
 - (void)persistMasterKeyVerifier:(id)arg1 context:(id)arg2 completion:(id /* block */)arg3;

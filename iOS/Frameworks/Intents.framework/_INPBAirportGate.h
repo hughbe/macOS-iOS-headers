@@ -3,14 +3,12 @@
  */
 
 @interface _INPBAirportGate : PBCodable <NSCopying, NSSecureCoding, _INPBAirportGate> {
-    bool  __encodeLegacyGloryData;
     _INPBAirport * _airport;
     NSString * _gate;
     struct { }  _has;
     NSString * _terminal;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBAirport *airport;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)airport;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

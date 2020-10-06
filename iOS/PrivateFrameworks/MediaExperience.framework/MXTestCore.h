@@ -5,20 +5,43 @@
 @interface MXTestCore : MXTestSessionFactory {
     int  mInterruptionError;
     unsigned char  mIsInterruptionResumable;
+    int  mMutePolicyError;
+    struct __CFBoolean { } * mMutePolicyForMXSessionIsMuted;
+    bool  mNotificationReceived;
 }
 
+- (int)testAudioQueueOptionsForMXSession;
 - (int)testCPMS;
+- (int)testDeactivationOfActiveAndNonPlayingSessions;
 - (int)testDucking;
+- (int)testHDMILatencyManager;
 - (int)testInterruption:(struct opaqueCMSession { }*)arg1 andInterruptor:(struct opaqueCMSession { }*)arg2 interruptionTypeResumable:(unsigned char)arg3;
 - (int)testIsActive:(struct opaqueCMSession { }*)arg1;
+- (int)testIsAllowedRecordingFromBackground;
 - (int)testIsPlaying:(struct opaqueCMSession { }*)arg1;
 - (int)testIsRecording:(struct opaqueCMSession { }*)arg1;
+- (int)testLowLatencyVADConfiguration;
+- (int)testMXSession;
+- (int)testMXSessionClientType;
+- (int)testMXSessionMutedNotificationForMutePriority;
+- (int)testMXSessionRefresh;
+- (int)testMXSystemController;
+- (int)testMultipleRecordingClients;
+- (int)testMutePriority;
 - (int)testNavigationApp:(struct opaqueCMSession { }*)arg1;
 - (int)testNowPlayingApp;
+- (int)testPiPMixingPolicies;
+- (int)testPiPPolicies;
 - (int)testPreIntegrate;
+- (int)testPrefersNoInterruptionsByRingtonesAndAlerts;
 - (int)testPriorityBasedInterruption;
+- (int)testQueueHandOff;
+- (int)testShadowingAudioSessionID;
+- (int)testSharedMXSystemController;
 - (int)testSimultaneousPlaybackOfMixableAndNonMixableSessions:(struct opaqueCMSession { }*)arg1 nonMixableSession:(struct opaqueCMSession { }*)arg2;
 - (int)testSimultaneousPlaybackOfMixableSessions:(struct opaqueCMSession { }*)arg1 otherSession:(struct opaqueCMSession { }*)arg2;
+- (int)testSomeOtherPrimaryAudioCategoryClientIsPlaying;
 - (int)testSystemSounds;
+- (int)testSystemSoundsAndHapticsAudioHWControlBehaviors;
 
 @end

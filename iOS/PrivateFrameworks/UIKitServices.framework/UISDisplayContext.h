@@ -9,11 +9,9 @@
     unsigned long long  _userInterfaceStyle;
 }
 
-@property (nonatomic) unsigned long long artworkSubtype;
 @property (nonatomic, readonly) unsigned long long artworkSubtype;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, retain) FBSDisplayConfiguration *displayConfiguration;
 @property (nonatomic, readonly) FBSDisplayConfiguration *displayConfiguration;
 @property (nonatomic, readonly) UISApplicationSupportDisplayEdgeInfo *displayEdgeInfo;
 @property (readonly) unsigned long long hash;

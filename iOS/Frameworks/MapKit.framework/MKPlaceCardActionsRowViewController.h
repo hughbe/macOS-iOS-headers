@@ -2,17 +2,13 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKPlaceCardActionsRowViewController : UIViewController <MKActionRowItemViewDelegate, MKModuleViewControllerProtocol> {
-    NSArray * _actionButtons;
+@interface MKPlaceCardActionsRowViewController : UIViewController <MKModuleViewControllerProtocol> {
     MKPlaceActionManager * _actionManager;
-    NSArray * _actionRowsArray;
-    NSArray * _constraints;
+    MKPlaceCardActionsRowView * _actionsRowView;
     MKPlaceSectionItemView * _hairlineView;
     NSArray * _items;
-    UILayoutGuide * _marginLayoutguide;
-    unsigned long long  _maxButtonsPerRow;
+    <_MKPlaceViewControllerDelegate> * _placeViewControllerDelegate;
     MKPlaceholderGridCache * _placeholderGridCache;
-    unsigned long long  _style;
 }
 
 @property (nonatomic) MKPlaceActionManager *actionManager;
@@ -20,23 +16,20 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSArray *items;
+@property (nonatomic) <_MKPlaceViewControllerDelegate> *placeViewControllerDelegate;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
 - (id)actionManager;
-- (void)actionRowSelected:(id)arg1;
-- (void)createActionViews;
-- (void)createActions;
-- (void)createConstraints;
 - (void)infoCardThemeChanged;
 - (id)initWithStyle:(unsigned long long)arg1;
 - (id)items;
-- (void)layoutButtons;
 - (void)loadView;
-- (unsigned long long)maxButtonsPerRow;
+- (id)placeViewControllerDelegate;
 - (void)setActionManager:(id)arg1;
 - (void)setItems:(id)arg1;
+- (void)setPlaceViewControllerDelegate:(id)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 

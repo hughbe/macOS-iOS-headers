@@ -89,8 +89,11 @@
 - (bool)hasViewedInPlacecard;
 - (bool)hasViewedInProactiveTray;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isAsync;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muid;
 - (void)readAll:(bool)arg1;

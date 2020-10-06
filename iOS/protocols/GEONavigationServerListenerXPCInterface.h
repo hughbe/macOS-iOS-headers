@@ -17,7 +17,6 @@
 - (void)routeSummaryUpdatedWithRideSelectionData:(NSData *)arg1;
 - (void)routeSummaryUpdatedWithStepIndexData:(NSData *)arg1;
 - (void)routeSummaryUpdatedWithStepNameInfoData:(NSData *)arg1;
-- (void)routeSummaryUpdatedWithTrafficIncidentAlertDetailsData:(NSData *)arg1;
 - (void)routeSummaryUpdatedWithTransitSummaryData:(NSData *)arg1;
 
 @end

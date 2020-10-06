@@ -10,6 +10,7 @@
 @property (readonly) Class superclass;
 
 + (void)_noteProcessHasUsedKVOSwiftOverlay;
++ (bool)_releasesObservationBlockOnInvalidation;
 + (void)_setRequiresSilencingExceptions:(bool)arg1;
 
 @end

@@ -35,6 +35,8 @@
 @property (nonatomic, retain) NSArray *preferredLocalizations;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/ShareSheet.framework/ShareSheet
+
 + (id)_actionImageForActionRepresentationImage:(id)arg1 contentSizeCategory:(id)arg2;
 + (id)_actionImageForBundleImageConfiguration:(id)arg1;
 + (id)_activityExtensionItemsForActivityItemValues:(id)arg1 extensionItemDataRequest:(id)arg2;
@@ -105,6 +107,7 @@
 - (id)activityUUID;
 - (id)activityViewController;
 - (id)applicationExtension;
+- (id)applicationProxy;
 - (bool)canPerformWithActivityItems:(id)arg1;
 - (id)contentSizeCategory;
 - (id /* block */)didFinishPerformingActivityHandler;
@@ -125,5 +128,14 @@
 - (id)ss_activityTypeToReportToHost;
 - (bool)ss_shouldDismissHostsPresentationBeforePerforming;
 - (bool)ss_shouldExecuteInShareSheet;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)ph_PhotosApplicationActivitiesTypePublish;
++ (id)ph_PhotosApplicationActivityTypeOrder;
+
+// Image: /System/Library/Frameworks/ReplayKit.framework/ReplayKit
+
++ (void)streamActivitiesWithCompletion:(id /* block */)arg1;
 
 @end

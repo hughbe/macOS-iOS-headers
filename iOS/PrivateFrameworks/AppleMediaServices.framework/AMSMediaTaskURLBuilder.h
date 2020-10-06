@@ -4,6 +4,7 @@
 
 @interface AMSMediaTaskURLBuilder : NSObject {
     NSArray * _additionalPlatforms;
+    NSDictionary * _additionalQueryParams;
     <AMSBagProtocol> * _bag;
     NSArray * _bundleIdentifiers;
     bool  _charts;
@@ -17,6 +18,7 @@
 }
 
 @property (nonatomic, retain) NSArray *additionalPlatforms;
+@property (nonatomic, retain) NSDictionary *additionalQueryParams;
 @property (nonatomic, readonly) <AMSBagProtocol> *bag;
 @property (nonatomic, retain) NSArray *bundleIdentifiers;
 @property (nonatomic) bool charts;
@@ -39,6 +41,7 @@
 - (id)_queryItems;
 - (id)_verifyConfiguration;
 - (id)additionalPlatforms;
+- (id)additionalQueryParams;
 - (id)bag;
 - (id)build;
 - (id)bundleIdentifiers;
@@ -52,6 +55,7 @@
 - (id)logKey;
 - (id)searchTerm;
 - (void)setAdditionalPlatforms:(id)arg1;
+- (void)setAdditionalQueryParams:(id)arg1;
 - (void)setBundleIdentifiers:(id)arg1;
 - (void)setCharts:(bool)arg1;
 - (void)setFilters:(id)arg1;

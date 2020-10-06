@@ -26,7 +26,6 @@
 + (const struct CFURLProtocolImplementation { long long x1; void *x2; int (*x3)(); int (*x4)(); int (*x5)(); int (*x6)(); int (*x7)(); int (*x8)(); int (*x9)(); }*)pimpl;
 + (bool)requestIsCacheEquivalent:(id)arg1 toRequest:(id)arg2;
 
-- (struct CFURLProtocolClient { long long x1; void *x2; int (*x3)(); int (*x4)(); int (*x5)(); int (*x6)(); int (*x7)(); int (*x8)(); int (*x9)(); int (*x10)(); int (*x11)(); int (*x12)(); }*)cfurlClient;
 - (void)dealloc;
 - (id)initWithRequest:(id)arg1 cachedResponse:(id)arg2 client:(id)arg3;
 - (void)startLoading;

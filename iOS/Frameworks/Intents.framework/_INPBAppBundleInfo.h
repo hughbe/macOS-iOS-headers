@@ -3,7 +3,6 @@
  */
 
 @interface _INPBAppBundleInfo : PBCodable <NSCopying, NSSecureCoding, _INPBAppBundleInfo> {
-    bool  __encodeLegacyGloryData;
     _INPBAppId * _appId;
     _INPBBuildId * _buildId;
     struct { }  _has;
@@ -12,7 +11,6 @@
     NSArray * _supportedPlatforms;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBAppId *appId;
 @property (nonatomic, retain) _INPBBuildId *buildId;
 @property (readonly, copy) NSString *debugDescription;
@@ -34,8 +32,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addIntentSupport:(id)arg1;
 - (void)addLocalizedProjects:(id)arg1;
 - (void)addSupportedPlatforms:(id)arg1;

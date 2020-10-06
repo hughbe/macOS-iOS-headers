@@ -9,16 +9,11 @@
 
 @property (nonatomic, retain) UIKeyCommandDiscoverabilityHUDView *view;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
 - (void)_updateVisualStyle;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)animateOutWithCompletion:(id /* block */)arg1;
+- (void)dealloc;
 - (id)initWithKeyCommands:(id)arg1 keyboard:(struct __GSKeyboard { }*)arg2;
 - (void)loadView;
 - (void)traitCollectionDidChange:(id)arg1;

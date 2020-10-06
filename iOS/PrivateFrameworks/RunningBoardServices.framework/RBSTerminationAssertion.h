@@ -9,9 +9,10 @@
     }  _lock;
     RBSProcessMonitor * _monitor;
     NSHashTable * _observers;
+    RBSProcessPredicate * _predicate;
     bool  _processExists;
+    <RBSServiceLocalProtocol> * _service;
     unsigned long long  _state;
-    RBSTarget * _target;
     RBSTerminateContext * _terminateContext;
 }
 
@@ -19,10 +20,10 @@
 @property (getter=isValid, nonatomic, readonly) bool valid;
 
 - (void).cxx_destruct;
-- (void)_notifyObserversOfProcessExit;
 - (bool)acquireWithError:(out id*)arg1;
 - (void)addObserver:(id)arg1;
-- (id)explanation;
+- (id)initWithPredicate:(id)arg1 context:(id)arg2;
+- (id)initWithPredicate:(id)arg1 context:(id)arg2 service:(id)arg3;
 - (id)initWithTarget:(id)arg1 context:(id)arg2;
 - (void)invalidate;
 - (bool)invalidateWithError:(out id*)arg1;

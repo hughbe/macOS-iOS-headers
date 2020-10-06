@@ -12,15 +12,10 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UIKBAutoFillTestArchive *testArchive;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (void)enumerateSubviewsOfRootView:(id)arg1 usingBlock:(id /* block */)arg2;
 
 - (void).cxx_destruct;
 - (void)_applyNavigationItemPropertiesFromTestArchive;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithAutoFillTestArchive:(id)arg1;
 - (long long)numberOfSectionsInTableView:(id)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;

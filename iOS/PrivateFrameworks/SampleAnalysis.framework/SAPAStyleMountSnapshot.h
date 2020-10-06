@@ -2,21 +2,22 @@
    Image: /System/Library/PrivateFrameworks/SampleAnalysis.framework/SampleAnalysis
  */
 
-@interface SAPAStyleMountSnapshot : NSObject {
+@interface SAPAStyleMountSnapshot : NSObject <SASerializable> {
     SAMountSnapshot * _mountSnapshot;
 }
 
-@property (retain) SAMountSnapshot *mountSnapshot;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
 
 + (id)classDictionaryKey;
-+ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const struct { unsigned long long x1; double x2; double x3; unsigned int x4; }*)arg1 bufferLength:(unsigned long long)arg2;
++ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2;
 
 - (void).cxx_destruct;
 - (bool)addSelfToBuffer:(void*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
 - (void)addSelfToSerializationDictionary:(id)arg1;
-- (id)mountSnapshot;
-- (void)populateReferencesUsingBuffer:(const struct { unsigned long long x1; double x2; double x3; unsigned int x4; }*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
-- (void)setMountSnapshot:(id)arg1;
+- (void)populateReferencesUsingBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 
 @end

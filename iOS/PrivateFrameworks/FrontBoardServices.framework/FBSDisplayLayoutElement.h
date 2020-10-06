@@ -85,6 +85,12 @@
 - (id)succinctDescriptionBuilder;
 - (id)valueDescriptionForFlag:(long long)arg1 object:(id)arg2 ofSetting:(unsigned long long)arg3;
 
+// Image: /System/Library/PrivateFrameworks/IntentsCore.framework/IntentsCore
+
+- (id)_intents_SpringBoardElement;
+- (bool)_intents_isExpectedElement;
+- (bool)_intents_isSiri;
+
 // Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
 
 - (bool)isSpringBoardElement;

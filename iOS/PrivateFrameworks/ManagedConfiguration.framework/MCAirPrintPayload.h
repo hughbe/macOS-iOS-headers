@@ -16,7 +16,6 @@
 
 - (void).cxx_destruct;
 - (unsigned long long)airPrintCount;
-- (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)ippAddresses;
 - (id)payloadDescriptionKeyValueSections;
@@ -26,5 +25,6 @@
 - (id)stubDictionary;
 - (id)subtitle1Description;
 - (id)subtitle1Label;
+- (id)verboseDescription;
 
 @end

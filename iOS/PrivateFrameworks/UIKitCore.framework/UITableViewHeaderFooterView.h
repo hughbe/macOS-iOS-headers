@@ -5,8 +5,11 @@
 @interface UITableViewHeaderFooterView : UIView <UITableConstantsHeaderFooterProviding, UITableViewSubviewReusing> {
     UIImage * _backgroundImage;
     UIView * _backgroundView;
+    id /* block */  _backgroundViewConfigurationProvider;
     <UITableConstants> * _constants;
     UIView * _contentView;
+    NSString * _contentViewConfigurationIdentifier;
+    id /* block */  _contentViewConfigurationProvider;
     _UITableViewHeaderFooterViewLabel * _detailLabel;
     struct CGRect { 
         struct CGPoint { 
@@ -29,20 +32,41 @@
         unsigned int didSetupDefaults : 1; 
         unsigned int insetsContentViewsToSafeArea : 1; 
         unsigned int tableViewHasBeenExplicitlySet : 1; 
+        unsigned int hasCustomBackgroundView : 1; 
+        unsigned int hasCustomBackgroundViewConfigurationProvider : 1; 
+        unsigned int hasCustomBackgroundViewConfiguration : 1; 
+        unsigned int needsConfigurationStateUpdate : 1; 
+        unsigned int automaticallyUpdatesContentViewConfiguration : 1; 
+        unsigned int automaticallyUpdatesBackgroundViewConfiguration : 1; 
     }  _headerFooterFlags;
     _UITableViewHeaderFooterViewLabel * _label;
     double  _leadingMarginWidth;
     double  _maxTitleWidth;
     NSString * _reuseIdentifier;
+    _UISystemBackgroundView * _systemBackgroundView;
     <UITable> * _table;
     long long  _tableViewStyle;
     long long  _textAlignment;
     double  _trailingMarginWidth;
+    <_UIContentViewInternal> * _viewForContentConfiguration;
 }
 
+@property (getter=_automaticallyUpdatesBackgroundViewConfiguration, setter=_setAutomaticallyUpdatesBackgroundViewConfiguration:, nonatomic) bool _automaticallyUpdatesBackgroundViewConfiguration;
+@property (getter=_automaticallyUpdatesContentViewConfiguration, setter=_setAutomaticallyUpdatesContentViewConfiguration:, nonatomic) bool _automaticallyUpdatesContentViewConfiguration;
+@property (getter=_backgroundViewConfiguration, setter=_setBackgroundViewConfiguration:, nonatomic, copy) _UIBackgroundViewConfiguration *_backgroundViewConfiguration;
+@property (getter=_backgroundViewConfigurationProvider, setter=_setBackgroundViewConfigurationProvider:, nonatomic, copy) id /* block */ _backgroundViewConfigurationProvider;
+@property (nonatomic, readonly) UIViewConfigurationState *_bridgedConfigurationState;
+@property (getter=_contentViewConfiguration, setter=_setContentViewConfiguration:, nonatomic, copy) <_UIContentViewConfiguration> *_contentViewConfiguration;
+@property (getter=_contentViewConfigurationProvider, setter=_setContentViewConfigurationProvider:, nonatomic, copy) id /* block */ _contentViewConfigurationProvider;
+@property (nonatomic, readonly) unsigned long long _viewConfigurationState;
+@property (nonatomic) bool automaticallyUpdatesBackgroundConfiguration;
+@property (nonatomic) bool automaticallyUpdatesContentConfiguration;
+@property (nonatomic, copy) UIBackgroundConfiguration *backgroundConfiguration;
 @property (nonatomic, retain) UIImage *backgroundImage;
 @property (nonatomic, retain) UIView *backgroundView;
+@property (nonatomic, readonly) UIViewConfigurationState *configurationState;
 @property (getter=_constants, setter=_setConstants:, nonatomic, retain) <UITableConstants> *constants;
+@property (nonatomic, copy) <UIContentConfiguration> *contentConfiguration;
 @property (nonatomic, readonly) UIView *contentView;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -76,14 +100,26 @@
 + (double)defaultHeaderHeightForStyle:(long long)arg1;
 
 - (void).cxx_destruct;
+- (void)_applyBackgroundViewConfiguration:(id)arg1 withState:(id)arg2;
+- (void)_applyContentViewConfiguration:(id)arg1 withState:(id)arg2 usingSPI:(bool)arg3;
+- (bool)_automaticallyUpdatesBackgroundViewConfiguration;
+- (bool)_automaticallyUpdatesContentViewConfiguration;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_backgroundRect;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_backgroundRectForWidth:(double)arg1;
+- (id)_backgroundViewConfiguration;
+- (id /* block */)_backgroundViewConfigurationProvider;
+- (id)_configurationState;
 - (id)_constants;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_contentRect;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_contentRectForWidth:(double)arg1;
+- (id)_contentViewConfiguration;
+- (id /* block */)_contentViewConfigurationProvider;
+- (id)_customViewForDefaultBackgroundAppearance;
+- (id)_defaultBackgroundConfiguration;
 - (id)_defaultTextColor;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_detailLabelFrame;
 - (struct CGSize { double x1; double x2; })_detailTextSizeForWidth:(double)arg1;
+- (void)_didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_effectiveSafeAreaInsets;
 - (bool)_forwardsSystemLayoutFittingSizeToContentView:(id)arg1;
 - (bool)_hostsLayoutEngineAllowsTAMIC_NO;
@@ -93,16 +129,31 @@
 - (void)_invalidateDetailLabelBackgroundColor;
 - (void)_invalidateLabelBackgroundColor;
 - (bool)_isFloating;
+- (bool)_isSourceListOrMacIdiom;
 - (bool)_isTopHeader;
 - (bool)_isTransparentFocusRegion;
 - (id)_label:(bool)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_labelFrame;
+- (void)_layoutSystemBackgroundView;
 - (double)_marginWidth;
+- (void)_performConfigurationStateUpdate;
+- (void)_populateArchivedSubviews:(id)arg1;
+- (void)_resetBackgroundViewConfiguration;
+- (void)_resetBackgroundViewsAndColor;
+- (void)_resetContentViews;
 - (double)_rightMarginWidth;
 - (void)_safeAreaInsetsDidChangeFromOldInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (void)_setAutomaticallyUpdatesBackgroundViewConfiguration:(bool)arg1;
+- (void)_setAutomaticallyUpdatesContentViewConfiguration:(bool)arg1;
+- (void)_setBackgroundViewConfiguration:(id)arg1;
+- (void)_setBackgroundViewConfigurationProvider:(id /* block */)arg1;
 - (void)_setConstants:(id)arg1;
+- (void)_setContentView:(id)arg1 insertAtBack:(bool)arg2;
+- (void)_setContentViewConfiguration:(id)arg1;
+- (void)_setContentViewConfigurationProvider:(id /* block */)arg1;
 - (void)_setInsetsContentViewsToSafeArea:(bool)arg1;
 - (void)_setMarginWidth:(double)arg1;
+- (void)_setNeedsConfigurationStateUpdate;
 - (void)_setRightMarginWidth:(double)arg1;
 - (void)_setStripPadding:(bool)arg1;
 - (void)_setTableViewStyle:(long long)arg1 updateFrame:(bool)arg2;
@@ -116,19 +167,30 @@
 - (id)_table;
 - (void)_tableViewDidUpdateMarginWidth;
 - (struct CGSize { double x1; double x2; })_textSizeForWidth:(double)arg1;
+- (bool)_tintColorAffectsBackgroundColor;
 - (void)_updateBackgroundImage;
 - (void)_updateBackgroundView;
+- (void)_updateBackgroundViewConfigurationForState:(id)arg1;
 - (void)_updateContentAndBackgroundView;
+- (void)_updateContentViewConfigurationForState:(id)arg1;
+- (void)_updateDefaultBackgroundAppearance;
 - (void)_updateDetailLabelBackgroundColor;
 - (void)_updateDetailLabelBackgroundColorIfNeeded;
+- (void)_updateViewConfigurationsWithState:(unsigned long long)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_updatedContentViewFrameForTargetWidth:(double)arg1;
 - (bool)_useDetailText;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (bool)_usingBackgroundConfigurationOrDefaultBackgroundConfiguration;
+- (bool)_usingBackgroundViewConfiguration;
+- (unsigned long long)_viewConfigurationState;
+- (bool)automaticallyUpdatesBackgroundConfiguration;
+- (bool)automaticallyUpdatesContentConfiguration;
+- (id)backgroundConfiguration;
 - (id)backgroundImage;
 - (id)backgroundView;
+- (id)configurationState;
+- (id)contentConfiguration;
 - (id)contentView;
+- (id)defaultContentConfiguration;
 - (id)detailTextLabel;
 - (void)didMoveToSuperview;
 - (void)encodeWithCoder:(id)arg1;
@@ -142,13 +204,17 @@
 - (void)prepareForReuse;
 - (id)reuseIdentifier;
 - (bool)sectionHeader;
+- (void)setAutomaticallyUpdatesBackgroundConfiguration:(bool)arg1;
+- (void)setAutomaticallyUpdatesContentConfiguration:(bool)arg1;
 - (void)setBackgroundColor:(id)arg1;
+- (void)setBackgroundConfiguration:(id)arg1;
 - (void)setBackgroundImage:(id)arg1;
 - (void)setBackgroundView:(id)arg1;
-- (void)setContentView:(id)arg1;
+- (void)setContentConfiguration:(id)arg1;
 - (void)setFloating:(bool)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setMaxTitleWidth:(double)arg1;
+- (void)setNeedsUpdateConfiguration;
 - (void)setNeedsUpdateConstraints;
 - (void)setReuseIdentifier:(id)arg1;
 - (void)setSectionHeader:(bool)arg1;
@@ -158,6 +224,7 @@
 - (void)setText:(id)arg1;
 - (void)setTextAlignment:(long long)arg1;
 - (void)setTintColor:(id)arg1;
+- (void)setUserInteractionEnabled:(bool)arg1;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (struct CGSize { double x1; double x2; })systemLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
 - (id)table;
@@ -166,9 +233,20 @@
 - (id)text;
 - (long long)textAlignment;
 - (id)textLabel;
+- (void)traitCollectionDidChange:(id)arg1;
+- (void)updateConfigurationUsingState:(id)arg1;
 
 // Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
 
 - (void)_cnui_applyContactStyle;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })ts_cellSeparatorInsets;
+
+// Image: /usr/lib/swift/libswiftUIKit.dylib
+
+- (id)_bridgedConfigurationState;
+- (void)_bridgedUpdateConfigurationUsingState:(id)arg1;
 
 @end

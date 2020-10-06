@@ -16,13 +16,7 @@
 
 @property (readonly) CPSearchMatcher *citySearchMatcher;
 
-+ (id)_displayStringForTaiwanRegionWithKey2Value:(bool)arg1;
 + (id)_localeDictionaryFromSQLRow:(char **)arg1;
-+ (id)displayStringForHongKongSAR;
-+ (id)displayStringForHongKongSARChina;
-+ (id)displayStringForMacaoSAR;
-+ (id)displayStringForMacaoSARChina;
-+ (id)displayStringForTaiwanRegion;
 + (struct __CFArray { }*)legacyCityForCity:(id)arg1;
 + (id)newCitiesByIdentifierMap:(id)arg1;
 + (id)sharedManager;

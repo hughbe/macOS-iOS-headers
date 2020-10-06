@@ -13,7 +13,7 @@
 @property (retain) _LSAppLinkOpenState *state;
 
 + (bool)canHandleURLComponents:(id)arg1;
-+ (Class)plugInClasses;
++ (id)plugInClasses;
 
 - (void).cxx_destruct;
 - (id)URLComponents;

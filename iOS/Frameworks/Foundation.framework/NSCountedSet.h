@@ -7,6 +7,10 @@
     id  _table;
 }
 
+@property (nonatomic, readonly) id safari_highestFrequencyObject;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (bool)supportsSecureCoding;
 
 - (void)addObject:(id)arg1;
@@ -30,5 +34,33 @@
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)objectEnumerator;
 - (void)removeObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MediaMiningKit.framework/MediaMiningKit
+
+- (void)enumerateObjectsSortedByCountUsingBlock:(id /* block */)arg1 ascending:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/MessageLegacy.framework/MessageLegacy
+
+- (id)mf_debugDescription;
+
+// Image: /System/Library/PrivateFrameworks/NetAppsUtilities.framework/NetAppsUtilities
+
+- (id)na_mostCommonObject;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (id)fc_description;
+
+// Image: /System/Library/PrivateFrameworks/PhotosGraph.framework/PhotosGraph
+
+- (unsigned long long)pg_accumulatedCount;
+- (unsigned long long)pg_countForRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (id)pg_objectWithMaxCount;
+- (id)pg_objectWithMinCount;
+- (id)pg_sortedArrayByCountAscending:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (id)safari_highestFrequencyObject;
 
 @end

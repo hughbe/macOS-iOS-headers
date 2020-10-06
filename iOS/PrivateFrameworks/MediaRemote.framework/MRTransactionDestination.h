@@ -5,12 +5,12 @@
 @interface MRTransactionDestination : NSObject {
     unsigned long long  _name;
     MRTransactionPacketizer * _packetizer;
-    _MRNowPlayingPlayerPathProtobuf * _playerPath;
+    MRPlayerPath * _playerPath;
     NSObject<OS_dispatch_queue> * _serialQueue;
 }
 
 @property (nonatomic, readonly) unsigned long long name;
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 
 - (void).cxx_destruct;
 - (id)initWithName:(unsigned long long)arg1 playerPath:(id)arg2;

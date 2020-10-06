@@ -47,6 +47,8 @@
 - (void)registerCallback:(id)arg1;
 - (id)remoteDeviceIDs;
 - (bool)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2;
+- (id)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtKeyPath:(id)arg2;
+- (id)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtKeyPath:(id)arg2 removedObjects:(id*)arg3;
 - (void)setContextValue:(id)arg1 forContextualKeyPath:(id)arg2;
 - (void)setContexts:(id)arg1;
 - (void)setLocalDeviceID:(id)arg1;

@@ -7,12 +7,15 @@
 }
 
 @property (readonly) NSDictionary *dictionary;
+@property (nonatomic, readonly) double price;
 
 + (id)buyParamsWithString:(id)arg1;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)_normalizedDictionary;
 - (void)_parseBuyParams:(id)arg1;
+- (id)buyParametersForRequest;
 - (void)clear;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -22,7 +25,9 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithString:(id)arg1;
+- (double)price;
 - (id)propertyForKey:(id)arg1;
+- (id)requestDataWithError:(id*)arg1;
 - (void)setProperty:(id)arg1 forKey:(id)arg2;
 - (id)stringValue;
 

@@ -105,8 +105,6 @@
 @property (nonatomic, readonly) double zoomMaximumValue;
 @property (nonatomic, readonly) double zoomMinimumValue;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (bool)_allowActionsToQueue;
 + (id)timeStringForSeconds:(int)arg1 forceFullWidthComponents:(bool)arg2 isElapsed:(bool)arg3;
 
@@ -126,7 +124,6 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_editingRectForStartTime:(double)arg1 endTime:(double)arg2;
 - (void)_handlePanGesture:(id)arg1;
 - (void)_initSubviews;
-- (void)_sendDelayedActions;
 - (void)_setValue:(double)arg1 andSendAction:(bool)arg2;
 - (void)_setZoomAnimating:(bool)arg1;
 - (void)_sliderAnimationDidStop:(bool)arg1;
@@ -137,10 +134,6 @@
 - (void)_updateThumbLocation;
 - (void)_updateTimes;
 - (double)_valueForLocatable:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })alignmentMargins;
 - (void)animateAfterEdit;
 - (void)animateCancelEdit;
@@ -148,6 +141,7 @@
 - (bool)cancelTouchTracking;
 - (void)continueTrackingWithLocatable:(id)arg1;
 - (id)dataSource;
+- (void)dealloc;
 - (id)delegate;
 - (void)didMoveToSuperview;
 - (void)didMoveToWindow;

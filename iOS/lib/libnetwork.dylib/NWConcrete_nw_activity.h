@@ -6,6 +6,10 @@
     unsigned int  activated;
     unsigned int  completed;
     int  completion_reason;
+    NSString * description;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  description_lock;
     unsigned int  domain;
     unsigned long long  end_time;
     unsigned long long  investigation_identifier;
@@ -19,6 +23,8 @@
     int  reporting_strategy;
     unsigned long long  start_time;
     unsigned char  token;
+    int  underlying_error_code;
+    int  underlying_error_domain;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -29,9 +35,6 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithDomain:(unsigned int)arg1 label:(unsigned int)arg2;
-- (id)initWithOriginal:(id)arg1;
-- (id)initWithToken:(unsigned char)arg1;
 - (id)redactedDescription;
 
 @end

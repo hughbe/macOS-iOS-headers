@@ -9,7 +9,7 @@
     CNContactActionsController * _actionsController;
     <CNCustomPresentation> * _actionsControllerPresentation;
     CNActionsView * _actionsView;
-    CNContact * _contact;
+    NSArray * _contacts;
     NSDictionary * _defaultActionPerType;
     <CNContactInlineActionsViewControllerDelegate> * _delegate;
     bool  _displaysTitles;
@@ -29,6 +29,7 @@
 @property (nonatomic, retain) <CNCustomPresentation> *actionsControllerPresentation;
 @property (nonatomic) CNActionsView *actionsView;
 @property (nonatomic, retain) CNContact *contact;
+@property (nonatomic, retain) NSArray *contacts;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, copy) NSDictionary *defaultActionPerType;
 @property (nonatomic) <CNContactInlineActionsViewControllerDelegate> *delegate;
@@ -50,16 +51,20 @@
 
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
+- (id)actionImageTextStyleForViewStyle:(long long)arg1;
 - (id)actionItems;
 - (id)actionListDataSource;
 - (double)actionTypesInterspace;
 - (id)actionsController;
 - (id)actionsControllerPresentation;
 - (id)actionsView;
+- (bool)actionsView:(id)arg1 shouldPresentDisambiguationUIForAction:(id)arg2;
 - (id)allModelsObservable;
 - (void)checkinLaunchTasksForUndiscoverableActionsForContact:(id)arg1;
 - (id)contact;
 - (void)contactActionsController:(id)arg1 didSelectAction:(id)arg2;
+- (void)contactActionsController:(id)arg1 didUpdateWithMenu:(id)arg2;
+- (id)contacts;
 - (void)dealloc;
 - (id)defaultActionPerType;
 - (id)delegate;
@@ -72,12 +77,17 @@
 - (bool)displaysUnavailableActionTypes;
 - (id)environment;
 - (id)existingActionItemForType:(id)arg1;
+- (void)generateActionsControllerForActionType:(id)arg1;
 - (id)initWithActionListDataSource:(id)arg1 environment:(id)arg2;
+- (id)initWithContactActionsContext:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
+- (bool)isGroupActionsView;
+- (void)loadCachedActions;
 - (void)loadView;
 - (id)makeActionItemForType:(id)arg1;
 - (id)objectViewControllerDelegate;
 - (void)performAction:(id)arg1;
+- (void)performGroupActionForType:(id)arg1;
 - (void)processModels:(id)arg1;
 - (void)removeActionForType:(id)arg1;
 - (void)removeVisibleActionItems:(id)arg1;
@@ -90,6 +100,7 @@
 - (void)setActionsControllerPresentation:(id)arg1;
 - (void)setActionsView:(id)arg1;
 - (void)setContact:(id)arg1;
+- (void)setContacts:(id)arg1;
 - (void)setDefaultActionPerType:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDisplaysTitles:(bool)arg1;
@@ -100,7 +111,9 @@
 - (void)setSupportedActionTypes:(id)arg1;
 - (void)setTokens:(id)arg1;
 - (void)setViewStyle:(long long)arg1;
-- (void)showDisambiguationFromSourceView:(id)arg1 actionType:(id)arg2;
+- (void)setupGroupActions;
+- (void)setupSingleContactActions;
+- (bool)shouldShowDisambiguationForAction:(id)arg1;
 - (id)supportedActionTypes;
 - (double)throttleDelay;
 - (id)tokens;

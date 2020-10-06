@@ -3,8 +3,6 @@
  */
 
 @interface NSTextBlock : NSObject <NSCoding, NSCopying, NSSecureCoding> {
-    void * _blockPrimary;
-    void * _blockSecondary;
     id  _otherParamVals;
     id  _primParamVal;
     unsigned long long  _propMask;

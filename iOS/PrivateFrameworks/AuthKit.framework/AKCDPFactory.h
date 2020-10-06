@@ -5,10 +5,12 @@
 @interface AKCDPFactory : NSObject
 
 + (id)accountRecoveryControllerWithPresentingViewController:(id)arg1;
++ (bool)cdpAccountIsICDPEnabledForDSID:(id)arg1;
 + (id)cdpErrorDomain;
 + (id)cdpIDMSRecordMIDKey;
 + (id)cdpIDMSRecordPRKKey;
 + (id)cdpStateUIController;
++ (id)cdpUIControllerWithPresentingViewController:(id)arg1;
 + (id)context;
 + (id)contextWithAuthResults:(id)arg1;
 + (id)followUpController;

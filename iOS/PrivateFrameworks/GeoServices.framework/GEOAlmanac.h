@@ -6,6 +6,19 @@
     GEOAlmanacRiseTransitSet * _currentRiseTransitSet;
     GEOAlmanacRiseTransitSet * _nextRiseTransitSet;
     GEOAlmanacRiseTransitSet * _previousRiseTransitSet;
+    struct set<CAARiseTransitSetDetails2, _CAARiseTransitSetDetails2IsLessThan, std::__1::allocator<CAARiseTransitSetDetails2> > { 
+        struct __tree<CAARiseTransitSetDetails2, _CAARiseTransitSetDetails2IsLessThan, std::__1::allocator<CAARiseTransitSetDetails2> > { 
+            struct __tree_end_node<std::__1::__tree_node_base<void *> *> {} *__begin_node_; 
+            struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<CAARiseTransitSetDetails2, void *> > > { 
+                struct __tree_end_node<std::__1::__tree_node_base<void *> *> { 
+                    struct __tree_node_base<void *> {} *__left_; 
+                } __value_; 
+            } __pair1_; 
+            struct __compressed_pair<unsigned long, _CAARiseTransitSetDetails2IsLessThan> { 
+                unsigned long long __value_; 
+            } __pair3_; 
+        } __tree_; 
+    }  _riseTransitSetEvents;
 }
 
 @property (nonatomic, readonly) bool isDayLight;
@@ -19,12 +32,14 @@
 @property (nonatomic, readonly) NSDate *sunset;
 @property (nonatomic, readonly) NSDate *transit;
 
+- (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)calculateAstronomicalTimeForLocation:(struct { double x1; double x2; })arg1;
 - (void)calculateAstronomicalTimeForLocation:(struct { double x1; double x2; })arg1 altitudeInDegrees:(double)arg2;
-- (void)calculateAstronomicalTimeForLocation:(struct { double x1; double x2; })arg1 date:(id)arg2 altitudeInDegrees:(double)arg3;
+- (void)calculateAstronomicalTimeForLocation:(struct { double x1; double x2; })arg1 date:(id)arg2 altitudeInDegrees:(double)arg3 options:(unsigned long long)arg4;
 - (void)calculateAstronomicalTimeForLocation:(struct { double x1; double x2; })arg1 time:(double)arg2;
 - (void)calculateAstronomicalTimeForLocation:(struct { double x1; double x2; })arg1 time:(double)arg2 altitudeInDegrees:(double)arg3;
+- (void)calculateAstronomicalTimeForLocation:(struct { double x1; double x2; })arg1 time:(double)arg2 altitudeInDegrees:(double)arg3 options:(unsigned long long)arg4;
 - (void)calculateGeocentricDirectionForSunX:(double*)arg1 Y:(double*)arg2 Z:(double*)arg3;
 - (void)calculateGeocentricDirectionForSunX:(double*)arg1 Y:(double*)arg2 Z:(double*)arg3 date:(id)arg4;
 - (id)description;
@@ -37,7 +52,6 @@
 - (id)previousSunrise;
 - (id)previousSunset;
 - (id)previousTransit;
-- (id)sortedTimesForDate:(id)arg1;
 - (id)sunrise;
 - (id)sunset;
 - (id)transit;

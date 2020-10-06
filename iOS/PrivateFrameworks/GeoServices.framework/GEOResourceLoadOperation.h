@@ -8,6 +8,7 @@
     NSObject<OS_dispatch_queue> * _callbackQueue;
     id /* block */  _completionHandler;
     NSMutableData * _data;
+    NSString * _eTag;
     bool  _expectsPartialContent;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -18,7 +19,9 @@
     NSURL * _proxyURL;
     <GEORequestCounterTicket> * _requestCounterTicket;
     bool  _requiresWiFi;
+    NSString * _serviceAddress;
     NSURLSession * _session;
+    NSDate * _starttime;
     NSURLSessionTask * _task;
     NSURL * _url;
 }
@@ -36,11 +39,12 @@
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3;
 - (void)URLSession:(id)arg1 dataTask:(id)arg2 didReceiveResponse:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
+- (void)URLSession:(id)arg1 task:(id)arg2 didFinishCollectingMetrics:(id)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 didReceiveChallenge:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)cancel;
 - (id)data;
 - (void)dealloc;
-- (id)initWithResource:(id)arg1 existingPartialData:(id)arg2 auditToken:(id)arg3 baseURL:(id)arg4 proxyURL:(id)arg5 log:(id)arg6;
+- (id)initWithResource:(id)arg1 existingPartialData:(id)arg2 eTag:(id)arg3 auditToken:(id)arg4 baseURL:(id)arg5 alternateURLs:(id)arg6 proxyURL:(id)arg7 log:(id)arg8;
 - (bool)preferDirectNetworking;
 - (id)progress;
 - (bool)requiresWiFi;

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSHandshakeResponse : NSObject <BSXPCSecureCoding> {
+@interface RBSHandshakeResponse : NSObject <RBSXPCSecureCoding> {
     NSDictionary * _assertionErrorsByOldIdentifier;
     NSDictionary * _assertionIdentifiersByOldIdentifier;
     RBSProcessHandle * _handle;
@@ -16,14 +16,14 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)assertionErrorsByOldIdentifier;
 - (id)assertionIdentifiersByOldIdentifier;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)handle;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (void)setAssertionErrorsByOldIdentifier:(id)arg1;
 - (void)setAssertionIdentifiersByOldIdentifier:(id)arg1;

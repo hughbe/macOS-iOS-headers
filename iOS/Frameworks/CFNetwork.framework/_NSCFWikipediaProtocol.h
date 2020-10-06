@@ -13,9 +13,7 @@
 
 - (void)dealloc;
 - (id)initWithRequest:(id)arg1 cachedResponse:(id)arg2 client:(id)arg3;
-- (void)scheduleOnRunloop:(struct __CFRunLoop { }*)arg1 mode:(struct __CFString { }*)arg2;
 - (void)startLoading;
 - (void)stopLoading;
-- (void)unscheduleOnRunloop:(struct __CFRunLoop { }*)arg1 mode:(struct __CFString { }*)arg2;
 
 @end

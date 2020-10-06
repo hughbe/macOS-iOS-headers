@@ -22,7 +22,6 @@
             double height; 
         } size; 
     }  extent;
-    CIGVGraph * graph;
     NSMutableArray * images;
     struct CGSize { 
         double width; 
@@ -33,7 +32,6 @@
         double width; 
         double height; 
     }  labelSize;
-    void * node;
     NSMutableArray * rois;
     struct CGSize { 
         double width; 
@@ -53,12 +51,10 @@
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } contentFrame;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } contentInsertSize;
 @property (readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } extent;
-@property (nonatomic) CIGVGraph *graph;
 @property (nonatomic, readonly) struct __CFArray { }*images;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } imagesFrame;
 @property (nonatomic) struct __CFString { }*label;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } labelFrame;
-@property (readonly) void*node;
 @property (nonatomic, readonly) struct __CFArray { }*rois;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } roisFrame;
 @property (nonatomic) int shape;
@@ -78,18 +74,15 @@
 - (void)dealloc;
 - (id)description;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })extent;
-- (id)graph;
 - (struct __CFArray { }*)images;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })imagesFrame;
 - (id)init;
 - (id)initWithCINode:(void*)arg1 extent:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (struct __CFString { }*)label;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })labelFrame;
-- (void*)node;
 - (struct __CFArray { }*)rois;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })roisFrame;
 - (void)setColor:(int)arg1;
-- (void)setGraph:(id)arg1;
 - (void)setLabel:(struct __CFString { }*)arg1;
 - (void)setShape:(int)arg1;
 - (void)setTitle:(struct __CFString { }*)arg1;

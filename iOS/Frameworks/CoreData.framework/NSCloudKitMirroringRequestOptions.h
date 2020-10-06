@@ -11,13 +11,11 @@
 @property (nonatomic) long long qualityOfService;
 
 - (bool)allowsCellularAccess;
-- (void)applyToOperation:(id)arg1;
 - (id)copy;
 - (void)dealloc;
 - (id)init;
 - (id)operationConfiguration;
 - (long long)qualityOfService;
-- (void)resetOperationConfiguration;
 - (void)setAllowsCellularAccess:(bool)arg1;
 - (void)setOperationConfiguration:(id)arg1;
 - (void)setQualityOfService:(long long)arg1;

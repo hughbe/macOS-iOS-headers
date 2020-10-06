@@ -7,7 +7,7 @@
 
 - (NSString *)operationID;
 - (unsigned long long)sosDomain;
-- (unsigned long long)sosError;
+- (long long)sosError;
 - (unsigned long long)sosType;
 
 @end

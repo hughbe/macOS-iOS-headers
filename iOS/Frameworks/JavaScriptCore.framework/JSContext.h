@@ -14,11 +14,14 @@
     JSVirtualMachine * m_virtualMachine;
 }
 
+@property (nonatomic, readonly) RWIProtocolInspector *_inspector;
 @property (retain) JSValue *exception;
 @property (copy) id /* block */ exceptionHandler;
 @property (readonly) JSValue *globalObject;
 @property (copy) NSString *name;
 @property (readonly) JSVirtualMachine *virtualMachine;
+
+// Image: /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
 
 + (id)contextWithJSGlobalContextRef:(struct OpaqueJSContext { }*)arg1;
 + (id)currentArguments;
@@ -33,6 +36,7 @@
 - (bool)_includesNativeCallStackWhenReportingExceptions;
 - (bool)_remoteInspectionEnabled;
 - (void)_setDebuggerRunLoop:(struct __CFRunLoop { }*)arg1;
+- (void)_setITMLDebuggableType;
 - (void)_setIncludesNativeCallStackWhenReportingExceptions:(bool)arg1;
 - (void)_setRemoteInspectionEnabled:(bool)arg1;
 - (void)beginCallbackWithData:(struct CallbackData { struct CallbackData {} *x1; id x2; id x3; struct OpaqueJSValue {} *x4; struct OpaqueJSValue {} *x5; unsigned long long x6; struct OpaqueJSValue {} **x7; id x8; }*)arg1 calleeValue:(struct OpaqueJSValue { }*)arg2 thisValue:(struct OpaqueJSValue { }*)arg3 argumentCount:(unsigned long long)arg4 arguments:(const struct OpaqueJSValue {}**)arg5;
@@ -64,5 +68,9 @@
 - (id)wrapperForJSObject:(struct OpaqueJSValue { }*)arg1;
 - (id)wrapperForObjCObject:(id)arg1;
 - (id)wrapperMap;
+
+// Image: /System/Library/PrivateFrameworks/WebInspector.framework/WebInspector
+
+- (id)_inspector;
 
 @end

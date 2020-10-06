@@ -8,12 +8,7 @@
 
 @property (nonatomic, retain) PKPrinter *printer;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)enterPIN;
 - (id)initWithPrinter:(id)arg1;
 - (void)loadView;

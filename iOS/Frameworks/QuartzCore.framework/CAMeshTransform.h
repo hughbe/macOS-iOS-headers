@@ -15,6 +15,8 @@
 @property (readonly) int subdivisionSteps;
 @property (readonly) unsigned long long vertexCount;
 
+// Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+
 + (void)CAMLParserEndElement:(id)arg1 content:(id)arg2;
 + (void)CAMLParserStartElement:(id)arg1;
 + (id)meshTransformWithVertexCount:(unsigned long long)arg1 vertices:(const struct CAMeshVertex { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CAPoint3D { double x_2_1_1; double x_2_1_2; double x_2_1_3; } x2; }*)arg2 faceCount:(unsigned long long)arg3 faces:(const struct CAMeshFace { unsigned int x1[4]; float x2[4]; }*)arg4 depthNormalization:(id)arg5;
@@ -47,5 +49,9 @@
 - (int)subdivisionSteps;
 - (struct CAMeshVertex { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CAPoint3D { double x_2_1_1; double x_2_1_2; double x_2_1_3; } x2; })vertexAtIndex:(unsigned long long)arg1;
 - (unsigned long long)vertexCount;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)pu_meshTransformApplyingNormalizedPerspectiveTransform:(struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[3]; })arg1;
 
 @end

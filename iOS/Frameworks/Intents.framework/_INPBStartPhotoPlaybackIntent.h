@@ -3,7 +3,6 @@
  */
 
 @interface _INPBStartPhotoPlaybackIntent : PBCodable <NSCopying, NSSecureCoding, _INPBStartPhotoPlaybackIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBString * _albumName;
     _INPBContactList * _contentPerson;
     _INPBDateTimeRange * _dateCreated;
@@ -25,7 +24,6 @@
     _INPBStringList * _searchTerm;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBString *albumName;
 @property (nonatomic, retain) _INPBContactList *contentPerson;
 @property (nonatomic, retain) _INPBDateTimeRange *dateCreated;
@@ -56,8 +54,6 @@
 - (void).cxx_destruct;
 - (int)StringAsExcludedAttributes:(id)arg1;
 - (int)StringAsIncludedAttributes:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addExcludedAttribute:(int)arg1;
 - (void)addIncludedAttribute:(int)arg1;
 - (id)albumName;

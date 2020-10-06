@@ -6,10 +6,10 @@
 
 @property (nonatomic, copy) NSString *accessory;
 @property (nonatomic, copy) NSURL *accessoryIdentifier;
-@property (nonatomic, copy) NSString *accessoryType;
 @property (nonatomic, copy) NSArray *attributes;
 @property (nonatomic, copy) NSNumber *currentDevice;
 @property (nonatomic, copy) NSString *entityType;
+@property (nonatomic, copy) NSString *groupType;
 @property (nonatomic, copy) NSString *hashedRouteUID;
 @property (nonatomic, copy) NSString *home;
 @property (nonatomic, copy) NSURL *homeIdentifier;
@@ -29,17 +29,19 @@
 @property (nonatomic, copy) NSString *zone;
 @property (nonatomic, copy) NSArray *zoneIdentifiers;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)entity;
 + (id)entityWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)accessory;
 - (id)accessoryIdentifier;
-- (id)accessoryType;
 - (id)attributes;
 - (id)currentDevice;
 - (id)encodedClassName;
 - (id)entityType;
 - (id)groupIdentifier;
+- (id)groupType;
 - (id)hashedRouteUID;
 - (id)home;
 - (id)homeIdentifier;
@@ -56,10 +58,10 @@
 - (id)serviceType;
 - (void)setAccessory:(id)arg1;
 - (void)setAccessoryIdentifier:(id)arg1;
-- (void)setAccessoryType:(id)arg1;
 - (void)setAttributes:(id)arg1;
 - (void)setCurrentDevice:(id)arg1;
 - (void)setEntityType:(id)arg1;
+- (void)setGroupType:(id)arg1;
 - (void)setHashedRouteUID:(id)arg1;
 - (void)setHome:(id)arg1;
 - (void)setHomeIdentifier:(id)arg1;
@@ -82,5 +84,9 @@
 - (id)targetAttributes;
 - (id)zone;
 - (id)zoneIdentifiers;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

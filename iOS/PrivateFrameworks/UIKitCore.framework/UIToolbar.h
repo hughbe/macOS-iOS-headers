@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIToolbar : UIView <DebugHierarchyObject_Fallback, UIAccessibilityHUDGestureDelegate, UIBarPositioning, UIGestureRecognizerDelegatePrivate, _UIBarPositioningInternal> {
+@interface UIToolbar : UIView <UIAccessibilityHUDGestureDelegate, UIBarPositioning, UIGestureRecognizerDelegatePrivate, _UIBarPositioningInternal> {
     id  __appearanceStorage;
     bool  __wantsLetterpressContent;
     bool  _autoHidesToolbarInFullscreen;
@@ -13,7 +13,7 @@
     UIBarButtonItem * _centerItem;
     bool  _centerTextButtons;
     UIToolbarAppearance * _compactAppearance;
-    <UIToolbarDelegate> * _delegate;
+    <_UIToolbarDelegateInternal> * _delegate;
     unsigned long long  _disableAutolayoutWarnings;
     NSArray * _items;
     UIView * _shadowView;
@@ -24,6 +24,7 @@
         unsigned int isLocked : 1; 
         unsigned int linkedBeforeWhitetailAndInitializedFromCoder : 1; 
         unsigned int disableBlurTinting : 1; 
+        unsigned int delegateRespondsToInterfaceOrientationWindowSelector : 1; 
     }  _toolbarFlags;
     _UIToolbarVisualProvider * _visualProvider;
 }
@@ -84,6 +85,7 @@
 - (void)_doCommonToolbarInit;
 - (id)_effectiveBarTintColor;
 - (void)_effectiveBarTintColorDidChangeWithPreviousColor:(id)arg1;
+- (long long)_expectedInterfaceOrientation;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_frameOfBarButtonItem:(id)arg1;
 - (void)_frameOrBoundsChangedWithVisibleSizeChange:(bool)arg1 wasMinibar:(bool)arg2;
 - (bool)_hasCustomAutolayoutNeighborSpacingForAttribute:(long long*)arg1;
@@ -93,6 +95,7 @@
 - (bool)_isLocked;
 - (id)_itemAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (long long)_itemDistribution;
+- (void)_largeContentViewerEnabledStatusDidChange:(id)arg1;
 - (bool)_linkedBeforeWhitetailAndInitializedFromCoder;
 - (void)_populateArchivedSubviews:(id)arg1;
 - (void)_positionToolbarButtonsAndResetFontScaleAdjustment:(bool)arg1;
@@ -119,16 +122,6 @@
 - (void)_updateBackgroundView;
 - (void)_updateBarForStyle;
 - (bool)_wantsLetterpressContent;
-- (void)dealloc;
-- (id)description;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)autoHidesToolbarInFullscreen;
 - (void)backdropView:(id)arg1 didChangeToGraphicsQuality:(long long)arg2;
 - (id)backgroundEffects;
@@ -139,8 +132,10 @@
 - (id)centerItem;
 - (bool)centerTextButtons;
 - (id)compactAppearance;
+- (void)dealloc;
 - (struct CGSize { double x1; double x2; })defaultSizeForOrientation:(long long)arg1;
 - (id)delegate;
+- (id)description;
 - (void)drawRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initInView:(id)arg1 withFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 withItemList:(id)arg3;
@@ -176,5 +171,23 @@
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (id)standardAppearance;
 - (void)traitCollectionDidChange:(id)arg1;
+
+// Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
+
+- (id)configuration;
+- (void)configureTransparent;
+- (void)configureWithConfiguration:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (id)ts_barButtonViews;
+- (void)ts_setBackgroundEffects:(id)arg1;
+- (void)ts_setBlurthroughBackground;
+- (void)ts_setTransparentBackground;
 
 @end

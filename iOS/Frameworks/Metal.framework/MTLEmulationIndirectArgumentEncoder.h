@@ -28,6 +28,8 @@
 - (void)setBuffers:(const id*)arg1 offsets:(const unsigned long long*)arg2 withRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
 - (void)setComputePipelineState:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)setComputePipelineStates:(const id*)arg1 withRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (void)setFunctionPointer:(id)arg1 atIndex:(unsigned long long)arg2;
+- (void)setFunctionPointers:(const id*)arg1 withRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)setRenderPipelineState:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)setRenderPipelineStates:(const id*)arg1 withRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)setSamplerState:(id)arg1 atIndex:(unsigned long long)arg2;

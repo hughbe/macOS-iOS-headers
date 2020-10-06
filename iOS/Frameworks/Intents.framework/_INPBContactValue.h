@@ -3,7 +3,6 @@
  */
 
 @interface _INPBContactValue : PBCodable <NSCopying, NSSecureCoding, _INPBContactValue> {
-    bool  __encodeLegacyGloryData;
     NSArray * _aliases;
     _INPBContactHandle * _contactHandle;
     NSString * _customIdentifier;
@@ -32,7 +31,6 @@
     _INPBValueMetadata * _valueMetadata;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *aliases;
 @property (nonatomic, readonly) unsigned long long aliasesCount;
 @property (nonatomic, retain) _INPBContactHandle *contactHandle;
@@ -87,8 +85,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsSuggestionType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAliases:(id)arg1;
 - (id)aliases;
 - (id)aliasesAtIndex:(unsigned long long)arg1;

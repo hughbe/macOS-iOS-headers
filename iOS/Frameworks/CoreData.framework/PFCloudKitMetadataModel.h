@@ -9,7 +9,9 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
++ (void)_invalidateStaticCaches;
 + (id)_newMetadataModelV1;
++ (id)_newMetadataModelV10;
 + (id)_newMetadataModelV2;
 + (id)_newMetadataModelV3;
 + (id)_newMetadataModelV4;
@@ -17,8 +19,7 @@
 + (id)_newMetadataModelV6;
 + (id)_newMetadataModelV7;
 + (id)_newMetadataModelV8;
-+ (void)addAttributes:(id)arg1 toPropertiesOfEntity:(id)arg2;
-+ (void)addRelationships:(id)arg1 toPropertiesOfEntity:(id)arg2;
++ (id)_newMetadataModelV9;
 + (id)allMetadataModels;
 + (unsigned long long)ancillaryEntityCount;
 + (unsigned long long)ancillaryEntityOffset;

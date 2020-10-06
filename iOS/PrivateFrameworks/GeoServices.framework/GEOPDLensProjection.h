@@ -69,7 +69,10 @@
 - (bool)hasLy;
 - (bool)hasType;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)k2;
 - (double)k3;
 - (double)k4;

@@ -14,6 +14,8 @@
 + (void)_overrideSystemPreferenceToContentSizeCategory:(id)arg1 forBlock:(id /* block */)arg2;
 + (void)_populateUserDefaultsContentSizeCategory:(id*)arg1 carPlay:(id*)arg2;
 + (void)_resetSystemPreferenceOverride;
++ (void)asyncOverrideSystemWithPreference:(id)arg1;
++ (void)asyncResetSystemPreferenceOverride;
 + (void)overrideSystemWithPreference:(id)arg1;
 + (void)overrideSystemWithPreference:(id)arg1 forBlock:(id /* block */)arg2;
 + (void)resetSystemPreferenceOverride;

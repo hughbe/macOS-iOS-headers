@@ -5,8 +5,8 @@
 @interface __NSCFURLLocalStreamTaskWorkRead : __NSCFURLLocalStreamTaskWork {
     id /* block */  _completion;
     bool  _eof;
-    unsigned long long  _maxBytes;
-    unsigned long long  _minBytes;
+    unsigned int  _maxBytes;
+    unsigned int  _minBytes;
     NSData * _readData;
 }
 

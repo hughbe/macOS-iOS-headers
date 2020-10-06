@@ -8,7 +8,6 @@
 
 @property (nonatomic) long long type;
 
-+ (unsigned char)convertBundleType:(id)arg1;
 + (bool)supportsSecureCoding;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

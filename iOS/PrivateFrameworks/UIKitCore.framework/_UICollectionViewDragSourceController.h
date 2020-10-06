@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) NSIndexPath *dragFromIndexPath;
 @property (nonatomic, readonly) NSArray *dragFromIndexPaths;
 @property (nonatomic) UIDragInteraction *dragInteraction;
+@property (nonatomic, readonly) bool dragItemsCreatedForReordering;
 @property (nonatomic, readonly) <UIDragSession> *dragSession;
 @property (nonatomic, retain) _UICollectionViewDragSourceControllerDragState *dragState;
 @property (readonly) unsigned long long hash;
@@ -45,13 +46,13 @@
 - (id)_dragSourceDelegateActual;
 - (id)_dragSourceDelegateProxy;
 - (id)_filterCandidateIndexPaths:(id)arg1 forUserSelectedIndexPath:(id)arg2 session:(id)arg3;
-- (bool)_isCompatibilityMode;
 - (id)_previewParametersForItemAtIndexPath:(id)arg1;
 - (id)_queryForItemsFromClientForSession:(id)arg1 dataSourceIndexPath:(id)arg2 location:(struct CGPoint { double x1; double x2; })arg3 isInitialQuery:(bool)arg4;
 - (void)_sessionWillBegin:(id)arg1 forDragInteraction:(id)arg2;
 - (void)applyingRebasingUpdatesWithUpdateMap:(id)arg1;
 - (id)collectionView;
 - (long long)currentSessionItemCount;
+- (void)deactivate;
 - (void)dealloc;
 - (id)delegate;
 - (id)description;
@@ -74,6 +75,7 @@
 - (bool)dragInteraction:(id)arg1 sessionIsRestrictedToDraggingApplication:(id)arg2;
 - (void)dragInteraction:(id)arg1 sessionWillBegin:(id)arg2;
 - (void)dragInteraction:(id)arg1 willAnimateLiftWithAnimator:(id)arg2 session:(id)arg3;
+- (bool)dragItemsCreatedForReordering;
 - (id)dragSession;
 - (id)dragState;
 - (id)indexPathForDragItem:(id)arg1;

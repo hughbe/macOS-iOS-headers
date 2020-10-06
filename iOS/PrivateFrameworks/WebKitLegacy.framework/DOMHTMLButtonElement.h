@@ -26,7 +26,6 @@
 - (void)setType:(id)arg1;
 - (void)setValue:(id)arg1;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (id)type;
 - (id)value;
 - (bool)willValidate;

@@ -23,6 +23,6 @@
 - (void)flushCache;
 - (id)init;
 - (id)registrationData;
-- (id)registrationWithServiceType:(id)arg1 accountType:(int)arg2 value:(id)arg3;
+- (id)registrationWithServiceType:(id)arg1 accountType:(int)arg2 isTemporary:(bool)arg3 value:(id)arg4;
 
 @end

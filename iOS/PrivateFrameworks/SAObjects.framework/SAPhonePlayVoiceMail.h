@@ -7,6 +7,8 @@
 @property (nonatomic, retain) SARemoteDevice *targetDevice;
 @property (nonatomic, copy) NSURL *voiceMailId;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)playVoiceMail;
 + (id)playVoiceMailWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -17,5 +19,9 @@
 - (void)setVoiceMailId:(id)arg1;
 - (id)targetDevice;
 - (id)voiceMailId;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (long long)_afui_usefulUserResultType;
 
 @end

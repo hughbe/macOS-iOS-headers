@@ -6,6 +6,7 @@
 @required
 
 - (SFActionItem *)action;
+- (NSArray *)alternativeURLs;
 - (NSString *)appleReferrer;
 - (NSString *)applicationBundleIdentifier;
 - (NSString *)auxiliaryBottomText;
@@ -15,6 +16,7 @@
 - (unsigned long long)blockId;
 - (NSString *)calendarIdentifier;
 - (SFCard *)card;
+- (SFCard *)compactCard;
 - (NSString *)completedQuery;
 - (NSString *)completion;
 - (SFImage *)completionImage;
@@ -25,6 +27,7 @@
 - (SFCustom *)customProperties;
 - (long long)dataOwnerType;
 - (NSArray *)descriptions;
+- (bool)didTakeoverGo;
 - (bool)doNotFold;
 - (NSNumber *)engagementScore;
 - (NSData *)entityData;
@@ -56,8 +59,10 @@
 - (SFMoreResults *)moreResults;
 - (SFPunchout *)moreResultsPunchout;
 - (NSString *)nearbyBusinessesString;
+- (bool)noGoTakeover;
 - (double)personalizationScore;
 - (int)placement;
+- (bool)preferTopPlatter;
 - (bool)preventThumbnailImageScaling;
 - (bool)publiclyIndexable;
 - (NSString *)publishDate;
@@ -78,6 +83,7 @@
 - (NSDictionary *)serverFeatures;
 - (double)serverScore;
 - (void)setAction:(SFActionItem *)arg1;
+- (void)setAlternativeURLs:(NSArray *)arg1;
 - (void)setAppleReferrer:(NSString *)arg1;
 - (void)setApplicationBundleIdentifier:(NSString *)arg1;
 - (void)setAuxiliaryBottomText:(NSString *)arg1;
@@ -87,6 +93,7 @@
 - (void)setBlockId:(unsigned long long)arg1;
 - (void)setCalendarIdentifier:(NSString *)arg1;
 - (void)setCard:(SFCard *)arg1;
+- (void)setCompactCard:(SFCard *)arg1;
 - (void)setCompletedQuery:(NSString *)arg1;
 - (void)setCompletion:(NSString *)arg1;
 - (void)setCompletionImage:(SFImage *)arg1;
@@ -97,6 +104,7 @@
 - (void)setCustomProperties:(SFCustom *)arg1;
 - (void)setDataOwnerType:(long long)arg1;
 - (void)setDescriptions:(NSArray *)arg1;
+- (void)setDidTakeoverGo:(bool)arg1;
 - (void)setDoNotFold:(bool)arg1;
 - (void)setEngagementScore:(NSNumber *)arg1;
 - (void)setEntityData:(NSData *)arg1;
@@ -128,8 +136,10 @@
 - (void)setMoreResults:(SFMoreResults *)arg1;
 - (void)setMoreResultsPunchout:(SFPunchout *)arg1;
 - (void)setNearbyBusinessesString:(NSString *)arg1;
+- (void)setNoGoTakeover:(bool)arg1;
 - (void)setPersonalizationScore:(double)arg1;
 - (void)setPlacement:(int)arg1;
+- (void)setPreferTopPlatter:(bool)arg1;
 - (void)setPreventThumbnailImageScaling:(bool)arg1;
 - (void)setPubliclyIndexable:(bool)arg1;
 - (void)setPublishDate:(NSString *)arg1;
@@ -149,6 +159,7 @@
 - (void)setSectionHeaderMoreURL:(NSURL *)arg1;
 - (void)setServerFeatures:(NSDictionary *)arg1;
 - (void)setServerScore:(double)arg1;
+- (void)setShouldUseCompactDisplay:(bool)arg1;
 - (void)setSourceName:(NSString *)arg1;
 - (void)setSrf:(NSString *)arg1;
 - (void)setStoreIdentifier:(NSString *)arg1;
@@ -161,6 +172,9 @@
 - (void)setUrl:(NSURL *)arg1;
 - (void)setUserActivityRequiredString:(NSString *)arg1;
 - (void)setUserInput:(NSString *)arg1;
+- (void)setUsesCompactDisplay:(bool)arg1;
+- (void)setWasCompact:(bool)arg1;
+- (bool)shouldUseCompactDisplay;
 - (NSString *)sourceName;
 - (NSString *)srf;
 - (NSString *)storeIdentifier;
@@ -173,5 +187,7 @@
 - (NSURL *)url;
 - (NSString *)userActivityRequiredString;
 - (NSString *)userInput;
+- (bool)usesCompactDisplay;
+- (bool)wasCompact;
 
 @end

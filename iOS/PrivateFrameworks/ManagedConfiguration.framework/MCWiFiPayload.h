@@ -12,6 +12,8 @@
     NSNumber * _captiveBypassNum;
     NSString * _certificateUUID;
     NSString * _credentialUUID;
+    bool  _disableAssociationMACRandomization;
+    NSNumber * _disableAssociationMACRandomizationNum;
     NSString * _displayedOperatorName;
     NSString * _domainName;
     NSDictionary * _eapClientConfig;
@@ -53,6 +55,8 @@
 @property (nonatomic, retain) NSNumber *captiveBypassNum;
 @property (nonatomic, retain) NSString *certificateUUID;
 @property (nonatomic, retain) NSString *credentialUUID;
+@property (nonatomic) bool disableAssociationMACRandomization;
+@property (nonatomic, retain) NSNumber *disableAssociationMACRandomizationNum;
 @property (nonatomic, retain) NSString *displayedOperatorName;
 @property (nonatomic, retain) NSString *domainName;
 @property (nonatomic, retain) NSDictionary *eapClientConfig;
@@ -104,7 +108,8 @@
 - (id)captiveBypassNum;
 - (id)certificateUUID;
 - (id)credentialUUID;
-- (id)description;
+- (bool)disableAssociationMACRandomization;
+- (id)disableAssociationMACRandomizationNum;
 - (id)displayedOperatorName;
 - (id)domainName;
 - (id)eapClientConfig;
@@ -142,6 +147,8 @@
 - (void)setCaptiveBypassNum:(id)arg1;
 - (void)setCertificateUUID:(id)arg1;
 - (void)setCredentialUUID:(id)arg1;
+- (void)setDisableAssociationMACRandomization:(bool)arg1;
+- (void)setDisableAssociationMACRandomizationNum:(id)arg1;
 - (void)setDisplayedOperatorName:(id)arg1;
 - (void)setDomainName:(id)arg1;
 - (void)setEapClientConfig:(id)arg1;
@@ -184,5 +191,6 @@
 - (id)userInputFields;
 - (id)username;
 - (bool)usernameRequired;
+- (id)verboseDescription;
 
 @end

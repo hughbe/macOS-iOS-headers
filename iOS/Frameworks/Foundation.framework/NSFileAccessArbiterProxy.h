@@ -6,7 +6,6 @@
     bool  _disableFileProviderReregistration;
     NSMutableDictionary * _presenterMessengersByID;
     NSMutableDictionary * _presentersByID;
-    NSMutableArray * _providerListeners;
     NSMapTable * _providerMessengersByID;
     NSMutableSet * _providers;
     NSObject<OS_dispatch_queue> * _queue;
@@ -19,10 +18,8 @@
 @property (readonly) Class superclass;
 
 + (void)_accessPresenterOperationRecordsUsingBlock:(id /* block */)arg1;
-+ (id)_fetchProviderMessengerForListener:(id)arg1;
 + (id)_fileReactorDebuggingInformation;
 + (id)_idForReactor:(id)arg1;
-+ (void)_setProviderMessenger:(id)arg1 forListener:(id)arg2;
 + (id)_willBeginOperationForReactor:(id)arg1 withDescription:(id)arg2;
 
 - (id)_onqueue_filePresenters;
@@ -40,7 +37,6 @@
 - (id)idForFileReactor:(id)arg1;
 - (id)initWithServer:(id)arg1 queue:(id)arg2;
 - (bool)itemHasPresentersAtURL:(id)arg1;
-- (bool)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
 - (void)performBarrier;
 - (void)performBarrierAsync:(id /* block */)arg1;
 - (void)removeFilePresenter:(id)arg1;

@@ -9,6 +9,7 @@
     NSMutableArray * _buttons;
     bool  _buttonsUnderlapSwipedView;
     unsigned long long  _cellEdge;
+    UIView * _clippingView;
     double  _confirmationThreshold;
     struct UIEdgeInsets { 
         double top; 
@@ -16,10 +17,9 @@
         double bottom; 
         double right; 
     }  _contentInsets;
-    double  _currentExtraOffset;
     double  _currentOffset;
     <UISwipeActionPullViewDelegate> * _delegate;
-    bool  _isCollapsed;
+    bool  _isTentative;
     double  _minimumOffset;
     double  _openThreshold;
     UISwipeActionButton * _pressedButton;
@@ -43,22 +43,22 @@
 @property (nonatomic, readonly) UIContextualAction *primarySwipeAction;
 @property (nonatomic) unsigned long long state;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (Class)_buttonClass;
 - (double)_directionalMultiplier;
-- (id)_inferredAccessibilityIdentifierTemplate;
+- (double)_interButtonPadding;
+- (void)_layoutClippingLayer;
+- (double)_paddingToSwipedView;
 - (void)_performAction:(id)arg1 offset:(double)arg2 extraOffset:(double)arg3;
 - (void)_pressedButton:(id)arg1;
 - (void)_rebuildButtons;
+- (void)_setLayerBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)_setWidth:(double)arg1;
+- (void)_setupClippingViewIfNeeded;
 - (unsigned long long)_swipeActionCount;
 - (void)_tappedButton:(id)arg1;
+- (double)_totalInterButtonPadding;
 - (void)_unpressedButton:(id)arg1;
-- (id)description;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)autosizesButtons;
 - (id)backgroundPullColor;
 - (bool)buttonsUnderlapSwipedView;
@@ -68,6 +68,7 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })contentInsets;
 - (double)currentOffset;
 - (id)delegate;
+- (id)description;
 - (void)freeze;
 - (bool)hasActions;
 - (id)hitTest:(struct CGPoint { double x1; double x2; })arg1 withEvent:(id)arg2;
@@ -81,9 +82,11 @@
 - (void)resetView;
 - (void)setAutosizesButtons:(bool)arg1;
 - (void)setBackgroundPullColor:(id)arg1;
+- (void)setBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setButtonsUnderlapSwipedView:(bool)arg1;
 - (void)setContentInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setState:(unsigned long long)arg1;
 - (id)sourceViewForAction:(id)arg1;
 - (unsigned long long)state;

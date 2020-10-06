@@ -89,7 +89,6 @@
 - (id)entitySpecificRelationships;
 - (id)externalName;
 - (unsigned int)fetchIndexForKey:(id)arg1;
-- (void)finalize;
 - (id)foreignEntityKeyColumns;
 - (id)foreignKeyColumns;
 - (id)foreignOrderKeyColumns;

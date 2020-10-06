@@ -59,4 +59,28 @@
 
 - (void)_mapkit_removeObjects:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/CoreSpeech.framework/CoreSpeech
+
+- (bool)_cs_isHashTableEmpty;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
+- (id)ef_uniquedObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (void)fc_safelyAddObjectsFromArray:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)pk_weakObjectsHashTableUsingPointerPersonality;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSPersistence.framework/TSPersistence
+
+- (bool)tsp_saveDataReferencesToMessage:(struct RepeatedPtrField<TSP::DataInfo> { struct Arena {} *x1; int x2; int x3; struct Rep {} *x4; }*)arg1 dataArchiver:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSPersistence.framework/TSPersistence
+
+- (bool)tsp_saveDataReferencesToMessage:(struct RepeatedPtrField<TSP::DataInfo> { struct Arena {} *x1; int x2; int x3; struct Rep {} *x4; }*)arg1 dataArchiver:(id)arg2;
+
 @end

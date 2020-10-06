@@ -2,20 +2,22 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessHandle : NSObject <BSDescriptionProviding, BSXPCSecureCoding, NSSecureCoding, RBSProcessIdentifier> {
+@interface RBSProcessHandle : NSObject <NSSecureCoding, RBSProcessIdentifier, RBSXPCSecureCoding> {
+    BSAuditToken * _bsAuditToken;
     RBSProcessBundle * _bundle;
+    NSString * _cachedName;
     NSObject<OS_xpc_object> * _codedHandle;
+    unsigned long long  _data;
     RBSProcessIdentity * _identity;
-    RBSProcessInstance * _instance;
-    unsigned long long  _ipcID;
     BSProcessHandle * _legacyHandle;
-    BSMachPortTaskNameRight * _lifePort;
     RBSProcessMonitor * _monitor;
-    bool  _reported;
+    int  _pid;
+    RBSMachPortTaskNameRight * _taskPort;
 }
 
 @property (nonatomic, readonly) RBSProcessLimitations *activeLimitations;
-@property (nonatomic, readonly, copy) BSAuditToken *auditToken;
+@property (nonatomic, readonly) struct { unsigned int x1[8]; } auditToken;
+@property (nonatomic, readonly, copy) NSString *beforeTranslocationBundlePath;
 @property (nonatomic, readonly) RBSProcessBundle *bundle;
 @property (nonatomic, readonly) RBSProcessState *currentState;
 @property (readonly, copy) NSString *debugDescription;
@@ -25,15 +27,14 @@
 @property (nonatomic, readonly, copy) RBSProcessIdentity *identity;
 @property (nonatomic, readonly, copy) RBSProcessInstance *instance;
 @property (nonatomic, readonly) RBSProcessExitContext *lastExitContext;
-@property (nonatomic, readonly) BSMachPortTaskNameRight *lifePort;
+@property (getter=isLifecycleManaged, nonatomic, readonly) bool lifecycleManaged;
 @property (nonatomic, readonly, copy) NSString *name;
 @property (nonatomic, readonly) int pid;
+@property (nonatomic, readonly) int platform;
 @property (getter=isReported, nonatomic, readonly) bool reported;
 @property (readonly) Class superclass;
 @property (getter=isValid, nonatomic, readonly) bool valid;
 
-+ (id)_cacheHandle:(id)arg1;
-+ (id)_cachedHandleForKey:(id)arg1;
 + (void)clearAllHandles;
 + (id)currentProcess;
 + (id)handleForIdentifier:(id)arg1 error:(out id*)arg2;
@@ -41,49 +42,47 @@
 + (id)handleForLegacyHandle:(id)arg1 error:(out id*)arg2;
 + (id)handleForPredicate:(id)arg1 error:(out id*)arg2;
 + (id)observeForImminentAssertionsExpiration:(id /* block */)arg1;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (void)_fullEncode:(id)arg1;
-- (void)_keepAlive;
 - (id)activeLimitations;
-- (id)auditToken;
+- (struct { unsigned int x1[8]; })auditToken;
+- (id)beforeTranslocationBundlePath;
 - (id)bundle;
-- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)currentState;
 - (id)currentStateMatchingDescriptor:(id)arg1;
 - (void)dealloc;
+- (id)debugDescription;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (double)elapsedCPUTimeForFrontBoard;
 - (void)encodeWithCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (void)fullEncode:(id)arg1 forKey:(id)arg2;
 - (unsigned long long)hash;
 - (id)hostProcess;
 - (id)identity;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithIdentity:(id)arg1;
-- (id)initWithInstance:(id)arg1 lifePort:(id)arg2 bundleData:(id)arg3 reported:(bool)arg4;
+- (id)initWithInstance:(id)arg1 auditToken:(id)arg2 bundleData:(id)arg3 manageFlags:(unsigned char)arg4 beforeTranslocationBundlePath:(id)arg5;
+- (id)initWithLaunchContext:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (id)instance;
 - (void)intendToExitWith:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (bool)isLifecycleManaged;
 - (bool)isReported;
 - (bool)isValid;
 - (id)lastExitContext;
 - (id)legacyHandle;
-- (id)lifePort;
 - (bool)matchesProcess:(id)arg1;
 - (void)monitorForDeath:(id /* block */)arg1;
 - (id)name;
 - (int)pid;
+- (int)platform;
 - (void)plugInHandshakeComplete;
 - (id)processPredicate;
 - (int)rbs_pid;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 
 @end

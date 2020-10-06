@@ -4,6 +4,7 @@
 
 @interface UIKeyboardTouchInfo : NSObject {
     long long  _continuousPathState;
+    bool  _delayed;
     bool  _dragged;
     int  _fingerID;
     struct CGPoint { 
@@ -25,6 +26,7 @@
 }
 
 @property (nonatomic) long long continuousPathState;
+@property (nonatomic) bool delayed;
 @property (nonatomic) bool dragged;
 @property (nonatomic) int fingerID;
 @property (nonatomic) struct CGPoint { double x1; double x2; } initialDragPoint;
@@ -42,6 +44,7 @@
 - (void)addTouch:(id)arg1;
 - (long long)continuousPathState;
 - (void)dealloc;
+- (bool)delayed;
 - (bool)dragged;
 - (int)fingerID;
 - (id)init;
@@ -53,6 +56,7 @@
 - (bool)maySuppressUpAction;
 - (unsigned long long)processedTouchCount;
 - (void)setContinuousPathState:(long long)arg1;
+- (void)setDelayed:(bool)arg1;
 - (void)setDragged:(bool)arg1;
 - (void)setFingerID:(int)arg1;
 - (void)setInitialDragPoint:(struct CGPoint { double x1; double x2; })arg1;

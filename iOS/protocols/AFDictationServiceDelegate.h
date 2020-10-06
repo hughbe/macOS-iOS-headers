@@ -18,7 +18,7 @@
 - (oneway void)speechDidRecognizeTokens:(NSArray *)arg1 usingSpeechModel:(NSString *)arg2;
 - (oneway void)speechDidRecognizeTranscriptionObjects:(NSArray *)arg1 usingSpeechModel:(NSString *)arg2;
 - (oneway void)speechRecognitionDidFinishWithError:(NSError *)arg1;
-- (oneway void)speechRecordingDidBeginWithOptions:(AFDictationOptions *)arg1;
+- (oneway void)speechRecordingDidBeginWithOptions:(AFDictationOptions *)arg1 sessionUUID:(NSString *)arg2 sessionRequestUUID:(NSString *)arg3;
 - (oneway void)speechRecordingDidCancel;
 - (oneway void)speechRecordingDidEnd;
 - (oneway void)speechRecordingDidFail:(NSError *)arg1;

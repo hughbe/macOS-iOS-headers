@@ -25,20 +25,13 @@
     unsigned long long  _renderingIntent;
 }
 
-@property (nonatomic, readonly) bool _isHardwareBased;
-
 + (void)flushCaches;
 
 - (void).cxx_destruct;
-- (void)_decompressEagerly:(bool)arg1;
-- (void)_decompressionFallbackImageCreation;
-- (bool)_isHardwareBased;
-- (void)_waitForMetadata;
 - (void)dealloc;
 - (unsigned long long)hash;
 - (id)initWithData:(id)arg1 immediateLoadWithMaxSize:(struct CGSize { double x1; double x2; })arg2 renderingIntent:(unsigned long long)arg3 cache:(bool)arg4;
 - (bool)isEqual:(id)arg1;
 - (struct CGImage { }*)waitForImageRef;
-- (long long)waitForOrientation;
 
 @end

@@ -3,13 +3,13 @@
  */
 
 @interface MKMapGestureController : NSObject <MKVariableDelayTapRecognizerDelegate, UIGestureRecognizerDelegate, _MKUserInteractionGestureRecognizerTouchObserver> {
+    _MKDirectionalArrowRecognizer * _activeArrowGestureRecognizer;
+    _MKDirectionalArrowRecognizer * _arrowPanGestureRecognizer;
+    _MKDirectionalArrowRecognizer * _arrowRotateGestureRecognizer;
     _MKDirectionalArrowRecognizer * _arrowZoomGestureRecognizer;
     double  _arrowZoomSpeed;
     double  _arrowZoomStartTimestamp;
     MKCompassView * _compassView;
-    _MKConditionalPanRotationGestureRecognizer * _conditionalDragRotationGestureRecognizer;
-    _MKConditionalPanTiltGestureRecognizer * _conditionalDragTiltGestureRecognizer;
-    _MKConditionalPanZoomGestureRecognizer * _conditionalDragZoomGestureRecognizer;
     _MKConditionalPanRotationGestureRecognizer * _conditionalPanRotationGestureRecognizer;
     _MKConditionalPanTiltGestureRecognizer * _conditionalPanTiltGestureRecognizer;
     _MKConditionalPanZoomGestureRecognizer * _conditionalPanZoomGestureRecognizer;
@@ -18,10 +18,17 @@
     bool  _didStartLongPress;
     MKVariableDelayTapRecognizer * _doubleTapGestureRecognizer;
     long long  _gestureCount;
-    UIHoverGestureRecognizer * _hoverGestureReconizer;
+    _UIInterruptScrollDecelerationGestureRecognizer * _gestureInterruptionRecognizer;
+    bool  _isFullRotatingFromArrows;
     bool  _isPanning;
     bool  _isPinching;
+    struct CGPoint { 
+        double x; 
+        double y; 
+    }  _lastArrowScrollTranslationDelta;
     double  _lastPinchUpdateTimestamp;
+    double  _lastRotation;
+    double  _lastRotationInGestureDelta;
     double  _lastScale;
     double  _lastZoomPanTranslation;
     MKBasicMapView * _mapView;
@@ -46,6 +53,10 @@
     bool  _rotationSnappingEnabled;
     UIPanGestureRecognizer * _scaleDragGestureRecognizer;
     MKScaleView * _scaleView;
+    struct CGPoint { 
+        double x; 
+        double y; 
+    }  _scrollTranslation;
     VKDynamicAnimation * _tiltDecelerationAnimation;
     MKTiltGestureRecognizer * _tiltGestureRecognizer;
     _MKUserInteractionGestureRecognizer * _touchGestureRecognizer;
@@ -79,7 +90,7 @@
 
 - (void).cxx_destruct;
 - (void)_clearGesture:(id)arg1;
-- (void)_handleHover:(id)arg1;
+- (void)_handleInterrupt:(id)arg1;
 - (void)_handleRotationPan:(id)arg1;
 - (void)_handleStandardTilt:(id)arg1;
 - (void)_handleZoomPan:(id)arg1;
@@ -89,6 +100,7 @@
 - (void)_updateRotationGestureForState:(long long)arg1 focusPoint:(struct CGPoint { double x1; double x2; })arg2 rotation:(double)arg3 velocity:(double)arg4;
 - (void)_updateZoomGestureForState:(long long)arg1 focusPoint:(struct CGPoint { double x1; double x2; })arg2 scale:(double)arg3 velocity:(double)arg4 gestureType:(long long)arg5 configuration:(id)arg6;
 - (void)beginGesturing;
+- (void)cancelZoomInOrOut;
 - (void)clearGestureRecognizersInFlight;
 - (id)compassView;
 - (void)dealloc;
@@ -101,6 +113,8 @@
 - (void)gestureRecognizerTouchesBegan:(id)arg1;
 - (void)gestureRecognizerTouchesCanceled:(id)arg1;
 - (void)gestureRecognizerTouchesEnded:(id)arg1;
+- (void)handleArrowPan:(id)arg1;
+- (void)handleArrowRotate:(id)arg1;
 - (void)handleArrowZoom:(id)arg1;
 - (void)handleDoubleTap:(id)arg1;
 - (void)handlePan:(id)arg1;
@@ -142,5 +156,7 @@
 - (id)twoFingerLongPressGestureRecognizer;
 - (id)twoFingerTapGestureRecognizer;
 - (double)variableDelayTapRecognizer:(id)arg1 shouldWaitForNextTapForDuration:(double)arg2 afterTouch:(id)arg3;
+- (void)zoomIn;
+- (void)zoomOut;
 
 @end

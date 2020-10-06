@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INInteraction : NSObject <INEnumerable, INImageProxyInjecting, INInteractionExport, INKeyImageProducing, NSCopying, NSSecureCoding> {
+@interface INInteraction : NSObject <CMSCoding, CRContent, INEnumerable, INImageProxyInjecting, INInteractionExport, INKeyImageProducing, NSCopying, NSSecureCoding> {
     NSUUID * _contextExtensionUUID;
     NSDateInterval * _dateInterval;
     long long  _direction;
@@ -54,6 +54,7 @@
 - (bool)_donatedBySiri;
 - (long long)_indexingHash;
 - (id)_init;
+- (id)_initWithIntent:(id)arg1 response:(id)arg2;
 - (void)_injectProxiesForImages:(id /* block */)arg1 completion:(id /* block */)arg2;
 - (bool)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(id /* block */)arg2;
 - (id)_keyImage;
@@ -94,8 +95,34 @@
 - (void)setIdentifier:(id)arg1;
 - (void)setIntentHandlingStatus:(long long)arg1;
 
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
+- (id)underlyingInteraction;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
+
 // Image: /System/Library/PrivateFrameworks/CoreDuetContext.framework/CoreDuetContext
 
 - (id)contextMetadataWithBundleIdentifier:(id)arg1 eventUUID:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)fromSchemas:(id)arg1;
+
+- (bool)canConvertToSchemaOrg;
+- (id)sg_LoggingIdentifier;
+- (id)toSchemas;
+
+// Image: /System/Library/PrivateFrameworks/IntentsCore.framework/IntentsCore
+
+- (void)inc_associateFileURLsWithAuditToken:(struct { unsigned int x1[8]; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
+- (void)mtSetIntentDonorFromSource:(id)arg1;
 
 @end

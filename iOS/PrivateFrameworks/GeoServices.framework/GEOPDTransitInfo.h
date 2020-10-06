@@ -14,16 +14,7 @@
         unsigned int read_title : 1; 
         unsigned int read_transitConnections : 1; 
         unsigned int read_transitMarketId : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_labels : 1; 
-        unsigned int wrote_lines : 1; 
-        unsigned int wrote_searchDisplayName : 1; 
-        unsigned int wrote_subTitle : 1; 
-        unsigned int wrote_systems : 1; 
-        unsigned int wrote_title : 1; 
-        unsigned int wrote_transitConnections : 1; 
-        unsigned int wrote_transitId : 1; 
-        unsigned int wrote_transitMarketId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _labels;
     NSMutableArray * _lines;
@@ -67,18 +58,6 @@
 + (id)transitInfoForPlaceData:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsLabel:(id)arg1;
-- (void)_addNoFlagsLine:(id)arg1;
-- (void)_addNoFlagsSystem:(id)arg1;
-- (void)_addNoFlagsTransitConnection:(id)arg1;
-- (void)_readLabels;
-- (void)_readLines;
-- (void)_readSearchDisplayName;
-- (void)_readSubTitle;
-- (void)_readSystems;
-- (void)_readTitle;
-- (void)_readTransitConnections;
-- (void)_readTransitMarketId;
 - (void)addLabel:(id)arg1;
 - (void)addLine:(id)arg1;
 - (void)addSystem:(id)arg1;
@@ -100,7 +79,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)labelAtIndex:(unsigned long long)arg1;
 - (id)labels;
 - (unsigned long long)labelsCount;

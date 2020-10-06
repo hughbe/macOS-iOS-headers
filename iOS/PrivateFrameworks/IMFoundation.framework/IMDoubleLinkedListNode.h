@@ -12,7 +12,7 @@
 @property (retain) id object;
 @property (retain) IMDoubleLinkedListNode *prev;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithObject:(id)arg1;
 - (id)next;
 - (id)object;

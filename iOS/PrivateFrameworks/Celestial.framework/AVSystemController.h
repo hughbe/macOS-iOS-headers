@@ -12,11 +12,15 @@
 
 - (bool)allowUserToExceedEUVolumeLimit;
 - (id)attributeForKey:(id)arg1;
+- (bool)changeActiveCategoryVolume:(bool)arg1;
+- (bool)changeActiveCategoryVolume:(bool)arg1 fallbackCategory:(id)arg2 resultVolume:(float*)arg3 affectedCategory:(id*)arg4;
+- (bool)changeActiveCategoryVolume:(bool)arg1 forRoute:(id)arg2 andDeviceIdentifier:(id)arg3;
 - (bool)changeActiveCategoryVolumeBy:(float)arg1;
 - (bool)changeActiveCategoryVolumeBy:(float)arg1 fallbackCategory:(id)arg2 resultVolume:(float*)arg3 affectedCategory:(id*)arg4;
 - (bool)changeActiveCategoryVolumeBy:(float)arg1 forRoute:(id)arg2 andDeviceIdentifier:(id)arg3;
+- (bool)changeVolume:(bool)arg1 forCategory:(id)arg2;
 - (bool)changeVolumeBy:(float)arg1 forCategory:(id)arg2;
-- (bool)changeVolumeForAccessoryBy:(float)arg1 forCategory:(id)arg2 accessoryRoute:(id)arg3 andAccessoryDeviceIdentifier:(id)arg4;
+- (bool)changeVolumeForRoute:(bool)arg1 forCategory:(id)arg2 mode:(id)arg3 route:(id)arg4 deviceIdentifier:(id)arg5 andRouteSubtype:(id)arg6;
 - (bool)changeVolumeForRouteBy:(float)arg1 forCategory:(id)arg2 mode:(id)arg3 route:(id)arg4 deviceIdentifier:(id)arg5 andRouteSubtype:(id)arg6;
 - (bool)currentRouteHasVolumeControl;
 - (void)dealloc;
@@ -29,7 +33,6 @@
 - (bool)getActiveCategoryVolume:(float*)arg1 andName:(id*)arg2 forRoute:(id)arg3 andDeviceIdentifier:(id)arg4;
 - (bool)getVibeIntensity:(float*)arg1;
 - (bool)getVolume:(float*)arg1 forCategory:(id)arg2;
-- (bool)getVolumeForAccessory:(float*)arg1 forCategory:(id)arg2 accessoryRoute:(id)arg3 andAccessoryDeviceIdentifier:(id)arg4;
 - (bool)getVolumeForRoute:(float*)arg1 forCategory:(id)arg2 mode:(id)arg3 route:(id)arg4 deviceIdentifier:(id)arg5 andRouteSubtype:(id)arg6;
 - (void)handleServerDied;
 - (bool)hasRouteSharingPolicyLongFormVideo:(id)arg1;
@@ -47,9 +50,9 @@
 - (bool)setBTHFPRoute:(id)arg1 availableForVoicePrompts:(bool)arg2;
 - (bool)setPickedRouteWithPassword:(id)arg1 withPassword:(id)arg2;
 - (bool)setVibeIntensityTo:(float)arg1;
-- (bool)setVolumeForAccessoryTo:(float)arg1 forCategory:(id)arg2 accessoryRoute:(id)arg3 andAccessoryDeviceIdentifier:(id)arg4;
 - (bool)setVolumeForRouteTo:(float)arg1 forCategory:(id)arg2 mode:(id)arg3 route:(id)arg4 deviceIdentifier:(id)arg5 andRouteSubtype:(id)arg6;
 - (bool)setVolumeTo:(float)arg1 forCategory:(id)arg2;
+- (bool)shouldClientWithAudioScore:(int)arg1 hijackRoute:(id)arg2 hijackDeniedReason:(id*)arg3;
 - (bool)toggleActiveCategoryMuted;
 - (bool)toggleActiveCategoryMutedForRoute:(id)arg1 andDeviceIdentifier:(id)arg2;
 - (id)volumeCategoryForAudioCategory:(id)arg1;

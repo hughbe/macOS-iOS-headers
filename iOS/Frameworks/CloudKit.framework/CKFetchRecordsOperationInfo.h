@@ -44,6 +44,7 @@
 - (id)desiredPackageFileIndices;
 - (bool)dropInMemoryAssetContentASAP;
 - (void)encodeWithCoder:(id)arg1;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (bool)isFetchCurrentUserOperation;
 - (id)recordIDs;

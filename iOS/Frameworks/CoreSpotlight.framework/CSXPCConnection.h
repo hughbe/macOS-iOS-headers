@@ -7,6 +7,7 @@
     bool  _listener;
     bool  _machService;
     bool  _nonLaunching;
+    bool  _privateDaemon;
     NSObject<OS_dispatch_queue> * _queue;
     NSString * _serviceName;
     unsigned int  _user;
@@ -17,6 +18,7 @@
 @property (nonatomic, readonly) bool listener;
 @property (nonatomic, readonly) bool machService;
 @property (nonatomic) bool nonLaunching;
+@property (nonatomic) bool privateDaemon;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
 @property (nonatomic, readonly) NSString *serviceName;
 @property (nonatomic) unsigned int user;
@@ -27,9 +29,14 @@
 + (id)copyNSStringArrayFromXPCArray:(id)arg1;
 + (id)copyNSStringForKey:(const char *)arg1 fromXPCDictionary:(id)arg2;
 + (id)copyNSStringSetFromXPCArray:(id)arg1;
++ (id)copyPlistFromXPCObject:(id)arg1;
 + (id)dataWrapperForKey:(const char *)arg1 sizeKey:(const char *)arg2 fromXPCDictionary:(id)arg3;
 + (bool)dictionary:(id)arg1 setSharedMemory:(void*)arg2 forKey:(const char *)arg3 size:(unsigned long long)arg4 forSizeKey:(const char *)arg5;
 + (void)dictionary:(id)arg1 setStringArray:(id)arg2 forKey:(const char *)arg3;
++ (void)journalDictionary:(id)arg1 toFolderPath:(const char *)arg2 forPID:(int)arg3 withLabel:(const char *)arg4 andID:(unsigned long long)arg5;
++ (bool)journalEnabled;
++ (id)processNameForPID:(int)arg1;
++ (void)setJournalEnabled:(bool)arg1;
 
 - (void).cxx_destruct;
 - (void)_lostClientConnection:(id)arg1 error:(id)arg2;
@@ -51,12 +58,14 @@
 - (bool)lostClientConnection:(id)arg1 error:(id)arg2;
 - (bool)machService;
 - (bool)nonLaunching;
+- (bool)privateDaemon;
 - (id)queue;
 - (void)sendMessageAsync:(id)arg1;
 - (void)sendMessageAsync:(id)arg1 completion:(id /* block */)arg2;
 - (id)serviceName;
 - (void)setConnection:(id)arg1;
 - (void)setNonLaunching:(bool)arg1;
+- (void)setPrivateDaemon:(bool)arg1;
 - (void)setQueue:(id)arg1;
 - (void)setUser:(unsigned int)arg1;
 - (void)startListener;

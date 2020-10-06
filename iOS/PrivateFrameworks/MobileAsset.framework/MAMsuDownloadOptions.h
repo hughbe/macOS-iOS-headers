@@ -5,6 +5,7 @@
 @interface MAMsuDownloadOptions : MADownloadOptions {
     bool  _allowSameVersion;
     long long  _delayPeriod;
+    NSString * _downloadAuthorizationHeader;
     NSString * _prerequisiteBuildVersion;
     NSString * _prerequisiteProductVersion;
     NSString * _prerequisiteReleaseType;
@@ -15,6 +16,7 @@
 
 @property (nonatomic) bool allowSameVersion;
 @property (nonatomic) long long delayPeriod;
+@property (nonatomic, retain) NSString *downloadAuthorizationHeader;
 @property (nonatomic, retain) NSString *prerequisiteBuildVersion;
 @property (nonatomic, retain) NSString *prerequisiteProductVersion;
 @property (nonatomic, retain) NSString *prerequisiteReleaseType;
@@ -27,10 +29,11 @@
 - (bool)allowSameVersion;
 - (void)dealloc;
 - (long long)delayPeriod;
+- (id)description;
+- (id)downloadAuthorizationHeader;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (void)logOptions;
 - (id)prerequisiteBuildVersion;
 - (id)prerequisiteProductVersion;
 - (id)prerequisiteReleaseType;
@@ -38,6 +41,7 @@
 - (id)requestedProductVersion;
 - (void)setAllowSameVersion:(bool)arg1;
 - (void)setDelayPeriod:(long long)arg1;
+- (void)setDownloadAuthorizationHeader:(id)arg1;
 - (void)setPrerequisiteBuildVersion:(id)arg1;
 - (void)setPrerequisiteProductVersion:(id)arg1;
 - (void)setPrerequisiteReleaseType:(id)arg1;

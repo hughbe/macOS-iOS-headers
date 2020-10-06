@@ -3,12 +3,10 @@
  */
 
 @interface _INPBPayloadNeedsDisambiguation : PBCodable <NSCopying, NSSecureCoding, _INPBPayloadNeedsDisambiguation> {
-    bool  __encodeLegacyGloryData;
     NSArray * _disambiguationItems;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSArray *disambiguationItems;
@@ -20,8 +18,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addDisambiguationItems:(id)arg1;
 - (void)clearDisambiguationItems;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

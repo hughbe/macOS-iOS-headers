@@ -22,6 +22,7 @@
 - (long long)_preferredAlignment;
 - (long long)_preferredContentSizeForSize:(long long)arg1;
 - (void)_setDataSource:(id <_UINavigationBarTitleViewDataSource>)arg1 navigationItem:(UINavigationItem *)arg2 titleLocation:(long long)arg3;
+- (UITraitCollection *)_traitCollectionOverridesForNavigationBarTraitCollection:(UITraitCollection *)arg1;
 - (bool)_underlayNavigationBarContent;
 - (bool)_wantsTwoPartTransition;
 

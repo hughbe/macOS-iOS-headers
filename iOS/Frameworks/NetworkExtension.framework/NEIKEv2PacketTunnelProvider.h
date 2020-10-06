@@ -13,6 +13,7 @@
     unsigned long long  _ifIndex;
     NSArray * _ikeConfig;
     bool  _isIfCellular;
+    bool  _isObserving;
     NSArray * _localTrafficSelectors;
     bool  _mobikeCapable;
     NEIKEv2MOBIKE * _mobikeHandle;
@@ -25,7 +26,7 @@
     NWResolver * _resolver;
     NSObject<OS_dispatch_source> * _resolverWaitTimer;
     NWPathEvaluator * _scopedPathEvaluator;
-    NEIKEv2Server * _serverAddresses;
+    NEIKEv2Server * _server;
     NEIKEv2Session * _session;
     bool  _sessionDidConnect;
     id /* block */  _startTunnelCompletionHandler;
@@ -43,6 +44,7 @@
 @property unsigned long long ifIndex;
 @property (retain) NSArray *ikeConfig;
 @property bool isIfCellular;
+@property bool isObserving;
 @property (retain) NSArray *localTrafficSelectors;
 @property bool mobikeCapable;
 @property (retain) NEIKEv2MOBIKE *mobikeHandle;
@@ -55,7 +57,7 @@
 @property (retain) NWResolver *resolver;
 @property (retain) NSObject<OS_dispatch_source> *resolverWaitTimer;
 @property (retain) NWPathEvaluator *scopedPathEvaluator;
-@property (retain) NEIKEv2Server *serverAddresses;
+@property (retain) NEIKEv2Server *server;
 @property (retain) NEIKEv2Session *session;
 @property bool sessionDidConnect;
 @property (copy) id /* block */ startTunnelCompletionHandler;
@@ -89,6 +91,7 @@
 - (void)invokeCancelTunnel:(int)arg1;
 - (bool)invokeStartTunnelCompletionHandler:(id)arg1;
 - (bool)isIfCellular;
+- (bool)isObserving;
 - (id)localTrafficSelectors;
 - (bool)mobikeCapable;
 - (id)mobikeHandle;
@@ -105,7 +108,7 @@
 - (id)resolver;
 - (id)resolverWaitTimer;
 - (id)scopedPathEvaluator;
-- (id)serverAddresses;
+- (id)server;
 - (id)session;
 - (bool)sessionDidConnect;
 - (void)setAuthenticationPrompted:(bool)arg1;
@@ -118,6 +121,7 @@
 - (void)setIfIndex:(unsigned long long)arg1;
 - (void)setIkeConfig:(id)arg1;
 - (void)setIsIfCellular:(bool)arg1;
+- (void)setIsObserving:(bool)arg1;
 - (void)setLocalTrafficSelectors:(id)arg1;
 - (void)setMobikeCapable:(bool)arg1;
 - (void)setMobikeHandle:(id)arg1;
@@ -130,7 +134,7 @@
 - (void)setResolver:(id)arg1;
 - (void)setResolverWaitTimer:(id)arg1;
 - (void)setScopedPathEvaluator:(id)arg1;
-- (void)setServerAddresses:(id)arg1;
+- (void)setServer:(id)arg1;
 - (void)setSession:(id)arg1;
 - (void)setSessionDidConnect:(bool)arg1;
 - (void)setStartTunnelCompletionHandler:(id /* block */)arg1;
@@ -143,6 +147,7 @@
 - (id /* block */)startTunnelCompletionHandler;
 - (void)startTunnelWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)stopIKEv2TunnelWithReason:(long long)arg1 completionHandler:(id /* block */)arg2;
+- (void)stopObserving;
 - (void)stopTunnelWithReason:(long long)arg1 completionHandler:(id /* block */)arg2;
 - (id)stringForTunnelKind;
 - (bool)tryAlternateServerAddresses;

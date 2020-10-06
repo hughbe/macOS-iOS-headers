@@ -13,6 +13,7 @@
 + (id)identifierFromDirectoryName:(id)arg1;
 + (void)installFonts:(id)arg1 forIdentifier:(id)arg2 enabled:(bool)arg3 completionHandler:(id /* block */)arg4;
 + (id)knownFontProviders;
++ (id)profileFontsInfo;
 + (id)registeredFamiliesForIdentifier:(id)arg1 enabled:(bool)arg2;
 + (id)registeredFontsForIdentifier:(id)arg1 enabled:(bool)arg2;
 + (id)registeredFontsInfoForIdentifier:(id)arg1 enabled:(bool)arg2;
@@ -21,9 +22,11 @@
 + (double)secondsSinceLastAccessed:(id)arg1;
 + (void)suspendFontProvider:(id)arg1;
 + (id)suspendedFontProviders;
++ (void)synchronizeFontAssets:(id /* block */)arg1;
 + (void)synchronizeFontProviders;
 + (void)uninstallFonts:(id)arg1 forIdentifier:(id)arg2 completionHandler:(id /* block */)arg3;
-+ (void)unregisterAndRemoveFontFilesForIdentifier:(id)arg1 ignoringError:(bool)arg2 completionHandler:(id /* block */)arg3;
++ (void)unregisterAndRemoveFontFilesForIdentifier:(id)arg1 completionHandler:(id /* block */)arg2;
 + (id)userFontsInfo;
++ (id)xpcInterface;
 
 @end

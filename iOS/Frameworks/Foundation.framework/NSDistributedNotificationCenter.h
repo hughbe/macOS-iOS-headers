@@ -6,6 +6,8 @@
 
 @property bool suspended;
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (id)defaultCenter;
 + (id)notificationCenterForType:(id)arg1;
 
@@ -22,5 +24,24 @@
 - (void)removeObserver:(id)arg1 name:(id)arg2 object:(id)arg3;
 - (void)setSuspended:(bool)arg1;
 - (bool)suspended;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (void)_sf_postPerSitePreferencesDidChangeDistributedNotification;
+
+// Image: /System/Library/PrivateFrameworks/NanoPassKit.framework/NanoPassKit
+
+- (void)_handleNotification:(id)arg1;
+- (id)_internalNameForNotificationName:(id)arg1;
+- (void)weak_addObserver:(id)arg1 selector:(SEL)arg2 name:(id)arg3 object:(id)arg4;
+- (void)weak_removeObserver:(id)arg1;
+- (void)weak_removeObserver:(id)arg1 name:(id)arg2 object:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
++ (id)vui_defaultCenter;
++ (bool)vui_wasSentByDifferentProcess:(id)arg1;
+
+- (void)vui_postNotificationName:(id)arg1 object:(id)arg2 userInfo:(id)arg3;
 
 @end

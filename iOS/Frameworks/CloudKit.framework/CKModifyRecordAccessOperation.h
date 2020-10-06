@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKModifyRecordAccessOperation : CKDatabaseOperation {
+@interface CKModifyRecordAccessOperation : CKDatabaseOperation <CKModifyRecordAccessOperationCallbacks> {
     NSMutableArray * _grantedRecordIDs;
     id /* block */  _recordAccessCompletionBlock;
     id /* block */  _recordAccessGrantedBlock;
@@ -13,7 +13,9 @@
     NSMutableArray * _revokedRecordIDs;
 }
 
+@property (nonatomic, readonly) <CKModifyRecordAccessOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSMutableArray *grantedRecordIDs;
+@property (nonatomic, readonly) CKModifyRecordAccessOperationInfo *operationInfo;
 @property (nonatomic, copy) id /* block */ recordAccessCompletionBlock;
 @property (nonatomic, copy) id /* block */ recordAccessGrantedBlock;
 @property (nonatomic, copy) id /* block */ recordAccessRevokedBlock;
@@ -22,14 +24,17 @@
 @property (nonatomic, retain) NSArray *recordIDsToRevoke;
 @property (nonatomic, retain) NSMutableArray *revokedRecordIDs;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
 - (id)grantedRecordIDs;
+- (void)handleRecordAccessInitiationForRecordID:(id)arg1 accessToken:(id)arg2 referenceIdentifier:(id)arg3 error:(id)arg4;
+- (void)handleRecordAccessRevocationForRecordID:(id)arg1 error:(id)arg2;
 - (bool)hasCKOperationCallbacksSet;
 - (id)initWithRecordIDsToGrantAccess:(id)arg1 recordIDsToRevokeAccess:(id)arg2;
 - (void)performCKOperation;

@@ -6,5 +6,6 @@
 @required
 
 - (void)accountsAndGroupsViewControllerDidFinish:(CNAccountsAndGroupsViewController *)arg1;
+- (void)accountsAndGroupsViewControllerDidUpdateSelection:(CNAccountsAndGroupsViewController *)arg1;
 
 @end

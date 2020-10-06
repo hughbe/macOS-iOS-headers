@@ -3,6 +3,8 @@
  */
 
 @interface NWConcrete_nw_socks5_connection : NSObject <OS_nw_socks5_connection> {
+    unsigned long long  sc_busy_counter;
+    unsigned long long  sc_busy_start_time_nanos;
     id /* block */  sc_cancel;
     NSObject<OS_nw_error> * sc_error;
     unsigned int  sc_has_read_from_in_connection;
@@ -33,7 +35,9 @@
     unsigned int  sc_sent_reply;
     unsigned short  sc_shoes_request_length_hbo;
     unsigned int  sc_should_prefer_wifi;
+    unsigned long long  sc_start_time_nanos;
     unsigned char  sc_state;
+    unsigned long long  sc_total_busy_time_nanos;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -44,6 +48,5 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithConnection:(id)arg1 queue:(id)arg2 parent:(id)arg3 shoes:(bool)arg4 disableProxy:(bool)arg5;
 
 @end

@@ -27,27 +27,16 @@
 @property (getter=_isInvalidated, nonatomic, readonly) bool _invalidated;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, readonly) NSObject<OS_xpc_object> *endpoint;
 @property (readonly) unsigned long long hash;
-@property (getter=isNonLaunching, nonatomic, readonly) bool nonLaunching;
 @property (readonly) Class superclass;
 
-+ (id)listener;
-+ (id)listenerWithServiceName:(id)arg1;
-
 - (void).cxx_destruct;
-- (id)_initWithServiceName:(id)arg1;
 - (void)_invalidateChildConnection:(id)arg1;
-- (void)_invalidateWithLockBlock:(id /* block */)arg1;
 - (bool)_isClientInvalidated;
 - (bool)_isInvalidated;
-- (void)activate;
-- (void)configure:(id /* block */)arg1;
 - (void)dealloc;
-- (id)endpoint;
 - (id)init;
 - (void)invalidate;
-- (bool)isNonLaunching;
 - (void)setConnectionHandler:(id /* block */)arg1;
 - (void)setEndpointDescription:(id)arg1;
 - (void)setErrorHandler:(id /* block */)arg1;

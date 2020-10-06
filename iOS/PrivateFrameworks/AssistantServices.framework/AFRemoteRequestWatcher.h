@@ -4,6 +4,7 @@
 
 @interface AFRemoteRequestWatcher : NSObject <AFSiriActivationListenerDelegate> {
     id /* block */  _dismissalHandler;
+    id /* block */  _intentForwardingActionHandler;
     id /* block */  _intentHandler;
     id /* block */  _prewarmHandler;
     NSObject<OS_dispatch_queue> * _queue;
@@ -25,6 +26,7 @@
 - (void)dealloc;
 - (id)init;
 - (void)setDismissalHandler:(id /* block */)arg1;
+- (void)setIntentForwardingActionHandler:(id /* block */)arg1;
 - (void)setIntentHandler:(id /* block */)arg1;
 - (void)setNewRequestHandler:(id /* block */)arg1;
 - (void)setNewSpeechRequestHandler:(id /* block */)arg1;
@@ -33,6 +35,7 @@
 - (void)siriActivationListener:(id)arg1 activateWithRequestInfo:(id)arg2 context:(id)arg3 completion:(id /* block */)arg4;
 - (void)siriActivationListener:(id)arg1 deactivateForReason:(long long)arg2 options:(unsigned long long)arg3 context:(id)arg4 completion:(id /* block */)arg5;
 - (void)siriActivationListener:(id)arg1 handleIntent:(id)arg2 inBackgroundAppWithBundleId:(id)arg3 reply:(id /* block */)arg4;
+- (void)siriActivationListener:(id)arg1 handleIntentForwardingAction:(id)arg2 inBackgroundApplicationWithBundleIdentifier:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)siriActivationListener:(id)arg1 prewarmWithRequestInfo:(id)arg2 context:(id)arg3 completion:(id /* block */)arg4;
 
 @end

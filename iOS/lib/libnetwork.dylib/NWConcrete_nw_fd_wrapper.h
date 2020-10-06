@@ -17,6 +17,6 @@
 @property (readonly) Class superclass;
 
 - (void)dealloc;
-- (id)initWithFileDescriptor:(int)arg1;
+- (id)description;
 
 @end

@@ -10,9 +10,6 @@
 @property (nonatomic, readonly, copy) NSString *bundleIdentifier;
 @property (nonatomic, readonly) <CNManagedProfileConnection> *profileConnection;
 
-+ (id)bundleIdentifierForAuditToken:(struct { unsigned int x1[8]; }*)arg1;
-+ (id)bundleIdentifierFromEntitlementForAuditToken:(struct { unsigned int x1[8]; }*)arg1;
-+ (id)bundleIdentifierFromInfoPlistForAuditToken:(struct { unsigned int x1[8]; }*)arg1;
 + (id)os_log;
 
 - (void).cxx_destruct;
@@ -25,6 +22,7 @@
 - (bool)canWriteToAccountWithIdentifier:(id)arg1;
 - (bool)canWriteToLocalAccount;
 - (bool)deviceHasManagementRestrictions;
+- (id)init;
 - (id)initWithAuditToken:(struct { unsigned int x1[8]; })arg1 managedProfileConnection:(id)arg2;
 - (id)initWithBundleIdentifier:(id)arg1 managedProfileConnection:(id)arg2;
 - (id)profileConnection;

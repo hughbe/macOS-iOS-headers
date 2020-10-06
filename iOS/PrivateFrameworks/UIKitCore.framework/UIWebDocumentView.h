@@ -51,8 +51,6 @@
     }  _defaultViewportConfigurations;
     _UITextServiceSession * _definitionSession;
     id  _delegate;
-    DOMElement * _dictationResultPlaceholder;
-    id  _dictationResultPlaceholderRemovalObserver;
     bool  _didCreateDropPreview;
     bool  _didEndDropSession;
     unsigned int  _didFirstVisuallyNonEmptyLayout;
@@ -123,6 +121,7 @@
         bool isCancelled; 
         bool isOnWebThread; 
         bool isDisplayingHighlight; 
+        bool isWriting; 
         bool attemptedClick; 
         struct CGPoint { 
             double x; 
@@ -193,6 +192,7 @@
     unsigned long long  _renderTreeSize;
     unsigned long long  _renderTreeSizeThresholdForReset;
     unsigned int  _scalesToFit;
+    PKScribbleInteraction * _scribbleInteraction;
     struct CGPoint { 
         double x; 
         double y; 
@@ -216,6 +216,8 @@
     bool  _suppressesIncrementalRendering;
     UITextChecker * _textChecker;
     _UITextDragCaretView * _textDragCaretView;
+    UIWebTextPlaceholder * _textPlaceholder;
+    id  _textPlaceholderRemovalObserver;
     UITextInteractionAssistant * _textSelectionAssistant;
     id  _textSuggestionDelegate;
     UITextInputTraits * _traits;
@@ -245,6 +247,7 @@
 @property (nonatomic) bool acceptsDictationSearchResults;
 @property (nonatomic) bool acceptsEmoji;
 @property (nonatomic) bool acceptsFloatingKeyboard;
+@property (nonatomic) bool acceptsInitialEmojiKeyboard;
 @property (nonatomic) bool acceptsPayloads;
 @property (nonatomic) bool acceptsSplitKeyboard;
 @property (nonatomic) bool alwaysConstrainsScale;
@@ -303,6 +306,7 @@
 @property (nonatomic, copy) NSDictionary *markedTextStyle;
 @property (nonatomic) bool mediaPlaybackAllowsAirPlay;
 @property (nonatomic, copy) UITextInputPasswordRules *passwordRules;
+@property (nonatomic) bool preferOnlineDictation;
 @property (nonatomic, retain) DOMRange *rangeToRestoreAfterDictation;
 @property (nonatomic, copy) NSString *recentInputIdentifier;
 @property (nonatomic, readonly) unsigned long long renderTreeSize;
@@ -349,8 +353,6 @@
 @property (nonatomic, readonly) bool wantsMinimalUI;
 @property (nonatomic) <UIWebDraggingDelegate> *webDraggingDelegate;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)_createDefaultHighlightView;
 + (id)_sharedHighlightView;
 + (double)getTimestamp;
@@ -382,7 +384,6 @@
 - (bool)_dataDetectionIsActivated;
 - (id)_dataForPreviewItemController:(id)arg1 atPosition:(struct CGPoint { double x1; double x2; })arg2 type:(long long*)arg3;
 - (void)_define:(id)arg1;
-- (bool)_dictationPlaceholderHasBeenRemoved;
 - (void)_didChangeDragCaretRectFromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 toRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (void)_didDismissElementSheet;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
@@ -400,8 +401,9 @@
 - (long long)_dropInteraction:(id)arg1 dataOwnerForSession:(id)arg2;
 - (void)_editableSelectionLayoutChangedByScrolling:(bool)arg1;
 - (void)_endPrintMode;
-- (void)_finishedUsingDictationPlaceholder;
+- (void)_finishedUsingTextPlaceholder;
 - (void)_flattenAndSwapContentLayersInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)_focusAndAssistFormNode:(id)arg1;
 - (id)_focusedOrMainFrame;
 - (id)_groupName;
 - (void)_handleDoubleTapAtLocation:(struct CGPoint { double x1; double x2; })arg1;
@@ -411,6 +413,7 @@
 - (void)_highlightLongPressRecognized:(id)arg1;
 - (void)_insertAttributedTextWithoutClosingTyping:(id)arg1;
 - (bool)_insertFragmentWithoutPreservingStyle:(id)arg1 atDestination:(id)arg2 smartReplace:(bool)arg3 collapseToEnd:(bool)arg4;
+- (id)_insertTextPlaceholderWithSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)_inspectorDidStartSearchingForNode:(id)arg1;
 - (void)_inspectorDidStopSearchingForNode:(id)arg1;
 - (bool)_interactionShouldBeginFromPreviewItemController:(id)arg1 forPosition:(struct CGPoint { double x1; double x2; })arg2;
@@ -449,6 +452,7 @@
 - (void)_removeDefinitionController:(bool)arg1;
 - (void)_removeShareController:(bool)arg1;
 - (void)_removeShortcutController:(bool)arg1;
+- (void)_removeTextPlaceholder:(id)arg1 willInsertResult:(bool)arg2;
 - (void)_renderUnbufferedInContext:(struct CGContext { }*)arg1;
 - (void)_resetForNewPage;
 - (void)_resetFormDataForFrame:(id)arg1;
@@ -462,7 +466,13 @@
 - (void)_restoreViewportSettingsWithSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)_runLoadBlock:(id /* block */)arg1;
 - (void)_saveStateToHistoryItem:(id)arg1;
+- (void)_scribbleInteraction:(id)arg1 didFinishWritingInElement:(id)arg2;
+- (void)_scribbleInteraction:(id)arg1 focusElement:(id)arg2 initialFocusSelectionReferencePoint:(struct CGPoint { double x1; double x2; })arg3 completion:(id /* block */)arg4;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_scribbleInteraction:(id)arg1 frameForElement:(id)arg2;
+- (void)_scribbleInteraction:(id)arg1 requestElementsInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 completion:(id /* block */)arg3;
+- (void)_scribbleInteraction:(id)arg1 willBeginWritingInElement:(id)arg2;
 - (void)_scrollRectToVisible:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 animated:(bool)arg2;
+- (void)_selectPositionAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_selectionClipRect;
 - (void)_selectionLayoutChangedByScrolling:(bool)arg1;
 - (void)_sendMouseMoveAndAttemptClick:(id)arg1;
@@ -488,9 +498,11 @@
 - (void)_showPendingContentLayers;
 - (void)_showTextStyleOptions:(id)arg1;
 - (void)_singleTapRecognized:(id)arg1;
+- (struct CGSize { double x1; double x2; })_sizeForDictationResultPlaceholder;
 - (id)_supportedPasteboardTypesForCurrentSelection;
 - (void)_syntheticMouseEventNotHandledAtLocation:(struct CGPoint { double x1; double x2; })arg1;
 - (id)_targetURL;
+- (bool)_textPlaceholderHasBeenRemoved;
 - (id)_textSelectingContainer;
 - (void)_transitionDragPreviewToImageIfNecessary:(id)arg1;
 - (void)_transliterateChinese:(id)arg1;
@@ -510,12 +522,6 @@
 - (void)_updateWebKitExposedScrollViewRect;
 - (void)_webthread_webView:(id)arg1 attachRootLayer:(id)arg2;
 - (double)_zoomedDocumentScale;
-- (void)dealloc;
-- (id)methodSignatureForSelector:(SEL)arg1;
-- (void)webThreadWebViewDidLayout:(id)arg1 byScrolling:(bool)arg2;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)action:(id)arg1 didDismissAlertController:(id)arg2;
 - (void)actionDidFinish;
 - (void)addInputString:(id)arg1;
@@ -591,6 +597,7 @@
 - (unsigned long long)currentDragSourceAction;
 - (void)cut:(id)arg1;
 - (unsigned long long)dataDetectorTypes;
+- (void)dealloc;
 - (void)decreaseSize:(id)arg1;
 - (id)deepestNodeAtViewportLocation:(struct CGPoint { double x1; double x2; })arg1;
 - (void)deferInteraction;
@@ -692,6 +699,8 @@
 - (void)insertDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
 - (id)insertDictationResultPlaceholder;
 - (void)insertText:(id)arg1;
+- (id)insertTextPlaceholderWithSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)insertionPointColor;
 - (void)installGestureRecognizers;
 - (id)interactionAssistant;
 - (id)interactionDelegate;
@@ -711,7 +720,6 @@
 - (bool)isPreviewing;
 - (bool)isShowingFullScreenPlugInUI;
 - (bool)isStandaloneEditableView;
-- (bool)isUnperturbedDictationResultMarker:(id)arg1;
 - (bool)isWidgetEditingView;
 - (bool)keyboardInput:(id)arg1 shouldInsertText:(id)arg2 isMarkedText:(bool)arg3;
 - (bool)keyboardInput:(id)arg1 shouldReplaceTextInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 replacementText:(id)arg3;
@@ -734,6 +742,7 @@
 - (float)maximumScale;
 - (bool)mediaPlaybackAllowsAirPlay;
 - (id)metadataDictionariesForDictationResults;
+- (id)methodSignatureForSelector:(SEL)arg1;
 - (float)minimumScale;
 - (float)minimumScaleForMinimumSize:(struct CGSize { double x1; double x2; })arg1;
 - (double)minimumScaleForSize:(struct CGSize { double x1; double x2; })arg1;
@@ -741,7 +750,6 @@
 - (bool)needsScrollNotifications;
 - (id)newMouseEvent:(int)arg1;
 - (struct CGImage { }*)newSnapshotWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
-- (id)nextUnperturbedDictationResultBoundaryFromPosition:(id)arg1;
 - (long long)offsetFromPosition:(id)arg1 toPosition:(id)arg2;
 - (unsigned long long)offsetInMarkedTextForSelection:(id)arg1;
 - (void)paste:(id)arg1;
@@ -768,6 +776,7 @@
 - (void)redrawScaledDocument;
 - (void)releasePrintMode;
 - (void)removeDictationResultPlaceholder:(id)arg1 willInsertResult:(bool)arg2;
+- (void)removeTextPlaceholder:(id)arg1;
 - (unsigned long long)renderTreeSize;
 - (unsigned long long)renderTreeSizeThresholdForReset;
 - (void)replace:(id)arg1;
@@ -778,6 +787,7 @@
 - (bool)requiresKeyEvents;
 - (void)resetCurrentDragInformation;
 - (void)resetInteraction;
+- (void)resetSelectionAssistant;
 - (void)resetTilingAfterLoadComplete;
 - (bool)resignFirstResponder;
 - (void)revealedSelectionByScrollingWebFrame:(id)arg1;
@@ -897,7 +907,9 @@
 - (bool)shouldAutoscroll;
 - (bool)shouldIgnoreCustomViewport;
 - (bool)shouldOnlyRecognizeGesturesOnActiveElements;
+- (bool)shouldRevealCurrentSelectionAfterInsertion;
 - (bool)shouldSelectionAssistantReceiveDoubleTapAtPoint:(struct CGPoint { double x1; double x2; })arg1 forScale:(double)arg2;
+- (bool)shouldSuppressPasswordEcho;
 - (void)showPlaybackTargetPicker:(bool)arg1 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (bool)sizeUpdatesSuspended;
 - (void)smartExtendRangedSelection:(int)arg1;
@@ -949,6 +961,7 @@
 - (bool)wantsMinimalUI;
 - (id)webDraggingDelegate;
 - (id)webSelectionAssistant;
+- (void)webThreadWebViewDidLayout:(id)arg1 byScrolling:(bool)arg2;
 - (id)webView;
 - (void)webView:(id)arg1 didChangeLocationWithinPageForFrame:(id)arg2;
 - (void)webView:(id)arg1 didCommitLoadForFrame:(id)arg2;

@@ -9,6 +9,8 @@
 - (long long)confirmationReason;
 - (void)setConfirmationReason:(long long)arg1;
 - (void)setShouldDoEmergencyCountdown:(NSNumber *)arg1;
+- (void)setStartedCall:(INConnectedCall *)arg1;
 - (NSNumber *)shouldDoEmergencyCountdown;
+- (INConnectedCall *)startedCall;
 
 @end

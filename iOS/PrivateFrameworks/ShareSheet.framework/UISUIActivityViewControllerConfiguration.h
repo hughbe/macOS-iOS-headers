@@ -10,6 +10,7 @@
     NSArray * _activityTypesToCreateInShareService;
     bool  _allowsEmbedding;
     bool  _canExcludeExtensionActivities;
+    bool  _canSaveImages;
     bool  _canShowShareSheetPlugIns;
     long long  _excludedActivityCategories;
     NSArray * _excludedActivityTypes;
@@ -49,6 +50,7 @@
 @property (nonatomic, retain) NSArray *activityTypesToCreateInShareService;
 @property (nonatomic) bool allowsEmbedding;
 @property (nonatomic) bool canExcludeExtensionActivities;
+@property (nonatomic) bool canSaveImages;
 @property (nonatomic) bool canShowShareSheetPlugIns;
 @property (nonatomic) long long excludedActivityCategories;
 @property (nonatomic, retain) NSArray *excludedActivityTypes;
@@ -88,6 +90,7 @@
 - (bool)allowsEmbedding;
 - (id)availableActivityItemValueClasses;
 - (bool)canExcludeExtensionActivities;
+- (bool)canSaveImages;
 - (bool)canShowShareSheetPlugIns;
 - (id)contextForMatchingByActivityItemValueClasses;
 - (id)contextForMatchingByActivityItems:(id)arg1 itemValues:(id)arg2;
@@ -116,6 +119,7 @@
 - (void)setActivityTypesToCreateInShareService:(id)arg1;
 - (void)setAllowsEmbedding:(bool)arg1;
 - (void)setCanExcludeExtensionActivities:(bool)arg1;
+- (void)setCanSaveImages:(bool)arg1;
 - (void)setCanShowShareSheetPlugIns:(bool)arg1;
 - (void)setExcludedActivityCategories:(long long)arg1;
 - (void)setExcludedActivityTypes:(id)arg1;

@@ -34,8 +34,8 @@
     NSMutableArray * mClientConnections;
     bool  mConnectionAcknowledged;
     NSXPCListener * mListener;
-    struct unique_ptr<CAMutex, std::__1::default_delete<CAMutex> > { 
-        struct __compressed_pair<CAMutex *, std::__1::default_delete<CAMutex> > { 
+    struct unique_ptr<CADeprecated::CAMutex, std::__1::default_delete<CADeprecated::CAMutex> > { 
+        struct __compressed_pair<CADeprecated::CAMutex *, std::__1::default_delete<CADeprecated::CAMutex> > { 
             struct CAMutex {} *__value_; 
         } __ptr_; 
     }  mLock;

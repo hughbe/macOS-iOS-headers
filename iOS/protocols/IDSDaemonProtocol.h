@@ -31,6 +31,7 @@
 - (void)cancelOpportunisticDataOnService:(NSString *)arg1 withIdentifier:(NSString *)arg2;
 - (void)cleanupSession:(NSString *)arg1;
 - (void)cleanupSessionWithInstanceID:(NSString *)arg1;
+- (void)clearIDSState;
 - (void)closeSocketWithOptions:(NSDictionary *)arg1;
 - (void)connectPairedDevice:(NSString *)arg1;
 - (void)continuityClientInstanceCreated;
@@ -57,6 +58,7 @@
 - (void)endSession:(NSString *)arg1 withData:(NSData *)arg2;
 - (void)failedDecryptingMessage:(NSDictionary *)arg1 reason:(long long)arg2 forGroupID:(ENGroupID *)arg3 onService:(NSString *)arg4;
 - (void)fetchPhoneUserSubscriptionSourceWithRequestUUID:(NSString *)arg1;
+- (void)forceRemoveAccount:(NSString *)arg1;
 - (void)generatePhoneAuthenticationSignatureOverData:(NSData *)arg1 withRequestUUID:(NSString *)arg2;
 - (void)getDeliveryStats;
 - (void)getProgressUpdateForIdentifier:(NSString *)arg1 service:(NSString *)arg2;

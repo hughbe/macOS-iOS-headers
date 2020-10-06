@@ -14,6 +14,9 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
++ (id)_joinMany:(id)arg1;
++ (id)_joinOne:(id)arg1;
++ (id)_joinZero;
 + (id)chain:(id)arg1;
 + (void)finishPromise:(id)arg1 withFuture:(id)arg2;
 + (id)flatMap:(id)arg1 withBlock:(id /* block */)arg2 schedulerProvider:(id)arg3;

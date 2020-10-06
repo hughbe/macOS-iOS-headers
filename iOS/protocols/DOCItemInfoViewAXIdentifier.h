@@ -6,8 +6,8 @@
 @required
 
 + (NSString *)actionsContainer;
++ (NSString *)infoContainer;
 + (NSString *)levelOfDetailButton;
-+ (NSString *)mainContainer;
 + (NSString *)metadataRowWithLabel:(NSString *)arg1;
 
 @end

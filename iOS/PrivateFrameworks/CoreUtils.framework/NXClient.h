@@ -42,6 +42,7 @@
 - (void)invalidate;
 - (id /* block */)invalidationHandler;
 - (id)label;
+- (void)liveActionPerform:(id)arg1 completion:(id /* block */)arg2;
 - (void)setClientID:(unsigned int)arg1;
 - (void)setDispatchQueue:(id)arg1;
 - (void)setFlags:(unsigned char)arg1;

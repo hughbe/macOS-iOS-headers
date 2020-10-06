@@ -118,11 +118,13 @@
 - (id)description;
 - (id)devices;
 - (id)displayName;
+- (void)forceRemoveAccount;
 - (id)handles;
 - (id)initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3 delegateContext:(id)arg4;
 - (id)initWithLoginID:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3 delegateContext:(id)arg4;
 - (bool)isActive;
 - (bool)isInTransientRegistrationState;
+- (bool)isTemporary;
 - (bool)isTransientWhitelistedAccount;
 - (bool)isUsableForOuterMessaging;
 - (bool)isUserDisabled;

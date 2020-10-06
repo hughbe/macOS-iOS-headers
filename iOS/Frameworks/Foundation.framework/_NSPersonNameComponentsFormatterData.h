@@ -29,7 +29,6 @@
 - (bool)ignoresFallbacks;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
-- (bool)isEqualToFormatterData:(id)arg1;
 - (id)locale;
 - (bool)phonetic;
 - (void)setForceFamilyNameFirst:(bool)arg1;

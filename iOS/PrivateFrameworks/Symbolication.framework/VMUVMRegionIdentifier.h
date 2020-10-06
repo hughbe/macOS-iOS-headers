@@ -8,6 +8,7 @@
     int  _pid;
     NSMutableArray * _regions;
     unsigned int  _task;
+    VMUTaskThreadStates * _threadStates;
 }
 
 + (id)descriptionForRange:(struct _VMURange { unsigned long long x1; unsigned long long x2; })arg1 inSortedRegions:(id)arg2 options:(unsigned long long)arg3;
@@ -29,5 +30,6 @@
 - (id)initWithTask:(unsigned int)arg1 pid:(int)arg2 options:(unsigned long long)arg3;
 - (id)nonSubmapRegionContainingAddress:(unsigned long long)arg1;
 - (id)regions;
+- (id)taskThreadStates;
 
 @end

@@ -10,11 +10,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_muids : 1; 
         unsigned int read_identifiers : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_muids : 1; 
-        unsigned int wrote_identifiers : 1; 
-        unsigned int wrote_resultProviderId : 1; 
-        unsigned int wrote_enablePartialClientization : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _identifiers;
     struct { 
@@ -45,10 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsIdentifier:(id)arg1;
-- (void)_addNoFlagsMuid:(unsigned long long)arg1;
-- (void)_readIdentifiers;
-- (void)_readMuids;
 - (void)addIdentifier:(id)arg1;
 - (void)addMuid:(unsigned long long)arg1;
 - (void)clearIdentifiers;
@@ -68,8 +60,11 @@
 - (unsigned long long)identifiersCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
 - (id)initWithIdentifiers:(id)arg1 resultProviderID:(int)arg2;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muidAtIndex:(unsigned long long)arg1;
 - (unsigned long long*)muids;

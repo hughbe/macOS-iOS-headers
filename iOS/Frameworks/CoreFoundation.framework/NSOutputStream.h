@@ -25,4 +25,13 @@
 - (id)initWithURL:(id)arg1 append:(bool)arg2;
 - (long long)write:(const char *)arg1 maxLength:(unsigned long long)arg2;
 
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (void)re_writeString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
+- (bool)safari_writeNetworkOrderUInt16:(unsigned short)arg1;
+- (bool)safari_writeNetworkOrderUInt32:(unsigned int)arg1;
+
 @end

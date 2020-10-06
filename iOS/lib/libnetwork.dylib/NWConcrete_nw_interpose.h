@@ -23,7 +23,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithClientUUID:(unsigned char)arg1 nw_context:(id)arg2;
-- (id)initWithDelegatedPid:(int)arg1 nw_context:(id)arg2;
 
 @end

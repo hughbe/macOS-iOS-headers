@@ -4,6 +4,7 @@
 
 @interface AKConsentedApplication : NSObject <NSSecureCoding> {
     NSString * _clientID;
+    NSString * _origin;
     NSString * _primaryClientID;
     NSArray * _scopes;
     long long  _state;
@@ -11,6 +12,7 @@
 }
 
 @property (nonatomic, copy) NSString *clientID;
+@property (nonatomic, retain) NSString *origin;
 @property (nonatomic, retain) NSString *primaryClientID;
 @property (nonatomic, copy) NSArray *scopes;
 @property (nonatomic) long long state;
@@ -24,9 +26,11 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithResponseInfo:(id)arg1;
+- (id)origin;
 - (id)primaryClientID;
 - (id)scopes;
 - (void)setClientID:(id)arg1;
+- (void)setOrigin:(id)arg1;
 - (void)setPrimaryClientID:(id)arg1;
 - (void)setScopes:(id)arg1;
 - (void)setState:(long long)arg1;

@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_labelArtwork : 1; 
         unsigned int read_labelTextString : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_labelArtwork : 1; 
-        unsigned int wrote_labelTextString : 1; 
-        unsigned int wrote_labelType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPBTransitArtwork * _labelArtwork;
     NSString * _labelTextString;
@@ -44,8 +41,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsLabelType:(id)arg1;
-- (void)_readLabelArtwork;
-- (void)_readLabelTextString;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -57,7 +52,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)labelArtwork;
 - (id)labelString;
 - (id)labelTextString;

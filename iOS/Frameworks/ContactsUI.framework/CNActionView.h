@@ -2,43 +2,45 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNActionView : UIView <UIGestureRecognizerDelegate> {
+@interface CNActionView : UIControl <NUIContainerViewDelegate, UIGestureRecognizerDelegate> {
     <CNActionViewDelegate> * _actionDelegate;
-    NSArray * _activatedContstrants;
+    CNActionMenuHelper * _actionMenuHelper;
+    NUIContainerStackView * _containerView;
     bool  _disabled;
-    UILongPressGestureRecognizer * _highlightGestureRecognizer;
-    bool  _highlighted;
     UIImage * _image;
+    UIView * _imageContainerView;
     UIImageView * _imageView;
-    UILongPressGestureRecognizer * _longPressGestureRecognizer;
+    NUIContainerBoxView * _platterBoxView;
     UIView * _platterView;
     long long  _style;
-    UITapGestureRecognizer * _tapGestureRecognizer;
     NSString * _title;
     UIFont * _titleFont;
     UILabel * _titleLabel;
     NSString * _type;
+    TLKProminenceView * _vibrantBackgroundView;
+    TLKProminenceView * _vibrantPlatterView;
 }
 
 @property (nonatomic) <CNActionViewDelegate> *actionDelegate;
-@property (nonatomic, retain) NSArray *activatedContstrants;
+@property (nonatomic, retain) CNActionMenuHelper *actionMenuHelper;
+@property (nonatomic, retain) NUIContainerStackView *containerView;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool disabled;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, retain) UILongPressGestureRecognizer *highlightGestureRecognizer;
-@property (nonatomic) bool highlighted;
 @property (nonatomic, retain) UIImage *image;
+@property (nonatomic, retain) UIView *imageContainerView;
 @property (nonatomic, retain) UIImageView *imageView;
-@property (nonatomic, retain) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic, retain) NUIContainerBoxView *platterBoxView;
 @property (nonatomic, retain) UIView *platterView;
 @property (nonatomic) long long style;
 @property (readonly) Class superclass;
-@property (nonatomic, retain) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) UIFont *titleFont;
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) TLKProminenceView *vibrantBackgroundView;
+@property (nonatomic, retain) TLKProminenceView *vibrantPlatterView;
 
 + (id)borderColorForDisabledBoldState;
 + (id)colorByIncreasingBrightnessComponentByPercentage:(double)arg1 ofColor:(id)arg2;
@@ -50,55 +52,62 @@
 
 - (void).cxx_destruct;
 - (id)actionDelegate;
-- (id)activatedContstrants;
+- (id)actionMenuHelper;
+- (void)applyRoundedRectMargins;
 - (id)colorByAdjustingColorToHighlightState:(id)arg1;
+- (id)containerView;
+- (void)containerViewDidLayoutArrangedSubviews:(id)arg1;
+- (id)contextMenuInteraction:(id)arg1 configurationForMenuAtLocation:(struct CGPoint { double x1; double x2; })arg2;
+- (id)contextMenuInteraction:(id)arg1 previewForHighlightingMenuWithConfiguration:(id)arg2;
+- (void)contextMenuInteraction:(id)arg1 willDisplayMenuForConfiguration:(id)arg2 animator:(id)arg3;
+- (void)contextMenuInteraction:(id)arg1 willEndForConfiguration:(id)arg2 animator:(id)arg3;
 - (void)didMoveToWindow;
 - (bool)disabled;
-- (bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
-- (void)handleHighlightGesture:(id)arg1;
-- (void)handleLongPressGesture:(id)arg1;
-- (void)handleTapGesture:(id)arg1;
-- (id)highlightGestureRecognizer;
-- (bool)highlighted;
+- (void)handleTapGesture;
 - (id)image;
+- (id)imageContainerView;
 - (id)imageView;
 - (id)init;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGSize { double x1; double x2; })intrinsicContentSize;
-- (double)intrinsicContentWidth;
 - (void)layoutSubviews;
-- (id)longPressGestureRecognizer;
+- (id)platterBoxView;
 - (id)platterView;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })rectForPlatterView;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })rectForTitleLabelForFont:(id)arg1 fittingSize:(struct CGSize { double x1; double x2; })arg2;
+- (struct CGSize { double x1; double x2; })platterViewMinimumLayoutSizeForStyle:(long long)arg1;
 - (void)setActionDelegate:(id)arg1;
-- (void)setActivatedContstrants:(id)arg1;
+- (void)setActionMenuHelper:(id)arg1;
+- (void)setContainerView:(id)arg1;
 - (void)setDisabled:(bool)arg1;
 - (void)setDisabled:(bool)arg1 animated:(bool)arg2;
-- (void)setHighlightGestureRecognizer:(id)arg1;
 - (void)setHighlighted:(bool)arg1;
 - (void)setHighlighted:(bool)arg1 animated:(bool)arg2;
 - (void)setImage:(id)arg1;
+- (void)setImageContainerView:(id)arg1;
 - (void)setImageView:(id)arg1;
-- (void)setLongPressGestureRecognizer:(id)arg1;
+- (void)setPlatterBoxView:(id)arg1;
 - (void)setPlatterView:(id)arg1;
 - (void)setStyle:(long long)arg1;
-- (void)setTapGestureRecognizer:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setTitleFont:(id)arg1;
 - (void)setTitleLabel:(id)arg1;
 - (void)setType:(id)arg1;
+- (void)setVibrantBackgroundView:(id)arg1;
+- (void)setVibrantPlatterView:(id)arg1;
+- (bool)shouldShowDisambiguation;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
+- (id)sourceViewForContextMenuPreview;
 - (long long)style;
-- (struct CGSize { double x1; double x2; })systemLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
-- (id)tapGestureRecognizer;
 - (void)tintColorDidChange;
 - (id)title;
 - (id)titleFont;
 - (id)titleLabel;
 - (id)type;
+- (void)updateBackground;
 - (void)updateImageViewStateAnimated:(bool)arg1;
 - (void)updateLabelStateAnimated:(bool)arg1;
 - (void)updatePlatterViewStateAnimated:(bool)arg1;
+- (void)updateWithMenuItems:(id)arg1;
+- (id)vibrantBackgroundView;
+- (id)vibrantPlatterView;
 
 @end

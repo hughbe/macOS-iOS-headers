@@ -6,7 +6,6 @@
     NSString * _UUID;
     NSData * _archiverInfo;
     NSArray * _assets;
-    NSString * _databaseBasePath;
     bool  _downloaded;
     bool  _hasSize;
     unsigned long long  _nextItemIndex;
@@ -16,6 +15,7 @@
     CKRecord * _record;
     NSString * _recordKey;
     struct _OpaquePCSShareProtection { } * _recordPCS;
+    NSString * _rootDatabasePath;
     bool  _shouldReadRawEncryptedData;
     unsigned long long  _size;
     CKSQLite * _sqlite;
@@ -27,10 +27,10 @@
     bool  _wasCached;
 }
 
-@property (nonatomic, retain) NSString *UUID;
+@property (nonatomic, copy) NSString *UUID;
 @property (nonatomic, copy) NSData *archiverInfo;
 @property (nonatomic, copy) NSArray *assets;
-@property (nonatomic, retain) NSString *databaseBasePath;
+@property (nonatomic, copy) NSString *databaseBasePath;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool downloaded;
@@ -43,6 +43,7 @@
 @property (nonatomic) CKRecord *record;
 @property (nonatomic, copy) NSString *recordKey;
 @property (nonatomic) struct _OpaquePCSShareProtection { }*recordPCS;
+@property (nonatomic, copy) NSString *rootDatabasePath;
 @property (nonatomic) bool shouldReadRawEncryptedData;
 @property (nonatomic, copy) NSData *signature;
 @property (nonatomic) unsigned long long size;
@@ -54,6 +55,8 @@
 @property (nonatomic) long long uploadRank;
 @property (nonatomic) bool uploaded;
 @property (nonatomic) bool wasCached;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (id)_createPackageDBWithPath:(id)arg1;
 + (id)_packageDatabaseDirectoryWithBasePath:(id)arg1 state:(long long)arg2;
@@ -123,6 +126,7 @@
 - (void)releaseDBWithRemove:(bool)arg1;
 - (void)removeDB;
 - (bool)removeDBAndDeleteFilesWithError:(id*)arg1;
+- (id)rootDatabasePath;
 - (id)sectionAtIndex:(unsigned long long)arg1;
 - (unsigned long long)sectionCount;
 - (void)setArchiverInfo:(id)arg1;
@@ -138,6 +142,7 @@
 - (void)setRecord:(id)arg1;
 - (void)setRecordKey:(id)arg1;
 - (void)setRecordPCS:(struct _OpaquePCSShareProtection { }*)arg1;
+- (void)setRootDatabasePath:(id)arg1;
 - (void)setShouldReadRawEncryptedData:(bool)arg1;
 - (void)setSignature:(id)arg1;
 - (void)setSize:(unsigned long long)arg1;
@@ -156,11 +161,19 @@
 - (id)sqliteOrRaise;
 - (long long)state;
 - (long long)storageGroupingPolicy;
+- (void)testAddSectionConstraintAndRaise:(id)arg1;
 - (void)updateItemAtIndex:(long long)arg1 withFileURL:(id)arg2;
 - (void)updateItemAtIndex:(long long)arg1 withSignature:(id)arg2 size:(unsigned long long)arg3 itemID:(unsigned long long)arg4 sectionIndex:(unsigned long long)arg5;
 - (void)updateItemsAtIndexes:(id)arg1 fileURLs:(id)arg2;
 - (long long)uploadRank;
 - (bool)uploaded;
 - (bool)wasCached;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
++ (bool)anchorExistsForArchiverInfo:(id)arg1;
++ (void)destroyAnchorAndPackageAnchoredAtURL:(id)arg1;
+
+- (bool)anchorAtURL:(id)arg1 error:(id*)arg2;
 
 @end

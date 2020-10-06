@@ -7,14 +7,14 @@
     unsigned char  _listenUUID;
     int  _sockfd_for_logging_only_do_not_close_or_use;
     int  _sockfd_from_client;
+    NSObject<OS_nw_fd_wrapper> * _sockfd_wrapper_for_connection_group_only;
     void * _source;
 }
 
+- (void).cxx_destruct;
 - (bool)cancel;
 - (id)description;
 - (id)initWithParameters:(id)arg1 delegate:(id)arg2;
-- (id)initWithParameters:(id)arg1 delegate:(id)arg2 necpUUID:(unsigned char)arg3;
-- (id)initWithSocket:(int)arg1 parameters:(id)arg2 delegate:(id)arg3;
 - (bool)resume;
 - (id)start;
 - (bool)suspend;

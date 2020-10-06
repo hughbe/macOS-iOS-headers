@@ -3,21 +3,20 @@
  */
 
 @interface WK_RTCDefaultVideoEncoderFactory : NSObject <RTCVideoEncoderFactory> {
-    WK_RTCVideoCodecInfo * preferredCodec;
+    bool  _supportsH265;
+    bool  _supportsVP9;
 }
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, retain) WK_RTCVideoCodecInfo *preferredCodec;
 @property (readonly) Class superclass;
 
 + (id)supportedCodecs;
++ (id)supportedCodecsWithH265:(bool)arg1 vp9:(bool)arg2;
 
-- (void).cxx_destruct;
 - (id)createEncoder:(id)arg1;
-- (id)preferredCodec;
-- (void)setPreferredCodec:(id)arg1;
+- (id)initWithH265:(bool)arg1 vp9:(bool)arg2;
 - (id)supportedCodecs;
 
 @end

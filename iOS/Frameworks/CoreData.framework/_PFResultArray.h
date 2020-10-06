@@ -15,10 +15,6 @@
 + (Class)classForKeyedUnarchiver;
 + (void)initialize;
 
-- (id)_metadata;
-- (struct { unsigned int x1; double x2; unsigned long long x3; unsigned int x4; unsigned int x5; unsigned int x6; unsigned int x7; struct { unsigned int x_8_1_1 : 1; unsigned int x_8_1_2 : 1; unsigned int x_8_1_3 : 1; unsigned int x_8_1_4 : 1; unsigned int x_8_1_5 : 28; } x8; int x9; void **x10; unsigned int *x11; void *x12; void *x13; }*)_resultSet;
-- (id)_sqlCore;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;
@@ -26,7 +22,6 @@
 - (void)dealloc;
 - (void)getObjects:(id*)arg1;
 - (void)getObjects:(id*)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
-- (void*)hydratedRowAtIndex:(unsigned long long)arg1;
 - (unsigned long long)indexOfObject:(id)arg1;
 - (unsigned long long)indexOfObject:(id)arg1 inRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (unsigned long long)indexOfObjectIdenticalTo:(id)arg1;

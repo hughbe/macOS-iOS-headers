@@ -6,18 +6,30 @@
     _UIDataSourceSnapshotter * _finalDataSourceSnapshot;
     NSArray * _updateItems;
     <_UICollectionViewUpdateTranslating> * _updateTranslator;
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _visibleBounds;
 }
 
 @property (nonatomic, readonly) _UIDataSourceSnapshotter *finalDataSourceSnapshot;
 @property (nonatomic, readonly) NSArray *updateItems;
 @property (nonatomic, readonly) <_UICollectionViewUpdateTranslating> *updateTranslator;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } visibleBounds;
 
-+ (id)solverUpdateWithUpdateItems:(id)arg1 updateTranslator:(id)arg2 finalDataSourceSnapshot:(id)arg3;
++ (id)solverUpdateForVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 updateItems:(id)arg2 updateTranslator:(id)arg3 finalDataSourceSnapshot:(id)arg4;
 
 - (void).cxx_destruct;
 - (id)finalDataSourceSnapshot;
-- (id)initWithUpdateItems:(id)arg1 updateTranslator:(id)arg2 finalDataSourceSnapshot:(id)arg3;
+- (id)initWithVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 updateItems:(id)arg2 updateTranslator:(id)arg3 finalDataSourceSnapshot:(id)arg4;
 - (id)updateItems;
 - (id)updateTranslator;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })visibleBounds;
 
 @end

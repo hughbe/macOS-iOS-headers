@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKPublishAssetsOperation : CKDatabaseOperation {
+@interface CKPublishAssetsOperation : CKDatabaseOperation <CKPublishAssetsOperationCallbacks> {
     unsigned long long  _URLOptions;
     id /* block */  _assetPublishedBlock;
     NSDictionary * _fileNamesByAssetFieldNames;
@@ -14,22 +14,26 @@
 
 @property (nonatomic) unsigned long long URLOptions;
 @property (nonatomic, copy) id /* block */ assetPublishedBlock;
-@property (nonatomic, retain) NSDictionary *fileNamesByAssetFieldNames;
+@property (nonatomic, readonly) <CKPublishAssetsOperationCallbacks> *clientOperationCallbackProxy;
+@property (nonatomic, copy) NSDictionary *fileNamesByAssetFieldNames;
+@property (nonatomic, readonly) CKPublishAssetsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *perItemErrorsByRecordID;
 @property (nonatomic, copy) id /* block */ publishAssetCompletionBlock;
 @property (nonatomic, retain) NSArray *recordIDs;
 @property (nonatomic) unsigned long long requestedTTL;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (unsigned long long)URLOptions;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id /* block */)assetPublishedBlock;
 - (id)fileNamesByAssetFieldNames;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleAssetPublishCompletionForRecordID:(id)arg1 publishedAsset:(id)arg2 recordKey:(id)arg3 error:(id)arg4;
 - (bool)hasCKOperationCallbacksSet;
 - (id)initWithRecordIDs:(id)arg1;
 - (id)perItemErrorsByRecordID;

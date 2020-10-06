@@ -8,9 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_filterIds : 1; 
         unsigned int read_label : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_filterIds : 1; 
-        unsigned int wrote_label : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDVenueLabel * _label;
     PBDataReader * _reader;
@@ -31,9 +29,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsFilterId:(id)arg1;
-- (void)_readFilterIds;
-- (void)_readLabel;
 - (void)addFilterId:(id)arg1;
 - (void)clearFilterIds;
 - (void)clearUnknownFields:(bool)arg1;
@@ -48,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)label;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

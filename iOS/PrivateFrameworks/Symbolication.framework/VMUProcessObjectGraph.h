@@ -8,7 +8,7 @@
     VMUDebugTimer * _debugTimer;
     NSString * _executablePath;
     bool  _gotObjcClassStructureRanges;
-    unsigned int  _kernPageSize;
+    unsigned int  _kernelPageSize;
     unsigned long long  _machAbsolute;
     VMUNodeToStringMap * _nodeLabels;
     unsigned int  _objectContentLevel;
@@ -25,9 +25,11 @@
     VMUTaskMemoryScanner * _scanner;
     bool  _showRawClassNames;
     bool  _showsPhysFootprint;
+    NSDictionary * _srcAddressToExtraAutoreleaseCountDict;
     VMUGraphStackLogReader * _stackLogReader;
     VMURangeToStringMap * _threadNameRanges;
     void * _userMarked;
+    unsigned int  _vmPageSize;
     NSArray * _zoneNames;
 }
 
@@ -38,6 +40,7 @@
 @property (nonatomic, readonly) NSString *executablePath;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) bool is64bit;
+@property (nonatomic, readonly) unsigned int kernelPageSize;
 @property (nonatomic, readonly) unsigned int nodeCount;
 @property (nonatomic, readonly) unsigned int nodeNamespaceSize;
 @property (nonatomic) unsigned int objectContentLevel;
@@ -53,6 +56,7 @@
 @property (nonatomic) bool showRawClassNames;
 @property (nonatomic) bool showsPhysFootprint;
 @property (nonatomic) unsigned long long snapshotMachTime;
+@property (nonatomic, retain) NSDictionary *srcAddressToExtraAutoreleaseCountDict;
 @property (nonatomic, retain) <VMUStackLogReader> *stackLogReader;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) unsigned int vmPageSize;
@@ -76,9 +80,10 @@
 - (unsigned int)enumerateRegionsWithBlock:(id /* block */)arg1;
 - (id)executablePath;
 - (bool)hasLabelsForNodes;
-- (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3 diskLogs:(id)arg4;
+- (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3 diskLogs:(id)arg4 error:(id*)arg5;
 - (id)initWithPid:(int)arg1 nodes:(struct _VMUBlockNode { unsigned long long x1; unsigned int x2 : 3; unsigned int x3 : 2; unsigned int x4 : 36; unsigned int x5 : 23; }*)arg2 nodeCount:(unsigned int)arg3 zoneNames:(id)arg4 classInfoMap:(id)arg5 regions:(id)arg6 pthreadOffsets:(id)arg7 userMarked:(void*)arg8;
 - (bool)is64bit;
+- (unsigned int)kernelPageSize;
 - (id)labelForNode:(unsigned int)arg1;
 - (void)markReachableNodesFromRoots:(void*)arg1 inMap:(void*)arg2;
 - (void)markReachableNodesFromRoots:(void*)arg1 inMap:(void*)arg2 options:(unsigned int)arg3;
@@ -121,6 +126,7 @@
 - (void)setShowRawClassNames:(bool)arg1;
 - (void)setShowsPhysFootprint:(bool)arg1;
 - (void)setSnapshotMachTime:(unsigned long long)arg1;
+- (void)setSrcAddressToExtraAutoreleaseCountDict:(id)arg1;
 - (void)setStackLogReader:(id)arg1;
 - (void)setThreadName:(id)arg1 forRange:(struct _VMURange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)setUserMarked:(void*)arg1;
@@ -129,6 +135,7 @@
 - (bool)showRawClassNames;
 - (bool)showsPhysFootprint;
 - (unsigned long long)snapshotMachTime;
+- (id)srcAddressToExtraAutoreleaseCountDict;
 - (id)stackLogReader;
 - (id)threadNameForAddress:(unsigned long long)arg1;
 - (unsigned int)vmPageSize;

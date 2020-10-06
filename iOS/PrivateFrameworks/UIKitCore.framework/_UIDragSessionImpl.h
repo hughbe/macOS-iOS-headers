@@ -45,12 +45,13 @@
 - (bool)_isActive;
 - (void)_itemsNeedUpdate:(id)arg1;
 - (bool)_sentSessionDidBegin;
+- (id)_setDownAnimation:(id)arg1 customSpringAnimationBehaviorForSetDownOfDragItem:(id)arg2;
 - (id)_setDownAnimation:(id)arg1 prepareForSetDownOfDragItem:(id)arg2 visibleDroppedItem:(id)arg3;
 - (bool)_setDownAnimation:(id)arg1 shouldDelaySetDownOfDragItem:(id)arg2 completion:(id /* block */)arg3;
 - (void)_setDownAnimation:(id)arg1 willAnimateSetDownOfDragItem:(id)arg2 withAnimator:(id)arg3;
-- (id)_setDownAnimation:(id)arg1 windowForSetDownOfDragItem:(id)arg2;
 - (void)_setInternalDragSession:(id)arg1;
 - (void)_setSentSessionDidBegin:(bool)arg1;
+- (id)_windowForSetDownOfDragItem:(id)arg1;
 - (void)addItems:(id)arg1 forDragSourceInteraction:(id)arg2;
 - (bool)allowsMoveOperation;
 - (bool)canLoadObjectsOfClass:(Class)arg1;

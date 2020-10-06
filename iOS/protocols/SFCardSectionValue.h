@@ -7,6 +7,7 @@
 
 - (SFActivityIndicatorCardSection *)activityIndicatorCardSection;
 - (SFAppLinkCardSection *)appLinkCardSection;
+- (SFAttributionFooterCardSection *)attributionFooterCardSection;
 - (SFAudioPlaybackCardSection *)audioPlaybackCardSection;
 - (SFButtonCardSection *)buttonCardSection;
 - (SFCompactRowCardSection *)compactRowCardSection;
@@ -36,6 +37,7 @@
 - (SFSelectableGridCardSection *)selectableGridCardSection;
 - (void)setActivityIndicatorCardSection:(SFActivityIndicatorCardSection *)arg1;
 - (void)setAppLinkCardSection:(SFAppLinkCardSection *)arg1;
+- (void)setAttributionFooterCardSection:(SFAttributionFooterCardSection *)arg1;
 - (void)setAudioPlaybackCardSection:(SFAudioPlaybackCardSection *)arg1;
 - (void)setButtonCardSection:(SFButtonCardSection *)arg1;
 - (void)setCompactRowCardSection:(SFCompactRowCardSection *)arg1;
@@ -72,6 +74,7 @@
 - (void)setVerticalLayoutCardSection:(SFVerticalLayoutCardSection *)arg1;
 - (void)setWatchListCardSection:(SFWatchListCardSection *)arg1;
 - (void)setWebCardSection:(SFWebCardSection *)arg1;
+- (void)setWorldMapCardSection:(SFWorldMapCardSection *)arg1;
 - (SFSocialMediaPostCardSection *)socialMediaPostCardSection;
 - (SFStockChartCardSection *)stockChartCardSection;
 - (SFSuggestionCardSection *)suggestionCardSection;
@@ -83,5 +86,6 @@
 - (SFVerticalLayoutCardSection *)verticalLayoutCardSection;
 - (SFWatchListCardSection *)watchListCardSection;
 - (SFWebCardSection *)webCardSection;
+- (SFWorldMapCardSection *)worldMapCardSection;
 
 @end

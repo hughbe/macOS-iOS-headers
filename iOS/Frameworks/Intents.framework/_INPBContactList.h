@@ -3,13 +3,11 @@
  */
 
 @interface _INPBContactList : PBCodable <NSCopying, NSSecureCoding, _INPBContactList> {
-    bool  __encodeLegacyGloryData;
     _INPBCondition * _condition;
     NSArray * _contacts;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBCondition *condition;
 @property (nonatomic, copy) NSArray *contacts;
 @property (nonatomic, readonly) unsigned long long contactsCount;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addContact:(id)arg1;
 - (void)clearContacts;
 - (id)condition;

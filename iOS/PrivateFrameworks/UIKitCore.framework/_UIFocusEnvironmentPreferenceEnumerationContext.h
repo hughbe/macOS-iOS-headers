@@ -10,9 +10,12 @@
     <_UIFocusEnvironmentPreferenceEnumerationContextDelegate> * _delegate;
     <UIFocusEnvironment> * _environment;
     UIFocusSystem * _focusSystem;
-    bool  _hasNeverPopped;
+    bool  _hasNeverPoppedInPreferredSubtree;
     bool  _hasResolvedPreferredFocusEnvironments;
     <UIFocusEnvironment> * _lastPrimaryPreferredEnvironment;
+    NSMapTable * _preferredEnvironmentsMap;
+    <UIFocusEnvironment> * _preferredSubtree;
+    <UIFocusEnvironment> * _preferredSubtreeEntryPoint;
     NSMutableArray * _visitedEnvironmentStack;
 }
 
@@ -22,6 +25,7 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) <UIFocusEnvironment> *environment;
 @property (readonly) unsigned long long hash;
+@property (getter=isInPreferredSubtree, nonatomic, readonly) bool inPreferredSubtree;
 @property (nonatomic, readonly) bool isLeafPreference;
 @property (nonatomic, readonly) bool isPrimaryPreference;
 @property (getter=isPreferredByItself, nonatomic, readonly) bool preferredByItself;
@@ -40,7 +44,8 @@
 - (id)delegate;
 - (id)environment;
 - (id)init;
-- (id)initWithInitialFocusEnvironment:(id)arg1;
+- (id)initWithFocusEnvironment:(id)arg1 enumerationMode:(long long)arg2;
+- (bool)isInPreferredSubtree;
 - (bool)isLeafPreference;
 - (bool)isPreferredByItself;
 - (bool)isPrimaryPreference;

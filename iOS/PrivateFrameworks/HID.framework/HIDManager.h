@@ -3,6 +3,7 @@
  */
 
 @interface HIDManager : NSObject {
+    id /* block */  _cancelHandler;
     id /* block */  _deviceNotificationHandler;
     id /* block */  _elementHandler;
     id /* block */  _inputReportHandler;

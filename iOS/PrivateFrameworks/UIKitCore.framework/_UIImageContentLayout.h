@@ -30,7 +30,6 @@
 }
 
 @property (nonatomic, readonly) double baselineOffsetFromBottom;
-@property (nonatomic, readonly) double baselineOffsetFromTop;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } contentInsets;
 @property (nonatomic, readonly) id contents;
 @property (nonatomic, readonly) UIColor *contentsMultiplyColor;
@@ -40,20 +39,13 @@
 + (id)layoutForSource:(id)arg1 inTarget:(id)arg2 withSize:(struct CGSize { double x1; double x2; })arg3;
 
 - (void).cxx_destruct;
-- (struct CGImage { }*)CGImageContents;
-- (void)_materializeContentsIfNeeded;
-- (void)_prepareContentOfSize:(struct CGSize { double x1; double x2; })arg1 source:(id)arg2 target:(id)arg3;
 - (double)baselineOffsetFromBottom;
-- (double)baselineOffsetFromTop;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })contentInsets;
 - (id)contents;
 - (id)contentsMultiplyColor;
 - (double)contentsScaleFactor;
 - (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })contentsTransform;
 - (id)description;
-- (bool)hasCGImageContents;
 - (bool)hasContents;
-- (id)initWithSource:(id)arg1 target:(id)arg2 withSize:(struct CGSize { double x1; double x2; })arg3;
-- (bool)rendersContentsAtNaturalSize;
 
 @end

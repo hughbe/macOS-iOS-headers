@@ -26,6 +26,7 @@
     bool  _ignoresParentalRestrictions;
     CNManagedConfiguration * _managedConfiguration;
     bool  _onlyRealContacts;
+    CNContainer * _parentContainer;
     NSPredicate * _predicateForEnablingContact;
     NSPredicate * _predicateForSelectionOfContact;
     NSPredicate * _predicateForSelectionOfProperty;
@@ -61,6 +62,7 @@
 @property (nonatomic, retain) CNManagedConfiguration *managedConfiguration;
 @property (nonatomic, readonly) UINavigationController *navigationController;
 @property (nonatomic) bool onlyRealContacts;
+@property (nonatomic, retain) CNContainer *parentContainer;
 @property (nonatomic, copy) NSPredicate *predicateForEnablingContact;
 @property (nonatomic, copy) NSPredicate *predicateForSelectionOfContact;
 @property (nonatomic, copy) NSPredicate *predicateForSelectionOfProperty;
@@ -115,6 +117,7 @@
 - (id)managedConfiguration;
 - (id)navigationController;
 - (bool)onlyRealContacts;
+- (id)parentContainer;
 - (id)predicateForEnablingContact;
 - (id)predicateForSelectionOfContact;
 - (id)predicateForSelectionOfProperty;
@@ -143,6 +146,7 @@
 - (void)setIgnoresParentalRestrictions:(bool)arg1;
 - (void)setManagedConfiguration:(id)arg1;
 - (void)setOnlyRealContacts:(bool)arg1;
+- (void)setParentContainer:(id)arg1;
 - (void)setPredicateForEnablingContact:(id)arg1;
 - (void)setPredicateForSelectionOfContact:(id)arg1;
 - (void)setPredicateForSelectionOfProperty:(id)arg1;

@@ -22,15 +22,10 @@
 @property (nonatomic, retain) PKPrinter *printer;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)addToNetwork;
 - (id)connectingView;
+- (void)dealloc;
 - (id)directPasscode;
 - (bool)directPrinting;
 - (void)finish;

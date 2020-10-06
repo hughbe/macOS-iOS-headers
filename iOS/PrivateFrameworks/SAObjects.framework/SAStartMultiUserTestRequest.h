@@ -7,6 +7,7 @@
 @property (nonatomic, copy) NSString *expectedSelectedSharedUserId;
 @property (nonatomic, retain) SAConfidenceScores *voiceIDConfidenceScores;
 
++ (id)startMultiUserTestRequest;
 + (id)startMultiUserTestRequestWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;

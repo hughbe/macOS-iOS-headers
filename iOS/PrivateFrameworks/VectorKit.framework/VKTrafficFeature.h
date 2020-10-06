@@ -8,19 +8,28 @@
         unsigned int index; 
         float offset; 
     }  _approachingRouteOffset;
+    unsigned char  _collisionPriority;
     int  _groupIdentifier;
+    unsigned int  _groupItemHorizontalDisplayOrder;
+    unsigned int  _groupItemVerticalDisplayOrder;
+    float  _maxZoom;
+    float  _minZoom;
     struct { 
         double latitude; 
         double longitude; 
-    }  _location;
-    float  _maxZoom;
-    float  _minZoom;
-    GEOLatLng * _position;
-    unsigned int  _priority;
+    }  _position;
+    struct optional<gss::RouteLegWhen> { 
+        bool _hasValue; 
+        union ValueUnion { 
+            unsigned char data[1]; 
+            unsigned char type; 
+        } _value; 
+    }  _routeLegWhen;
     struct PolylineCoordinate { 
         unsigned int index; 
         float offset; 
     }  _routeOffset;
+    double  _routeOffsetInMeters;
     bool  _shouldUpdateStyle;
     long long  _state;
     long long  _trafficFeatureType;
@@ -30,33 +39,43 @@
     }  _worldPoint;
 }
 
-@property (nonatomic, readonly) double approachingDistanceInMeters;
-@property (nonatomic) struct PolylineCoordinate { unsigned int x1; float x2; } approachingRouteOffset;
+@property (nonatomic, readonly) struct PolylineCoordinate { unsigned int x1; float x2; } approachingRouteOffset;
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{vector<GEOFeatureStylePair' */ struct  attributes; /* unknown property attribute:  mdm::Allocator>=^{Allocator}}}} */
+@property (nonatomic, readonly) unsigned char collisionPriority;
 @property (nonatomic, readonly) int groupIdentifier;
-@property (nonatomic, readonly) bool isGrouped;
-@property (nonatomic) long long labelState;
-@property (nonatomic) struct { double x1; double x2; } location;
-@property (nonatomic) float maxZoom;
+@property (nonatomic, readonly) unsigned int groupItemHorizontalDisplayOrder;
+@property (nonatomic, readonly) unsigned int groupItemVerticalDisplayOrder;
+@property (nonatomic, readonly) float maxZoom;
 @property (nonatomic, readonly) struct Mercator2<double> { double x1[2]; } mercatorPoint;
-@property (nonatomic) float minZoom;
-@property (nonatomic, copy) GEOLatLng *position;
-@property (nonatomic, readonly) unsigned int priority;
-@property (nonatomic) struct PolylineCoordinate { unsigned int x1; float x2; } routeOffset;
+@property (nonatomic, readonly) float minZoom;
+@property (nonatomic) long long navigationState;
+@property (nonatomic, readonly) struct { double x1; double x2; } position;
+@property (nonatomic) struct optional<gss::RouteLegWhen> { bool x1; union ValueUnion { unsigned char x_2_1_1[1]; unsigned char x_2_1_2; } x2; } routeLegWhen;
+@property (nonatomic, readonly) struct PolylineCoordinate { unsigned int x1; float x2; } routeOffset;
+@property (nonatomic, readonly) double routeOffsetInMeters;
 @property (nonatomic) bool shouldUpdateStyle;
+@property (nonatomic, readonly) GEOFeatureStyleAttributes *styleAttributes;
 @property (nonatomic, readonly) long long trafficFeatureType;
 @property (nonatomic, readonly) NSString *uniqueIdentifier;
-@property (nonatomic) /* Warning: unhandled struct encoding: '{Matrix<double' */ struct  worldPoint; /* unknown property attribute:  1>=[3d]} */
 
 + (id)newTrafficFeatureForEnrouteNotice:(id)arg1 onRoute:(id)arg2;
++ (id)stringForFeatureType:(long long)arg1;
++ (id)stringForNavState:(long long)arg1;
 
 - (id).cxx_construct;
-- (double)approachingDistanceInMeters;
+- (void).cxx_destruct;
 - (struct PolylineCoordinate { unsigned int x1; float x2; })approachingRouteOffset;
+- (struct vector<GEOFeatureStylePair, geo::StdAllocator<GEOFeatureStylePair, mdm::Allocator> > { struct { /* ? */ } *x1; struct { /* ? */ } *x2; struct __compressed_pair<GEOFeatureStylePair *, geo::StdAllocator<GEOFeatureStylePair, mdm::Allocator> > { struct { /* ? */ } *x_3_1_1; struct StdAllocator<GEOFeatureStylePair, mdm::Allocator> { struct Allocator {} *x_2_2_1; } x_3_1_2; } x3; })attributes;
+- (unsigned char)collisionPriority;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (int)groupIdentifier;
-- (id)initWithEnrouteNotice:(id)arg1;
-- (id)initWithType:(long long)arg1;
+- (unsigned int)groupItemHorizontalDisplayOrder;
+- (unsigned int)groupItemVerticalDisplayOrder;
+- (id)initWithEnrouteNotice:(id)arg1 onRoute:(id)arg2;
+- (id)initWithFeatureType:(long long)arg1 uniqueIdentifier:(id)arg2 position:(struct { double x1; double x2; })arg3 onRoute:(id)arg4;
+- (id)initWithFeatureType:(long long)arg1 uniqueIdentifier:(id)arg2 position:(struct { double x1; double x2; })arg3 routeOffset:(struct PolylineCoordinate { unsigned int x1; float x2; })arg4 routeOffsetInMeters:(double)arg5;
+- (id)initWithFeatureType:(long long)arg1 uniqueIdentifier:(id)arg2 routeOffset:(struct PolylineCoordinate { unsigned int x1; float x2; })arg3 onRoute:(id)arg4;
 - (bool)isAheadButNotApproaching;
 - (bool)isApproaching;
 - (bool)isBehind;
@@ -64,28 +83,24 @@
 - (bool)isEqual:(id)arg1;
 - (bool)isGrouped;
 - (bool)isIncident;
+- (bool)isRouteAnnotation;
 - (bool)isSignal;
-- (long long)labelState;
-- (struct { double x1; double x2; })location;
 - (float)maxZoom;
 - (struct Mercator2<double> { double x1[2]; })mercatorPoint;
 - (float)minZoom;
-- (id)position;
-- (unsigned int)priority;
+- (long long)navigationState;
+- (void)populateDebugNode:(struct DebugTreeNode { struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > { struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> > { struct __rep { union { struct __long { char *x_1_5_1; unsigned long long x_1_5_2; unsigned long long x_1_5_3; } x_1_4_1; struct __short { BOOL x_2_5_1[23]; struct { unsigned char x_2_6_1; } x_2_5_2; } x_1_4_2; struct __raw { unsigned long long x_3_5_1[3]; } x_1_4_3; } x_1_3_1; } x_1_2_1; } x_1_1_1; } x1; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > { struct __compressed_pair<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, std::__1::allocator<char> > { struct __rep { union { struct __long { char *x_1_5_1; unsigned long long x_1_5_2; unsigned long long x_1_5_3; } x_1_4_1; struct __short { BOOL x_2_5_1[23]; struct { unsigned char x_2_6_1; } x_2_5_2; } x_1_4_2; struct __raw { unsigned long long x_3_5_1[3]; } x_1_4_3; } x_1_3_1; } x_1_2_1; } x_2_1_1; } x2; }*)arg1;
+- (struct { double x1; double x2; })position;
+- (struct optional<gss::RouteLegWhen> { bool x1; union ValueUnion { unsigned char x_2_1_1[1]; unsigned char x_2_1_2; } x2; })routeLegWhen;
 - (struct PolylineCoordinate { unsigned int x1; float x2; })routeOffset;
-- (void)setApproachingRouteOffset:(struct PolylineCoordinate { unsigned int x1; float x2; })arg1;
-- (void)setLabelState:(long long)arg1;
-- (void)setLocation:(struct { double x1; double x2; })arg1;
-- (void)setMaxZoom:(float)arg1;
-- (void)setMinZoom:(float)arg1;
-- (void)setPosition:(id)arg1;
-- (void)setRouteOffset:(struct PolylineCoordinate { unsigned int x1; float x2; })arg1;
+- (double)routeOffsetInMeters;
+- (void)setNavigationState:(long long)arg1;
+- (void)setRouteLegWhen:(struct optional<gss::RouteLegWhen> { bool x1; union ValueUnion { unsigned char x_2_1_1[1]; unsigned char x_2_1_2; } x2; })arg1;
 - (void)setShouldUpdateStyle:(bool)arg1;
-- (void)setWorldPoint:(struct Matrix<double, 3, 1> { double x1[3]; })arg1;
 - (bool)shouldUpdateStyle;
+- (id)styleAttributes;
 - (long long)trafficFeatureType;
 - (id)uniqueIdentifier;
-- (void)updateLabelStateForRouteUserOffset:(const struct PolylineCoordinate { unsigned int x1; float x2; }*)arg1;
-- (struct Matrix<double, 3, 1> { double x1[3]; })worldPoint;
+- (void)updateNavigationStateForRouteUserOffset:(const struct PolylineCoordinate { unsigned int x1; float x2; }*)arg1;
 
 @end

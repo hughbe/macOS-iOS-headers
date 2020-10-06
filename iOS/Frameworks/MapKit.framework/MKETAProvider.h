@@ -6,6 +6,7 @@
     bool  _active;
     GEOAutomobileOptions * _automobileOptions;
     CLLocation * _currentLocation;
+    GEOCyclingOptions * _cyclingOptions;
     <MKETAProviderDelegate> * _delegate;
     bool  _distanceOrETAWasFound;
     NSString * _distanceTextItem;
@@ -26,6 +27,7 @@
 
 @property (nonatomic, retain) GEOAutomobileOptions *automobileOptions;
 @property (nonatomic, readonly) CLLocation *currentLocation;
+@property (nonatomic, retain) GEOCyclingOptions *cyclingOptions;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MKETAProviderDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -62,6 +64,7 @@
 - (void)configureWithNearestStationMapItem:(id)arg1;
 - (id)currentLocation;
 - (id)currentMapItem;
+- (id)cyclingOptions;
 - (void)dealloc;
 - (id)delegate;
 - (id)distanceString;
@@ -89,6 +92,7 @@
 - (void)removeObserver:(id)arg1;
 - (void)restart;
 - (void)setAutomobileOptions:(id)arg1;
+- (void)setCyclingOptions:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setObservers:(id)arg1;
 - (void)setObserversLock:(id)arg1;

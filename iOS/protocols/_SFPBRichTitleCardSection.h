@@ -79,6 +79,7 @@
 - (void)setRichSubtitle:(_SFPBRichText *)arg1;
 - (void)setSeparatorStyle:(int)arg1;
 - (void)setSubtitle:(NSString *)arg1;
+- (void)setSubtitleIsEmphasized:(bool)arg1;
 - (void)setThumbnailCropCircle:(bool)arg1;
 - (void)setTitle:(NSString *)arg1;
 - (void)setTitleAlign:(int)arg1;
@@ -87,6 +88,7 @@
 - (void)setTitleWeight:(int)arg1;
 - (void)setType:(NSString *)arg1;
 - (NSString *)subtitle;
+- (bool)subtitleIsEmphasized;
 - (bool)thumbnailCropCircle;
 - (NSString *)title;
 - (int)titleAlign;

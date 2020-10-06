@@ -10,21 +10,18 @@
     }  _continuingRoadIds;
     float  _endOffset;
     struct { 
+        unsigned int has_pathletId : 1; 
         unsigned int has_endOffset : 1; 
         unsigned int has_startOffset : 1; 
         unsigned int read_continuingRoadIds : 1; 
         unsigned int read_roadIds : 1; 
         unsigned int read_geometrys : 1; 
         unsigned int read_openlr : 1; 
-        unsigned int wrote_continuingRoadIds : 1; 
-        unsigned int wrote_roadIds : 1; 
-        unsigned int wrote_geometrys : 1; 
-        unsigned int wrote_openlr : 1; 
-        unsigned int wrote_endOffset : 1; 
-        unsigned int wrote_startOffset : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _geometrys;
     NSData * _openlr;
+    long long  _pathletId;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -45,8 +42,10 @@
 @property (nonatomic, retain) NSMutableArray *geometrys;
 @property (nonatomic) bool hasEndOffset;
 @property (nonatomic, readonly) bool hasOpenlr;
+@property (nonatomic) bool hasPathletId;
 @property (nonatomic) bool hasStartOffset;
 @property (nonatomic, retain) NSData *openlr;
+@property (nonatomic) long long pathletId;
 @property (nonatomic, readonly) long long*roadIds;
 @property (nonatomic, readonly) unsigned long long roadIdsCount;
 @property (nonatomic) float startOffset;
@@ -55,13 +54,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsContinuingRoadId:(long long)arg1;
-- (void)_addNoFlagsGeometry:(id)arg1;
-- (void)_addNoFlagsRoadId:(long long)arg1;
-- (void)_readContinuingRoadIds;
-- (void)_readGeometrys;
-- (void)_readOpenlr;
-- (void)_readRoadIds;
 - (void)addContinuingRoadId:(long long)arg1;
 - (void)addGeometry:(id)arg1;
 - (void)addRoadId:(long long)arg1;
@@ -82,13 +74,18 @@
 - (unsigned long long)geometrysCount;
 - (bool)hasEndOffset;
 - (bool)hasOpenlr;
+- (bool)hasPathletId;
 - (bool)hasStartOffset;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)openlr;
+- (long long)pathletId;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (long long)roadIdAtIndex:(unsigned long long)arg1;
@@ -98,8 +95,10 @@
 - (void)setEndOffset:(float)arg1;
 - (void)setGeometrys:(id)arg1;
 - (void)setHasEndOffset:(bool)arg1;
+- (void)setHasPathletId:(bool)arg1;
 - (void)setHasStartOffset:(bool)arg1;
 - (void)setOpenlr:(id)arg1;
+- (void)setPathletId:(long long)arg1;
 - (void)setRoadIds:(long long*)arg1 count:(unsigned long long)arg2;
 - (void)setStartOffset:(float)arg1;
 - (float)startOffset;

@@ -10,8 +10,6 @@
 @property (nonatomic, readonly, copy) NSArray *arguments;
 @property (nonatomic, readonly, retain) BSObjCArgument *returnValue;
 
-+ (id)argumentWithSignature:(id)arg1 atIndex:(long long)arg2;
-
 - (void).cxx_destruct;
 - (id)_prettyTypeString;
 - (id)arguments;

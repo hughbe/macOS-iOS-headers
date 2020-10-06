@@ -9,7 +9,9 @@
     <AMSMetricsFlushStrategy> * _currentFlushStrategy;
     AMSMetricsDatabaseDataSource * _databaseSource;
     long long  _destination;
+    NSObject<OS_dispatch_queue> * _engagementQueue;
     id /* block */  _flushIntervalBlock;
+    NSDate * _flushIntervalStartTime;
     bool  _flushOnForeground;
     NSObject<OS_dispatch_queue> * _flushQueue;
     bool  _flushTimerEnabled;
@@ -28,8 +30,10 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) long long destination;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *engagementQueue;
 @property (nonatomic, readonly) long long eventCount;
 @property (nonatomic, copy) id /* block */ flushIntervalBlock;
+@property (nonatomic, retain) NSDate *flushIntervalStartTime;
 @property (nonatomic) bool flushOnForeground;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *flushQueue;
 @property (nonatomic) bool flushTimerEnabled;
@@ -40,16 +44,17 @@
 @property (nonatomic) bool monitorsLifecycleEvents;
 @property (readonly) Class superclass;
 
-+ (id)_sharedInstanceUsingBag:(id)arg1;
 + (void)addRequiredBagKeysToAggregator:(id)arg1;
 + (bool)appAnalyticsAllowed;
 + (id)bagKeySet;
 + (id)bagSubProfile;
 + (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 + (bool)diagnosticsSubmissionAllowed;
 + (bool)disableBackgroundMetrics;
 + (bool)flushDelayEnabled;
 + (bool)flushTimerEnabled;
++ (id)internalInstanceUsingBag:(id)arg1;
 + (bool)recordAppAnalyticsForEvent:(id)arg1 bugType:(id)arg2;
 + (id)serverTimeFromDate:(id)arg1;
 + (id)serverTimeFromTimeInterval:(double)arg1;
@@ -61,13 +66,14 @@
 
 - (void).cxx_destruct;
 - (void)_applicationWillEnterForeground;
-- (void)_beginFlushIntervalWithStyle:(long long)arg1;
+- (void)_beginFlushIntervalWithStyle:(long long)arg1 events:(id)arg2;
 - (id)_determineFlushStrategyWithDataSource:(id)arg1 topic:(id)arg2;
+- (id)_enqueueFigaroEvents:(id)arg1;
 - (id)_flushDataSource:(id)arg1 topic:(id)arg2;
-- (double)_flushInterval;
-- (bool)_flushIntervalEnabledForStyle:(long long)arg1;
+- (double)_flushIntervalForEvents:(id)arg1;
 - (void)_flushIntervalInvalidate;
 - (void)_handleFlushIntervalWithStyle:(long long)arg1;
+- (bool)_scheduledFlushAllowedForStyle:(long long)arg1;
 - (id)bag;
 - (id)bagContract;
 - (void)cancel;
@@ -78,6 +84,7 @@
 - (void)dealloc;
 - (long long)destination;
 - (void)dropEvents;
+- (id)engagementQueue;
 - (id)enqueueAsyncEvents:(id)arg1;
 - (void)enqueueEvent:(id)arg1;
 - (void)enqueueEvents:(id)arg1;
@@ -85,6 +92,7 @@
 - (id)flush;
 - (id)flushEvents:(id)arg1;
 - (id /* block */)flushIntervalBlock;
+- (id)flushIntervalStartTime;
 - (bool)flushOnForeground;
 - (id)flushQueue;
 - (bool)flushTimerEnabled;
@@ -101,7 +109,9 @@
 - (void)setCurrentFlushStrategy:(id)arg1;
 - (void)setDatabaseSource:(id)arg1;
 - (void)setDestination:(long long)arg1;
+- (void)setEngagementQueue:(id)arg1;
 - (void)setFlushIntervalBlock:(id /* block */)arg1;
+- (void)setFlushIntervalStartTime:(id)arg1;
 - (void)setFlushOnForeground:(bool)arg1;
 - (void)setFlushQueue:(id)arg1;
 - (void)setFlushTimerEnabled:(bool)arg1;

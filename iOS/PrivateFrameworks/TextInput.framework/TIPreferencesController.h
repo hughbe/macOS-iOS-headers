@@ -92,6 +92,7 @@
 - (void)updateLastUsedInputMode:(id)arg1;
 - (void)updateLastUsedKeyboards:(id)arg1;
 - (void)updateLastUsedLayout:(id)arg1;
+- (void)updateVisceral:(id)arg1;
 - (id)valueForKey:(int)arg1;
 - (id)valueForPreferenceKey:(id)arg1;
 

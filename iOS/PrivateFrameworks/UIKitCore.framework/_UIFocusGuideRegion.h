@@ -3,12 +3,15 @@
  */
 
 @interface _UIFocusGuideRegion : _UIFocusRegion {
+    bool  __isFocusGuideUnoccludable;
     <_UIFocusGuideRegionDelegate> * _delegate;
 }
 
+@property (setter=_setIsFocusGuideUnoccludable:, nonatomic) bool _isFocusGuideUnoccludable;
 @property (nonatomic) <_UIFocusGuideRegionDelegate> *delegate;
 
 - (void).cxx_destruct;
+- (bool)_canBeOccludedByRegionsAbove;
 - (bool)_canOccludeRegionsBelow;
 - (id)_debugAssociatedObject;
 - (id)_delegatePreferredFocusEnvironmentsForMovementRequest:(id)arg1;
@@ -17,8 +20,10 @@
 - (unsigned long long)_focusableBoundaries;
 - (id)_focusedItemForLinearSorting:(id)arg1 inMap:(id)arg2;
 - (bool)_isEnabledForFocusedRegion:(id)arg1;
+- (bool)_isFocusGuideUnoccludable;
 - (id)_nextFocusedItemForFocusMovementRequest:(id)arg1 inMap:(id)arg2;
 - (long long)_preferredDistanceComparisonType;
+- (void)_setIsFocusGuideUnoccludable:(bool)arg1;
 - (bool)_shouldDrawDebugQuickLookImageWithInfo:(id)arg1;
 - (bool)_shouldUseNextFocusedItemForLinearSorting;
 - (id)_visualRepresentationColor;

@@ -4,7 +4,7 @@
 
 @interface UIDimmingView : UIView <UIGestureRecognizerDelegate> {
     UIImageView * _backgroundGlow;
-    id  _delegate;
+    <UIDimmingViewDelegate> * _delegate;
     UIColor * _dimmingColor;
     UIBarButtonItem * _highlightedBarButtonItem;
     UIImageView * _highlightedImageView;
@@ -18,7 +18,7 @@
 }
 
 @property (readonly, copy) NSString *debugDescription;
-@property (nonatomic) id delegate;
+@property (nonatomic) <UIDimmingViewDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) UIColor *dimmingColor;
 @property (nonatomic, readonly) bool displayed;
@@ -31,17 +31,13 @@
 @property (readonly) Class superclass;
 @property (nonatomic) bool suppressesBackdrops;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)defaultDimmingColor;
 
 - (void).cxx_destruct;
 - (id)_backdropViewsToAnimate;
+- (void)_sendDelegateDimmingViewWasTapped;
 - (void)_simulateTap;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)delegate;
 - (id)dimmingColor;
 - (void)dimmingRemovalAnimationDidStop;

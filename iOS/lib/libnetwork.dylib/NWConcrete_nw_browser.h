@@ -24,6 +24,7 @@
     NSObject<OS_nw_array> * old_results;
     NSObject<OS_nw_parameters> * parameters;
     NSObject<OS_nw_array> * path_endpoint_array;
+    bool  redact_logs;
     struct _DNSServiceRef_t { } * secondary_dns_ref;
     int  state;
     id /* block */  state_changed_handler;
@@ -39,7 +40,6 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithDescriptor:(id)arg1 parameters:(id)arg2;
 - (id)redactedDescription;
 
 @end

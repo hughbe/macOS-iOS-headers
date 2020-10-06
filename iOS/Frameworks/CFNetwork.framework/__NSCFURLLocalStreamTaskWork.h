@@ -11,8 +11,6 @@
     bool  _timerStarted;
 }
 
-- (const char *)_static_description;
 - (id)description;
-- (id)initWithDescription:(const char *)arg1;
 
 @end

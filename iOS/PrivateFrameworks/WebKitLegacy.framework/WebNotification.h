@@ -13,6 +13,7 @@
 - (void)dispatchCloseEvent;
 - (void)dispatchErrorEvent;
 - (void)dispatchShowEvent;
+- (void)finalize;
 - (id)iconURL;
 - (id)init;
 - (id)lang;

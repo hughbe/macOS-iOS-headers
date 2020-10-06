@@ -10,10 +10,12 @@
 @property (nonatomic, readonly) NSString *containerIdentifier;
 @property (nonatomic, readonly) CNGroup *group;
 
++ (unsigned long long)instanceSortOrder;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (void)acceptEventVisitor:(id)arg1;
+- (long long)comparisonResultWithinSameClass:(id)arg1;
 - (id)containerIdentifier;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

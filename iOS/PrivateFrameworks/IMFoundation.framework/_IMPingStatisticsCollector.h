@@ -9,6 +9,7 @@
     _IMPingPacketData * _timestampArray;
 }
 
+- (void).cxx_destruct;
 - (double)_computeMedianTime:(id)arg1;
 - (double)_computeStandardDeviation:(id)arg1 numPings:(int)arg2 averageRTT:(double)arg3;
 - (void)addEchoPacket:(int)arg1 packetTimestamp:(struct timeval { long long x1; int x2; })arg2 error:(int)arg3;

@@ -10,12 +10,15 @@
 - (unsigned long long)cachePolicy;
 - (GEOCategorySearchResultSection *)categorySearchResultSection;
 - (GEOResolvedItem *)clientResolvedResult;
+- (NSArray *)collectionResults;
 - (GEORelatedSearchSuggestion *)defaultRelatedSuggestion;
 - (GEODirectionIntent *)directionIntent;
 - (NSArray *)displayHeaderSubstitutes;
 - (unsigned int)dymSuggestionVisibleTime;
 - (bool)isChainResultSet;
 - (GEOPDMerchantLookupResult *)merchantLookupResult;
+- (NSArray *)publisherResults;
+- (NSArray *)relatedEntitySections;
 - (NSArray *)relatedSearchSuggestions;
 - (NSDictionary *)responseUserInfo;
 - (GEOMapRegion *)resultBoundingRegion;

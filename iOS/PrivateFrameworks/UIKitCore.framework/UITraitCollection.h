@@ -21,66 +21,67 @@
         long long legibilityWeight; 
         long long semanticContext; 
         long long presentationSemanticContext; 
+        long long splitViewControllerContext; 
         long long accessibilityContrast; 
         long long userInterfaceLevel; 
         long long vibrancy; 
-        long long debugHighlight; 
+        long long activeAppearance; 
     }  _builtinTraits;
     NSDictionary * _clientDefinedTraits;
     NSObject * _environmentWrapper;
 }
 
-@property (nonatomic, readonly) NSString *_appearanceName;
-@property (getter=_imageConfiguration, nonatomic, readonly) UIImageConfiguration *_imageConfiguration;
-@property (nonatomic, readonly) long long _presentationSemanticContext;
-@property (nonatomic, readonly) long long _semanticContext;
-@property (nonatomic, readonly) NSString *_styleEffectAppearanceName;
-@property (getter=_themeKey, nonatomic, readonly) <_UIThemeKey> *_themeKey;
+@property (nonatomic, readonly) bool MPU_hasCompactHeight;
+@property (nonatomic, readonly) bool MPU_hasCompactWidth;
+@property (nonatomic, readonly) bool MPU_hasRegularHeight;
+@property (nonatomic, readonly) bool MPU_hasRegularWidth;
+@property (nonatomic, readonly) bool _isLargeContentViewerEnabled;
+@property (nonatomic, readonly) UIBlurEffect *_sf_backgroundBlurEffect;
 @property (nonatomic, readonly) long long accessibilityContrast;
+@property (nonatomic, readonly) long long activeAppearance;
+@property (nonatomic, readonly) NSString *cps_invocationCardPreferredContentSizeCategory;
+@property (nonatomic, readonly) long long crsui_mapStyle;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) long long displayGamut;
+@property (nonatomic, readonly) double displayPixel;
 @property (nonatomic, readonly) double displayScale;
 @property (nonatomic, readonly) long long forceTouchCapability;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) long long horizontalSizeClass;
-@property (getter=_isFallback, nonatomic, readonly) bool isFallback;
+@property (nonatomic, readonly) ICAppearanceInfo *ic_appearanceInfo;
+@property (nonatomic, readonly) bool ic_hasCompactHeight;
+@property (nonatomic, readonly) bool ic_hasCompactSize;
+@property (nonatomic, readonly) bool ic_hasCompactWidth;
+@property (nonatomic, readonly) bool ic_isDark;
 @property (nonatomic, readonly) long long layoutDirection;
 @property (nonatomic, readonly) long long legibilityWeight;
 @property (nonatomic, readonly, copy) NSString *preferredContentSizeCategory;
+@property (nonatomic, readonly) long long prx_cardSizeClass;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) long long userInterfaceIdiom;
 @property (nonatomic, readonly) long long userInterfaceLevel;
 @property (nonatomic, readonly) long long userInterfaceStyle;
 @property (nonatomic, readonly) long long verticalSizeClass;
 
-+ (id)_backgroundThreadFallbackTraitCollection;
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)_currentTraitCollection;
-+ (id)_currentTraitCollectionIfExists;
-+ (id)_currentTraitCollectionWithFallback:(bool)arg1 markFallback:(bool)arg2;
-+ (id)_currentTraitCollectionWithUnmarkedFallback;
-+ (id)_defaultTraitCollection;
 + (id)_descriptionForChangeFromTraitCollection:(id)arg1 toTraitCollection:(id)arg2;
-+ (id)_emptyTraitCollection;
-+ (id)_fallbackTraitCollection;
-+ (void)_performWithCurrentTraitCollection:(id)arg1 usingBlock:(id /* block */)arg2;
-+ (void)_setBackgroundThreadFallbackTraitCollection:(id)arg1;
 + (void)_setCurrentTraitCollection:(id)arg1;
-+ (id)_threadSafeFallbackTraitCollection;
-+ (id)_traitCollectionForThemeKey:(id)arg1;
-+ (id)_traitCollectionFromImageConfiguration:(id)arg1;
 + (id)_traitCollectionWithBackgroundLevel:(long long)arg1;
 + (id)_traitCollectionWithContrast:(long long)arg1;
-+ (id)_traitCollectionWithDebugHighlight:(long long)arg1;
 + (id)_traitCollectionWithEnvironmentWrapper:(id)arg1;
 + (id)_traitCollectionWithPresentationSemanticContext:(long long)arg1;
-+ (id)_traitCollectionWithSemanticContext:(long long)arg1;
++ (id)_traitCollectionWithSplitViewControllerContext:(long long)arg1;
++ (id)_traitCollectionWithUserInterfaceActiveAppearance:(long long)arg1;
 + (id)_traitCollectionWithValue:(id)arg1 forTraitNamed:(id)arg2;
 + (id)_traitCollectionWithVibrancy:(long long)arg1;
 + (id)currentTraitCollection;
 + (void)setCurrentTraitCollection:(id)arg1;
 + (bool)supportsSecureCoding;
 + (id)traitCollectionWithAccessibilityContrast:(long long)arg1;
++ (id)traitCollectionWithActiveAppearance:(long long)arg1;
 + (id)traitCollectionWithArtworkSubtype:(unsigned long long)arg1;
 + (id)traitCollectionWithDisplayCornerRadius:(double)arg1;
 + (id)traitCollectionWithDisplayGamut:(long long)arg1;
@@ -92,7 +93,6 @@
 + (id)traitCollectionWithLegibilityWeight:(long long)arg1;
 + (id)traitCollectionWithPreferredContentSizeCategory:(id)arg1;
 + (id)traitCollectionWithPrimaryInteractionModel:(unsigned long long)arg1;
-+ (id)traitCollectionWithTextLegibility:(long long)arg1;
 + (id)traitCollectionWithTouchLevel:(long long)arg1;
 + (id)traitCollectionWithTraitsFromCollections:(id)arg1;
 + (id)traitCollectionWithUserInterfaceIdiom:(long long)arg1;
@@ -100,44 +100,25 @@
 + (id)traitCollectionWithUserInterfaceStyle:(long long)arg1;
 + (id)traitCollectionWithVerticalSizeClass:(long long)arg1;
 
-- (id)_appearanceName;
 - (long long)_backgroundLevel;
-- (bool)_changedContentSizeCategoryFromTraitCollection:(id)arg1;
-- (bool)_changedContentSizeCategoryOrLegibilityWeightFromTraitCollection:(id)arg1;
-- (bool)_changedLegibilityWeightFromTraitCollection:(id)arg1;
 - (long long)_compare:(id)arg1;
 - (long long)_contrast;
-- (long long)_countOfIntersectionWithTraitCollection:(id)arg1;
-- (long long)_debugHighlight;
 - (id)_description;
-- (id)_descriptionWithPrivateTraits:(bool)arg1;
-- (void)_enumerateThemeAppearanceNamesForLookup:(id /* block */)arg1;
-- (void)_enumerateThemeKeysForLookup:(id /* block */)arg1;
 - (id)_environmentWrapper;
-- (id)_fallbackCopy;
 - (id)_fallbackTraitCollection;
-- (id)_imageConfiguration;
-- (id)_initWithBuiltinTraitStorage:(struct { long long x1; double x2; long long x3; long long x4; unsigned long long x5; unsigned long long x6; long long x7; long long x8; long long x9; long long x10; long long x11; long long x12; long long x13; double x14; long long x15; long long x16; long long x17; long long x18; long long x19; long long x20; long long x21; }*)arg1 clientDefinedTraits:(id)arg2;
-- (id)_initWithBuiltinTraitStorage:(struct { long long x1; double x2; long long x3; long long x4; unsigned long long x5; unsigned long long x6; long long x7; long long x8; long long x9; long long x10; long long x11; long long x12; long long x13; double x14; long long x15; long long x16; long long x17; long long x18; long long x19; long long x20; long long x21; }*)arg1 clientDefinedTraits:(id)arg2 environmentWrapper:(id)arg3;
-- (id)_invertedTraitCollection;
-- (bool)_isFallback;
-- (bool)_matchesIntersectionWithTraitCollection:(id)arg1;
+- (bool)_hasSplitViewControllerContextPrimaryColumn;
+- (bool)_hasSplitViewControllerContextSidebarColumn;
+- (bool)_isLargeContentViewerEnabled;
 - (id)_namedImageDescription;
 - (long long)_presentationSemanticContext;
-- (long long)_semanticContext;
-- (id)_styleEffectAppearanceName;
-- (long long)_textLegibility;
-- (id)_themeKey;
-- (long long)_themeLevelForKey;
-- (id)_traitCollectionByReplacingValue:(id)arg1 forTraitName:(id)arg2;
-- (id)_traitCollectionRelevantForImageConfiguration;
-- (id)_traitCollectionWithIncrementedBackgroundLevel;
+- (long long)_splitViewControllerContext;
 - (id)_traitNamesForUnspecifiedBuiltInTraits;
-- (id)_traitNamesOfIntersectionWithTraitCollection:(id)arg1;
 - (id)_traitsDescription;
+- (long long)_userInterfaceActiveAppearance;
 - (id)_valueForTraitNamed:(id)arg1;
 - (long long)_vibrancy;
 - (long long)accessibilityContrast;
+- (long long)activeAppearance;
 - (unsigned long long)artworkSubtype;
 - (bool)containsTraitsInCollection:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -166,5 +147,76 @@
 - (long long)userInterfaceLevel;
 - (long long)userInterfaceStyle;
 - (long long)verticalSizeClass;
+
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
+
+- (bool)_lp_prefersDarkInterface;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (long long)mf_correspondingBarMetrics;
+- (bool)mf_hasCompactDimension;
+- (bool)mf_supportsPopoverPresentation;
+- (bool)mf_useSplitViewStyling;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_traitCollectionWithBackgroundBlurEffect:(id)arg1;
+
+- (id)_sf_backgroundBlurEffect;
+
+// Image: /System/Library/PrivateFrameworks/CarPlayUIServices.framework/CarPlayUIServices
+
++ (id)crsui_traitCollectionWithMapStyle:(long long)arg1;
+
+- (long long)crsui_mapStyle;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
+- (id)cps_invocationCardPreferredContentSizeCategory;
+
+// Image: /System/Library/PrivateFrameworks/HealthRecordsUI.framework/HealthRecordsUI
+
+- (double)displayPixel;
+
+// Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+
+- (bool)MPU_hasCompactHeight;
+- (bool)MPU_hasCompactWidth;
+- (bool)MPU_hasRegularHeight;
+- (bool)MPU_hasRegularWidth;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
++ (bool)ic_alwaysShowLightContent;
++ (void)setIc_alwaysShowLightContent:(bool)arg1;
+
+- (id)ic_appearanceInfo;
+- (bool)ic_hasCompactHeight;
+- (bool)ic_hasCompactSize;
+- (bool)ic_hasCompactWidth;
+- (bool)ic_hasEqualSizeToTraitCollection:(id)arg1;
+- (bool)ic_isDark;
+- (void)ic_performAsCurrent:(id /* block */)arg1;
+- (id)ic_traitCollectionByAppendingNonNilTraitCollection:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ProxCardKit.framework/ProxCardKit
+
++ (id)prx_traitCollectionWithCardSizeClass:(long long)arg1;
+
+- (long long)prx_cardSizeClass;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
++ (long long)ts_currentUserInterfaceStyle;
++ (void)ts_setCurrentUserInterfaceStyle:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
+- (bool)isPreferredContentSizeCategoryAccessible;
+
+// Image: /System/Library/PrivateFrameworks/WiFiKitUI.framework/WiFiKitUI
+
+- (bool)isLargeTextTraitCollection;
 
 @end

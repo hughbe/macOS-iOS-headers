@@ -9,6 +9,7 @@
     NSSet * _desiredPushTypes;
     int  _fileProviderToken;
     NSObject<OS_dispatch_queue> * _ivarQueue;
+    double  _lastReportedCallTime;
     int  _outstandingVoIPPushes;
     NSMutableDictionary * _pushTypeToConnection;
     NSMutableDictionary * _pushTypeToToken;
@@ -24,6 +25,7 @@
 @property (nonatomic) int fileProviderToken;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *ivarQueue;
+@property (nonatomic) double lastReportedCallTime;
 @property (nonatomic) int outstandingVoIPPushes;
 @property (nonatomic, retain) NSMutableDictionary *pushTypeToConnection;
 @property (nonatomic, retain) NSMutableDictionary *pushTypeToToken;
@@ -55,6 +57,7 @@
 - (int)fileProviderToken;
 - (id)initWithQueue:(id)arg1;
 - (id)ivarQueue;
+- (double)lastReportedCallTime;
 - (int)outstandingVoIPPushes;
 - (id)pushTokenForType:(id)arg1;
 - (id)pushTypeToConnection;
@@ -67,6 +70,7 @@
 - (void)setDesiredPushTypes:(id)arg1;
 - (void)setFileProviderToken:(int)arg1;
 - (void)setIvarQueue:(id)arg1;
+- (void)setLastReportedCallTime:(double)arg1;
 - (void)setOutstandingVoIPPushes:(int)arg1;
 - (void)setPushTypeToConnection:(id)arg1;
 - (void)setPushTypeToToken:(id)arg1;

@@ -2,10 +2,14 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOPrivacyManager : NSObject
+@interface GEOPrivacyManager : NSObject {
+    bool  _hasLastKnownLocationServicesEnabled;
+    bool  _lastKnownLocationServicesEnabled;
+}
 
 - (void)_fireRecentsClearedNotification;
 - (void)_fireResetLocationAndPrivacyNotification;
+- (void)_locationServicesStateChanged;
 - (void)dealloc;
 - (id)init;
 

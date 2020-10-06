@@ -47,6 +47,8 @@
 - (bool)isRunning;
 - (id)name;
 - (int)pid;
+- (unsigned int)platform;
+- (id)platformName;
 - (int)ppid;
 - (id)procTableName;
 - (id)realAppName;

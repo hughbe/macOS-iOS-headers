@@ -3,6 +3,7 @@
  */
 
 @interface UISegment : UIImageView <CAAnimationDelegate> {
+    UIAction * _action;
     _UISegmentedControlAppearanceStorage * _appearanceStorage;
     UIImageView * _backgroundView;
     NSString * _badgeValue;
@@ -31,6 +32,7 @@
         unsigned int needsBackgroundAndContentViewUpdate : 1; 
         unsigned int usesAXTextSize : 1; 
         unsigned int selectionIndicatorDragged : 1; 
+        unsigned int adjustsForContentSizeCategory : 1; 
         unsigned int hovered : 1; 
         unsigned int animatingSelectionIndicator : 1; 
     }  _segmentFlags;
@@ -40,6 +42,7 @@
 }
 
 @property (setter=_setInfoConstraints:, nonatomic, copy) NSArray *_infoConstraints;
+@property (nonatomic, copy) UIAction *action;
 @property (nonatomic, copy) NSString *badgeValue;
 @property (readonly) UIView *badgeView;
 @property int controlSize;
@@ -51,8 +54,6 @@
 @property (nonatomic) double requestedScaleFactor;
 @property (getter=isSelected) bool selected;
 @property (readonly) Class superclass;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_backgroundImageWithStorage:(id)arg1 mini:(bool)arg2 state:(unsigned long long)arg3 position:(unsigned int)arg4 drawMode:(unsigned int*)arg5 isCustom:(bool*)arg6 defaultBlock:(id /* block */)arg7;
 
@@ -106,10 +107,7 @@
 - (void)_updateSelectionIndicator;
 - (void)_updateSelectionToTransform:(struct CATransform3D { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; double x12; double x13; double x14; double x15; double x16; })arg1 infoTransform:(struct CATransform3D { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; double x11; double x12; double x13; double x14; double x15; double x16; })arg2 hideSelection:(bool)arg3 shouldAnimate:(bool)arg4;
 - (void)_updateTextColors;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (id)action;
 - (void)animateAdd:(bool)arg1;
 - (void)animateRemoveForWidth:(double)arg1;
 - (void)animationDidStop:(id)arg1 finished:(bool)arg2;
@@ -119,18 +117,20 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })contentRect;
 - (struct CGSize { double x1; double x2; })contentSize;
 - (int)controlSize;
+- (void)dealloc;
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (id)disabledTextColor;
 - (void)encodeWithCoder:(id)arg1;
 - (id)hitTest:(struct CGPoint { double x1; double x2; })arg1 forEvent:(struct __GSEvent { }*)arg2;
 - (id)hitTest:(struct CGPoint { double x1; double x2; })arg1 withEvent:(id)arg2;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithInfo:(id)arg1 size:(int)arg2 barStyle:(long long)arg3 tintColor:(id)arg4 appearanceStorage:(id)arg5 position:(unsigned int)arg6 autosizeText:(bool)arg7;
+- (id)initWithInfo:(id)arg1 size:(int)arg2 barStyle:(long long)arg3 tintColor:(id)arg4 appearanceStorage:(id)arg5 position:(unsigned int)arg6 autosizeText:(bool)arg7 adjustsForContentSizeCategory:(bool)arg8;
 - (void)insertDividerView;
 - (bool)isAnimatingSelectionIndicator;
 - (bool)isHighlighted;
 - (bool)isHovered;
 - (bool)isMomentary;
+- (bool)isRightSelected;
 - (bool)isSelected;
 - (bool)isSelectionIndicatorDragged;
 - (id)label;
@@ -139,6 +139,8 @@
 - (unsigned int)position;
 - (void)removeFromSuperview;
 - (double)requestedScaleFactor;
+- (void)setAction:(id)arg1;
+- (void)setAdjustsForContentSizeCategory:(bool)arg1;
 - (void)setAnimatingSelectionIndicator:(bool)arg1;
 - (void)setAutosizeText:(bool)arg1;
 - (void)setBadgeValue:(id)arg1;

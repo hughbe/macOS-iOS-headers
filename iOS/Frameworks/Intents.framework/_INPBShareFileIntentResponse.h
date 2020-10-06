@@ -3,7 +3,6 @@
  */
 
 @interface _INPBShareFileIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBShareFileIntentResponse> {
-    bool  __encodeLegacyGloryData;
     bool  _confirm;
     struct { 
         unsigned int confirm : 1; 
@@ -15,7 +14,6 @@
     bool  _success;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) bool confirm;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -34,8 +32,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsShareMode:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addRecipients:(id)arg1;
 - (void)clearRecipients;
 - (bool)confirm;

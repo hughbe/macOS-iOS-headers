@@ -26,6 +26,7 @@
 - (id)accessKey;
 - (id)autocomplete;
 - (bool)autofocus;
+- (bool)canShowPlaceholder;
 - (int)cols;
 - (id)defaultValue;
 - (id)dirName;
@@ -46,6 +47,7 @@
 - (void)setAccessKey:(id)arg1;
 - (void)setAutocomplete:(id)arg1;
 - (void)setAutofocus:(bool)arg1;
+- (void)setCanShowPlaceholder:(bool)arg1;
 - (void)setCols:(int)arg1;
 - (void)setDefaultValue:(id)arg1;
 - (void)setDirName:(id)arg1;
@@ -66,7 +68,6 @@
 - (void)setWrap:(id)arg1;
 - (id)startPosition;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (unsigned int)textLength;
 - (id)type;
 - (id)value;
@@ -82,6 +83,7 @@
 - (bool)_supportsAutoFill;
 - (id)_textFormElement;
 - (bool)isEditing;
+- (bool)isSingleLineDocument;
 - (bool)isTextControl;
 - (bool)nodeCanBecomeFirstResponder;
 - (void)setSelectionWithPoint:(struct CGPoint { double x1; double x2; })arg1;

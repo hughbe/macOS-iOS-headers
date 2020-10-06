@@ -7,6 +7,7 @@
     NSMutableDictionary * _associatedOperationGroups;
     NSMutableDictionary * _associatedOperations;
     NSDictionary * _attributes;
+    NSString * _deviceIdentifier;
     NSDate * _endTime;
     NSString * _eventName;
     bool  _isCKInternalMetric;
@@ -22,6 +23,7 @@
 @property (nonatomic, readonly) NSMutableDictionary *associatedOperationGroups;
 @property (nonatomic, readonly) NSMutableDictionary *associatedOperations;
 @property (nonatomic, readonly) NSDictionary *attributes;
+@property (nonatomic, readonly) NSString *deviceIdentifier;
 @property (nonatomic, readonly) NSDate *endTime;
 @property (nonatomic, readonly) NSString *eventName;
 @property (nonatomic, readonly) bool isCKInternalMetric;
@@ -39,6 +41,7 @@
 - (id)associatedOperationGroups;
 - (id)associatedOperations;
 - (id)attributes;
+- (id)deviceIdentifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)endTime;
 - (id)eventName;

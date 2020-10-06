@@ -4,8 +4,8 @@
 
 @interface UITextContextMenuInteraction : UITextInteraction
 
-- (void)_contextualMenuGestureRecognizerChanged:(id)arg1;
-- (void)finishSetup;
-- (id)init;
++ (id)alloc;
++ (void)setShouldUseContextMenuInteraction:(bool)arg1;
++ (bool)shouldUseContextMenuInteraction;
 
 @end

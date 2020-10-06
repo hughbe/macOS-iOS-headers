@@ -3,14 +3,12 @@
  */
 
 @interface _INPBGetReservationDetailsIntent : PBCodable <NSCopying, NSSecureCoding, _INPBGetReservationDetailsIntent> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     _INPBIntentMetadata * _intentMetadata;
     _INPBDataString * _reservationContainerReference;
     NSArray * _reservationItemReferences;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasIntentMetadata;
@@ -26,8 +24,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addReservationItemReferences:(id)arg1;
 - (void)clearReservationItemReferences;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

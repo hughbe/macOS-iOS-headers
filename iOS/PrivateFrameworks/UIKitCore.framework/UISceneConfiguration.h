@@ -22,6 +22,8 @@
 @property (nonatomic, retain) Class sceneClass;
 @property (nonatomic, retain) UIStoryboard *storyboard;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)configurationWithName:(id)arg1 sessionRole:(id)arg2;
 + (bool)supportsSecureCoding;
 
@@ -47,5 +49,9 @@
 - (void)setSceneClass:(Class)arg1;
 - (void)setStoryboard:(id)arg1;
 - (id)storyboard;
+
+// Image: /System/Library/Frameworks/SwiftUI.framework/SwiftUI
+
+- (id)sceneDelegate;
 
 @end

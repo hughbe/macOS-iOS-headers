@@ -19,6 +19,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) bool supportsContentExtensions;
 
+// Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
+
 + (id)currentNotificationCenter;
 + (bool)supportsContentExtensions;
 
@@ -27,6 +29,7 @@
 - (void)addNotificationRequest:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (id)badgeNumber;
 - (id)bundleIdentifier;
+- (id)clearedInfoForDataProviderMigration;
 - (id)delegate;
 - (id)deliveredNotifications;
 - (void)didChangeSettings:(id)arg1;
@@ -56,6 +59,7 @@
 - (void)removeSimilarNotificationRequests:(id)arg1;
 - (void)replaceContentForRequestWithIdentifier:(id)arg1 replacementContent:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)requestAuthorizationWithOptions:(unsigned long long)arg1 completionHandler:(id /* block */)arg2;
+- (void)requestRemoveAuthorizationWithCompletionHandler:(id /* block */)arg1;
 - (void)setBadgeNumber:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)setBadgeString:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)setBundleIdentifier:(id)arg1;
@@ -67,5 +71,9 @@
 - (void)setQueue:(id)arg1;
 - (void)setWantsNotificationResponsesDelivered;
 - (bool)supportsContentExtensions;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
++ (id)workflowNotificationCenter;
 
 @end

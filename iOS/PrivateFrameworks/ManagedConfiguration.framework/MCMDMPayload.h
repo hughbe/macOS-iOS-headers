@@ -69,7 +69,6 @@
 - (id)checkInURLString;
 - (bool)checkOutWhenRemoved;
 - (id)checkOutWhenRemovedNum;
-- (id)description;
 - (id)easEnrollmentID;
 - (id)enrollmentID;
 - (id)iCloudEnrollmentID;
@@ -101,9 +100,9 @@
 - (id)stubDictionary;
 - (id)subtitle1Description;
 - (id)subtitle1Label;
-- (id)title;
 - (id)topic;
 - (bool)useDevelopmentAPNS;
 - (id)useDevelopmentAPNSNum;
+- (id)verboseDescription;
 
 @end

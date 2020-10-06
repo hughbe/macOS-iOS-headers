@@ -29,6 +29,8 @@
 @property (nonatomic, readonly) struct sqlite3 { }*handle;
 @property (nonatomic, readonly) bool isInMemory;
 
+// Image: /System/Library/PrivateFrameworks/ProactiveSupport.framework/ProactiveSupport
+
 + (bool)contentProtectionTypeRequiresDeviceToBeUnlocked:(long long)arg1;
 + (bool)contentProtectionTypeRequiresDeviceToHaveBeenUnlockedOnce:(long long)arg1;
 + (id)corruptionMarkerPathForPath:(id)arg1;
@@ -53,9 +55,10 @@
 + (void)truncateDatabaseAtPath:(id)arg1;
 
 - (void).cxx_destruct;
+- (bool)_isLikelySQLStatementContainedInString:(const char *)arg1;
 - (void)_logQueryPlanForQuery:(id)arg1;
 - (void)_prepAndRunQuery:(id)arg1 columns:(id)arg2 dictionary:(id)arg3 onError:(id /* block */)arg4;
-- (bool)_transactionWithExclusivity:(bool)arg1 transaction:(id /* block */)arg2;
+- (struct _PASDBTransactionCompletion_ { bool x1; })_transactionWithExclusivity:(bool)arg1 transaction:(id /* block */)arg2;
 - (void)_txnBegin;
 - (void)_txnBeginExclusive;
 - (void)_txnEnd;
@@ -93,6 +96,7 @@
 - (bool)prepAndRunQuery:(id)arg1 onPrep:(id /* block */)arg2 onRow:(id /* block */)arg3 onError:(id /* block */)arg4;
 - (bool)prepQuery:(id)arg1 onPrep:(id /* block */)arg2 onError:(id /* block */)arg3;
 - (void)readTransaction:(id /* block */)arg1;
+- (struct _PASDBTransactionCompletion_ { bool x1; })readTransactionWithFailableBlock:(id /* block */)arg1;
 - (bool)runQuery:(id)arg1 onRow:(id /* block */)arg2;
 - (bool)runQuery:(id)arg1 onRow:(id /* block */)arg2 onError:(id /* block */)arg3;
 - (id)selectColumns:(id)arg1 fromTable:(id)arg2 whereClause:(id)arg3 onPrep:(id /* block */)arg4 onError:(id /* block */)arg5;
@@ -103,5 +107,10 @@
 - (unsigned int)userVersion;
 - (void)withDbLockExecuteBlock:(id /* block */)arg1;
 - (void)writeTransaction:(id /* block */)arg1;
+- (struct _PASDBTransactionCompletion_ { bool x1; })writeTransactionWithFailableBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (long long)atx_countRowsOfTable:(id)arg1;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSXPCServiceDefinition : NSObject <BSXPCSecureCoding, NSSecureCoding> {
+@interface RBSXPCServiceDefinition : NSObject <NSSecureCoding, RBSXPCSecureCoding> {
     NSString * _identifier;
     long long  _scope;
     long long  _variant;
@@ -17,16 +17,17 @@
 @property (nonatomic, readonly) long long variant;
 
 + (id)definitionWithIdentifier:(id)arg1 variant:(long long)arg2 scope:(long long)arg3;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
+- (unsigned long long)hash;
 - (id)identifier;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (long long)scope;
 - (long long)variant;

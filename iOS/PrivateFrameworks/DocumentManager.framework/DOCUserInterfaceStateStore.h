@@ -12,6 +12,7 @@
 
 - (void).cxx_destruct;
 - (id)_loadUserInterfaceStateFromDefaultsForConfiguration:(id)arg1;
+- (id)_mostRecentInterfaceStateForConfiguration:(id)arg1;
 - (void)_pruneOldState;
 - (id)_sortedInterfaceStateKeys;
 - (void)_writeMostRecentUserInterfaceStateToDefaultsForConfiguration:(id)arg1;
@@ -19,7 +20,7 @@
 - (id)docUserDefaults;
 - (id)init;
 - (id)interfaceStateForConfiguration:(id)arg1;
-- (id)mostRecentInterfaceStateForConfiguration:(id)arg1;
+- (void)purgeApplicationStateForIdentifiers:(id)arg1 configuration:(id)arg2;
 - (void)purgeStateForConfiguration:(id)arg1;
 - (void)setUiStateMap:(id)arg1;
 - (id)uiStateMap;

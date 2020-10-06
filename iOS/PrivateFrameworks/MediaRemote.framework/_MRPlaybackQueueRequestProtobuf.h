@@ -71,7 +71,6 @@
 @property (nonatomic) bool returnContentItemAssetsInUserCompletion;
 
 + (Class)contentItemIdentifiersType;
-+ (void)initialize;
 
 - (void).cxx_destruct;
 - (void)addContentItemIdentifiers:(id)arg1;
@@ -85,8 +84,6 @@
 - (id)context;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)customDescription;
-- (id)customDictionaryRepresentation;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (bool)hasArtworkHeight;

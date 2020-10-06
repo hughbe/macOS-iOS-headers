@@ -6,6 +6,9 @@
     unsigned int  __pad_bits;
     NWConcrete_nw_content_context * antecedent;
     unsigned int  completed_send;
+    unsigned int  connection_group_connection;
+    NSObject<OS_nw_array> * connection_group_info;
+    unsigned int  connection_group_multicast;
     unsigned long long  enqueue_time;
     NSObject<OS_nw_error> * error;
     unsigned int  expiration_checked;
@@ -19,6 +22,7 @@
     unsigned char  packet_id;
     NSObject<OS_nw_array> * protocol_metadatas;
     double  relative_priority;
+    unsigned int  supports_replies;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -29,7 +33,6 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithIdentifier:(const char *)arg1;
 - (id)redactedDescription;
 
 @end

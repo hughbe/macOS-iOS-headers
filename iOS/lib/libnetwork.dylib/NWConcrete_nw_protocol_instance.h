@@ -3,7 +3,6 @@
  */
 
 @interface NWConcrete_nw_protocol_instance : NSObject <OS_nw_protocol_instance> {
-    unsigned int  allow_buffering;
     struct nw_protocol_callbacks { 
         int (*add_input_handler)(); 
         int (*remove_input_handler)(); 
@@ -40,13 +39,29 @@
         int (*reset)(); 
         int (*input_flush)(); 
     }  callbacks;
+    unsigned int  connection_used;
+    NSObject<OS_nw_context> * context;
+    NSObject<OS_nw_path> * current_path;
+    unsigned long long  current_setup_path;
+    NSObject<OS_nw_endpoint> * current_setup_path_endpoint;
+    NSObject<OS_nw_endpoint> * current_setup_path_local_endpoint;
+    NSObject<OS_nw_parameters> * current_setup_path_parameters;
     struct nw_hash_table { } * custom_flow_mapping_table;
     unsigned int  datagram;
+    unsigned long long  default_path;
+    NSObject<OS_nw_endpoint> * derived_ipv4_endpoint;
     void * destroy_timer;
+    struct nw_frame_array_s { 
+        struct nw_frame {} *tqh_first; 
+        struct nw_frame {} **tqh_last; 
+    }  empty_frame_pool;
+    unsigned int  empty_frame_pool_count;
     NSObject<OS_nw_endpoint> * endpoint;
+    unsigned int  failed_to_get_output;
     NSObject<OS_nw_path_flow_registration> * flow_registration;
     struct nw_hash_table { } * flows_table;
     void * handle;
+    unsigned int  ignore_future_path_changes;
     struct nw_frame_array_s { 
         struct nw_frame {} *tqh_first; 
         struct nw_frame {} **tqh_last; 
@@ -62,6 +77,7 @@
     unsigned int  needs_finalize_output;
     unsigned int  needs_output_available;
     unsigned int  new_flow_is_control;
+    NWConcrete_nw_protocol_options * options;
     NSObject<OS_nw_array> * outbound_data_requests;
     struct nw_frame_array_s { 
         struct nw_frame {} *tqh_first; 
@@ -70,6 +86,8 @@
     unsigned int  output_connected;
     NSObject<OS_nw_parameters> * parameters;
     NWConcrete_nw_protocol_definition * parent_definition;
+    unsigned short  paths_log_id_num;
+    struct nw_hash_table { } * paths_table;
     unsigned int  pending_inbound_frame_bytes;
     unsigned int  pending_inbound_frame_count;
     struct nw_frame_array_s { 
@@ -92,6 +110,7 @@
         void *output_handler_context; 
     }  protocol;
     unsigned int  protocol_outbound_data_limit;
+    unsigned int  reads_suspended;
     unsigned int  ready;
     unsigned long long  reserve_footer_size;
     unsigned long long  reserve_header_size;
@@ -101,6 +120,7 @@
     unsigned int  waiting_for_link_flow_control;
     unsigned int  waiting_for_listener_accept;
     id /* block */  wakeup;
+    id /* block */  wakeup_block;
 }
 
 @property (readonly, copy) NSString *debugDescription;

@@ -5,6 +5,7 @@
 @interface CBABModuleExternal : CBModule <CBContainerModuleProtocol, CBHIDServiceProtocol> {
     NSMutableArray * _ALSServices;
     bool  _available;
+    bool  _builtIn;
     NSString * _containerID;
     CBABCurve * _curve;
     CBDisplayModule * _displayModule;
@@ -13,6 +14,7 @@
     bool  _presetDisableAB;
     CBABRamp * _ramp;
     bool  _suspendAutoBrightness;
+    NSString * _uniqueID;
     bool  _updatesFrozen;
 }
 

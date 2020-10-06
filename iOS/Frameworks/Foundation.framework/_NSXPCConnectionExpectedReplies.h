@@ -13,8 +13,5 @@
 
 - (void)dealloc;
 - (id)init;
-- (id)progressForSequence:(unsigned long long)arg1;
-- (void)removeProgressSequence:(unsigned long long)arg1;
-- (unsigned long long)sequenceForProgress:(id)arg1;
 
 @end

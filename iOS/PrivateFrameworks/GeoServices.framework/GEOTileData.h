@@ -20,6 +20,7 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_replaceFileURL:(id)arg1;
 - (id)data;
 - (void)dealloc;
 - (id)decodedRepresentation;
@@ -30,7 +31,7 @@
 - (id)initWithData:(id)arg1;
 - (id)initWithDecodedRepresentation:(id)arg1;
 - (id)initWithFileURL:(id)arg1;
-- (id)initWithXPCDictionary:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (bool)isEqual:(id)arg1;
 - (unsigned long long)length;
 

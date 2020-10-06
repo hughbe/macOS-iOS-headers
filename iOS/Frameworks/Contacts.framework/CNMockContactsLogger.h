@@ -13,12 +13,14 @@
 - (void)SPIUsageLackingEntitlementRejectedForPID:(int)arg1;
 - (void)XPCConnectionWasInterrupted;
 - (void)XPCConnectionWasInvalidated;
+- (void)accessAuthorizationStatusWasDenied;
 - (void)addingContacts:(id)arg1 toContainerWithIdentifier:(id)arg2;
 - (void)applyContactUpdateOfKind:(const char *)arg1 value:(id)arg2 property:(id)arg3;
 - (void)changedMeContact:(id)arg1;
 - (void)changingMeContact:(id /* block */)arg1;
 - (void)clearingChangeHistory:(id /* block */)arg1;
 - (void)contactsAccessWasGranted:(bool)arg1;
+- (void)deleteImageRecentsMetadataRequestFailed:(id)arg1;
 - (void)deletingContact:(id)arg1;
 - (void)didFetchContacts:(id)arg1 error:(id)arg2;
 - (void)didFetchEncodedContacts:(id)arg1 error:(id)arg2;
@@ -43,6 +45,7 @@
 - (void)postingNotificationWithName:(id)arg1;
 - (void)registeringForChangeHistory:(id /* block */)arg1;
 - (void)removeContactImageData;
+- (void)requestAuthorizationWasDenied;
 - (void)requestingAccessForContacts:(id /* block */)arg1;
 - (void)resettingSortDataIfNeeded:(id /* block */)arg1;
 - (void)saveRequestFailed:(id)arg1;
@@ -54,8 +57,6 @@
 - (void)setContactImageData:(id)arg1 format:(const char *)arg2 cropRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg3;
 - (void)setContactImageDataZeroCropRect:(id)arg1 format:(const char *)arg2;
 - (void)settingDefaultAccount:(id /* block */)arg1;
-- (void)tccAccessPreflightWasDenied;
-- (void)tccAccessRequestWasDenied;
 - (void)unregisteringForChangeHistory:(id /* block */)arg1;
 - (void)updatingContact:(id)arg1;
 

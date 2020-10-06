@@ -13,15 +13,7 @@
         unsigned int read_styleAttributes : 1; 
         unsigned int read_timezone : 1; 
         unsigned int read_zoomNames : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_latLng : 1; 
-        unsigned int wrote_muid : 1; 
-        unsigned int wrote_nameDisplayString : 1; 
-        unsigned int wrote_styleAttributes : 1; 
-        unsigned int wrote_timezone : 1; 
-        unsigned int wrote_zoomNames : 1; 
-        unsigned int wrote_hallIndex : 1; 
-        unsigned int wrote_stopIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _hallIndex;
     GEOLatLng * _latLng;
@@ -65,12 +57,6 @@
 + (Class)zoomNameType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsZoomName:(id)arg1;
-- (void)_readLatLng;
-- (void)_readNameDisplayString;
-- (void)_readStyleAttributes;
-- (void)_readTimezone;
-- (void)_readZoomNames;
 - (void)addZoomName:(id)arg1;
 - (id)bestName;
 - (id)bestNameWithLocale:(out id*)arg1;
@@ -92,7 +78,10 @@
 - (id)identifier;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)latLng;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muid;

@@ -12,6 +12,8 @@
 @property (nonatomic) double minValue;
 @property (nonatomic) unsigned long long precision;
 
+// Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+
 + (bool)supportsSecureCoding;
 
 - (id)_validatedValue:(id)arg1;
@@ -29,5 +31,9 @@
 - (void)setMaxValue:(double)arg1;
 - (void)setMinValue:(double)arg1;
 - (void)setPrecision:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PrototypeToolsUI.framework/PrototypeToolsUI
+
+- (Class)tableViewCellClass;
 
 @end

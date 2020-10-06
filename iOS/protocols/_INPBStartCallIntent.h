@@ -18,6 +18,8 @@
 - (NSString *)audioRouteAsString:(int)arg1;
 - (int)callCapability;
 - (NSString *)callCapabilityAsString:(int)arg1;
+- (_INPBCallRecordFilter *)callRecordFilter;
+- (_INPBCallRecordValue *)callRecordToCallBack;
 - (void)clearContacts;
 - (NSArray *)contacts;
 - (_INPBContact *)contactsAtIndex:(unsigned long long)arg1;
@@ -26,6 +28,8 @@
 - (NSString *)destinationTypeAsString:(int)arg1;
 - (bool)hasAudioRoute;
 - (bool)hasCallCapability;
+- (bool)hasCallRecordFilter;
+- (bool)hasCallRecordToCallBack;
 - (bool)hasDestinationType;
 - (bool)hasIntentMetadata;
 - (bool)hasPreferredCallProvider;
@@ -38,6 +42,8 @@
 - (NSString *)recordTypeForRedialingAsString:(int)arg1;
 - (void)setAudioRoute:(int)arg1;
 - (void)setCallCapability:(int)arg1;
+- (void)setCallRecordFilter:(_INPBCallRecordFilter *)arg1;
+- (void)setCallRecordToCallBack:(_INPBCallRecordValue *)arg1;
 - (void)setContacts:(NSArray *)arg1;
 - (void)setDestinationType:(int)arg1;
 - (void)setHasAudioRoute:(bool)arg1;

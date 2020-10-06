@@ -4,8 +4,10 @@
 
 @interface CLDispatchSilo : CLSilo {
     double  _currentLatchedAbsoluteTimestamp;
+    bool  _isQueueSuspended;
     NSOperationQueue * _operationQueue;
     NSObject<OS_dispatch_queue> * _queue;
+    bool  _useCLPermissiveTimer;
 }
 
 - (void).cxx_destruct;
@@ -17,9 +19,12 @@
 - (double)currentLatchedAbsoluteTimestamp;
 - (id)debugDescription;
 - (id)getTimeCoercibleVariantInstance;
+- (bool)inPermissiveMode;
 - (id)initMain;
 - (id)initWithIdentifier:(id)arg1;
 - (id)initWithUnderlyingQueue:(id)arg1;
+- (id)initWithUnderlyingQueue:(id)arg1 bePermissive:(bool)arg2;
+- (bool)isSuspended;
 - (id)newTimer;
 - (id)operationQueue;
 - (id)queue;

@@ -7,7 +7,6 @@
     NSOrderedSet * _orderedDomains;
 }
 
-@property (nonatomic, readonly, copy) NSOrderedSet *_orderedDomains;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSSet *domains;
@@ -17,8 +16,6 @@
 + (id)defaultConfiguration;
 
 - (void).cxx_destruct;
-- (id)_initWithDomainsByIdentifier:(id)arg1;
-- (id)_orderedDomains;
 - (id)description;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;

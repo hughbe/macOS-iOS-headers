@@ -10,10 +10,7 @@
         unsigned int read_addeds : 1; 
         unsigned int read_editeds : 1; 
         unsigned int read_removeds : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_addeds : 1; 
-        unsigned int wrote_editeds : 1; 
-        unsigned int wrote_removeds : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -36,12 +33,6 @@
 + (Class)removedType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsAdded:(id)arg1;
-- (void)_addNoFlagsEdited:(id)arg1;
-- (void)_addNoFlagsRemoved:(id)arg1;
-- (void)_readAddeds;
-- (void)_readEditeds;
-- (void)_readRemoveds;
 - (void)addAdded:(id)arg1;
 - (void)addEdited:(id)arg1;
 - (void)addRemoved:(id)arg1;
@@ -62,7 +53,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

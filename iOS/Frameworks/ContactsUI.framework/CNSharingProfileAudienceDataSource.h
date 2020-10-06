@@ -40,6 +40,7 @@
 - (void)setShouldShowEveryone:(bool)arg1;
 - (void)setValuesArray:(id)arg1;
 - (unsigned long long)sharingAudienceForIndex:(unsigned long long)arg1;
+- (unsigned long long)sharingAudienceForItem:(id)arg1;
 - (bool)shouldShowEveryone;
 - (bool)supportsSelection;
 - (id)valuesArray;

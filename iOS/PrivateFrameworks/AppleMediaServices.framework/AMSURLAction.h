@@ -9,6 +9,7 @@
     NSError * _error;
     NSString * _reason;
     NSURL * _redirectURL;
+    NSString * _retryIdentifier;
     NSDictionary * _updatedHeaders;
 }
 
@@ -18,6 +19,7 @@
 @property (nonatomic, readonly) NSError *error;
 @property (nonatomic, retain) NSString *reason;
 @property (nonatomic, readonly) NSURL *redirectURL;
+@property (nonatomic, retain) NSString *retryIdentifier;
 @property (nonatomic, retain) NSDictionary *updatedHeaders;
 
 + (id)actionWithError:(id)arg1;
@@ -38,9 +40,11 @@
 - (id)initWithType:(long long)arg1 error:(id)arg2 reason:(id)arg3 redirectURL:(id)arg4;
 - (id)reason;
 - (id)redirectURL;
+- (id)retryIdentifier;
 - (void)setAuthenticateResult:(id)arg1;
 - (void)setDialogResult:(id)arg1;
 - (void)setReason:(id)arg1;
+- (void)setRetryIdentifier:(id)arg1;
 - (void)setUpdatedHeaders:(id)arg1;
 - (id)updatedHeaders;
 

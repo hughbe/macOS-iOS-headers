@@ -3,11 +3,7 @@
  */
 
 @interface LSExtensionPoint : _LSQueryResult <NSCopying, NSSecureCoding> {
-    NSString * _identifier;
-    NSString * _name;
-    unsigned int  _platform;
-    _LSLazyPropertyList * _sdkEntry;
-    NSString * _version;
+    LSExtensionPointRecord * _record;
 }
 
 @property (nonatomic, readonly) NSString *identifier;
@@ -16,21 +12,21 @@
 @property (nonatomic, readonly) NSDictionary *sdkEntry;
 @property (nonatomic, readonly) NSString *version;
 
++ (id)_synthesizedExtensionPointWithIdentifier:(id)arg1;
 + (id)extensionPointForIdentifier:(id)arg1;
 + (id)extensionPointForIdentifier:(id)arg1 platform:(id)arg2;
 + (id)identifierForCurrentProcess;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_initWithIdentifier:(id)arg1 platform:(unsigned int)arg2 data:(id)arg3;
+- (id)_initWithRecord:(id)arg1 resolveAndDetach:(bool)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
-- (id)identifier;
+- (id)forwardingTargetForSelector:(SEL)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)name;
 - (id)platform;
+- (bool)respondsToSelector:(SEL)arg1;
 - (id)sdkEntry;
-- (id)version;
 
 @end

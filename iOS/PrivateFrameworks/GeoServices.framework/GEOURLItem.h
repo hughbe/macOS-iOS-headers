@@ -8,9 +8,7 @@
         unsigned int has_currentLocation : 1; 
         unsigned int read_mapItemStorage : 1; 
         unsigned int read_place : 1; 
-        unsigned int wrote_mapItemStorage : 1; 
-        unsigned int wrote_place : 1; 
-        unsigned int wrote_currentLocation : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOMapItemStorage * _mapItemStorage;
     GEOPlace * _place;
@@ -32,8 +30,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readMapItemStorage;
-- (void)_readPlace;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)currentLocation;
@@ -45,7 +41,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapItem;
 - (id)mapItemStorage;
 - (void)mergeFrom:(id)arg1;

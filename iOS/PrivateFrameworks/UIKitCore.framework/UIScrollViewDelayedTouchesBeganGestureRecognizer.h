@@ -16,6 +16,7 @@
 - (void).cxx_destruct;
 - (id)_clientView;
 - (void)_resetGestureRecognizer;
+- (bool)_shouldMakeTimerForDelayedContentTouches:(id)arg1;
 - (void)clearTimer;
 - (void)dealloc;
 - (void)sendDelayedTouches;

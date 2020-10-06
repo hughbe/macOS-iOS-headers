@@ -20,6 +20,5 @@
 - (void)setDarkMode:(bool)arg1;
 - (void)setDismissButtonPressedHandler:(id /* block */)arg1;
 - (unsigned long long)supportedInterfaceOrientations;
-- (void)viewDidLoad;
 
 @end

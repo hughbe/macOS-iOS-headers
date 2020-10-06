@@ -17,11 +17,13 @@
 - (id)applicationIdentifier;
 - (id)carPlay;
 - (id)carPlayLimited;
+- (id)curatedCollection;
 - (void)dealloc;
 - (id)deviceConnection;
 - (id)deviceConnectionLimited;
 - (void)deviceCountryChanged:(id)arg1;
 - (id)deviceIdentifier;
+- (id)deviceIdentifierNoHardware;
 - (id)deviceIndentifierInternal;
 - (id)deviceLocale;
 - (id)deviceLocaleLimited;
@@ -30,6 +32,7 @@
 - (id)experimentsIncludingABAssignInfo:(bool)arg1 includingClientConfig:(bool)arg2;
 - (id)extension;
 - (id)init;
+- (int)logMsgStateTypeForType:(long long)arg1;
 - (id)lookAroundSummary;
 - (id)lookAroundView;
 - (id)mapLaunch;
@@ -40,6 +43,8 @@
 - (id)mapView;
 - (id)mapViewLocation;
 - (id)mapsServer;
+- (id)mapsUser;
+- (id)market;
 - (id)muninResourceLog;
 - (id)pairedDevice;
 - (id)placeCard;
@@ -49,5 +54,6 @@
 - (id)stateForType:(long long)arg1;
 - (id)suggestions;
 - (id)tileSet;
+- (id)ugc;
 
 @end

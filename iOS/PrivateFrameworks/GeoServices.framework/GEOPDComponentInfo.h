@@ -53,8 +53,11 @@
 - (bool)hasUrgency;
 - (unsigned long long)hash;
 - (bool)includeSource;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithType:(int)arg1 count:(unsigned int)arg2;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

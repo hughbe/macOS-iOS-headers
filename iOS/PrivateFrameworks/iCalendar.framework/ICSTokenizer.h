@@ -3,14 +3,11 @@
  */
 
 @interface ICSTokenizer : NSObject {
-    unsigned long long  _cursor;
-    NSData * _data;
-    const char * _datastring;
+    ICSPushbackStream * _data;
     int  _expectedNextTokenType;
-    unsigned long long  _length;
     int  _logCount;
     bool  _printedICS;
-    char * _token;
+    NSMutableData * _token;
     int  _tokenType;
 }
 
@@ -18,20 +15,19 @@
 @property bool printedICS;
 
 - (void).cxx_destruct;
+- (bool)consumeChar:(BOOL)arg1;
 - (bool)consumeEOL;
 - (bool)consumeEscaped:(const char *)arg1;
-- (bool)consumeFolding;
 - (void)consumeParamName;
 - (void)consumeParamValue;
 - (void)consumePropName;
 - (void)consumePropValue;
 - (void)consumeWhiteSpace;
-- (char *)currentToken;
-- (void)dealloc;
-- (id)debugDescription;
+- (id)currentToken;
+- (id)initWithCompressedData:(id)arg1;
 - (id)initWithData:(id)arg1;
 - (int)logCount;
-- (char *)nextToken;
+- (id)nextToken;
 - (bool)printedICS;
 - (void)setLogCount:(int)arg1;
 - (void)setPrintedICS:(bool)arg1;

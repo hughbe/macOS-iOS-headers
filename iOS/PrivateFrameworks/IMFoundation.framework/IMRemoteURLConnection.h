@@ -3,6 +3,7 @@
  */
 
 @interface IMRemoteURLConnection : NSObject {
+    IMURLSession * _URLSession;
     id /* block */  _block;
     NSString * _bundleIdentifierForDataUsage;
     bool  _cancelled;
@@ -20,25 +21,37 @@
     bool  _shouldUsePipelining;
 }
 
+@property (nonatomic, retain) IMURLSession *URLSession;
 @property (copy) id /* block */ block;
 @property (retain) NSString *bundleIdentifierForDataUsage;
+@property (nonatomic) bool cancelled;
 @property int concurrentConnections;
+@property (nonatomic, retain) NSObject<OS_xpc_object> *connection;
 @property bool disableKeepAlive;
 @property bool forceCellularIfPossible;
 @property int keepAliveCell;
 @property int keepAliveWifi;
+@property (nonatomic) bool loading;
 @property (retain) NSURLRequest *request;
 @property bool requireIDSHost;
+@property (nonatomic) int retries;
 @property bool shouldReturnTimingData;
 @property bool shouldUsePipelining;
 
-- (bool)_connect;
-- (bool)_disconnect;
-- (void)_disconnected;
+- (void).cxx_destruct;
+- (id)URLSession;
+- (void)_direct_cancel;
+- (void)_direct_load;
+- (bool)_xpc_connect;
+- (bool)_xpc_disconnect;
+- (void)_xpc_disconnected;
+- (void)_xpc_load;
 - (id /* block */)block;
 - (id)bundleIdentifierForDataUsage;
 - (void)cancel;
+- (bool)cancelled;
 - (int)concurrentConnections;
+- (id)connection;
 - (void)dealloc;
 - (bool)disableKeepAlive;
 - (bool)forceCellularIfPossible;
@@ -47,19 +60,26 @@
 - (int)keepAliveCell;
 - (int)keepAliveWifi;
 - (void)load;
+- (bool)loading;
 - (id)request;
 - (bool)requireIDSHost;
+- (int)retries;
 - (void)setBlock:(id /* block */)arg1;
 - (void)setBundleIdentifierForDataUsage:(id)arg1;
+- (void)setCancelled:(bool)arg1;
 - (void)setConcurrentConnections:(int)arg1;
+- (void)setConnection:(id)arg1;
 - (void)setDisableKeepAlive:(bool)arg1;
 - (void)setForceCellularIfPossible:(bool)arg1;
 - (void)setKeepAliveCell:(int)arg1;
 - (void)setKeepAliveWifi:(int)arg1;
+- (void)setLoading:(bool)arg1;
 - (void)setRequest:(id)arg1;
 - (void)setRequireIDSHost:(bool)arg1;
+- (void)setRetries:(int)arg1;
 - (void)setShouldReturnTimingData:(bool)arg1;
 - (void)setShouldUsePipelining:(bool)arg1;
+- (void)setURLSession:(id)arg1;
 - (bool)shouldReturnTimingData;
 - (bool)shouldUsePipelining;
 

@@ -3,9 +3,10 @@
  */
 
 @interface BSServiceSpecification : NSObject <BSDescriptionProviding, NSCopying> {
+    NSDictionary * _configuration;
     bool  _derived;
     NSString * _identifier;
-    bool  _launchWhitelisted;
+    NSDictionary * _options;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -17,7 +18,6 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (id)_initWithIdentifier:(id)arg1 launchWhitelisted:(bool)arg2 derived:(bool)arg3;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
@@ -28,6 +28,7 @@
 - (bool)isDerived;
 - (bool)isEqual:(id)arg1;
 - (bool)isLaunchWhitelisted;
+- (id)optionForKey:(id)arg1;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
 

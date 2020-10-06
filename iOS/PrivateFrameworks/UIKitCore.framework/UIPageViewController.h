@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIPageViewController : UIViewController <DebugHierarchyObject_Fallback, UIGestureRecognizerDelegate, _UIQueuingScrollViewDataSource, _UIQueuingScrollViewDelegate> {
+@interface UIPageViewController : UIViewController <UIGestureRecognizerDelegate, _UIQueuingScrollViewDataSource, _UIQueuingScrollViewDelegate> {
     NSMutableDictionary * _cachedViewControllersForCurl;
     NSHashTable * _cachedViewControllersForScroll;
     <UIPageViewControllerDataSource> * _dataSource;
@@ -71,6 +71,7 @@
 @property (nonatomic, readonly) long long _transitionStyle;
 @property (setter=_setViewControllers:, nonatomic, retain) NSArray *_viewControllers;
 @property (setter=_setViewControllersStashedForRotation:, nonatomic, retain) NSArray *_viewControllersStashedForRotation;
+@property (nonatomic) bool accessibilityScreenChangeOnScroll;
 @property (nonatomic) <UIPageViewControllerDataSource> *dataSource;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <UIPageViewControllerDelegate> *delegate;
@@ -118,7 +119,7 @@
 - (void)_endDisablingInterfaceAutorotation;
 - (void)_flushViewController:(id)arg1 animated:(bool)arg2;
 - (bool)_gestureRecognizerShouldBegin:(id)arg1;
-- (void)_handlePagingInDirection:(long long)arg1 completion:(id /* block */)arg2;
+- (void)_handlePagingInDirection:(long long)arg1 animated:(bool)arg2 completion:(id /* block */)arg3;
 - (void)_handlePanGesture:(id)arg1;
 - (void)_handleTapGesture:(id)arg1;
 - (bool)_hasPreferredInterfaceOrientationForPresentation;
@@ -171,16 +172,8 @@
 - (id)_viewControllersForCurlWithViewControllers:(id)arg1 direction:(long long)arg2;
 - (id)_viewControllersForPendingSpineLocation:(long long)arg1;
 - (id)_viewControllersStashedForRotation;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)dataSource;
+- (void)dealloc;
 - (id)delegate;
 - (void)didRotateFromInterfaceOrientation:(long long)arg1;
 - (void)encodeWithCoder:(id)arg1;
@@ -221,5 +214,10 @@
 - (void)viewWillUnload;
 - (void)willAnimateRotationToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
 - (void)willRotateToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
+
+- (bool)accessibilityScreenChangeOnScroll;
+- (void)setAccessibilityScreenChangeOnScroll:(bool)arg1;
 
 @end

@@ -30,6 +30,7 @@
 @property (nonatomic, copy) NSString *externalImageURI;
 @property (nonatomic, copy) NSString *externalModificationTag;
 @property (nonatomic, copy) NSData *externalRepresentation;
+@property (nonatomic, copy) NSString *externalURI;
 @property (nonatomic, copy) NSString *externalUUID;
 @property (nonatomic, copy) NSString *familyName;
 @property (copy) NSString *firstName;
@@ -95,59 +96,7 @@
 + (id)unifyContacts:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_setBirthday:(id)arg1;
-- (void)_setCalendarURIs:(id)arg1;
-- (void)_setCallAlert:(id)arg1;
-- (void)_setContactRelations:(id)arg1;
-- (void)_setCreationDate:(id)arg1;
-- (void)_setDates:(id)arg1;
-- (void)_setDepartmentName:(id)arg1;
-- (void)_setDowntimeWhitelist:(id)arg1;
-- (void)_setEmailAddresses:(id)arg1;
-- (void)_setExternalIdentifier:(id)arg1;
-- (void)_setExternalImageURI:(id)arg1;
-- (void)_setExternalModificationTag:(id)arg1;
-- (void)_setExternalRepresentation:(id)arg1;
-- (void)_setExternalUUID:(id)arg1;
-- (void)_setFamilyName:(id)arg1;
 - (void)_setFullscreenImageData:(id)arg1;
-- (void)_setGivenName:(id)arg1;
-- (void)_setImageData:(id)arg1;
-- (void)_setImageHash:(id)arg1;
-- (void)_setImageType:(id)arg1;
-- (void)_setInstantMessageAddresses:(id)arg1;
-- (void)_setJobTitle:(id)arg1;
-- (void)_setLinkIdentifier:(id)arg1;
-- (void)_setMapsData:(id)arg1;
-- (void)_setMiddleName:(id)arg1;
-- (void)_setModificationDate:(id)arg1;
-- (void)_setNamePrefix:(id)arg1;
-- (void)_setNameSuffix:(id)arg1;
-- (void)_setNickname:(id)arg1;
-- (void)_setNonGregorianBirthday:(id)arg1;
-- (void)_setNote:(id)arg1;
-- (void)_setOrganizationName:(id)arg1;
-- (void)_setPhoneNumbers:(id)arg1;
-- (void)_setPhonemeData:(id)arg1;
-- (void)_setPhoneticFamilyName:(id)arg1;
-- (void)_setPhoneticGivenName:(id)arg1;
-- (void)_setPhoneticMiddleName:(id)arg1;
-- (void)_setPhoneticOrganizationName:(id)arg1;
-- (void)_setPostalAddresses:(id)arg1;
-- (void)_setPreferredApplePersonaIdentifier:(id)arg1;
-- (void)_setPreferredChannel:(id)arg1;
-- (void)_setPreferredLikenessSource:(id)arg1;
-- (void)_setPreviousFamilyName:(id)arg1;
-- (void)_setPronunciationFamilyName:(id)arg1;
-- (void)_setPronunciationGivenName:(id)arg1;
-- (void)_setSearchIndex:(id)arg1;
-- (void)_setSectionForSortingByFamilyName:(id)arg1;
-- (void)_setSectionForSortingByGivenName:(id)arg1;
-- (void)_setSocialProfiles:(id)arg1;
-- (void)_setSyncImageData:(id)arg1;
-- (void)_setTextAlert:(id)arg1;
-- (void)_setThumbnailImageData:(id)arg1;
-- (void)_setUrlAddresses:(id)arg1;
 - (id)availableKeyDescriptor;
 - (id)birthday;
 - (id)calendarURIs;
@@ -169,6 +118,7 @@
 - (id)externalImageURI;
 - (id)externalModificationTag;
 - (id)externalRepresentation;
+- (id)externalURI;
 - (id)externalUUID;
 - (id)familyName;
 - (id)freeze;
@@ -235,6 +185,7 @@
 - (void)setExternalImageURI:(id)arg1;
 - (void)setExternalModificationTag:(id)arg1;
 - (void)setExternalRepresentation:(id)arg1;
+- (void)setExternalURI:(id)arg1;
 - (void)setExternalUUID:(id)arg1;
 - (void)setFamilyName:(id)arg1;
 - (void)setFirstName:(id)arg1;
@@ -312,5 +263,9 @@
 - (void)setBirthdays:(id)arg1;
 - (void)updateContactTypeWithPolicy:(id)arg1;
 - (void)updateImageInfoWithType:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (void)populateNamesFromComponents:(id)arg1;
 
 @end

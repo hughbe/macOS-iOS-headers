@@ -22,7 +22,10 @@
 @property (readonly) bool hasSyncClientEntitlement;
 @property (readonly) unsigned long long hash;
 @property (readonly) bool internalAccessLevelGranted;
+@property (readonly) bool isCalendarDaemon;
+@property (readonly) bool isFirstPartyCalendarApp;
 @property (readonly) bool shouldTrustClientEnforcedManagedConfigurationAccess;
+@property (readonly) bool storageManagementAccessGranted;
 @property (readonly) Class superclass;
 @property (readonly) bool testingAccessLevelGranted;
 
@@ -42,7 +45,10 @@
 - (bool)hasSyncClientEntitlement;
 - (id)initWithClientConnection:(id)arg1;
 - (bool)internalAccessLevelGranted;
+- (bool)isCalendarDaemon;
+- (bool)isFirstPartyCalendarApp;
 - (bool)shouldTrustClientEnforcedManagedConfigurationAccess;
+- (bool)storageManagementAccessGranted;
 - (bool)testingAccessLevelGranted;
 
 @end

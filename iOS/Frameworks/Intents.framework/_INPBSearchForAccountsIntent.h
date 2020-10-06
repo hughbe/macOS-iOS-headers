@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSearchForAccountsIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSearchForAccountsIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBDataString * _accountNickname;
     int  _accountType;
     struct { 
@@ -15,7 +14,6 @@
     int  _requestedBalanceType;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBDataString *accountNickname;
 @property (nonatomic) int accountType;
 @property (readonly, copy) NSString *debugDescription;
@@ -36,8 +34,6 @@
 - (void).cxx_destruct;
 - (int)StringAsAccountType:(id)arg1;
 - (int)StringAsRequestedBalanceType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)accountNickname;
 - (int)accountType;
 - (id)accountTypeAsString:(int)arg1;

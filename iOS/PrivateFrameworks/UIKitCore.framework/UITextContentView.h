@@ -75,8 +75,6 @@
 @property (nonatomic, readonly) UIView *textInputView;
 @property (nonatomic, readonly) <UITextInputTokenizer> *tokenizer;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)excludedElementsForHTML;
 
 - (void).cxx_destruct;
@@ -104,11 +102,6 @@
 - (void)_showTextStyleOptions:(id)arg1;
 - (void)_sizeChanged;
 - (void)_transliterateChinese:(id)arg1;
-- (void)dealloc;
-- (id)methodSignatureForSelector:(SEL)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowsEditingTextAttributes;
 - (id)attributedText;
 - (id)automaticallySelectedOverlay;
@@ -139,6 +132,7 @@
 - (void)copy:(id)arg1;
 - (void)cut:(id)arg1;
 - (unsigned long long)dataDetectorTypes;
+- (void)dealloc;
 - (void)decreaseSize:(id)arg1;
 - (id)delegate;
 - (void)deleteBackward;
@@ -200,6 +194,7 @@
 - (id)markedTextRange;
 - (id)markedTextStyle;
 - (id)metadataDictionariesForDictationResults;
+- (id)methodSignatureForSelector:(SEL)arg1;
 - (bool)mightHaveLinks;
 - (struct CGPoint { double x1; double x2; })offset;
 - (long long)offsetFromPosition:(id)arg1 toPosition:(id)arg2;

@@ -21,11 +21,11 @@
 @property (nonatomic) unsigned long long cacheItemLimit;
 @property (nonatomic, readonly) int cacheVersion;
 @property (nonatomic) bool lockOnRead;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *storeImageQueue;
 
 - (void).cxx_destruct;
 - (int)_cacheVersion;
 - (void)_createConnectionIfNecessary;
-- (void)_createStorageQueueIfNecessary;
 - (void)_idleIfNecessary:(bool)arg1;
 - (struct _img { unsigned long long x1; unsigned long long x2; unsigned long long x3; unsigned long long x4; unsigned char x5; unsigned char x6[4]; })_imgForItem:(id)arg1;
 - (void)_localStoreImageForKey:(id)arg1 inGroup:(id)arg2 withItem:(id)arg3;
@@ -33,7 +33,6 @@
 - (void)_setCacheVersion:(int)arg1;
 - (id)_versionPath;
 - (unsigned long long)cacheItemLimit;
-- (id)cacheNumberForKey:(id)arg1 inGroup:(id)arg2;
 - (int)cacheVersion;
 - (struct CGImage { }*)copyImageForKey:(id)arg1 inGroup:(id)arg2;
 - (void)dealloc;
@@ -50,5 +49,6 @@
 - (void)setIdleWhenDone;
 - (void)setLockOnRead:(bool)arg1;
 - (void)storeImageDataForKey:(id)arg1 inGroup:(id)arg2 item:(id)arg3;
+- (id)storeImageQueue;
 
 @end

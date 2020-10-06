@@ -41,6 +41,7 @@
 - (void).cxx_destruct;
 - (id)_accountTypeWithIdentifier:(id)arg1;
 - (id)_accountWithIdentifier:(id)arg1;
+- (id)_accountWithIdentifier:(id)arg1 prefetchKeypaths:(id)arg2;
 - (id)_accountsWithAccountType:(id)arg1 options:(unsigned long long)arg2 error:(id*)arg3;
 - (id)_accountsWithAcountType:(id)arg1 error:(id*)arg2;
 - (id)_addAccountNoSave:(id)arg1 withDataclassActions:(id)arg2 error:(id*)arg3;
@@ -54,7 +55,7 @@
 - (void)_completeSave:(id)arg1 dataclassActions:(id)arg2 completion:(id /* block */)arg3;
 - (id)_credentialItemWithAccountIdentifier:(id)arg1 serviceName:(id)arg2;
 - (id)_dataclassWithName:(id)arg1 createIfNecessary:(bool)arg2;
-- (void)_delegate_accountStoreDidSaveAccount:(id)arg1;
+- (void)_delegate_accountStoreDidSaveAccount:(id)arg1 changeType:(int)arg2;
 - (void)_deleteAccountNoSave:(id)arg1 withDataclassActions:(id)arg2 error:(id*)arg3;
 - (id)_displayAccountForAccount:(id)arg1;
 - (bool)_handleAccountAdd:(id)arg1 withDataclassActions:(id)arg2 error:(id*)arg3;
@@ -102,7 +103,6 @@
 - (void)clearGrantedPermissionsForAccountType:(id)arg1 withHandler:(id /* block */)arg2;
 - (id)client;
 - (void)clientTokenForAccountIdentifier:(id)arg1 completion:(id /* block */)arg2;
-- (void)connectToRemoteAccountStoreUsingEndpoint:(id)arg1;
 - (void)credentialForAccount:(id)arg1 serviceID:(id)arg2 handler:(id /* block */)arg3;
 - (void)credentialForAccountWithIdentifier:(id)arg1 handler:(id /* block */)arg2;
 - (void)credentialItemForAccount:(id)arg1 serviceName:(id)arg2 completion:(id /* block */)arg3;
@@ -131,6 +131,7 @@
 - (void)kerberosAccountsForDomainFromURL:(id)arg1 completion:(id /* block */)arg2;
 - (id)longLivedRemoteAccountStoreSession;
 - (id)masterCredentialForAccountIdentifier:(id)arg1;
+- (void)migrateCredentialForAccount:(id)arg1 completion:(id /* block */)arg2;
 - (bool)notificationsEnabled;
 - (void)notifyRemoteDevicesOfModifiedAccount:(id)arg1 withChangeType:(id)arg2;
 - (void)notifyRemoteDevicesOfModifiedAccount:(id)arg1 withChangeType:(id)arg2 completion:(id /* block */)arg3;
@@ -140,6 +141,7 @@
 - (void)permissionForAccountType:(id)arg1 withHandler:(id /* block */)arg2;
 - (void)preloadDataclassOwnersWithCompletion:(id /* block */)arg1;
 - (void)provisionedDataclassesForAccountWithIdentifier:(id)arg1 handler:(id /* block */)arg2;
+- (void)registerMonitorForAccountsOfTypes:(id)arg1 completion:(id /* block */)arg2;
 - (id)remoteAccountStoreSession;
 - (id)remoteDeviceProxy;
 - (void)removeAccount:(id)arg1 withDataclassActions:(id)arg2 completion:(id /* block */)arg3;
@@ -147,7 +149,6 @@
 - (void)removeAccountsFromPairedDeviceWithCompletion:(id /* block */)arg1;
 - (void)removeCredentialItem:(id)arg1 completion:(id /* block */)arg2;
 - (void)renewCredentialsForAccount:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
-- (void)reportTelemetryForLandmarkEvent:(id /* block */)arg1;
 - (void)requestAccessForAccountTypeWithIdentifier:(id)arg1 options:(id)arg2 withHandler:(id /* block */)arg3;
 - (void)resetDatabaseToVersion:(id)arg1 withCompletion:(id /* block */)arg2;
 - (void)saveAccount:(id)arg1 pid:(id)arg2 verify:(bool)arg3 dataclassActions:(id)arg4 completion:(id /* block */)arg5;
@@ -171,6 +172,7 @@
 - (void)setPermissionGranted:(id)arg1 forBundleID:(id)arg2 onAccountType:(id)arg3 withHandler:(id /* block */)arg4;
 - (void)setRemoteDeviceProxy:(id)arg1;
 - (bool)shouldPreventAccountCreationWithObsoleteAccountType;
+- (void)shutdownAccountsD:(id /* block */)arg1;
 - (void)supportedDataclassesForAccountType:(id)arg1 handler:(id /* block */)arg2;
 - (void)syncableDataclassesForAccountType:(id)arg1 handler:(id /* block */)arg2;
 - (void)tetheredSyncSourceTypeForDataclass:(id)arg1 completion:(id /* block */)arg2;

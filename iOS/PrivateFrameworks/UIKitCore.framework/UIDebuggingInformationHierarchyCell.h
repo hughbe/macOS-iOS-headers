@@ -21,12 +21,7 @@
 @property (nonatomic, readonly) UIButton *infoButton;
 @property (nonatomic, retain) NSString *name;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)applyLayoutAttributes:(id)arg1;
 - (id)delegate;
 - (void)deliverToggle;

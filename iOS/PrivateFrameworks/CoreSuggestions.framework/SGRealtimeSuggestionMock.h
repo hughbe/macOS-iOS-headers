@@ -9,8 +9,10 @@
 + (id)contactMatchesWithContact:(id)arg1;
 + (id)createRealtimeContact:(id)arg1 error:(id*)arg2;
 + (id)createRealtimeEvent:(id)arg1 error:(id*)arg2;
++ (id)createRealtimeReminder:(id)arg1 error:(id*)arg2;
 + (id)createSuggestion:(id)arg1 error:(id*)arg2;
 + (id)dateFromObject:(id)arg1 error:(id*)arg2;
++ (bool)isMockRecordId:(id)arg1;
 + (bool)isMockSuggestion:(id)arg1;
 + (id)loadFromFile:(id)arg1 error:(id*)arg2;
 + (id)originFromRecordId:(id)arg1;

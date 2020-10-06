@@ -11,6 +11,7 @@
         } tableOffsets; 
         struct Table {} *arrayTable; 
         struct Table {} *stringTable; 
+        struct Table {} *dictionaryTable; 
         struct atomic<long long> { 
             struct __cxx_atomic_impl<long long, std::__1::__cxx_atomic_base_impl<long long> > { 
                 _Atomic long long __a_value; 
@@ -43,7 +44,7 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
-- (id)initByMovingStore:(struct Store { id x1; struct array<unsigned int, 64> { unsigned int x_2_1_1[64]; } x2; struct Table {} *x3; struct Table {} *x4; struct atomic<long long> { struct __cxx_atomic_impl<long long, std::__1::__cxx_atomic_base_impl<long long> > { _Atomic long long x_1_2_1; } x_5_1_1; } x5; struct atomic<long long> { struct __cxx_atomic_impl<long long, std::__1::__cxx_atomic_base_impl<long long> > { _Atomic long long x_1_2_1; } x_6_1_1; } x6; struct Pedigree { unsigned long long x_7_1_1; struct optional<unsigned int> { union { BOOL x_1_3_1; unsigned int x_1_3_2; } x_2_2_1; bool x_2_2_2; } x_7_1_2; } x7; }*)arg1;
+- (id)initByMovingStore:(struct Store { id x1; struct array<unsigned int, 64> { unsigned int x_2_1_1[64]; } x2; struct Table {} *x3; struct Table {} *x4; struct Table {} *x5; struct atomic<long long> { struct __cxx_atomic_impl<long long, std::__1::__cxx_atomic_base_impl<long long> > { _Atomic long long x_1_2_1; } x_6_1_1; } x6; struct atomic<long long> { struct __cxx_atomic_impl<long long, std::__1::__cxx_atomic_base_impl<long long> > { _Atomic long long x_1_2_1; } x_7_1_1; } x7; struct Pedigree { unsigned long long x_8_1_1; struct optional<unsigned int> { union { BOOL x_1_3_1; unsigned int x_1_3_2; } x_2_2_1; bool x_2_2_2; } x_8_1_2; } x8; }*)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithContentsOfURL:(id)arg1 error:(id*)arg2;
 - (id)initWithError:(id*)arg1;

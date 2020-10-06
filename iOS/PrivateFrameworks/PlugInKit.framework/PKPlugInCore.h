@@ -11,8 +11,10 @@
     NSURL * _dataContainerURL;
     NSUUID * _discoveryInstanceUUID;
     NSDictionary * _entitlements;
+    unsigned int  _extensionPointPlatform;
     unsigned long long  _hubProtocolVersion;
     NSString * _identifier;
+    bool  _isRBManaged;
     long long  _lastModified;
     NSString * _localizedContainingName;
     NSDictionary * _localizedFileProviderActionNames;
@@ -36,6 +38,7 @@
 @property (nonatomic, readonly) NSURL *dataContainerURL;
 @property (readonly) NSUUID *discoveryInstanceUUID;
 @property (retain) NSDictionary *entitlements;
+@property (readonly) unsigned int extensionPointPlatform;
 @property unsigned long long hubProtocolVersion;
 @property (retain) NSString *identifier;
 @property (readonly) bool isAppExtension;
@@ -43,6 +46,7 @@
 @property (readonly) bool isDedicated;
 @property (readonly) bool isHybrid;
 @property (readonly) bool isMultiplexed;
+@property bool isRBManaged;
 @property long long lastModified;
 @property (retain) NSString *localizedContainingName;
 @property (readonly) NSDictionary *localizedFileProviderActionNames;
@@ -62,9 +66,10 @@
 @property (retain) NSUUID *uuid;
 @property (readonly) NSString *version;
 
-+ (id)readSDKDictionary:(id)arg1;
++ (id)readSDKDictionary:(id)arg1 forPlatform:(unsigned int)arg2;
 
 - (void).cxx_destruct;
+- (void)_loadLocalizedFileProviderActionNames;
 - (void)_loadLocalizedNames;
 - (id)_localizedFileProviderActionNamesForPKDict:(id)arg1 fromBundle:(id)arg2;
 - (id)annotations;
@@ -85,19 +90,21 @@
 - (id)embeddedProtocolSpec;
 - (id)entitlements;
 - (id)export:(id*)arg1;
+- (unsigned int)extensionPointPlatform;
 - (unsigned long long)hash;
 - (unsigned long long)hubProtocolVersion;
 - (id)identifier;
 - (id)infoKey:(id)arg1;
 - (id)init;
 - (id)initWithForm:(id)arg1;
-- (id)initWithName:(id)arg1 url:(id)arg2 bundleInfo:(id)arg3 uuid:(id)arg4 discoveryInstanceUUID:(id)arg5 extensionPointCache:(id)arg6;
+- (id)initWithName:(id)arg1 extensionPointPlatform:(unsigned int)arg2 url:(id)arg3 bundleInfo:(id)arg4 uuid:(id)arg5 discoveryInstanceUUID:(id)arg6 extensionPointCache:(id)arg7;
 - (bool)isAppExtension;
 - (bool)isData;
 - (bool)isDedicated;
 - (bool)isEqual:(id)arg1;
 - (bool)isHybrid;
 - (bool)isMultiplexed;
+- (bool)isRBManaged;
 - (long long)lastModified;
 - (id)localizedContainingName;
 - (id)localizedFileProviderActionNames;
@@ -130,6 +137,7 @@
 - (void)setEntitlements:(id)arg1;
 - (void)setHubProtocolVersion:(unsigned long long)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setIsRBManaged:(bool)arg1;
 - (void)setLastModified:(long long)arg1;
 - (void)setLocalizedContainingName:(id)arg1;
 - (void)setOnSystemVolume:(bool)arg1;
@@ -139,7 +147,7 @@
 - (void)setUrl:(id)arg1;
 - (void)setUuid:(id)arg1;
 - (bool)setupWithForm:(id)arg1;
-- (bool)setupWithName:(id)arg1 url:(id)arg2 bundleInfo:(id)arg3 uuid:(id)arg4 discoveryInstanceUUID:(id)arg5 extensionPointCache:(id)arg6;
+- (bool)setupWithName:(id)arg1 extensionPointPlatform:(unsigned int)arg2 url:(id)arg3 bundleInfo:(id)arg4 uuid:(id)arg5 discoveryInstanceUUID:(id)arg6 extensionPointCache:(id)arg7;
 - (id)timestamp;
 - (void)updateFromForm:(id)arg1;
 - (id)url;

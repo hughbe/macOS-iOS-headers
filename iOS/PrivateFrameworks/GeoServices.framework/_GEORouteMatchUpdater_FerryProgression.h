@@ -14,7 +14,7 @@
 }
 
 - (void).cxx_destruct;
-- (id)initWithRoute:(id)arg1 tripLeg:(id)arg2;
+- (id)initWithRoute:(id)arg1 tripSegment:(id)arg2;
 - (unsigned long long)priority;
 - (bool)updateRouteMatch:(id)arg1 previousRouteMatch:(id)arg2 forLocation:(id)arg3;
 

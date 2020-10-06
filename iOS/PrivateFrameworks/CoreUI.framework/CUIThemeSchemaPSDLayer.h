@@ -9,6 +9,7 @@
 @property (nonatomic, retain) NSString *name;
 
 - (void)dealloc;
+- (id)description;
 - (id)name;
 - (void)setName:(id)arg1;
 

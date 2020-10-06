@@ -18,6 +18,7 @@
     NSObject<OS_dispatch_queue> * serviceConnectorQueue;
     unsigned int  state;
     unsigned long long  uniqueID;
+    unsigned int  useLargeUUIDForTesting;
 }
 
 @property (readonly, copy) NSString *debugDescription;

@@ -14,9 +14,11 @@
     AMSMappedBundleInfo * _mappedBundleInfo;
     NSString * _partnerHeader;
     NSString * _proxyAppBundleID;
+    NSString * _userAgentSuffix;
 }
 
 @property (nonatomic, retain) NSString *accountMediaType;
+@property (getter=isAccountsDaemon, nonatomic, readonly) bool accountsDaemon;
 @property (nonatomic, retain) NSData *auditTokenData;
 @property (nonatomic, retain) NSString *bundleIdentifier;
 @property (nonatomic, retain) NSURL *bundleURL;
@@ -26,14 +28,16 @@
 @property (nonatomic, readonly) AMSMappedBundleInfo *mappedBundleInfo;
 @property (nonatomic, retain) NSString *partnerHeader;
 @property (nonatomic, retain) NSString *proxyAppBundleID;
+@property (nonatomic, retain) NSString *userAgentSuffix;
 
 + (void)_accessProcessInfoCache:(id /* block */)arg1;
++ (id)_bundleForIdentifier:(id)arg1 record:(id)arg2;
++ (id)_bundleRecordForIdentifier:(id)arg1;
 + (void)_cacheProcessInfo:(id)arg1;
 + (id)_cachedProcessInfoForIdentifier:(id)arg1;
 + (id)_currentProcessBundleIdentifier;
 + (bool)boolForEntitlement:(id)arg1;
 + (bool)boolForMachLookupAccess:(id)arg1;
-+ (id)bundleForIdentifier:(id)arg1;
 + (void)copyPropertiesFrom:(id)arg1 to:(id)arg2;
 + (id)currentProcess;
 + (id)defaultMediaTypeAccessQueue;
@@ -60,6 +64,7 @@
 - (id)init;
 - (id)initWithBundleIdentifier:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (bool)isAccountsDaemon;
 - (bool)isEqual:(id)arg1;
 - (id)localizedName;
 - (id)mappedBundleInfo;
@@ -74,5 +79,7 @@
 - (void)setLocalizedName:(id)arg1;
 - (void)setPartnerHeader:(id)arg1;
 - (void)setProxyAppBundleID:(id)arg1;
+- (void)setUserAgentSuffix:(id)arg1;
+- (id)userAgentSuffix;
 
 @end

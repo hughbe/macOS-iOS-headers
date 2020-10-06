@@ -72,6 +72,8 @@
 @property (nonatomic, readonly, copy) NSURL *url;
 @property (nonatomic, copy) id /* block */ willBeginBatchingHook;
 
+// Image: /usr/lib/libprequelite.dylib
+
 + (void)initialize;
 
 - (void).cxx_destruct;
@@ -179,5 +181,12 @@
 - (void)useSerialQueueWithTarget:(id)arg1;
 - (id)userVersion;
 - (id /* block */)willBeginBatchingHook;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
+- (id)itemIDWithSQL:(id)arg1;
+- (id)numberWithSQL:(id)arg1;
+- (bool)registerFunction:(id)arg1 nArgs:(int)arg2 handler:(id /* block */)arg3 error:(id*)arg4;
+- (id)stringWithSQL:(id)arg1;
 
 @end

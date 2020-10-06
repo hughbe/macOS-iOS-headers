@@ -19,6 +19,7 @@
 - (void)setWdriver:(id)arg1;
 - (void)stopUpdates;
 - (void)update;
+- (void)updateWithUninstalledProxies:(id)arg1;
 - (id)wdriver;
 
 @end

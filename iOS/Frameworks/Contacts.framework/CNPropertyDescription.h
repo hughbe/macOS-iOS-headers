@@ -22,6 +22,8 @@
 @property (nonatomic, readonly, copy) id /* block */ valueForKeyTransform;
 @property (nonatomic, readonly) SEL writeSelector;
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -66,5 +68,13 @@
 - (id /* block */)valueForKeyTransform;
 - (id)valueWithResetIdentifiers:(id)arg1;
 - (SEL)writeSelector;
+
+// Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
+
+- (const void*)ABSValueFromCNValue:(id)arg1;
+- (id)CNValueFromABSValue:(void*)arg1;
+- (bool)absPropertyID:(int*)arg1;
+- (unsigned int)absPropertyType;
+- (bool)convertABSValue:(void*)arg1 toCNValue:(id*)arg2 error:(struct __CFError {}**)arg3;
 
 @end

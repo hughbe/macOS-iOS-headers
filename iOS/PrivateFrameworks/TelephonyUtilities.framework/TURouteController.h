@@ -34,6 +34,7 @@
 - (id)receiverRoute;
 - (void)removeDelegate:(id)arg1;
 - (void)requeryRoutes;
+- (id)routeWithSourceIdentifier:(id)arg1;
 - (id)routes;
 - (id)routesByUniqueIdentifier;
 - (void)setRoutesByUniqueIdentifier:(id)arg1;

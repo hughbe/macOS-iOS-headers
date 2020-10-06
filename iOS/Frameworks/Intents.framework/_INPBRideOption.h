@@ -3,7 +3,6 @@
  */
 
 @interface _INPBRideOption : PBCodable <NSCopying, NSSecureCoding, _INPBRideOption> {
-    bool  __encodeLegacyGloryData;
     NSArray * _availablePartySizeOptions;
     NSString * _availablePartySizeOptionsSelectionPrompt;
     NSString * _disclaimerMessage;
@@ -21,7 +20,6 @@
     bool  _usesMeteredFare;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *availablePartySizeOptions;
 @property (nonatomic, readonly) unsigned long long availablePartySizeOptionsCount;
 @property (nonatomic, copy) NSString *availablePartySizeOptionsSelectionPrompt;
@@ -56,8 +54,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAvailablePartySizeOptions:(id)arg1;
 - (void)addFareLineItems:(id)arg1;
 - (id)availablePartySizeOptions;

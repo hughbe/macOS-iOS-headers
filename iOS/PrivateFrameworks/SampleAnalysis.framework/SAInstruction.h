@@ -4,36 +4,40 @@
 
 @interface SAInstruction : NSObject <SASerializable> {
     SABinary * _binary;
-    unsigned long long  _offsetIntoTextSegment;
-    SASourceInfo * _sourceInfo;
-    SASymbol * _symbol;
+    unsigned long long  _offsetIntoSegment;
+    SASegment * _segment;
+    id  _sourceInfoOrSourceInfos;
+    id  _symbolOrSymbols;
 }
 
-@property SABinary *binary;
+@property (readonly) SABinary *binary;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property unsigned long long offsetIntoTextSegment;
-@property (retain) SASourceInfo *sourceInfo;
+@property (readonly) long long offsetIntoBinary;
+@property (readonly) unsigned long long offsetIntoSegment;
+@property (readonly) unsigned long long offsetIntoTextSegment;
+@property (readonly) SASegment *segment;
+@property (readonly) SASourceInfo *sourceInfo;
 @property (readonly) Class superclass;
-@property (retain) SASymbol *symbol;
+@property (readonly) SASymbol *symbol;
 
 + (id)classDictionaryKey;
-+ (id)instructionWithBinary:(id)arg1 offsetIntoTextSegment:(unsigned long long)arg2;
-+ (id)invalidInstruction;
-+ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned char x4[16]; }*)arg1 bufferLength:(unsigned long long)arg2;
++ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2;
 
 - (void).cxx_destruct;
-- (bool)addSelfToBuffer:(struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned char x4[16]; unsigned long long x5; unsigned long long x6; unsigned long long x7; unsigned long long x8; unsigned long long x9; unsigned long long x10; unsigned int x11; unsigned int x12; }*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
+- (bool)addSelfToBuffer:(struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned char x4[16]; struct { unsigned long long x_5_1_1; unsigned long long x_5_1_2; unsigned long long x_5_1_3; unsigned long long x_5_1_4; unsigned long long x_5_1_5; unsigned long long x_5_1_6; unsigned int x_5_1_7; unsigned int x_5_1_8; } x5; unsigned long long x6; unsigned char x7; }*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
 - (void)addSelfToSerializationDictionary:(id)arg1;
 - (id)binary;
 - (id)debugDescription;
+- (unsigned long long)enumerateSymbols:(id /* block */)arg1;
+- (bool)hasOffsetIntoBinary;
+- (unsigned long long)numSymbols;
+- (long long)offsetIntoBinary;
+- (unsigned long long)offsetIntoSegment;
 - (unsigned long long)offsetIntoTextSegment;
-- (void)populateReferencesUsingBuffer:(const struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned char x4[16]; }*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
-- (void)setBinary:(id)arg1;
-- (void)setOffsetIntoTextSegment:(unsigned long long)arg1;
-- (void)setSourceInfo:(id)arg1;
-- (void)setSymbol:(id)arg1;
+- (void)populateReferencesUsingBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
+- (id)segment;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 - (id)sourceInfo;
 - (id)symbol;

@@ -2,22 +2,32 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UISearchBar : UIView <DebugHierarchyObject_Fallback, UIBarPositioning, UITextInputTraits, UITextInputTraits_Private, _UIBarPositioningInternal, _UINavigationBarAugmentedTitleView, _UISearchBarVisualProvidingDelegate> {
+@interface UISearchBar : UIView <UIBarPositioning, UIScribbleInteractionDelegate, UITextInputTraits, UITextInputTraits_Private, _UIBarPositioningInternal, _UINavigationBarAugmentedTitleView, _UISearchBarVisualProvidingDelegate> {
     bool  __forceCenteredPlaceholderLayout;
     UISearchController * __searchController;
+    bool  __supportsDynamicType;
     bool  __transplanting;
+    Class  _classForSearchTextField;
     <UISearchBarDelegate><UISearchBarDelegate_Private> * _delegate;
+    bool  _didAddScribbleInteraction;
+    bool  _forceLegacyVisual;
     UIView * _inputAccessoryView;
+    <_UISearchBarSearchContainerLayoutCustomizationDelegate> * _searchFieldContainerLayoutCustomizationDelegate;
     UITapGestureRecognizer * _tapToActivateGestureRecognizer;
     UITextInputTraits * _textInputTraits;
     <_UISearchBarVisualProviding> * _visualProvider;
 }
 
 @property (nonatomic, copy) NSIndexSet *PINEntrySeparatorIndexes;
+@property (setter=_setAdditionalPaddingForCancelButtonAtLeadingEdge:, nonatomic) double _additionalPaddingForCancelButtonAtLeadingEdge;
 @property (setter=_setAllowsInlineScopeBar:, nonatomic) bool _allowsInlineScopeBar;
+@property (setter=_setClassForSearchTextField:, nonatomic, retain) Class _classForSearchTextField;
 @property (nonatomic, readonly) _UINavigationControllerPalette *_containingNavigationPalette;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } _effectiveContentInset;
+@property (nonatomic, readonly) bool _effectivelySupportsDynamicType;
+@property (nonatomic, readonly) long long _expectedInterfaceOrientation;
 @property (nonatomic) bool _forceCenteredPlaceholderLayout;
+@property (setter=_setForceLegacyVisual:, nonatomic) bool _forceLegacyVisual;
 @property (nonatomic, readonly) bool _hideNavigationBarBackButton;
 @property (nonatomic, readonly) bool _hideNavigationBarLeadingBarButtons;
 @property (nonatomic, readonly) bool _hideNavigationBarStandardTitle;
@@ -33,6 +43,8 @@
 @property (setter=_setReliesOnNavigationBarBackdrop:, nonatomic) bool _reliesOnNavigationBarBackdrop;
 @property (setter=_setScopeBarPosition:, nonatomic) unsigned long long _scopeBarPosition;
 @property (setter=_setSearchController:, nonatomic) UISearchController *_searchController;
+@property (setter=_setSearchFieldContainerLayoutCustomizationDelegate:, nonatomic) <_UISearchBarSearchContainerLayoutCustomizationDelegate> *_searchFieldContainerLayoutCustomizationDelegate;
+@property (setter=_setSupportsDynamicType:, nonatomic) bool _supportsDynamicType;
 @property (setter=_setTransplanting:, nonatomic) bool _transplanting;
 @property (nonatomic, readonly) bool _underlayNavigationBarContent;
 @property (nonatomic, readonly) UIView *_viewForChildViews;
@@ -40,6 +52,7 @@
 @property (nonatomic) bool acceptsDictationSearchResults;
 @property (nonatomic) bool acceptsEmoji;
 @property (nonatomic) bool acceptsFloatingKeyboard;
+@property (nonatomic) bool acceptsInitialEmojiKeyboard;
 @property (nonatomic) bool acceptsPayloads;
 @property (nonatomic) bool acceptsSplitKeyboard;
 @property (nonatomic) long long autocapitalizationType;
@@ -49,6 +62,7 @@
 @property (nonatomic, readonly) long long barPosition;
 @property (nonatomic) long long barStyle;
 @property (nonatomic, retain) UIColor *barTintColor;
+@property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } contentInset;
 @property (nonatomic) bool contentsIsSingleValue;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) bool deferBecomingResponder;
@@ -84,11 +98,13 @@
 @property (nonatomic) bool loadKeyboardsForSiriLanguage;
 @property (nonatomic, copy) UITextInputPasswordRules *passwordRules;
 @property (nonatomic, copy) NSString *placeholder;
+@property (nonatomic) bool preferOnlineDictation;
 @property (nonatomic, copy) NSString *prompt;
 @property (nonatomic, copy) NSString *recentInputIdentifier;
 @property (nonatomic, copy) NSString *responseContext;
 @property (nonatomic) bool returnKeyGoesToNextResponder;
 @property (nonatomic) long long returnKeyType;
+@property (nonatomic) bool roundedFont;
 @property (nonatomic, retain) UIImage *scopeBarBackgroundImage;
 @property (nonatomic, copy) NSArray *scopeButtonTitles;
 @property (nonatomic) unsigned long long searchBarStyle;
@@ -135,6 +151,7 @@
 
 - (void).cxx_destruct;
 - (void)_addSubview:(id)arg1 positioned:(long long)arg2 relativeTo:(id)arg3;
+- (double)_additionalPaddingForCancelButtonAtLeadingEdge;
 - (void)_allowCursorToAppear:(bool)arg1;
 - (bool)_allowsInlineScopeBar;
 - (void)_animateTransitionToSearchLayoutState:(long long)arg1;
@@ -152,6 +169,7 @@
 - (id)_cancelButtonText;
 - (void)_cancelOperation:(id)arg1;
 - (void)_cancelTransitionToSearchLayoutState:(long long)arg1;
+- (Class)_classForSearchTextField;
 - (id)_colorForComponent:(unsigned long long)arg1 disabled:(bool)arg2;
 - (void)_commonInit;
 - (void)_completeTransitionToSearchLayoutState:(long long)arg1;
@@ -168,12 +186,16 @@
 - (void)_destroyCancelButton;
 - (void)_didChangeFromIdiom:(long long)arg1 onScreen:(id)arg2 traverseHierarchy:(bool)arg3;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
+- (void)_didUpdateEffectivelySupportsDynamicType;
 - (bool)_disableAutomaticKeyboardUI;
 - (void)_dismissScopeBarIfNecessary;
 - (void)_driveTransitionToSearchLayoutState:(long long)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_effectiveContentInset;
+- (bool)_effectivelySupportsDynamicType;
 - (bool)_enableAutomaticKeyboardPressDone;
+- (long long)_expectedInterfaceOrientation;
 - (bool)_forceCenteredPlaceholderLayout;
+- (bool)_forceLegacyVisual;
 - (void)_getOverrideContentInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; }*)arg1 overriddenEdges:(unsigned long long*)arg2;
 - (bool)_hasCustomAutolayoutNeighborSpacingForAttribute:(long long*)arg1;
 - (bool)_hasDarkUIAppearance;
@@ -229,6 +251,7 @@
 - (id)_searchDisplayControllerNavigationItem;
 - (id)_searchField;
 - (void)_searchFieldBeginEditing;
+- (id)_searchFieldContainerLayoutCustomizationDelegate;
 - (void)_searchFieldEditingChanged;
 - (void)_searchFieldEndEditing;
 - (void)_searchFieldReturnPressed;
@@ -237,6 +260,7 @@
 - (id)_searchTextField;
 - (id)_selectedTokens;
 - (id)_separatorImage;
+- (void)_setAdditionalPaddingForCancelButtonAtLeadingEdge:(double)arg1;
 - (void)_setAllowsInlineScopeBar:(bool)arg1;
 - (void)_setAutoDisableCancelButton:(bool)arg1;
 - (void)_setBackdropStyle:(unsigned long long)arg1;
@@ -244,11 +268,16 @@
 - (void)_setBarPosition:(long long)arg1;
 - (void)_setCancelButtonText:(id)arg1;
 - (void)_setCancelButtonWantsLetterpress;
+- (void)_setClassForSearchTextField:(Class)arg1;
 - (void)_setDataSource:(id)arg1 navigationItem:(id)arg2 titleLocation:(long long)arg3;
 - (void)_setDisableDictationButton:(bool)arg1;
 - (void)_setDisableFocus:(bool)arg1;
 - (void)_setEnabled:(bool)arg1;
 - (void)_setEnabled:(bool)arg1 animated:(bool)arg2;
+- (void)_setForceLegacyVisual:(bool)arg1;
+- (void)_setHelperPlaceholder:(id)arg1;
+- (void)_setHelperPlaceholderHidden:(bool)arg1;
+- (void)_setHelperPlaceholderOverride:(id)arg1;
 - (void)_setHostedByNavigationBar:(bool)arg1;
 - (void)_setMaskActive:(bool)arg1;
 - (void)_setMaskBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
@@ -258,6 +287,7 @@
 - (void)_setScopeBarHidden:(bool)arg1;
 - (void)_setScopeBarPosition:(unsigned long long)arg1;
 - (void)_setSearchController:(id)arg1;
+- (void)_setSearchFieldContainerLayoutCustomizationDelegate:(id)arg1;
 - (void)_setSeparatorImage:(id)arg1;
 - (void)_setShadowVisibleIfNecessary:(bool)arg1;
 - (void)_setShowsCancelButton:(bool)arg1;
@@ -265,6 +295,7 @@
 - (void)_setShowsScopeBar:(bool)arg1 animateOpacity:(bool)arg2;
 - (void)_setShowsScopeBar:(bool)arg1 animated:(bool)arg2;
 - (void)_setShowsSeparator:(bool)arg1;
+- (void)_setSupportsDynamicType:(bool)arg1;
 - (void)_setTokenBackgroundColor:(id)arg1;
 - (void)_setTransplanting:(bool)arg1;
 - (void)_setUpVisualProvider;
@@ -274,10 +305,13 @@
 - (bool)_shouldCombineLandscapeBarsForOrientation:(long long)arg1;
 - (bool)_shouldUseNavigationBarHeight;
 - (bool)_showingDictationButton;
+- (bool)_showsHelperPlaceholder;
+- (bool)_supportsDynamicType;
 - (bool)_supportsLayoutStates;
 - (id)_textColor;
 - (long long)_textInputSource;
 - (id)_tokens;
+- (id)_traitCollectionOverridesForNavigationBarTraitCollection:(id)arg1;
 - (bool)_transplanting;
 - (id)_uiktest_placeholderLabelColor;
 - (bool)_underlayNavigationBarContent;
@@ -291,21 +325,6 @@
 - (id)_visualProvider;
 - (bool)_wantsTwoPartTransition;
 - (bool)_wouldCombineLandscapeBarsForSize:(struct CGSize { double x1; double x2; })arg1;
-- (void)dealloc;
-- (id)description;
-- (id)forwardingTargetForSelector:(SEL)arg1;
-- (id)methodSignatureForSelector:(SEL)arg1;
-- (bool)respondsToSelector:(SEL)arg1;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-- (id)__dbg_scopeButtonTitles;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)backgroundImage;
 - (id)backgroundImageForBarPosition:(long long)arg1 barMetrics:(long long)arg2;
 - (long long)barPosition;
@@ -320,13 +339,16 @@
 - (bool)centerPlaceholder;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })contentInset;
 - (id)controller;
+- (void)dealloc;
 - (id)delegate;
+- (id)description;
 - (void)didMoveToSuperview;
 - (void)didMoveToWindow;
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (bool)drawsBackground;
 - (bool)drawsBackgroundInPalette;
 - (void)encodeWithCoder:(id)arg1;
+- (id)forwardingTargetForSelector:(SEL)arg1;
 - (id)hitTest:(struct CGPoint { double x1; double x2; })arg1 withEvent:(id)arg2;
 - (id)imageForSearchBarIcon:(long long)arg1 state:(unsigned long long)arg2;
 - (id)init;
@@ -342,6 +364,7 @@
 - (bool)isTranslucent;
 - (void)layoutMarginsDidChange;
 - (void)layoutSubviews;
+- (id)methodSignatureForSelector:(SEL)arg1;
 - (id)placeholder;
 - (struct UIOffset { double x1; double x2; })positionAdjustmentForSearchBarIcon:(long long)arg1;
 - (id)preferredFocusEnvironments;
@@ -350,12 +373,14 @@
 - (id)prompt;
 - (void)reloadInputViews;
 - (bool)resignFirstResponder;
+- (bool)respondsToSelector:(SEL)arg1;
 - (void)safeAreaInsetsDidChange;
 - (id)scopeBarBackgroundImage;
 - (id)scopeBarButtonBackgroundImageForState:(unsigned long long)arg1;
 - (id)scopeBarButtonDividerImageForLeftSegmentState:(unsigned long long)arg1 rightSegmentState:(unsigned long long)arg2;
 - (id)scopeBarButtonTitleTextAttributesForState:(unsigned long long)arg1;
 - (id)scopeButtonTitles;
+- (bool)scribbleInteractionShouldDelayFocus:(id)arg1;
 - (unsigned long long)searchBarStyle;
 - (id)searchField;
 - (id)searchFieldBackgroundImageForState:(unsigned long long)arg1;
@@ -421,8 +446,24 @@
 - (void)tappedSearchBar:(id)arg1;
 - (id)text;
 - (id)textInputTraits;
+- (void)traitCollectionDidChange:(id)arg1;
 - (bool)usesEmbeddedAppearance;
 - (void)willMoveToSuperview:(id)arg1;
 - (void)willMoveToWindow:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
+
+// Image: /System/Library/PrivateFrameworks/RemindersUICore.framework/RemindersUICore
+
+- (bool)roundedFont;
+- (void)setRoundedFont:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (void)setCancelButtonText:(id)arg1;
+- (void)ts_clearBackdropStyle;
 
 @end

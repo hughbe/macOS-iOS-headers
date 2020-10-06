@@ -3,6 +3,16 @@
  */
 
 @interface _UIFocusMovementInfo : NSObject <BSXPCCoding, NSCopying> {
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _fallbackMovementOriginatingFrame;
     unsigned long long  _heading;
     bool  _isInitialMovement;
     bool  _isVelocityBased;
@@ -20,6 +30,7 @@
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (getter=_fallbackMovementOriginatingFrame, setter=_setFallbackMovementOriginatingFrame:, nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } fallbackMovementOriginatingFrame;
 @property (readonly) unsigned long long hash;
 @property (setter=_setHeading:, nonatomic) unsigned long long heading;
 @property (getter=_isInitialMovement, setter=_setIsInitialMovement:, nonatomic) bool isInitialMovement;
@@ -34,6 +45,7 @@
 @property (getter=_velocity, setter=_setVelocity:, nonatomic) struct CGVector { double x1; double x2; } velocity;
 
 + (id)_movementWithHeading:(unsigned long long)arg1 isInitial:(bool)arg2;
++ (id)_movementWithHeading:(unsigned long long)arg1 isInitial:(bool)arg2 fallbackMovementOriginatingFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg3;
 + (id)_movementWithHeading:(unsigned long long)arg1 linearHeading:(unsigned long long)arg2 isInitial:(bool)arg3;
 + (id)_movementWithHeading:(unsigned long long)arg1 linearHeading:(unsigned long long)arg2 shouldLoadScrollableContainer:(bool)arg3 isInitial:(bool)arg4;
 + (id)_movementWithHeading:(unsigned long long)arg1 linearHeading:(unsigned long long)arg2 shouldLoadScrollableContainer:(bool)arg3 isInitial:(bool)arg4 looping:(bool)arg5;
@@ -44,12 +56,14 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_fallbackMovementOriginatingFrame;
 - (bool)_isInitialMovement;
 - (bool)_isLinearMovement;
 - (bool)_isLooping;
 - (bool)_isVelocityBased;
 - (unsigned long long)_linearHeading;
 - (unsigned long long)_secondaryHeading;
+- (void)_setFallbackMovementOriginatingFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_setHeading:(unsigned long long)arg1;
 - (void)_setIsInitialMovement:(bool)arg1;
 - (void)_setIsVelocityBased:(bool)arg1;

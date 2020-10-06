@@ -3,6 +3,7 @@
  */
 
 @interface UIWKTextInteractionAssistant : UITextInteractionAssistant <UIResponderStandardEditActions> {
+    <UITextCursorAssertion> * _blinkAssertion;
     struct CGRect { 
         struct CGPoint { 
             double x; 
@@ -44,7 +45,6 @@
 - (bool)containerAllowsSelectionTintOnly;
 - (bool)containerIsAtom;
 - (bool)containerIsBrowserView;
-- (bool)containerIsPlainStyleAtom;
 - (long long)currentCursorBehavior;
 - (void)dealloc;
 - (void)didEndScrollingOverflow;
@@ -77,7 +77,7 @@
 - (void)setShouldDelayActivatingSelectionView:(bool)arg1;
 - (void)setWordBeforeTap:(id)arg1;
 - (bool)shouldDelayActivatingSelectionView;
-- (bool)shouldEnqueueObserverUpdates;
+- (bool)shouldSuppressSelectionCommands;
 - (bool)shouldTryReplacementsForText:(id)arg1 withOptions:(unsigned long long)arg2;
 - (void)showDictionaryFor:(id)arg1 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (void)showReplacementsForText:(id)arg1 withOptions:(unsigned long long)arg2;

@@ -13,11 +13,9 @@
 }
 
 @property (setter=_setLocalizationTable:, nonatomic, copy) INCodableLocalizationTable *_localizationTable;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (nonatomic, readonly, copy) NSString *localizedSubtitleFormatString;
 @property (nonatomic, readonly, copy) NSString *localizedTitleFormatString;
 @property (getter=isPrimary, nonatomic) bool primary;
@@ -34,16 +32,13 @@
 - (id)_dictionaryRepresentation;
 - (id)_localizationTable;
 - (void)_setLocalizationTable:(id)arg1;
-- (id)cacheGroup;
 - (id)description;
 - (id)descriptionAtIndent:(unsigned long long)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (bool)isPrimary;
-- (id)keyPrefix;
 - (id)localizedSubtitleFormatString;
 - (id)localizedSubtitleFormatStringWithLocalizer:(id)arg1;
 - (id)localizedTitleFormatString;

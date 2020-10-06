@@ -11,6 +11,9 @@
         long long __ss_align; 
         BOOL __ss_pad2[112]; 
     }  _address;
+    NSString * _allocbindDataBlob;
+    unsigned int  _dataSoMask;
+    unsigned int  _dataSoMasks;
     double  _extIPDetectionStartTime;
     struct sockaddr_storage { 
         unsigned char ss_len; 
@@ -34,6 +37,8 @@
 
 @property (nonatomic) bool active;
 @property (nonatomic, readonly) const struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*address;
+@property (nonatomic, copy) NSString *allocbindDataBlob;
+@property (nonatomic) unsigned int dataSoMask;
 @property (nonatomic) double extIPDetectionStartTime;
 @property (nonatomic) struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*external;
 @property (nonatomic, readonly) int index;
@@ -47,8 +52,11 @@
 
 + (id)candidateWithType:(unsigned long long)arg1 transport:(long long)arg2 radioAccessTechnology:(unsigned int)arg3 mtu:(unsigned int)arg4 index:(int)arg5 address:(struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*)arg6 external:(struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*)arg7;
 
+- (void).cxx_destruct;
 - (bool)active;
 - (const struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*)address;
+- (id)allocbindDataBlob;
+- (unsigned int)dataSoMask;
 - (void)dealloc;
 - (id)description;
 - (double)extIPDetectionStartTime;
@@ -70,6 +78,8 @@
 - (unsigned int)radioAccessTechnology;
 - (unsigned short)remoteLinkFlags;
 - (void)setActive:(bool)arg1;
+- (void)setAllocbindDataBlob:(id)arg1;
+- (void)setDataSoMask:(unsigned int)arg1;
 - (void)setExtIPDetectionStartTime:(double)arg1;
 - (void)setExternal:(struct sockaddr { unsigned char x1; unsigned char x2; BOOL x3[14]; }*)arg1;
 - (void)setMtu:(unsigned int)arg1;

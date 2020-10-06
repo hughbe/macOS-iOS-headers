@@ -5,7 +5,7 @@
 @interface _UIVisualEffectHost : NSObject <_UIVisualEffectViewSubviewMonitoring> {
     bool  _autosetSubviewLabelTintColor;
     _UIVisualEffectBackdropView * _captureView;
-    _UIVisualEffectSubview * _contentView;
+    UIView<_UIVisualEffectViewParticipating> * _contentView;
     bool  _contentViewRequired;
     _UIVisualEffectDescriptor * _currentEffectDescriptor;
     _UIVisualEffectViewBackdropCaptureGroup * _primaryCaptureGroup;
@@ -14,7 +14,7 @@
 }
 
 @property (nonatomic) _UIVisualEffectBackdropView *captureView;
-@property (nonatomic, readonly) _UIVisualEffectSubview *contentView;
+@property (nonatomic, readonly) UIView<_UIVisualEffectViewParticipating> *contentView;
 @property (nonatomic) bool contentViewRequired;
 @property (nonatomic, retain) _UIVisualEffectDescriptor *currentEffectDescriptor;
 @property (readonly, copy) NSString *debugDescription;
@@ -47,6 +47,7 @@
 - (id)description;
 - (void)endTransition;
 - (id)initWithContentView:(id)arg1;
+- (void)monitorSubviewsOf:(id)arg1;
 - (void)prepareToTransitionToEffectDescriptor:(id)arg1;
 - (id)primaryCaptureGroup;
 - (void)setCaptureView:(id)arg1;

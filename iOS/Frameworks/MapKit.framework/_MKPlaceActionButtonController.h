@@ -7,7 +7,8 @@
     id /* block */  _buttonSelectedBlock;
     NSString * _buttonSubTitle;
     NSString * _buttonTitle;
-    <_MKPlaceActionButtonControllerProtocol> * _delegate;
+    <_MKPlaceActionControlledButton> * _delegate;
+    bool  _disabled;
 }
 
 @property (nonatomic, readonly) int analyticsAction;
@@ -15,12 +16,14 @@
 @property (nonatomic, readonly) NSString *buttonSubTitle;
 @property (nonatomic, readonly) NSString *buttonTitle;
 @property (readonly, copy) NSString *debugDescription;
-@property (nonatomic) <_MKPlaceActionButtonControllerProtocol> *delegate;
+@property (nonatomic) <_MKPlaceActionControlledButton> *delegate;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) bool disabled;
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
 + (id)actionButtonControllerWithTitle:(id)arg1 subTitle:(id)arg2 selectedBlock:(id /* block */)arg3;
++ (id)actionButtonControllerWithTitle:(id)arg1 subTitle:(id)arg2 selectedBlock:(id /* block */)arg3 disabled:(bool)arg4;
 
 - (void).cxx_destruct;
 - (int)analyticsAction;
@@ -29,9 +32,10 @@
 - (void)buttonTextChanged;
 - (id)buttonTitle;
 - (id)delegate;
+- (bool)disabled;
 - (id)infoCardChildPossibleActions;
 - (id)infoCardChildUnactionableUIElements;
-- (id)initWithTitle:(id)arg1 subTitle:(id)arg2 analyticsAction:(int)arg3 selectedBlock:(id /* block */)arg4;
+- (id)initWithTitle:(id)arg1 subTitle:(id)arg2 analyticsAction:(int)arg3 selectedBlock:(id /* block */)arg4 disabled:(bool)arg5;
 - (id)initWithTitle:(id)arg1 subTitle:(id)arg2 selectedBlock:(id /* block */)arg3;
 - (void)setDelegate:(id)arg1;
 

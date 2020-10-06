@@ -8,15 +8,10 @@
 
 @property (nonatomic) bool sizesWindowToScene;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (id)__autorotationSanityCheckObjectFromSource:(id)arg1 selector:(SEL)arg2;
 - (bool)_canShowWhileLocked;
 - (long long)_preferredInterfaceOrientationGivenCurrentOrientation:(long long)arg1;
 - (id)_topMostWindow;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)setSizesWindowToScene:(bool)arg1;
 - (bool)shouldAutorotate;

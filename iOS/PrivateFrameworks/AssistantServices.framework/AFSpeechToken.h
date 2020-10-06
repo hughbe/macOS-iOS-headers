@@ -30,6 +30,7 @@
 - (id)aceToken;
 - (long long)confidenceScore;
 - (id)description;
+- (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (double)endTime;
 - (unsigned long long)hash;

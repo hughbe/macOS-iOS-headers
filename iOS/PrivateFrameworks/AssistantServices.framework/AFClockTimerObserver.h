@@ -8,6 +8,8 @@
     NSObject<OS_dispatch_queue> * _queue;
     MTTimerManager * _timerManager;
     AFClockTimerSnapshot * _timerSnapshot;
+    NSObject<OS_dispatch_group> * _timerSnapshotGroup;
+    long long  _timerSnapshotGroupDepth;
     AFClockItemStorage * _timerStorage;
     NSUUID * _timersChangedToken;
 }
@@ -20,6 +22,9 @@
 + (void)initialize;
 
 - (void).cxx_destruct;
+- (void)_beginGroup;
+- (void)_consolidateNotifiedFiringTimers;
+- (void)_endGroup;
 - (void)_enumerateListenersUsingBlock:(id /* block */)arg1;
 - (void)_fetchTimersForReason:(id)arg1 completion:(id /* block */)arg2;
 - (void)_handleFetchTimersForReason:(id)arg1 error:(id)arg2 completion:(id /* block */)arg3;

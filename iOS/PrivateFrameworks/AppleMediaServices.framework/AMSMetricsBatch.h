@@ -4,6 +4,7 @@
 
 @interface AMSMetricsBatch : NSObject {
     ACAccount * _account;
+    bool  _anonymous;
     NSString * _canaryIdentifier;
     bool  _containsLoadURL;
     NSArray * _droppedEvents;
@@ -14,6 +15,7 @@
 }
 
 @property (nonatomic, retain) ACAccount *account;
+@property (nonatomic) bool anonymous;
 @property (nonatomic, retain) NSString *canaryIdentifier;
 @property (nonatomic) bool containsLoadURL;
 @property (nonatomic, retain) NSArray *droppedEvents;
@@ -24,6 +26,7 @@
 
 - (void).cxx_destruct;
 - (id)account;
+- (bool)anonymous;
 - (id)canaryIdentifier;
 - (bool)containsLoadURL;
 - (id)droppedEvents;
@@ -31,6 +34,7 @@
 - (id)events;
 - (id)reportURL;
 - (void)setAccount:(id)arg1;
+- (void)setAnonymous:(bool)arg1;
 - (void)setCanaryIdentifier:(id)arg1;
 - (void)setContainsLoadURL:(bool)arg1;
 - (void)setDroppedEvents:(id)arg1;

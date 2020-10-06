@@ -10,16 +10,19 @@
 + (NSArray *)allSupportedActionTypesWithCapabilities:(id <CNCapabilities>)arg1;
 
 - (NSArray *)actionTypesForConsumer:(id <CNUIUserActionListConsumer>)arg1;
-- (CNObservable *)consumer:(id <CNUIUserActionListConsumer>)arg1 actionModelsForActionType:(NSString *)arg2;
-- (<CNCancelable> *)consumer:(void *)arg1 actionModelsForActionType:(void *)arg2 handler:(void *)arg3; // needs 3 arg types, found 8: <CNUIUserActionListConsumer> *, NSString *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, CNUIUserActionListModel *, void*
+- (CNObservable *)consumer:(id <CNUIUserActionListConsumer>)arg1 actionModelsForContact:(CNContact *)arg2 actionType:(NSString *)arg3;
+- (<CNCancelable> *)consumer:(void *)arg1 actionModelsForContact:(void *)arg2 actionType:(void *)arg3 handler:(void *)arg4; // needs 4 arg types, found 9: <CNUIUserActionListConsumer> *, CNContact *, NSString *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, CNUIUserActionListModel *, void*
+- (CNUIUserActionListModel *)consumer:(id <CNUIUserActionListConsumer>)arg1 currentActionModelForContact:(CNContact *)arg2 actionType:(NSString *)arg3;
 - (UIImage *)consumer:(id <CNUIUserActionListConsumer>)arg1 imageForActionType:(NSString *)arg2;
 - (NSString *)consumer:(id <CNUIUserActionListConsumer>)arg1 localizedButtonDisplayNameForActionType:(NSString *)arg2;
 - (NSString *)consumer:(id <CNUIUserActionListConsumer>)arg1 localizedDisplayNameForActionType:(NSString *)arg2;
 - (NSString *)consumer:(id <CNUIUserActionListConsumer>)arg1 localizedDisplayNameForButtonWithDefaultAction:(CNUIUserActionItem *)arg2 actionType:(NSString *)arg3;
-- (void)setContact:(CNContact *)arg1;
+- (void)setCacheCapacity:(unsigned long long)arg1;
+- (void)setCacheEntryExpirationAge:(double)arg1;
+- (void)setCacheEntryRefreshAge:(double)arg1;
 - (void)setTracksChanges:(bool)arg1;
+- (CNFuture *)thirdPartyActionsForContact:(CNContact *)arg1 propertyKey:(NSString *)arg2 identifier:(NSString *)arg3;
 - (CNFuture *)thirdPartyActionsForContactProperty:(CNContactProperty *)arg1;
-- (CNFuture *)thirdPartyActionsForCurrentContactAndPropertyKey:(NSString *)arg1 identifier:(NSString *)arg2;
 - (CNFuture *)thirdPartyTargetsForActionTypes:(NSArray *)arg1;
 - (bool)tracksChanges;
 

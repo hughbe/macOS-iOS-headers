@@ -27,6 +27,7 @@
 - (id)availableVoicesForLanguageCode:(id)arg1;
 - (void)beginAudioPowerUpdateWithReply:(id /* block */)arg1;
 - (void)cachePresynthesizedAudioRequest:(id)arg1;
+- (void)cancelDownloads:(id /* block */)arg1;
 - (oneway void)cleanUnusedAssets:(id /* block */)arg1;
 - (id)concurrentSynthesisRequests;
 - (void)continueCurrentSpeechRequest;
@@ -37,7 +38,7 @@
 - (void)estimateDurationWithRequest:(id)arg1 reply:(id /* block */)arg2;
 - (void)forwardStreamObject:(id)arg1;
 - (void)getAutoDownloadedVoiceAssetsWithClientID:(id)arg1 reply:(id /* block */)arg2;
-- (void)getLocalVoiceAssets:(id /* block */)arg1;
+- (void)getLocalVoiceAssetsForLanguage:(id)arg1 reply:(id /* block */)arg2;
 - (void)getLocalVoiceResources:(id /* block */)arg1;
 - (void)getLogToFile:(id /* block */)arg1;
 - (void)getTTSServerVoicesWithFilter:(id)arg1 reply:(id /* block */)arg2;
@@ -45,6 +46,7 @@
 - (void)getVoiceResourceForLanguage:(id)arg1 reply:(id /* block */)arg2;
 - (id)identifier;
 - (id)init;
+- (void)invokeDaemon:(id /* block */)arg1;
 - (bool)isSystemSpeaking;
 - (bool)isSystemSpeakingOnBehalfOfCurrentConnection;
 - (void)killDaemon;

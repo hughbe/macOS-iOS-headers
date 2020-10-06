@@ -3,6 +3,7 @@
  */
 
 @interface UIKeyboardInputModeController : NSObject {
+    NSArray * _additionalTextInputLocales;
     NSArray * _allExtensions;
     NSArray * _allowedExtensions;
     bool  _cacheNeedsRefresh;
@@ -44,8 +45,10 @@
 @property (nonatomic, readonly) NSArray *activeDictationSupportedInputModeIdentifiers;
 @property (readonly) NSArray *activeInputModeIdentifiers;
 @property (readonly) NSArray *activeUserSelectableInputModeIdentifiers;
+@property (nonatomic, copy) NSArray *additionalTextInputLocales;
 @property (nonatomic, readonly) NSArray *allowedExtensions;
 @property (nonatomic, readonly) bool containsDictationSupportedInputMode;
+@property (nonatomic, readonly) bool containsEmojiInputMode;
 @property (retain) UIKeyboardInputMode *currentInputMode;
 @property (nonatomic) UIKeyboardInputMode *currentInputModeInPreference;
 @property (nonatomic, readonly) UIKeyboardInputMode *currentLinguisticInputMode;
@@ -105,16 +108,19 @@
 - (id)activeInputModes;
 - (id)activeUserSelectableInputModeIdentifiers;
 - (id)activeUserSelectableInputModes;
+- (id)additionalTextInputLocales;
 - (id)allowedExtensions;
 - (id)appendPasscodeInputModes:(id)arg1;
 - (void)clearNextInputModeToUse;
 - (bool)containsDictationSupportedInputMode;
+- (bool)containsEmojiInputMode;
 - (id)currentInputMode;
 - (id)currentInputModeInPreference;
 - (id)currentLinguisticInputMode;
 - (bool)currentLocaleRequiresExtendedSetup;
 - (id)currentPublicInputMode;
 - (id)currentSystemInputMode;
+- (id)currentSystemInputModeExcludingEmoji:(bool)arg1;
 - (id)currentUsedInputMode;
 - (void)dealloc;
 - (id)defaultDictationLanguages:(id)arg1;
@@ -162,6 +168,7 @@
 - (id)inputModeLastUsedForLanguage:(id)arg1 includingExtensions:(bool)arg2;
 - (id)inputModeToAddForKeyboardLanguage:(id)arg1 countryCode:(id)arg2 activeModes:(id)arg3;
 - (id)inputModeWithIdentifier:(id)arg1;
+- (id)inputModesByAppendingApplicationLanguagesToInputModes:(id)arg1;
 - (id)inputModesFromIdentifiers:(id)arg1;
 - (id)inputModesWithoutHardwareSupport;
 - (bool)isDictationLanguageEnabled:(id)arg1;
@@ -187,6 +194,7 @@
 - (void)performWithoutExtensionInputModes:(id /* block */)arg1;
 - (void)releaseAddKeyboardNotification;
 - (void)saveDeviceUnlockPasscodeInputModes;
+- (void)setAdditionalTextInputLocales:(id)arg1;
 - (void)setCurrentInputMode:(id)arg1;
 - (void)setCurrentInputModeInPreference:(id)arg1;
 - (void)setCurrentUsedInputMode:(id)arg1;

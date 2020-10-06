@@ -11,6 +11,7 @@
     bool  _canFetchMediaDataFromSender;
     bool  _canPlayEncryptedProgressiveDownloadAssets;
     bool  _canRelayCommunicationChannel;
+    NSMutableArray * _clusterCompositions;
     int  _deviceSubType;
     int  _deviceType;
     NSString * _firmwareVersion;
@@ -45,6 +46,7 @@
         unsigned int supportsBufferedAirPlay : 1; 
         unsigned int supportsExternalScreen : 1; 
         unsigned int supportsHAP : 1; 
+        unsigned int usingJSONProtocol : 1; 
     }  _has;
     bool  _isAddedToHomeKit;
     bool  _isAirPlayReceiverSessionActive;
@@ -70,6 +72,7 @@
     bool  _supportsExternalScreen;
     bool  _supportsHAP;
     NSString * _uniqueIdentifier;
+    bool  _usingJSONProtocol;
     float  _volume;
     int  _volumeCapabilities;
 }
@@ -82,6 +85,7 @@
 @property (nonatomic) bool canFetchMediaDataFromSender;
 @property (nonatomic) bool canPlayEncryptedProgressiveDownloadAssets;
 @property (nonatomic) bool canRelayCommunicationChannel;
+@property (nonatomic, retain) NSMutableArray *clusterCompositions;
 @property (nonatomic) int deviceSubType;
 @property (nonatomic) int deviceType;
 @property (nonatomic, retain) NSString *firmwareVersion;
@@ -124,6 +128,7 @@
 @property (nonatomic) bool hasSupportsExternalScreen;
 @property (nonatomic) bool hasSupportsHAP;
 @property (nonatomic, readonly) bool hasUniqueIdentifier;
+@property (nonatomic) bool hasUsingJSONProtocol;
 @property (nonatomic) bool hasVolume;
 @property (nonatomic) bool hasVolumeCapabilities;
 @property (nonatomic) bool isAddedToHomeKit;
@@ -150,12 +155,16 @@
 @property (nonatomic) bool supportsExternalScreen;
 @property (nonatomic) bool supportsHAP;
 @property (nonatomic, retain) NSString *uniqueIdentifier;
+@property (nonatomic) bool usingJSONProtocol;
 @property (nonatomic) float volume;
 @property (nonatomic) int volumeCapabilities;
+
++ (Class)clusterCompositionType;
 
 - (void).cxx_destruct;
 - (int)StringAsDeviceSubType:(id)arg1;
 - (int)StringAsDeviceType:(id)arg1;
+- (void)addClusterComposition:(id)arg1;
 - (float)batteryLevel;
 - (id)bluetoothID;
 - (bool)canAccessAppleMusic;
@@ -164,6 +173,10 @@
 - (bool)canFetchMediaDataFromSender;
 - (bool)canPlayEncryptedProgressiveDownloadAssets;
 - (bool)canRelayCommunicationChannel;
+- (void)clearClusterCompositions;
+- (id)clusterCompositionAtIndex:(unsigned long long)arg1;
+- (id)clusterCompositions;
+- (unsigned long long)clusterCompositionsCount;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -212,6 +225,7 @@
 - (bool)hasSupportsExternalScreen;
 - (bool)hasSupportsHAP;
 - (bool)hasUniqueIdentifier;
+- (bool)hasUsingJSONProtocol;
 - (bool)hasVolume;
 - (bool)hasVolumeCapabilities;
 - (unsigned long long)hash;
@@ -244,6 +258,7 @@
 - (void)setCanFetchMediaDataFromSender:(bool)arg1;
 - (void)setCanPlayEncryptedProgressiveDownloadAssets:(bool)arg1;
 - (void)setCanRelayCommunicationChannel:(bool)arg1;
+- (void)setClusterCompositions:(id)arg1;
 - (void)setDeviceSubType:(int)arg1;
 - (void)setDeviceType:(int)arg1;
 - (void)setFirmwareVersion:(id)arg1;
@@ -275,6 +290,7 @@
 - (void)setHasSupportsBufferedAirPlay:(bool)arg1;
 - (void)setHasSupportsExternalScreen:(bool)arg1;
 - (void)setHasSupportsHAP:(bool)arg1;
+- (void)setHasUsingJSONProtocol:(bool)arg1;
 - (void)setHasVolume:(bool)arg1;
 - (void)setHasVolumeCapabilities:(bool)arg1;
 - (void)setIsAddedToHomeKit:(bool)arg1;
@@ -301,6 +317,7 @@
 - (void)setSupportsExternalScreen:(bool)arg1;
 - (void)setSupportsHAP:(bool)arg1;
 - (void)setUniqueIdentifier:(id)arg1;
+- (void)setUsingJSONProtocol:(bool)arg1;
 - (void)setVolume:(float)arg1;
 - (void)setVolumeCapabilities:(int)arg1;
 - (bool)shouldForceRemoteControlabillity;
@@ -309,6 +326,7 @@
 - (bool)supportsExternalScreen;
 - (bool)supportsHAP;
 - (id)uniqueIdentifier;
+- (bool)usingJSONProtocol;
 - (float)volume;
 - (int)volumeCapabilities;
 - (void)writeTo:(id)arg1;

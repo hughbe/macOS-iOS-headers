@@ -8,8 +8,11 @@
     NSDate * _beginDate;
     bool  _cancelled;
     id /* block */  _completionBlock;
-    NSString * _contentType;
+    NSString * _contentTypeUTI;
+    NSData * _data;
     bool  _downloadingAllowed;
+    NSDictionary * _externalThumbnailGeneratorData;
+    unsigned long long  _externalThumbnailGeneratorDataHash;
     QLCacheFileProviderVersionedFileIdentifier * _fileProviderFileIdentifier;
     NSURL * _fileURL;
     bool  _finished;
@@ -45,8 +48,12 @@
 @property (nonatomic, retain) NSDate *beginDate;
 @property (getter=isCancelled, nonatomic) bool cancelled;
 @property (nonatomic, copy) id /* block */ completionBlock;
-@property (nonatomic, retain) NSString *contentType;
+@property (nonatomic, copy) UTType *contentType;
+@property (nonatomic, retain) NSString *contentTypeUTI;
+@property (nonatomic, retain) NSData *data;
 @property (getter=isDownloadingAllowed, nonatomic) bool downloadingAllowed;
+@property (nonatomic, retain) NSDictionary *externalThumbnailGeneratorData;
+@property (nonatomic) unsigned long long externalThumbnailGeneratorDataHash;
 @property (nonatomic, retain) QLCacheFileProviderVersionedFileIdentifier *fileProviderFileIdentifier;
 @property (nonatomic, retain) NSURL *fileURL;
 @property (getter=isFinished, nonatomic) bool finished;
@@ -76,6 +83,7 @@
 
 + (id)_basicFileIdentifierForURL:(id)arg1 error:(id*)arg2;
 + (id)_fileProviderFileIdentifierForFPItem:(id)arg1;
++ (id)customExtensionCommunicationEncodedClasses;
 + (id)requestWithThumbnailRequest:(id)arg1;
 + (bool)supportsSecureCoding;
 
@@ -88,11 +96,15 @@
 - (long long)compare:(id)arg1;
 - (id /* block */)completionBlock;
 - (id)contentType;
+- (id)contentTypeUTI;
 - (id)copyWithSize:(struct CGSize { double x1; double x2; })arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)data;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)equivalentFPItemRequestWithItem:(id)arg1 representationTypes:(unsigned long long)arg2;
+- (id)externalThumbnailGeneratorData;
+- (unsigned long long)externalThumbnailGeneratorDataHash;
 - (id)fileIdentifier;
 - (id)fileProviderFileIdentifier;
 - (id)fileURL;
@@ -104,11 +116,13 @@
 - (bool)iconMode;
 - (long long)iconVariant;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithData:(id)arg1 contentType:(id)arg2 size:(struct CGSize { double x1; double x2; })arg3 scale:(double)arg4 representationTypes:(unsigned long long)arg5;
 - (id)initWithFPItem:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2 scale:(double)arg3 representationTypes:(unsigned long long)arg4;
 - (id)initWithFileAtURL:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2 scale:(double)arg3 representationTypes:(unsigned long long)arg4;
 - (id)initWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 representationTypes:(unsigned long long)arg3;
 - (int)interpolationQuality;
 - (bool)isCancelled;
+- (bool)isDataBased;
 - (bool)isDownloadingAllowed;
 - (bool)isEqual:(id)arg1;
 - (bool)isFileBased;
@@ -144,7 +158,11 @@
 - (void)setCancelled:(bool)arg1;
 - (void)setCompletionBlock:(id /* block */)arg1;
 - (void)setContentType:(id)arg1;
+- (void)setContentTypeUTI:(id)arg1;
+- (void)setData:(id)arg1;
 - (void)setDownloadingAllowed:(bool)arg1;
+- (void)setExternalThumbnailGeneratorData:(id)arg1;
+- (void)setExternalThumbnailGeneratorDataHash:(unsigned long long)arg1;
 - (void)setFileProviderFileIdentifier:(id)arg1;
 - (void)setFileURL:(id)arg1;
 - (void)setFinished:(bool)arg1;

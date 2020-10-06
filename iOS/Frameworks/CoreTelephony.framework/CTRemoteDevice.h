@@ -4,10 +4,12 @@
 
 @interface CTRemoteDevice : NSObject <NSSecureCoding> {
     CTDeviceIdentifier * _deviceID;
+    NSArray * _remoteDisplayPlans;
     NSArray * _remotePlans;
 }
 
 @property (nonatomic, retain) CTDeviceIdentifier *deviceID;
+@property (nonatomic, retain) NSArray *remoteDisplayPlans;
 @property (nonatomic, retain) NSArray *remotePlans;
 
 + (bool)supportsSecureCoding;
@@ -22,8 +24,10 @@
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)remoteDisplayPlans;
 - (id)remotePlans;
 - (void)setDeviceID:(id)arg1;
+- (void)setRemoteDisplayPlans:(id)arg1;
 - (void)setRemotePlans:(id)arg1;
 
 @end

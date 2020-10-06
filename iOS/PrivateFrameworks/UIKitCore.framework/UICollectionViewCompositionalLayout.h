@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UICollectionViewCompositionalLayout : UICollectionViewLayout {
+@interface UICollectionViewCompositionalLayout : UICollectionViewLayout <_UICollectionViewLayoutInteractionStateModuleHost> {
     UICollectionViewCompositionalLayoutConfiguration * _configuration;
     struct CGRect { 
         struct CGPoint { 
@@ -17,9 +17,11 @@
     <_UICollectionCompositionalLayoutSolverResolveResult> * _currentResolveResult;
     _UICollectionCompositionalLayoutSolverUpdate * _currentUpdate;
     _UIDataSourceSnapshotter * _dataSourceSnapshotter;
+    bool  _deferredLastInvalidationNextInvalidationRequiresFullResolve;
     bool  _defersInitialSolveUntilPrepare;
     id /* block */  _dynamicsConfigurationHandler;
     unsigned long long  _edgesForSafeAreaPropagation;
+    _UICollectionViewLayoutInteractionStateModule * _interactionStateModule;
     bool  _isInUpdateVisibleCellsPass;
     bool  _layoutRTL;
     id /* block */  _layoutSectionProvider;
@@ -30,16 +32,16 @@
         double bottom; 
         double right; 
     }  _memoizedDynamicAnimatorWorldAdjustingInsets;
-    struct CGSize { 
-        double width; 
-        double height; 
-    }  _memoizedPreviousInvalidationCollectionViewBoundsSize;
     struct UIEdgeInsets { 
         double top; 
         double left; 
         double bottom; 
         double right; 
     }  _memoizedPreviousLayoutMargins;
+    struct CGSize { 
+        double width; 
+        double height; 
+    }  _memoizedPreviousSolvedViewBoundsSize;
     bool  _roundsToScreenScale;
     bool  _shouldAdjustContentInsetModeForCollectionViewNeverMode;
     _UICollectionCompositionalLayoutSolver * _solver;
@@ -51,40 +53,62 @@
 @property (nonatomic, retain) <_UICollectionCompositionalLayoutSolverResolveResult> *currentResolveResult;
 @property (nonatomic, retain) _UICollectionCompositionalLayoutSolverUpdate *currentUpdate;
 @property (nonatomic, retain) _UIDataSourceSnapshotter *dataSourceSnapshotter;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) bool deferredLastInvalidationNextInvalidationRequiresFullResolve;
 @property (nonatomic) bool defersInitialSolveUntilPrepare;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, copy) id /* block */ dynamicsConfigurationHandler;
 @property (nonatomic) unsigned long long edgesForSafeAreaPropagation;
+@property (readonly) unsigned long long hash;
 @property (nonatomic) bool isInUpdateVisibleCellsPass;
 @property (nonatomic) bool layoutRTL;
 @property (nonatomic, copy) id /* block */ layoutSectionProvider;
 @property (nonatomic, retain) NSCollectionLayoutSection *layoutSectionTemplate;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } memoizedDynamicAnimatorWorldAdjustingInsets;
-@property (nonatomic) struct CGSize { double x1; double x2; } memoizedPreviousInvalidationCollectionViewBoundsSize;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } memoizedPreviousLayoutMargins;
+@property (nonatomic) struct CGSize { double x1; double x2; } memoizedPreviousSolvedViewBoundsSize;
 @property (nonatomic) bool roundsToScreenScale;
 @property (nonatomic) bool shouldAdjustContentInsetModeForCollectionViewNeverMode;
 @property (nonatomic, retain) _UICollectionCompositionalLayoutSolver *solver;
+@property (readonly) Class superclass;
 @property (nonatomic, retain) _UIUpdateVisibleCellsContext *updateVisibleCellsContext;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
++ (id)layoutWithListConfiguration:(id)arg1;
 
 - (void).cxx_destruct;
 - (bool)_adjustCollectionViewContentInsetBehaviorForLayoutAxisIfNeeded:(unsigned long long)arg1 container:(id)arg2;
+- (double)_alignedContentMarginGivenMargin:(double)arg1;
+- (bool)_allowsItemInteractionsToBegin;
+- (void)_backgroundChangedForInteractionAtIndexPath:(id)arg1;
 - (id)_boundsChangeResolve;
 - (bool)_cellsShouldConferWithAutolayoutEngineForSizingInfo;
 - (void)_computeAndUpdateAdjustedContentFrame;
 - (id)_containerFromCollectionView;
+- (id)_contentInsetsEnvironmentFromCollectionViewForInsetsReference:(long long)arg1;
+- (void)_createSwipeActionsModuleIfNeeded;
 - (id)_dataSourceSnapshotter;
-- (void)_didPerformUpdateVisibleCellsPass;
+- (void)_didEndSwiping;
+- (void)_didPerformUpdateVisibleCellsPassWithLayoutOffset:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)_disallowsFadeCellsForBoundsChange;
 - (unsigned long long)_edgesForSafeAreaPropagationToDescendants;
+- (id)_endInteractiveReorderingResolveWithContext:(id)arg1;
 - (bool)_estimatesSizes;
 - (bool)_estimatesSupplementaryItems;
 - (id)_extendedAttributesQueryIncludingOrthogonalScrollingRegions:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_fullResolve;
+- (void)_handlePreferredSizingCustomizationsInvalidation:(id)arg1;
+- (void)_handleSwipeActionsInvalidationWithContext:(id)arg1;
 - (bool)_hasOrthogonalScrollingSections;
+- (id)_interactionStateModule:(id)arg1 layoutSectionForIndex:(long long)arg2;
+- (double)_interactionStateModule:(id)arg1 spacingAfterLayoutSection:(long long)arg2;
 - (id)_invalidationContextForUpdatedLayoutMargins:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (bool)_invokeVisibleBoundsUpdateForDynamicAnimatorForNewVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 preparingLayout:(bool)arg2;
 - (id)_invokeVisibleItemsInvalidationHandlerIfNeededForVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (unsigned long long)_layoutAxis;
+- (id)_layoutSectionForSectionIndex:(unsigned long long)arg1;
+- (id)_leadingSwipeActionsConfigurationForIndexPath:(id)arg1;
 - (id)_marginsChangeResolve;
 - (struct CGPoint { double x1; double x2; })_offsetForOrthogonalScrollingSection:(long long)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_orthogonalFrameWithOffsetElidedForItemWithLayoutAttributes:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
@@ -100,30 +124,48 @@
 - (struct CGPoint { double x1; double x2; })_orthogonalScrollingTargetContentOffsetForOffset:(struct CGPoint { double x1; double x2; })arg1 section:(long long)arg2;
 - (bool)_orthogonalScrollingUsesTargetContentOffsetForSection:(long long)arg1;
 - (bool)_overridesSafeAreaPropagationToDescendants;
+- (void)_postProcessPreferredAttributes:(id)arg1 forView:(id)arg2;
 - (void)_prepareForCollectionViewUpdates:(id)arg1 withDataSourceTranslator:(id)arg2;
 - (void)_prepareForPreferredAttributesQueryForView:(id)arg1 withLayoutAttributes:(id)arg2;
 - (bool)_preparedForBoundsChanges;
+- (id)_propertyAnimatorForCollectionViewUpdates:(id)arg1 withCustomAnimator:(id)arg2;
 - (struct CGVector { double x1; double x2; })_scrollingUnitVectorForOrthogonalScrollingSection:(long long)arg1;
+- (void)_setCollectionView:(id)arg1;
 - (void)_setOffset:(struct CGPoint { double x1; double x2; })arg1 forOrthogonalScrollingSection:(long long)arg2;
+- (bool)_shouldAdjustTargetContentOffsetToValidateContentExtents;
 - (bool)_shouldConfigureForPagingForOrthogonalScrollingSection:(long long)arg1;
 - (bool)_shouldInvalidateLayoutForBoundsSizeChange:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (bool)_shouldOrthogonalScrollingSectionDecorationScrollWithContentForIndexPath:(id)arg1 elementKind:(id)arg2;
 - (bool)_shouldOrthogonalScrollingSectionSupplementaryScrollWithContentForIndexPath:(id)arg1 elementKind:(id)arg2;
+- (void)_solveForPinnedSupplementaryItemsIfNeededWithContext:(id)arg1;
+- (bool)_supportsSwipeActionsForIndexPath:(id)arg1;
+- (struct CGPoint { double x1; double x2; })_targetPositionForInteractiveMovementOfItemAtIndexPath:(id)arg1 withProposedTargetPosition:(struct CGPoint { double x1; double x2; })arg2;
+- (id)_trailingSwipeActionsConfigurationForIndexPath:(id)arg1;
 - (void)_traitCollectionDidChangeFromPreviousCollection:(id)arg1 newTraitCollection:(id)arg2;
+- (void)_transformCellLayoutAttributes:(id)arg1;
+- (void)_transformDecorationLayoutAttributes:(id)arg1;
+- (void)_transformSupplementaryLayoutAttributes:(id)arg1;
 - (id)_updatePinnedSectionSupplementaryItemsForCurrentVisibleBounds;
 - (id)_updateResolve;
+- (bool)_viewBoundsPermitsLayout:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (bool)_wantsAnimationsForOffscreenAuxillaries;
 - (bool)_wantsUntrackedAnimationCleanupForAuxillaryItems;
+- (void)_willBeginSwiping;
 - (void)_willPerformUpdateVisibleCellsPass;
 - (id)boundarySupplementaryItems;
+- (bool)canBeEdited;
 - (struct CGSize { double x1; double x2; })collectionViewContentSize;
 - (id)configuration;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })contentFrame;
 - (id)currentResolveResult;
 - (id)currentUpdate;
 - (id)dataSourceSnapshotter;
+- (bool)deferredLastInvalidationNextInvalidationRequiresFullResolve;
 - (bool)defersInitialSolveUntilPrepare;
 - (id /* block */)dynamicsConfigurationHandler;
 - (unsigned long long)edgesForSafeAreaPropagation;
+- (id)finalLayoutAttributesForDisappearingDecorationElementOfKind:(id)arg1 atIndexPath:(id)arg2;
+- (id)finalLayoutAttributesForDisappearingItemAtIndexPath:(id)arg1;
 - (void)finalizeCollectionViewUpdates;
 - (id)indexPathsToDeleteForDecorationViewOfKind:(id)arg1;
 - (id)indexPathsToDeleteForSupplementaryViewOfKind:(id)arg1;
@@ -138,17 +180,19 @@
 - (id)initWithSectionProvider:(id /* block */)arg1 configuration:(id)arg2;
 - (void)invalidateLayoutWithContext:(id)arg1;
 - (id)invalidationContextForBoundsChange:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (bool)isEditing;
 - (bool)isInUpdateVisibleCellsPass;
 - (id)layoutAttributesForDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)layoutAttributesForElementsInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)layoutAttributesForInteractivelyMovingItemAtIndexPath:(id)arg1 withTargetPosition:(struct CGPoint { double x1; double x2; })arg2;
 - (id)layoutAttributesForItemAtIndexPath:(id)arg1;
 - (id)layoutAttributesForSupplementaryViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (bool)layoutRTL;
 - (id /* block */)layoutSectionProvider;
 - (id)layoutSectionTemplate;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })memoizedDynamicAnimatorWorldAdjustingInsets;
-- (struct CGSize { double x1; double x2; })memoizedPreviousInvalidationCollectionViewBoundsSize;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })memoizedPreviousLayoutMargins;
+- (struct CGSize { double x1; double x2; })memoizedPreviousSolvedViewBoundsSize;
 - (void)prepareLayout;
 - (bool)roundsToScreenScale;
 - (long long)scrollDirection;
@@ -158,16 +202,18 @@
 - (void)setCurrentResolveResult:(id)arg1;
 - (void)setCurrentUpdate:(id)arg1;
 - (void)setDataSourceSnapshotter:(id)arg1;
+- (void)setDeferredLastInvalidationNextInvalidationRequiresFullResolve:(bool)arg1;
 - (void)setDefersInitialSolveUntilPrepare:(bool)arg1;
 - (void)setDynamicsConfigurationHandler:(id /* block */)arg1;
 - (void)setEdgesForSafeAreaPropagation:(unsigned long long)arg1;
+- (void)setEditing:(bool)arg1;
 - (void)setIsInUpdateVisibleCellsPass:(bool)arg1;
 - (void)setLayoutRTL:(bool)arg1;
 - (void)setLayoutSectionProvider:(id /* block */)arg1;
 - (void)setLayoutSectionTemplate:(id)arg1;
 - (void)setMemoizedDynamicAnimatorWorldAdjustingInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
-- (void)setMemoizedPreviousInvalidationCollectionViewBoundsSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)setMemoizedPreviousLayoutMargins:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (void)setMemoizedPreviousSolvedViewBoundsSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)setRoundsToScreenScale:(bool)arg1;
 - (void)setShouldAdjustContentInsetModeForCollectionViewNeverMode:(bool)arg1;
 - (void)setSolver:(id)arg1;
@@ -177,5 +223,9 @@
 - (bool)shouldInvalidateLayoutForPreferredLayoutAttributes:(id)arg1 withOriginalAttributes:(id)arg2;
 - (id)solver;
 - (id)updateVisibleCellsContext;
+
+// Image: /System/Library/PrivateFrameworks/DocumentManagerExecutables.framework/DocumentManagerExecutables
+
+- (void)doc_resetSwipedRows;
 
 @end

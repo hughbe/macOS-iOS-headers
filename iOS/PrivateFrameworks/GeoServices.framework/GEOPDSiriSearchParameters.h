@@ -18,18 +18,7 @@
         unsigned int read_searchString : 1; 
         unsigned int read_searchSubstringDescriptors : 1; 
         unsigned int read_viewportInfo : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_address : 1; 
-        unsigned int wrote_businessCategoryFilters : 1; 
-        unsigned int wrote_indexFilter : 1; 
-        unsigned int wrote_recentRouteInfo : 1; 
-        unsigned int wrote_searchString : 1; 
-        unsigned int wrote_searchSubstringDescriptors : 1; 
-        unsigned int wrote_viewportInfo : 1; 
-        unsigned int wrote_maxResultCount : 1; 
-        unsigned int wrote_sortOrder : 1; 
-        unsigned int wrote_isStrictMapRegion : 1; 
-        unsigned int wrote_structuredSearch : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDIndexQueryNode * _indexFilter;
     bool  _isStrictMapRegion;
@@ -77,15 +66,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsSortOrder:(id)arg1;
-- (void)_addNoFlagsBusinessCategoryFilter:(id)arg1;
-- (void)_addNoFlagsSearchSubstringDescriptor:(id)arg1;
-- (void)_readAddress;
-- (void)_readBusinessCategoryFilters;
-- (void)_readIndexFilter;
-- (void)_readRecentRouteInfo;
-- (void)_readSearchString;
-- (void)_readSearchSubstringDescriptors;
-- (void)_readViewportInfo;
 - (void)addBusinessCategoryFilter:(id)arg1;
 - (void)addSearchSubstringDescriptor:(id)arg1;
 - (id)address;
@@ -112,8 +92,11 @@
 - (id)indexFilter;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isStrictMapRegion;
+- (id)jsonRepresentation;
 - (unsigned int)maxResultCount;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

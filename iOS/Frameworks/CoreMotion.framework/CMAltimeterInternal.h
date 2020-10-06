@@ -3,6 +3,8 @@
  */
 
 @interface CMAltimeterInternal : NSObject {
+    id /* block */  fAbsoluteAltitudeClientHandler;
+    NSOperationQueue * fAbsoluteAltitudeClientQueue;
     NSObject<OS_dispatch_queue> * fAppQueue;
     float  fBarometricBaseAltitude;
     struct Sample { 
@@ -44,10 +46,16 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (void)_handleAbsoluteAltitudeUpdate:(struct shared_ptr<CLConnectionMessage> { struct CLConnectionMessage {} *x1; struct __shared_weak_count {} *x2; })arg1;
+- (void)_pauseAbsoluteAltitudeUpdates;
 - (void)_querySignificantElevationChangeFromDate:(id)arg1 toDate:(id)arg2 withHandler:(id /* block */)arg3;
+- (void)_releaseHandlerObjects;
+- (void)_resumeAbsoluteAltitudeUpdates;
+- (void)_startAbsoluteAltitudeUpdatesToQueue:(id)arg1 withHandler:(id /* block */)arg2;
 - (void)_startElevationUpdatesWithHandler:(id /* block */)arg1;
 - (void)_startRelativeAltitudeUpdates;
 - (void)_startSignificantElevationUpdatesWithHandler:(id /* block */)arg1;
+- (void)_stopAbsoluteAltitudeUpdates;
 - (void)_stopElevationUpdates;
 - (void)_stopRelativeAltitudeUpdates;
 - (void)_stopSignificantElevationUpdates;

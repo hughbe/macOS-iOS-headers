@@ -29,10 +29,11 @@
     NSArray * _prohibitedPropertyKeys;
     CNContactViewController * _reusableContactViewController;
     long long  _rightButtonBehavior;
+    NSNumber * _shouldShowAccountsAndGroupsCachedValue;
 }
 
 @property (nonatomic, retain) CNAccountsAndGroupsDataSource *accountsAndGroupsDataSource;
-@property (nonatomic) CNAccountsAndGroupsViewController *accountsAndGroupsViewController;
+@property (nonatomic, retain) CNAccountsAndGroupsViewController *accountsAndGroupsViewController;
 @property (nonatomic, retain) CNUIUserActivityManager *activityManager;
 @property (nonatomic, retain) UIBarButtonItem *addContactBarButtonItem;
 @property (nonatomic, retain) UIKeyCommand *addKeyCommand;
@@ -62,9 +63,11 @@
 @property (nonatomic, retain) NSArray *prohibitedPropertyKeys;
 @property (nonatomic, retain) CNContactViewController *reusableContactViewController;
 @property (nonatomic) long long rightButtonBehavior;
+@property (nonatomic, retain) NSNumber *shouldShowAccountsAndGroupsCachedValue;
 @property (readonly) Class superclass;
 
 + (id)keyCommandForNewContact;
++ (void)moveViewController:(id)arg1 toParent:(id)arg2;
 + (id)newContactFormatter;
 
 - (void).cxx_destruct;
@@ -72,6 +75,7 @@
 - (id)accountsAndGroupsDataSource;
 - (id)accountsAndGroupsViewController;
 - (void)accountsAndGroupsViewControllerDidFinish:(id)arg1;
+- (void)accountsAndGroupsViewControllerDidUpdateSelection:(id)arg1;
 - (id)activityManager;
 - (void)addContact:(id)arg1;
 - (void)addContact:(id)arg1 animated:(bool)arg2;
@@ -92,6 +96,9 @@
 - (void)cancelSearch:(id)arg1;
 - (void)checkForFacebookContactsWithDelay:(double)arg1 allowAlert:(bool)arg2;
 - (void)checkForInfoContentWithContext:(id)arg1;
+- (id)checkShouldShowAccountsAndGroups;
+- (void)checkShouldShowAccountsAndGroupsDidChange;
+- (void)clearServerSearchIfNeeded:(id)arg1;
 - (id)contactListStyleApplier;
 - (id)contactListViewController;
 - (bool)contactListViewController:(id)arg1 canSelectContact:(id)arg2;
@@ -99,7 +106,9 @@
 - (void)contactListViewController:(id)arg1 shouldPresentContact:(id)arg2 shouldScrollToContact:(bool)arg3;
 - (bool)contactListViewController:(id)arg1 shouldSelectContact:(id)arg2 atIndexPath:(id)arg3;
 - (id)contactStore;
+- (void)contactStoreDidChange:(id)arg1;
 - (id)contactStyle;
+- (void)contactStyleCurrentStyleDidChange:(id)arg1;
 - (void)contactViewController:(id)arg1 didCompleteWithContact:(id)arg2;
 - (void)contactViewController:(id)arg1 didDeleteContact:(id)arg2;
 - (bool)contactViewController:(id)arg1 shouldPerformDefaultActionForContactProperty:(id)arg2;
@@ -160,7 +169,11 @@
 - (void)setReusableContactViewController:(id)arg1;
 - (void)setRightButtonBehavior:(long long)arg1;
 - (void)setShouldDisplayMeContactBanner:(bool)arg1;
+- (void)setShouldShowAccountsAndGroupsCachedValue:(id)arg1;
 - (bool)shouldDisplayMeContactBanner;
+- (bool)shouldFlipDirectionWhenChangingSelectionWithKey:(id)arg1;
+- (bool)shouldShowAccountsAndGroups;
+- (id)shouldShowAccountsAndGroupsCachedValue;
 - (bool)shouldShowGroupsButton;
 - (bool)shouldShowLeftCancelAndRightAddButton;
 - (bool)shouldShowLeftCancelAndRightDoneButton;
@@ -173,7 +186,7 @@
 - (void)showCardForContactAfterIndexPath:(id)arg1;
 - (void)showCardForContactBeforeIndexPath:(id)arg1;
 - (void)showCardForContactIfPossible:(id)arg1;
-- (void)updateContactStyle:(id)arg1;
+- (void)startEditingPresentedContact;
 - (void)updateLeftNavigationButtonAnimated:(bool)arg1;
 - (void)updateNavigationButtonsAnimated:(bool)arg1;
 - (void)updateNavigationButtonsInSearchMode:(bool)arg1;

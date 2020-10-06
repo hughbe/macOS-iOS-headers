@@ -13,21 +13,14 @@
     NSPersistentHistoryTransaction * _transaction;
 }
 
-+ (id)_dataMaskForEntity:(id)arg1 andDeltaMask:(struct __CFBitVector { }*)arg2;
-+ (id)_mergeOldMask:(id)arg1 andNewMask:(id)arg2;
-+ (id)_propertyDataForEntity:(id)arg1 withSetOfPropertyNames:(id)arg2;
-+ (id)_updatedPropertiesForEntity:(id)arg1 andData:(id)arg2;
 + (bool)supportsSecureCoding;
 
-- (id)_backingObjectID;
-- (void)_setTransaction:(id)arg1;
 - (long long)changeID;
 - (long long)changeType;
 - (id)changedObjectID;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithDictionary:(id)arg1 andChangeObjectID:(id)arg2;
 - (id)tombstone;
 - (id)transaction;
 - (id)updatedProperties;

@@ -2,11 +2,13 @@
    Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
  */
 
-@interface AMSAuthenticateTask : AMSTask {
+@interface AMSAuthenticateTask : AMSTask <AMSBagConsumer> {
     NSNumber * _DSID;
     NSString * _altDSID;
-    ACAccount * _authenticatedAccount;
+    <AMSBagProtocol> * _bag;
+    <AMSAuthenticateTaskDelegate> * _delegate;
     NSUUID * _homeIdentifier;
+    NSUUID * _homeUserIdentifier;
     NSString * _multiUserToken;
     AMSAuthenticateOptions * _options;
     NSString * _password;
@@ -16,43 +18,63 @@
 
 @property (nonatomic, retain) NSNumber *DSID;
 @property (nonatomic, retain) NSString *altDSID;
-@property (nonatomic, retain) ACAccount *authenticatedAccount;
+@property (nonatomic, retain) <AMSBagProtocol> *bag;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <AMSAuthenticateTaskDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSUUID *homeIdentifier;
+@property (nonatomic, retain) NSUUID *homeUserIdentifier;
 @property (nonatomic, retain) NSString *multiUserToken;
 @property (nonatomic, readonly) AMSAuthenticateOptions *options;
 @property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSString *rawPassword;
+@property (readonly) Class superclass;
 @property (nonatomic, retain) NSString *username;
+
++ (id)_createFallbackBag;
++ (void)_updateAccountPasswordUsingSecondaryAccounts:(id)arg1;
++ (id)bagKeySet;
++ (id)bagSubProfile;
++ (id)bagSubProfileVersion;
++ (id)createBagForSubProfile;
 
 - (void).cxx_destruct;
 - (id)DSID;
-- (id)_accountForAuthentication;
+- (id)_accountForAuthenticationWithError:(id*)arg1;
 - (id)_accountStoreForAuthentication;
 - (id)_attemptMultiUserTokenAuthenticationForAccount:(id)arg1;
-- (id)_attemptPasswordReuseAuthenticationForAccount:(id)arg1;
-- (id)_createVerifyCredentialOptionsWithCredentialSource:(unsigned long long)arg1;
+- (id)_attemptPasswordReuseAuthenticationForAccount:(id)arg1 error:(id*)arg2;
+- (id)_createAuthKitUpdateTaskForAccount:(id)arg1;
+- (id)_handleDialogFromError:(id)arg1;
 - (id)_performAuthenticationUsingAccount:(id)arg1 credentialSource:(unsigned long long)arg2 error:(id*)arg3;
-- (id)_updateAccountWithAuthKit:(id)arg1 error:(id*)arg2;
+- (bool)_runCreateAccountDialogWithError:(id*)arg1;
+- (id)_runDialogRequest:(id)arg1;
+- (id)_sanitizeError:(id)arg1;
 - (void)_updateAccountWithProvidedInformation:(id)arg1;
 - (id)altDSID;
-- (id)authenticatedAccount;
+- (id)bag;
+- (id)delegate;
 - (id)homeID;
 - (id)homeIdentifier;
-- (id)homeUserID;
+- (id)homeUserIdentifier;
 - (id)init;
 - (id)initWithAccount:(id)arg1 options:(id)arg2;
+- (id)initWithAccount:(id)arg1 options:(id)arg2 bag:(id)arg3;
 - (id)initWithRequest:(id)arg1;
+- (id)initWithRequest:(id)arg1 bag:(id)arg2;
 - (id)multiUserToken;
 - (id)options;
 - (id)password;
 - (id)performAuthentication;
 - (id)rawPassword;
 - (void)setAltDSID:(id)arg1;
-- (void)setAuthenticatedAccount:(id)arg1;
+- (void)setBag:(id)arg1;
 - (void)setDSID:(id)arg1;
+- (void)setDelegate:(id)arg1;
 - (void)setHomeID:(id)arg1;
 - (void)setHomeIdentifier:(id)arg1;
-- (void)setHomeUserID:(id)arg1;
+- (void)setHomeUserIdentifier:(id)arg1;
 - (void)setMultiUserToken:(id)arg1;
 - (void)setPassword:(id)arg1;
 - (void)setRawPassword:(id)arg1;

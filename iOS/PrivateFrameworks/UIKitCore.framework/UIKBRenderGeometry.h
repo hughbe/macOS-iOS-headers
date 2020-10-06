@@ -30,6 +30,28 @@
             double height; 
         } size; 
     }  _frame;
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _layeredBackgroundPaddedFrame;
+    double  _layeredBackgroundRoundRectRadius;
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _layeredForegroundPaddedFrame;
+    double  _layeredForegroundRoundRectRadius;
     struct UIEdgeInsets { 
         double top; 
         double left; 
@@ -47,6 +69,7 @@
         } size; 
     }  _paddedFrame;
     int  _popupBias;
+    long long  _popupDirection;
     struct CGPoint { 
         double x; 
         double y; 
@@ -75,10 +98,15 @@
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } displayInsets;
 @property (nonatomic) long long flickDirection;
 @property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } frame;
+@property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } layeredBackgroundPaddedFrame;
+@property (nonatomic) double layeredBackgroundRoundRectRadius;
+@property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } layeredForegroundPaddedFrame;
+@property (nonatomic) double layeredForegroundRoundRectRadius;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } layoutMargins;
 @property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } paddedFrame;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } paddedInsets;
 @property (nonatomic) int popupBias;
+@property (nonatomic) long long popupDirection;
 @property (nonatomic) struct CGPoint { double x1; double x2; } popupSource;
 @property (nonatomic) unsigned long long roundRectCorners;
 @property (nonatomic) double roundRectRadius;
@@ -115,12 +143,17 @@
 - (id)iPhoneVariantGeometries:(unsigned long long)arg1 annotationIndex:(unsigned long long)arg2;
 - (id)initWithShape:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })layeredBackgroundPaddedFrame;
+- (double)layeredBackgroundRoundRectRadius;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })layeredForegroundPaddedFrame;
+- (double)layeredForegroundRoundRectRadius;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })layoutMargins;
 - (void)makeIntegralWithScale:(double)arg1;
 - (void)overlayWithGeometry:(id)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })paddedFrame;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })paddedInsets;
 - (int)popupBias;
+- (long long)popupDirection;
 - (struct CGPoint { double x1; double x2; })popupSource;
 - (unsigned long long)roundRectCorners;
 - (double)roundRectRadius;
@@ -130,9 +163,14 @@
 - (void)setDisplayFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setFlickDirection:(long long)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)setLayeredBackgroundPaddedFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)setLayeredBackgroundRoundRectRadius:(double)arg1;
+- (void)setLayeredForegroundPaddedFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)setLayeredForegroundRoundRectRadius:(double)arg1;
 - (void)setLayoutMargins:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setPaddedFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setPopupBias:(int)arg1;
+- (void)setPopupDirection:(long long)arg1;
 - (void)setPopupSource:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setRoundRectCorners:(unsigned long long)arg1;
 - (void)setRoundRectRadius:(double)arg1;

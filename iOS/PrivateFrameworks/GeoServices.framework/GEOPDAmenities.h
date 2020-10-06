@@ -3,38 +3,38 @@
  */
 
 @interface GEOPDAmenities : PBCodable <NSCopying> {
-    struct GEOPDAmenityValue { bool x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; } * _amenitys;
-    unsigned long long  _amenitysCount;
-    unsigned long long  _amenitysSpace;
+    NSMutableArray * _amenitys;
     PBUnknownFields * _unknownFields;
 }
 
-@property (nonatomic, readonly) struct GEOPDAmenityValue { bool x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*amenitys;
-@property (nonatomic, readonly) unsigned long long amenitysCount;
+@property (nonatomic, retain) NSMutableArray *amenitys;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
++ (Class)amenityType;
 + (id)amentiesForPlaceData:(id)arg1;
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)addAmenity:(struct GEOPDAmenityValue { bool x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
-- (struct GEOPDAmenityValue { bool x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })amenityAtIndex:(unsigned long long)arg1;
-- (struct GEOPDAmenityValue { bool x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)amenitys;
+- (void)addAmenity:(id)arg1;
+- (id)amenityAtIndex:(unsigned long long)arg1;
+- (id)amenitys;
 - (unsigned long long)amenitysCount;
 - (void)clearAmenitys;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (bool)hasAmenityType:(int)arg1;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
-- (void)setAmenitys:(struct GEOPDAmenityValue { bool x1; int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; }*)arg1 count:(unsigned long long)arg2;
+- (void)setAmenitys:(id)arg1;
 - (id)unknownFields;
 - (bool)valueForAmenityType:(int)arg1;
 - (void)writeTo:(id)arg1;

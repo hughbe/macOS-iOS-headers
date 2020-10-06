@@ -3,7 +3,6 @@
  */
 
 @interface _INPBHomeUserTask : PBCodable <NSCopying, NSSecureCoding, _INPBHomeUserTask> {
-    bool  __encodeLegacyGloryData;
     int  _attribute;
     struct { 
         unsigned int attribute : 1; 
@@ -13,7 +12,6 @@
     _INPBHomeAttributeValue * _value;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int attribute;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -30,8 +28,6 @@
 - (void).cxx_destruct;
 - (int)StringAsAttribute:(id)arg1;
 - (int)StringAsTaskType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)attribute;
 - (id)attributeAsString:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

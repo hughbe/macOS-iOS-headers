@@ -3,7 +3,6 @@
  */
 
 @interface _INPBTaskList : PBCodable <NSCopying, NSSecureCoding, _INPBTaskList> {
-    bool  __encodeLegacyGloryData;
     _INPBDateTime * _createdDateTime;
     _INPBDataString * _groupName;
     struct { }  _has;
@@ -13,7 +12,6 @@
     _INPBDataString * _title;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBDateTime *createdDateTime;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -35,8 +33,6 @@
 + (Class)tasksType;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addTasks:(id)arg1;
 - (void)clearTasks;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

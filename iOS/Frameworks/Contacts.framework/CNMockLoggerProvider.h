@@ -3,6 +3,7 @@
  */
 
 @interface CNMockLoggerProvider : NSObject <CNContactsLoggerProvider> {
+    <CNAPITriageLogger> * _apiTriageLogger;
     <CNContactsLogger> * _contactsLogger;
     <CNFavoritesLogger> * _favoritesLogger;
     <CNGeminiLogger> * _geminiLogger;
@@ -10,6 +11,7 @@
     <CNSpotlightIndexingLogger> * _spotlightIndexingLogger;
 }
 
+@property (nonatomic, retain) <CNAPITriageLogger> *apiTriageLogger;
 @property (nonatomic, retain) <CNContactsLogger> *contactsLogger;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -23,10 +25,12 @@
 + (id)loggerProvider;
 
 - (void).cxx_destruct;
+- (id)apiTriageLogger;
 - (id)contactsLogger;
 - (id)favoritesLogger;
 - (id)geminiLogger;
 - (id)regulatoryLogger;
+- (void)setApiTriageLogger:(id)arg1;
 - (void)setContactsLogger:(id)arg1;
 - (void)setFavoritesLogger:(id)arg1;
 - (void)setGeminiLogger:(id)arg1;

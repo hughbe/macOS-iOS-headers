@@ -4,8 +4,8 @@
 
 @interface MRPlaybackSessionMigrateBeginMessage : MRProtocolMessage
 
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
-@property (nonatomic, readonly) _MRPlaybackSessionRequestProtobuf *request;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
+@property (nonatomic, readonly) MRPlaybackSessionRequest *request;
 
 - (id)initWithRequest:(id)arg1 playerPath:(id)arg2;
 - (id)playerPath;

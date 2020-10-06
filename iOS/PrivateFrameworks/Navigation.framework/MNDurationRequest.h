@@ -3,17 +3,21 @@
  */
 
 @interface MNDurationRequest : NSObject {
+    unsigned long long  _intervalIdentifier;
     NSMutableArray * completions;
     double  startTime;
 }
 
 @property (nonatomic, retain) NSMutableArray *completions;
+@property (nonatomic) unsigned long long intervalIdentifier;
 @property (nonatomic) double startTime;
 
 - (void).cxx_destruct;
 - (id)completions;
 - (id)init;
+- (unsigned long long)intervalIdentifier;
 - (void)setCompletions:(id)arg1;
+- (void)setIntervalIdentifier:(unsigned long long)arg1;
 - (void)setStartTime:(double)arg1;
 - (double)startTime;
 

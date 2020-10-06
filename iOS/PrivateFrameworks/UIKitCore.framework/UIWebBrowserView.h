@@ -90,8 +90,6 @@
 @property (nonatomic) NSString *networkInterfaceName;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)getUIWebBrowserViewForWebFrame:(id)arg1;
 + (void)initialize;
 
@@ -122,6 +120,7 @@
 - (id)_editingDelegateForEverythingExceptForms;
 - (void)_endAllowingFocusRedirects;
 - (void)_endDeferringEvents;
+- (void)_focusAndAssistFormNode:(id)arg1;
 - (void)_handleDeferredEvents;
 - (bool)_hasSubviewContainingWebContent:(id)arg1;
 - (id)_input;
@@ -148,6 +147,7 @@
 - (bool)_requiresKeyboardResetOnReload;
 - (bool)_requiresKeyboardWhenFirstResponder;
 - (void)_resetFormDataForFrame:(id)arg1;
+- (bool)_resignFirstResponderAndBlurFocusedElement;
 - (bool)_restoreFocusWithToken:(id)arg1;
 - (void)_scrollCaretToVisible:(id)arg1;
 - (void)_setInputViewBoundsForAutomaticKeyboardInfo:(id)arg1 adjustScrollView:(bool)arg2;
@@ -178,10 +178,6 @@
 - (void)_zoomToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 ensuringVisibilityOfRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 withScale:(double)arg3 forceScroll:(bool)arg4;
 - (void)_zoomToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 ensuringVisibilityOfRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 withScale:(double)arg3 forceScroll:(bool)arg4 formAssistantFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg5 animationDuration:(double)arg6;
 - (void)_zoomToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 withScale:(double)arg2;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)acceptedAutoFillWord:(id)arg1;
 - (void)accessoryAutoFill;
 - (void)accessoryClear;
@@ -203,6 +199,7 @@
 - (bool)considerHeightOfRectOfInterestForRotation;
 - (struct CGSize { double x1; double x2; })contentSizeForScrollView:(id)arg1;
 - (void)copy:(id)arg1;
+- (void)dealloc;
 - (void)formDelegateTextDidChange;
 - (id)formElement;
 - (bool)hasEditedTextField;

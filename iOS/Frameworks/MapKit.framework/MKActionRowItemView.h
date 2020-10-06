@@ -2,16 +2,16 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKActionRowItemView : UIView {
+@interface MKActionRowItemView : UIButton {
     MKPlaceCardActionItem * _actionRowItem;
     UIView * _backgroundView;
     NSArray * _constraints;
     <MKActionRowItemViewDelegate> * _delegate;
-    bool  _enabled;
     bool  _fullWidthMode;
     UIImageView * _glyphImageView;
-    bool  _highlighted;
+    bool  _hovering;
     _MKUILabel * _label;
+    bool  _showSelectedState;
     unsigned long long  _style;
     bool  _touched;
     MKVibrantView * _vibrantView;
@@ -19,9 +19,9 @@
 
 @property (nonatomic, retain) MKPlaceCardActionItem *actionRowItem;
 @property (nonatomic) <MKActionRowItemViewDelegate> *delegate;
-@property (nonatomic) bool enabled;
 @property (nonatomic) bool fullWidthMode;
-@property (nonatomic) bool highlighted;
+@property (nonatomic) bool hovering;
+@property (nonatomic) bool showSelectedState;
 @property (nonatomic) bool touched;
 
 + (id)glyphFont;
@@ -40,19 +40,21 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)didMoveToWindow;
-- (bool)enabled;
 - (bool)fullWidthMode;
-- (bool)highlighted;
+- (void)handleHoverGesture:(id)arg1;
+- (void)handlePress;
+- (bool)hovering;
 - (void)infoCardThemeChanged;
-- (id)initWithActionRowItem:(id)arg1 style:(unsigned long long)arg2;
+- (id)initWithActionRowItem:(id)arg1 menuElement:(id)arg2 style:(unsigned long long)arg3;
 - (void)layoutSubviews;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)setActionRowItem:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setEnabled:(bool)arg1;
 - (void)setFullWidthMode:(bool)arg1;
-- (void)setHighlighted:(bool)arg1;
+- (void)setHovering:(bool)arg1;
+- (void)setShowSelectedState:(bool)arg1;
 - (void)setTouched:(bool)arg1;
+- (bool)showSelectedState;
 - (void)tintColorDidChange;
 - (bool)touched;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;

@@ -10,6 +10,7 @@
     bool  _magicHead;
     NSNumber * _mainLabelSlot;
     NSUUID * _nodeIdentifier;
+    bool  _peopleSuggestion;
     bool  _restricted;
     long long  _selectionReason;
     NSNumber * _topLabelSlot;
@@ -24,13 +25,14 @@
 @property (nonatomic) bool magicHead;
 @property (retain) NSNumber *mainLabelSlot;
 @property (retain) NSUUID *nodeIdentifier;
+@property (getter=isPeopleSuggestion, nonatomic) bool peopleSuggestion;
 @property (getter=isRestricted, nonatomic) bool restricted;
 @property (nonatomic) long long selectionReason;
 @property (retain) NSNumber *topLabelSlot;
 @property (retain) NSNumber *transportSlot;
 @property (nonatomic) bool wantsTwoLines;
 
-+ (id)nodeWithImageSlot:(id)arg1 labelSlot:(id)arg2 transportSlot:(id)arg3;
++ (id)nodeWithImageSlot:(id)arg1 labelSlot:(id)arg2 transportSlot:(id)arg3 isPeopleSuggestion:(bool)arg4;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -43,6 +45,7 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isDisabled;
 - (bool)isEqual:(id)arg1;
+- (bool)isPeopleSuggestion;
 - (bool)isRestricted;
 - (bool)magicHead;
 - (id)mainLabelSlot;
@@ -55,6 +58,7 @@
 - (void)setMagicHead:(bool)arg1;
 - (void)setMainLabelSlot:(id)arg1;
 - (void)setNodeIdentifier:(id)arg1;
+- (void)setPeopleSuggestion:(bool)arg1;
 - (void)setRestricted:(bool)arg1;
 - (void)setSelectionReason:(long long)arg1;
 - (void)setTopLabelSlot:(id)arg1;

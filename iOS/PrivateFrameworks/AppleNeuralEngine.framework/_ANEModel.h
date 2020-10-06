@@ -10,6 +10,7 @@
     }  _l;
     NSDictionary * _modelAttributes;
     NSURL * _modelURL;
+    unsigned int  _perfStatsMask;
     _ANEProgramForEvaluation * _program;
     unsigned long long  _programHandle;
     BOOL  _queueDepth;
@@ -21,6 +22,7 @@
 @property (nonatomic) struct os_unfair_lock_s { unsigned int x1; } l;
 @property (nonatomic, retain) NSDictionary *modelAttributes;
 @property (nonatomic, readonly) NSURL *modelURL;
+@property (nonatomic) unsigned int perfStatsMask;
 @property (nonatomic, retain) _ANEProgramForEvaluation *program;
 @property (nonatomic) unsigned long long programHandle;
 @property (nonatomic) BOOL queueDepth;
@@ -37,15 +39,19 @@
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
+- (unsigned long long)hash;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithModelAtURL:(id)arg1 key:(id)arg2 modelAttributes:(id)arg3;
 - (unsigned long long)intermediateBufferHandle;
+- (bool)isEqual:(id)arg1;
+- (bool)isEqualToModel:(id)arg1;
 - (id)key;
 - (id)keyForBundleID:(id)arg1;
 - (struct os_unfair_lock_s { unsigned int x1; })l;
 - (id)modelAttributes;
 - (id)modelURL;
+- (unsigned int)perfStatsMask;
 - (id)program;
 - (unsigned long long)programHandle;
 - (BOOL)queueDepth;
@@ -53,6 +59,7 @@
 - (void)setIntermediateBufferHandle:(unsigned long long)arg1;
 - (void)setL:(struct os_unfair_lock_s { unsigned int x1; })arg1;
 - (void)setModelAttributes:(id)arg1;
+- (void)setPerfStatsMask:(unsigned int)arg1;
 - (void)setProgram:(id)arg1;
 - (void)setProgramHandle:(unsigned long long)arg1;
 - (void)setQueueDepth:(BOOL)arg1;

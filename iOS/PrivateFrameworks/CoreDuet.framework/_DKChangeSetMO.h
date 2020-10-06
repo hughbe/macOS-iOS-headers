@@ -14,7 +14,4 @@
 @property (nonatomic, copy) NSDate *startDate;
 @property (nonatomic, copy) NSNumber *version;
 
-+ (id)fetchAdditionChangeSetRequest;
-+ (id)fetchDeletionChangeSetRequest;
-
 @end

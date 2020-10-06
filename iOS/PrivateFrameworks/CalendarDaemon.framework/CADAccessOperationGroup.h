@@ -9,6 +9,7 @@
 + (bool)requiresReminderAccess;
 
 - (void)CADDatabaseGetAccess:(id /* block */)arg1;
+- (void)CADDatabaseResetWithReply:(id /* block */)arg1;
 - (void)CADDatabaseSetInitializationOptions:(id)arg1 reply:(id /* block */)arg2;
 
 @end

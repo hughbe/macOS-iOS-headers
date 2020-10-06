@@ -4,13 +4,18 @@
 
 @interface MTLComputePipelineDescriptor : NSObject <NSCopying>
 
+@property (nonatomic, copy) NSArray *binaryArchives;
 @property (readonly) MTLPipelineBufferDescriptorArray *buffers;
 @property (nonatomic, retain) <MTLFunction> *computeFunction;
 @property (nonatomic) bool forceResourceIndex;
+@property (nonatomic, copy) NSArray *insertLibraries;
 @property (nonatomic, copy) NSString *label;
+@property (nonatomic, copy) MTLLinkedFunctions *linkedFunctions;
+@property (nonatomic) unsigned long long maxCallStackDepth;
 @property (nonatomic) unsigned long long maxTotalThreadsPerThreadgroup;
 @property (nonatomic) unsigned long long resourceIndex;
 @property (nonatomic, copy) MTLStageInputOutputDescriptor *stageInputDescriptor;
+@property (nonatomic) bool supportAddingBinaryFunctions;
 @property (nonatomic) bool supportIndirectCommandBuffers;
 @property (nonatomic) bool threadGroupSizeIsMultipleOfThreadExecutionWidth;
 

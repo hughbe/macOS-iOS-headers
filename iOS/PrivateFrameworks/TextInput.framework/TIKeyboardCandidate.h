@@ -10,9 +10,12 @@
     unsigned long long  _customInfoType;
     unsigned long long  _indexForMetrics;
     bool  _isSendCurrentLocation;
+    bool  _prefixMatched;
     bool  _responseKitCandidate;
     NSString * _responseKitCategory;
     unsigned int  _slotID;
+    unsigned int  _sourceMask;
+    bool  _wubixingConvertedByPinyin;
 }
 
 @property (getter=isOTAWordListCandidate, nonatomic, readonly) bool OTAWordListCandidate;
@@ -47,6 +50,7 @@
 @property (nonatomic, readonly) bool isSlottedCandidate;
 @property (nonatomic, copy) NSString *label;
 @property (getter=isPartialCandidate, nonatomic, readonly) bool partialCandidate;
+@property (getter=isPrefixMatched, nonatomic, readonly) bool prefixMatched;
 @property (nonatomic, readonly) TIProactiveTrigger *proactiveTrigger;
 @property (getter=isPunctuationCompletionCandidate, nonatomic, readonly) bool punctuationCompletionCandidate;
 @property (getter=isPunctuationKeyCandidate, nonatomic, readonly) bool punctuationKeyCandidate;
@@ -57,10 +61,12 @@
 @property (nonatomic, readonly) bool shouldAccept;
 @property (nonatomic, readonly) bool shouldInsertSpaceAfterSelection;
 @property (nonatomic) unsigned int slotID;
+@property (nonatomic, readonly) unsigned int sourceMask;
 @property (readonly) Class superclass;
 @property (getter=isTransliterationCandidate, nonatomic, readonly) bool transliterationCandidate;
 @property (nonatomic, readonly) unsigned int usageTrackingMask;
 @property (nonatomic, readonly) unsigned long long wordOriginFeedbackID;
+@property (getter=isWubixingConvertedByPinyin, nonatomic, readonly) bool wubixingConvertedByPinyin;
 
 // Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
 
@@ -102,6 +108,7 @@
 - (bool)isInlineCompletionCandidate;
 - (bool)isOTAWordListCandidate;
 - (bool)isPartialCandidate;
+- (bool)isPrefixMatched;
 - (bool)isPunctuation;
 - (bool)isPunctuationCompletionCandidate;
 - (bool)isPunctuationKeyCandidate;
@@ -110,6 +117,7 @@
 - (bool)isSecureContentCandidate;
 - (bool)isSendCurrentLocation;
 - (bool)isTransliterationCandidate;
+- (bool)isWubixingConvertedByPinyin;
 - (id)label;
 - (id)proactiveTrigger;
 - (id)responseKitCategory;
@@ -123,8 +131,14 @@
 - (bool)shouldAccept;
 - (bool)shouldInsertSpaceAfterSelection;
 - (unsigned int)slotID;
+- (unsigned int)sourceMask;
 - (unsigned int)usageTrackingMask;
 - (unsigned long long)wordOriginFeedbackID;
+
+// Image: /System/Library/PrivateFrameworks/SpeechRecognitionCommandAndControl.framework/SpeechRecognitionCommandAndControl
+
+- (bool)isAutofillExtraCandidate;
+- (bool)isSlottedCandidate;
 
 // Image: /System/Library/PrivateFrameworks/TextInputUI.framework/TextInputUI
 

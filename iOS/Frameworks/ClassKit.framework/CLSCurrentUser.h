@@ -3,25 +3,33 @@
  */
 
 @interface CLSCurrentUser : NSObject <NSCopying, NSSecureCoding> {
+    long long  _catalogEnvironment;
     int  _devMode;
+    int  _handoutServiceAuthenticationState;
     bool  _hasEDUAccount;
     NSDictionary * _locationIDsByAXMRoleType;
     NSString * _organizationName;
+    bool  _organizationProgressTrackingAllowed;
     CLSPerson * _person;
     NSString * _personaUniqueString;
     unsigned long long  _roles;
+    int  _rosterServiceAuthenticationState;
 }
 
+@property (nonatomic) long long catalogEnvironment;
 @property (nonatomic) int devMode;
+@property (nonatomic) int handoutServiceAuthenticationState;
 @property (nonatomic) bool hasEDUAccount;
 @property (nonatomic, readonly) bool isAdministrator;
 @property (nonatomic, readonly) bool isInstructor;
 @property (nonatomic, readonly) bool isStudent;
 @property (nonatomic, retain) NSDictionary *locationIDsByAXMRoleType;
 @property (nonatomic, copy) NSString *organizationName;
+@property (nonatomic) bool organizationProgressTrackingAllowed;
 @property (nonatomic, retain) CLSPerson *person;
 @property (nonatomic, copy) NSString *personaUniqueString;
 @property (nonatomic) unsigned long long roles;
+@property (nonatomic) int rosterServiceAuthenticationState;
 
 + (id)magicValue;
 + (bool)supportsSecureCoding;
@@ -31,9 +39,11 @@
 - (bool)_hasRole:(unsigned long long)arg1;
 - (id)_init;
 - (unsigned long long)_useRoles;
+- (long long)catalogEnvironment;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (int)devMode;
 - (void)encodeWithCoder:(id)arg1;
+- (int)handoutServiceAuthenticationState;
 - (bool)hasEDUAccount;
 - (bool)hasRole:(unsigned long long)arg1;
 - (id)initWithCoder:(id)arg1;
@@ -42,15 +52,21 @@
 - (bool)isStudent;
 - (id)locationIDsByAXMRoleType;
 - (id)organizationName;
+- (bool)organizationProgressTrackingAllowed;
 - (id)person;
 - (id)personaUniqueString;
 - (unsigned long long)roles;
+- (int)rosterServiceAuthenticationState;
+- (void)setCatalogEnvironment:(long long)arg1;
 - (void)setDevMode:(int)arg1;
+- (void)setHandoutServiceAuthenticationState:(int)arg1;
 - (void)setHasEDUAccount:(bool)arg1;
 - (void)setLocationIDsByAXMRoleType:(id)arg1;
 - (void)setOrganizationName:(id)arg1;
+- (void)setOrganizationProgressTrackingAllowed:(bool)arg1;
 - (void)setPerson:(id)arg1;
 - (void)setPersonaUniqueString:(id)arg1;
 - (void)setRoles:(unsigned long long)arg1;
+- (void)setRosterServiceAuthenticationState:(int)arg1;
 
 @end

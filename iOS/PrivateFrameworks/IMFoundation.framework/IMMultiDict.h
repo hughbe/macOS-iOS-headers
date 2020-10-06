@@ -8,13 +8,13 @@
 }
 
 @property (nonatomic, readonly) NSArray *allKeys;
-@property (nonatomic, readonly) unsigned long long count;
+@property (nonatomic) unsigned long long count;
 @property (nonatomic, retain) NSMutableDictionary *dictionary;
 
+- (void).cxx_destruct;
 - (id)allKeys;
 - (unsigned long long)count;
 - (unsigned long long)countForKey:(id)arg1;
-- (void)dealloc;
 - (id)dequeueObjectForKey:(id)arg1;
 - (id)description;
 - (id)dictionary;
@@ -29,6 +29,7 @@
 - (void)removeAllObjects;
 - (void)removeObject:(id)arg1 forKey:(id)arg2;
 - (void)removeObjectsForKey:(id)arg1;
+- (void)setCount:(unsigned long long)arg1;
 - (void)setDictionary:(id)arg1;
 
 @end

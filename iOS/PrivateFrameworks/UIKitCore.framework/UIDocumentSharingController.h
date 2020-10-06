@@ -48,13 +48,12 @@
 @property (readonly) Class superclass;
 @property (getter=_thumbnail, setter=_setThumbnail:, nonatomic, copy) UIImage *thumbnail;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_appName;
 - (id)_auxiliaryActionTitle;
 - (id)_childViewController;
 - (void)_cloudSharingControllerDidActivateShowSharedFolder;
+- (void)_cloudSharingControllerDidChooseTransport:(id)arg1;
 - (void)_cloudSharingControllerDidModifyPrimarySwitch:(bool)arg1;
 - (void)_cloudSharingControllerDidModifySecondarySwitch:(bool)arg1;
 - (bool)_collaborationUIEnabled;
@@ -106,9 +105,6 @@
 - (id)_thumbnail;
 - (void)_updatePresentationStyleForLegacyAppearance;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)delegate;
 - (id)initWithFileURL:(id)arg1;
 - (id)initWithFileURL:(id)arg1 error:(id*)arg2;

@@ -3,11 +3,18 @@
  */
 
 @interface NSXPCConnection : NSObject <NSXPCProxyCreating> {
-    id  _dCache;
-    id  _eCache;
+    NSObject<OS_xpc_object> * _bootstrap;
+    union { 
+        NSObject<OS_xpc_object> *xpc; 
+        id remote; 
+        /* Warning: Unrecognized filer type: ')' using 'void*' */ void*OS_xpc_remote_connection; 
+    }  _connection;
+    _NSXPCConnectionClassCache * _dCache;
+    _Atomic id  _delegate;
+    _NSXPCConnectionClassCache * _eCache;
     NSXPCListenerEndpoint * _endpoint;
-    id  _exportInfo;
-    id  _importInfo;
+    _NSXPCConnectionExportedObjectTable * _exportInfo;
+    _NSXPCConnectionImportInfo * _importInfo;
     id /* block */  _interruptionHandler;
     id /* block */  _invalidationHandler;
     struct os_unfair_lock_s { 
@@ -15,17 +22,17 @@
     }  _lock;
     <NSObject> * _otherInfo;
     NSXPCInterface * _remoteObjectInterface;
-    id  _repliesExpected;
-    id  _repliesRequested;
-    id  _reserved1;
+    _NSXPCConnectionExpectedReplies * _repliesExpected;
+    _NSXPCConnectionRequestedReplies * _repliesRequested;
     NSString * _serviceName;
     unsigned int  _state;
-    unsigned int  _state2;
+    _Atomic unsigned int  _state2;
     NSObject<OS_dispatch_queue> * _userQueue;
-    void * _xconnection;
 }
 
 @property (readonly) int auditSessionIdentifier;
+@property (nonatomic, readonly) bool ccs_hasEntitlementForForciblyEnablingModules;
+@property (nonatomic, readonly) bool ccs_hasEntitlementForListingModuleIdentifiers;
 @property (nonatomic, readonly) bool cls_isAppExtension;
 @property (nonatomic, readonly, copy) NSString *cls_signingIdentifier;
 @property (nonatomic, readonly, copy) NSString *cx_applicationIdentifier;
@@ -33,12 +40,14 @@
 @property (nonatomic, readonly, copy) NSSet *cx_capabilities;
 @property (nonatomic, readonly, copy) NSString *cx_developerTeamIdentifier;
 @property (nonatomic, readonly, copy) NSString *cx_processName;
+@property (getter=cx_isProcessOnDemandInstallCapable, nonatomic, readonly) bool cx_processOnDemandInstallCapable;
 @property (readonly) unsigned int effectiveGroupIdentifier;
 @property (readonly) unsigned int effectiveUserIdentifier;
 @property (readonly, retain) NSXPCListenerEndpoint *endpoint;
 @property (retain) NSXPCInterface *exportedInterface;
 @property (retain) id exportedObject;
 @property (nonatomic, readonly) FPXPCSanitizer *fp_sanitizer;
+@property (nonatomic, readonly) bool hk_isAppExtension;
 @property (copy) id /* block */ interruptionHandler;
 @property (copy) id /* block */ invalidationHandler;
 @property (nonatomic, readonly, copy) NSString *processBundleIdentifier;
@@ -51,45 +60,38 @@
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
-+ (id)_currentBoost;
 + (void)beginTransaction;
 + (id)currentConnection;
 + (void)endTransaction;
 
-- (void)_addClassToDecodeCache:(Class)arg1;
-- (void)_addClassToEncodeCache:(Class)arg1;
-- (void)_addImportedProxy:(id)arg1;
 - (id /* block */)_additionalInvalidationHandler;
 - (void)_cancelProgress:(unsigned long long)arg1;
 - (void)_decodeAndInvokeMessageWithEvent:(id)arg1 flags:(unsigned long long)arg2;
 - (void)_decodeAndInvokeReplyBlockWithEvent:(id)arg1 sequence:(unsigned long long)arg2 replyInfo:(id)arg3;
-- (bool)_decodeCacheContainsClass:(Class)arg1;
 - (void)_decodeProgressMessageWithData:(id)arg1 flags:(unsigned long long)arg2;
-- (bool)_encodeCacheContainsClass:(Class)arg1;
 - (id)_errorDescription;
-- (id)_exportTable;
-- (unsigned long long)_generationCount;
-- (id)_initWithPeerConnection:(id)arg1 name:(id)arg2 options:(unsigned long long)arg3;
+- (id)_initWithRemoteConnection:(id)arg1 name:(id)arg2;
+- (id)_initWithRemoteService:(id)arg1 name:(id)arg2 options:(unsigned long long)arg3;
 - (void)_killConnection:(int)arg1;
 - (void)_pauseProgress:(unsigned long long)arg1;
 - (id)_queue;
 - (Class)_remoteObjectInterfaceClass;
-- (void)_removeImportedProxy:(id)arg1;
 - (void)_resumeProgress:(unsigned long long)arg1;
 - (void)_sendDesistForProxy:(id)arg1;
 - (void)_sendInvocation:(id)arg1 orArguments:(id*)arg2 count:(unsigned long long)arg3 methodSignature:(id)arg4 selector:(SEL)arg5 withProxy:(id)arg6;
-- (void)_sendInvocation:(id)arg1 withProxy:(id)arg2;
-- (void)_sendProgressMessage:(id)arg1 forSequence:(unsigned long long)arg2;
 - (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2;
 - (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3;
 - (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3 arg2:(id)arg4;
 - (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3 arg2:(id)arg4 arg3:(id)arg5;
 - (void)_sendSelector:(SEL)arg1 withProxy:(id)arg2 arg1:(id)arg3 arg2:(id)arg4 arg3:(id)arg5 arg4:(id)arg6;
+- (void)_setBootstrapObject:(id)arg1 forKey:(id)arg2;
+- (void)_setLanguages:(id)arg1;
 - (void)_setQueue:(id)arg1;
 - (void)_setTargetUserIdentifier:(unsigned int)arg1;
 - (void)_setUUID:(id)arg1;
 - (id)_unboostingRemoteObjectProxy;
 - (id)_xpcConnection;
+- (void)activate;
 - (void)addBarrierBlock:(id /* block */)arg1;
 - (int)auditSessionIdentifier;
 - (struct { unsigned int x1[8]; })auditToken;
@@ -144,12 +146,17 @@
 - (id)cx_capabilities;
 - (bool)cx_clientSandboxCanAccessFileURL:(id)arg1;
 - (id)cx_developerTeamIdentifier;
+- (bool)cx_isProcessOnDemandInstallCapable;
 - (id)cx_processName;
 
 // Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
 
 - (bool)cls_isAppExtension;
 - (id)cls_signingIdentifier;
+
+// Image: /System/Library/Frameworks/CoreAudio.framework/CoreAudio
+
+- (void)uniquify;
 
 // Image: /System/Library/Frameworks/FileProvider.framework/FileProvider
 
@@ -163,19 +170,86 @@
 - (id)fp_sanitizer;
 - (id)fp_valueForEntitlement:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (bool)hk_isAppExtension;
+
+// Image: /System/Library/Frameworks/Social.framework/Social
+
+- (id)_clientBundleID;
+- (bool)sl_clientHasEntitlement:(id)arg1;
+- (id)sl_localizedClientName;
+
+// Image: /System/Library/PrivateFrameworks/ARKitCore.framework/ARKitCore
+
+- (id)ar_processBundleIdentifier;
+- (id)ar_processName;
+
 // Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
 - (void)setShouldHandleInvalidation:(bool)arg1;
 - (bool)shouldHandleInvalidation;
 
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
++ (id)crk_applicationInfoServiceConnection;
++ (id)crk_booksServiceConnection;
++ (id)crk_internetDateServiceConnection;
++ (id)crk_screenshotServiceConnection;
++ (id)crk_screenshotServiceConnectionWithInterface:(id)arg1;
++ (id)crk_studentDaemonConnection;
++ (unsigned long long)crk_studentDaemonConnectionOptions;
++ (id)crk_studentDaemonNonCatalystConnection;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (id)CKValueForEntitlements:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ControlCenterServices.framework/ControlCenterServices
+
+- (bool)ccs_hasEntitlementForForciblyEnablingModules;
+- (bool)ccs_hasEntitlementForListingModuleIdentifiers;
+- (bool)ccs_hasEntitlementForModuleIdentifier:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreCDPInternal.framework/CoreCDPInternal
+
+- (id)processName;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (id)sgd_clientName;
+
 // Image: /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
 
 - (id)cuValueForEntitlementNoCache:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DoNotDisturbServer.framework/DoNotDisturbServer
+
+- (id)_dnds_safeStringArrayEntitlementForKey:(id)arg1;
+- (bool)dnds_hasAnyValidEntitlement;
+- (bool)dnds_hasBehaviorResolutionEntitlementForClientIdentifier:(id)arg1;
+- (bool)dnds_hasEntitlementsToRequestAssertionWithDetails:(id)arg1 clientIdentifier:(id)arg2;
+- (bool)dnds_hasModeAssertionEntitlementForClientIdentifier:(id)arg1;
+- (bool)dnds_hasSettingsModificationEntitlementForClientIdentifier:(id)arg1;
+- (bool)dnds_hasSettingsRequestEntitlementForClientIdentifier:(id)arg1;
+- (bool)dnds_hasSettingsUpdatesEntitlementForClientIdentifier:(id)arg1;
+- (bool)dnds_hasStateRequestEntitlementForClientIdentifier:(id)arg1;
+- (bool)dnds_hasStateUpdatesEntitlementForClientIdentifier:(id)arg1;
+- (bool)dnds_hasUserRequestedModeAssertionEntitlementForClientIdentifier:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 + (id)geo_createGEODaemonToMapsPushDaemonConnection;
 + (void)geo_withMapsPushDaemon:(id /* block */)arg1 errorHandler:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/Pegasus.framework/Pegasus
+
+- (id)PG_appProxyWithDebugMethodAndPointerProem:(id)arg1;
+- (id)PG_appProxyWithDebugMethodAndPointerProem:(id)arg1 errorHandler:(id /* block */)arg2;
+- (id)PG_remoteObjectProxyWithDebugMethodAndPointerProem:(id)arg1;
+- (id)PG_remoteObjectProxyWithDebugMethodAndPointerProem:(id)arg1 errorHandler:(id /* block */)arg2;
+- (id)PG_remoteObjectWithDebugMethodAndPointerProem:(id)arg1;
+- (id)PG_remoteObjectWithDebugMethodAndPointerProem:(id)arg1 errorHandler:(id /* block */)arg2;
 
 // Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
 
@@ -188,5 +262,23 @@
 // Image: /System/Library/PrivateFrameworks/UserManagement.framework/UserManagement
 
 - (bool)hasEntitlement:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/UserNotificationsServer.framework/UserNotificationsServer
+
+- (id)uns_clientBundleProxy;
+- (bool)uns_hasEntitlement:(id)arg1 capability:(id)arg2;
+- (bool)uns_isAllowedToReadSettings;
+- (bool)uns_isAllowedToRequestUserNotificationsForBundleIdentifier:(id)arg1;
+- (bool)uns_isAllowedToWriteSettings;
+- (bool)uns_isInternalUserNotificationsTool;
+
+// Image: /System/Library/PrivateFrameworks/WiFiPeerToPeer.framework/WiFiPeerToPeer
+
++ (id)connectionToDaemonWithExportedObject:(id)arg1 usingExportedInterface:(id)arg2 withErrorHandler:(id /* block */)arg3 proxyObject:(id*)arg4;
+
+// Image: /usr/lib/libnfshared.dylib
+
+- (id)NF_userInfo;
+- (id)NF_whitelistChecker;
 
 @end

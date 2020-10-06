@@ -24,18 +24,7 @@
         unsigned int read_position : 1; 
         unsigned int read_rigMetrics : 1; 
         unsigned int read_tilePosition : 1; 
-        unsigned int wrote_cameraMetadataIndexs : 1; 
-        unsigned int wrote_build : 1; 
-        unsigned int wrote_cameraMetadatas : 1; 
-        unsigned int wrote_imageryTimestamp : 1; 
-        unsigned int wrote_imdataId : 1; 
-        unsigned int wrote_parentTile : 1; 
-        unsigned int wrote_positionGeo : 1; 
-        unsigned int wrote_position : 1; 
-        unsigned int wrote_rigMetrics : 1; 
-        unsigned int wrote_tilePosition : 1; 
-        unsigned int wrote_buildTableIndex : 1; 
-        unsigned int wrote_revision : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned long long  _imageryTimestamp;
     unsigned long long  _imdataId;
@@ -81,16 +70,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsCameraMetadata:(id)arg1;
-- (void)_addNoFlagsCameraMetadataIndex:(unsigned int)arg1;
-- (void)_readBuild;
-- (void)_readCameraMetadataIndexs;
-- (void)_readCameraMetadatas;
-- (void)_readParentTile;
-- (void)_readPosition;
-- (void)_readPositionGeo;
-- (void)_readRigMetrics;
-- (void)_readTilePosition;
 - (void)addCameraMetadata:(id)arg1;
 - (void)addCameraMetadataIndex:(unsigned int)arg1;
 - (id)build;
@@ -123,7 +102,10 @@
 - (unsigned long long)imdataId;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)parentTile;
 - (id)position;

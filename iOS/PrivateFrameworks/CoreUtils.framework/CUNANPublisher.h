@@ -4,6 +4,7 @@
 
 @interface CUNANPublisher : NSObject <WiFiAwarePublisherDelegate> {
     id /* block */  _activateCompletion;
+    unsigned int  _controlFlags;
     bool  _dataPathEnabled;
     id /* block */  _dataSessionEndedHandler;
     id /* block */  _dataSessionStartedHandler;
@@ -15,6 +16,7 @@
     NSString * _label;
     NSString * _name;
     int  _port;
+    id /* block */  _receiveHandler;
     NSString * _serviceType;
     NSMutableDictionary * _sessions;
     NSDictionary * _textInfo;
@@ -23,6 +25,7 @@
     WiFiAwarePublisher * _wfaPublisher;
 }
 
+@property (nonatomic) unsigned int controlFlags;
 @property (nonatomic) bool dataPathEnabled;
 @property (nonatomic, copy) id /* block */ dataSessionEndedHandler;
 @property (nonatomic, copy) id /* block */ dataSessionStartedHandler;
@@ -35,6 +38,7 @@
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic) int port;
+@property (nonatomic, copy) id /* block */ receiveHandler;
 @property (nonatomic, copy) NSString *serviceType;
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSDictionary *textInfo;
@@ -46,6 +50,7 @@
 - (void)_invalidated;
 - (void)_publisher:(id)arg1 dataConfirmedForHandle:(id)arg2 localInterfaceIndex:(unsigned int)arg3 serviceSpecificInfo:(id)arg4;
 - (void)activateWithCompletion:(id /* block */)arg1;
+- (unsigned int)controlFlags;
 - (bool)dataPathEnabled;
 - (id /* block */)dataSessionEndedHandler;
 - (id /* block */)dataSessionStartedHandler;
@@ -66,7 +71,11 @@
 - (void)publisher:(id)arg1 receivedMessage:(id)arg2 fromSubscriberID:(unsigned char)arg3 subscriberAddress:(id)arg4;
 - (void)publisher:(id)arg1 terminatedWithReason:(long long)arg2;
 - (void)publisherStarted:(id)arg1;
+- (id /* block */)receiveHandler;
+- (void)reportIssue:(id)arg1;
+- (void)sendMessageData:(id)arg1 endpoint:(id)arg2 completionHandler:(id /* block */)arg3;
 - (id)serviceType;
+- (void)setControlFlags:(unsigned int)arg1;
 - (void)setDataPathEnabled:(bool)arg1;
 - (void)setDataSessionEndedHandler:(id /* block */)arg1;
 - (void)setDataSessionStartedHandler:(id /* block */)arg1;
@@ -76,6 +85,7 @@
 - (void)setLabel:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setPort:(int)arg1;
+- (void)setReceiveHandler:(id /* block */)arg1;
 - (void)setServiceType:(id)arg1;
 - (void)setTextInfo:(id)arg1;
 - (void)setTrafficFlags:(unsigned int)arg1;

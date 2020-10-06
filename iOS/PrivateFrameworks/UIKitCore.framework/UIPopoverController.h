@@ -132,6 +132,8 @@
 @property (nonatomic) bool showsTargetRect;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_defaultPopoverLayoutMarginsForPopoverControllerStyle:(long long)arg1 andContentViewController:(id)arg2;
 + (bool)_forceAttemptsToAvoidKeyboard;
 + (Class)_popoverViewClass;
@@ -275,5 +277,9 @@
 - (bool)showsOrientationMarker;
 - (bool)showsPresentationArea;
 - (bool)showsTargetRect;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (id)copyScriptPopOver;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
  */
 
-@interface CLSClass : CLSObject <CLSContactsSearchable, CLSRelationable> {
+@interface CLSClass : CLSObject <CLSContactsSearchable, CLSRelationable, CRKClassKitClass> {
     NSString * _className;
     NSString * _customClassName;
     NSString * _iconID;
@@ -16,10 +16,14 @@
 
 @property (nonatomic, readonly) NSArray *classMembers;
 @property (nonatomic, copy) NSString *className;
+@property (nonatomic, readonly, copy) NSString *className;
 @property (nonatomic, copy) NSString *customClassName;
+@property (nonatomic, readonly) NSDate *dateCreated;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSString *displayName;
 @property (nonatomic, readonly) NSString *displayName;
+@property (getter=isEditable, nonatomic, readonly) bool editable;
 @property (nonatomic, readonly) NSString *emailAddress;
 @property (nonatomic, readonly) NSString *groupIdentifier;
 @property (readonly) unsigned long long hash;
@@ -27,11 +31,14 @@
 @property bool isEditable;
 @property (nonatomic, copy) NSString *locationID;
 @property (nonatomic, readonly) NSPersonNameComponents *nameComponents;
+@property (nonatomic, readonly, copy) NSString *objectID;
 @property (nonatomic) long long originatingSource;
 @property (nonatomic, copy) NSString *searchText;
 @property (nonatomic) long long source;
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSString *tempObjectID;
+
+// Image: /System/Library/Frameworks/ClassKit.framework/ClassKit
 
 + (id)relations;
 + (bool)supportsSecureCoding;
@@ -69,5 +76,13 @@
 - (long long)source;
 - (id)tempObjectID;
 - (bool)validateObject:(id*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
+- (bool)isEditable;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAutocomplete.framework/ContactsAutocomplete
+
+- (void)acceptVisitor:(id)arg1;
 
 @end

@@ -34,6 +34,7 @@
     UIKBRenderConfig * m_renderConfig;
 }
 
+@property (nonatomic, readonly) long long assetIdiom;
 @property (nonatomic, readonly) long long cacheDeferPriority;
 @property (nonatomic, readonly) bool cacheDeferable;
 @property (nonatomic, readonly) NSString *cacheKey;
@@ -62,7 +63,7 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } variantFrame;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
++ (bool)wantsScreenTraits;
 
 - (void)_applyAppearanceInvocations;
 - (bool)_canDrawContent;
@@ -70,11 +71,8 @@
 - (void)_populateLayer:(id)arg1 withContents:(id)arg2;
 - (bool)_shouldUpdateLayers;
 - (bool)_viewShouldBeOpaque;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowBackgroundCachingForRenderFlags:(long long)arg1;
+- (long long)assetIdiom;
 - (bool)cacheDeferable;
 - (id)cacheKey;
 - (id)cacheKeysForRenderFlags:(id)arg1;
@@ -89,6 +87,7 @@
 - (void)changeBackgroundToEnabled;
 - (void)configureBackdropView:(id)arg1 forRenderConfig:(id)arg2;
 - (id)contentsKeyView;
+- (void)dealloc;
 - (long long)didInputSubTree:(id)arg1;
 - (void)dimKeys:(id)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })displayInsets;
@@ -102,6 +101,7 @@
 - (void)hideKeyCap:(bool)arg1;
 - (long long)imageOrientationForLayer:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 keyplane:(id)arg2 key:(id)arg3;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 keyplane:(id)arg2 key:(id)arg3 screenTraits:(id)arg4;
 - (bool)keepNonPersistent;
 - (id)key;
 - (id)keyplane;

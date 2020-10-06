@@ -14,11 +14,15 @@
     bool  _isForwardingEvent;
     NSString * _keyplaneBeforeDictation;
     NSArray * _keyplaneKeys;
+    bool  _overrideInitialKey;
+    int  _overridenSelectedKeyType;
     UILexicon * _recentInputs;
     UIAlertController * _recentInputsAlert;
     long long  _selectedKeyBeforeDictation;
     long long  _selectedKeyIndex;
     UIView * _selectionView;
+    bool  _shouldConfigureFloatingContentView;
+    bool  _shouldToggleLetterCaseNext;
     bool  _suppressOperations;
 }
 
@@ -26,30 +30,31 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) UIWindow *focusWindow;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } globalFrameForCurrentKey;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSString *keyplaneBeforeDictation;
 @property (nonatomic, retain) UIAlertController *recentInputsAlert;
 @property (nonatomic) long long selectedKeyBeforeDictation;
+@property (getter=isSlimLinearKeyboardTV, nonatomic, readonly) bool slimLinearKeyboardTV;
 @property (readonly) Class superclass;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)carKeyboardNameForKeyboard:(id)arg1 screenTraits:(id)arg2;
 + (struct CGSize { double x1; double x2; })keyboardSizeForInputMode:(id)arg1 screenTraits:(id)arg2 keyboardType:(long long)arg3;
 
+- (void)_accessibilityBoldTextChanged:(id)arg1;
+- (void)_configureFloatingContentViewsForTV;
 - (bool)_handleMoveWithEvent:(id)arg1;
 - (bool)_handlePhysicalButtonEvent:(id)arg1;
 - (bool)_handleRemoteControlReceivedWithEvent:(id)arg1;
 - (bool)_handleWheelChangedWithEvent:(id)arg1;
+- (unsigned long long)_indexOfFirstKeyOfInteractionType:(int)arg1;
 - (bool)_isDirectionalHeading:(unsigned long long)arg1;
+- (bool)_isKeyboardReverseOfSystemLanguageCharacterDirection;
 - (id)_keyplaneForKeyplaneProperties;
 - (bool)_menuTapShouldExitVariants;
 - (void)_moveWithEvent:(id)arg1;
+- (void)_reducedTransparencyDidChange:(id)arg1;
 - (void)_wheelChangedWithEvent:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)acceptRecentInputIfNecessary;
 - (int)activeStateForKey:(id)arg1;
 - (void)alertDidDismiss;
@@ -57,10 +62,11 @@
 - (bool)canHandleEvent:(id)arg1;
 - (bool)canMultitap;
 - (void)clearVariantStateForKey:(id)arg1;
-- (void)configureChildCollectionViewCellsIfNeeded;
+- (void)configureFloatingContentViewsIfNeeded;
 - (id)currentKey;
 - (unsigned long long)cursorLocation;
 - (void)deactivateKey:(id)arg1;
+- (void)dealloc;
 - (long long)defaultSelectedVariantIndexForKey:(id)arg1 withActions:(unsigned long long)arg2;
 - (bool)diacriticForwardCompose;
 - (void)didSelectRecentInputString:(id)arg1;
@@ -70,6 +76,8 @@
 - (void)flushKeyCache:(id)arg1;
 - (id)focusWindow;
 - (unsigned char)getHandRestRecognizerState;
+- (unsigned long long)getNextKeyplaneIndex:(unsigned long long)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })globalFrameForCurrentKey;
 - (bool)handleLinearDirectionalInput:(int)arg1;
 - (void)handleVariantDeleteIfNecessaryForKey:(id)arg1;
 - (bool)handleVisualDirectionalInput:(int)arg1;
@@ -78,6 +86,8 @@
 - (bool)isAlphabeticPlane;
 - (bool)isKanaPlane;
 - (bool)isKeyplaneDisabledWithName:(id)arg1;
+- (bool)isPossibleToTypeFast;
+- (bool)isSlimLinearKeyboardTV;
 - (id)keyHitTestInSameRowAsCenter:(struct CGPoint { double x1; double x2; })arg1 size:(struct CGSize { double x1; double x2; })arg2;
 - (id)keyViewAnimator;
 - (id)keyplaneBeforeDictation;
@@ -89,6 +99,7 @@
 - (id)recentInputsAlert;
 - (bool)refreshSelectedCellIfNecessaryForKey:(id)arg1;
 - (void)remoteControlReceivedWithEvent:(id)arg1;
+- (void)restoreFocusFromEntryPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)returnToKeyplaneAfterDictation;
 - (void)runWithSuppressedActions:(id /* block */)arg1;
 - (void)selectInitialKeyIfNecessary;
@@ -107,15 +118,16 @@
 - (void)setRenderConfig:(id)arg1;
 - (void)setSelectedKeyBeforeDictation:(long long)arg1;
 - (void)setSelectedKeyIndex:(long long)arg1;
+- (void)setShift:(bool)arg1;
 - (bool)shouldAllowCurrentKeyplaneReload;
 - (bool)shouldDeactivateWithoutWindow;
 - (bool)shouldMatchCaseForDomainKeys;
 - (bool)shouldMergeKey:(id)arg1;
 - (bool)shouldPreventInputManagerHitTestingForKey:(id)arg1;
-- (bool)shouldRetestKey:(id)arg1 withKeyplane:(id)arg2;
+- (bool)shouldRetestKey:(id)arg1 slidOffKey:(id)arg2 withKeyplane:(id)arg3;
 - (bool)shouldToggleKeyplaneWithName:(id)arg1;
-- (bool)shouldUseDefaultShiftStateFromLayout;
 - (void)showKeyboardWithInputTraits:(id)arg1 screenTraits:(id)arg2 splitTraits:(id)arg3;
+- (void)showPopupKeyplaneSwitcher;
 - (void)showRecentInputsAlert;
 - (int)stateForCandidateListKey:(id)arg1;
 - (int)stateForKeyplaneSwitchKey:(id)arg1;
@@ -125,11 +137,13 @@
 - (void)takeKeyAction:(id)arg1;
 - (unsigned long long)targetEdgesForScreenGestureRecognition;
 - (long long)targetKeyIndexAtOffset:(struct CGPoint { double x1; double x2; })arg1 fromKey:(id)arg2;
+- (long long)targetKeyIndexFromPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)updateDictationHelpString;
 - (void)updateKeyplaneSwitchEdgeBiases;
 - (void)updateRecentInputsKeyIfNecessary;
 - (void)updateStatesForGridSelection;
 - (bool)usesAutoShift;
 - (unsigned long long)variantCountForKey:(id)arg1;
+- (void)willMoveToWindow:(id)arg1;
 
 @end

@@ -2,21 +2,9 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSExtensionContext : NSObject <NSCopying, NSSecureCoding, NSXPCListenerDelegate, _NSExtensionAuxHostingBase> {
-    NSUUID * __UUID;
-    NSXPCConnection * __auxiliaryConnection;
-    NSXPCListener * __auxiliaryListener;
+@interface NSExtensionContext : NSObject <NSCopying, NSSecureCoding, NSXPCListenerDelegate, WFApplicationContextProvider, _NSExtensionAuxHostingBase> {
     bool  __dummyExtension;
-    struct { 
-        unsigned int val[8]; 
-    }  __extensionHostAuditToken;
-    <_NSExtensionContextHosting> * __extensionHostProxy;
-    <_NSExtensionContextVending> * __extensionVendorProxy;
-    id  __principalObject;
-    id  __processAssertion;
-    id /* block */  __requestCleanUpBlock;
-    NSObject<OS_os_transaction> * __transaction;
-    NSArray * _inputItems;
+    id  _internalImplementation;
 }
 
 @property (nonatomic, copy) NSUUID *_UUID;
@@ -32,10 +20,16 @@
 @property (getter=_transaction, setter=_setTransaction:, retain) NSObject<OS_os_transaction> *_transaction;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic) <WFExtensionApplicationContextProviderDelegate> *extensionApplicationContextProviderDelegate;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) struct CGSize { double x1; double x2; } hostedViewMaximumAllowedSize;
+@property (nonatomic, readonly) struct CGSize { double x1; double x2; } hostedViewMinimumAllowedSize;
 @property (setter=_setInputItems:, nonatomic, copy) NSArray *inputItems;
 @property (nonatomic, readonly) INIntent *intent;
+@property (readonly, retain) id internalImplementation;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) long long userInterfaceStyle;
+@property (nonatomic) bool wfIdleTimerDisabled;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
@@ -54,8 +48,6 @@
 - (void)___nsx_pingHost:(id /* block */)arg1;
 - (id)_auxiliaryConnection;
 - (id)_auxiliaryListener;
-- (void)_completeRequestReturningItemsSecondHalf:(id /* block */)arg1;
-- (id)_derivedExtensionAuxiliaryHostProtocol;
 - (struct { unsigned int x1[8]; })_extensionHostAuditToken;
 - (id)_extensionHostProxy;
 - (id)_extensionVendorProxy;
@@ -73,7 +65,6 @@
 - (void)_setExtensionHostAuditToken:(struct { unsigned int x1[8]; })arg1;
 - (void)_setExtensionHostProxy:(id)arg1;
 - (void)_setExtensionVendorProxy:(id)arg1;
-- (void)_setInputItems:(id)arg1;
 - (void)_setPrincipalObject:(id)arg1;
 - (void)_setProcessAssertion:(id)arg1;
 - (void)_setRequestCleanUpBlock:(id /* block */)arg1;
@@ -81,7 +72,9 @@
 - (id)_transaction;
 - (void)_willPerformHostCallback:(id /* block */)arg1;
 - (void)cancelRequestWithError:(id)arg1;
+- (void)completeRequestReturningItems:(id)arg1;
 - (void)completeRequestReturningItems:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)completeRequestReturningItems:(id)arg1 expirationHandler:(id /* block */)arg2 completion:(id /* block */)arg3;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
@@ -93,9 +86,11 @@
 - (id)initWithInputItems:(id)arg1 contextUUID:(id)arg2;
 - (id)initWithInputItems:(id)arg1 listenerEndpoint:(id)arg2 contextUUID:(id)arg3;
 - (id)inputItems;
+- (id)internalImplementation;
 - (void)invalidate;
-- (bool)listener:(id)arg1 shouldAcceptNewConnection:(id)arg2;
+- (void)openURL:(id)arg1 completion:(id /* block */)arg2;
 - (void)openURL:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)setInputItems:(id)arg1;
 - (void)set_UUID:(id)arg1;
 
 // Image: /System/Library/Frameworks/Intents.framework/Intents
@@ -105,5 +100,39 @@
 - (void)_intents_setAccessedIntent:(bool)arg1;
 - (void)_intents_setIntent:(id)arg1;
 - (id)intent;
+
+// Image: /System/Library/Frameworks/IntentsUI.framework/IntentsUI
+
+- (struct CGSize { double x1; double x2; })hostedViewMaximumAllowedSize;
+- (struct CGSize { double x1; double x2; })hostedViewMinimumAllowedSize;
+- (id)interfaceParametersDescription;
+
+// Image: /System/Library/Frameworks/ReplayKit.framework/ReplayKit
+
+- (void)completeRequestWithBroadcastURL:(id)arg1 broadcastConfiguration:(id)arg2 setupInfo:(id)arg3;
+- (void)completeRequestWithBroadcastURL:(id)arg1 setupInfo:(id)arg2;
+- (void)loadBroadcastingApplicationInfoWithCompletion:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
+- (id)applicationForWFApplicationContext:(id)arg1;
+- (id)bundleForWFApplicationContext:(id)arg1;
+- (id)currentUserInterfaceTypeForWFApplicationContext:(id)arg1;
+- (id)extensionApplicationContextProviderDelegate;
+- (id)keyWindowForWFApplicationContext:(id)arg1;
+- (id)notificationNameForApplicationStateEvent:(long long)arg1 applicationContext:(id)arg2;
+- (void)setExtensionApplicationContextProviderDelegate:(id)arg1;
+- (bool)shouldReverseLayoutDirection;
+
+// Image: /System/Library/PrivateFrameworks/ExtensionKit.framework/ExtensionKit
+
+- (id)_derivedExtensionAuxiliaryHostProtocol;
+
+// Image: /System/Library/PrivateFrameworks/Widgets.framework/Widgets
+
+- (void)setWidgetLargestAvailableDisplayMode:(long long)arg1;
+- (long long)widgetActiveDisplayMode;
+- (long long)widgetLargestAvailableDisplayMode;
+- (struct CGSize { double x1; double x2; })widgetMaximumSizeForDisplayMode:(long long)arg1;
 
 @end

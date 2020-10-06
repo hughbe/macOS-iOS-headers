@@ -24,13 +24,15 @@
 @property (nonatomic, retain) NSMutableDictionary *singleValueChanges;
 
 - (void).cxx_destruct;
+- (void)_addToChanges:(id)arg1 forMultiValueKey:(id)arg2 basedOn:(id)arg3 and:(id)arg4 shouldCopyKeyCallback:(id /* block */)arg5;
 - (void)_cleanupEmptySetsForMultiValueKey:(id)arg1;
 - (id)_initWithChangeSet:(id)arg1 filter:(id /* block */)arg2;
 - (bool)_isNewAndUnsaved;
 - (id)_semanticIdentifierToObjectMapForObjects:(id)arg1;
 - (void)addChanges:(id)arg1;
+- (void)addChanges:(id)arg1 shouldCopyKeyCallback:(id /* block */)arg2;
 - (void)addChangesAndUpdateUniqueMultiValueObjects:(id)arg1;
-- (void)addToChanges:(id)arg1 forMultiValueKey:(id)arg2 basedOn:(id)arg3;
+- (void)addToChanges:(id)arg1 forMultiValueKey:(id)arg2 basedOn:(id)arg3 and:(id)arg4;
 - (void)changeSingleValue:(id)arg1 forKey:(id)arg2 basedOn:(id)arg3;
 - (void)changeSingleValue:(id)arg1 forKey:(id)arg2 basedOn:(id)arg3 and:(id)arg4;
 - (id)changedKeys;
@@ -61,10 +63,11 @@
 - (id)multiValueAdditions;
 - (id)multiValueRemovals;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
-- (void)removeFromChanges:(id)arg1 forMultiValueKey:(id)arg2 basedOn:(id)arg3;
+- (void)removeFromChanges:(id)arg1 forMultiValueKey:(id)arg2 basedOn:(id)arg3 and:(id)arg4;
 - (void)replaceMultiChangeAddedObject:(id)arg1 withObject:(id)arg2 forKey:(id)arg3;
 - (void)replaceUniqueMultiValueObjectsWithUpdatedObjects:(id)arg1;
 - (void)rollbackChanges;
+- (void)rollbackChangesForKeys:(id)arg1;
 - (void)setIsDeleted:(bool)arg1;
 - (void)setIsModified:(bool)arg1;
 - (void)setIsNew:(bool)arg1;
@@ -81,7 +84,7 @@
 - (id)unsavedMultiValueRemovedObjectsForKey:(id)arg1;
 - (id)valueForSingleValueKey:(id)arg1 basedOn:(id)arg2;
 - (id)valueForSingleValueKey:(id)arg1 basedOn:(id)arg2 and:(id)arg3;
-- (id)valuesForMultiValueKey:(id)arg1 basedOn:(id)arg2;
+- (id)valuesForMultiValueKey:(id)arg1 basedOn:(id)arg2 and:(id)arg3;
 - (id)valuesForMultiValueKey:(id)arg1 basedOnSet:(id)arg2;
 
 @end

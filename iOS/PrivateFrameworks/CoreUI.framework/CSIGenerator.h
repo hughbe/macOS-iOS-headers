@@ -55,7 +55,6 @@
     CUIPSDGradient * _gradient;
     bool  _isCubeMap;
     bool  _isExcludedFromFilter;
-    bool  _isFPOHint;
     bool  _isFlippable;
     bool  _isTintable;
     bool  _isVectorBased;
@@ -101,6 +100,7 @@
     NSString * _systemColorName;
     long long  _targetPlatform;
     long long  _templateRenderingMode;
+    float  _templateVersion;
     long long  _textureFormat;
     long long  _textureInterpretation;
     bool  _textureOpaque;
@@ -136,7 +136,6 @@
 @property (nonatomic) double fontSize;
 @property (nonatomic, retain) CUIPSDGradient *gradient;
 @property (nonatomic) bool isFlippable;
-@property (nonatomic) bool isRenditionFPO;
 @property (nonatomic) bool isTintable;
 @property (nonatomic) bool isVectorBased;
 @property (nonatomic, readonly) NSArray *layerReferences;
@@ -165,6 +164,7 @@
 @property (nonatomic, readonly) NSArray *submeshReferences;
 @property long long targetPlatform;
 @property (nonatomic) long long templateRenderingMode;
+@property (nonatomic) float templateVersion;
 @property (nonatomic) long long textureFormat;
 @property (nonatomic) long long textureInterpretation;
 @property (nonatomic) bool textureOpaque;
@@ -177,9 +177,6 @@
 + (void)setFileEncoding:(int)arg1;
 
 - (id)CSIRepresentationWithCompression:(bool)arg1;
-- (void)_addNodes:(id)arg1 toNodeList:(struct _csigradientdatanode { unsigned int x1; float x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; double x10; }*)arg2;
-- (bool)_shouldUseCompactCompressionForBitmap:(id)arg1;
-- (void)_updateCompressionInfoFor:(id)arg1;
 - (void)addBitmap:(id)arg1;
 - (void)addLayerReference:(id)arg1;
 - (void)addMeshReference:(id)arg1;
@@ -210,7 +207,6 @@
 - (int)exifOrientation;
 - (id)fontName;
 - (double)fontSize;
-- (void)formatCSIHeader:(struct _csiheader { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; unsigned int x7; unsigned int x8 : 4; unsigned int x9 : 28; struct _csimetadata { unsigned int x_10_1_1; unsigned short x_10_1_2; unsigned short x_10_1_3; BOOL x_10_1_4[128]; } x10; unsigned int x11; struct _csibitmaplist { unsigned int x_12_1_1; unsigned int x_12_1_2[0]; } x12; }*)arg1;
 - (id)gradient;
 - (id)initWithCanvasSize:(struct CGSize { double x1; double x2; })arg1 sliceCount:(unsigned int)arg2 layout:(short)arg3;
 - (id)initWithColorNamed:(id)arg1 colorSpaceID:(unsigned long long)arg2 components:(id)arg3;
@@ -230,7 +226,6 @@
 - (id)initWithTextureImageWithSize:(struct CGSize { double x1; double x2; })arg1 forPixelFormat:(long long)arg2 cubeMap:(bool)arg3;
 - (bool)isExcludedFromContrastFilter;
 - (bool)isFlippable;
-- (bool)isRenditionFPO;
 - (bool)isTintable;
 - (bool)isVectorBased;
 - (id)layerReferences;
@@ -279,7 +274,6 @@
 - (void)setFontSize:(double)arg1;
 - (void)setGradient:(id)arg1;
 - (void)setIsFlippable:(bool)arg1;
-- (void)setIsRenditionFPO:(bool)arg1;
 - (void)setIsTintable:(bool)arg1;
 - (void)setIsVectorBased:(bool)arg1;
 - (void)setMaxPointSize:(double)arg1;
@@ -304,6 +298,7 @@
 - (void)setStandardVectorSize:(unsigned int)arg1;
 - (void)setTargetPlatform:(long long)arg1;
 - (void)setTemplateRenderingMode:(long long)arg1;
+- (void)setTemplateVersion:(float)arg1;
 - (void)setTextureFormat:(long long)arg1;
 - (void)setTextureInterpretation:(long long)arg1;
 - (void)setTextureOpaque:(bool)arg1;
@@ -316,22 +311,12 @@
 - (id)submeshReferences;
 - (long long)targetPlatform;
 - (long long)templateRenderingMode;
+- (float)templateVersion;
 - (long long)textureFormat;
 - (long long)textureInterpretation;
 - (bool)textureOpaque;
 - (struct { /* Warning: Unrecognized filer type: ']' using 'void*' */ void*x1[4]; })transformation;
 - (id)utiType;
 - (id)vectorSizes;
-- (unsigned long long)writeBitmap:(id)arg1 toData:(id)arg2 compress:(bool)arg3;
-- (unsigned long long)writeColorToData:(id)arg1;
-- (unsigned long long)writeExternalLinkToData:(id)arg1;
-- (unsigned long long)writeGradientToData:(id)arg1;
-- (void)writeHeader:(struct _csiheader { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; unsigned int x7; unsigned int x8 : 4; unsigned int x9 : 28; struct _csimetadata { unsigned int x_10_1_1; unsigned short x_10_1_2; unsigned short x_10_1_3; BOOL x_10_1_4[128]; } x10; unsigned int x11; struct _csibitmaplist { unsigned int x_12_1_1; unsigned int x_12_1_2[0]; } x12; }*)arg1 toData:(id)arg2;
-- (unsigned long long)writeMultisizeImageSetToData:(id)arg1;
-- (unsigned long long)writeRawDataToData:(id)arg1;
-- (unsigned long long)writeRecognitionObjectToData:(id)arg1;
-- (unsigned long long)writeResourcesToData:(id)arg1;
-- (unsigned long long)writeTextStyleToData:(id)arg1;
-- (unsigned long long)writeTextureToData:(id)arg1;
 
 @end

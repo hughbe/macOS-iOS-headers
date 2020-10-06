@@ -9,6 +9,7 @@
     MKMapItem * _mapItem;
     bool  _offlineMode;
     <_MKPlaceItem> * _placeItem;
+    unsigned long long  _placecardOptions;
     NSMutableArray * _rows;
     MKPlaceSectionRowView * _selectedRow;
 }
@@ -22,6 +23,7 @@
 @property (nonatomic, retain) MKMapItem *mapItem;
 @property (nonatomic) bool offlineMode;
 @property (nonatomic, retain) <_MKPlaceItem> *placeItem;
+@property (nonatomic) unsigned long long placecardOptions;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
@@ -49,12 +51,14 @@
 - (id)mapItem;
 - (bool)offlineMode;
 - (id)placeItem;
+- (unsigned long long)placecardOptions;
 - (void)sectionView:(id)arg1 didSelectRow:(id)arg2 atIndex:(unsigned long long)arg3;
 - (void)setActionDelegate:(id)arg1;
 - (void)setBottomHairlineHidden:(bool)arg1;
 - (void)setMapItem:(id)arg1;
 - (void)setOfflineMode:(bool)arg1;
 - (void)setPlaceItem:(id)arg1;
+- (void)setPlacecardOptions:(unsigned long long)arg1;
 - (bool)shouldShowDetails;
 - (void)viewDidLoad;
 

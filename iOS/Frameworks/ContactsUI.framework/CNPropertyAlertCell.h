@@ -10,6 +10,7 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
++ (bool)shouldIndentWhileEditing;
 + (bool)wantsChevron;
 
 - (id)alertGroup;

@@ -25,12 +25,9 @@
 @property (nonatomic, retain) NSString *requestID;
 @property (nonatomic, retain) NSString *type;
 
-+ (void)initialize;
-
 - (void).cxx_destruct;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)customDescription;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (bool)hasIdentifier;

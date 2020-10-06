@@ -17,7 +17,6 @@
 - (void)setRouteSummaryWithRideSelectionsData:(NSData *)arg1;
 - (void)setRouteSummaryWithStepIndexData:(NSData *)arg1;
 - (void)setRouteSummaryWithStepNameInfoData:(NSData *)arg1;
-- (void)setRouteSummaryWithTrafficIncidentAlertDetailsData:(NSData *)arg1;
 - (void)setRouteSummaryWithTransitSummaryData:(NSData *)arg1;
 
 @end

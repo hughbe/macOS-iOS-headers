@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSDictionaryMapNode : NSStoreMapNode <NSSecureCoding> {
+@interface NSDictionaryMapNode : NSStoreMapNode <NSCoding, NSSecureCoding> {
     id * _attributes;
     id  _attributesAsEncoded;
 }
@@ -10,7 +10,6 @@
 + (void)initialize;
 + (bool)supportsSecureCoding;
 
-- (void)_doAttributeDecoding;
 - (const id*)attributeValues;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;

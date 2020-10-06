@@ -3,6 +3,7 @@
  */
 
 @interface AFMediaRemoteDeviceInfo : NSObject {
+    NSString * _groupIdentifier;
     bool  _lastFetchSucceeded;
     NSString * _routeIdentifier;
     NSObject<OS_dispatch_queue> * _serialQueue;
@@ -16,7 +17,8 @@
 
 - (void).cxx_destruct;
 - (void)_activeDeviceInfoChanged:(id)arg1;
-- (void)_updateRouteIdentifierWithCompletion:(id /* block */)arg1;
+- (void)_updateDeviceInfoWithCompletion:(id /* block */)arg1;
+- (void)getGroupIdentifierWithCompletion:(id /* block */)arg1;
 - (void)getRouteIdentifierWithCompletion:(id /* block */)arg1;
 - (id)init;
 - (bool)lastFetchSucceeded;

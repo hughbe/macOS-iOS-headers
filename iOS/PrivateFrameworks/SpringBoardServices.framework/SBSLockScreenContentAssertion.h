@@ -24,6 +24,7 @@
 - (void)_acquireAssertionWithType:(unsigned long long)arg1 slot:(id)arg2 identifier:(id)arg3 configurationObject:(id)arg4;
 - (id /* block */)_errorHandler;
 - (void)_setErrorHandler:(id /* block */)arg1;
+- (bool)_supportsReacquisition;
 - (id)action;
 - (id)configurationObject;
 - (void)dealloc;

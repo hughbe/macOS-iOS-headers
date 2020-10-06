@@ -12,9 +12,9 @@
     MNTraceRecorder * _traceRecorder;
 }
 
-@property (nonatomic) long long activityType;
 @property (nonatomic, copy) id /* block */ authorizationRequestBlock;
 @property (nonatomic, readonly) int authorizationStatus;
+@property (nonatomic, readonly) bool coarseModeEnabled;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MNLocationProviderDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -42,17 +42,17 @@
 
 - (void).cxx_destruct;
 - (id)_defaultTraceExtension;
-- (id)_defaultTraceNameForDestination:(id)arg1;
+- (id)_defaultTraceNameForDestination:(id)arg1 isSimulation:(bool)arg2;
 - (bool)_isNavigating;
 - (void)_recordEnvironmentInfo:(id)arg1;
 - (void)_recordStylesheet:(id)arg1;
 - (unsigned long long)_startIndexForNavigation;
 - (id)_tracePathForTraceName:(id)arg1;
 - (id)_validFilenameForTraceName:(id)arg1;
-- (long long)activityType;
 - (id /* block */)authorizationRequestBlock;
 - (int)authorizationStatus;
 - (void)close;
+- (bool)coarseModeEnabled;
 - (void)dealloc;
 - (id)delegate;
 - (double)desiredAccuracy;
@@ -68,12 +68,11 @@
 - (id)motionDelegate;
 - (int)navigationType;
 - (void)openForPlaybackWithTracePath:(id)arg1;
-- (void)openForRecordingWithTraceRecordingData:(id)arg1 traceNameOverride:(id)arg2;
+- (void)openForRecordingWithTraceRecordingData:(id)arg1 traceName:(id)arg2 isReconnecting:(bool)arg3 isSimulation:(bool)arg4;
 - (void)openForSimulationWithRoute:(id)arg1 traceRecordingData:(id)arg2 traceNameOverride:(id)arg3;
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)resetForActiveTileGroupChanged;
-- (void)setActivityType:(long long)arg1;
 - (void)setAuthorizationRequestBlock:(id /* block */)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDesiredAccuracy:(double)arg1;
@@ -87,7 +86,6 @@
 - (void)setNavigationType:(int)arg1;
 - (void)setTraceManagerDelegate:(id)arg1;
 - (void)startMotionUpdates;
-- (void)startSimulationWithRoute:(id)arg1 request:(id)arg2 response:(id)arg3 routeAttributes:(id)arg4 routeIndex:(unsigned int)arg5 traceNameOverride:(id)arg6;
 - (void)startUpdatingHeading;
 - (void)startUpdatingLocation;
 - (void)startUpdatingVehicleHeading;

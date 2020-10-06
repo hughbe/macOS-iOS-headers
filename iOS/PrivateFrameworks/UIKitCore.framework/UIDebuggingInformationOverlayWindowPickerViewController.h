@@ -14,12 +14,7 @@
 @property (nonatomic, retain) UITableView *tableView;
 @property (nonatomic, retain) NSArray *windows;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)loadData;
 - (void)setTableView:(id)arg1;

@@ -66,6 +66,7 @@
         } last_slice_qp_delta_; 
     }  _h264BitstreamParser;
     int  _height;
+    bool  _isKeyFrameRequired;
     unsigned int  _maxAllowedFrameRate;
     unsigned long long  _mode;
     unsigned long long  _packetizationMode;
@@ -82,7 +83,7 @@
     }  _profile_level_id;
     unsigned int  _targetBitrateBps;
     bool  _useVCP;
-    struct _VCPCompressionSession { } * _vcpCompressionSession;
+    void * _vcpCompressionSession;
     struct OpaqueVTCompressionSession { } * _vtCompressionSession;
     int  _width;
 }
@@ -98,7 +99,7 @@
 - (void)dealloc;
 - (void)destroyCompressionSession;
 - (long long)encode:(id)arg1 codecSpecificInfo:(id)arg2 frameTypes:(id)arg3;
-- (void)frameWasEncoded:(int)arg1 flags:(unsigned int)arg2 sampleBuffer:(struct opaqueCMSampleBuffer { }*)arg3 codecSpecificInfo:(id)arg4 width:(int)arg5 height:(int)arg6 renderTimeMs:(long long)arg7 timestamp:(unsigned int)arg8 rotation:(long long)arg9;
+- (void)frameWasEncoded:(int)arg1 flags:(unsigned int)arg2 sampleBuffer:(struct opaqueCMSampleBuffer { }*)arg3 codecSpecificInfo:(id)arg4 width:(int)arg5 height:(int)arg6 renderTimeMs:(long long)arg7 timestamp:(unsigned int)arg8 rotation:(long long)arg9 isKeyFrameRequired:(bool)arg10;
 - (bool)hasCompressionSession;
 - (id)implementationName;
 - (id)initWithCodecInfo:(id)arg1;

@@ -29,8 +29,8 @@
 @property (nonatomic) bool acceptedInProcess;
 @property (nonatomic) bool createdInProcess;
 @property (nonatomic, retain) NSData *encryptedPersonalInfo;
-@property (nonatomic, retain) CKDeviceToDeviceShareInvitationToken *invitationToken;
-@property (nonatomic, readonly) long long invitationTokenStatus;
+@property (nonatomic, readonly) NSString *ic_participantName;
+@property (nonatomic, copy) CKDeviceToDeviceShareInvitationToken *invitationToken;
 @property (nonatomic, retain) NSString *inviterID;
 @property (nonatomic) bool isCurrentUser;
 @property (nonatomic) bool isOrgAdminUser;
@@ -38,15 +38,17 @@
 @property (nonatomic) long long originalAcceptanceStatus;
 @property (nonatomic) long long originalParticipantRole;
 @property (nonatomic) long long originalPermission;
-@property (nonatomic, retain) NSString *participantID;
+@property (nonatomic, copy) NSString *participantID;
 @property (nonatomic) long long permission;
 @property (nonatomic, retain) NSData *protectionInfo;
 @property (nonatomic, retain) NSData *protectionInfoPublicKey;
 @property (nonatomic) long long role;
 @property (nonatomic, retain) CKRecordID *shareRecordID;
 @property (nonatomic) long long type;
-@property (nonatomic, retain) CKUserIdentity *userIdentity;
+@property (nonatomic, copy) CKUserIdentity *userIdentity;
 @property (nonatomic) bool wantsNewInvitationToken;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (bool)supportsSecureCoding;
 
@@ -106,5 +108,21 @@
 - (id)unifiedContactsInStore:(id)arg1 keysToFetch:(id)arg2 error:(id*)arg3;
 - (id)userIdentity;
 - (bool)wantsNewInvitationToken;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_decryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 inShareWithID:(id)arg2 pcsManager:(id)arg3;
+- (void)_encryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 inShareWithID:(id)arg2 pcsManager:(id)arg3;
+- (bool)hasEncryptedPersonalInfo;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
+- (bool)hmbIsEqualToParticipant:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
++ (id)ic_displayableNames:(id)arg1 maximumNamesCount:(unsigned long long)arg2;
+
+- (id)ic_participantName;
 
 @end

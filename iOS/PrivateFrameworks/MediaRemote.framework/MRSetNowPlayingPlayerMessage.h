@@ -4,7 +4,7 @@
 
 @interface MRSetNowPlayingPlayerMessage : MRProtocolMessage
 
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 
 - (id)initWithPlayerPath:(id)arg1;
 - (id)playerPath;

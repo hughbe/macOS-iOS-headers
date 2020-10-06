@@ -17,6 +17,7 @@
 @property (nonatomic) double nextFireTime;
 
 - (void).cxx_destruct;
+- (void)dbgAssertInside;
 - (double)fireInterval;
 - (id /* block */)handler;
 - (id)initInSilo:(id)arg1 withScheduler:(id)arg2;

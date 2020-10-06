@@ -6,11 +6,12 @@
 
 + (id)defaultPropertiesToLoad;
 
+- (id)URL;
 - (id)UUID;
-- (id)address;
 - (id)comment;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)displayName;
+- (id)displayNameRaw;
 - (id)emailAddress;
 - (id)firstName;
 - (id)invitedBy;
@@ -20,15 +21,15 @@
 - (id)proposedStartDate;
 - (int)proposedStartDateStatus;
 - (id)semanticIdentifier;
-- (void)setAddress:(id)arg1;
 - (void)setComment:(id)arg1;
-- (void)setDisplayName:(id)arg1;
+- (void)setDisplayNameRaw:(id)arg1;
 - (void)setEmailAddress:(id)arg1;
 - (void)setFirstName:(id)arg1;
 - (void)setLastName:(id)arg1;
 - (void)setPhoneNumber:(id)arg1;
 - (void)setProposedStartDate:(id)arg1;
 - (void)setProposedStartDateStatus:(int)arg1;
+- (void)setURL:(id)arg1;
 - (void)setUUID:(id)arg1;
 - (id)url;
 

@@ -8,8 +8,8 @@
     unsigned long long  _enabledPermissions;
 }
 
-@property (nonatomic, retain) NSArray *applicationBundleIDs;
-@property (nonatomic, retain) NSArray *containerIDs;
+@property (nonatomic, copy) NSArray *applicationBundleIDs;
+@property (nonatomic, copy) NSArray *containerIDs;
 @property (nonatomic) unsigned long long enabledPermissions;
 
 + (bool)supportsSecureCoding;
@@ -21,6 +21,7 @@
 - (id)description;
 - (unsigned long long)enabledPermissions;
 - (void)encodeWithCoder:(id)arg1;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (void)setApplicationBundleIDs:(id)arg1;
 - (void)setContainerIDs:(id)arg1;

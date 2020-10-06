@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSetTaskAttributeIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSetTaskAttributeIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBContactEventTrigger * _contactEventTrigger;
     struct { 
         unsigned int priority : 1; 
@@ -18,7 +17,6 @@
     _INPBTemporalEventTrigger * _temporalEventTrigger;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBContactEventTrigger *contactEventTrigger;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -45,8 +43,6 @@
 - (void).cxx_destruct;
 - (int)StringAsPriority:(id)arg1;
 - (int)StringAsStatus:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)contactEventTrigger;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

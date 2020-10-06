@@ -3,13 +3,11 @@
  */
 
 @interface _INPBBuildId : PBCodable <NSCopying, NSSecureCoding, _INPBBuildId> {
-    bool  __encodeLegacyGloryData;
     NSString * _buildNumber;
     struct { }  _has;
     NSString * _versionNumber;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *buildNumber;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -22,8 +20,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)buildNumber;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

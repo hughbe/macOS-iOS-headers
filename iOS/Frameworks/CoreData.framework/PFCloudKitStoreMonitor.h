@@ -22,7 +22,6 @@
 @property (nonatomic, readonly) NSPersistentStore *monitoredStore;
 @property (nonatomic, readonly) int retryCount;
 @property (nonatomic, readonly) NSString *storeIdentifier;
-@property (nonatomic, readonly) bool storeIsAlive;
 @property (nonatomic, readonly) int timeoutSeconds;
 
 - (void).cxx_destruct;
@@ -39,9 +38,9 @@
 - (void)performBlock:(id /* block */)arg1;
 - (void)pfcloudstoremonitor_is_holding_your_store_open_waiting_for_cloudkit_activity_to_finish;
 - (id)retainedMonitoredCoordinator;
+- (id)retainedMonitoredStore;
 - (int)retryCount;
 - (id)storeIdentifier;
-- (bool)storeIsAlive;
 - (int)timeoutSeconds;
 
 @end

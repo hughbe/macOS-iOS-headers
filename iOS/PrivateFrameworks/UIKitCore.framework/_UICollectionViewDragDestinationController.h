@@ -54,7 +54,6 @@
 - (id)_effectiveDropProposalForProposal:(id)arg1;
 - (void)_endInteractiveReorderingIfNeeded;
 - (bool)_hasGapLargeEnoughToRequireDropActionCallForCurrentItemAttributes:(id)arg1 proposedNextItemAttributes:(id)arg2;
-- (bool)_isCompatibilityMode;
 - (bool)_isLocalInteractiveMove;
 - (bool)_isMultiItemSource;
 - (void)_pauseReorderingDisplayLink;

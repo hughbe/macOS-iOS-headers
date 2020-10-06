@@ -8,18 +8,22 @@
     }  _auditToken;
     NSString * _bundleID;
     struct __SecTask { } * _lazy_secTaskLock_secTask;
+    bool  _resolvedBundleID;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _secTaskLock;
 }
 
-@property (nonatomic, copy) NSString *bundleID;
+@property (nonatomic, readonly, copy) NSString *bundleID;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) unsigned int euid;
 @property (readonly) unsigned long long hash;
+@property (getter=isInvalid, nonatomic, readonly) bool invalid;
 @property (nonatomic, readonly) int pid;
 @property (nonatomic, readonly) struct { unsigned int x1[8]; } realToken;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) long long versionedPID;
 
 + (bool)supportsSecureCoding;
 + (id)tokenForCurrentProcess;
@@ -31,26 +35,24 @@
 + (id)tokenFromXPCMessage:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_accessSecTask:(id /* block */)arg1;
-- (id)_bundleIDGeneratingIfNeeded:(bool)arg1;
-- (id)_dataWithValue:(id)arg1;
-- (id)_valueFromData:(id)arg1 ofType:(const char *)arg2;
 - (id)bundleID;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
+- (unsigned int)euid;
 - (bool)hasEntitlement:(id)arg1;
+- (bool)hasSameProcessAsAuditToken:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithAuditToken:(struct { unsigned int x1[8]; })arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithXPCDictionary:(id)arg1;
-- (id)initWithXPCMessage:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (bool)isInvalid;
 - (int)pid;
 - (struct { unsigned int x1[8]; })realToken;
-- (void)setBundleID:(id)arg1;
 - (id)valueForEntitlement:(id)arg1;
+- (long long)versionedPID;
 
 @end

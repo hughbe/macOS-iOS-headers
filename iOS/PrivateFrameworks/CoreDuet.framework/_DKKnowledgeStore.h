@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
  */
 
-@interface _DKKnowledgeStore : NSObject <_DKKnowledgeDeleting, _DKKnowledgeQuerying, _DKKnowledgeSaving> {
+@interface _DKKnowledgeStore : NSObject <_DKKnowledgeDeleting, _DKKnowledgeEventStreamDeleting, _DKKnowledgeQuerying, _DKKnowledgeSaving, _DKKnowledgeSynchronizing> {
     NSObject<OS_dispatch_queue> * _defaultQueue;
     NSObject<_DKKnowledgeQuerying><_DKKnowledgeSaving><_DKKnowledgeDeleting><_DKKnowledgeEventStreamDeleting> * _knowledgeStoreHandle;
     _DKPrivacyPolicyEnforcer * _privacyEnforcer;
@@ -10,13 +10,6 @@
     _DKRateLimitPolicyEnforcer * _rateLimitEnforcer;
 }
 
-@property (retain) NSObject<OS_dispatch_queue> *defaultQueue;
-@property (nonatomic, retain) NSObject<_DKKnowledgeQuerying><_DKKnowledgeSaving><_DKKnowledgeDeleting><_DKKnowledgeEventStreamDeleting> *knowledgeStoreHandle;
-@property (readonly) _DKPrivacyPolicyEnforcer *privacyEnforcer;
-@property (nonatomic, retain) _DKQueryDispatcher *queryDispatcher;
-@property (readonly) _DKRateLimitPolicyEnforcer *rateLimitEnforcer;
-
-+ (id)_knowledgeStoreWithStoreDirectory:(id)arg1 readOnly:(bool)arg2;
 + (id)knowledgeStore;
 + (id)knowledgeStoreWithDirectReadOnlyAccess;
 + (id)knowledgeStoreWithDirectReadOnlyAccessWithXPCStore:(id)arg1 storeDirectory:(id)arg2;
@@ -26,8 +19,6 @@
 + (id)userKnowledgeStoreWithDirectReadWriteAccess;
 
 - (void).cxx_destruct;
-- (id)_sanitizeObjectsBeforeSaving:(id)arg1;
-- (id)defaultQueue;
 - (unsigned long long)deleteAllEventsInEventStream:(id)arg1 error:(id*)arg2;
 - (void)deleteAllEventsInEventStream:(id)arg1 responseQueue:(id)arg2 withCompletion:(id /* block */)arg3;
 - (unsigned long long)deleteAllEventsMatchingPredicate:(id)arg1 error:(id*)arg2;
@@ -41,16 +32,8 @@
 - (void)executeQuery:(id)arg1 responseQueue:(id)arg2 withCompletion:(id /* block */)arg3;
 - (id)init;
 - (id)initWithKnowledgeStoreHandle:(id)arg1 readOnly:(bool)arg2;
-- (id)knowledgeStoreHandle;
-- (id)knowledgeSynchronizingHandleWithError:(id*)arg1;
-- (id)privacyEnforcer;
-- (id)queryDispatcher;
-- (id)rateLimitEnforcer;
 - (bool)saveObjects:(id)arg1 error:(id*)arg2;
 - (void)saveObjects:(id)arg1 responseQueue:(id)arg2 withCompletion:(id /* block */)arg3;
-- (void)setDefaultQueue:(id)arg1;
-- (void)setKnowledgeStoreHandle:(id)arg1;
-- (void)setQueryDispatcher:(id)arg1;
 - (id)sourceDeviceIdentityFromObject:(id)arg1 error:(id*)arg2;
 - (id)sourceDeviceIdentityWithError:(id*)arg1;
 - (bool)synchronizeWithError:(id*)arg1;

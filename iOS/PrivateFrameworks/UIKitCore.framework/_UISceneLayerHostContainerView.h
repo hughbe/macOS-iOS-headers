@@ -23,6 +23,7 @@
 
 - (void).cxx_destruct;
 - (void)_adjustHostViewFrameAlignment:(id)arg1;
+- (bool)_canShowKeyboardLayer;
 - (id)_createHostViewForLayer:(id)arg1;
 - (id)_filteredLayersToPresent;
 - (id)_hitTest:(struct CGPoint { double x1; double x2; })arg1 withEvent:(id)arg2 windowServerHitTestWindow:(id)arg3;
@@ -51,7 +52,7 @@
 - (void)pushDataSource:(id)arg1;
 - (void)refreshDataSource:(id)arg1;
 - (id)scene;
-- (void)sceneLayerManager:(id)arg1 didRepositionLayer:(id)arg2 fromIndex:(unsigned long long)arg3 toIndex:(unsigned long long)arg4;
+- (void)sceneLayerManagerDidUpdateLayers:(id)arg1;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
 - (void)updateForGeometrySettingsChanges:(id)arg1;

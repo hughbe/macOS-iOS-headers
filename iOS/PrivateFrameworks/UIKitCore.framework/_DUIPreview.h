@@ -33,6 +33,7 @@
     double  _originalRotation;
     UIBezierPath * _outline;
     long long  _previewMode;
+    UIBezierPath * _shadowPath;
     struct CGSize { 
         double width; 
         double height; 
@@ -51,6 +52,7 @@
 @property (nonatomic) unsigned long long coordinateSpaceSourceLayerRenderID;
 @property (nonatomic, readonly) struct CGPoint { double x1; double x2; } croppedScaledAnchorPoint;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } croppedScaledSize;
+@property (nonatomic, readonly) UIBezierPath *effectiveShadowPath;
 @property (nonatomic) bool fadesHorizontally;
 @property (nonatomic) bool fadesVertically;
 @property (nonatomic) bool hidesSourceView;
@@ -66,6 +68,7 @@
 @property (nonatomic) long long previewMode;
 @property (nonatomic, readonly) double scaleFactor;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } scaledSize;
+@property (nonatomic, copy) UIBezierPath *shadowPath;
 @property (nonatomic, readonly) double stackAlpha;
 @property (nonatomic) bool textMode;
 @property (nonatomic, readonly) double topAlpha;
@@ -92,6 +95,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (struct CGPoint { double x1; double x2; })croppedScaledAnchorPoint;
 - (struct CGSize { double x1; double x2; })croppedScaledSize;
+- (id)effectiveShadowPath;
 - (void)encodeWithCoder:(id)arg1;
 - (bool)fadesHorizontally;
 - (bool)fadesVertically;
@@ -127,8 +131,10 @@
 - (void)setOriginalRotation:(double)arg1;
 - (void)setOutline:(id)arg1;
 - (void)setPreviewMode:(long long)arg1;
+- (void)setShadowPath:(id)arg1;
 - (void)setTextMode:(bool)arg1;
 - (void)setWantsSuppressedMask:(bool)arg1;
+- (id)shadowPath;
 - (double)stackAlpha;
 - (bool)textMode;
 - (double)topAlpha;

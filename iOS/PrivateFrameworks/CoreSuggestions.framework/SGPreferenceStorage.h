@@ -5,7 +5,9 @@
 @interface SGPreferenceStorage : NSObject
 
 + (bool)allowAgeBasedPruning;
++ (bool)allowAnyDomainForMarkup;
 + (bool)allowGeocode;
++ (bool)allowUnverifiedSourceForMarkup;
 + (bool)alwaysShowCancelledEvents;
 + (id)cloudKitPersistedState;
 + (float)contactSharingNegativeSamplingRate;
@@ -14,7 +16,11 @@
 + (bool)detectContacts;
 + (bool)detectNLEvents;
 + (bool)detectReminders;
++ (bool)detectRemindersInMail;
 + (bool)detectStructuredEvents;
++ (bool)detectStructuredEventsML;
++ (double)harvestBudgetCPUTimeSeconds;
++ (long long)harvestBudgetNumberOfOperations;
 + (long long)hashedSessionsLogging;
 + (bool)hidePastEventsForTests;
 + (long long)messagesToProcessImmediately;
@@ -25,8 +31,10 @@
 + (void)resetAllPreferences;
 + (void)resumeNotificationQueue;
 + (void)setAllowAgeBasedPruning:(bool)arg1;
++ (void)setAllowAnyDomainForMarkup:(bool)arg1;
 + (void)setAllowGeocode:(bool)arg1;
 + (void)setAllowGeocodeForTests:(bool)arg1;
++ (void)setAllowUnverifiedSourceForMarkup:(bool)arg1;
 + (void)setAlwaysShowCancelledEvents:(bool)arg1;
 + (void)setCloudKitPersistedState:(id)arg1;
 + (void)setContactSharingNegativeSamplingRate:(float)arg1;
@@ -34,9 +42,13 @@
 + (void)setDetectContacts:(bool)arg1;
 + (void)setDetectNLEvents:(bool)arg1;
 + (void)setDetectReminders:(bool)arg1;
++ (void)setDetectRemindersInMail:(bool)arg1;
 + (void)setDetectStructuredEvents:(bool)arg1;
++ (void)setDetectStructuredEventsML:(bool)arg1;
 + (void)setFirstPartyCalendarAppIsInstalled:(bool)arg1;
 + (void)setFirstPartyMailAppIsInstalled:(bool)arg1;
++ (void)setHarvestBudgetCPUTimeSeconds:(double)arg1;
++ (void)setHarvestBudgetNumberOfOperations:(long long)arg1;
 + (void)setHashedSessionsLogging:(int)arg1;
 + (void)setHidePastEventsForTests:(bool)arg1;
 + (void)setMessagesToProcessImmediately:(long long)arg1;
@@ -46,12 +58,14 @@
 + (void)setOnlyShowSignificantPseudoContacts:(bool)arg1;
 + (void)setOnlyShowSignificantPseudoContactsForTests:(bool)arg1;
 + (void)setRemindersDetectionEnabledForTests:(bool)arg1;
++ (void)setRemindersDetectionInMailEnabledForTests:(bool)arg1;
 + (void)setShowCancelledEventsForTests:(bool)arg1;
 + (void)setShowContactsFoundInMail:(bool)arg1;
 + (void)setShowEventsFoundInMail:(bool)arg1;
 + (void)setShowOperatingSystemVersionInSnippets:(bool)arg1;
 + (void)setShowPastEvents:(bool)arg1;
 + (void)setStructuredEventsDetectionEnabledForTests:(bool)arg1;
++ (void)setStructuredEventsMLDetectionEnabledForTests:(bool)arg1;
 + (void)setSyncHistoryToCloud:(bool)arg1;
 + (void)setSyncHistoryToCloudForTests:(bool)arg1;
 + (void)setUseMLModelForContactSharing:(bool)arg1;
@@ -59,6 +73,7 @@
 + (void)setUseMLModelForSelfId:(bool)arg1;
 + (void)setUseMLModelForSelfIdForTests:(bool)arg1;
 + (void)setUseManateeSaltForHistory:(bool)arg1;
++ (void)setUserAccountsPersistedState:(id)arg1;
 + (bool)shouldHarvestEvents;
 + (bool)showContactsFoundInMail;
 + (bool)showEventsFoundInMail;
@@ -75,5 +90,6 @@
 + (bool)useMLModelForContacts;
 + (bool)useMLModelForSelfId;
 + (bool)useManateeSaltForHistory;
++ (id)userAccountsPersistedState;
 
 @end

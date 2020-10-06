@@ -12,6 +12,8 @@
 @property (nonatomic) bool hasTime;
 @property (nonatomic) double time;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -25,5 +27,9 @@
 - (void)setTime:(double)arg1;
 - (double)time;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
 
 @end

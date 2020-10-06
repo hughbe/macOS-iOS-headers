@@ -12,6 +12,8 @@
 @property (nonatomic, retain) CKDPIdentifier *ownerIdentifier;
 @property (nonatomic, retain) CKDPIdentifier *value;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
 - (void).cxx_destruct;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -28,5 +30,9 @@
 - (void)setValue:(id)arg1;
 - (id)value;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
 
 @end

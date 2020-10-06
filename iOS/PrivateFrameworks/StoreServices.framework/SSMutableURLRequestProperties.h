@@ -43,6 +43,8 @@
 @property double timeoutInterval;
 @property (copy) NSArray *userAgentComponents;
 
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)setAdditionalMetrics:(id)arg1;
 - (void)setAllowedRetryCount:(long long)arg1;
@@ -85,5 +87,10 @@
 - (void)setUserAgentComponents:(id)arg1;
 - (void)setValue:(id)arg1 forHTTPHeaderField:(id)arg2;
 - (void)setValue:(id)arg1 forRequestParameter:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
+
++ (id)newForRadioRequestURL:(id)arg1;
++ (id)newForRadioRequestURL:(id)arg1 accountUniqueIdentifier:(id)arg2;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@interface TIDocumentState : NSObject <NSSecureCoding> {
+@interface TIDocumentState : NSObject <NSCopying, NSSecureCoding> {
     NSString * _contextAfterInput;
     NSString * _contextBeforeInput;
     NSString * _markedText;
@@ -36,6 +36,7 @@
 - (void).cxx_destruct;
 - (id)contextAfterInput;
 - (id)contextBeforeInput;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)deletingBackwardsWillRemoveText;
 - (id)description;
 - (bool)documentIsEmpty;
@@ -75,6 +76,7 @@
 - (id)_contextBeforePosition:(id)arg1 inDocument:(id)arg2 toBoundary:(long long)arg3;
 - (id)_positionFromPosition:(id)arg1 toPreviousWordBoundaryInDocument:(id)arg2 tokenAccumulator:(id /* block */)arg3;
 - (id)_positionFromPosition:(id)arg1 toPreviousWordStartInDocument:(id)arg2 tokenAccumulator:(id /* block */)arg3;
+- (struct _NSRange { unsigned long long x1; unsigned long long x2; })_selectedTextRange;
 - (id)copyTextInRange:(id)arg1 fromDocument:(id)arg2;
 - (id)fullString;
 - (id)initWithDocument:(id)arg1;

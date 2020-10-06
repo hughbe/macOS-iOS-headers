@@ -5,6 +5,8 @@
 
 @required
 
+- (bool)allowCandidateGridExpanding;
+- (long long)alternativeTextAlignment;
 - (UIColor *)alternativeTextColor;
 - (UIFont *)alternativeTextFont;
 - (UIFont *)annotationTextFont;
@@ -55,6 +57,7 @@
 - (UIImage *)rightEdgeSeparatorImage;
 - (double)rowHeight;
 - (bool)scrollDisabled;
+- (bool)showExtraLineBeforeFirstRow;
 - (bool)showOneMoreCandidate;
 - (bool)showsIndex;
 - (double)singleSlottedCellMargin;

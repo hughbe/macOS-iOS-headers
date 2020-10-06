@@ -4,6 +4,7 @@
 
 @interface UIMutableApplicationSceneSettings : FBSMutableSceneSettings <UIApplicationSceneSettings>
 
+@property (nonatomic) long long accessibilityContrast;
 @property (nonatomic) unsigned long long artworkSubtype;
 @property (nonatomic) bool canShowAlerts;
 @property (nonatomic, retain) BSCornerRadiusConfiguration *cornerRadiusConfiguration;
@@ -20,6 +21,7 @@
 @property (nonatomic) bool idleModeEnabled;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } peripheryInsets;
 @property (nonatomic, retain) NSString *persistenceIdentifier;
+@property (nonatomic) long long pointerLockStatus;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } safeAreaInsetsLandscapeLeft;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } safeAreaInsetsLandscapeRight;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } safeAreaInsetsPortrait;
@@ -35,6 +37,7 @@
 @property (nonatomic) bool underLock;
 @property (nonatomic) long long userInterfaceStyle;
 
+- (long long)accessibilityContrast;
 - (unsigned long long)artworkSubtype;
 - (bool)canShowAlerts;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -52,11 +55,13 @@
 - (id)keyDescriptionForSetting:(unsigned long long)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })peripheryInsets;
 - (id)persistenceIdentifier;
+- (long long)pointerLockStatus;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsLandscapeLeft;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsLandscapeRight;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsPortrait;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsPortraitUpsideDown;
 - (unsigned long long)scenePresenterRenderIdentifierForSnapshotting;
+- (void)setAccessibilityContrast:(long long)arg1;
 - (void)setArtworkSubtype:(unsigned long long)arg1;
 - (void)setCanShowAlerts:(bool)arg1;
 - (void)setCornerRadiusConfiguration:(id)arg1;
@@ -71,6 +76,7 @@
 - (void)setIdleModeEnabled:(bool)arg1;
 - (void)setPeripheryInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setPersistenceIdentifier:(id)arg1;
+- (void)setPointerLockStatus:(long long)arg1;
 - (void)setSafeAreaInsetsLandscapeLeft:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setSafeAreaInsetsLandscapeRight:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setSafeAreaInsetsPortrait:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;

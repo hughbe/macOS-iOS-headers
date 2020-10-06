@@ -7,6 +7,7 @@
     int  _appleApp;
     int  _appleHost;
     unsigned long long  _bestRTT;
+    NSString * _bundleID;
     unsigned long long  _bytesDuplicate;
     unsigned long long  _bytesIn;
     unsigned long long  _bytesOut;
@@ -22,6 +23,9 @@
     bool  _customProxyConfigured;
     unsigned long long  _dataStallCount;
     AWDNWDeviceReport * _deviceReport;
+    int  _dnsProtocol;
+    int  _dnsProvider;
+    NSString * _effectiveBundleID;
     int  _failureReason;
     bool  _fallbackEligible;
     int  _firstAddressFamily;
@@ -69,10 +73,13 @@
         unsigned int connectedAddressFamily : 1; 
         unsigned int connectedInterfaceType : 1; 
         unsigned int connectionMode : 1; 
+        unsigned int dnsProtocol : 1; 
+        unsigned int dnsProvider : 1; 
         unsigned int failureReason : 1; 
         unsigned int firstAddressFamily : 1; 
         unsigned int stackLevel : 1; 
         unsigned int tlsVersion : 1; 
+        unsigned int transportProtocol : 1; 
         unsigned int usedProxyType : 1; 
         unsigned int customProxyConfigured : 1; 
         unsigned int fallbackEligible : 1; 
@@ -142,6 +149,7 @@
     int  _tlsVersion;
     bool  _tlsVersionTimeout;
     unsigned long long  _trafficClass;
+    int  _transportProtocol;
     bool  _triggeredPath;
     bool  _usedFallback;
     int  _usedProxyType;
@@ -152,6 +160,7 @@
 @property (nonatomic) int appleApp;
 @property (nonatomic) int appleHost;
 @property (nonatomic) unsigned long long bestRTT;
+@property (nonatomic, retain) NSString *bundleID;
 @property (nonatomic) unsigned long long bytesDuplicate;
 @property (nonatomic) unsigned long long bytesIn;
 @property (nonatomic) unsigned long long bytesOut;
@@ -167,6 +176,9 @@
 @property (nonatomic) bool customProxyConfigured;
 @property (nonatomic) unsigned long long dataStallCount;
 @property (nonatomic, retain) AWDNWDeviceReport *deviceReport;
+@property (nonatomic) int dnsProtocol;
+@property (nonatomic) int dnsProvider;
+@property (nonatomic, retain) NSString *effectiveBundleID;
 @property (nonatomic) int failureReason;
 @property (nonatomic) bool fallbackEligible;
 @property (nonatomic) int firstAddressFamily;
@@ -176,6 +188,7 @@
 @property (nonatomic) bool hasAppleApp;
 @property (nonatomic) bool hasAppleHost;
 @property (nonatomic) bool hasBestRTT;
+@property (nonatomic, readonly) bool hasBundleID;
 @property (nonatomic) bool hasBytesDuplicate;
 @property (nonatomic) bool hasBytesIn;
 @property (nonatomic) bool hasBytesOut;
@@ -191,6 +204,9 @@
 @property (nonatomic) bool hasCustomProxyConfigured;
 @property (nonatomic) bool hasDataStallCount;
 @property (nonatomic, readonly) bool hasDeviceReport;
+@property (nonatomic) bool hasDnsProtocol;
+@property (nonatomic) bool hasDnsProvider;
+@property (nonatomic, readonly) bool hasEffectiveBundleID;
 @property (nonatomic) bool hasFailureReason;
 @property (nonatomic) bool hasFallbackEligible;
 @property (nonatomic) bool hasFirstAddressFamily;
@@ -241,6 +257,7 @@
 @property (nonatomic) bool hasTlsVersion;
 @property (nonatomic) bool hasTlsVersionTimeout;
 @property (nonatomic) bool hasTrafficClass;
+@property (nonatomic) bool hasTransportProtocol;
 @property (nonatomic) bool hasTriggeredPath;
 @property (nonatomic) bool hasUsedFallback;
 @property (nonatomic) bool hasUsedProxyType;
@@ -289,6 +306,7 @@
 @property (nonatomic) int tlsVersion;
 @property (nonatomic) bool tlsVersionTimeout;
 @property (nonatomic) unsigned long long trafficClass;
+@property (nonatomic) int transportProtocol;
 @property (nonatomic) bool triggeredPath;
 @property (nonatomic) bool usedFallback;
 @property (nonatomic) int usedProxyType;
@@ -301,10 +319,13 @@
 - (int)StringAsConnectedAddressFamily:(id)arg1;
 - (int)StringAsConnectedInterfaceType:(id)arg1;
 - (int)StringAsConnectionMode:(id)arg1;
+- (int)StringAsDnsProtocol:(id)arg1;
+- (int)StringAsDnsProvider:(id)arg1;
 - (int)StringAsFailureReason:(id)arg1;
 - (int)StringAsFirstAddressFamily:(id)arg1;
 - (int)StringAsStackLevel:(id)arg1;
 - (int)StringAsTlsVersion:(id)arg1;
+- (int)StringAsTransportProtocol:(id)arg1;
 - (int)StringAsUsedProxyType:(id)arg1;
 - (id)activities;
 - (id)activitiesAtIndex:(unsigned long long)arg1;
@@ -315,6 +336,7 @@
 - (int)appleHost;
 - (id)appleHostAsString:(int)arg1;
 - (unsigned long long)bestRTT;
+- (id)bundleID;
 - (unsigned long long)bytesDuplicate;
 - (unsigned long long)bytesIn;
 - (unsigned long long)bytesOut;
@@ -339,6 +361,11 @@
 - (id)description;
 - (id)deviceReport;
 - (id)dictionaryRepresentation;
+- (int)dnsProtocol;
+- (id)dnsProtocolAsString:(int)arg1;
+- (int)dnsProvider;
+- (id)dnsProviderAsString:(int)arg1;
+- (id)effectiveBundleID;
 - (int)failureReason;
 - (id)failureReasonAsString:(int)arg1;
 - (bool)fallbackEligible;
@@ -350,6 +377,7 @@
 - (bool)hasAppleApp;
 - (bool)hasAppleHost;
 - (bool)hasBestRTT;
+- (bool)hasBundleID;
 - (bool)hasBytesDuplicate;
 - (bool)hasBytesIn;
 - (bool)hasBytesOut;
@@ -365,6 +393,9 @@
 - (bool)hasCustomProxyConfigured;
 - (bool)hasDataStallCount;
 - (bool)hasDeviceReport;
+- (bool)hasDnsProtocol;
+- (bool)hasDnsProvider;
+- (bool)hasEffectiveBundleID;
 - (bool)hasFailureReason;
 - (bool)hasFallbackEligible;
 - (bool)hasFirstAddressFamily;
@@ -415,6 +446,7 @@
 - (bool)hasTlsVersion;
 - (bool)hasTlsVersionTimeout;
 - (bool)hasTrafficClass;
+- (bool)hasTransportProtocol;
 - (bool)hasTriggeredPath;
 - (bool)hasUsedFallback;
 - (bool)hasUsedProxyType;
@@ -456,6 +488,7 @@
 - (void)setAppleApp:(int)arg1;
 - (void)setAppleHost:(int)arg1;
 - (void)setBestRTT:(unsigned long long)arg1;
+- (void)setBundleID:(id)arg1;
 - (void)setBytesDuplicate:(unsigned long long)arg1;
 - (void)setBytesIn:(unsigned long long)arg1;
 - (void)setBytesOut:(unsigned long long)arg1;
@@ -471,6 +504,9 @@
 - (void)setCustomProxyConfigured:(bool)arg1;
 - (void)setDataStallCount:(unsigned long long)arg1;
 - (void)setDeviceReport:(id)arg1;
+- (void)setDnsProtocol:(int)arg1;
+- (void)setDnsProvider:(int)arg1;
+- (void)setEffectiveBundleID:(id)arg1;
 - (void)setFailureReason:(int)arg1;
 - (void)setFallbackEligible:(bool)arg1;
 - (void)setFirstAddressFamily:(int)arg1;
@@ -493,6 +529,8 @@
 - (void)setHasCurrentRTT:(bool)arg1;
 - (void)setHasCustomProxyConfigured:(bool)arg1;
 - (void)setHasDataStallCount:(bool)arg1;
+- (void)setHasDnsProtocol:(bool)arg1;
+- (void)setHasDnsProvider:(bool)arg1;
 - (void)setHasFailureReason:(bool)arg1;
 - (void)setHasFallbackEligible:(bool)arg1;
 - (void)setHasFirstAddressFamily:(bool)arg1;
@@ -541,6 +579,7 @@
 - (void)setHasTlsVersion:(bool)arg1;
 - (void)setHasTlsVersionTimeout:(bool)arg1;
 - (void)setHasTrafficClass:(bool)arg1;
+- (void)setHasTransportProtocol:(bool)arg1;
 - (void)setHasTriggeredPath:(bool)arg1;
 - (void)setHasUsedFallback:(bool)arg1;
 - (void)setHasUsedProxyType:(bool)arg1;
@@ -589,6 +628,7 @@
 - (void)setTlsVersion:(int)arg1;
 - (void)setTlsVersionTimeout:(bool)arg1;
 - (void)setTrafficClass:(unsigned long long)arg1;
+- (void)setTransportProtocol:(int)arg1;
 - (void)setTriggeredPath:(bool)arg1;
 - (void)setUsedFallback:(bool)arg1;
 - (void)setUsedProxyType:(int)arg1;
@@ -610,6 +650,8 @@
 - (id)tlsVersionAsString:(int)arg1;
 - (bool)tlsVersionTimeout;
 - (unsigned long long)trafficClass;
+- (int)transportProtocol;
+- (id)transportProtocolAsString:(int)arg1;
 - (bool)triggeredPath;
 - (bool)usedFallback;
 - (int)usedProxyType;

@@ -8,17 +8,19 @@
     NSArray * _contacts;
     bool  _includeWhitelistedContactsOnly;
     bool  _markItemsAsPersisted;
+    bool  _markItemsAsProposed;
     bool  _sortItemsByName;
 }
 
-@property (nonatomic, readonly) long long contactFormatterStyle;
-@property (nonatomic, readonly) CNUICoreContactTypeAssessor *contactTypeAssessor;
-@property (nonatomic, readonly) NSArray *contacts;
-@property (nonatomic, readonly) bool includeWhitelistedContactsOnly;
-@property (nonatomic, readonly) bool markItemsAsPersisted;
-@property (nonatomic, readonly) bool sortItemsByName;
+@property (nonatomic) long long contactFormatterStyle;
+@property (nonatomic, retain) CNUICoreContactTypeAssessor *contactTypeAssessor;
+@property (nonatomic, retain) NSArray *contacts;
+@property (nonatomic) bool includeWhitelistedContactsOnly;
+@property (nonatomic) bool markItemsAsPersisted;
+@property (nonatomic) bool markItemsAsProposed;
+@property (nonatomic) bool sortItemsByName;
 
-+ (id)familyMemberContactItemFromContact:(id)arg1 contactFormatterStyle:(long long)arg2 contactTypeAssessor:(id)arg3 itemHasBeenPersisted:(bool)arg4;
++ (id)familyMemberContactItemFromContact:(id)arg1 contactFormatterStyle:(long long)arg2 contactTypeAssessor:(id)arg3 itemHasBeenPersisted:(bool)arg4 itemIsProposed:(bool)arg5;
 + (id)firstDisplayableEmailAddressForContact:(id)arg1;
 + (id)firstDisplayablePhoneNumberForContact:(id)arg1;
 + (id)formattedNameOfContact:(id)arg1 contactFormatterStyle:(long long)arg2;
@@ -34,9 +36,15 @@
 - (id)contacts;
 - (bool)includeWhitelistedContactsOnly;
 - (id)init;
-- (id)initWithContacts:(id)arg1 contactTypeAssessor:(id)arg2 contactFormatterStyle:(long long)arg3 includeWhitelistedContactsOnly:(bool)arg4 sortItemsByName:(bool)arg5;
-- (id)initWithContacts:(id)arg1 contactTypeAssessor:(id)arg2 contactFormatterStyle:(long long)arg3 includeWhitelistedContactsOnly:(bool)arg4 sortItemsByName:(bool)arg5 markItemsAsPersisted:(bool)arg6;
 - (bool)markItemsAsPersisted;
+- (bool)markItemsAsProposed;
+- (void)setContactFormatterStyle:(long long)arg1;
+- (void)setContactTypeAssessor:(id)arg1;
+- (void)setContacts:(id)arg1;
+- (void)setIncludeWhitelistedContactsOnly:(bool)arg1;
+- (void)setMarkItemsAsPersisted:(bool)arg1;
+- (void)setMarkItemsAsProposed:(bool)arg1;
+- (void)setSortItemsByName:(bool)arg1;
 - (bool)sortItemsByName;
 - (id)sortedFamilyMemberContactItems:(id)arg1;
 

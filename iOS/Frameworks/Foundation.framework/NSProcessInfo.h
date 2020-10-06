@@ -12,11 +12,15 @@
 
 @property (readonly) unsigned long long activeProcessorCount;
 @property (readonly, copy) NSArray *arguments;
+@property (nonatomic, readonly) double ask_launchTime;
 @property bool automaticTerminationSupportEnabled;
+@property (getter=crk_isBeingTested, nonatomic, readonly) bool crk_beingTested;
 @property (readonly, copy) NSDictionary *environment;
 @property (readonly, copy) NSString *fullUserName;
 @property (readonly, copy) NSString *globallyUniqueString;
 @property (readonly, copy) NSString *hostName;
+@property (getter=isiOSAppOnMac, readonly) bool iOSAppOnMac;
+@property (nonatomic, readonly) bool ic_isCloudDaemon;
 @property (getter=isMacCatalystApp, readonly) bool macCatalystApp;
 @property (readonly) struct { long long x1; long long x2; long long x3; } operatingSystemVersion;
 @property (readonly, copy) NSString *operatingSystemVersionString;
@@ -24,6 +28,10 @@
 @property (readonly) int processIdentifier;
 @property (copy) NSString *processName;
 @property (readonly) unsigned long long processorCount;
+@property (getter=isRunningTests, nonatomic, readonly) bool runningTests;
+@property (nonatomic, readonly, copy) NSString *safari_deviceUDID;
+@property (nonatomic, readonly) bool safari_systemSupportsBookmarkDAVMoves;
+@property (nonatomic, readonly) bool safari_systemSupportsBroadway;
 @property (readonly) double systemUptime;
 @property (readonly, copy) NSString *userName;
 
@@ -57,6 +65,9 @@
 - (bool)isMacCatalystApp;
 - (bool)isOperatingSystemAtLeastVersion:(struct { long long x1; long long x2; long long x3; })arg1;
 - (bool)isTranslated;
+- (bool)isiOSAppOnMac;
+- (struct { long long x1; long long x2; long long x3; })macCatalystVersion;
+- (bool)macCatalystVersionIsAtLeastVersion:(struct { long long x1; long long x2; long long x3; })arg1;
 - (unsigned long long)operatingSystem;
 - (id)operatingSystemName;
 - (struct { long long x1; long long x2; long long x3; })operatingSystemVersion;
@@ -81,9 +92,24 @@
 - (void)_disableAutomaticTerminationWithoutSettingRelaunchable:(id)arg1;
 - (void)_enableAutomaticTerminationWithoutSettingRelaunchable:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/AdPlatformsCommon.framework/AdPlatformsCommon
+
++ (bool)isInternalInstall;
+
+- (bool)isRunningTests;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreKit.framework/AppStoreKit
+
+- (double)ask_launchTime;
+
 // Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
 
 - (id)bs_jobLabel;
+
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
+- (bool)crk_hasEntitlement:(id)arg1 withValue:(id)arg2;
+- (bool)crk_isBeingTested;
 
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
@@ -94,8 +120,27 @@
 
 - (struct { unsigned int x1[8]; })if_auditToken;
 
+// Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
+
+- (id)mf_thermalStateObservable;
+
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 - (bool)_navigation_isNavd;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (id)safari_deviceUDID;
+- (bool)safari_systemSupportsBookmarkDAVMoves;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
+- (id)_safari_operatingSystemVersionStringFromOperatingSystemVersion:(struct { long long x1; long long x2; long long x3; })arg1;
+- (id)safari_operatingSystemVersionString;
+- (bool)safari_systemSupportsBroadway;
+
+// Image: /System/Library/PrivateFrameworks/iTunesCloud.framework/iTunesCloud
+
+- (bool)ic_isCloudDaemon;
 
 @end

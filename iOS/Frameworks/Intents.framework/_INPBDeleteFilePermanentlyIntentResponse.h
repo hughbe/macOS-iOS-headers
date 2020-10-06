@@ -3,7 +3,6 @@
  */
 
 @interface _INPBDeleteFilePermanentlyIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBDeleteFilePermanentlyIntentResponse> {
-    bool  __encodeLegacyGloryData;
     bool  _confirm;
     struct { 
         unsigned int confirm : 1; 
@@ -12,7 +11,6 @@
     bool  _success;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) bool confirm;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -24,8 +22,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (bool)confirm;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

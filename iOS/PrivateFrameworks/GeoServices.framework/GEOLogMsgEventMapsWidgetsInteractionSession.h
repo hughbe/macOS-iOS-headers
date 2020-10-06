@@ -15,15 +15,7 @@
         unsigned int read_mapsDestinationsWidget : 1; 
         unsigned int read_mapsNearbyWidget : 1; 
         unsigned int read_mapsTransitWidget : 1; 
-        unsigned int wrote_mapsDestinationsWidget : 1; 
-        unsigned int wrote_mapsNearbyWidget : 1; 
-        unsigned int wrote_mapsTransitWidget : 1; 
-        unsigned int wrote_duration : 1; 
-        unsigned int wrote_endState : 1; 
-        unsigned int wrote_localDayOfWeek : 1; 
-        unsigned int wrote_localHour : 1; 
-        unsigned int wrote_mapsWidgetType : 1; 
-        unsigned int wrote_lockedMode : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _localDayOfWeek;
     int  _localHour;
@@ -64,9 +56,6 @@
 - (void).cxx_destruct;
 - (int)StringAsEndState:(id)arg1;
 - (int)StringAsMapsWidgetType:(id)arg1;
-- (void)_readMapsDestinationsWidget;
-- (void)_readMapsNearbyWidget;
-- (void)_readMapsTransitWidget;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -86,7 +75,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)localDayOfWeek;
 - (int)localHour;
 - (bool)lockedMode;

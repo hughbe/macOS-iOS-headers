@@ -30,6 +30,7 @@
     }  _tcFlags;
     NSTextLayoutManager * _textLayoutManager;
     UIView<NSTextContainerView> * _textView;
+    bool  _textViewSupportsAdaptiveColor;
 }
 
 @property (nonatomic, copy) NSArray *exclusionPaths;
@@ -42,6 +43,8 @@
 @property (getter=isSimpleRectangularTextContainer, nonatomic, readonly) bool simpleRectangularTextContainer;
 @property (nonatomic) struct CGSize { double x1; double x2; } size;
 @property (nonatomic) bool widthTracksTextView;
+
+// Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
 
 + (void)initialize;
 + (bool)supportsSecureCoding;
@@ -64,6 +67,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithContainerSize:(struct CGSize { double x1; double x2; })arg1;
 - (id)initWithSize:(struct CGSize { double x1; double x2; })arg1;
+- (void)invalidateTextContainerOrigin;
 - (bool)isSimpleRectangularTextContainer;
 - (id)layoutManager;
 - (long long)layoutOrientation;
@@ -71,9 +75,12 @@
 - (double)lineFragmentPadding;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })lineFragmentRectForProposedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 atIndex:(unsigned long long)arg2 writingDirection:(long long)arg3 remainingRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; }*)arg4;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })lineFragmentRectForProposedRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 remainingRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; }*)arg2;
+- (id)markedTextAttributesAtCharacterIndex:(long long)arg1 effectiveRange:(out struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg2;
 - (unsigned long long)maximumNumberOfLines;
 - (double)minimumLineFragmentWidth;
+- (id)renderingColorForDocumentColor:(id)arg1;
 - (void)replaceLayoutManager:(id)arg1;
+- (id)selectedTextAttributes;
 - (void)setAttributesForExtraLineFragment:(id)arg1;
 - (void)setContainerSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)setExclusionPaths:(id)arg1;
@@ -95,5 +102,15 @@
 - (id)textLayoutManager;
 - (id)textView;
 - (bool)widthTracksTextView;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
+- (struct CGSize { double x1; double x2; })akContainerSize;
+- (void)akSetContainerSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)initWithContainerSize:(struct CGSize { double x1; double x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1 textAlignmentInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; }*)arg2 isSingleLine:(bool*)arg3;
 
 @end

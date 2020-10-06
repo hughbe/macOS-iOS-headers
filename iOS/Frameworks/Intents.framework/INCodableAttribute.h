@@ -2,13 +2,16 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INCodableAttribute : NSObject <INCodableCoding, NSCopying, NSSecureCoding> {
+@interface INCodableAttribute : NSObject <INCodableCoding, NSCopying, NSSecureCoding, WFIntentParameterDescription> {
     Class  __relationshipValueTransformerClass;
+    NSMutableDictionary * _arraySizesBySizeClass;
+    bool  _configurable;
     bool  _defaultAttribute;
     NSString * _displayName;
     NSString * _displayNameID;
     NSNumber * _displayPriorityRank;
     NSString * _entityKeypath;
+    bool  _fixedSizeArray;
     INCodableDescription * _internalCodableDescription;
     INCodableAttributeMetadata * _metadata;
     long long  _modifier;
@@ -18,15 +21,19 @@
     INCodableAttributeRelationship * _relationship;
     bool  _supportsDynamicEnumeration;
     bool  _supportsResolution;
+    bool  _supportsSearch;
     NSString * _typeString;
     NSArray * _unsupportedReasons;
+    long long  _windowSize;
 }
 
+@property (nonatomic, readonly) NSString *_attributeDisplayPriorityKey;
+@property (nonatomic, readonly) NSString *_attributeTagKey;
 @property (setter=_setCodableDescription:, nonatomic) INCodableDescription *_codableDescription;
 @property (nonatomic, readonly) Class _relationshipValueTransformerClass;
 @property (setter=_setTypeString:, nonatomic, copy) NSString *_typeString;
 @property (nonatomic, readonly) Class _unsafeObjectClass;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
+@property (getter=isConfigurable, nonatomic) bool configurable;
 @property (readonly, copy) NSString *debugDescription;
 @property (getter=isDefaultAttribute, nonatomic) bool defaultAttribute;
 @property (readonly, copy) NSString *description;
@@ -34,9 +41,9 @@
 @property (nonatomic, copy) NSString *displayNameID;
 @property (nonatomic, copy) NSNumber *displayPriorityRank;
 @property (nonatomic, copy) NSString *entityKeypath;
+@property (getter=isFixedSizeArray, nonatomic) bool fixedSizeArray;
 @property (nonatomic, readonly) SEL getter;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (nonatomic, readonly, copy) NSString *localizedDisplayName;
 @property (nonatomic, retain) INCodableAttributeMetadata *metadata;
 @property (nonatomic) long long modifier;
@@ -49,12 +56,93 @@
 @property (readonly) Class superclass;
 @property (nonatomic) bool supportsDynamicEnumeration;
 @property (nonatomic) bool supportsResolution;
+@property (nonatomic) bool supportsSearch;
 @property (setter=_setUnsupportedReasons:, nonatomic, copy) NSArray *unsupportedReasons;
 @property (nonatomic, readonly) long long valueType;
+@property (nonatomic, readonly) Class wf_contentItemClass;
+@property (nonatomic, readonly) Class wf_facadeClass;
+@property (nonatomic, readonly) bool wf_multipleValues;
+@property (nonatomic, readonly) Class wf_objectClass;
+@property (nonatomic, readonly) Class wf_parameterClass;
+@property (nonatomic, readonly) NSString *wf_slotName;
+@property (nonatomic) long long windowSize;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableDescriptionArraySizeSizeClassKey;
+- (id)__INCodableDescriptionArraySizeSizeKey;
+- (id)__INCodableDescriptionArraySizesKey;
+- (id)__INCodableDescriptionConfigurableKey;
+- (id)__INCodableDescriptionDefaultKey;
+- (id)__INCodableDescriptionDisplayNameIDKey;
+- (id)__INCodableDescriptionDisplayNameKey;
+- (id)__INCodableDescriptionDisplayPriorityKey;
+- (id)__INCodableDescriptionEntityKeypathKey;
+- (id)__INCodableDescriptionEnumTypeKey;
+- (id)__INCodableDescriptionFixedSizeArrayKey;
+- (id)__INCodableDescriptionMetadataKey;
+- (id)__INCodableDescriptionNameKey;
+- (id)__INCodableDescriptionPromptDialogsKey;
+- (id)__INCodableDescriptionRelationshipKey;
+- (id)__INCodableDescriptionSupportsDynamicEnumerationKey;
+- (id)__INCodableDescriptionSupportsMultipleValuesKey;
+- (id)__INCodableDescriptionSupportsResolutionKey;
+- (id)__INCodableDescriptionSupportsSearchKey;
+- (id)__INCodableDescriptionTagKey;
+- (id)__INCodableDescriptionTypeKey;
+- (id)__INCodableDescriptionUnsupportedReasonsKey;
+- (id)__INCodableDescriptionWindowSizeKey;
+- (id)__INIntentResponseCodableDescriptionArraySizeSizeClassKey;
+- (id)__INIntentResponseCodableDescriptionArraySizeSizeKey;
+- (id)__INIntentResponseCodableDescriptionArraySizesKey;
+- (id)__INIntentResponseCodableDescriptionConfigurableKey;
+- (id)__INIntentResponseCodableDescriptionDefaultKey;
+- (id)__INIntentResponseCodableDescriptionDisplayNameIDKey;
+- (id)__INIntentResponseCodableDescriptionDisplayNameKey;
+- (id)__INIntentResponseCodableDescriptionDisplayPriorityKey;
+- (id)__INIntentResponseCodableDescriptionEntityKeypathKey;
+- (id)__INIntentResponseCodableDescriptionEnumTypeKey;
+- (id)__INIntentResponseCodableDescriptionFixedSizeArrayKey;
+- (id)__INIntentResponseCodableDescriptionMetadataKey;
+- (id)__INIntentResponseCodableDescriptionNameKey;
+- (id)__INIntentResponseCodableDescriptionPromptDialogsKey;
+- (id)__INIntentResponseCodableDescriptionRelationshipKey;
+- (id)__INIntentResponseCodableDescriptionSupportsDynamicEnumerationKey;
+- (id)__INIntentResponseCodableDescriptionSupportsMultipleValuesKey;
+- (id)__INIntentResponseCodableDescriptionSupportsResolutionKey;
+- (id)__INIntentResponseCodableDescriptionSupportsSearchKey;
+- (id)__INIntentResponseCodableDescriptionTagKey;
+- (id)__INIntentResponseCodableDescriptionTypeKey;
+- (id)__INIntentResponseCodableDescriptionUnsupportedReasonsKey;
+- (id)__INIntentResponseCodableDescriptionWindowSizeKey;
+- (id)__INTypeCodableDescriptionArraySizeSizeClassKey;
+- (id)__INTypeCodableDescriptionArraySizeSizeKey;
+- (id)__INTypeCodableDescriptionArraySizesKey;
+- (id)__INTypeCodableDescriptionConfigurableKey;
+- (id)__INTypeCodableDescriptionDefaultKey;
+- (id)__INTypeCodableDescriptionDisplayNameIDKey;
+- (id)__INTypeCodableDescriptionDisplayNameKey;
+- (id)__INTypeCodableDescriptionDisplayPriorityKey;
+- (id)__INTypeCodableDescriptionEntityKeypathKey;
+- (id)__INTypeCodableDescriptionEnumTypeKey;
+- (id)__INTypeCodableDescriptionFixedSizeArrayKey;
+- (id)__INTypeCodableDescriptionMetadataKey;
+- (id)__INTypeCodableDescriptionNameKey;
+- (id)__INTypeCodableDescriptionPromptDialogsKey;
+- (id)__INTypeCodableDescriptionRelationshipKey;
+- (id)__INTypeCodableDescriptionSupportsDynamicEnumerationKey;
+- (id)__INTypeCodableDescriptionSupportsMultipleValuesKey;
+- (id)__INTypeCodableDescriptionSupportsResolutionKey;
+- (id)__INTypeCodableDescriptionSupportsSearchKey;
+- (id)__INTypeCodableDescriptionTagKey;
+- (id)__INTypeCodableDescriptionTypeKey;
+- (id)__INTypeCodableDescriptionUnsupportedReasonsKey;
+- (id)__INTypeCodableDescriptionWindowSizeKey;
+- (id)_attributeDisplayPriorityKey;
+- (id)_attributeTagKey;
 - (id)_codableDescription;
 - (Class)_relationshipValueTransformerClass;
 - (void)_setCodableDescription:(id)arg1;
@@ -63,11 +151,10 @@
 - (void)_setUnsupportedReasons:(id)arg1;
 - (id)_typeString;
 - (Class)_unsafeObjectClass;
-- (id)cacheGroup;
+- (long long)arraySizeForSizeClass:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)descriptionAtIndent:(unsigned long long)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (id)displayName;
@@ -79,9 +166,10 @@
 - (unsigned long long)hash;
 - (unsigned long long)indexForUnsupportedReason:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (bool)isConfigurable;
 - (bool)isDefaultAttribute;
 - (bool)isEqual:(id)arg1;
-- (id)keyPrefix;
+- (bool)isFixedSizeArray;
 - (id)localizedDisplayName;
 - (id)localizedDisplayNameWithLocalizer:(id)arg1;
 - (id)metadata;
@@ -92,23 +180,44 @@
 - (id)propertyName;
 - (id)relationship;
 - (Class)resolutionResultClass;
+- (void)setConfigurable:(bool)arg1;
 - (void)setDefaultAttribute:(bool)arg1;
 - (void)setDisplayName:(id)arg1;
 - (void)setDisplayNameID:(id)arg1;
 - (void)setDisplayPriorityRank:(id)arg1;
 - (void)setEntityKeypath:(id)arg1;
+- (void)setFixedSizeArray:(bool)arg1;
 - (void)setMetadata:(id)arg1;
 - (void)setModifier:(long long)arg1;
 - (void)setPropertyName:(id)arg1;
 - (void)setRelationship:(id)arg1;
 - (void)setSupportsDynamicEnumeration:(bool)arg1;
 - (void)setSupportsResolution:(bool)arg1;
+- (void)setSupportsSearch:(bool)arg1;
+- (void)setWindowSize:(long long)arg1;
 - (SEL)setter;
 - (bool)supportsDynamicEnumeration;
 - (bool)supportsResolution;
+- (bool)supportsSearch;
 - (id)unsupportedReasonWithIndex:(unsigned long long)arg1;
 - (id)unsupportedReasons;
 - (void)updateWithDictionary:(id)arg1;
 - (long long)valueType;
+- (long long)windowSize;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (Class)wf_contentItemClass;
+- (id)wf_contentItemForValue:(id)arg1;
+- (Class)wf_facadeClass;
+- (void)wf_getProcessedIntentValueForParameterValue:(id)arg1 parameter:(id)arg2 completionHandler:(id /* block */)arg3;
+- (bool)wf_multipleValues;
+- (Class)wf_objectClass;
+- (id)wf_outputDisplayNameWithLocalizer:(id)arg1;
+- (Class)wf_parameterClass;
+- (id)wf_parameterStateForIntentValue:(id)arg1 parameterDefinition:(id)arg2;
+- (id)wf_processedParameterValueForValue:(id)arg1;
+- (id)wf_slotName;
+- (void)wf_updateParameterDictionary:(id)arg1 parameterClass:(Class)arg2;
 
 @end

@@ -9,7 +9,11 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _clientizationFeatures;
+    unsigned int  _distanceDisplayThreshold;
+    bool  _enableLookInsideActionForVenuePois;
     struct { 
+        unsigned int has_distanceDisplayThreshold : 1; 
+        unsigned int has_enableLookInsideActionForVenuePois : 1; 
         unsigned int has_isDefaultName : 1; 
         unsigned int has_isLookAroundActionAllowed : 1; 
         unsigned int has_isProminentResult : 1; 
@@ -19,15 +23,7 @@
         unsigned int read_alternateSearchableNames : 1; 
         unsigned int read_matchedDisplayNameLanguageCode : 1; 
         unsigned int read_matchedDisplayName : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_clientizationFeatures : 1; 
-        unsigned int wrote_alternateSearchableNames : 1; 
-        unsigned int wrote_matchedDisplayNameLanguageCode : 1; 
-        unsigned int wrote_matchedDisplayName : 1; 
-        unsigned int wrote_isDefaultName : 1; 
-        unsigned int wrote_isLookAroundActionAllowed : 1; 
-        unsigned int wrote_isProminentResult : 1; 
-        unsigned int wrote_shouldSuppressDirectionsAction : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isDefaultName;
     bool  _isLookAroundActionAllowed;
@@ -47,6 +43,10 @@
 @property (nonatomic, retain) NSMutableArray *alternateSearchableNames;
 @property (nonatomic, readonly) int*clientizationFeatures;
 @property (nonatomic, readonly) unsigned long long clientizationFeaturesCount;
+@property (nonatomic) unsigned int distanceDisplayThreshold;
+@property (nonatomic) bool enableLookInsideActionForVenuePois;
+@property (nonatomic) bool hasDistanceDisplayThreshold;
+@property (nonatomic) bool hasEnableLookInsideActionForVenuePois;
 @property (nonatomic) bool hasIsDefaultName;
 @property (nonatomic) bool hasIsLookAroundActionAllowed;
 @property (nonatomic) bool hasIsProminentResult;
@@ -66,12 +66,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsClientizationFeatures:(id)arg1;
-- (void)_addNoFlagsAlternateSearchableName:(id)arg1;
-- (void)_addNoFlagsClientizationFeature:(int)arg1;
-- (void)_readAlternateSearchableNames;
-- (void)_readClientizationFeatures;
-- (void)_readMatchedDisplayName;
-- (void)_readMatchedDisplayNameLanguageCode;
 - (void)addAlternateSearchableName:(id)arg1;
 - (void)addClientizationFeature:(int)arg1;
 - (id)alternateSearchableNameAtIndex:(unsigned long long)arg1;
@@ -89,6 +83,10 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (unsigned int)distanceDisplayThreshold;
+- (bool)enableLookInsideActionForVenuePois;
+- (bool)hasDistanceDisplayThreshold;
+- (bool)hasEnableLookInsideActionForVenuePois;
 - (bool)hasIsDefaultName;
 - (bool)hasIsLookAroundActionAllowed;
 - (bool)hasIsProminentResult;
@@ -98,10 +96,13 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isDefaultName;
 - (bool)isEqual:(id)arg1;
 - (bool)isLookAroundActionAllowed;
 - (bool)isProminentResult;
+- (id)jsonRepresentation;
 - (id)matchedDisplayName;
 - (id)matchedDisplayNameLanguageCode;
 - (void)mergeFrom:(id)arg1;
@@ -109,6 +110,10 @@
 - (bool)readFrom:(id)arg1;
 - (void)setAlternateSearchableNames:(id)arg1;
 - (void)setClientizationFeatures:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setDistanceDisplayThreshold:(unsigned int)arg1;
+- (void)setEnableLookInsideActionForVenuePois:(bool)arg1;
+- (void)setHasDistanceDisplayThreshold:(bool)arg1;
+- (void)setHasEnableLookInsideActionForVenuePois:(bool)arg1;
 - (void)setHasIsDefaultName:(bool)arg1;
 - (void)setHasIsLookAroundActionAllowed:(bool)arg1;
 - (void)setHasIsProminentResult:(bool)arg1;

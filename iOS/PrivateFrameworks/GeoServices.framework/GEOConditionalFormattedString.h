@@ -8,9 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_condition : 1; 
         unsigned int read_formattedString : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_condition : 1; 
-        unsigned int wrote_formattedString : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOFormattedString * _formattedString;
     PBDataReader * _reader;
@@ -37,8 +35,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readCondition;
-- (void)_readFormattedString;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)condition;
 - (void)copyTo:(id)arg1;
@@ -51,7 +47,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

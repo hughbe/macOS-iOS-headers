@@ -3,7 +3,6 @@
  */
 
 @interface _INPBLocalTime : PBCodable <NSCopying, NSSecureCoding, _INPBLocalTime> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int hourOfDay : 1; 
         unsigned int millisOfSecond : 1; 
@@ -16,7 +15,6 @@
     long long  _secondOfMinute;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasHourOfDay;
@@ -32,8 +30,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

@@ -12,7 +12,6 @@
 @property (nonatomic, copy) NSString *passcode;
 @property (nonatomic) unsigned int type;
 
-+ (id)_randomPasscode;
 + (id)standardCredentials;
 
 - (void).cxx_destruct;

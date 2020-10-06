@@ -8,6 +8,7 @@
     NSOperation * _currentOperation;
     FPXDomainContext * _domainContext;
     NSString * _domainID;
+    FPXFetchClientStateOperation * _fetchStateOperation;
     CSSearchableIndex * _index;
     NSString * _indexName;
     bool  _indexing;
@@ -15,8 +16,8 @@
     NSData * _lastIndexState;
     NSOperationQueue * _operationQueue;
     NSString * _providerIdentifier;
-    NSObject<OS_dispatch_queue> * _queue;
     <NSFileProviderEnumerator> * _vendorEnumerator;
+    NSObject<OS_dispatch_workloop> * _workloop;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -26,15 +27,16 @@
 @property (nonatomic, readonly) CSSearchableIndex *index;
 @property (getter=isIndexing, nonatomic) bool indexing;
 @property (nonatomic, readonly) NSData *lastIndexState;
-@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *queue;
 @property (readonly) Class superclass;
 @property (readonly) <NSFileProviderEnumerator> *vendorEnumerator;
+@property (nonatomic, readonly) NSObject<OS_dispatch_workloop> *workloop;
 
 - (void).cxx_destruct;
 - (id)_fetchClientStateIfNeeded;
 - (void)_fetchCurrentIndexingAnchorWithCompletionHandler:(id /* block */)arg1;
 - (void)_indexOneBatchFromAnchor:(id)arg1 toAnchor:(id)arg2 updatedItems:(id)arg3 deletedItems:(id)arg4 completionHandler:(id /* block */)arg5;
 - (void)_indexOneBatchWithCompletionHandler:(id /* block */)arg1;
+- (void)_indexOutOfBandUpdatedItems:(id)arg1 deletedItems:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)_invalidate;
 - (void)dealloc;
 - (void)deleteSearchableItemsWithSpotlightDomainIdentifiers:(id)arg1 completionHandler:(id /* block */)arg2;
@@ -48,16 +50,17 @@
 - (id)index;
 - (void)indexOneBatchFromAnchor:(id)arg1 toAnchor:(id)arg2 updatedItems:(id)arg3 deletedItems:(id)arg4 completionHandler:(id /* block */)arg5;
 - (void)indexOneBatchWithCompletionHandler:(id /* block */)arg1;
+- (void)indexOutOfBandUpdatedItems:(id)arg1 deletedItems:(id)arg2 completionHandler:(id /* block */)arg3;
 - (id)initWithIndexName:(id)arg1 domainID:(id)arg2 context:(id)arg3;
 - (void)invalidate;
 - (void)invalidateAsync;
 - (bool)isIndexing;
 - (id)lastIndexState;
 - (void)learnNewIndexState:(id)arg1;
-- (id)queue;
 - (void)searchableIndex:(id)arg1 reindexAllSearchableItemsWithAcknowledgementHandler:(id /* block */)arg2;
 - (void)searchableIndex:(id)arg1 reindexSearchableItemsWithIdentifiers:(id)arg2 acknowledgementHandler:(id /* block */)arg3;
 - (void)setIndexing:(bool)arg1;
 - (id)vendorEnumerator;
+- (id)workloop;
 
 @end

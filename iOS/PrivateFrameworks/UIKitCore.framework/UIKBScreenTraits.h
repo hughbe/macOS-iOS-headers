@@ -13,6 +13,9 @@
             double height; 
         } size; 
     }  _bounds;
+    long long  _idiomToEmulate;
+    bool  _isEmulatingIdiom;
+    bool  _isInPopover;
     bool  _isKeyboardMinorEdgeWidth;
     double  _keyboardBarHeight;
     double  _keyboardWidth;
@@ -25,6 +28,7 @@
 
 @property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } bounds;
 @property (nonatomic, readonly) long long idiom;
+@property (nonatomic, readonly) bool isInPopover;
 @property (nonatomic, readonly) bool isKeyboardMinorEdgeWidth;
 @property (nonatomic) double keyboardBarHeight;
 @property (nonatomic) double keyboardWidth;
@@ -35,6 +39,9 @@
 @property (nonatomic, readonly) bool touchpadInput;
 
 + (id)fullScreenTraitsWithScreen:(id)arg1 orientation:(long long)arg2;
++ (void)setMockIdiom:(long long)arg1;
++ (id)traitsForInputModeWithScreen:(id)arg1;
++ (id)traitsForPopoverEmulatingWidth:(double)arg1 minorEdge:(bool)arg2 orientation:(long long)arg3 idiom:(long long)arg4;
 + (id)traitsWithScreen:(id)arg1 orientation:(long long)arg2;
 + (id)traitsWithScreen:(id)arg1 orientation:(long long)arg2 ignoreRemoteKeyboard:(bool)arg3;
 
@@ -42,7 +49,9 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })bounds;
 - (id)description;
 - (long long)idiom;
+- (id)initForInputModeWithScreen:(id)arg1;
 - (id)initWithScreen:(id)arg1 orientation:(long long)arg2 allowFloating:(bool)arg3 ignoreRemoteKeyboard:(bool)arg4;
+- (bool)isInPopover;
 - (bool)isKeyboardMinorEdgeWidth;
 - (double)keyboardBarHeight;
 - (double)keyboardWidth;

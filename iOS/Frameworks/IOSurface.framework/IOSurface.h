@@ -58,6 +58,7 @@
 - (bool)isSysMemOnly;
 - (int)localUseCount;
 - (int)lockWithOptions:(unsigned int)arg1 seed:(unsigned int*)arg2;
+- (id)newChildSurfaceWithProperties:(id)arg1;
 - (unsigned int)pixelFormat;
 - (unsigned long long)planeCount;
 - (unsigned long long)protectionOptions;
@@ -71,6 +72,7 @@
 - (void)setTimestamp:(unsigned long long)arg1 atIndex:(unsigned long long)arg2;
 - (bool)supportsProtectionOptions:(unsigned long long)arg1;
 - (unsigned long long)timestampAtIndex:(unsigned long long)arg1;
+- (unsigned long long)traceID;
 - (int)unlockWithOptions:(unsigned int)arg1 seed:(unsigned int*)arg2;
 - (long long)width;
 - (long long)widthOfPlaneAtIndex:(unsigned long long)arg1;

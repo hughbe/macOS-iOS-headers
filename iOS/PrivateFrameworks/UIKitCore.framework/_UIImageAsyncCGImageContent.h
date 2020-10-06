@@ -8,14 +8,11 @@
     long long  _orientation;
 }
 
-@property (setter=_setDecompressor:, retain) _UICGImageDecompressor *_decompressor;
 @property bool finishedDecompressing;
 @property (readonly) long long orientation;
 
 - (void).cxx_destruct;
 - (struct CGImage { }*)CGImage;
-- (id)_decompressor;
-- (void)_setDecompressor:(id)arg1;
 - (id)description;
 - (bool)finishedDecompressing;
 - (unsigned long long)hash;

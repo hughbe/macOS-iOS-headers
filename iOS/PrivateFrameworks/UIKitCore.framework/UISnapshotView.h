@@ -58,8 +58,6 @@
 @property (getter=_snapshotView, nonatomic, readonly) UIView *snapshotView;
 @property (getter=isVerticalStretchEnabled, nonatomic) bool verticalStretchEnabled;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void)_addEdgePaddingViewInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGPoint { double x1; double x2; })_contentOffset;
 - (struct CGSize { double x1; double x2; })_contentSize;
@@ -72,12 +70,9 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_snapshotRect;
 - (id)_snapshotView;
 - (void)_updateContentsRect;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)captureSnapshotOfView:(id)arg1 withSnapshotType:(int)arg2;
 - (void)captureSnapshotRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 fromView:(id)arg2 withSnapshotType:(int)arg3;
+- (void)dealloc;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })edgeInsets;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })edgePadding;
 - (id)edgePaddingColor;

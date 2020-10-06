@@ -27,8 +27,6 @@
 @property (getter=isNextEnabled, nonatomic) bool nextEnabled;
 @property (getter=isPreviousEnabled, nonatomic) bool previousEnabled;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)toolbarWithItems:(id)arg1;
 
 - (void).cxx_destruct;
@@ -43,12 +41,9 @@
 - (void)_setRenderConfig:(id)arg1;
 - (id)_tab;
 - (void)_updateFrame;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)autoFill:(id)arg1;
 - (void)clear:(id)arg1;
+- (void)dealloc;
 - (id)delegate;
 - (void)done:(id)arg1;
 - (void)hideAutoFillButton;

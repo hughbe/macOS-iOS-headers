@@ -5,6 +5,7 @@
 
 @required
 
+- (UITextCursorAssertionController *)_assertionController;
 - (_UIKeyboardTextSelectionController *)activeSelectionController;
 - (bool)autoscrolled;
 - (void)beginFloatingCursorAtPoint:(struct CGPoint { double x1; double x2; })arg1;
@@ -12,7 +13,6 @@
 - (void)checkEditabilityAndSetFirstResponderIfNecessary;
 - (void)clearStashedSelection;
 - (bool)containerAllowsSelectionTintOnly;
-- (bool)containerIsPlainStyleAtom;
 - (bool)containerIsTextField;
 - (void)didEndSelectionInteraction;
 - (bool)didUseStashedSelection;
@@ -22,6 +22,7 @@
 - (void)extendSelectionToPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)grabberSuppressionAssertion;
 - (bool)hasActiveSelectionInteraction;
+- (id)keyboardSuppressionAssertion;
 - (void)lollipopGestureWithState:(long long)arg1 location:(struct CGPoint { double x1; double x2; })arg2 locationOfFirstTouch:(struct CGPoint { double x1; double x2; })arg3 forTouchType:(long long)arg4;
 - (struct CGPoint { double x1; double x2; })loupeGestureEndPoint;
 - (bool)needsGestureUpdate;
@@ -40,6 +41,7 @@
 - (void)setFirstResponderIfNecessaryActivatingSelection:(bool)arg1;
 - (void)setGestureRecognizers;
 - (void)setGrabberSuppressionAssertion:(id)arg1;
+- (void)setKeyboardSuppressionAssertion:(id)arg1;
 - (void)setLoupeGestureEndPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setNeedsGestureUpdate:(bool)arg1;
 - (void)setSelectionWithPoint:(struct CGPoint { double x1; double x2; })arg1;
@@ -52,7 +54,7 @@
 - (bool)useGesturesForEditableContent;
 - (bool)usesAsynchronousSelectionController;
 - (UIView *)view;
-- (bool)viewCouldBecomeEditable:(UIResponder<UITextInput> *)arg1;
+- (bool)viewCouldBecomeEditable:(id <UITextInput>)arg1;
 - (void)willBeginFloatingCursor:(bool)arg1;
 - (void)willBeginSelectionInteraction;
 - (bool)willHandoffLoupeMagnifier;

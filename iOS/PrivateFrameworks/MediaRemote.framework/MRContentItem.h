@@ -2,25 +2,76 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRContentItem : _MRContentItemProtobuf
+@interface MRContentItem : NSObject <NSCopying> {
+    NSString * _ancestorIdentifier;
+    MRArtwork * _artwork;
+    NSArray * _availableLanguageOptions;
+    NSArray * _currentLanguageOptions;
+    NSString * _identifier;
+    NSString * _info;
+    MRContentItemMetadata * _metadata;
+    NSString * _parentIdentifier;
+    NSString * _queueIdentifier;
+    NSString * _requestIdentifier;
+    NSArray * _sections;
+}
 
-@property (nonatomic, readonly) bool hasAvailableLanguageOptions;
-@property (nonatomic, readonly) bool hasCurrentLanguageOptions;
-@property (nonatomic, readonly) MRContentItemMetadata *itemMetadata;
+@property (nonatomic, copy) NSString *ancestorIdentifier;
+@property (nonatomic, retain) MRArtwork *artwork;
+@property (nonatomic, copy) NSArray *availableLanguageOptions;
+@property (nonatomic, copy) NSArray *currentLanguageOptions;
+@property (nonatomic, readonly, copy) NSData *data;
+@property (nonatomic, readonly, copy) NSDictionary *dictionaryRepresentation;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *info;
+@property (nonatomic, copy) MRContentItemMetadata *metadata;
+@property (nonatomic, readonly, copy) NSDictionary *nowPlayingInfo;
+@property (nonatomic, copy) NSString *parentIdentifier;
+@property (nonatomic, readonly) _MRContentItemProtobuf *protobuf;
+@property (nonatomic, copy) NSString *queueIdentifier;
+@property (nonatomic, copy) NSString *requestIdentifier;
+@property (nonatomic, copy) NSArray *sections;
+@property (nonatomic, readonly) MRContentItem *skeleton;
 
-+ (void)initialize;
++ (id)extractedIdentifierFromNowPlayingInfo:(id)arg1;
++ (id)mergeContentItems:(id)arg1;
 
-- (id)customDictionaryRepresentation;
-- (bool)hasAvailableLanguageOptions;
-- (bool)hasCurrentLanguageOptions;
-- (id)init;
+- (void).cxx_destruct;
+- (id)ancestorIdentifier;
+- (id)artwork;
+- (id)availableLanguageOptions;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)currentLanguageOptions;
+- (id)data;
+- (id)description;
+- (id)dictionaryRepresentation;
+- (id)identifier;
+- (id)info;
 - (id)initWithData:(id)arg1;
-- (id)itemMetadata;
-- (void)setArtworkData:(id)arg1;
+- (id)initWithIdentifier:(id)arg1;
+- (id)initWithNowPlayingInfo:(id)arg1;
+- (id)initWithProtobuf:(id)arg1;
+- (bool)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
+- (id)metadata;
+- (id)nowPlayingInfo;
+- (id)parentIdentifier;
+- (id)protobuf;
+- (id)queueIdentifier;
+- (id)requestIdentifier;
+- (id)sections;
+- (void)setAncestorIdentifier:(id)arg1;
+- (void)setArtwork:(id)arg1;
 - (void)setAvailableLanguageOptions:(id)arg1;
 - (void)setCurrentLanguageOptions:(id)arg1;
+- (void)setIdentifier:(id)arg1;
 - (void)setInfo:(id)arg1;
-- (void)setLyrics:(id)arg1;
+- (void)setMetadata:(id)arg1;
+- (void)setNowPlayingInfo:(id)arg1 policy:(unsigned char)arg2 request:(id)arg3;
+- (void)setParentIdentifier:(id)arg1;
+- (void)setQueueIdentifier:(id)arg1;
+- (void)setRequestIdentifier:(id)arg1;
 - (void)setSections:(id)arg1;
+- (id)skeleton;
 
 @end

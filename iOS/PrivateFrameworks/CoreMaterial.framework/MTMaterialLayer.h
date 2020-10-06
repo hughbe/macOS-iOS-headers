@@ -6,6 +6,7 @@
     id /* block */  _backdropScaleAdjustment;
     bool  _blurEnabled;
     bool  _contentReplacedWithSnapshot;
+    NSString * _debugIdentifier;
     id /* block */  _defaultBackdropScaleAdjustment;
     struct { 
         unsigned int delegateManagesWeighting : 1; 
@@ -14,6 +15,7 @@
     }  _materialLayerDelegateFlags;
     bool  _needsConfiguring;
     NSMutableDictionary * _pendingChange;
+    NSHashTable * _prunePromises;
     bool  _reduceMotionEnabled;
     bool  _reduceTransparencyEnabled;
     MTMaterialSettingsInterpolator * _settingsInterpolator;
@@ -28,6 +30,7 @@
 @property (nonatomic, copy) id /* block */ blurRadiusTransformer;
 @property (nonatomic, copy) NSString *configuration;
 @property (getter=isContentReplacedWithSnapshot, nonatomic) bool contentReplacedWithSnapshot;
+@property (nonatomic, copy) NSString *debugIdentifier;
 @property (nonatomic, copy) id /* block */ defaultBackdropScaleAdjustment;
 @property (getter=_privateOpacity, nonatomic, readonly) double privateOpacity;
 @property (nonatomic, copy) NSString *recipe;
@@ -40,7 +43,6 @@
 @property (getter=isZoomEnabled, nonatomic) bool zoomEnabled;
 
 + (id)_attributeKeys;
-+ (void)_pruneMaterialLayerAtCompletionOfCurrentTransaction:(id)arg1;
 + (id)_unserializedAttributeKeys;
 + (void)initialize;
 + (id)mt_animatableKeys;
@@ -55,10 +57,12 @@
 - (void)_configureIfNecessaryWithSettingsInterpolator:(id)arg1;
 - (bool)_delegateManagesWeighting;
 - (bool)_didValueChangeForKey:(id)arg1 withPendingChange:(id)arg2;
+- (id)_effectiveDebugIdentifier;
 - (bool)_isDelegateManagingInterpolation;
 - (bool)_isDelegateManagingOpacity;
 - (bool)_needsPruning;
 - (double)_privateOpacity;
+- (void)_pruneAtCompletionOfCurrentTransaction;
 - (void)_reevaluateDefaultShouldCrossfade;
 - (void)_setNeedsConfiguring;
 - (void)_setPrivateOpacity:(double)arg1 removingIfIdentity:(bool)arg2;
@@ -68,7 +72,9 @@
 - (void)addAnimation:(id)arg1 forKey:(id)arg2;
 - (id /* block */)backdropScaleAdjustment;
 - (id /* block */)blurRadiusTransformer;
+- (id)debugIdentifier;
 - (id /* block */)defaultBackdropScaleAdjustment;
+- (id)description;
 - (void)didChangeValueForKey:(id)arg1;
 - (id)init;
 - (bool)isBlurEnabled;
@@ -83,6 +89,7 @@
 - (void)setBlurEnabled:(bool)arg1;
 - (void)setBlurRadiusTransformer:(id /* block */)arg1;
 - (void)setContentReplacedWithSnapshot:(bool)arg1;
+- (void)setDebugIdentifier:(id)arg1;
 - (void)setDefaultBackdropScaleAdjustment:(id /* block */)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setRecipeName:(id)arg1;

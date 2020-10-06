@@ -4,7 +4,7 @@
 
 @interface MRPlaybackSessionResponseMessage : MRProtocolMessage
 
-@property (nonatomic, readonly) _MRPlaybackSessionProtobuf *playbackSession;
+@property (nonatomic, readonly) MRPlaybackSession *playbackSession;
 
 - (id)initWithPlaybackSession:(id)arg1;
 - (id)playbackSession;

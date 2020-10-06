@@ -10,11 +10,9 @@
 @property (nonatomic, readonly) NSObject<OS_xpc_object> *connection;
 
 + (id)currentContext;
++ (void)runWithoutContext:(id /* block */)arg1;
 
 - (void).cxx_destruct;
-- (id)_initWithHandoffToken:(id)arg1;
-- (void)_set;
-- (void)_unset;
 - (id)connection;
 - (void)handoffToQueue:(id)arg1 block:(id /* block */)arg2;
 

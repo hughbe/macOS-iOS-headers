@@ -5,6 +5,6 @@
 
 @required
 
-- (void)avatarPosePickerManager:(CNAvatarEditingManager *)arg1 didFinishWithProviderItem:(CNPhotoPickerProviderItem *)arg2;
+- (void)avatarEditingManager:(CNAvatarEditingManager *)arg1 didFinishWithProviderItem:(CNPhotoPickerProviderItem *)arg2;
 
 @end

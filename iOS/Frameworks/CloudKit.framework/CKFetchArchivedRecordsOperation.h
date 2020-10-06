@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchArchivedRecordsOperation : CKDatabaseOperation {
+@interface CKFetchArchivedRecordsOperation : CKDatabaseOperation <CKFetchArchivedRecordsOperationCallbacks> {
     NSDictionary * _assetTransferOptionsByRecordTypeAndKey;
     NSDictionary * _configurationsByRecordZoneID;
     bool  _fetchAllChanges;
@@ -17,9 +17,11 @@
 }
 
 @property (nonatomic, retain) NSDictionary *assetTransferOptionsByRecordTypeAndKey;
+@property (nonatomic, readonly) <CKFetchArchivedRecordsOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) NSDictionary *configurationsByRecordZoneID;
 @property (nonatomic) bool fetchAllChanges;
 @property (nonatomic, copy) id /* block */ fetchArchivedRecordsCompletionBlock;
+@property (nonatomic, readonly) CKFetchArchivedRecordsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *perItemErrors;
 @property (nonatomic, copy) id /* block */ recordFetchedBlock;
 @property (nonatomic, copy) id /* block */ recordZoneChangeTokensUpdatedBlock;
@@ -28,10 +30,11 @@
 @property (nonatomic) bool shouldFetchAssetContents;
 @property (nonatomic, retain) NSMutableDictionary *statusByZoneID;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)assetTransferOptionsByRecordTypeAndKey;
 - (id)configurationsByRecordZoneID;
@@ -39,6 +42,8 @@
 - (id /* block */)fetchArchivedRecordsCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleChangeSetCompletionForRecordZoneID:(id)arg1 serverChangeToken:(id)arg2 archivedRecordStatus:(long long)arg3 error:(id)arg4 reply:(id /* block */)arg5;
+- (void)handleFetchForRecordID:(id)arg1 record:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordZoneIDs:(id)arg1 configurationsByRecordZoneID:(id)arg2;
@@ -49,6 +54,7 @@
 - (id /* block */)recordZoneChangeTokensUpdatedBlock;
 - (id /* block */)recordZoneFetchCompletionBlock;
 - (id)recordZoneIDs;
+- (id)relevantZoneIDs;
 - (void)setAssetTransferOptionsByRecordTypeAndKey:(id)arg1;
 - (void)setConfigurationsByRecordZoneID:(id)arg1;
 - (void)setFetchAllChanges:(bool)arg1;

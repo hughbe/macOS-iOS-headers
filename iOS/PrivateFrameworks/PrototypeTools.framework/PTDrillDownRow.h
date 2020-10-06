@@ -9,6 +9,8 @@
 
 @property (nonatomic, readonly) NSString *childKeyPath;
 
+// Image: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+
 + (id)rowWithTitle:(id)arg1 childSettingsKeyPath:(id)arg2;
 + (id)rowWithTitleKeyPath:(id)arg1 childSettingsKeyPath:(id)arg2;
 + (bool)supportsSecureCoding;
@@ -25,5 +27,10 @@
 - (void)setSettings:(id)arg1;
 - (void)settings:(id)arg1 changedValueForKeyPath:(id)arg2;
 - (id)value;
+
+// Image: /System/Library/PrivateFrameworks/PrototypeToolsUI.framework/PrototypeToolsUI
+
+- (id)defaultUIAction;
+- (Class)tableViewCellClass;
 
 @end

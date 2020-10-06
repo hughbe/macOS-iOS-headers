@@ -7,10 +7,8 @@
     NSObject<OS_dispatch_queue> * _targetQueue;
 }
 
-@property (nonatomic, retain) NSObject<OS_dispatch_queue_attr> *attributes;
-@property (nonatomic, readonly, retain) NSObject<OS_dispatch_queue> *targetQueue;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue_attr> *attributes;
 
-+ (id)_attributesWithAttributes:(id)arg1;
 + (id)concurrent;
 + (id)serial;
 
@@ -21,8 +19,6 @@
 - (id)inactive;
 - (id)serviceClass:(unsigned int)arg1;
 - (id)serviceClass:(unsigned int)arg1 relativePriority:(int)arg2;
-- (void)setAttributes:(id)arg1;
-- (id)targetQueue;
 - (id)targetQueue:(id)arg1;
 
 @end

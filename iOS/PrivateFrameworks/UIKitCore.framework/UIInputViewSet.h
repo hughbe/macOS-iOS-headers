@@ -35,6 +35,7 @@
 @property (nonatomic) UIResponder *accessoryViewNextResponder;
 @property (nonatomic, retain) UIInputViewController *assistantViewController;
 @property (getter=isEmpty, nonatomic, readonly) bool empty;
+@property (nonatomic, readonly) bool hasNonPlaceholderViews;
 @property (nonatomic, retain) UIView *inputAccessoryView;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } inputAccessoryViewBounds;
 @property (nonatomic, retain) UIView *inputAssistantView;
@@ -96,6 +97,7 @@
 - (bool)containsView:(id)arg1;
 - (void)dealloc;
 - (id)description;
+- (bool)hasNonPlaceholderViews;
 - (bool)hierarchyContainsView:(id)arg1;
 - (bool)inSyncWithOrientation:(long long)arg1 forKeyboard:(id)arg2;
 - (void)inheritNullState:(id)arg1;

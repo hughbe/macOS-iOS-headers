@@ -4,7 +4,9 @@
 
 @interface MKMapSnapshotOptions : NSObject <NSCopying, NSSecureCoding> {
     NSArray * _annotationViews;
+    GEOApplicationAuditToken * _auditToken;
     MKMapCamera * _camera;
+    GEOComposedRoute * _composedRouteForRouteLine;
     NSArray * _customFeatureAnnotations;
     struct UIEdgeInsets { 
         double top; 
@@ -23,7 +25,7 @@
         } size; 
     }  _mapRect;
     unsigned long long  _mapType;
-    int  _mode;
+    long long  _mode;
     MKPointOfInterestFilter * _pointOfInterestFilter;
     struct { 
         struct CLLocationCoordinate2D { 
@@ -49,13 +51,16 @@
         double width; 
         double height; 
     }  _size;
+    bool  _snapshotServiceSerialPerProcess;
     UITraitCollection * _traitCollection;
     bool  _useSnapshotService;
     bool  _usingRect;
 }
 
 @property (nonatomic, copy) NSArray *annotationViews;
+@property (getter=_auditToken, setter=_setAuditToken:, nonatomic, retain) GEOApplicationAuditToken *auditToken;
 @property (nonatomic, copy) MKMapCamera *camera;
+@property (getter=_composedRouteForRouteLine, setter=_setComposedRouteForRouteLine:, nonatomic, retain) GEOComposedRoute *composedRouteForRouteLine;
 @property (getter=_customFeatureAnnotations, setter=_setCustomFeatureAnnotations:, nonatomic, copy) NSArray *customFeatureAnnotations;
 @property (getter=_edgeInsets, setter=_setEdgeInsets:, nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } edgeInsets;
 @property (nonatomic) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } mapRect;
@@ -75,19 +80,25 @@
 @property (getter=_showsVenues, setter=_setShowsVenues:, nonatomic) bool showsVenues;
 @property (nonatomic) unsigned long long signpostId;
 @property (nonatomic) struct CGSize { double x1; double x2; } size;
+@property (getter=_snapshotServiceSerialPerProcess, setter=_setSnapshotServiceSerialPerProcess:, nonatomic) bool snapshotServiceSerialPerProcess;
 @property (nonatomic, copy) UITraitCollection *traitCollection;
 @property (getter=_useSnapshotService, setter=_setUseSnapshotService:, nonatomic) bool useSnapshotService;
 @property (nonatomic, readonly) bool usingRect;
+@property (getter=_viewportMode, nonatomic, readonly) long long viewportMode;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)_auditToken;
+- (id)_composedRouteForRouteLine;
 - (id)_customFeatureAnnotations;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_edgeInsets;
 - (bool)_rendersInBackground;
 - (id)_routeContext;
 - (id)_routeOverlay;
 - (unsigned char)_searchResultsType;
+- (void)_setAuditToken:(id)arg1;
+- (void)_setComposedRouteForRouteLine:(id)arg1;
 - (void)_setCustomFeatureAnnotations:(id)arg1;
 - (void)_setEdgeInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)_setRendersInBackground:(bool)arg1;
@@ -98,13 +109,15 @@
 - (void)_setShowsNightMode:(bool)arg1;
 - (void)_setShowsPointLabels:(bool)arg1;
 - (void)_setShowsVenues:(bool)arg1;
+- (void)_setSnapshotServiceSerialPerProcess:(bool)arg1;
 - (void)_setUseSnapshotService:(bool)arg1;
 - (bool)_showsAppleLogo;
 - (bool)_showsNightMode;
 - (bool)_showsPointLabels;
 - (bool)_showsVenues;
-- (void)_updateShouldUseSnapshotService;
+- (bool)_snapshotServiceSerialPerProcess;
 - (bool)_useSnapshotService;
+- (long long)_viewportMode;
 - (id)annotationViews;
 - (id)camera;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

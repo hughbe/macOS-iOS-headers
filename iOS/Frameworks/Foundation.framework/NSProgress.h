@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSProgress : NSObject <FPCancellable, NSProgressPublisher> {
+@interface NSProgress : NSObject <FPCancellable, NSProgressPublisher, VSAccountSerializationResult> {
     NSMutableDictionary * _acknowledgementHandlersByLowercaseBundleID;
     id /* block */  _cancellationHandler;
     NSMutableSet * _children;
@@ -50,6 +50,13 @@
 @property (getter=isPaused, readonly) bool paused;
 @property (copy) id /* block */ pausingHandler;
 @property (copy) id /* block */ resumingHandler;
+@property (nonatomic, readonly) NSString *sf_bundleID;
+@property (nonatomic, readonly) NSString *sf_error;
+@property (nonatomic) unsigned int sf_initiator;
+@property (nonatomic, readonly) NSString *sf_personRealName;
+@property (nonatomic, readonly) NSString *sf_publishingKey;
+@property (nonatomic, readonly) NSString *sf_sessionID;
+@property (nonatomic) long long sf_transferState;
 @property (readonly) Class superclass;
 @property (copy) NSNumber *throughput;
 @property long long totalUnitCount;
@@ -88,7 +95,6 @@
 - (id)_parent;
 - (void)_publish;
 - (id)_publishingAppBundleIdentifier;
-- (void)_receiveProgressMessage:(id)arg1 forSequence:(unsigned long long)arg2;
 - (double)_remoteFractionCompleted;
 - (void)_setAcknowledgementHandler:(id /* block */)arg1 forAppBundleIdentifier:(id)arg2;
 - (void)_setCompletedUnitCount:(long long)arg1 totalUnitCount:(long long)arg2;
@@ -195,8 +201,16 @@
 
 - (void)fp_addChildProgress:(id)arg1;
 - (id)fp_fileOperationKind;
+- (id)fp_fileOperationKindStrict:(bool)arg1;
 - (bool)fp_isOfFileOperationKind:(id)arg1;
+- (bool)fp_isOfFileOperationKind:(id)arg1 strict:(bool)arg2;
 - (void)fp_setFileOperationKind:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
+
+- (id)brc_dumpDescription;
+- (void)brc_publish;
+- (void)brc_unpublish;
 
 // Image: /System/Library/PrivateFrameworks/DocumentManagerCore.framework/DocumentManagerCore
 
@@ -211,5 +225,50 @@
 + (id)_geo_progressMirroringProgress:(id)arg1;
 
 - (void)_geo_mirroredProgressReplaceObservedProgressWith:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
++ (id)hd_progressMirroringProgress:(id)arg1;
++ (id)hk_finishedDiscreteProgressWithTotalUnitCount:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (void)_px_performSimulatedWorkStep:(long long)arg1;
+- (void)px_appendChild:(id)arg1 withPendingUnitCount:(long long)arg2;
+- (void)px_appendSimulatedProgressWithDuration:(double)arg1 pendingUnitCount:(short)arg2;
+
+// Image: /System/Library/PrivateFrameworks/SharingUI.framework/SharingUI
+
++ (id)sf_publishingKeyForApp:(id)arg1 sessionID:(id)arg2;
++ (id)sf_transferStateAsString:(long long)arg1;
+
+- (void)setSf_initiator:(unsigned int)arg1;
+- (void)setSf_transferState:(long long)arg1;
+- (id)sf_bundleID;
+- (id)sf_error;
+- (void)sf_failedWithError:(id)arg1;
+- (id)sf_initWithAppBundle:(id)arg1 sessionID:(id)arg2 andPersonRealName:(id)arg3;
+- (id)sf_initWithFileURL:(id)arg1;
+- (unsigned int)sf_initiator;
+- (id)sf_personRealName;
+- (id)sf_publishingKey;
+- (id)sf_sessionID;
+- (long long)sf_transferState;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_progressWithChildren:(id)arg1;
++ (id)tsu_progressWithTSUProgress:(id)arg1 totalUnitCount:(long long)arg2;
+
+- (long long)tsu_pendingUnitCountForIncompleteProgress:(long long)arg1;
+- (void)tsu_stopObservingTSUProgress;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_progressWithChildren:(id)arg1;
++ (id)tsu_progressWithTSUProgress:(id)arg1 totalUnitCount:(long long)arg2;
+
+- (long long)tsu_pendingUnitCountForIncompleteProgress:(long long)arg1;
+- (void)tsu_stopObservingTSUProgress;
 
 @end

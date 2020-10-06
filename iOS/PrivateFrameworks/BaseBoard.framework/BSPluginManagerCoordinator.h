@@ -9,7 +9,6 @@
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
-- (id)_init;
 - (id)mainPluginManager;
 - (id)pluginManagerForBundle:(id)arg1;
 - (void)registerPlugins;

@@ -25,7 +25,6 @@
 - (void)setExecutionEnabled:(bool)arg1;
 - (bool)setGPUPriority:(unsigned long long)arg1;
 - (bool)setGPUPriority:(unsigned long long)arg1 offset:(unsigned short)arg2;
-- (void)setIsOpenGLQueue:(bool)arg1;
 - (void)setProfilingEnabled:(bool)arg1;
 - (void)setSkipRender:(bool)arg1;
 - (void)setSubmissionQueue:(NSObject<OS_dispatch_queue> *)arg1;
@@ -38,6 +37,7 @@
 - (NSArray *)availableCountersAndDict;
 - (NSDictionary *)counterInfo;
 - (NSArray *)getRequestedCounters;
+- (MTLCommandQueueSPIStats *)getSPIStats;
 - (unsigned long long)getStatLocations;
 - (unsigned long long)getStatOptions;
 - (bool)isStatEnabled;

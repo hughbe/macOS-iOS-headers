@@ -23,6 +23,7 @@
 
 @property (nonatomic, copy) GEOAutomobileOptions *automobileOptions;
 @property (nonatomic) struct CLLocationCoordinate2D { double x1; double x2; } coordinate;
+@property (nonatomic, copy) GEOCyclingOptions *cyclingOptions;
 @property (nonatomic) <MKQuickRouteManagerDelegate> *delegate;
 @property (nonatomic) bool fetchAllTransportTypes;
 @property (nonatomic, readonly) bool isOnlyDriving;
@@ -45,6 +46,7 @@
 - (id)automobileOptions;
 - (id)bestETAForPreferredDirectionsType:(unsigned long long)arg1;
 - (struct CLLocationCoordinate2D { double x1; double x2; })coordinate;
+- (id)cyclingOptions;
 - (id)delegate;
 - (id)description;
 - (struct CLLocationCoordinate2D { double x1; double x2; })destinationCoordinate;
@@ -63,6 +65,7 @@
 - (id)routeETAForTransportType:(unsigned long long)arg1;
 - (void)setAutomobileOptions:(id)arg1;
 - (void)setCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1;
+- (void)setCyclingOptions:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFetchAllTransportTypes:(bool)arg1;
 - (void)setMapItem:(id)arg1;

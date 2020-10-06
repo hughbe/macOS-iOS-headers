@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ShareSheet.framework/ShareSheet
  */
 
-@interface UIActivityViewController : UIViewController <LPLinkViewDelegate, ObjectManipulationDelegate, SFAirDropViewControllerDelegate, SFShareSheetSlotManagerDelegate, UIActivityContentDelegate, UICollectionViewDelegate, UIPresentationControllerDelegatePrivate, UIViewControllerRestoration, UIViewControllerTransitioningDelegate, _UIActivityHelperDelegate, _UIActivityUserDefaultsViewControllerDelegate> {
+@interface UIActivityViewController : UIViewController <LPLinkViewDelegate, ObjectManipulationDelegate, SFAirDropViewControllerDelegate, SFShareSheetSlotManagerDelegate, UIActivityContentDelegate, UICollectionViewDelegate, UIViewControllerRestoration, UIViewControllerTransitioningDelegate, _UIActivityHelperDelegate, _UIActivityUserDefaultsViewControllerDelegate> {
     id /* block */  __popoverDismissalAction;
     NSMutableDictionary * _activitiesByUUID;
     UIActivity * _activity;
@@ -17,7 +17,6 @@
     NSArray * _activityTypesToCreateInShareService;
     UIViewController * _activityViewController;
     UISUIActivityViewControllerConfiguration * _activityViewControllerConfiguration;
-    UIPresentationController * _adaptivePresentationController;
     <UIActivityViewControllerAirDropDelegate> * _airDropDelegate;
     bool  _airDropOnly;
     SFAirDropViewController * _airDropViewController;
@@ -62,6 +61,7 @@
     LPLinkMetadata * _photosHeaderMetadata;
     UIViewController * _photosStackViewController;
     id /* block */  _preCompletionHandler;
+    UIViewController * _presentationViewController;
     unsigned long long  _readyToInteractTimestamp;
     bool  _receivedInitialConfiguration;
     NSArray * _resolvedActivityItemsForCurrentActivity;
@@ -74,6 +74,7 @@
     long long  _sharingStyle;
     bool  _shouldMatchOnlyUserElectedExtensions;
     bool  _shouldSkipPeopleSuggestions;
+    bool  _shouldSuggestFamilyMembers;
     bool  _showKeyboardAutomatically;
     SFShareSheetSlotManager * _slotManager;
     bool  _startedConnectingToDaemon;
@@ -102,7 +103,6 @@
 @property (nonatomic, retain) NSArray *activityTypesToCreateInShareService;
 @property (nonatomic, retain) UIViewController *activityViewController;
 @property (nonatomic, retain) UISUIActivityViewControllerConfiguration *activityViewControllerConfiguration;
-@property (nonatomic) UIPresentationController *adaptivePresentationController;
 @property (nonatomic) <UIActivityViewControllerAirDropDelegate> *airDropDelegate;
 @property (nonatomic) bool airDropOnly;
 @property (nonatomic, retain) SFAirDropViewController *airDropViewController;
@@ -151,6 +151,7 @@
 @property (nonatomic, retain) LPLinkMetadata *photosHeaderMetadata;
 @property (nonatomic, retain) UIViewController *photosStackViewController;
 @property (nonatomic, copy) id /* block */ preCompletionHandler;
+@property (nonatomic) UIViewController *presentationViewController;
 @property (getter=_readyToInteractTimestamp, setter=_setReadyToInteractTimestamp:, nonatomic) unsigned long long readyToInteractTimestamp;
 @property (nonatomic) bool receivedInitialConfiguration;
 @property (nonatomic, readonly) NSArray *resolvedActivityItemsForCurrentActivity;
@@ -163,6 +164,7 @@
 @property (nonatomic) long long sharingStyle;
 @property (nonatomic) bool shouldMatchOnlyUserElectedExtensions;
 @property (nonatomic) bool shouldSkipPeopleSuggestions;
+@property (nonatomic, readonly) bool shouldSuggestFamilyMembers;
 @property (nonatomic) bool showKeyboardAutomatically;
 @property (nonatomic) bool sourceIsManaged;
 @property (nonatomic) bool startedConnectingToDaemon;
@@ -197,6 +199,7 @@
 - (void)_beginDismissalDetectionOfViewControllerForSelectedActivityShouldAutoCancel;
 - (void)_beginInProgressActivityExecutionForcedStrongReferenceForActivity:(id)arg1;
 - (unsigned long long)_beginPerformingActivityTimestamp;
+- (bool)_canSaveImages;
 - (void)_cancel;
 - (void)_cleanupActivityWithSuccess:(bool)arg1;
 - (void)_cleanupActivityWithSuccess:(bool)arg1 items:(id)arg2 error:(id)arg3;
@@ -281,7 +284,6 @@
 - (id)activityTypesToCreateInShareService;
 - (id)activityViewController;
 - (id)activityViewControllerConfiguration;
-- (id)adaptivePresentationController;
 - (id)airDropDelegate;
 - (bool)airDropOnly;
 - (id)airDropViewController;
@@ -315,6 +317,7 @@
 - (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (void)didEnterBackground:(id)arg1;
+- (void)didLongPressShareActivityWithIdentifier:(id)arg1;
 - (bool)dismissalDetectionOfViewControllerForSelectedActivityShouldAutoCancel;
 - (bool)enableNewDesignInPhotos;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
@@ -327,6 +330,8 @@
 - (id)includedActivityTypes;
 - (id)init;
 - (id)initWithActivityItems:(id)arg1 applicationActivities:(id)arg2;
+- (id)initWithActivityItems:(id)arg1 applicationActivities:(id)arg2 shouldSuggestFamilyMembers:(bool)arg3;
+- (id)initWithActivityItemsConfiguration:(id)arg1;
 - (id)initWithAssetIdentifiers:(id)arg1 activityItems:(id)arg2 applicationActivities:(id)arg3;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
@@ -354,7 +359,9 @@
 - (void)presentAirDrop;
 - (void)presentViewController:(id)arg1 animated:(bool)arg2 completion:(id /* block */)arg3;
 - (id)presentationControllerForPresentedViewController:(id)arg1 presentingViewController:(id)arg2 sourceViewController:(id)arg3;
+- (id)presentationViewController;
 - (bool)receivedInitialConfiguration;
+- (void)removedPersonWithIdentifier:(id)arg1;
 - (id)requestMetadataValues;
 - (id)requestRefreshedCustomizationGroups;
 - (id)resolvedActivityItemsForCurrentActivity;
@@ -377,7 +384,6 @@
 - (void)setActivityTypesToCreateInShareService:(id)arg1;
 - (void)setActivityViewController:(id)arg1;
 - (void)setActivityViewControllerConfiguration:(id)arg1;
-- (void)setAdaptivePresentationController:(id)arg1;
 - (void)setAirDropDelegate:(id)arg1;
 - (void)setAirDropOnly:(bool)arg1;
 - (void)setAirDropViewController:(id)arg1;
@@ -416,6 +422,7 @@
 - (void)setPhotosHeaderMetadata:(id)arg1;
 - (void)setPhotosStackViewController:(id)arg1;
 - (void)setPreCompletionHandler:(id /* block */)arg1;
+- (void)setPresentationViewController:(id)arg1;
 - (void)setProgress:(id)arg1 withTopText:(id)arg2 bottomText:(id)arg3 forNodeWithIdentifier:(id)arg4 shouldPulse:(id)arg5 animated:(bool)arg6;
 - (void)setReceivedInitialConfiguration:(bool)arg1;
 - (void)setSecondaryContentNavigationController:(id)arg1;
@@ -442,6 +449,7 @@
 - (bool)shouldAutorotateToInterfaceOrientation:(long long)arg1;
 - (bool)shouldMatchOnlyUserElectedExtensions;
 - (bool)shouldSkipPeopleSuggestions;
+- (bool)shouldSuggestFamilyMembers;
 - (bool)showKeyboardAutomatically;
 - (void)showScreenTimeRestrictedAlert;
 - (bool)sourceIsManaged;
@@ -471,6 +479,10 @@
 - (bool)willDismissActivityViewController;
 - (void)willEnterForeground:(id)arg1;
 - (void)willPerformInServiceActivityWithRequest:(id)arg1 completion:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NewsUI2.framework/NewsUI2
+
+- (void)ts_setSharingRowExcludedWithActivitiesToKeep:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

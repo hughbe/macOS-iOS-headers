@@ -14,14 +14,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_entries : 1; 
         unsigned int read_name : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_entries : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_numVisibleResults : 1; 
-        unsigned int wrote_suggestionType : 1; 
-        unsigned int wrote_type : 1; 
-        unsigned int wrote_enforceServerResultsOrder : 1; 
-        unsigned int wrote_shouldInterleaveClientResults : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _name;
     int  _numVisibleResults;
@@ -58,9 +51,6 @@
 - (void).cxx_destruct;
 - (int)StringAsSuggestionType:(id)arg1;
 - (int)StringAsType:(id)arg1;
-- (void)_addNoFlagsEntries:(id)arg1;
-- (void)_readEntries;
-- (void)_readName;
 - (void)addEntries:(id)arg1;
 - (void)clearEntries;
 - (void)clearSensitiveFields;
@@ -82,7 +72,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)name;
 - (int)numVisibleResults;

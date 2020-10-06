@@ -6,6 +6,7 @@
 
 @property (getter=isAlphaToCoverageEnabled, nonatomic) bool alphaToCoverageEnabled;
 @property (getter=isAlphaToOneEnabled, nonatomic) bool alphaToOneEnabled;
+@property (nonatomic, copy) NSArray *binaryArchives;
 @property (readonly) MTLRenderPipelineColorAttachmentDescriptorArray *colorAttachments;
 @property (nonatomic) unsigned long long depthAttachmentPixelFormat;
 @property (readonly) MTLPipelineBufferDescriptorArray *fragmentBuffers;
@@ -29,10 +30,18 @@
 @property (nonatomic, copy) MTLVertexDescriptor *vertexDescriptor;
 @property (nonatomic, retain) <MTLFunction> *vertexFunction;
 
+// Image: /System/Library/Frameworks/Metal.framework/Metal
+
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)reset;
+
+// Image: /System/Library/PrivateFrameworks/ActivityRingsUI.framework/ActivityRingsUI
+
+- (void)configureForAdditiveBlending;
+- (void)configureForAlphaReductionBlending;
+- (void)configureForSourceOverBlending;
 
 @end

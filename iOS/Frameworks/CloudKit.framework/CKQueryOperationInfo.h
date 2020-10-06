@@ -30,6 +30,7 @@
 - (id)desiredKeys;
 - (void)encodeWithCoder:(id)arg1;
 - (bool)fetchAllResults;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)query;
 - (unsigned long long)resultsLimit;

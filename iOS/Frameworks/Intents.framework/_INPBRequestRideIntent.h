@@ -3,7 +3,6 @@
  */
 
 @interface _INPBRequestRideIntent : PBCodable <NSCopying, NSSecureCoding, _INPBRequestRideIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBLocation * _dropOffLocation;
     struct { 
         unsigned int usesApplePayForPayment : 1; 
@@ -19,7 +18,6 @@
     bool  _usesApplePayForPayment;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBLocation *dropOffLocation;
@@ -48,8 +46,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (id)dropOffLocation;

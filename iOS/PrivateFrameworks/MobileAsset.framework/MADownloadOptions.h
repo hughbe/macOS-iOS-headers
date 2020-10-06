@@ -8,6 +8,8 @@
     bool  _allowsExpensiveAccess;
     bool  _canUseLocalCacheServer;
     bool  _discretionary;
+    bool  _liveServerCatalogOnly;
+    bool  _liveServerCatalogOnlyIsOverridden;
     bool  _prefersInfraWiFi;
     bool  _requiresPowerPluggedIn;
     NSString * _sessionId;
@@ -19,6 +21,8 @@
 @property (nonatomic) bool allowsExpensiveAccess;
 @property (nonatomic) bool canUseLocalCacheServer;
 @property (nonatomic) bool discretionary;
+@property (nonatomic) bool liveServerCatalogOnly;
+@property (nonatomic) bool liveServerCatalogOnlyIsOverridden;
 @property (nonatomic) bool prefersInfraWiFi;
 @property (nonatomic) bool requiresPowerPluggedIn;
 @property (nonatomic, retain) NSString *sessionId;
@@ -36,6 +40,8 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (bool)liveServerCatalogOnly;
+- (bool)liveServerCatalogOnlyIsOverridden;
 - (void)logOptions;
 - (bool)prefersInfraWiFi;
 - (bool)requiresPowerPluggedIn;
@@ -45,6 +51,8 @@
 - (void)setAllowsExpensiveAccess:(bool)arg1;
 - (void)setCanUseLocalCacheServer:(bool)arg1;
 - (void)setDiscretionary:(bool)arg1;
+- (void)setLiveServerCatalogOnly:(bool)arg1;
+- (void)setLiveServerCatalogOnlyIsOverridden:(bool)arg1;
 - (void)setPrefersInfraWiFi:(bool)arg1;
 - (void)setRequiresPowerPluggedIn:(bool)arg1;
 - (void)setSessionId:(id)arg1;

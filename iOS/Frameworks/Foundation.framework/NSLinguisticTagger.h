@@ -64,6 +64,7 @@
 
 // Image: /System/Library/PrivateFrameworks/ResponseKit.framework/ResponseKit
 
+- (bool)containsAsianCharacters;
 - (id)languageOfRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 withAdditionalContext:(id)arg2 withPreferredLanguages:(id)arg3;
 
 @end

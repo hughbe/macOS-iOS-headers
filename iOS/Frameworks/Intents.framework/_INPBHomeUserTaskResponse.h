@@ -3,7 +3,6 @@
  */
 
 @interface _INPBHomeUserTaskResponse : PBCodable <NSCopying, NSSecureCoding, _INPBHomeUserTaskResponse> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int taskOutcome : 1; 
     }  _has;
@@ -11,7 +10,6 @@
     _INPBHomeUserTask * _userTask;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasTaskOutcome;
@@ -25,8 +23,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsTaskOutcome:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

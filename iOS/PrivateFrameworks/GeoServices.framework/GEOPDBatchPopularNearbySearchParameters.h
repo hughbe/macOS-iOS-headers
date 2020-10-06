@@ -9,11 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_suggestionEntryMetadatas : 1; 
         unsigned int read_viewportInfo : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_requestLocalTimestamp : 1; 
-        unsigned int wrote_suggestionEntryMetadatas : 1; 
-        unsigned int wrote_viewportInfo : 1; 
-        unsigned int wrote_maxResults : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _maxResults;
     PBDataReader * _reader;
@@ -41,9 +37,6 @@
 + (Class)suggestionEntryMetadataType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsSuggestionEntryMetadata:(id)arg1;
-- (void)_readSuggestionEntryMetadatas;
-- (void)_readViewportInfo;
 - (void)addSuggestionEntryMetadata:(id)arg1;
 - (void)clearSuggestionEntryMetadatas;
 - (void)clearUnknownFields:(bool)arg1;
@@ -57,7 +50,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)maxResults;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

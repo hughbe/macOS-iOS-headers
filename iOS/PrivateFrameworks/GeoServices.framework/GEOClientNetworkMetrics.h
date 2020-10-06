@@ -13,15 +13,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_serviceIpAddress : 1; 
         unsigned int read_transactionMetrics : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_requestEnd : 1; 
-        unsigned int wrote_requestStart : 1; 
-        unsigned int wrote_serviceIpAddress : 1; 
-        unsigned int wrote_transactionMetrics : 1; 
-        unsigned int wrote_httpResponseCode : 1; 
-        unsigned int wrote_redirectCount : 1; 
-        unsigned int wrote_requestDataSize : 1; 
-        unsigned int wrote_responseDataSize : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _httpResponseCode;
     PBDataReader * _reader;
@@ -61,9 +53,6 @@
 + (Class)transactionMetricsType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsTransactionMetrics:(id)arg1;
-- (void)_readServiceIpAddress;
-- (void)_readTransactionMetrics;
 - (void)addTransactionMetrics:(id)arg1;
 - (void)clearTransactionMetrics;
 - (void)clearUnknownFields:(bool)arg1;
@@ -82,7 +71,10 @@
 - (int)httpResponseCode;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

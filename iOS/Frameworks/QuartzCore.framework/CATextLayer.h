@@ -23,6 +23,7 @@
 + (id)defaultValueForKey:(id)arg1;
 + (bool)needsDisplayForKey:(id)arg1;
 
+- (bool)CA_validateValue:(id)arg1 forKey:(id)arg2;
 - (void)_applyLinesToFunction:(int (*)arg1 info:(void*)arg2;
 - (void)_applyLinesToFunction:(int (*)arg1 info:(void*)arg2 truncated:(bool*)arg3;
 - (id)_createStringDict;

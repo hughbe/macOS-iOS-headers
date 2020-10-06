@@ -4,6 +4,7 @@
 
 @interface UIApplicationSceneTransitionContext : FBSSceneTransitionContext
 
+@property (setter=SBSUI_setInCallAnalyticsSource:, nonatomic, copy) NSString *SBSUI_inCallAnalyticsSource;
 @property (nonatomic) bool disableTouchCancellationOnRotation;
 @property (nonatomic) double execTime;
 @property (nonatomic) bool forTesting;
@@ -15,6 +16,8 @@
 @property (nonatomic) long long statusBarAnimation;
 @property (nonatomic) double userLaunchEventTime;
 @property (nonatomic) bool waitForBackgroundTaskCompletion;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 - (unsigned long long)_lifecycleActionType;
 - (void)_setLifecycleActionType:(unsigned long long)arg1;
@@ -41,5 +44,10 @@
 - (double)userLaunchEventTime;
 - (id)valueDescriptionForFlag:(long long)arg1 object:(id)arg2 ofSetting:(unsigned long long)arg3;
 - (bool)waitForBackgroundTaskCompletion;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
+
+- (id)SBSUI_inCallAnalyticsSource;
+- (void)SBSUI_setInCallAnalyticsSource:(id)arg1;
 
 @end

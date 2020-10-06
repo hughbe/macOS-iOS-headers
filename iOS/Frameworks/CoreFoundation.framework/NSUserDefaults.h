@@ -2,12 +2,146 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSUserDefaults : NSObject {
+@interface NSUserDefaults : NSObject <HKSPUserDefaults, PDSKVStore> {
     struct __CFString { } * _container_;
     struct __CFString { } * _identifier_;
     id  _kvo_;
     void * _reserved;
 }
+
+@property (nonatomic, readonly) bool FCAlternateUniversalLinksEnabledPreferenceKey;
+@property (nonatomic) bool cps_didShowFirstTimeLocationConsent;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) bool guideSnapPointsEnabled;
+@property (readonly) unsigned long long hash;
+@property (getter=hk_atrialFibrillationSetupModalViewHasBeenPresented, setter=hk_setAtrialFibrillationSetupModalViewPresented:, nonatomic) bool hk_atrialFibrillationSetupModalViewPresented;
+@property (setter=hk_setDemoResultKeys:, nonatomic, retain) NSArray *hk_demoResultKeys;
+@property (getter=hk_electrocardiogramSetupModalViewHasBeenPresented, setter=hk_setElectrocardiogramSetupModalViewPresented:, nonatomic) bool hk_electrocardiogramSetupModalViewPresented;
+@property (getter=hk_electrocardiogramWatchAppInstallHasBeenAllowed, setter=hk_setElectrocardiogramWatchAppInstallIsAllowed:, nonatomic) bool hk_electrocardiogramWatchAppInstallIsAllowed;
+@property (nonatomic, readonly) bool hk_hfeModeEnabled;
+@property (nonatomic, readonly) bool hkmc_analyticsDebugModeEnabled;
+@property (nonatomic, readonly) bool hkmc_calendarLogAdjacentDaysDisabled;
+@property (nonatomic, readonly) bool hkmc_timelineLogAdjacentDaysEnabled;
+@property (nonatomic, readonly) bool hkmc_timelineTapToLogDisabled;
+@property (nonatomic, readonly) bool hkmc_useDemoCycles;
+@property (nonatomic) bool isLabelOcclusionEnabled;
+@property (nonatomic) bool isLineOcclusionAlphaBlendingEnabled;
+@property (nonatomic) bool isLineOcclusionEnabled;
+@property (nonatomic) bool isPointOcclusionEnabled;
+@property (nonatomic) bool kADDemoEnabled;
+@property (nonatomic) bool kADEdgeDetectionEnabled;
+@property (nonatomic) bool kADGuidedFilterEnabled;
+@property (nonatomic) bool kADShowDepth;
+@property (nonatomic) bool kCoachingCalloutEnabledV1;
+@property (nonatomic) bool kDisableAllCoaching;
+@property (nonatomic) float kDivisionsADuration;
+@property (nonatomic) float kDivisionsATEndHigh;
+@property (nonatomic) float kDivisionsATEndLow;
+@property (nonatomic) float kDivisionsATEndMid;
+@property (nonatomic) float kDivisionsATEndNumbers;
+@property (nonatomic) float kDivisionsATStartHigh;
+@property (nonatomic) float kDivisionsATStartLow;
+@property (nonatomic) float kDivisionsATStartMid;
+@property (nonatomic) float kDivisionsATStartNumbers;
+@property (nonatomic) bool kDivisionsEnabled;
+@property (nonatomic) float kDivisionsMarkerLengthImperial;
+@property (nonatomic) float kDivisionsMarkerLengthMetric;
+@property (nonatomic) float kDivisionsMarkerWidthScaleImperial;
+@property (nonatomic) float kDivisionsMarkerWidthScaleMetric;
+@property (nonatomic) bool kDivisionsNumbersAllOrientationsEnabled;
+@property (nonatomic) float kDivisionsNumbersLineLengthOffset;
+@property (nonatomic) float kDivisionsNumbersOpacity;
+@property (nonatomic) float kDivisionsNumbersRevealOffsetImperial;
+@property (nonatomic) float kDivisionsNumbersRevealOffsetMetric;
+@property (nonatomic) float kDivisionsNumbersScaleFactor;
+@property (nonatomic) float kDivisionsProximityMax;
+@property (nonatomic) float kDivisionsProximityMin;
+@property (nonatomic) float kDivisionsProximityThreshold;
+@property (nonatomic) bool kDrawDebugPlanes;
+@property (nonatomic) bool kEdgeDetectionDebugReticleEnabled;
+@property (nonatomic) bool kEdgeDetectionEnabled;
+@property (nonatomic) bool kEdgeDetectionUniqueContours;
+@property (nonatomic) bool kEnableRectangleDetection;
+@property (nonatomic) bool kEnableRectangleTracking;
+@property (nonatomic) bool kHideRectangleSuggestions;
+@property (nonatomic) bool kHideTapToRadar;
+@property (nonatomic) bool kLPShowPlane;
+@property (nonatomic) bool kLPShowPoints;
+@property (nonatomic) bool kMLBypassCameraPoseCheck;
+@property (nonatomic) bool kMLEnabled;
+@property (nonatomic) bool kMLShowNormalsBackground;
+@property (nonatomic) bool kMLShowSampledPoints;
+@property (nonatomic) bool kMLShowSegmentedBackground;
+@property (nonatomic) bool kMLShowUnprojectedTrail;
+@property (nonatomic) bool kPEShowAccuracy;
+@property (nonatomic) bool kPEShowHitPoints;
+@property (nonatomic) bool kPEShowHitRay;
+@property (nonatomic) bool kPEShowStats;
+@property (nonatomic) bool kPersonHeightCoachingEnabled;
+@property (nonatomic) bool kPersonHeightDebugViewEnabled;
+@property (nonatomic) bool kPersonHeightEnabled;
+@property (nonatomic) bool kPersonSegmentationAlwaysOn;
+@property (nonatomic) bool kPersonSegmentationMatteDebug;
+@property (nonatomic) float kRayCastAngleThreshold;
+@property (nonatomic) float kRayCastDistThreshold;
+@property (nonatomic) bool kResetDefaultOnStart;
+@property (nonatomic) float kReticleADSlerpFactor;
+@property (nonatomic) bool kShouldReportMeasurements;
+@property (nonatomic) bool kShowFeaturePoints;
+@property (nonatomic) bool kShowLightIntensityDebugInfo;
+@property (nonatomic) bool kShowOppositeUnits;
+@property (nonatomic) bool kShowOverallState;
+@property (nonatomic) bool kShowPreciseMeasurement;
+@property (nonatomic) bool kShowRectangleDebugInfo;
+@property (nonatomic) bool kShowStatistics;
+@property (nonatomic) bool kShowWorldAnchorDebugInfo;
+@property (nonatomic) bool kSnapReticleToEdges;
+@property (nonatomic) bool kTrackingVGAEnabled;
+@property (nonatomic) bool labelFadesInAtSpot;
+@property (nonatomic) bool logARSession;
+@property (nonatomic) bool logARSessionRecording;
+@property (nonatomic) bool logARSessionReplay;
+@property (nonatomic) bool logApplicationState;
+@property (nonatomic) bool logArbitration;
+@property (nonatomic) bool logCoaching;
+@property (nonatomic) bool logComputerVision;
+@property (nonatomic) bool logCoreVideo;
+@property (nonatomic) bool logEdgeDetection;
+@property (nonatomic) bool logEdgeSnapping;
+@property (nonatomic) bool logHapticFeedback;
+@property (nonatomic) bool logLabel;
+@property (nonatomic) bool logLightEstimation;
+@property (nonatomic) bool logMeasureObject;
+@property (nonatomic) bool logMisc;
+@property (nonatomic) bool logMotionUpdates;
+@property (nonatomic) bool logObjectMeasurements;
+@property (nonatomic) bool logPerf;
+@property (nonatomic) bool logPersonHeight;
+@property (nonatomic) bool logPlaneSelection;
+@property (nonatomic) bool logShaders;
+@property (nonatomic) bool logUIAction;
+@property (nonatomic) bool logUIContext;
+@property (nonatomic) bool logWorldAnchor;
+@property (nonatomic) bool logWorldRectangle;
+@property (nonatomic) bool shouldArchiveSpatialMappingData;
+@property (nonatomic) bool shouldEnableObjectMeasurements;
+@property (nonatomic) bool shouldRenderOpaqueSurfaces;
+@property (nonatomic) bool shouldShowObjectDebugViews;
+@property (nonatomic) bool shouldTuriRefinePredictedBoundingBoxes;
+@property (nonatomic) bool shouldUseNormalsForBoxOrientation;
+@property (nonatomic) bool shouldVERefinePredictedBoundingBoxes;
+@property (nonatomic) bool showEDLines;
+@property (nonatomic) bool showFilteredRefinementPlanes;
+@property (nonatomic) bool showFinalPlanes;
+@property (nonatomic) bool showGuideSnapPoints;
+@property (nonatomic) bool showRefinementPlanes;
+@property (nonatomic) bool showSnappableEdges;
+@property (nonatomic) bool showsOnlyYukonEModes;
+@property (readonly) Class superclass;
+@property (nonatomic) bool throttleEdges;
+@property (setter=wk_setIgnoreLogicalScreenClassForWallpaperBundle:, nonatomic) bool wk_ignoreLogicalScreenClassForWallpaperBundle;
+@property (setter=wk_setIgnoreProductTypesForWallpaperBundle:, nonatomic) bool wk_ignoreProductTypesForWallpaperBundle;
 
 // Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
 
@@ -80,15 +214,95 @@
 - (id)volatileDomainForName:(id)arg1;
 - (id)volatileDomainNames;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_heartRhythmDefaults;
++ (id)hk_remoteFeatureAvailabilityUserDefaults;
+
+- (bool)hk_atrialFibrillationSetupModalViewHasBeenPresented;
+- (id)hk_demoResultKeys;
+- (bool)hk_electrocardiogramSetupModalViewHasBeenPresented;
+- (bool)hk_electrocardiogramWatchAppInstallHasBeenAllowed;
+- (bool)hk_hfeModeEnabled;
+- (bool)hk_keyExists:(id)arg1;
+- (void)hk_removeObjectsForKeysWithPrefix:(id)arg1;
+- (void)hk_setAtrialFibrillationSetupModalViewPresented:(bool)arg1;
+- (void)hk_setDemoResultKeys:(id)arg1;
+- (void)hk_setElectrocardiogramSetupModalViewPresented:(bool)arg1;
+- (void)hk_setElectrocardiogramWatchAppInstallIsAllowed:(bool)arg1;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_copyCompositionServicesPreferenceValueForKey:(id)arg1;
++ (void)mf_setCompositionServicesPreferenceValue:(id)arg1 forKey:(id)arg2;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_safariDefaults;
+
+- (id)_sf_dateForKey:(id)arg1;
+- (bool)_sf_javaScriptCanOpenWindowsAutomatically;
+- (bool)_sf_javaScriptEnabled;
+- (bool)_sf_passwordManagerIsInDemoMode;
+- (void)_sf_registerSafariDefaults;
+- (void)_sf_setShouldAutomaticallyDownloadReadingListItems:(bool)arg1;
+- (bool)_sf_shouldAutomaticallyDownloadReadingListItems;
+- (id)_sf_stringForKey:(id)arg1 defaultValue:(id)arg2;
+- (bool)_sf_warnAboutFraudulentWebsites;
+
+// Image: /System/Library/PrivateFrameworks/ARKitCore.framework/ARKitCore
+
++ (id)appleGlobalDomain;
++ (id)appleGlobalDomainARKItDefaults;
++ (id)appleGlobalDomainARKitKeys;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
++ (id)akDataForColor:(id)arg1;
++ (id)akDataForFont:(id)arg1;
++ (id)akDataForTextAttributes:(id)arg1;
+
+- (id)akColorForKey:(id)arg1;
+- (id)akFontForKey:(id)arg1;
+- (void)akSetColor:(id)arg1 forKey:(id)arg2;
+- (void)akSetFont:(id)arg1 forKey:(id)arg2;
+- (void)akSetTextAttributes:(id)arg1 forKey:(id)arg2;
+- (id)akTextAttributesForKey:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
 
 - (bool)bs_defaultExists:(id)arg1;
-- (id)bs_domain;
 - (void)bs_setDomain:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/C2.framework/C2
 
 + (id)c2DefaultsDomain;
+
+// Image: /System/Library/PrivateFrameworks/CameraEffectsKit.framework/CameraEffectsKit
+
+- (bool)jfxBoolForKey:(id)arg1 defaultValue:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ClipServices.framework/ClipServices
+
++ (id)cps_clipServicesDefaults;
+
+- (bool)cps_didShowFirstTimeLocationConsent;
+- (void)setCps_didShowFirstTimeLocationConsent:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
+
++ (id)CNFObjectForKey:(id)arg1;
++ (unsigned long long)CNFRegEmailValidationTimeout;
++ (id)CNFRegSavedAccountName;
++ (id)CNFRegServerURLOverride;
++ (void)setCNFObject:(id)arg1 forKey:(id)arg2;
++ (void)setCNFRegEmailValidationTimeout:(unsigned long long)arg1;
++ (void)setCNFRegSavedAccountName:(id)arg1;
++ (void)setCNFRegServerURLOverride:(id)arg1;
++ (void)setShouldShowCNFRegistrationServerLogs:(bool)arg1;
++ (void)setShouldShowCNFRegistrationSettingsUI:(bool)arg1;
++ (bool)shouldShowCNFRegistrationServerLogs;
++ (bool)shouldShowCNFRegistrationSettingsUI;
 
 // Image: /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
 
@@ -113,6 +327,41 @@
 - (id)doc_roleSpecificKeyForKey:(id)arg1 configuration:(id)arg2;
 - (void)doc_setObject:(id)arg1 forRoleKey:(id)arg2 configuation:(id)arg3;
 
+// Image: /System/Library/PrivateFrameworks/Email.framework/Email
+
++ (bool)em_defaultExistsForKey:(id)arg1;
++ (void)em_migrateDefault:(id)arg1;
++ (id)em_userDefaults;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
++ (void)fu_backupAndSetBool:(bool)arg1 forKey:(id)arg2;
++ (void)fu_backupAndSetDouble:(double)arg1 forKey:(id)arg2;
++ (void)fu_backupAndSetFloat:(float)arg1 forKey:(id)arg2;
++ (void)fu_backupAndSetInteger:(long long)arg1 forKey:(id)arg2;
++ (void)fu_backupAndSetObject:(id)arg1 forKey:(id)arg2;
++ (void)fu_backupAndSetURL:(id)arg1 forKey:(id)arg2;
++ (void)fu_backupStandardUserDefaultsKey:(id)arg1;
++ (void)fu_backupStandardUserDefaultsKey:(id)arg1 useContainer:(bool)arg2;
++ (id)fu_npsManager;
++ (void)fu_synchronizeStandardUserDefaultsKey:(id)arg1;
++ (void)fu_synchronizeStandardUserDefaultsKey:(id)arg1 useContainer:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HealthMenstrualCycles.framework/HealthMenstrualCycles
+
++ (id)hkmc_menstrualCyclesDefaults;
+
+- (bool)hkmc_analyticsDebugModeEnabled;
+- (bool)hkmc_calendarLogAdjacentDaysDisabled;
+- (long long)hkmc_integerForKey:(id)arg1 defaultValue:(long long)arg2;
+- (bool)hkmc_timelineLogAdjacentDaysEnabled;
+- (bool)hkmc_timelineTapToLogDisabled;
+- (bool)hkmc_useDemoCycles;
+
+// Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
+
+- (bool)delayedSynchronize;
+
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
 + (id)_IMAgentObjectForKey:(id)arg1;
@@ -120,12 +369,453 @@
 + (id)_IMObjectForKey:(id)arg1 inDomain:(id)arg2;
 + (void)_IMSetObject:(id)arg1 forKey:(id)arg2 inDomain:(id)arg3;
 
+// Image: /System/Library/PrivateFrameworks/MeasureFoundation.framework/MeasureFoundation
+
+- (bool)guideSnapPointsEnabled;
+- (bool)isLabelOcclusionEnabled;
+- (bool)isLineOcclusionAlphaBlendingEnabled;
+- (bool)isLineOcclusionEnabled;
+- (bool)isPointOcclusionEnabled;
+- (bool)kADDemoEnabled;
+- (bool)kADEdgeDetectionEnabled;
+- (bool)kADGuidedFilterEnabled;
+- (bool)kADShowDepth;
+- (bool)kCoachingCalloutEnabledV1;
+- (bool)kDisableAllCoaching;
+- (float)kDivisionsADuration;
+- (float)kDivisionsATEndHigh;
+- (float)kDivisionsATEndLow;
+- (float)kDivisionsATEndMid;
+- (float)kDivisionsATEndNumbers;
+- (float)kDivisionsATStartHigh;
+- (float)kDivisionsATStartLow;
+- (float)kDivisionsATStartMid;
+- (float)kDivisionsATStartNumbers;
+- (bool)kDivisionsEnabled;
+- (float)kDivisionsMarkerLengthImperial;
+- (float)kDivisionsMarkerLengthMetric;
+- (float)kDivisionsMarkerWidthScaleImperial;
+- (float)kDivisionsMarkerWidthScaleMetric;
+- (bool)kDivisionsNumbersAllOrientationsEnabled;
+- (float)kDivisionsNumbersLineLengthOffset;
+- (float)kDivisionsNumbersOpacity;
+- (float)kDivisionsNumbersRevealOffsetImperial;
+- (float)kDivisionsNumbersRevealOffsetMetric;
+- (float)kDivisionsNumbersScaleFactor;
+- (float)kDivisionsProximityMax;
+- (float)kDivisionsProximityMin;
+- (float)kDivisionsProximityThreshold;
+- (bool)kDrawDebugPlanes;
+- (bool)kEdgeDetectionDebugReticleEnabled;
+- (bool)kEdgeDetectionEnabled;
+- (bool)kEdgeDetectionUniqueContours;
+- (bool)kEnableRectangleDetection;
+- (bool)kEnableRectangleTracking;
+- (bool)kHideRectangleSuggestions;
+- (bool)kHideTapToRadar;
+- (bool)kLPShowPlane;
+- (bool)kLPShowPoints;
+- (bool)kMLBypassCameraPoseCheck;
+- (bool)kMLEnabled;
+- (bool)kMLShowNormalsBackground;
+- (bool)kMLShowSampledPoints;
+- (bool)kMLShowSegmentedBackground;
+- (bool)kMLShowUnprojectedTrail;
+- (bool)kPEShowAccuracy;
+- (bool)kPEShowHitPoints;
+- (bool)kPEShowHitRay;
+- (bool)kPEShowStats;
+- (bool)kPersonHeightCoachingEnabled;
+- (bool)kPersonHeightDebugViewEnabled;
+- (bool)kPersonHeightEnabled;
+- (bool)kPersonSegmentationAlwaysOn;
+- (bool)kPersonSegmentationMatteDebug;
+- (float)kRayCastAngleThreshold;
+- (float)kRayCastDistThreshold;
+- (bool)kResetDefaultOnStart;
+- (float)kReticleADSlerpFactor;
+- (bool)kShouldReportMeasurements;
+- (bool)kShowFeaturePoints;
+- (bool)kShowLightIntensityDebugInfo;
+- (bool)kShowOppositeUnits;
+- (bool)kShowOverallState;
+- (bool)kShowPreciseMeasurement;
+- (bool)kShowRectangleDebugInfo;
+- (bool)kShowStatistics;
+- (bool)kShowWorldAnchorDebugInfo;
+- (bool)kSnapReticleToEdges;
+- (bool)kTrackingVGAEnabled;
+- (bool)labelFadesInAtSpot;
+- (bool)logARSession;
+- (bool)logARSessionRecording;
+- (bool)logARSessionReplay;
+- (bool)logApplicationState;
+- (bool)logArbitration;
+- (bool)logCoaching;
+- (bool)logComputerVision;
+- (bool)logCoreVideo;
+- (bool)logEdgeDetection;
+- (bool)logEdgeSnapping;
+- (bool)logHapticFeedback;
+- (bool)logLabel;
+- (bool)logLightEstimation;
+- (bool)logMeasureObject;
+- (bool)logMisc;
+- (bool)logMotionUpdates;
+- (bool)logObjectMeasurements;
+- (bool)logPerf;
+- (bool)logPersonHeight;
+- (bool)logPlaneSelection;
+- (bool)logShaders;
+- (bool)logUIAction;
+- (bool)logUIContext;
+- (bool)logWorldAnchor;
+- (bool)logWorldRectangle;
+- (void)setGuideSnapPointsEnabled:(bool)arg1;
+- (void)setIsLabelOcclusionEnabled:(bool)arg1;
+- (void)setIsLineOcclusionAlphaBlendingEnabled:(bool)arg1;
+- (void)setIsLineOcclusionEnabled:(bool)arg1;
+- (void)setIsPointOcclusionEnabled:(bool)arg1;
+- (void)setKADDemoEnabled:(bool)arg1;
+- (void)setKADEdgeDetectionEnabled:(bool)arg1;
+- (void)setKADGuidedFilterEnabled:(bool)arg1;
+- (void)setKADShowDepth:(bool)arg1;
+- (void)setKCoachingCalloutEnabledV1:(bool)arg1;
+- (void)setKDisableAllCoaching:(bool)arg1;
+- (void)setKDivisionsADuration:(float)arg1;
+- (void)setKDivisionsATEndHigh:(float)arg1;
+- (void)setKDivisionsATEndLow:(float)arg1;
+- (void)setKDivisionsATEndMid:(float)arg1;
+- (void)setKDivisionsATEndNumbers:(float)arg1;
+- (void)setKDivisionsATStartHigh:(float)arg1;
+- (void)setKDivisionsATStartLow:(float)arg1;
+- (void)setKDivisionsATStartMid:(float)arg1;
+- (void)setKDivisionsATStartNumbers:(float)arg1;
+- (void)setKDivisionsEnabled:(bool)arg1;
+- (void)setKDivisionsMarkerLengthImperial:(float)arg1;
+- (void)setKDivisionsMarkerLengthMetric:(float)arg1;
+- (void)setKDivisionsMarkerWidthScaleImperial:(float)arg1;
+- (void)setKDivisionsMarkerWidthScaleMetric:(float)arg1;
+- (void)setKDivisionsNumbersAllOrientationsEnabled:(bool)arg1;
+- (void)setKDivisionsNumbersLineLengthOffset:(float)arg1;
+- (void)setKDivisionsNumbersOpacity:(float)arg1;
+- (void)setKDivisionsNumbersRevealOffsetImperial:(float)arg1;
+- (void)setKDivisionsNumbersRevealOffsetMetric:(float)arg1;
+- (void)setKDivisionsNumbersScaleFactor:(float)arg1;
+- (void)setKDivisionsProximityMax:(float)arg1;
+- (void)setKDivisionsProximityMin:(float)arg1;
+- (void)setKDivisionsProximityThreshold:(float)arg1;
+- (void)setKDrawDebugPlanes:(bool)arg1;
+- (void)setKEdgeDetectionDebugReticleEnabled:(bool)arg1;
+- (void)setKEdgeDetectionEnabled:(bool)arg1;
+- (void)setKEdgeDetectionUniqueContours:(bool)arg1;
+- (void)setKEnableRectangleDetection:(bool)arg1;
+- (void)setKEnableRectangleTracking:(bool)arg1;
+- (void)setKHideRectangleSuggestions:(bool)arg1;
+- (void)setKHideTapToRadar:(bool)arg1;
+- (void)setKLPShowPlane:(bool)arg1;
+- (void)setKLPShowPoints:(bool)arg1;
+- (void)setKMLBypassCameraPoseCheck:(bool)arg1;
+- (void)setKMLEnabled:(bool)arg1;
+- (void)setKMLShowNormalsBackground:(bool)arg1;
+- (void)setKMLShowSampledPoints:(bool)arg1;
+- (void)setKMLShowSegmentedBackground:(bool)arg1;
+- (void)setKMLShowUnprojectedTrail:(bool)arg1;
+- (void)setKPEShowAccuracy:(bool)arg1;
+- (void)setKPEShowHitPoints:(bool)arg1;
+- (void)setKPEShowHitRay:(bool)arg1;
+- (void)setKPEShowStats:(bool)arg1;
+- (void)setKPersonHeightCoachingEnabled:(bool)arg1;
+- (void)setKPersonHeightDebugViewEnabled:(bool)arg1;
+- (void)setKPersonHeightEnabled:(bool)arg1;
+- (void)setKPersonSegmentationAlwaysOn:(bool)arg1;
+- (void)setKPersonSegmentationMatteDebug:(bool)arg1;
+- (void)setKRayCastAngleThreshold:(float)arg1;
+- (void)setKRayCastDistThreshold:(float)arg1;
+- (void)setKResetDefaultOnStart:(bool)arg1;
+- (void)setKReticleADSlerpFactor:(float)arg1;
+- (void)setKShouldReportMeasurements:(bool)arg1;
+- (void)setKShowFeaturePoints:(bool)arg1;
+- (void)setKShowLightIntensityDebugInfo:(bool)arg1;
+- (void)setKShowOppositeUnits:(bool)arg1;
+- (void)setKShowOverallState:(bool)arg1;
+- (void)setKShowPreciseMeasurement:(bool)arg1;
+- (void)setKShowRectangleDebugInfo:(bool)arg1;
+- (void)setKShowStatistics:(bool)arg1;
+- (void)setKShowWorldAnchorDebugInfo:(bool)arg1;
+- (void)setKSnapReticleToEdges:(bool)arg1;
+- (void)setKTrackingVGAEnabled:(bool)arg1;
+- (void)setLabelFadesInAtSpot:(bool)arg1;
+- (void)setLogARSession:(bool)arg1;
+- (void)setLogARSessionRecording:(bool)arg1;
+- (void)setLogARSessionReplay:(bool)arg1;
+- (void)setLogApplicationState:(bool)arg1;
+- (void)setLogArbitration:(bool)arg1;
+- (void)setLogCoaching:(bool)arg1;
+- (void)setLogComputerVision:(bool)arg1;
+- (void)setLogCoreVideo:(bool)arg1;
+- (void)setLogEdgeDetection:(bool)arg1;
+- (void)setLogEdgeSnapping:(bool)arg1;
+- (void)setLogHapticFeedback:(bool)arg1;
+- (void)setLogLabel:(bool)arg1;
+- (void)setLogLightEstimation:(bool)arg1;
+- (void)setLogMeasureObject:(bool)arg1;
+- (void)setLogMisc:(bool)arg1;
+- (void)setLogMotionUpdates:(bool)arg1;
+- (void)setLogObjectMeasurements:(bool)arg1;
+- (void)setLogPerf:(bool)arg1;
+- (void)setLogPersonHeight:(bool)arg1;
+- (void)setLogPlaneSelection:(bool)arg1;
+- (void)setLogShaders:(bool)arg1;
+- (void)setLogUIAction:(bool)arg1;
+- (void)setLogUIContext:(bool)arg1;
+- (void)setLogWorldAnchor:(bool)arg1;
+- (void)setLogWorldRectangle:(bool)arg1;
+- (void)setShouldArchiveSpatialMappingData:(bool)arg1;
+- (void)setShouldEnableObjectMeasurements:(bool)arg1;
+- (void)setShouldRenderOpaqueSurfaces:(bool)arg1;
+- (void)setShouldShowObjectDebugViews:(bool)arg1;
+- (void)setShouldTuriRefinePredictedBoundingBoxes:(bool)arg1;
+- (void)setShouldUseNormalsForBoxOrientation:(bool)arg1;
+- (void)setShouldVERefinePredictedBoundingBoxes:(bool)arg1;
+- (void)setShowEDLines:(bool)arg1;
+- (void)setShowFilteredRefinementPlanes:(bool)arg1;
+- (void)setShowFinalPlanes:(bool)arg1;
+- (void)setShowGuideSnapPoints:(bool)arg1;
+- (void)setShowRefinementPlanes:(bool)arg1;
+- (void)setShowSnappableEdges:(bool)arg1;
+- (void)setShowsOnlyYukonEModes:(bool)arg1;
+- (void)setThrottleEdges:(bool)arg1;
+- (bool)shouldArchiveSpatialMappingData;
+- (bool)shouldEnableObjectMeasurements;
+- (bool)shouldRenderOpaqueSurfaces;
+- (bool)shouldShowObjectDebugViews;
+- (bool)shouldTuriRefinePredictedBoundingBoxes;
+- (bool)shouldUseNormalsForBoxOrientation;
+- (bool)shouldVERefinePredictedBoundingBoxes;
+- (bool)showEDLines;
+- (bool)showFilteredRefinementPlanes;
+- (bool)showFinalPlanes;
+- (bool)showGuideSnapPoints;
+- (bool)showRefinementPlanes;
+- (bool)showSnappableEdges;
+- (bool)showsOnlyYukonEModes;
+- (bool)throttleEdges;
+
+// Image: /System/Library/PrivateFrameworks/NewsFoundation.framework/NewsFoundation
+
+- (void)nf_migrateObjectForKey:(id)arg1 toKey:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NewsUI2.framework/NewsUI2
+
+- (bool)FCAlternateUniversalLinksEnabledPreferenceKey;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (void)tsu_registerDefaults;
+
+// Image: /System/Library/PrivateFrameworks/PDSAgent.framework/PDSAgent
+
+- (id)allStoredValues;
+- (id)numberForKey:(id)arg1;
+- (void)setData:(id)arg1 forKey:(id)arg2;
+- (void)setNumber:(id)arg1 forKey:(id)arg2;
+- (void)setString:(id)arg1 forKey:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsFoundation.framework/PodcastsFoundation
+
++ (id)appUserDefaults;
++ (id)appUserDefaultsForUnitTesting;
++ (id)groupUserDefaultsForUnitTesting;
++ (void)setAppUserDefaultsForUnitTesting:(id)arg1;
++ (void)setGroupUserDefaultsForUnitTesting:(id)arg1;
++ (bool)usesSharedDefaults;
+
+// Image: /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
+
+- (id)objectIDForKey:(id)arg1;
+- (void)setObjectID:(id)arg1 forKey:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/RespiratoryHealth.framework/RespiratoryHealth
+
++ (id)hkrp_respiratoryDefaults;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
++ (id)safari_cloudBookmarksDefaults;
++ (id)safari_notificationNameForUserDefaultsKey:(id)arg1;
++ (bool)safari_passwordManagerIsInDemoMode;
+
+- (bool)safari_boolForKey:(id)arg1 defaultValue:(bool)arg2;
+- (id)safari_dateForKey:(id)arg1;
+- (void)safari_incrementNumberForKey:(id)arg1;
+- (id)safari_numberForKey:(id)arg1;
+- (id)safari_observeValueForKey:(id)arg1 onQueue:(id)arg2 handler:(id /* block */)arg3;
+- (void)safari_setBool:(bool)arg1 andNotifyForKey:(id)arg2;
+- (void)safari_setDate:(id)arg1 forKey:(id)arg2;
+- (void)safari_setInteger:(long long)arg1 andNotifyForKey:(id)arg2;
+- (bool)safari_toggleBoolAndNotifyForKey:(id)arg1;
+- (bool)safari_toggleBoolForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SearchToShareCore.framework/SearchToShareCore
+
+- (long long)sts_legalNoticeCount;
+- (void)sts_setLegalNoticeCount:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Sleep.framework/Sleep
+
++ (id)hksp_analyticsUserDefaults;
++ (id)hksp_internalUserDefaults;
++ (id)hksp_sleepdUserDefaults;
+
+- (float)hksp_debugSleepModeAlpha:(bool*)arg1;
+- (bool)hksp_debugSleepModeEnabled;
+- (bool)hksp_lockScreenBlockHomeGesture;
+- (bool)hksp_lockScreenUnlockToHome;
+- (void)hksp_setDebugSleepModeAlpha:(float)arg1;
+- (void)hksp_setDebugSleepModeEnabled:(bool)arg1;
+- (void)hksp_setLockScreenBlockHomeGesture:(bool)arg1;
+- (void)hksp_setLockScreenUnlockToHome:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
+- (bool)boolForKey:(id)arg1 withDefaultValue:(bool)arg2;
+- (long long)integerForSettingKey:(id)arg1 withDefaultValue:(long long)arg2;
+- (id)stringForSettingKey:(id)arg1 withDefaultValue:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/Stocks/StocksCore.framework/StocksCore
+
++ (id)sc_userDefaultsWithSuiteName:(id)arg1 backupDisabled:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
+- (id)arrayForKey:(id)arg1 inRole:(id)arg2;
+- (id)arrayForKeyInCurrentRole:(id)arg1;
+- (bool)boolForKey:(id)arg1 inRole:(id)arg2;
+- (bool)boolForKeyInCurrentRole:(id)arg1;
+- (id)dataForKey:(id)arg1 inRole:(id)arg2;
+- (id)dataForKeyInCurrentRole:(id)arg1;
+- (id)dictionaryForKey:(id)arg1 inRole:(id)arg2;
+- (id)dictionaryForKeyInCurrentRole:(id)arg1;
+- (double)doubleForKey:(id)arg1 inRole:(id)arg2;
+- (double)doubleForKeyInCurrentRole:(id)arg1;
+- (float)floatForKey:(id)arg1 inRole:(id)arg2;
+- (float)floatForKeyInCurrentRole:(id)arg1;
+- (long long)integerForKey:(id)arg1 inRole:(id)arg2;
+- (long long)integerForKeyInCurrentRole:(id)arg1;
+- (id)keyForRole:(id)arg1;
+- (id)objectForKey:(id)arg1 inRole:(id)arg2;
+- (id)objectForKeyInCurrentRole:(id)arg1;
+- (id)p_currentRole;
+- (void)removeObjectForKey:(id)arg1 inRole:(id)arg2;
+- (void)removeObjectForKeyInCurrentRole:(id)arg1;
+- (void)setBool:(bool)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)setBool:(bool)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)setDouble:(double)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)setDouble:(double)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)setFloat:(float)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)setFloat:(float)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)setInteger:(long long)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)setInteger:(long long)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)setObject:(id)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)setObject:(id)arg1 forKeyInCurrentRole:(id)arg2;
+- (id)stringForKey:(id)arg1 inRole:(id)arg2;
+- (id)stringForKeyInCurrentRole:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
 
 + (id)tu_defaults;
 
+// Image: /System/Library/PrivateFrameworks/TinCanShared.framework/TinCanShared
+
+- (void)_tcsEnsureProtectionClass;
+- (void)_tcsHandleDeviceFirstUnlock;
+- (void)_tcsSetPrefsDaemonCacheEnabled:(unsigned char)arg1;
+- (void)_tcsSetPrefsObject:(id)arg1 forKey:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
++ (id)voiceMemosUserDefaults;
+
+- (bool)_deletionMatchesWindow:(long long)arg1;
+- (long long)rc_audioQuality;
+- (bool)rc_deletionIsImmediate;
+- (bool)rc_deletionIsNever;
+- (long long)rc_recentlyDeletedWindow;
+- (bool)rc_useLocationBasedNaming;
+
+// Image: /System/Library/PrivateFrameworks/WallpaperKit.framework/WallpaperKit
+
++ (id)wk_wallpaperKitUserDefaults;
+
+- (bool)wk_ignoreLogicalScreenClassForWallpaperBundle;
+- (bool)wk_ignoreProductTypesForWallpaperBundle;
+- (void)wk_setIgnoreLogicalScreenClassForWallpaperBundle:(bool)arg1;
+- (void)wk_setIgnoreProductTypesForWallpaperBundle:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WatchListKit.framework/WatchListKit
+
++ (id)wlk_userDefaults;
+
 // Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
 
 + (id)_webkit_preferredLanguageCode;
+
+// Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
+
++ (id)webui_defaults;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
++ (id)siriAssistantUserDefaults;
++ (id)systemShortcutsUserDefaults;
++ (bool)useNewLayout;
++ (id)workflowUserDefaults;
+
+- (void)setWorkflowIdentifier:(id)arg1 forToken:(id)arg2;
+- (id)workflowIdentifierConsumingSingleUseToken:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSKit.framework/TSKit
+
+- (id)tsk_arrayForKey:(id)arg1 inRole:(id)arg2;
+- (id)tsk_arrayForKeyInCurrentRole:(id)arg1;
+- (bool)tsk_boolForKey:(id)arg1 inRole:(id)arg2;
+- (bool)tsk_boolForKeyInCurrentRole:(id)arg1;
+- (id)tsk_dataForKey:(id)arg1 inRole:(id)arg2;
+- (id)tsk_dataForKeyInCurrentRole:(id)arg1;
+- (id)tsk_dictionaryForKey:(id)arg1 inRole:(id)arg2;
+- (id)tsk_dictionaryForKeyInCurrentRole:(id)arg1;
+- (double)tsk_doubleForKey:(id)arg1 inRole:(id)arg2;
+- (double)tsk_doubleForKeyInCurrentRole:(id)arg1;
+- (float)tsk_floatForKey:(id)arg1 inRole:(id)arg2;
+- (float)tsk_floatForKeyInCurrentRole:(id)arg1;
+- (long long)tsk_integerForKey:(id)arg1 inRole:(id)arg2;
+- (long long)tsk_integerForKeyInCurrentRole:(id)arg1;
+- (id)tsk_keyForRole:(id)arg1;
+- (id)tsk_objectForKey:(id)arg1 inRole:(id)arg2;
+- (id)tsk_objectForKeyInCurrentRole:(id)arg1;
+- (void)tsk_removeObjectForKey:(id)arg1 inRole:(id)arg2;
+- (void)tsk_removeObjectForKeyInCurrentRole:(id)arg1;
+- (void)tsk_setBool:(bool)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)tsk_setBool:(bool)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)tsk_setDouble:(double)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)tsk_setDouble:(double)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)tsk_setFloat:(float)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)tsk_setFloat:(float)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)tsk_setInteger:(long long)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)tsk_setInteger:(long long)arg1 forKeyInCurrentRole:(id)arg2;
+- (void)tsk_setObject:(id)arg1 forKey:(id)arg2 inRole:(id)arg3;
+- (void)tsk_setObject:(id)arg1 forKeyInCurrentRole:(id)arg2;
+- (id)tsk_stringForKey:(id)arg1 inRole:(id)arg2;
+- (id)tsk_stringForKeyInCurrentRole:(id)arg1;
+- (id)tskp_currentRole;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (void)tsu_registerDefaults;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (void)tsu_registerDefaults;
 
 @end

@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_interpretedQuery : 1; 
         unsigned int read_relatedSearchSuggestion : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_interpretedQuery : 1; 
-        unsigned int wrote_relatedSearchSuggestion : 1; 
-        unsigned int wrote_substituteType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _interpretedQuery;
     PBDataReader * _reader;
@@ -37,8 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsSubstituteType:(id)arg1;
-- (void)_readInterpretedQuery;
-- (void)_readRelatedSearchSuggestion;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -50,8 +45,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)interpretedQuery;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

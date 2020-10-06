@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSString *activeMultilinePrefix;
 @property (nonatomic) bool useDebugDescription;
 
+// Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+
 + (id)builderWithObject:(id)arg1;
 + (id)componentSeparator;
 + (id)descriptionForObject:(id)arg1;
@@ -51,9 +53,7 @@
 - (id)appendKeys:(id)arg1;
 - (id)appendObject:(id)arg1 withName:(id)arg2;
 - (id)appendObject:(id)arg1 withName:(id)arg2 skipIfNil:(bool)arg3;
-- (id)appendObjectWithName:(id)arg1 formatBlock:(id /* block */)arg2;
 - (id)appendObjectsAndNames:(id)arg1;
-- (id)appendObjectsAndNames:(id)arg1 args:(char *)arg2;
 - (id)appendPoint:(struct CGPoint { double x1; double x2; })arg1 withName:(id)arg2;
 - (id)appendPointer:(void*)arg1 withName:(id)arg2;
 - (void)appendProem:(id)arg1 block:(id /* block */)arg2;
@@ -71,6 +71,7 @@
 - (id)appendUnsignedInt:(unsigned int)arg1 withName:(id)arg2;
 - (id)appendUnsignedInteger:(unsigned long long)arg1 withName:(id)arg2;
 - (id)appendUnsignedInteger:(unsigned long long)arg1 withName:(id)arg2 format:(long long)arg3;
+- (id)appendVersionedPID:(long long)arg1 withName:(id)arg2;
 - (id)build;
 - (id)initWithObject:(id)arg1;
 - (id)modifyBody:(id /* block */)arg1;
@@ -78,7 +79,10 @@
 - (void)setActiveComponent:(int)arg1;
 - (void)setActiveMultilinePrefix:(id)arg1;
 - (void)setUseDebugDescription:(bool)arg1;
-- (void)tryAppendKey:(id)arg1;
 - (bool)useDebugDescription;
+
+// Image: /System/Library/PrivateFrameworks/IdleTimerHosting.framework/IdleTimerHosting
+
+- (void)itidletimerdescriptor_appendTimeInterval:(double)arg1 withName:(id)arg2;
 
 @end

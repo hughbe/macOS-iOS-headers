@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@interface __NSCFURLProxySessionConnection : __NSCFURLSessionConnection <NSURLSessionDataDelegate, NSURLSessionDataDelegatePrivate, NSURLSessionDataDelegate_Internal, NSURLSessionTaskDelegatePrivate> {
+@interface __NSCFURLProxySessionConnection : __NSCFURLSessionConnection <NSURLSessionDataDelegate, NSURLSessionDataDelegatePrivate, NSURLSessionDataDelegate_Internal, NSURLSessionDelegate_Internal, NSURLSessionTaskDelegatePrivate> {
     NSURLSessionTask * _cacheTask;
     NSArray * _cachedResponseDataArray;
     NSCachedURLResponse * _cachedResponseForConditionalRequest;
@@ -34,18 +34,14 @@
 - (void)URLSession:(id)arg1 task:(id)arg2 willPerformHTTPRedirection:(id)arg3 newRequest:(id)arg4 completionHandler:(id /* block */)arg5;
 - (void)_URLSession:(id)arg1 dataTask:(id)arg2 didReceiveData:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)_URLSession:(id)arg1 task:(id)arg2 getAuthHeadersForResponse:(id)arg3 completionHandler:(id /* block */)arg4;
-- (void)_deliverDidCompleteWithError:(id)arg1;
-- (void)_performOriginLoad;
-- (void)_startLoad;
 - (void)cancel;
-- (id)clientErrorForError:(id)arg1;
 - (void)dealloc;
+- (void)expectedProgressTargetChanged;
 - (id)initWithTask:(id)arg1 delegate:(id)arg2 delegateQueue:(id)arg3;
 - (void)resume;
-- (void)setExpectedProgressTarget:(unsigned long long)arg1;
 - (void)setIsDownload:(bool)arg1;
 - (void)setPoolPriority:(long long)arg1;
-- (void)setPriorityHint:(float)arg1;
+- (void)setPriorityHint:(float)arg1 incremental:(bool)arg2;
 - (void)setTLSMaximumSupportedProtocolVersion:(unsigned short)arg1;
 - (void)setTLSMinimumSupportedProtocolVersion:(unsigned short)arg1;
 - (void)suspend;

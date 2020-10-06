@@ -4,9 +4,11 @@
 
 @interface _CDContextQueries : NSObject
 
++ (id)URLHashKey;
 + (id)accessoryClientName;
 + (id)accessoryHomeUUID;
 + (id)accessoryName;
++ (id)accessoryState;
 + (id)accessoryUUID;
 + (id)accountIdentifierKey;
 + (id)actionSetName;
@@ -17,6 +19,10 @@
 + (id)altitudeKey;
 + (id)appBundleIdKey;
 + (id)appLaunchReasonKey;
++ (id)appMediaUsageBundleID;
++ (id)appMediaUsageMediaURL;
++ (id)appMediaUsageStartDate;
++ (id)appMediaUsageURL;
 + (id)appUsageBundleID;
 + (id)appUsageStartDate;
 + (id)appUsageType;
@@ -30,6 +36,7 @@
 + (id)audioPortNameKey;
 + (id)audioPortTypeKey;
 + (id)audioRouteChangeReasonKey;
++ (id)batteryAdapterIsWirelessKey;
 + (id)batteryAdapterTypeKey;
 + (id)batteryExternalConnectedChangeDateKey;
 + (id)batteryExternalConnectedKey;
@@ -42,6 +49,7 @@
 + (id)bluetoothConnectionStatusKey;
 + (id)bluetoothDeviceTypeKey;
 + (id)bluetoothIsAppleAudioDeviceKey;
++ (id)bluetoothIsUserWearingKey;
 + (id)bluetoothNameKey;
 + (id)bluetoothProductIDKey;
 + (id)bundleIDKey;
@@ -50,6 +58,7 @@
 + (id)calleeHandleKey;
 + (id)changeDateKey;
 + (id)characteristicType;
++ (id)clipBundleIDKey;
 + (id)commandKey;
 + (id)contentKey;
 + (id)conversationIdentifierKey;
@@ -60,6 +69,8 @@
 + (id)doNotDisturbUpdateReason;
 + (id)domainKey;
 + (id)eligibility;
++ (id)expectedFireDateKey;
++ (id)fullURLKey;
 + (id)hasAttachmentsKey;
 + (id)identifierKey;
 + (id)incomingKey;
@@ -75,11 +86,16 @@
 + (id)isDaylightKey;
 + (id)isFirstPartyWorkout;
 + (bool)isMDCSKeyPath:(id)arg1;
++ (id)isSleepAlarm;
++ (id)isUsageTrusted;
 + (id)itemIdentifier;
 + (id)keyPathForActiveCall;
 + (id)keyPathForActiveComplications;
 + (id)keyPathForAirplaneModeStatus;
++ (id)keyPathForAppClipLaunch;
 + (id)keyPathForAppDataDictionary;
++ (id)keyPathForAppMediaUsageDataDictionaries;
++ (id)keyPathForAppRunningDataDictionaries;
 + (id)keyPathForAppUsageDataDictionaries;
 + (id)keyPathForAppWebUsageDataDictionaries;
 + (id)keyPathForAudioOutputDataDictionary;
@@ -130,11 +146,13 @@
 + (id)keyPathForMDCSProxyTokenWithUserID:(id)arg1;
 + (id)keyPathForMDCSUserIDWithProxySourceDeviceUUID:(id)arg1;
 + (id)keyPathForMediaPlayingStatus;
++ (id)keyPathForMostRecentSafariSpotlightDonation;
 + (id)keyPathForMotionState;
 + (id)keyPathForNFCTagIdentifiers;
 + (id)keyPathForNavigationStatus;
 + (id)keyPathForNearbyLOIIdentifiers;
 + (id)keyPathForNetworkingBudgetRemainingStatus;
++ (id)keyPathForNextAlarm;
 + (id)keyPathForNextUserVisibleWakeDate;
 + (id)keyPathForNowPlayingDataDictionary;
 + (id)keyPathForPluginStatus;
@@ -144,6 +162,7 @@
 + (id)keyPathForServicesAppearingForeground;
 + (id)keyPathForSiriActiveStatus;
 + (id)keyPathForSiriServiceDataDictionary;
++ (id)keyPathForSleepStateDictionary;
 + (id)keyPathForSunriseSunsetDataDictionary;
 + (id)keyPathForSystemTime;
 + (id)keyPathForThermalPressureLevel;
@@ -165,6 +184,7 @@
 + (id)longitudeKey;
 + (id)modeIdentifier;
 + (id)modifiedDateKey;
++ (id)mostRecentSafariSearchableItem;
 + (id)nextSunriseKey;
 + (id)nextSunsetKey;
 + (id)nowPlayingBundleIdKey;
@@ -173,14 +193,18 @@
 + (id)nowPlayingOutputDeviceIDsKey;
 + (id)nowPlayingStatusKey;
 + (id)nowPlayingTrackKey;
++ (id)nowPlayingiTunesStoreIdentifierKey;
++ (id)nowPlayingiTunesSubscriptionIdentifierKey;
 + (id)predicateForAudioOutputStatus:(bool)arg1;
 + (id)predicateForBatteryLevel:(id)arg1;
++ (id)predicateForBluetoothConnectedAndUserIsWearing:(bool)arg1;
 + (id)predicateForBluetoothConnectionStatus:(bool)arg1;
 + (id)predicateForCellConnectionAvailability:(bool)arg1;
 + (id)predicateForCircularLocationRegion:(id)arg1;
 + (id)predicateForCircularLocationRegion:(id)arg1 state:(long long)arg2;
 + (id)predicateForDoNotDisturbStatus:(bool)arg1;
 + (id)predicateForInUseStatus:(bool)arg1;
++ (id)predicateForMDCSDevicesWithDeviceTypes:(unsigned long long)arg1;
 + (id)predicateForPluginStatus:(bool)arg1;
 + (id)predicateForSystemTime:(id)arg1;
 + (id)predicateForSystemTime:(id)arg1 gracePeriod:(double)arg2;
@@ -191,8 +215,10 @@
 + (id)previousSunsetKey;
 + (id)recipientContactIDsKey;
 + (id)recipientsKey;
++ (id)referrerURLKey;
 + (id)regionIdentifierKey;
 + (id)regionStateKey;
++ (id)safariURLInMostRecentSearchableItem;
 + (id)sceneClientName;
 + (id)sceneHomeUUID;
 + (id)sceneName;
@@ -201,14 +227,24 @@
 + (id)senderKey;
 + (id)serviceName;
 + (id)serviceType;
++ (id)serviceUUID;
 + (id)sessionIdentifier;
 + (id)sessionState;
++ (id)sleepEvent;
++ (id)sleepModeOn;
++ (id)sleepModeState;
++ (id)sleepScheduleModelDateModified;
++ (id)sleepScheduleState;
++ (id)source;
++ (id)source;
 + (id)stateKey;
 + (id)subjectKey;
 + (id)sunriseSunsetAvailabilityStatusKey;
++ (id)timeSinceDownloadKey;
 + (id)timerIDKey;
 + (id)timestampKey;
 + (id)title;
++ (id)transition;
 + (id)transitionWithinTimeIntervalKey;
 + (id)userActivityRequiredString;
 + (id)userActivityType;
@@ -217,6 +253,7 @@
 + (id)viewInformation;
 + (id)viewName;
 + (id)viewUUID;
++ (id)webAppBundleIDKey;
 + (id)workoutActivityType;
 
 @end

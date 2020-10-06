@@ -6,6 +6,7 @@
     NSString * _BDAddress;
     NSNumber * _RSSI;
     bool  _ancsAuthorized;
+    unsigned short  _appearance;
     NSMutableDictionary * _attributes;
     bool  _canSendWriteWithoutResponse;
     bool  _connectedToSystem;
@@ -39,6 +40,7 @@
 @property (retain) NSString *BDAddress;
 @property (retain) NSNumber *RSSI;
 @property bool ancsAuthorized;
+@property unsigned short appearance;
 @property bool canSendWriteWithoutResponse;
 @property (getter=isConnectedToSystem, nonatomic, readonly) bool connectedToSystem;
 @property (nonatomic) <CBPeripheralDelegate> *delegate;
@@ -50,10 +52,13 @@
 @property (readonly) bool visibleInSettings;
 @property unsigned int writesPending;
 
+// Image: /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
+
 - (void).cxx_destruct;
 - (id)BDAddress;
 - (id)RSSI;
 - (bool)ancsAuthorized;
+- (unsigned short)appearance;
 - (id)attributeForHandle:(id)arg1;
 - (bool)canSendWriteWithoutResponse;
 - (void)dealloc;
@@ -112,6 +117,7 @@
 - (id)sendSyncMsg:(int)arg1 args:(id)arg2;
 - (id)services;
 - (void)setAncsAuthorized:(bool)arg1;
+- (void)setAppearance:(unsigned short)arg1;
 - (void)setAttribute:(id)arg1 forHandle:(id)arg2;
 - (void)setBDAddress:(id)arg1;
 - (void)setBroadcastValue:(bool)arg1 forCharacteristic:(id)arg2;
@@ -132,5 +138,10 @@
 - (void)writeValue:(id)arg1 forCharacteristic:(id)arg2 type:(long long)arg3;
 - (void)writeValue:(id)arg1 forDescriptor:(id)arg2;
 - (unsigned int)writesPending;
+
+// Image: /System/Library/PrivateFrameworks/HearingUtilities.framework/HearingUtilities
+
+- (void)axTag:(id)arg1;
+- (void)axUntag:(id)arg1;
 
 @end

@@ -3,22 +3,31 @@
  */
 
 @interface VKRouteEtaDescription : NSObject {
-    NSString * _etaText;
+    struct _retain_ptr<NSString *, geo::_retain_objc, geo::_release_objc, geo::_hash_objc, geo::_equal_objc> { 
+        int (**_vptr$_retain_ptr)(); 
+        NSString *_obj; 
+        struct _retain_objc { } _retain; 
+        struct _release_objc { } _release; 
+    }  _etaText;
     unsigned char  _glyphType;
-    unsigned char  _tollCurrencyType;
+    GEOFeatureStyleAttributes * _styleAttributes;
 }
 
 @property (nonatomic, readonly) NSString *etaText;
 @property (nonatomic, readonly) unsigned char glyphType;
-@property (nonatomic, readonly) unsigned char tollCurrencyType;
+@property (nonatomic, readonly) GEOFeatureStyleAttributes *styleAttributes;
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)etaText;
 - (unsigned char)glyphType;
 - (unsigned long long)hash;
 - (id)initWithEtaText:(id)arg1;
-- (id)initWithEtaText:(id)arg1 glyphType:(unsigned char)arg2 tollCurrencyType:(unsigned char)arg3;
+- (id)initWithEtaText:(id)arg1 etaAdvisoryStyleAttributes:(id)arg2;
+- (id)initWithEtaText:(id)arg1 glyphType:(unsigned char)arg2;
+- (id)initWithEtaText:(id)arg1 styleAttributes:(id)arg2;
 - (bool)isEqual:(id)arg1;
-- (unsigned char)tollCurrencyType;
+- (id)styleAttributes;
 
 @end

@@ -18,6 +18,7 @@
         unsigned int playbackQueueInsertionPosition : 1; 
         unsigned int playbackQueueOffset : 1; 
         unsigned int playbackRate : 1; 
+        unsigned int queueEndAction : 1; 
         unsigned int rating : 1; 
         unsigned int repeatMode : 1; 
         unsigned int replaceIntent : 1; 
@@ -28,11 +29,17 @@
         unsigned int endSeek : 1; 
         unsigned int externalPlayerCommand : 1; 
         unsigned int negative : 1; 
+        unsigned int preservesQueueEndAction : 1; 
+        unsigned int preservesRepeatMode : 1; 
+        unsigned int preservesShuffleMode : 1; 
         unsigned int requestDefermentToPlaybackQueuePosition : 1; 
         unsigned int shouldBeginRadioPlayback : 1; 
         unsigned int shouldOverrideManuallyCuratedQueue : 1; 
+        unsigned int verifySupportedCommands : 1; 
     }  _has;
+    NSString * _homeKitUserIdentifier;
     NSString * _insertAfterContentItemID;
+    NSString * _insertBeforeContentItemID;
     NSData * _languageOption;
     NSString * _mediaType;
     bool  _negative;
@@ -44,6 +51,10 @@
     int  _playbackQueueOffset;
     float  _playbackRate;
     NSData * _playbackSession;
+    bool  _preservesQueueEndAction;
+    bool  _preservesRepeatMode;
+    bool  _preservesShuffleMode;
+    int  _queueEndAction;
     NSString * _radioStationHash;
     long long  _radioStationID;
     float  _rating;
@@ -62,6 +73,7 @@
     NSData * _systemAppPlaybackQueueData;
     unsigned long long  _trackID;
     NSData * _userIdentityData;
+    bool  _verifySupportedCommands;
 }
 
 @property (nonatomic) bool beginSeek;
@@ -78,7 +90,9 @@
 @property (nonatomic, readonly) bool hasDestinationAppDisplayID;
 @property (nonatomic) bool hasEndSeek;
 @property (nonatomic) bool hasExternalPlayerCommand;
+@property (nonatomic, readonly) bool hasHomeKitUserIdentifier;
 @property (nonatomic, readonly) bool hasInsertAfterContentItemID;
+@property (nonatomic, readonly) bool hasInsertBeforeContentItemID;
 @property (nonatomic, readonly) bool hasLanguageOption;
 @property (nonatomic, readonly) bool hasMediaType;
 @property (nonatomic) bool hasNegative;
@@ -90,6 +104,10 @@
 @property (nonatomic) bool hasPlaybackQueueOffset;
 @property (nonatomic) bool hasPlaybackRate;
 @property (nonatomic, readonly) bool hasPlaybackSession;
+@property (nonatomic) bool hasPreservesQueueEndAction;
+@property (nonatomic) bool hasPreservesRepeatMode;
+@property (nonatomic) bool hasPreservesShuffleMode;
+@property (nonatomic) bool hasQueueEndAction;
 @property (nonatomic, readonly) bool hasRadioStationHash;
 @property (nonatomic) bool hasRadioStationID;
 @property (nonatomic) bool hasRating;
@@ -108,7 +126,10 @@
 @property (nonatomic, readonly) bool hasSystemAppPlaybackQueueData;
 @property (nonatomic) bool hasTrackID;
 @property (nonatomic, readonly) bool hasUserIdentityData;
+@property (nonatomic) bool hasVerifySupportedCommands;
+@property (nonatomic, retain) NSString *homeKitUserIdentifier;
 @property (nonatomic, retain) NSString *insertAfterContentItemID;
+@property (nonatomic, retain) NSString *insertBeforeContentItemID;
 @property (nonatomic, retain) NSData *languageOption;
 @property (nonatomic, retain) NSString *mediaType;
 @property (nonatomic) bool negative;
@@ -120,6 +141,10 @@
 @property (nonatomic) int playbackQueueOffset;
 @property (nonatomic) float playbackRate;
 @property (nonatomic, retain) NSData *playbackSession;
+@property (nonatomic) bool preservesQueueEndAction;
+@property (nonatomic) bool preservesRepeatMode;
+@property (nonatomic) bool preservesShuffleMode;
+@property (nonatomic) int queueEndAction;
 @property (nonatomic, retain) NSString *radioStationHash;
 @property (nonatomic) long long radioStationID;
 @property (nonatomic) float rating;
@@ -138,8 +163,10 @@
 @property (nonatomic, retain) NSData *systemAppPlaybackQueueData;
 @property (nonatomic) unsigned long long trackID;
 @property (nonatomic, retain) NSData *userIdentityData;
+@property (nonatomic) bool verifySupportedCommands;
 
 - (void).cxx_destruct;
+- (int)StringAsQueueEndAction:(id)arg1;
 - (int)StringAsRepeatMode:(id)arg1;
 - (int)StringAsReplaceIntent:(id)arg1;
 - (int)StringAsSendOptions:(id)arg1;
@@ -162,7 +189,9 @@
 - (bool)hasDestinationAppDisplayID;
 - (bool)hasEndSeek;
 - (bool)hasExternalPlayerCommand;
+- (bool)hasHomeKitUserIdentifier;
 - (bool)hasInsertAfterContentItemID;
+- (bool)hasInsertBeforeContentItemID;
 - (bool)hasLanguageOption;
 - (bool)hasMediaType;
 - (bool)hasNegative;
@@ -174,6 +203,10 @@
 - (bool)hasPlaybackQueueOffset;
 - (bool)hasPlaybackRate;
 - (bool)hasPlaybackSession;
+- (bool)hasPreservesQueueEndAction;
+- (bool)hasPreservesRepeatMode;
+- (bool)hasPreservesShuffleMode;
+- (bool)hasQueueEndAction;
 - (bool)hasRadioStationHash;
 - (bool)hasRadioStationID;
 - (bool)hasRating;
@@ -192,8 +225,11 @@
 - (bool)hasSystemAppPlaybackQueueData;
 - (bool)hasTrackID;
 - (bool)hasUserIdentityData;
+- (bool)hasVerifySupportedCommands;
 - (unsigned long long)hash;
+- (id)homeKitUserIdentifier;
 - (id)insertAfterContentItemID;
+- (id)insertBeforeContentItemID;
 - (bool)isEqual:(id)arg1;
 - (id)languageOption;
 - (id)mediaType;
@@ -207,6 +243,11 @@
 - (int)playbackQueueOffset;
 - (float)playbackRate;
 - (id)playbackSession;
+- (bool)preservesQueueEndAction;
+- (bool)preservesRepeatMode;
+- (bool)preservesShuffleMode;
+- (int)queueEndAction;
+- (id)queueEndActionAsString:(int)arg1;
 - (id)radioStationHash;
 - (long long)radioStationID;
 - (float)rating;
@@ -236,6 +277,10 @@
 - (void)setHasPlaybackQueueInsertionPosition:(bool)arg1;
 - (void)setHasPlaybackQueueOffset:(bool)arg1;
 - (void)setHasPlaybackRate:(bool)arg1;
+- (void)setHasPreservesQueueEndAction:(bool)arg1;
+- (void)setHasPreservesRepeatMode:(bool)arg1;
+- (void)setHasPreservesShuffleMode:(bool)arg1;
+- (void)setHasQueueEndAction:(bool)arg1;
 - (void)setHasRadioStationID:(bool)arg1;
 - (void)setHasRating:(bool)arg1;
 - (void)setHasRepeatMode:(bool)arg1;
@@ -247,7 +292,10 @@
 - (void)setHasShuffleMode:(bool)arg1;
 - (void)setHasSkipInterval:(bool)arg1;
 - (void)setHasTrackID:(bool)arg1;
+- (void)setHasVerifySupportedCommands:(bool)arg1;
+- (void)setHomeKitUserIdentifier:(id)arg1;
 - (void)setInsertAfterContentItemID:(id)arg1;
+- (void)setInsertBeforeContentItemID:(id)arg1;
 - (void)setLanguageOption:(id)arg1;
 - (void)setMediaType:(id)arg1;
 - (void)setNegative:(bool)arg1;
@@ -259,6 +307,10 @@
 - (void)setPlaybackQueueOffset:(int)arg1;
 - (void)setPlaybackRate:(float)arg1;
 - (void)setPlaybackSession:(id)arg1;
+- (void)setPreservesQueueEndAction:(bool)arg1;
+- (void)setPreservesRepeatMode:(bool)arg1;
+- (void)setPreservesShuffleMode:(bool)arg1;
+- (void)setQueueEndAction:(int)arg1;
 - (void)setRadioStationHash:(id)arg1;
 - (void)setRadioStationID:(long long)arg1;
 - (void)setRating:(float)arg1;
@@ -277,6 +329,7 @@
 - (void)setSystemAppPlaybackQueueData:(id)arg1;
 - (void)setTrackID:(unsigned long long)arg1;
 - (void)setUserIdentityData:(id)arg1;
+- (void)setVerifySupportedCommands:(bool)arg1;
 - (bool)shouldBeginRadioPlayback;
 - (bool)shouldOverrideManuallyCuratedQueue;
 - (int)shuffleMode;
@@ -287,6 +340,7 @@
 - (id)systemAppPlaybackQueueData;
 - (unsigned long long)trackID;
 - (id)userIdentityData;
+- (bool)verifySupportedCommands;
 - (void)writeTo:(id)arg1;
 
 @end

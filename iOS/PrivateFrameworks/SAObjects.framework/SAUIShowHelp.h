@@ -7,6 +7,8 @@
 @property (nonatomic, copy) NSString *speakableText;
 @property (nonatomic, copy) NSString *text;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)showHelp;
 + (id)showHelpWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -17,5 +19,9 @@
 - (void)setText:(id)arg1;
 - (id)speakableText;
 - (id)text;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (long long)_afui_usefulUserResultType;
 
 @end

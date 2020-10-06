@@ -4,7 +4,6 @@
 
 @interface CLSArchivedHandoutAttachment : CLSObject <CLSRelationable> {
     NSURL * _URL;
-    NSArray * _assets;
     NSString * _bundleIdentifier;
     NSString * _contentStoreIdentifier;
     NSString * _contextCustomTypeName;
@@ -20,6 +19,7 @@
 }
 
 @property (nonatomic, readonly) NSURL *URL;
+@property (nonatomic, readonly) NSArray *archivedAssets;
 @property (nonatomic, readonly) NSArray *assets;
 @property (nonatomic, readonly) NSString *bundleIdentifier;
 @property (nonatomic, readonly) NSString *contentStoreIdentifier;
@@ -46,6 +46,7 @@
 - (void).cxx_destruct;
 - (id)URL;
 - (id)_init;
+- (id)archivedAssets;
 - (id)assets;
 - (id)bundleIdentifier;
 - (id)contentStoreIdentifier;
@@ -58,7 +59,6 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithType:(int)arg1 title:(id)arg2;
 - (int)permissionType;
-- (void)setAssets:(id)arg1;
 - (void)setBundleIdentifier:(id)arg1;
 - (void)setContentStoreIdentifier:(id)arg1;
 - (void)setContextCustomTypeName:(id)arg1;

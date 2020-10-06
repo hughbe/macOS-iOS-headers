@@ -96,6 +96,7 @@
 @property (nonatomic, readonly) NSArray *joints;
 @property (nonatomic) double linearDamping;
 @property (nonatomic) double mass;
+@property (nonatomic, readonly) SKNode *node;
 @property (nonatomic) struct shared_ptr<PKPath> { struct PKPath {} *x1; struct __shared_weak_count {} *x2; } outline;
 @property (nonatomic) bool pinned;
 @property (nonatomic) struct CGPoint { double x1; double x2; } position;
@@ -108,6 +109,8 @@
 @property (nonatomic) bool usesPreciseCollisionDetection;
 @property (nonatomic) struct CGVector { double x1; double x2; } velocity;
 @property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{PKPath=f{vector<PKPoint' */ struct *volume; /* unknown property attribute:  std::__1::allocator<PKPoint> >=^{?}}}^{CGPath}} */
+
+// Image: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
 
 + (id)bodyWithBodies:(id)arg1;
 + (id)bodyWithCircleOfRadius:(double)arg1;
@@ -229,5 +232,11 @@
 - (bool)usesPreciseCollisionDetection;
 - (struct CGVector { double x1; double x2; })velocity;
 - (struct PKPath { float x1; struct vector<PKPoint, std::__1::allocator<PKPoint> > { struct { /* ? */ } *x_2_1_1; struct { /* ? */ } *x_2_1_2; struct __compressed_pair<PKPoint *, std::__1::allocator<PKPoint> > { struct { /* ? */ } *x_3_2_1; } x_2_1_3; } x2; struct CGPath {} *x3; }*)volume;
+
+// Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
+
+- (id)_descriptionClassName;
+- (bool)isKindOfClass:(Class)arg1;
+- (id)node;
 
 @end

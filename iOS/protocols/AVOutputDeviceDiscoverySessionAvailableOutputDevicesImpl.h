@@ -6,5 +6,6 @@
 @required
 
 - (NSArray *)allDevices;
+- (NSArray *)availableOutputDeviceGroups;
 
 @end

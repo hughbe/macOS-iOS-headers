@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INRelevantShortcut : NSObject <INImageProxyInjecting, INKeyImageProducing, NSCopying, NSSecureCoding> {
+@interface INRelevantShortcut : NSObject <INImageProxyInjecting, INKeyImageProducing, NSCopying, NSSecureCoding, RERelevantShortcutProperties> {
     NSArray * _relevanceProviders;
     INShortcut * _shortcut;
     long long  _shortcutRole;
@@ -13,11 +13,15 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) NSArray *relevanceProviders;
 @property (nonatomic, copy) NSArray *relevanceProviders;
+@property (nonatomic, readonly) INShortcut *shortcut;
 @property (nonatomic, copy) INShortcut *shortcut;
 @property (nonatomic) long long shortcutRole;
+@property (nonatomic, readonly) long long shortcutRole;
 @property (readonly) Class superclass;
 @property (nonatomic, copy) INDefaultCardTemplate *watchTemplate;
+@property (nonatomic, readonly) INDefaultCardTemplate *watchTemplate;
 
 + (bool)supportsSecureCoding;
 

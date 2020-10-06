@@ -3,6 +3,7 @@
  */
 
 @interface MKPlaceServiceHoursViewController : MKPlaceSectionViewController <MKModuleViewControllerProtocol, _MKInfoCardChildViewControllerAnalyticsDelegate> {
+    bool  _expanded;
     MKPlaceSectionHeaderView * _headerView;
     bool  _isExpanded;
     MKMapItem * _mapItem;
@@ -14,6 +15,7 @@
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic) bool expanded;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) MKMapItem *mapItem;
 @property (nonatomic) <MKPlaceServiceHoursViewControllerProtocol> *placeServiceDelegate;
@@ -26,15 +28,18 @@
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
 - (void)_contentSizeDidChange;
+- (unsigned long long)_maxRows;
 - (void)_showAllHeaderButtonTapped;
 - (void)_updateServiceHourRows;
 - (void)captureCloseAnalytics;
+- (bool)expanded;
 - (id)infoCardChildPossibleActions;
 - (id)infoCardChildUnactionableUIElements;
 - (id)initWithMapItem:(id)arg1 type:(long long)arg2;
 - (id)mapItem;
 - (id)placeServiceDelegate;
 - (id)scrollView;
+- (void)setExpanded:(bool)arg1;
 - (void)setMapItem:(id)arg1;
 - (void)setPlaceServiceDelegate:(id)arg1;
 - (void)setScrollView:(id)arg1;

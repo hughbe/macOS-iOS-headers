@@ -3,43 +3,35 @@
  */
 
 @interface GEOComposedRouteTraffic : NSObject <NSSecureCoding> {
-    NSArray * _enrouteNotices;
-    NSUUID * _routeID;
-    NSData * _trafficColorOffsets;
-    NSData * _trafficColors;
-    NSArray * _trafficIncidentOffsets;
-    NSArray * _trafficIncidents;
+    NSArray * _incidents;
+    NSArray * _trafficColors;
 }
 
-@property (nonatomic, readonly) NSArray *enrouteNotices;
-@property (nonatomic, readonly) NSUUID *routeID;
+@property (nonatomic, readonly) NSArray *routeIncidents;
+@property (nonatomic, readonly) NSArray *routeTrafficColors;
 @property (nonatomic, readonly) unsigned int*trafficColorOffsets;
 @property (nonatomic, readonly) unsigned long long trafficColorOffsetsCount;
 @property (nonatomic, readonly) unsigned int*trafficColors;
 @property (nonatomic, readonly) unsigned long long trafficColorsCount;
-@property (nonatomic, retain) NSArray *trafficIncidentOffsets;
-@property (nonatomic, retain) NSArray *trafficIncidents;
+@property (nonatomic, readonly) NSArray *trafficIncidentOffsets;
+@property (nonatomic, readonly) NSArray *trafficIncidents;
 
 + (bool)supportsSecureCoding;
-+ (id)trafficForGEORoute:(id)arg1 routeInitializerData:(id)arg2 route:(id)arg3;
-+ (id)trafficForNewAlternateRoute:(id)arg1 existingAlternateRoute:(id)arg2 incidents:(id)arg3;
 
 - (void).cxx_destruct;
-- (id)_colorStringForIndex:(unsigned long long)arg1;
-- (void)createTrafficIncidentsForRoute:(id)arg1 initializerData:(id)arg2;
+- (void)_buildIncidentsForRoute:(id)arg1 etaRoute:(id)arg2 initializerData:(id)arg3;
+- (id)_incidentsForOldRoute:(id)arg1 etaRoute:(id)arg2;
+- (id)_incidentsForOldRoute:(id)arg1 geoIncidentsFromResponse:(id)arg2;
+- (id)_incidentsForRoute:(id)arg1;
+- (id)_incidentsForRoute:(id)arg1 etaRoute:(id)arg2;
+- (id)_trafficColorInfosFromTrafficBuilder:(id)arg1 route:(id)arg2;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
-- (id)enrouteNoticeWithIdentifier:(id)arg1;
-- (id)enrouteNotices;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithRouteID:(id)arg1;
-- (id)routeID;
-- (void)setEnrouteNotices:(id)arg1;
-- (void)setRoute:(id)arg1;
-- (void)setTrafficColorOffsets:(id)arg1;
-- (void)setTrafficColors:(id)arg1;
-- (void)setTrafficIncidentOffsets:(id)arg1;
-- (void)setTrafficIncidents:(id)arg1;
+- (id)initWithRoute:(id)arg1 etaRoute:(id)arg2;
+- (id)initWithRoute:(id)arg1 initializerData:(id)arg2;
+- (id)routeIncidents;
+- (id)routeTrafficColors;
 - (unsigned int*)trafficColorOffsets;
 - (unsigned long long)trafficColorOffsetsCount;
 - (unsigned int*)trafficColors;

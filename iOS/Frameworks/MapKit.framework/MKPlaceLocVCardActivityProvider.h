@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKPlaceLocVCardActivityProvider : MKPlaceActivityProvider <MKActivityItemSource> {
+@interface MKPlaceLocVCardActivityProvider : MKPlaceActivityProvider <UIActivityItemSource> {
     CNContact * _contact;
 }
 

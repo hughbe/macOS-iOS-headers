@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_photoId : 1; 
         unsigned int read_photoVersions : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_photoId : 1; 
-        unsigned int wrote_photoVersions : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _photoId;
     NSMutableArray * _photoVersions;
@@ -32,9 +30,6 @@
 + (id)photosForPlaceData:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsPhotoVersion:(id)arg1;
-- (void)_readPhotoId;
-- (void)_readPhotoVersions;
 - (void)addPhotoVersion:(id)arg1;
 - (id)bestURL;
 - (void)clearPhotoVersions;
@@ -47,7 +42,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)photoId;
 - (id)photoVersionAtIndex:(unsigned long long)arg1;

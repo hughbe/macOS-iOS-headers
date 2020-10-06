@@ -13,7 +13,6 @@
 - (void).cxx_destruct;
 - (id)attributedString;
 - (id)initWithReuseIdentifier:(id)arg1;
-- (void)prepareForReuse;
 - (void)setAttributedString:(id)arg1;
 - (id)titleLabel;
 

@@ -17,6 +17,7 @@
 - (void)transferGestureState:(id <VKGesturingCameraController>)arg1;
 - (void)updatePanWithTranslation:(struct CGPoint { double x1; double x2; })arg1;
 - (void)updatePinchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 oldFactor:(double)arg2 newFactor:(double)arg3;
+- (void)updatePitchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 degrees:(double)arg2;
 - (void)updatePitchWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 translation:(double)arg2;
 - (void)updateRotationWithFocusPoint:(struct CGPoint { double x1; double x2; })arg1 newValue:(double)arg2;
 - (void)zoom:(void *)arg1 withFocusPoint:(void *)arg2 completionHandler:(void *)arg3; // needs 3 arg types, found 7: double, struct CGPoint { double x1; double x2; }, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*

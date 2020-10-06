@@ -17,7 +17,6 @@
 + (id)typeStrings;
 
 - (void).cxx_destruct;
-- (id)description;
 - (id)destinationsWithPasswords;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)payloadDescriptionKeyValueSections;
@@ -30,6 +29,7 @@
 - (id)subtitle2Description;
 - (id)subtitle2Label;
 - (id)titlesAndDescriptions;
+- (id)verboseDescription;
 - (id)whitelistDestinations;
 
 @end

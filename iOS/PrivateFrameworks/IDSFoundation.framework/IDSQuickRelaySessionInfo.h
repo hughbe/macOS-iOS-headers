@@ -22,6 +22,7 @@
     NSString * _relaySessionID;
     NSData * _relaySessionKey;
     NSData * _relaySessionToken;
+    NSString * _reportingDataBlob;
     struct sockaddr_storage { 
         unsigned char ss_len; 
         unsigned char ss_family; 
@@ -60,6 +61,7 @@
 @property (readonly) NSString *relaySessionID;
 @property (readonly) NSData *relaySessionKey;
 @property (readonly) NSData *relaySessionToken;
+@property (readonly) NSString *reportingDataBlob;
 @property (readonly) const struct sockaddr_storage { unsigned char x1; unsigned char x2; BOOL x3[6]; long long x4; BOOL x5[112]; }*serverAddress;
 @property (readonly) const struct sockaddr_storage { unsigned char x1; unsigned char x2; BOOL x3[6]; long long x4; BOOL x5[112]; }*serverAddressIPv6;
 @property (readonly) NSData *softwareData;
@@ -87,6 +89,7 @@
 - (id)relaySessionID;
 - (id)relaySessionKey;
 - (id)relaySessionToken;
+- (id)reportingDataBlob;
 - (const struct sockaddr_storage { unsigned char x1; unsigned char x2; BOOL x3[6]; long long x4; BOOL x5[112]; }*)serverAddress;
 - (const struct sockaddr_storage { unsigned char x1; unsigned char x2; BOOL x3[6]; long long x4; BOOL x5[112]; }*)serverAddressIPv6;
 - (id)softwareData;

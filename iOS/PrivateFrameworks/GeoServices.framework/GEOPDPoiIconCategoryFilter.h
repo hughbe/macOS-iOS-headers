@@ -12,9 +12,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_excludeCategoryFilters : 1; 
         unsigned int read_includeCategoryFilters : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_excludeCategoryFilters : 1; 
-        unsigned int wrote_includeCategoryFilters : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct { 
         unsigned int *list; 
@@ -39,10 +37,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsExcludeCategoryFilter:(unsigned int)arg1;
-- (void)_addNoFlagsIncludeCategoryFilter:(unsigned int)arg1;
-- (void)_readExcludeCategoryFilters;
-- (void)_readIncludeCategoryFilters;
 - (void)addExcludeCategoryFilter:(unsigned int)arg1;
 - (void)addIncludeCategoryFilter:(unsigned int)arg1;
 - (void)clearExcludeCategoryFilters;
@@ -62,7 +56,10 @@
 - (unsigned long long)includeCategoryFiltersCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

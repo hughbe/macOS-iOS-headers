@@ -9,6 +9,7 @@
         bool defaultPriorityBand; 
     }  _delegateFlags;
     bool  _invalidated;
+    _UISceneKeyboardProxyLayerForwardingManager * _keyboardProxyLayerManager;
     NSMapTable * _mapLayersToPresenterOwners;
     FBScene * _scene;
     _UIScenePresenterOwner * _scenePresenterOwner;
@@ -27,6 +28,7 @@
 - (long long)_defaultPresentationPriority;
 - (bool)_hasPresenterWithIdentifier:(id)arg1;
 - (id)_initWithScene:(id)arg1;
+- (id)_initWithScene:(id)arg1 keyboardProxyLayerManager:(id)arg2;
 - (id)_presenterWithIdentifier:(id)arg1;
 - (id)createPresenterForLayerTarget:(id)arg1 identifier:(id)arg2;
 - (id)createPresenterForLayerTarget:(id)arg1 identifier:(id)arg2 priority:(long long)arg3;

@@ -8,6 +8,7 @@
 - (long long)autocompleteCellType;
 - (NSString *)calloutTitle;
 - (GEOResolvedItem *)clientResolved;
+- (GEOCollectionResult *)collectionResult;
 - (GEODirectionIntent *)directionIntent;
 - (float)disambiguationRadiusMeters;
 - (NSArray *)displayLines;
@@ -22,6 +23,7 @@
 - (GEOMapItemIdentifier *)identifier;
 - (NSData *)metadata;
 - (int)placeType;
+- (GEOPublisherResult *)publisherResult;
 - (NSString *)queryAcceleratorCompletionString;
 - (NSString *)queryLine;
 - (GEORetainedSearchMetadata *)retainedSearchMetadata;

@@ -24,17 +24,7 @@
         unsigned int read_arrivalTime : 1; 
         unsigned int read_departureTime : 1; 
         unsigned int read_vehicleNumber : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_clusteredRouteLineArtworkIndexs : 1; 
-        unsigned int wrote_arrivalTime : 1; 
-        unsigned int wrote_departureTime : 1; 
-        unsigned int wrote_tripMuid : 1; 
-        unsigned int wrote_vehicleNumber : 1; 
-        unsigned int wrote_departureFrequencyMax : 1; 
-        unsigned int wrote_departureFrequencyMin : 1; 
-        unsigned int wrote_lineIndex : 1; 
-        unsigned int wrote_pickupDropoffType : 1; 
-        unsigned int wrote_routeLineArtworkIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _lineIndex;
     int  _pickupDropoffType;
@@ -76,11 +66,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsPickupDropoffType:(id)arg1;
-- (void)_addNoFlagsClusteredRouteLineArtworkIndex:(unsigned int)arg1;
-- (void)_readArrivalTime;
-- (void)_readClusteredRouteLineArtworkIndexs;
-- (void)_readDepartureTime;
-- (void)_readVehicleNumber;
 - (void)addClusteredRouteLineArtworkIndex:(unsigned int)arg1;
 - (id)arrivalTime;
 - (void)clearClusteredRouteLineArtworkIndexs;
@@ -108,7 +93,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)lineIndex;
 - (void)mergeFrom:(id)arg1;
 - (int)pickupDropoffType;

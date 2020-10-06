@@ -138,6 +138,8 @@
 - (bool)parse_X_GTALK;
 - (bool)parse_X_ICQ;
 - (bool)parse_X_ICQ_ID;
+- (bool)parse_X_IMAGEHASH;
+- (bool)parse_X_IMAGETYPE;
 - (bool)parse_X_JABBER;
 - (bool)parse_X_JABBER_ID;
 - (bool)parse_X_MAIDENNAME;

@@ -7,15 +7,10 @@
     UIWebDocumentView * _webBrowserView;
 }
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_disableWebView;
 - (void)_enableWebView;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)doneWithSheet;
 - (id)initWithUIWebDocumentView:(id)arg1;
 - (bool)presentSheet;

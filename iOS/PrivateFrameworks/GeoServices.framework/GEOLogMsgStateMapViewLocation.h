@@ -31,8 +31,11 @@
 - (bool)hasLocationBucket;
 - (bool)hasTouristInfo;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isCurrentLocationInViewport;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)locationBucket;
 - (id)locationBucketAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;

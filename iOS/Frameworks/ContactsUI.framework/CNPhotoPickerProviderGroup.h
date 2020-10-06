@@ -3,7 +3,7 @@
  */
 
 @interface CNPhotoPickerProviderGroup : NSObject <CNPhotoPickerProviderItemDelegate> {
-    CNPhotoPickerProviderItem * _addItem;
+    NSArray * _addItems;
     NSArray * _addedItems;
     bool  _allowAddItem;
     NSArray * _availablePaddingItems;
@@ -14,13 +14,14 @@
     NSMutableDictionary * _itemsGroupedByProvider;
     unsigned long long  _itemsPerRow;
     NSArray * _paddingItems;
+    <CNScheduler> * _providerItemRenderingQueue;
     NSArray * _providers;
     NSArray * _removedItems;
     bool  _showCircleMask;
     <CNScheduler> * _workQueue;
 }
 
-@property (nonatomic, retain) CNPhotoPickerProviderItem *addItem;
+@property (nonatomic, retain) NSArray *addItems;
 @property (nonatomic, retain) NSArray *addedItems;
 @property (nonatomic, readonly) bool allowAddItem;
 @property (nonatomic, retain) NSArray *availablePaddingItems;
@@ -34,19 +35,22 @@
 @property (nonatomic, retain) NSMutableDictionary *itemsGroupedByProvider;
 @property (nonatomic) unsigned long long itemsPerRow;
 @property (nonatomic, retain) NSArray *paddingItems;
+@property (nonatomic, readonly) <CNScheduler> *providerItemRenderingQueue;
 @property (nonatomic, retain) NSArray *providers;
 @property (nonatomic, retain) NSArray *removedItems;
 @property (nonatomic, readonly) bool showCircleMask;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) <CNScheduler> *workQueue;
 
++ (id)addItemsGroupWithProviders:(id)arg1 environment:(id)arg2;
 + (id)animojiGroupWithProviders:(id)arg1 environment:(id)arg2 allowAddItem:(bool)arg3;
++ (id)emojiGroupWithProviders:(id)arg1 environment:(id)arg2 allowAddItem:(bool)arg3;
++ (id)injectedItemsGroupWithEnvironment:(id)arg1;
 + (id)suggestionsGroupWithProviders:(id)arg1 environment:(id)arg2 allowAddItem:(bool)arg3;
 
 - (void).cxx_destruct;
-- (id)addItem;
+- (id)addItems;
 - (long long)addProviderItem:(id)arg1;
-- (id)addSymbolImageName;
 - (id)addedItems;
 - (bool)allowAddItem;
 - (id)availablePaddingItems;
@@ -54,6 +58,7 @@
 - (id)delegate;
 - (id)displayItems;
 - (long long)groupType;
+- (bool)hasAddedProviderItems;
 - (id)initWithProviders:(id)arg1 groupType:(long long)arg2 environment:(id)arg3 allowAddItem:(bool)arg4;
 - (id)itemsForProviderIdentifier:(id)arg1;
 - (id)itemsGroupedByProvider;
@@ -64,11 +69,13 @@
 - (void)prepareDisplayItems:(id)arg1;
 - (id)providerItemAtIndex:(long long)arg1;
 - (void)providerItemDidUpdate:(id)arg1;
+- (id)providerItemRenderingQueue;
 - (id)providers;
 - (void)reloadDisplayItemsNotifyDelegate:(bool)arg1;
+- (void)removeAllAddedProviderItems;
 - (long long)removeProviderItem:(id)arg1;
 - (id)removedItems;
-- (void)setAddItem:(id)arg1;
+- (void)setAddItems:(id)arg1;
 - (void)setAddedItems:(id)arg1;
 - (void)setAvailablePaddingItems:(id)arg1;
 - (void)setDelegate:(id)arg1;
@@ -79,6 +86,7 @@
 - (void)setProviders:(id)arg1;
 - (void)setRemovedItems:(id)arg1;
 - (bool)showCircleMask;
+- (id)suggestionsProviderPrecedingFacesProvider;
 - (id)workQueue;
 
 @end

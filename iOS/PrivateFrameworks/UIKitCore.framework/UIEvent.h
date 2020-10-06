@@ -18,23 +18,26 @@
 }
 
 @property (nonatomic, readonly) double _initialTouchTimestamp;
+@property (nonatomic, readonly) unsigned long long _inputPrecision;
 @property (nonatomic, readonly) NSSet *allTouches;
 @property (nonatomic, readonly) long long buttonMask;
-@property (nonatomic) UIEventEnvironment *eventEnvironment;
 @property (nonatomic, readonly) long long modifierFlags;
+@property (nonatomic, readonly) bool pnp_isPencilEvent;
 @property (nonatomic, readonly) long long subtype;
 @property (setter=_setTimestamp:, nonatomic) double timestamp;
 @property (getter=_trackpadFingerDownCount, nonatomic, readonly) long long trackpadFingerDownCount;
 @property (nonatomic, readonly) long long type;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
++ (unsigned long long)_inputPrecisionForTouches:(id)arg1;
+
 - (void).cxx_destruct;
-- (void)_addEventObserver:(id)arg1;
 - (long long)_buttonMask;
 - (void)_cleanupAfterDispatch;
 - (unsigned long long)_clickCount;
 - (id)_cloneEvent;
 - (struct CGPoint { double x1; double x2; })_digitizerLocation;
-- (id)_eventObservers;
 - (unsigned long long)_focusHeading;
 - (void)_gestureRecognizerNoLongerNeedsSendEvent:(id)arg1;
 - (id)_gestureRecognizersForWindow:(id)arg1;
@@ -44,6 +47,7 @@
 - (id)_initWithEnvironment:(id)arg1;
 - (id)_initWithEvent:(struct __GSEvent { }*)arg1 touches:(id)arg2;
 - (double)_initialTouchTimestamp;
+- (unsigned long long)_inputPrecision;
 - (bool)_isKeyDown;
 - (bool)_isPhysicalKeyEvent;
 - (bool)_isTouchRoutingPolicyBased;
@@ -51,7 +55,6 @@
 - (id)_modifiedInput;
 - (long long)_modifierFlags;
 - (long long)_moveDirection;
-- (void)_removeEventObserver:(id)arg1;
 - (id)_screen;
 - (bool)_sendEventToGestureRecognizer:(id)arg1;
 - (void)_sendEventToResponder:(id)arg1;
@@ -70,16 +73,23 @@
 - (long long)buttonMask;
 - (id)coalescedTouchesForTouch:(id)arg1;
 - (void)dealloc;
-- (id)eventEnvironment;
-- (bool)isKeyDown;
 - (long long)modifierFlags;
 - (id)predictedTouchesForTouch:(id)arg1;
-- (void)setEventEnvironment:(id)arg1;
 - (long long)subtype;
 - (double)timestamp;
 - (id)touchesForGestureRecognizer:(id)arg1;
 - (id)touchesForView:(id)arg1;
 - (id)touchesForWindow:(id)arg1;
 - (long long)type;
+
+// Image: /System/Library/Frameworks/PencilKit.framework/PencilKit
+
+- (unsigned long long)PK_activeInputPropertiesForTouch:(id)arg1;
+- (bool)PK_isEventFromCrayon;
+- (bool)PK_isEventFromPencil;
+
+// Image: /System/Library/PrivateFrameworks/PencilPairingUI.framework/PencilPairingUI
+
+- (bool)pnp_isPencilEvent;
 
 @end

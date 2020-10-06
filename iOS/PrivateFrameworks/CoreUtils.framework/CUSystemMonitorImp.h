@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
  */
 
-@interface CUSystemMonitorImp : NSObject <CXCallObserverDelegate, FMFSessionDelegate> {
+@interface CUSystemMonitorImp : NSObject <CXCallObserverDelegate, CoreTelephonyClientDelegate, FMFSessionDelegate> {
     int  _activeCallCount;
     struct { 
         unsigned char bytes[6]; 
     }  _bluetoothAddress48;
     NSData * _bluetoothAddressData;
     CUBluetoothClient * _bluetoothClient;
+    TUCallCenter * _callCenter;
+    unsigned int  _callFlags;
     CXCallObserver * _callObserver;
+    bool  _callStatusObserving;
     int  _connectedCallCount;
     NSObject<OS_dispatch_queue> * _dispatchQueue;
     int  _familyBuddyToken;
@@ -101,6 +104,14 @@
         } v6; 
     }  _primaryIPv6Addr;
     NSString * _primaryNetworkSignature;
+    CoreTelephonyClient * _regionCTClient;
+    struct __CTServerConnection { } * _regionCTServerCnx;
+    NSString * _regionISOCountryCode;
+    NSString * _regionMobileCountryCode;
+    NSString * _regionRoutineCountry;
+    RTRoutineManager * _regionRoutineManager;
+    int  _regionRoutineNotifyToken;
+    NSString * _regionRoutineState;
     struct { 
         unsigned char bytes[6]; 
     }  _rotatingIdentifier48;
@@ -136,6 +147,9 @@
 - (int)_activeCallCountUnached;
 - (void)_bluetoothAddressMonitorStart;
 - (void)_bluetoothAddressMonitorStop;
+- (void)_callCenterStatusChanged:(id)arg1;
+- (unsigned int)_callFlagsUncached;
+- (void)_callInfoChanged;
 - (void)_callMonitorStart;
 - (void)_callMonitorStop;
 - (int)_connectedCallCountUnached;
@@ -149,6 +163,7 @@
 - (void)_firstUnlockMonitorStop;
 - (bool)_hasMonitorPassingTest:(id /* block */)arg1;
 - (void)_invokeBlock:(id /* block */)arg1 passingTest:(id /* block */)arg2;
+- (void)_locationsOfInterestDidChange:(bool)arg1;
 - (void)_manateeChanged:(id)arg1;
 - (void)_manateeMonitorStart;
 - (void)_manateeMonitorStop;
@@ -165,6 +180,11 @@
 - (void)_primaryAppleIDChanged:(id)arg1;
 - (void)_primaryAppleIDMonitorStart;
 - (void)_primaryAppleIDMonitorStop;
+- (void)_regionMonitorGet;
+- (void)_regionMonitorStart;
+- (void)_regionMonitorStop;
+- (void)_regionMonitorUpdateLocationsOfInterest:(id)arg1;
+- (void)_regionMonitorUpdateMCC:(id)arg1;
 - (void)_rotatingIdentifierMonitorStart;
 - (void)_rotatingIdentifierMonitorStop;
 - (void)_rotatingIdentifierTimerFired;
@@ -190,6 +210,7 @@
 - (void)_wifiMonitorStop;
 - (void)addMonitor:(id)arg1 completion:(id /* block */)arg2;
 - (void)callObserver:(id)arg1 callChanged:(id)arg2;
+- (void)cellMonitorUpdate:(id)arg1 info:(id)arg2;
 - (id)init;
 - (void)removeMonitor:(id)arg1;
 - (void)updateWithQueue:(id)arg1 completion:(id /* block */)arg2;

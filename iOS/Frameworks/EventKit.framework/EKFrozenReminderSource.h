@@ -10,7 +10,9 @@
 + (Class)meltedClass;
 
 - (id)UUID;
+- (id)defaultAlarmOffset;
 - (id)delegatedAccountOwnerStoreID;
+- (bool)disabled;
 - (id)externalID;
 - (int)flags;
 - (id)lastSyncEndDate;

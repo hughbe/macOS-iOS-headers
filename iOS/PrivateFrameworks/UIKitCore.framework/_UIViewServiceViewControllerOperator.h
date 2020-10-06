@@ -7,7 +7,7 @@
     int  __automatic_invalidation_retainCount;
     id /* block */  __traitsDidChangeHandler;
     id /* block */  __traitsWillChangeHandler;
-    bool  _canShowTextServices;
+    long long  _availableTextServices;
     NSMutableArray * _deferredToViewDidAppear;
     <_UIViewServiceViewControllerOperatorDelegate> * _delegate;
     NSMutableArray * _deputyRotationDelegates;
@@ -35,6 +35,7 @@
     }  _localViewControllerRequestedInsets;
     double  _localViewControllerRequestedLeftMargin;
     double  _localViewControllerRequestedRightMargin;
+    int  _mediaPID;
     NSArray * _pluginDisplayConfigurations;
     _UIAsyncInvocation * _prepareForDisconnectionInvocation;
     NSString * _presentationControllerClassName;
@@ -52,6 +53,7 @@
 @property (nonatomic) <_UIViewServiceViewControllerOperatorDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) UIViewController *localViewController;
 @property (readonly) Class superclass;
 
 + (id)XPCInterface;
@@ -60,8 +62,7 @@
 - (void).cxx_destruct;
 - (int)__automatic_invalidation_logic;
 - (void)__cancelAlertActionWithToken:(long long)arg1;
-- (void)__createViewController:(id)arg1 withAppearanceSerializedRepresentations:(id)arg2 hostAccessibilityServerPort:(id)arg3 canShowTextServices:(bool)arg4 replyHandler:(id /* block */)arg5;
-- (void)__createViewController:(id)arg1 withContextToken:(id)arg2 fbsDisplays:(id)arg3 appearanceSerializedRepresentations:(id)arg4 traitCollection:(id)arg5 initialInterfaceOrientation:(long long)arg6 hostAccessibilityServerPort:(id)arg7 canShowTextServices:(bool)arg8 replyHandler:(id /* block */)arg9;
+- (void)__createViewControllerWithOptions:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)__dimmingViewWasTapped;
 - (void)__exchangeAccessibilityPortInformation:(id)arg1 replyHandler:(id /* block */)arg2;
 - (void)__hostDidAttachDisplay:(id)arg1;
@@ -103,16 +104,17 @@
 - (void)__setHostTintColor:(id)arg1 tintAdjustmentMode:(long long)arg2;
 - (void)__setHostTraitCollection:(id)arg1 deferIfAnimated:(bool)arg2;
 - (void)__setHostViewUnderlapsStatusBar:(bool)arg1;
+- (void)__setMediaOverridePID:(int)arg1;
 - (void)__setServiceInPopover:(bool)arg1;
 - (void)__setSheetConfiguration:(id)arg1;
 - (void)__showEditAlertView;
 - (void)__textServiceDidDismiss;
 - (void)__undoActionWithToken:(long long)arg1;
 - (id)_appearanceSource;
-- (bool)_canShowTextServices;
+- (long long)_availableTextServices;
 - (bool)_canShowWhileLocked;
 - (double)_canvasSystemMinimumMargin;
-- (void)_completeInteractiveSheetTransitionInHost:(bool)arg1 offset:(double)arg2 duration:(double)arg3 timingCurve:(id)arg4;
+- (id)_childViewControllerForMultitaskingDragExclusionRects;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_customBasePresentationInsetsForView:(id)arg1;
 - (id)_dataFromPressesEvent:(id)arg1;
 - (void)_didBecomeContentViewControllerOfPopover:(id)arg1;
@@ -134,19 +136,19 @@
 - (bool)_providesCustomBasePresentationInsets;
 - (id)_queue;
 - (id)_sessionForStateRestoration:(id)arg1;
+- (void)_setNeedsUpdateOfMultitaskingDragExclusionRects;
 - (void)_setNeedsUserInterfaceAppearanceUpdate;
 - (void)_setTraitsDidChangeHandler:(id /* block */)arg1;
 - (void)_setTraitsWillChangeHandler:(id /* block */)arg1;
+- (void)_sheetInteractionDidChangeOffset:(struct CGPoint { double x1; double x2; })arg1 dragging:(bool)arg2 dismissible:(bool)arg3 indexOfCurrentDetent:(unsigned long long)arg4 duration:(double)arg5 timingCurve:(id)arg6;
 - (bool)_shouldForwardLegacyRotationOnly;
 - (id)_showServiceForText:(id)arg1 selectedTextRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 type:(long long)arg3 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4 inView:(id)arg5;
 - (id)_showServiceForText:(id)arg1 type:(long long)arg2 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg3 inView:(id)arg4;
 - (id)_showServiceForType:(long long)arg1 withContext:(id)arg2;
-- (void)_startInteractiveSheetTransitionInHostWithProgress:(double)arg1 offset:(double)arg2;
 - (id)_supportedInterfaceOrientationsForViewController:(id)arg1;
 - (id /* block */)_traitsDidChangeHandler;
 - (id /* block */)_traitsWillChangeHandler;
 - (bool)_tryRetain;
-- (void)_updateInteractiveSheetTransitionInHostWithProgress:(double)arg1 offset:(double)arg2;
 - (void)_updateSupportedInterfaceOrientationsIfNecessary;
 - (bool)_validateSessionIdentifier:(id)arg1 restorationAnchor:(id)arg2 functionName:(const char *)arg3;
 - (id)_viewControllersForRotationCallbacks;
@@ -162,6 +164,7 @@
 - (id)autorelease;
 - (bool)becomeFirstResponder;
 - (id)childViewControllerForHomeIndicatorAutoHidden;
+- (id)childViewControllerForPointerLock;
 - (id)childViewControllerForScreenEdgesDeferringSystemGestures;
 - (id)childViewControllerForStatusBarHidden;
 - (id)childViewControllerForStatusBarStyle;
@@ -176,6 +179,7 @@
 - (id)invalidate;
 - (bool)isModalInPresentation;
 - (void)loadView;
+- (id)localViewController;
 - (void)motionEnded:(long long)arg1 withEvent:(id)arg2;
 - (struct CGSize { double x1; double x2; })preferredContentSize;
 - (void)preferredContentSizeDidChangeForChildContentContainer:(id)arg1;
@@ -191,6 +195,7 @@
 - (void)setDelegate:(id)arg1;
 - (void)setNeedsStatusBarAppearanceUpdate;
 - (void)setNeedsUpdateOfHomeIndicatorAutoHidden;
+- (void)setNeedsUpdateOfPrefersPointerLocked;
 - (void)setNeedsUpdateOfScreenEdgesDeferringSystemGestures;
 - (void)setNeedsWhitePointAdaptivityStyleUpdate;
 - (bool)shouldAutomaticallyForwardAppearanceMethods;

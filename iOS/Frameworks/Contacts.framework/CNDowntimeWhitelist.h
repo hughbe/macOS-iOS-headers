@@ -3,18 +3,16 @@
  */
 
 @interface CNDowntimeWhitelist : NSObject {
-    ACAccountStore * _accountStore;
-    <NSObject> * _accountStoreDidChangeNotificationToken;
     CNContactStore * _contactStore;
     <NSObject> * _contactStoreDidChangeNotificationToken;
-    NSString * _primaryiCloudContainerIdentifier;
+    <CNDowntimeWhitelistContainerFetching> * _containerFetcher;
+    NSNotificationCenter * _notificationCenter;
 }
 
-@property (nonatomic, readonly) ACAccountStore *accountStore;
-@property (nonatomic, readonly) <NSObject> *accountStoreDidChangeNotificationToken;
 @property (nonatomic, readonly) CNContactStore *contactStore;
 @property (nonatomic, readonly) <NSObject> *contactStoreDidChangeNotificationToken;
-@property (nonatomic, retain) NSString *primaryiCloudContainerIdentifier;
+@property (nonatomic, readonly) <CNDowntimeWhitelistContainerFetching> *containerFetcher;
+@property (nonatomic, readonly) NSNotificationCenter *notificationCenter;
 
 + (bool)anyContactIsWhitelisted:(id)arg1;
 + (bool)isWhitelistedContact:(id)arg1;
@@ -22,27 +20,26 @@
 + (id)os_log;
 
 - (void).cxx_destruct;
-- (id)accountStore;
-- (id)accountStoreDidChangeNotificationToken;
-- (id)allWhitelistedContacts;
+- (id)allWhitelistedContacts:(id*)arg1;
 - (id)allWhitelistedHandleStrings;
+- (id)allWhitelistedHandleStrings:(id*)arg1;
 - (void)beginObservingChangeNotifications;
 - (id)contactStore;
 - (id)contactStoreDidChangeNotificationToken;
+- (id)containerFetcher;
 - (void)dealloc;
-- (id)fetchPrimaryiCloudCardDAVAccountIdentifier;
-- (id)fetchPrimaryiCloudCardDAVContainerIdentifier;
-- (id)identifierOfContainerSupporingDowntimeContacts;
 - (id)init;
 - (id)initWithContactStore:(id)arg1;
+- (id)initWithContactStore:(id)arg1 accountStore:(id)arg2 notificationCenter:(id)arg3;
+- (id)initWithContactStore:(id)arg1 notificationCenter:(id)arg2;
 - (bool)isHandleStringWhitelisted:(id)arg1;
-- (id)primaryiCloudContainerIdentifier;
+- (bool)isHandleStringWhitelisted:(id)arg1 error:(id*)arg2;
+- (id)notificationCenter;
 - (id)requestForContactsInPermittedContainers;
 - (id)requestForContactsInPermittedContainersWithHandles:(id)arg1;
 - (id)requestForNonUnifiedContacts;
-- (void)setPrimaryiCloudContainerIdentifier:(id)arg1;
-- (void)setTestAcountStore:(id)arg1;
-- (void)setTestPrimaryiCloudContainerIdentifier:(id)arg1;
+- (void)setTestContainerFetcher:(id)arg1;
 - (id)whitelistedHandleStringsFromHandleStrings:(id)arg1;
+- (id)whitelistedHandleStringsFromHandleStrings:(id)arg1 error:(id*)arg2;
 
 @end

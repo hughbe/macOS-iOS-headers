@@ -3,7 +3,6 @@
  */
 
 @interface _INPBNote : PBCodable <NSCopying, NSSecureCoding, _INPBNote> {
-    bool  __encodeLegacyGloryData;
     NSString * _accountIdentifier;
     NSArray * _contents;
     _INPBDateTime * _createdDateTime;
@@ -14,7 +13,6 @@
     _INPBDataString * _title;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *accountIdentifier;
 @property (nonatomic, copy) NSArray *contents;
 @property (nonatomic, readonly) unsigned long long contentsCount;
@@ -38,8 +36,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)accountIdentifier;
 - (void)addContent:(id)arg1;
 - (void)clearContents;

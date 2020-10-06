@@ -13,6 +13,10 @@
 + (id)metersPerSecond;
 + (id)milesPerHour;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (id)hk_equivalentBaseUnit;
+
 // Image: /System/Library/Frameworks/Intents.framework/Intents
 
 - (id)_intents_stringRepresentation;

@@ -14,15 +14,17 @@
 - (void)_presentationStyleValidationCheck;
 - (double)autoScrollEdgeTransitionDistance;
 - (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })directionalLayoutMargins;
-- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })insetsForTemplateType:(unsigned long long)arg1;
 - (void)loadView;
 - (long long)navigationBarScrollToEdgeBehavior;
 - (id)navigationItem;
+- (struct CGSize { double x1; double x2; })preferredContentSize;
 - (void)setTemplateType:(unsigned long long)arg1;
 - (unsigned long long)templateType;
 - (void)updateDirectionalLayoutMargins;
 - (void)viewDidAppear:(bool)arg1;
+- (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
+- (void)viewWillTransitionToSize:(struct CGSize { double x1; double x2; })arg1 withTransitionCoordinator:(id)arg2;
 
 @end

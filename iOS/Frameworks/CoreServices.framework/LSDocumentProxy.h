@@ -39,13 +39,18 @@
 - (void).cxx_destruct;
 - (id)MIMEType;
 - (id)URL;
-- (struct optional<LaunchServices::BindingEvaluator> { union { BOOL x_1_1_1; struct BindingEvaluator { id x_2_2_1; id x_2_2_2; id x_2_2_3; id x_2_2_4; id x_2_2_5; id x_2_2_6; struct LSVersionNumber { unsigned char x_7_3_1[32]; } x_2_2_7; bool x_2_2_8; unsigned long long x_2_2_9; unsigned int x_2_2_10; unsigned int x_2_2_11; struct vector<LSBundleClass, std::__1::allocator<LSBundleClass> > { unsigned int *x_12_3_1; unsigned int *x_12_3_2; struct __compressed_pair<LSBundleClass *, std::__1::allocator<LSBundleClass> > { unsigned int *x_3_4_1; } x_12_3_3; } x_2_2_12; id /* block */ x_2_2_13; id x_2_2_14; id /* block */ x_2_2_15; id x_2_2_16; } x_1_1_2; } x1; bool x2; })_bindingEvaluatorWithAuditToken:(const struct { unsigned int x1[8]; }*)arg1;
+- (struct optional<LaunchServices::BindingEvaluator> { union { BOOL x_1_1_1; struct BindingEvaluator { id x_2_2_1; id x_2_2_2; id x_2_2_3; id x_2_2_4; id x_2_2_5; id x_2_2_6; struct LSVersionNumber { unsigned char x_7_3_1[32]; } x_2_2_7; id x_2_2_8; bool x_2_2_9; unsigned long long x_2_2_10; unsigned int x_2_2_11; unsigned int x_2_2_12; struct vector<LSBundleClass, std::__1::allocator<LSBundleClass> > { unsigned int *x_13_3_1; unsigned int *x_13_3_2; struct __compressed_pair<LSBundleClass *, std::__1::allocator<LSBundleClass> > { unsigned int *x_3_4_1; } x_13_3_3; } x_2_2_13; id /* block */ x_2_2_14; id x_2_2_15; id /* block */ x_2_2_16; id x_2_2_17; } x_1_1_2; } x1; bool x2; })_bindingEvaluatorWithAuditToken:(const struct { unsigned int x1[8]; }*)arg1;
 - (id)_boundIconInfo;
 - (id)applicationsAvailableForOpeningByDraggingAndDroppingWithError:(id*)arg1;
 - (id)applicationsAvailableForOpeningFromAirDropWithError:(id*)arg1;
 - (id)applicationsAvailableForOpeningWithError:(id*)arg1;
 - (id)applicationsAvailableForOpeningWithHandlerRanks:(id)arg1 error:(id*)arg2;
 - (id)applicationsAvailableForOpeningWithStyle:(unsigned char)arg1 limit:(unsigned long long)arg2 XPCConnection:(id)arg3 error:(id*)arg4;
+- (id)applicationsOrClaimBindings:(bool)arg1 availableForOpeningWithStyle:(unsigned char)arg2 handlerRank:(id)arg3 limit:(unsigned long long)arg4 XPCConnection:(id)arg5 error:(id*)arg6;
+- (id)availableClaimBindingsForMode:(unsigned char)arg1 error:(id*)arg2;
+- (id)availableClaimBindingsForMode:(unsigned char)arg1 handlerRank:(id)arg2 error:(id*)arg3;
+- (id)availableClaimBindingsReturningError:(id*)arg1;
+- (id)claimBindingsAvailableForOpeningWithStyle:(unsigned char)arg1 handlerRank:(id)arg2 limit:(unsigned long long)arg3 XPCConnection:(id)arg4 error:(id*)arg5;
 - (id)containerOwnerApplicationIdentifier;
 - (id)debugDescription;
 - (id)description;
@@ -61,6 +66,10 @@
 - (bool)sourceIsManaged;
 - (id)typeIdentifier;
 - (id)uniqueIdentifier;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_documentProxyForName:(id)arg1 type:(id)arg2 MIMEType:(id)arg3 sourceURL:(id)arg4;
 
 // Image: /System/Library/PrivateFrameworks/IconServices.framework/IconServices
 

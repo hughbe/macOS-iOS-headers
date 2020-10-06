@@ -13,6 +13,8 @@
 @property (nonatomic, readonly) NSNumber *price;
 @property (nonatomic, readonly) NSString *subscriptionType;
 
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+
 - (id)actionTextForType:(id)arg1;
 - (id)buyParameters;
 - (void)dealloc;
@@ -22,5 +24,9 @@
 - (id)offerType;
 - (id)price;
 - (id)subscriptionType;
+
+// Image: /System/Library/PrivateFrameworks/MDM.framework/MDM
+
+- (id)MCExternalVersionIdentifier;
 
 @end

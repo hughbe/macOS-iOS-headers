@@ -16,6 +16,7 @@
 @optional
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1 device:(id <MTLDevice>)arg2;
+- (unsigned int)kernelWeightsDataType;
 - (float*)lookupTableForUInt8Kernel;
 - (/* Warning: Unrecognized filer type: '1' using 'void*' */ void**)rangesForUInt8Kernel;
 - (MPSCNNConvolutionWeightsAndBiasesState *)updateWithCommandBuffer:(id <MTLCommandBuffer>)arg1 gradientState:(MPSCNNConvolutionGradientState *)arg2 sourceState:(MPSCNNConvolutionWeightsAndBiasesState *)arg3;

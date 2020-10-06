@@ -6,6 +6,7 @@
     bool  _allowsInferringPreferences;
     _UIDebugLogReport * _debugReport;
     id /* block */  _didVisitAllPreferencesForEnvironmentHandler;
+    long long  _enumerationMode;
     id /* block */  _shouldInferPreferenceForEnvironmentHandler;
 }
 
@@ -14,6 +15,7 @@
 @property (nonatomic, retain) _UIDebugLogReport *debugReport;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) id /* block */ didVisitAllPreferencesForEnvironmentHandler;
+@property (nonatomic, readonly) long long enumerationMode;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) id /* block */ shouldInferPreferenceForEnvironmentHandler;
 @property (readonly) Class superclass;
@@ -24,7 +26,9 @@
 - (id)debugReport;
 - (id /* block */)didVisitAllPreferencesForEnvironmentHandler;
 - (void)enumeratePreferencesForEnvironment:(id)arg1 usingBlock:(id /* block */)arg2;
+- (long long)enumerationMode;
 - (id)init;
+- (id)initWithEnumerationMode:(long long)arg1;
 - (void)setAllowsInferringPreferences:(bool)arg1;
 - (void)setDebugReport:(id)arg1;
 - (void)setDidVisitAllPreferencesForEnvironmentHandler:(id /* block */)arg1;

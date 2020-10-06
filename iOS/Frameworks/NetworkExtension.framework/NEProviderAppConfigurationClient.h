@@ -8,6 +8,7 @@
     NEVPNManager * _currentManager;
     NSMutableArray * _currentManagers;
     NEDNSProxyManager * _dnsProxyManager;
+    NEDNSSettingsManager * _dnsSettingsManager;
     NEFilterManager * _filterManager;
     bool  _isServerMode;
     NSXPCListener * _listener;
@@ -22,6 +23,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (retain) NEDNSProxyManager *dnsProxyManager;
+@property (retain) NEDNSSettingsManager *dnsSettingsManager;
 @property (retain) NEFilterManager *filterManager;
 @property (readonly) unsigned long long hash;
 @property bool isServerMode;
@@ -40,6 +42,8 @@
 - (int)deleteKeychainItemWithPersistentReference:(id)arg1;
 - (id)dnsProxyConfiguration;
 - (id)dnsProxyManager;
+- (id)dnsSettingsBundle;
+- (id)dnsSettingsManager;
 - (bool)enabled;
 - (id)filterConfiguration;
 - (id)filterManager;
@@ -63,6 +67,7 @@
 - (void)setCurrentManager:(id)arg1;
 - (void)setCurrentManagers:(id)arg1;
 - (void)setDnsProxyManager:(id)arg1;
+- (void)setDnsSettingsManager:(id)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setFilterManager:(id)arg1;
 - (void)setIsServerMode:(bool)arg1;

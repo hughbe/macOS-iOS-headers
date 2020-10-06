@@ -3,6 +3,7 @@
  */
 
 @interface GEOPDRating : PBCodable <NSCopying> {
+    NSMutableArray * _appleRatingCategorys;
     struct { 
         unsigned int has_maxScore : 1; 
         unsigned int has_score : 1; 
@@ -16,6 +17,7 @@
     PBUnknownFields * _unknownFields;
 }
 
+@property (nonatomic, retain) NSMutableArray *appleRatingCategorys;
 @property (nonatomic) bool hasMaxScore;
 @property (nonatomic) bool hasNumRatingsUsedForScore;
 @property (nonatomic) bool hasRatingType;
@@ -26,22 +28,33 @@
 @property (nonatomic) double score;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
++ (Class)appleRatingCategoryType;
 + (bool)isValid:(id)arg1;
 + (id)ratingForPlaceData:(id)arg1 type:(int)arg2;
++ (id)ratingListForPlaceData:(id)arg1 type:(int)arg2;
 
 - (void).cxx_destruct;
 - (int)StringAsRatingType:(id)arg1;
+- (void)addAppleRatingCategory:(id)arg1;
+- (id)appleRatingCategoryAtIndex:(unsigned long long)arg1;
+- (id)appleRatingCategorys;
+- (unsigned long long)appleRatingCategorysCount;
+- (void)clearAppleRatingCategorys;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (id)displayTitle;
 - (bool)hasMaxScore;
 - (bool)hasNumRatingsUsedForScore;
 - (bool)hasRatingType;
 - (bool)hasScore;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)maxScore;
 - (void)mergeFrom:(id)arg1;
 - (int)numRatingsUsedForScore;
@@ -50,6 +63,7 @@
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (double)score;
+- (void)setAppleRatingCategorys:(id)arg1;
 - (void)setHasMaxScore:(bool)arg1;
 - (void)setHasNumRatingsUsedForScore:(bool)arg1;
 - (void)setHasRatingType:(bool)arg1;

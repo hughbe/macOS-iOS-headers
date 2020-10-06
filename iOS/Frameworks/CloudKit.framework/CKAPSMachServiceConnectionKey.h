@@ -7,8 +7,8 @@
     NSString * _namedDelegatePort;
 }
 
-@property (nonatomic, copy) NSString *environmentName;
-@property (nonatomic, copy) NSString *namedDelegatePort;
+@property (nonatomic, readonly, copy) NSString *environmentName;
+@property (nonatomic, readonly, copy) NSString *namedDelegatePort;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -17,7 +17,5 @@
 - (id)initWithEnvironmentName:(id)arg1 namedDelegatePort:(id)arg2;
 - (bool)isEqual:(id)arg1;
 - (id)namedDelegatePort;
-- (void)setEnvironmentName:(id)arg1;
-- (void)setNamedDelegatePort:(id)arg1;
 
 @end

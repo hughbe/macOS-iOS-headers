@@ -6,6 +6,7 @@
 @optional
 
 - (NSData *)data;
+- (bool)didWakeHint;
 - (bool)expectsPeerResponse;
 - (NSDate *)expiryDate;
 - (NSString *)messageUUID;

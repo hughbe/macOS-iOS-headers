@@ -16,12 +16,7 @@
         unsigned int read_directoryGroupingIds : 1; 
         unsigned int read_levelIds : 1; 
         unsigned int read_label : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_directoryGroupingIds : 1; 
-        unsigned int wrote_levelIds : 1; 
-        unsigned int wrote_buildingId : 1; 
-        unsigned int wrote_label : 1; 
-        unsigned int wrote_muid : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDVenueLabel * _label;
     struct { 
@@ -54,11 +49,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsDirectoryGroupingId:(unsigned long long)arg1;
-- (void)_addNoFlagsLevelId:(unsigned long long)arg1;
-- (void)_readDirectoryGroupingIds;
-- (void)_readLabel;
-- (void)_readLevelIds;
 - (void)addDirectoryGroupingId:(unsigned long long)arg1;
 - (void)addLevelId:(unsigned long long)arg1;
 - (unsigned long long)buildingId;
@@ -79,7 +69,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)label;
 - (unsigned long long)levelIdAtIndex:(unsigned long long)arg1;
 - (unsigned long long*)levelIds;

@@ -15,6 +15,7 @@
 - (id)description;
 - (id)init;
 - (id)initWithURL:(id)arg1;
+- (id)initWithURL:(id)arg1 baseURL:(id)arg2;
 - (void)parserSuggestsBaseURL:(id)arg1;
 - (id)payloadAsFullURL;
 - (id)payloadAsOriginalURL;

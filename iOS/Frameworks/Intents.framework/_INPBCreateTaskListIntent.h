@@ -3,7 +3,6 @@
  */
 
 @interface _INPBCreateTaskListIntent : PBCodable <NSCopying, NSSecureCoding, _INPBCreateTaskListIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBDataString * _groupName;
     struct { }  _has;
     _INPBIntentMetadata * _intentMetadata;
@@ -11,7 +10,6 @@
     _INPBDataString * _title;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBDataString *groupName;
@@ -29,8 +27,6 @@
 + (Class)taskTitlesType;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addTaskTitles:(id)arg1;
 - (void)clearTaskTitles;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

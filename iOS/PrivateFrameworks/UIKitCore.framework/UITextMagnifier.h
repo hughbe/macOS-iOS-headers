@@ -35,14 +35,9 @@
 @property (nonatomic, readonly) bool terminalPointPlacedCarefully;
 @property (nonatomic, retain) UIResponder<UITextInput> *text;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (Class)renderClass;
 
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct CGPoint { double x1; double x2; })adjustMagnificationPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)animateToAutoscrollRenderer;
 - (void)animateToMagnifierRenderer;

@@ -9,15 +9,15 @@
     NSDate * _dateScreenLightLastChanged;
     NSDate * _dateSystemLockLastChanged;
     double  _delayTime;
-    NSMutableArray * _earlyListeners;
+    NSHashTable * _earlyListeners;
     bool  _idleOverride;
     NSDate * _idleStart;
     bool  _inBackground;
-    struct _opaque_pthread_mutex_t { 
-        long long __sig; 
-        BOOL __opaque[56]; 
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
     }  _ivarLock;
-    NSMutableArray * _listeners;
+    NSHashTable * _listeners;
+    bool  _listeningForSetupAssistantNotifications;
     bool  _receivesMemoryWarnings;
     long long  _resignActiveCount;
     bool  _screenLit;
@@ -39,10 +39,10 @@
 
 @property (nonatomic) int _dataProtectionState;
 @property (nonatomic) double _delayTime;
-@property (nonatomic, retain) NSMutableArray *_earlyListeners;
+@property (nonatomic, retain) NSHashTable *_earlyListeners;
 @property (nonatomic) bool _idleOverride;
 @property (nonatomic, retain) NSDate *_idleStart;
-@property (nonatomic, retain) NSMutableArray *_listeners;
+@property (nonatomic, retain) NSHashTable *_listeners;
 @property (nonatomic, retain) NSTimer *_timer;
 @property (nonatomic) bool _underFirstLock;
 @property (nonatomic, retain) NSString *_userID;
@@ -63,7 +63,8 @@
 @property (nonatomic, readonly) bool isSystemLocked;
 @property (nonatomic, readonly) bool isUnderDataProtectionLock;
 @property (nonatomic, readonly) bool isUnderFirstDataProtectionLock;
-@property (nonatomic) struct _opaque_pthread_mutex_t { long long x1; BOOL x2[56]; } ivarLock;
+@property (nonatomic) struct os_unfair_lock_s { unsigned int x1; } ivarLock;
+@property (nonatomic) bool listeningForSetupAssistantNotifications;
 @property (nonatomic) bool receivesMemoryWarnings;
 @property (nonatomic) long long resignActiveCount;
 @property (readonly) Class superclass;
@@ -79,6 +80,7 @@
 
 + (id)sharedInstance;
 
+- (void).cxx_destruct;
 - (void)_addEarlyListener:(id)arg1;
 - (void)_alreadyLocked_clearIdleTimer;
 - (bool)_alreadyLocked_isSystemIdle;
@@ -112,6 +114,7 @@
 - (void)_receivedMemoryNotification;
 - (void)_registerForLoginWindowNotifications;
 - (void)_registerForRestoreNotifications;
+- (void)_registerForSetupNotifications;
 - (void)_removeEarlyListener:(id)arg1;
 - (void)_restoreDidStart;
 - (void)_restoreDidStop;
@@ -154,13 +157,15 @@
 - (bool)isSystemLocked;
 - (bool)isUnderDataProtectionLock;
 - (bool)isUnderFirstDataProtectionLock;
-- (struct _opaque_pthread_mutex_t { long long x1; BOOL x2[56]; })ivarLock;
+- (struct os_unfair_lock_s { unsigned int x1; })ivarLock;
+- (bool)listeningForSetupAssistantNotifications;
 - (bool)receivesMemoryWarnings;
 - (void)removeListener:(id)arg1;
 - (long long)resignActiveCount;
 - (void)setActive:(bool)arg1;
 - (void)setIsFastUserSwitched:(bool)arg1;
-- (void)setIvarLock:(struct _opaque_pthread_mutex_t { long long x1; BOOL x2[56]; })arg1;
+- (void)setIvarLock:(struct os_unfair_lock_s { unsigned int x1; })arg1;
+- (void)setListeningForSetupAssistantNotifications:(bool)arg1;
 - (void)setReceivesMemoryWarnings:(bool)arg1;
 - (void)setResignActiveCount:(long long)arg1;
 - (void)setUserIdleToken:(int)arg1;

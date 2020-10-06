@@ -3,7 +3,6 @@
  */
 
 @interface _INPBFindDeviceAndPlaySoundIntent : PBCodable <NSCopying, NSSecureCoding, _INPBFindDeviceAndPlaySoundIntent> {
-    bool  __encodeLegacyGloryData;
     NSArray * _devices;
     struct { 
         unsigned int isStopRequest : 1; 
@@ -12,7 +11,6 @@
     bool  _isStopRequest;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSArray *devices;
@@ -28,8 +26,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addDevice:(id)arg1;
 - (void)clearDevices;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

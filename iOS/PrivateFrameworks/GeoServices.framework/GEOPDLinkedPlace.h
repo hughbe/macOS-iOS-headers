@@ -12,12 +12,7 @@
         unsigned int read_mapsId : 1; 
         unsigned int read_name : 1; 
         unsigned int read_styleAttributes : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_center : 1; 
-        unsigned int wrote_featureId : 1; 
-        unsigned int wrote_mapsId : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_styleAttributes : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDMapsIdentifier * _mapsId;
     NSString * _name;
@@ -46,10 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readCenter;
-- (void)_readMapsId;
-- (void)_readName;
-- (void)_readStyleAttributes;
 - (id)center;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
@@ -65,7 +56,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapsId;
 - (void)mergeFrom:(id)arg1;
 - (id)name;

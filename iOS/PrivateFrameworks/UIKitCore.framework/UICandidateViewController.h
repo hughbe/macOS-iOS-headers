@@ -13,19 +13,17 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
++ (double)preferredCandidateBarHeightForTraitCollection:(id)arg1;
 
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)candidateView;
 - (id)displayedCandidates;
 - (bool)hidesExpandableButton;
 - (bool)isVisibleForInputDelegate:(id)arg1 inputViews:(id)arg2;
 - (void)loadView;
 - (long long)overrideUserInterfaceStyle;
+- (double)preferredHeightForTraitCollection:(id)arg1;
 - (void)setCandidateView:(id)arg1;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillAppear:(bool)arg1;

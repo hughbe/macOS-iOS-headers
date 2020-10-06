@@ -8,11 +8,13 @@
     int  _command;
     NSMutableArray * _currentPlaybackSessionTypes;
     int  _currentQueueEndAction;
+    int  _disabledReason;
     bool  _enabled;
     struct { 
         unsigned int canScrub : 1; 
         unsigned int command : 1; 
         unsigned int currentQueueEndAction : 1; 
+        unsigned int disabledReason : 1; 
         unsigned int maximumRating : 1; 
         unsigned int minimumRating : 1; 
         unsigned int numAvailableSkips : 1; 
@@ -75,11 +77,13 @@
 @property (nonatomic) int command;
 @property (nonatomic, retain) NSMutableArray *currentPlaybackSessionTypes;
 @property (nonatomic) int currentQueueEndAction;
+@property (nonatomic) int disabledReason;
 @property (nonatomic) bool enabled;
 @property (nonatomic) bool hasActive;
 @property (nonatomic) bool hasCanScrub;
 @property (nonatomic) bool hasCommand;
 @property (nonatomic) bool hasCurrentQueueEndAction;
+@property (nonatomic) bool hasDisabledReason;
 @property (nonatomic) bool hasEnabled;
 @property (nonatomic, readonly) bool hasLocalizedShortTitle;
 @property (nonatomic, readonly) bool hasLocalizedTitle;
@@ -128,8 +132,11 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCommand:(id)arg1;
+- (int)StringAsCurrentQueueEndAction:(id)arg1;
+- (int)StringAsDisabledReason:(id)arg1;
 - (int)StringAsRepeatMode:(id)arg1;
 - (int)StringAsShuffleMode:(id)arg1;
+- (int)StringAsSupportedQueueEndActions:(id)arg1;
 - (bool)active;
 - (void)addCurrentPlaybackSessionTypes:(id)arg1;
 - (void)addPreferredInterval:(double)arg1;
@@ -156,14 +163,18 @@
 - (id)currentPlaybackSessionTypesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)currentPlaybackSessionTypesCount;
 - (int)currentQueueEndAction;
+- (id)currentQueueEndActionAsString:(int)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (int)disabledReason;
+- (id)disabledReasonAsString:(int)arg1;
 - (bool)enabled;
 - (bool)hasActive;
 - (bool)hasCanScrub;
 - (bool)hasCommand;
 - (bool)hasCurrentQueueEndAction;
+- (bool)hasDisabledReason;
 - (bool)hasEnabled;
 - (bool)hasLocalizedShortTitle;
 - (bool)hasLocalizedTitle;
@@ -201,11 +212,13 @@
 - (void)setCommand:(int)arg1;
 - (void)setCurrentPlaybackSessionTypes:(id)arg1;
 - (void)setCurrentQueueEndAction:(int)arg1;
+- (void)setDisabledReason:(int)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setHasActive:(bool)arg1;
 - (void)setHasCanScrub:(bool)arg1;
 - (void)setHasCommand:(bool)arg1;
 - (void)setHasCurrentQueueEndAction:(bool)arg1;
+- (void)setHasDisabledReason:(bool)arg1;
 - (void)setHasEnabled:(bool)arg1;
 - (void)setHasMaximumRating:(bool)arg1;
 - (void)setHasMinimumRating:(bool)arg1;
@@ -256,6 +269,7 @@
 - (id)supportedPlaybackSessionTypesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)supportedPlaybackSessionTypesCount;
 - (int*)supportedQueueEndActions;
+- (id)supportedQueueEndActionsAsString:(int)arg1;
 - (int)supportedQueueEndActionsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)supportedQueueEndActionsCount;
 - (float)supportedRateAtIndex:(unsigned long long)arg1;

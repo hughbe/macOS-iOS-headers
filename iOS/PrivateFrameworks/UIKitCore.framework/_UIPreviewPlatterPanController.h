@@ -23,6 +23,8 @@
     struct { 
         unsigned long long attachment; 
         unsigned long long alignment; 
+        double attachmentOffset; 
+        double alignmentOffset; 
     }  _menuAnchor;
     struct CGPoint { 
         double x; 
@@ -50,7 +52,7 @@
 @property (nonatomic) bool enabled;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) unsigned long long initialDetentIndex;
-@property (nonatomic) struct { unsigned long long x1; unsigned long long x2; } menuAnchor;
+@property (nonatomic) struct { unsigned long long x1; unsigned long long x2; double x3; double x4; } menuAnchor;
 @property (nonatomic) struct CGPoint { double x1; double x2; } originalActionsCenter;
 @property (nonatomic) struct CGPoint { double x1; double x2; } originalPlatterCenter;
 @property (nonatomic, retain) UIPanGestureRecognizer *panGestureRecognizer;
@@ -84,11 +86,12 @@
 - (id)detents;
 - (bool)enabled;
 - (bool)gestureRecognizer:(id)arg1 shouldBeRequiredToFailByGestureRecognizer:(id)arg2;
+- (bool)gestureRecognizer:(id)arg1 shouldReceiveEvent:(id)arg2;
+- (bool)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 - (bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
-- (bool)gestureRecognizerShouldBegin:(id)arg1;
 - (id)initWithContainerView:(id)arg1 platterView:(id)arg2 actionsView:(id)arg3;
 - (unsigned long long)initialDetentIndex;
-- (struct { unsigned long long x1; unsigned long long x2; })menuAnchor;
+- (struct { unsigned long long x1; unsigned long long x2; double x3; double x4; })menuAnchor;
 - (struct CGPoint { double x1; double x2; })originalActionsCenter;
 - (struct CGPoint { double x1; double x2; })originalPlatterCenter;
 - (id)panGestureRecognizer;
@@ -101,7 +104,7 @@
 - (void)setDetents:(id)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setInitialDetentIndex:(unsigned long long)arg1;
-- (void)setMenuAnchor:(struct { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)setMenuAnchor:(struct { unsigned long long x1; unsigned long long x2; double x3; double x4; })arg1;
 - (void)setOriginalActionsCenter:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setOriginalPlatterCenter:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setPanGestureRecognizer:(id)arg1;

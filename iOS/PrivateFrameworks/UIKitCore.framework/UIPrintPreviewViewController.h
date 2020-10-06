@@ -17,7 +17,7 @@
     UIView * _pageLabelBackgroundView;
     NSLayoutConstraint * _pageLabelBadgeVerticalPositionConstraint;
     UIImageView * _pageLabelOnImageView;
-    NSObject<OS_dispatch_queue> * _pageRendererQueue;
+    NSOperationQueue * _pageRendererQueue;
     struct CGSize { 
         double width; 
         double height; 
@@ -27,7 +27,7 @@
     NSURL * _pdfURL;
     UIImageView * _pinchAnimationView;
     UIView * _pinchAnimationWhiteBackgroundView;
-    UICollectionViewCell * _pinchGestureBeginningCell;
+    UIImageView * _pinchGestureBeginningPageImageView;
     struct CGPoint { 
         double x; 
         double y; 
@@ -58,15 +58,11 @@
 @property bool scaleUpOnDestinationPaper;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (long long)_adjustScrollDirectionForLayout:(long long)arg1;
+- (void)_mainQueue_UpdateLayout;
+- (void)_mainQueue_reloadItemAtIndex:(id)arg1;
 - (id)_newTempURLForPreviewing;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)accessibilityScroll:(long long)arg1;
 - (void)addAllPages:(id)arg1;
 - (void)addPage:(id)arg1 forPageIndex:(long long)arg2;
@@ -83,13 +79,18 @@
 - (bool)canShowMenuBar;
 - (bool)collectionView:(id)arg1 canPerformAction:(SEL)arg2 forItemAtIndexPath:(id)arg3 withSender:(id)arg4;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
+- (id)collectionView:(id)arg1 contextMenuConfigurationForItemAtIndexPath:(id)arg2 point:(struct CGPoint { double x1; double x2; })arg3;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })collectionView:(id)arg1 layout:(id)arg2 insetForSectionAtIndex:(long long)arg3;
 - (struct CGSize { double x1; double x2; })collectionView:(id)arg1 layout:(id)arg2 sizeForItemAtIndexPath:(id)arg3;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (void)collectionView:(id)arg1 prefetchItemsAtIndexPaths:(id)arg2;
+- (id)collectionView:(id)arg1 previewForDismissingContextMenuWithConfiguration:(id)arg2;
+- (id)collectionView:(id)arg1 previewForHighlightingContextMenuWithConfiguration:(id)arg2;
 - (bool)collectionView:(id)arg1 shouldShowMenuForItemAtIndexPath:(id)arg2;
+- (void)collectionView:(id)arg1 willPerformPreviewActionForMenuWithConfiguration:(id)arg2 animator:(id)arg3;
 - (void)configureCell:(id)arg1 atIndexPath:(id)arg2;
 - (long long)currentCenterPageIndex;
+- (void)dealloc;
 - (id)destinationPaper;
 - (void)didReceiveMemoryWarning;
 - (void)documentInteractionController:(id)arg1 didEndSendingToApplication:(id)arg2;
@@ -106,7 +107,7 @@
 - (void)handlePinch:(id)arg1;
 - (void)handleTap:(id)arg1;
 - (id)indexPathNearestToPointInCollectionView:(struct CGPoint { double x1; double x2; })arg1;
-- (id)initWithPageSize:(struct CGSize { double x1; double x2; })arg1 numberOfPages:(long long)arg2 viewSize:(struct CGSize { double x1; double x2; })arg3 printPanelViewController:(id)arg4;
+- (id)initWithViewSize:(struct CGSize { double x1; double x2; })arg1 printPanelViewController:(id)arg2;
 - (long long)initialPageIndexToCenter;
 - (bool)locationInTapTargetOfPageLabelBadge:(struct CGPoint { double x1; double x2; })arg1;
 - (long long)numPages;
@@ -120,13 +121,12 @@
 - (id)pdfURL;
 - (bool)presentingDocumentInteractionController;
 - (void)previewPDF;
-- (id)previewViewControllerForItemAtIndexPath:(id)arg1;
-- (void)previewingContext:(id)arg1 commitViewController:(id)arg2;
-- (id)previewingContext:(id)arg1 viewControllerForLocation:(struct CGPoint { double x1; double x2; })arg2;
+- (id)printPagePreviewActionItemsWithPageIndex:(long long)arg1;
+- (id)printPagePreviewViewControllerForItemAtPageIndex:(long long)arg1;
 - (id)quickLookPDFURL;
 - (void)removePage:(id)arg1 forPageIndex:(long long)arg2;
 - (void)resetAllPageImages;
-- (void)resetCellSizesArray;
+- (void)resetCellSizesArrayCompletionHandler:(id /* block */)arg1;
 - (bool)scaleUpOnDestinationPaper;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(bool)arg2;

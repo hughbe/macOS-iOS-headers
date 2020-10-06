@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UICollectionViewController : UIViewController <DebugHierarchyObject_Fallback, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewFocusDelegate_Legacy, UIViewControllerPreviewingDelegate, UIViewControllerPreviewingDelegate_Deprecated, _UIKeyboardAutoRespondingScrollViewController> {
+@interface UICollectionViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewFocusDelegate_Legacy, UIViewControllerPreviewingDelegate, UIViewControllerPreviewingDelegate_Deprecated, _UIKeyboardAutoRespondingScrollViewController> {
     UICollectionView * _collectionView;
     struct { 
         unsigned int clearsSelectionOnViewWillAppear : 1; 
@@ -25,8 +25,6 @@
 @property (readonly) Class superclass;
 @property (nonatomic) bool useLayoutToLayoutNavigationTransitions;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)__viewDidAppear:(bool)arg1;
 - (void)__viewWillAppear:(bool)arg1;
@@ -42,15 +40,6 @@
 - (id)_uiCollectionView;
 - (void)_updateCollectionViewLayoutAndDelegate:(id)arg1;
 - (id)_wrappingView;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)clearsSelectionOnViewWillAppear;
 - (id)collectionView;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
@@ -58,6 +47,7 @@
 - (id)collectionViewLayout;
 - (id)contentScrollView;
 - (id)dataSource;
+- (void)dealloc;
 - (id)delegate;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

@@ -19,8 +19,7 @@
 @property (retain) NSDictionary *thumbnailDataDictionary;
 @property (readonly) QLThumbnailVersion *thumbnailVersion;
 
-+ (bool)_hitAdditionsOnURL:(id)arg1 size:(unsigned long long)arg2 error:(id*)arg3;
-+ (bool)_hitAdditionsOnURLUsingDaemon:(id)arg1 size:(unsigned long long)arg2 error:(id*)arg3;
++ (void)_hitAdditionsOnURL:(id)arg1 size:(unsigned long long)arg2 completionHandler:(id /* block */)arg3;
 + (bool)_removeAdditionsOnURLDirectly:(id)arg1 error:(id*)arg2;
 + (bool)_removeAdditionsOnURLUsingDaemon:(id)arg1 error:(id*)arg2;
 + (bool)_removedAdditionsOnURL:(id)arg1;
@@ -54,6 +53,7 @@
 + (bool)removeThumbnailsStoredInExtendedAttributesOnURL:(id)arg1 error:(id*)arg2;
 + (bool)setPropertyList:(id)arg1 forExtendedAttributeNamed:(const char *)arg2 flags:(unsigned long long)arg3 onFileDescriptor:(int)arg4 error:(id*)arg5;
 + (bool)setThumbnailsDictionary:(id)arg1 forURL:(id)arg2 error:(id*)arg3;
++ (bool)shouldUseXattrsToStoreThumbnailsOnURL:(id)arg1;
 + (unsigned long long)sizeOfAdditionsPresentOnURL:(id)arg1;
 + (bool)storeThumbnailDataDictionary:(id)arg1 metadata:(id)arg2 asExtendedAttributeOnURL:(id)arg3 error:(id*)arg4;
 + (id)thumbnailsDictionaryForURL:(id)arg1 error:(id*)arg2;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBWellnessObjectResultValue : PBCodable <NSCopying, NSSecureCoding, _INPBWellnessObjectResultValue> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int resultType : 1; 
     }  _has;
@@ -13,7 +12,6 @@
     NSArray * _values;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasRecordDate;
@@ -32,8 +30,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsResultType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addValues:(id)arg1;
 - (void)clearValues;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

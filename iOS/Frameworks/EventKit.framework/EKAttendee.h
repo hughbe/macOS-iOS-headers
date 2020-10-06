@@ -11,6 +11,7 @@
 @property (nonatomic) long long participantType;
 @property (nonatomic) long long pendingStatus;
 @property (nonatomic) bool proposedStartDateChanged;
+@property (nonatomic, readonly) bool rsvpRequested;
 @property (nonatomic) bool statusChanged;
 
 + (int)_calAttendeeStatusFromEKParticipantStatus:(long long)arg1;
@@ -22,6 +23,7 @@
 + (id)attendeeWithName:(id)arg1 phoneNumber:(id)arg2;
 + (id)attendeeWithName:(id)arg1 url:(id)arg2;
 + (Class)frozenClass;
++ (id)knownSingleValueKeysForComparison;
 
 - (bool)_isParticipantStatusDirty;
 - (void)_setFlag:(unsigned int)arg1 value:(bool)arg2;
@@ -29,6 +31,7 @@
 - (bool)commentChanged;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
+- (id)displayString;
 - (unsigned int)flags;
 - (bool)isCurrentUser;
 - (id)lastModifiedParticipationStatus;
@@ -40,6 +43,7 @@
 - (long long)pendingStatus;
 - (int)pendingStatusRaw;
 - (bool)proposedStartDateChanged;
+- (bool)rsvpRequested;
 - (void)setCommentChanged:(bool)arg1;
 - (void)setFlags:(unsigned int)arg1;
 - (void)setParticipantRole:(long long)arg1;

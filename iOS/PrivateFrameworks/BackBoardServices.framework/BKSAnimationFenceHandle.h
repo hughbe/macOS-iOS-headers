@@ -2,35 +2,26 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@interface BKSAnimationFenceHandle : NSObject <BSInvalidatable, BSXPCCoding, NSCopying, NSSecureCoding> {
-    BSMachPortSendRight * _caFence;
-    unsigned long long  _fenceName;
-    unsigned long long  _handleName;
-    BSMachPortSendRight * _preFence;
-    BSMachPortSendRight * _preFenceTrigger;
-    bool  _shouldTrace;
-    int  _valid;
-}
+@interface BKSAnimationFenceHandle : NSObject <BSInvalidatable, BSXPCCoding, NSCopying, NSSecureCoding>
 
-@property (nonatomic, readonly, copy) NSString *_trace;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) unsigned long long fenceName;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) bool shouldIgnoreTrigger;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) BSMachPortSendRight *trigger;
 @property (getter=isUsable, nonatomic, readonly) bool usable;
 
++ (id)newFenceHandleForCAFenceHandle:(id)arg1;
 + (id)newFenceHandleForContext:(id)arg1;
 + (id)newSystemFenceHandle;
 + (bool)supportsSecureCoding;
 
-- (void).cxx_destruct;
+- (id)CAFenceHandle;
 - (unsigned int)CAPort;
-- (id)_initWithFenceName:(unsigned long long)arg1 fence:(id)arg2 preFence:(id)arg3 preFenceTrigger:(id)arg4 shouldTrace:(bool)arg5;
-- (id)_trace;
+- (id)_init;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
@@ -40,6 +31,7 @@
 - (id)initWithXPCDictionary:(id)arg1;
 - (void)invalidate;
 - (bool)isUsable;
+- (bool)shouldIgnoreTrigger;
 - (id)trigger;
 
 @end

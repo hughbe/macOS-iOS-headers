@@ -3,22 +3,24 @@
  */
 
 @interface GEORPFeedbackLayoutFormConfig : PBCodable <NSCopying> {
+    bool  _enabled;
     struct { 
         unsigned int has_formType : 1; 
         unsigned int has_ttl : 1; 
+        unsigned int has_enabled : 1; 
     }  _flags;
     int  _formType;
     NSMutableArray * _layoutFields;
     unsigned int  _ttl;
-    PBUnknownFields * _unknownFields;
 }
 
+@property (nonatomic) bool enabled;
 @property (nonatomic) int formType;
+@property (nonatomic) bool hasEnabled;
 @property (nonatomic) bool hasFormType;
 @property (nonatomic) bool hasTtl;
 @property (nonatomic, retain) NSMutableArray *layoutFields;
 @property (nonatomic) unsigned int ttl;
-@property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
 + (Class)layoutFieldType;
@@ -27,30 +29,35 @@
 - (int)StringAsFormType:(id)arg1;
 - (void)addLayoutField:(id)arg1;
 - (void)clearLayoutFields;
-- (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (bool)enabled;
 - (int)formType;
 - (id)formTypeAsString:(int)arg1;
+- (bool)hasEnabled;
 - (bool)hasFormType;
 - (bool)hasTtl;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)layoutFieldAtIndex:(unsigned long long)arg1;
 - (id)layoutFields;
 - (unsigned long long)layoutFieldsCount;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setEnabled:(bool)arg1;
 - (void)setFormType:(int)arg1;
+- (void)setHasEnabled:(bool)arg1;
 - (void)setHasFormType:(bool)arg1;
 - (void)setHasTtl:(bool)arg1;
 - (void)setLayoutFields:(id)arg1;
 - (void)setTtl:(unsigned int)arg1;
 - (unsigned int)ttl;
-- (id)unknownFields;
 - (void)writeTo:(id)arg1;
 
 @end

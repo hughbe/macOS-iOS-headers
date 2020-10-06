@@ -55,6 +55,7 @@
         double x; 
         double y; 
     }  _translationOffset;
+    double  _unmaskedOverlayScaleFactor;
     double  _unpressedDuration;
     bool  _useSeparateUnfocusedShadowImage;
     double  _zDepth;
@@ -110,6 +111,7 @@
 @property (nonatomic) double specularHighlightVerticalPositionSensitivity;
 @property (nonatomic) double specularOpacity;
 @property (nonatomic) struct CGPoint { double x1; double x2; } translationOffset;
+@property (nonatomic) double unmaskedOverlayScaleFactor;
 @property (nonatomic) double unpressedDuration;
 @property (nonatomic) bool useSeparateUnfocusedShadowImage;
 @property (nonatomic) double zDepth;
@@ -215,6 +217,7 @@
 - (void)setSpecularHighlightVerticalPositionSensitivity:(double)arg1;
 - (void)setSpecularOpacity:(double)arg1;
 - (void)setTranslationOffset:(struct CGPoint { double x1; double x2; })arg1;
+- (void)setUnmaskedOverlayScaleFactor:(double)arg1;
 - (void)setUnpressedDuration:(double)arg1;
 - (void)setUseSeparateUnfocusedShadowImage:(bool)arg1;
 - (void)setZDepth:(double)arg1;
@@ -225,6 +228,7 @@
 - (double)specularHighlightVerticalPositionSensitivity;
 - (double)specularOpacity;
 - (struct CGPoint { double x1; double x2; })translationOffset;
+- (double)unmaskedOverlayScaleFactor;
 - (double)unpressedDuration;
 - (bool)useSeparateUnfocusedShadowImage;
 - (double)zDepth;

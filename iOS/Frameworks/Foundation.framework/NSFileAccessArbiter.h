@@ -27,6 +27,7 @@
 
 + (void)_wakeUpFileProviderWithUID:(unsigned int)arg1 urls:(id)arg2 queue:(id)arg3 thenContinue:(id /* block */)arg4;
 + (void)ensureProvidersIfNecessaryForClaim:(id)arg1 user:(unsigned int)arg2 atLocations:(id)arg3 queue:(id)arg4 thenContinue:(id /* block */)arg5;
++ (id)entitlementForConnection:(id)arg1 key:(id)arg2;
 
 - (bool)_addPresenter:(id)arg1 ofItemAtURL:(id)arg2 watchingFile:(bool)arg3 withLastEventID:(id)arg4;
 - (bool)_addProvider:(id)arg1 ofItemsAtURL:(id)arg2;

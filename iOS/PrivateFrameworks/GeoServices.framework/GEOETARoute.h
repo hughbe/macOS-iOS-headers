@@ -3,6 +3,7 @@
  */
 
 @interface GEOETARoute : PBCodable <NSCopying> {
+    GEOWaypointInfo * _destinationWaypointInfo;
     NSMutableArray * _enrouteNotices;
     struct { 
         unsigned int has_historicTravelTime : 1; 
@@ -13,38 +14,25 @@
         unsigned int has_routeNoLongerValid : 1; 
         unsigned int read_unknownFields : 1; 
         unsigned int read_incidentEndOffsetsInETARoutes : 1; 
+        unsigned int read_incidentIndexs : 1; 
         unsigned int read_trafficColorOffsets : 1; 
         unsigned int read_trafficColors : 1; 
+        unsigned int read_destinationWaypointInfo : 1; 
         unsigned int read_enrouteNotices : 1; 
+        unsigned int read_incidentOnRouteInfos : 1; 
         unsigned int read_incidentsOffReRoutes : 1; 
         unsigned int read_incidentsOnETARoutes : 1; 
         unsigned int read_incidentsOnReRoutes : 1; 
         unsigned int read_invalidSectionZilchPoints : 1; 
+        unsigned int read_navigabilityInfo : 1; 
+        unsigned int read_originWaypointInfo : 1; 
         unsigned int read_reroutedRoutes : 1; 
         unsigned int read_routeID : 1; 
         unsigned int read_steps : 1; 
         unsigned int read_trafficBannerText : 1; 
+        unsigned int read_trafficColorInfos : 1; 
         unsigned int read_zilchPoints : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_incidentEndOffsetsInETARoutes : 1; 
-        unsigned int wrote_trafficColorOffsets : 1; 
-        unsigned int wrote_trafficColors : 1; 
-        unsigned int wrote_enrouteNotices : 1; 
-        unsigned int wrote_incidentsOffReRoutes : 1; 
-        unsigned int wrote_incidentsOnETARoutes : 1; 
-        unsigned int wrote_incidentsOnReRoutes : 1; 
-        unsigned int wrote_invalidSectionZilchPoints : 1; 
-        unsigned int wrote_reroutedRoutes : 1; 
-        unsigned int wrote_routeID : 1; 
-        unsigned int wrote_steps : 1; 
-        unsigned int wrote_trafficBannerText : 1; 
-        unsigned int wrote_zilchPoints : 1; 
-        unsigned int wrote_historicTravelTime : 1; 
-        unsigned int wrote_staticTravelTime : 1; 
-        unsigned int wrote_travelTimeAggressiveEstimate : 1; 
-        unsigned int wrote_travelTimeBestEstimate : 1; 
-        unsigned int wrote_travelTimeConservativeEstimate : 1; 
-        unsigned int wrote_routeNoLongerValid : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _historicTravelTime;
     struct { 
@@ -52,10 +40,18 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _incidentEndOffsetsInETARoutes;
+    struct { 
+        unsigned int *list; 
+        unsigned long long count; 
+        unsigned long long size; 
+    }  _incidentIndexs;
+    NSMutableArray * _incidentOnRouteInfos;
     NSMutableArray * _incidentsOffReRoutes;
     NSMutableArray * _incidentsOnETARoutes;
     NSMutableArray * _incidentsOnReRoutes;
     NSMutableArray * _invalidSectionZilchPoints;
+    GEONavigabilityInfo * _navigabilityInfo;
+    GEOWaypointInfo * _originWaypointInfo;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -68,6 +64,7 @@
     unsigned int  _staticTravelTime;
     NSMutableArray * _steps;
     GEOTrafficBannerText * _trafficBannerText;
+    NSMutableArray * _trafficColorInfos;
     struct { 
         unsigned int *list; 
         unsigned long long count; 
@@ -82,35 +79,42 @@
     unsigned int  _travelTimeBestEstimate;
     unsigned int  _travelTimeConservativeEstimate;
     PBUnknownFields * _unknownFields;
-    NSData * _zilchPoints;
+    NSMutableArray * _zilchPoints;
 }
 
+@property (nonatomic, retain) GEOWaypointInfo *destinationWaypointInfo;
 @property (nonatomic, retain) NSMutableArray *enrouteNotices;
 @property (nonatomic, readonly) double expectedTime;
+@property (nonatomic, readonly) bool hasDestinationWaypointInfo;
 @property (nonatomic) bool hasHistoricTravelTime;
+@property (nonatomic, readonly) bool hasNavigabilityInfo;
+@property (nonatomic, readonly) bool hasOriginWaypointInfo;
 @property (nonatomic, readonly) bool hasRouteID;
 @property (nonatomic) bool hasRouteNoLongerValid;
 @property (nonatomic) bool hasStaticTravelTime;
 @property (nonatomic, readonly) bool hasTrafficBannerText;
-@property (nonatomic, readonly) bool hasTrafficIncidentAlert;
 @property (nonatomic) bool hasTravelTimeAggressiveEstimate;
 @property (nonatomic) bool hasTravelTimeBestEstimate;
 @property (nonatomic) bool hasTravelTimeConservativeEstimate;
-@property (nonatomic, readonly) bool hasValidTrafficIncidentAlert;
-@property (nonatomic, readonly) bool hasZilchPoints;
 @property (nonatomic) unsigned int historicTravelTime;
 @property (nonatomic, readonly) unsigned int*incidentEndOffsetsInETARoutes;
 @property (nonatomic, readonly) unsigned long long incidentEndOffsetsInETARoutesCount;
+@property (nonatomic, readonly) unsigned int*incidentIndexs;
+@property (nonatomic, readonly) unsigned long long incidentIndexsCount;
+@property (nonatomic, retain) NSMutableArray *incidentOnRouteInfos;
 @property (nonatomic, retain) NSMutableArray *incidentsOffReRoutes;
 @property (nonatomic, retain) NSMutableArray *incidentsOnETARoutes;
 @property (nonatomic, retain) NSMutableArray *incidentsOnReRoutes;
 @property (nonatomic, retain) NSMutableArray *invalidSectionZilchPoints;
+@property (nonatomic, retain) GEONavigabilityInfo *navigabilityInfo;
+@property (nonatomic, retain) GEOWaypointInfo *originWaypointInfo;
 @property (nonatomic, retain) NSMutableArray *reroutedRoutes;
 @property (nonatomic, retain) NSData *routeID;
 @property (nonatomic) bool routeNoLongerValid;
 @property (nonatomic) unsigned int staticTravelTime;
 @property (nonatomic, retain) NSMutableArray *steps;
 @property (nonatomic, retain) GEOTrafficBannerText *trafficBannerText;
+@property (nonatomic, retain) NSMutableArray *trafficColorInfos;
 @property (nonatomic, readonly) unsigned int*trafficColorOffsets;
 @property (nonatomic, readonly) unsigned long long trafficColorOffsetsCount;
 @property (nonatomic, readonly) unsigned int*trafficColors;
@@ -119,11 +123,10 @@
 @property (nonatomic) unsigned int travelTimeBestEstimate;
 @property (nonatomic) unsigned int travelTimeConservativeEstimate;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
-@property (nonatomic, retain) NSData *zilchPoints;
-
-// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+@property (nonatomic, retain) NSMutableArray *zilchPoints;
 
 + (Class)enrouteNoticeType;
++ (Class)incidentOnRouteInfoType;
 + (Class)incidentsOffReRoutesType;
 + (Class)incidentsOnETARouteType;
 + (Class)incidentsOnReRoutesType;
@@ -131,34 +134,14 @@
 + (bool)isValid:(id)arg1;
 + (Class)reroutedRouteType;
 + (Class)stepType;
++ (Class)trafficColorInfoType;
++ (Class)zilchPointsType;
 
 - (void).cxx_destruct;
-- (void)_addDebugArguments:(id)arg1;
-- (void)_addNoFlagsEnrouteNotice:(id)arg1;
-- (void)_addNoFlagsIncidentEndOffsetsInETARoute:(unsigned int)arg1;
-- (void)_addNoFlagsIncidentsOffReRoutes:(id)arg1;
-- (void)_addNoFlagsIncidentsOnETARoute:(id)arg1;
-- (void)_addNoFlagsIncidentsOnReRoutes:(id)arg1;
-- (void)_addNoFlagsInvalidSectionZilchPoints:(id)arg1;
-- (void)_addNoFlagsReroutedRoute:(id)arg1;
-- (void)_addNoFlagsStep:(id)arg1;
-- (void)_addNoFlagsTrafficColor:(unsigned int)arg1;
-- (void)_addNoFlagsTrafficColorOffset:(unsigned int)arg1;
-- (void)_readEnrouteNotices;
-- (void)_readIncidentEndOffsetsInETARoutes;
-- (void)_readIncidentsOffReRoutes;
-- (void)_readIncidentsOnETARoutes;
-- (void)_readIncidentsOnReRoutes;
-- (void)_readInvalidSectionZilchPoints;
-- (void)_readReroutedRoutes;
-- (void)_readRouteID;
-- (void)_readSteps;
-- (void)_readTrafficBannerText;
-- (void)_readTrafficColorOffsets;
-- (void)_readTrafficColors;
-- (void)_readZilchPoints;
 - (void)addEnrouteNotice:(id)arg1;
 - (void)addIncidentEndOffsetsInETARoute:(unsigned int)arg1;
+- (void)addIncidentIndex:(unsigned int)arg1;
+- (void)addIncidentOnRouteInfo:(id)arg1;
 - (void)addIncidentsOffReRoutes:(id)arg1;
 - (void)addIncidentsOnETARoute:(id)arg1;
 - (void)addIncidentsOnReRoutes:(id)arg1;
@@ -166,31 +149,38 @@
 - (void)addReroutedRoute:(id)arg1;
 - (void)addStep:(id)arg1;
 - (void)addTrafficColor:(unsigned int)arg1;
+- (void)addTrafficColorInfo:(id)arg1;
 - (void)addTrafficColorOffset:(unsigned int)arg1;
-- (id)bannerDescription;
-- (id)bannerSpoken;
-- (id)bannerTitle;
+- (void)addZilchPoints:(id)arg1;
 - (void)clearEnrouteNotices;
 - (void)clearIncidentEndOffsetsInETARoutes;
+- (void)clearIncidentIndexs;
+- (void)clearIncidentOnRouteInfos;
 - (void)clearIncidentsOffReRoutes;
 - (void)clearIncidentsOnETARoutes;
 - (void)clearIncidentsOnReRoutes;
 - (void)clearInvalidSectionZilchPoints;
 - (void)clearReroutedRoutes;
 - (void)clearSteps;
+- (void)clearTrafficColorInfos;
 - (void)clearTrafficColorOffsets;
 - (void)clearTrafficColors;
 - (void)clearUnknownFields:(bool)arg1;
+- (void)clearZilchPoints;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
+- (id)destinationWaypointInfo;
 - (id)dictionaryRepresentation;
 - (id)enrouteNoticeAtIndex:(unsigned long long)arg1;
 - (id)enrouteNotices;
 - (unsigned long long)enrouteNoticesCount;
 - (double)expectedTime;
+- (bool)hasDestinationWaypointInfo;
 - (bool)hasHistoricTravelTime;
+- (bool)hasNavigabilityInfo;
+- (bool)hasOriginWaypointInfo;
 - (bool)hasRouteID;
 - (bool)hasRouteNoLongerValid;
 - (bool)hasStaticTravelTime;
@@ -198,12 +188,17 @@
 - (bool)hasTravelTimeAggressiveEstimate;
 - (bool)hasTravelTimeBestEstimate;
 - (bool)hasTravelTimeConservativeEstimate;
-- (bool)hasZilchPoints;
 - (unsigned long long)hash;
 - (unsigned int)historicTravelTime;
 - (unsigned int)incidentEndOffsetsInETARouteAtIndex:(unsigned long long)arg1;
 - (unsigned int*)incidentEndOffsetsInETARoutes;
 - (unsigned long long)incidentEndOffsetsInETARoutesCount;
+- (unsigned int)incidentIndexAtIndex:(unsigned long long)arg1;
+- (unsigned int*)incidentIndexs;
+- (unsigned long long)incidentIndexsCount;
+- (id)incidentOnRouteInfoAtIndex:(unsigned long long)arg1;
+- (id)incidentOnRouteInfos;
+- (unsigned long long)incidentOnRouteInfosCount;
 - (id)incidentsOffReRoutes;
 - (id)incidentsOffReRoutesAtIndex:(unsigned long long)arg1;
 - (unsigned long long)incidentsOffReRoutesCount;
@@ -215,20 +210,26 @@
 - (unsigned long long)incidentsOnReRoutesCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)invalidSectionZilchPoints;
 - (id)invalidSectionZilchPointsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)invalidSectionZilchPointsCount;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
+- (id)navigabilityInfo;
+- (id)originWaypointInfo;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (double)remainingTimeAlongRoute:(unsigned int)arg1 currentStepRemainingDistance:(double)arg2;
+- (double)remainingTimeFromStepID:(unsigned int)arg1 toEndStepID:(unsigned int)arg2 currentStepRemainingDistance:(double)arg3;
 - (id)reroutedRouteAtIndex:(unsigned long long)arg1;
 - (id)reroutedRoutes;
 - (unsigned long long)reroutedRoutesCount;
 - (id)routeID;
 - (bool)routeNoLongerValid;
-- (void)setDebugBannerTitle:(id)arg1 bannerDescription:(id)arg2 bannerSpoken:(id)arg3;
+- (void)setDestinationWaypointInfo:(id)arg1;
 - (void)setEnrouteNotices:(id)arg1;
 - (void)setHasHistoricTravelTime:(bool)arg1;
 - (void)setHasRouteNoLongerValid:(bool)arg1;
@@ -238,16 +239,21 @@
 - (void)setHasTravelTimeConservativeEstimate:(bool)arg1;
 - (void)setHistoricTravelTime:(unsigned int)arg1;
 - (void)setIncidentEndOffsetsInETARoutes:(unsigned int*)arg1 count:(unsigned long long)arg2;
+- (void)setIncidentIndexs:(unsigned int*)arg1 count:(unsigned long long)arg2;
+- (void)setIncidentOnRouteInfos:(id)arg1;
 - (void)setIncidentsOffReRoutes:(id)arg1;
 - (void)setIncidentsOnETARoutes:(id)arg1;
 - (void)setIncidentsOnReRoutes:(id)arg1;
 - (void)setInvalidSectionZilchPoints:(id)arg1;
+- (void)setNavigabilityInfo:(id)arg1;
+- (void)setOriginWaypointInfo:(id)arg1;
 - (void)setReroutedRoutes:(id)arg1;
 - (void)setRouteID:(id)arg1;
 - (void)setRouteNoLongerValid:(bool)arg1;
 - (void)setStaticTravelTime:(unsigned int)arg1;
 - (void)setSteps:(id)arg1;
 - (void)setTrafficBannerText:(id)arg1;
+- (void)setTrafficColorInfos:(id)arg1;
 - (void)setTrafficColorOffsets:(unsigned int*)arg1 count:(unsigned long long)arg2;
 - (void)setTrafficColors:(unsigned int*)arg1 count:(unsigned long long)arg2;
 - (void)setTravelTimeAggressiveEstimate:(unsigned int)arg1;
@@ -261,6 +267,9 @@
 - (unsigned long long)stepsCount;
 - (id)trafficBannerText;
 - (unsigned int)trafficColorAtIndex:(unsigned long long)arg1;
+- (id)trafficColorInfoAtIndex:(unsigned long long)arg1;
+- (id)trafficColorInfos;
+- (unsigned long long)trafficColorInfosCount;
 - (unsigned int)trafficColorOffsetAtIndex:(unsigned long long)arg1;
 - (unsigned int*)trafficColorOffsets;
 - (unsigned long long)trafficColorOffsetsCount;
@@ -272,11 +281,7 @@
 - (id)unknownFields;
 - (void)writeTo:(id)arg1;
 - (id)zilchPoints;
-
-// Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
-
-- (bool)hasTrafficIncidentAlert;
-- (bool)hasValidTrafficIncidentAlert;
-- (id)initForRoute:(id)arg1 usingETAsFromOtherRoute:(id)arg2;
+- (id)zilchPointsAtIndex:(unsigned long long)arg1;
+- (unsigned long long)zilchPointsCount;
 
 @end

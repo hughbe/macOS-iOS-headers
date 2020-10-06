@@ -44,7 +44,10 @@
 - (bool)hasSignificantLocation;
 - (bool)hasUserPreferredTransportType;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)maxNumCategoriesPerEntry;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

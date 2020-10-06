@@ -9,11 +9,14 @@
 
 + (id)_sharedService;
 + (void)startServiceWithNotificationHandler:(id)arg1;
++ (void)startServiceWithStateBroadcastHandler:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_configureNotificationService;
+- (void)_configureStateBroadcastService;
 - (id)init;
 - (id)initWithDaemonXPCEndpoint:(id)arg1;
 - (void)startWithNotificationHandler:(id)arg1;
+- (void)startWithStateBroadcastHandler:(id)arg1;
 
 @end

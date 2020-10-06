@@ -93,6 +93,7 @@
 - (UIImage *)searchFieldBackgroundImageForState:(unsigned long long)arg1;
 - (struct UIOffset { double x1; double x2; })searchFieldBackgroundPositionAdjustment;
 - (double)searchFieldHeight;
+- (UITextField *)searchFieldIfExists;
 - (long long)searchFieldLeftViewMode;
 - (UINavigationItem *)searchNavigationItem;
 - (long long)selectedScope;
@@ -122,6 +123,9 @@
 - (void)setDrawsBackgroundInPalette:(bool)arg1;
 - (void)setEnabled:(bool)arg1;
 - (void)setEnabled:(bool)arg1 animated:(bool)arg2;
+- (void)setHelperPlaceholder:(NSAttributedString *)arg1;
+- (void)setHelperPlaceholderHidden:(bool)arg1;
+- (void)setHelperPlaceholderOverride:(NSAttributedString *)arg1;
 - (void)setHostedByNavigationBar:(bool)arg1;
 - (void)setImage:(UIImage *)arg1 forSearchBarIcon:(long long)arg2 state:(unsigned long long)arg3;
 - (void)setInNavigationPalette:(bool)arg1;
@@ -181,6 +185,8 @@
 - (void)updateDictationButton;
 - (void)updateEffectiveContentInset;
 - (void)updateForDrawsBackgroundInPalette;
+- (void)updateForDynamicType;
+- (void)updateForSemanticContext;
 - (void)updateIfNecessaryForOldSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)updateMagnifyingGlassView;
 - (void)updateNavigationBarLayoutInsertDataForSearchBar:(_UIBarInsertLayoutData *)arg1 collapsibleScopeBar:(_UIBarInsertLayoutData *)arg2 forLayoutState:(long long)arg3;

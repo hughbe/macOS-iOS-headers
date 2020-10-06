@@ -17,6 +17,7 @@
 @property (nonatomic) unsigned long long renderTargetArrayLength;
 @property (nonatomic) unsigned long long renderTargetHeight;
 @property (nonatomic) unsigned long long renderTargetWidth;
+@property (readonly) MTLRenderPassSampleBufferAttachmentDescriptorArray *sampleBufferAttachments;
 @property (nonatomic, copy) MTLRenderPassStencilAttachmentDescriptor *stencilAttachment;
 @property (nonatomic) unsigned long long threadgroupMemoryLength;
 @property (nonatomic) unsigned long long tileHeight;

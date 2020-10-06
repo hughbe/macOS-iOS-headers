@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AssertionServices.framework/AssertionServices
  */
 
-@interface BKSProcess : NSObject <BSDescriptionProviding> {
+@interface BKSProcess : NSObject {
     BKSProcessAssertion * _accessoryAssertion;
     RBSAssertion * _assertion;
     BKSProcessAssertion * _audioAssertion;
@@ -30,15 +30,11 @@
 
 @property (nonatomic, readonly) double backgroundTimeRemaining;
 @property (nonatomic) bool connectedToExternalAccessories;
-@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <BKSProcessDelegate> *delegate;
-@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) BSProcessHandle *handle;
-@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) BKSProcessExitContext *lastExitContext;
 @property (nonatomic) bool nowPlayingWithAudio;
 @property (nonatomic) bool recordingAudio;
-@property (readonly) Class superclass;
 @property (nonatomic, readonly) long long taskState;
 @property (nonatomic) long long terminationReason;
 @property (nonatomic) long long visibility;
@@ -59,8 +55,6 @@
 - (bool)connectedToExternalAccessories;
 - (id)delegate;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)handle;
 - (id)init;
 - (id)initWithBundleIdentifier:(id)arg1;
@@ -77,8 +71,6 @@
 - (void)setTerminationReason:(long long)arg1;
 - (void)setVisibility:(long long)arg1;
 - (void)setWorkspaceLocked:(bool)arg1;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 - (long long)taskState;
 - (long long)terminationReason;
 - (long long)visibility;

@@ -6,6 +6,7 @@
     struct { 
         bool invalid; 
         bool receivedUpdateWhilePointerDisabled; 
+        bool observing; 
     }  _flags;
     _UIPointerInteractionHoverGestureRecognizer * _hoverGestureRecognizer;
     _UIPointerInteractionPressGestureRecognizer * _pressGestureRecognizer;

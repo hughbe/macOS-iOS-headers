@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessInstance : NSObject <BSXPCSecureCoding, NSCopying, RBSProcessIdentifier, RBSProcessMatching> {
+@interface RBSProcessInstance : NSObject <NSCopying, NSSecureCoding, RBSProcessIdentifier, RBSProcessMatching, RBSXPCSecureCoding> {
     RBSProcessIdentifier * _identifier;
     RBSProcessIdentity * _identity;
 }
@@ -15,20 +15,22 @@
 @property (readonly) Class superclass;
 
 + (id)instanceWithIdentifier:(id)arg1 identity:(id)arg2;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
++ (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_initWithIdentifier:(id)arg1 identity:(id)arg2;
 - (id)copyWithEuid:(unsigned int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)debugDescription;
 - (id)description;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)identifier;
 - (id)identity;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)matchesProcess:(id)arg1;
 - (id)processPredicate;

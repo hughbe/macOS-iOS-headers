@@ -5,6 +5,7 @@
 @interface ACXDeviceConnection : NSObject <ACXDeviceConnectionDelegateProtocol> {
     <ACXDeviceConnectionDelegate> * _delegate;
     NSObject<OS_dispatch_queue> * _internalQueue;
+    bool  _monitoringForDeviceChanges;
     NSObject<OS_dispatch_queue> * _observerQueue;
     NSObject<OS_dispatch_source> * _observerReEstablishTimer;
     NSHashTable * _observers;
@@ -16,6 +17,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *internalQueue;
+@property (nonatomic) bool monitoringForDeviceChanges;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *observerQueue;
 @property (nonatomic, retain) NSObject<OS_dispatch_source> *observerReEstablishTimer;
 @property (nonatomic, readonly) NSHashTable *observers;
@@ -27,9 +29,13 @@
 + (id)sharedDeviceConnection;
 
 - (void).cxx_destruct;
+- (void)_deviceDidBecomeActiveNotification:(id)arg1;
+- (void)_deviceDidPairNotification:(id)arg1;
 - (void)_fetchLocallyAvailableApplicationWithBundleID:(id)arg1 forDeviceWithPairingID:(id)arg2 options:(unsigned long long)arg3 completion:(id /* block */)arg4;
 - (void)_invalidateXPCConnection;
-- (bool)_onQueue_createXPCConnectionIfNecessary;
+- (void)_onQueue_beginMonitoringNanoRegistryDeviceState;
+- (bool)_onQueue_createXPCConnectionIfNecessary:(id*)arg1;
+- (void)_onQueue_endMonitoringNanoRegistryDeviceState;
 - (void)_onQueue_reEstablishObserverConnectionIfNeeded;
 - (id)_proxyWithErrorHandler:(id /* block */)arg1;
 - (id)_synchronousProxyWithErrorHandler:(id /* block */)arg1;
@@ -95,6 +101,8 @@
 - (void)installProvisioningProfileWithURL:(id)arg1 onPairedDevice:(id)arg2 completion:(id /* block */)arg3;
 - (bool)installRequestFailedForApp:(id)arg1 onDeviceWithPairingID:(id)arg2 failureReason:(id)arg3 wasUserInitiated:(bool)arg4 error:(id*)arg5;
 - (id)internalQueue;
+- (bool)killDaemonForTestingWithError:(id*)arg1;
+- (bool)monitoringForDeviceChanges;
 - (id)observerQueue;
 - (id)observerReEstablishTimer;
 - (id)observers;
@@ -108,6 +116,7 @@
 - (void)setAlwaysInstall:(id)arg1;
 - (void)setAlwaysInstall:(id)arg1 forDevice:(id)arg2;
 - (void)setDelegate:(id)arg1;
+- (void)setMonitoringForDeviceChanges:(bool)arg1;
 - (void)setObserverReEstablishTimer:(id)arg1;
 - (void)setUpdatePendingForCompanionApp:(id)arg1 completion:(id /* block */)arg2;
 - (void)setXpcConnection:(id)arg1;

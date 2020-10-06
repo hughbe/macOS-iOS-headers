@@ -7,6 +7,7 @@
 
 - (_SFPBActivityIndicatorCardSection *)activityIndicatorCardSection;
 - (_SFPBAppLinkCardSection *)appLinkCardSection;
+- (_SFPBAttributionFooterCardSection *)attributionFooterCardSection;
 - (_SFPBAudioPlaybackCardSection *)audioPlaybackCardSection;
 - (_SFPBButtonCardSection *)buttonCardSection;
 - (_SFPBCompactRowCardSection *)compactRowCardSection;
@@ -37,6 +38,7 @@
 - (_SFPBSelectableGridCardSection *)selectableGridCardSection;
 - (void)setActivityIndicatorCardSection:(_SFPBActivityIndicatorCardSection *)arg1;
 - (void)setAppLinkCardSection:(_SFPBAppLinkCardSection *)arg1;
+- (void)setAttributionFooterCardSection:(_SFPBAttributionFooterCardSection *)arg1;
 - (void)setAudioPlaybackCardSection:(_SFPBAudioPlaybackCardSection *)arg1;
 - (void)setButtonCardSection:(_SFPBButtonCardSection *)arg1;
 - (void)setCompactRowCardSection:(_SFPBCompactRowCardSection *)arg1;
@@ -73,6 +75,7 @@
 - (void)setVerticalLayoutCardSection:(_SFPBVerticalLayoutCardSection *)arg1;
 - (void)setWatchListCardSection:(_SFPBWatchListCardSection *)arg1;
 - (void)setWebCardSection:(_SFPBWebCardSection *)arg1;
+- (void)setWorldMapCardSection:(_SFPBWorldMapCardSection *)arg1;
 - (_SFPBSocialMediaPostCardSection *)socialMediaPostCardSection;
 - (_SFPBStockChartCardSection *)stockChartCardSection;
 - (_SFPBSuggestionCardSection *)suggestionCardSection;
@@ -84,5 +87,6 @@
 - (_SFPBVerticalLayoutCardSection *)verticalLayoutCardSection;
 - (_SFPBWatchListCardSection *)watchListCardSection;
 - (_SFPBWebCardSection *)webCardSection;
+- (_SFPBWorldMapCardSection *)worldMapCardSection;
 
 @end

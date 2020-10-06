@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKMarkAssetBrokenOperation : CKDatabaseOperation {
+@interface CKMarkAssetBrokenOperation : CKDatabaseOperation <CKMarkAssetBrokenOperationCallbacks> {
     bool  _bypassPCSEncryptionForTouchRepairZone;
     NSString * _field;
     long long  _listIndex;
@@ -16,9 +16,11 @@
 }
 
 @property (nonatomic) bool bypassPCSEncryptionForTouchRepairZone;
+@property (nonatomic, readonly) <CKMarkAssetBrokenOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, retain) NSString *field;
 @property (nonatomic) long long listIndex;
 @property (nonatomic, copy) id /* block */ markAssetBrokenCompletionBlock;
+@property (nonatomic, readonly) CKMarkAssetBrokenOperationInfo *operationInfo;
 @property (nonatomic, retain) CKRecordID *recordID;
 @property (nonatomic, retain) CKRecordID *repairRecordID;
 @property (nonatomic, readonly, copy) CKUploadRequestConfiguration *resolvedUploadRequestConfiguration;
@@ -27,15 +29,17 @@
 @property (nonatomic, copy) CKUploadRequestConfiguration *uploadRequestConfiguration;
 @property (nonatomic) bool writeRepairRecord;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (bool)bypassPCSEncryptionForTouchRepairZone;
 - (id)field;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleMarkAssetBrokenCompletionWithRepairRecordID:(id)arg1 error:(id)arg2;
 - (bool)hasCKOperationCallbacksSet;
 - (id)initWithNoRecord;
 - (id)initWithRecordID:(id)arg1 field:(id)arg2;

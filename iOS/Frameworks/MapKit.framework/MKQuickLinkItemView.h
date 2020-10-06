@@ -3,6 +3,7 @@
  */
 
 @interface MKQuickLinkItemView : UIView {
+    GEOAppStoreAppClip * _appClip;
     UIImageView * _appImageView;
     _MKUILabel * _appLabel;
     NSArray * _constraints;
@@ -16,6 +17,7 @@
     MKVibrantView * _vibrantView;
 }
 
+@property (nonatomic, retain) GEOAppStoreAppClip *appClip;
 @property (nonatomic) <MKQuickLinkItemViewDelegate> *delegate;
 @property (nonatomic, retain) GEOQuickLink *quickLink;
 @property (nonatomic) bool touched;
@@ -29,14 +31,19 @@
 - (void).cxx_destruct;
 - (void)_contentSizeDidChange;
 - (void)_createConstraints;
-- (void)_loadAppArtwork:(id)arg1 adamID:(id)arg2;
+- (void)_loadAppArtwork:(id)arg1;
+- (void)_loadAppClip;
+- (void)_loadAppClipArtwork:(id)arg1 bundleID:(id)arg2;
+- (void)_loadFallBackApp;
 - (void)_loadOfficialApp;
+- (id)appClip;
 - (id)delegate;
 - (void)didMoveToWindow;
 - (void)infoCardThemeChanged;
 - (id)initWithQuickLink:(id)arg1;
 - (void)preferredContentSizeChanged:(id)arg1;
 - (id)quickLink;
+- (void)setAppClip:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setQuickLink:(id)arg1;
 - (void)setTouched:(bool)arg1;

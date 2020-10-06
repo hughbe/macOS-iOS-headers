@@ -9,12 +9,10 @@
 @property (getter=isChild, nonatomic, readonly) bool child;
 @property (getter=isClient, nonatomic, readonly) bool client;
 @property (nonatomic, readonly, copy) NSString *endpointDescription;
-@property (nonatomic, readonly, copy) NSString *loggingProem;
 @property (getter=isRoot, nonatomic, readonly) bool root;
 @property (getter=isServer, nonatomic, readonly) bool server;
 
 - (void).cxx_destruct;
-- (id)_initWithProem:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)endpointDescription;
@@ -23,6 +21,5 @@
 - (bool)isClient;
 - (bool)isRoot;
 - (bool)isServer;
-- (id)loggingProem;
 
 @end

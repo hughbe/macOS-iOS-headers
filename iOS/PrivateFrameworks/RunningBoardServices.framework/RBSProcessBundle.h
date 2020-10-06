@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessBundle : NSObject <BSXPCSecureCoding> {
+@interface RBSProcessBundle : NSObject <RBSXPCSecureCoding> {
     <RBSProcessBundleDataSource> * _dataSource;
     NSString * _executablePath;
     NSString * _extensionPointIdentifier;
@@ -24,7 +24,7 @@
 @property (readonly) Class superclass;
 
 + (id)bundleWithDataSource:(id)arg1;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)bundleInfoValueForKey:(id)arg1;
@@ -32,17 +32,13 @@
 - (id)dataSource;
 - (id)debugDescription;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)executablePath;
 - (id)extensionPointIdentifier;
 - (id)identifier;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (id)instance;
 - (id)path;
 - (void)setInstance:(id)arg1;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 
 @end

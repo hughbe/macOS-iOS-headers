@@ -16,12 +16,15 @@
 @property (nonatomic, copy) NSArray *items;
 @property (nonatomic, copy) NSString *localizedTitle;
 
++ (long long)_activityStyleForActivityIdentifier:(id)arg1;
 + (id)_imageNameForActivityIdentifier:(id)arg1;
 + (id)_titleForActivityIdentifier:(id)arg1;
 + (long long)activityCategory;
 + (id)activityWithIdentifier:(id)arg1 actionPerformerProxy:(id)arg2;
++ (bool)isDestructiveActionIdentifier:(id)arg1;
 
 - (void).cxx_destruct;
+- (bool)_needsResolvedActivityItems;
 - (id)_systemImageName;
 - (id)actionPerformerProxy;
 - (id)activityTitle;

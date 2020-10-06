@@ -9,6 +9,7 @@
     UIView * _largeTitleView;
     NSArray * _otherBarButtonItems;
     UIView * _promptView;
+    UIBarButtonItem * _staticBarButtonItem;
     UIView * _titleView;
     UINavigationItem * _topItem;
     NSArray * _viewsRepresentingBackButton;
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) UIView *largeTitleView;
 @property (nonatomic, copy) NSArray *otherBarButtonItems;
 @property (nonatomic, retain) UIView *promptView;
+@property (nonatomic, retain) UIBarButtonItem *staticBarButtonItem;
 @property (nonatomic, retain) UIView *titleView;
 @property (nonatomic, retain) UINavigationItem *topItem;
 @property (nonatomic, copy) NSArray *viewsRepresentingBackButton;
@@ -40,10 +42,12 @@
 - (void)setLargeTitleView:(id)arg1;
 - (void)setOtherBarButtonItems:(id)arg1;
 - (void)setPromptView:(id)arg1;
+- (void)setStaticBarButtonItem:(id)arg1;
 - (void)setTitleView:(id)arg1;
 - (void)setTopItem:(id)arg1;
 - (void)setViewsRepresentingBackButton:(id)arg1;
 - (void)setViewsRepresentingContentBackground:(id)arg1;
+- (id)staticBarButtonItem;
 - (id)titleView;
 - (id)topItem;
 - (id)viewsRepresentingBackButton;

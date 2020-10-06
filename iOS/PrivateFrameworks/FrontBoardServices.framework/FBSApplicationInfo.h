@@ -7,7 +7,6 @@
     NSSet * _backgroundModes;
     bool  _beta;
     bool  _blocked;
-    bool  _blockedForScreenTimeExpiration;
     NSURL * _bundleContainerURL;
     NSArray * _customMachServices;
     NSURL * _dataContainerURL;
@@ -19,6 +18,7 @@
     NSArray * _externalAccessoryProtocols;
     NSString * _fallbackFolderName;
     NSArray * _folderNames;
+    bool  _freeDeveloperProvisioningProfileValidated;
     bool  _hasViewServicesEntitlement;
     bool  _initialized;
     bool  _installing;
@@ -42,6 +42,7 @@
     bool  _requiresPersistentWiFi;
     bool  _restricted;
     NSURL * _sandboxURL;
+    long long  _screenTimePolicy;
     NSString * _sdkVersion;
     NSString * _shortVersionString;
     NSString * _signerIdentity;
@@ -51,13 +52,16 @@
     NSString * _teamIdentifier;
     unsigned long long  _type;
     bool  _uninstalling;
+    bool  _uppProvisioningProfileValidated;
 }
 
+@property (getter=isUPPProvisioningProfileValidated, nonatomic, readonly) bool UPPProvisioningProfileValidated;
 @property (getter=_appIDEntitlement, nonatomic, readonly, copy) NSString *appIDEntitlement;
 @property (getter=isBeta, nonatomic, readonly) bool beta;
 @property (getter=isBlocked, nonatomic, readonly) bool blocked;
 @property (getter=isBlockedForScreenTimeExpiration, nonatomic, readonly) bool blockedForScreenTimeExpiration;
 @property (nonatomic, readonly) NSURL *bundleContainerURL;
+@property (retain) _FBSCDHashCacheInfo *cachedCDHashInfo;
 @property (nonatomic, readonly) NSArray *customMachServices;
 @property (nonatomic, readonly) NSURL *dataContainerURL;
 @property (readonly, copy) NSString *debugDescription;
@@ -72,6 +76,8 @@
 @property (nonatomic, readonly) NSArray *externalAccessoryProtocols;
 @property (nonatomic, readonly) NSString *fallbackFolderName;
 @property (nonatomic, readonly) NSArray *folderNames;
+@property (getter=hasFreeDeveloperProvisioningProfile, nonatomic, readonly) bool freeDeveloperProvisioningProfile;
+@property (getter=isFreeDeveloperProvisioningProfileValidated, nonatomic, readonly) bool freeDeveloperProvisioningProfileValidated;
 @property (nonatomic, readonly) bool hasViewServicesEntitlement;
 @property (readonly) unsigned long long hash;
 @property (getter=_isInstalling, setter=_setInstalling:, nonatomic) bool installing;
@@ -88,8 +94,10 @@
 @property (nonatomic, readonly) bool requiresPersistentWiFi;
 @property (getter=isRestricted, nonatomic, readonly) bool restricted;
 @property (nonatomic, readonly) NSURL *sandboxURL;
+@property (nonatomic, readonly) long long screenTimePolicy;
 @property (nonatomic, readonly, copy) NSString *sdkVersion;
 @property (nonatomic, readonly, copy) NSString *shortVersionString;
+@property (nonatomic, readonly) long long signatureState;
 @property (nonatomic, readonly, copy) NSString *signerIdentity;
 @property (readonly) Class superclass;
 @property (nonatomic) unsigned long long supportedInterfaceOrientations;
@@ -98,6 +106,9 @@
 @property (nonatomic, readonly) NSString *teamIdentifier;
 @property (nonatomic, readonly) unsigned long long type;
 @property (getter=_isUninstalling, setter=_setUninstalling:, nonatomic) bool uninstalling;
+@property (getter=hasUniversalProvisioningProfile, nonatomic, readonly) bool universalProvisioningProfile;
+
+// Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
 
 + (unsigned long long)_applicationTypeForProxy:(id)arg1;
 + (id)_configureEnvironment:(id)arg1 withInfo:(id)arg2 isPreApex:(bool)arg3;
@@ -119,6 +130,7 @@
 - (void)_synchronize:(id /* block */)arg1;
 - (bool)builtOnOrAfterSDKVersion:(id)arg1;
 - (id)bundleContainerURL;
+- (id)cachedCDHashInfo;
 - (id)customMachServices;
 - (id)dataContainerURL;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
@@ -138,8 +150,10 @@
 - (bool)isBlockedForScreenTimeExpiration;
 - (bool)isEnabled;
 - (bool)isExitsOnSuspend;
+- (bool)isFreeDeveloperProvisioningProfileValidated;
 - (bool)isProvisioningProfileValidated;
 - (bool)isRestricted;
+- (bool)isUPPProvisioningProfileValidated;
 - (id)itemID;
 - (double)lastModifiedDate;
 - (float)minimumBrightnessLevel;
@@ -149,7 +163,9 @@
 - (id)requiredCapabilities;
 - (bool)requiresPersistentWiFi;
 - (id)sandboxURL;
+- (long long)screenTimePolicy;
 - (id)sdkVersion;
+- (void)setCachedCDHashInfo:(id)arg1;
 - (void)setInterfaceOrientation:(long long)arg1;
 - (void)setSupportedInterfaceOrientations:(unsigned long long)arg1;
 - (id)shortVersionString;
@@ -164,5 +180,16 @@
 - (id)tags;
 - (id)teamIdentifier;
 - (unsigned long long)type;
+- (unsigned long long)unauthoritativeTrustState;
+
+// Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard
+
+- (id)_initForProfileManagerTesting;
+- (long long)_mapSignatureStateFromTrustState:(unsigned long long)arg1;
+- (id)_signatureValidationService;
+- (void)acceptApplicationSignatureIdentity;
+- (bool)hasFreeDeveloperProvisioningProfile;
+- (bool)hasUniversalProvisioningProfile;
+- (long long)signatureState;
 
 @end

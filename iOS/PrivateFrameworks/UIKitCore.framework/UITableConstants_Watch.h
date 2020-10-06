@@ -6,7 +6,7 @@
 
 + (id)sharedConstants;
 
-- (id)defaultCheckmarkImageForCell:(id)arg1 inTableView:(id)arg2;
-- (id)defaultHeaderFooterBackgroundColorForView:(id)arg1 inTableView:(id)arg2;
+- (id)defaultCheckmarkImageForCell:(id)arg1;
+- (id)defaultHeaderFooterBackgroundColorForTableViewStyle:(long long)arg1 tableBackgroundColor:(id)arg2 floatingHeaderFooter:(bool)arg3;
 
 @end

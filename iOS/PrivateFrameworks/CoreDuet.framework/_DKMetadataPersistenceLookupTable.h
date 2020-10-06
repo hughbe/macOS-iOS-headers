@@ -4,7 +4,4 @@
 
 @interface _DKMetadataPersistenceLookupTable : NSObject
 
-+ (id)attributeToKey;
-+ (id)keyToAttribute;
-
 @end

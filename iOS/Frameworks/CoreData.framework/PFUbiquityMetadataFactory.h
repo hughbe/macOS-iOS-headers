@@ -8,6 +8,7 @@
     NSRecursiveLock * _rootLocationToPeerIDToEntryLock;
 }
 
++ (void)_invalidateStaticCaches;
 + (void)initialize;
 + (id)sharedFactory;
 

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBDataString : PBCodable <NSCopying, NSSecureCoding, _INPBDataString> {
-    bool  __encodeLegacyGloryData;
     NSArray * _alternatives;
     struct { }  _has;
     NSString * _localizedValue;
@@ -11,7 +10,6 @@
     NSString * _vocabularyIdentifier;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *alternatives;
 @property (nonatomic, readonly) unsigned long long alternativesCount;
 @property (readonly, copy) NSString *debugDescription;
@@ -29,8 +27,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAlternatives:(id)arg1;
 - (id)alternatives;
 - (id)alternativesAtIndex:(unsigned long long)arg1;

@@ -74,11 +74,12 @@
 - (id)sectionBackgroundColor;
 - (id)selectedCellBackgroundColor;
 - (void)setActionTextAttributes:(id)arg1;
-- (void)setAttributesFromContactView:(id)arg1;
+- (void)setAttributesFromContactView:(id)arg1 runningInContactsAppOniPad:(bool)arg2;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setCellsLayoutCachingEnabled:(bool)arg1;
 - (void)setContact:(id)arg1;
 - (void)setCustomHeaderView:(id)arg1;
+- (void)setEditing:(bool)arg1;
 - (void)setLabelTextAttributes:(id)arg1;
 - (void)setNeedsUpdateVisibleCells;
 - (void)setNeedsUpdateVisibleCells:(bool)arg1;
@@ -92,6 +93,7 @@
 - (void)traitCollectionDidChange:(id)arg1;
 - (void)updateFontColors;
 - (void)updateFontSizes;
+- (void)updateTableViewMetrics;
 - (void)updateVisibleCellsIfNeeded;
 - (id)valueTextAttributes;
 

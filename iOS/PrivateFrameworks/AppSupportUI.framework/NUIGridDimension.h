@@ -13,7 +13,6 @@
     NUIContainerGridView * _gridView;
     double  _length;
     double  _spacing;
-    NSArray * _visibleArrangedSubviews;
 }
 
 @property (nonatomic) long long alignment;
@@ -25,21 +24,16 @@
 @property (nonatomic) double length;
 @property (nonatomic) double spacingAfter;
 @property (readonly) Class superclass;
-@property (nonatomic, copy) NSArray *visibleArrangedSubviews;
 
 - (long long)alignment;
 - (id)arrangedSubviews;
 - (void)dealloc;
-- (id)initWithContainerGridView:(id)arg1 isRow:(bool)arg2;
-- (void)invalidateArrangedSubviews;
 - (bool)isHidden;
 - (double)length;
 - (void)setAlignment:(long long)arg1;
 - (void)setHidden:(bool)arg1;
 - (void)setLength:(double)arg1;
 - (void)setSpacingAfter:(double)arg1;
-- (void)setVisibleArrangedSubviews:(id)arg1;
 - (double)spacingAfter;
-- (id)visibleArrangedSubviews;
 
 @end

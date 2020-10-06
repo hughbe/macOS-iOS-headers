@@ -68,6 +68,7 @@
 - (id)dictionaryRepresentation;
 - (id)dirtyKeysForWriting;
 - (id)domain;
+- (unsigned long long)domainSize;
 - (id)domainURL;
 - (double)doubleForKey:(id)arg1;
 - (double)doubleForKey:(id)arg1 keyExistsAndHasValidFormat:(bool*)arg2;
@@ -92,6 +93,7 @@
 - (id)pairingStorePath;
 - (unsigned long long)referenceCounter;
 - (void)removeObjectForKey:(id)arg1;
+- (bool)requiresDeviceUnlockedSinceBoot;
 - (void)setBool:(bool)arg1 forKey:(id)arg2;
 - (void)setDirtyKeysForWriting:(id)arg1;
 - (void)setDomain:(id)arg1;

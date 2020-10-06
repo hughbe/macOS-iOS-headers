@@ -11,6 +11,7 @@
 + (void)initialize;
 + (void)interface:(id)arg1 returns:(Class)arg2 forSelector:(SEL)arg3;
 + (void)interface:(id)arg1 returnsArrayOf:(Class)arg2 forSelector:(SEL)arg3;
++ (id)realtimeSuggestionsClasses;
 + (id)xpcInterface;
 + (id)xpcInterfaceForProtocol:(id)arg1;
 

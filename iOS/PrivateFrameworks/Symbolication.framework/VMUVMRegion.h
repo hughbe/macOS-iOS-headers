@@ -60,8 +60,9 @@
 - (void)getVMRegionDataExtra:(struct _VMUVMRegionDataExtra { unsigned long long x1; unsigned long long x2; }*)arg1;
 - (bool)hasSameInfoAsRegion:(id)arg1;
 - (id)init;
-- (id)initWithVMRegionData:(struct _VMUVMRegionData { unsigned long long x1; unsigned long long x2; unsigned int x3; int x4; int x5; unsigned int x6; unsigned int x7; unsigned int x8; unsigned int x9; unsigned int x10; int x11; unsigned int x12; unsigned char x13; unsigned char x14; unsigned char x15; unsigned int x16; unsigned int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; unsigned int x23 : 27; unsigned long long x24; unsigned long long x25; unsigned long long x26; unsigned long long x27; unsigned long long x28; unsigned long long x29; unsigned long long x30; }*)arg1 encodedVersion:(long long)arg2 simpleSerializer:(id)arg3;
+- (id)initWithVMRegionData:(struct _VMUVMRegionData { unsigned long long x1; unsigned long long x2; unsigned int x3; int x4; int x5; unsigned int x6; unsigned int x7; unsigned int x8; unsigned int x9; unsigned int x10; int x11; unsigned int x12; unsigned char x13; unsigned char x14; unsigned char x15; unsigned int x16; unsigned int x17; unsigned int x18 : 1; unsigned int x19 : 1; unsigned int x20 : 1; unsigned int x21 : 1; unsigned int x22 : 1; unsigned int x23 : 27; unsigned long long x24; unsigned long long x25; unsigned long long x26; unsigned long long x27; unsigned long long x28; unsigned long long x29; unsigned long long x30; }*)arg1 encodedVersion:(long long)arg2 simpleSerializer:(id)arg3 error:(id*)arg4;
 - (bool)isEqual:(id)arg1;
+- (bool)isNullRegion;
 - (bool)isSubmap;
 - (bool)isWired;
 - (unsigned long long)length;

@@ -24,7 +24,6 @@
 
 + (id)sharedInstance;
 
-- (bool)_isD22Emulator;
 - (int)deviceClass;
 - (bool)hasGasGauge;
 - (bool)hasOrbCapability;

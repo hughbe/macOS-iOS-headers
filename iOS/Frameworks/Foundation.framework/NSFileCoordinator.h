@@ -52,6 +52,7 @@
 + (void)_printDebugInfo;
 + (int)_processIdentifierForID:(id)arg1;
 + (bool)_provideRecursively;
++ (unsigned long long)_providedItemGenerationCount;
 + (unsigned long long)_readingOptions;
 + (void)_removeFileProvider:(id)arg1;
 + (void)_removeInfoForID:(id)arg1;
@@ -60,6 +61,7 @@
 + (void)_setCurrentClaimPurposeIdentifier:(id)arg1;
 + (void)_setKernelMaterializationOperation:(unsigned int)arg1;
 + (void)_setNextClaimIdentifier:(id)arg1;
++ (void)_setProvidedItemRecursiveGenerationCount:(unsigned long long)arg1;
 + (void)_setReadingOptions:(unsigned long long)arg1;
 + (bool)_skipCoordinationWork;
 + (void)_startInProcessFileCoordinationAndProgressServers;
@@ -122,5 +124,36 @@
 // Image: /System/Library/PrivateFrameworks/CloudDocs.framework/CloudDocs
 
 + (void)br_boostFilePresenter:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
++ (void)tsp_addFilePresenter:(id)arg1;
++ (bool)tsp_coordinateReadingItemAtURL:(id)arg1 options:(unsigned long long)arg2 filePresenter:(id)arg3 error:(id*)arg4 byAccessor:(id /* block */)arg5;
++ (bool)tsp_coordinateReadingItemAtURL:(id)arg1 options:(unsigned long long)arg2 writingItemAtURL:(id)arg3 options:(unsigned long long)arg4 filePresenter:(id)arg5 error:(id*)arg6 byAccessor:(id /* block */)arg7;
++ (bool)tsp_coordinateWritingItemAtURL:(id)arg1 options:(unsigned long long)arg2 filePresenter:(id)arg3 error:(id*)arg4 byAccessor:(id /* block */)arg5;
++ (bool)tsp_coordinateWritingItemAtURL:(id)arg1 options:(unsigned long long)arg2 writingItemAtURL:(id)arg3 options:(unsigned long long)arg4 filePresenter:(id)arg5 error:(id*)arg6 byAccessor:(id /* block */)arg7;
++ (void)tsp_removeFilePresenter:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSPersistence.framework/TSPersistence
+
++ (void)tsp_addFilePresenter:(id)arg1;
++ (bool)tsp_coordinateReadingItemAtURL:(id)arg1 urlType:(long long)arg2 options:(unsigned long long)arg3 filePresenter:(id)arg4 error:(id*)arg5 byAccessor:(id /* block */)arg6;
++ (bool)tsp_coordinateReadingItemAtURL:(id)arg1 urlType:(long long)arg2 options:(unsigned long long)arg3 writingItemAtURL:(id)arg4 options:(unsigned long long)arg5 filePresenter:(id)arg6 error:(id*)arg7 byAccessor:(id /* block */)arg8;
++ (bool)tsp_coordinateWritingItemAtURL:(id)arg1 options:(unsigned long long)arg2 filePresenter:(id)arg3 error:(id*)arg4 byAccessor:(id /* block */)arg5;
++ (bool)tsp_coordinateWritingItemAtURL:(id)arg1 options:(unsigned long long)arg2 writingItemAtURL:(id)arg3 options:(unsigned long long)arg4 filePresenter:(id)arg5 error:(id*)arg6 byAccessor:(id /* block */)arg7;
++ (void)tsp_removeFilePresenter:(id)arg1;
+
+- (void)tsp_coordinateAccessWithIntents:(id)arg1 queue:(id)arg2 byAccessor:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSPersistence.framework/TSPersistence
+
++ (void)tsp_addFilePresenter:(id)arg1;
++ (bool)tsp_coordinateReadingItemAtURL:(id)arg1 urlType:(long long)arg2 options:(unsigned long long)arg3 filePresenter:(id)arg4 error:(id*)arg5 byAccessor:(id /* block */)arg6;
++ (bool)tsp_coordinateReadingItemAtURL:(id)arg1 urlType:(long long)arg2 options:(unsigned long long)arg3 writingItemAtURL:(id)arg4 options:(unsigned long long)arg5 filePresenter:(id)arg6 error:(id*)arg7 byAccessor:(id /* block */)arg8;
++ (bool)tsp_coordinateWritingItemAtURL:(id)arg1 options:(unsigned long long)arg2 filePresenter:(id)arg3 error:(id*)arg4 byAccessor:(id /* block */)arg5;
++ (bool)tsp_coordinateWritingItemAtURL:(id)arg1 options:(unsigned long long)arg2 writingItemAtURL:(id)arg3 options:(unsigned long long)arg4 filePresenter:(id)arg5 error:(id*)arg6 byAccessor:(id /* block */)arg7;
++ (void)tsp_removeFilePresenter:(id)arg1;
+
+- (void)tsp_coordinateAccessWithIntents:(id)arg1 queue:(id)arg2 byAccessor:(id /* block */)arg3;
 
 @end

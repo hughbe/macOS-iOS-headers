@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRTextEditingSession : NSObject <NSMutableCopying> {
+@interface MRTextEditingSession : NSObject <NSCopying, NSMutableCopying> {
     MRTextEditingAttributes * _attributes;
     bool  _editing;
     NSString * _text;
@@ -15,7 +15,6 @@
 @property (nonatomic, readonly) unsigned long long uniqueIdentifier;
 
 - (void).cxx_destruct;
-- (id)_copyWithZone:(struct _NSZone { }*)arg1 usingConcreteClass:(Class)arg2;
 - (id)attributes;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;

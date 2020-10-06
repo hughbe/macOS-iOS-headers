@@ -2,65 +2,89 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOComposedRouteLeg : NSObject <NSSecureCoding> {
-    GEOComposedRoute * _composedRoute;
+@interface GEOComposedRouteLeg : NSObject <GEOComposedRoutePortion, NSSecureCoding> {
+    GEOArrivalParameters * _arrivalParameters;
+    GEOComposedWaypoint * _destination;
+    unsigned int  _distance;
+    int  _drivingSide;
+    GEOWaypointInfo * _geoDestinationWaypointInfo;
+    GEOWaypointInfo * _geoOriginWaypointInfo;
+    GEOComposedWaypoint * _origin;
     struct _NSRange { 
         unsigned long long location; 
         unsigned long long length; 
     }  _pointRange;
+    GEOComposedRoute * _route;
+    NSData * _serverLegIDForAnalytics;
     struct _NSRange { 
         unsigned long long location; 
         unsigned long long length; 
     }  _stepRange;
-    long long  _type;
 }
 
-@property (nonatomic) GEOComposedRoute *composedRoute;
+@property (nonatomic, readonly) GEOArrivalParameters *arrivalParameters;
+@property (nonatomic, readonly) double chargingDuration;
+@property (nonatomic, readonly) GEOComposedRouteEVChargingStationInfo *chargingStationInfo;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) GEOComposedWaypoint *destination;
+@property (nonatomic) unsigned int distance;
+@property (nonatomic, readonly) int drivingSide;
 @property (nonatomic, readonly) unsigned int endPointIndex;
 @property (nonatomic, readonly) unsigned long long endStepIndex;
-@property (nonatomic, readonly) GEOPBTransitStop *endingTransitStop;
 @property (nonatomic, readonly) double expectedTime;
-@property (nonatomic, readonly) unsigned long long numberOfTransitStops;
+@property (nonatomic, retain) GEOWaypointInfo *geoDestinationWaypointInfo;
+@property (nonatomic, retain) GEOWaypointInfo *geoOriginWaypointInfo;
+@property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) unsigned long long legIndex;
+@property (nonatomic, readonly) GEOComposedWaypoint *origin;
 @property (nonatomic, readonly) unsigned int pointCount;
-@property (nonatomic, readonly) struct _NSRange { unsigned long long x1; unsigned long long x2; } pointRange;
+@property (nonatomic) struct _NSRange { unsigned long long x1; unsigned long long x2; } pointRange;
+@property (nonatomic) GEOComposedRoute *route;
+@property (nonatomic, readonly) NSData *serverLegIDForAnalytics;
 @property (nonatomic, readonly) unsigned int startPointIndex;
 @property (nonatomic, readonly) unsigned long long startStepIndex;
-@property (nonatomic, readonly) GEOPBTransitStop *startingTransitStop;
 @property (nonatomic, readonly) unsigned long long stepCount;
-@property (nonatomic, readonly) struct _NSRange { unsigned long long x1; unsigned long long x2; } stepRange;
+@property (nonatomic) struct _NSRange { unsigned long long x1; unsigned long long x2; } stepRange;
 @property (nonatomic, readonly) NSArray *steps;
-@property (nonatomic, readonly) struct _NSRange { unsigned long long x1; unsigned long long x2; } transitStepRange;
-@property (nonatomic, readonly) int transportType;
-@property (nonatomic, readonly) long long type;
+@property (readonly) Class superclass;
 
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_MapsCarPlay_isEqual:(id)arg1;
-- (id)composedRoute;
-- (bool)contains:(id)arg1;
+- (id)arrivalParameters;
+- (double)chargingDuration;
+- (id)chargingStationInfo;
 - (id)description;
+- (id)destination;
+- (unsigned int)distance;
+- (int)drivingSide;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)endPointIndex;
 - (unsigned long long)endStepIndex;
-- (id)endingTransitStop;
 - (double)expectedTime;
+- (id)geoDestinationWaypointInfo;
+- (id)geoOriginWaypointInfo;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithComposedRoute:(id)arg1 routeLegType:(long long)arg2 stepRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4;
-- (unsigned long long)numberOfTransitStops;
+- (id)initWithComposedRoute:(id)arg1 geoRouteLeg:(id)arg2 origin:(id)arg3 destination:(id)arg4 arrivalParameters:(id)arg5;
+- (id)initWithComposedRoute:(id)arg1 origin:(id)arg2 destination:(id)arg3 arrivalParameters:(id)arg4;
+- (unsigned long long)legIndex;
+- (id)origin;
 - (unsigned int)pointCount;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })pointRange;
-- (double)remainingDistanceAlongLegFromStepIndex:(unsigned long long)arg1 currentStepRemainingDistance:(double)arg2;
-- (double)remainingTimeAlongLegFromStepIndex:(unsigned long long)arg1 currentStepRemainingDistance:(double)arg2;
-- (void)setComposedRoute:(id)arg1;
+- (id)route;
+- (id)serverLegIDForAnalytics;
+- (void)setDistance:(unsigned int)arg1;
+- (void)setGeoDestinationWaypointInfo:(id)arg1;
+- (void)setGeoOriginWaypointInfo:(id)arg1;
+- (void)setPointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
+- (void)setRoute:(id)arg1;
+- (void)setServerLegIDForAnalytics:(id)arg1;
+- (void)setStepRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (unsigned int)startPointIndex;
 - (unsigned long long)startStepIndex;
-- (id)startingTransitStop;
 - (unsigned long long)stepCount;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })stepRange;
 - (id)steps;
-- (struct _NSRange { unsigned long long x1; unsigned long long x2; })transitStepRange;
-- (int)transportType;
-- (long long)type;
 
 @end

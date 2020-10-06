@@ -6,12 +6,6 @@
     NSArray * _eventStreams;
 }
 
-@property (nonatomic, readonly, copy) NSArray *eventStreams;
-
 - (void).cxx_destruct;
-- (id)eventStreams;
-- (id)getEventHandler:(id)arg1;
-- (id)getEventHandlerDictForStreams;
-- (id)initWithEventStreams:(id)arg1;
 
 @end

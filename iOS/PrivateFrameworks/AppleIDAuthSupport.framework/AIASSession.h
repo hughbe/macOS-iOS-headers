@@ -26,7 +26,7 @@
 - (id)init;
 - (void)invalidateAndCancel;
 - (bool)invalidated;
-- (id)requestWithURL:(id)arg1 data:(struct __CFDictionary { }*)arg2 clientInfo:(id)arg3 proxiedClientInfo:(id)arg4 companionClientInfo:(id)arg5 appleITeamId:(id)arg6 appleIClientId:(id)arg7;
+- (id)requestWithURL:(id)arg1 data:(struct __CFDictionary { }*)arg2 clientInfo:(id)arg3 proxiedClientInfo:(id)arg4 companionClientInfo:(id)arg5 appleITeamId:(id)arg6 appleIClientId:(id)arg7 additionalHeaders:(id)arg8;
 - (void)setInvalidated:(bool)arg1;
 - (void)setTaskMap:(id)arg1;
 - (void)setURLSession:(id)arg1;

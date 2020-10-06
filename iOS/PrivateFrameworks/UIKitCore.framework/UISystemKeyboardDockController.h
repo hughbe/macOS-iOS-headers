@@ -19,15 +19,10 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
 - (void)_dictationDidBeginNotification:(id)arg1;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)dictationItemButtonWasPressed:(id)arg1 withEvent:(id)arg2;
 - (id)dockView;
 - (void)globeItemButtonWasPressed:(id)arg1 withEvent:(id)arg2;

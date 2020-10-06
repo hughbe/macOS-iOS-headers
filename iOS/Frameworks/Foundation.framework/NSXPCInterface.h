@@ -16,7 +16,6 @@
 + (id)signatureForBlock:(id)arg1;
 
 - (const struct _xpc_type_s { }*)XPCTypeForSelector:(SEL)arg1 argumentIndex:(unsigned long long)arg2 ofReply:(bool)arg3;
-- (id)_allowedClassesForSelector:(SEL)arg1 reply:(bool)arg2;
 - (Class)_customSubclass;
 - (id)_generateAndCacheMethodSignatureForRemoteSelector:(SEL)arg1;
 - (bool)_hasProxiesInArgumentsOfSelector:(SEL)arg1;
@@ -47,6 +46,13 @@
 - (unsigned long long)version;
 - (unsigned long long)versionForSelector:(SEL)arg1;
 
+// Image: /System/Library/Frameworks/AuthenticationServices.framework/AuthenticationServices
+
++ (id)_as_accountModificationExtensionInterface;
++ (id)_as_accountModificationHostInterface;
++ (id)_as_credentialProviderExtensionInterface;
++ (id)_as_credentialProviderHostInterface;
+
 // Image: /System/Library/Frameworks/CallKit.framework/CallKit
 
 + (id)cx_callControllerHostInterface;
@@ -55,6 +61,7 @@
 + (id)cx_callDirectoryManagerMaintenanceHostInterface;
 + (id)cx_callDirectoryProviderHostInterface;
 + (id)cx_callDirectoryProviderVendorInterface;
++ (id)cx_networkExtensionMessageControllerHostInterface;
 + (id)cx_providerHostInterface;
 + (id)cx_providerVendorInterface;
 + (id)cx_voicemailControllerHostInterface;
@@ -80,12 +87,48 @@
 - (void)cx_setAllowedClassesForVoicemailProviderHostProtocol;
 - (void)cx_setAllowedClassesForVoicemailProviderVendorProtocol;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (id)_cachedSetForArrayOfClass:(Class)arg1;
+- (id)hk_setArrayOfClass:(Class)arg1 forSelector:(SEL)arg2 argumentIndex:(unsigned long long)arg3 ofReply:(bool)arg4;
+- (id)hk_setSetOfClass:(Class)arg1 forSelector:(SEL)arg2 argumentIndex:(unsigned long long)arg3 ofReply:(bool)arg4;
+
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
++ (id)hm_setupRemoteHostInterface;
++ (id)hm_setupRemoteServiceInterface;
++ (id)hm_userManagementRemoteHostInterface;
++ (id)hm_userManagementRemoteServiceInterface;
+
+// Image: /System/Library/Frameworks/IdentityLookup.framework/IdentityLookup
+
++ (id)il_classificationUIExtensionHostInterface;
++ (id)il_classificationUIExtensionVendorInterface;
++ (id)il_messageFilterExtensionHostInterface;
++ (id)il_messageFilterExtensionVendorInterface;
++ (id)il_messageFilterHostInterface;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_mailComposeRemoteHostInterface;
++ (id)mf_mailComposeRemoteServiceInterface;
+
+// Image: /System/Library/Frameworks/Messages.framework/Messages
+
++ (id)__mf_messageComposerExtensionInterface;
++ (id)__mf_messageComposerHostInterface;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (void)atx_addClass:(Class)arg1 forSelector:(SEL)arg2 argumentIndex:(unsigned long long)arg3 ofReply:(bool)arg4;
+
 // Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
 
 + (id)af_siriTaskDeliveringInterface;
 
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
++ (id)_geo_GEOAppleMediaServicesProtocolInterface;
 + (id)geo_MapsPushDaemonFromGeodInterface;
 
 // Image: /System/Library/PrivateFrameworks/IconServices.framework/IconServices

@@ -3,14 +3,16 @@
  */
 
 @interface NSURLSessionTaskDependencyDescription : NSObject {
+    __NSURLSessionTaskDependencyResourceIdentifier * _dependent;
     NSString * _dependentMimeType;
     NSString * _dependentURLPath;
+    bool  _exclusive;
+    __NSURLSessionTaskDependencyResourceIdentifier * _parent;
     NSString * _parentMimeType;
     NSString * _parentURLPath;
+    float  _priority;
 }
 
-@property (nonatomic, retain) __NSURLSessionTaskDependencyResourceIdentifier *_dependent;
-@property (nonatomic, retain) __NSURLSessionTaskDependencyResourceIdentifier *_parent;
 @property (readonly) NSString *dependentMimeType;
 @property (readonly) NSString *dependentURLPath;
 @property (nonatomic) bool exclusive;
@@ -25,9 +27,15 @@
 + (id)taskDependencyDescriptionWithURLPath:(id)arg1 parentMimeType:(id)arg2;
 + (id)taskDependencyDescriptionWithURLPath:(id)arg1 parentURLPath:(id)arg2;
 
+- (void)dealloc;
 - (id)dependentMimeType;
 - (id)dependentURLPath;
+- (id)description;
+- (bool)exclusive;
 - (id)parentMimeType;
 - (id)parentURLPath;
+- (float)priority;
+- (void)setExclusive:(bool)arg1;
+- (void)setPriority:(float)arg1;
 
 @end

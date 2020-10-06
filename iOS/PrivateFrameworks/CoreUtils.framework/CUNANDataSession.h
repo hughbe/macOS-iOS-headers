@@ -91,6 +91,7 @@
 - (union { struct sockaddr { unsigned char x_1_1_1; unsigned char x_1_1_2; BOOL x_1_1_3[14]; } x1; struct sockaddr_in { unsigned char x_2_1_1; unsigned char x_2_1_2; unsigned short x_2_1_3; struct in_addr { unsigned int x_4_2_1; } x_2_1_4; BOOL x_2_1_5[8]; } x2; struct sockaddr_in6 { unsigned char x_3_1_1; unsigned char x_3_1_2; unsigned short x_3_1_3; unsigned int x_3_1_4; struct in6_addr { union { unsigned char x_1_3_1[16]; unsigned short x_1_3_2[8]; unsigned int x_1_3_3[4]; } x_5_2_1; } x_3_1_5; unsigned int x_3_1_6; } x3; })peerAddress;
 - (id)peerEndpoint;
 - (id)publisher;
+- (void)reportIssue:(id)arg1;
 - (void)setDispatchQueue:(id)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setInterruptionHandler:(id /* block */)arg1;

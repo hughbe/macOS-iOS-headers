@@ -23,6 +23,7 @@
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithHome:(unsigned long long)arg1 roaming:(unsigned long long)arg2 wifi:(unsigned long long)arg3;
+- (bool)isEmpty;
 - (bool)isEqual:(id)arg1;
 - (void)setCellularHome:(unsigned long long)arg1;
 - (void)setCellularRoaming:(unsigned long long)arg1;

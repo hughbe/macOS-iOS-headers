@@ -34,7 +34,10 @@
 - (bool)hasLabel;
 - (bool)hasMuid;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)label;
 - (void)mergeFrom:(id)arg1;
 - (unsigned long long)muid;

@@ -3,18 +3,37 @@
  */
 
 @interface SISchemaInvocation : PBCodable {
+    SISchemaCarPlayInvocationContext * _carPlayInvocationContext;
+    struct { 
+        unsigned int invocationAction : 1; 
+        unsigned int invocationSource : 1; 
+    }  _has;
+    bool  _hasCarPlayInvocationContext;
+    bool  _hasViewContainer;
     int  _invocationAction;
     int  _invocationSource;
     SISchemaViewContainer * _viewContainer;
+    unsigned long long  _whichInvocationcontext;
 }
 
+@property (nonatomic, retain) SISchemaCarPlayInvocationContext *carPlayInvocationContext;
+@property (nonatomic) bool hasCarPlayInvocationContext;
+@property (nonatomic) bool hasInvocationAction;
+@property (nonatomic) bool hasInvocationSource;
+@property (nonatomic) bool hasViewContainer;
 @property (nonatomic) int invocationAction;
 @property (nonatomic) int invocationSource;
 @property (nonatomic, readonly) NSData *jsonData;
 @property (nonatomic, retain) SISchemaViewContainer *viewContainer;
+@property (nonatomic, readonly) unsigned long long whichInvocationcontext;
 
 - (void).cxx_destruct;
+- (id)carPlayInvocationContext;
 - (id)dictionaryRepresentation;
+- (bool)hasCarPlayInvocationContext;
+- (bool)hasInvocationAction;
+- (bool)hasInvocationSource;
+- (bool)hasViewContainer;
 - (unsigned long long)hash;
 - (id)initWithDictionary:(id)arg1;
 - (id)initWithJSON:(id)arg1;
@@ -23,10 +42,16 @@
 - (bool)isEqual:(id)arg1;
 - (id)jsonData;
 - (bool)readFrom:(id)arg1;
+- (void)setCarPlayInvocationContext:(id)arg1;
+- (void)setHasCarPlayInvocationContext:(bool)arg1;
+- (void)setHasInvocationAction:(bool)arg1;
+- (void)setHasInvocationSource:(bool)arg1;
+- (void)setHasViewContainer:(bool)arg1;
 - (void)setInvocationAction:(int)arg1;
 - (void)setInvocationSource:(int)arg1;
 - (void)setViewContainer:(id)arg1;
 - (id)viewContainer;
+- (unsigned long long)whichInvocationcontext;
 - (void)writeTo:(id)arg1;
 
 @end

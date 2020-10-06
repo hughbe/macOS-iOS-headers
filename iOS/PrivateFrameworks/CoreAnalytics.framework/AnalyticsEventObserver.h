@@ -25,6 +25,7 @@
 - (void)setEventObserverDelegate:(id)arg1 queue:(id)arg2;
 - (void)setQueue:(id)arg1;
 - (bool)startObservingEventList:(id)arg1;
+- (bool)startObservingEventList:(id)arg1 withErrorHandler:(id /* block */)arg2;
 - (bool)stopObserving;
 
 @end

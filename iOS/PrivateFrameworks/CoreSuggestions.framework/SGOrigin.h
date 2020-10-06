@@ -43,6 +43,8 @@
 @property (nonatomic, readonly) unsigned long long type;
 @property (nonatomic, readonly) NSURL *url;
 
+// Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
+
 + (id)originWithType:(unsigned long long)arg1 sourceKey:(id)arg2 externalKey:(id)arg3 bundleId:(id)arg4 fromForwardedMessage:(bool)arg5;
 + (id)originWithType:(unsigned long long)arg1 sourceKey:(id)arg2 externalKey:(id)arg3 fromForwardedMessage:(bool)arg4;
 + (bool)supportsSecureCoding;
@@ -73,6 +75,21 @@
 - (id)title;
 - (id)to;
 - (unsigned long long)type;
+- (id)universalURL;
 - (id)url;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)originForDuplicateKey:(id)arg1 entity:(id)arg2 parent:(id)arg3;
++ (id)originForDuplicateKey:(id)arg1 sourceKey:(id)arg2 store:(id)arg3;
++ (unsigned long long)originTypeForEntityType:(long long)arg1;
+
+- (void)addDetailsFromOriginatingCalendarEntity:(id)arg1;
+- (void)addDetailsFromOriginatingContactEntity:(id)arg1;
+- (void)addDetailsFromOriginatingGenericEntity:(id)arg1;
+- (void)addDetailsFromOriginatingInteractionEntity:(id)arg1;
+- (void)addDetailsFromOriginatingMessageEntity:(id)arg1;
+- (void)addDetailsFromParticipantsOfEntity:(id)arg1;
+- (void)addSnippetIfNotExistsFromContentOfEntity:(id)arg1;
 
 @end

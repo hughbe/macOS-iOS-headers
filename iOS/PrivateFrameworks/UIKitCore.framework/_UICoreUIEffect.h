@@ -6,7 +6,8 @@
 
 + (id)coreUIEffectForBlurStyle:(long long)arg1;
 
+- (void)_configureMaterialLayer:(id)arg1 inEnvironment:(id)arg2;
 - (id)initWithMaterialName:(id)arg1;
-- (id)initWithMaterialName:(id)arg1 blurStyle:(long long)arg2;
+- (id)initWithMaterialName:(id)arg1 blurStyle:(long long)arg2 emphasized:(bool)arg3;
 
 @end

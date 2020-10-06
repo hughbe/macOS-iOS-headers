@@ -4,6 +4,7 @@
 
 @interface UIControlTargetAction : NSObject {
     SEL  _action;
+    UIAction * _actionHandler;
     bool  _cancelled;
     unsigned long long  _eventMask;
     id  _target;

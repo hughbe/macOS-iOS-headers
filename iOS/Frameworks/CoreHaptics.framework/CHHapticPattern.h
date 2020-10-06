@@ -19,6 +19,7 @@
 @property (readonly) NSArray *parameters;
 @property (readonly) Class superclass;
 
++ (id)addHapticsForWheelsOfTime:(id)arg1;
 + (id)eventListFromEvents:(id)arg1 parameters:(id)arg2 parameterCurves:(id)arg3 engine:(id)arg4 privileged:(bool)arg5;
 
 - (void).cxx_destruct;
@@ -32,6 +33,6 @@
 - (id)initWithEvents:(id)arg1 parameters:(id)arg2 error:(id*)arg3;
 - (id)parameterCurves;
 - (id)parameters;
-- (bool)resolveExternalResources:(id)arg1 error:(id*)arg2;
+- (id)resolveExternalResources:(id)arg1 error:(id*)arg2;
 
 @end

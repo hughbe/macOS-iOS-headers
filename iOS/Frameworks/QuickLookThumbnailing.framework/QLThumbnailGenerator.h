@@ -28,7 +28,6 @@
 
 + (id)debugDescriptionForErrorCode:(long long)arg1;
 + (id)errorWithCode:(long long)arg1 request:(id)arg2 additionalUserInfo:(id)arg3;
-+ (void)generateThumbnailOfMaximumSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 forURL:(id)arg3 completionHandler:(id /* block */)arg4;
 + (void)initialize;
 + (id)sharedGenerator;
 

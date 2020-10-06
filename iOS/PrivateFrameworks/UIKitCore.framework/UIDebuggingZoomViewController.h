@@ -30,14 +30,9 @@
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
 @property (nonatomic) bool useViewForEdges;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (unsigned long long)currentDirection;
+- (void)dealloc;
 - (id)directionSegmentedControl;
 - (id)distanceLabel;
 - (id)drawLinesAtPoint:(struct CGPoint { double x1; double x2; })arg1;

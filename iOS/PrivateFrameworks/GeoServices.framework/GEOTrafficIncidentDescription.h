@@ -6,8 +6,7 @@
     struct { 
         unsigned int read_incidentDescription : 1; 
         unsigned int read_language : 1; 
-        unsigned int wrote_incidentDescription : 1; 
-        unsigned int wrote_language : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _incidentDescription;
     NSString * _language;
@@ -27,8 +26,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readIncidentDescription;
-- (void)_readLanguage;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -39,7 +36,10 @@
 - (id)incidentDescription;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)language;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

@@ -16,6 +16,7 @@
 - (id)allInterpretationStringsAndScores;
 - (id)bestInterpretation;
 - (id)description;
+- (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)firstInterpretation;
 - (unsigned long long)hash;

@@ -5,6 +5,7 @@
 @interface CNPhotoPickerVariantListController : UIViewController <CNPhotoPickerProviderItemDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout> {
     unsigned long long  _cellStyle;
     UICollectionView * _collectionView;
+    bool  _commitsChangesOnSelection;
     <CNPhotoPickerVariantListControllerDelegate> * _delegate;
     UIView * _headerView;
     id /* block */  _numberOfItemsPerRowProvider;
@@ -17,13 +18,14 @@
     NSString * _selectedVariantIdentifier;
     bool  _shouldShowCaptions;
     bool  _showPreview;
-    bool  _showSelection;
+    bool  _showsSelection;
+    bool  _showsToolbar;
     CNPhotoPickerVariantsManager * _variantsManager;
-    bool  _wantsScrollingHeader;
 }
 
 @property (nonatomic) unsigned long long cellStyle;
 @property (nonatomic, retain) UICollectionView *collectionView;
+@property (nonatomic) bool commitsChangesOnSelection;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <CNPhotoPickerVariantListControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -39,11 +41,11 @@
 @property (nonatomic, retain) NSString *selectedVariantIdentifier;
 @property (nonatomic) bool shouldShowCaptions;
 @property (nonatomic) bool showPreview;
-@property (nonatomic) bool showSelection;
+@property (nonatomic) bool showsSelection;
+@property (nonatomic) bool showsToolbar;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSString *variantsDisplayTitle;
 @property (nonatomic, retain) CNPhotoPickerVariantsManager *variantsManager;
-@property (nonatomic) bool wantsScrollingHeader;
 
 + (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frameForHeaderInBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 + (long long)topMarginForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 shouldShowCaptions:(bool)arg2;
@@ -58,6 +60,7 @@
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (bool)collectionView:(id)arg1 shouldSelectItemAtIndexPath:(id)arg2;
+- (bool)commitsChangesOnSelection;
 - (void)contentSizeCategoryDidChange:(id)arg1;
 - (id)delegate;
 - (void)didFinishSelectingVariant;
@@ -78,6 +81,7 @@
 - (id)selectedVariantIdentifier;
 - (void)setCellStyle:(unsigned long long)arg1;
 - (void)setCollectionView:(id)arg1;
+- (void)setCommitsChangesOnSelection:(bool)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setHeaderView:(id)arg1;
 - (void)setNumberOfItemsPerRowProvider:(id /* block */)arg1;
@@ -89,12 +93,13 @@
 - (void)setSelectedVariantIdentifier:(id)arg1;
 - (void)setShouldShowCaptions:(bool)arg1;
 - (void)setShowPreview:(bool)arg1;
-- (void)setShowSelection:(bool)arg1;
+- (void)setShowsSelection:(bool)arg1;
+- (void)setShowsToolbar:(bool)arg1;
 - (void)setVariantsManager:(id)arg1;
-- (void)setWantsScrollingHeader:(bool)arg1;
 - (bool)shouldShowCaptions;
 - (bool)showPreview;
-- (bool)showSelection;
+- (bool)showsSelection;
+- (bool)showsToolbar;
 - (void)updateFlowLayoutItemSize;
 - (void)updateForNewOriginalItem:(id)arg1;
 - (void)updatePreviewWithItem:(id)arg1;
@@ -104,6 +109,5 @@
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(bool)arg1;
-- (bool)wantsScrollingHeader;
 
 @end

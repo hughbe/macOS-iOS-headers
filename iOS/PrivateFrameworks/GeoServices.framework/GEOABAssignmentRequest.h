@@ -9,10 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_clientMetadata : 1; 
         unsigned int read_guid : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_clientMetadata : 1; 
-        unsigned int wrote_guid : 1; 
-        unsigned int wrote_requestType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _guid;
     PBDataReader * _reader;
@@ -37,8 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsRequestType:(id)arg1;
-- (void)_readClientMetadata;
-- (void)_readGuid;
 - (void)clearSensitiveFields;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)clientMetadata;
@@ -53,7 +48,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

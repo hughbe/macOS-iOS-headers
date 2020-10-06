@@ -6,7 +6,6 @@
     __CFN_ConnectionMetrics * __metrics;
 }
 
-@property (nonatomic, readonly) __CFN_ConnectionMetrics *_metrics;
 @property (getter=isCellular, nonatomic, readonly) bool cellular;
 @property (getter=isConstrained, nonatomic, readonly) bool constrained;
 @property (nonatomic, readonly, retain) NSObject<OS_nw_establishment_report> *establishmentReport;
@@ -23,11 +22,9 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_metrics;
 - (void)encodeWithCoder:(id)arg1;
 - (id)establishmentReport;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMetrics:(id)arg1;
 - (id)interfaceName;
 - (bool)isCellular;
 - (bool)isConstrained;

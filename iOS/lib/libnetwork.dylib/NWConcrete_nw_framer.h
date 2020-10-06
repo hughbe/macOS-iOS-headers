@@ -42,6 +42,7 @@
     }  callbacks;
     unsigned int  called_start;
     id /* block */  cleanup;
+    NSObject<OS_nw_dictionary> * connection_state;
     NSObject<OS_nw_context> * context;
     id /* block */  copy_metadata;
     NSObject<OS_nw_endpoint> * endpoint;
@@ -106,6 +107,7 @@
     unsigned int  supports_external_data;
     unsigned int  waiting_for_flow_control;
     id /* block */  wakeup;
+    id /* block */  wakeup_block;
     id /* block */  write_output;
 }
 

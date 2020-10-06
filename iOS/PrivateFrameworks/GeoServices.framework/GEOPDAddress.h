@@ -9,11 +9,7 @@
         unsigned int read_localizedAddress : 1; 
         unsigned int read_spokenNavigationAddress : 1; 
         unsigned int read_spokenStructuredAddress : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_localizedAddress : 1; 
-        unsigned int wrote_spokenNavigationAddress : 1; 
-        unsigned int wrote_spokenStructuredAddress : 1; 
-        unsigned int wrote_knownAccuracy : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _knownAccuracy;
     NSMutableArray * _localizedAddress;
@@ -42,12 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsKnownAccuracy:(id)arg1;
-- (void)_addNoFlagsLocalizedAddress:(id)arg1;
-- (void)_addNoFlagsSpokenNavigationAddress:(id)arg1;
-- (void)_addNoFlagsSpokenStructuredAddress:(id)arg1;
-- (void)_readLocalizedAddress;
-- (void)_readSpokenNavigationAddress;
-- (void)_readSpokenStructuredAddress;
 - (void)addLocalizedAddress:(id)arg1;
 - (void)addSpokenNavigationAddress:(id)arg1;
 - (void)addSpokenStructuredAddress:(id)arg1;
@@ -63,7 +53,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)knownAccuracy;
 - (id)knownAccuracyAsString:(int)arg1;
 - (id)localizedAddress;

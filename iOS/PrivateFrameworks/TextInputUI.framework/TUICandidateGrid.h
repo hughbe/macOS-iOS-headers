@@ -39,6 +39,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <TUICandidateGridDelegate> *delegate;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSIndexPath *firstIndexPath;
 @property (nonatomic, retain) NSIndexPath *firstVisibleIndexPath;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) double lastUserSelectedCursorX;
@@ -66,6 +67,7 @@
 - (bool)animating;
 - (struct CGSize { double x1; double x2; })arrowButtonSize;
 - (unsigned long long)autofillExtraCandidatesCount;
+- (bool)canExpandCandidateGrid;
 - (id)candidateAtIndexPath:(id)arg1;
 - (id)candidateGroups;
 - (bool)candidateNumberEnabled;

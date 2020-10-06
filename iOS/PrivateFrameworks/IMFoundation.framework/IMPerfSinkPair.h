@@ -10,8 +10,8 @@
 @property (nonatomic, readonly) <IMPerfProfilerBehavior> *behavior;
 @property (nonatomic, readonly) <IMPerfProfilerSink> *sink;
 
+- (void).cxx_destruct;
 - (id)behavior;
-- (void)dealloc;
 - (id)initWithBehavior:(id)arg1 sink:(id)arg2;
 - (id)sink;
 

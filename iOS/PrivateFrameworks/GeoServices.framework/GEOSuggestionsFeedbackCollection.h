@@ -10,12 +10,7 @@
         unsigned int read_suggestionEntryMetadata : 1; 
         unsigned int read_suggestionEntry : 1; 
         unsigned int read_suggestionMetadata : 1; 
-        unsigned int wrote_sessionID : 1; 
-        unsigned int wrote_suggestionEntryMetadata : 1; 
-        unsigned int wrote_suggestionEntry : 1; 
-        unsigned int wrote_suggestionMetadata : 1; 
-        unsigned int wrote_suggestionEntryIndex : 1; 
-        unsigned int wrote_suggestionsEntryListIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -50,9 +45,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readSuggestionEntry;
-- (void)_readSuggestionEntryMetadata;
-- (void)_readSuggestionMetadata;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -66,7 +58,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

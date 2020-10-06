@@ -20,6 +20,7 @@
 - (id)_dictionaryRepresentation;
 - (id)_identifier;
 - (id)_initWithURLRepresentation:(id)arg1;
+- (bool)_isSystem;
 - (void)_loadImageDataAndSizeWithHelper:(id)arg1 accessSpecifier:(id)arg2 completion:(id /* block */)arg3;
 - (id)_name;
 - (bool)_requiresRetrieval;

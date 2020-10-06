@@ -7,8 +7,7 @@
     struct { 
         unsigned int read_cameraFrame : 1; 
         unsigned int read_locationInfo : 1; 
-        unsigned int wrote_cameraFrame : 1; 
-        unsigned int wrote_locationInfo : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDLocationInfo * _locationInfo;
     PBDataReader * _reader;
@@ -27,8 +26,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readCameraFrame;
-- (void)_readLocationInfo;
 - (id)cameraFrame;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -39,7 +36,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)locationInfo;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

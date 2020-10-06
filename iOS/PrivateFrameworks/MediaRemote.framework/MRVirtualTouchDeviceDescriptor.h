@@ -18,7 +18,6 @@
 @property (getter=isIntegratedDisplay, nonatomic, readonly) bool integratedDisplay;
 @property (nonatomic, readonly) union _MRHIDSize { struct { float x_1_1_1; float x_1_1_2; } x1; float x2[2]; } screenSize;
 
-- (id)_copyWithZone:(struct _NSZone { }*)arg1 usingConcreteClass:(Class)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)isAbsolute;
 - (bool)isIntegratedDisplay;

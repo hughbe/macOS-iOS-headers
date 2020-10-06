@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INIntentResolutionResult : NSObject <INIntentResolutionResultDataProviding, INIntentResolutionResultExport> {
+@interface INIntentResolutionResult : NSObject <CMSCoding, INIntentResolutionResultDataProviding, INIntentResolutionResultExport> {
     NSArray * _alternatives;
     unsigned long long  _confirmationReason;
     NSArray * _disambiguationItems;
@@ -25,6 +25,8 @@
 @property (nonatomic, retain) id resolvedValue;
 @property (readonly) Class superclass;
 @property (nonatomic) unsigned long long unsupportedReason;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (id)_dataForResolutionMethodUnimplemented;
 + (id)_resolutionResultWithData:(id)arg1 slotDescription:(id)arg2;
@@ -75,5 +77,11 @@
 - (void)setUnsupportedReason:(unsigned long long)arg1;
 - (void)transformResolutionResultForIntent:(id)arg1 intentSlotDescription:(id)arg2 withOptionsProvider:(id)arg3 completion:(id /* block */)arg4;
 - (unsigned long long)unsupportedReason;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
 
 @end

@@ -14,6 +14,12 @@
 - (UIFont *)largeTitleFontStatic;
 - (UIFont *)mediumBodyFont;
 - (UIFont *)mediumTitleFont;
+- (UIFont *)ratingCallToActionGlyphFont;
+- (UIFont *)ratingCallToActionHeaderLabelFont;
+- (UIFont *)ratingCallToActionLabelFont;
+- (UIFont *)ratingOverallFont;
+- (UIFont *)ratingOverallPercentageFont;
+- (UIFont *)recommendSubtitleFont;
 - (UIFont *)rowButtonFont;
 - (UIFont *)rowGlyphButtonFont;
 - (UIFont *)sectionHeaderButtonFont;

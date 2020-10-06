@@ -3,12 +3,12 @@
  */
 
 @interface MRContentItemRequest : NSObject <NSSecureCoding> {
-    _MRContentItemProtobuf * _item;
-    _MRPlaybackQueueRequestProtobuf * _request;
+    MRContentItem * _item;
+    MRPlaybackQueueRequest * _request;
 }
 
-@property (nonatomic, retain) _MRContentItemProtobuf *item;
-@property (nonatomic, retain) _MRPlaybackQueueRequestProtobuf *request;
+@property (nonatomic, retain) MRContentItem *item;
+@property (nonatomic, retain) MRPlaybackQueueRequest *request;
 
 + (bool)supportsSecureCoding;
 

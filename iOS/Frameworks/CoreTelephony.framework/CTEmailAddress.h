@@ -10,10 +10,10 @@
 
 + (id)emailAddress:(id)arg1;
 
+- (void).cxx_destruct;
 - (id)address;
 - (id)canonicalFormat;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)encodedString;
 - (id)initWithAddress:(id)arg1;
 

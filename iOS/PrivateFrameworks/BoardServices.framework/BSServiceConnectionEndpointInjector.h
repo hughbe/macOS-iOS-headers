@@ -25,7 +25,6 @@
 + (id)injectorWithConfigurator:(id /* block */)arg1;
 
 - (void).cxx_destruct;
-- (id)_initWithManager:(id)arg1 configurator:(id /* block */)arg2;
 - (void)dealloc;
 - (id)description;
 - (id)init;

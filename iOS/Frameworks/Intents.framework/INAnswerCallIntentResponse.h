@@ -4,6 +4,7 @@
 
 @interface INAnswerCallIntentResponse : INIntentResponse <INAnswerCallIntentResponseExport>
 
+@property (nonatomic, copy) INConnectedCall *answeredCall;
 @property (nonatomic, copy) NSArray *callRecords;
 @property (nonatomic, readonly) long long code;
 @property (readonly, copy) NSString *debugDescription;
@@ -23,6 +24,7 @@
 - (id)_dictionaryRepresentation;
 - (id)_initWithCode:(long long)arg1 userActivity:(id)arg2;
 - (long long)_intentResponseCode;
+- (id)answeredCall;
 - (id)callRecords;
 - (long long)code;
 - (void)encodeWithCoder:(id)arg1;
@@ -32,6 +34,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)propertiesByName;
 - (id)recentMissedCalls;
+- (void)setAnsweredCall:(id)arg1;
 - (void)setCallRecords:(id)arg1;
 - (void)setPropertiesByName:(id)arg1;
 - (void)setRecentMissedCalls:(id)arg1;

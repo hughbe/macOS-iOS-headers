@@ -16,7 +16,9 @@
 - (NSString *)firstName;
 - (NSDictionary *)imageCropRects;
 - (NSData *)imageData;
+- (NSData *)imageHash;
 - (NSArray *)imageReferences;
+- (NSString *)imageType;
 - (NSArray *)instantMessagingAddresses;
 - (bool)isCompany;
 - (bool)isMe;

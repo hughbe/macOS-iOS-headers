@@ -26,7 +26,7 @@
 - (oneway void)speechDidRecognizeTokens:(id)arg1 usingSpeechModel:(id)arg2;
 - (oneway void)speechDidRecognizeTranscriptionObjects:(id)arg1 usingSpeechModel:(id)arg2;
 - (oneway void)speechRecognitionDidFinishWithError:(id)arg1;
-- (oneway void)speechRecordingDidBeginWithOptions:(id)arg1;
+- (oneway void)speechRecordingDidBeginWithOptions:(id)arg1 sessionUUID:(id)arg2 sessionRequestUUID:(id)arg3;
 - (oneway void)speechRecordingDidCancel;
 - (oneway void)speechRecordingDidEnd;
 - (oneway void)speechRecordingDidFail:(id)arg1;

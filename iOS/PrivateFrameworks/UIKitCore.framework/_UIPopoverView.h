@@ -60,7 +60,6 @@
 - (void)layoutSubviews;
 - (id)popoverBackgroundColor;
 - (id)popoverController;
-- (void)prepareForAnimatedTransitioningWithCoordinator:(id)arg1;
 - (id)presentedActionSheet;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsForContentView;
 - (void)setArrowBackgroundColor:(id)arg1;

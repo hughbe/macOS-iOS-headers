@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, copy) NSSet *actions;
+@property (nonatomic) bool allowCPUThrottling;
 @property (nonatomic, retain) BKSAnimationFenceHandle *animationFence;
 @property (nonatomic, copy) BSAnimationSettings *animationSettings;
 @property (readonly, copy) NSString *debugDescription;
@@ -22,8 +23,11 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) BSProcessHandle *originatingProcess;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) BSMutableSettings *transientLocalClientSettings;
+@property (nonatomic, readonly) FBSceneUpdateContext *updateContext;
 @property (nonatomic, retain) FBSceneUpdateContext *updateContext;
 @property (nonatomic, retain) FBWatchdogTransitionContext *watchdogTransitionContext;
+@property (nonatomic, readonly) FBWatchdogTransitionContext *watchdogTransitionContext;
 
 // Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
 
@@ -34,6 +38,7 @@
 - (id)actions;
 - (id)animationFence;
 - (id)animationSettings;
+- (bool)appendDescriptionToBuilder:(id)arg1 forFlag:(long long)arg2 object:(id)arg3 ofSetting:(unsigned long long)arg4;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
@@ -51,10 +56,22 @@
 - (void)setAnimationFence:(id)arg1;
 - (void)setAnimationSettings:(id)arg1;
 - (void)setOriginatingProcess:(id)arg1;
+- (bool)settings:(id)arg1 appendDescriptionToBuilder:(id)arg2 forFlag:(long long)arg3 object:(id)arg4 ofSetting:(unsigned long long)arg5;
+- (id)settings:(id)arg1 keyDescriptionForSetting:(unsigned long long)arg2;
+- (id)settings:(id)arg1 valueDescriptionForFlag:(long long)arg2 object:(id)arg3 ofSetting:(unsigned long long)arg4;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
 - (id)transientLocalClientSettings;
 - (id)valueDescriptionForFlag:(long long)arg1 object:(id)arg2 ofSetting:(unsigned long long)arg3;
+
+// Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard
+
+- (bool)allowCPUThrottling;
+- (void)setAllowCPUThrottling:(bool)arg1;
+- (void)setUpdateContext:(id)arg1;
+- (void)setWatchdogTransitionContext:(id)arg1;
+- (id)updateContext;
+- (id)watchdogTransitionContext;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

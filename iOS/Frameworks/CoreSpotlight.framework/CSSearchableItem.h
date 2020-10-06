@@ -75,4 +75,10 @@
 
 - (id)_cnui_valueForAttribute:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)sg_clonableItemAtIndex:(unsigned long long)arg1 inCodedArray:(id)arg2;
+
+- (id)sg_clone;
+
 @end

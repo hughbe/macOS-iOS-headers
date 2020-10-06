@@ -11,11 +11,7 @@
         unsigned int has_selectedIndex : 1; 
         unsigned int read_displayedResults : 1; 
         unsigned int read_searchString : 1; 
-        unsigned int wrote_displayedResults : 1; 
-        unsigned int wrote_searchString : 1; 
-        unsigned int wrote_acSequenceNumber : 1; 
-        unsigned int wrote_searchFieldType : 1; 
-        unsigned int wrote_selectedIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -43,9 +39,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsSearchFieldType:(id)arg1;
-- (void)_addNoFlagsDisplayedResult:(id)arg1;
-- (void)_readDisplayedResults;
-- (void)_readSearchString;
 - (int)acSequenceNumber;
 - (void)addDisplayedResult:(id)arg1;
 - (void)clearDisplayedResults;
@@ -63,7 +56,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

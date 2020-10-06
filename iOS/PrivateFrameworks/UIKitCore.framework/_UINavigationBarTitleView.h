@@ -34,6 +34,7 @@
 @property (nonatomic, readonly) bool _underlayNavigationBarContent;
 @property (nonatomic) double backButtonAlpha;
 @property (nonatomic) double backButtonMaximumWidth;
+@property (nonatomic, readonly, copy) UIMenu *backButtonMenu;
 @property (nonatomic, readonly) double contentBaseHeight;
 @property (nonatomic, readonly) double contentBaselineOffsetFromTop;
 @property (nonatomic, readonly, copy) NSArray *contentOverlayRects;
@@ -48,11 +49,13 @@
 @property (nonatomic, readonly) double largeTitleHeight;
 @property (nonatomic, readonly) struct { double x1; double x2; } largeTitleHeightRange;
 @property (nonatomic) double leadingBarAlpha;
+@property (nonatomic, readonly) long long leadingOverlayCount;
 @property (nonatomic, readonly) UINavigationItem *navigationItem;
 @property (nonatomic) long long preferredContentAlignment;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) long long titleLocation;
 @property (nonatomic) double trailingBarAlpha;
+@property (nonatomic, readonly) long long trailingOverlayCount;
 @property (nonatomic) bool underlayBarContent;
 
 - (void).cxx_destruct;
@@ -73,10 +76,12 @@
 - (long long)_preferredAlignment;
 - (long long)_preferredContentSizeForSize:(long long)arg1;
 - (void)_setDataSource:(id)arg1 navigationItem:(id)arg2 titleLocation:(long long)arg3;
+- (id)_traitCollectionOverridesForNavigationBarTraitCollection:(id)arg1;
 - (bool)_underlayNavigationBarContent;
 - (bool)_wantsTwoPartTransition;
 - (double)backButtonAlpha;
 - (double)backButtonMaximumWidth;
+- (id)backButtonMenu;
 - (double)contentBaseHeight;
 - (double)contentBaselineOffsetFromTop;
 - (void)contentDidChange;
@@ -92,6 +97,7 @@
 - (double)largeTitleHeight;
 - (struct { double x1; double x2; })largeTitleHeightRange;
 - (double)leadingBarAlpha;
+- (long long)leadingOverlayCount;
 - (void)navigationBarTraitCollectionDidChangeTo:(id)arg1 from:(id)arg2;
 - (id)navigationItem;
 - (void)performTransition:(long long)arg1 willBeDisplayed:(bool)arg2;
@@ -112,6 +118,7 @@
 - (void)setUnderlayBarContent:(bool)arg1;
 - (long long)titleLocation;
 - (double)trailingBarAlpha;
+- (long long)trailingOverlayCount;
 - (void)transitionCompleted:(long long)arg1 willBeDisplayed:(bool)arg2;
 - (void)transitionWillBegin:(long long)arg1 willBeDisplayed:(bool)arg2;
 - (bool)underlayBarContent;

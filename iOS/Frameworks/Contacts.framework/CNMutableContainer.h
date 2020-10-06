@@ -19,18 +19,16 @@
 @property (nonatomic, copy) NSString *meIdentifier;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic) unsigned long long restrictions;
+@property (nonatomic, copy) CNContainer *snapshot;
 @property (nonatomic) long long type;
 
 - (id)accountIdentifier;
-- (void)adoptValuesFromAndSetSnapshot:(id)arg1;
 - (id)constraintsPath;
 - (id)copy;
 - (id)externalIdentifier;
 - (id)externalModificationTag;
 - (id)externalSyncData;
 - (id)externalSyncTag;
-- (id)freeze;
-- (id)freezeWithSelfAsSnapshot;
 - (int)iOSLegacyIdentifier;
 - (id)identifier;
 - (bool)isEnabled;
@@ -55,7 +53,6 @@
 - (void)setLastSyncDate:(id)arg1;
 - (void)setMeIdentifier:(id)arg1;
 - (void)setName:(id)arg1;
-- (void)setParentallyManaged:(bool)arg1;
 - (void)setRestrictions:(unsigned long long)arg1;
 - (void)setSnapshot:(id)arg1;
 - (void)setType:(long long)arg1;

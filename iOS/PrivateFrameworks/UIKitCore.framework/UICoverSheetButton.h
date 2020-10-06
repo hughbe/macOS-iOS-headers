@@ -44,8 +44,6 @@
 @property (nonatomic, copy) NSString *statisticsIdentifier;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_animateEffectUpdateWithProgress:(double)arg1 ended:(bool)arg2;
 - (id)_backgroundEffectsWithBrightness:(double)arg1;
@@ -54,9 +52,6 @@
 - (id)_interactionCountStatWithActivation:(bool)arg1;
 - (id)_interactionDurationStat;
 - (id)_maxForceStatWithActivation:(bool)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)backgroundEffectViewGroupName;
 - (void)clickInteraction:(id)arg1 didObserveForce:(double)arg2;
 - (void)clickInteractionDidClickUp:(id)arg1;

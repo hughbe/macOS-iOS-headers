@@ -10,5 +10,6 @@
 - (void)observePreferredInterfaceOrientationWithBlock:(id /* block */)arg1;
 - (void)observePreferredLevelWithBlock:(id /* block */)arg1;
 - (void)observePreferredSceneHostIdentifierWithBlock:(id /* block */)arg1;
+- (void)observePreferredSceneHostIdentityWithBlock:(id /* block */)arg1;
 
 @end

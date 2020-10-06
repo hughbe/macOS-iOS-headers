@@ -12,7 +12,6 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-- (id)initWithHandle:(unsigned long long)arg1;
 - (void)invalidate;
 
 @end

@@ -12,11 +12,7 @@
     Class  _xpcDOSubclass;
 }
 
-@property unsigned long long remoteVersion;
-
 - (void)dealloc;
 - (id)init;
-- (unsigned long long)remoteVersion;
-- (void)setRemoteVersion:(unsigned long long)arg1;
 
 @end

@@ -2,13 +2,48 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSDate : NSObject <AFSecurityDigestibleChunksProviding, CKRecordValue, INJSONSerializable, NSCopying, NSSecureCoding, PQLValuable, _DKDeduping>
+@interface NSDate : NSObject <AADataType, AFSecurityDigestibleChunksProviding, ASDNotificationType, CKLParsedObject, CKRecordValue, CMSCoding, EFSQLBindable, EFSQLValueExpressable, FCKeyValueStoreCoding, HFPropertyListConvertible, HMBQueryableModelFieldCoder, HMFObject, IMJSONSerializableValueProviding, INJSONSerializable, NSCopying, NSSecureCoding, PQLValuable, REDonatedActionIdentifierProviding, TSCHChartGridValue, WDDataListDataObjectSource, WFNaming, WFPropertyListObject, WFSerializableContent, _DKDeduping>
 
+@property (nonatomic, readonly, copy) NSArray *attributeDescriptions;
+@property (readonly) double bmAbsoluteTime;
+@property (nonatomic, readonly) struct { unsigned short x1; unsigned short x2; } bu_DOSTime;
+@property (nonatomic, readonly) int chartGridValueType;
+@property (nonatomic, readonly, copy) NSString *crk_JSONStringValue;
+@property (getter=crk_isInPast, readonly) bool crk_inPast;
+@property (readonly, copy) NSDateComponents *dateComponents;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) EFSQLBinding *ef_SQLBinding;
+@property (nonatomic, readonly, copy) NSString *ef_SQLExpression;
+@property (nonatomic, readonly) bool fc_isWeekend;
+@property (readonly) double fc_timeIntervalUntilNow;
+@property (readonly, copy) NSString *fileNameDescription;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) NSNumber *hf_analyticsTimestamp;
+@property (readonly, copy) NSDateComponents *hmf_dateComponents;
+@property (readonly, copy) NSString *hmf_localTimeDescription;
+@property (nonatomic, readonly) NSString *ic_briefFormattedDate;
+@property (nonatomic, readonly) NSString *ic_briefFormattedDateForAccessibility;
+@property (nonatomic, readonly) bool ic_isToday;
+@property (nonatomic, readonly) bool ic_isYesterday;
+@property (nonatomic, readonly) NSString *ic_localDateWithSeconds;
+@property (nonatomic, readonly) NSString *ic_shortFormattedDate;
+@property (readonly, copy) NSString *iso8601Description;
+@property (readonly, copy) NSString *localTimeDescription;
+@property (readonly, copy) NSString *privateDescription;
+@property (readonly, copy) NSString *propertyDescription;
+@property (nonatomic, readonly) bool rc_isWeekend;
+@property (readonly) double rc_timeIntervalUntilNow;
+@property (nonatomic, readonly) double safari_timeIntervalUntilNow;
+@property (readonly, copy) NSString *shortDescription;
+@property (readonly) double srAbsoluteTime;
 @property (readonly) Class superclass;
 @property (readonly) double timeIntervalSinceReferenceDate;
+@property (nonatomic, readonly) struct { unsigned short x1; unsigned short x2; } tsu_DOSTime;
+@property (nonatomic, readonly) bool vui_isInTheFuture;
+@property (nonatomic, readonly) bool vui_isInThePast;
+@property (readonly) double wa_timeIntervalUntilNow;
+@property (nonatomic, readonly, copy) NSString *wfName;
 
 // Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
 
@@ -58,6 +93,15 @@
 - (double)timeIntervalSinceNow;
 - (double)timeIntervalSinceReferenceDate;
 
+// Image: /System/Library/Frameworks/ClockKit.framework/ClockKit
+
+- (id)JSONObjectRepresentation;
+- (id)initWithJSONObjectRepresentation:(id)arg1;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
+- (void)ck_bindInStatement:(id)arg1 atIndex:(unsigned long long)arg2;
+
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)dateWithNaturalLanguageString:(id)arg1;
@@ -74,17 +118,82 @@
 - (id)initWithCoder:(id)arg1;
 - (id)replacementObjectForPortCoder:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_dateOnDayIndex:(long long)arg1 atHour:(long long)arg2 calendar:(id)arg3;
++ (id)hk_dateWithNanosecondsSince1970:(long long)arg1;
++ (id)hk_earliestPossibleDateWithDayIndex:(long long)arg1;
++ (id)hk_latestPossibleDateWithDayIndex:(long long)arg1;
++ (id)hk_mostRecentDate:(id)arg1;
++ (id)hk_noonWithDayIndex:(long long)arg1 calendar:(id)arg2;
+
+- (long long)hk_dayIndexWithCalendar:(id)arg1;
+- (long long)hk_earliestPossibleDayIndex;
+- (bool)hk_isAfterDate:(id)arg1;
+- (bool)hk_isAfterOrEqualToDate:(id)arg1;
+- (bool)hk_isBeforeDate:(id)arg1;
+- (bool)hk_isBeforeOrEqualToDate:(id)arg1;
+- (long long)hk_latestPossibleDayIndex;
+- (long long)hk_nanosecondsSince1970;
+- (id)hk_nearestDate:(id)arg1;
+- (id)hk_rfc3339String;
+- (id)hk_truncateToDay;
+
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
++ (unsigned char)dayOfTheWeek;
++ (id)iso8601dateFromString:(id)arg1;
+
 // Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
+
+// Image: /System/Library/Frameworks/ReplayKit.framework/ReplayKit
+
++ (id)_srGetStringFromDate:(id)arg1;
 
 // Image: /System/Library/Frameworks/Security.framework/Security
 
 - (double)bucketToRoundingFactor:(unsigned int)arg1;
 - (double)timeIntervalSince1970WithBucket:(unsigned int)arg1;
+
+// Image: /System/Library/Frameworks/SensorKit.framework/SensorKit
+
++ (id)dateWithSRAbsoluteTime:(double)arg1;
+
+- (id)initWithSRAbsoluteTime:(double)arg1;
+- (double)srAbsoluteTime;
+
+// Image: /System/Library/Frameworks/VideoSubscriberAccount.framework/VideoSubscriberAccount
+
++ (id)vs_currentDate;
++ (id)vs_dateAccessQueue;
++ (id)vs_recordedDates;
++ (void)vs_startRecordingDates;
++ (id)vs_stopRecordingDates;
+
+// Image: /System/Library/PrivateFrameworks/AXRuntime.framework/AXRuntime
+
+- (id)_axRecursivelyPropertyListCoercedRepresentationWithError:(id*)arg1;
+- (id)_axRecursivelyReconstitutedRepresentationFromPropertyListWithError:(id*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AdCore.framework/AdCore
+
++ (id)dateFromServerTime:(int)arg1;
++ (int)maxServerTime;
++ (int)minServerTime;
+
+- (id)doubleDateTimeAsString;
+- (id)localDateTimeAsString;
+- (int)toServerTime;
+- (id)universalDateTimeAsString;
+
+// Image: /System/Library/PrivateFrameworks/AdPlatformsCommon.framework/AdPlatformsCommon
+
+- (id)jsonRepresentationWithOptions:(unsigned long long)arg1;
 
 // Image: /System/Library/PrivateFrameworks/AggregateDictionary.framework/AggregateDictionary
 
@@ -93,12 +202,41 @@
 
 - (int)daysSince1970;
 
+// Image: /System/Library/PrivateFrameworks/AggregateDictionaryHistory.framework/AggregateDictionaryHistory
+
++ (id)dateForDaysSince1970:(int)arg1;
++ (int)daysSince1970;
+
+// Image: /System/Library/PrivateFrameworks/AppAnalytics.framework/AppAnalytics
+
+- (id)toJsonValueAndReturnError:(id*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (bool)atx_isAfterDate:(id)arg1;
+- (bool)atx_isBeforeDate:(id)arg1;
+- (bool)atx_isInclusiveBetweenDate:(id)arg1 andDate:(id)arg2;
+- (bool)atx_isOnOrAfterDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
+- (id)aaui_dayComponentsWithCalendar:(id)arg1;
+- (bool)aaui_isTodayWithCalendar:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
 
 - (bool)_af_isSameDayAsDate:(id)arg1;
 - (void)af_enumerateDigestibleChunksWithOptions:(unsigned long long)arg1 usingBlock:(id /* block */)arg2;
 - (bool)af_isToday;
 - (bool)af_isTomorrow;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)_afui_dateStringUsingCurrentLocaleFromTemplate:(id)arg1;
+- (bool)_afui_isSameDayAsDate:(id)arg1;
+- (bool)afui_isToday;
+- (bool)afui_isTomorrow;
+- (id)afui_longYearString;
 
 // Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
@@ -109,6 +247,26 @@
 - (id)bs_dateByAddingDays:(long long)arg1;
 - (bool)isAfterDate:(id)arg1;
 - (bool)isBeforeDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BiomeFoundation.framework/BiomeFoundation
+
++ (id)dateWithBMAbsoluteTime:(double)arg1;
+
+- (double)bmAbsoluteTime;
+- (id)initWithBMAbsoluteTime:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BookUtility.framework/BookUtility
+
+- (struct { unsigned short x1; unsigned short x2; })bu_DOSTime;
+- (id)bu_initWithDOSTime:(struct { unsigned short x1; unsigned short x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/CPAnalytics.framework/CPAnalytics
+
++ (id)cpa_daysAgo:(double)arg1;
++ (id)cpa_hoursAgo:(double)arg1;
++ (id)cpa_minutesAgo:(double)arg1;
++ (id)cpa_secondsAgo:(double)arg1;
++ (id)cpa_yearsAgo:(double)arg1;
 
 // Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
 
@@ -130,6 +288,10 @@
 + (id)formatForTimeZoneClarifiedDateString;
 + (id)nextRoundedHour;
 
+- (id)CalDateByComponentwiseAddingComponents:(id)arg1 inCalendar:(id)arg2;
+- (id)CalDateByComponentwiseAddingHours:(long long)arg1 inCalendar:(id)arg2;
+- (id)CalDateByComponentwiseAddingMinutes:(long long)arg1 inCalendar:(id)arg2;
+- (id)CalDateByComponentwiseAddingSeconds:(long long)arg1 inCalendar:(id)arg2;
 - (id)CalDateRoundedDownToNearestMinuteIncrement:(long long)arg1 inCalendar:(id)arg2;
 - (bool)CalIsAfterDate:(id)arg1;
 - (bool)CalIsAfterOrSameAsDate:(id)arg1;
@@ -247,6 +409,57 @@
 - (long long)weekdayInCalendar:(id)arg1;
 - (long long)yearInCalendar:(id)arg1;
 
+// Image: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
+
+- (id)localizedShortTimeInTimeZone:(id)arg1;
+- (id)nextDateMatchingTimeComponents;
+
+// Image: /System/Library/PrivateFrameworks/CallHistory.framework/CallHistory
+
+- (bool)isSameDayAsDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Catalyst.framework/Catalyst
+
++ (id)cat_RFC3339Formatters;
++ (id)cat_dateWithInternetTimeString:(id)arg1;
++ (id)cat_dateWithObject:(id)arg1;
+
+- (id)cat_internetTimeString;
+
+// Image: /System/Library/PrivateFrameworks/ClassroomKit.framework/ClassroomKit
+
++ (id)crk_sharedDateFormatter;
+
+- (id)crk_JSONStringValue;
+- (bool)crk_isInPast;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
++ (id)CKSharedCalendar;
++ (id)ck_dateFormatterWithString:(id)arg1;
++ (id)ck_dateWithNaturalLanguageString:(id)arg1;
+
+- (void)_CKLogToFileHandle:(id)arg1 atDepth:(int)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
+
+// Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+
+- (id)initWithCPLArchiver:(id)arg1;
+- (id)plistArchiveWithCPLArchiver:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ContentKit.framework/ContentKit
+
++ (id)objectWithWFSerializedRepresentation:(id)arg1;
+
+- (id)wfName;
+- (id)wfSerializedRepresentation;
+- (id)wf_formattedStringWithDateStyle:(id)arg1 timeStyle:(id)arg2 relativeDateStyle:(id)arg3 customDateFormat:(id)arg4 includeTimeForISO8601:(bool)arg5;
+
 // Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
 
 - (id)cd_dateWithCeilingForAlignment:(double)arg1;
@@ -254,14 +467,116 @@
 - (id)cd_dateWithFloorForAlignment:(double)arg1;
 - (id)cd_dateWithFloorForAlignment:(double)arg1 withOffset:(double)arg2 inTimeZone:(id)arg3;
 - (id)dedup;
-- (id)dk_localtimeString;
+- (id)dk_dedup;
 - (id)floorDateWithTotalSlotsInDay:(int)arg1;
 - (int)slotFromMidnightWithTotalSlotsInDay:(int)arg1;
 - (double)timeSinceMidnight:(id*)arg1;
 
+// Image: /System/Library/PrivateFrameworks/CoreRoutine.framework/CoreRoutine
+
++ (id)dateBisectingDate1:(id)arg1 date2:(id)arg2;
++ (id)dateFormatter;
++ (id)dateWithHour:(long long)arg1 minute:(long long)arg2 second:(long long)arg3;
++ (id)dateWithResolution:(unsigned long long)arg1;
++ (id)dateWithResolution:(unsigned long long)arg1 calendar:(id)arg2;
++ (id)endOfDay;
++ (id)startOfDay;
++ (id)stringFromTimestamp:(double)arg1;
+
+- (bool)betweenDate:(id)arg1 andDate:(id)arg2;
+- (id)dateByAddingUnit:(unsigned long long)arg1 value:(long long)arg2;
+- (id)dateByRoundingWithTimeQuantization:(long long)arg1;
+- (id)dateOfTimestampForCalendar:(id)arg1;
+- (id)dateOfTimestampForCurrentCalendar;
+- (id)dateReducedToResolution:(unsigned long long)arg1;
+- (id)dateReducedToResolution:(unsigned long long)arg1 calendar:(id)arg2;
+- (id)endOfDay;
+- (unsigned long long)hour;
+- (bool)isAfterDate:(id)arg1;
+- (bool)isBeforeDate:(id)arg1;
+- (bool)isOnOrAfter:(id)arg1;
+- (bool)isOnOrBefore:(id)arg1;
+- (unsigned long long)minute;
+- (id)startOfDay;
+- (id)stringFromDate;
+- (unsigned long long)weekday;
+- (id)weekdayStringFromDate;
+
 // Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
 
 - (id)sg_descriptionForMimeHeaders;
+
+// Image: /System/Library/PrivateFrameworks/DiagnosticExtensionsDaemon.framework/DiagnosticExtensionsDaemon
+
++ (id)_dateWithString:(id)arg1;
+
+- (id)serialize;
+
+// Image: /System/Library/PrivateFrameworks/DuetActivityScheduler.framework/DuetActivityScheduler
+
+- (double)timeIntervalSince1970WithTimeZoneOffset:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/EmailCore.framework/EmailCore
+
+- (id)ec_descriptionForMimeHeaders;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
++ (id)_ef_gregorianCalendarForTimeZone:(id)arg1;
++ (id)_ef_morningDateComponents;
++ (id)_ef_nightDateComponents;
++ (id)_ef_tonight:(id)arg1;
++ (bool)ef_isPastTonight;
++ (id)ef_nextWeekMorning;
++ (id)ef_tomorrowMorning;
++ (id)ef_tonight;
+
+- (id)ef_SQLBinding;
+- (id)ef_SQLExpression;
+- (id)ef_SQLIsolatedExpression;
+- (bool)ef_isEarlierThanDate:(id)arg1;
+- (bool)ef_isLaterThanDate:(id)arg1;
+- (void)ef_renderSQLExpressionInto:(id)arg1;
+- (double)ef_timeIntervalSinceDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ExchangeSync.framework/Frameworks/DAEAS.framework/DAEAS
+
++ (bool)acceptsTopLevelLeaves;
++ (id)dateWithActiveSyncString:(id)arg1;
++ (id)dateWithActiveSyncStringFromYearMonthDay:(id)arg1;
++ (id)dateWithActiveSyncStringWithoutSeparators:(id)arg1;
++ (bool)frontingBasicTypes;
++ (bool)notifyOfUnknownTokens;
++ (bool)parsingLeafNode;
++ (bool)parsingWithSubItems;
+
+- (id)activeSyncString;
+- (id)activeSyncStringForYearMonthDay;
+- (id)activeSyncStringWithoutSeparators;
+- (id)gmtDateToDateInTimeZone:(id)arg1;
+- (id)gmtMidnight;
+- (bool)isGMTMidnight;
+- (id)nearestMidnight;
+- (id)tzDateToDateInGMT:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FMCoreLite.framework/FMCoreLite
+
++ (id)fm_dateFromEpoch:(long long)arg1;
+
+- (long long)fm_epoch;
+- (id)fm_epochObject;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
++ (id)_gkDateFromScalarServerTimestamp:(unsigned long long)arg1;
++ (id)_gkDateFromServerTimestamp:(id)arg1;
++ (id)_gkFormattedTimeIntervalStringWithStartDate:(id)arg1 endDate:(id)arg2 calendarUnits:(unsigned long long)arg3 style:(long long)arg4;
++ (id)_gkServerTimestamp;
+
+- (id)_gkFormattedDateForStyle:(unsigned long long)arg1 relative:(bool)arg2;
+- (id)_gkFormattedStringWithDateStyle:(unsigned long long)arg1 timeStyle:(unsigned long long)arg2;
+- (id)_gkFormattedWhenStringWithOptions:(unsigned long long)arg1;
+- (id)_gkServerTimestamp;
 
 // Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
@@ -271,14 +586,606 @@
 - (double)geo_hoursAndMinutes;
 - (double)geo_julianDay;
 
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
++ (id)dateFromFileNameDescription:(id)arg1;
++ (id)shortDescription;
++ (id)timeIntervalDescription:(double)arg1;
+
+- (id)dateComponents;
+- (id)fileNameDescription;
+- (id)hmf_dateComponents;
+- (id)hmf_localTimeDescription;
+- (id)iso8601Description;
+- (id)localTimeDescription;
+- (id)privateDescription;
+- (id)shortDescription;
+
+// Image: /System/Library/PrivateFrameworks/HealthToolbox.framework/HealthToolbox
+
+- (id)device;
+- (id)source;
+- (id)startDate;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (id)hk_minimumDateForBirthDateWithCalendar:(id)arg1;
+
+- (double)doubleValue;
+- (bool)hk_animatable;
+- (id)hk_dateBeforeDateForCalendar:(id)arg1 rangeUnit:(unsigned long long)arg2;
+- (id)hk_dateWithTruncatedSecond;
+- (id)hk_midPointToValue:(id)arg1 percentage:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
++ (id)hf_dateByAddingComponents:(id)arg1 toDate:(id)arg2 times:(long long)arg3;
++ (id)hf_dateByAddingDays:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateByAddingHours:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateByAddingMinutes:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateByAddingMonths:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateByAddingNanoseconds:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateByAddingSeconds:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateByAddingWeeks:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateByAddingYears:(long long)arg1 months:(long long)arg2 weeks:(long long)arg3 days:(long long)arg4 hours:(long long)arg5 minutes:(long long)arg6 seconds:(long long)arg7 nanoseconds:(long long)arg8 toDate:(id)arg9;
++ (id)hf_dateByAddingYears:(long long)arg1 toDate:(id)arg2;
++ (id)hf_dateBySubtractingComponents:(id)arg1 fromDate:(id)arg2 times:(long long)arg3;
++ (long long)hf_daysBetweenDates:(id)arg1 endDate:(id)arg2;
++ (id)hf_sharedCalendar;
++ (id)hf_sharedTimeZone;
+
+- (id)hf_analyticsTimestamp;
+- (id)hf_endOfWeek;
+- (bool)hf_isBetweenStartDate:(id)arg1 endDate:(id)arg2;
+- (bool)hf_isFirstHourOfDay;
+- (bool)hf_isMidnight;
+- (bool)hf_isWithinInterval:(double)arg1 ofDate:(id)arg2;
+- (bool)hf_isWithinOneHourOfDate:(id)arg1;
+- (bool)hf_isWithinOneMinuteOfDate:(id)arg1;
+- (bool)hf_isWithinOneSecondOfDate:(id)arg1;
+- (id)hf_startOfDay;
+- (id)hf_startOfHour;
+- (id)hf_startOfMinute;
+- (id)hf_startOfNextDay;
+- (id)hf_startOfSecond;
+- (id)hf_startOfWeek;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitBackingStore.framework/HomeKitBackingStore
+
++ (id)hmbDecodeQueryableParameter:(id)arg1;
++ (id)hmbDescriptionForEncodedQueryableVariable:(id)arg1;
++ (id)hmbEncodeQueryableParameter:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
++ (unsigned char)dayOfTheWeek;
++ (id)iso8601dateFromString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUI.framework/IMSharedUI
+
+- (id)_im_createDateFormatterForTimestampFormat:(long long)arg1;
+- (id)im_dateStringWithFormat:(long long)arg1;
+- (bool)im_isDayDifferent:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUtilities.framework/IMSharedUtilities
+
++ (id)__im_clampDate:(id)arg1;
++ (id)__im_dateWithCurrentServerTime;
++ (id)__im_dateWithNanosecondTimeIntervalSinceReferenceDate:(long long)arg1;
++ (id)__im_iMessageDateFromTimeStamp:(id)arg1;
++ (bool)useCourierTime;
+
+- (bool)__im_isApproximatelyEqualToDate:(id)arg1;
+- (long long)__im_nanosecondTimeInterval;
+- (long long)__im_nanosecondTimeIntervalSinceEpochTime;
+- (long long)differenceFromDate:(id)arg1;
+- (long long)hoursDifferenceFromDate:(id)arg1;
+- (bool)isArchivable_im;
+- (bool)isToday;
+- (long long)minutesDifferenceFromDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
+
++ (id)mf_copyDateInCommonFormatsWithString:(id)arg1;
++ (id)mf_copyLenientDateInCommonFormatsWithString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
+- (bool)MCUIProfileNearOrPastExpiration;
+- (bool)MCUIProfilePastExpiration;
+
+// Image: /System/Library/PrivateFrameworks/MediaMiningKit.framework/MediaMiningKit
+
++ (id)dateComponentsFromString:(id)arg1;
++ (id)dateFromString:(id)arg1;
+
+- (id)dateByAddingDays:(long long)arg1;
+- (id)nextWeekend;
+- (id)previousWeekend;
+
+// Image: /System/Library/PrivateFrameworks/Memories.framework/Memories
+
+- (int)approximateDaysOfTheYearFromDate:(id)arg1;
+- (id)beginningOfDay;
+- (id)beginningOfPreviousDay;
+- (long long)compareDay:(id)arg1;
+- (id)dateStringWithDotSeparators;
+- (int)daysOfTheYearFromDate:(id)arg1;
+- (id)displayString;
+- (id)displayStringWithTime:(bool)arg1;
+- (bool)isBeforeDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Message.framework/Message
+
+- (id)mf_descriptionForMimeHeaders;
+- (id)mf_replyPrefixForSender:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MessageLegacy.framework/MessageLegacy
+
+- (id)mf_descriptionForMimeHeaders;
+- (id)mf_replyPrefixForSender:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MetricsKit.framework/MetricsKit
+
++ (id)mt_millisecondsSince1970;
+
+- (id)mt_millisecondsSince1970;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
++ (id)mtEarliest:(id)arg1;
++ (id)mtLatest:(id)arg1;
++ (id)mtNow;
+
+- (id)mtDateNearestMatchingComponents:(id)arg1;
+- (id)mtDescription;
+- (id)mtGreetingString:(bool)arg1;
+- (bool)mtIsAfterDate:(id)arg1;
+- (bool)mtIsAfterOrSameAsDate:(id)arg1;
+- (bool)mtIsBeforeDate:(id)arg1;
+- (bool)mtIsBeforeOrSameAsDate:(id)arg1;
+- (id)mtMidnightForDate;
+
+// Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
+
+- (void)ml_bindToSQLiteStatement:(struct sqlite3_stmt { }*)arg1 atPosition:(int)arg2;
+- (id)ml_stringValueForSQL;
+
+// Image: /System/Library/PrivateFrameworks/NanoMailKitServer.framework/NanoMailKitServer
+
++ (id)nnmk_startOfCurrentDay;
+
+- (bool)nnmk_isToday;
+
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 - (bool)isWholeHour;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)_fr_sharedYearAndMonthDateFormatter;
++ (id)dateWithPBDate:(id)arg1;
++ (id)fc_dateFromString:(id)arg1 possibleFormats:(id)arg2;
++ (id)fc_dateFromStringWithHTTPHeaderFormat:(id)arg1;
++ (id)fc_dateFromStringWithISO8601Format:(id)arg1;
++ (id)fc_dateRoundedToNearestDayForDate:(id)arg1;
++ (id)fc_dateRoundedToNearestMinuteForDate:(id)arg1;
++ (id)fc_dateWithMillisecondTimeIntervalSince1970:(unsigned long long)arg1;
++ (id)fc_earlierDateAllowingNilWithDate:(id)arg1 andDate:(id)arg2;
++ (id)fc_laterDateAllowingNilWithDate:(id)arg1 andDate:(id)arg2;
++ (double)fc_timeIntervalOneDay;
++ (double)fc_timeIntervalOneHour;
++ (double)fc_timeIntervalOneWeek;
++ (int)keyValuePairType;
++ (id)pbDate;
++ (id)readValueFromKeyValuePair:(id)arg1;
+
+- (long long)fc_GregorianCalendarDaysSinceDate:(id)arg1;
+- (id)fc_adjustToRecentDate;
+- (id)fc_dateByRoundingDownToNearestQuarterHour;
+- (id)fc_dateBySubtractingTimeInterval:(double)arg1;
+- (id)fc_dateOfEarliestGregorianCalendarDay;
+- (bool)fc_isEarlierThan:(id)arg1;
+- (bool)fc_isEarlierThan:(id)arg1 withPrecision:(long long)arg2;
+- (bool)fc_isEarlierThanOrEqualTo:(id)arg1;
+- (bool)fc_isLaterThan:(id)arg1;
+- (bool)fc_isLaterThan:(id)arg1 withPrecision:(long long)arg2;
+- (bool)fc_isLaterThanOrEqualTo:(id)arg1;
+- (bool)fc_isSameDayAs:(id)arg1;
+- (bool)fc_isWeekend;
+- (bool)fc_isWithinTimeInterval:(double)arg1 ofDate:(id)arg2;
+- (unsigned long long)fc_millisecondTimeIntervalSince1970;
+- (unsigned long long)fc_millisecondTimeIntervalSinceDate:(id)arg1;
+- (id)fc_stringWithISO8601Format;
+- (id)fc_stringWithYearAndMonthFormat;
+- (double)fc_timeIntervalUntilNow;
+- (bool)isToday;
+- (id)pbDate;
+- (void)writeToKeyValuePair:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsServicesInternal.framework/NewsServicesInternal
+
++ (id)_todayStringDateFormatterForThread;
+
+- (void)nss_gregorianDescriptionWithFlags:(long long)arg1 options:(long long)arg2 completion:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
+
++ (id)ic_modificationDateForNoteBeingEdited;
+
+- (id)ic_briefFormattedDate;
+- (id)ic_briefFormattedDate:(bool)arg1;
+- (id)ic_briefFormattedDateForAccessibility;
+- (bool)ic_isEarlierThanDate:(id)arg1;
+- (bool)ic_isLaterThanDate:(id)arg1;
+- (bool)ic_isToday;
+- (bool)ic_isYesterday;
+- (id)ic_localDateWithSeconds;
+- (id)ic_shortFormattedDate;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
++ (id)_notes_fallbackDateFormatter;
++ (id)_notes_relativeDateFormatter;
++ (id)_notes_todayDateFormatter;
+
+- (id)day;
+- (id)userFriendlyString;
+- (id)userFriendlyStringWithTime;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (id)tc_dateWithWordDate:(const struct WrdDateTime { int (**x1)(); int x2; unsigned short x3; unsigned short x4; unsigned short x5; unsigned short x6; unsigned short x7; }*)arg1;
+
+- (id)p_rule1To23HoursAgo:(long long)arg1;
+- (id)p_rule1To59MinutesAgo:(long long)arg1;
+- (id)p_ruleForOverAWeekAgoForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForOverAYearAgoForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForUpToSevenDaysAgoAndNotYesterdayForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForYesterday:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForYesterdayShortAsPossible:(id)arg1;
+- (void)tc_copyToWordDate:(struct WrdDateTime { int (**x1)(); int x2; unsigned short x3; unsigned short x4; unsigned short x5; unsigned short x6; unsigned short x7; }*)arg1;
+- (struct { unsigned short x1; unsigned short x2; })tsu_DOSTime;
+- (id)tsu_fullFormattedDateWithPeriod;
+- (id)tsu_initWithDOSTime:(struct { unsigned short x1; unsigned short x2; })arg1;
+- (bool)tsu_isEqualToDate:(id)arg1;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1 withDateFormatter:(id)arg2 shortAsPossible:(bool)arg3;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)dateForTomorrow;
++ (id)dateForYesterday;
++ (id)dateWithDaysBeforeNow:(unsigned long long)arg1;
++ (id)dateWithDaysFromNow:(unsigned long long)arg1;
+
+- (bool)isDateEqualToDateIgnoringTime:(id)arg1;
+- (bool)isToday;
+- (bool)isTomorrow;
+- (bool)isYesterday;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (void)px_unionStartDate:(id*)arg1 endDate:(id*)arg2 withDate:(id)arg3;
++ (void)px_unionStartDate:(id*)arg1 endDate:(id*)arg2 withDateInterval:(id)arg3;
+
+- (bool)px_isBetweenDate:(id)arg1 andDate:(id)arg2;
+- (bool)px_isSameDayAsDate:(id)arg1;
+- (bool)px_isWithinTimeInterval:(double)arg1 sinceDate:(id)arg2;
+- (long long)px_yearsSinceDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsFoundation.framework/PodcastsFoundation
+
++ (id)amPMStringFromDate:(id)arg1;
++ (id)dateFormatter;
++ (id)dateFormatterWithTemplate:(id)arg1;
++ (id)dateFromRFC1123:(id)arg1;
++ (id)dateStringFromDate:(id)arg1 withDateStyle:(unsigned long long)arg2 timeStyle:(unsigned long long)arg3 isRelative:(bool)arg4;
++ (id)dayOfWeekFromDate:(id)arg1;
++ (id)dayOfWeekFromDate:(id)arg1 abbreviated:(bool)arg2;
++ (id)longDateStringFromDate:(id)arg1;
++ (id)longDayStringFromDate:(id)arg1;
++ (id)mailLikeDescriptionFromDate:(id)arg1;
++ (id)mediumDateStringFromDate:(id)arg1;
++ (id)monthYearFromDate:(id)arg1;
++ (id)mt_dateFormatterJustYear;
++ (id)mt_dateFormatterNoDayWithYear;
++ (id)mt_dateFormatterNoYear;
++ (id)mt_dateFormatterNoYearAbbrevMonth;
++ (id)mt_dateFormatterShortStyleWithYear;
++ (id)mt_dateFormatterWithYear;
++ (id)mt_lessVerboseDateFormatter;
++ (id)mt_verboseDateFormatter;
++ (id)postTimeStringFromDate:(id)arg1;
++ (id)shortDateStringFromDate:(id)arg1;
++ (id)shortDateStringFromDateNoRel:(id)arg1;
++ (id)shortStandardTimeStringFromDate:(id)arg1;
++ (id)shortTimeStringFromDate:(id)arg1;
+
+- (id)abbreviatedFriendlyDisplayString;
+- (id)dateAtWeekStart;
+- (id)dateForBeginningOfDay;
+- (id)dateForBeginningOfMonth;
+- (id)dateForEndOfDay;
+- (id)dateWithDeltaDays:(long long)arg1;
+- (id)dateWithDeltaWeeks:(long long)arg1;
+- (id)friendlyDisplayString;
+- (id)im_jsonSerializableValue;
+- (bool)inSameWeekAs:(id)arg1;
+- (bool)inSameYearAs:(id)arg1;
+- (bool)isEqualToDay:(id)arg1;
+- (bool)isEqualToWeek:(id)arg1;
+- (bool)isEqualToYear:(id)arg1;
+- (bool)isFuture;
+- (bool)isLessThanWeekOld;
+- (bool)isNextWeek;
+- (bool)isSameDayOfWeekAs:(id)arg1;
+- (bool)isThisWeek;
+- (bool)isThisYear;
+- (bool)isToday;
+- (bool)lastWeek;
+- (id)lessVerboseDisplayString;
+- (id)microFriendlyDisplayString;
+- (id)mt_dateWithDeltaDays:(long long)arg1;
+- (id)nanoFriendlyDisplayString;
+- (bool)nextWeek;
+- (id)rfc1123String;
+- (bool)thisWeek;
+- (id)timeString;
+- (id)verboseDisplayString;
+- (id)verboseDisplayStringWithoutTime;
+- (bool)wasLastWeek;
+- (bool)wasLessThanAWeekAgo;
+- (bool)wasYesterday;
+- (id)yearString;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (unsigned long long)re_actionIdentifierHashValue;
+
+// Image: /System/Library/PrivateFrameworks/ReminderKit.framework/ReminderKit
+
++ (id)debug_rem_nowOverride;
++ (id)rem_now;
++ (void)setDebug_rem_nowOverride:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/RemoteConfiguration.framework/RemoteConfiguration
+
++ (id)_fr_sharedYearAndMonthDateFormatter;
++ (id)rc_dateFromString:(id)arg1 possibleFormats:(id)arg2;
++ (id)rc_dateFromStringWithHTTPHeaderFormat:(id)arg1;
++ (id)rc_dateFromStringWithISO8601Format:(id)arg1;
++ (id)rc_dateWithMillisecondTimeIntervalSince1970:(unsigned long long)arg1;
++ (id)rc_earlierDateAllowingNilWithDate:(id)arg1 andDate:(id)arg2;
++ (id)rc_laterDateAllowingNilWithDate:(id)arg1 andDate:(id)arg2;
+
+- (bool)isToday;
+- (long long)rc_GregorianCalendarDaysSinceDate:(id)arg1;
+- (id)rc_dateBySubtractingTimeInterval:(double)arg1;
+- (id)rc_dateOfEarliestGregorianCalendarDay;
+- (bool)rc_isEarlierThan:(id)arg1;
+- (bool)rc_isEarlierThan:(id)arg1 withPrecision:(long long)arg2;
+- (bool)rc_isEarlierThanOrEqualTo:(id)arg1;
+- (bool)rc_isLaterThan:(id)arg1;
+- (bool)rc_isLaterThan:(id)arg1 withPrecision:(long long)arg2;
+- (bool)rc_isLaterThanOrEqualTo:(id)arg1;
+- (bool)rc_isSameDayAs:(id)arg1;
+- (bool)rc_isWeekend;
+- (bool)rc_isWithinTimeInterval:(double)arg1 ofDate:(id)arg2;
+- (unsigned long long)rc_millisecondTimeIntervalSince1970;
+- (unsigned long long)rc_millisecondTimeIntervalSinceDate:(id)arg1;
+- (id)rc_stringWithISO8601Format;
+- (id)rc_stringWithYearAndMonthFormat;
+- (double)rc_timeIntervalUntilNow;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (void)safari_dateFromNTPServerWithTimeout:(double)arg1 completionHandler:(id /* block */)arg2;
++ (id)safari_dateOfMidnightNumberOfDaysAgo:(long long)arg1;
+
+- (id)_safari_stringWithDashSeparatorWithDateFormatter:(id)arg1;
+- (bool)safari_isInSameDayAsDate:(id)arg1;
+- (bool)safari_isInToday;
+- (bool)safari_isInclusivelyBetweenDate:(id)arg1 andDate:(id)arg2;
+- (bool)safari_isNowOrInRecentPast;
+- (long long)safari_numberOfWeeksUntilDate:(id)arg1;
+- (id)safari_startOfDay;
+- (id)safari_stringsFromDateForLocaleIdentifiers:(id)arg1;
+- (double)safari_timeIntervalUntilNow;
+
+// Image: /System/Library/PrivateFrameworks/Sleep.framework/Sleep
+
++ (id)hkspTestDSTEndDateWithHour:(unsigned long long)arg1 minute:(unsigned long long)arg2;
++ (id)hkspTestDSTStartDateWithHour:(unsigned long long)arg1 minute:(unsigned long long)arg2;
++ (id)hkspTestDateWithHour:(unsigned long long)arg1 minute:(unsigned long long)arg2;
++ (id)hkspTestUTCDateWithHour:(unsigned long long)arg1 minute:(unsigned long long)arg2;
++ (id)hkspTestWeekendDateWithHour:(unsigned long long)arg1 minute:(unsigned long long)arg2;
+
+- (id)hkspAddDays:(long long)arg1;
+- (id)hkspDescription;
+- (id)hkspGreetingStringWithOptions:(unsigned long long)arg1;
+- (id)hksp_dateNearestMatchingComponents:(id)arg1;
+- (bool)hksp_isAfterDate:(id)arg1;
+- (bool)hksp_isAfterOrSameAsDate:(id)arg1;
+- (bool)hksp_isBeforeDate:(id)arg1;
+- (bool)hksp_isBeforeOrSameAsDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SleepHealth.framework/SleepHealth
+
++ (id)hksh_sleepDayStartForMorningIndex:(long long)arg1 calendar:(id)arg2;
+
+- (long long)hksh_morningIndexWithCalendar:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
++ (id)dateFromISO8601String:(id)arg1;
++ (id)dateFromRFC1123String:(id)arg1;
++ (id)dateFromString:(id)arg1;
++ (id)dateFromTWTimeString:(id)arg1;
+
+- (id)shortDescription;
+- (id)shortDescriptionSinceNow;
+- (id)shortDescriptionWithTime;
+- (id)shortWeekDescription;
 
 // Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
 - (id)copyXPCEncoding;
 - (id)initWithXPCEncoding:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TVPlayback.framework/TVPlayback
+
++ (id)tvp_dateWithMillisecondsSince1970:(id)arg1;
++ (bool)tvp_networkTimeIsApproximatelyCorrect;
+
+- (bool)_isEqualToDateIgnoringTime:(id)arg1;
+- (id)tvp_dateByAddingDays:(long long)arg1;
+- (id)tvp_dateBySubtractingDays:(long long)arg1;
+- (id)tvp_dateCeiledToNearestMinute:(int)arg1;
+- (id)tvp_dateFlooredToNearestMinute:(int)arg1;
+- (bool)tvp_isToday;
+- (bool)tvp_isTomorrow;
+- (bool)tvp_isYesterday;
+
+// Image: /System/Library/PrivateFrameworks/TestFlightCore.framework/TestFlightCore
+
+- (long long)tf_numberOfDaysFromNow;
+- (unsigned long long)tf_posixTimestampInMilliseconds;
+
+// Image: /System/Library/PrivateFrameworks/TipsCore.framework/TipsCore
+
++ (bool)isDateExpired:(id)arg1 maxTimeInterval:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TrackingAvoidance.framework/TrackingAvoidance
+
+- (id)getDateString;
+- (id)getNextDateAtHour:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Transparency.framework/Transparency
+
++ (double)currentTimeMs;
+
+- (bool)isEqualWithinOneMillisecond:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TrialServer.framework/TrialServer
+
++ (id)triDateFromCloudKitTimestamp:(id)arg1;
++ (bool)triIsDate:(id)arg1 equalToDate:(id)arg2;
++ (bool)triIsDate:(id)arg1 equalToDate:(id)arg2 withinInterval:(double)arg3;
++ (id)triModifiedDateFromCloudKitResult:(id)arg1;
+
+- (id)triCloudKitTimestamp;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
+- (bool)vui_isInTheFuture;
+- (bool)vui_isInThePast;
+
+// Image: /System/Library/PrivateFrameworks/WatchListKit.framework/WatchListKit
+
++ (id)wlk_dateWithMillisecondsSince1970:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
+
+- (double)wa_timeIntervalUntilNow;
+
+// Image: /System/Library/PrivateFrameworks/WeatherFoundation.framework/WeatherFoundation
+
++ (id)wf_allWeatherConditionsOnDate:(id)arg1 inCalendar:(id)arg2 inArray:(id)arg3;
++ (bool)wf_isDate:(id)arg1 inSameDayWithDate:(id)arg2 inCalendar:(id)arg3;
++ (long long)wf_minutesBetweenDate:(id)arg1 andDate:(id)arg2;
++ (id)wf_weatherConditionsClosestToDate:(id)arg1 inArray:(id)arg2;
++ (id)wf_weatherConditionsOnDate:(id)arg1 inCalendar:(id)arg2 inArray:(id)arg3;
+
+- (id)wf_allWeatherConditionsOnDate:(id)arg1 inCalendar:(id)arg2;
+- (bool)wf_isInSameDayWithDate:(id)arg1 inCalendar:(id)arg2;
+- (long long)wf_minutesDifferenceFromDate:(id)arg1;
+- (id)wf_weatherConditionsClosestToDate:(id)arg1;
+- (id)wf_weatherConditionsOnDate:(id)arg1 inCalendar:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/WiFiKitUI.framework/WiFiKitUI
+
+- (bool)isTodayWithCalendar:(id)arg1;
+- (id)stringFromDHCPLeaseExpirationDateWithFormatString:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WiFiPolicy.framework/WiFiPolicy
+
+- (id)dateByAddingDays:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iCloudQuotaDaemon.framework/iCloudQuotaDaemon
+
+- (id)icq_serverFriendlyString;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSCalculationEngine.framework/TSCalculationEngine
+
++ (id)tsce_dateWithSerialNumber:(double)arg1 dateMode:(int)arg2;
++ (id)tsce_dateWithYear:(long long)arg1 month:(long long)arg2 day:(long long)arg3 hour:(long long)arg4 minute:(long long)arg5 second:(long long)arg6;
+
+- (long long)tsce_day;
+- (long long)tsce_hour;
+- (double)tsce_mapToDouble;
+- (long long)tsce_minute;
+- (long long)tsce_month;
+- (long long)tsce_second;
+- (long long)tsce_weekNumberForType:(int)arg1;
+- (long long)tsce_weekday;
+- (long long)tsce_year;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSCharts.framework/TSCharts
+
+- (int)chartGridValueType;
+- (double)doubleValue;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSPersistence.framework/TSPersistence
+
+- (id)tsp_initWithMessage:(const struct Date { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1;
+- (void)tsp_saveToMessage:(struct Date { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
+- (id)dateFormatterFromTemplate12Hour:(id)arg1 template24Hour:(id)arg2 withDateFormatter:(id)arg3;
+- (bool)p_localeUses24HourTimeCycle;
+- (id)p_rule1To23HoursAgo:(long long)arg1;
+- (id)p_rule1To59MinutesAgo:(long long)arg1;
+- (id)p_ruleForOverAWeekAgoForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForOverAYearAgoForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForUpToSevenDaysAgoAndNotYesterdayForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForYesterday:(id)arg1 withDateFormatter:(id)arg2;
+- (struct { unsigned short x1; unsigned short x2; })tsu_DOSTime;
+- (id)tsu_fullFormattedDate;
+- (id)tsu_initWithDOSTime:(struct { unsigned short x1; unsigned short x2; })arg1;
+- (bool)tsu_isEqualToDate:(id)arg1;
+- (bool)tsu_isEqualToFileModificationDateAccountingForTruncation:(id)arg1;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1 withDateFormatter:(id)arg2 shortAsPossible:(bool)arg3;
+- (id)tsu_shortFormattedDate;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSPersistence.framework/TSPersistence
+
+- (id)tsp_initWithMessage:(const struct Date { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1;
+- (void)tsp_saveToMessage:(struct Date { int (**x1)(); struct InternalMetadataWithArena { void *x_2_1_1; } x2; struct HasBits<1> { unsigned int x_3_1_1[1]; } x3; struct CachedSize { struct atomic<int> { struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { _Atomic int x_1_3_1; } x_1_2_1; } x_4_1_1; } x4; double x5; }*)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
+- (id)dateFormatterFromTemplate12Hour:(id)arg1 template24Hour:(id)arg2 withDateFormatter:(id)arg3;
+- (bool)p_localeUses24HourTimeCycle;
+- (id)p_rule1To23HoursAgo:(long long)arg1;
+- (id)p_rule1To59MinutesAgo:(long long)arg1;
+- (id)p_ruleForOverAWeekAgoForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForOverAYearAgoForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForUpToSevenDaysAgoAndNotYesterdayForDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)p_ruleForYesterday:(id)arg1 withDateFormatter:(id)arg2;
+- (struct { unsigned short x1; unsigned short x2; })tsu_DOSTime;
+- (id)tsu_fullFormattedDate;
+- (id)tsu_initWithDOSTime:(struct { unsigned short x1; unsigned short x2; })arg1;
+- (bool)tsu_isEqualToDate:(id)arg1;
+- (bool)tsu_isEqualToFileModificationDateAccountingForTruncation:(id)arg1;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1 withDateFormatter:(id)arg2;
+- (id)tsu_relativeAnnotationStringForEarlierDate:(id)arg1 withDateFormatter:(id)arg2 shortAsPossible:(bool)arg3;
+- (id)tsu_shortFormattedDate;
 
 // Image: /usr/lib/libprequelite.dylib
 

@@ -28,6 +28,7 @@
 - (void)dealloc;
 - (id)deviceUploadRequest;
 - (void)fetchConfigurationWithCompletionBlock:(id /* block */)arg1;
+- (void)fetchConfigurationWithoutValidationWithCompletionBlock:(id /* block */)arg1;
 - (id)init;
 - (id)nonce;
 - (id)organization;

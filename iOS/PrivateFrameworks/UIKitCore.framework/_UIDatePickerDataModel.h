@@ -5,22 +5,27 @@
 @interface _UIDatePickerDataModel : NSObject {
     NSCalendar * _calendar;
     _UIDatePickerChineseCalendar * _chineseWrapperCalendar;
+    NSString * _customFontDesign;
     NSDate * _date;
     long long  _datePickerMode;
+    long long  _datePickerStyle;
+    _UIDatePickerDateRange * _dateRange;
+    NSCalendar * _effectiveCalendar;
     NSLocale * _effectiveLocale;
     NSDateComponents * _lastSelectedDateComponents;
     NSLocale * _locale;
-    NSDate * _maximumDate;
-    NSDate * _minimumDate;
     long long  _minuteInterval;
     NSTimeZone * _timeZone;
 }
 
 @property (nonatomic, copy) NSCalendar *calendar;
+@property (nonatomic, retain) NSString *customFontDesign;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic) long long datePickerMode;
+@property (nonatomic) long long datePickerStyle;
 @property (nonatomic, readonly) NSCalendar *effectiveCalendar;
 @property (nonatomic, readonly) NSDate *effectiveDate;
+@property (nonatomic, readonly, copy) NSDateComponents *effectiveDateComponents;
 @property (nonatomic, readonly) NSLocale *effectiveLocale;
 @property (nonatomic, readonly) NSCalendar *formattingCalendar;
 @property (nonatomic, retain) NSDateComponents *lastSelectedDateComponents;
@@ -33,10 +38,13 @@
 - (void).cxx_destruct;
 - (void)_setupDerivedLocaleAndCalendars;
 - (id)calendar;
+- (id)customFontDesign;
 - (id)date;
 - (long long)datePickerMode;
+- (long long)datePickerStyle;
 - (id)effectiveCalendar;
 - (id)effectiveDate;
+- (id)effectiveDateComponents;
 - (id)effectiveLocale;
 - (id)formattingCalendar;
 - (id)init;
@@ -47,8 +55,10 @@
 - (long long)minuteInterval;
 - (void)resetForCurrentLocaleOrCalendarChange;
 - (void)setCalendar:(id)arg1;
+- (void)setCustomFontDesign:(id)arg1;
 - (void)setDate:(id)arg1;
 - (void)setDatePickerMode:(long long)arg1;
+- (void)setDatePickerStyle:(long long)arg1;
 - (void)setLastSelectedDateComponents:(id)arg1;
 - (void)setLocale:(id)arg1;
 - (void)setMaximumDate:(id)arg1;

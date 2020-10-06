@@ -4,11 +4,21 @@
 
 @interface SARequestCompleted : SABaseClientBoundCommand
 
+@property (nonatomic, copy) NSString *turnId;
+
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)requestCompleted;
 + (id)requestCompletedWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (bool)requiresResponse;
+- (void)setTurnId:(id)arg1;
+- (id)turnId;
+
+// Image: /System/Library/PrivateFrameworks/SiriTape.framework/SiriTape
+
+- (bool)st_hasRequestCompleted;
 
 @end

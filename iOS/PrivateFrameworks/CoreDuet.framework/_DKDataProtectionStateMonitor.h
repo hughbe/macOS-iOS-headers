@@ -5,7 +5,7 @@
 @interface _DKDataProtectionStateMonitor : NSObject {
     id /* block */  _changeHandler;
     NSUUID * _handlerUUID;
-    _DKDataProtectionMaster * _master;
+    _DKDataProtectionMonitor * _main;
 }
 
 @property (copy) id /* block */ changeHandler;

@@ -19,6 +19,7 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UIWindow *window;
 
++ (bool)canAnimateItems:(id)arg1 forSource:(bool)arg2 policyDriven:(bool)arg3;
 + (id /* block */)defaultDropAnimationForPlatterView:(id)arg1;
 + (id /* block */)defaultMultiItemAnimationForPlatterView:(id)arg1;
 + (id)defaultSetDownPropertyAnimator;
@@ -28,7 +29,7 @@
 - (void)_allItemAnimationsCompleted;
 - (void)begin;
 - (id)coordinateContainerWindow;
-- (id)initWithVisibleDroppedItems:(id)arg1 items:(id)arg2 forSource:(bool)arg3 completion:(id /* block */)arg4;
+- (id)initWithVisibleDroppedItems:(id)arg1 items:(id)arg2 forSource:(bool)arg3 policyDriven:(bool)arg4 completion:(id /* block */)arg5;
 - (void)itemAnimationCompleted:(id)arg1;
 - (void)itemAnimationReachedTarget:(id)arg1;
 - (void)setCoordinateContainerWindow:(id)arg1;

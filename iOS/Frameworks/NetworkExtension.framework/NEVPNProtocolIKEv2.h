@@ -18,6 +18,7 @@
     bool  _enableRevocationCheck;
     long long  _maximumTLSVersion;
     long long  _minimumTLSVersion;
+    unsigned long long  _mtu;
     int  _natKeepAliveOffloadEnable;
     int  _natKeepAliveOffloadInterval;
     bool  _opportunisticPFS;
@@ -46,6 +47,7 @@
 @property bool enableRevocationCheck;
 @property long long maximumTLSVersion;
 @property long long minimumTLSVersion;
+@property unsigned long long mtu;
 @property int natKeepAliveOffloadEnable;
 @property int natKeepAliveOffloadInterval;
 @property bool opportunisticPFS;
@@ -85,6 +87,7 @@
 - (id)initWithPluginType:(id)arg1;
 - (long long)maximumTLSVersion;
 - (long long)minimumTLSVersion;
+- (unsigned long long)mtu;
 - (int)natKeepAliveOffloadEnable;
 - (int)natKeepAliveOffloadInterval;
 - (bool)opportunisticPFS;
@@ -105,6 +108,7 @@
 - (void)setIKESecurityAssociationParametersArray:(id)arg1;
 - (void)setMaximumTLSVersion:(long long)arg1;
 - (void)setMinimumTLSVersion:(long long)arg1;
+- (void)setMtu:(unsigned long long)arg1;
 - (void)setNatKeepAliveOffloadEnable:(int)arg1;
 - (void)setNatKeepAliveOffloadInterval:(int)arg1;
 - (void)setOpportunisticPFS:(bool)arg1;

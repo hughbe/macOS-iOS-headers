@@ -48,6 +48,10 @@
 - (id)_keypathsForDerivedPropertyValidation:(id*)arg1;
 - (id)minimalFormInContext:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
+- (id)hk_filterRepresentationForDataTypes:(id)arg1;
+
 // Image: /System/Library/PrivateFrameworks/AddressBookLegacy.framework/AddressBookLegacy
 
 - (void)ab_addCallbackContextToArray:(id)arg1;
@@ -63,5 +67,29 @@
 - (id)_br_watchedURLWithORPredicate1:(id)arg1 predicate2:(id)arg2;
 - (id)br_urlWithWatchedChildren;
 - (id)br_watchedURL;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (id)CKDPQueryFiltersWithTranslator:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/Email.framework/Email
+
+- (id)em_searchableIndexQueryGenerator;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
+- (id)predicateNodeFromPropertyMapper:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (id)hd_sqlPredicateForSelect;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (id)FCCKPQueryFiltersWithTranslator:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/VideosUICore.framework/VideosUICore
+
+- (id)vui_predicateWithSubpredicateFilterBlock:(id /* block */)arg1;
 
 @end

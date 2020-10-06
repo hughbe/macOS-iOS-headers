@@ -11,15 +11,18 @@
 @property (nonatomic, readonly) <AMSBagProtocol> *bag;
 @property (nonatomic, readonly) <AMSPushHandlerContract> *bagContract;
 @property (nonatomic, readonly) AMSPushConfiguration *configuration;
+@property (nonatomic) <AMSPushHandlerDelegate> *delegate;
 
 - (void).cxx_destruct;
 - (id)_enabledParsables;
 - (id)bag;
 - (id)bagContract;
 - (id)configuration;
+- (id)delegate;
 - (void)handleNotification:(id)arg1;
 - (id)initWithConfiguration:(id)arg1 bag:(id)arg2;
 - (id)initWithConfiguration:(id)arg1 bagContract:(id)arg2;
+- (void)setDelegate:(id)arg1;
 - (bool)shouldHandleNotification:(id)arg1;
 
 @end

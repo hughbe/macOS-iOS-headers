@@ -16,6 +16,7 @@
     <CNAvatarCardControllerDelegate> * _delegate;
     CNContactOrbHeaderView * _headerView;
     UIView * _highlightView;
+    NSData * _overrideImageData;
     long long  _presentationResult;
     UIGestureRecognizer * _rolloverGestureRecognizer;
     struct CGRect { 
@@ -52,6 +53,7 @@
 @property (nonatomic, retain) UIView *highlightView;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) NSData *overrideImageData;
 @property (nonatomic) long long presentationResult;
 @property (nonatomic, readonly) UIViewController *presentingViewController;
 @property (nonatomic, retain) UIGestureRecognizer *rolloverGestureRecognizer;
@@ -104,9 +106,11 @@
 - (id)name;
 - (void)orbTransitionDidEndTransition:(id)arg1;
 - (void)orbTransitionDidPrepareTransition:(id)arg1 withContainerView:(id)arg2;
+- (id)overrideImageData;
 - (void)prepareForDisplay;
 - (void)prepareWithContacts:(id)arg1 store:(id)arg2;
 - (void)prepareWithContacts:(id)arg1 storeProvider:(id /* block */)arg2;
+- (void)prepareWithOverrideImageData:(id)arg1;
 - (id)preparedViewControllerForPresentationWithGestureRecognizer:(id)arg1;
 - (void)presentAnimated:(bool)arg1;
 - (void)presentAnimated:(bool)arg1 completionHandler:(id /* block */)arg2;
@@ -131,6 +135,7 @@
 - (void)setHighlightView:(id)arg1;
 - (void)setMessage:(id)arg1;
 - (void)setName:(id)arg1;
+- (void)setOverrideImageData:(id)arg1;
 - (void)setPresentationResult:(long long)arg1;
 - (void)setRolloverGestureRecognizer:(id)arg1;
 - (void)setSourceRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;

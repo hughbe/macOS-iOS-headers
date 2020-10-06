@@ -7,6 +7,7 @@
     bool  _canChangeBackgroundStyle;
     bool  _fakingRequiresHighResolution;
     int  _ignoredOverrides;
+    NSString * _keyColorAssetName;
     NSString * _launchImageFile;
     long long  _launchingInterfaceOrientation;
     NSString * _lazy_fallbackFolderName;
@@ -29,6 +30,7 @@
 @property (nonatomic, readonly) NSString *fallbackFolderName;
 @property (nonatomic, readonly) NSArray *folderNames;
 @property (nonatomic, readonly) int ignoredOverrides;
+@property (nonatomic, readonly, copy) NSString *keyColorAssetName;
 @property (nonatomic, readonly, copy) NSString *launchImageFile;
 @property (nonatomic, readonly) bool optOutOfRTL;
 @property (nonatomic, readonly) long long requestedStatusBarStyle;
@@ -39,6 +41,8 @@
 @property (nonatomic, readonly) bool systemWindowsSecure;
 @property (nonatomic, readonly) unsigned long long viewControllerBasedStatusBarAppearance;
 @property (nonatomic, readonly) long long whitePointAdaptivityStyle;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_genreNameForID:(long long)arg1;
 + (id)_localizedFolderNameForName:(id)arg1;
@@ -53,6 +57,7 @@
 - (id)fallbackFolderName;
 - (id)folderNames;
 - (int)ignoredOverrides;
+- (id)keyColorAssetName;
 - (id)launchImageFile;
 - (bool)optOutOfRTL;
 - (long long)requestedStatusBarStyle;
@@ -67,5 +72,10 @@
 - (bool)systemWindowsSecure;
 - (unsigned long long)viewControllerBasedStatusBarAppearance;
 - (long long)whitePointAdaptivityStyle;
+
+// Image: /System/Library/PrivateFrameworks/SplashBoard.framework/SplashBoard
+
+- (bool)xb_supportsUserInterfaceStyle:(long long)arg1;
+- (long long)xb_userInterfaceStyleForRequestedUserInterfaceStyle:(long long)arg1;
 
 @end

@@ -33,8 +33,6 @@
 @property (nonatomic, retain) NSObject<WebOpenPanelResultListener> *resultListener;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (id)_UTIsForMIMETypes;
 - (void)_adjustMediaCaptureType;
 - (id)_cameraButtonLabel;
@@ -60,11 +58,8 @@
 - (void)_uploadItemForJPEGRepresentationOfImage:(id)arg1 successBlock:(id /* block */)arg2 failureBlock:(id /* block */)arg3;
 - (void)_uploadItemFromMediaInfo:(id)arg1 successBlock:(id /* block */)arg2 failureBlock:(id /* block */)arg3;
 - (bool)_willMultipleSelectionDelegateBeCalled;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)allowMultipleFiles;
+- (void)dealloc;
 - (id)delegate;
 - (void)dismiss;
 - (void)documentMenu:(id)arg1 didPickDocumentPicker:(id)arg2;

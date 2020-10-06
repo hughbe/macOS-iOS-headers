@@ -5,6 +5,7 @@
 @interface NEExtensionProviderHostContext : NSExtensionContext <NEExtensionProviderHostProtocol, NEExtensionProviderProtocol> {
     <NEExtensionProviderHostDelegate> * _delegate;
     NSString * _description;
+    bool  _isHostingSystemExtension;
     NEUserNotification * _notification;
     bool  _stopped;
     NSXPCConnection * _vendorConnection;
@@ -16,7 +17,9 @@
 @property <NEExtensionProviderHostDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) bool isHostingSystemExtension;
 @property (readonly) int pid;
+@property (readonly) int requiredEntitlement;
 @property (nonatomic) bool stopped;
 @property (readonly) Class superclass;
 @property (readonly) NSUUID *uuid;
@@ -34,7 +37,10 @@
 - (void)displayMessage:(id)arg1 message:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)dispose;
 - (id)initWithVendorEndpoint:(id)arg1 delegate:(id)arg2;
+- (bool)isHostingSystemExtension;
+- (bool)isSignedWithDeveloperID;
 - (int)pid;
+- (int)requiredEntitlement;
 - (void)setConfiguration:(id)arg1 extensionIdentifier:(id)arg2;
 - (void)setDelegate:(id)arg1;
 - (void)setDescription:(id)arg1;
@@ -45,6 +51,7 @@
 - (void)stopWithReason:(int)arg1;
 - (bool)stopped;
 - (id)uuid;
+- (void)validateWithCompletionHandler:(id /* block */)arg1;
 - (id)vendorConnection;
 - (id)vendorContext;
 - (void)wake;

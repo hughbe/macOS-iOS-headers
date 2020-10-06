@@ -8,6 +8,7 @@
     bool  _changedDNSSecondary;
     bool  _changedMAC;
     struct { 
+        unsigned int timestamp : 1; 
         unsigned int changedChannel : 1; 
         unsigned int changedDNSPrimary : 1; 
         unsigned int changedDNSSecondary : 1; 
@@ -15,6 +16,7 @@
         unsigned int newBSSID : 1; 
     }  _has;
     bool  _newBSSID;
+    unsigned long long  _timestamp;
 }
 
 @property (nonatomic) bool changedChannel;
@@ -26,7 +28,9 @@
 @property (nonatomic) bool hasChangedDNSSecondary;
 @property (nonatomic) bool hasChangedMAC;
 @property (nonatomic) bool hasNewBSSID;
+@property (nonatomic) bool hasTimestamp;
 @property (nonatomic) bool newBSSID;
+@property (nonatomic) unsigned long long timestamp;
 
 - (bool)changedChannel;
 - (bool)changedDNSPrimary;
@@ -41,6 +45,7 @@
 - (bool)hasChangedDNSSecondary;
 - (bool)hasChangedMAC;
 - (bool)hasNewBSSID;
+- (bool)hasTimestamp;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
@@ -55,7 +60,10 @@
 - (void)setHasChangedDNSSecondary:(bool)arg1;
 - (void)setHasChangedMAC:(bool)arg1;
 - (void)setHasNewBSSID:(bool)arg1;
+- (void)setHasTimestamp:(bool)arg1;
 - (void)setNewBSSID:(bool)arg1;
+- (void)setTimestamp:(unsigned long long)arg1;
+- (unsigned long long)timestamp;
 - (void)writeTo:(id)arg1;
 
 @end

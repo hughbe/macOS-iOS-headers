@@ -32,8 +32,6 @@
 + (id)contactWithIdentifier:(id)arg1 identifierType:(id)arg2 displayName:(id)arg3 personId:(id)arg4 personIdType:(unsigned long long)arg5;
 + (id)contactWithIdentifier:(id)arg1 identifierType:(id)arg2 personId:(id)arg3 personIdType:(unsigned long long)arg4;
 + (id)contactWithIdentifier:(id)arg1 type:(unsigned long long)arg2 displayName:(id)arg3 personId:(id)arg4 personIdType:(unsigned long long)arg5;
-+ (unsigned long long)convertDisplayType:(long long)arg1;
-+ (unsigned long long)convertHandleType:(long long)arg1;
 + (id)normalizedStringKey:(id)arg1;
 + (id)predicateForContact:(id)arg1;
 + (id)predicateForContactWithDisplayName:(id)arg1;

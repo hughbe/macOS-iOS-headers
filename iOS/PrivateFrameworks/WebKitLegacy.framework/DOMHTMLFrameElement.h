@@ -42,7 +42,6 @@
 - (void)setSrc:(id)arg1;
 - (id)src;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (int)width;
 
 @end

@@ -10,13 +10,8 @@
 
 @property (nonatomic, retain) UIViewController *disappearingViewController;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (bool)_isSupportedInterfaceOrientation:(long long)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)disappearingViewController;
 - (id)initWithInterfaceOrientation:(long long)arg1;
 - (void)setDisappearingViewController:(id)arg1;

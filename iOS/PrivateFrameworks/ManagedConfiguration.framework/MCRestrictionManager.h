@@ -5,7 +5,9 @@
 @interface MCRestrictionManager : NSObject {
     NSObject<OS_dispatch_queue> * _memberQueue;
     NSMutableDictionary * _memberQueueEffectiveUserSettings;
+    NSArray * _memberQueueEffectiveWhitelistedAppsAndOptions;
     NSMutableDictionary * _memberQueueRestrictions;
+    NSMutableDictionary * _memberQueueSettingsEvents;
     NSMutableDictionary * _memberQueueSystemClientRestrictions;
     NSMutableDictionary * _memberQueueSystemNamespacedUserSettings;
     NSMutableDictionary * _memberQueueSystemProfileRestrictions;
@@ -23,8 +25,11 @@
 @property (nonatomic, readonly, copy) NSDictionary *effectiveUserSettings;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *memberQueue;
 @property (nonatomic, readonly) NSMutableDictionary *memberQueueCombinedProfileRestrictions;
+@property (nonatomic, readonly) NSMutableDictionary *memberQueueCombinedSystemProfileRestrictions;
 @property (nonatomic, retain) NSMutableDictionary *memberQueueEffectiveUserSettings;
+@property (nonatomic, retain) NSArray *memberQueueEffectiveWhitelistedAppsAndOptions;
 @property (nonatomic, retain) NSMutableDictionary *memberQueueRestrictions;
+@property (nonatomic, retain) NSMutableDictionary *memberQueueSettingsEvents;
 @property (nonatomic, retain) NSMutableDictionary *memberQueueSystemClientRestrictions;
 @property (nonatomic, retain) NSMutableDictionary *memberQueueSystemNamespacedUserSettings;
 @property (nonatomic, retain) NSMutableDictionary *memberQueueSystemProfileRestrictions;
@@ -116,11 +121,15 @@
 - (id)_effectiveUnionValuesForSetting:(id)arg1 effectiveUserSettings:(id)arg2;
 - (bool)_isBoolSettingLockedDown:(id)arg1;
 - (bool)_isValueSettingLockedDown:(id)arg1 effectiveSetting:(id)arg2;
+- (id)_settingsEventFromProcess:(id)arg1 withTag:(id)arg2;
+- (id)_updatedDomainSettingsEvents:(id)arg1 fromPreviousSettings:(id)arg2 toNewSettings:(id)arg3 sender:(id)arg4;
 - (id)allClientUUIDsForClientType:(id)arg1;
 - (bool)allowedToRunAppWithBundleID:(id)arg1;
 - (int)appWhitelistState;
+- (bool)applyConfiguration:(id)arg1 toDomain:(unsigned long long)arg2 inNamespace:(id)arg3 fromSender:(id)arg4;
 - (id)appsAndOptionsForClientUUID:(id)arg1;
 - (int)boolSettingForFeature:(id)arg1;
+- (void)clearEffectiveWhitelistedAppsAndOptionsCache;
 - (id)clientRestrictionsForClientUUID:(id)arg1;
 - (id)combinedProfileRestrictions;
 - (id)currentRestrictions;
@@ -160,8 +169,11 @@
 - (id)memberQueueClientRestrictionsForClientUUID:(id)arg1;
 - (id)memberQueueClientTypeForClientUUID:(id)arg1;
 - (id)memberQueueCombinedProfileRestrictions;
+- (id)memberQueueCombinedSystemProfileRestrictions;
 - (id)memberQueueEffectiveUserSettings;
+- (id)memberQueueEffectiveWhitelistedAppsAndOptions;
 - (id)memberQueueRestrictions;
+- (id)memberQueueSettingsEvents;
 - (id)memberQueueSystemClientRestrictions;
 - (id)memberQueueSystemNamespacedUserSettings;
 - (id)memberQueueSystemProfileRestrictions;
@@ -184,7 +196,9 @@
 - (id)restrictionEnforcedWhitelistedAppBundleIDs;
 - (void)setMemberQueue:(id)arg1;
 - (void)setMemberQueueEffectiveUserSettings:(id)arg1;
+- (void)setMemberQueueEffectiveWhitelistedAppsAndOptions:(id)arg1;
 - (void)setMemberQueueRestrictions:(id)arg1;
+- (void)setMemberQueueSettingsEvents:(id)arg1;
 - (void)setMemberQueueSystemClientRestrictions:(id)arg1;
 - (void)setMemberQueueSystemNamespacedUserSettings:(id)arg1;
 - (void)setMemberQueueSystemProfileRestrictions:(id)arg1;

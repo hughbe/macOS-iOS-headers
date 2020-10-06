@@ -2,11 +2,15 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRSetStateMessage : MRProtocolMessage
+@interface MRSetStateMessage : MRProtocolMessage {
+    MRNowPlayingState * _state;
+}
 
-@property (nonatomic, readonly) _MRSetStateMessageProtobuf *state;
+@property (nonatomic, readonly) MRNowPlayingState *state;
 
+- (void).cxx_destruct;
 - (id)initWithNowPlayingState:(id)arg1;
+- (id)initWithUnderlyingCodableMessage:(id)arg1 error:(id)arg2;
 - (unsigned long long)priority;
 - (id)state;
 - (unsigned long long)type;

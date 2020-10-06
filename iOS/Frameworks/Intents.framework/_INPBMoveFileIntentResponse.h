@@ -3,7 +3,6 @@
  */
 
 @interface _INPBMoveFileIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBMoveFileIntentResponse> {
-    bool  __encodeLegacyGloryData;
     _INPBString * _destinationName;
     NSArray * _entityNames;
     struct { 
@@ -20,7 +19,6 @@
     bool  _success;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBString *destinationName;
@@ -43,8 +41,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsEntityTypes:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addEntityName:(id)arg1;
 - (void)addEntityType:(int)arg1;
 - (void)clearEntityNames;

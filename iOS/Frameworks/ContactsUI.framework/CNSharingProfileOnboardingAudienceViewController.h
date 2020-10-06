@@ -2,10 +2,10 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNSharingProfileOnboardingAudienceViewController : OBTableWelcomeController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
+@interface CNSharingProfileOnboardingAudienceViewController : OBTableWelcomeController <CNSharingProfileOnboardingAudienceController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
     OBBoldTrayButton * _confirmButton;
     CNMutableContact * _contact;
-    <CNSharingProfileOnboardingAudienceViewControllerDelegate> * _delegate;
+    <CNSharingProfileOnboardingAudienceControllerDelegate> * _delegate;
     UITextField * _familyNameField;
     UITextField * _givenNameField;
     double  _keyboardHeight;
@@ -17,7 +17,7 @@
 @property (nonatomic, retain) OBBoldTrayButton *confirmButton;
 @property (nonatomic, retain) CNMutableContact *contact;
 @property (readonly, copy) NSString *debugDescription;
-@property (nonatomic) <CNSharingProfileOnboardingAudienceViewControllerDelegate> *delegate;
+@property (nonatomic) <CNSharingProfileOnboardingAudienceControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) UITextField *familyNameField;
 @property (nonatomic, retain) UITextField *givenNameField;
@@ -71,6 +71,7 @@
 - (id)tableViewHeightConstraint;
 - (void)textFieldDidEndEditing:(id)arg1;
 - (bool)textFieldShouldReturn:(id)arg1;
+- (void)updateConfirmButtonEnabledState;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 

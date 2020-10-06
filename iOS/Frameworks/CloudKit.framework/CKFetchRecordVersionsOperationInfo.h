@@ -19,6 +19,7 @@
 - (void).cxx_destruct;
 - (id)desiredKeys;
 - (void)encodeWithCoder:(id)arg1;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)minimumVersionETag;
 - (id)recordIDs;

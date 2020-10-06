@@ -22,6 +22,7 @@
     NSURL * _invokedURL;
     C2MetricOptions * _metricOptions;
     bool  _metricRequest;
+    NSObject<C2NetworkingDelegate> * _networkingDelegate;
     NSString * _originalHost;
     bool  _outOfProcessDiscretionary;
     NSString * _outOfProcessPoolName;
@@ -53,6 +54,7 @@
 @property (nonatomic, copy) NSURL *invokedURL;
 @property (nonatomic, copy) C2MetricOptions *metricOptions;
 @property (nonatomic) bool metricRequest;
+@property (nonatomic) NSObject<C2NetworkingDelegate> *networkingDelegate;
 @property (nonatomic, copy) NSString *originalHost;
 @property (nonatomic, readonly) bool outOfProcess;
 @property (nonatomic) bool outOfProcessDiscretionary;
@@ -60,10 +62,12 @@
 @property (nonatomic) long long qualityOfService;
 @property (nonatomic) bool redactRemoteEndpointFromNetworkMetrics;
 @property (nonatomic, copy) NSDictionary *resolvedEndpointsWithHostname;
+@property (nonatomic, readonly) double taskCallbackConsideredHangInSeconds;
 @property (nonatomic, copy) id /* block */ testBehavior_sessionGroupCreated;
 @property (nonatomic) bool tlsPinning;
 @property (nonatomic) bool useAdaptiveTimeouts;
 
++ (void)initialize;
 + (id)stringForDiscretionaryNetworkBehavior:(unsigned long long)arg1;
 + (id)stringForDuetPreClearedMode:(unsigned long long)arg1;
 + (id)stringForQualityOfService:(long long)arg1;
@@ -100,6 +104,7 @@
 - (bool)isEqual:(id)arg1;
 - (id)metricOptions;
 - (bool)metricRequest;
+- (id)networkingDelegate;
 - (id)originalHost;
 - (bool)outOfProcess;
 - (bool)outOfProcessDiscretionary;
@@ -120,6 +125,7 @@
 - (void)setInvokedURL:(id)arg1;
 - (void)setMetricOptions:(id)arg1;
 - (void)setMetricRequest:(bool)arg1;
+- (void)setNetworkingDelegate:(id)arg1;
 - (void)setOriginalHost:(id)arg1;
 - (void)setOutOfProcess:(bool)arg1;
 - (void)setOutOfProcessDiscretionary:(bool)arg1;
@@ -138,6 +144,7 @@
 - (void)set_sourceApplicationSecondaryIdentifier:(id)arg1;
 - (void)set_timeoutIntervalForRequest:(double)arg1;
 - (void)set_timeoutIntervalForResource:(double)arg1;
+- (double)taskCallbackConsideredHangInSeconds;
 - (id /* block */)testBehavior_sessionGroupCreated;
 - (bool)tlsPinning;
 - (bool)useAdaptiveTimeouts;

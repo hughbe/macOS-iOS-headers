@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) GEOURLCollectionStorage *collectionStorage;
 @property (nonatomic, readonly) NSString *contentProvider;
 @property (nonatomic, readonly) NSString *contentProviderID;
+@property (nonatomic, readonly) unsigned long long curatedCollectionMUID;
 @property (readonly) NSString *directionsDestinationAddressString;
 @property (readonly) NSString *directionsSourceAddressString;
 @property (nonatomic, readonly) bool exactPositionSpecified;
@@ -27,6 +28,7 @@
 @property (nonatomic, readonly) MKMapCamera *mapCamera;
 @property (nonatomic, readonly) unsigned long long mapType;
 @property (nonatomic, readonly) GEOMuninViewState *muninViewState;
+@property (nonatomic, readonly) unsigned long long publisherMUID;
 @property (nonatomic, readonly) double roll;
 @property (nonatomic, readonly) double rotation;
 @property (nonatomic, readonly) struct CLLocationCoordinate2D { double x1; double x2; } searchCoordinate;
@@ -34,6 +36,7 @@
 @property (readonly) NSString *searchQuery;
 @property (nonatomic, readonly) struct { struct CLLocationCoordinate2D { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } searchRegion;
 @property (nonatomic, readonly) unsigned long long searchUID;
+@property (readonly) bool showAllCuratedCollections;
 @property (readonly) bool showCarDestinations;
 @property (nonatomic, readonly) struct { double x1; double x2; } span;
 @property (nonatomic, readonly) bool tester;
@@ -44,6 +47,7 @@
 @property (readonly) GEOUserSessionEntity *userSessionEntity;
 @property (nonatomic, readonly) float zoomLevel;
 
++ (bool)isAppleMapsGuidesURL:(id)arg1;
 + (bool)isValidMapURL:(id)arg1;
 
 - (void).cxx_destruct;
@@ -57,6 +61,7 @@
 - (id)collectionStorage;
 - (id)contentProvider;
 - (id)contentProviderID;
+- (unsigned long long)curatedCollectionMUID;
 - (id)directionsDestinationAddressString;
 - (id)directionsSourceAddressString;
 - (bool)exactPositionSpecified;
@@ -70,6 +75,7 @@
 - (unsigned long long)mapType;
 - (id)muninViewState;
 - (bool)parseIncludingCustomParameters:(bool)arg1;
+- (unsigned long long)publisherMUID;
 - (double)roll;
 - (double)rotation;
 - (struct CLLocationCoordinate2D { double x1; double x2; })searchCoordinate;
@@ -77,6 +83,7 @@
 - (id)searchQuery;
 - (struct { struct CLLocationCoordinate2D { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })searchRegion;
 - (unsigned long long)searchUID;
+- (bool)showAllCuratedCollections;
 - (bool)showCarDestinations;
 - (struct { double x1; double x2; })span;
 - (bool)tester;

@@ -2,17 +2,28 @@
    Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
  */
 
-@interface UNNotificationAttachmentOptions : NSObject <NSCopying, NSSecureCoding>
+@interface UNNotificationAttachmentOptions : NSObject <NSCopying, NSMutableCopying, NSSecureCoding> {
+    unsigned long long  _displayLocation;
+    NSDictionary * _thumbnailGeneratorUserInfo;
+}
 
-+ (Class)optionsClassForFamily:(unsigned long long)arg1;
-+ (id)optionsClasses;
-+ (id)optionsForFamily:(unsigned long long)arg1 fromOptionsDictionary:(id)arg2;
-+ (id)optionsFromOptionsDictionary:(id)arg1;
-+ (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })santizedClippingRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+@property (nonatomic, readonly) unsigned long long displayLocation;
+@property (nonatomic, readonly, copy) NSDictionary *thumbnailGeneratorUserInfo;
+
 + (bool)supportsSecureCoding;
 
+- (void).cxx_destruct;
+- (id)_initWithDisplayLocation:(unsigned long long)arg1 thumbnailGeneratorUserInfo:(id)arg2;
+- (id)_initWithOptions:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
+- (unsigned long long)displayLocation;
 - (void)encodeWithCoder:(id)arg1;
+- (unsigned long long)hash;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
+- (bool)isEqual:(id)arg1;
+- (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
+- (id)thumbnailGeneratorUserInfo;
 
 @end

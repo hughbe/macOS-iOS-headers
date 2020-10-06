@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@interface BSAction : NSObject <BSDescriptionProviding, BSInvalidatable, BSSettingDescriptionProvider, BSXPCCoding, NSSecureCoding> {
+@interface BSAction : NSObject <BSDebugDescriptionProviding, BSInvalidatable, BSSettingDescriptionProvider, BSXPCCoding, NSSecureCoding> {
     bool  _expectsResponse;
     bool  _hasTimeout;
     BSSettings * _info;
@@ -10,10 +10,12 @@
     NSObject<OS_dispatch_queue> * _queue;
     BSAuditHistory * _queue_auditHistory;
     id /* block */  _queue_handler;
-    bool  _queue_hasBeenNeutered;
+    bool  _queue_hasBeenNeuteredForEncode;
+    bool  _queue_hasBeenNeuteredForSend;
     bool  _queue_invalidated;
     id /* block */  _queue_invalidationHandler;
     BSActionListenerToken * _queue_listenerToken;
+    NSArray * _queue_neuteredCallStack;
     BSPortDeathSentinel * _queue_portDeathSentinel;
     BSMachPortReceiveRight * _queue_receiveRight;
     BSActionResponse * _queue_response;
@@ -33,15 +35,7 @@
 
 + (bool)supportsSecureCoding;
 
-- (id)_descriptionBuilderWithMultilinePrefix:(id)arg1 safely:(bool)arg2;
 - (bool)_expectsResponse;
-- (id)_initWithInfo:(id)arg1 invalidated:(bool)arg2 expectsResponse:(bool)arg3 auditHistory:(id)arg4 xPort:(id)arg5 xEndpoint:(id)arg6 sendRight:(id)arg7;
-- (void)_queue_addAuditHistoryWithFormat:(id)arg1;
-- (void)_queue_callHandlerWithResponse:(id)arg1;
-- (id)_queue_encodedSendRight;
-- (id)_queue_handlerDescription;
-- (void)_queue_setInvalidatedAndNotify:(bool)arg1 errorCode:(long long)arg2;
-- (void)_queue_tryExecuteQueueHandler;
 - (bool)canSendResponse;
 - (void)dealloc;
 - (id)debugDescription;

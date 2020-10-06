@@ -46,8 +46,6 @@
 @property (nonatomic, readonly) bool isFullscreen;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)_canvasForScreen:(id)arg1;
 + (bool)_isSecure;
 + (id)_sharedTextEffectsWindowforWindowScene:(id)arg1 allowHosted:(bool)arg2 matchesStatusBarOrientationOnAccess:(bool)arg3 shouldCreateIfNecessary:(bool)arg4;
@@ -101,16 +99,14 @@
 - (void)_updateTransformLayer;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_usableSceneBounds;
 - (void)_willSnapshot;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)aboveStatusBarWindow;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })actualSceneBounds;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })actualSceneBoundsForLandscape:(bool)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })actualSceneFrame;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })actualSceneFrameForOrientation:(long long)arg1;
+- (long long)actualSceneOrientation;
 - (void)addBottomPadding:(double)arg1;
+- (void)becomeKeyWindow;
 - (void)bringSubviewToFront:(id)arg1;
 - (unsigned int)contextID;
 - (struct CGPoint { double x1; double x2; })convertPoint:(struct CGPoint { double x1; double x2; })arg1 fromView:(id)arg2;
@@ -121,6 +117,7 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })convertRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 fromWindow:(id)arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })convertRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 toView:(id)arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })convertRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 toWindow:(id)arg2;
+- (void)dealloc;
 - (double)defaultWindowLevel;
 - (void)delayHideWindow;
 - (void)didAddSubview:(id)arg1;
@@ -142,6 +139,7 @@
 - (void)setHostedSafeInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setHostedSceneSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)setHostedWindowOffset:(struct CGPoint { double x1; double x2; })arg1;
+- (double)slideOverWindowVerticalOffset;
 - (void)sortSubviews;
 - (void)updateEditingOverlayContainer;
 - (void)updateForOrientation:(long long)arg1;

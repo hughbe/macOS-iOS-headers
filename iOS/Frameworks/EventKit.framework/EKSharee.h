@@ -21,12 +21,16 @@
 @property (nonatomic) unsigned long long shareeStatus;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
+
 + (int)_calShareeAccessLevelFromEKShareeAccessLevel:(unsigned long long)arg1;
 + (int)_calShareeStatusFromEKShareeStatus:(unsigned long long)arg1;
 + (unsigned long long)_ekShareeAccessLevelFromCalShareeAccessLevel:(int)arg1;
 + (unsigned long long)_ekShareeStatusFromCalShareeStatus:(int)arg1;
 + (id)_urlForEmailAddress:(id)arg1 andPhoneNumber:(id)arg2;
 + (Class)frozenClass;
++ (id)knownIdentityKeysForComparison;
++ (id)knownSingleValueKeysForComparison;
 + (id)shareeWithName:(id)arg1 emailAddress:(id)arg2;
 + (id)shareeWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3;
 + (id)shareeWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3 externalID:(id)arg4;
@@ -41,6 +45,7 @@
 - (id)contactPredicate;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
+- (id)displayName;
 - (id)emailAddress;
 - (id)externalID;
 - (id)firstName;
@@ -52,6 +57,7 @@
 - (id)owner;
 - (id)phoneNumber;
 - (void)setAddress:(id)arg1;
+- (void)setDisplayName:(id)arg1;
 - (void)setEmailAddress:(id)arg1;
 - (void)setExternalID:(id)arg1;
 - (void)setFirstName:(id)arg1;
@@ -67,5 +73,10 @@
 - (int)shareeAccessLevelRaw;
 - (unsigned long long)shareeStatus;
 - (int)shareeStatusRaw;
+
+// Image: /System/Library/PrivateFrameworks/MediaMiningKit.framework/MediaMiningKit
+
+- (bool)isCurrentUserForScheduling;
+- (bool)isCurrentUserForSharing;
 
 @end

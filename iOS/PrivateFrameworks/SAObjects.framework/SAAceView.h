@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SAAceView : SABaseAceObject <AFAceCommandDialogInfoExtracting, SAAceSerializable>
+@interface SAAceView : SABaseAceObject <AFAceCommandClientFeedbackEnumerating, SAAceSerializable, SiriUIUUFRSayable>
 
 @property (nonatomic) bool canBeRefreshed;
 @property (nonatomic) bool canUseServerTTS;
@@ -10,9 +10,12 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, copy) NSNumber *deferredRendering;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, retain) SADialog *dialog;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool isTransient;
+@property (nonatomic, copy) NSString *itemType;
 @property (nonatomic, copy) NSNumber *listenAfterSpeaking;
+@property (nonatomic, retain) SAUIListenAfterSpeakingBehavior *listenAfterSpeakingBehavior;
 @property (nonatomic, copy) NSDictionary *speakableContextInfo;
 @property (nonatomic, copy) NSString *speakableText;
 @property (readonly) Class superclass;
@@ -27,16 +30,22 @@
 - (bool)canUseServerTTS;
 - (id)context;
 - (id)deferredRendering;
+- (id)dialog;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (bool)isTransient;
+- (id)itemType;
 - (id)listenAfterSpeaking;
+- (id)listenAfterSpeakingBehavior;
 - (void)setCanBeRefreshed:(bool)arg1;
 - (void)setCanUseServerTTS:(bool)arg1;
 - (void)setContext:(id)arg1;
 - (void)setDeferredRendering:(id)arg1;
+- (void)setDialog:(id)arg1;
 - (void)setIsTransient:(bool)arg1;
+- (void)setItemType:(id)arg1;
 - (void)setListenAfterSpeaking:(id)arg1;
+- (void)setListenAfterSpeakingBehavior:(id)arg1;
 - (void)setSpeakableContextInfo:(id)arg1;
 - (void)setSpeakableText:(id)arg1;
 - (void)setViewId:(id)arg1;
@@ -48,7 +57,12 @@
 
 - (id)_af_dialogIdentifier;
 - (id)_af_dialogPhase;
-- (void)_af_extractDialogInfo:(id /* block */)arg1;
+- (void)_af_enumerateClientFeedbackDetails:(id /* block */)arg1;
 - (void)af_addEntriesToAnalyticsContext:(id)arg1;
+- (id)af_dialogIdentifiersForAnalyticsContext;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (id)_uufrSaid;
 
 @end

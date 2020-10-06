@@ -13,13 +13,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_realTimeStatus : 1; 
         unsigned int read_vehicleNumber : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_absDepartureTime : 1; 
-        unsigned int wrote_absLiveDepartureTime : 1; 
-        unsigned int wrote_realTimeStatus : 1; 
-        unsigned int wrote_referenceTripId : 1; 
-        unsigned int wrote_vehicleNumber : 1; 
-        unsigned int wrote_isCanceled : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isCanceled;
     PBDataReader * _reader;
@@ -64,8 +58,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readRealTimeStatus;
-- (void)_readVehicleNumber;
 - (double)absDepartureTime;
 - (double)absLiveDepartureTime;
 - (void)clearUnknownFields:(bool)arg1;
@@ -83,10 +75,13 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isCanceled;
 - (bool)isEqual:(id)arg1;
 - (bool)isPastDeparture;
 - (bool)isPastDepartureRelativeToDate:(id)arg1 usingGracePeriod:(bool)arg2;
+- (id)jsonRepresentation;
 - (id)liveDepartureDate;
 - (long long)liveStatus;
 - (id)liveStatusString;

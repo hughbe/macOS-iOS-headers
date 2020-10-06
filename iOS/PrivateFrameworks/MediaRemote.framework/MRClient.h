@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRClient : NSObject {
+@interface MRClient : NSObject <NSCopying> {
+    NSURL * _appIcon;
     NSString * _bundleIdentifier;
-    NSArray * _bundleIdentifierHierarchy;
     NSString * _displayName;
+    NSArray * _extendedBundleIdentifierHierarchy;
     NSString * _parentApplicationBundleIdentifier;
     int  _processIdentifier;
     int  _processUserIdentifier;
@@ -13,10 +14,12 @@
     long long  _visibility;
 }
 
+@property (nonatomic, copy) NSURL *appIcon;
 @property (nonatomic, copy) NSString *bundleIdentifier;
-@property (nonatomic, copy) NSArray *bundleIdentifierHierarchy;
+@property (nonatomic, readonly, copy) NSArray *bundleIdentifierHierarchy;
 @property (nonatomic, readonly) NSData *data;
 @property (nonatomic, copy) NSString *displayName;
+@property (nonatomic, copy) NSArray *extendedBundleIdentifierHierarchy;
 @property (nonatomic, readonly) bool hasAuxiliaryProperties;
 @property (nonatomic, readonly) bool hasPlaceholder;
 @property (getter=isLocal, nonatomic, readonly) bool local;
@@ -24,35 +27,44 @@
 @property (nonatomic) int processIdentifier;
 @property (nonatomic) int processUserIdentifier;
 @property (nonatomic, readonly) _MRNowPlayingClientProtobuf *protobuf;
-@property (nonatomic, retain) MRColorComponents *tintColor;
+@property (nonatomic, readonly) MRClient *skeleton;
+@property (nonatomic, copy) MRColorComponents *tintColor;
 @property (nonatomic) long long visibility;
 
 + (id)localClient;
 
 - (void).cxx_destruct;
+- (id)appIcon;
 - (id)bundleIdentifier;
 - (id)bundleIdentifierHierarchy;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)data;
+- (id)description;
 - (id)displayName;
+- (id)extendedBundleIdentifierHierarchy;
 - (bool)hasAuxiliaryProperties;
 - (bool)hasPlaceholder;
+- (id)initWithBundleIdentifier:(id)arg1;
 - (id)initWithData:(id)arg1;
 - (id)initWithProcessIdentifier:(int)arg1 bundleIdentifier:(id)arg2;
 - (id)initWithProtobuf:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isLocal;
+- (void)mergeFrom:(id)arg1;
 - (id)parentApplicationBundleIdentifier;
 - (int)processIdentifier;
 - (int)processUserIdentifier;
 - (id)protobuf;
+- (void)setAppIcon:(id)arg1;
 - (void)setBundleIdentifier:(id)arg1;
-- (void)setBundleIdentifierHierarchy:(id)arg1;
 - (void)setDisplayName:(id)arg1;
+- (void)setExtendedBundleIdentifierHierarchy:(id)arg1;
 - (void)setParentApplicationBundleIdentifier:(id)arg1;
 - (void)setProcessIdentifier:(int)arg1;
 - (void)setProcessUserIdentifier:(int)arg1;
 - (void)setTintColor:(id)arg1;
 - (void)setVisibility:(long long)arg1;
+- (id)skeleton;
 - (id)tintColor;
 - (long long)visibility;
 

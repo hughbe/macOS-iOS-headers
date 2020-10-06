@@ -36,6 +36,7 @@
     bool  _mediaStalled;
     bool  _mutuallyExclusiveCall;
     bool  _needsManualInCallSounds;
+    int  _originatingUIType;
     bool  _outgoing;
     long long  _outputAudioPowerSpectrumToken;
     bool  _prefersExclusiveAccessToCellularNetwork;
@@ -121,6 +122,7 @@
 @property (getter=isMediaStalled, nonatomic) bool mediaStalled;
 @property (getter=isMutuallyExclusiveCall, nonatomic) bool mutuallyExclusiveCall;
 @property (nonatomic) bool needsManualInCallSounds;
+@property (nonatomic) int originatingUIType;
 @property (getter=isOutgoing, nonatomic) bool outgoing;
 @property (nonatomic) long long outputAudioPowerSpectrumToken;
 @property (nonatomic) bool prefersExclusiveAccessToCellularNetwork;
@@ -214,6 +216,7 @@
 - (id)localVideo;
 - (id)localVideoModeToLayer;
 - (bool)needsManualInCallSounds;
+- (int)originatingUIType;
 - (long long)outputAudioPowerSpectrumToken;
 - (void)playDTMFToneForKey:(unsigned char)arg1;
 - (bool)prefersExclusiveAccessToCellularNetwork;
@@ -275,6 +278,7 @@
 - (void)setMediaStalled:(bool)arg1;
 - (void)setMutuallyExclusiveCall:(bool)arg1;
 - (void)setNeedsManualInCallSounds:(bool)arg1;
+- (void)setOriginatingUIType:(int)arg1;
 - (void)setOutgoing:(bool)arg1;
 - (void)setOutputAudioPowerSpectrumToken:(long long)arg1;
 - (void)setPrefersExclusiveAccessToCellularNetwork:(bool)arg1;

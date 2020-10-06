@@ -13,6 +13,7 @@
         unsigned int defaultContext : 1; 
         unsigned int overrideInitialize : 1; 
         unsigned int initializeClientSync : 1; 
+        unsigned int initializeClientSyncWithParameters : 1; 
         unsigned int initializeClientAsync : 1; 
         unsigned int initializeClientLegacy : 1; 
         unsigned int requestPasscodeUnlockUI : 1; 
@@ -46,7 +47,7 @@
 - (bool)hasFinishedLaunching;
 - (id)init;
 - (id)initWithCalloutQueue:(id)arg1;
-- (void)initializeClientWithCompletion:(id /* block */)arg1;
+- (void)initializeClientWithParameters:(id)arg1 completion:(id /* block */)arg2;
 - (void)listener:(id)arg1 didReceiveConnection:(id)arg2 withContext:(id)arg3;
 - (oneway void)requestPasscodeUnlockUIWithCompletion:(id /* block */)arg1;
 - (void)setDefaultContext:(id)arg1;

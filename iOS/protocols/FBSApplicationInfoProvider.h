@@ -5,6 +5,7 @@
 
 @required
 
+- (FBSApplicationInfo *)applicationInfoForAuditToken:(BSAuditToken *)arg1;
 - (FBSApplicationInfo *)applicationInfoForBundleIdentifier:(NSString *)arg1;
 
 @optional

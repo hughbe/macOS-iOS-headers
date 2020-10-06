@@ -8,6 +8,7 @@
     NSArray * _inputIndexArray;
     NSArray * _outputArray;
     NSArray * _outputIndexArray;
+    _ANEPerformanceStats * _perfStats;
     NSNumber * _procedureIndex;
     _ANEIOSurfaceObject * _weightsBuffer;
 }
@@ -17,6 +18,7 @@
 @property (nonatomic, readonly) NSArray *inputIndexArray;
 @property (nonatomic, readonly) NSArray *outputArray;
 @property (nonatomic, readonly) NSArray *outputIndexArray;
+@property (nonatomic, retain) _ANEPerformanceStats *perfStats;
 @property (nonatomic, readonly, copy) NSNumber *procedureIndex;
 @property (nonatomic, readonly) _ANEIOSurfaceObject *weightsBuffer;
 
@@ -31,8 +33,10 @@
 - (id)inputIndexArray;
 - (id)outputArray;
 - (id)outputIndexArray;
+- (id)perfStats;
 - (id)procedureIndex;
 - (void)setCompletionHandler:(id /* block */)arg1;
+- (void)setPerfStats:(id)arg1;
 - (bool)validate;
 - (id)weightsBuffer;
 

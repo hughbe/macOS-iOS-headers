@@ -47,7 +47,6 @@
 - (id)src;
 - (id)srcdoc;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (id)width;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore

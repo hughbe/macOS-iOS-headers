@@ -7,7 +7,6 @@
 
 - (double)_dimensionForRootGroupAlongAxis:(unsigned long long)arg1;
 - (void)_setOrthogonalOffset:(struct CGPoint { double x1; double x2; })arg1;
-- (NSSet *)allSupplementaryKeys;
 - (<NSCollectionLayoutContainer> *)container;
 - (struct CGSize { double x1; double x2; })contentSize;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })effectiveContentFrame;
@@ -32,7 +31,6 @@
 - (void)solveForContainer:(id <NSCollectionLayoutContainer>)arg1 traitCollection:(UITraitCollection *)arg2 layoutAxis:(unsigned long long)arg3 frameCount:(long long)arg4 preferredSizes:(id <_UICollectionPreferredSizes>)arg5;
 - (void)solveForContainer:(id <NSCollectionLayoutContainer>)arg1 traitCollection:(UITraitCollection *)arg2 layoutAxis:(unsigned long long)arg3 frameCount:(long long)arg4 preferredSizes:(id <_UICollectionPreferredSizes>)arg5 layoutRTL:(bool)arg6;
 - (<_UICollectionLayoutFramesQueryResult> *)supplementaryFrameWithKind:(NSString *)arg1 index:(long long)arg2;
-- (NSSet *)supplementaryKeysAssociatedWithItemAtIndex:(long long)arg1;
 - (UITraitCollection *)traitCollection;
 - (void)updatePinnedSupplementaryItemsWithVisibleBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (NSString *)visualDescription;

@@ -19,7 +19,10 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)logMessageAtIndex:(unsigned long long)arg1;
 - (id)logMessages;
 - (unsigned long long)logMessagesCount;

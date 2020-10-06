@@ -31,15 +31,15 @@
 @property (nonatomic, retain) SGMUnknownContactInformationShown *unknownContactInformationShown;
 
 + (id)instance;
-+ (void)recordBannerConfirmedWithContact:(id)arg1 proposedCNContact:(id)arg2 confirmedCNContact:(id)arg3 inApp:(struct SGMBannerDisplayApp_ { unsigned long long x1; })arg4;
++ (void)recordBannerConfirmedWithContact:(id)arg1 proposedCNContact:(id)arg2 confirmedCNContact:(id)arg3 inApp:(struct SGMBannerDisplayApp_ { unsigned long long x1; })arg4 confirmationUI:(int)arg5 pet2Tracker:(id)arg6;
 + (void)recordBannerConfirmedWithEvent:(id)arg1 proposedEKEvent:(id)arg2 confirmedEKEvent:(id)arg3 inApp:(struct SGMBannerDisplayApp_ { unsigned long long x1; })arg4;
-+ (void)recordBannerRejectedWithContact:(id)arg1 inApp:(struct SGMBannerDisplayApp_ { unsigned long long x1; })arg2;
 + (void)recordBannerRejectedWithEvent:(id)arg1 inApp:(struct SGMBannerDisplayApp_ { unsigned long long x1; })arg2;
 + (void)recordBannerShownWithContacts:(id)arg1 events:(id)arg2 inApp:(struct SGMBannerDisplayApp_ { unsigned long long x1; })arg3;
-+ (void)recordContactDetailEngagementWithResolution:(long long)arg1 detailType:(struct SGMContactDetailType_ { unsigned long long x1; })arg2 extractionType:(unsigned long long)arg3 modelVersion:(id)arg4;
++ (void)recordContactDetailEngagementWithResolution:(long long)arg1 detailType:(struct SGMContactDetailType_ { unsigned long long x1; })arg2 extractionType:(unsigned long long)arg3 modelVersion:(id)arg4 confirmRejectUI:(int)arg5 pet2Tracker:(id)arg6;
 + (void)recordContactDetailUsage:(id)arg1 withApp:(id)arg2;
 + (void)recordConversationTurnWithContact:(id)arg1 received:(bool)arg2 curated:(bool)arg3 throughApp:(id)arg4 withDetailName:(id)arg5 withDetailExtraction:(id)arg6;
 + (void)recordMaybeContactFrom:(unsigned long long)arg1 withVersion:(id)arg2;
++ (void)recordRejectedContact:(id)arg1 inApp:(struct SGMBannerDisplayApp_ { unsigned long long x1; })arg2 rejectionUI:(int)arg3 pet2Tracker:(id)arg4;
 
 - (void).cxx_destruct;
 - (id)contactConfirmed;

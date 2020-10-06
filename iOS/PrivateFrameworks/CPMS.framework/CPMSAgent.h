@@ -19,7 +19,6 @@
 @property (readonly) Class superclass;
 
 + (unsigned char)CPMSClientIdToPPMClientId:(long long)arg1;
-+ (id)createCPMSAgentSharedInstance;
 + (bool)isCPMSSupported;
 + (bool)isCPMSSupportedForAnyClient;
 + (bool)isCPMSSupportedForClient:(long long)arg1;
@@ -32,6 +31,7 @@
 - (bool)acknowledgePowerBudget:(id)arg1 forClientId:(long long)arg2 error:(id*)arg3;
 - (id)clientSet;
 - (unsigned int)connect;
+- (id)copyPowerBudgetForRequest:(id)arg1 forClient:(long long)arg2 error:(id*)arg3;
 - (void)dealloc;
 - (id)init;
 - (bool)isClientIdValid:(long long)arg1;

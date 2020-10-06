@@ -5,11 +5,13 @@
 @interface AMSFamilyInfoLookupResult : NSObject {
     bool  _cached;
     NSArray * _familyMembers;
+    bool  _headOfHouseholdSharingPayment;
 }
 
 @property (getter=isCached, nonatomic, readonly) bool cached;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 @property (nonatomic, readonly) NSArray *familyMembers;
+@property (getter=isHeadOfHouseholdSharingPayment, nonatomic, readonly) bool headOfHouseholdSharingPayment;
 
 + (id)_familyMembersFromDictionaryRepresentation:(id)arg1;
 
@@ -19,5 +21,6 @@
 - (id)familyMembers;
 - (id)initWithDictionaryRepresentation:(id)arg1 cached:(bool)arg2;
 - (bool)isCached;
+- (bool)isHeadOfHouseholdSharingPayment;
 
 @end

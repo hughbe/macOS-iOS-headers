@@ -3,7 +3,6 @@
  */
 
 @interface _INPBTask : PBCodable <NSCopying, NSSecureCoding, _INPBTask> {
-    bool  __encodeLegacyGloryData;
     _INPBContactEventTrigger * _contactEventTrigger;
     _INPBDateTime * _createdDateTime;
     struct { 
@@ -24,7 +23,6 @@
     _INPBDataString * _title;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBContactEventTrigger *contactEventTrigger;
 @property (nonatomic, retain) _INPBDateTime *createdDateTime;
 @property (readonly, copy) NSString *debugDescription;
@@ -61,8 +59,6 @@
 - (int)StringAsStatus:(id)arg1;
 - (int)StringAsTaskReference:(id)arg1;
 - (int)StringAsTaskType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)contactEventTrigger;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)createdDateTime;

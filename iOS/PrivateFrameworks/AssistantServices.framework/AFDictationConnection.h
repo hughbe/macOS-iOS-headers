@@ -17,9 +17,12 @@
     NSObject<OS_dispatch_queue> * _internalQueue;
     bool  _isCapturingSpeech;
     bool  _isWaitingForAudioFile;
+    bool  _isWaitingForKnownOfflineInstalledLanguages;
     NSSet * _knownOfflineInstalledLanguages;
     NSString * _lastUsedLanguage;
     bool  _narrowband;
+    NSString * _onDeviceDictationUIInteractionIdentifier;
+    AFAnalyticsEvent * _preheatEvent;
     NSArray * _previouslyRecognizedPhrases;
     bool  _recognizingIncrementally;
     NSString * _requestIdString;
@@ -42,6 +45,7 @@
 + (bool)languageDetectorIsEnabled;
 
 - (void).cxx_destruct;
+- (void)_addPreheatAnalyticsEvent;
 - (void)_availabilityChanged;
 - (void)_cancelBufferFlushTimer;
 - (void)_cancelRequestTimeout;
@@ -59,9 +63,11 @@
 - (void)_dispatchCallbackGroupBlock:(id /* block */)arg1;
 - (void)_extendRequestTimeout;
 - (void)_invokeRequestTimeout;
+- (void)_logRequestCompetionStatusWithEventType:(long long)arg1 error:(id)arg2;
 - (void)_registerInvalidationHandlerForXPCConnection:(id)arg1;
 - (void)_scheduleRequestTimeout;
 - (void)_sendDataIfNeeded;
+- (void)_sendPendingAnalyticsEvents;
 - (void)_setActivationTimeOnOptionsIfNecessary:(id)arg1;
 - (void)_startInputAudioPowerUpdatesWithXPCWrapper:(id)arg1;
 - (void)_stopInputAudioPowerUpdates;
@@ -106,8 +112,10 @@
 - (void)networkAvailability:(id)arg1 isAvailable:(bool)arg2;
 - (float)peakPower;
 - (void)preheat;
+- (void)preheatTestWithLanguage:(id)arg1 options:(id)arg2;
 - (void)preheatWithRecordDeviceIdentifier:(id)arg1;
 - (void)reportIssueForError:(id)arg1 eventType:(long long)arg2 context:(id)arg3;
+- (void)reportIssueForError:(id)arg1 eventType:(long long)arg2 subtype:(id)arg3 context:(id)arg4;
 - (void)requestOfflineDictationSupportForLanguage:(id)arg1 completion:(id /* block */)arg2;
 - (void)sendEngagementFeedback:(long long)arg1 voiceQueryIdentifier:(id)arg2;
 - (void)sendSpeechCorrection:(id)arg1 forIdentifier:(id)arg2;
@@ -121,6 +129,7 @@
 - (void)startDictationWithSpeechFileAtURL:(id)arg1 options:(id)arg2 forLanguage:(id)arg3;
 - (void)startRecordedAudioDictationWithOptions:(id)arg1 forLanguage:(id)arg2;
 - (void)startRecordedAudioDictationWithOptions:(id)arg1 forLanguage:(id)arg2 narrowband:(bool)arg3;
+- (void)startRecordedAudioDictationWithOptions:(id)arg1 forLanguage:(id)arg2 narrowband:(bool)arg3 forceSampling:(bool)arg4;
 - (id /* block */)startRecordingForPendingDictationWithLanguageCode:(id)arg1 options:(id)arg2 speechOptions:(id)arg3;
 - (void)stopSpeech;
 - (void)stopSpeechWithOptions:(id)arg1;

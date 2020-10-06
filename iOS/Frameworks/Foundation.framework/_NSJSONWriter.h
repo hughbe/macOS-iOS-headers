@@ -3,6 +3,7 @@
  */
 
 @interface _NSJSONWriter : NSObject {
+    NSError * _failure;
     char * dataBuffer;
     unsigned long long  dataBufferLen;
     unsigned long long  dataLen;
@@ -14,11 +15,14 @@
     long long  totalDataWritten;
 }
 
-- (bool)appendString:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 error:(id*)arg3;
-- (id)dataWithRootObject:(id)arg1 options:(unsigned long long)arg2 error:(id*)arg3;
+@property (retain) NSError *failure;
+
+- (bool)appendString:(id)arg1 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
+- (id)dataWithRootObject:(id)arg1 options:(unsigned long long)arg2;
 - (void)dealloc;
+- (id)failure;
 - (id)init;
-- (void)resizeTemporaryBuffer:(unsigned long long)arg1;
-- (long long)writeRootObject:(id)arg1 toStream:(id)arg2 options:(unsigned long long)arg3 error:(id*)arg4;
+- (void)setFailure:(id)arg1;
+- (long long)writeRootObject:(id)arg1 toStream:(id)arg2 options:(unsigned long long)arg3;
 
 @end

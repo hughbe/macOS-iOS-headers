@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@interface SSUpdatableAssetController : NSObject {
+@interface SSUpdatableAssetController : NSObject <SKUIExternalResourceManager> {
     SSUpdatableAssetManifest * _bundledManifest;
     NSURL * _bundledManifestURL;
     NSString * _bundledManifestVersion;
@@ -15,8 +15,14 @@
 
 @property (nonatomic, readonly) NSURL *bundledManifestURL;
 @property (nonatomic, readonly) SSUpdatableAssetManifest *currentManifest;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSURL *manifestURL;
 @property (nonatomic, readonly) SSUpdatableAssetManifest *newestCachedManifest;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
 - (void).cxx_destruct;
 - (id)_bundledManifest;
@@ -32,5 +38,9 @@
 - (id)newestCachedManifest;
 - (void)refreshCachedManifest:(id /* block */)arg1;
 - (void)setManifestURL:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
+
+- (id)imageForResourceName:(id)arg1;
 
 @end

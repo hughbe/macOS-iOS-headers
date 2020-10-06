@@ -2,17 +2,19 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface _PFResultString : _PFString {
+@interface _PFResultString : _PFAbstractString {
     id  _parentObject;
 }
 
 + (unsigned long long)bufferOffset;
 
-- (const char *)UTF8String;
+- (bool)_isDeallocating;
+- (bool)_tryRetain;
+- (id)copy;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (oneway void)release;
 - (id)retain;
 - (unsigned long long)retainCount;
-- (void)setParentObject:(id)arg1;
 
 @end

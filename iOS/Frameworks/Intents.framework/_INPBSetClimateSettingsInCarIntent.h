@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSetClimateSettingsInCarIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSetClimateSettingsInCarIntent> {
-    bool  __encodeLegacyGloryData;
     int  _airCirculationMode;
     _INPBDataString * _carName;
     int  _climateZone;
@@ -29,7 +28,6 @@
     _INPBTemperature * _temperature;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int airCirculationMode;
 @property (nonatomic, retain) _INPBDataString *carName;
 @property (nonatomic) int climateZone;
@@ -68,8 +66,6 @@
 - (int)StringAsClimateZone:(id)arg1;
 - (int)StringAsRelativeFanSpeedSetting:(id)arg1;
 - (int)StringAsRelativeTemperatureSetting:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)airCirculationMode;
 - (id)airCirculationModeAsString:(int)arg1;
 - (id)carName;

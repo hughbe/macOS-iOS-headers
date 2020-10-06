@@ -16,6 +16,7 @@
     bool  _hasVPNAPIEntitlement;
     NEHelper * _helper;
     bool  _isNEHelper;
+    bool  _isSynchronous;
     bool  _isVPNPrivateAPI;
     bool  _isVPNPublicAPI;
     NSMutableDictionary * _loadedConfigurations;
@@ -36,9 +37,10 @@
 @property long long generation;
 @property bool hasReadPermission;
 @property bool hasVPNAPIEntitlement;
-@property (readonly) NEHelper *helper;
+@property (retain) NEHelper *helper;
 @property (copy) id /* block */ incomingMessageHandler;
 @property bool isNEHelper;
+@property (nonatomic) bool isSynchronous;
 @property bool isVPNPrivateAPI;
 @property bool isVPNPublicAPI;
 @property (retain) NSMutableDictionary *loadedConfigurations;
@@ -73,6 +75,8 @@
 - (void)didLoadConfiguration:(id)arg1;
 - (void)didLoadConfiguration:(id)arg1 withSignature:(id)arg2;
 - (id)errorWithCode:(long long)arg1 specifics:(id)arg2;
+- (void)executeBlock:(id /* block */)arg1;
+- (void)executeCallbackOnQueue:(id)arg1 callback:(id /* block */)arg2;
 - (void)fetchClientListenerWithBundleID:(id)arg1 completionQueue:(id)arg2 handler:(id /* block */)arg3;
 - (void)fetchUpgradeInfoForPluginType:(id)arg1 completionQueue:(id)arg2 handler:(id /* block */)arg3;
 - (id)filterIndexWithFilter:(id)arg1;
@@ -89,9 +93,11 @@
 - (id /* block */)incomingMessageHandler;
 - (id)init;
 - (id)initForAllUsers;
+- (id)initSynchronous;
 - (id)initWithPluginType:(id)arg1;
 - (id)initWithUserUUID:(id)arg1;
 - (bool)isNEHelper;
+- (bool)isSynchronous;
 - (bool)isVPNPrivateAPI;
 - (bool)isVPNPublicAPI;
 - (void)loadConfigurationAndUserWithID:(id)arg1 withCompletionQueue:(id)arg2 handler:(id /* block */)arg3;
@@ -100,6 +106,7 @@
 - (void)loadConfigurationsInternal:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)loadConfigurationsWithCompletionQueue:(id)arg1 handler:(id /* block */)arg2;
 - (void)loadIndexWithFilter:(id)arg1 completionQueue:(id)arg2 handler:(id /* block */)arg3;
+- (void)loadLegacyPluginConfigurationsWithCompletionQueue:(id)arg1 handler:(id /* block */)arg2;
 - (id)loadedConfigurations;
 - (id)loadedIndex;
 - (id)makeMutableCopyOfIndex:(id)arg1;
@@ -116,6 +123,7 @@
 - (void)removeConfiguration:(id)arg1 withCompletionQueue:(id)arg2 handler:(id /* block */)arg3;
 - (void)removeConfigurationFromDisk:(id)arg1 completionQueue:(id)arg2 completionHandler:(id /* block */)arg3;
 - (id)removeConfigurationFromDisk:(id)arg1 updateSCPreferences:(struct __SCPreferences { }*)arg2;
+- (void)repopulateNetworkPrivacyConfigurationResetAll:(bool)arg1;
 - (bool)resetKeychainItemsAfterProtocolChange:(id)arg1 newConfiguration:(id)arg2;
 - (void)saveConfiguration:(id)arg1 withCompletionQueue:(id)arg2 handler:(id /* block */)arg3;
 - (void)saveConfigurationToDisk:(id)arg1 currentSignature:(id)arg2 userUUID:(id)arg3 isUpgrade:(bool)arg4 completionQueue:(id)arg5 completionHandler:(id /* block */)arg6;
@@ -131,19 +139,22 @@
 - (void)setGeneration:(long long)arg1;
 - (void)setHasReadPermission:(bool)arg1;
 - (void)setHasVPNAPIEntitlement:(bool)arg1;
+- (void)setHelper:(id)arg1;
 - (void)setIncomingMessageHandler:(id /* block */)arg1;
 - (void)setIsNEHelper:(bool)arg1;
+- (void)setIsSynchronous:(bool)arg1;
 - (void)setIsVPNPrivateAPI:(bool)arg1;
 - (void)setIsVPNPublicAPI:(bool)arg1;
 - (void)setLoadedConfigurations:(id)arg1;
 - (void)setLoadedIndex:(id)arg1;
 - (void)setOuterQueue:(id)arg1;
 - (void)setSCPreferencesSignature:(id)arg1;
-- (void)showObsoleteAppAlert;
+- (void)showLocalNetworkAlertForApp:(id)arg1 withCompletionQueue:(id)arg2 handler:(id /* block */)arg3;
+- (void)showLocalNetworkAlertForApp:(id)arg1 withCompletionQueue:(id)arg2 query:(id)arg3 hasEntitlement:(bool)arg4 handler:(id /* block */)arg5;
 - (void)syncConfigurationsWithSC:(id)arg1 completionQueue:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)triggerLocalAuthenticationForConfigurationWithID:(id)arg1 withCompletionQueue:(id)arg2 handler:(id /* block */)arg3;
 - (void)updateSCPreferencesSignatureOnDisk;
-- (void)upgradeLegacyPluginConfigurationsWithUpgradeInfo:(id)arg1 completionQueue:(id)arg2 handler:(id /* block */)arg3;
+- (void)upgradeLegacyPluginConfigurations:(id)arg1 withUpgradeInfo:(id)arg2 completionQueue:(id)arg3 handler:(id /* block */)arg4;
 - (id)userUUID;
 
 @end

@@ -4,9 +4,9 @@
 
 @interface _UIForceClickInteractionDriver : NSObject <UIGestureRecognizerDelegatePrivate, _UIClickInteractionDriving> {
     bool  _cancelsTouchesInView;
+    unsigned long long  _currentState;
     <_UIClickInteractionDriverDelegate> * _delegate;
     UITouchForceGestureRecognizer * _gestureRecognizer;
-    _UIStateMachine * _stateMachine;
     UIView * _view;
 }
 
@@ -24,7 +24,6 @@
 @property (nonatomic, readonly) bool isCurrentlyAcceleratedByForce;
 @property (nonatomic, readonly) double maximumEffectProgress;
 @property (nonatomic, readonly) UIGestureRecognizer *primaryGestureRecognizer;
-@property (nonatomic, retain) _UIStateMachine *stateMachine;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) double touchDuration;
 @property (nonatomic, readonly) double touchForce;
@@ -36,7 +35,6 @@
 - (void).cxx_destruct;
 - (void)_gestureRecognizerFailed:(id)arg1;
 - (void)_handleGestureRecognizer:(id)arg1;
-- (void)_prepareStateMachine;
 - (double)allowableMovement;
 - (bool)allowsRepeatedClicks;
 - (void)cancelInteraction;
@@ -56,9 +54,7 @@
 - (void)setCancelsTouchesInView:(bool)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setGestureRecognizer:(id)arg1;
-- (void)setStateMachine:(id)arg1;
 - (void)setView:(id)arg1;
-- (id)stateMachine;
 - (double)touchDuration;
 - (double)touchForce;
 - (id)view;

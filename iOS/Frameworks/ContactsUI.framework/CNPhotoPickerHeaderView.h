@@ -2,39 +2,83 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNPhotoPickerHeaderView : UIView {
-    bool  _allowsEditing;
+@interface CNPhotoPickerHeaderView : UIView <UIDropInteractionDelegate, UITextFieldDelegate> {
+    CNVisualIdentityAvatarViewController * _avatarViewController;
+    UIButton * _clearAvatarImageButton;
+    UIView * _clearAvatarImageButtonBackground;
+    CAShapeLayer * _clearAvatarImageButtonClippingLayer;
+    UIButton * _clearIdentityNameButton;
     <CNPhotoPickerHeaderViewDelegate> * _delegate;
-    UIButton * _editButton;
-    UIView * _headerDropShadowView;
-    CNContactPhotoView * _photoView;
+    CNPhotoPickerHeaderViewTextField * _identityNameTextField;
+    CNPhotoPickerProviderItem * _placeholderProviderItem;
     NSArray * _subviewsConstraints;
+    CNVisualIdentity * _visualIdentity;
 }
 
-@property (nonatomic) bool allowsEditing;
+@property (nonatomic, retain) CNVisualIdentityAvatarViewController *avatarViewController;
+@property (nonatomic, retain) UIButton *clearAvatarImageButton;
+@property (nonatomic, retain) UIView *clearAvatarImageButtonBackground;
+@property (nonatomic, retain) CAShapeLayer *clearAvatarImageButtonClippingLayer;
+@property (nonatomic, retain) UIButton *clearIdentityNameButton;
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <CNPhotoPickerHeaderViewDelegate> *delegate;
-@property (nonatomic, retain) UIButton *editButton;
-@property (nonatomic, retain) UIView *headerDropShadowView;
-@property (nonatomic, retain) CNContactPhotoView *photoView;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (nonatomic, retain) CNPhotoPickerHeaderViewTextField *identityNameTextField;
+@property (nonatomic, retain) CNPhotoPickerProviderItem *placeholderProviderItem;
 @property (nonatomic, retain) NSArray *subviewsConstraints;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) CNVisualIdentity *visualIdentity;
 
 - (void).cxx_destruct;
-- (bool)allowsEditing;
+- (id)avatarViewController;
+- (id)clearAvatarImageButton;
+- (id)clearAvatarImageButtonBackground;
+- (id)clearAvatarImageButtonClippingLayer;
+- (id)clearIdentityNameButton;
 - (id)delegate;
 - (void)didMoveToWindow;
-- (id)editButton;
-- (id)headerDropShadowView;
+- (void)didTapClearAvatarImageButton;
+- (void)didTapClearIdentityNameButton;
+- (void)didTapHeaderView;
+- (bool)dropInteraction:(id)arg1 canHandleSession:(id)arg2;
+- (void)dropInteraction:(id)arg1 performDrop:(id)arg2;
+- (id)dropInteraction:(id)arg1 sessionDidUpdate:(id)arg2;
+- (id)identityNameTextField;
 - (id)initWithContact:(id)arg1;
-- (id)photoView;
-- (void)photoViewTapped;
-- (void)setAllowsEditing:(bool)arg1;
+- (id)initWithVisualIdentity:(id)arg1;
+- (id)initWithVisualIdentity:(id)arg1 avatarViewController:(id)arg2;
+- (void)layoutSubviews;
+- (id)placeholderProviderItem;
+- (bool)resignFirstResponder;
+- (void)setAvatarViewController:(id)arg1;
+- (void)setClearAvatarImageButton:(id)arg1;
+- (void)setClearAvatarImageButtonBackground:(id)arg1;
+- (void)setClearAvatarImageButtonClippingLayer:(id)arg1;
+- (void)setClearAvatarImageButtonHidden:(bool)arg1;
+- (void)setClearIdentityNameButton:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setEditButton:(id)arg1;
-- (void)setHeaderDropShadowView:(id)arg1;
-- (void)setPhotoView:(id)arg1;
+- (void)setIdentityNameTextField:(id)arg1;
+- (void)setPlaceholderProviderItem:(id)arg1;
 - (void)setSubviewsConstraints:(id)arg1;
+- (void)setVisualIdentity:(id)arg1;
+- (void)setupClearAvatarImageButton;
+- (void)setupDragAndDrop;
+- (void)setupHeaderViewWithPhotoView:(id)arg1;
+- (void)setupIdentityNameClearButtonIfNecessary;
+- (void)setupIdentityNameTextFieldAndClearButton;
+- (struct CGSize { double x1; double x2; })sizeOfPrimaryAvatar;
 - (id)subviewsConstraints;
+- (bool)textField:(id)arg1 shouldChangeCharactersInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 replacementString:(id)arg3;
+- (void)textFieldDidEndEditing:(id)arg1;
+- (bool)textFieldShouldReturn:(id)arg1;
+- (void)updateClearAvatarImageButtonFrame;
 - (void)updateConstraints;
-- (void)updatePhoto;
+- (void)updateIdentityNameTextFieldMaxWidth;
+- (void)updateIdentityNameTextFieldPlaceholderWithText:(id)arg1;
+- (void)updateIdentityNameTextFieldWithIdentity:(id)arg1;
+- (void)updateImageViewWithIdentity:(id)arg1;
+- (void)updatePhotoViewWithUpdatedIdentity:(id)arg1;
+- (id)visualIdentity;
 
 @end

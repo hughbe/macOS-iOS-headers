@@ -9,6 +9,9 @@
 @property (nonatomic, readonly) _UIVisualEffectConfig *effectConfig;
 @property (nonatomic, readonly) _UIBackdropViewSettings *effectSettings;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
++ (id)_effectCopyingFromCaptureGroup:(id)arg1;
 + (id)effectCombiningEffects:(id)arg1;
 + (id)effectCompositingColor:(id)arg1;
 + (id)effectCompositingColor:(id)arg1 withMode:(long long)arg2 alpha:(double)arg3;
@@ -32,5 +35,28 @@
 - (id)effectSettings;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
+
++ (id)_gkGameLayerBackgroundVisualEffect;
++ (id)_gkGameLayerModuleVisualEffect;
++ (id)colorEffectBlendNormal:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsFeed.framework/NewsFeed
+
++ (id)ne_visualEffectsForDailyBriefing;
+
+// Image: /System/Library/PrivateFrameworks/Stocks/StocksUI.framework/StocksUI
+
++ (id)su_visualEffectsForBarWithBackgroundColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
++ (id)ts_blurEffectWithNewBarStyle;
++ (id)ts_sideBarEffect;
++ (id)ts_sideBarSelectionEffect;
++ (id)ts_visualEffectsForBarWithBackgroundColor:(id)arg1;
++ (id)ts_visualEffectsForBlackBackgroundBarAppearance;
++ (id)ts_visualEffectsForWhiteBackgroundBarAppearance;
 
 @end

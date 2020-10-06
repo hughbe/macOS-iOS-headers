@@ -26,17 +26,12 @@
 @property (readonly) Class superclass;
 @property bool userSelectedPrinter;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_keyWindowWillRotate:(id)arg1;
 - (void)_presentInParentAnimated:(bool)arg1;
 - (void)_presentWindow;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)cancelPrinting;
+- (void)dealloc;
 - (void)dismissAnimated:(bool)arg1;
 - (void)dismissPrinterPickerAnimated:(bool)arg1;
 - (bool)filtersPrinters;
@@ -44,7 +39,7 @@
 - (void)navigationController:(id)arg1 didShowViewController:(id)arg2 animated:(bool)arg3;
 - (void)navigationController:(id)arg1 willShowViewController:(id)arg2 animated:(bool)arg3;
 - (void)popoverControllerDidDismissPopover:(id)arg1;
-- (void)presentPrinterPickerPanelAnimated:(bool)arg1;
+- (void)presentPrinterPickerPanelAnimated:(bool)arg1 hostingScene:(id)arg2;
 - (void)presentPrinterPickerPanelFromBarButtonItem:(id)arg1 animated:(bool)arg2;
 - (void)presentPrinterPickerPanelFromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 inView:(id)arg2 animated:(bool)arg3;
 - (id)printer;

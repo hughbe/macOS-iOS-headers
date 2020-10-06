@@ -3,7 +3,6 @@
  */
 
 @interface _INPBMessage : PBCodable <NSCopying, NSSecureCoding, _INPBMessage> {
-    bool  __encodeLegacyGloryData;
     struct { 
         int *list; 
         unsigned long long count; 
@@ -33,7 +32,6 @@
     int  _type;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, readonly) int*attributes;
 @property (nonatomic, readonly) unsigned long long attributesCount;
 @property (nonatomic, copy) NSString *content;
@@ -84,8 +82,6 @@
 - (int)StringAsAttributes:(id)arg1;
 - (int)StringAsEffect:(id)arg1;
 - (int)StringAsType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAttribute:(int)arg1;
 - (void)addRecipient:(id)arg1;
 - (int)attributeAtIndex:(unsigned long long)arg1;

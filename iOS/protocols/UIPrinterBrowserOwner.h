@@ -9,6 +9,7 @@
 - (void)dismissAnimated:(bool)arg1;
 - (bool)filtersPrinters;
 - (PKPrinter *)printer;
+- (void)printerBrowserViewDidDisappear;
 - (void)setPrinter:(PKPrinter *)arg1;
 - (bool)shouldAutorotateToInterfaceOrientation:(long long)arg1;
 - (unsigned long long)supportedInterfaceOrientations;

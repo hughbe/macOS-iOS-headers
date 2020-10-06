@@ -5,6 +5,8 @@
 @interface FBSWorkspaceSceneRequestOptions : NSObject <BSXPCSecureCoding> {
     NSString * _identifier;
     FBSSceneClientSettings * _initialClientSettings;
+    bool  _keyboardScene;
+    FBSSceneSpecification * _specification;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -12,6 +14,8 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) FBSSceneClientSettings *initialClientSettings;
+@property (getter=isKeyboardScene, nonatomic) bool keyboardScene;
+@property (nonatomic, copy) FBSSceneSpecification *specification;
 @property (readonly) Class superclass;
 
 + (bool)supportsBSXPCSecureCoding;
@@ -21,7 +25,11 @@
 - (id)identifier;
 - (id)initWithBSXPCCoder:(id)arg1;
 - (id)initialClientSettings;
+- (bool)isKeyboardScene;
 - (void)setIdentifier:(id)arg1;
 - (void)setInitialClientSettings:(id)arg1;
+- (void)setKeyboardScene:(bool)arg1;
+- (void)setSpecification:(id)arg1;
+- (id)specification;
 
 @end

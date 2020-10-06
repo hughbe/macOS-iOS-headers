@@ -28,7 +28,9 @@
 - (id)actionItems;
 - (id)actions;
 - (void)addAction:(id)arg1 withTitle:(id)arg2;
+- (void)addAction:(id)arg1 withTitle:(id)arg2 color:(id)arg3 glyphColor:(id)arg4 transportType:(long long)arg5;
 - (void)addAction:(id)arg1 withTitle:(id)arg2 color:(id)arg3 transportType:(long long)arg4;
+- (void)addAction:(id)arg1 withTitle:(id)arg2 wrapTitle:(bool)arg3;
 - (id)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3;
 - (id)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3 destructive:(bool)arg4;
 - (bool)addSpacerFromPreviousGroup;

@@ -3,13 +3,11 @@
  */
 
 @interface _INPBConflictingParameter : PBCodable <NSCopying, NSSecureCoding, _INPBConflictingParameter> {
-    bool  __encodeLegacyGloryData;
     NSArray * _alternateItems;
     struct { }  _has;
     NSString * _keyPath;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSArray *alternateItems;
 @property (nonatomic, readonly) unsigned long long alternateItemsCount;
 @property (readonly, copy) NSString *debugDescription;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAlternateItems:(id)arg1;
 - (id)alternateItems;
 - (id)alternateItemsAtIndex:(unsigned long long)arg1;

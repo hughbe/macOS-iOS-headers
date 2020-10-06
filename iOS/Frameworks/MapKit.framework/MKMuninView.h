@@ -12,9 +12,9 @@
         double right; 
     }  _compassInsets;
     UITapGestureRecognizer * _compassTapGestureRecognizer;
-    NSLayoutConstraint * _compassTopConstraint;
+    NSLayoutConstraint * _compassTopOrBottomConstraint;
     NSLayoutConstraint * _compassTrailingConstraint;
-    MKCompassView * _compassView;
+    UIView<MKCompassView> * _compassView;
     <MKMuninViewDelegate> * _delegate;
     bool  _didTriggerAdequatelyDrawnNotification;
     MKMuninGestureController * _gestureController;
@@ -79,6 +79,7 @@
 @property (nonatomic) bool panningEnabled;
 @property (nonatomic) bool pinchingEnabled;
 @property (nonatomic) double presentationYaw;
+@property (nonatomic, readonly) MKMapItem *revGeoMapItem;
 @property (nonatomic, readonly) VKLabelMarker *selectedLabelMarker;
 @property (nonatomic, readonly) NSURL *sharingURL;
 @property (nonatomic) bool showsPointLabels;
@@ -100,6 +101,7 @@
 - (void)_refineLabelMarker:(id)arg1;
 - (void)_resetViewState;
 - (void)_reverseGeocodeCoordinate:(struct CLLocationCoordinate2D { double x1; double x2; })arg1;
+- (void)_setInitialLocationInfo;
 - (void)_updateCameraFrame;
 - (void)_updateCompass;
 - (void)_updateCompassInsets;
@@ -123,6 +125,8 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (bool)isCompassHidden;
 - (bool)isLoading;
+- (void)jumpToCloseUpView;
+- (void)jumpToStandOffView;
 - (id)labelMarkerForCustomFeatureAnnotation:(id)arg1;
 - (id)mapItem;
 - (void)mapLayer:(id)arg1 nearestJunctionDidChange:(id)arg2 currentRoad:(id)arg3;
@@ -152,6 +156,7 @@
 - (double)presentationYaw;
 - (void)recordTriggerAction:(int)arg1;
 - (void)removeCustomFeatureDataSource:(id)arg1;
+- (id)revGeoMapItem;
 - (void)selectLabelMarker:(id)arg1;
 - (id)selectedLabelMarker;
 - (void)setBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
@@ -178,5 +183,6 @@
 - (bool)tapAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)visiblePlaceMUIDs;
 - (id)visibleRoadLabels;
+- (void)willMoveToWindow:(id)arg1;
 
 @end

@@ -17,6 +17,10 @@
 @property (nonatomic) bool isRead;
 @property (nonatomic, retain) NSString *label;
 @property (nonatomic, retain) NSString *number;
+@property (nonatomic, readonly, copy) NSString *tps_localizedNumber;
+@property (nonatomic, readonly, copy) NSString *tps_normalizedNumber;
+
+// Image: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
 
 + (bool)supportsSecureCoding;
 
@@ -37,5 +41,10 @@
 - (void)setIsRead:(bool)arg1;
 - (void)setLabel:(id)arg1;
 - (void)setNumber:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyPreferences.framework/TelephonyPreferences
+
+- (id)tps_localizedNumber;
+- (id)tps_normalizedNumber;
 
 @end

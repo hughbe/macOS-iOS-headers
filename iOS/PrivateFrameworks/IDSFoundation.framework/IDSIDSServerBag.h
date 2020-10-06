@@ -11,5 +11,6 @@
 - (unsigned long long)_bagDomain;
 - (id)init;
 - (bool)isInDebilitatedMode;
+- (bool)requiresIDSConnection;
 
 @end

@@ -71,6 +71,7 @@
 - (long long)auxillaryHostAuxillaryKind;
 - (id)auxillaryHostContainer;
 - (struct CGSize { double x1; double x2; })auxillaryHostContentSize;
+- (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })auxillaryHostEdgeInsetsForAuxillaryOfKind:(id)arg1;
 - (unsigned long long)auxillaryHostLayoutAxis;
 - (struct CGSize { double x1; double x2; })auxillaryHostPinningContentSize;
 - (id)auxillaryHostPreferredSizes;

@@ -15,6 +15,7 @@
 @property (nonatomic, retain) <QLThumbnailServiceSurfaceGeneratorProtocol> *surfaceGenerator;
 
 - (void).cxx_destruct;
+- (struct CGSize { double x1; double x2; })_IOSurfaceSizeFromThumbnailReply:(id)arg1;
 - (bool)_canCreateContextOfSize:(struct CGSize { double x1; double x2; })arg1 forRequest:(id)arg2;
 - (void)_didGenerateThumbnailWithData:(id)arg1 drawingContextSize:(struct CGSize { double x1; double x2; })arg2;
 - (void)_didReceiveThumbnailURL:(id)arg1;

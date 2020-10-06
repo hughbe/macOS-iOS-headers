@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
  */
 
-@interface _DKEvent : _DKObject <_DKHasComparableValue, _DKHasPrimaryValue, _DKProtobufConverting> {
+@interface _DKEvent : _DKObject <DKPeriodType, _DKHasComparableValue, _DKHasPrimaryValue, _DKProtobufConverting> {
     long long  _compatibilityVersion;
     double  _confidence;
     NSDate * _endDate;
@@ -18,15 +18,28 @@
 @property double confidence;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (readonly) double duration;
+@property (readonly) NSDate *endDate;
 @property (retain) NSDate *endDate;
 @property (readonly) unsigned long long hash;
 @property (copy) NSDictionary *metadata;
 @property bool shouldSync;
+@property (readonly) NSDate *startDate;
 @property (retain) NSDate *startDate;
 @property (retain) _DKEventStream *stream;
 @property (readonly) Class superclass;
 @property (retain) NSTimeZone *timeZone;
+@property (nonatomic, readonly) TPSAnalyticsEvent *tps_analyticsEvent;
+@property (nonatomic, readonly) NSString *tps_bundleIdentifier;
+@property (nonatomic, readonly) NSString *tps_contentIdentifier;
+@property (nonatomic, readonly) NSString *tps_context;
+@property (nonatomic, readonly) unsigned long long tps_displayType;
+@property (nonatomic, readonly) NSArray *tps_eligibleContext;
+@property (nonatomic, readonly) long long tps_ineligibleReason;
+@property (nonatomic, readonly) long long tps_state;
 @property (retain) _DKObject *value;
+
+// Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
 
 + (id)allowedWebpageURLSchemes;
 + (bool)copyMetadata:(id)arg1 toManagedObject:(id)arg2;
@@ -53,9 +66,7 @@
 + (id)fetchCustomMetadataWithName:(id)arg1 valueHash:(id)arg2 context:(id)arg3;
 + (id)fromPBCodable:(id)arg1;
 + (bool)isValidURL:(id)arg1;
-+ (id)keyPathForMOKeyPath:(id)arg1;
 + (id)metadataForInteraction:(id)arg1 storeKeyImage:(bool)arg2;
-+ (id)moKeyPathForKeyPath:(id)arg1;
 + (id)objectFromManagedObject:(id)arg1 readMetadata:(bool)arg2 excludedMetadataKeys:(id)arg3 cache:(id)arg4;
 + (bool)supportsSecureCoding;
 + (id)uncachedEventValueFromManagedObject:(id)arg1 readMetadata:(bool)arg2 excludedMetadataKeys:(id)arg3 cache:(id)arg4;
@@ -100,5 +111,49 @@
 - (id)timeZone;
 - (id)toPBCodable;
 - (id)value;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (id)atx_bundleID;
+- (id)atx_convertToLocationVisitEvent;
+- (id)atx_endDate;
+- (double)atx_eventDuration;
+- (id)atx_mode;
+- (id)atx_startDate;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
+
+// Image: /System/Library/PrivateFrameworks/KnowledgeMonitor.framework/KnowledgeMonitor
+
+- (double)duration;
+
+// Image: /System/Library/PrivateFrameworks/MediaMiningKit.framework/MediaMiningKit
+
+- (id)cls_album;
+- (id)cls_artist;
+- (id)cls_durationInSeconds;
+- (id)cls_genre;
+- (id)cls_identifier;
+- (id)cls_title;
+
+// Image: /System/Library/PrivateFrameworks/PowerUI.framework/PowerUI
+
+- (double)duration;
+- (bool)includesDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TipsCore.framework/TipsCore
+
++ (id)_eventWithContentIdentifier:(id)arg1 bundleIdentifier:(id)arg2 displayType:(unsigned long long)arg3 eligibleContext:(id)arg4 context:(id)arg5 state:(long long)arg6 reason:(long long)arg7 event:(id)arg8 date:(id)arg9;
+
+- (id)tps_analyticsEvent;
+- (id)tps_bundleIdentifier;
+- (id)tps_contentIdentifier;
+- (id)tps_context;
+- (unsigned long long)tps_displayType;
+- (id)tps_eligibleContext;
+- (long long)tps_ineligibleReason;
+- (long long)tps_state;
 
 @end

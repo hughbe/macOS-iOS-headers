@@ -10,10 +10,7 @@
         unsigned int read_clientConfigs : 1; 
         unsigned int read_clientDatasetMetadata : 1; 
         unsigned int read_serverAbAssignments : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_clientConfigs : 1; 
-        unsigned int wrote_clientDatasetMetadata : 1; 
-        unsigned int wrote_serverAbAssignments : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -36,11 +33,6 @@
 + (Class)serverAbAssignmentType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsClientConfig:(id)arg1;
-- (void)_addNoFlagsServerAbAssignment:(id)arg1;
-- (void)_readClientConfigs;
-- (void)_readClientDatasetMetadata;
-- (void)_readServerAbAssignments;
 - (void)addClientConfig:(id)arg1;
 - (void)addServerAbAssignment:(id)arg1;
 - (void)clearClientConfigs;
@@ -58,7 +50,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

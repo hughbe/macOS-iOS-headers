@@ -30,6 +30,8 @@
 @property (nonatomic, copy) NSString *turnId;
 @property (nonatomic, copy) NSDictionary *voiceTriggerEventInfo;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)startSpeech;
 + (id)startSpeechWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -74,5 +76,9 @@
 - (void)setVoiceTriggerEventInfo:(id)arg1;
 - (id)turnId;
 - (id)voiceTriggerEventInfo;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (bool)siriCore_isRestartable;
 
 @end

@@ -33,6 +33,7 @@
 @property (nonatomic, readonly) double headIndent;
 @property (nonatomic, readonly) float hyphenationFactor;
 @property (nonatomic, readonly) long long lineBreakMode;
+@property (nonatomic, readonly) unsigned long long lineBreakStrategy;
 @property (nonatomic, readonly) double lineHeightMultiple;
 @property (nonatomic, readonly) double lineSpacing;
 @property (nonatomic, readonly) double maximumLineHeight;
@@ -90,6 +91,37 @@
 - (float)tighteningFactorForTruncation;
 - (bool)usesDefaultHyphenation;
 - (bool)usesOpticalAlignment;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreKit.framework/AppStoreKit
+
+- (id)paragraphStyleWithBaseWritingDirection:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DocumentCamera.framework/DocumentCamera
+
++ (bool)dc_isRTL;
++ (id)dc_mutableDefaultParagraphStyle;
+
+// Image: /System/Library/PrivateFrameworks/NewsFeedLayout.framework/NewsFeedLayout
+
++ (id)nfl_paragraphStyleWithLineHeight:(double)arg1 textAlignment:(long long)arg2;
++ (id)nfl_paragraphStyleWithLineHeight:(double)arg1 textAlignment:(long long)arg2 lineBreakMode:(long long)arg3;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
++ (bool)ic_isRTL;
++ (id)ic_mutableDefaultParagraphStyle;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsUI.framework/PodcastsUI
+
+- (id)paragraphStyleWithBaseWritingDirection:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TVMLKit.framework/TVMLKit
+
+- (id)tv_paragraphStyleWithBaseWritingDirection:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TestFlightCore.framework/TestFlightCore
+
+- (id)tf_paragraphStyleWithBaseWritingDirection:(long long)arg1;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 

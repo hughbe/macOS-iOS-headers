@@ -6,6 +6,7 @@
     NSArray * _additionalTransportTypesRequested;
     NSDate * _arrivalDate;
     GEOAutomobileOptions * _automobileOptions;
+    GEOCyclingOptions * _cyclingOptions;
     NSDate * _departureDate;
     MKMapItem * _destination;
     bool  _includeBasicRoutePoints;
@@ -15,6 +16,7 @@
     bool  _includeTravelTimes;
     bool  _includeZilchRoutePoints;
     bool  _requestsAlternateRoutes;
+    bool  _resolveExtraAutomobileOptions;
     MKMapItem * _source;
     GEOTransitOptions * _transitOptions;
     unsigned long long  _transportType;
@@ -27,8 +29,10 @@
 @property (nonatomic, readonly) bool _includeTravelTimes;
 @property (nonatomic, readonly) bool _includeTypicalRouteDuration;
 @property (nonatomic, readonly) bool _includeZilchRoutePoints;
+@property (nonatomic, readonly) bool _resolveExtraAutomobileOptions;
 @property (getter=_additionalTransportTypesRequested, setter=_setAdditionalTransportTypesRequested:, nonatomic, retain) NSArray *additionalTransportTypesRequested;
 @property (getter=_automobileOptions, setter=_setAutomobileOptions:, nonatomic, retain) GEOAutomobileOptions *automobileOptions;
+@property (getter=_cyclingOptions, setter=_setCyclingOptions:, nonatomic, retain) GEOCyclingOptions *cyclingOptions;
 @property (nonatomic, retain) MKMapItem *destination;
 @property (getter=_includeDistanceInETA, setter=_setIncludeDistanceInETA:, nonatomic) bool includeDistanceInETA;
 @property (nonatomic, retain) MKMapItem *source;
@@ -41,6 +45,7 @@
 - (id)_additionalTransportTypesRequested;
 - (id)_arrivalDate;
 - (id)_automobileOptions;
+- (id)_cyclingOptions;
 - (id)_departureDate;
 - (bool)_includeBasicRoutePoints;
 - (bool)_includeDistanceInETA;
@@ -55,9 +60,11 @@
 - (id)_mapkit_initWithSource:(id)arg1 destination:(id)arg2 transportType:(unsigned long long)arg3 arrivalDate:(id)arg4;
 - (id)_mapkit_initWithSource:(id)arg1 destination:(id)arg2 transportType:(unsigned long long)arg3 arrivalDate:(id)arg4 includeTravelTimes:(bool)arg5 includeTrafficIncidents:(bool)arg6 includeEntryPoints:(bool)arg7 includeRoutePoints:(bool)arg8;
 - (id)_mapkit_initWithSource:(id)arg1 destination:(id)arg2 transportType:(unsigned long long)arg3 departureDate:(id)arg4;
-- (id)_mapkit_initWithSource:(id)arg1 destination:(id)arg2 transportType:(unsigned long long)arg3 departureDate:(id)arg4 includeTravelTimes:(bool)arg5 includeTrafficIncidents:(bool)arg6 includeEntryPoints:(bool)arg7 includeRoutePoints:(bool)arg8;
+- (id)_mapkit_initWithSource:(id)arg1 destination:(id)arg2 transportType:(unsigned long long)arg3 departureDate:(id)arg4 includeTravelTimes:(bool)arg5 includeTrafficIncidents:(bool)arg6 includeEntryPoints:(bool)arg7 includeRoutePoints:(bool)arg8 resolveExtraAutomobileOptions:(bool)arg9;
+- (bool)_resolveExtraAutomobileOptions;
 - (void)_setAdditionalTransportTypesRequested:(id)arg1;
 - (void)_setAutomobileOptions:(id)arg1;
+- (void)_setCyclingOptions:(id)arg1;
 - (void)_setIncludeDistanceInETA:(bool)arg1;
 - (void)_setTransitOptions:(id)arg1;
 - (void)_setWalkingOptions:(id)arg1;

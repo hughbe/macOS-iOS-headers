@@ -6,6 +6,7 @@
     NSMutableArray * _entries;
     NSMutableArray * _pendingEntries;
     NSSet * _recipientIdentifiers;
+    NSSet * _recipientNames;
     NSSet * _senderIdentifiers;
 }
 
@@ -16,6 +17,7 @@
 @property (nonatomic, readonly) NSString *mostRecentTextEntryLogString;
 @property (nonatomic, readonly) NSArray *pendingEntries;
 @property (nonatomic, readonly) NSSet *recipientIdentifiers;
+@property (nonatomic, readonly) NSSet *recipientNames;
 @property (nonatomic, readonly) NSString *senderIdentifier;
 @property (nonatomic, readonly) NSSet *senderIdentifiers;
 
@@ -45,7 +47,9 @@
 - (id)mostRecentTextEntryLogString;
 - (id)pendingEntries;
 - (id)recipientIdentifiers;
+- (id)recipientNames;
 - (id)senderIdentifier;
 - (id)senderIdentifiers;
+- (void)updateRecipientNames:(id)arg1;
 
 @end

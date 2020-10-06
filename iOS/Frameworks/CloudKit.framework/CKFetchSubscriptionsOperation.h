@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchSubscriptionsOperation : CKDatabaseOperation {
+@interface CKFetchSubscriptionsOperation : CKDatabaseOperation <CKFetchSubscriptionsOperationCallbacks> {
     id /* block */  _fetchSubscriptionCompletionBlock;
     bool  _isFetchAllSubscriptionsOperation;
     NSMutableDictionary * _subscriptionErrors;
@@ -11,23 +11,26 @@
     NSMutableDictionary * _subscriptionsBySubscriptionID;
 }
 
+@property (nonatomic, readonly) <CKFetchSubscriptionsOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) id /* block */ fetchSubscriptionCompletionBlock;
 @property (nonatomic) bool isFetchAllSubscriptionsOperation;
+@property (nonatomic, readonly) CKFetchSubscriptionsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *subscriptionErrors;
 @property (nonatomic, copy) NSArray *subscriptionIDs;
 @property (nonatomic, retain) NSArray *subscriptions;
 @property (nonatomic, retain) NSMutableDictionary *subscriptionsBySubscriptionID;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
 + (id)fetchAllSubscriptionsOperation;
 
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id /* block */)fetchSubscriptionCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleSubscriptionFetchForSubscriptionID:(id)arg1 subscription:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithSubscriptionIDs:(id)arg1;

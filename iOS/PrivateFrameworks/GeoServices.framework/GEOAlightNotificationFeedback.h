@@ -90,7 +90,10 @@
 - (bool)hasTriggeredLocationTraversalPercent;
 - (bool)hasTriggeredTimestamp;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)lastDetectedLocationHorizontalAccuracy;
 - (double)lastDetectedLocationTimestamp;
 - (int)lastDetectedLocationTraversalPercent;

@@ -33,7 +33,6 @@
 + (id)typeStrings;
 
 - (void).cxx_destruct;
-- (id)description;
 - (id)filterForUserEnrollmentOutError:(id*)arg1;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)isAlphanumericPasscodeRequired;
@@ -52,5 +51,6 @@
 - (id)stubDictionary;
 - (id)subtitle1Description;
 - (id)title;
+- (id)verboseDescription;
 
 @end

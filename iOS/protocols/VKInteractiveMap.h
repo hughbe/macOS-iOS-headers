@@ -17,7 +17,6 @@
 - (struct CGPoint { double x1; double x2; })convertMapPointToPoint:(struct { double x1; double x2; })arg1;
 - (struct { double x1; double x2; })convertPointToCoordinate:(struct CGPoint { double x1; double x2; })arg1;
 - (struct { double x1; double x2; })convertPointToMapPoint:(struct CGPoint { double x1; double x2; })arg1;
-- (float)currentRoadSignOffset;
 - (void)debugHighlightObjectAtPoint:(struct CGPoint { double x1; double x2; })arg1 highlightTarget:(unsigned char)arg2;
 - (<VKInteractiveMapDelegate> *)delegate;
 - (NSString *)detailedDescription;
@@ -26,10 +25,8 @@
 - (bool)isPointValidForGesturing:(struct CGPoint { double x1; double x2; })arg1;
 - (NSArray *)overlays;
 - (void)removeOverlay:(VKOverlay *)arg1;
-- (void)requestStylesheetMapDisplayStyle:(struct DisplayStyle { unsigned char x1; unsigned char x2; unsigned char x3; unsigned char x4; unsigned char x5; })arg1 animated:(bool)arg2;
 - (void)setDelegate:(id <VKInteractiveMapDelegate>)arg1;
 - (void)setMapType:(int)arg1 animated:(bool)arg2;
-- (void)setNavCameraIsDetached:(bool)arg1;
 - (bool)shouldHideOffscreenSelectedAnnotation;
 - (void)transitionToTracking:(void *)arg1 mapMode:(void *)arg2 startLocation:(void *)arg3 startCourse:(void *)arg4 cameraController:(void *)arg5 pounceCompletionHandler:(void *)arg6; // needs 6 arg types, found 11: bool, long long, struct { double x1; double x2; }, double, VKCameraController<VKNavigationCameraController> *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, bool, void*
 - (NSArray *)visibleTileSets;

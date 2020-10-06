@@ -36,6 +36,8 @@
 @property (nonatomic) unsigned long long supportedInterfaceOrientations;
 @property (nonatomic) bool usesFullScreenPresentation;
 
+// Image: /System/Library/PrivateFrameworks/OnBoardingKit.framework/OnBoardingKit
+
 + (id)presenterForPrivacySplashWithBundle:(id)arg1;
 + (id)presenterForPrivacySplashWithBundleAtPath:(id)arg1;
 + (id)presenterForPrivacySplashWithIdentifer:(id)arg1;
@@ -54,6 +56,7 @@
 - (long long)modalPresentationStyle;
 - (void)present;
 - (void)presentInNavigationStack:(id)arg1;
+- (void)presentInNavigationStack:(id)arg1 animated:(bool)arg2;
 - (id /* block */)presentationCompletionHandler;
 - (void)presentationControllerDidDismiss:(id)arg1;
 - (id)presentedController;
@@ -75,5 +78,9 @@
 - (id)splashController;
 - (unsigned long long)supportedInterfaceOrientations;
 - (bool)usesFullScreenPresentation;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
++ (id)pk_presenterForContext:(unsigned long long)arg1;
 
 @end

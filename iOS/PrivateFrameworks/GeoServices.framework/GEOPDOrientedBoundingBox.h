@@ -37,7 +37,10 @@
 - (bool)hasWidth;
 - (unsigned long long)hash;
 - (double)height;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)position;
 - (void)readAll:(bool)arg1;

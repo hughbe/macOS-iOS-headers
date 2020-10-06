@@ -22,7 +22,10 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)merchantLookupBrandParameterAtIndex:(unsigned long long)arg1;
 - (id)merchantLookupBrandParameters;
 - (unsigned long long)merchantLookupBrandParametersCount;

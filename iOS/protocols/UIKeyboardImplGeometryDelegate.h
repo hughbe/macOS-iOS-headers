@@ -13,5 +13,6 @@
 - (void)prepareForImplBoundsHeightChange:(double)arg1 suppressNotification:(bool)arg2;
 - (void)setMinimized:(bool)arg1;
 - (bool)shouldSaveMinimizationState;
+- (void)syncMinimizedStateToHardwareKeyboardAttachedState;
 
 @end

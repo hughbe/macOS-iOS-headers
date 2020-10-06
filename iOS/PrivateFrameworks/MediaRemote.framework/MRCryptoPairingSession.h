@@ -4,12 +4,12 @@
 
 @interface MRCryptoPairingSession : NSObject {
     <MRCryptoPairingSessionDelegate> * _delegate;
-    _MRDeviceInfoMessageProtobuf * _device;
+    MRDeviceInfo * _device;
     unsigned long long  _role;
 }
 
 @property (nonatomic) <MRCryptoPairingSessionDelegate> *delegate;
-@property (nonatomic, readonly) _MRDeviceInfoMessageProtobuf *device;
+@property (nonatomic, readonly) MRDeviceInfo *device;
 @property (getter=isPaired, nonatomic, readonly) bool paired;
 @property (nonatomic, readonly) NSArray *pairedDevices;
 @property (nonatomic, readonly) unsigned long long role;

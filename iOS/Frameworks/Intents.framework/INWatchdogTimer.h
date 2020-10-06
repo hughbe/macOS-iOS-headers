@@ -20,6 +20,7 @@
 - (void)_stop;
 - (void)cancel;
 - (bool)cancelIfNotAlreadyCanceled;
+- (void)dealloc;
 - (id)initWithTimeoutInterval:(double)arg1 onQueue:(id)arg2 timeoutHandler:(id /* block */)arg3;
 - (id)initWithTimeoutInterval:(double)arg1 timeoutHandler:(id /* block */)arg2;
 - (bool)isCanceled;

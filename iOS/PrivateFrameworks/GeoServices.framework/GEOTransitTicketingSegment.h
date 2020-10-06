@@ -8,10 +8,7 @@
         unsigned int read_paths : 1; 
         unsigned int read_segmentName : 1; 
         unsigned int read_ticketingUrl : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_paths : 1; 
-        unsigned int wrote_segmentName : 1; 
-        unsigned int wrote_ticketingUrl : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _paths;
     PBDataReader * _reader;
@@ -36,10 +33,6 @@
 + (Class)pathType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsPath:(id)arg1;
-- (void)_readPaths;
-- (void)_readSegmentName;
-- (void)_readTicketingUrl;
 - (void)addPath:(id)arg1;
 - (void)clearPaths;
 - (void)clearUnknownFields:(bool)arg1;
@@ -52,7 +45,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)pathAtIndex:(unsigned long long)arg1;
 - (id)paths;

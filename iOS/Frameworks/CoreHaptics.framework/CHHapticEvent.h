@@ -36,13 +36,13 @@
 - (id)init;
 - (id)initWithAudioResourceID:(unsigned long long)arg1 parameters:(id)arg2 relativeTime:(double)arg3;
 - (id)initWithAudioResourceID:(unsigned long long)arg1 parameters:(id)arg2 relativeTime:(double)arg3 duration:(double)arg4;
-- (id)initWithAudioResourceIndex:(unsigned long long)arg1 parameters:(id)arg2 time:(double)arg3;
+- (id)initWithAudioResourceIndex:(unsigned long long)arg1 parameters:(id)arg2 time:(double)arg3 duration:(double)arg4;
 - (id)initWithEventType:(id)arg1 parameters:(id)arg2 relativeTime:(double)arg3;
 - (id)initWithEventType:(id)arg1 parameters:(id)arg2 relativeTime:(double)arg3 duration:(double)arg4;
 - (id)parameterCurves;
 - (id)parameters;
 - (double)relativeTime;
-- (bool)resolveExternalResources:(id)arg1 error:(id*)arg2;
+- (id)resolveExternalResources:(id)arg1 error:(id*)arg2;
 - (void)setDuration:(double)arg1;
 - (void)setRelativeTime:(double)arg1;
 - (id)type;

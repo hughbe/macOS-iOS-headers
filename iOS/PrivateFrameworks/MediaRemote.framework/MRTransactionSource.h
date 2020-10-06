@@ -7,11 +7,11 @@
     unsigned long long  _name;
     MRTransactionPacketizer * _packetizer;
     NSMutableArray * _packets;
-    _MRNowPlayingPlayerPathProtobuf * _playerPath;
+    MRPlayerPath * _playerPath;
 }
 
 @property (nonatomic, readonly) unsigned long long name;
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 
 - (void).cxx_destruct;
 - (void)_begin;

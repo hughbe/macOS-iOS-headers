@@ -5,6 +5,6 @@
 
 @required
 
-- (NSObject<OS_xpc_object> *)send_io_message:(struct XPC_Message_Payload { unsigned int x1; unsigned int x2; id x3; })arg1;
+- (NSObject<OS_xpc_object> *)send_io_message:(struct XPC_Message_Payload { struct Transport_Token { unsigned int x_1_1_1; } x1; struct Device_Token { unsigned int x_2_1_1; } x2; id x3; })arg1;
 
 @end

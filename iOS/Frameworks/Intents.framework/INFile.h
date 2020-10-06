@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INFile : NSObject <INEnumerable, INJSONSerializable> {
+@interface INFile : NSObject <INEnumerable, INJSONSerializable, NSSecureCoding, WFCodableAttributeContentConvertible, WFCodableAttributeTransformable> {
     NSData * _data;
     bool  _deletesFileOnDeallocationIfNeeded;
     NSURL * _fileURL;
@@ -24,6 +24,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly, copy) NSString *typeIdentifier;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
 + (id)fileWithData:(id)arg1 filename:(id)arg2 typeIdentifier:(id)arg3;
 + (id)fileWithFileURL:(id)arg1 filename:(id)arg2 typeIdentifier:(id)arg3;
@@ -38,7 +40,7 @@
 - (id)_initWithData:(id)arg1 filename:(id)arg2 fileURL:(id)arg3 typeIdentifier:(id)arg4;
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 - (bool)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(id /* block */)arg2;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
 - (bool)_isFileURLBased;
 - (bool)_isMarkedForDeletionOnDeallocation;
 - (void)_setAssociatedAuditToken:(struct { unsigned int x1[8]; })arg1;
@@ -55,5 +57,14 @@
 - (bool)isEqual:(id)arg1;
 - (void)setFilename:(id)arg1;
 - (id)typeIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
++ (Class)wf_contentItemClass;
++ (id)wf_fileWithFileRepresentation:(id)arg1;
+
+- (id)wf_contentItemWithCodableAttribute:(id)arg1;
+- (id)wf_fileRepresentation;
+- (void)wf_transformUsingCodableAttribute:(id)arg1 completionHandler:(id /* block */)arg2;
 
 @end

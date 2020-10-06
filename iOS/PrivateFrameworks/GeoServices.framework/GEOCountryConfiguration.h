@@ -3,7 +3,7 @@
  */
 
 @interface GEOCountryConfiguration : NSObject <GEOResourceManifestTileGroupObserver, _GEOCountryConfigurationServerProxyDelegate> {
-    NSString * _countryCode;
+    _GEOCountryConfigurationInfo * _countryCodeInfo;
     bool  _currentCountrySupportsNavigation;
     geo_isolater * _currentCountrySupportsNavigationIsolater;
     bool  _determinedCurrentCountrySupportsNavigation;
@@ -19,6 +19,7 @@
 @property (nonatomic, readonly) bool currentCountrySupportsCarIntegration;
 @property (nonatomic, readonly) bool currentCountrySupportsCommute;
 @property (nonatomic, readonly) bool currentCountrySupportsDirections;
+@property (nonatomic, readonly) bool currentCountrySupportsElectricVehicleRouting;
 @property (nonatomic, readonly) bool currentCountrySupportsNavigation;
 @property (nonatomic, readonly) bool currentCountrySupportsRouteGenius;
 @property (nonatomic, readonly) bool currentCountrySupportsTraffic;
@@ -42,9 +43,11 @@
 - (void)_resetSupportedFeatures;
 - (id)countryCode;
 - (bool)countryCode:(id)arg1 supportsFeature:(long long)arg2;
+- (id)countryCodeWithSource:(unsigned int*)arg1 updatedAtTime:(id*)arg2;
 - (bool)currentCountrySupportsCarIntegration;
 - (bool)currentCountrySupportsCommute;
 - (bool)currentCountrySupportsDirections;
+- (bool)currentCountrySupportsElectricVehicleRouting;
 - (bool)currentCountrySupportsFeature:(long long)arg1;
 - (bool)currentCountrySupportsNavigation;
 - (bool)currentCountrySupportsRouteGenius;

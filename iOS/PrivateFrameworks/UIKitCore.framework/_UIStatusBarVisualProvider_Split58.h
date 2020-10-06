@@ -15,15 +15,15 @@
 + (double)leadingItemSpacing;
 + (double)leadingSmallPillSpacing;
 + (double)lowerExpandedBaselineOffset;
++ (double)nativeDisplayWidth;
 + (id)normalFont;
 + (struct CGSize { double x1; double x2; })notchSize;
 + (double)pillCenteringEdgeInset;
 + (id)pillFont;
 + (struct CGSize { double x1; double x2; })pillSize;
 + (id)pillSmallFont;
-+ (double)referenceWidth;
-+ (id)smallFont;
 + (struct CGSize { double x1; double x2; })smallPillSize;
++ (id)systemUpdateFont;
 
 - (id)stringForCellularType:(long long)arg1 condensed:(bool)arg2;
 

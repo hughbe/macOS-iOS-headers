@@ -3,6 +3,7 @@
  */
 
 @interface NWAWDNWL2Report : PBCodable <NSCopying> {
+    int  _cellularBand;
     int  _cellularBandInfo;
     int  _cellularBandwidth;
     int  _cellularBars;
@@ -11,6 +12,7 @@
     int  _cellularLqm;
     int  _cellularMcc;
     int  _cellularMnc;
+    int  _cellularMode;
     int  _cellularPid;
     int  _cellularPowerCostDownload;
     int  _cellularPowerCostUpload;
@@ -18,12 +20,14 @@
     int  _cellularTac;
     int  _cellularUarfcn;
     struct { 
+        unsigned int cellularBand : 1; 
         unsigned int cellularBandInfo : 1; 
         unsigned int cellularBandwidth : 1; 
         unsigned int cellularBars : 1; 
         unsigned int cellularLqm : 1; 
         unsigned int cellularMcc : 1; 
         unsigned int cellularMnc : 1; 
+        unsigned int cellularMode : 1; 
         unsigned int cellularPid : 1; 
         unsigned int cellularPowerCostDownload : 1; 
         unsigned int cellularPowerCostUpload : 1; 
@@ -42,6 +46,7 @@
     int  _wifiRssi;
 }
 
+@property (nonatomic) int cellularBand;
 @property (nonatomic) int cellularBandInfo;
 @property (nonatomic) int cellularBandwidth;
 @property (nonatomic) int cellularBars;
@@ -50,12 +55,14 @@
 @property (nonatomic) int cellularLqm;
 @property (nonatomic) int cellularMcc;
 @property (nonatomic) int cellularMnc;
+@property (nonatomic) int cellularMode;
 @property (nonatomic) int cellularPid;
 @property (nonatomic) int cellularPowerCostDownload;
 @property (nonatomic) int cellularPowerCostUpload;
 @property (nonatomic) int cellularRadioTechnology;
 @property (nonatomic) int cellularTac;
 @property (nonatomic) int cellularUarfcn;
+@property (nonatomic) bool hasCellularBand;
 @property (nonatomic) bool hasCellularBandInfo;
 @property (nonatomic) bool hasCellularBandwidth;
 @property (nonatomic) bool hasCellularBars;
@@ -64,6 +71,7 @@
 @property (nonatomic) bool hasCellularLqm;
 @property (nonatomic) bool hasCellularMcc;
 @property (nonatomic) bool hasCellularMnc;
+@property (nonatomic) bool hasCellularMode;
 @property (nonatomic) bool hasCellularPid;
 @property (nonatomic) bool hasCellularPowerCostDownload;
 @property (nonatomic) bool hasCellularPowerCostUpload;
@@ -80,10 +88,14 @@
 @property (nonatomic) int wifiRssi;
 
 - (void).cxx_destruct;
+- (int)StringAsCellularBand:(id)arg1;
+- (int)StringAsCellularMode:(id)arg1;
 - (int)StringAsCellularPowerCostDownload:(id)arg1;
 - (int)StringAsCellularPowerCostUpload:(id)arg1;
 - (int)StringAsCellularRadioTechnology:(id)arg1;
 - (int)StringAsWifiRadioTechnology:(id)arg1;
+- (int)cellularBand;
+- (id)cellularBandAsString:(int)arg1;
 - (int)cellularBandInfo;
 - (int)cellularBandwidth;
 - (int)cellularBars;
@@ -92,6 +104,8 @@
 - (int)cellularLqm;
 - (int)cellularMcc;
 - (int)cellularMnc;
+- (int)cellularMode;
+- (id)cellularModeAsString:(int)arg1;
 - (int)cellularPid;
 - (int)cellularPowerCostDownload;
 - (id)cellularPowerCostDownloadAsString:(int)arg1;
@@ -105,6 +119,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (bool)hasCellularBand;
 - (bool)hasCellularBandInfo;
 - (bool)hasCellularBandwidth;
 - (bool)hasCellularBars;
@@ -113,6 +128,7 @@
 - (bool)hasCellularLqm;
 - (bool)hasCellularMcc;
 - (bool)hasCellularMnc;
+- (bool)hasCellularMode;
 - (bool)hasCellularPid;
 - (bool)hasCellularPowerCostDownload;
 - (bool)hasCellularPowerCostUpload;
@@ -127,6 +143,7 @@
 - (bool)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setCellularBand:(int)arg1;
 - (void)setCellularBandInfo:(int)arg1;
 - (void)setCellularBandwidth:(int)arg1;
 - (void)setCellularBars:(int)arg1;
@@ -135,12 +152,14 @@
 - (void)setCellularLqm:(int)arg1;
 - (void)setCellularMcc:(int)arg1;
 - (void)setCellularMnc:(int)arg1;
+- (void)setCellularMode:(int)arg1;
 - (void)setCellularPid:(int)arg1;
 - (void)setCellularPowerCostDownload:(int)arg1;
 - (void)setCellularPowerCostUpload:(int)arg1;
 - (void)setCellularRadioTechnology:(int)arg1;
 - (void)setCellularTac:(int)arg1;
 - (void)setCellularUarfcn:(int)arg1;
+- (void)setHasCellularBand:(bool)arg1;
 - (void)setHasCellularBandInfo:(bool)arg1;
 - (void)setHasCellularBandwidth:(bool)arg1;
 - (void)setHasCellularBars:(bool)arg1;
@@ -148,6 +167,7 @@
 - (void)setHasCellularLqm:(bool)arg1;
 - (void)setHasCellularMcc:(bool)arg1;
 - (void)setHasCellularMnc:(bool)arg1;
+- (void)setHasCellularMode:(bool)arg1;
 - (void)setHasCellularPid:(bool)arg1;
 - (void)setHasCellularPowerCostDownload:(bool)arg1;
 - (void)setHasCellularPowerCostUpload:(bool)arg1;

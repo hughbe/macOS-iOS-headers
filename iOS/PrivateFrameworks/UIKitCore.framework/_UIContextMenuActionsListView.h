@@ -2,51 +2,96 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UIContextMenuActionsListView : UIView {
-    UIInterfaceActionGroupView * _currentActionGroupView;
+@interface _UIContextMenuActionsListView : UIView <UIGestureRecognizerDelegate> {
+    UIView * _clippingView;
+    UICollectionViewDiffableDataSource * _collectionViewDataSource;
+    UICollectionView * _currentCollectionView;
     <_UIContextMenuActionsListViewDelegate> * _delegate;
     UIMenu * _displayedMenu;
-    UIFont * _labelFont;
+    UISelectionFeedbackGenerator * _feedbackGenerator;
+    UIHoverGestureRecognizer * _highlightHoverGestureRecognizer;
+    NSIndexPath * _highlightedIndexPath;
     bool  _reversesActionOrder;
+    bool  _scrubbingEnabled;
+    _UIContextMenuSelectionDelayGestureRecognizer * _selectionDelayGestureRecognizer;
+    _UIContextMenuSelectionGestureRecognizer * _selectionGestureRecognizer;
+    _UICutoutShadowView * _shadowView;
     bool  _showsShadow;
     bool  _showsTitle;
     bool  _surfacesActionRadius;
 }
 
-@property (nonatomic, retain) UIInterfaceActionGroupView *currentActionGroupView;
+@property (nonatomic, retain) UIView *clippingView;
+@property (nonatomic, retain) UICollectionViewDiffableDataSource *collectionViewDataSource;
+@property (nonatomic, retain) UICollectionView *currentCollectionView;
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <_UIContextMenuActionsListViewDelegate> *delegate;
-@property (nonatomic, copy) UIMenu *displayedMenu;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIMenu *displayedMenu;
+@property (nonatomic, retain) UISelectionFeedbackGenerator *feedbackGenerator;
+@property (readonly) unsigned long long hash;
+@property (nonatomic, retain) UIHoverGestureRecognizer *highlightHoverGestureRecognizer;
+@property (nonatomic, copy) NSIndexPath *highlightedIndexPath;
 @property (nonatomic) bool reversesActionOrder;
+@property (nonatomic) bool scrubbingEnabled;
+@property (nonatomic, retain) _UIContextMenuSelectionDelayGestureRecognizer *selectionDelayGestureRecognizer;
+@property (nonatomic, retain) _UIContextMenuSelectionGestureRecognizer *selectionGestureRecognizer;
+@property (nonatomic, retain) _UICutoutShadowView *shadowView;
 @property (nonatomic) bool showsShadow;
 @property (nonatomic) bool showsTitle;
+@property (readonly) Class superclass;
 @property (nonatomic) bool surfacesActionRadius;
 
 - (void).cxx_destruct;
-- (double)_clampedCornerRadiusForGroupView:(id)arg1;
-- (id)_interfaceActionGroupForActions:(id)arg1;
-- (id)_labelFont;
-- (id)_loadingInterfaceAction;
-- (void)_performActionForPreviewAction:(id)arg1;
-- (id)_reversedActionGroupForActionGroup:(id)arg1;
+- (double)_clampedCornerRadius;
+- (void)_configureCell:(id)arg1 forElement:(id)arg2 section:(id)arg3;
+- (id)_dataSourceForCollectionView:(id)arg1;
+- (void)_handleHoverGestureRecognizer:(id)arg1;
+- (void)_handleSelectionGesture:(id)arg1;
+- (void)_performActionForElement:(id)arg1;
+- (void)_setHighlightedIndexPath:(id)arg1 animated:(bool)arg2 playFeedback:(bool)arg3;
+- (void)_sizeClippingAndCollectionViews;
 - (void)_testing_tapAnAction;
-- (id)currentActionGroupView;
+- (void)_updateSelectionGestureAllowableMovement;
+- (id)clippingView;
+- (id)collectionViewDataSource;
+- (id)currentCollectionView;
 - (id)delegate;
 - (id)displayedMenu;
-- (id)initWithMenu:(id)arg1;
+- (id)feedbackGenerator;
+- (bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
+- (bool)gestureRecognizer:(id)arg1 shouldRequireFailureOfGestureRecognizer:(id)arg2;
+- (id)highlightHoverGestureRecognizer;
+- (id)highlightedIndexPath;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)kickstartActionScrubbingWithGesture:(id)arg1;
 - (void)layoutSubviews;
+- (struct CGSize { double x1; double x2; })preferredContentSizeWithWidth:(double)arg1;
 - (bool)reversesActionOrder;
-- (void)setCurrentActionGroupView:(id)arg1;
+- (void)scrollToFirstAction;
+- (bool)scrubbingEnabled;
+- (id)selectionDelayGestureRecognizer;
+- (id)selectionGestureRecognizer;
+- (void)setClippingView:(id)arg1;
+- (void)setCollectionViewDataSource:(id)arg1;
+- (void)setCurrentCollectionView:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDisplayedMenu:(id)arg1;
 - (void)setDisplayedMenu:(id)arg1 withAnimationStyle:(unsigned long long)arg2 alongsideAnimations:(id /* block */)arg3;
+- (void)setFeedbackGenerator:(id)arg1;
+- (void)setHighlightHoverGestureRecognizer:(id)arg1;
+- (void)setHighlightedIndexPath:(id)arg1;
 - (void)setReversesActionOrder:(bool)arg1;
+- (void)setScrubbingEnabled:(bool)arg1;
+- (void)setSelectionDelayGestureRecognizer:(id)arg1;
+- (void)setSelectionGestureRecognizer:(id)arg1;
+- (void)setShadowView:(id)arg1;
 - (void)setShowsShadow:(bool)arg1;
 - (void)setShowsTitle:(bool)arg1;
 - (void)setSurfacesActionRadius:(bool)arg1;
+- (id)shadowView;
 - (bool)showsShadow;
 - (bool)showsTitle;
 - (bool)surfacesActionRadius;
-- (struct CGSize { double x1; double x2; })systemLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
 
 @end

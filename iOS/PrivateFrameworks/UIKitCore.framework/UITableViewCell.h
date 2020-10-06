@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UITableViewCell : UIView <DebugHierarchyObject_Fallback, NSCoding, UIGestureRecognizerDelegate, UIScrollViewDelegate, UITableConstantsCellProviding, _UIInteractiveHighlighting, _UILayoutEngineSuspending> {
+@interface UITableViewCell : UIView <NSCoding, UIGestureRecognizerDelegate, UIScrollViewDelegate, UITableConstantsCellProviding, _UIInteractiveHighlighting, _UILayoutEngineSuspending, _UISystemBackgroundViewContainer> {
     NSMutableDictionary * __editingControlTintColors;
     SEL  _accessoryAction;
     UIStoryboardPreviewingSegueTemplateStorage * _accessoryActionPreviewingSegueTemplateStorage;
@@ -17,11 +17,14 @@
         double right; 
     }  _backgroundInset;
     UIView * _backgroundView;
+    id /* block */  _backgroundViewConfigurationProvider;
     id  _badge;
     UIView * _bottomShadowAnimationView;
     UIView * _clearBlendingView;
     <UITableConstants> * _constants;
     UIView * _contentView;
+    NSString * _contentViewConfigurationIdentifier;
+    id /* block */  _contentViewConfigurationProvider;
     UIView * _customAccessoryView;
     UIView * _customEditingAccessoryView;
     double  _defaultLeadingMarginWidth;
@@ -29,11 +32,13 @@
     NSTimer * _deselectTimer;
     UILabel * _detailTextLabel;
     long long  _dragState;
+    long long  _dropState;
     SEL  _editAction;
     UIFocusGuide * _editControlFocusGuide;
     UITextField * _editableTextField;
     UIControl * _editingAccessoryView;
     id  _editingData;
+    double  _extraLeadingLayoutMarginForIndentation;
     _UIFloatingContentView * _floatingContentView;
     UIView * _floatingSeparatorView;
     UIImageView * _imageView;
@@ -41,6 +46,7 @@
     double  _indentationWidth;
     double  _indexBarExtentFromEdge;
     bool  _isLayoutEngineSuspended;
+    <_UIBackgroundConfigurationInternal> * _lastNormalBackgroundViewConfiguration;
     double  _lastSelectionTime;
     id  _layoutManager;
     long long  _lineBreakModeBeforeFocus;
@@ -67,12 +73,15 @@
         double right; 
     }  _separatorInset;
     _UITableViewCellSeparatorView * _separatorView;
+    _UISystemBackgroundView * _systemBackgroundView;
     struct { 
         unsigned int showingDeleteConfirmation : 1; 
         unsigned int separatorStyle : 3; 
         unsigned int selectionStyle : 3; 
-        unsigned int selectionFadeFraction : 11; 
+        unsigned int selected : 1; 
         unsigned int editing : 1; 
+        unsigned int swiped : 1; 
+        unsigned int reordering : 1; 
         unsigned int editingStyle : 3; 
         unsigned int accessoryType : 3; 
         unsigned int editingAccessoryType : 3; 
@@ -129,6 +138,18 @@
         unsigned int tableViewHasBeenExplicitlySet : 1; 
         unsigned int ignoresMultipleSelectionDuringEditing : 1; 
         unsigned int hasEverUsedRoundedGroups : 1; 
+        unsigned int preserveBackgroundMaskingForReorderAnimationEnding : 1; 
+        unsigned int needsConfigurationStateUpdate : 1; 
+        unsigned int hasCustomBackgroundColor : 1; 
+        unsigned int hasCustomBackgroundView : 1; 
+        unsigned int hasCustomSelectedBackgroundView : 1; 
+        unsigned int hasCustomMultipleSelectionBackgroundView : 1; 
+        unsigned int hasCustomBackgroundViewConfigurationProvider : 1; 
+        unsigned int hasCustomBackgroundViewConfiguration : 1; 
+        unsigned int hasCustomIndentationWidth : 1; 
+        unsigned int automaticallyUpdatesContentViewConfiguration : 1; 
+        unsigned int automaticallyUpdatesBackgroundViewConfiguration : 1; 
+        unsigned int hasShownHighlightedOrSelectedBackground : 1; 
     }  _tableCellFlags;
     <UITable_UITableViewCellDelegate> * _tableView;
     id  _target;
@@ -137,17 +158,23 @@
     _UITableViewCellSeparatorView * _topSeparatorView;
     UIView * _topShadowAnimationView;
     struct __CFDictionary { } * _unhighlightedStates;
+    <_UIContentViewInternal> * _viewForContentConfiguration;
 }
 
+@property (nonatomic, readonly) UICellConfigurationState *_bridgedConfigurationState;
 @property (getter=_isLayoutEngineSuspended, setter=_setLayoutEngineSuspended:, nonatomic) bool _layoutEngineSuspended;
 @property (getter=_accessoryManager, nonatomic, readonly) UICellAccessoryManager *accessoryManager;
 @property (nonatomic) long long accessoryType;
 @property (nonatomic, retain) UIView *accessoryView;
+@property (nonatomic) bool automaticallyUpdatesBackgroundConfiguration;
+@property (nonatomic) bool automaticallyUpdatesContentConfiguration;
+@property (nonatomic, copy) UIBackgroundConfiguration *backgroundConfiguration;
 @property (nonatomic, retain) UIView *backgroundView;
 @property (getter=_cellStyle, nonatomic, readonly) long long cellStyle;
+@property (nonatomic, readonly) UICellConfigurationState *configurationState;
+@property (nonatomic, copy) <UIContentConfiguration> *contentConfiguration;
 @property (nonatomic, readonly) UIView *contentView;
 @property (readonly, copy) NSString *debugDescription;
-@property (getter=_defaultTrailingCellMarginWidth, nonatomic, readonly) double defaultTrailingCellMarginWidth;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) UILabel *detailTextLabel;
 @property (getter=_editControlFocusGuide, setter=_setEditControlFocusGuide:, nonatomic, retain) UIFocusGuide *editControlFocusGuide;
@@ -161,6 +188,7 @@
 @property (nonatomic, readonly) UIImageView *imageView;
 @property (nonatomic) long long indentationLevel;
 @property (nonatomic) double indentationWidth;
+@property (getter=_minimumCellAccessoryMargin, nonatomic, readonly) double minimumCellAccessoryMargin;
 @property (nonatomic, retain) UIView *multipleSelectionBackgroundView;
 @property (getter=_reorderControlFocusGuide, setter=_setReorderControlFocusGuide:, nonatomic, retain) UIFocusGuide *reorderControlFocusGuide;
 @property (nonatomic, readonly, copy) NSString *reuseIdentifier;
@@ -174,13 +202,15 @@
 @property (getter=_skipsLayout, setter=_setSkipsLayout:, nonatomic) bool skipsLayout;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UILabel *textLabel;
+@property (nonatomic, readonly) UITextField *ts_editableTextField;
+@property (nonatomic, readonly) NSArray *ts_privateAccessibilityCustomActions;
 @property (nonatomic) bool userInteractionEnabledWhileDragging;
 @property (getter=_usesModernAccessoriesLayout, setter=_setUsesModernAccessoriesLayout:, nonatomic) bool usesModernAccessoriesLayout;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
++ (void)_ensureInitializeSystemAppearanceModifications;
 + (void)_initializeForIdiom:(long long)arg1;
-+ (void)initialize;
 
 - (void).cxx_destruct;
 - (SEL)_accessoryAction;
@@ -191,16 +221,25 @@
 - (bool)_accessoryViewsHidden;
 - (id)_addSeparatorWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_addSubview:(id)arg1 positioned:(long long)arg2 relativeTo:(id)arg3;
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_adjustedRawLayoutMargins:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1 withLeadingLayoutMarginAdjustment:(double)arg2;
 - (bool)_allowsReorderingWhenNotEditing;
 - (void)_animateFloatingSeparatorForInsertion:(bool)arg1 withRowAnimation:(long long)arg2;
 - (void)_animateInnerShadowForInsertion:(bool)arg1 withRowAnimation:(long long)arg2;
+- (bool)_appliesMaskingToCellWhenUsingBackgroundConfiguration;
+- (void)_applyBackgroundViewConfiguration:(id)arg1 withState:(id)arg2;
+- (void)_applyContentViewConfiguration:(id)arg1 withState:(id)arg2 usingSPI:(bool)arg3;
 - (void)_applySelectedStateToSeparators:(bool)arg1;
-- (bool)_backgroundColorSet;
+- (bool)_automaticallyUpdatesBackgroundViewConfiguration;
+- (bool)_automaticallyUpdatesContentViewConfiguration;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_backgroundInset;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_backgroundSeparatorInset;
 - (id)_backgroundView:(bool)arg1;
+- (id)_backgroundViewConfiguration;
+- (id /* block */)_backgroundViewConfigurationProvider;
 - (id)_badge;
 - (id)_badge:(bool)arg1;
+- (id)_badgeColor;
+- (id)_badgeFont;
 - (id)_badgeText;
 - (bool)_canDrawContent;
 - (void)_cancelInternalPerformRequests;
@@ -209,14 +248,21 @@
 - (id)_checkmarkImage;
 - (id)_checkmarkImage:(bool)arg1;
 - (void)_clearOpaqueViewState:(id)arg1;
+- (void)_clearPrimaryTextFrameDidChangeHandlerForContentView:(id)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_concreteDefaultLayoutMargins;
+- (id)_configurationState;
 - (id)_constants;
 - (id)_containerView;
 - (id)_contentBackgroundColor;
+- (double)_contentConfigurationPrimaryTextInsetFromCellLeadingEdge;
+- (id)_contentViewConfiguration;
+- (id /* block */)_contentViewConfigurationProvider;
 - (void)_contentViewLabelTextDidChange:(id)arg1;
+- (id)_createDefaultContentView;
 - (id)_customAccessoryView:(bool)arg1;
 - (id)_customEditingAccessoryView:(bool)arg1;
 - (id)_defaultAccessoryView;
+- (id)_defaultBackgroundConfiguration;
 - (id)_defaultFont;
 - (double)_defaultLeadingMarginWidth;
 - (double)_defaultTrailingCellMarginWidth;
@@ -236,6 +282,7 @@
 - (bool)_drawsSeparatorAtTopOfSection;
 - (bool)_drawsTopSeparatorDuringReordering;
 - (id)_dropAnimationContainerView;
+- (long long)_dropState;
 - (id)_editControlAccessoryForStyle:(long long)arg1;
 - (id)_editControlFocusGuide;
 - (bool)_editControlShouldBeOnLeadingSideForStyle:(long long)arg1;
@@ -245,6 +292,7 @@
 - (id)_editingControlTintColorForStyle:(long long)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_effectiveSafeAreaInsets;
 - (id)_encodableSubviews;
+- (void)_encodeBackgroundColorWithCoder:(id)arg1;
 - (void)_ensureFocusedFloatingContentView;
 - (id)_existingSystemAccessoryView:(bool)arg1;
 - (id)_existingSystemAccessoryViews;
@@ -276,20 +324,25 @@
 - (bool)_isCurrentlyConsideredHighlighted;
 - (bool)_isDeleteAnimationInProgress;
 - (bool)_isDragging;
+- (bool)_isDropTarget;
 - (bool)_isHighlighted;
 - (bool)_isInModalViewController;
 - (bool)_isLayoutEngineSuspended;
 - (bool)_isMultiselecting;
 - (bool)_isReorderControlActive;
 - (bool)_isReorderable;
+- (bool)_isReordering;
+- (bool)_isSwiped;
 - (bool)_isUsingOldStyleMultiselection;
 - (id)_layoutDebuggingTitle;
 - (void)_layoutFloatingContentView;
 - (void)_layoutMarginsDidChangeFromOldMargins:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
-- (void)_layoutSubviewsAnimated:(bool)arg1;
+- (void)_layoutSystemBackgroundView;
 - (id)_leadingAccessoriesForEditing:(bool)arg1 style:(long long)arg2;
 - (void)_longPressGestureRecognized:(id)arg1;
 - (double)_marginWidth;
+- (unsigned long long)_maskedCornersForSystemBackgroundView;
+- (double)_minimumCellAccessoryMargin;
 - (void)_monitoredView:(id)arg1 didMoveFromSuperview:(id)arg2 toSuperview:(id)arg3;
 - (void)_monitoredView:(id)arg1 willMoveFromSuperview:(id)arg2 toSuperview:(id)arg3;
 - (id)_multiselectBackgroundColor;
@@ -299,6 +352,7 @@
 - (id)_newAccessoryView:(bool)arg1;
 - (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })_overriddenDefaultContentViewLayoutMargins;
 - (void)_performAction:(SEL)arg1 sender:(id)arg2;
+- (void)_performConfigurationStateUpdate;
 - (long long)_popoverControllerStyle;
 - (void)_populateArchivedSubviews:(id)arg1;
 - (id)_preferredConfigurationForFocusAnimation:(long long)arg1 inContext:(id)arg2;
@@ -310,14 +364,20 @@
 - (void)_releaseTextLabel;
 - (void)_removeFloatingSeparator;
 - (void)_removeFocusedFloatingContentView;
+- (void)_removeFromSuperviewIgnoringFirstResponder:(bool)arg1;
 - (void)_removeInnerShadow;
 - (void)_removeRemoveControl;
 - (id)_reorderControlFocusGuide;
 - (id)_reorderControlImage;
+- (void)_resetBackgroundViewConfiguration;
+- (void)_resetBackgroundViewsAndColor;
+- (void)_resetContentViews;
 - (void)_resetEditControlRotation;
+- (void)_resetRawLayoutMargins;
 - (void)_resetSelectionTimer;
 - (void)_restoreLabelTextAfterSystemTextSizeChangeIfNeeded;
 - (double)_rightMarginWidth;
+- (double)_roundedGroupCornerRadius;
 - (void)_safeAreaInsetsDidChangeFromOldInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (long long)_sanitizedEditingStyleForEditing:(bool)arg1 style:(long long)arg2;
 - (void)_saveOpaqueViewState:(id)arg1;
@@ -337,12 +397,22 @@
 - (void)_setAllowsReorderingWhenNotEditing:(bool)arg1;
 - (void)_setAnimating:(bool)arg1;
 - (void)_setAnimating:(bool)arg1 clippingAdjacentCells:(bool)arg2;
+- (void)_setAutomaticallyUpdatesBackgroundViewConfiguration:(bool)arg1;
+- (void)_setAutomaticallyUpdatesContentViewConfiguration:(bool)arg1;
 - (void)_setBackgroundInset:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (void)_setBackgroundViewConfiguration:(id)arg1;
+- (void)_setBackgroundViewConfigurationProvider:(id /* block */)arg1;
+- (void)_setBadgeColor:(id)arg1;
+- (void)_setBadgeFont:(id)arg1;
 - (void)_setBadgeText:(id)arg1;
 - (void)_setConstants:(id)arg1;
 - (void)_setContainerView:(id)arg1;
 - (void)_setContentClipCorners:(unsigned long long)arg1 updateCorners:(bool)arg2;
+- (void)_setContentView:(id)arg1;
+- (void)_setContentViewConfiguration:(id)arg1;
+- (void)_setContentViewConfigurationProvider:(id /* block */)arg1;
 - (void)_setCurrentScreenScale:(double)arg1;
+- (void)_setDefaultBackgroundColor:(id)arg1;
 - (void)_setDefaultLeadingMarginWidth:(double)arg1;
 - (void)_setDefaultTrailingCellMarginWidth:(double)arg1;
 - (void)_setDeleteAnimationInProgress:(bool)arg1;
@@ -353,6 +423,8 @@
 - (void)_setDrawsTopSeparator:(bool)arg1;
 - (void)_setDrawsTopSeparatorDuringReordering:(bool)arg1;
 - (void)_setDropAnimationContainerView:(id)arg1;
+- (void)_setDropState:(long long)arg1;
+- (void)_setDropTarget:(bool)arg1;
 - (void)_setEditControlFocusGuide:(id)arg1;
 - (void)_setEditing:(bool)arg1 animated:(bool)arg2 cellOrAncestorViewForAnimatedLayout:(id)arg3;
 - (void)_setEditingControlTintColor:(id)arg1 forStyle:(long long)arg2;
@@ -361,6 +433,7 @@
 - (void)_setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 skipLayout:(bool)arg2;
 - (void)_setHiddenForReuse:(bool)arg1;
 - (void)_setIgnoresMultipleSelectionDuringEditing:(bool)arg1;
+- (void)_setIndentationWidth:(double)arg1;
 - (void)_setIndexBarExtentFromEdge:(double)arg1;
 - (void)_setIndexPath:(id)arg1;
 - (void)_setInsetsContentViewsToSafeArea:(bool)arg1;
@@ -369,11 +442,13 @@
 - (void)_setMultiselecting:(bool)arg1;
 - (void)_setNeedsAccessoriesUpdate;
 - (void)_setNeedsAccessoriesUpdateForced:(bool)arg1;
+- (void)_setNeedsConfigurationStateUpdate;
 - (void)_setNeedsHeightCalculation:(bool)arg1;
 - (void)_setNeedsSeparatorUpdate;
 - (void)_setNeedsSetup:(bool)arg1;
 - (void)_setOpaque:(bool)arg1 forSubview:(id)arg2;
 - (void)_setOverriddenDefaultContentViewLayoutMargins:(struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (void)_setRawLayoutMargins:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)_setReorderControlFocusGuide:(id)arg1;
 - (void)_setReorderControlImage:(id)arg1;
 - (void)_setReordering:(bool)arg1;
@@ -393,13 +468,14 @@
 - (void)_setShowsReorderControl:(bool)arg1;
 - (void)_setSkipsLayout:(bool)arg1;
 - (void)_setSwipeContainerView:(id)arg1;
-- (void)_setTableBackgroundCGColor:(struct CGColor { }*)arg1 withSystemColorName:(id)arg2;
+- (void)_setSwiped:(bool)arg1;
 - (void)_setTableView:(id)arg1;
 - (void)_setTarget:(id)arg1;
 - (void)_setUsesModernAccessoriesLayout:(bool)arg1;
 - (void)_setupBackgroundView;
 - (void)_setupMenuGesture;
 - (void)_setupModernAccessoriesLayout;
+- (void)_setupPrimaryTextFrameDidChangeHandlerForContentView:(id)arg1;
 - (void)_setupSelectedBackgroundView;
 - (void)_setupTableViewCellCommon;
 - (bool)_shouldApplyReadableWidthInsets;
@@ -414,9 +490,11 @@
 - (bool)_showSeparatorAtTopOfSection;
 - (bool)_skipsLayout;
 - (void)_startToEditTextField;
+- (id)_stateForUpdatingBackgroundConfigurationWithState:(id)arg1;
 - (id)_subviewsForFloatingContentView;
 - (id)_swipeContainerView;
 - (void)_syncAccessoryViewsIfNecessary;
+- (id)_systemBackgroundView;
 - (void)_systemTextSizeChanged;
 - (id)_tableView;
 - (void)_tableViewDidUpdateMarginWidth;
@@ -431,9 +509,15 @@
 - (void)_updateAccessoriesIfNeeded;
 - (void)_updateAccessoryMetrics;
 - (void)_updateAndCacheBackgroundColorForHighlightIgnoringSelection:(bool)arg1;
+- (void)_updateBackgroundViewConfigurationForState:(id)arg1;
+- (void)_updateCellForCurrentBackgroundConfiguration;
 - (void)_updateCellMaskViewsForView:(id)arg1 backdropView:(id)arg2;
 - (void)_updateContentClip;
+- (void)_updateContentViewConfigurationForState:(id)arg1;
 - (void)_updateDefaultAccessoryViewForFocus:(bool)arg1;
+- (void)_updateDefaultBackgroundAppearance;
+- (void)_updateDefaultImageSymbolConfiguration;
+- (void)_updateDefaultIndentationWidth;
 - (void)_updateDefaultLabelsForFocus:(bool)arg1;
 - (void)_updateExpansionButton:(id)arg1 forType:(long long)arg2 animated:(bool)arg3;
 - (bool)_updateExpansionButtonFromType:(long long)arg1 toType:(long long)arg2;
@@ -442,33 +526,35 @@
 - (void)_updateHighlightColors;
 - (void)_updateHighlightColorsForAnimationHalfwayPoint;
 - (void)_updateHighlightColorsForView:(id)arg1 highlighted:(bool)arg2;
+- (void)_updateImageViewTintColor;
+- (void)_updateLeadingLayoutMarginForIndentation;
 - (void)_updateSeparatorContent;
 - (void)_updateSeparatorContent:(bool)arg1;
 - (void)_updateSeparatorViewAlpha;
+- (void)_updateShowingSelectedBackground;
 - (void)_updateTopSeparatorViewAlpha;
 - (void)_updateUserInteractionEnabledForNewDragState:(long long)arg1;
+- (void)_updateViewConfigurationsWithState:(unsigned long long)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_updatedContentViewFrameForTargetWidth:(double)arg1;
 - (bool)_usesModernAccessoriesLayout;
 - (bool)_usesRoundedGroups;
+- (bool)_usingBackgroundConfigurationOrDefaultBackgroundConfiguration;
+- (bool)_usingBackgroundViewConfiguration;
 - (double)_verticalPaddingForSeparator;
+- (unsigned long long)_viewConfigurationState;
+- (id)_visiblePathForBackgroundConfiguration;
 - (void)_willEnterReusePool;
 - (void)_willTransitionToState:(unsigned long long)arg1;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (SEL)accessoryAction;
 - (id)accessoryActionPreviewingSegueTemplateStorage;
 - (id)accessoryActionSegueTemplate;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })accessoryRectForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (long long)accessoryType;
 - (id)accessoryView;
+- (bool)automaticallyUpdatesBackgroundConfiguration;
+- (bool)automaticallyUpdatesContentConfiguration;
 - (id)backgroundColor;
+- (id)backgroundConfiguration;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })backgroundRectForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)backgroundView;
 - (void)bringSubviewToFront:(id)arg1;
@@ -477,12 +563,16 @@
 - (bool)canPerformAction:(SEL)arg1 withSender:(id)arg2;
 - (struct CGPoint { double x1; double x2; })center;
 - (bool)clipsContents;
+- (id)configurationState;
+- (id)contentConfiguration;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })contentRectForBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })contentRectForState:(unsigned long long)arg1;
 - (id)contentView;
 - (void)copy:(id)arg1;
 - (unsigned long long)currentStateMask;
 - (void)cut:(id)arg1;
+- (void)dealloc;
+- (id)defaultContentConfiguration;
 - (id)detailTextLabel;
 - (void)didMoveToSuperview;
 - (void)didTransitionToState:(unsigned long long)arg1;
@@ -549,12 +639,16 @@
 - (void)setAccessoryActionSegueTemplate:(id)arg1;
 - (void)setAccessoryType:(long long)arg1;
 - (void)setAccessoryView:(id)arg1;
+- (void)setAutomaticallyUpdatesBackgroundConfiguration:(bool)arg1;
+- (void)setAutomaticallyUpdatesContentConfiguration:(bool)arg1;
 - (void)setBackgroundColor:(id)arg1;
+- (void)setBackgroundConfiguration:(id)arg1;
 - (void)setBackgroundView:(id)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setCenter:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setClipsContents:(bool)arg1;
 - (void)setClipsToBounds:(bool)arg1;
+- (void)setContentConfiguration:(id)arg1;
 - (void)setDrawingEnabled:(bool)arg1;
 - (void)setEditAction:(SEL)arg1;
 - (void)setEditing:(bool)arg1;
@@ -574,6 +668,7 @@
 - (void)setLayoutManager:(id)arg1;
 - (void)setLineBreakMode:(long long)arg1;
 - (void)setMultipleSelectionBackgroundView:(id)arg1;
+- (void)setNeedsUpdateConfiguration;
 - (void)setNeedsUpdateConstraints;
 - (void)setPlaceHolderValue:(id)arg1;
 - (void)setReturnAction:(SEL)arg1;
@@ -598,13 +693,13 @@
 - (void)setShouldIndentWhileEditing:(bool)arg1;
 - (void)setShowingDeleteConfirmation:(bool)arg1;
 - (void)setShowsReorderControl:(bool)arg1;
-- (void)setTableBackgroundColor:(id)arg1;
 - (void)setTableViewStyle:(long long)arg1;
 - (void)setTarget:(id)arg1;
 - (void)setText:(id)arg1;
 - (void)setTextAlignment:(long long)arg1;
 - (void)setTextColor:(id)arg1;
 - (void)setTextFieldOffset:(double)arg1;
+- (void)setUserInteractionEnabled:(bool)arg1;
 - (void)setUserInteractionEnabledWhileDragging:(bool)arg1;
 - (void)setWasSwiped:(bool)arg1;
 - (bool)shouldIndentWhileEditing;
@@ -614,7 +709,6 @@
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (long long)style;
 - (struct CGSize { double x1; double x2; })systemLayoutSizeFittingSize:(struct CGSize { double x1; double x2; })arg1 withHorizontalFittingPriority:(float)arg2 verticalFittingPriority:(float)arg3;
-- (id)tableBackgroundColor;
 - (long long)tableViewStyle;
 - (id)target;
 - (id)text;
@@ -629,6 +723,7 @@
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
 - (void)traitCollectionDidChange:(id)arg1;
+- (void)updateConfigurationUsingState:(id)arg1;
 - (bool)userInteractionEnabledWhileDragging;
 - (bool)wasSwiped;
 - (void)willMoveToSuperview:(id)arg1;
@@ -640,8 +735,65 @@
 - (void)_cnui_applyContactStyle;
 - (void)_cnui_applySelectedBackgroundViewStyle:(id)arg1;
 
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (void)sf_setUsesVibrantSelection:(bool)arg1;
+
+// Image: /System/Library/Frameworks/SwiftUI.framework/SwiftUI
+
+- (double)swiftui_defaultRowHeight;
+
 // Image: /System/Library/PrivateFrameworks/AppSupportUI.framework/AppSupportUI
 
 - (double)effectiveSeparatorHeight;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
+- (void)setMCUIApplication:(id)arg1 showMISAppApproval:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimerUI.framework/MobileTimerUI
+
+- (void)setSelectedBackgroundColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
+- (void)ntk_setPickerSelected:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NetAppsUtilitiesUI.framework/NetAppsUtilitiesUI
+
++ (double)naui_estimatedTableRowHeight;
++ (id)naui_prototypeCell;
++ (bool)naui_supportsAutoLayout;
++ (double)naui_tableRowHeight;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })pkui_effectiveLayoutMargins;
+
+// Image: /System/Library/PrivateFrameworks/RemindersUICore.framework/RemindersUICore
+
+- (bool)_accessibilityIsSpeakThisElement;
+
+// Image: /System/Library/PrivateFrameworks/SensorKitUI.framework/SensorKitUI
+
++ (id)skui_tableViewCellForDataSample:(id)arg1;
++ (id)skui_tableViewCellForSelectionWithInitialValue:(bool)arg1 tableView:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (id)ts_editableTextField;
+- (id)ts_privateAccessibilityCustomActions;
+- (void)ts_setSelectionTintColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
+
+- (id)accessibilityTableViewCellText;
+
+// Image: /usr/lib/swift/libswiftUIKit.dylib
+
+- (id)_bridgedConfigurationState;
+- (void)_bridgedUpdateConfigurationUsingState:(id)arg1;
 
 @end

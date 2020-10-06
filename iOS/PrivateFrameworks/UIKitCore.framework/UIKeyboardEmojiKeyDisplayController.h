@@ -16,8 +16,8 @@
 @property UIKeyboardEmojiCategory *lastViewedCategory;
 @property (readonly) Class superclass;
 
-+ (Class)classForCategoryControl;
-+ (Class)classForInputView;
++ (Class)classForCategoryControl:(long long)arg1;
++ (Class)classForInputView:(long long)arg1;
 + (void)writeEmojiDefaultsAndReleaseActiveInputView;
 
 - (id)categoryView;

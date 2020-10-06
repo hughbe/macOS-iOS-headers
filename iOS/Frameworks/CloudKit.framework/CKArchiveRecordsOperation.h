@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKArchiveRecordsOperation : CKDatabaseOperation {
+@interface CKArchiveRecordsOperation : CKDatabaseOperation <CKArchiveRecordsOperationCallbacks> {
     id /* block */  _archiveRecordsCompletionBlock;
     NSMutableDictionary * _perItemErrors;
     id /* block */  _recordArchivedBlock;
@@ -10,18 +10,22 @@
 }
 
 @property (nonatomic, copy) id /* block */ archiveRecordsCompletionBlock;
+@property (nonatomic, readonly) <CKArchiveRecordsOperationCallbacks> *clientOperationCallbackProxy;
+@property (nonatomic, readonly) CKArchiveRecordsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *perItemErrors;
 @property (nonatomic, copy) id /* block */ recordArchivedBlock;
 @property (nonatomic, copy) NSArray *recordIDs;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id /* block */)archiveRecordsCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleRecordArchivalForRecordID:(id)arg1 error:(id)arg2;
 - (bool)hasCKOperationCallbacksSet;
 - (id)init;
 - (id)initWithRecordIDs:(id)arg1;

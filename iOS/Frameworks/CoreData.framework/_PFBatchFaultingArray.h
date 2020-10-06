@@ -12,7 +12,8 @@
     struct _PFBatchFaultingArrayFlags { 
         unsigned int _LRUIndex : 8; 
         unsigned int _uniformEntity : 1; 
-        unsigned int _RESERVED : 23; 
+        unsigned int _LRUEntryCount : 11; 
+        unsigned int _RESERVED : 12; 
     }  _flags;
     NSManagedObjectContext * _moc;
     NSCachingFetchRequest * _request;
@@ -24,15 +25,9 @@
 + (Class)classForKeyedUnarchiver;
 + (void)initialize;
 
-- (void)_internalDealloc;
 - (bool)_isDeallocating;
-- (id)_newSubArrayInRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1 asMutable:(bool)arg2;
-- (id)_pinnedObjectAtIndex:(unsigned long long)arg1;
 - (bool)_tryRetain;
-- (void)_turnAllBatchesIntoFaults;
-- (void)_turnAllBatchesIntoObjects;
 - (id)arrayFromObjectIDs;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;
@@ -64,7 +59,6 @@
 - (oneway void)release;
 - (id)retain;
 - (unsigned long long)retainCount;
-- (id)retainedObjectAtIndex:(unsigned long long)arg1;
 - (id)sortedArrayUsingComparator:(id /* block */)arg1;
 - (id)sortedArrayUsingDescriptors:(id)arg1;
 - (id)sortedArrayUsingFunction:(int (*)arg1 context:(void*)arg2;

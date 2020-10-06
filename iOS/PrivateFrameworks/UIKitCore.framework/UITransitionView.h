@@ -32,8 +32,6 @@
 @property (nonatomic) bool ignoreDirectTouchEvents;
 @property (nonatomic) bool shouldNotifyDidCompleteImmediately;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (double)defaultDurationForTransition:(int)arg1;
 
 - (void).cxx_destruct;
@@ -45,9 +43,6 @@
 - (bool)_shouldDisableGroupOpacityOnAlphaTransitions;
 - (void)_startTransition:(int)arg1 withDuration:(double)arg2;
 - (void)_transitionDidStopFinished:(bool)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)animationTimingCurve;
 - (id)delegate;
 - (double)durationForTransition:(int)arg1;
@@ -72,6 +67,7 @@
 - (void)setRasterizesOnTransition:(bool)arg1;
 - (void)setShouldNotifyDidCompleteImmediately:(bool)arg1;
 - (bool)shouldNotifyDidCompleteImmediately;
+- (int)textEffectsVisibilityLevel;
 - (id)toView;
 - (void)traitCollectionDidChange:(id)arg1;
 - (bool)transition:(int)arg1 fromView:(id)arg2 toView:(id)arg3;

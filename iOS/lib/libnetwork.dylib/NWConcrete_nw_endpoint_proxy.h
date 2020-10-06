@@ -9,6 +9,8 @@
     unsigned int  direct_prohibited;
     NSObject<OS_nw_array> * failed_child_endpoint_handlers;
     unsigned int  has_pac;
+    unsigned int  is_custom_proxy;
+    unsigned int  is_pac_connection;
     unsigned int  next_child_endpoint_index;
     unsigned int  overrode_to_https;
     NSObject<OS_nw_array> * pac_resolvers;

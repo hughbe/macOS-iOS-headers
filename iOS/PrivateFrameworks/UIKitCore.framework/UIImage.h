@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIImage : NSObject <DebugHierarchyValue_Fallback, MKArtworkImageSource, NSCopying, NSItemProviderReading, NSItemProviderWriting, NSSecureCoding, UIItemProviderPresentationSizeProviding, UIItemProviderReading, UIItemProviderWriting> {
+@interface UIImage : NSObject <MKArtworkImageSource, NSCopying, NSDiscardableContent, NSItemProviderReading, NSItemProviderWriting, NSSecureCoding, UIImageJSExports, UIItemProviderPresentationSizeProviding, UIItemProviderReading, UIItemProviderWriting> {
     struct UIEdgeInsets { 
         double top; 
         double left; 
@@ -10,6 +10,7 @@
         double right; 
     }  _alignmentRectInsets;
     double  _baselineOffsetFromBottom;
+    double  _capHeight;
     UIImageConfiguration * _configuration;
     _UIImageContent * _content;
     struct UIEdgeInsets { 
@@ -34,6 +35,7 @@
         unsigned int areContentInsetsExplicit : 1; 
         unsigned int areAlignmentRectInsetsExplicit : 1; 
         unsigned int flipsForRightToLeftLayoutDirection : 1; 
+        unsigned int hasCapHeight : 1; 
     }  _imageFlags;
     NSMapTable * _siblingImages;
     struct CGSize { 
@@ -43,13 +45,29 @@
 }
 
 @property (nonatomic, readonly) struct CGImage { }*CGImage;
+@property (nonatomic, readonly) id CGImageRef;
 @property (getter=_CGPDFPage, nonatomic, readonly) struct CGPDFPage { }*CGPDFPage;
 @property (getter=_CGSVGDocument, nonatomic, readonly) struct CGSVGDocument { }*CGSVGDocument;
 @property (nonatomic, readonly) CIImage *CIImage;
+@property (nonatomic, readonly) double _capHeight;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } _contentInsets;
+@property (readonly) struct CGImage { }*_gkCGImage;
+@property (readonly) long long _gkImageOrientation;
+@property (readonly) double _gkScale;
 @property (nonatomic, readonly) bool _hasContentInsets;
+@property (nonatomic, readonly) bool _sf_hasRegisteredFaviconForDarkUserInterfaceStyle;
+@property (nonatomic, readonly) bool _sf_shouldApplyBackingForDarkBackdrop;
+@property (nonatomic, readonly) long long _sf_tabSnapshotEffectsVersion;
+@property (nonatomic, copy) NSString *accessibilityHint;
+@property (nonatomic, copy) NSString *accessibilityLabel;
+@property (nonatomic, retain) NSString *accessibilityLanguage;
+@property (nonatomic) unsigned long long accessibilityTraits;
+@property (nonatomic, copy) NSString *accessibilityValue;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } alignmentRectInsets;
+@property (nonatomic, readonly) NSURL *artworkCatalogBackingFileURL;
+@property (nonatomic, readonly) double aspectRatio;
 @property (nonatomic, readonly) double baselineOffsetFromBottom;
+@property (nonatomic, readonly) TMLRect *bounds;
 @property (nonatomic, readonly) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } capInsets;
 @property (nonatomic, readonly, copy) UIImageConfiguration *configuration;
 @property (readonly, copy) NSString *debugDescription;
@@ -59,14 +77,19 @@
 @property (getter=isFromStatusBarImageProvider, nonatomic, readonly) bool fromStatusBarImageProvider;
 @property (nonatomic, readonly) bool hasBaseline;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) double height;
+@property (nonatomic, readonly) struct CGSize { double x1; double x2; } hf_sizeInScreenScale;
 @property (setter=_setImageAsset:, nonatomic, retain) UIImageAsset *imageAsset;
 @property (nonatomic, readonly) long long imageOrientation;
 @property (nonatomic, readonly) UIGraphicsImageRendererFormat *imageRendererFormat;
 @property (nonatomic, readonly) NSArray *images;
 @property (nonatomic, readonly) long long leftCapWidth;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } preferredPresentationSizeForItemProvider;
+@property (nonatomic, readonly) struct CGSize { double x1; double x2; } px_pixelSize;
 @property (nonatomic, readonly) long long renderingMode;
 @property (nonatomic, readonly) long long resizingMode;
+@property (setter=safari_setTransparencyAnalysisResult:, nonatomic) long long safari_transparencyAnalysisResult;
+@property (nonatomic, readonly) bool safari_transparencyAnalysisResultIsNotOpaque;
 @property (nonatomic, readonly) double scale;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } size;
 @property (readonly) Class superclass;
@@ -74,6 +97,7 @@
 @property (getter=isSymbolImage, nonatomic, readonly) bool symbolImage;
 @property (nonatomic, readonly) long long topCapHeight;
 @property (nonatomic, readonly, copy) UITraitCollection *traitCollection;
+@property (nonatomic, readonly) double width;
 @property (nonatomic, readonly, copy) NSArray *writableTypeIdentifiersForItemProvider;
 
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
@@ -207,6 +231,7 @@
 - (struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; })_calculateStatistics;
 - (struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; double x9; })_calculateStatisticsOfEdge:(bool)arg1;
 - (bool)_canEncodeWithName:(id)arg1 coder:(id)arg2;
+- (double)_capHeight;
 - (id)_colorForFlattening;
 - (void)_configureImage:(id)arg1 assumePreconfigured:(bool)arg2;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_contentInsets;
@@ -249,6 +274,7 @@
 - (id)_imageWithImageAsset:(id)arg1 configuration:(id)arg2;
 - (id)_imageWithSize:(struct CGSize { double x1; double x2; })arg1;
 - (id)_imageWithStylePresets:(id)arg1 tintColor:(id)arg2 traitCollection:(id)arg3;
+- (id)_imageWithSymbolMetricsFromNamedVectorGlyph:(id)arg1;
 - (id)_initWithCGPDFPage:(struct CGPDFPage { }*)arg1;
 - (id)_initWithCGPDFPage:(struct CGPDFPage { }*)arg1 scale:(double)arg2 orientation:(long long)arg3;
 - (id)_initWithCGSVGDocument:(struct CGSVGDocument { }*)arg1;
@@ -301,6 +327,7 @@
 - (void)_setBaselineOffsetFromBottom:(double)arg1;
 - (void)_setBaselineOffsetFromBottomExplicitly:(double)arg1;
 - (void)_setCached:(bool)arg1;
+- (void)_setCapHeight:(double)arg1;
 - (void)_setColorForFlattening:(id)arg1;
 - (void)_setConfiguration:(id)arg1;
 - (void)_setContentInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
@@ -311,6 +338,7 @@
 - (void)_setNamed:(bool)arg1;
 - (void)_setRenderingMode:(long long)arg1;
 - (void)_setSuppressesAccessibilityHairlineThickening:(bool)arg1;
+- (void)_setSymbolMetricsFromNamedVectorGlyph:(id)arg1;
 - (struct CGSize { double x1; double x2; })_sizeInPixels;
 - (struct CGSize { double x1; double x2; })_sizeInPixelsFromPDF;
 - (struct CGSize { double x1; double x2; })_sizeWithHairlineThickening:(bool)arg1 renderingEffects:(unsigned long long)arg2 forTraitCollection:(id)arg3;
@@ -413,10 +441,19 @@
 - (id)traitCollection;
 - (bool)writeToCPBitmapFile:(id)arg1 flags:(int)arg2;
 
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
+// Image: /System/Library/Frameworks/AVKit.framework/AVKit
 
-- (id)_imageResizedForDisplayInInspector;
-- (id)fallback_debugHierarchyValueWithOutOptions:(id*)arg1 outError:(id*)arg2;
++ (id)avkit_flatWhiteResizableTemplateImage;
++ (void)avkit_imageNamed:(id)arg1 completion:(id /* block */)arg2;
++ (id)avkit_loadedImageNames;
+
+// Image: /System/Library/Frameworks/ClockKit.framework/ClockKit
+
++ (id)_numberForRenderingMode:(long long)arg1;
++ (long long)_renderingModeForNumber:(id)arg1;
++ (id)imageWithJSONObjectRepresentation:(id)arg1 bundle:(id)arg2;
+
+- (id)JSONObjectRepresentationWritingResourcesToBundlePath:(id)arg1;
 
 // Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
 
@@ -432,7 +469,18 @@
 + (id)cnui_symbolImageNamed:(id)arg1 scale:(long long)arg2 withColor:(id)arg3 useFixedSize:(bool)arg4 compatibleWithTextStyle:(id)arg5;
 + (id)cnui_templateImageNamed:(id)arg1 withTint:(id)arg2;
 + (id)cnui_tintedImageNamed:(id)arg1 withTint:(id)arg2;
++ (id)cnui_userActionOutlinedSymbolImageForActionType:(id)arg1 scale:(long long)arg2 withColor:(id)arg3;
 + (id)cnui_userActionSymbolImageForActionType:(id)arg1 scale:(long long)arg2 withColor:(id)arg3;
++ (id)cnui_userActionSymbolImageForActionType:(id)arg1 scale:(long long)arg2 withColor:(id)arg3 compatibleWithTextStyle:(id)arg4;
+
+// Image: /System/Library/Frameworks/LinkPresentation.framework/LinkPresentation
+
++ (id)_lp_createImageWithCGImage:(struct CGImage { }*)arg1;
++ (id)_lp_systemImageNamed:(id)arg1;
+
+- (struct CGImage { }*)_lp_CGImage;
+- (bool)_lp_hasTransparency;
+- (struct CGSize { double x1; double x2; })_lp_pixelSize;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
@@ -450,6 +498,493 @@
 - (id)badgeImageToDisplayWithScreenScale:(double)arg1 nightMode:(bool)arg2;
 - (id)imageToDisplayWithScreenScale:(double)arg1 nightMode:(bool)arg2;
 
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
+
+- (id)artworkCatalogBackingFileURL;
+- (id)imageWithEtchedBorderOfColor:(id)arg1 radius:(double)arg2;
+- (id)imageWithShadow:(id)arg1;
+- (id)initWithContentsOfExactFilePath:(id)arg1;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)_mf_symbolConfigurationForImageSymbolType:(long long)arg1 textStyle:(id)arg2 scale:(long long)arg3 weight:(long long)arg4 traits:(unsigned int)arg5 maximumContentSizeCategory:(id)arg6;
++ (id)_mf_symbolConfigurationForView:(long long)arg1 imageSymbolType:(long long)arg2;
++ (id)_mf_systemImageNamed:(id)arg1 textStyle:(id)arg2 scale:(long long)arg3 weight:(long long)arg4 imageSymbolType:(long long)arg5 traits:(unsigned int)arg6 maximumContentSizeCategory:(id)arg7;
++ (id)mf_assistantBarSystemImageNamed:(id)arg1;
++ (id)mf_cardIconImageFromImage:(id)arg1 scaledToSize:(struct CGSize { double x1; double x2; })arg2;
++ (long long)mf_imageSymbolTypeForView:(long long)arg1;
++ (id)mf_imageWithColor:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2;
++ (id)mf_imageWithImage:(id)arg1 scaledToSize:(struct CGSize { double x1; double x2; })arg2;
++ (id)mf_largeContentSizeImageNamed:(id)arg1;
++ (double)mf_scaledImageLayoutValue:(double)arg1 forView:(long long)arg2;
++ (id)mf_symbolConfigurationForView:(long long)arg1;
++ (id)mf_symbolImageCapAtContentSizeCategoryForView:(long long)arg1;
++ (id)mf_symbolImageFontTextStyleForView:(long long)arg1;
++ (long long)mf_symbolImageScaleForView:(long long)arg1;
++ (long long)mf_symbolImageWeightForView:(long long)arg1;
++ (unsigned int)mf_symbolicTraitsForView:(long long)arg1;
++ (id)mf_systemImageNamed:(id)arg1 forView:(long long)arg2;
++ (id)mf_systemImageNamed:(id)arg1 textStyle:(id)arg2 scale:(long long)arg3;
++ (id)mf_systemImageNamed:(id)arg1 textStyle:(id)arg2 scale:(long long)arg3 weight:(long long)arg4;
+
+// Image: /System/Library/Frameworks/Messages.framework/Messages
+
+- (id)__ms_PNGData;
+
+// Image: /System/Library/Frameworks/PencilKit.framework/PencilKit
+
++ (id)_pk_imageNamed:(id)arg1;
++ (id)pk_UCBButtonImage;
++ (id)pk_ellipsisButtonImage;
++ (id)pk_emojiButtonImage;
++ (id)pk_handwritingToolLabelImage;
++ (id)pk_keyboardButtonImage;
++ (id)pk_plusButtonImage;
++ (id)pk_redoButtonImage;
++ (id)pk_returnKeyButtonImage;
++ (id)pk_undoButtonImage;
+
+- (id)pk_imageRotated90DegreesClockwise:(bool)arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
++ (id)pu_PhotosUIImageNamed:(id)arg1;
++ (id)pu_centeredImage:(id)arg1 withBackgroundColor:(id)arg2 size:(struct CGSize { double x1; double x2; })arg3;
++ (id)pu_imageFromView:(id)arg1 isOpaque:(bool)arg2;
++ (id)pu_imageWithIconImage:(id)arg1 iconImageColor:(id)arg2 text:(id)arg3 font:(id)arg4 textColor:(id)arg5 fillColor:(id)arg6 strokeColor:(id)arg7 cornerRadius:(double)arg8;
++ (id)pu_imageWithIconImage:(id)arg1 iconImageColor:(id)arg2 text:(id)arg3 font:(id)arg4 textColor:(id)arg5 fillColor:(id)arg6 strokeColor:(id)arg7 cornerRadius:(double)arg8 inset:(struct CGPoint { double x1; double x2; })arg9;
++ (id)pu_imageWithText:(id)arg1 font:(id)arg2 textColor:(id)arg3 fillColor:(id)arg4 strokeColor:(id)arg5 cornerRadius:(double)arg6;
+
+- (id)pu_extractPlayOverlayBackgroundImageFromCenter:(struct CGPoint { double x1; double x2; })arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 contentMode:(long long)arg3 asynchronously:(bool)arg4 handler:(id /* block */)arg5;
+- (id)pu_overlayedImageWithColor:(id)arg1;
+- (id)pu_tintedImageWithColor:(id)arg1;
+
+// Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
+
++ (id)imageWithImage:(id)arg1 scaledToSize:(struct CGSize { double x1; double x2; })arg2;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_fallbackFavicon;
++ (id)_sf_faviconFromSystemImageNamed:(id)arg1;
++ (id)_sf_favoritesFavicon;
++ (id)sf_imageFromMainBundleNamed:(id)arg1;
++ (id)ss_imageNamed:(id)arg1;
+
+- (bool)_sf_hasRegisteredFaviconForDarkUserInterfaceStyle;
+- (id)_sf_imageByResizingWithAccessibilityScale:(double)arg1;
+- (id)_sf_initWithCGImage:(struct CGImage { }*)arg1 tabSnapshotEffectsVersion:(long long)arg2;
+- (bool)_sf_isLaunchImageSizedForOrientation:(long long)arg1 includesStatusBar:(bool*)arg2;
+- (id)_sf_outlineIconForSize:(struct CGSize { double x1; double x2; })arg1;
+- (void)_sf_registerFaviconForDarkUserInterfaceStyle;
+- (id)_sf_resizeImageToSize:(struct CGSize { double x1; double x2; })arg1;
+- (bool)_sf_shouldApplyBackingForDarkBackdrop;
+- (long long)_sf_tabSnapshotEffectsVersion;
+
+// Image: /System/Library/Frameworks/Social.framework/Social
+
++ (id)socialFrameworkImageNamed:(id)arg1;
+
+// Image: /System/Library/Frameworks/SwiftUI.framework/SwiftUI
+
+- (id)applyingMetricsFromGlyph:(id)arg1;
+
+// Image: /System/Library/Frameworks/iAd.framework/iAd
+
++ (id)_iAd_imageNamed:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AnnotationKit.framework/AnnotationKit
+
++ (id)akImageNamed:(id)arg1;
++ (id)ak_boldTextStyleImage;
++ (id)ak_colorSwatchPickerImageWithColor:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2 selected:(bool)arg3;
++ (id)ak_colorSwatchToolbarButtonImageWithColor:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2 selected:(bool)arg3;
++ (id)ak_italicTextStyleImage;
++ (id)ak_strikethroughTextStyleImage;
++ (id)ak_underlineTextStyleImage;
+
+- (struct CGImage { }*)akCGImage;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
++ (id)aaui_imageFromColor:(id)arg1;
+
+- (id)_imageByCroppingCGImageToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)_imageByCroppingCIImageToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)imageByCroppingToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/AuthKitUI.framework/AuthKitUI
+
++ (id)ak_imageNamed:(id)arg1;
++ (id)ak_imageWithColor:(id)arg1;
+
+- (id)ak_copyScaledToSize:(struct CGSize { double x1; double x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/AvatarKit.framework/AvatarKit
+
++ (id)animatedImageWithAPNGRepresentation:(id)arg1;
++ (id)animatedImageWithHEICRepresentation:(id)arg1;
++ (id)animatedImageWithHEICSRepresentation:(id)arg1;
++ (id)avt_animatedImageWithDataRepresentation:(id)arg1 ofType:(struct __CFString { }*)arg2;
+
+- (id)APNGRepresentation;
+- (id)HEICRepresentation;
+- (id)HEICSRepresentation;
+- (id)avt_dataRepresentationForType:(struct __CFString { }*)arg1;
+- (id)copyByReorderingImagesWithFirstImageAtTime:(double)arg1;
+- (float)frameDelayInSeconds;
+
+// Image: /System/Library/PrivateFrameworks/BiometricKitUI.framework/BiometricKitUI
+
++ (id)userInterfaceStyleSpecificImageInBundle:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CameraEffectsKit.framework/CameraEffectsKit
+
++ (id)imageWithColor:(id)arg1;
++ (id)imageWithColor:(id)arg1 andSize:(struct CGSize { double x1; double x2; })arg2;
++ (bool)isSizeSwappedForImageOrientation:(long long)arg1;
++ (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })transformForImageOrientation:(long long)arg1 andSize:(struct CGSize { double x1; double x2; })arg2;
+
+- (bool)_isSRGB;
+- (bool)adjustFitInSize:(struct CGSize { double x1; double x2; }*)arg1 normalizeOrientation:(bool)arg2;
+- (id)bluredImageWithFlippedXAxis:(bool)arg1;
+- (id)cropImage:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)cropped16X9Image;
+- (id)drawImageIntoSize:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2 normalizeOrientation:(bool)arg3;
+- (void)drawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 blendMode:(int)arg3 alpha:(float)arg4;
+- (id)extendedRangeSafeDrawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)extendedRangeSafeDrawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 opaque:(bool)arg2 scale:(float)arg3;
+- (id)jfx_deepColorSafeImageDrawnInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)jfx_imageWithoutDeepColor;
+- (id)jfx_renderedImageWithUpOrientation;
+- (id)scaledImageEqualOrSmallerThanSize:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2 normalizeOrientation:(bool)arg3;
+- (id)scaledImageWithMaxDimension:(double)arg1;
+- (struct CGSize { double x1; double x2; })scaledSizeEqualOrSmallerThanSize:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2 normalizeOrientation:(bool)arg3;
+- (struct CGSize { double x1; double x2; })scaledSized:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2;
+- (id)tintedImage;
+
+// Image: /System/Library/PrivateFrameworks/CarPlayUIServices.framework/CarPlayUIServices
+
++ (id)crsui_imageNamed:(id)arg1 compatibleWithTraitCollection:(id)arg2;
++ (id)crsui_wallpaperImageNamed:(id)arg1 compatibleWithTraitCollection:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)abImageNamed:(id)arg1;
++ (id)badgeIconForImageNamed:(id)arg1 inBundle:(id)arg2;
++ (id)ckColorImageOfSize:(struct CGSize { double x1; double x2; })arg1 withColor:(id)arg2;
++ (id)ckImageNamed:(id)arg1;
++ (id)ckImageNamed:(id)arg1 compatibleWithTraitCollection:(id)arg2;
++ (id)ckImageNamed:(id)arg1 withTintColor:(id)arg2;
++ (id)ckImageWithData:(id)arg1;
++ (id)ckTemplateImageNamed:(id)arg1;
++ (id)placeholderExtensionIcon;
+
+- (id)__ck_ASTCRepresentation;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })__ck_contentsCenter;
+- (id)__ck_imageWithOrientation:(long long)arg1;
+- (id)__ck_resizableBalloonWithBalloonDescriptor:(struct CKBalloonDescriptor_t { BOOL x1; BOOL x2; BOOL x3; BOOL x4; unsigned long long x5; BOOL x6; BOOL x7; long long x8; long long x9; bool x10; bool x11; bool x12; bool x13; })arg1 framed:(bool)arg2;
+- (bool)beginContentAccess;
+- (id)ckImageWithTintColor:(id)arg1;
+- (void)decode;
+- (void)discardContentIfPossible;
+- (void)endContentAccess;
+- (id)iconForInterfaceStyle:(long long)arg1;
+- (bool)isContentDiscarded;
+
+// Image: /System/Library/PrivateFrameworks/ClipUIServices.framework/ClipUIServices
+
++ (id)cps_imageNamed:(id)arg1;
+
+- (id)cps_averageColorImage;
+
+// Image: /System/Library/PrivateFrameworks/ControlCenterUIKit.framework/ControlCenterUIKit
+
+- (id)ccuiAlphaOnlyImageForMaskImage;
+
+// Image: /System/Library/PrivateFrameworks/DigitalTouchShared.framework/DigitalTouchShared
+
++ (id)etImageNamed:(id)arg1;
++ (id)etImageNamed:(id)arg1 inBundle:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/DocumentCamera.framework/DocumentCamera
+
++ (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })dc_aspectFitImageFrameForViewWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 imageSize:(struct CGSize { double x1; double x2; })arg2;
++ (id)dc_imageWithCGImage:(struct CGImage { }*)arg1;
++ (id)dc_imageWithCGImage:(struct CGImage { }*)arg1 scale:(double)arg2 orientation:(long long)arg3;
++ (id)dc_largeSystemImageNamed:(id)arg1;
++ (id)dc_orientationMetadataFromImageOrientation:(long long)arg1;
++ (id)dc_orientedImageFromCGImage:(struct CGImage { }*)arg1 scale:(double)arg2 transform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg3;
++ (id)dc_orientedImageFromImage:(id)arg1 fromOrientation:(long long)arg2;
++ (id)dc_orientedImageFromImage:(id)arg1 toOrientation:(long long)arg2;
++ (id)dc_systemImageNamed:(id)arg1 fromFont:(id)arg2;
++ (id)dc_systemImageNamed:(id)arg1 fromFont:(id)arg2 scale:(long long)arg3;
++ (id)dc_systemImageNamed:(id)arg1 scale:(long long)arg2;
++ (id)dc_systemImageNamed:(id)arg1 textStyle:(id)arg2;
++ (id)dc_systemImageNamed:(id)arg1 textStyle:(id)arg2 scale:(long long)arg3;
+
+- (struct CGImage { }*)dc_CGImage;
+- (id)dc_JPEGData;
+- (id)dc_JPEGDataWithOrientation:(long long)arg1;
+- (id)dc_imageDataWithUTType:(id)arg1;
+- (id)dc_imageDataWithUTType:(id)arg1 metadata:(id)arg2;
+- (long long)dc_imageOrientation;
+- (id)dc_imageWithFont:(id)arg1;
+- (id)dc_imageWithFont:(id)arg1 scale:(long long)arg2;
+- (id)dc_imageWithScale:(long long)arg1;
+- (id)dc_imageWithTextStyle:(id)arg1;
+- (id)dc_imageWithTextStyle:(id)arg1 scale:(long long)arg2;
+- (id)dc_scaledImageMaxDimension:(double)arg1 scale:(double)arg2;
+- (id)dc_scaledImageMinDimension:(double)arg1 scale:(double)arg2;
+- (id)dc_scaledImageWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/DocumentManagerUICore.framework/DocumentManagerUICore
+
+- (id)doc_averageColorInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/FMCoreUI.framework/FMCoreUI
+
++ (id)blankImageOfSize:(struct CGSize { double x1; double x2; })arg1;
+
+- (id)compositeImage:(id)arg1;
+- (id)compositeImage:(id)arg1 blendMode:(int)arg2 alpha:(double)arg3;
+- (id)imagesWithSpriteSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)tintedImageWithColor:(id)arg1;
+- (id)tintedImageWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
++ (id)fiui_imageWithColor:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2;
++ (id)fiui_pixelImageWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
+
++ (id)_gkHostImageWithBundleIdentifier:(id)arg1 imageName:(id)arg2;
+
+- (id)_gkImageWithProgress:(double)arg1 achievement:(id)arg2 isDetail:(bool)arg3;
+- (id)_gkMaskImageWithProgress:(double)arg1 isDetail:(bool)arg2;
+- (id)_gkQuestionMarkImage;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUICore.framework/GameCenterUICore
+
++ (id)_gkImageWithCGImage:(struct CGImage { }*)arg1 scale:(double)arg2 orientation:(long long)arg3;
++ (id)_gkImageWithRawData:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2 scale:(double)arg3 rowBytes:(unsigned long long)arg4 bitmapInfo:(unsigned int)arg5;
++ (void)_gkloadRemoteImageForURL:(id)arg1 queue:(id)arg2 withCompletionHandler:(id /* block */)arg3;
+
+- (struct CGImage { }*)_gkCGImage;
+- (id)_gkImageByAddingAlpha;
+- (id)_gkImageByScalingAndCroppingToSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
+- (id)_gkImageByScalingToSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)_gkImageByScalingToSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
+- (id)_gkImageByScalingToSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 padColor:(id)arg3;
+- (id)_gkImageByTintingWithColor:(id)arg1;
+- (long long)_gkImageOrientation;
+- (void)_gkReadAtSize:(struct CGSize { double x1; double x2; })arg1 ARGBHostEndianBytes:(id /* block */)arg2;
+- (double)_gkScale;
+
+// Image: /System/Library/PrivateFrameworks/HealthMenstrualCyclesUI.framework/HealthMenstrualCyclesUI
+
++ (id)_hkmcui_imageWithAssetName:(id)arg1;
++ (id)hkmc_fertilityProjectionImage;
++ (id)hkmc_fertilityProjectionReversedImage;
++ (id)hkmc_fertilityProjectionReversedImageHighContrast;
++ (id)hkmc_menstruationProjectionHighImage;
++ (id)hkmc_menstruationProjectionHighReversedImage;
++ (id)hkmc_menstruationProjectionHighReversedImageHighContrast;
++ (id)hkmc_menstruationProjectionLowImage;
++ (id)hkmc_menstruationProjectionLowReversedImage;
++ (id)hkmc_menstruationProjectionLowReversedImageHighContrast;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
++ (id)hk_arrowExerciseImage;
++ (id)hk_arrowMoveImage;
++ (id)hk_arrowStandImage;
++ (id)hk_disclosureChevronImage;
++ (id)hk_hearingHealthAudioExposureSymbolForClassification:(unsigned long long)arg1 font:(id)arg2;
++ (id)hk_transparentInterfaceImageWithSize:(struct CGSize { double x1; double x2; })arg1;
+
+- (id)hk_croppedImageWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)hk_resizedImageWithSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)hk_resizedInterfaceImageWithSize:(struct CGSize { double x1; double x2; })arg1;
+- (double)hk_scaledImageViewHeightWithScaledWidth:(double)arg1;
+- (id)hk_watchIconImage;
+
+// Image: /System/Library/PrivateFrameworks/HeartRhythmUI.framework/HeartRhythmUI
+
++ (id)hrui_ECGAppIconImage;
++ (id)hrui_ECGOnboardingWristImage;
++ (id)hrui_atrialFibrillationDetectionIllustrationImage;
++ (id)hrui_cannotDoImage;
++ (id)hrui_fingerCrownImage;
++ (id)hrui_heartRateIconImage;
++ (id)hrui_screenWidthImageWithName:(id)arg1;
++ (id)hrui_warningImage;
++ (id)hrui_waveformImage;
+
+// Image: /System/Library/PrivateFrameworks/Home.framework/Home
+
++ (id)hf_fetchImageFromURL:(id)arg1;
+
+- (struct CGSize { double x1; double x2; })hf_sizeInScreenScale;
+- (id)imageWithNormalizedOrientation;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUI.framework/IMSharedUI
+
+- (id)layerContentsForLayer:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
++ (id)MCUIImageWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MarkupUI.framework/MarkupUI
+
++ (id)mu_markupAppIcon;
+
+// Image: /System/Library/PrivateFrameworks/MaterialKit.framework/MaterialKit
+
++ (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })mt_edgeOutsetsForShadowProperties:(struct { float x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; double x3; })arg1;
++ (id)mt_resizableShadowTemplateImageWithAttributes:(struct { float x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; double x3; })arg1 maskCornerRadius:(double)arg2 ignoreContinuousCurveSizeFactor:(bool)arg3;
++ (id)mt_shadowTemplateImageWithAttributes:(struct { float x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; double x3; })arg1 maskCornerRadius:(double)arg2 ignoreContinuousCurveSizeFactor:(bool)arg3 resizableCapInsets:(struct { double x1; double x2; double x3; double x4; }*)arg4;
++ (bool)mt_shouldIgnoreContinuousCurveSizeFactorWithMaskCornerRadius:(double)arg1 boundsSize:(struct CGSize { double x1; double x2; })arg2;
+
+- (id)_mt_imageWithShadowWithAttributes:(struct { float x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; double x3; })arg1 userIntefaceStyle:(long long)arg2;
+- (id)mt_imageWithDefaultShadowAttributesForUserIntefaceStyle:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
+
++ (id)imageWithSize:(struct CGSize { double x1; double x2; })arg1 opaque:(bool)arg2 fromBlock:(id /* block */)arg3;
+
+- (id)scaledImageWithSize:(struct CGSize { double x1; double x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/Memories.framework/Memories
+
++ (id)imageFlippedIfABLocaleWithName:(id)arg1;
++ (id)imageNamed:(id)arg1 keepInCache:(bool)arg2;
++ (id)imageWithColor:(id)arg1;
++ (id)imageWithColor:(id)arg1 andSize:(struct CGSize { double x1; double x2; })arg2;
++ (bool)isSizeSwappedForImageOrientation:(long long)arg1;
++ (void)saveToStretchyCache:(id)arg1 forKey:(id)arg2;
++ (id)stretchyImageNamed:(id)arg1;
++ (id)stretchyImageNamed:(id)arg1 hStretch:(bool)arg2 vStretch:(bool)arg3;
++ (id)stretchyVersionH:(bool)arg1 V:(bool)arg2 forImage:(id)arg3;
++ (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })transformForImageOrientation:(long long)arg1 andSize:(struct CGSize { double x1; double x2; })arg2;
+
+- (bool)_isSRGB;
+- (bool)adjustFitInSize:(struct CGSize { double x1; double x2; }*)arg1 normalizeOrientation:(bool)arg2;
+- (id)applyBlurWithRadius:(double)arg1 tintColor:(id)arg2 saturationDeltaFactor:(double)arg3 maskImage:(id)arg4;
+- (id)applyBlurWithRadius:(double)arg1 tintColor:(id)arg2 saturationDeltaFactor:(double)arg3 maskImage:(id)arg4 scale:(double)arg5;
+- (id)applyDarkEffect;
+- (id)applyExtraLightEffect;
+- (id)applyLightEffect;
+- (id)applyTintEffectWithColor:(id)arg1;
+- (id)cropImage:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)drawImageIntoSize:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2 normalizeOrientation:(bool)arg3;
+- (void)drawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 blendMode:(int)arg3 alpha:(float)arg4;
+- (id)extendedRangeSafeDrawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)extendedRangeSafeDrawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 opaque:(bool)arg2 scale:(float)arg3;
+- (id)scaledImageEqualOrSmallerThanSize:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2 normalizeOrientation:(bool)arg3;
+- (id)scaledImageWithMaxDimension:(double)arg1;
+- (struct CGSize { double x1; double x2; })scaledSizeEqualOrSmallerThanSize:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2 normalizeOrientation:(bool)arg3;
+- (struct CGSize { double x1; double x2; })scaledSized:(struct CGSize { double x1; double x2; })arg1 maintainAspectRatio:(bool)arg2;
+- (id)stretchyHVersion;
+- (id)stretchyImageViewWithLeftCap:(double)arg1 topCap:(double)arg2;
+- (id)stretchyImageWithLeftCapWidth:(int)arg1 topCapHeight:(int)arg2;
+- (id)stretchyVVersion;
+- (id)stretchyVersion;
+- (id)stretchyVersionH:(bool)arg1 V:(bool)arg2;
+- (id)tintedImage;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimerUI.framework/MobileTimerUI
+
++ (id)mtui_imageWithSymbolName:(id)arg1 font:(id)arg2 andTintColor:(id)arg3;
++ (id)mtui_imageWithSymbolName:(id)arg1 pointSize:(double)arg2;
++ (id)mtui_imageWithSymbolName:(id)arg1 pointSize:(double)arg2 color:(id)arg3;
++ (id)mtui_imageWithSymbolName:(id)arg1 scale:(long long)arg2 textStyle:(id)arg3 andTintColor:(id)arg4;
++ (id)mtui_imageWithSymbolName:(id)arg1 style:(id)arg2;
++ (id)mtui_sleepImage;
++ (id)mtui_wakeImage;
+
+- (id)mtui_imageWithTintColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
+
+- (id)car_scaledImageWithSize:(struct CGSize { double x1; double x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
++ (id)newImageForScreenCorner:(unsigned long long)arg1 device:(id)arg2 cornerRadius:(double)arg3;
+
+// Image: /System/Library/PrivateFrameworks/NewsUI.framework/NewsUI
+
+- (id)nu_imageByApplyingAlpha:(double)arg1;
+- (id)nu_scaledImageWithMaximumSize:(struct CGSize { double x1; double x2; })arg1 targetScale:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
++ (id)ic_UIImageFromCIImage:(id)arg1;
++ (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })ic_aspectFitImageFrameForViewWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 imageSize:(struct CGSize { double x1; double x2; })arg2;
++ (id)ic_fileIconForURL:(id)arg1 withPreferredSize:(struct CGSize { double x1; double x2; })arg2;
++ (id)ic_imageNamed:(id)arg1 withTint:(id)arg2;
++ (id)ic_imageNamed:(id)arg1 withTint:(id)arg2 size:(struct CGSize { double x1; double x2; })arg3;
++ (id)ic_imageWithCGImage:(struct CGImage { }*)arg1;
++ (id)ic_imageWithCGImage:(struct CGImage { }*)arg1 scale:(double)arg2 orientation:(long long)arg3;
++ (id)ic_imageWithColor:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2;
++ (id)ic_imageWithContentsOfURL:(id)arg1;
++ (id)ic_imageWithData:(id)arg1;
++ (id)ic_largeSystemImageNamed:(id)arg1;
++ (id)ic_orientationMetadataFromImageOrientation:(long long)arg1;
++ (id)ic_orientedImageFromCGImage:(struct CGImage { }*)arg1 scale:(double)arg2 transform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg3;
++ (id)ic_orientedImageFromImage:(id)arg1 fromOrientation:(long long)arg2;
++ (id)ic_orientedImageFromImage:(id)arg1 toOrientation:(long long)arg2;
++ (id)ic_systemImageNamed:(id)arg1 fromFont:(id)arg2;
++ (id)ic_systemImageNamed:(id)arg1 fromFont:(id)arg2 scale:(long long)arg3;
++ (id)ic_systemImageNamed:(id)arg1 scale:(long long)arg2;
++ (id)ic_systemImageNamed:(id)arg1 textStyle:(id)arg2;
++ (id)ic_systemImageNamed:(id)arg1 textStyle:(id)arg2 scale:(long long)arg3;
+
+- (struct CGImage { }*)ic_CGImage;
+- (id)ic_JPEGData;
+- (id)ic_JPEGDataWithOrientation:(long long)arg1;
+- (id)ic_PNGData;
+- (id)ic_PNGDataWithOrientation:(long long)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })ic_cropRectZeroAlpha;
+- (id)ic_decodeInBackground;
+- (void)ic_decodeWithCompletion:(id /* block */)arg1;
+- (id)ic_horizontallyMirroredImage;
+- (id)ic_imageDataWithUTType:(id)arg1;
+- (id)ic_imageDataWithUTType:(id)arg1 metadata:(id)arg2;
+- (id)ic_imageFromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (long long)ic_imageOrientation;
+- (id)ic_imageWithFilledBackgroundColor:(id)arg1;
+- (id)ic_imageWithFilledBackgroundColor:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2;
+- (id)ic_imageWithFont:(id)arg1;
+- (id)ic_imageWithFont:(id)arg1 cappedToSize:(double)arg2;
+- (id)ic_imageWithFont:(id)arg1 scale:(long long)arg2;
+- (id)ic_imageWithScale:(long long)arg1;
+- (id)ic_imageWithSymbolOverlayWithName:(id)arg1 overlayBottomOffset:(double)arg2 size:(struct CGSize { double x1; double x2; })arg3;
+- (id)ic_imageWithSymbolOverlayWithName:(id)arg1 overlaySymbolConfiguration:(id)arg2 overlayBottomOffset:(double)arg3 size:(struct CGSize { double x1; double x2; })arg4;
+- (id)ic_imageWithTextStyle:(id)arg1;
+- (id)ic_imageWithTextStyle:(id)arg1 scale:(long long)arg2;
+- (id)ic_imageWithTint:(id)arg1 size:(struct CGSize { double x1; double x2; })arg2;
+- (struct CGContext { }*)ic_newARGB8BitmapContextFromImage:(struct CGImage { }*)arg1;
+- (id)ic_scaledImageMaxDimension:(double)arg1 scale:(double)arg2;
+- (id)ic_scaledImageMinDimension:(double)arg1 scale:(double)arg2;
+- (id)ic_scaledImageWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
++ (id)imageWithPKImage:(id)arg1;
++ (id)pkui_imageWithColor:(id)arg1;
++ (id)pkui_imageWithColor:(id)arg1 scale:(double)arg2;
+
+- (struct CGSize { double x1; double x2; })alignmentSize;
+- (id)pkui_imageOverlaidWithColor:(id)arg1;
+- (id)pkui_imageWithAlpha:(double)arg1;
+- (id)pkui_resizableImageByTilingCenterPixel;
+- (id)pkui_resizableImageByTilingHorizontally;
+- (id)pkui_resizableImageByTilingVertically;
+
 // Image: /System/Library/PrivateFrameworks/PersonaUI.framework/PersonaUI
 
 + (id)pr_imageWithCGImage:(struct CGImage { }*)arg1;
@@ -459,5 +994,376 @@
 - (id)pr_circleImageOfDiameter:(double)arg1 cropRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (id)pr_circleImageWithCropRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGImage { }*)pr_imageRef;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)_px_createOverlayImageWithGlyphStyle:(unsigned long long)arg1 backgroundWhite:(double)arg2 backgroundAlpha:(double)arg3 glyphAlpha:(double)arg4;
++ (id)px_imageFromSolidColor:(id)arg1;
++ (id)px_imageNamed:(id)arg1;
++ (id)px_imageWithSize:(struct CGSize { double x1; double x2; })arg1 path:(id)arg2 color:(id)arg3 displayScale:(double)arg4;
++ (id)px_playOverlayImage:(unsigned long long)arg1;
++ (void)px_preloadPlayOverlayGlyphsIfNeeded;
++ (id)px_roundedCornerMaskImage:(struct { union { struct { float x_1_2_1; float x_1_2_2; float x_1_2_3; float x_1_2_4; } x_1_1_1; float x_1_1_2[4]; } x1; })arg1 size:(struct CGSize { double x1; double x2; })arg2;
+
+- (id)px_ASTCCompressedImageWithBlockSize:(unsigned int)arg1;
+- (id)px_backdropImageWithStyle:(long long)arg1;
+- (id)px_debugImageWithStrokeRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 color:(id)arg2;
+- (id)px_debugImageWithStrokeRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 color:(id)arg2 text:(id)arg3;
+- (void)px_drawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 withContentMode:(long long)arg2;
+- (id)px_extractPlayOverlayBackgroundImageFromLocation:(struct CGPoint { double x1; double x2; })arg1 inViewportWithSize:(struct CGSize { double x1; double x2; })arg2 contentMode:(long long)arg3 contentsRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4 asynchronously:(bool)arg5 handler:(id /* block */)arg6;
+- (id)px_imageByApplyingAlpha:(double)arg1;
+- (id)px_imageByCroppingEdgeInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (id)px_imageByCroppingRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)px_imageByCroppingRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 pixelTargetSize:(struct CGSize { double x1; double x2; })arg2 cornerRadius:(double)arg3;
+- (id)px_imageWithDebugRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (bool)px_isLargerThan:(id)arg1;
+- (struct CGSize { double x1; double x2; })px_pixelSize;
+- (id)px_predrawnImage;
+- (id)px_tintedCircularImageWithColor:(id)arg1 backgroundColor:(id)arg2;
+- (id)px_tintedImageWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsUI.framework/PodcastsUI
+
++ (id)colorSliceImageWithColor:(id)arg1 height:(double)arg2;
++ (id)image:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 withBacking:(id)arg3;
++ (id)image:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 withBacking:(id)arg3 opaque:(bool)arg4 scale:(double)arg5;
++ (id)imageWithSolidColor:(id)arg1 atSize:(struct CGSize { double x1; double x2; })arg2;
++ (id)makeDottedLineImageinRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
++ (bool)needsLocaleAwareNumbersWorkaroundForSymbol:(id)arg1;
++ (id)roundedCornerRectangleWithColor:(id)arg1;
++ (id)roundedCornerRectangleWithColorNoTemplate:(id)arg1;
++ (id)scaledImageWithData:(id)arg1;
++ (id)systemImageNamedNumberAware:(id)arg1;
++ (id)systemImageNamedNumberAware:(id)arg1 config:(id)arg2;
++ (id)uncachedImageNamed:(id)arg1;
+
+- (unsigned long long)colorAtPixelX:(unsigned long long)arg1 y:(unsigned long long)arg2;
+- (void)debugShowInKeyWindow;
+- (void)dumpAsPNGToCachesNamed:(id)arg1;
+- (id)im_flatImageWithColor:(id)arg1;
+- (id)im_imageWithBackgroundColor:(id)arg1;
+- (id)imageByRemovingPath:(id)arg1;
+- (id)imageMaskWithColor:(id)arg1;
+- (id)imageWithComposite:(id)arg1 blendMode:(int)arg2;
+- (id)imageWithComposite:(id)arg1 blendMode:(int)arg2 dstRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg3;
+- (id)imageWithCropRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)imageWithGradientAngle:(double)arg1 startColor:(id)arg2 endColor:(id)arg3;
+- (id)imageWithMaxBounds:(struct CGSize { double x1; double x2; })arg1;
+- (id)imageWithSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)imageWithSize:(struct CGSize { double x1; double x2; })arg1 preserveAspectRatio:(bool)arg2;
+- (id)imageWithSize:(struct CGSize { double x1; double x2; })arg1 resizeOptions:(int)arg2;
+- (id)imageWithTint:(id)arg1;
+- (id)imageWithWidth:(double)arg1 leftCapWidth:(long long)arg2;
+- (id)imageWithWidth:(double)arg1 leftCapWidth:(long long)arg2 rightCapWidth:(long long)arg3;
+- (id)mirroredImage;
+- (id)squareImage;
+- (id)stretchableMirroredImage;
+
+// Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
+
++ (id)circleImageWithDiameter:(double)arg1 color:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PreferencesUI.framework/PreferencesUI
+
++ (id)_ps_imageWithContentsOfCPBitmapFile:(id)arg1 scale:(double)arg2;
+
+// Image: /System/Library/PrivateFrameworks/RemoteMediaServices.framework/RemoteMediaServices
+
+- (id)rms_jpegDataScaledToSize:(struct CGSize { double x1; double x2; })arg1 compressionQuality:(float)arg2;
+
+// Image: /System/Library/PrivateFrameworks/SafariSharedUI.framework/SafariSharedUI
+
++ (id)safari_imageWithSize:(struct CGSize { double x1; double x2; })arg1 actions:(id /* block */)arg2;
+
+- (void)safari_setTransparencyAnalysisResult:(long long)arg1;
+- (long long)safari_transparencyAnalysisResult;
+- (bool)safari_transparencyAnalysisResultIsNotOpaque;
+
+// Image: /System/Library/PrivateFrameworks/ScreenTimeUI.framework/ScreenTimeUI
+
++ (id)blankIcon;
++ (id)blankSpaceImageWithSize:(struct CGSize { double x1; double x2; })arg1;
++ (id)iconWithAppBundleID:(id)arg1;
++ (id)iconWithAppURL:(id)arg1;
++ (id)st_pointImageOfColor:(id)arg1;
+
+- (id)iconFromPrecomposedImage:(bool)arg1 platform:(short)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ScreenshotServices.framework/ScreenshotServices
+
++ (id)ss_cgImageBackedImageFromImageSurface:(id)arg1;
++ (id)ss_imageFromImageSurface:(id)arg1;
+
+- (id)ss_imageSurfaceFromImage;
+
+// Image: /System/Library/PrivateFrameworks/SearchToShareCore.framework/SearchToShareCore
+
++ (id)agif_animatedImageWithAnimatedGIFData:(id)arg1;
++ (id)agif_animatedImageWithAnimatedGIFURL:(id)arg1;
++ (id)agif_animatedImageWithImageInfo:(id)arg1;
+
+- (id)sts_imageWithScalingFactor:(double)arg1;
+- (id)sts_nonAlphaImage;
+
+// Image: /System/Library/PrivateFrameworks/SensorKitUI.framework/SensorKitUI
+
++ (id)skui_appIcon:(id)arg1 imageDescriptor:(id)arg2;
++ (id)skui_bulletImage;
++ (id)skui_imageNamed:(id)arg1 bundle:(id)arg2 imageDescriptor:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/Settings/DisplayAndBrightnessSettings.framework/DisplayAndBrightnessSettings
+
++ (id)dbs_maxSliderImage;
++ (id)dbs_minSliderImage;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
++ (id)siriui_semiTransparentChevronImage;
++ (id)siriui_semiTransparentChevronImageAndAllowNaturalLayout:(bool)arg1;
++ (id)siriui_semiTransparentChevronImageWithColor:(id)arg1 allowNaturalLayout:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
++ (long long)UIImageOrientationForExifOrientation:(long long)arg1;
++ (id)animatedImageAtURL:(id)arg1;
++ (id)decompressedDeviceImageWithCGImage:(struct CGImage { }*)arg1 opaque:(bool)arg2 scale:(double)arg3 orientation:(long long)arg4;
++ (id)imageWithColor:(id)arg1 andSize:(struct CGSize { double x1; double x2; })arg2 opaque:(bool)arg3 scale:(double)arg4;
+
+- (id)applyBlurDarkEffect;
+- (id)applyBlurExtraLightEffect;
+- (id)applyBlurLightEffect;
+- (id)applyBlurTintEffectWithColor:(id)arg1;
+- (id)applyBlurWithRadius:(double)arg1 tintColor:(id)arg2 saturationDeltaFactor:(double)arg3 maskImage:(id)arg4;
+- (id)centerImageWithSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)decompressedDeviceImage:(bool)arg1;
+- (id)imageWithAdjustedOrientation:(long long)arg1 andResolution:(unsigned long long)arg2;
+- (id)imageWithSize:(struct CGSize { double x1; double x2; })arg1 andCropRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
+- (id)imageWithSize:(struct CGSize { double x1; double x2; })arg1 opaque:(bool)arg2 scale:(double)arg3;
+- (id)imageWithTransparentInset:(double)arg1;
+- (struct CGImage { }*)newBorderMask:(unsigned long long)arg1 size:(struct CGSize { double x1; double x2; })arg2;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
++ (unsigned long long)sbf_bytesNeededForSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 withContextType:(long long)arg3;
++ (id)sbf_imageFromBGRAContextWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 colorSpace:(struct CGColorSpace { }*)arg3 withAlpha:(bool)arg4 pool:(id)arg5 drawing:(id /* block */)arg6 encapsulation:(id /* block */)arg7;
++ (id)sbf_imageFromContextWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 type:(long long)arg3 pool:(id)arg4 drawing:(id /* block */)arg5;
++ (id)sbf_imageFromContextWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 type:(long long)arg3 pool:(id)arg4 drawing:(id /* block */)arg5 encapsulation:(id /* block */)arg6;
++ (id)sbf_imageWithIOSurface:(id)arg1 scale:(double)arg2 orientation:(long long)arg3;
++ (id)sbf_thumbnailImageForImage:(id)arg1;
+
+- (id)sbf_ATXSafeCGImageBackedImage;
+- (id)sbf_CGImageBackedImage;
+- (id)sbf_CGImageBackedImageWithMaximumBitsPerComponent:(unsigned long long)arg1;
+- (id)sbf_CGImageBackedImageWithMaximumBitsPerComponent:(unsigned long long)arg1 skipCIF10FitsInSRGBCheck:(bool)arg2;
+- (long long)sbf_EXIFOrientation;
+- (struct CGColorSpace { }*)sbf_colorSpace;
+- (id)sbf_cropImageWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 outputSize:(struct CGSize { double x1; double x2; })arg2;
+- (id)sbf_cropImageWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 outputSize:(struct CGSize { double x1; double x2; })arg2 canUseIOSurface:(bool)arg3;
+- (id)sbf_cropImageWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 outputSize:(struct CGSize { double x1; double x2; })arg2 preservingAspectRatio:(bool)arg3;
+- (id)sbf_cropImageWithRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 outputSize:(struct CGSize { double x1; double x2; })arg2 preservingAspectRatio:(bool)arg3 canUseIOSurface:(bool)arg4;
+- (id)sbf_downscaledImageByDrawingIntoContextOfType:(long long)arg1 downscaleFactor:(double)arg2;
+- (id)sbf_imageByConvertingToColorSpace:(struct CGColorSpace { }*)arg1 type:(long long)arg2;
+- (id)sbf_imageByDrawingIntoContextOfType:(long long)arg1;
+- (id)sbf_imageByManipulatingInDeviceColorSpaceWithBlock:(id /* block */)arg1;
+- (id)sbf_imageByTilingCenterPixel;
+- (id)sbf_imageHashData;
+- (id)sbf_imageMaskedByColor:(id)arg1;
+- (id)sbf_imageUsingContextType:(long long)arg1;
+- (id)sbf_memoryMappedImageWithPool:(id)arg1;
+- (id)sbf_resizeImageToSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)sbf_resizeImageToSize:(struct CGSize { double x1; double x2; })arg1 preservingAspectRatio:(bool)arg2;
+- (id)sbf_resizedImageForCurrentMagnifyMode;
+- (id)sbf_scaleImage:(double)arg1;
+- (id)sbf_scaleImage:(double)arg1 canUseIOSurface:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
+
++ (id)singlePointImageWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TVRemoteCore.framework/TVRemoteCore
+
+- (id)rms_jpegDataScaledToSize:(struct CGSize { double x1; double x2; })arg1 compressionQuality:(float)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
++ (id)ts_bookmark;
++ (id)ts_bookmarkFill;
++ (id)ts_bookmarkFillForHUD;
++ (id)ts_checkmark;
++ (id)ts_checkmarkCircleFill;
++ (id)ts_checkmarkCircleFillWhite;
++ (id)ts_checkmarkCircleOpaqueFillOnPink;
++ (id)ts_checkmarkCircleTertiaryFillOnPink;
++ (id)ts_checkmarkForHUD;
++ (id)ts_chevronRight;
++ (id)ts_circleFill;
++ (id)ts_disclosureIndicator;
++ (id)ts_ellipsis;
++ (id)ts_ellipsisCircle;
++ (id)ts_ellipsisCircleFill;
++ (id)ts_ellipsisCircleFillWhite;
++ (id)ts_ellipsisCirclePinkOnTertiaryFill;
++ (id)ts_ellipsisCircleTertiaryFillOnPink;
++ (id)ts_ellipsisCircleWhite;
++ (id)ts_exclamationMarkCircle;
++ (id)ts_handRaised;
++ (id)ts_handRaisedFill;
++ (id)ts_handRaisedFillForHUD;
++ (id)ts_handRaisedSlash;
++ (id)ts_handRaisedSlashFill;
++ (id)ts_handThumbsDown;
++ (id)ts_handThumbsDownFill;
++ (id)ts_handThumbsDownFillForHUD;
++ (id)ts_handThumbsUp;
++ (id)ts_handThumbsUpFill;
++ (id)ts_handThumbsUpFillForHUD;
++ (id)ts_heartCircle;
++ (id)ts_heartCircleFill;
++ (id)ts_heartCirclePinkOnTertiaryFill;
++ (id)ts_heartCircleTertiaryFillOnPink;
++ (id)ts_heartFill;
++ (id)ts_iCloudAndArrowDown;
++ (id)ts_link;
++ (id)ts_macSidebar;
++ (id)ts_minusCircle;
++ (id)ts_minusCircleFill;
++ (id)ts_minusCircleFillWhite;
++ (id)ts_minusCircleTertiaryFillOnPink;
++ (id)ts_navigationVerticalColumnShadow;
++ (id)ts_noSign;
++ (id)ts_plus;
++ (id)ts_plusCircle;
++ (id)ts_plusCircleFill;
++ (id)ts_plusCirclePinkOnOpaqueFill;
++ (id)ts_plusCirclePinkOnTertiaryFill;
++ (id)ts_plusCircleWhite;
++ (id)ts_rightArrow;
++ (id)ts_safari;
++ (id)ts_sidebarLeft;
++ (id)ts_squareAndArrowUp;
++ (id)ts_textFormatSize;
++ (id)ts_trash;
++ (id)ts_xmark;
++ (id)ts_xmarkCircle;
++ (id)ts_xmarkForHUD;
+
+- (id)ts_imageThatSuppressesAccessibilityHairlineThickening;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
++ (id)_tpImageNamed:(id)arg1 inBundle:(id)arg2 compatibleWithTraitCollection:(id)arg3;
++ (bool)cappedSizedImagesAreValid;
++ (void)clearCachedCappedSizeImagesIfNeeded;
++ (id)favoritesAudioGlyphImage;
++ (id)favoritesGlyphForSymbolType:(long long)arg1;
++ (id)favoritesMailGlyphImage;
++ (id)favoritesMessageGlyphImage;
++ (id)favoritesTTYDirectGlyphImage;
++ (id)favoritesTTYRelayGlyphImage;
++ (id)favoritesVideoGlyphImage;
++ (id)recentsGlyphForSymbolType:(long long)arg1;
++ (id)recentsOutgoingAudioCallGlyphImage;
++ (id)recentsOutgoingVideoCallGlyphImage;
++ (id)recentsRTTChevronImage;
++ (id)recentsTTYDirectGlyphImage;
++ (id)recentsTTYGlyphImage;
++ (id)recentsTTYRelayGlyphImage;
++ (id)recentsVerifiedCheckmarkImage;
++ (long long)scaleForTPScale:(long long)arg1;
++ (id)systemImageNameForSymbolType:(long long)arg1;
++ (id)telephonyUIActionButtonGlyphImage;
++ (id)telephonyUIImageNamed:(id)arg1;
++ (id)telephonyUIInfoButtonGlyphImage;
++ (id)telephonyUIUnreadIndicatorGlyphImage;
++ (id)telephonyUI_AudioControlsGlyphForDeviceType:(long long)arg1;
++ (id)telephonyUI_AudioRouteGlyphForDeviceType:(long long)arg1;
++ (id)telephonyUI_BluetoothAudioControlsGlyphImage;
++ (id)telephonyUI_BluetoothAudioRouteGlyphImage;
++ (id)telephonyUI_CarPlayAudioRouteGlyphImage;
++ (id)telephonyUI_headphonesAudioControlsGlyphImage;
++ (id)telephonyUI_headphonesAudioRouteGlyphImage;
++ (id)telephonyUI_iPadAudioRouteGlyphImage;
++ (id)telephonyUI_iPhoneAudioRouteGlyphImage;
++ (id)telephonyUI_iPodAudioRouteGlyphImage;
++ (id)telephonyUI_muteAudioRouteGlyphImage;
++ (id)telephonyUI_speakerAudioRouteGlyphImage;
++ (id)tpImageForSymbolType:(long long)arg1 configuration:(id)arg2;
++ (id)tpImageForSymbolType:(long long)arg1 pointSize:(double)arg2;
++ (id)tpImageForSymbolType:(long long)arg1 textStyle:(id)arg2 cappedAt:(id)arg3;
++ (id)tpImageForSymbolType:(long long)arg1 textStyle:(id)arg2 scale:(long long)arg3 isStaticSize:(bool)arg4;
++ (id)tpImageForSymbolType:(long long)arg1 textStyle:(id)arg2 scale:(long long)arg3 symbolWeight:(long long)arg4;
++ (id)tpImageNamed:(id)arg1 inBundle:(id)arg2;
++ (id)voicemailAudioRouteGlyphImage;
++ (id)voicemailDeleteGlyphImage;
++ (id)voicemailDialRequestGlyphImage;
++ (id)voicemailGlyphForSymbolType:(long long)arg1;
++ (id)voicemailPauseGlyphDisabledImage;
++ (id)voicemailPauseGlyphImage;
++ (id)voicemailPlayGlyphDisabledImage;
++ (id)voicemailPlayGlyphImage;
++ (id)voicemailReportFeedbackGlyphImage;
++ (id)voicemailUndeleteGlyphImage;
+
+- (id)imageWithEtchedBorderOfColor:(id)arg1 radius:(double)arg2;
+- (id)imageWithShadow:(id)arg1;
+- (id)tpFlattenedWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TemplateKit.framework/TemplateKit
+
+- (id)tlks_imageAutoFlippedForRTL:(bool)arg1 tintColor:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TestFlightCore.framework/TestFlightCore
+
++ (id)tf_imageNamed:(id)arg1 compatibleWithTraitCollection:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TouchML.framework/TouchML
+
++ (void)initializeJSContext:(id)arg1;
+
+- (id)CGImageRef;
+- (double)aspectRatio;
+- (id)bounds;
+- (id)colorPattern;
+- (id)cropImageToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (double)height;
+- (id)resizableImage:(id)arg1 :(long long)arg2;
+- (double)width;
+- (id)withRenderingMode:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
++ (id)imageForPlaceholderURL:(id)arg1;
++ (id)imageWithColor:(id)arg1;
++ (unsigned long long)vui_bytesNeededForSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 withContextType:(int)arg3;
++ (id)vui_imageFromContextWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 type:(int)arg3 pool:(id)arg4 drawing:(id /* block */)arg5;
++ (id)vui_imageFromContextWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 type:(int)arg3 pool:(id)arg4 drawing:(id /* block */)arg5 encapsulation:(id /* block */)arg6;
++ (id)vui_videosUIImageNamed:(id)arg1;
+
+- (id)vui_iconImageOfSize:(struct CGSize { double x1; double x2; })arg1;
+- (id)vui_iconImageOfSize:(struct CGSize { double x1; double x2; })arg1 radius:(double)arg2 stroke:(double)arg3;
+- (id)vui_imageWithColor:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WallpaperKit.framework/WallpaperKit
+
++ (id)wk_imageFromColor:(id)arg1;
++ (id)wk_imageWithLightAppearanceImage:(id)arg1 darkAppearanceImage:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
+
+- (id)WAImageLoaderPreCacheImage;
+- (void)drawPDFInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)wa_imageWithSize:(struct CGSize { double x1; double x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/Widgets.framework/Widgets
+
+- (id)imagesWithSpriteSize:(struct CGSize { double x1; double x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/iCloudQuotaUI.framework/iCloudQuotaUI
+
++ (id)icqBundleImageNamed:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (id)stretchableImageWithLeftCapWidth:(long long)arg1 rightCapWidth:(long long)arg2;
 
 @end

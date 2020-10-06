@@ -22,8 +22,6 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSArray *tagRequests;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_doneBarButtonAction:(id)arg1;
 - (id)_formTypes;
@@ -33,9 +31,6 @@
 - (id)_textFieldTypes;
 - (void)_updateTitle;
 - (void)_updateToolbarButtons;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)delegate;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (long long)numberOfComponentsInPickerView:(id)arg1;

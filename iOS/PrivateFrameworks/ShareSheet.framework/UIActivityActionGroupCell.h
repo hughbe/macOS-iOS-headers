@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ShareSheet.framework/ShareSheet
  */
 
-@interface UIActivityActionGroupCell : UICollectionViewCell {
+@interface UIActivityActionGroupCell : _UICollectionViewListCell {
     UIImageView * _activityImageView;
     _UIHostActivityProxy * _activityProxy;
     UIView * _activitySlotView;

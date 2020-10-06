@@ -7,10 +7,6 @@
 }
 
 - (void).cxx_destruct;
-- (void)addDeletedEventID:(id)arg1 forSourceDeviceID:(id)arg2;
-- (unsigned long long)count;
-- (id)deletedEventIDsForSourceDeviceID:(id)arg1;
 - (id)init;
-- (id)sourceDeviceIDs;
 
 @end

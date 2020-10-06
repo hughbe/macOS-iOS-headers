@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSValue *pointerSlipValue;
 @property (nonatomic) double pointerVisualIntensity;
 @property (nonatomic) unsigned long long preferredPointerMaterialLuminance;
+@property (nonatomic) bool shouldPointerSuppressMirroring;
 @property (nonatomic) bool shouldPointerUnderlayContent;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -38,6 +39,7 @@
 - (void)setPointerSlipValue:(id)arg1;
 - (void)setPointerVisualIntensity:(double)arg1;
 - (void)setPreferredPointerMaterialLuminance:(unsigned long long)arg1;
+- (void)setShouldPointerSuppressMirroring:(bool)arg1;
 - (void)setShouldPointerUnderlayContent:(bool)arg1;
 
 @end

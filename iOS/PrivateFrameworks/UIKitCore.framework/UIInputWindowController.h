@@ -28,11 +28,13 @@
     UIInputViewSetNotificationInfo * _keyboardHeightChangeNotificationInfo;
     NSDate * _keyboardShowTimestamp;
     NSString * _lastKeyboardID;
+    _UIKeyboardPasscodeObscuringInteraction * _passcodeObscuringInteraction;
     UIKeyboardPathEffectView * _pathEffectView;
     id /* block */  _pendingTransitionActivity;
     UIInputViewSetPlacement * _placement;
     UIInputViewSetNotificationInfo * _postRotationInputViewNotificationInfo;
     UIInputViewSet * _postRotationInputViewSet;
+    id /* block */  _postRotationPendingBlock;
     UIInputViewSetPlacement * _postRotationPlacement;
     struct CGRect { 
         struct CGPoint { 
@@ -126,14 +128,14 @@
 @property (nonatomic, readonly, retain) UIInputViewSetPlacement *placementIgnoringRotation;
 @property (nonatomic, retain) UIInputViewSetNotificationInfo *postRotationInputViewNotificationInfo;
 @property (nonatomic, retain) UIInputViewSet *postRotationInputViewSet;
+@property (nonatomic, copy) id /* block */ postRotationPendingBlock;
 @property (nonatomic, retain) UIInputViewSetPlacement *postRotationPlacement;
 @property (nonatomic) bool shouldNotifyRemoteKeyboards;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UIInputViewSetNotificationInfo *templateNotificationInfo;
 @property (nonatomic, retain) UIInputViewSet *transientInputViewSet;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
+- (bool)_allowsSkippingLayout;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_boundsForOrientation:(long long)arg1;
 - (bool)_canShowWhileLocked;
 - (struct CGPoint { double x1; double x2; })_centerForOrientation:(long long)arg1;
@@ -160,10 +162,6 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_viewSafeAreaInsetsFromScene;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_visibleFrame;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_visibleInputViewFrame;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)accessoryViewHeightConstraint;
 - (void)addPendingActivity:(id /* block */)arg1;
 - (void)animateAccessoryViewVisibility:(bool)arg1 withDuration:(double)arg2;
@@ -172,12 +170,14 @@
 - (void)beginFloatingTransitionFromPanGestureRecognizer:(id)arg1;
 - (id)bottomEdgeView;
 - (void)candidateBarWillChangeHeight:(double)arg1 withDuration:(double)arg2;
+- (void)chainPlacementsIfNecessaryFrom:(id)arg1 toPlacement:(id)arg2 transition:(id)arg3 completion:(id /* block */)arg4;
 - (void)changeChild:(unsigned long long)arg1 toAppearState:(int)arg2 animated:(bool)arg3;
 - (unsigned long long)changeToInputViewSet:(id)arg1;
 - (void)checkPlaceholdersForRemoteKeyboardsAndForceConstraintsUpdate:(bool)arg1 layoutSubviews:(bool)arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })convertRectFromContainerCoordinateSpaceToScreenSpace:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)currentPresentationPlacement;
 - (id)currentTransition;
+- (void)dealloc;
 - (void)didEndTransitionWithController:(id)arg1;
 - (void)didReceiveMemoryWarning;
 - (void)didRotateFromInterfaceOrientation:(long long)arg1;
@@ -192,7 +192,9 @@
 - (void)flushPendingActivities;
 - (bool)forceAccessoryViewToBottomOfHostView;
 - (void)generateNotificationsForStart:(bool)arg1;
+- (bool)hasInputOrAssistantViewsOnScreen;
 - (void)hostAppSceneBoundsChanged;
+- (void)hostViewWillDisappear;
 - (id)hosting;
 - (void)ignoreLayoutNotifications:(id /* block */)arg1;
 - (bool)inhibitRotationAnimation;
@@ -242,6 +244,7 @@
 - (void)postEndNotifications:(unsigned long long)arg1 withInfo:(id)arg2;
 - (id)postRotationInputViewNotificationInfo;
 - (id)postRotationInputViewSet;
+- (id /* block */)postRotationPendingBlock;
 - (id)postRotationPlacement;
 - (void)postStartNotifications:(unsigned long long)arg1 withInfo:(id)arg2;
 - (void)postTransitionEndNotification;
@@ -276,6 +279,7 @@
 - (void)setPlacementChangeDisabled:(bool)arg1 withPlacement:(id)arg2;
 - (void)setPostRotationInputViewNotificationInfo:(id)arg1;
 - (void)setPostRotationInputViewSet:(id)arg1;
+- (void)setPostRotationPendingBlock:(id /* block */)arg1;
 - (void)setPostRotationPlacement:(id)arg1;
 - (void)setRotationAwarePlacement:(id)arg1;
 - (void)setShouldNotifyRemoteKeyboards:(bool)arg1;
@@ -307,6 +311,7 @@
 - (void)updateViewConstraints;
 - (void)updateViewSizingConstraints;
 - (void)updateVisibilityConstraintsForPlacement:(id)arg1;
+- (void)validateInputView;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
 - (id)viewForTransitionScreenSnapshot;
@@ -319,6 +324,5 @@
 - (void)willRotateToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
 - (void)willSnapshot;
 - (void)window:(id)arg1 statusBarWillChangeFromHeight:(double)arg2 toHeight:(double)arg3;
-- (void)window:(id)arg1 willAnimateRotationToInterfaceOrientation:(long long)arg2 duration:(double)arg3 newSize:(struct CGSize { double x1; double x2; })arg4;
 
 @end

@@ -11,6 +11,7 @@
 + (void)_release_1;
 + (id)_retain_1;
 + (void)_storeDeallocated;
++ (bool)_usesTaggedPointers;
 + (bool)accessInstanceVariablesDirectly;
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;

@@ -17,6 +17,7 @@
 
 - (void).cxx_destruct;
 - (id)connection;
+- (void)dealloc;
 - (id)endpoint;
 - (id)initWithConnection:(id)arg1;
 - (id)objectProxyWithErrorHandler:(id /* block */)arg1;

@@ -13,6 +13,8 @@
 @property (nonatomic) bool shouldCacheScript;
 @property (nonatomic) bool shouldRestartContext;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)abstractClientCommand;
 + (id)abstractClientCommandWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -35,5 +37,9 @@
 - (bool)shouldCacheBytecode;
 - (bool)shouldCacheScript;
 - (bool)shouldRestartContext;
+
+// Image: /System/Library/PrivateFrameworks/SiriClientFlow.framework/SiriClientFlow
+
+- (bool)_cf_emptyPayload;
 
 @end

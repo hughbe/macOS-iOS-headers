@@ -18,7 +18,7 @@
 - (bool)createPropertyType:(int)arg1 component:(id)arg2 withName:(id)arg3;
 - (id)initWithData:(id)arg1 options:(unsigned long long)arg2;
 - (id)lexer;
-- (id)makeComponent:(char *)arg1;
+- (id)makeComponent:(const char *)arg1;
 - (id)parseData;
 - (void)parseParameter:(id)arg1;
 - (bool)parseProperty:(id)arg1;

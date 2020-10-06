@@ -24,12 +24,9 @@
 + (void)sendMessageWithPacker:(id /* block */)arg1 toConnection:(id)arg2 replyHandler:(id /* block */)arg3 replyQueue:(id)arg4;
 
 - (void).cxx_destruct;
-- (id)_errorForXPCMessageReply:(id)arg1;
 - (id)description;
 - (void)forcefullyInvokeReplyHandler:(id)arg1;
 - (id)initWithMessage:(long long)arg1 packer:(id /* block */)arg2 replyHandler:(id /* block */)arg3 replyQueue:(id)arg4;
-- (id)initWithMessage:(id)arg1 replyHandler:(id /* block */)arg2 replyQueue:(id)arg3;
-- (id)initWithMessagePacker:(id /* block */)arg1 replyHandler:(id /* block */)arg2 replyQueue:(id)arg3;
 - (id)payload;
 - (id)sendSynchronouslyToConnection:(id)arg1 error:(id*)arg2;
 - (bool)sendToConnection:(id)arg1;

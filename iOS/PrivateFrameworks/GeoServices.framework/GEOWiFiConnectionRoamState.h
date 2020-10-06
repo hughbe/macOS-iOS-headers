@@ -25,7 +25,10 @@
 - (bool)hasLateRoamMaxRSSI;
 - (bool)hasLateRoamMinRSSI;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)lateRoamMaxRSSI;
 - (int)lateRoamMinRSSI;
 - (void)mergeFrom:(id)arg1;

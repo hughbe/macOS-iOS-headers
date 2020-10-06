@@ -26,7 +26,7 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *notes;
 @property (nonatomic, retain) NSMutableDictionary *perfdata;
-@property (nonatomic, readonly, retain) NSString *primaryMetricFilter;
+@property (nonatomic, retain) NSString *primaryMetricFilter;
 @property (nonatomic, retain) NSString *testDescription;
 @property (nonatomic, retain) NSDictionary *variables;
 @property (nonatomic) unsigned long long version;
@@ -69,6 +69,7 @@
 - (void)setName:(id)arg1;
 - (void)setNotes:(id)arg1;
 - (void)setPerfdata:(id)arg1;
+- (void)setPrimaryMetricFilter:(id)arg1;
 - (void)setTestDescription:(id)arg1;
 - (void)setVariables:(id)arg1;
 - (void)setVersion:(unsigned long long)arg1;

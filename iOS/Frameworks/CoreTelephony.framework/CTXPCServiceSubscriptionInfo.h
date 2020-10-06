@@ -11,6 +11,10 @@
 @property (nonatomic, retain) NSArray *subscriptions;
 @property (nonatomic, retain) NSArray *subscriptionsInUse;
 @property (nonatomic, retain) NSArray *subscriptionsValid;
+@property (nonatomic, readonly, copy) NSOrderedSet *tps_activeSubscriptionSet;
+@property (nonatomic, readonly, copy) NSOrderedSet *tps_subscriptionSet;
+
+// Image: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
 
 + (bool)supportsSecureCoding;
 
@@ -26,5 +30,10 @@
 - (id)subscriptions;
 - (id)subscriptionsInUse;
 - (id)subscriptionsValid;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyPreferences.framework/TelephonyPreferences
+
+- (id)tps_activeSubscriptionSet;
+- (id)tps_subscriptionSet;
 
 @end

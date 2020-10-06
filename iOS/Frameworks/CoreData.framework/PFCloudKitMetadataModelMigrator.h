@@ -4,12 +4,18 @@
 
 @interface PFCloudKitMetadataModelMigrator : NSObject {
     PFCloudKitMetadataMigrationContext * _context;
+    long long  _databaseScope;
+    CKRecordZoneID * _defaultZoneID;
     NSManagedObjectContext * _metadataContext;
+    PFCloudKitMetricsClient * _metricsClient;
     NSSQLCore * _store;
 }
 
 @property (nonatomic, readonly) PFCloudKitMetadataMigrationContext *context;
+@property (nonatomic, readonly) long long databaseScope;
+@property (nonatomic, readonly) CKRecordZoneID *defaultZoneID;
 @property (nonatomic, readonly) NSManagedObjectContext *metadataContext;
+@property (nonatomic, readonly) PFCloudKitMetricsClient *metricsClient;
 @property (nonatomic, readonly) NSSQLCore *store;
 
 - (void)addDropTableStatementsForOldMetadataTablesToContext:(id)arg1 withAdapter:(id)arg2;
@@ -25,10 +31,13 @@
 - (bool)commitMigrationMetadataAndCleanup:(id*)arg1;
 - (bool)computeAncillaryEntityPrimaryKeyTableEntriesForStore:(id)arg1 error:(id*)arg2;
 - (id)context;
+- (long long)databaseScope;
 - (void)dealloc;
+- (id)defaultZoneID;
 - (id)fetchSchemaSQLForEntity:(id)arg1 usingConnection:(id)arg2;
-- (id)initWithStore:(id)arg1 metadataContext:(id)arg2;
+- (id)initWithStore:(id)arg1 metadataContext:(id)arg2 databaseScope:(long long)arg3 defaultZoneID:(id)arg4 metricsClient:(id)arg5;
 - (id)metadataContext;
+- (id)metricsClient;
 - (bool)migrateBatchOfObjects:(id)arg1 forStore:(id)arg2 inContext:(id)arg3 error:(id*)arg4;
 - (bool)migrateMetadataForObjectsInStore:(id)arg1 toNSCKRecordMetadataUsingContext:(id)arg2 error:(id*)arg3;
 - (bool)prepareContextWithConnection:(id)arg1 error:(id*)arg2;

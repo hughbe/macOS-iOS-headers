@@ -38,7 +38,7 @@
 - (void)beginPseudoAlertPresentationMode;
 - (id)compactPresentationController;
 - (void)dealloc;
-- (void)dimmingViewWasTapped:(id)arg1;
+- (bool)dimmingViewWasTapped:(id)arg1 withDismissCompletion:(id /* block */)arg2;
 - (id)dismissActionTitle;
 - (bool)dismissActionUsesShorterHeightWhenCompactVertically;
 - (void)endPseudoAlertPresentationMode;

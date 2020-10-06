@@ -12,11 +12,11 @@
     NSObject<OS_nw_interface> * _lastDelegateInterface;
     NSObject<OS_nw_interface> * _lastInterface;
     int  _linkQuality;
-    struct __CFRunLoopSource { } * _linkQualitySource;
     struct __CFString { } * _lqKey;
     NSMutableArray * _offTransitions;
     NSObject<OS_nw_parameters> * _pathParameters;
     NSRecursiveLock * _recursiveLock;
+    NSObject<OS_dispatch_queue> * _scQueue;
     unsigned long long  _thresholdOffTransitionCount;
     bool  _trackUsability;
     double  _trackedTimeInterval;

@@ -56,6 +56,7 @@
 - (id)initWithCoreTelephonyClient:(id)arg1 systemMonitor:(id)arg2;
 - (bool)isAnySIMInserted;
 - (bool)isAnySIMUsable;
+- (bool)isPNRNumber:(id)arg1 andPhoneBookNumber:(id)arg2 differentEnoughFromSIMIdentifier:(id)arg3 toReregisterWithNewNumber:(id*)arg4;
 - (bool)isPhoneNumberEmergencyNumber:(id)arg1;
 - (id)listeners;
 - (struct os_unfair_lock_s { unsigned int x1; })lock;

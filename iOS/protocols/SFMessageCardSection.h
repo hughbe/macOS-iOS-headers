@@ -5,12 +5,14 @@
 
 @required
 
+- (NSURL *)audioMessageURL;
 - (SFColor *)backgroundColor;
 - (bool)canBeHidden;
 - (NSDictionary *)dictionaryRepresentation;
 - (bool)hasBottomPadding;
 - (bool)hasTopPadding;
 - (NSData *)jsonData;
+- (SFMessageAttachment *)messageAttachment;
 - (int)messageServiceType;
 - (int)messageStatus;
 - (NSString *)messageText;
@@ -18,10 +20,12 @@
 - (NSString *)punchoutPickerDismissText;
 - (NSString *)punchoutPickerTitle;
 - (int)separatorStyle;
+- (void)setAudioMessageURL:(NSURL *)arg1;
 - (void)setBackgroundColor:(SFColor *)arg1;
 - (void)setCanBeHidden:(bool)arg1;
 - (void)setHasBottomPadding:(bool)arg1;
 - (void)setHasTopPadding:(bool)arg1;
+- (void)setMessageAttachment:(SFMessageAttachment *)arg1;
 - (void)setMessageServiceType:(int)arg1;
 - (void)setMessageStatus:(int)arg1;
 - (void)setMessageText:(NSString *)arg1;

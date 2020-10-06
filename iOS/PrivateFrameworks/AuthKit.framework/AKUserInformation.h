@@ -20,6 +20,7 @@
     NSNumber * _phoneAsAppleID;
     NSString * _previouslySelectedEmail;
     NSNumber * _previouslyWantedPrivateEmail;
+    NSString * _primaryEmailAddress;
     NSArray * _reachableEmails;
     unsigned long long  _repairState;
     NSString * _selectedEmail;
@@ -43,6 +44,7 @@
 @property (nonatomic, copy) NSNumber *phoneAsAppleID;
 @property (nonatomic, copy) NSString *previouslySelectedEmail;
 @property (nonatomic, copy) NSNumber *previouslyWantedPrivateEmail;
+@property (nonatomic, copy) NSString *primaryEmailAddress;
 @property (nonatomic, copy) NSArray *reachableEmails;
 @property (nonatomic) unsigned long long repairState;
 @property (nonatomic, copy) NSString *selectedEmail;
@@ -73,6 +75,7 @@
 - (id)phoneAsAppleID;
 - (id)previouslySelectedEmail;
 - (id)previouslyWantedPrivateEmail;
+- (id)primaryEmailAddress;
 - (id)reachableEmails;
 - (unsigned long long)repairState;
 - (id)selectedEmail;
@@ -93,6 +96,7 @@
 - (void)setPhoneAsAppleID:(id)arg1;
 - (void)setPreviouslySelectedEmail:(id)arg1;
 - (void)setPreviouslyWantedPrivateEmail:(id)arg1;
+- (void)setPrimaryEmailAddress:(id)arg1;
 - (void)setReachableEmails:(id)arg1;
 - (void)setRepairState:(unsigned long long)arg1;
 - (void)setSelectedEmail:(id)arg1;

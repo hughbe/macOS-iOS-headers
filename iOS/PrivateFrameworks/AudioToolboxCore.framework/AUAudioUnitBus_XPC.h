@@ -3,7 +3,7 @@
  */
 
 @interface AUAudioUnitBus_XPC : AUAudioUnitBus <NSSecureCoding> {
-    AUAudioUnit_XH * _audioUnit;
+    AUAudioUnit_XPC * _audioUnit;
     unsigned int  _element;
     AVAudioFormat * _format;
     NSXPCConnection * _remoteAUXPCConnection;

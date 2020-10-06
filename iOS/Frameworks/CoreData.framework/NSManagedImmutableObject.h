@@ -17,7 +17,6 @@
 + (void)release;
 + (id)retain;
 
-- (bool)implementsSelector:(SEL)arg1;
 - (int (*)methodForSelector:(SEL)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
 - (bool)respondsToSelector:(SEL)arg1;

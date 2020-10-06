@@ -29,6 +29,7 @@
 - (void)flowDivertOpenControlSocket;
 - (id)flowQueue;
 - (void)openFlowDivertControlSocketWithCompletionHandler:(id /* block */)arg1;
+- (Class)requiredProviderSuperClass;
 - (void)setDelegateInterface:(unsigned int)arg1;
 - (void)setDelegateInterfaceIndex:(unsigned int)arg1;
 - (void)setDirector:(struct _NEFlowDirector { }*)arg1;

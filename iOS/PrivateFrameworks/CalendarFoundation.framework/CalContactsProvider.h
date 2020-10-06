@@ -44,6 +44,7 @@
 - (id)init;
 - (id)initWithStore:(id)arg1;
 - (bool)matchesOneOfMyEmails:(id)arg1;
+- (bool)matchesOneOfMyPhoneNumbers:(id)arg1;
 - (void)meCardChanged:(id)arg1;
 - (id)meContact;
 - (id)myAddressForLabel:(id)arg1;
@@ -53,6 +54,7 @@
 - (id)myFullName;
 - (id)myHomeAddress;
 - (id)myNameWithStyle:(long long)arg1;
+- (id)myPhoneNumbers;
 - (id)myShortDisplayName;
 - (id)myWorkAddress;
 - (void)registerForContactChangeNotifications:(id)arg1;

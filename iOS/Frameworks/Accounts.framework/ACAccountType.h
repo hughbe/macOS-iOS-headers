@@ -2,13 +2,12 @@
    Image: /System/Library/Frameworks/Accounts.framework/Accounts
  */
 
-@interface ACAccountType : NSObject <ACProtobufCoding, NSSecureCoding> {
+@interface ACAccountType : NSObject <ACProtobufCoding, NSCopying, NSSecureCoding> {
     NSSet * _accessKeys;
     ACAccountStore * _accountStore;
     NSString * _accountTypeDescription;
     NSString * _credentialProtectionPolicy;
     NSString * _credentialType;
-    bool  _encryptAccountProperties;
     NSString * _identifier;
     NSURL * _objectID;
     bool  _obsolete;
@@ -28,7 +27,6 @@
 @property (nonatomic, retain) NSString *credentialType;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic, readonly) bool encryptAccountProperties;
 @property (nonatomic, readonly) NSString *fullDescription;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) NSString *identifier;
@@ -59,7 +57,6 @@
 - (id)credentialType;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
-- (bool)encryptAccountProperties;
 - (id)fullDescription;
 - (unsigned long long)hash;
 - (id)identifier;

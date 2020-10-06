@@ -9,6 +9,7 @@
 + (id)cleanseErrorForXPC:(id)arg1;
 + (id)encodedDataFromError:(id)arg1;
 + (id)errorFromEncodedData:(id)arg1;
++ (id)safeCKErrorPrimitiveClasses;
 + (id)safeErrorClasses;
 + (id)safeErrorCollectionClasses;
 + (id)safeErrorPrimitiveClasses;

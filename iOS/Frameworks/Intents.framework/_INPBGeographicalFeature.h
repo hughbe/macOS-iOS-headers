@@ -3,13 +3,11 @@
  */
 
 @interface _INPBGeographicalFeature : PBCodable <NSCopying, NSSecureCoding, _INPBGeographicalFeature> {
-    bool  __encodeLegacyGloryData;
     NSArray * _geographicalFeatureDescriptors;
     _INPBString * _geographicalFeatureType;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSArray *geographicalFeatureDescriptors;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addGeographicalFeatureDescriptors:(id)arg1;
 - (void)clearGeographicalFeatureDescriptors;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

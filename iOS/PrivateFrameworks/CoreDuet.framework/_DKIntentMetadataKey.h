@@ -13,5 +13,6 @@
 + (id)intentVerb;
 + (id)serializedInteraction;
 + (id)serializedKeyImage;
++ (id)shortcutAvailability;
 
 @end

@@ -16,6 +16,7 @@
         unsigned int totalBytesExpectedToWrite : 1; 
         unsigned int totalBytesRead : 1; 
         unsigned int totalBytesWritten : 1; 
+        unsigned int http3Status : 1; 
         unsigned int networkLoadType : 1; 
         unsigned int networkProtocolName : 1; 
         unsigned int apsRelayAttempted : 1; 
@@ -23,6 +24,7 @@
         unsigned int isRedirected : 1; 
         unsigned int reusedConnection : 1; 
     }  _has;
+    int  _http3Status;
     bool  _isRedirected;
     int  _networkLoadType;
     int  _networkProtocolName;
@@ -44,6 +46,7 @@
 @property (nonatomic) bool hasApsRelayAttempted;
 @property (nonatomic) bool hasApsRelaySucceeded;
 @property (nonatomic, readonly) bool hasConnectionUUID;
+@property (nonatomic) bool hasHttp3Status;
 @property (nonatomic) bool hasIsRedirected;
 @property (nonatomic) bool hasNetworkLoadType;
 @property (nonatomic) bool hasNetworkProtocolName;
@@ -57,6 +60,7 @@
 @property (nonatomic) bool hasTotalBytesExpectedToWrite;
 @property (nonatomic) bool hasTotalBytesRead;
 @property (nonatomic) bool hasTotalBytesWritten;
+@property (nonatomic) int http3Status;
 @property (nonatomic) bool isRedirected;
 @property (nonatomic) int networkLoadType;
 @property (nonatomic) int networkProtocolName;
@@ -71,6 +75,7 @@
 @property (nonatomic) unsigned long long totalBytesRead;
 @property (nonatomic) unsigned long long totalBytesWritten;
 
+- (int)StringAsHttp3Status:(id)arg1;
 - (int)StringAsNetworkLoadType:(id)arg1;
 - (int)StringAsNetworkProtocolName:(id)arg1;
 - (bool)apsRelayAttempted;
@@ -84,6 +89,7 @@
 - (bool)hasApsRelayAttempted;
 - (bool)hasApsRelaySucceeded;
 - (bool)hasConnectionUUID;
+- (bool)hasHttp3Status;
 - (bool)hasIsRedirected;
 - (bool)hasNetworkLoadType;
 - (bool)hasNetworkProtocolName;
@@ -98,6 +104,8 @@
 - (bool)hasTotalBytesRead;
 - (bool)hasTotalBytesWritten;
 - (unsigned long long)hash;
+- (int)http3Status;
+- (id)http3StatusAsString:(int)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isRedirected;
 - (void)mergeFrom:(id)arg1;
@@ -116,6 +124,7 @@
 - (void)setConnectionUUID:(id)arg1;
 - (void)setHasApsRelayAttempted:(bool)arg1;
 - (void)setHasApsRelaySucceeded:(bool)arg1;
+- (void)setHasHttp3Status:(bool)arg1;
 - (void)setHasIsRedirected:(bool)arg1;
 - (void)setHasNetworkLoadType:(bool)arg1;
 - (void)setHasNetworkProtocolName:(bool)arg1;
@@ -129,6 +138,7 @@
 - (void)setHasTotalBytesExpectedToWrite:(bool)arg1;
 - (void)setHasTotalBytesRead:(bool)arg1;
 - (void)setHasTotalBytesWritten:(bool)arg1;
+- (void)setHttp3Status:(int)arg1;
 - (void)setIsRedirected:(bool)arg1;
 - (void)setNetworkLoadType:(int)arg1;
 - (void)setNetworkProtocolName:(int)arg1;

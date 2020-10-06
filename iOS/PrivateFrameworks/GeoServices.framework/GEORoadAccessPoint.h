@@ -3,8 +3,10 @@
  */
 
 @interface GEORoadAccessPoint : PBCodable <NSCopying> {
+    int  _cyclingDirection;
     int  _drivingDirection;
     struct { 
+        unsigned int has_cyclingDirection : 1; 
         unsigned int has_drivingDirection : 1; 
         unsigned int has_significance : 1; 
         unsigned int has_transitDirection : 1; 
@@ -19,7 +21,9 @@
     int  _walkingDirection;
 }
 
+@property (nonatomic) int cyclingDirection;
 @property (nonatomic) int drivingDirection;
+@property (nonatomic) bool hasCyclingDirection;
 @property (nonatomic) bool hasDrivingDirection;
 @property (nonatomic) bool hasIsApproximate;
 @property (nonatomic, readonly) bool hasLocation;
@@ -36,16 +40,20 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
+- (int)StringAsCyclingDirection:(id)arg1;
 - (int)StringAsDrivingDirection:(id)arg1;
 - (int)StringAsTransitDirection:(id)arg1;
 - (int)StringAsWalkingDirection:(id)arg1;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (int)cyclingDirection;
+- (id)cyclingDirectionAsString:(int)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (int)drivingDirection;
 - (id)drivingDirectionAsString:(int)arg1;
+- (bool)hasCyclingDirection;
 - (bool)hasDrivingDirection;
 - (bool)hasIsApproximate;
 - (bool)hasLocation;
@@ -53,13 +61,18 @@
 - (bool)hasTransitDirection;
 - (bool)hasWalkingDirection;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isApproximate;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)location;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setCyclingDirection:(int)arg1;
 - (void)setDrivingDirection:(int)arg1;
+- (void)setHasCyclingDirection:(bool)arg1;
 - (void)setHasDrivingDirection:(bool)arg1;
 - (void)setHasIsApproximate:(bool)arg1;
 - (void)setHasSignificance:(bool)arg1;

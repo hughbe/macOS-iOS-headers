@@ -9,10 +9,7 @@
         unsigned int read_buildings : 1; 
         unsigned int read_levels : 1; 
         unsigned int read_venueContainer : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_buildings : 1; 
-        unsigned int wrote_levels : 1; 
-        unsigned int wrote_venueContainer : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _levels;
     PBDataReader * _reader;
@@ -36,11 +33,6 @@
 + (Class)levelType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsBuilding:(id)arg1;
-- (void)_addNoFlagsLevel:(id)arg1;
-- (void)_readBuildings;
-- (void)_readLevels;
-- (void)_readVenueContainer;
 - (void)addBuilding:(id)arg1;
 - (void)addLevel:(id)arg1;
 - (id)buildingAtIndex:(unsigned long long)arg1;
@@ -57,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)levelAtIndex:(unsigned long long)arg1;
 - (id)levels;
 - (unsigned long long)levelsCount;

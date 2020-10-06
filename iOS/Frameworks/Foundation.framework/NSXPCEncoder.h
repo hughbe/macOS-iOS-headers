@@ -7,11 +7,14 @@
     NSXPCConnection * _connection;
     <NSXPCEncoderDelegate> * _delegate;
     struct { 
-        unsigned long long collectionSizeOffset[384]; 
+        unsigned long long collectionSizeOffset[1024]; 
         long long collectionRecursionIndex; 
         unsigned long long dataLen; 
         unsigned long long dataSize; 
         char *data; 
+        struct __CFDictionary {} *objectReferences; 
+        struct __CFDictionary {} *stringReferences; 
+        struct __CFDictionary {} *asciiReferences; 
         bool isVM; 
         bool isStack; 
     }  _encoder;

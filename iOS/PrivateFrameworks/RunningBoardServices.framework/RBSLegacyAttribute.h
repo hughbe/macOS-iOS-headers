@@ -8,23 +8,31 @@
     unsigned long long  _requestedReason;
 }
 
-@property (nonatomic) unsigned long long flags;
+@property (nonatomic, readonly) unsigned long long flags;
 @property (nonatomic) unsigned long long reason;
-@property (nonatomic) unsigned long long requestedReason;
+@property (nonatomic, readonly) unsigned long long requestedReason;
+
+// Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
 
 + (id)attributeWithReason:(unsigned long long)arg1 flags:(unsigned long long)arg2;
 
-- (id)_initWithReason:(unsigned long long)arg1 flags:(unsigned long long)arg2;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (id)description;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned long long)flags;
 - (unsigned long long)hash;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (unsigned long long)reason;
 - (unsigned long long)requestedReason;
-- (void)setFlags:(unsigned long long)arg1;
 - (void)setReason:(unsigned long long)arg1;
-- (void)setRequestedReason:(unsigned long long)arg1;
-- (id)succinctDescriptionBuilder;
+
+// Image: /System/Library/PrivateFrameworks/RunningBoard.framework/RunningBoard
+
+- (void)applyToAcquisitionContext:(id)arg1;
+- (void)applyToAssertionIntransientState:(id)arg1 attributePath:(unsigned long long)arg2 context:(id)arg3;
+- (void)applyToAssertionTransientState:(id)arg1 attributePath:(unsigned long long)arg2 context:(id)arg3;
+- (void)applyToProcessState:(id)arg1 attributePath:(unsigned long long)arg2 context:(id)arg3;
+- (bool)conflictsWithAttribute:(id)arg1;
+- (bool)isValidForContext:(id)arg1 withError:(id*)arg2;
 
 @end

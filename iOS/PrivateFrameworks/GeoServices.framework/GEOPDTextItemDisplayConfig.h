@@ -29,7 +29,10 @@
 - (bool)hasMaxItemsPerRow;
 - (bool)hasMaxRowCount;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)maxItemsPerRow;
 - (unsigned int)maxRowCount;
 - (void)mergeFrom:(id)arg1;

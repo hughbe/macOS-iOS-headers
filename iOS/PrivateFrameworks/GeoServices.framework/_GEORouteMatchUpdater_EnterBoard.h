@@ -28,7 +28,7 @@
 - (bool)_hasLocationEnteredStation:(id)arg1 routeMatch:(id)arg2;
 - (bool)_hasLocationExitedStation:(id)arg1;
 - (bool)_isLocationNearAccessPoint:(id)arg1;
-- (bool)_isLocationNearEndOfWalkingLeg:(id)arg1;
+- (bool)_isLocationNearEndOfWalkingSegment:(id)arg1;
 - (bool)_isLocationNearTransitNode:(id)arg1;
 - (id)initWithTransitRouteMatcher:(id)arg1 boardVehicleStep:(id)arg2;
 - (bool)updateRouteMatch:(id)arg1 previousRouteMatch:(id)arg2 forLocation:(id)arg3;

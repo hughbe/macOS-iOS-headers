@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *sessionId;
 @property (nonatomic, copy) NSString *utteranceSource;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)startCorrectedSpeechRequest;
 + (id)startCorrectedSpeechRequestWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -38,5 +40,10 @@
 - (void)setSessionId:(id)arg1;
 - (void)setUtteranceSource:(id)arg1;
 - (id)utteranceSource;
+
+// Image: /System/Library/PrivateFrameworks/SiriCore.framework/SiriCore
+
+- (id)siriCore_requestId;
+- (void)siriCore_setSessionRequestId:(id)arg1;
 
 @end

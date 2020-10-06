@@ -35,7 +35,6 @@
 - (void)resetDisplayOffsetAccumulationFactor;
 - (void)setDisplayOffsetAccumulatorEnabled:(bool)arg1;
 - (void)startRollbackAnimation;
-- (void)startRollbackAnimationFasterConvergence;
 - (void)updateCurrentOffset:(struct CGPoint { double x1; double x2; })arg1;
 - (void)updateCurrentOffset:(struct CGPoint { double x1; double x2; })arg1 overrideDisplayOffset:(id)arg2;
 

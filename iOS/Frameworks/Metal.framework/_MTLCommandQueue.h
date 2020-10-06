@@ -22,7 +22,7 @@
     unsigned long long  _labelTraceID;
     unsigned long long  _listIndex;
     unsigned long long  _maxCommandBufferCount;
-    unsigned long long  _numCommandBuffers;
+    _Atomic int  _numCommandBuffers;
     bool  _openGLQueue;
     NSMutableArray * _pendingQueue;
     struct _opaque_pthread_mutex_t { 
@@ -63,9 +63,10 @@
 
 - (bool)_submitAvailableCommandBuffers;
 - (void)addPerfSampleHandler:(id /* block */)arg1;
-- (void)availableCounters;
+- (id)availableCounters;
 - (int)backgroundTrackingPID;
 - (void)commandBufferDidComplete:(id)arg1 startTime:(unsigned long long)arg2 completionTime:(unsigned long long)arg3 error:(id)arg4;
+- (id)commandBufferWithDescriptor:(id)arg1;
 - (void)commitCommandBuffer:(id)arg1 wake:(bool)arg2;
 - (id)commitQueue;
 - (bool)commitSynchronously;
@@ -99,7 +100,6 @@
 - (void)setExecutionEnabled:(bool)arg1;
 - (void)setLabel:(id)arg1;
 - (void)setListIndex:(unsigned long long)arg1;
-- (void)setNumCommandBuffers:(unsigned long long)arg1;
 - (void)setProfilingEnabled:(bool)arg1;
 - (void)setSkipRender:(bool)arg1;
 - (void)setStatEnabled:(bool)arg1;

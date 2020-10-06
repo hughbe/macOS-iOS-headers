@@ -3,6 +3,7 @@
  */
 
 @interface __NSDictionaryI : NSDictionary {
+    unsigned int  _copyKeys;
     id  _list;
     unsigned int  _szidx;
     unsigned int  _used;

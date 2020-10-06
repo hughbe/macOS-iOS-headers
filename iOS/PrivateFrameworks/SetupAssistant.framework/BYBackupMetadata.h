@@ -4,6 +4,7 @@
 
 @interface BYBackupMetadata : PBCodable <NSCopying> {
     unsigned int  _appAnalyticsOptIn;
+    bool  _autoDownloadEnabled;
     bool  _autoUpdateEnabled;
     unsigned int  _deviceAnalyticsOptIn;
     bool  _didSeeTrueTonePane;
@@ -13,6 +14,7 @@
         unsigned int appAnalyticsOptIn : 1; 
         unsigned int deviceAnalyticsOptIn : 1; 
         unsigned int homeButtonHapticKind : 1; 
+        unsigned int autoDownloadEnabled : 1; 
         unsigned int autoUpdateEnabled : 1; 
         unsigned int didSeeTrueTonePane : 1; 
         unsigned int findMyiPhoneOptIn : 1; 
@@ -31,11 +33,13 @@
 }
 
 @property (nonatomic) unsigned int appAnalyticsOptIn;
+@property (nonatomic) bool autoDownloadEnabled;
 @property (nonatomic) bool autoUpdateEnabled;
 @property (nonatomic) unsigned int deviceAnalyticsOptIn;
 @property (nonatomic) bool didSeeTrueTonePane;
 @property (nonatomic) bool findMyiPhoneOptIn;
 @property (nonatomic) bool hasAppAnalyticsOptIn;
+@property (nonatomic) bool hasAutoDownloadEnabled;
 @property (nonatomic) bool hasAutoUpdateEnabled;
 @property (nonatomic) bool hasDeviceAnalyticsOptIn;
 @property (nonatomic) bool hasDidSeeTrueTonePane;
@@ -58,6 +62,7 @@
 
 - (void).cxx_destruct;
 - (unsigned int)appAnalyticsOptIn;
+- (bool)autoDownloadEnabled;
 - (bool)autoUpdateEnabled;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -67,6 +72,7 @@
 - (bool)didSeeTrueTonePane;
 - (bool)findMyiPhoneOptIn;
 - (bool)hasAppAnalyticsOptIn;
+- (bool)hasAutoDownloadEnabled;
 - (bool)hasAutoUpdateEnabled;
 - (bool)hasDeviceAnalyticsOptIn;
 - (bool)hasDidSeeTrueTonePane;
@@ -87,11 +93,13 @@
 - (bool)readFrom:(id)arg1;
 - (bool)screenTimeEnabled;
 - (void)setAppAnalyticsOptIn:(unsigned int)arg1;
+- (void)setAutoDownloadEnabled:(bool)arg1;
 - (void)setAutoUpdateEnabled:(bool)arg1;
 - (void)setDeviceAnalyticsOptIn:(unsigned int)arg1;
 - (void)setDidSeeTrueTonePane:(bool)arg1;
 - (void)setFindMyiPhoneOptIn:(bool)arg1;
 - (void)setHasAppAnalyticsOptIn:(bool)arg1;
+- (void)setHasAutoDownloadEnabled:(bool)arg1;
 - (void)setHasAutoUpdateEnabled:(bool)arg1;
 - (void)setHasDeviceAnalyticsOptIn:(bool)arg1;
 - (void)setHasDidSeeTrueTonePane:(bool)arg1;

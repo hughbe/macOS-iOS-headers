@@ -13,6 +13,8 @@
     CALayer * _pulseLayer;
     bool  _pulsing;
     UIView * _subviewForBaselineAlignment;
+    UIVisualEffect * _visualEffect;
+    UIVisualEffectView * _visualEffectView;
 }
 
 @property (nonatomic, readonly) UIAccessibilityHUDItem *accessibilityHUDRepresentation;
@@ -27,6 +29,8 @@
 @property (nonatomic) bool pulsing;
 @property (nonatomic) UIView *subviewForBaselineAlignment;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) UIVisualEffect *visualEffect;
+@property (nonatomic, retain) UIVisualEffectView *visualEffectView;
 @property (nonatomic, readonly) bool wantsCrossfade;
 
 - (void).cxx_destruct;
@@ -47,7 +51,11 @@
 - (void)setPulseLayer:(id)arg1;
 - (void)setPulsing:(bool)arg1;
 - (void)setSubviewForBaselineAlignment:(id)arg1;
+- (void)setVisualEffect:(id)arg1;
+- (void)setVisualEffectView:(id)arg1;
 - (id)subviewForBaselineAlignment;
 - (id)viewForLastBaselineLayout;
+- (id)visualEffect;
+- (id)visualEffectView;
 
 @end

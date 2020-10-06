@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_name : 1; 
         unsigned int read_values : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_name : 1; 
-        unsigned int wrote_values : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _name;
     PBDataReader * _reader;
@@ -30,9 +28,6 @@
 + (Class)valuesType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsValues:(id)arg1;
-- (void)_readName;
-- (void)_readValues;
 - (void)addValues:(id)arg1;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)clearValues;
@@ -43,7 +38,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)name;
 - (void)readAll:(bool)arg1;

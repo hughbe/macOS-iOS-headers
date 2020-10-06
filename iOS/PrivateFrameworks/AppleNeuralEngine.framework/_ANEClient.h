@@ -21,7 +21,7 @@
 - (bool)compiledModelExistsFor:(id)arg1;
 - (id)conn;
 - (void)dealloc;
-- (bool)doEvaluateDirectWithModel:(id)arg1 request:(id)arg2 qos:(unsigned int)arg3 error:(id*)arg4;
+- (bool)doEvaluateDirectWithModel:(id)arg1 options:(id)arg2 request:(id)arg3 qos:(unsigned int)arg4 error:(id*)arg5;
 - (bool)doLoadModel:(id)arg1 options:(id)arg2 qos:(unsigned int)arg3 error:(id*)arg4;
 - (bool)doUnloadModel:(id)arg1 options:(id)arg2 qos:(unsigned int)arg3 error:(id*)arg4;
 - (bool)echo:(id)arg1;

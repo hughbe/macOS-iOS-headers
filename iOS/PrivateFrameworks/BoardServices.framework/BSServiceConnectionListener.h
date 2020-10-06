@@ -33,7 +33,6 @@
 + (id)listenerWithConfigurator:(id /* block */)arg1;
 
 - (void).cxx_destruct;
-- (id)_initWithManager:(id)arg1 config:(id /* block */)arg2;
 - (void)activate;
 - (void)dealloc;
 - (id)description;

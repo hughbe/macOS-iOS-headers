@@ -25,7 +25,6 @@
 - (void)requestRouteSummary;
 - (void)requestStepIndex;
 - (void)requestStepNameInfo;
-- (void)requestTrafficIncidentDetailsData;
 - (void)requestTransitSummary;
 - (void)requestUpdates;
 - (void)setDelegate:(id)arg1;

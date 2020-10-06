@@ -28,6 +28,7 @@
 - (bool)bypassPCSEncryptionForTouchRepairZone;
 - (void)encodeWithCoder:(id)arg1;
 - (id)field;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (long long)listIndex;
 - (id)recordID;

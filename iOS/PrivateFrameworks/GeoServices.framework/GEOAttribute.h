@@ -30,7 +30,10 @@
 - (bool)hasKey;
 - (bool)hasValue;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)key;
 - (id)keyAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;

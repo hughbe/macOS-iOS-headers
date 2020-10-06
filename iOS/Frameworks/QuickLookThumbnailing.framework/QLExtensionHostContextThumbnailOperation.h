@@ -5,6 +5,7 @@
 @interface QLExtensionHostContextThumbnailOperation : QLAsynchronousOperation {
     unsigned long long  _badgeType;
     id /* block */  _completionHandler;
+    NSDictionary * _generatorData;
     QLThumbnailHostContext * _hostContext;
     <QLTExtensionThumbnailItem> * _item;
     double  _minimumSize;
@@ -18,6 +19,7 @@
 
 @property (nonatomic) unsigned long long badgeType;
 @property (nonatomic, copy) id /* block */ completionHandler;
+@property (nonatomic, retain) NSDictionary *generatorData;
 @property (nonatomic, retain) QLThumbnailHostContext *hostContext;
 @property (nonatomic, retain) <QLTExtensionThumbnailItem> *item;
 @property (nonatomic) double minimumSize;
@@ -29,8 +31,9 @@
 - (unsigned long long)badgeType;
 - (id /* block */)completionHandler;
 - (void)finish;
+- (id)generatorData;
 - (id)hostContext;
-- (id)initWithThumbnailHostContext:(id)arg1 item:(id)arg2 size:(struct CGSize { double x1; double x2; })arg3 minimumSize:(double)arg4 scale:(double)arg5 badgeType:(unsigned long long)arg6 completionHandler:(id /* block */)arg7 serviceErrorHandler:(id /* block */)arg8;
+- (id)initWithThumbnailHostContext:(id)arg1 item:(id)arg2 size:(struct CGSize { double x1; double x2; })arg3 minimumSize:(double)arg4 scale:(double)arg5 badgeType:(unsigned long long)arg6 generatorData:(id)arg7 completionHandler:(id /* block */)arg8 serviceErrorHandler:(id /* block */)arg9;
 - (id)item;
 - (void)main;
 - (double)minimumSize;
@@ -38,6 +41,7 @@
 - (id /* block */)serviceErrorHandler;
 - (void)setBadgeType:(unsigned long long)arg1;
 - (void)setCompletionHandler:(id /* block */)arg1;
+- (void)setGeneratorData:(id)arg1;
 - (void)setHostContext:(id)arg1;
 - (void)setItem:(id)arg1;
 - (void)setMinimumSize:(double)arg1;

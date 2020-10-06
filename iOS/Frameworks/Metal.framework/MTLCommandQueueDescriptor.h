@@ -7,6 +7,7 @@
 @property (nonatomic) NSObject<OS_dispatch_queue> *commitQueue;
 @property (nonatomic) bool commitSynchronously;
 @property (nonatomic) NSObject<OS_dispatch_queue> *completionQueue;
+@property (nonatomic) unsigned long long devicePartition;
 @property (nonatomic) bool disableCrossQueueHazardTracking;
 @property (nonatomic) unsigned long long maxCommandBufferCount;
 @property (nonatomic) unsigned long long qosLevel;

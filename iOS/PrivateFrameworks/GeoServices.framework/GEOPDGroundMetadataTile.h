@@ -13,12 +13,7 @@
         unsigned int read_coord : 1; 
         unsigned int read_photoPositions : 1; 
         unsigned int read_storefronts : 1; 
-        unsigned int wrote_buildTables : 1; 
-        unsigned int wrote_cameraMetadataTables : 1; 
-        unsigned int wrote_coord : 1; 
-        unsigned int wrote_photoPositions : 1; 
-        unsigned int wrote_storefronts : 1; 
-        unsigned int wrote_tileBuildId : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _photoPositions;
     PBDataReader * _reader;
@@ -47,15 +42,6 @@
 + (Class)storefrontType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsBuildTable:(id)arg1;
-- (void)_addNoFlagsCameraMetadataTable:(id)arg1;
-- (void)_addNoFlagsPhotoPosition:(id)arg1;
-- (void)_addNoFlagsStorefront:(id)arg1;
-- (void)_readBuildTables;
-- (void)_readCameraMetadataTables;
-- (void)_readCoord;
-- (void)_readPhotoPositions;
-- (void)_readStorefronts;
 - (void)addBuildTable:(id)arg1;
 - (void)addCameraMetadataTable:(id)arg1;
 - (void)addPhotoPosition:(id)arg1;
@@ -80,7 +66,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)photoPositionAtIndex:(unsigned long long)arg1;
 - (id)photoPositions;

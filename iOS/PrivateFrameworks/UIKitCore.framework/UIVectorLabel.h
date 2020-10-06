@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIVectorLabel : UIView <_UILabelContentAttributesProvider> {
+@interface UIVectorLabel : UIView {
     _UILabelContent * _content;
     NSMutableDictionary * _defaultAttributes;
     struct { 
@@ -18,17 +18,11 @@
 
 @property (setter=_setAttributedText:, nonatomic, copy) NSAttributedString *_attributedText;
 @property (getter=_content, setter=_setContent:, nonatomic, retain) _UILabelContent *_content;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (nonatomic, retain) UIFont *font;
-@property (readonly) unsigned long long hash;
 @property (nonatomic) unsigned long long numberOfLines;
 @property (nonatomic) double preferredMaxLayoutWidth;
-@property (readonly) Class superclass;
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, retain) UIColor *textColor;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_defaultAttributes;
 + (id)_defaultFont;
@@ -40,7 +34,6 @@
 - (double)_baselineOffsetFromBottom;
 - (id)_content;
 - (id)_defaultAttributes;
-- (id)_defaultAttributesForUpgradingString:(id)arg1;
 - (void)_ensureSizingLayout;
 - (void)_ensureVisualLayout;
 - (double)_firstBaselineOffsetFromTop;
@@ -63,9 +56,6 @@
 - (void)_setNeedsUpdateLayerIfNeeded;
 - (void)_setTextColor:(id)arg1;
 - (bool)_shouldAnimatePropertyWithKey:(id)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)font;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGSize { double x1; double x2; })intrinsicContentSize;

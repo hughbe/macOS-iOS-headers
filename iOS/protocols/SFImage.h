@@ -7,6 +7,7 @@
 
 - (NSString *)contentType;
 - (double)cornerRadius;
+- (int)cornerRoundingStyle;
 - (NSDictionary *)dictionaryRepresentation;
 - (NSString *)identifier;
 - (NSData *)imageData;
@@ -16,6 +17,7 @@
 - (double)scale;
 - (void)setContentType:(NSString *)arg1;
 - (void)setCornerRadius:(double)arg1;
+- (void)setCornerRoundingStyle:(int)arg1;
 - (void)setIdentifier:(NSString *)arg1;
 - (void)setImageData:(NSData *)arg1;
 - (void)setIsTemplate:(bool)arg1;

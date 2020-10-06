@@ -7,18 +7,19 @@
     UITraitCollection * _traitCollection;
 }
 
+@property (nonatomic, readonly) bool _ignoresDynamicType;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UITraitCollection *traitCollection;
 
-+ (id)_completeConfiguration:(id)arg1 fromConfiguration:(id)arg2;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (void)_applyConfigurationValuesTo:(id)arg1;
 - (id)_configurationIgnoringDynamicType;
+- (bool)_ignoresDynamicType;
 - (id)_init;
 - (id)_initWithTraitCollection:(id)arg1;
 - (bool)_isUnspecified;

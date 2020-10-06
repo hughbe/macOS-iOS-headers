@@ -2,12 +2,18 @@
    Image: /System/Library/PrivateFrameworks/IconServices.framework/IconServices
  */
 
-@interface ISBundle : NSObject {
+@interface ISBundle : NSObject <ISScalableCompositorResource> {
     struct __CFBundle { } * _bundle;
 }
 
+@property (readonly, copy) NSURL *assetCatalogURL;
 @property struct __CFBundle { }*bundle;
 @property (readonly, copy) NSURL *bundleURL;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly, copy) NSDictionary *iconDictionary;
+@property (readonly) Class superclass;
 
 + (id)frameworkBundle;
 + (id)frameworkLocalizedString:(id)arg1;
@@ -18,9 +24,13 @@
 - (id)URLForResource:(id)arg1 withExtension:(id)arg2;
 - (id)URLForResource:(id)arg1 withExtension:(id)arg2 subdirectory:(id)arg3;
 - (id)URLsForResourcesWithExtension:(id)arg1 subdirectory:(id)arg2;
+- (id)assetCatalogURL;
 - (struct __CFBundle { }*)bundle;
 - (id)bundleURL;
+- (id)compositorResource;
 - (void)dealloc;
+- (id)iconDictionary;
+- (id)imageForSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
 - (id)initWithCFBundle:(struct __CFBundle { }*)arg1;
 - (id)initWithURL:(id)arg1;
 - (id)localizedStringForKey:(id)arg1 value:(id)arg2 table:(id)arg3;

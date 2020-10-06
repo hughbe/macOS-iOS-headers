@@ -5,6 +5,8 @@
 
 @required
 
+- (PFCloudKitContainerProvider *)containerProvider;
+- (CKScheduler *)scheduler;
 - (void)setUp;
 - (void)tearDown;
 

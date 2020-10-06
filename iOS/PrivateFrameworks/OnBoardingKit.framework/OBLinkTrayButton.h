@@ -6,6 +6,6 @@
 
 + (id)linkButton;
 
-- (void)tintColorDidChange;
+- (bool)_supportsMacIdiom;
 
 @end

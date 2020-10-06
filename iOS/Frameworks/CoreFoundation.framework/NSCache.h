@@ -48,4 +48,34 @@
 
 - (id)CALobjectForKey:(id)arg1 calculatedWithBlock:(id /* block */)arg2;
 
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
+- (id)objectForKeyedSubscript:(id)arg1;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NanoTimeKitCompanion.framework/NanoTimeKitCompanion
+
+- (id)ntkCachedObjectForKey:(id)arg1 creationBlock:(id /* block */)arg2;
+- (id)ntkCachedObjectForKeyProvider:(id)arg1 creationBlock:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (id)px_objectForKey:(id)arg1 usingPromise:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSPersistence.framework/TSPersistence
+
+- (void)tsp_cacheComponent:(id)arg1;
+- (id)tsp_currentComponent;
+- (unsigned char)tsp_currentOperation;
+- (void)tsp_flushComponent:(id)arg1;
+- (void)tsp_performOperation:(unsigned char)arg1 forComponent:(id)arg2 usingBlock:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSPersistence.framework/TSPersistence
+
+- (void)tsp_cacheComponent:(id)arg1;
+- (id)tsp_currentComponent;
+- (unsigned char)tsp_currentOperation;
+- (void)tsp_flushComponent:(id)arg1;
+- (void)tsp_performOperation:(unsigned char)arg1 forComponent:(id)arg2 usingBlock:(id /* block */)arg3;
+
 @end

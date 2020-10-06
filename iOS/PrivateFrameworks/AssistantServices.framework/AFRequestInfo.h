@@ -8,7 +8,8 @@
     NSNumber * _combinedScore;
     NSString * _correctedSpeech;
     NSDictionary * _correctedSpeechContext;
-    NSString * _directAction;
+    NSString * _directActionAppId;
+    long long  _directActionEvent;
     unsigned long long  _expectedSpeakerConfidenceScore;
     NSString * _expectedSpeakerSharedUserID;
     NSString * _handoffNotification;
@@ -17,6 +18,7 @@
     bool  _handoffRequiresUserInteraction;
     NSString * _handoffURLString;
     NSString * _interactionId;
+    NSString * _legacyDirectActionIdentifier;
     NSDictionary * _nonspeakerConfidenceScores;
     NSNumber * _notifyState;
     NSNumber * _onDeviceUtterancesPresent;
@@ -41,7 +43,8 @@
 @property (nonatomic, copy) NSNumber *combinedScore;
 @property (nonatomic, copy) NSString *correctedSpeech;
 @property (nonatomic, copy) NSDictionary *correctedSpeechContext;
-@property (nonatomic, copy) NSString *directAction;
+@property (nonatomic, copy) NSString *directActionAppId;
+@property (nonatomic) long long directActionEvent;
 @property (nonatomic) unsigned long long expectedSpeakerConfidenceScore;
 @property (nonatomic, copy) NSString *expectedSpeakerSharedUserID;
 @property (nonatomic, copy) NSString *handoffNotification;
@@ -50,6 +53,7 @@
 @property (nonatomic) bool handoffRequiresUserInteraction;
 @property (nonatomic, copy) NSString *handoffURLString;
 @property (nonatomic, copy) NSString *interactionId;
+@property (nonatomic, copy) NSString *legacyDirectActionIdentifier;
 @property (nonatomic, copy) NSDictionary *nonspeakerConfidenceScores;
 @property (nonatomic, copy) NSNumber *notifyState;
 @property (nonatomic, copy) NSNumber *onDeviceUtterancesPresent;
@@ -68,6 +72,8 @@
 @property (nonatomic, copy) NSString *utteranceSource;
 @property (nonatomic, readonly) NSUUID *uuid;
 
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -78,7 +84,8 @@
 - (id)correctedSpeech;
 - (id)correctedSpeechContext;
 - (id)description;
-- (id)directAction;
+- (id)directActionAppId;
+- (long long)directActionEvent;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)expectedSpeakerConfidenceScore;
 - (id)expectedSpeakerSharedUserID;
@@ -92,6 +99,7 @@
 - (id)initWithTimestamp:(unsigned long long)arg1;
 - (id)interactionId;
 - (bool)isSpeechRequest;
+- (id)legacyDirectActionIdentifier;
 - (id)nonspeakerConfidenceScores;
 - (id)notifyState;
 - (id)onDeviceUtterancesPresent;
@@ -107,7 +115,8 @@
 - (void)setCombinedScore:(id)arg1;
 - (void)setCorrectedSpeech:(id)arg1;
 - (void)setCorrectedSpeechContext:(id)arg1;
-- (void)setDirectAction:(id)arg1;
+- (void)setDirectActionAppId:(id)arg1;
+- (void)setDirectActionEvent:(long long)arg1;
 - (void)setExpectedSpeakerConfidenceScore:(unsigned long long)arg1;
 - (void)setExpectedSpeakerSharedUserID:(id)arg1;
 - (void)setHandoffNotification:(id)arg1;
@@ -116,6 +125,7 @@
 - (void)setHandoffRequiresUserInteraction:(bool)arg1;
 - (void)setHandoffURLString:(id)arg1;
 - (void)setInteractionId:(id)arg1;
+- (void)setLegacyDirectActionIdentifier:(id)arg1;
 - (void)setNonspeakerConfidenceScores:(id)arg1;
 - (void)setNotifyState:(id)arg1;
 - (void)setOnDeviceUtterancesPresent:(id)arg1;
@@ -139,5 +149,10 @@
 - (id)turnIdentifier;
 - (id)utteranceSource;
 - (id)uuid;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (bool)afui_isRemoteHeadsetActivation;
+- (bool)afui_isRemoteVoiceActivation;
 
 @end

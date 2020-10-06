@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/MediaToolbox.framework/MediaToolbox
  */
 
-@interface FigCaptionBackdropLayer : CABackdropLayer {
+@interface FigCaptionBackdropLayer : FigBaseCABackdropLayer {
     CAFilter * backdropFilter;
 }
 

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKCompassView : UIView {
+@interface MKCompassView : UIView <MKCompassView> {
     long long  _compassViewSize;
     long long  _compassViewStyle;
     UIImageView * _imageView;
@@ -10,7 +10,11 @@
 
 @property (nonatomic, readonly) long long compassViewSize;
 @property (nonatomic, readonly) long long compassViewStyle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic) double mapHeading;
+@property (readonly) Class superclass;
 @property (nonatomic) double yaw;
 
 + (id)_parameterForSize:(long long)arg1;

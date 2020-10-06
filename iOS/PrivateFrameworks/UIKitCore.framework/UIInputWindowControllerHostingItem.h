@@ -85,6 +85,7 @@
 - (void)clearInputAssistantViewEdgeConstraints;
 - (void)clearInputViewEdgeConstraints;
 - (void)clearInteractiveTransitionStateIfNecessary;
+- (void)clearVisibilityConstraints;
 - (void)completeTransition:(id)arg1 withInfo:(id)arg2;
 - (void)configureDockViewController:(bool)arg1;
 - (void)configureScrollDismissController:(bool)arg1;

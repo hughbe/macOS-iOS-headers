@@ -16,6 +16,7 @@
 // Image: /System/Library/Frameworks/Contacts.framework/Contacts
 
 + (id)identifierProvider;
++ (bool)ios_requestAccountSyncWithOptions:(unsigned long long)arg1;
 + (id)localAccount;
 + (id)makeIdentifier;
 + (id)makeIdentifierString;

@@ -49,6 +49,7 @@
 - (id)altDisplayString;
 - (id)autocomplete;
 - (bool)autofocus;
+- (bool)canShowPlaceholder;
 - (bool)capture;
 - (bool)checkValidity;
 - (bool)checked;
@@ -90,6 +91,7 @@
 - (void)setAlt:(id)arg1;
 - (void)setAutocomplete:(id)arg1;
 - (void)setAutofocus:(bool)arg1;
+- (void)setCanShowPlaceholder:(bool)arg1;
 - (void)setCapture:(bool)arg1;
 - (void)setChecked:(bool)arg1;
 - (void)setCustomValidity:(id)arg1;
@@ -139,7 +141,6 @@
 - (id)step;
 - (void)stepDown:(int)arg1;
 - (void)stepUp:(int)arg1;
-- (int)structuralComplexityContribution;
 - (int)structuralComplexityContribution;
 - (id)type;
 - (id)useMap;

@@ -16,10 +16,14 @@
 - (NSBundle *)effectiveBundle;
 - (NSString *)effectiveBundleIdentifier;
 - (double)expectedGpsUpdateInterval;
+- (bool)fusionInfoEnabled;
 - (int)headingOrientation;
+- (bool)isAuthorizedForPreciseLocation;
+- (void)isAuthorizedForPreciseLocationOnQueue:(void *)arg1 result:(void *)arg2; // needs 2 arg types, found 7: NSObject<OS_dispatch_queue> *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, bool, void*
 - (bool)isLocationServicesPreferencesDialogEnabled;
 - (bool)isTracePlayer;
 - (bool)matchInfoEnabled;
+- (void)requestTemporaryPreciseLocationAuthorizationWithPurposeKey:(void *)arg1 completion:(void *)arg2; // needs 2 arg types, found 7: NSString *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSError *, void*
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)setActivityType:(long long)arg1;
@@ -29,6 +33,7 @@
 - (void)setDistanceFilter:(double)arg1;
 - (void)setEffectiveBundle:(NSBundle *)arg1;
 - (void)setEffectiveBundleIdentifier:(NSString *)arg1;
+- (void)setFusionInfoEnabled:(bool)arg1;
 - (void)setHeadingOrientation:(int)arg1;
 - (void)setLocationServicesPreferencesDialogEnabled:(bool)arg1;
 - (void)setMatchInfoEnabled:(bool)arg1;

@@ -13,13 +13,10 @@
 }
 
 - (void).cxx_destruct;
-- (unsigned long long)_indexForKey:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;
 - (id)dataAtIndex:(unsigned long long)arg1;
 - (double)doubleAtIndex:(unsigned long long)arg1;
-- (id)initWithResultRow:(id)arg1;
-- (id)initWithStatement:(struct sqlite3_stmt { }*)arg1;
 - (long long)integerAtIndex:(unsigned long long)arg1;
 - (bool)isValid;
 - (id)keyAtIndex:(unsigned long long)arg1;

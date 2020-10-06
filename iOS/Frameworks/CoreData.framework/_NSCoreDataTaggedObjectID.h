@@ -7,6 +7,7 @@
 + (void)_setStoreInfo1:(id)arg1;
 + (void)_storeDeallocated;
 + (id)_storeInfo1;
++ (bool)_usesTaggedPointers;
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (unsigned int)allocateBatch:(id*)arg1 count:(unsigned int)arg2;
@@ -26,7 +27,6 @@
 - (id)entity;
 - (id)entityName;
 - (unsigned long long)hash;
-- (id)initWithObject:(id)arg1;
 - (id)initWithPK64:(long long)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isTemporaryID;

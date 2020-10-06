@@ -9,10 +9,8 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_sectionHeaderDisplayName : 1; 
         unsigned int read_sectionSubHeaderDisplayName : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_sectionHeaderDisplayName : 1; 
-        unsigned int wrote_sectionSubHeaderDisplayName : 1; 
-        unsigned int wrote_categorySearchResultSectionCellType : 1; 
+        unsigned int read_styleAttributes : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -22,6 +20,7 @@
     unsigned int  _readerMarkPos;
     NSString * _sectionHeaderDisplayName;
     NSString * _sectionSubHeaderDisplayName;
+    GEOStyleAttributes * _styleAttributes;
     PBUnknownFields * _unknownFields;
 }
 
@@ -29,16 +28,16 @@
 @property (nonatomic) bool hasCategorySearchResultSectionCellType;
 @property (nonatomic, readonly) bool hasSectionHeaderDisplayName;
 @property (nonatomic, readonly) bool hasSectionSubHeaderDisplayName;
+@property (nonatomic, readonly) bool hasStyleAttributes;
 @property (nonatomic, retain) NSString *sectionHeaderDisplayName;
 @property (nonatomic, retain) NSString *sectionSubHeaderDisplayName;
+@property (nonatomic, retain) GEOStyleAttributes *styleAttributes;
 @property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
 - (int)StringAsCategorySearchResultSectionCellType:(id)arg1;
-- (void)_readSectionHeaderDisplayName;
-- (void)_readSectionSubHeaderDisplayName;
 - (int)categorySearchResultSectionCellType;
 - (id)categorySearchResultSectionCellTypeAsString:(int)arg1;
 - (void)clearUnknownFields:(bool)arg1;
@@ -49,10 +48,14 @@
 - (bool)hasCategorySearchResultSectionCellType;
 - (bool)hasSectionHeaderDisplayName;
 - (bool)hasSectionSubHeaderDisplayName;
+- (bool)hasStyleAttributes;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
@@ -62,6 +65,8 @@
 - (void)setHasCategorySearchResultSectionCellType:(bool)arg1;
 - (void)setSectionHeaderDisplayName:(id)arg1;
 - (void)setSectionSubHeaderDisplayName:(id)arg1;
+- (void)setStyleAttributes:(id)arg1;
+- (id)styleAttributes;
 - (id)unknownFields;
 - (void)writeTo:(id)arg1;
 

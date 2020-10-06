@@ -24,18 +24,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_containedBys : 1; 
         unsigned int read_sectionIds : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_containedBys : 1; 
-        unsigned int wrote_sectionIds : 1; 
-        unsigned int wrote_buildingId : 1; 
-        unsigned int wrote_featureId : 1; 
-        unsigned int wrote_fixtureId : 1; 
-        unsigned int wrote_geminiId : 1; 
-        unsigned int wrote_levelId : 1; 
-        unsigned int wrote_unitId : 1; 
-        unsigned int wrote_venueGeminiId : 1; 
-        unsigned int wrote_venueId : 1; 
-        unsigned int wrote_levelOrdinal : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned long long  _geminiId;
     unsigned long long  _levelId;
@@ -84,10 +73,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsContainedBy:(unsigned long long)arg1;
-- (void)_addNoFlagsSectionId:(unsigned long long)arg1;
-- (void)_readContainedBys;
-- (void)_readSectionIds;
 - (void)addContainedBy:(unsigned long long)arg1;
 - (void)addSectionId:(unsigned long long)arg1;
 - (unsigned long long)buildingId;
@@ -117,10 +102,13 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
 - (id)initWithIdentifier:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithVenueID:(unsigned long long)arg1 featureID:(unsigned long long)arg2 businessID:(unsigned long long)arg3;
 - (id)initWithVenueID:(unsigned long long)arg1 featureID:(unsigned long long)arg2 businessID:(unsigned long long)arg3 componentIdentifier:(id)arg4;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned long long)levelId;
 - (int)levelOrdinal;
 - (void)mergeFrom:(id)arg1;

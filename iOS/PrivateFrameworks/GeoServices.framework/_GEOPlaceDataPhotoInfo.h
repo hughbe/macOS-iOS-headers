@@ -17,10 +17,9 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSURL *url;
 
-+ (id)sortedPhotoInfoFromPhotoVersions:(id)arg1;
-
 - (void).cxx_destruct;
-- (id)initWithPhotoContent:(id)arg1;
+- (id)description;
+- (id)initWithURL:(id)arg1 width:(double)arg2 height:(double)arg3;
 - (struct CGSize { double x1; double x2; })size;
 - (id)url;
 

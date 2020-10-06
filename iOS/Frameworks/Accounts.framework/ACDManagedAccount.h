@@ -17,11 +17,15 @@
 @property (nonatomic, retain) NSSet *enabledDataclasses;
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSDate *lastCredentialRenewalRejectionDate;
+@property (nonatomic, retain) NSString *modificationID;
 @property (nonatomic, retain) NSString *owningBundleID;
 @property (nonatomic, retain) ACDManagedAccount *parentAccount;
 @property (nonatomic, retain) NSSet *provisionedDataclasses;
 @property (nonatomic, retain) NSNumber *supportsAuthentication;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSNumber *visible;
+@property (nonatomic, retain) NSNumber *warmingUp;
+
+- (id)description;
 
 @end

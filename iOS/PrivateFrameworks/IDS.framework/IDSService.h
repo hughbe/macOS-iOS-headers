@@ -2,17 +2,29 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@interface IDSService : NSObject {
+@interface IDSService : NSObject <HDSPIDSService> {
     _IDSService * _internal;
 }
 
 @property (nonatomic, readonly) _IDSService *_internal;
 @property (nonatomic, readonly, copy) NSSet *accounts;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSArray *devices;
+@property (readonly) unsigned long long hash;
+@property (getter=hmd_isActive, nonatomic, readonly) bool hmd_active;
+@property (readonly, copy) NSArray *hmd_handles;
+@property (readonly, copy) HMDDeviceHandle *hmd_localDeviceHandle;
+@property (readonly, copy) HMDAccountHandle *hmd_preferredHandle;
 @property (nonatomic, readonly, copy) NSSet *internalAccounts;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
 
 + (bool)checkMessageSize:(unsigned long long)arg1 priority:(long long)arg2;
 + (id)removeSentinelFromAliases:(id)arg1;
++ (void)serviceWithIdentifier:(id)arg1 commands:(id)arg2 manuallyAckMessages:(bool)arg3 completion:(id /* block */)arg4;
++ (void)serviceWithIdentifier:(id)arg1 completion:(id /* block */)arg2;
 
 - (void).cxx_destruct;
 - (id)_accountWithAlias:(id)arg1;
@@ -51,12 +63,13 @@
 - (id)internal;
 - (id)internalAccounts;
 - (bool)isPretendingToBeFull;
+- (id)linkedDeviceForFromID:(id)arg1 withRelationship:(long long)arg2;
+- (id)linkedDevicesWithRelationship:(long long)arg1;
 - (long long)maxHomeKitPayloadSize;
 - (void)performGroupTask:(id /* block */)arg1;
 - (SEL)protobufActionForIncomingRequestsOfType:(unsigned short)arg1;
 - (SEL)protobufActionForIncomingResponsesOfType:(unsigned short)arg1;
 - (void)removeDelegate:(id)arg1;
-- (void)requestConnectionForUnicastParameter:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)scheduleTransactionLogTask:(id)arg1;
 - (bool)sendAccessoryData:(id)arg1 toAccessoryID:(id)arg2 accessToken:(id)arg3 options:(id)arg4 identifier:(id*)arg5 error:(id*)arg6;
 - (void)sendAckForMessageWithContext:(id)arg1;
@@ -86,5 +99,56 @@
 - (void)updateSubServices:(id)arg1;
 - (bool)updateSubServices:(id)arg1 forDevice:(id)arg2;
 - (id)uriForFromID:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)hmd_handles;
+- (bool)hmd_isActive;
+- (id)hmd_localDeviceHandle;
+- (id)hmd_preferredHandle;
+
+// Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
+
+- (void)_IMDTrackMetric:(long long)arg1 ForMessageGUID:(id)arg2;
+- (bool)_readReceiptTrackingEnabled;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUtilities.framework/IMSharedUtilities
+
++ (id)im_checkpointIDSService;
+
+- (bool)im_sendCertifiedDeliveryReceiptIfPossibleWithMessageContext:(id)arg1 guid:(id)arg2 needsDeliveryReceipt:(bool)arg3 failureReason:(id)arg4 failureMessage:(id)arg5;
+- (void)im_sendMessageCheckpointIfNecessary:(long long)arg1 guid:(id)arg2 wantsCheckpointing:(bool)arg3;
+
+// Image: /System/Library/PrivateFrameworks/MapsSupport.framework/MapsSupport
+
++ (id)_msp_IDSIdentifierFor:(id)arg1;
++ (id)_msp_IDSIdentifiersFor:(id)arg1;
+
+- (id)_msp_accountFromIdentifier:(id)arg1;
+- (id)_msp_currentAccount;
+- (id)_msp_currentAccountIdentifier;
+- (bool)_msp_hasValidIDSAccount;
+- (id)_msp_removeSelfFrom:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+
++ (id)mediaRemoteServiceName;
++ (id)mediaRemoteServiceName;
++ (id)mediaRemoteServiceName;
++ (id)mediaRemoteServiceName;
++ (id)sharedIDSService;
++ (id)sharedIDSService;
++ (id)sharedIDSService;
++ (id)sharedIDSService;
+
+// Image: /System/Library/PrivateFrameworks/NanoLeash.framework/NanoLeash
+
+- (id)nl_defaultPairedDeviceIDIncludingTinkerDevices;
+- (id)nl_mineTinkerDevices;
+
+// Image: /System/Library/PrivateFrameworks/PBBridgeSupport.framework/PBBridgeSupport
+
+- (id)pb_defaultPairedDeviceIDIncludingTinkerDevices;
+- (id)pb_mineTinkerDevices;
 
 @end

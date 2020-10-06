@@ -20,7 +20,6 @@
 }
 
 - (void).cxx_destruct;
-- (id)initWithLock:(struct os_unfair_lock_s { unsigned int x1; }*)arg1 clientContext:(id)arg2;
 - (id)interface;
 - (void)setActivationHandler:(id /* block */)arg1;
 - (void)setErrorHandler:(id /* block */)arg1;

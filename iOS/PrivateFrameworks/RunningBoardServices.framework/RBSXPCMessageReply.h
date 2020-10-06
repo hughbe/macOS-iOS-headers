@@ -4,15 +4,14 @@
 
 @interface RBSXPCMessageReply : NSObject {
     RBSXPCMessageContext * _context;
-    BSXPCCoder * _payload;
+    RBSXPCCoder * _payload;
     bool  _sent;
 }
 
 @property (nonatomic, readonly) RBSXPCMessageContext *context;
-@property (nonatomic, readonly) <BSXPCEncoding><BSXPCDecoding> *payload;
+@property (nonatomic, readonly) <RBSXPCEncoding><RBSXPCDecoding> *payload;
 
 - (void).cxx_destruct;
-- (id)_initWithMessage:(id)arg1;
 - (id)context;
 - (void)encode:(id /* block */)arg1;
 - (id)payload;

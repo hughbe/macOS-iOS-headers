@@ -72,7 +72,7 @@
 - (unsigned int)enumerateMembersOfGroupNode:(unsigned int)arg1 withBlock:(id /* block */)arg2;
 - (unsigned int)enumerateNodesWithBlock:(id /* block */)arg1;
 - (bool)graphIs64bit;
-- (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3 diskLogs:(id)arg4;
+- (id)initWithArchived:(id)arg1 version:(long long)arg2 options:(unsigned long long)arg3 diskLogs:(id)arg4 error:(id*)arg5;
 - (id)initWithNodes:(unsigned int)arg1;
 - (id)initWithPlistRepresentation:(id)arg1;
 - (id)initWithPlistRepresentation:(id)arg1 error:(id*)arg2;

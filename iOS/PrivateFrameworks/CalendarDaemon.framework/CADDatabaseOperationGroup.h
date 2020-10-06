@@ -10,7 +10,8 @@
 
 - (void)CADDatabaseCanModifyCalendarDatabase:(id /* block */)arg1;
 - (void)CADDatabaseCommitWithReply:(id /* block */)arg1;
-- (void)CADDatabaseExportICSDataForCalendarItems:(id)arg1 preventLineFolding:(bool)arg2 reply:(id /* block */)arg3;
+- (void)CADDatabaseExportICSDataForCalendar:(id)arg1 options:(long long)arg2 reply:(id /* block */)arg3;
+- (void)CADDatabaseExportICSDataForCalendarItems:(id)arg1 options:(unsigned long long)arg2 reply:(id /* block */)arg3;
 - (void)CADDatabaseFetchChangedObjectIDsSinceSequenceNumber:(long long)arg1 reply:(id /* block */)arg2;
 - (void)CADDatabaseFetchObjectChangesForEntityTypes:(id)arg1 insideObject:(id)arg2 reply:(id /* block */)arg3;
 - (void)CADDatabaseGetChangedEntityIDsSinceTimestamp:(double)arg1 reply:(id /* block */)arg2;
@@ -23,8 +24,7 @@
 - (void)CADDatabaseMarkChangedObjectIDsConsumedUpToSequenceNumber:(long long)arg1 reply:(id /* block */)arg2;
 - (void)CADDatabaseMarkIndividualChangesConsumed:(id)arg1 reply:(id /* block */)arg2;
 - (void)CADDatabaseRebuildOccurrenceCacheWithReply:(id /* block */)arg1;
-- (void)CADDatabaseRegisterForDetailedChangeTracking:(id /* block */)arg1;
-- (void)CADDatabaseResetWithReply:(id /* block */)arg1;
+- (void)CADDatabaseRegisterForDetailedChangeTrackingInSource:(id)arg1 reply:(id /* block */)arg2;
 - (void)CADDatabaseRollbackWithReply:(id /* block */)arg1;
 - (void)CADDatabaseSaveWithReply:(id /* block */)arg1;
 - (void)CADDatabaseSetShowsDeclinedEvents:(bool)arg1 reply:(id /* block */)arg2;

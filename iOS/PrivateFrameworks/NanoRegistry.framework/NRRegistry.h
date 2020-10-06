@@ -23,7 +23,6 @@
 @property (nonatomic, retain) NRSecureDevicePropertyStore *secureProperties;
 
 + (id)_nextToken;
-+ (bool)_supportsWatch;
 + (void)fixSecurePropertiesWithCollection:(id)arg1 secureProperties:(id)arg2 insecurePropertyNames:(id)arg3;
 + (id)getReferencedSecureProperties:(id)arg1 fromDiff:(id)arg2;
 + (id)getReferencedSecurePropertyIDsFromDiff:(id)arg1;

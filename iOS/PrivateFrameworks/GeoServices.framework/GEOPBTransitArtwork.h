@@ -16,14 +16,7 @@
         unsigned int read_iconFallbackShield : 1; 
         unsigned int read_icon : 1; 
         unsigned int read_shield : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_accessibilityString : 1; 
-        unsigned int wrote_iconFallbackShield : 1; 
-        unsigned int wrote_icon : 1; 
-        unsigned int wrote_shield : 1; 
-        unsigned int wrote_artworkType : 1; 
-        unsigned int wrote_artworkUse : 1; 
-        unsigned int wrote_badge : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPBTransitIcon * _icon;
     GEOPBTransitShield * _iconFallbackShield;
@@ -71,10 +64,6 @@
 - (int)StringAsArtworkType:(id)arg1;
 - (int)StringAsArtworkUse:(id)arg1;
 - (int)StringAsBadge:(id)arg1;
-- (void)_readAccessibilityString;
-- (void)_readIcon;
-- (void)_readIconFallbackShield;
-- (void)_readShield;
 - (id)accessibilityString;
 - (id)accessibilityText;
 - (int)artworkSourceType;
@@ -105,7 +94,10 @@
 - (id)iconFallbackShieldDataSource;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

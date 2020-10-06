@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INHomeAttributeValue : NSObject <NSCopying, NSSecureCoding> {
+@interface INHomeAttributeValue : NSObject <NSCopying, NSSecureCoding, REDonatedActionIdentifierProviding> {
     bool  _boolValue;
     double  _doubleValue;
     long long  _integerValue;
@@ -14,13 +14,19 @@
 }
 
 @property (nonatomic, readonly) bool boolValue;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) double doubleValue;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) long long integerValue;
 @property (nonatomic, readonly) long long limitValue;
 @property (nonatomic, readonly) INHomeAttributeRange *rangeValue;
 @property (nonatomic, readonly, copy) NSString *stringValue;
+@property (readonly) Class superclass;
 @property (nonatomic, readonly) long long type;
 @property (nonatomic, readonly) long long unit;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (bool)supportsSecureCoding;
 
@@ -45,5 +51,9 @@
 - (id)stringValue;
 - (long long)type;
 - (long long)unit;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
+- (unsigned long long)re_actionIdentifierHashValue;
 
 @end

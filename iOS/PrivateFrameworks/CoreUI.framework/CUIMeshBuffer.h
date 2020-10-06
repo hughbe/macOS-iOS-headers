@@ -3,8 +3,10 @@
  */
 
 @interface CUIMeshBuffer : NSObject <MDLMeshBuffer> {
+    <MDLMeshBufferAllocator> * _allocator;
     NSMutableData * _data;
     unsigned long long  _type;
+    <MDLMeshBufferZone> * _zone;
 }
 
 @property (nonatomic, readonly, retain) <MDLMeshBufferAllocator> *allocator;

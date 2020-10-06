@@ -3,12 +3,10 @@
  */
 
 @interface _INPBCreateNoteIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBCreateNoteIntentResponse> {
-    bool  __encodeLegacyGloryData;
     _INPBNote * _createdNote;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBNote *createdNote;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -19,8 +17,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)createdNote;
 - (id)dictionaryRepresentation;

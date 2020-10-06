@@ -9,19 +9,6 @@
     long long  _dayStartHour;
 }
 
-@property (nonatomic, readonly) NSCalendar *calendar;
-@property (nonatomic, copy) NSDate *currentDay;
-@property (nonatomic, copy) NSDateComponents *currentQuantizationOffsetComponents;
-@property (nonatomic, readonly) long long dayStartHour;
-
 - (void).cxx_destruct;
-- (id)calendar;
-- (id)currentDay;
-- (id)currentQuantizationOffsetComponents;
-- (long long)dayStartHour;
-- (id)initWithCalendar:(id)arg1 dayStartHour:(long long)arg2;
-- (id)quantizeDate:(id)arg1;
-- (void)setCurrentDay:(id)arg1;
-- (void)setCurrentQuantizationOffsetComponents:(id)arg1;
 
 @end

@@ -7,6 +7,7 @@
 }
 
 @property (nonatomic) bool CSSOMViewScrollingAPIEnabled;
+@property (nonatomic) bool CSSOMViewSmoothScrollingEnabled;
 @property (nonatomic) bool accessibilityObjectModelEnabled;
 @property (nonatomic, retain) NSArray *additionalSupportedImageTypes;
 @property (nonatomic) bool allowCrossOriginSubresourcesToAskForCredentials;
@@ -17,6 +18,7 @@
 @property (nonatomic) bool allowsInlineMediaPlaybackAfterFullscreen;
 @property (nonatomic) bool animatedImageAsyncDecodingEnabled;
 @property (nonatomic) bool ariaReflectionEnabled;
+@property (nonatomic) bool aspectRatioOfImgFromWidthAndHeightEnabled;
 @property (nonatomic) bool asyncClipboardAPIEnabled;
 @property (nonatomic) bool attachmentElementEnabled;
 @property (nonatomic) bool autosaves;
@@ -77,6 +79,8 @@
 @property (nonatomic) bool viewportFitEnabled;
 @property (nonatomic) bool visualViewportAPIEnabled;
 
+// Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
+
 + (id)_IBCreatorID;
 + (void)_checkLastReferenceForIdentifier:(id)arg1;
 + (void)_clearNetworkLoaderSession;
@@ -93,7 +97,9 @@
 + (void)setWebKitLinkTimeVersion:(int)arg1;
 + (id)standardPreferences;
 
+- (bool)CSSCustomPropertiesAndValuesEnabled;
 - (bool)CSSOMViewScrollingAPIEnabled;
+- (bool)CSSOMViewSmoothScrollingEnabled;
 - (bool)_allowMultiElementImplicitFormSubmission;
 - (bool)_allowPasswordEcho;
 - (bool)_alwaysRequestGeolocationPermission;
@@ -106,7 +112,6 @@
 - (int)_integerValueForKey:(id)arg1;
 - (int)_interpolationQuality;
 - (void)_invalidateCachedPreferences;
-- (int)_layoutInterval;
 - (id)_localStorageDatabasePath;
 - (long long)_longLongValueForKey:(id)arg1;
 - (float)_maxParseDuration;
@@ -125,7 +130,6 @@
 - (void)_setForceFTPDirectoryListings:(bool)arg1;
 - (void)_setIntegerValue:(int)arg1 forKey:(id)arg2;
 - (void)_setInterpolationQuality:(int)arg1;
-- (void)_setLayoutInterval:(int)arg1;
 - (void)_setLocalStorageDatabasePath:(id)arg1;
 - (void)_setLongLongValue:(long long)arg1 forKey:(id)arg2;
 - (void)_setMaxParseDuration:(float)arg1;
@@ -160,6 +164,7 @@
 - (bool)allowCrossOriginSubresourcesToAskForCredentials;
 - (bool)allowFileAccessFromFileURLs;
 - (bool)allowMediaContentTypesRequiringHardwareSupportAsFallback;
+- (bool)allowTopNavigationToDataURLs;
 - (bool)allowUniversalAccessFromFileURLs;
 - (bool)allowsAirPlayForMediaPlayback;
 - (bool)allowsAlternateFullscreen;
@@ -173,6 +178,7 @@
 - (bool)applicationChromeModeEnabled;
 - (bool)arePlugInsEnabled;
 - (bool)ariaReflectionEnabled;
+- (bool)aspectRatioOfImgFromWidthAndHeightEnabled;
 - (bool)asyncClipboardAPIEnabled;
 - (bool)asyncFrameScrollingEnabled;
 - (bool)asynchronousSpellCheckingEnabled;
@@ -262,7 +268,9 @@
 - (int)javaScriptRuntimeFlags;
 - (bool)keygenElementEnabled;
 - (bool)largeImageAsyncDecodingEnabled;
+- (bool)layoutFormattingContextIntegrationEnabled;
 - (bool)legacyEncryptedMediaAPIEnabled;
+- (bool)lineHeightUnitsEnabled;
 - (bool)linkPreloadEnabled;
 - (bool)linkPreloadResponsiveImagesEnabled;
 - (bool)loadsImagesAutomatically;
@@ -270,6 +278,7 @@
 - (bool)localFileContentSniffingEnabled;
 - (bool)localStorageEnabled;
 - (bool)lowPowerVideoAudioBufferSizeEnabled;
+- (bool)maskWebGLStringsEnabled;
 - (bool)mediaCapabilitiesEnabled;
 - (bool)mediaCaptureRequiresSecureConnection;
 - (id)mediaContentTypesRequiringHardwareSupport;
@@ -293,6 +302,7 @@
 - (bool)mockCaptureDevicesPromptEnabled;
 - (bool)mockScrollbarsEnabled;
 - (bool)modernMediaControlsEnabled;
+- (bool)modernUnprefixedWebAudioEnabled;
 - (bool)needsStorageAccessFromFileURLsQuirk;
 - (bool)networkDataUsageTrackingEnabled;
 - (id)networkInterfaceName;
@@ -305,14 +315,12 @@
 - (id)pictographFontFamily;
 - (bool)pictureInPictureAPIEnabled;
 - (bool)plugInSnapshottingEnabled;
-- (bool)pointerEventsEnabled;
 - (bool)privateBrowsingEnabled;
 - (bool)punchOutWhiteBackgroundsInDarkMode;
 - (bool)quickLookDocumentSavingEnabled;
 - (bool)readableByteStreamAPIEnabled;
 - (bool)referrerPolicyAttributeEnabled;
 - (bool)remotePlaybackEnabled;
-- (bool)renderingUpdateThrottlingEnabled;
 - (bool)requestAnimationFrameEnabled;
 - (bool)requestIdleCallbackEnabled;
 - (bool)resizeObserverEnabled;
@@ -335,6 +343,7 @@
 - (void)setAllowCrossOriginSubresourcesToAskForCredentials:(bool)arg1;
 - (void)setAllowFileAccessFromFileURLs:(bool)arg1;
 - (void)setAllowMediaContentTypesRequiringHardwareSupportAsFallback:(bool)arg1;
+- (void)setAllowTopNavigationToDataURLs:(bool)arg1;
 - (void)setAllowUniversalAccessFromFileURLs:(bool)arg1;
 - (void)setAllowsAirPlayForMediaPlayback:(bool)arg1;
 - (void)setAllowsAlternateFullscreen:(bool)arg1;
@@ -347,6 +356,7 @@
 - (void)setApplicationCacheTotalQuota:(long long)arg1;
 - (void)setApplicationChromeModeEnabled:(bool)arg1;
 - (void)setAriaReflectionEnabled:(bool)arg1;
+- (void)setAspectRatioOfImgFromWidthAndHeightEnabled:(bool)arg1;
 - (void)setAsyncClipboardAPIEnabled:(bool)arg1;
 - (void)setAsyncFrameScrollingEnabled:(bool)arg1;
 - (void)setAsynchronousSpellCheckingEnabled:(bool)arg1;
@@ -357,8 +367,10 @@
 - (void)setAutomaticallyDetectsCacheModel:(bool)arg1;
 - (void)setAutosaves:(bool)arg1;
 - (void)setBackspaceKeyNavigationEnabled:(bool)arg1;
+- (void)setCSSCustomPropertiesAndValuesEnabled:(bool)arg1;
 - (void)setCSSLogicalEnabled:(bool)arg1;
 - (void)setCSSOMViewScrollingAPIEnabled:(bool)arg1;
+- (void)setCSSOMViewSmoothScrollingEnabled:(bool)arg1;
 - (void)setCSSShadowPartsEnabled:(bool)arg1;
 - (void)setCacheAPIEnabled:(bool)arg1;
 - (void)setCacheModel:(unsigned long long)arg1;
@@ -423,7 +435,9 @@
 - (void)setJavaScriptRuntimeFlags:(int)arg1;
 - (void)setKeygenElementEnabled:(bool)arg1;
 - (void)setLargeImageAsyncDecodingEnabled:(bool)arg1;
+- (void)setLayoutFormattingContextIntegrationEnabled:(bool)arg1;
 - (void)setLegacyEncryptedMediaAPIEnabled:(bool)arg1;
+- (void)setLineHeightUnitsEnabled:(bool)arg1;
 - (void)setLinkPreloadEnabled:(bool)arg1;
 - (void)setLinkPreloadResponsiveImagesEnabled:(bool)arg1;
 - (void)setLoadsImagesAutomatically:(bool)arg1;
@@ -431,6 +445,7 @@
 - (void)setLocalFileContentSniffingEnabled:(bool)arg1;
 - (void)setLocalStorageEnabled:(bool)arg1;
 - (void)setLowPowerVideoAudioBufferSizeEnabled:(bool)arg1;
+- (void)setMaskWebGLStringsEnabled:(bool)arg1;
 - (void)setMediaCapabilitiesEnabled:(bool)arg1;
 - (void)setMediaCaptureRequiresSecureConnection:(bool)arg1;
 - (void)setMediaContentTypesRequiringHardwareSupport:(id)arg1;
@@ -454,6 +469,7 @@
 - (void)setMockCaptureDevicesPromptEnabled:(bool)arg1;
 - (void)setMockScrollbarsEnabled:(bool)arg1;
 - (void)setModernMediaControlsEnabled:(bool)arg1;
+- (void)setModernUnprefixedWebAudioEnabled:(bool)arg1;
 - (void)setNeedsStorageAccessFromFileURLsQuirk:(bool)arg1;
 - (void)setNetworkDataUsageTrackingEnabled:(bool)arg1;
 - (void)setNetworkInterfaceName:(id)arg1;
@@ -467,14 +483,12 @@
 - (void)setPictureInPictureAPIEnabled:(bool)arg1;
 - (void)setPlugInSnapshottingEnabled:(bool)arg1;
 - (void)setPlugInsEnabled:(bool)arg1;
-- (void)setPointerEventsEnabled:(bool)arg1;
 - (void)setPrivateBrowsingEnabled:(bool)arg1;
 - (void)setPunchOutWhiteBackgroundsInDarkMode:(bool)arg1;
 - (void)setQuickLookDocumentSavingEnabled:(bool)arg1;
 - (void)setReadableByteStreamAPIEnabled:(bool)arg1;
 - (void)setReferrerPolicyAttributeEnabled:(bool)arg1;
 - (void)setRemotePlaybackEnabled:(bool)arg1;
-- (void)setRenderingUpdateThrottlingEnabled:(bool)arg1;
 - (void)setRequestAnimationFrameEnabled:(bool)arg1;
 - (void)setRequestIdleCallbackEnabled:(bool)arg1;
 - (void)setResizeObserverEnabled:(bool)arg1;
@@ -528,6 +542,7 @@
 - (void)setWebGL2Enabled:(bool)arg1;
 - (void)setWebGLEnabled:(bool)arg1;
 - (void)setWebGPUEnabled:(bool)arg1;
+- (void)setWebSQLEnabled:(bool)arg1;
 - (void)setWebSecurityEnabled:(bool)arg1;
 - (void)setWritableStreamAPIEnabled:(bool)arg1;
 - (void)setXSSAuditorEnabled:(bool)arg1;
@@ -573,8 +588,13 @@
 - (bool)webGL2Enabled;
 - (bool)webGLEnabled;
 - (bool)webGPUEnabled;
+- (bool)webSQLEnabled;
 - (void)willAddToWebView;
 - (bool)writableStreamAPIEnabled;
 - (bool)zoomsTextOnly;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)standardMailWebPreferences;
 
 @end

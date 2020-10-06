@@ -12,12 +12,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_mapValue : 1; 
         unsigned int read_stringValue : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_doubleValue : 1; 
-        unsigned int wrote_intValue : 1; 
-        unsigned int wrote_mapValue : 1; 
-        unsigned int wrote_stringValue : 1; 
-        unsigned int wrote_boolValue : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     long long  _intValue;
     GEONamedField * _mapValue;
@@ -46,8 +41,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readMapValue;
-- (void)_readStringValue;
 - (bool)boolValue;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
@@ -63,8 +56,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (long long)intValue;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapValue;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

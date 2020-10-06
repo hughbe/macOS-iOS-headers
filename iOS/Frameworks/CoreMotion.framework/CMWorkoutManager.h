@@ -21,6 +21,7 @@
 - (void)startWorkout:(id)arg1;
 - (void)stopWorkout:(id)arg1;
 - (unsigned long long)supportedMetricsForWorkoutType:(long long)arg1;
+- (void)triggerWorkoutLocationUpdateForTesting:(long long)arg1;
 - (void)userDismissedWorkoutAlert;
 
 @end

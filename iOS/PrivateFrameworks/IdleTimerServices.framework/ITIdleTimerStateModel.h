@@ -18,13 +18,13 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (id)_access_newIdleTimerAssertionWithConfiguration:(id)arg1 forReason:(id)arg2;
+- (id)_access_newIdleTimerAssertionWithConfiguration:(id)arg1 forReason:(id)arg2 error:(id*)arg3;
 - (void)_addStateCaptureHandler;
 - (void)dealloc;
 - (bool)handleIdleEvent:(unsigned long long)arg1 usingConfigurationWithIdentifier:(id)arg2;
 - (id)init;
 - (bool)isIdleTimerServiceAvailable;
-- (id)newIdleTimerAssertionWithConfiguration:(id)arg1 forReason:(id)arg2;
+- (id)newIdleTimerAssertionWithConfiguration:(id)arg1 forReason:(id)arg2 error:(id*)arg3;
 - (void)resendIdleTimerAssertions;
 
 @end

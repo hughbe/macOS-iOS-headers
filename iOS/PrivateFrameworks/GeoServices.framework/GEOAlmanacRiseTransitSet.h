@@ -3,33 +3,46 @@
  */
 
 @interface GEOAlmanacRiseTransitSet : NSObject {
-    GEOCelestialRiseTransitSet * _celestialRiseTransitSet;
-    unsigned long long  _firstEventType;
-    unsigned long long  _lastEventType;
+    struct CAARiseTransitSetDetails2 { 
+        int type; 
+        double JD; 
+        double Bearing; 
+        double GeometricAltitude; 
+        bool bAboveHorizon; 
+    }  _rise;
+    struct CAARiseTransitSetDetails2 { 
+        int type; 
+        double JD; 
+        double Bearing; 
+        double GeometricAltitude; 
+        bool bAboveHorizon; 
+    }  _set;
+    struct CAARiseTransitSetDetails2 { 
+        int type; 
+        double JD; 
+        double Bearing; 
+        double GeometricAltitude; 
+        bool bAboveHorizon; 
+    }  _transit;
 }
 
-@property (nonatomic, readonly) NSDate *firstEventDate;
-@property (nonatomic, readonly) unsigned long long firstEventType;
-@property (nonatomic, readonly) NSDate *lastEventDate;
-@property (nonatomic, readonly) unsigned long long lastEventType;
+@property (nonatomic, readonly) struct CAARiseTransitSetDetails2 { int x1; double x2; double x3; double x4; bool x5; } firstItem;
+@property (nonatomic, readonly) bool isIdeal;
+@property (nonatomic, readonly) struct CAARiseTransitSetDetails2 { int x1; double x2; double x3; double x4; bool x5; } lastItem;
 @property (nonatomic, readonly) NSDate *rise;
-@property (nonatomic, readonly) struct CAARiseTransitSetDetails { bool x1; double x2; bool x3; bool x4; double x5; bool x6; double x7; } riseTransitSet;
 @property (nonatomic, readonly) NSDate *set;
 @property (nonatomic, readonly) NSDate *transit;
+@property (nonatomic, readonly) bool transitIsAboveHorizon;
 
-- (void).cxx_destruct;
-- (void)_calculateFirstAndLastEvents;
-- (long long)compareToDate:(id)arg1;
+- (id).cxx_construct;
 - (id)description;
-- (id)firstEventDate;
-- (unsigned long long)firstEventType;
-- (id)initWith:(id)arg1;
-- (bool)isCompatibleWith:(id)arg1;
-- (id)lastEventDate;
-- (unsigned long long)lastEventType;
+- (struct CAARiseTransitSetDetails2 { int x1; double x2; double x3; double x4; bool x5; })firstItem;
+- (id)initWithRise:(const struct CAARiseTransitSetDetails2 { int x1; double x2; double x3; double x4; bool x5; }*)arg1 transit:(const struct CAARiseTransitSetDetails2 { int x1; double x2; double x3; double x4; bool x5; }*)arg2 set:(const struct CAARiseTransitSetDetails2 { int x1; double x2; double x3; double x4; bool x5; }*)arg3;
+- (bool)isIdeal;
+- (struct CAARiseTransitSetDetails2 { int x1; double x2; double x3; double x4; bool x5; })lastItem;
 - (id)rise;
-- (struct CAARiseTransitSetDetails { bool x1; double x2; bool x3; bool x4; double x5; bool x6; double x7; })riseTransitSet;
 - (id)set;
 - (id)transit;
+- (bool)transitIsAboveHorizon;
 
 @end

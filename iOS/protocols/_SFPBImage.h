@@ -10,6 +10,7 @@
 - (_SFPBContactImage *)contactImage;
 - (NSString *)contentType;
 - (_SFPBGraphicalFloat *)cornerRadius;
+- (int)cornerRoundingStyle;
 - (NSString *)identifier;
 - (NSData *)imageData;
 - (id)initWithDictionary:(NSDictionary *)arg1;
@@ -26,6 +27,7 @@
 - (void)setContactImage:(_SFPBContactImage *)arg1;
 - (void)setContentType:(NSString *)arg1;
 - (void)setCornerRadius:(_SFPBGraphicalFloat *)arg1;
+- (void)setCornerRoundingStyle:(int)arg1;
 - (void)setIdentifier:(NSString *)arg1;
 - (void)setImageData:(NSData *)arg1;
 - (void)setIsTemplate:(bool)arg1;
@@ -37,11 +39,13 @@
 - (void)setShouldCropToCircle:(bool)arg1;
 - (void)setSize:(_SFPBPointSize *)arg1;
 - (void)setSource:(int)arg1;
+- (void)setSymbolImage:(_SFPBSymbolImage *)arg1;
 - (void)setType:(int)arg1;
 - (void)setUrlImage:(_SFPBURLImage *)arg1;
 - (bool)shouldCropToCircle;
 - (_SFPBPointSize *)size;
 - (int)source;
+- (_SFPBSymbolImage *)symbolImage;
 - (int)type;
 - (_SFPBURLImage *)urlImage;
 

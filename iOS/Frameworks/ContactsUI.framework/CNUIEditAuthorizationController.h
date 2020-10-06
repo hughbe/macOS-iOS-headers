@@ -28,5 +28,6 @@
 - (void)setDelegate:(id)arg1;
 - (void)setGuardedViewController:(id)arg1;
 - (void)setSender:(id)arg1;
+- (void)userDidEnterPasswordCorrectly:(bool)arg1;
 
 @end

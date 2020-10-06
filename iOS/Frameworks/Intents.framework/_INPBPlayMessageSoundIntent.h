@@ -3,7 +3,6 @@
  */
 
 @interface _INPBPlayMessageSoundIntent : PBCodable <NSCopying, NSSecureCoding, _INPBPlayMessageSoundIntent> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int soundType : 1; 
     }  _has;
@@ -12,7 +11,6 @@
     int  _soundType;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasIntentMetadata;
@@ -28,8 +26,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsSoundType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

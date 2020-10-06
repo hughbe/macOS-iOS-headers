@@ -15,16 +15,7 @@
         unsigned int read_position : 1; 
         unsigned int read_speedLimitText : 1; 
         unsigned int read_speedingCard : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_identifier : 1; 
-        unsigned int wrote_infoCard : 1; 
-        unsigned int wrote_position : 1; 
-        unsigned int wrote_speedLimitText : 1; 
-        unsigned int wrote_speedThreshold : 1; 
-        unsigned int wrote_speedingCard : 1; 
-        unsigned int wrote_cameraPriority : 1; 
-        unsigned int wrote_highlightDistance : 1; 
-        unsigned int wrote_type : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _highlightDistance;
     NSString * _identifier;
@@ -67,11 +58,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (void)_readIdentifier;
-- (void)_readInfoCard;
-- (void)_readPosition;
-- (void)_readSpeedLimitText;
-- (void)_readSpeedingCard;
 - (unsigned int)cameraPriority;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
@@ -93,7 +79,10 @@
 - (id)infoCard;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)position;
 - (void)readAll:(bool)arg1;

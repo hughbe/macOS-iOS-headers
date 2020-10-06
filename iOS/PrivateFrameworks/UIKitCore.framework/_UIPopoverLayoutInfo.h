@@ -40,6 +40,7 @@
             double height; 
         } size; 
     }  _frame;
+    bool  _isRTL;
     double  _offset;
     bool  _preferLandscapeOrientations;
     unsigned long long  _preferredArrowDirections;
@@ -47,6 +48,7 @@
         double width; 
         double height; 
     }  _preferredContentSize;
+    long long  _preferredHorizontalAlignment;
     struct CGRect { 
         struct CGPoint { 
             double x; 
@@ -68,10 +70,12 @@
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } containingFrameInsets;
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } contentInset;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } frame;
+@property (nonatomic) bool isRTL;
 @property (nonatomic, readonly) double offset;
 @property (nonatomic) bool preferLandscapeOrientations;
 @property (nonatomic) unsigned long long preferredArrowDirections;
 @property (nonatomic) struct CGSize { double x1; double x2; } preferredContentSize;
+@property (nonatomic) long long preferredHorizontalAlignment;
 @property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } sourceViewRect;
 @property (getter=_updatesEnabled, setter=_setUpdatesEnabled:, nonatomic) bool updatesEnabled;
 
@@ -95,20 +99,24 @@
 - (id)description;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frame;
 - (id)init;
+- (bool)isRTL;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (double)offset;
 - (bool)preferLandscapeOrientations;
 - (unsigned long long)preferredArrowDirections;
 - (struct CGSize { double x1; double x2; })preferredContentSize;
+- (long long)preferredHorizontalAlignment;
 - (void)setArrowHeight:(double)arg1;
 - (void)setArrowOffset:(double)arg1;
 - (void)setCanOverlapSourceViewRect:(bool)arg1;
 - (void)setContainingFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setContainingFrameInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setContentInset:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (void)setIsRTL:(bool)arg1;
 - (void)setPreferLandscapeOrientations:(bool)arg1;
 - (void)setPreferredArrowDirections:(unsigned long long)arg1;
 - (void)setPreferredContentSize:(struct CGSize { double x1; double x2; })arg1;
+- (void)setPreferredHorizontalAlignment:(long long)arg1;
 - (void)setSourceViewRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })sourceViewRect;
 - (void)updateProperties:(id /* block */)arg1;

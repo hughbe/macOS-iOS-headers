@@ -2,8 +2,17 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@interface GEOComposedDrivingRouteStep : GEOComposedRouteStep
+@interface GEOComposedDrivingRouteStep : GEOComposedRouteStep {
+    GEOComposedRouteEVStepInfo * _evInfo;
+}
 
-- (id)initWithComposedRoute:(id)arg1 GEOStep:(id)arg2 stepIndex:(unsigned long long)arg3 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4 maneuverPointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg5;
++ (bool)supportsSecureCoding;
+
+- (void).cxx_destruct;
+- (id)description;
+- (void)encodeWithCoder:(id)arg1;
+- (id)evInfo;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithComposedRoute:(id)arg1 geoRouteLeg:(id)arg2 geoStep:(id)arg3 stepIndex:(unsigned long long)arg4 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg5 maneuverPointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg6;
 
 @end

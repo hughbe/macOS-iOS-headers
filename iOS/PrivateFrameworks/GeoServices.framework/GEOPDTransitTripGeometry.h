@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_tripStepIndexs : 1; 
         unsigned int read_tripLinks : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_tripStepIndexs : 1; 
-        unsigned int wrote_tripLinks : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -36,10 +34,6 @@
 + (Class)tripLinkType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsTripLink:(id)arg1;
-- (void)_addNoFlagsTripStepIndex:(unsigned int)arg1;
-- (void)_readTripLinks;
-- (void)_readTripStepIndexs;
 - (void)addTripLink:(id)arg1;
 - (void)addTripStepIndex:(unsigned int)arg1;
 - (void)clearTripLinks;
@@ -53,7 +47,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

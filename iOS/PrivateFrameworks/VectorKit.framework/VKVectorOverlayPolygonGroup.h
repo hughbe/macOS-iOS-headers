@@ -15,6 +15,8 @@
         } _lock; 
     }  _propertiesLock;
     struct CGColor { } * _strokeColor;
+    double  _strokeEnd;
+    double  _strokeStart;
     struct shared_ptr<md::PolygonOverlayRenderable::Style> { 
         struct Style {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
@@ -28,6 +30,8 @@
 @property (nonatomic) double miterLimit;
 @property (nonatomic, readonly) NSArray *polygons;
 @property (nonatomic) struct CGColor { }*strokeColor;
+@property (nonatomic) double strokeEnd;
+@property (nonatomic) double strokeStart;
 @property (getter=_style, nonatomic, readonly) struct shared_ptr<md::PolygonOverlayRenderable::Style> { struct Style {} *x1; struct __shared_weak_count {} *x2; } style;
 
 - (id).cxx_construct;
@@ -48,6 +52,10 @@
 - (void)setLineWidth:(double)arg1;
 - (void)setMiterLimit:(double)arg1;
 - (void)setStrokeColor:(struct CGColor { }*)arg1;
+- (void)setStrokeEnd:(double)arg1;
+- (void)setStrokeStart:(double)arg1;
 - (struct CGColor { }*)strokeColor;
+- (double)strokeEnd;
+- (double)strokeStart;
 
 @end

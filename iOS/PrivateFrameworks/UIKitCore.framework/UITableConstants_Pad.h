@@ -6,9 +6,11 @@
 
 + (id)sharedConstants;
 
+- (struct _UITableConstantsBackgroundProperties { bool x1; id x2; id x3; bool x4; long long x5; })defaultCellBackgroundPropertiesForTableViewStyle:(long long)arg1 state:(id)arg2;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })defaultLayoutMarginsForCell:(id)arg1 inTableView:(id)arg2;
 - (double)defaultRowHeightForTableView:(id)arg1;
 - (double)defaultRowHeightForTableView:(id)arg1 cellStyle:(long long)arg2;
+- (double)minimumContentViewHeightForFont:(id)arg1 traitCollection:(id)arg2;
 - (bool)supportsUserInterfaceStyles;
 
 @end

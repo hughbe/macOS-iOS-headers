@@ -10,5 +10,6 @@
 - (void)medicalIDViewControllerDidDelete:(HKMedicalIDViewController *)arg1;
 - (void)medicalIDViewControllerDidFinish:(HKMedicalIDViewController *)arg1;
 - (void)medicalIDViewControllerDidSave:(HKMedicalIDViewController *)arg1;
+- (void)medicalIDViewControllerDidUpdate:(HKMedicalIDViewController *)arg1;
 
 @end

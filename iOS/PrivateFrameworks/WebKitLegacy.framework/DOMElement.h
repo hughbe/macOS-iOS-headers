@@ -103,7 +103,6 @@
 - (void)setScrollTop:(int)arg1;
 - (void)setUiactions:(id)arg1;
 - (int)structuralComplexityContribution;
-- (int)structuralComplexityContribution;
 - (id)style;
 - (id)tagName;
 - (id)uiactions;

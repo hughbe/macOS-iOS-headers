@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
  */
 
-@interface AMSDialogRequest : NSObject <NSSecureCoding> {
+@interface AMSDialogRequest : NSObject <NSCopying, NSSecureCoding> {
     NSArray * _buttonActions;
     AMSDialogAction * _defaultAction;
     NSURL * _iconBundleURL;
@@ -35,6 +35,7 @@
 - (void)addButtonAction:(id)arg1;
 - (void)addTextField:(id)arg1;
 - (id)buttonActions;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)defaultAction;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
@@ -42,11 +43,13 @@
 - (id)identifier;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithError:(id)arg1;
 - (id)initWithTitle:(id)arg1 message:(id)arg2;
 - (id)locateActionWithIdentifier:(id)arg1;
 - (id)logKey;
 - (id)message;
 - (id)metricsEvent;
+- (void)replaceAction:(id)arg1;
 - (void)setButtonActions:(id)arg1;
 - (void)setDefaultAction:(id)arg1;
 - (void)setIconBundleURL:(id)arg1;

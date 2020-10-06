@@ -15,6 +15,8 @@
 
 @property (nonatomic, readonly) int state;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (void)_updateAnimations:(id)arg1;
 + (void)_updateAnimations:(id)arg1 timer:(id)arg2;
 + (void)_updateAnimationsWithTimer:(id)arg1;
@@ -41,5 +43,9 @@
 - (void)runWithCompletion:(id /* block */)arg1 forScreen:(id)arg2 runLoopMode:(id)arg3;
 - (int)state;
 - (void)stop;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (void)pu_setFriction:(double)arg1;
 
 @end

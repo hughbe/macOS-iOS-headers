@@ -3,13 +3,13 @@
  */
 
 @interface _MNDistanceFormatOptions : NSObject {
+    bool  _abbreviateUnits;
+    unsigned long long  _maximumFractionDigits;
+    bool  _metric;
     unsigned long long  _minimumFractionDigits;
-    bool  abbreviateUnits;
-    unsigned long long  maximumFractionDigits;
-    bool  metric;
-    long long  rounding;
-    bool  spoken;
-    bool  yards;
+    long long  _rounding;
+    bool  _spoken;
+    bool  _yards;
 }
 
 @property (nonatomic) bool abbreviateUnits;

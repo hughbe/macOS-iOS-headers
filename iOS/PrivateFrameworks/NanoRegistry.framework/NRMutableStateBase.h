@@ -33,7 +33,6 @@
 - (bool)isEqual:(id)arg1;
 - (void)notifyObserversWithDiff:(id)arg1;
 - (void)notifyParentWithDiff:(id)arg1;
-- (id)observers;
 - (id)parentDelegate;
 - (void)removeObserver:(id)arg1;
 - (void)setParentDelegate:(id)arg1;

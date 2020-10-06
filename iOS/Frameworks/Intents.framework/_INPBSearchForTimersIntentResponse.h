@@ -3,14 +3,12 @@
  */
 
 @interface _INPBSearchForTimersIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBSearchForTimersIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     NSArray * _matchedTimers;
     NSArray * _timers;
     NSArray * _unmatchedTimers;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -28,8 +26,6 @@
 + (Class)unmatchedTimersType;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addMatchedTimers:(id)arg1;
 - (void)addTimers:(id)arg1;
 - (void)addUnmatchedTimers:(id)arg1;

@@ -41,6 +41,7 @@
 - (void)featureNotEnabled:(SEL)arg1;
 - (void)featureWillDisable;
 - (void)featureWillEnable;
+- (void)foundUnhashableValue:(CNDonationValue *)arg1;
 - (void)maintenanceServiceDidStart;
 - (void)maintenanceServiceWillStart;
 - (void)maintenanceServiceWillStop;

@@ -12,6 +12,7 @@
 @property (nonatomic, retain) AAStorableLoginContext *stashedContext;
 
 + (id)sharedManager;
++ (void)stashLoginResponseWithAuthenticationResults:(id)arg1 cloudKitToken:(id)arg2;
 
 - (void).cxx_destruct;
 - (id)init;

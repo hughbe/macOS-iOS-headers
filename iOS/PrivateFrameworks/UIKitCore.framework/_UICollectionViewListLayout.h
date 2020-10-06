@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UICollectionViewListLayout : UICollectionViewLayout {
+@interface _UICollectionViewListLayout : UICollectionViewLayout <_UICollectionViewLayoutInteractionStateModuleHost> {
     long long  _appearanceStyle;
     bool  _cellLayoutMarginsFollowReadableWidth;
     <UITableConstants> * _constants;
@@ -21,6 +21,7 @@
     double  _globalHeaderHeight;
     bool  _insetTopAndBottomSeparator;
     bool  _insetsContentViewsToSafeArea;
+    _UICollectionViewLayoutInteractionStateModule * _interactionStateModule;
     NSMutableDictionary * _layoutSections;
     _UICollectionViewListSnapshotter * _previousDataSourceSnapshot;
     struct UIEdgeInsets { 
@@ -48,7 +49,6 @@
     }  _separatorInset;
     bool  _separatorInsetIsRelativeToCellEdges;
     long long  _separatorStyle;
-    bool  _shouldDrawAdditionalSeparators;
     _UICollectionCompositionalLayoutSolver * _solver;
     struct { 
         unsigned int prepareSnapshotNeeded : 1; 
@@ -65,8 +65,10 @@
 @property (getter=_constants, nonatomic, retain) <UITableConstants> *constants;
 @property (getter=_dataSourceActual, nonatomic, readonly) <UICollectionViewDataSource> *dataSourceActual;
 @property (getter=_dataSourceProxy, nonatomic, readonly) <UICollectionViewDataSource> *dataSourceProxy;
+@property (readonly, copy) NSString *debugDescription;
 @property (getter=_delegateActual, nonatomic, readonly) <_UICollectionViewDelegateListLayout> *delegateActual;
 @property (getter=_delegateProxy, nonatomic, readonly) <_UICollectionViewDelegateListLayout> *delegateProxy;
+@property (readonly, copy) NSString *description;
 @property (nonatomic) double estimatedGlobalFooterHeight;
 @property (nonatomic) double estimatedGlobalHeaderHeight;
 @property (nonatomic) double estimatedRowHeight;
@@ -75,6 +77,7 @@
 @property (getter=_floatingElementKinds, setter=_setFloatingElementKinds:, nonatomic, retain) NSArray *floatingElementKinds;
 @property (nonatomic) double globalFooterHeight;
 @property (nonatomic) double globalHeaderHeight;
+@property (readonly) unsigned long long hash;
 @property (getter=_insetTopAndBottomSeparator, nonatomic, readonly) bool insetTopAndBottomSeparator;
 @property (nonatomic) bool insetsContentViewsToSafeArea;
 @property (getter=_layoutSections, nonatomic, readonly) NSMutableDictionary *layoutSections;
@@ -86,8 +89,8 @@
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } separatorInset;
 @property (nonatomic) bool separatorInsetIsRelativeToCellEdges;
 @property (nonatomic) long long separatorStyle;
-@property (getter=_shouldDrawAdditionalSeparators, setter=_setShouldDrawAdditionalSeparators:, nonatomic) bool shouldDrawAdditionalSeparators;
 @property (getter=_solver, setter=_setSolver:, nonatomic, retain) _UICollectionCompositionalLayoutSolver *solver;
+@property (readonly) Class superclass;
 
 + (Class)invalidationContextClass;
 + (Class)layoutAttributesClass;
@@ -109,7 +112,7 @@
 - (double)_defaultGlobalHeaderHeight;
 - (id)_delegateActual;
 - (id)_delegateProxy;
-- (void)_didPerformUpdateVisibleCellsPass;
+- (void)_didPerformUpdateVisibleCellsPassWithLayoutOffset:(struct CGPoint { double x1; double x2; })arg1;
 - (double)_effectiveEstimatedGlobalFooterHeight;
 - (double)_effectiveEstimatedGlobalHeaderHeight;
 - (void)_enrichCellLayoutAttributes:(id)arg1;
@@ -120,6 +123,8 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_globalInsetsForAppearanceStyle;
 - (id)_globalSupplementaryItems;
 - (bool)_insetTopAndBottomSeparator;
+- (id)_interactionStateModule:(id)arg1 layoutSectionForIndex:(long long)arg2;
+- (double)_interactionStateModule:(id)arg1 spacingAfterLayoutSection:(long long)arg2;
 - (id)_invalidationContextForUpdatedLayoutMargins:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (id)_layoutContainer;
 - (id)_layoutSectionAtIndex:(long long)arg1;
@@ -127,6 +132,7 @@
 - (id)_multiselectCheckmarkColor;
 - (long long)_numberOfRowsInSection:(long long)arg1;
 - (long long)_numberOfSections;
+- (void)_postProcessPreferredAttributes:(id)arg1 forView:(id)arg2;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_preferredLayoutMargins;
 - (id)_preferredLayoutSectionForLayoutSection:(id)arg1 atIndex:(long long)arg2;
 - (void)_prepareForCollectionViewUpdates:(id)arg1 withDataSourceTranslator:(id)arg2;
@@ -142,15 +148,16 @@
 - (bool)_separatorInsetIsRelativeToCellEdges;
 - (void)_setCollectionView:(id)arg1;
 - (void)_setFloatingElementKinds:(id)arg1;
-- (void)_setShouldDrawAdditionalSeparators:(bool)arg1;
 - (void)_setSolver:(id)arg1;
 - (bool)_shouldApplyReadableWidthInsets;
-- (bool)_shouldDrawAdditionalSeparators;
 - (bool)_shouldDrawThickSeparators;
 - (bool)_shouldInvalidateLayoutForBoundsSizeChange:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)_solver;
 - (long long)_tableStyle;
 - (void)_traitCollectionDidChangeFromPreviousCollection:(id)arg1 newTraitCollection:(id)arg2;
+- (void)_transformCellLayoutAttributes:(id)arg1;
+- (void)_transformDecorationLayoutAttributes:(id)arg1;
+- (void)_transformSupplementaryLayoutAttributes:(id)arg1;
 - (void)_updateConstants;
 - (id)_updatePinnedSectionSupplementaryItemsForCurrentVisibleBounds;
 - (void)_updateSolver;

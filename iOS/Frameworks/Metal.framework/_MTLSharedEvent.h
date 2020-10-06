@@ -19,6 +19,8 @@
 @property unsigned long long signaledValue;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Metal.framework/Metal
+
 + (bool)supportsSecureCoding;
 
 - (void)dealloc;
@@ -33,5 +35,10 @@
 - (void)notifyListener:(id)arg1 atValue:(unsigned long long)arg2 block:(id /* block */)arg3;
 - (id)retainedLabel;
 - (void)setLabel:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IOGPU.framework/IOGPU
+
+- (unsigned int)_encodeIOGPUKernelSignalEventCommandArgs:(struct IOGPUKernelCommandSignalOrWaitEventArgs { unsigned int x1; unsigned int x2; unsigned long long x3; }*)arg1 value:(unsigned long long)arg2;
+- (unsigned int)_encodeIOGPUKernelWaitEventCommandArgs:(struct IOGPUKernelCommandSignalOrWaitEventArgs { unsigned int x1; unsigned int x2; unsigned long long x3; }*)arg1 value:(unsigned long long)arg2 timeout:(unsigned int)arg3;
 
 @end

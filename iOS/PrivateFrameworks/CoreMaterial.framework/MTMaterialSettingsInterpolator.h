@@ -103,6 +103,7 @@
 - (void)setWeighting:(double)arg1;
 - (double)tintAlpha;
 - (id)tintColor;
+- (struct CGImage { }*)variableBlurInputMask;
 - (double)weighting;
 - (double)zoom;
 

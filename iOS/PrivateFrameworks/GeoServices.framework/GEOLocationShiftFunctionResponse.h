@@ -19,6 +19,7 @@
 
 + (bool)supportsSecureCoding;
 
+- (id)contractFunctionTo:(id)arg1 withRadius:(double)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithPolyLocationShiftResponse:(id)arg1 originalCoordinate:(struct { double x1; double x2; })arg2 version:(unsigned int)arg3;

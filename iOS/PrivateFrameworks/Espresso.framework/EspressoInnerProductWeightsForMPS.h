@@ -40,6 +40,7 @@
         int sparse_block_size_y; 
         int low_precision_accumulation; 
         int compute_every; 
+        int is_lookup_rounds_to_nearest; 
     }  params;
     struct shared_ptr<Espresso::blob<float, 1> > { 
         struct blob<float, 1> {} *__ptr_; 
@@ -71,7 +72,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)dataType;
 - (id)descriptor;
-- (id)initWithParams:(struct inner_product_uniforms { unsigned int x1; unsigned int x2; int x3; int x4; int x5; float x6; float x7; int x8; int x9; int x10; bool x11; int x12; int x13; int x14; float x15; float x16; unsigned int x17; unsigned int x18; unsigned int x19; unsigned int x20; unsigned int x21; unsigned int x22; unsigned int x23; unsigned int x24; unsigned int x25; int x26; int x27; int x28; int x29; int x30; int x31; })arg1;
+- (id)initWithParams:(struct inner_product_uniforms { unsigned int x1; unsigned int x2; int x3; int x4; int x5; float x6; float x7; int x8; int x9; int x10; bool x11; int x12; int x13; int x14; float x15; float x16; unsigned int x17; unsigned int x18; unsigned int x19; unsigned int x20; unsigned int x21; unsigned int x22; unsigned int x23; unsigned int x24; unsigned int x25; int x26; int x27; int x28; int x29; int x30; int x31; int x32; })arg1;
 - (id)label;
 - (bool)load;
 - (float*)lookupTableForUInt8Kernel;

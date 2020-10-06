@@ -11,7 +11,6 @@
     _UIPortalView * _portalView;
     bool  _shouldTakeOwnershipOfSourceView;
     UITargetedPreview * _sourcePreview;
-    UIView * _sourceView;
 }
 
 @property (nonatomic) bool allowsUserInteraction;

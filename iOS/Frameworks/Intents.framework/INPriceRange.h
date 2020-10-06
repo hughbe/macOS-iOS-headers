@@ -16,6 +16,8 @@
 @property (nonatomic, readonly) NSDecimalNumber *minimumPrice;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (id)_priceWithPriceRangeValue:(id)arg1;
 + (bool)supportsSecureCoding;
 
@@ -36,5 +38,12 @@
 - (bool)isEqual:(id)arg1;
 - (id)maximumPrice;
 - (id)minimumPrice;
+
+// Image: /System/Library/PrivateFrameworks/AssistantCardServiceSupport.framework/AssistantCardServiceSupport
+
++ (id)_currencySymbolForCode:(id)arg1;
++ (id)_localeForCode:(id)arg1;
+
+- (id)acs_formattedRangeString;
 
 @end

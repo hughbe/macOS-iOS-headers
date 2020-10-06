@@ -17,6 +17,7 @@
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
 - (bool)fetchAllChanges;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)previousServerChangeToken;
 - (unsigned long long)resultsLimit;

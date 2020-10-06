@@ -3,13 +3,11 @@
  */
 
 @interface _INPBEvent : PBCodable <NSCopying, NSSecureCoding, _INPBEvent> {
-    bool  __encodeLegacyGloryData;
     NSArray * _eventDescriptors;
     _INPBString * _eventType;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSArray *eventDescriptors;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addEventDescriptors:(id)arg1;
 - (void)clearEventDescriptors;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

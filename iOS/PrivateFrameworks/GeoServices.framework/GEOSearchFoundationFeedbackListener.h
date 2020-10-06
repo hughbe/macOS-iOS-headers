@@ -3,6 +3,7 @@
  */
 
 @interface GEOSearchFoundationFeedbackListener : NSObject <SFFeedbackListener> {
+    NSArray * _resultCardSections;
     NSArray * _sections;
     int  _uiTarget;
 }
@@ -15,6 +16,8 @@
 + (id)feedbackListenerForParsec;
 
 - (void).cxx_destruct;
+- (void)cardViewDidAppear:(id)arg1;
+- (void)didEngageCardSection:(id)arg1;
 - (void)didEngageResult:(id)arg1;
 - (void)didEngageSection:(id)arg1;
 - (void)didRankSections:(id)arg1;

@@ -5,6 +5,7 @@
 
 @required
 
+- (long long)accessibilityContrast;
 - (unsigned long long)artworkSubtype;
 - (bool)canShowAlerts;
 - (BSCornerRadiusConfiguration *)cornerRadiusConfiguration;
@@ -19,6 +20,7 @@
 - (bool)idleModeEnabled;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })peripheryInsets;
 - (NSString *)persistenceIdentifier;
+- (long long)pointerLockStatus;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsLandscapeLeft;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsLandscapeRight;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })safeAreaInsetsPortrait;

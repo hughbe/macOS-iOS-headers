@@ -12,10 +12,9 @@
 
 @property (nonatomic, readonly) NSDate *endDate;
 @property (nonatomic, retain) _DKHistogram *endHistogram;
-@property (nonatomic, retain) NSDate *startDate;
+@property (nonatomic, readonly) NSDate *startDate;
 @property (nonatomic, retain) _DKHistogram *startHistogram;
-@property (nonatomic, retain) NSArray *transitionDates;
-@property (nonatomic, retain) NSArray *values;
+@property (nonatomic, readonly) NSArray *transitionDates;
 
 + (id)predictionUnavailable;
 + (bool)supportsSecureCoding;
@@ -29,21 +28,15 @@
 - (id)endDate;
 - (id)endHistogram;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithValues:(id)arg1 eachWithDuration:(double)arg2 startingAt:(id)arg3;
-- (id)initWithValues:(id)arg1 forDurations:(id)arg2 startingAt:(id)arg3;
 - (bool)isEqual:(id)arg1;
 - (bool)isUnavailable;
 - (id)largestDateRangeWithValuesBetween:(double)arg1 and:(double)arg2 ofMinimumDuration:(double)arg3;
 - (id)nextDateRangeWithValuesBetween:(double)arg1 and:(double)arg2 ofMinimumDuration:(double)arg3;
 - (void)setEndHistogram:(id)arg1;
-- (void)setStartDate:(id)arg1;
 - (void)setStartHistogram:(id)arg1;
-- (void)setTransitionDates:(id)arg1;
-- (void)setValues:(id)arg1;
 - (id)startDate;
 - (id)startHistogram;
 - (id)transitionDates;
 - (id)valueAtDate:(id)arg1;
-- (id)values;
 
 @end

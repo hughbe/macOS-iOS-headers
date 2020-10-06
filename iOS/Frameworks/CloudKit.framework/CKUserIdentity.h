@@ -30,6 +30,8 @@
 @property (nonatomic, retain) NSData *publicSharingKey;
 @property (nonatomic, copy) CKRecordID *userRecordID;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -68,5 +70,11 @@
 - (void)setPublicSharingKey:(id)arg1;
 - (void)setUserRecordID:(id)arg1;
 - (id)userRecordID;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_decryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 participantID:(id)arg2 inShareWithID:(id)arg3 pcsManager:(id)arg4;
+- (void)_encryptPersonalInfoWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 participantID:(id)arg2 inShareWithID:(id)arg3 pcsManager:(id)arg4;
+- (bool)hasEncryptedPersonalInfo;
 
 @end

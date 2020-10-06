@@ -8,6 +8,7 @@
 
 @property (nonatomic, readonly) C2SessionPool *sessionPool;
 
++ (void)initialize;
 + (id)sharedManager;
 
 - (void).cxx_destruct;

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UISheetPresentationController : UIPresentationController <UIDragInteractionDelegate, _UISheetInteractionDelegate, _UISheetLayoutInfoDelegate> {
+@interface _UISheetPresentationController : UIPresentationController <UIDimmingViewDelegate, UIDragInteractionDelegate, _UISheetInteractionDelegate, _UISheetLayoutInfoDelegate> {
     bool  __allowsTearOff;
     _UISheetAnimationController * __animationController;
     UIDimmingView * __confinedDimmingView;
@@ -18,6 +18,7 @@
     bool  __isRemote;
     bool  __keyboardShown;
     _UISheetLayoutInfo * __layoutInfo;
+    double  __preferredRecessedCornerRadius;
     bool  __presentsAtStandardHalfHeight;
     UIViewPropertyAnimator * __remoteDismissalPropertyAnimator;
     bool  __remoteDismissing;
@@ -39,18 +40,21 @@
     }  _frameOfPresentedViewInContainerView;
 }
 
+@property (setter=_setAdditionalMinimumTopInset:, nonatomic) double _additionalMinimumTopInset;
+@property (setter=_setAllowsInteractiveDismissWhenFullScreen:, nonatomic) bool _allowsInteractiveDismissWhenFullScreen;
 @property (setter=_setAllowsTearOff:, nonatomic) bool _allowsTearOff;
 @property (setter=_setAnimatedTransition:, nonatomic, retain) _UISheetAnimationController *_animationController;
 @property (nonatomic, readonly) _UISheetPresentationController *_childSheetPresentationController;
 @property (setter=_setConfiguration:, nonatomic, retain) _UISheetPresentationControllerConfiguration *_configuration;
 @property (nonatomic, readonly) UIDimmingView *_confinedDimmingView;
 @property (nonatomic, readonly) _UIRemoteViewController *_connectedRemoteViewController;
-@property (nonatomic) double _cornerRadiusForPresentationAndDismissal;
+@property (setter=_setCornerRadiusForPresentationAndDismissal:, nonatomic) double _cornerRadiusForPresentationAndDismissal;
 @property (setter=_setDetents:, nonatomic, copy) NSArray *_detents;
 @property (setter=_setDidAttemptToStartDismiss:, nonatomic) bool _didAttemptToStartDismiss;
 @property (setter=_setDidTearOff:, nonatomic) bool _didTearOff;
 @property (getter=_isDimmingViewTapDismissing, setter=_setDimmingViewTapDismissing:, nonatomic) bool _dimmingViewTapDismissing;
 @property (nonatomic, readonly) _UIRemoteViewController *_expectedRemoteViewController;
+@property (setter=_setGrabberTopSpacing:, nonatomic) double _grabberTopSpacing;
 @property (getter=_isHosting, nonatomic, readonly) bool _hosting;
 @property (setter=_setIndexOfCurrentDetent:, nonatomic) long long _indexOfCurrentDetent;
 @property (setter=_setIndexOfLastUndimmedDetent:, nonatomic) long long _indexOfLastUndimmedDetent;
@@ -63,10 +67,14 @@
 @property (setter=_setMode:, nonatomic) long long _mode;
 @property (nonatomic, readonly) _UISheetPresentationController *_parentSheetPresentationController;
 @property (setter=_setPassthroughViews:, nonatomic, copy) NSArray *_passthroughViews;
+@property (setter=_setPreferredCornerRadius:, nonatomic) double _preferredCornerRadius;
+@property (setter=_setPreferredRecessedCornerRadius:, nonatomic) double _preferredRecessedCornerRadius;
+@property (setter=_setPrefersScrollingExpandsToLargerDetentWhenScrolledToEdge:, nonatomic) bool _prefersScrollingExpandsToLargerDetentWhenScrolledToEdge;
 @property (setter=_setPresentsAtStandardHalfHeight:, nonatomic) bool _presentsAtStandardHalfHeight;
 @property (nonatomic, retain) UIViewPropertyAnimator *_remoteDismissalPropertyAnimator;
 @property (getter=_isRemoteDismissing, setter=_setRemoteDismissing:, nonatomic) bool _remoteDismissing;
 @property (nonatomic, readonly) _UISheetInteraction *_sheetInteraction;
+@property (nonatomic, readonly) _UISheetInteraction *_sheetInteractionIfLoaded;
 @property (setter=_setShouldPresentedViewControllerControlStatusBarAppearance:, nonatomic) bool _shouldPresentedViewControllerControlStatusBarAppearance;
 @property (setter=_setShouldScaleDownBehindDescendantSheets:, nonatomic) bool _shouldScaleDownBehindDescendantSheets;
 @property (setter=_setSourceView:, nonatomic, retain) UIView *_sourceView;
@@ -91,11 +99,12 @@
 
 - (void).cxx_destruct;
 - (void)_accessibilityReduceMotionStatusDidChange;
+- (double)_additionalMinimumTopInset;
+- (bool)_allowsInteractiveDismissWhenFullScreen;
 - (bool)_allowsTearOff;
 - (id)_animationController;
 - (id)_childSheetPresentationController;
 - (void)_completeInteractiveTransition:(bool)arg1 duration:(double)arg2 timingCurve:(id)arg3;
-- (void)_completeInteractiveTransitionFromRemote:(bool)arg1 offset:(double)arg2 duration:(double)arg3 timingCurve:(id)arg4;
 - (id)_configuration;
 - (id)_confinedDimmingView;
 - (id)_connectedRemoteViewController;
@@ -109,6 +118,7 @@
 - (bool)_didTearOff;
 - (id)_expectedRemoteViewController;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_frameOfPresentedViewControllerViewInSuperview;
+- (double)_grabberTopSpacing;
 - (void)_handleKeyboardNotification:(id)arg1 aboutToHide:(bool)arg2;
 - (long long)_indexOfCurrentDetent;
 - (long long)_indexOfLastUndimmedDetent;
@@ -129,18 +139,26 @@
 - (id)_parentSheetPresentationController;
 - (id)_passthroughViews;
 - (id)_preferredAnimationControllerForDismissal;
+- (double)_preferredCornerRadius;
 - (id)_preferredInteractionControllerForDismissal:(id)arg1;
+- (double)_preferredRecessedCornerRadius;
+- (bool)_prefersScrollingExpandsToLargerDetentWhenScrolledToEdge;
 - (bool)_presentsAtStandardHalfHeight;
 - (void)_realSourceViewGeometryDidChange;
 - (id)_remoteDismissalPropertyAnimator;
+- (void)_remoteSheetInteractionDidChangeOffset:(struct CGPoint { double x1; double x2; })arg1 dragging:(bool)arg2 dismissible:(bool)arg3 indexOfCurrentDetent:(unsigned long long)arg4 duration:(double)arg5 timingCurve:(id)arg6;
 - (void)_resetRemoteDismissing;
+- (void)_setAdditionalMinimumTopInset:(double)arg1;
+- (void)_setAllowsInteractiveDismissWhenFullScreen:(bool)arg1;
 - (void)_setAllowsTearOff:(bool)arg1;
 - (void)_setAnimatedTransition:(id)arg1;
 - (void)_setConfiguration:(id)arg1;
+- (void)_setCornerRadiusForPresentationAndDismissal:(double)arg1;
 - (void)_setDetents:(id)arg1;
 - (void)_setDidAttemptToStartDismiss:(bool)arg1;
 - (void)_setDidTearOff:(bool)arg1;
 - (void)_setDimmingViewTapDismissing:(bool)arg1;
+- (void)_setGrabberTopSpacing:(double)arg1;
 - (void)_setIndexOfCurrentDetent:(long long)arg1;
 - (void)_setIndexOfLastUndimmedDetent:(long long)arg1;
 - (void)_setInitialTearOffPoint:(struct CGPoint { double x1; double x2; })arg1;
@@ -149,6 +167,9 @@
 - (void)_setKeyboardShown:(bool)arg1;
 - (void)_setMode:(long long)arg1;
 - (void)_setPassthroughViews:(id)arg1;
+- (void)_setPreferredCornerRadius:(double)arg1;
+- (void)_setPreferredRecessedCornerRadius:(double)arg1;
+- (void)_setPrefersScrollingExpandsToLargerDetentWhenScrolledToEdge:(bool)arg1;
 - (void)_setPresentsAtStandardHalfHeight:(bool)arg1;
 - (void)_setRemoteDismissing:(bool)arg1;
 - (void)_setShouldDismissWhenTappedOutside:(bool)arg1;
@@ -162,6 +183,8 @@
 - (void)_setWantsGrabber:(bool)arg1;
 - (void)_setWidthFollowsPreferredContentSizeWhenBottomAttached:(bool)arg1;
 - (id)_sheetInteraction;
+- (void)_sheetInteractionDidChangeOffset:(struct CGPoint { double x1; double x2; })arg1 dragging:(bool)arg2 deferredDismissible:(id /* block */)arg3 indexOfCurrentDetent:(unsigned long long)arg4 duration:(double)arg5 timingCurve:(id)arg6;
+- (id)_sheetInteractionIfLoaded;
 - (void)_sheetLayoutInfoDidInvalidateOutput:(id)arg1;
 - (void)_sheetLayoutInfoLayout:(id)arg1;
 - (void)_sheetLayoutInfoPrelayout:(id)arg1;
@@ -171,13 +194,11 @@
 - (bool)_shouldPreserveFirstResponder;
 - (bool)_shouldScaleDownBehindDescendantSheets;
 - (id)_sourceView;
-- (void)_startInteractiveTransitionFromRemoteWithProgress:(double)arg1 offset:(double)arg2;
 - (void)_startInteractiveTransitionWithProgress:(double)arg1;
 - (id)_tearOffActivity;
 - (id)_tearOffInteraction;
 - (void)_tryToConnectToRemoteViewController:(id)arg1;
 - (void)_updateAnimationController;
-- (void)_updateInteractiveTransitionFromRemoteWithProgress:(double)arg1 offset:(double)arg2;
 - (void)_updateInteractiveTransitionWithProgress:(double)arg1;
 - (void)_updateLayoutInfoContainerSafeAreaInsets;
 - (void)_updateLayoutInfoContainerTraitCollection;
@@ -212,7 +233,6 @@
 - (void)presentationTransitionWillBegin;
 - (id)presentedView;
 - (void)setFrameOfPresentedViewInContainerView:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
-- (void)set_cornerRadiusForPresentationAndDismissal:(double)arg1;
 - (void)set_remoteDismissalPropertyAnimator:(id)arg1;
 - (void)sheetInteraction:(id)arg1 didChangeOffset:(struct CGPoint { double x1; double x2; })arg2;
 - (bool)sheetInteraction:(id)arg1 shouldAllowVerticalRubberBandingWithEvent:(id)arg2;

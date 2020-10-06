@@ -42,9 +42,11 @@
     NSString * _lsDisplayName;
     int  _maxBinaryIdentifierLength;
     NSString * _memgraph_filename;
+    NSString * _mxTerminationReason;
     unsigned int  _pageinState;
     unsigned int  _pageinStateCount;
     NSString * _parentProcessName;
+    unsigned int  _platform;
     int  _ppid;
     NSString * _procName;
     NSString * _procPath;
@@ -96,9 +98,11 @@
 @property (nonatomic, readonly) bool is_simulated;
 @property (nonatomic, readonly) NSString *procName;
 @property (nonatomic, readonly) int proc_id;
+@property (nonatomic, readonly) NSString *responsibleProc;
 @property (nonatomic, readonly) NSString *short_vers;
 @property (readonly) Class superclass;
 
++ (bool)isMetricKitClient:(id)arg1;
 + (id)loadBuildInfo:(id)arg1;
 + (id)loadBundInfoAtURL:(id)arg1 withKeys:(id)arg2;
 + (id)loadStoreInfo:(id)arg1 atURL:(id)arg2;
@@ -164,8 +168,10 @@
 - (int)proc_id;
 - (id)reduceToTwoSigFigures:(unsigned long long)arg1;
 - (id)reportNamePrefix;
+- (id)responsibleProc;
 - (bool)saveWithOptions:(id)arg1;
 - (bool)secondChanceToSylog;
+- (void)sendToMetricKit;
 - (void)setApplicationSpecificInformation:(const char *)arg1;
 - (id)short_vers;
 - (id)slice_uuid;

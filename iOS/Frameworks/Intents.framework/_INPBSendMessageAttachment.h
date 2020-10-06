@@ -3,7 +3,8 @@
  */
 
 @interface _INPBSendMessageAttachment : PBCodable <NSCopying, NSSecureCoding, _INPBSendMessageAttachment> {
-    bool  __encodeLegacyGloryData;
+    _INPBFileDataAttachment * _audioMessageFile;
+    _INPBURLValue * _audioMessageFileURL;
     bool  _currentLocation;
     _INPBFileDataAttachment * _file;
     _INPBURLValue * _fileURL;
@@ -12,12 +13,15 @@
     unsigned long long  _whichDatasource;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
+@property (nonatomic, retain) _INPBFileDataAttachment *audioMessageFile;
+@property (nonatomic, retain) _INPBURLValue *audioMessageFileURL;
 @property (nonatomic) bool currentLocation;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBFileDataAttachment *file;
 @property (nonatomic, retain) _INPBURLValue *fileURL;
+@property (nonatomic, readonly) bool hasAudioMessageFile;
+@property (nonatomic, readonly) bool hasAudioMessageFileURL;
 @property (nonatomic, readonly) bool hasCurrentLocation;
 @property (nonatomic, readonly) bool hasFile;
 @property (nonatomic, readonly) bool hasFileURL;
@@ -30,14 +34,16 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
+- (id)audioMessageFile;
+- (id)audioMessageFileURL;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)currentLocation;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (id)file;
 - (id)fileURL;
+- (bool)hasAudioMessageFile;
+- (bool)hasAudioMessageFileURL;
 - (bool)hasCurrentLocation;
 - (bool)hasFile;
 - (bool)hasFileURL;
@@ -46,6 +52,8 @@
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setAudioMessageFile:(id)arg1;
+- (void)setAudioMessageFileURL:(id)arg1;
 - (void)setCurrentLocation:(bool)arg1;
 - (void)setFile:(id)arg1;
 - (void)setFileURL:(id)arg1;

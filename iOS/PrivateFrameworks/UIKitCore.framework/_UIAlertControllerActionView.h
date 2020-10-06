@@ -45,7 +45,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (getter=isHighlighted, nonatomic, readonly) bool highlighted;
+@property (getter=isHighlighted, nonatomic) bool highlighted;
 @property (retain) NSLayoutConstraint *labelContainerCenterXConstraint;
 @property (retain) NSLayoutConstraint *labelContainerLeadingPinConstraint;
 @property (retain) NSLayoutConstraint *labelContainerTrailingPinConstraint;

@@ -20,6 +20,7 @@
 - (GEOMapRegion *)mapRegion;
 - (double)maxPitch;
 - (double)maximumZoomLevelForTileSize:(long long)arg1;
+- (double)minPitch;
 - (double)minimumZoomLevelForTileSize:(long long)arg1;
 - (double)pitch;
 - (bool)restoreViewportFromInfo:(VKViewportInfo *)arg1;

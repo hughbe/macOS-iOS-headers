@@ -10,8 +10,9 @@
 
 @optional
 
-- (void)placeCardActionControllerDidSelectAddPhoto:(MKPlaceCardActionsViewController *)arg1 presentingViewController:(UIViewController *)arg2;
-- (void)placeCardActionControllerDidSelectAddToCollection:(void *)arg1 completion:(void *)arg2; // needs 2 arg types, found 6: MKPlaceCardActionsViewController *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
+- (void)placeCardActionControllerDidRequestCopy:(MKPlaceCardActionsViewController *)arg1;
+- (void)placeCardActionControllerDidSelectAddPhoto:(MKPlaceCardActionsViewController *)arg1 presentingViewController:(UIViewController *)arg2 progressObserver:(id <MKActivityObserving>)arg3 sourceView:(UIView *)arg4;
+- (void)placeCardActionControllerDidSelectAddToCollection:(MKPlaceCardActionsViewController *)arg1;
 - (void)placeCardActionControllerDidSelectAddToContacts:(MKPlaceCardActionsViewController *)arg1 fromView:(UIView *)arg2;
 - (void)placeCardActionControllerDidSelectAddToExistingContact:(MKPlaceCardActionsViewController *)arg1 fromView:(UIView *)arg2;
 - (void)placeCardActionControllerDidSelectAddToFavorites:(MKPlaceCardActionsViewController *)arg1;
@@ -24,6 +25,7 @@
 - (void)placeCardActionControllerDidSelectRemoveFromSuggestedFavorites:(MKPlaceCardActionsViewController *)arg1;
 - (void)placeCardActionControllerDidSelectRemoveMarker:(MKPlaceCardActionsViewController *)arg1;
 - (void)placeCardActionControllerDidSelectReportAProblemAddNewPlace:(MKPlaceCardActionsViewController *)arg1;
+- (void)placeCardActionControllerDidSelectRequestInformedConsentForAddingContributions:(MKPlaceCardActionsViewController *)arg1;
 - (void)placeCardActionControllerDidSelectSimulateLocation:(MKPlaceCardActionsViewController *)arg1;
 - (void)placeCardActionControllerDidSelectViewAllPhotos:(MKPlaceCardActionsViewController *)arg1 presentingViewController:(UIViewController *)arg2;
 - (void)placeCardActionControllerDidSelectionOpenBrandCard:(MKPlaceCardActionsViewController *)arg1;

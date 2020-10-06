@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UIClickHighlightInteractionEffect : NSObject <UIInteractionEffect> {
+@interface _UIClickHighlightInteractionEffect : NSObject <_UIClickHighlightEffect> {
     id /* block */  _completionBlock;
     UITargetedPreview * _continuationPreview;
     _UIAnchoredClickHighlightPlatterView * _highlightPlatter;
@@ -19,8 +19,10 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) _UIAnchoredClickHighlightPlatterView *highlightPlatter;
 @property (readonly) Class superclass;
-@property (nonatomic, retain) UITargetedPreview *targetedPreview;
+@property (nonatomic, readonly) UITargetedPreview *targetedPreview;
 @property (nonatomic, readonly) UITargetedPreview *targetedPreviewForEffectContinuation;
+
++ (id)effectWithPreview:(id)arg1 continuingFromPreview:(id)arg2;
 
 - (void).cxx_destruct;
 - (void)_completeHighlightEffect;
@@ -28,12 +30,11 @@
 - (id /* block */)completionBlock;
 - (id)continuationPreview;
 - (id)highlightPlatter;
-- (id)initWithTargetedPreview:(id)arg1 continuingFromPreview:(id)arg2 completion:(id /* block */)arg3;
+- (id)initWithTargetedPreview:(id)arg1 continuingFromPreview:(id)arg2;
 - (void)interaction:(id)arg1 didChangeWithContext:(id)arg2;
 - (void)setCompletionBlock:(id /* block */)arg1;
 - (void)setContinuationPreview:(id)arg1;
 - (void)setHighlightPlatter:(id)arg1;
-- (void)setTargetedPreview:(id)arg1;
 - (id)targetedPreview;
 - (id)targetedPreviewForEffectContinuation;
 

@@ -39,7 +39,6 @@
     unsigned long long  _stepIndex;
     GEONameInfo * _stepNameInfo;
     double  _timeUntilNextAnnouncement;
-    NSData * _trafficIncidentAlertDetailsData;
     GEONavigationRouteTransitSummary * _transitRouteSummary;
 }
 
@@ -60,7 +59,6 @@
 - (void)_sendRouteSummary;
 - (void)_sendStepIndex;
 - (void)_sendStepNameInfo;
-- (void)_sendTrafficIncidentAlertDetailsData;
 - (void)_sendTransitSummary;
 - (void)dealloc;
 - (id)formatter;
@@ -76,7 +74,7 @@
 - (void)setIsNavigatingInLowGuidance:(bool)arg1;
 - (void)setLastLocation:(id)arg1;
 - (void)setLocationUnreliable:(bool)arg1;
-- (void)setNavigationSessionState:(unsigned long long)arg1 transportType:(int)arg2;
+- (void)setNavigationSessionState:(unsigned long long)arg1 transportType:(int)arg2 navigationType:(int)arg3;
 - (void)setNavigationState:(int)arg1;
 - (void)setNavigationVoiceVolume:(int)arg1;
 - (void)setNextAnnouncementStage:(unsigned long long)arg1 timeUntilNextAnnouncement:(double)arg2;
@@ -87,7 +85,6 @@
 - (void)setRouteMatch:(id)arg1;
 - (void)setStepIndex:(unsigned long long)arg1;
 - (void)setStepNameInfo:(id)arg1;
-- (void)setTrafficIncidentDetailsData:(id)arg1;
 - (void)startWithDestinationName:(id)arg1;
 - (void)stop;
 - (void)triggerHaptics:(int)arg1;

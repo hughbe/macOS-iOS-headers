@@ -3,14 +3,12 @@
  */
 
 @interface _INPBGetCarLockStatusIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBGetCarLockStatusIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { 
         unsigned int locked : 1; 
     }  _has;
     bool  _locked;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool hasLocked;
@@ -20,8 +18,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

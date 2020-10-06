@@ -6,6 +6,7 @@
 @required
 
 - (void)titleView:(UIView<_UINavigationBarAugmentedTitleView> *)arg1 needsUpdatedContentOverlayRects:(_UINavigationBarTitleViewOverlayRects *)arg2;
+- (UIMenu *)titleViewBackButtonMenu:(UIView<_UINavigationBarAugmentedTitleView> *)arg1;
 - (void)titleViewChangedDisplayItemAlpha:(UIView<_UINavigationBarAugmentedTitleView> *)arg1;
 - (void)titleViewChangedHeight:(UIView<_UINavigationBarAugmentedTitleView> *)arg1;
 - (void)titleViewChangedLayout:(UIView<_UINavigationBarAugmentedTitleView> *)arg1;

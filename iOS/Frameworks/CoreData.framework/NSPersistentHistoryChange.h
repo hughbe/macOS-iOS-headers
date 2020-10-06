@@ -11,6 +11,8 @@
 @property (readonly) NSPersistentHistoryTransaction *transaction;
 @property (readonly, copy) NSSet *updatedProperties;
 
+// Image: /System/Library/Frameworks/CoreData.framework/CoreData
+
 + (id)entityDescription;
 + (id)entityDescriptionWithContext:(id)arg1;
 + (id)fetchRequest;
@@ -29,5 +31,9 @@
 - (id)tombstone;
 - (id)transaction;
 - (id)updatedProperties;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (id)_pl_prettyDescriptionWithIndent:(long long)arg1;
 
 @end

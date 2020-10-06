@@ -5,6 +5,7 @@
 
 @required
 
+- (bool)_isDefaultCommand;
 - (NSArray *)_leafAlternates;
 - (NSString *)_leafKeyInput;
 - (long long)_leafKeyModifierFlags;
@@ -14,6 +15,7 @@
 - (unsigned long long)attributes;
 - (NSString *)discoverabilityTitle;
 - (UIImage *)image;
+- (bool)requiresAuthenticatedInput;
 - (void)setAttributes:(unsigned long long)arg1;
 - (void)setDiscoverabilityTitle:(NSString *)arg1;
 - (void)setImage:(UIImage *)arg1;

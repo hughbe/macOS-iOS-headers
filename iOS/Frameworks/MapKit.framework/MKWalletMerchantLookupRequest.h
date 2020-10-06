@@ -4,6 +4,7 @@
 
 @interface MKWalletMerchantLookupRequest : NSObject {
     NSString * _adamId;
+    NSNumber * _coarseLocationUsed;
     NSNumber * _fuzzyMatched;
     NSString * _industryCategory;
     NSNumber * _industryCode;
@@ -38,6 +39,7 @@
 }
 
 @property (nonatomic, copy) NSString *adamId;
+@property (nonatomic, copy) NSNumber *coarseLocationUsed;
 @property (nonatomic, copy) NSNumber *fuzzyMatched;
 @property (nonatomic, copy) NSString *industryCategory;
 @property (nonatomic, copy) NSNumber *industryCode;
@@ -72,6 +74,7 @@
 
 - (void).cxx_destruct;
 - (id)adamId;
+- (id)coarseLocationUsed;
 - (id)fuzzyMatched;
 - (id)industryCategory;
 - (id)industryCode;
@@ -95,6 +98,7 @@
 - (id)paymentNetwork;
 - (id)rawMerchantCode;
 - (void)setAdamId:(id)arg1;
+- (void)setCoarseLocationUsed:(id)arg1;
 - (void)setFuzzyMatched:(id)arg1;
 - (void)setIndustryCategory:(id)arg1;
 - (void)setIndustryCode:(id)arg1;

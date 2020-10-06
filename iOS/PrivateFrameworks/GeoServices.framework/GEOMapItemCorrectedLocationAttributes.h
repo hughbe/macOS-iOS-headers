@@ -15,13 +15,7 @@
         unsigned int read_correctedAddress : 1; 
         unsigned int read_correctedCoordinate : 1; 
         unsigned int read_customLabel : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_correctedAddressSecondaryStreetLine : 1; 
-        unsigned int wrote_correctedAddress : 1; 
-        unsigned int wrote_correctedCoordinate : 1; 
-        unsigned int wrote_customLabel : 1; 
-        unsigned int wrote_lastUpdateDate : 1; 
-        unsigned int wrote_hasSubmittedRAP : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _hasSubmittedRAP;
     double  _lastUpdateDate;
@@ -53,10 +47,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readCorrectedAddress;
-- (void)_readCorrectedAddressSecondaryStreetLine;
-- (void)_readCorrectedCoordinate;
-- (void)_readCustomLabel;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -76,7 +66,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)lastUpdateDate;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

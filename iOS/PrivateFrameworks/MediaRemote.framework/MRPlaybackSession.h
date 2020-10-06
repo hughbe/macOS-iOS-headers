@@ -9,19 +9,25 @@
 }
 
 @property (nonatomic, readonly, copy) NSData *data;
-@property (nonatomic, readonly, copy) NSString *identifier;
-@property (nonatomic, readonly, copy) NSData *playbackSessionData;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSData *playbackSessionData;
 @property (nonatomic, readonly) _MRPlaybackSessionProtobuf *protobuf;
-@property (nonatomic, readonly, copy) NSString *type;
+@property (nonatomic, copy) NSString *type;
 
 - (void).cxx_destruct;
 - (id)data;
+- (id)description;
+- (id)dictionaryRepresentation;
 - (id)identifier;
 - (id)initWithData:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 type:(id)arg2 playbackSessionData:(id)arg3;
 - (id)initWithProtobuf:(id)arg1;
+- (bool)isEqual:(id)arg1;
 - (id)playbackSessionData;
 - (id)protobuf;
+- (void)setIdentifier:(id)arg1;
+- (void)setPlaybackSessionData:(id)arg1;
+- (void)setType:(id)arg1;
 - (id)type;
 
 @end

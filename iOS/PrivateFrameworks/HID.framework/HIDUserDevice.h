@@ -3,6 +3,7 @@
  */
 
 @interface HIDUserDevice : NSObject {
+    id /* block */  _cancelHandler;
     struct __IOHIDUserDevice { } * _device;
     id /* block */  _getReportHandler;
     unsigned int  _service;

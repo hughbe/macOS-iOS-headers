@@ -110,6 +110,7 @@
 - (void)removeAllNonVisibleTiles;
 - (void)removeAllTiles;
 - (void)removeForegroundTiles;
+- (bool)resignFirstResponder;
 - (id)rootLayer;
 - (double)screenScale;
 - (struct CGSize { double x1; double x2; })screenSize;

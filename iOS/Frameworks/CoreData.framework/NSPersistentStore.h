@@ -7,15 +7,16 @@
     NSPersistentStoreCoordinator * _coordinator;
     id  _coreSpotlightDelegate;
     id  _defaultFaultHandler;
+    struct __CFSet { } * _entitiesInConfiguration;
     struct _objectStoreFlags { 
         unsigned int isReadOnly : 1; 
         unsigned int cleanOnRemove : 1; 
         unsigned int isMDDirty : 1; 
         unsigned int _RESERVED : 29; 
     }  _flags;
+    id  _managedObjectModel;
     id * _oidFactories;
     NSDictionary * _options;
-    void * _reserved1;
     void * _temporaryIDClass;
     NSURL * _url;
 }
@@ -47,8 +48,10 @@
 - (id)_allOrderKeysForDestination:(id)arg1 inRelationship:(id)arg2 error:(id*)arg3;
 - (id)_defaultMetadata;
 - (void)_didLoadMetadata;
+- (struct __CFSet { }*)_entitiesForConfiguration;
 - (bool)_isCloudKitOptioned;
 - (bool)_isMetadataDirty;
+- (bool)_isPersistentStoreAlive;
 - (id)_newOrderedRelationshipInformationForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id*)arg4;
 - (Class)_objectIDClass;
 - (id)_persistentStoreCoordinator;
@@ -57,6 +60,7 @@
 - (id)_rawMetadata__;
 - (void)_rebuildIndiciesSynchronously:(bool)arg1;
 - (void)_resetObjectIDFactoriesForStoreUUIDChange;
+- (id)_retainedPersistentStoreCoordinator;
 - (void)_setCoreSpotlightDelegate:(id)arg1;
 - (void)_setMetadataDirty:(bool)arg1;
 - (void)_setPersistentStoreCoordinator:(id)arg1;
@@ -78,10 +82,12 @@
 - (id)executeRequest:(id)arg1 withContext:(id)arg2 error:(id*)arg3;
 - (id)faultHandler;
 - (Class)faultHandlerClass;
+- (bool)finishDeferredLightweightMigration:(bool)arg1 withError:(id*)arg2;
 - (void)freeQueryGenerationWithIdentifier:(id)arg1;
 - (id)identifier;
 - (id)init;
 - (id)initWithPersistentStoreCoordinator:(id)arg1 configurationName:(id)arg2 URL:(id)arg3 options:(id)arg4;
+- (bool)isCloudKitEnabled;
 - (bool)isReadOnly;
 - (bool)load:(id*)arg1;
 - (bool)loadMetadata:(id*)arg1;
@@ -90,6 +96,7 @@
 - (void)managedObjectContextDidUnregisterObjectsWithIDs:(id)arg1;
 - (void)managedObjectContextDidUnregisterObjectsWithIDs:(id)arg1 generation:(id)arg2;
 - (id)metadata;
+- (id)mirroringDelegate;
 - (id)newValueForRelationship:(id)arg1 forObjectWithID:(id)arg2 withContext:(id)arg3 error:(id*)arg4;
 - (id)newValuesForObjectWithID:(id)arg1 withContext:(id)arg2 error:(id*)arg3;
 - (Class)objectIDClassForEntity:(id)arg1;

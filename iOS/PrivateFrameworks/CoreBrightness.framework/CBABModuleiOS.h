@@ -2,8 +2,8 @@
    Image: /System/Library/PrivateFrameworks/CoreBrightness.framework/CoreBrightness
  */
 
-@interface CBABModuleiOS : CBModule <CBContainerModuleProtocol, CBHIDServiceProtocol> {
-    struct AABC { int (**x1)(); float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; bool x16; int x17; int x18; struct __IOHIDServiceClient {} *x19; struct __IOHIDServiceClient {} *x20; long long x21; float x22; float x23; int (*x24)(); void *x25; int x26; int x27; int x28; struct __CFDictionary {} *x29; struct __CFDictionary {} *x30; unsigned char x31; bool x32; struct WndBrightnessValues {} *x33; int x34; double x35; double x36; float x37; float x38; bool x39; bool x40; struct __IOHIDEvent {} *x41; struct __IOHIDServiceClient {} *x42; float *x43; unsigned int *x44; float x45; float x46; float x47; bool x48; bool x49; struct __Display {} *x50; float x51; struct __CFDictionary {} *x52; struct __CFDictionary {} *x53; bool x54; bool x55; bool x56; bool x57; bool x58; int x59; struct ALS {} *x60; struct ALS {} *x61; struct __IOHIDServiceClient {} *x62; struct __IOHIDServiceClient {} *x63; int x64; float x65; float x66; float x67; int x68; } * _AABC;
+@interface CBABModuleiOS : CBModule <CBContainerModuleProtocol, CBHIDServiceProtocol, CBStatusInfoProtocol> {
+    struct AABC { int (**x1)(); float x2; float x3; float x4; float x5; float x6; float x7; float x8; float x9; float x10; float x11; float x12; float x13; float x14; float x15; bool x16; int x17; int x18; struct __IOHIDServiceClient {} *x19; struct __IOHIDServiceClient {} *x20; long long x21; float x22; float x23; int (*x24)(); void *x25; int x26; int x27; int x28; struct __CFDictionary {} *x29; struct __CFDictionary {} *x30; unsigned char x31; bool x32; struct WndBrightnessValues {} *x33; int x34; double x35; double x36; float x37; float x38; bool x39; bool x40; struct __IOHIDEvent {} *x41; struct __IOHIDServiceClient {} *x42; float *x43; unsigned int *x44; float x45; float x46; float x47; bool x48; bool x49; struct __Display {} *x50; float x51; struct __CFDictionary {} *x52; struct __CFDictionary {} *x53; bool x54; bool x55; bool x56; bool x57; bool x58; int x59; bool x60; struct ALS {} *x61; struct ALS {} *x62; struct __IOHIDServiceClient {} *x63; struct __IOHIDServiceClient {} *x64; int x65; float x66; float x67; float x68; } * _AABC;
     NSMutableArray * _alsServiceClients;
     CBDisplayModuleiOS * _display;
     NSMutableArray * _otherServiceClients;
@@ -15,8 +15,10 @@
 @property (readonly) Class superclass;
 
 - (bool)addHIDServiceClient:(struct __IOHIDServiceClient { }*)arg1;
+- (id)copyIdentifiers;
 - (id)copyPropertyForKey:(id)arg1;
 - (id)copyPropertyForKey:(id)arg1 withParameter:(id)arg2;
+- (id)copyPropertyInternalForKey:(id)arg1;
 - (void)dealloc;
 - (bool)handleHIDEvent:(struct __IOHIDEvent { }*)arg1 from:(struct __IOHIDServiceClient { }*)arg2;
 - (void)handleNotificationForKey:(id)arg1 withProperty:(id)arg2;

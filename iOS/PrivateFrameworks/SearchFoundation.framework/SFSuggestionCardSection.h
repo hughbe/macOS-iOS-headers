@@ -5,6 +5,7 @@
 @interface SFSuggestionCardSection : SFCardSection <NSCopying, NSSecureCoding, SFSuggestionCardSection> {
     SFColor * _backgroundColor;
     bool  _canBeHidden;
+    SFRichText * _detailText;
     struct { 
         unsigned int canBeHidden : 1; 
         unsigned int hasTopPadding : 1; 
@@ -23,6 +24,7 @@
     int  _separatorStyle;
     SFRichText * _suggestionText;
     int  _suggestionType;
+    SFImage * _thumbnail;
     NSString * _type;
 }
 
@@ -32,6 +34,7 @@
 @property (nonatomic, copy) NSArray *commands;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, retain) SFRichText *detailText;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
 @property (nonatomic) bool hasBottomPadding;
 @property (nonatomic) bool hasTopPadding;
@@ -50,6 +53,7 @@
 @property (nonatomic, retain) SFRichText *suggestionText;
 @property (nonatomic) int suggestionType;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) SFImage *thumbnail;
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, retain) SFUserReportRequest *userReportRequest;
 
@@ -59,6 +63,7 @@
 - (id)backgroundColor;
 - (bool)canBeHidden;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)detailText;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (bool)hasBottomPadding;
@@ -80,6 +85,7 @@
 - (int)separatorStyle;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setCanBeHidden:(bool)arg1;
+- (void)setDetailText:(id)arg1;
 - (void)setHasBottomPadding:(bool)arg1;
 - (void)setHasTopPadding:(bool)arg1;
 - (void)setIsContact:(bool)arg1;
@@ -90,9 +96,11 @@
 - (void)setSeparatorStyle:(int)arg1;
 - (void)setSuggestionText:(id)arg1;
 - (void)setSuggestionType:(int)arg1;
+- (void)setThumbnail:(id)arg1;
 - (void)setType:(id)arg1;
 - (id)suggestionText;
 - (int)suggestionType;
+- (id)thumbnail;
 - (id)type;
 
 @end

@@ -9,6 +9,8 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
 - (id)CNValueForContact:(id)arg1;
 - (bool)abPropertyID:(int*)arg1;
 - (bool)canUnifyValue:(id)arg1 withValue:(id)arg2;
@@ -19,5 +21,10 @@
 - (bool)isNonnull;
 - (void)setCNValue:(id)arg1 onContact:(id)arg2;
 - (id)standardLabels;
+
+// Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
+
+- (bool)absPropertyID:(int*)arg1;
+- (unsigned int)absPropertyType;
 
 @end

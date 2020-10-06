@@ -3,14 +3,20 @@
  */
 
 @interface WebAVSampleBufferStatusChangeListener : NSObject {
-    struct MediaPlayerPrivateMediaStreamAVFObjC { int (**x1)(); struct WeakPtrFactory<WebCore::MediaPlayerPrivateMediaStreamAVFObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_2_1_1; } x2; int (**x3)(); int (**x4)(); int (**x5)(); struct MediaPlayer {} *x6; struct RefPtr<WebCore::MediaStreamPrivate, WTF::DumbPtrTraits<WebCore::MediaStreamPrivate> > { struct MediaStreamPrivate {} *x_7_1_1; } x7; struct RefPtr<WebCore::MediaStreamTrackPrivate, WTF::DumbPtrTraits<WebCore::MediaStreamTrackPrivate> > { struct MediaStreamTrackPrivate {} *x_8_1_1; } x8; struct RetainPtr<WebAVSampleBufferStatusChangeListener> { void *x_9_1_1; } x9; struct RetainPtr<AVSampleBufferDisplayLayer> { void *x_10_1_1; } x10; struct RetainPtr<CALayer> { void *x_11_1_1; } x11; struct unique_ptr<PAL::Clock, std::__1::default_delete<PAL::Clock> > { struct __compressed_pair<PAL::Clock *, std::__1::default_delete<PAL::Clock> > { struct Clock {} *x_1_2_1; } x_12_1_1; } x12; struct MediaTime { union { long long x_1_2_1; double x_1_2_2; } x_13_1_1; unsigned int x_13_1_2; unsigned char x_13_1_3; } x13; } * _parent;
+    struct WeakPtr<WebCore::LocalSampleBufferDisplayLayer, WTF::EmptyCounter> { 
+        struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { 
+            struct WeakPtrImpl<WTF::EmptyCounter> {} *m_ptr; 
+        } m_impl; 
+    }  _parent;
 }
 
-- (void)beginObservingLayers;
+- (id).cxx_construct;
+- (void).cxx_destruct;
+- (void)begin;
 - (void)dealloc;
-- (id)initWithParent:(struct MediaPlayerPrivateMediaStreamAVFObjC { int (**x1)(); struct WeakPtrFactory<WebCore::MediaPlayerPrivateMediaStreamAVFObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_2_1; } x_2_1_1; } x2; int (**x3)(); int (**x4)(); int (**x5)(); struct MediaPlayer {} *x6; struct RefPtr<WebCore::MediaStreamPrivate, WTF::DumbPtrTraits<WebCore::MediaStreamPrivate> > { struct MediaStreamPrivate {} *x_7_1_1; } x7; struct RefPtr<WebCore::MediaStreamTrackPrivate, WTF::DumbPtrTraits<WebCore::MediaStreamTrackPrivate> > { struct MediaStreamTrackPrivate {} *x_8_1_1; } x8; struct RetainPtr<WebAVSampleBufferStatusChangeListener> { void *x_9_1_1; } x9; struct RetainPtr<AVSampleBufferDisplayLayer> { void *x_10_1_1; } x10; struct RetainPtr<CALayer> { void *x_11_1_1; } x11; struct unique_ptr<PAL::Clock, std::__1::default_delete<PAL::Clock> > { struct __compressed_pair<PAL::Clock *, std::__1::default_delete<PAL::Clock> > { struct Clock {} *x_1_2_1; } x_12_1_1; } x12; struct MediaTime { union { long long x_1_2_1; double x_1_2_2; } x_13_1_1; unsigned int x_13_1_2; unsigned char x_13_1_3; } x13; }*)arg1;
+- (id)initWithParent:(struct LocalSampleBufferDisplayLayer { int (**x1)(); struct WeakPtr<WebCore::SampleBufferDisplayLayer::Client, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_2_1_1; } x2; struct WeakPtrFactory<WebCore::LocalSampleBufferDisplayLayer, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_3_1_1; } x3; struct RetainPtr<WebAVSampleBufferStatusChangeListener> { void *x_4_1_1; } x4; struct RetainPtr<AVSampleBufferDisplayLayer> { void *x_5_1_1; } x5; struct RetainPtr<CALayer> { void *x_6_1_1; } x6; int x7; struct RefPtr<WTF::WorkQueue, WTF::DumbPtrTraits<WTF::WorkQueue> > { struct WorkQueue {} *x_8_1_1; } x8; struct Deque<WTF::Ref<WebCore::MediaSample, WTF::DumbPtrTraits<WebCore::MediaSample> >, 0> { unsigned long long x_9_1_1; unsigned long long x_9_1_2; struct VectorBuffer<WTF::Ref<WebCore::MediaSample, WTF::DumbPtrTraits<WebCore::MediaSample> >, 0, WTF::FastMalloc> { struct Ref<WebCore::MediaSample, WTF::DumbPtrTraits<WebCore::MediaSample> > {} *x_3_2_1; unsigned int x_3_2_2; unsigned int x_3_2_3; } x_9_1_3; } x9; }*)arg1;
 - (void)invalidate;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
-- (void)stopObservingLayers;
+- (void)stop;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
  */
 
-@interface CTRemotePlan : NSObject <NSSecureCoding> {
+@interface CTRemotePlan : CTPlan {
     CTRemotePlanIdentifier * _planID;
     CTPlanTransferAttributes * _transferAttributes;
 }

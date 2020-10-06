@@ -29,8 +29,6 @@
 @property (nonatomic, readonly, retain) UIViewController *visibleViewController;
 @property (nonatomic) bool wraps;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void)_adjustScrollViewContentInsets;
 - (bool)_allowsAutorotation;
 - (void)_createPageControl;
@@ -74,9 +72,6 @@
 - (id)_visibleViewController;
 - (int)_visibleViewControllerNotificationState;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)delegate;
 - (void)didAnimateFirstHalfOfRotationToInterfaceOrientation:(long long)arg1;
 - (void)didRotateFromInterfaceOrientation:(long long)arg1;

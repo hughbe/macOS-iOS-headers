@@ -11,7 +11,6 @@
 @property (retain) NSArray *deletes;
 @property (readonly) bool isDeleteChild;
 @property (readonly) bool isDeleteIKE;
-@property (readonly) bool isKeepalive;
 @property (readonly) bool isMOBIKE;
 
 + (id)copyTypeDescription;
@@ -34,14 +33,12 @@
 - (void)gatherPayloads;
 - (bool)isDeleteChild;
 - (bool)isDeleteIKE;
-- (bool)isKeepalive;
 - (bool)isMOBIKE;
 - (void)setConfig:(id)arg1;
 - (void)setDeletes:(id)arg1;
 - (bool)validateDeleteChild:(id)arg1;
 - (bool)validateDeleteIKE;
 - (bool)validateInformational;
-- (bool)validateKeepalive;
 - (bool)validateMOBIKE:(id)arg1;
 - (bool)validateUpdateAddresses:(id)arg1;
 

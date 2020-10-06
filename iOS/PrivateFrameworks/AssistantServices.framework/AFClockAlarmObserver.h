@@ -5,6 +5,8 @@
 @interface AFClockAlarmObserver : NSObject <AFClockItemStorageDelegate, AFInvalidating> {
     MTAlarmManager * _alarmManager;
     AFClockAlarmSnapshot * _alarmSnapshot;
+    NSObject<OS_dispatch_group> * _alarmSnapshotGroup;
+    long long  _alarmSnapshotGroupDepth;
     AFClockItemStorage * _alarmStorage;
     NSUUID * _alarmsChangedToken;
     NSHashTable * _listeners;
@@ -21,6 +23,9 @@
 
 - (void).cxx_destruct;
 - (id)_alarmSnapshot;
+- (void)_beginGroup;
+- (void)_consolidateNotifiedFiringAlarms;
+- (void)_endGroup;
 - (void)_enumerateListenersUsingBlock:(id /* block */)arg1;
 - (void)_fetchAlarmsForReason:(id)arg1 completion:(id /* block */)arg2;
 - (void)_handleFetchAlarmsForReason:(id)arg1 error:(id)arg2 completion:(id /* block */)arg3;

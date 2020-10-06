@@ -31,6 +31,7 @@
     UIColor * _sortingBackgroundColor;
     UIView * _trackingViewsContainer;
     NSArray * _trailingBarButtonTrackingViews;
+    NSURL * _urlCurrentlyBeingImported;
 }
 
 @property (nonatomic, readonly) _UIRemoteViewController *_containedRemoteViewController;
@@ -47,6 +48,7 @@
 @property (nonatomic, copy) UIColor *badgeTintColor;
 @property (nonatomic) unsigned long long browserUserInterfaceStyle;
 @property (nonatomic, retain) DOCConfiguration *configuration;
+@property (nonatomic, readonly, copy) NSArray *contentTypesForRecentDocuments;
 @property (nonatomic) double createButtonAspectRatio;
 @property (nonatomic, copy) UIColor *createButtonColor;
 @property (nonatomic, copy) NSString *createButtonTitle;
@@ -121,6 +123,8 @@
 - (bool)canPerformAction:(SEL)arg1 withSender:(id)arg2;
 - (void)clearCurrentOpenInteraction;
 - (id)configuration;
+- (id)configurationForOpeningDocumentsWithContentTypes:(id)arg1;
+- (id)contentTypesForRecentDocuments;
 - (double)createButtonAspectRatio;
 - (id)createButtonColor;
 - (id)createButtonTitle;
@@ -140,6 +144,7 @@
 - (void)importDocumentAtURL:(id)arg1 nextToDocumentAtURL:(id)arg2 mode:(unsigned long long)arg3 completionHandler:(id /* block */)arg4;
 - (id)inBrowserTintColor;
 - (id)init;
+- (id)initForOpeningContentTypes:(id)arg1;
 - (id)initForOpeningFilesWithContentTypes:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithConfiguration:(id)arg1;

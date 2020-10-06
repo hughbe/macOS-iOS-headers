@@ -4,6 +4,7 @@
 
 @interface GEOPDMerchantLookupParameters : PBCodable <NSCopying> {
     GEOPDAdamAppIdentifier * _appIdentifier;
+    bool  _coarseLocationUsed;
     bool  _enableBrandMuidFallback;
     struct { 
         unsigned int has_industryCode : 1; 
@@ -11,6 +12,7 @@
         unsigned int has_transactionTimestamp : 1; 
         unsigned int has_transactionStatus : 1; 
         unsigned int has_transactionType : 1; 
+        unsigned int has_coarseLocationUsed : 1; 
         unsigned int has_enableBrandMuidFallback : 1; 
         unsigned int has_fuzzyMatched : 1; 
         unsigned int read_unknownFields : 1; 
@@ -25,25 +27,7 @@
         unsigned int read_transactionId : 1; 
         unsigned int read_transactionLocation : 1; 
         unsigned int read_warsawMerchantIdentifier : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_appIdentifier : 1; 
-        unsigned int wrote_industryCategory : 1; 
-        unsigned int wrote_industryCode : 1; 
-        unsigned int wrote_merchantCode : 1; 
-        unsigned int wrote_merchantInformation : 1; 
-        unsigned int wrote_paymentNetwork : 1; 
-        unsigned int wrote_rawMerchantCode : 1; 
-        unsigned int wrote_terminalId : 1; 
-        unsigned int wrote_transactionCurrencyCode : 1; 
-        unsigned int wrote_transactionId : 1; 
-        unsigned int wrote_transactionLocationAge : 1; 
-        unsigned int wrote_transactionLocation : 1; 
-        unsigned int wrote_transactionTimestamp : 1; 
-        unsigned int wrote_warsawMerchantIdentifier : 1; 
-        unsigned int wrote_transactionStatus : 1; 
-        unsigned int wrote_transactionType : 1; 
-        unsigned int wrote_enableBrandMuidFallback : 1; 
-        unsigned int wrote_fuzzyMatched : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _fuzzyMatched;
     NSString * _industryCategory;
@@ -71,9 +55,11 @@
 }
 
 @property (nonatomic, retain) GEOPDAdamAppIdentifier *appIdentifier;
+@property (nonatomic) bool coarseLocationUsed;
 @property (nonatomic) bool enableBrandMuidFallback;
 @property (nonatomic) bool fuzzyMatched;
 @property (nonatomic, readonly) bool hasAppIdentifier;
+@property (nonatomic) bool hasCoarseLocationUsed;
 @property (nonatomic) bool hasEnableBrandMuidFallback;
 @property (nonatomic) bool hasFuzzyMatched;
 @property (nonatomic, readonly) bool hasIndustryCategory;
@@ -113,20 +99,10 @@
 - (void).cxx_destruct;
 - (int)StringAsTransactionStatus:(id)arg1;
 - (int)StringAsTransactionType:(id)arg1;
-- (void)_readAppIdentifier;
-- (void)_readIndustryCategory;
-- (void)_readMerchantCode;
-- (void)_readMerchantInformation;
-- (void)_readPaymentNetwork;
-- (void)_readRawMerchantCode;
-- (void)_readTerminalId;
-- (void)_readTransactionCurrencyCode;
-- (void)_readTransactionId;
-- (void)_readTransactionLocation;
-- (void)_readWarsawMerchantIdentifier;
 - (id)appIdentifier;
 - (void)clearSensitiveFields;
 - (void)clearUnknownFields:(bool)arg1;
+- (bool)coarseLocationUsed;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -134,6 +110,7 @@
 - (bool)enableBrandMuidFallback;
 - (bool)fuzzyMatched;
 - (bool)hasAppIdentifier;
+- (bool)hasCoarseLocationUsed;
 - (bool)hasEnableBrandMuidFallback;
 - (bool)hasFuzzyMatched;
 - (bool)hasIndustryCategory;
@@ -156,7 +133,10 @@
 - (long long)industryCode;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)merchantCode;
 - (id)merchantInformation;
 - (void)mergeFrom:(id)arg1;
@@ -165,8 +145,10 @@
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setAppIdentifier:(id)arg1;
+- (void)setCoarseLocationUsed:(bool)arg1;
 - (void)setEnableBrandMuidFallback:(bool)arg1;
 - (void)setFuzzyMatched:(bool)arg1;
+- (void)setHasCoarseLocationUsed:(bool)arg1;
 - (void)setHasEnableBrandMuidFallback:(bool)arg1;
 - (void)setHasFuzzyMatched:(bool)arg1;
 - (void)setHasIndustryCode:(bool)arg1;

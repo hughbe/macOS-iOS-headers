@@ -2,22 +2,25 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIPopoverPresentationController : UIPresentationController <UIDimmingViewDelegate, UIGestureRecognizerDelegatePrivate> {
+@interface UIPopoverPresentationController : UIPresentationController <UIGestureRecognizerDelegatePrivate, _UIPopoverDimmingViewDelegate> {
     bool  __allowsSourceViewInDifferentWindowThanInitialPresentationViewController;
     bool  __centersPopoverIfSourceViewNotSet;
     double  __dimmingViewTopEdgeInset;
     bool  __ignoreBarButtonItemSiblings;
+    long long  __preferredHorizontalAlignment;
     bool  __shouldHideArrow;
     bool  __softAssertWhenNoSourceViewOrBarButtonItemSpecified;
+    bool  _adaptivityEnabled;
     UIColor * _arrowBackgroundColor;
     bool  _backgroundBlurDisabled;
     UIColor * _backgroundColor;
     bool  _canOverlapSourceViewRect;
     UIViewController * _contentViewController;
     unsigned long long  _currentArrowDirection;
+    UIPanGestureRecognizer * _detachGestureRecognizer;
     SEL  _didEndSelector;
     bool  _didPresentInActiveSequence;
-    UIDimmingView * _dimmingView;
+    _UIPopoverDimmingView * _dimmingView;
     UIPanGestureRecognizer * _dimmingViewGestureRecognizer;
     bool  _dismissesOnRotation;
     struct CGRect { 
@@ -68,8 +71,10 @@
     UIView * _presentingView;
     UIPopoverPresentationController * _retainedSelf;
     bool  _retainsSelfWhilePresented;
+    NSString * _sceneIdentifier;
     _UICutoutShadowView * _shadowView;
     bool  _shouldDisableInteractionDuringTransitions;
+    bool  _shouldPreserveFirstResponder;
     bool  _showsOrientationMarker;
     bool  _showsPresentationArea;
     bool  _showsTargetRect;
@@ -88,21 +93,12 @@
             double width; 
             double height; 
         } size; 
-    }  _targetRectInContainerView;
-    struct CGRect { 
-        struct CGPoint { 
-            double x; 
-            double y; 
-        } origin; 
-        struct CGSize { 
-            double width; 
-            double height; 
-        } size; 
     }  _targetRectInEmbeddingView;
     UIView * _targetRectView;
     unsigned long long  _toViewAutoResizingMask;
     bool  _useSourceViewBoundsAsSourceRect;
     UIPanGestureRecognizer * _vendedGestureRecognizer;
+    bool  _wasDetached;
     unsigned int  draggingChildScrollViewCount;
 }
 
@@ -113,8 +109,10 @@
 @property (setter=_setIgnoreBarButtonItemSiblings:, nonatomic) bool _ignoreBarButtonItemSiblings;
 @property (setter=_setIgnoresKeyboardNotifications:, nonatomic) bool _ignoresKeyboardNotifications;
 @property (setter=_setPopoverBackgroundStyle:, nonatomic) long long _popoverBackgroundStyle;
+@property (setter=_setPreferredHorizontalAlignment:, nonatomic) long long _preferredHorizontalAlignment;
 @property (getter=_shouldHideArrow, setter=_setShouldHideArrow:, nonatomic) bool _shouldHideArrow;
 @property (setter=_setSoftAssertWhenNoSourceViewOrBarButtonItemSpecified:, nonatomic) bool _softAssertWhenNoSourceViewOrBarButtonItemSpecified;
+@property (getter=_isAdaptivityEnabled, setter=_setAdaptivityEnabled:, nonatomic) bool adaptivityEnabled;
 @property (nonatomic, readonly) unsigned long long arrowDirection;
 @property (nonatomic, copy) UIColor *backgroundColor;
 @property (nonatomic, retain) UIBarButtonItem *barButtonItem;
@@ -136,6 +134,7 @@
 @property (nonatomic, retain) UIPopoverPresentationController *retainedSelf;
 @property (getter=_retainsSelfWhilePresented, setter=_setRetainsSelfWhilePresented:, nonatomic) bool retainsSelfWhilePresented;
 @property (getter=_shouldDisableInteractionDuringTransitions, setter=_setShouldDisableInteractionDuringTransitions:, nonatomic) bool shouldDisableInteractionDuringTransitions;
+@property (getter=_shouldPreserveFirstResponder, setter=_setShouldPreserveFirstResponder:, nonatomic) bool shouldPreserveFirstResponder;
 @property (nonatomic) bool showsOrientationMarker;
 @property (nonatomic) bool showsPresentationArea;
 @property (nonatomic) bool showsTargetRect;
@@ -145,6 +144,8 @@
 @property (nonatomic, retain) UIView *sourceView;
 @property (readonly) Class superclass;
 @property (getter=_targetRectView, setter=_setTargetRectView:, nonatomic, retain) UIView *targetRectView;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (bool)_alwaysAllowPopoverPresentations;
 + (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_defaultPopoverLayoutMarginsForPopoverControllerStyle:(long long)arg1 andContentViewController:(id)arg2;
@@ -165,7 +166,9 @@
 - (struct CGPoint { double x1; double x2; })_centerPointForScale:(double)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 anchor:(struct CGPoint { double x1; double x2; })arg3;
 - (bool)_centersPopoverIfSourceViewNotSet;
 - (void)_clearCachedPopoverContentSize;
+- (void)_closeScene;
 - (id /* block */)_completionBlockForDismissalWhenNotifyingDelegate:(bool)arg1;
+- (void)_convertToSceneFromPresentingViewController:(id)arg1;
 - (struct CGSize { double x1; double x2; })_currentPopoverContentSize;
 - (Class)_defaultChromeViewClass;
 - (long long)_defaultPresentationStyleForTraitCollection:(id)arg1;
@@ -178,11 +181,13 @@
 - (id)_exceptionStringForNilSourceViewOrBarButtonItem;
 - (bool)_fallbackShouldDismiss;
 - (bool)_forcesPreferredAnimationControllers;
+- (void)_handlePan:(id)arg1;
 - (bool)_ignoreBarButtonItemSiblings;
 - (bool)_ignoresKeyboardNotifications;
 - (void)_incrementSlideTransitionCount:(bool)arg1;
 - (id)_initialPresentationViewControllerForViewController:(id)arg1;
 - (void)_invalidateLayoutInfo;
+- (bool)_isAdaptivityEnabled;
 - (bool)_isDismissing;
 - (bool)_isPresenting;
 - (bool)_isShimmingPopoverControllerPresentation;
@@ -202,6 +207,7 @@
 - (void)_postludeForDismissal;
 - (id)_preferredAnimationControllerForDismissal;
 - (id)_preferredAnimationControllerForPresentation;
+- (long long)_preferredHorizontalAlignment;
 - (double)_presentationAnimationDuration;
 - (unsigned long long)_presentationEdge;
 - (bool)_presentationPotentiallyUnderlapsStatusBar;
@@ -209,6 +215,7 @@
 - (id)_presentationView;
 - (id)_presentingView;
 - (void)_realSourceViewDidChangeFromView:(id)arg1 toView:(id)arg2;
+- (void)_realSourceViewGeometryDidChange;
 - (void)_resetSlideTransitionCount;
 - (bool)_retainsSelfWhilePresented;
 - (void)_scrollViewDidEndDragging:(id)arg1;
@@ -216,6 +223,7 @@
 - (void)_sendDelegateWillRepositionToRect;
 - (void)_sendFallbackDidDismiss;
 - (void)_sendFallbackWillDismiss;
+- (void)_setAdaptivityEnabled:(bool)arg1;
 - (void)_setAllowsSourceViewInDifferentWindowThanInitialPresentationViewController:(bool)arg1;
 - (void)_setArrowOffset:(double)arg1;
 - (void)_setBackgroundBlurDisabled:(bool)arg1;
@@ -229,27 +237,32 @@
 - (void)_setPopoverBackgroundStyle:(long long)arg1;
 - (void)_setPopoverFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 animated:(bool)arg2 coordinator:(id)arg3;
 - (void)_setPopoverView:(id)arg1;
+- (void)_setPreferredHorizontalAlignment:(long long)arg1;
 - (void)_setPresentationEdge:(unsigned long long)arg1;
 - (void)_setPresentationState:(int)arg1;
 - (void)_setPresentingView:(id)arg1;
 - (void)_setRetainsSelfWhilePresented:(bool)arg1;
 - (void)_setShouldDisableInteractionDuringTransitions:(bool)arg1;
 - (void)_setShouldHideArrow:(bool)arg1;
+- (void)_setShouldPreserveFirstResponder:(bool)arg1;
 - (void)_setSoftAssertWhenNoSourceViewOrBarButtonItemSpecified:(bool)arg1;
 - (void)_setSourceOverlayView:(id)arg1;
 - (void)_setSourceOverlayViewConstraints:(id)arg1;
 - (void)_setTargetRectView:(id)arg1;
+- (bool)_shouldConvertToScene;
 - (bool)_shouldDisableInteractionDuringTransitions;
 - (bool)_shouldHideArrow;
 - (bool)_shouldKeepCurrentFirstResponder;
 - (bool)_shouldOccludeDuringPresentation;
 - (bool)_shouldPopoverContentExtendOverArrowForViewController:(id)arg1 backgroundViewClass:(Class)arg2;
 - (bool)_shouldPresentedViewControllerControlStatusBarAppearance;
+- (bool)_shouldPreserveFirstResponder;
 - (unsigned long long)_slideTransitionCount;
 - (bool)_softAssertWhenNoSourceViewOrBarButtonItemSpecified;
 - (id)_sourceOverlayView;
 - (id)_sourceOverlayViewConstraints;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_sourceRectInContainerView;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_sourceRectInCoordinateSpace:(id)arg1;
 - (void)_startWatchingForKeyboardNotificationsIfNecessary;
 - (void)_startWatchingForScrollViewNotifications;
 - (void)_stopWatchingForKeyboardNotifications;
@@ -263,6 +276,7 @@
 - (void)_transitionToWillBegin;
 - (void)_updateShadowFrame;
 - (void)_updateSourceOverlayViewConstraints;
+- (bool)_useNSPopover;
 - (id)arrowBackgroundColor;
 - (unsigned long long)arrowDirection;
 - (id)backgroundColor;
@@ -270,8 +284,7 @@
 - (void)containerViewWillLayoutSubviews;
 - (void)dealloc;
 - (id)dimmingView;
-- (void)dimmingViewWasTapped:(id)arg1;
-- (void)dimmingViewWasTapped:(id)arg1 withDismissCompletion:(id /* block */)arg2;
+- (bool)dimmingViewWasTapped:(id)arg1 withDismissCompletion:(id /* block */)arg2;
 - (void)dismissalTransitionDidEnd:(bool)arg1;
 - (void)dismissalTransitionWillBegin;
 - (bool)dismissesOnRotation;
@@ -285,6 +298,8 @@
 - (unsigned long long)popoverArrowDirection;
 - (Class)popoverBackgroundViewClass;
 - (struct CGSize { double x1; double x2; })popoverContentSize;
+- (bool)popoverDimmingViewDidReceiveDismissalInteraction:(id)arg1;
+- (bool)popoverDimmingViewShouldAllowInteraction:(id)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })popoverLayoutMargins;
 - (id)popoverView;
 - (void)preferredContentSizeDidChangeForChildContentContainer:(id)arg1;
@@ -319,5 +334,9 @@
 - (bool)showsTargetRect;
 - (void)traitCollectionDidChange:(id)arg1;
 - (void)viewWillTransitionToSize:(struct CGSize { double x1; double x2; })arg1 withTransitionCoordinator:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowUICore.framework/WorkflowUICore
+
+- (void)wf_forcePresentationInPresenterSceneIfNeeded;
 
 @end

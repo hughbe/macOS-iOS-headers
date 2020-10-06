@@ -9,20 +9,13 @@
 }
 
 @property (nonatomic, readonly) const void*bytes;
-@property (nonatomic, readonly) NSData *data;
 
 - (const void*)bytes;
 - (long long)compare:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)data;
 - (void)dealloc;
-- (int)decrementExternalReferenceCount;
 - (id)description;
-- (int)externalReferenceCount;
 - (unsigned long long)hash;
-- (int)incrementExternalReferenceCount;
-- (id)initWithData:(id)arg1;
-- (id)initWithSnapshot:(struct sqlite3_snapshot { unsigned char x1[48]; }*)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)mutableCopy;
 

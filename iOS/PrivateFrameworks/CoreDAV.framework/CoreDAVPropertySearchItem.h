@@ -12,6 +12,8 @@
 @property (nonatomic, retain) NSString *matchTypeAttribute;
 @property (nonatomic, retain) CoreDAVLeafItem *prop;
 
+// Image: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
+
 - (void).cxx_destruct;
 - (id)description;
 - (id)init;
@@ -23,5 +25,9 @@
 - (void)setMatchTypeAttribute:(id)arg1;
 - (void)setProp:(id)arg1;
 - (void)write:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
+
+- (int)wellKnownPrincipalSearchType;
 
 @end

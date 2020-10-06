@@ -3,7 +3,6 @@
  */
 
 @interface _INPBCallMetricsValue : PBCodable <NSCopying, NSSecureCoding, _INPBCallMetricsValue> {
-    bool  __encodeLegacyGloryData;
     double  _callDuration;
     struct { 
         unsigned int callDuration : 1; 
@@ -12,7 +11,6 @@
     double  _timeToEstablish;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) double callDuration;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -24,8 +22,6 @@
 
 + (bool)supportsSecureCoding;
 
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (double)callDuration;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

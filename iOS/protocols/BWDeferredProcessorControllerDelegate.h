@@ -6,6 +6,6 @@
 @required
 
 - (void)processorController:(BWDeferredProcessorController *)arg1 didDetermineReferenceFrame:(struct opaqueCMSampleBuffer { }*)arg2 processorInput:(BWDeferredProcessorControllerInput *)arg3 err:(int)arg4;
-- (void)processorController:(BWDeferredProcessorController *)arg1 didProcessInferencesForSkinMask:(const void*)arg2 personMask:(const void*)arg3 faceObservations:(id)arg4 processorInput:(BWDeferredProcessorControllerInput *)arg5 err:(int)arg6;
+- (void)processorController:(BWDeferredProcessorController *)arg1 didProcessInferencesForSkinMask:(const void*)arg2 skyMask:(const void*)arg3 personMask:(const void*)arg4 faceObservations:(id)arg5 processorInput:(BWDeferredProcessorControllerInput *)arg6 err:(int)arg7;
 
 @end

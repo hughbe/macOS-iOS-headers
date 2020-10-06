@@ -33,7 +33,7 @@
 - (id)description;
 - (id)dispatchQueue;
 - (void)encodeWithXPCObject:(id)arg1;
-- (double)estimateRiskWithExposureInfo:(id)arg1 referenceTime:(double)arg2 transmissionRiskLevel:(char *)arg3;
+- (double)estimateRiskWithExposureInfo:(id)arg1 referenceTime:(double)arg2 transmissionRiskLevel:(char *)arg3 skip:(bool*)arg4;
 - (void)finishedDiagnosisKeysWithCompletionHandler:(id /* block */)arg1;
 - (void)getExposureInfoWithMaximumCount:(unsigned long long)arg1 completionHandler:(id /* block */)arg2;
 - (id)init;
@@ -41,9 +41,11 @@
 - (void)invalidate;
 - (id /* block */)invalidationHandler;
 - (unsigned long long)maximumKeyCount;
+- (double)scoreWithExposureInfo:(id)arg1 skip:(bool*)arg2;
 - (void)setConfiguration:(id)arg1;
 - (void)setDispatchQueue:(id)arg1;
 - (void)setInvalidationHandler:(id /* block */)arg1;
 - (void)setMaximumKeyCount:(unsigned long long)arg1;
+- (void)updateDaySummary:(id)arg1 exposureInfo:(id)arg2 score:(double)arg3;
 
 @end

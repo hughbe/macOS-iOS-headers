@@ -10,6 +10,7 @@
     NSMutableDictionary * _entitlementChecks;
     ACDAccountStoreFilter * _filter;
     NSString * _localizedAppName;
+    NSSet * _monitoredAccountTypes;
     NSString * _name;
     NSNumber * _pid;
 }
@@ -20,6 +21,7 @@
 @property (nonatomic, readonly) NSXPCConnection *connection;
 @property (nonatomic, retain) ACDAccountStoreFilter *filter;
 @property (nonatomic, readonly) NSString *localizedAppName;
+@property (nonatomic, retain) NSSet *monitoredAccountTypes;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSNumber *pid;
 
@@ -31,6 +33,7 @@
 - (void).cxx_destruct;
 - (id)_displayNameFromBundleInfoDictionaryForPID:(int)arg1;
 - (id)_displayNameFromLaunchServicesForPID:(int)arg1;
+- (id)_rawValueForEntitlement:(id)arg1;
 - (id)adamOrDisplayID;
 - (struct __CFBundle { }*)bundle;
 - (id)bundleID;
@@ -42,9 +45,11 @@
 - (id)init;
 - (id)initWithConnection:(id)arg1;
 - (id)localizedAppName;
+- (id)monitoredAccountTypes;
 - (id)name;
 - (id)pid;
 - (void)setBundleID:(id)arg1;
 - (void)setFilter:(id)arg1;
+- (void)setMonitoredAccountTypes:(id)arg1;
 
 @end

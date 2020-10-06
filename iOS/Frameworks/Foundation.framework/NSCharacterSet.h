@@ -59,13 +59,117 @@
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)replacementObjectForPortCoder:(id)arg1;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)hk_equalCharacterSet;
++ (id)hk_forwardSlashCharacterSet;
++ (id)hk_percentCharacterSet;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)textAttachmentCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/ContactsAutocompleteUI.framework/ContactsAutocompleteUI
+
++ (id)textAttachmentCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/CoreHandwriting.framework/CoreHandwriting
+
++ (id)ch_sentenceEndPunctuationCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/EmailCore.framework/EmailCore
+
++ (id)ec_prefixDelimiterCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/EmailFoundation.framework/EmailFoundation
+
++ (id)ef_asciiAlphaNumericCharacterSet;
++ (id)ef_rfc6376WhitespaceCharacterSet;
++ (id)ef_unsafeAddressLocalPartCharacterSet;
++ (id)ef_unsafeDomainNameCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/EmojiFoundation.framework/EmojiFoundation
+
++ (id)_emojiCharacterSet;
+
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
 + (id)invalidCharactersForFileTransferName;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_breakableWhitespaceCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsFoundation.framework/PodcastsFoundation
+
++ (id)URLAllowedCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (id)safari_asciiDigitCharacterSet;
++ (id)safari_lockRelatedEmojiCharacterSet;
++ (id)safari_obscuredPasswordCharacterSets;
++ (id)safari_whitespaceAndNewlineCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/ScreenReaderCore.framework/ScreenReaderCore
+
++ (id)emojiCharacterSet;
++ (id)passwordBulletCharacterSet;
++ (id)whitespaceNewlineAndSpecialCharacterSet;
++ (id)wordBreakCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
++ (id)allQuotesCharacterSetExcludingLeft;
++ (id)allQuotesCharacterSetExcludingRight;
++ (id)breakingSpaceCharacterSet;
++ (id)invisibleCharacterSet;
++ (id)lineBreakingCharacterSet;
++ (id)normalQuotesCharacterSet;
++ (id)postSmartSet;
++ (id)preSmartSet;
++ (id)smartDoubleQuotesCharacterSet;
++ (id)smartQuotesCharacterSet;
++ (id)smartSingleQuotesCharacterSet;
++ (id)spaceCharacterSet;
 
 // Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
 
 + (id)phoneNumberSeparatorCharacterSet;
 + (id)phoneNumberSeparatorCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/TextInputCore.framework/TextInputCore
+
++ (id)pinyinInputCharacterSet;
++ (id)punctuationAndWhitespaceCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSCalculationEngine.framework/TSCalculationEngine
+
++ (id)tsce_characterSetRequiringSingleQuotes;
++ (id)tsce_dollarSignCharacterSet;
++ (id)tsce_internationalColonCharacterSet;
++ (id)tsce_internationalWhitespaceAndNewlineCharacterSet;
++ (id)tsce_internationalWhitespaceCharacterSet;
++ (id)tsce_listDelimiterCharacterSet;
++ (id)tsce_periodCharacterSet;
++ (id)tsce_singleQuoteCharacterSet;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSText.framework/TSText
+
++ (id)tswp_allQuotesCharacterSetExcludingLeft;
++ (id)tswp_allQuotesCharacterSetExcludingRight;
++ (id)tswp_breakingSpaceCharacterSet;
++ (id)tswp_characterSetWithCharactersInArray:(const unsigned short*)arg1 length:(unsigned long long)arg2;
++ (id)tswp_curlyQuotesCharacterSet;
++ (id)tswp_invisibleCharacterSet;
++ (id)tswp_lineBreakingCharacterSet;
++ (id)tswp_postSmartSet;
++ (id)tswp_preSmartSet;
++ (id)tswp_sentenceDelimiterCharacterSet;
++ (id)tswp_singleLeftQuoteCharacterSet;
++ (id)tswp_singleRightQuoteCharacterSet;
++ (id)tswp_smartSingleQuotesCharacterSet;
++ (id)tswp_spaceCharacterSet;
++ (id)tswp_variationSelectorCharacterSet;
 
 @end

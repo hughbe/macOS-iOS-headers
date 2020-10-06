@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@interface MTLIOAccelFence : _MTLObjectWithLabel <MTLFence> {
+@interface MTLIOAccelFence : _MTLFence <MTLFenceSPI> {
     MTLIOAccelDevice<MTLDevice> * _device;
     unsigned int  _fenceIndex;
 }

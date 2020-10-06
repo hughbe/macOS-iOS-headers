@@ -2,11 +2,17 @@
    Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
  */
 
-@interface CMPedometer : NSObject {
+@interface CMPedometer : NSObject <HDCoreMotionDataSource> {
     CMPedometerProxy * _pedometerProxy;
 }
 
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) CMPedometerProxy *pedometerProxy;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
 
 + (long long)authorizationStatus;
 + (bool)isAllDayElevationAvailable;
@@ -36,5 +42,10 @@
 - (void)stopPedometerEventUpdates;
 - (void)stopPedometerUpdates;
 - (id)strideCalibrationDump;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (void)hd_beginStreamingFromDatum:(id)arg1 handler:(id /* block */)arg2;
+- (void)hd_stopStreaming;
 
 @end

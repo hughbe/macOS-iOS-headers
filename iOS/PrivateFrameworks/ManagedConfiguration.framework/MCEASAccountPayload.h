@@ -5,6 +5,7 @@
 @interface MCEASAccountPayload : MCEmailAccountPayloadBase {
     NSString * _OAuthSignInURL;
     NSString * _OAuthTokenRequestURL;
+    NSString * _acAccountIdentifier;
     NSString * _accountDescription;
     NSString * _accountPersistentUUID;
     NSData * _certificatePersistentID;
@@ -26,6 +27,7 @@
     NSNumber * _enableRemindersUserOverridableNum;
     NSString * _hostname;
     NSNumber * _mailNumberOfPastDaysToSync;
+    bool  _overridePreviousPassword;
     NSString * _password;
     bool  _syncDefaultFoldersOnly;
     NSNumber * _syncDefaultFoldersOnlyNum;
@@ -36,6 +38,7 @@
 
 @property (nonatomic, retain) NSString *OAuthSignInURL;
 @property (nonatomic, retain) NSString *OAuthTokenRequestURL;
+@property (nonatomic, retain) NSString *acAccountIdentifier;
 @property (nonatomic, readonly, retain) NSString *accountDescription;
 @property (nonatomic, copy) NSString *accountPersistentUUID;
 @property (nonatomic, retain) NSData *certificatePersistentID;
@@ -58,6 +61,7 @@
 @property (nonatomic, readonly) bool hasCertificate;
 @property (nonatomic, readonly, retain) NSString *hostname;
 @property (nonatomic, readonly, retain) NSNumber *mailNumberOfPastDaysToSync;
+@property (nonatomic, readonly) bool overridePreviousPassword;
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic) bool syncDefaultFoldersOnly;
 @property (nonatomic, readonly) NSNumber *syncDefaultFoldersOnlyNum;
@@ -72,13 +76,13 @@
 - (void).cxx_destruct;
 - (id)OAuthSignInURL;
 - (id)OAuthTokenRequestURL;
+- (id)acAccountIdentifier;
 - (id)accountDescription;
 - (id)accountPersistentUUID;
 - (id)certificatePersistentID;
 - (id)certificateUUID;
 - (id)communicationServiceRules;
 - (bool)containsSensitiveUserInformation;
-- (id)description;
 - (id)emailAddress;
 - (id)embeddedCertificate;
 - (id)embeddedCertificateName;
@@ -96,10 +100,13 @@
 - (bool)hasCertificate;
 - (id)hostname;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
+- (id)mailAccountIdentifiers;
 - (id)mailNumberOfPastDaysToSync;
+- (bool)overridePreviousPassword;
 - (id)password;
 - (id)payloadDescriptionKeyValueSections;
 - (id)restrictions;
+- (void)setAcAccountIdentifier:(id)arg1;
 - (void)setAccountPersistentUUID:(id)arg1;
 - (void)setCertificatePersistentID:(id)arg1;
 - (void)setEmailAddress:(id)arg1;
@@ -118,9 +125,9 @@
 - (id)subtitle2Label;
 - (bool)syncDefaultFoldersOnly;
 - (id)syncDefaultFoldersOnlyNum;
-- (id)title;
 - (id)useOAuth;
 - (id)useSSL;
 - (id)username;
+- (id)verboseDescription;
 
 @end

@@ -16,6 +16,7 @@
     GEOURLCollectionStorage * _collectionStorage;
     NSString * _contentProvider;
     NSString * _contentProviderID;
+    unsigned long long  _curatedCollectionMUID;
     NSString * _directionsDestinationAddressString;
     NSString * _directionsSourceAddressString;
     bool  _exactPositionSpecified;
@@ -26,6 +27,7 @@
     NSString * _lineName;
     int  _mapType;
     GEOMuninViewState * _muninViewState;
+    unsigned long long  _publisherMUID;
     double  _roll;
     double  _rotation;
     struct { 
@@ -45,6 +47,7 @@
         } span; 
     }  _searchRegion;
     unsigned long long  _searchUID;
+    bool  _showAllCuratedCollections;
     bool  _showCarDestinations;
     struct { 
         double latitudeDelta; 
@@ -70,6 +73,7 @@
 @property (nonatomic, readonly) GEOURLCollectionStorage *collectionStorage;
 @property (nonatomic, readonly) NSString *contentProvider;
 @property (nonatomic, readonly) NSString *contentProviderID;
+@property (nonatomic, readonly) unsigned long long curatedCollectionMUID;
 @property (nonatomic, readonly) NSString *directionsDestinationAddressString;
 @property (nonatomic, readonly) NSString *directionsSourceAddressString;
 @property (nonatomic, readonly) bool exactPositionSpecified;
@@ -80,6 +84,7 @@
 @property (nonatomic, readonly, copy) NSString *lineName;
 @property (nonatomic, readonly) int mapType;
 @property (nonatomic, readonly) GEOMuninViewState *muninViewState;
+@property (nonatomic, readonly) unsigned long long publisherMUID;
 @property (nonatomic, readonly) double roll;
 @property (nonatomic, readonly) double rotation;
 @property (nonatomic, readonly) struct { double x1; double x2; } searchCoordinate;
@@ -87,6 +92,7 @@
 @property (nonatomic, readonly) NSString *searchQuery;
 @property (nonatomic, readonly) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } searchRegion;
 @property (nonatomic, readonly) unsigned long long searchUID;
+@property (nonatomic, readonly) bool showAllCuratedCollections;
 @property (nonatomic, readonly) bool showCarDestinations;
 @property (nonatomic, readonly) struct { double x1; double x2; } span;
 @property (nonatomic, readonly) bool tester;
@@ -112,6 +118,7 @@
 - (id)collectionStorage;
 - (id)contentProvider;
 - (id)contentProviderID;
+- (unsigned long long)curatedCollectionMUID;
 - (id)directionsDestinationAddressString;
 - (id)directionsSourceAddressString;
 - (bool)exactPositionSpecified;
@@ -124,6 +131,7 @@
 - (int)mapType;
 - (id)muninViewState;
 - (bool)parseIncludingCustomParameters:(bool)arg1;
+- (unsigned long long)publisherMUID;
 - (id)restoreCodableOfClass:(Class)arg1 queryItem:(id)arg2 key:(id)arg3 compressedKey:(id)arg4;
 - (double)roll;
 - (double)rotation;
@@ -132,6 +140,7 @@
 - (id)searchQuery;
 - (struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })searchRegion;
 - (unsigned long long)searchUID;
+- (bool)showAllCuratedCollections;
 - (bool)showCarDestinations;
 - (struct { double x1; double x2; })span;
 - (bool)tester;

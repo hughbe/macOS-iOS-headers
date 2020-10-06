@@ -12,9 +12,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_days : 1; 
         unsigned int read_timeRanges : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_days : 1; 
-        unsigned int wrote_timeRanges : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -36,10 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsDays:(id)arg1;
-- (void)_addNoFlagsDay:(int)arg1;
-- (void)_addNoFlagsTimeRange:(id)arg1;
-- (void)_readDays;
-- (void)_readTimeRanges;
 - (void)addDay:(int)arg1;
 - (void)addTimeRange:(id)arg1;
 - (void)clearDays;
@@ -57,8 +51,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithPlaceDataHours:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

@@ -61,7 +61,7 @@
 - (id)avatarCarouselViewController;
 - (void)avatarCarouselViewControllerDidTapPhotoPickerCell:(id)arg1;
 - (void)avatarCarouselViewControllerDidUpdateCenterMostItem:(id)arg1;
-- (void)avatarPosePickerManager:(id)arg1 didFinishWithProviderItem:(id)arg2;
+- (void)avatarEditingManager:(id)arg1 didFinishWithProviderItem:(id)arg2;
 - (id)avatarRecord;
 - (id)confirmButtonTitle;
 - (id)contact;
@@ -97,7 +97,7 @@
 - (id)photoPickerViewController;
 - (id)posePicker;
 - (void)presentErrorAlertForEmptyPhotoIfNeededWithCompletion:(id /* block */)arg1;
-- (void)presentPhotoPickerVariantListFor:(id)arg1 FromViewController:(id)arg2;
+- (void)presentPhotoPickerVariantListForItem:(id)arg1 FromViewController:(id)arg2;
 - (void)promptForSavingToMeCard;
 - (void)saveDraftContact;
 - (void)setAvatarCarouselEditingContact:(id)arg1;

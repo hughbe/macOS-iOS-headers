@@ -3,7 +3,7 @@
  */
 
 @interface _UICollectionViewListCellVisualProvider : NSObject {
-    _UICollectionViewListCell * _cell;
+    UICollectionViewListCell * _cell;
 }
 
 @property (nonatomic, readonly) UIView *accessoryManagerContainerView;

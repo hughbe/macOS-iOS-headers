@@ -17,7 +17,6 @@
 - (void)addObjectsFromArray:(id)arg1;
 - (id)allObjects;
 - (id)array;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (bool)containsObject:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

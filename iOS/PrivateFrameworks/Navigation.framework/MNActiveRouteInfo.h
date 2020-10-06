@@ -4,22 +4,21 @@
 
 @interface MNActiveRouteInfo : NSObject <NSSecureCoding> {
     unsigned long long  _alternateRouteIndex;
-    NSDate * _displayETA;
-    unsigned long long  _displayRemainingMinutes;
+    MNDisplayETAInfo * _displayETAInfo;
     GEOETATrafficUpdateResponse * _etaResponse;
-    GEOETARoute * _etaRoute;
+    GEOComposedETARoute * _etaRoute;
+    MNRouteDistanceInfo * _remainingDistanceInfo;
     GEOComposedRoute * _route;
-    GEOComposedRouteTraffic * _traffic;
 }
 
 @property (nonatomic) unsigned long long alternateRouteIndex;
-@property (nonatomic, retain) NSDate *displayETA;
-@property (nonatomic) unsigned long long displayRemainingMinutes;
+@property (nonatomic, retain) MNDisplayETAInfo *displayETAInfo;
 @property (nonatomic, retain) GEOETATrafficUpdateResponse *etaResponse;
-@property (nonatomic, retain) GEOETARoute *etaRoute;
+@property (nonatomic, retain) GEOComposedETARoute *etaRoute;
+@property (nonatomic, retain) MNRouteDistanceInfo *remainingDistanceInfo;
 @property (nonatomic, retain) GEOComposedRoute *route;
 @property (nonatomic, readonly) NSUUID *routeID;
-@property (nonatomic, retain) GEOComposedRouteTraffic *traffic;
+@property (nonatomic, readonly) GEOComposedRouteTraffic *traffic;
 @property (nonatomic, readonly) GEOTransitRouteUpdateRequest *transitRouteUpdateRequest;
 
 + (bool)supportsSecureCoding;
@@ -27,26 +26,23 @@
 - (void).cxx_destruct;
 - (unsigned long long)alternateRouteIndex;
 - (id)description;
-- (id)displayETA;
-- (unsigned long long)displayRemainingMinutes;
+- (id)displayETAInfo;
 - (void)encodeWithCoder:(id)arg1;
 - (id)etaResponse;
 - (id)etaRoute;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRoute:(id)arg1;
-- (id)initWithRoute:(id)arg1 traffic:(id)arg2;
 - (id)initWithRoute:(id)arg1 trafficRoute:(id)arg2 routeInitalizerData:(id)arg3;
+- (id)remainingDistanceInfo;
 - (id)route;
 - (id)routeID;
 - (void)setAlternateRouteIndex:(unsigned long long)arg1;
-- (void)setDisplayETA:(id)arg1;
-- (void)setDisplayRemainingMinutes:(unsigned long long)arg1;
+- (void)setDisplayETAInfo:(id)arg1;
 - (void)setEtaResponse:(id)arg1;
 - (void)setEtaRoute:(id)arg1;
+- (void)setRemainingDistanceInfo:(id)arg1;
 - (void)setRoute:(id)arg1;
-- (void)setTraffic:(id)arg1;
 - (id)traffic;
 - (id)transitRouteUpdateRequest;
-- (void)updateWithETARoute:(id)arg1 offsetInMeters:(double)arg2;
 
 @end

@@ -25,6 +25,7 @@
 - (void)_performFirstQueuedTask;
 - (id)afterDelay:(double)arg1 performBlock:(id /* block */)arg2;
 - (id)afterDelay:(double)arg1 performBlock:(id /* block */)arg2 qualityOfService:(unsigned long long)arg3;
+- (id)description;
 - (id)initWithScheduler:(id)arg1;
 - (id)lock;
 - (void)performBlock:(id /* block */)arg1;

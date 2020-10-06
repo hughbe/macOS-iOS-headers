@@ -3,7 +3,6 @@
  */
 
 @interface _INPBStartAudioCallIntent : PBCodable <NSCopying, NSSecureCoding, _INPBStartAudioCallIntent> {
-    bool  __encodeLegacyGloryData;
     int  _audioRoute;
     NSArray * _contacts;
     int  _destinationType;
@@ -21,7 +20,6 @@
     int  _ttyType;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int audioRoute;
 @property (nonatomic, copy) NSArray *contacts;
 @property (nonatomic, readonly) unsigned long long contactsCount;
@@ -53,8 +51,6 @@
 - (int)StringAsPreferredCallProvider:(id)arg1;
 - (int)StringAsRecordTypeForRedialing:(id)arg1;
 - (int)StringAsTTYType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addContact:(id)arg1;
 - (void)addTargetContacts:(id)arg1;
 - (int)audioRoute;

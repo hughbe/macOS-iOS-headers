@@ -10,10 +10,6 @@
 }
 
 - (void).cxx_destruct;
-- (float)_calculateMasterVolume;
-- (unsigned int)_calculateMasterVolumeCapabilities;
-- (void)_reevaluateMasterVolume;
-- (void)_reevaluateMasterVolumeControlCapabilities;
 - (id)initWithUniqueIdentifier:(id)arg1;
 - (id)outputDevices;
 - (void)removeAllOutputDevices;

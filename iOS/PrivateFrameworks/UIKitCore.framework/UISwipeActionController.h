@@ -6,6 +6,7 @@
     UIScrollView * _containerView;
     UISwipeOccurrence * _currentSwipeOccurrence;
     UISwipeActionsConfiguration * _incomingSwipeActionsConfiguration;
+    UISwipeOccurrence * _preparingSwipeOccurrence;
     unsigned long long  _style;
     <UISwipeActionHost> * _swipeActionHost;
     _UISwipeHandler * _swipeHandler;
@@ -27,14 +28,18 @@
 @property (nonatomic, retain) _UISwipeHandler *swipeHandler;
 @property (nonatomic, retain) NSMutableSet *swipeOccurrences;
 @property (nonatomic, readonly) NSIndexPath *swipedIndexPath;
+@property (nonatomic, readonly) NSSet *swipedIndexPaths;
 @property (nonatomic, readonly) UIView *swipedItemView;
 
 - (void).cxx_destruct;
 - (id)_existingSwipeOccurrenceForIndexPath:(id)arg1;
 - (id)_internalSwipeActionHost;
+- (bool)_isSwipeForIndexPathFirstOccurrenceBeginningOrLastOccurrenceEnding:(id)arg1;
 - (void)_observeScrollViewDidScroll:(id)arg1;
 - (bool)_prefersRTL;
+- (id)_swipeActionsConfigurationForSwipeDirection:(unsigned long long)arg1 indexPath:(id)arg2;
 - (unsigned long long)_swipeDirectionForLeadingEdge:(bool)arg1;
+- (id)_swipedViewForItemAtIndexPath:(id)arg1;
 - (struct { unsigned long long x1; bool x2; bool x3; double x4; double x5; })configureForSwipeDirection:(unsigned long long)arg1 configuration:(id)arg2 startingAtTouchLocation:(struct CGPoint { double x1; double x2; })arg3;
 - (id)containerView;
 - (id)currentSwipeOccurrence;
@@ -47,6 +52,8 @@
 - (void)insertSectionAtIndex:(unsigned long long)arg1;
 - (void)moveRowAtIndexPath:(id)arg1 toIndexPath:(id)arg2;
 - (void)moveSectionAtIndex:(unsigned long long)arg1 toIndex:(unsigned long long)arg2;
+- (void)prepareForSwipeDirection:(unsigned long long)arg1 startingAtTouchLocation:(struct CGPoint { double x1; double x2; })arg2;
+- (void)reloadData;
 - (void)resetSwipedItemAnimated:(bool)arg1 completion:(id /* block */)arg2;
 - (void)setContainerView:(id)arg1;
 - (void)setCurrentSwipeOccurrence:(id)arg1;
@@ -71,9 +78,9 @@
 - (void)swipeOccurrenceDidFinish:(id)arg1;
 - (id)swipeOccurrences;
 - (id)swipedIndexPath;
+- (id)swipedIndexPaths;
 - (id)swipedItemView;
 - (bool)touchAtLocationShouldDismissSwipedItem:(struct CGPoint { double x1; double x2; })arg1 isTouchUp:(bool)arg2;
 - (void)updateLayout;
-- (void)updateSwipedIndexPath:(id)arg1;
 
 @end

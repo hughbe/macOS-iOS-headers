@@ -8,6 +8,7 @@
     long long  _connectionType;
     BOOL  _linkID;
     NSUUID * _linkUUID;
+    unsigned int  _localDataSoMask;
     unsigned short  _localLinkFlags;
     unsigned int  _maxBitrate;
     unsigned short  _maxMTU;
@@ -16,6 +17,7 @@
     NSData * _relaySessionKey;
     NSData * _relaySessionToken;
     long long  _remoteConnectionType;
+    unsigned int  _remoteDataSoMask;
     unsigned short  _remoteLinkFlags;
     unsigned char  _remoteNetworkType;
     unsigned int  _remoteRATType;

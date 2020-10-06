@@ -2,11 +2,17 @@
    Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
  */
 
-@interface CMNatalimeter : NSObject {
+@interface CMNatalimeter : NSObject <HDCoreMotionDataSource> {
     CMNatalimeterInternal * _internal;
 }
 
 @property (nonatomic, readonly) CMNatalimeterInternal *_internal;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
 
 + (double)activeMetsThreshold;
 + (double)briskMinuteMetsThreshold;
@@ -21,15 +27,16 @@
 + (id)userProfile;
 
 - (id)_internal;
-- (bool)_shouldAllowMotionCalibrationPromptsForSession:(long long)arg1;
 - (void)dealloc;
-- (unsigned long long)getSupportedMetricsForSession:(long long)arg1;
 - (id)init;
-- (unsigned long long)promptsNeededForSession:(long long)arg1;
 - (void)queryAbsoluteNatalimetryDataSinceDataRecord:(id)arg1 withHandler:(id /* block */)arg2;
 - (void)queryAbsoluteNatalimetryDataSinceRecord:(long long)arg1 withHandler:(id /* block */)arg2;
-- (void)setSession:(long long)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)startAbsoluteNatalimetryDataUpdatesWithHandler:(id /* block */)arg1;
 - (void)stopAbsoluteNatalimetryDataUpdates;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (void)hd_beginStreamingFromDatum:(id)arg1 handler:(id /* block */)arg2;
+- (void)hd_stopStreaming;
 
 @end

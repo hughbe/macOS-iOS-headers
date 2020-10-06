@@ -4,8 +4,6 @@
 
 @interface UIUndoTutorialView : UIKBEditingGesturesIntroduction
 
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithKeyboardAppearance:(long long)arg1;
 - (id)largeTitle;
 - (bool)presentsFullScreen;

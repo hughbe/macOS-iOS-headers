@@ -19,7 +19,7 @@
 }
 
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *dispatchQueue;
-@property (nonatomic, readonly) NSString *networkStatus;
+@property (nonatomic, retain) NSString *networkStatus;
 @property (nonatomic) bool useProcessLocalCache;
 
 - (void).cxx_destruct;
@@ -58,6 +58,7 @@
 - (bool)pathInLocalCache:(id)arg1;
 - (void)purgeAssetsMatchingQuery:(id)arg1;
 - (void)setDispatchQueue:(id)arg1;
+- (void)setNetworkStatus:(id)arg1;
 - (void)setUseProcessLocalCache:(bool)arg1;
 - (void)storeEntries:(id)arg1 inLocalCacheWithFileName:(id)arg2;
 - (void)storeProductMappingsInLocalCache:(id)arg1;

@@ -8,7 +8,7 @@
 }
 
 @property long long handle;
-@property (retain) NSString *token;
+@property (nonatomic, readonly) NSString *token;
 
 - (void).cxx_destruct;
 - (void)consume;
@@ -18,7 +18,6 @@
 - (id)initWithExtension:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (void)setHandle:(long long)arg1;
-- (void)setToken:(id)arg1;
 - (id)token;
 
 @end

@@ -9,8 +9,12 @@
 @property (nonatomic) bool debuggingEnabled;
 @property (nonatomic) bool fastMathEnabled;
 @property (nonatomic) bool glBufferBindPoints;
+@property (nonatomic, copy) NSString *installName;
 @property (nonatomic) unsigned long long languageVersion;
+@property (nonatomic, copy) NSArray *libraries;
+@property (nonatomic) long long libraryType;
 @property (nonatomic, copy) NSDictionary *preprocessorMacros;
+@property (nonatomic) bool preserveInvariance;
 @property (nonatomic) unsigned char sourceLanguage;
 @property (nonatomic) bool tracingEnabled;
 

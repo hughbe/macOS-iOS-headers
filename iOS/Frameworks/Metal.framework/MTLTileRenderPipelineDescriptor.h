@@ -4,6 +4,7 @@
 
 @interface MTLTileRenderPipelineDescriptor : NSObject <NSCopying>
 
+@property (nonatomic, copy) NSArray *binaryArchives;
 @property (readonly) MTLTileRenderPipelineColorAttachmentDescriptorArray *colorAttachments;
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic) unsigned long long maxTotalThreadsPerThreadgroup;

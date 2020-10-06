@@ -3,14 +3,12 @@
  */
 
 @interface _INPBIntentSlotVocabularyValue : PBCodable <NSCopying, NSSecureCoding, _INPBIntentSlotVocabularyValue> {
-    bool  __encodeLegacyGloryData;
     NSArray * _examples;
     struct { }  _has;
     NSString * _phrase;
     NSString * _pronunciation;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, copy) NSArray *examples;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addExamples:(id)arg1;
 - (void)clearExamples;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

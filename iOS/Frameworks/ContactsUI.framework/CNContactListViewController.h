@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNContactListViewController : UITableViewController <CNAvatarCardControllerDelegate, CNAvatarViewControllerDelegate, CNContactDataSourceDelegate, CNContactListBannerViewDelegate, CNContactViewControllerDelegate, CNUIObjectViewControllerDelegate, CNVCardImportControllerDelegate, CNVCardImportControllerPresentationDelegate, INKContentControllerObserver, UIGestureRecognizerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDragDestinationDelegate, UITableViewDragSourceDelegate> {
+@interface CNContactListViewController : UITableViewController <CNAvatarCardControllerDelegate, CNAvatarViewControllerDelegate, CNContactDataSourceDelegate, CNContactListBannerViewDelegate, CNContactViewControllerDelegate, CNUIObjectViewControllerDelegate, CNVCardImportControllerDelegate, CNVCardImportControllerPresentationDelegate, TPKContentControllerDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDragDestinationDelegate, UITableViewDragSourceDelegate> {
     CNAvatarCardController * _cardController;
     CNContactFormatter * _contactFormatter;
     CNContactListStyleApplier * _contactListStyleApplier;
@@ -12,9 +12,6 @@
     <CNContactListViewControllerDelegate> * _delegate;
     NSSet * _emergencyContactIdentifiers;
     CNUIContactsEnvironment * _environment;
-    INKContent * _infoContent;
-    INKContentController * _infoContentController;
-    UIView * _infoContentView;
     bool  _isHandlingSearch;
     CNAvatarViewController * _meBannerAvatarController;
     CNContactListBannerView * _meContactBanner;
@@ -24,6 +21,7 @@
     <CNCancelable> * _medicalIDLookupToken;
     _UIContentUnavailableView * _noContactsView;
     NSArray * _pendingLayoutBlocks;
+    bool  _pendingRefreshNoContactsView;
     bool  _pendingSearchControllerActivation;
     NSString * _pendingSearchQuery;
     CNContact * _preferredForNameMeContact;
@@ -38,10 +36,13 @@
     bool  _shouldDisplayCount;
     bool  _shouldDisplayEmergencyContacts;
     bool  _shouldDisplayGroupsGrid;
-    bool  _shouldDisplayInfoContentView;
     bool  _shouldDisplayMeContactBanner;
+    bool  _shouldDisplayTipContentView;
     bool  _shouldUseLargeTitle;
     NSArray * _tableViewHeaderConstraints;
+    TPKContent * _tipContent;
+    TPKContentController * _tipContentController;
+    UIView * _tipContentView;
     CNVCardImportController * _vCardImportController;
 }
 
@@ -57,9 +58,6 @@
 @property (nonatomic, retain) NSSet *emergencyContactIdentifiers;
 @property (nonatomic, readonly) CNUIContactsEnvironment *environment;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, retain) INKContent *infoContent;
-@property (nonatomic, retain) INKContentController *infoContentController;
-@property (nonatomic, retain) UIView *infoContentView;
 @property (nonatomic) bool isHandlingSearch;
 @property (nonatomic, retain) CNAvatarViewController *meBannerAvatarController;
 @property (nonatomic, retain) CNContactListBannerView *meContactBanner;
@@ -70,6 +68,7 @@
 @property (nonatomic, readonly) _UIContentUnavailableView *noContactsView;
 @property (nonatomic, readonly) <CNContactDataSource> *originalDataSource;
 @property (nonatomic, retain) NSArray *pendingLayoutBlocks;
+@property (nonatomic) bool pendingRefreshNoContactsView;
 @property (nonatomic) bool pendingSearchControllerActivation;
 @property (nonatomic, retain) NSString *pendingSearchQuery;
 @property (nonatomic, readonly) CNContact *preferredForNameMeContact;
@@ -86,11 +85,14 @@
 @property (nonatomic) bool shouldDisplayCount;
 @property (nonatomic) bool shouldDisplayEmergencyContacts;
 @property (nonatomic) bool shouldDisplayGroupsGrid;
-@property (nonatomic) bool shouldDisplayInfoContentView;
 @property (nonatomic) bool shouldDisplayMeContactBanner;
+@property (nonatomic) bool shouldDisplayTipContentView;
 @property (nonatomic, readonly) bool shouldUseLargeTitle;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) NSArray *tableViewHeaderConstraints;
+@property (nonatomic, retain) TPKContent *tipContent;
+@property (nonatomic, retain) TPKContentController *tipContentController;
+@property (nonatomic, retain) UIView *tipContentView;
 @property (nonatomic, retain) CNVCardImportController *vCardImportController;
 
 + (id)descriptorForRequiredKeysForPreferredForNameMeContact;
@@ -116,6 +118,7 @@
 - (void)beginSearch:(id)arg1;
 - (bool)canBecomeFirstResponder;
 - (bool)canSelectContactAtIndexPath:(id)arg1;
+- (bool)canShowNoContactsView;
 - (void)cancelSearch:(id)arg1;
 - (id)cardController;
 - (void)checkForInfoContentWithContext:(id)arg1;
@@ -147,9 +150,6 @@
 - (id)getVisibleIndexPaths;
 - (bool)hasNoContacts;
 - (id)hostingViewControllerForController:(id)arg1;
-- (id)infoContent;
-- (id)infoContentController;
-- (id)infoContentView;
 - (id)initWithDataSource:(id)arg1 environment:(id)arg2 shouldUseLargeTitle:(bool)arg3;
 - (id)initWithDataSource:(id)arg1 searchable:(bool)arg2 environment:(id)arg3 shouldUseLargeTitle:(bool)arg4;
 - (id)initWithDataSource:(id)arg1 shouldUseLargeTitle:(bool)arg2;
@@ -170,12 +170,15 @@
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (id)originalDataSource;
 - (id)pendingLayoutBlocks;
+- (bool)pendingRefreshNoContactsView;
 - (bool)pendingSearchControllerActivation;
 - (id)pendingSearchQuery;
+- (void)performDelayedRefreshNoContactsView;
 - (void)performWhenViewIsLaidOut:(id /* block */)arg1;
 - (id)preferredForNameMeContact;
 - (id)presentingViewControllerForAvatarCardController:(id)arg1;
 - (bool)presentsSearchUI;
+- (bool)refreshNoContactsViewIfNeeded;
 - (void)refreshNoContactsViewIfVisible;
 - (void)refreshTableViewHeader;
 - (void)refreshTableViewHeaderIfVisible;
@@ -199,9 +202,6 @@
 - (void)setDefaultContactListStyleApplier:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setEmergencyContactIdentifiers:(id)arg1;
-- (void)setInfoContent:(id)arg1;
-- (void)setInfoContentController:(id)arg1;
-- (void)setInfoContentView:(id)arg1;
 - (void)setIsHandlingSearch:(bool)arg1;
 - (void)setMeBannerAvatarController:(id)arg1;
 - (void)setMeContactBanner:(id)arg1;
@@ -210,6 +210,7 @@
 - (void)setMedicalIDLookupRegistrationToken:(id)arg1;
 - (void)setMedicalIDLookupToken:(id)arg1;
 - (void)setPendingLayoutBlocks:(id)arg1;
+- (void)setPendingRefreshNoContactsView:(bool)arg1;
 - (void)setPendingSearchControllerActivation:(bool)arg1;
 - (void)setPendingSearchQuery:(id)arg1;
 - (void)setSearchBar:(id)arg1;
@@ -222,9 +223,12 @@
 - (void)setShouldDisplayCount:(bool)arg1;
 - (void)setShouldDisplayEmergencyContacts:(bool)arg1;
 - (void)setShouldDisplayGroupsGrid:(bool)arg1;
-- (void)setShouldDisplayInfoContentView:(bool)arg1;
 - (void)setShouldDisplayMeContactBanner:(bool)arg1;
+- (void)setShouldDisplayTipContentView:(bool)arg1;
 - (void)setTableViewHeaderConstraints:(id)arg1;
+- (void)setTipContent:(id)arg1;
+- (void)setTipContentController:(id)arg1;
+- (void)setTipContentView:(id)arg1;
 - (void)setVCardImportController:(id)arg1;
 - (void)setupForMultiSelection;
 - (bool)shouldAllowDrags;
@@ -233,8 +237,8 @@
 - (bool)shouldDisplayCount;
 - (bool)shouldDisplayEmergencyContacts;
 - (bool)shouldDisplayGroupsGrid;
-- (bool)shouldDisplayInfoContentView;
 - (bool)shouldDisplayMeContactBanner;
+- (bool)shouldDisplayTipContentView;
 - (bool)shouldUseLargeTitle;
 - (void)startHandlingEmergencyContacts;
 - (void)startSearching;
@@ -257,7 +261,9 @@
 - (void)tableView:(id)arg1 willDisplayHeaderView:(id)arg2 forSection:(long long)arg3;
 - (id)tableView:(id)arg1 willSelectRowAtIndexPath:(id)arg2;
 - (id)tableViewHeaderConstraints;
-- (bool)updateFrameAndDisplayNoContactsViewIfNeeded;
+- (id)tipContent;
+- (id)tipContentController;
+- (id)tipContentView;
 - (void)updateSearchResultsForSearchController:(id)arg1;
 - (id)vCardImportController;
 - (void)vCardImportController:(id)arg1 didSaveContacts:(id)arg2;

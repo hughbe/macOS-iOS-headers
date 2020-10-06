@@ -15,6 +15,7 @@
 @property (nonatomic) double horizontalAccuracy;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
+@property (nonatomic, copy) NSNumber *preciseLocationEnabled;
 @property (nonatomic, copy) NSString *refId;
 @property (nonatomic) double speed;
 @property (nonatomic, copy) NSString *status;
@@ -33,6 +34,7 @@
 - (double)horizontalAccuracy;
 - (double)latitude;
 - (double)longitude;
+- (id)preciseLocationEnabled;
 - (bool)requiresResponse;
 - (void)setAge:(id)arg1;
 - (void)setAltitude:(double)arg1;
@@ -41,6 +43,7 @@
 - (void)setHorizontalAccuracy:(double)arg1;
 - (void)setLatitude:(double)arg1;
 - (void)setLongitude:(double)arg1;
+- (void)setPreciseLocationEnabled:(id)arg1;
 - (void)setSpeed:(double)arg1;
 - (void)setStatus:(id)arg1;
 - (void)setVerticalAccuracy:(double)arg1;

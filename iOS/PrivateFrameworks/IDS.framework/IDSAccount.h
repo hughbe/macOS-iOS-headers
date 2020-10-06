@@ -21,6 +21,8 @@
 @property (nonatomic, readonly) NSArray *devices;
 @property (nonatomic, retain) NSString *displayName;
 @property (nonatomic, readonly) NSArray *handles;
+@property (readonly, copy) NSArray *hmd_handles;
+@property (nonatomic, readonly) NSArray *im_registeredURIs;
 @property (nonatomic, readonly) bool isActive;
 @property (nonatomic, readonly) bool isEnabled;
 @property (nonatomic, readonly) bool isUsableForOuterMessaging;
@@ -46,6 +48,8 @@
 @property (nonatomic, readonly) NSString *uniqueID;
 @property (nonatomic, readonly) NSString *userUniqueIdentifier;
 @property (nonatomic, readonly) NSArray *vettedAliases;
+
+// Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
 
 - (void).cxx_destruct;
 - (void)_callNearbyDevicesChanged;
@@ -75,6 +79,7 @@
 - (id)description;
 - (id)devices;
 - (id)displayName;
+- (void)forceRemoveAccount;
 - (id)handles;
 - (id)initWithDictionary:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
 - (id)initWithLoginID:(id)arg1 uniqueID:(id)arg2 serviceName:(id)arg3;
@@ -122,5 +127,13 @@
 - (void)validateAliases:(id)arg1;
 - (void)validateProfile;
 - (id)vettedAliases;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)hmd_handles;
+
+// Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
+
+- (id)im_registeredURIs;
 
 @end

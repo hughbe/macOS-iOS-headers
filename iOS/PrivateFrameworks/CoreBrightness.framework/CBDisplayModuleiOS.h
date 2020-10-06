@@ -8,8 +8,10 @@
 
 @property (readonly) struct __Display { }*displayInternal;
 
+- (id)copyIdentifiers;
 - (id)copyPropertyForKey:(id)arg1;
 - (id)copyPropertyForKey:(id)arg1 withParameter:(id)arg2;
+- (id)copyPropertyInternalForKey:(id)arg1;
 - (void)dealloc;
 - (struct __Display { }*)displayInternal;
 - (void)handleNotificationForKey:(id)arg1 withProperty:(id)arg2;

@@ -25,7 +25,6 @@
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
-- (id)initWithEndpoint:(id)arg1 parameters:(id)arg2;
 - (id)redactedDescription;
 
 @end

@@ -3,6 +3,7 @@
  */
 
 @interface MRAVDistantOutputDevice : MRAVOutputDevice <NSSecureCoding> {
+    NSArray * _clusterComposition;
     NSDictionary * _modelSpecificInfo;
     _MRAVOutputDeviceDescriptorProtobuf * _protobuf;
     MRAVOutputDeviceSourceInfo * _sourceInfo;
@@ -20,6 +21,7 @@
 - (bool)canFetchMediaDataFromSender;
 - (bool)canPlayEncryptedProgressiveDownloadAssets;
 - (bool)canRelayCommunicationChannel;
+- (id)clusterComposition;
 - (id)description;
 - (id)descriptor;
 - (unsigned int)deviceSubtype;
@@ -40,6 +42,7 @@
 - (bool)isLocalDevice;
 - (bool)isProxyGroupPlayer;
 - (bool)isRemoteControllable;
+- (bool)isUsingJSONProtocol;
 - (bool)isVolumeControlAvailable;
 - (id)logicalDeviceID;
 - (id)modelID;

@@ -3,15 +3,18 @@
  */
 
 @interface SFAirDropNode : NSObject {
+    NSSet * _actualHandles;
     bool  _classroom;
     bool  _classroomCourse;
     bool  _classroomGroup;
+    NSSet * _contactIDs;
     NSString * _contactIdentifier;
+    NSString * _derivedIntentIdentifier;
     bool  _disabled;
     NSDate * _discoveryDate;
     struct CGImage { } * _displayIcon;
     NSString * _displayName;
-    NSSet * _handles;
+    NSSet * _formattedHandles;
     bool  _me;
     NSString * _model;
     bool  _monogram;
@@ -35,15 +38,18 @@
     bool  _unknown;
 }
 
+@property (retain) NSSet *actualHandles;
 @property (getter=isClassroom) bool classroom;
 @property (getter=isClassroomCourse) bool classroomCourse;
 @property (getter=isclassroomGroup) bool classroomGroup;
+@property (nonatomic, retain) NSSet *contactIDs;
 @property (retain) NSString *contactIdentifier;
+@property (nonatomic, copy) NSString *derivedIntentIdentifier;
 @property (getter=isDisabled) bool disabled;
 @property (readonly) NSDate *discoveryDate;
 @property (retain) struct CGImage { }*displayIcon;
 @property (retain) NSString *displayName;
-@property (retain) NSSet *handles;
+@property (retain) NSSet *formattedHandles;
 @property (getter=isKnown, readonly) bool known;
 @property (getter=isMe) bool me;
 @property (retain) NSString *model;
@@ -68,17 +74,20 @@
 + (id)nodeWithSFNode:(struct __SFNode { }*)arg1;
 
 - (void).cxx_destruct;
+- (id)actualHandles;
 - (void)appendDiscoveryInfoToDisplayName:(id)arg1;
 - (void)cancelSend;
+- (id)contactIDs;
 - (id)contactIdentifier;
 - (void)dealloc;
+- (id)derivedIntentIdentifier;
 - (id)description;
 - (id)discoveryDate;
 - (struct CGImage { }*)displayIcon;
 - (id)displayName;
 - (id)displayNameForLocale:(id)arg1;
+- (id)formattedHandles;
 - (void)handleOperationCallback:(struct __SFOperation { }*)arg1 event:(long long)arg2 withResults:(id)arg3;
-- (id)handles;
 - (unsigned long long)hash;
 - (id)init;
 - (bool)isClassroom;
@@ -100,14 +109,17 @@
 - (id)realName;
 - (id)secondaryName;
 - (long long)selectionReason;
+- (void)setActualHandles:(id)arg1;
 - (void)setClassroom:(bool)arg1;
 - (void)setClassroomCourse:(bool)arg1;
 - (void)setClassroomGroup:(bool)arg1;
+- (void)setContactIDs:(id)arg1;
 - (void)setContactIdentifier:(id)arg1;
+- (void)setDerivedIntentIdentifier:(id)arg1;
 - (void)setDisabled:(bool)arg1;
 - (void)setDisplayIcon:(struct CGImage { }*)arg1;
 - (void)setDisplayName:(id)arg1;
-- (void)setHandles:(id)arg1;
+- (void)setFormattedHandles:(id)arg1;
 - (void)setMe:(bool)arg1;
 - (void)setModel:(id)arg1;
 - (void)setMonogram:(bool)arg1;

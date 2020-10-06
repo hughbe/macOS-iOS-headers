@@ -24,6 +24,8 @@
 @property (nonatomic, copy) NSURL *zoneIdentifier;
 @property (nonatomic, copy) NSString *zoneName;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)searchCriteriaFilter;
 + (id)searchCriteriaFilterWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -67,5 +69,9 @@
 - (void)setZoneName:(id)arg1;
 - (id)zoneIdentifier;
 - (id)zoneName;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

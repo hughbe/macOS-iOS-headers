@@ -10,15 +10,9 @@
     struct __CFRunLoop { } * _runLoop;
 }
 
-@property (nonatomic, retain) UIEventEnvironment *mainEnvironment;
-
 - (void).cxx_destruct;
-- (void)_installEventRunLoopSources:(struct __CFRunLoop { }*)arg1;
 - (void)dealloc;
 - (void)eventFetcherDidReceiveEvents:(id)arg1;
 - (id)initWithApplication:(id)arg1;
-- (id)mainEnvironment;
-- (void)setMainEnvironment:(id)arg1;
-- (void)signalNextDelivery;
 
 @end

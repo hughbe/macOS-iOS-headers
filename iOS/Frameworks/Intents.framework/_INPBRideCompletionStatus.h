@@ -3,7 +3,6 @@
  */
 
 @interface _INPBRideCompletionStatus : PBCodable <NSCopying, NSSecureCoding, _INPBRideCompletionStatus> {
-    bool  __encodeLegacyGloryData;
     bool  _canceled;
     bool  _canceledByService;
     bool  _completed;
@@ -26,7 +25,6 @@
     _INPBCurrencyAmountValue * _paymentAmount;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) bool canceled;
 @property (nonatomic) bool canceledByService;
 @property (nonatomic) bool completed;
@@ -55,8 +53,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsFeedbackTypes:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addDefaultTippingOptions:(id)arg1;
 - (void)addFeedbackType:(int)arg1;
 - (bool)canceled;

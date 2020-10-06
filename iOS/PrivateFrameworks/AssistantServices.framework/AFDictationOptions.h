@@ -3,6 +3,7 @@
  */
 
 @interface AFDictationOptions : NSObject <NSCopying, NSSecureCoding> {
+    NSString * _applicationDisplayName;
     NSString * _applicationName;
     NSString * _applicationVersion;
     STSiriContext * _context;
@@ -26,11 +27,13 @@
     NSURL * _originalAudioFileURL;
     NSString * _orthography;
     NSString * _postfixText;
+    bool  _preferOnlineRecognition;
     NSString * _prefixText;
     NSDictionary * _recognitionOverrides;
     bool  _releaseAudioSessionOnRecordingCompletion;
     NSString * _requestIdentifier;
     long long  _returnKeyType;
+    NSString * _samplingInfo;
     bool  _secureOfflineOnly;
     NSString * _selectedText;
     long long  _taskHint;
@@ -41,6 +44,7 @@
     NSDictionary * _voiceTriggerEventInfo;
 }
 
+@property (nonatomic, copy) NSString *applicationDisplayName;
 @property (nonatomic, copy) NSString *applicationName;
 @property (nonatomic, copy) NSString *applicationVersion;
 @property (nonatomic, retain) STSiriContext *context;
@@ -64,11 +68,13 @@
 @property (nonatomic, copy) NSURL *originalAudioFileURL;
 @property (nonatomic, copy) NSString *orthography;
 @property (nonatomic, copy) NSString *postfixText;
+@property (nonatomic) bool preferOnlineRecognition;
 @property (nonatomic, copy) NSString *prefixText;
 @property (nonatomic, copy) NSDictionary *recognitionOverrides;
 @property (nonatomic) bool releaseAudioSessionOnRecordingCompletion;
 @property (nonatomic, copy) NSString *requestIdentifier;
 @property (nonatomic) long long returnKeyType;
+@property (nonatomic, copy) NSString *samplingInfo;
 @property (nonatomic) bool secureOfflineOnly;
 @property (nonatomic, copy) NSString *selectedText;
 @property (nonatomic) long long taskHint;
@@ -81,6 +87,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)applicationDisplayName;
 - (id)applicationName;
 - (id)applicationVersion;
 - (id)context;
@@ -109,13 +116,16 @@
 - (id)originalAudioFileURL;
 - (id)orthography;
 - (id)postfixText;
+- (bool)preferOnlineRecognition;
 - (id)prefixText;
 - (id)recognitionOverrides;
 - (bool)releaseAudioSessionOnRecordingCompletion;
 - (id)requestIdentifier;
 - (long long)returnKeyType;
+- (id)samplingInfo;
 - (bool)secureOfflineOnly;
 - (id)selectedText;
+- (void)setApplicationDisplayName:(id)arg1;
 - (void)setApplicationName:(id)arg1;
 - (void)setApplicationVersion:(id)arg1;
 - (void)setContext:(id)arg1;
@@ -139,11 +149,13 @@
 - (void)setOriginalAudioFileURL:(id)arg1;
 - (void)setOrthography:(id)arg1;
 - (void)setPostfixText:(id)arg1;
+- (void)setPreferOnlineRecognition:(bool)arg1;
 - (void)setPrefixText:(id)arg1;
 - (void)setRecognitionOverrides:(id)arg1;
 - (void)setReleaseAudioSessionOnRecordingCompletion:(bool)arg1;
 - (void)setRequestIdentifier:(id)arg1;
 - (void)setReturnKeyType:(long long)arg1;
+- (void)setSamplingInfo:(id)arg1;
 - (void)setSecureOfflineOnly:(bool)arg1;
 - (void)setSelectedText:(id)arg1;
 - (void)setTaskHint:(long long)arg1;

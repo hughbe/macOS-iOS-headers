@@ -18,4 +18,9 @@
 - (NSString *)profileVersion;
 - (AMSBagValue *)stringForKey:(NSString *)arg1;
 
+@optional
+
+- (AMSBagValue *)URLForKey:(NSString *)arg1 account:(ACAccount *)arg2;
+- (AMSProcessInfo *)processInfo;
+
 @end

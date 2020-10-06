@@ -5,33 +5,37 @@
 @interface AMSMediaTokenServiceStore : NSObject {
     NSString * _clientIdentifier;
     NSString * _keychainAccessGroup;
+    AMSMediaTokenServiceKeychainStore * _keychainStore;
     AMSMediaToken * _memoryMediaToken;
+    AMSMediaTokenServiceUserDefaultsStore * _userDefaultsStore;
 }
 
 @property (nonatomic, readonly) NSString *clientIdentifier;
 @property (nonatomic, retain) NSString *keychainAccessGroup;
+@property (nonatomic, retain) AMSMediaTokenServiceKeychainStore *keychainStore;
 @property (nonatomic, retain) AMSMediaToken *memoryMediaToken;
+@property (nonatomic, retain) AMSMediaTokenServiceUserDefaultsStore *userDefaultsStore;
 
 - (void).cxx_destruct;
 - (bool)_hasAppleGroupEnabled;
 - (id)_keychainAccessGroup;
-- (struct __CFDictionary { }*)_keychainQuery;
 - (void)_mediaTokenChanged;
 - (id)_mediaTokenChangedNotificationName;
 - (void)_postMediaTokenChangedNotification;
-- (void)_removeTokenFromKeychain;
-- (id)_retrieveTokenFromKeychain;
 - (void)_setupKeychainNotifications;
-- (void)_storeTokenInKeychain:(id)arg1;
 - (void)_teardownKeychainNotifications;
 - (id)clientIdentifier;
 - (void)dealloc;
 - (id)initWithClientIdentifier:(id)arg1 keychainAccessGroup:(id)arg2;
 - (id)keychainAccessGroup;
+- (id)keychainStore;
 - (id)memoryMediaToken;
 - (id)retrieveToken;
 - (void)setKeychainAccessGroup:(id)arg1;
+- (void)setKeychainStore:(id)arg1;
 - (void)setMemoryMediaToken:(id)arg1;
+- (void)setUserDefaultsStore:(id)arg1;
 - (void)storeToken:(id)arg1;
+- (id)userDefaultsStore;
 
 @end

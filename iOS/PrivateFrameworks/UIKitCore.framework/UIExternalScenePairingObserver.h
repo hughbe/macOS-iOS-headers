@@ -9,6 +9,7 @@
     NSMutableSet * _pairedExternalSceneIDs;
     FBScene * _scene;
     NSString * _sceneID;
+    FBSSceneIdentityToken * _sceneIdentityToken;
     FBSceneManager * _sceneManager;
     NSMutableSet * _trackingExternalSceneIDs;
 }
@@ -36,7 +37,7 @@
 - (bool)isPairedWithExternalSceneID:(id)arg1;
 - (id)scene;
 - (void)scene:(id)arg1 didUpdateClientSettingsWithDiff:(id)arg2 oldClientSettings:(id)arg3 transitionContext:(id)arg4;
-- (void)sceneLayerManager:(id)arg1 didRepositionLayer:(id)arg2 fromIndex:(unsigned long long)arg3 toIndex:(unsigned long long)arg4;
+- (void)sceneLayerManagerDidUpdateLayers:(id)arg1;
 - (void)sceneManager:(id)arg1 didCreateScene:(id)arg2;
 - (void)sceneManager:(id)arg1 didDestroyScene:(id)arg2;
 - (void)sceneManager:(id)arg1 willDestroyScene:(id)arg2;

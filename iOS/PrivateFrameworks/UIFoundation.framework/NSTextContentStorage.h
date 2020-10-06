@@ -10,6 +10,11 @@
         unsigned long long length; 
     }  _cachedRange;
     NSCountableTextRange * _documentRange;
+    long long  _editedDelta;
+    struct _NSRange { 
+        unsigned long long location; 
+        unsigned long long length; 
+    }  _editedRange;
     NSStorage * _elements;
     NSRunStorage * _indexTable;
     long long  _modifiedDocumentLengthDelta;
@@ -17,6 +22,7 @@
         unsigned long long location; 
         unsigned long long length; 
     }  _modifiedRange;
+    bool  _notifyingToFixSelection;
     NSTextStorage * _textStorage;
 }
 
@@ -31,6 +37,7 @@
 + (bool)supportsSecureCoding;
 
 - (void)_commonInitialization;
+- (id)adjustedRangeFromRange:(id)arg1 inEditingTextSelection:(bool)arg2;
 - (id)attributedString;
 - (id)attributedStringForTextElement:(id)arg1;
 - (id)attributedStringForTextElements:(id)arg1;
@@ -42,10 +49,15 @@
 - (id)enumerateTextElementsFromLocation:(id)arg1 options:(long long)arg2 usingBlock:(id /* block */)arg3;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (bool)isCountableDataSource;
+- (id)locationFromLocation:(id)arg1 offset:(long long)arg2;
+- (long long)offsetFromLocation:(id)arg1 toLocation:(id)arg2;
+- (void)performEditingTransactionForTextStorage:(id)arg1 withBlock:(id /* block */)arg2;
 - (void)processEditingForTextStorage:(id)arg1 edited:(unsigned long long)arg2 range:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3 changeInLength:(long long)arg4 invalidatedRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg5;
 - (void)replaceCharactersInRange:(id)arg1 withTextElements:(id)arg2;
 - (void)setAttributedString:(id)arg1;
 - (void)setTextStorage:(id)arg1;
+- (bool)synchronizeTextLayoutManagers:(id /* block */)arg1;
 - (bool)synchronizeToBackingStore:(id /* block */)arg1;
 - (id)textElementForAttributedString:(id)arg1;
 - (id)textElementsForAttributedString:(id)arg1;

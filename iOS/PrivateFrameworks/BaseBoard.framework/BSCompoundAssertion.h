@@ -6,7 +6,7 @@
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
     }  _dataLock;
-    NSMutableSet * _dataLock_acquisitions;
+    NSMutableOrderedSet * _dataLock_acquisitions;
     NSString * _dataLock_identifierPrefix;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -20,6 +20,8 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (readonly) NSOrderedSet *orderedContext;
+@property (readonly) NSOrderedSet *orderedReasons;
 @property (readonly) NSSet *reasons;
 @property (readonly) Class superclass;
 
@@ -28,12 +30,6 @@
 + (id)new;
 
 - (void).cxx_destruct;
-- (void)_acquisitionDidInvalidate:(id)arg1;
-- (id)_dataLock_context;
-- (id)_dataLock_copyState;
-- (id)_initWithIdentifier:(id)arg1;
-- (id)_syncLock_acquireForReason:(id)arg1 withContext:(id)arg2;
-- (void)_syncLock_acquisitionDidInvalidate:(id)arg1;
 - (id)acquireForReason:(id)arg1;
 - (id)acquireForReason:(id)arg1 withContext:(id)arg2;
 - (id)context;
@@ -42,6 +38,8 @@
 - (id)init;
 - (void)invalidate;
 - (bool)isActive;
+- (id)orderedContext;
+- (id)orderedReasons;
 - (id)reasons;
 
 @end

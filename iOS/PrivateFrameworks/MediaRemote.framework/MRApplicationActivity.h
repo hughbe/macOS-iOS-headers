@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-@interface MRApplicationActivity : NSObject <NSMutableCopying, NSSecureCoding> {
+@interface MRApplicationActivity : NSObject <NSCopying, NSMutableCopying, NSSecureCoding> {
     int  _creatorProcessID;
     NSString * _primaryApplicationDisplayID;
     NSString * _secondaryApplicationDisplayID;
@@ -19,7 +19,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_copyWithZone:(struct _NSZone { }*)arg1 usingConcreteClass:(Class)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (int)creatorProcessID;
 - (id)description;

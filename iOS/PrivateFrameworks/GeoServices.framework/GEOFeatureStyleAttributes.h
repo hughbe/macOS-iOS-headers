@@ -25,6 +25,7 @@
 + (id)inviteStyleAttributes;
 + (id)parkedCarStyleAttributes;
 + (id)restaurantStyleAttributes;
++ (id)schoolStyleAttributes;
 + (id)searchResultStyleAttributes;
 + (id)styleAttributesForPlace:(id)arg1;
 + (bool)supportsSecureCoding;
@@ -33,6 +34,8 @@
 + (id)workStyleAttributes;
 
 - (void).cxx_destruct;
+- (int)bikeLaneSide;
+- (int)bikeableSide;
 - (id)copyWithAirportStyleAttributes;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -87,10 +90,12 @@
 + (id)markerStyleAttributes;
 + (id)styleAttributesForCalloutWithAttributes:(id)arg1;
 + (id)styleAttributesForDraggingWithAttributes:(id)arg1;
++ (id)styleAttributesForRouteAnnotationWithAttributes:(id)arg1;
 + (id)styleAttributesForSearchResultWithAttributes:(id)arg1;
 + (id)styleAttributesForTrafficCameraType:(long long)arg1 isAboveThreshold:(bool)arg2;
 + (id)styleAttributesForTrafficIncidentType:(long long)arg1;
 + (id)styleAttributesForTransitType:(long long)arg1;
++ (id)styleAttributesForUnpickedFeatureWithAttributes:(id)arg1;
 + (id)trainStationStyleAttributes;
 
 @end

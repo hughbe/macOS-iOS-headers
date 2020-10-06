@@ -24,6 +24,8 @@
         unsigned int _usesNonpersistedProperties : 1; 
         unsigned int _reservedFlags : 19; 
     }  _flags;
+    NSMutableDictionary * _indexCache;
+    NSMutableArray * _indexCacheOffsets;
     NSManagedObjectContext * _managedObjectContext;
     NSPredicate * _originalPredicate;
     NSPredicate * _remappedPredicate;
@@ -41,53 +43,21 @@
 @property (nonatomic, readonly) NSFetchRequest *fetchRequest;
 @property (nonatomic, readonly) NSArray *fetchedObjects;
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, readonly, copy) NSDictionary *rc_sectionsByName;
 @property (nonatomic, readonly) NSArray *sectionIndexTitles;
 @property (nonatomic, readonly) NSString *sectionNameKeyPath;
 @property (nonatomic, readonly) NSArray *sections;
 
-+ (id)_CoreDataSectionCachesPath;
-+ (unsigned long long)_insertIndexForObject:(id)arg1 inArray:(id)arg2 lowIdx:(long long)arg3 highIdx:(long long)arg4 sortDescriptors:(id)arg5;
+// Image: /System/Library/Frameworks/CoreData.framework/CoreData
+
 + (void)deleteCacheWithName:(id)arg1;
 + (void)initialize;
 
-- (void)_appendAffectedStoreInfoToData:(id)arg1 adjustedOffset:(long long*)arg2;
-- (bool)_computeSectionInfo:(id)arg1 error:(id*)arg2;
-- (bool)_computeSectionInfoWithGroupBy:(id)arg1 error:(id*)arg2;
-- (void)_conditionallyDispatchSnapshotToDelegate:(id)arg1;
-- (void)_core_managedObjectContextDidChange:(id)arg1;
-- (void)_core_managedObjectContextDidSave:(id)arg1;
-- (id)_createNewSectionForObject:(id)arg1;
-- (void)_dumpSectionInfo;
 - (id)_fetchedObjects;
-- (id)_fetchedObjectsArrayOfObjectIDs;
-- (bool)_hasFetchedObjects;
-- (unsigned long long)_indexOfFetchedID:(id)arg1;
-- (id)_indexPathForIndex:(unsigned long long)arg1;
-- (void)_insertObjectInFetchedObjects:(id)arg1 atIndex:(unsigned long long)arg2;
-- (bool)_keyPathContainsNonPersistedProperties:(id)arg1;
-- (void)_lowerMoveOperationsToUpdatesForSection:(id)arg1 withInsertedObjects:(id)arg2 deletedObjects:(id)arg3 updatedObjects:(id)arg4;
-- (void)_makeMutableFetchedObjects;
 - (void)_managedObjectContextDidChange:(id)arg1;
 - (void)_managedObjectContextDidChangeObjectIDs:(id)arg1;
 - (void)_managedObjectContextDidMutateObjectIDs:(id)arg1;
 - (void)_managedObjectContextDidSave:(id)arg1;
-- (bool)_objectInResults:(id)arg1;
-- (void)_preprocessDeletedObjects:(id)arg1 deletesInfo:(id)arg2 sectionsWithDeletes:(id)arg3;
-- (void)_preprocessInsertedObjects:(id)arg1 insertsInfo:(id)arg2 newSectionNames:(id)arg3;
-- (void)_preprocessUpdatedObjects:(id)arg1 insertsInfo:(id)arg2 deletesInfo:(id)arg3 updatesInfo:(id)arg4 sectionsWithDeletes:(id)arg5 newSectionNames:(id)arg6 treatAsRefreshes:(id)arg7;
-- (void)_recursivePerformBlockAndWait:(id /* block */)arg1 withContext:(id)arg2;
-- (void)_removeObjectInFetchedObjectsAtIndex:(unsigned long long)arg1;
-- (id)_resolveSectionIndexTitleForSectionName:(id)arg1;
-- (bool)_restoreCachedSectionInfo;
-- (id)_sectionCachePath;
-- (id)_sectionNameForObject:(id)arg1;
-- (unsigned long long)_sectionNumberForIndex:(unsigned long long)arg1;
-- (id)_sections;
-- (bool)_updateCachedStoreInfo;
-- (bool)_updateFetchedObjectsWithDeleteChange:(id)arg1;
-- (bool)_updateFetchedObjectsWithInsertChange:(id)arg1;
-- (bool)_updateFetchedObjectsWithInsertedObjects:(id)arg1 deletedObjects:(id)arg2 updatedObjects:(id)arg3;
-- (void)_updateSectionOffsetsStartingAtSection:(id)arg1;
 - (id)cacheName;
 - (void)dealloc;
 - (id)delegate;
@@ -104,5 +74,9 @@
 - (id)sectionNameKeyPath;
 - (id)sections;
 - (void)setDelegate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
+- (id)rc_sectionsByName;
 
 @end

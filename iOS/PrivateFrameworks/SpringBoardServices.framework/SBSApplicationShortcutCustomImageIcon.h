@@ -13,6 +13,8 @@
 @property (nonatomic, readonly) NSData *imagePNGData;
 @property (nonatomic, readonly) bool isTemplate;
 
+// Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+
 - (void).cxx_destruct;
 - (id)_initForSubclass;
 - (long long)dataType;
@@ -26,5 +28,10 @@
 - (id)initWithXPCDictionary:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isTemplate;
+
+// Image: /System/Library/PrivateFrameworks/ShortcutUIKit.framework/ShortcutUIKit
+
+- (id)_scui_iconImageForCachedBitmapData:(id)arg1 scale:(double)arg2;
+- (id)_scui_iconImageWithAssetProvider:(id)arg1;
 
 @end

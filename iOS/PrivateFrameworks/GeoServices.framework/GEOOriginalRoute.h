@@ -9,11 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_originalDirectionsResponseID : 1; 
         unsigned int read_routeHandle : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_originalDirectionsResponseID : 1; 
-        unsigned int wrote_routeHandle : 1; 
-        unsigned int wrote_originalRoutePurpose : 1; 
-        unsigned int wrote_routeIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSData * _originalDirectionsResponseID;
     int  _originalRoutePurpose;
@@ -42,8 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsOriginalRoutePurpose:(id)arg1;
-- (void)_readOriginalDirectionsResponseID;
-- (void)_readRouteHandle;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -56,7 +50,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)originalDirectionsResponseID;
 - (int)originalRoutePurpose;

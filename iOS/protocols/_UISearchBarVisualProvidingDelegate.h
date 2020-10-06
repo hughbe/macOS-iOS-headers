@@ -5,7 +5,10 @@
 
 @required
 
+- (Class)_classForSearchTextField;
 - (_UINavigationControllerPalette *)_containingNavigationPalette;
+- (bool)_effectivelySupportsDynamicType;
+- (long long)_expectedInterfaceOrientation;
 - (UISearchBarTextField *)_searchBarTextField;
 - (UISearchController *)_searchController;
 - (UIView *)_viewForChildViews;

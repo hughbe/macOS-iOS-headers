@@ -55,6 +55,7 @@
 @property (nonatomic, readonly) NSString *iForgotUIURL;
 @property (nonatomic, readonly) NSString *initiateFamilyV2URL;
 @property (nonatomic, readonly) NSString *initiateValidateEmailURL;
+@property (nonatomic, readonly) NSString *loginAccountURL;
 @property (nonatomic, readonly) NSString *loginDelegatesURL;
 @property (nonatomic, readonly) NSString *loginOrCreateDelegatesURL;
 @property (nonatomic, readonly) NSString *mobileMeOfferAlertURL;
@@ -145,6 +146,7 @@
 - (id)init;
 - (id)initiateFamilyV2URL;
 - (id)initiateValidateEmailURL;
+- (id)loginAccountURL;
 - (id)loginDelegatesURL;
 - (id)loginOrCreateDelegatesURL;
 - (id)mobileMeOfferAlertURL;

@@ -22,7 +22,7 @@
 - (void).cxx_destruct;
 - (id)bundleCacheKeyForBundleIdentifier:(id)arg1 cacheKey:(id)arg2 variant:(int)arg3 options:(int)arg4;
 - (id)bundleCacheKeyPrefixForBundleIdentifier:(id)arg1;
-- (id)cacheKeyFromBundleIdentifier:(id)arg1 iconDictionary:(id)arg2 preferedIconName:(id)arg3;
+- (id)cacheKeyFromResourceURL:(id)arg1 bundleIdentifier:(id)arg2 iconDictionary:(id)arg3 preferedIconName:(id)arg4;
 - (id)cacheKeySalt;
 - (id)cacheURL;
 - (id)iconDataForKey:(id)arg1 ignoreCache:(bool)arg2 generatorBlock:(id /* block */)arg3;

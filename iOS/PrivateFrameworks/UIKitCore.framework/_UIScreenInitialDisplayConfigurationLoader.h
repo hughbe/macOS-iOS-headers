@@ -13,7 +13,6 @@
 
 - (void).cxx_destruct;
 - (void)_startPreloadInitialDisplayContext;
-- (id)initialDisplayConfiguration;
 - (id)initialDisplayContext;
 
 @end

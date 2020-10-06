@@ -17,13 +17,17 @@
     NSMutableDictionary * _deletedContainersByIdentifier;
     NSMutableDictionary * _deletedGroupsByIdentifier;
     bool  _ignoresGuardianRestrictions;
+    NSMutableArray * _linkRequests;
     NSString * _meCardIdentifier;
     NSMutableDictionary * _movedContainersByIdentifier;
     NSMutableDictionary * _parentRecordsByIdentifier;
+    NSMutableArray * _preferredForImageRequests;
+    NSMutableArray * _preferredForNameRequests;
     NSMutableArray * _removedAccounts;
     NSMutableDictionary * _removedMembersByGroupIdentifier;
     NSMutableDictionary * _removedSubgroupsByGroupIdentifier;
     NSString * _saveRequestIdentifier;
+    NSMutableArray * _unlinkRequests;
     bool  _unsafeApplyChangesOnly;
     NSMutableArray * _updatedContacts;
     NSMutableArray * _updatedContainers;
@@ -69,6 +73,7 @@
 - (void).cxx_destruct;
 - (id)_dictionaryOfArraysFromDictionaryOfDictionaries:(id)arg1;
 - (void)_insertContact:(id)arg1 intoDictionary:(id)arg2 complementDictionary:(id)arg3;
+- (void)acceptChangeHistoryEventVisitor:(id)arg1;
 - (void)addAccount:(id)arg1;
 - (void)addContact:(id)arg1 toContainerWithIdentifier:(id)arg2;
 - (void)addContainer:(id)arg1 toAccountWithIdentifier:(id)arg2;
@@ -142,5 +147,20 @@
 - (id)updatedContacts;
 - (id)updatedContainers;
 - (id)updatedGroups;
+- (void)withDifferentMeCard:(id /* block */)arg1;
+- (void)withEachAddedContact:(id /* block */)arg1;
+- (void)withEachAddedGroup:(id /* block */)arg1;
+- (void)withEachContactPreferredForImage:(id /* block */)arg1;
+- (void)withEachContactPreferredForName:(id /* block */)arg1;
+- (void)withEachDeletedContact:(id /* block */)arg1;
+- (void)withEachDeletedGroup:(id /* block */)arg1;
+- (void)withEachLinkedContact:(id /* block */)arg1;
+- (void)withEachMemberAddedToGroup:(id /* block */)arg1;
+- (void)withEachMemberRemovedFromGroup:(id /* block */)arg1;
+- (void)withEachSubgroupAddedToGroup:(id /* block */)arg1;
+- (void)withEachSubgroupRemovedFromGroup:(id /* block */)arg1;
+- (void)withEachUnlinkedContact:(id /* block */)arg1;
+- (void)withEachUpdatedContact:(id /* block */)arg1;
+- (void)withEachUpdatedGroup:(id /* block */)arg1;
 
 @end

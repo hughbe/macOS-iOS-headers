@@ -24,7 +24,7 @@
 - (void)setHeadingOrientation:(int)arg1;
 - (void)setIsConnectedToCarplay:(bool)arg1;
 - (void)setJunctionViewImageWidth:(double)arg1 height:(double)arg2;
-- (void)setRideIndex:(unsigned long long)arg1 forLegIndex:(unsigned long long)arg2;
+- (void)setRideIndex:(unsigned long long)arg1 forSegmentIndex:(unsigned long long)arg2;
 - (void)setRoutesForPreview:(NSArray *)arg1 selectedRouteIndex:(unsigned long long)arg2;
 - (void)setTraceIsPlaying:(bool)arg1;
 - (void)setTracePlaybackSpeed:(double)arg1;
@@ -36,7 +36,6 @@
 - (void)stopPredictingDestinations;
 - (void)switchToRoute:(MNActiveRouteInfo *)arg1;
 - (void)updateDestination:(GEOComposedWaypoint *)arg1;
-- (void)updateGuidanceWithData:(void *)arg1 reply:(void *)arg2; // needs 2 arg types, found 7: NSData *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, bool, void*
 - (void)vibrateForPrompt:(void *)arg1 withReply:(void *)arg2; // needs 2 arg types, found 7: unsigned long long, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, bool, void*
 
 @end

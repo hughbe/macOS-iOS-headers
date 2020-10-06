@@ -14,13 +14,8 @@
 @property (nonatomic) UIViewController *inspectedVC;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_updateDataAndReload:(bool)arg1;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)inspectVC:(id)arg1;
 - (id)inspectedVC;

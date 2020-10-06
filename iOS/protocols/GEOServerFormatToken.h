@@ -7,7 +7,9 @@
 
 - (<GEOTransitArtworkDataSource> *)artworkValue;
 - (<GEOServerFormatTokenCountdownValue> *)countdownValue;
+- (float)percentageValue;
 - (<GEOServerFormatTokenPriceValue> *)priceValue;
+- (bool)shouldScaleUnits;
 - (NSString *)stringValue;
 - (NSArray *)timeStampValues;
 - (NSString *)token;

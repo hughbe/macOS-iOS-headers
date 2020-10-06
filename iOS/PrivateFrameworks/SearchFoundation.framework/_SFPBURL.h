@@ -13,6 +13,8 @@
 @property (nonatomic, readonly) NSData *jsonData;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
+
 - (void).cxx_destruct;
 - (id)address;
 - (id)dictionaryRepresentation;
@@ -25,5 +27,9 @@
 - (bool)readFrom:(id)arg1;
 - (void)setAddress:(id)arg1;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (id)_siriui_protobufTypeName;
 
 @end

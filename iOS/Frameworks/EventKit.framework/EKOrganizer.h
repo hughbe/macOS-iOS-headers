@@ -12,6 +12,7 @@
 - (id)initWithName:(id)arg1 emailAddress:(id)arg2 phoneNumber:(id)arg3 address:(id)arg4 isCurrentUser:(bool)arg5;
 - (bool)isCurrentUser;
 - (id)owner;
+- (long long)scheduleAgent;
 - (void)setCurrentUser:(bool)arg1;
 
 @end

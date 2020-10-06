@@ -22,11 +22,11 @@
 
 - (void)_fadeInKeyView:(id)arg1 duration:(double)arg2 completion:(id /* block */)arg3;
 - (void)_fadeOutKeyView:(id)arg1 duration:(double)arg2 completion:(id /* block */)arg3;
-- (Class)_keyViewClassForSpecialtyKey:(id)arg1;
+- (Class)_keyViewClassForSpecialtyKey:(id)arg1 screenTraits:(id)arg2;
 - (double)delayedDeactivationTimeForKeyView:(id)arg1;
 - (bool)disabled;
 - (void)endTransitionForKeyView:(id)arg1;
-- (Class)keyViewClassForKey:(id)arg1 traits:(id)arg2;
+- (Class)keyViewClassForKey:(id)arg1 renderTraits:(id)arg2 screenTraits:(id)arg3;
 - (id)keycapAlternateDualStringTransform:(id)arg1;
 - (id)keycapAlternateTransform:(id)arg1;
 - (id)keycapLeftSelectLeftTransform;

@@ -35,7 +35,6 @@
 - (double)horizontalImageContentSpacing;
 - (struct CGSize { double x1; double x2; })maximumActionGroupContentSize;
 - (struct CGSize { double x1; double x2; })minimumActionContentSize;
-- (double)minimumImageGapWidth;
 - (id)newActionBackgroundViewForViewState:(id)arg1;
 - (id)newActionSeparatorViewForGroupViewState:(id)arg1;
 - (id)newGroupBackgroundViewWithGroupViewState:(id)arg1;

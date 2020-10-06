@@ -6,6 +6,7 @@
 @required
 
 + (NSString *)column;
++ (NSString *)commonPrefix;
 + (NSString *)grid;
 + (NSString *)list;
 

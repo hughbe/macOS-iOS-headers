@@ -25,6 +25,7 @@
 - (bool)observing;
 - (void)provideRemediationMap:(id)arg1;
 - (void)provideURLAppendStringMap:(id)arg1;
+- (Class)requiredProviderSuperClass;
 - (void)setObserving:(bool)arg1;
 - (void)startFilterWithOptions:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)stopObserving;

@@ -4,7 +4,7 @@
 
 @interface RBSXPCMessage : NSObject {
     SEL  _method;
-    BSXPCCoder * _payload;
+    RBSXPCCoder * _payload;
     NSObject<OS_xpc_object> * _xpc_message;
 }
 
@@ -13,13 +13,10 @@
 @property (nonatomic, readonly) SEL method;
 @property (nonatomic, readonly) RBSXPCMessageReply *reply;
 
-+ (id)messageForMethod:(SEL)arg1 arguments:(id)arg2;
 + (id)messageForMethod:(SEL)arg1 varguments:(id)arg2;
 + (id)messageForXPCMessage:(id)arg1;
-+ (id)messageWithEncoder:(id /* block */)arg1;
 
 - (void).cxx_destruct;
-- (id)_initWithMessage:(id)arg1;
 - (id)decodeArgumentCollection:(Class)arg1 withClass:(Class)arg2 atIndex:(unsigned long long)arg3 allowNil:(bool)arg4 error:(out id*)arg5;
 - (id)decodeArgumentWithClass:(Class)arg1 atIndex:(unsigned long long)arg2 allowNil:(bool)arg3 error:(out id*)arg4;
 - (id)error;

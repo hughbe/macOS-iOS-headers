@@ -15,6 +15,7 @@
 - (double)luminanceAmount;
 - (NSArray *)luminanceValues;
 - (double)saturation;
+- (NSString *)variableBlurInputMaskName;
 - (double)zoom;
 
 @end

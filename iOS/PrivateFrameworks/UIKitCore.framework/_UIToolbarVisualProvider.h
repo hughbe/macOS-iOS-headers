@@ -32,6 +32,7 @@
 - (long long)itemDistribution;
 - (void)layoutSubviews;
 - (void)positionToolbarButtonsAndResetFontScaleAdjustment:(bool)arg1;
+- (void)prepare;
 - (void)setBackdropGroupName:(id)arg1;
 - (void)setCustomBackgroundView:(id)arg1;
 - (void)setItemDistribution:(long long)arg1;

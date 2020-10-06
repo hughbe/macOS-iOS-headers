@@ -17,6 +17,7 @@
 - (long long)confidenceScoreMax;
 - (long long)confidenceScoreMin;
 - (id)description;
+- (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;

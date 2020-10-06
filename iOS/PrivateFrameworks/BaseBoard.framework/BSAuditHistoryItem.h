@@ -19,13 +19,11 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_timeFormatter;
 - (id)date;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithString:(id)arg1;
 - (id)initWithXPCDictionary:(id)arg1;
 - (void)setDate:(id)arg1;
 - (void)setValue:(id)arg1;

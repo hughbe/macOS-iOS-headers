@@ -10,10 +10,12 @@
 @property (nonatomic, readonly) CNGroup *group;
 @property (nonatomic, readonly) CNContact *member;
 
++ (unsigned long long)instanceSortOrder;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (void)acceptEventVisitor:(id)arg1;
+- (long long)comparisonResultWithinSameClass:(id)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)group;

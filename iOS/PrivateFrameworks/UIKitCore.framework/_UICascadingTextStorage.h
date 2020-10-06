@@ -4,8 +4,10 @@
 
 @interface _UICascadingTextStorage : NSConcreteTextStorage {
     NSMutableDictionary * _defaultAttributes;
+    <_UITextAttributeDefaults> * _defaults;
 }
 
+@property (setter=_setDefaults:, nonatomic, retain) <_UITextAttributeDefaults> *_defaults;
 @property (nonatomic, copy) NSDictionary *defaultAttributes;
 @property (nonatomic, retain) UIFont *font;
 @property (nonatomic) long long lineBreakMode;
@@ -19,7 +21,9 @@
 
 - (void).cxx_destruct;
 - (id)_defaultAttributes;
+- (id)_defaults;
 - (void)_restoreOriginalFontAttribute;
+- (void)_setDefaults:(id)arg1;
 - (void)_setShadow:(id)arg1;
 - (id)_shadow;
 - (bool)_shouldSetOriginalFontAttribute;
@@ -30,6 +34,8 @@
 - (id)attributesAtIndex:(unsigned long long)arg1 longestEffectiveRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; }*)arg2 inRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg3;
 - (id)defaultAttributes;
 - (id)font;
+- (id)init;
+- (id)initWithDefaults:(id)arg1;
 - (long long)lineBreakMode;
 - (void)setDefaultAttributes:(id)arg1;
 - (void)setFont:(id)arg1;

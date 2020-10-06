@@ -14,6 +14,7 @@
 - (unsigned long long)hash;
 - (bool)isEqualToItemQueryDescriptor:(id)arg1;
 - (bool)keepCollectorsAlive;
+- (id)name;
 - (id)queryStringForMountPoint:(id)arg1;
 - (id)searchQueryString;
 - (void)setSearchQueryString:(id)arg1;

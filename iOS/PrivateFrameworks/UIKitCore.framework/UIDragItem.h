@@ -25,6 +25,9 @@
 
 @property (setter=_setDraggedTextRange:, nonatomic, retain) UITextRange *_draggedTextRange;
 @property (nonatomic) unsigned long long _managementState;
+@property (nonatomic, readonly) WebBookmark *_sf_localBookmark;
+@property (nonatomic, readonly) NSURL *_sf_localURL;
+@property (nonatomic, readonly) _SFTabStateData *_sf_tabStateData;
 @property (getter=_deferPreviewUpdates, setter=_setDeferPreviewUpdates:, nonatomic) bool deferPreviewUpdates;
 @property (getter=_destinationVisualTarget, setter=_setDestinationVisualTarget:, nonatomic) <_UIDragSetDownAnimationTarget> *destinationVisualTarget;
 @property (getter=_isDirty, setter=_setDirty:, nonatomic) bool dirty;
@@ -39,6 +42,8 @@
 @property (getter=_targetedLiftPreview, nonatomic, retain) UITargetedDragPreview *targetedLiftPreview;
 @property (nonatomic) unsigned long long updatedPreviewType;
 @property (getter=_visibleDropItemSize, setter=_setVisibleDropItemSize:, nonatomic) struct CGSize { double x1; double x2; } visibleDropItemSize;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 - (void).cxx_destruct;
 - (id)_currentPreviewProvider;
@@ -81,5 +86,16 @@
 - (void)setUpdatedPreviewType:(unsigned long long)arg1;
 - (void)set_managementState:(unsigned long long)arg1;
 - (unsigned long long)updatedPreviewType;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_itemWithTabStateData:(id)arg1 userActivity:(id)arg2;
++ (void)_sf_loadObjectsFromDragItems:(id)arg1 usingLocalObjectLoader:(int (*)arg2 objectLoader:(int (*)arg3 completionHandler:(id /* block */)arg4;
+
+- (id)_sf_initWithBookmark:(id)arg1;
+- (id)_sf_initWithSiriSuggestion:(id)arg1;
+- (id)_sf_localBookmark;
+- (id)_sf_localURL;
+- (id)_sf_tabStateData;
 
 @end

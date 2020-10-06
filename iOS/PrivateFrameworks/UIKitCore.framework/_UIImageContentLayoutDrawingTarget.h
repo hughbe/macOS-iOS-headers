@@ -27,8 +27,6 @@
 @property (nonatomic, readonly) long long semanticContentAttribute;
 @property (readonly) Class superclass;
 
-+ (id)targetWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2;
-
 - (id)_effectForRenderingSource:(id)arg1;
 - (bool)_hasContentGravity;
 - (bool)_layoutShouldFlipHorizontalOrientations;

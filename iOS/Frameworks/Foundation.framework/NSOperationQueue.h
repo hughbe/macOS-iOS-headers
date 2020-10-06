@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSOperationQueue : NSObject <NSProgressReporting> {
+@interface NSOperationQueue : NSObject <ASDTaskScheduler, NSProgressReporting> {
     struct { 
         struct os_unfair_lock_s { 
             unsigned int _os_unfair_lock_opaque; 
@@ -41,6 +41,7 @@
 @property long long qualityOfService;
 @property (readonly) Class superclass;
 @property (getter=isSuspended) bool suspended;
+@property (nonatomic, readonly) bool tsu_isCurrentQueue;
 @property NSObject<OS_dispatch_queue> *underlyingQueue;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
@@ -79,13 +80,74 @@
 - (id)underlyingQueue;
 - (void)waitUntilAllOperationsAreFinished;
 
+// Image: /System/Library/Frameworks/iAd.framework/iAd
+
++ (id)adSessionSharedDelegateQueue;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreDaemon.framework/AppStoreDaemon
+
+- (void)scheduleBlock:(id /* block */)arg1;
+
 // Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
 
 + (id)aa_operationQueueWithUnderlyingQueue:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HMFoundation.framework/HMFoundation
+
+- (void)cancelAllOperationsWithError:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
 
 - (void)decreaseQualityOfService;
 - (void)increaseQualityOfService;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)fc_ckRequestOperationQueue;
++ (id)fc_sharedConcurrentQueue;
++ (id)fc_sharedSerialQueue;
+
+- (void)fc_addAsyncOperationWithBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (bool)containsOperationToDeleteRecordID:(id)arg1;
+- (bool)containsOperationToFetchRecordID:(id)arg1;
+- (bool)containsOperationToSaveRecordID:(id)arg1;
+- (id)existingOperationToDeleteRecordID:(id)arg1;
+- (id)existingOperationToFetchRecordID:(id)arg1;
+- (id)existingOperationToSaveRecordID:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (id)tsu_newSerialOperationQueueWithName:(id)arg1;
+
+- (bool)tsu_isCurrentQueue;
+- (void)tsu_performBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/RelevanceEngine.framework/RelevanceEngine
+
++ (id)re_sharedSerialOperationQueue;
+
+// Image: /System/Library/PrivateFrameworks/RemoteConfiguration.framework/RemoteConfiguration
+
+- (void)rc_addAsyncOperationWithBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WatchListKit.framework/WatchListKit
+
++ (id)wlkDefaultConcurrentQueue;
++ (id)wlkDefaultQueue;
+
+// Image: /System/Library/PrivateFrameworks/iTunesCloud.framework/iTunesCloud
+
++ (id)ic_sharedRequestOperationQueueWithQualityOfService:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_newSerialOperationQueueWithName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
++ (id)tsu_newSerialOperationQueueWithName:(id)arg1;
 
 @end

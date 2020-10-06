@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreServices.framework/CoreServices
  */
 
-@interface _LSLazyPropertyList : NSObject <NSCopying, NSSecureCoding>
+@interface _LSLazyPropertyList : LSPropertyList <LSDetachable, NSCopying, NSSecureCoding>
 
 @property (readonly) NSDictionary *propertyList;
 
@@ -12,18 +12,21 @@
 + (id)lazyPropertyListWithPropertyList:(id)arg1;
 + (id)lazyPropertyListWithPropertyListData:(id)arg1;
 + (id)lazyPropertyListWithPropertyListURL:(id)arg1;
++ (id)lazyPropertyListWithPropertyListURL:(id)arg1 options:(unsigned long long)arg2 error:(id*)arg3;
 + (bool)supportsSecureCoding;
 
-- (id)_filterValueFromPropertyList:(id)arg1 ofClass:(Class)arg2 valuesOfClass:(Class)arg3;
+- (id)_expensiveDictionaryRepresentation;
 - (bool)_getPropertyList:(id*)arg1;
 - (bool)_getValue:(id*)arg1 forPropertyListKey:(id)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)detach;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)objectForPropertyListKey:(id)arg1 ofClass:(Class)arg2;
-- (id)objectForPropertyListKey:(id)arg1 ofClass:(Class)arg2 valuesOfClass:(Class)arg3;
-- (id)objectsForPropertyListKeys:(id)arg1;
+- (id)objectForKey:(id)arg1 ofClass:(Class)arg2;
+- (id)objectForKey:(id)arg1 ofClass:(Class)arg2 valuesOfClass:(Class)arg3;
+- (id)objectsForKeys:(id)arg1;
 - (id)propertyList;
+- (id)uncheckedObjectsForKeys:(id)arg1;
 
 @end

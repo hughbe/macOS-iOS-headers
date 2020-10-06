@@ -20,10 +20,7 @@
 @property (nonatomic) bool hasIdentifier;
 @property (nonatomic) bool hasType;
 @property (nonatomic) int identifier;
-@property (nonatomic, readonly) bool isLocal;
 @property (nonatomic) int type;
-
-+ (id)localOrigin;
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
@@ -40,7 +37,6 @@
 - (unsigned long long)hash;
 - (int)identifier;
 - (bool)isEqual:(id)arg1;
-- (bool)isLocal;
 - (void)mergeFrom:(id)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setDeviceInfoDeprecated:(id)arg1;

@@ -4,13 +4,15 @@
 
 @interface NSSQLiteAdapter : NSObject {
     struct __CFDictionary { } * _cachedDeleteTriggersByEntity;
-    int  _lock;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _lock;
     NSSQLModel * _model;
     NSSQLCore * _sqlCore;
 }
 
 + (id)generateStatementForCheckingMulticolumnConstraint:(id)arg1 onObjects:(id)arg2 usingSQLCore:(id)arg3;
-+ (id)generateStatementForCheckingUniquePropertiesOnObjects:(id)arg1 usingSQLCore:(id)arg2;
++ (id)generateStatementForCheckingUniqueProperties:(id)arg1 onObjects:(id)arg2 usingSQLCore:(id)arg3;
 + (id)generateSubselectForColumn:(id)arg1 givenObjects:(id)arg2;
 
 - (void)_cacheTriggers:(id)arg1 forEntity:(id)arg2;
@@ -51,6 +53,7 @@
 - (id)newCreateIndexStatementForColumnWithName:(id)arg1 inTableWithName:(id)arg2;
 - (id)newCreateIndexStatementForColumns:(id)arg1 name:(id)arg2;
 - (id)newCreateIndexStatementForCorrelationTable:(id)arg1;
+- (id)newCreateIndexStatementForOrderedRelationship:(id)arg1;
 - (id)newCreateIndexStatementsForEntity:(id)arg1;
 - (id)newCreateIndexStatementsForEntity:(id)arg1 defaultIndicesOnly:(bool)arg2;
 - (id)newCreatePrimaryKeyTableStatement;

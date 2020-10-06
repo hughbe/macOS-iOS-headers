@@ -12,7 +12,7 @@
 @property (nonatomic, copy) id /* block */ encoder;
 @property (nonatomic, copy) NSData *serialized;
 
-+ (id)containerWithObject:(void*)arg1 cppDataEncoder:(id /* block */)arg2 destructor:(id /* block */)arg3;
++ (id)containerWithObject:(void*)arg1 cppDataEncoder:(id /* block */)arg2 destructor:(id /* block */)arg3 binaryVersion:(unsigned long long)arg4 typeSize:(unsigned long long)arg5;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -21,7 +21,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id /* block */)encoder;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithObject:(void*)arg1 cppDataEncoder:(id /* block */)arg2 destructor:(id /* block */)arg3;
+- (id)initWithObject:(void*)arg1 cppDataEncoder:(id /* block */)arg2 destructor:(id /* block */)arg3 binaryVersion:(unsigned long long)arg4 typeSize:(unsigned long long)arg5;
 - (id)serialized;
 - (void)setCompatibilityInfo:(id)arg1;
 - (void)setEncoder:(id /* block */)arg1;

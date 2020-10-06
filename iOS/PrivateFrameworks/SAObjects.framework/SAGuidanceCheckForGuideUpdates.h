@@ -13,6 +13,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSArray *supportedFeatures;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)checkForGuideUpdates;
 + (id)checkForGuideUpdatesWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -23,5 +25,9 @@
 - (void)setCurrentGuideTag:(id)arg1;
 - (void)setSupportedFeatures:(id)arg1;
 - (id)supportedFeatures;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
++ (id)afui_guideCheckSupportedFeatures;
 
 @end

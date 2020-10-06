@@ -2,9 +2,16 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSXPCListenerEndpoint : NSObject <NSSecureCoding> {
+@interface NSXPCListenerEndpoint : NSObject <BSXPCCoding, BSXPCSecureCoding, NSSecureCoding> {
     void * _internal;
 }
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (bool)supportsSecureCoding;
 
@@ -15,5 +22,14 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+
++ (bool)supportsBSXPCSecureCoding;
+
+- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithXPCDictionary:(id)arg1;
+- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1;
 
 @end

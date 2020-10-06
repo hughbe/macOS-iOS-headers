@@ -18,6 +18,7 @@
 @property (nonatomic, retain) id keepAlive;
 @property (nonatomic, retain) TKSharedResourceSlot *keepAliveResourceSlot;
 @property (nonatomic, readonly) NSMutableDictionary *tokenConnections;
+@property (nonatomic, readonly) NSArray *tokenSessions;
 
 + (id)createDriver;
 
@@ -45,5 +46,6 @@
 - (void)setKeepAliveResourceSlot:(id)arg1;
 - (void)terminate;
 - (id)tokenConnections;
+- (id)tokenSessions;
 
 @end

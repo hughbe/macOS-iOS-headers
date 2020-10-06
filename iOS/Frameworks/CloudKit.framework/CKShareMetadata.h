@@ -2,12 +2,11 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKShareMetadata : NSObject <NSCopying, NSSecureCoding> {
+@interface CKShareMetadata : NSObject <CKContainerAssignment, NSCopying, NSSecureCoding> {
     bool  _acceptedInProcess;
     CKShareParticipant * _callingParticipant;
-    NSString * _containerIdentifier;
+    CKContainerID * _containerID;
     NSData * _encryptedData;
-    long long  _environment;
     CKDeviceToDeviceShareInvitationToken * _invitationToken;
     NSArray * _outOfNetworkMatches;
     CKUserIdentity * _ownerIdentity;
@@ -28,12 +27,12 @@
 @property (nonatomic) bool acceptedInProcess;
 @property (getter=baseToken, nonatomic, readonly) NSString *baseToken;
 @property (nonatomic, copy) CKShareParticipant *callingParticipant;
-@property (nonatomic, copy) NSString *containerIdentifier;
+@property (nonatomic, copy) CKContainerID *containerID;
+@property (nonatomic, readonly, copy) NSString *containerIdentifier;
 @property (nonatomic, retain) NSData *encryptedData;
-@property (nonatomic) long long environment;
 @property (nonatomic, copy) CKDeviceToDeviceShareInvitationToken *invitationToken;
 @property (nonatomic, retain) NSArray *outOfNetworkMatches;
-@property (nonatomic, retain) CKUserIdentity *ownerIdentity;
+@property (nonatomic, copy) CKUserIdentity *ownerIdentity;
 @property (nonatomic) long long participantPermission;
 @property (nonatomic) long long participantRole;
 @property (nonatomic) long long participantStatus;
@@ -41,12 +40,14 @@
 @property (nonatomic, copy) NSData *privateToken;
 @property (nonatomic, copy) NSData *protectedFullToken;
 @property (nonatomic, copy) NSData *publicToken;
-@property (nonatomic, retain) CKRecord *rootRecord;
+@property (nonatomic, copy) CKRecord *rootRecord;
 @property (nonatomic, copy) CKRecordID *rootRecordID;
 @property (nonatomic, retain) NSString *rootRecordType;
-@property (nonatomic, retain) CKShare *share;
+@property (nonatomic, copy) CKShare *share;
 @property (nonatomic, copy) NSArray *sharedItemHierarchyIDs;
 @property (nonatomic, retain) CKRecordZone *sharedZone;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (bool)supportsSecureCoding;
 
@@ -57,6 +58,7 @@
 - (id)baseToken;
 - (id)callingParticipant;
 - (id)ckShortDescription;
+- (id)containerID;
 - (id)containerIdentifier;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -82,9 +84,8 @@
 - (id)rootRecordType;
 - (void)setAcceptedInProcess:(bool)arg1;
 - (void)setCallingParticipant:(id)arg1;
-- (void)setContainerIdentifier:(id)arg1;
+- (void)setContainerID:(id)arg1;
 - (void)setEncryptedData:(id)arg1;
-- (void)setEnvironment:(long long)arg1;
 - (void)setInvitationToken:(id)arg1;
 - (void)setOutOfNetworkMatches:(id)arg1;
 - (void)setOwnerIdentity:(id)arg1;
@@ -103,5 +104,13 @@
 - (id)share;
 - (id)sharedItemHierarchyIDs;
 - (id)sharedZone;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)_decryptDataWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 pcsManager:(id)arg2;
+- (void)_encryptDataWithPCSBlob:(struct _OpaquePCSShareProtection { }*)arg1 pcsManager:(id)arg2;
+- (bool)hasEncryptedData;
+- (struct _OpaquePCSShareProtection { }*)publicPCS;
+- (void)setPublicPCS:(struct _OpaquePCSShareProtection { }*)arg1;
 
 @end

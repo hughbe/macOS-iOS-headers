@@ -2,112 +2,124 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIPageControl : UIControl <DebugHierarchyObject_Fallback> {
-    UIVisualEffectView * _backgroundVisualEffectView;
+@interface UIPageControl : UIControl {
+    long long  _backgroundStyle;
     long long  _currentPage;
-    UIImage * _currentPageImage;
-    NSMutableArray * _currentPageImages;
     UIColor * _currentPageIndicatorTintColor;
-    long long  _displayedPage;
-    NSMutableArray * _indicators;
-    long long  _lastUserInterfaceIdiom;
-    _UILegibilitySettings * _legibilitySettings;
+    struct { 
+        unsigned int verticalPadding : 1; 
+        unsigned int horizontalPadding : 1; 
+        unsigned int indicatorSpacing : 1; 
+    }  _custom;
+    double  _horizontalPadding;
+    double  _indicatorSpacing;
     long long  _numberOfPages;
     struct { 
         unsigned int hideForSinglePage : 1; 
         unsigned int defersCurrentPageDisplay : 1; 
+        unsigned int allowScrubbing : 1; 
+        unsigned int flickToEndGestureEnabled : 1; 
     }  _pageControlFlags;
-    UIImage * _pageImage;
-    NSMutableArray * _pageImages;
     UIColor * _pageIndicatorTintColor;
+    unsigned long long  _preferredNumberOfVisibleIndicators;
+    long long  _previousPage;
+    double  _verticalPadding;
+    _UIPageControlVisualProvider * _visualProvider;
 }
 
+@property (setter=_setFlickToEndGestureEnabled:, nonatomic) bool _flickToEndGestureEnabled;
+@property (nonatomic) bool allowsContinuousInteraction;
+@property (nonatomic) long long backgroundStyle;
 @property (nonatomic) long long currentPage;
 @property (nonatomic, retain) UIColor *currentPageIndicatorTintColor;
-@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) bool defersCurrentPageDisplay;
-@property (readonly, copy) NSString *description;
-@property (readonly) unsigned long long hash;
 @property (nonatomic) bool hidesForSinglePage;
+@property (nonatomic, readonly) long long interactionState;
 @property (getter=_legibilitySettings, setter=_setLegibilitySettings:, nonatomic, retain) _UILegibilitySettings *legibilitySettings;
 @property (getter=_legibilityStyle, setter=_setLegibilityStyle:, nonatomic) long long legibilityStyle;
 @property (nonatomic) long long numberOfPages;
 @property (nonatomic, retain) UIColor *pageIndicatorTintColor;
-@property (readonly) Class superclass;
+@property (nonatomic, retain) UIImage *preferredIndicatorImage;
+@property (nonatomic) long long previousPage;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
++ (bool)_supportsInteractivePageControl;
++ (id)_visualProviderForPageControl:(id)arg1;
 + (bool)doesOverrideMethod:(SEL)arg1 inBaseClass:(Class)arg2;
 
 - (void).cxx_destruct;
 - (id)__scalarStatisticsForUserValueChangedEvent;
-- (id)_activePageIndicatorImage;
-- (void)_cachePageIndicatorImages;
-- (id)_cachedPageIndicatorCurrentImageForPage:(long long)arg1;
-- (id)_cachedPageIndicatorImageForPage:(long long)arg1;
-- (void)_commonPageControlInit;
 - (bool)_contentHuggingDefault_isUsuallyFixedHeight;
 - (bool)_contentHuggingDefault_isUsuallyFixedWidth;
 - (unsigned long long)_controlEventsForActionTriggered;
 - (id)_createModernIndicatorImageFromView:(id)arg1;
-- (void)_didChangeFromIdiom:(long long)arg1 onScreen:(id)arg2 traverseHierarchy:(bool)arg3;
+- (double)_customHorizontalPadding;
+- (double)_customIndicatorSpacing;
+- (double)_customVerticalPadding;
+- (long long)_displayMode;
 - (long long)_displayedPage;
 - (void)_drawModernIndicatorInView:(id)arg1 enabled:(bool)arg2;
-- (id)_effectiveContentView;
-- (bool)_hasCustomImageForPage:(long long)arg1 enabled:(bool)arg2;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_indicatorFrameAtIndex:(long long)arg1;
-- (double)_indicatorSpacing;
+- (bool)_flickToEndGestureEnabled;
+- (bool)_implementsCustomCurrentPageImagesOverride;
+- (bool)_implementsCustomPageImagesOverride;
 - (id)_indicatorViewEnabled:(bool)arg1 index:(long long)arg2;
-- (id)_indicatorViewEnabled:(bool)arg1 index:(long long)arg2 legible:(bool)arg3;
+- (long long)_interactionState;
 - (void)_invalidateIndicators;
 - (id)_legibilitySettings;
 - (long long)_legibilityStyle;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_modernBounds;
-- (id)_modernColorEnabled:(bool)arg1;
-- (double)_modernCornerRadius;
-- (id)_modernIndicatorImageEnabled:(bool)arg1;
-- (void)_modernTransitionIndicator:(id)arg1 toEnabled:(bool)arg2 index:(long long)arg3 legible:(bool)arg4;
 - (id)_pageIndicatorCurrentImageForPage:(long long)arg1;
-- (id)_pageIndicatorImage;
 - (id)_pageIndicatorImageForPage:(long long)arg1;
 - (void)_populateArchivedSubviews:(id)arg1;
 - (void)_setCurrentPage:(long long)arg1;
-- (void)_setDisplayedPage:(long long)arg1;
+- (void)_setCurrentPageImage:(id)arg1;
+- (void)_setCustomHorizontalPadding:(double)arg1;
+- (void)_setCustomIndicatorSpacing:(double)arg1;
+- (void)_setCustomVerticalPadding:(double)arg1;
+- (void)_setDisplayMode:(long long)arg1;
+- (void)_setFlickToEndGestureEnabled:(bool)arg1;
+- (void)_setIndicatorImage:(id)arg1;
+- (void)_setIndicatorImage:(id)arg1 forPage:(long long)arg2;
 - (void)_setLegibilitySettings:(id)arg1;
 - (void)_setLegibilityStyle:(long long)arg1;
-- (bool)_shouldDrawLegibly;
+- (void)_setPageImage:(id)arg1;
+- (void)_setPreferredNumberOfVisibleIndicators:(unsigned long long)arg1;
+- (void)_traitCollectionDidChangeOnSubtreeInternal:(const struct _UITraitCollectionChangeDescription { id x1; id x2; bool x3; bool x4; bool x5; bool x6; bool x7; bool x8; bool x9; bool x10; }*)arg1;
 - (void)_transitionIndicator:(id)arg1 toEnabled:(bool)arg2 index:(long long)arg3;
-- (void)_transitionIndicator:(id)arg1 toEnabled:(bool)arg2 index:(long long)arg3 legible:(bool)arg4;
-- (void)_updateCurrentPageDisplay;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (void)_updateCurrentPage:(long long)arg1 updateDisplayImmediately:(bool)arg2;
+- (void)_updateCurrentPageDisplayWithForceUpdate:(bool)arg1;
+- (bool)allowsContinuousInteraction;
+- (long long)backgroundStyle;
 - (bool)canBecomeFocused;
 - (long long)currentPage;
 - (id)currentPageIndicatorTintColor;
+- (void)dealloc;
 - (bool)defersCurrentPageDisplay;
 - (void)encodeWithCoder:(id)arg1;
 - (void)endTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (bool)gestureRecognizerShouldBegin:(id)arg1;
 - (bool)hidesForSinglePage;
+- (id)indicatorImageForPage:(long long)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (long long)interactionState;
 - (struct CGSize { double x1; double x2; })intrinsicContentSize;
 - (bool)isElementAccessibilityExposedToInterfaceBuilder;
 - (void)layoutSubviews;
 - (long long)numberOfPages;
 - (id)pageIndicatorTintColor;
+- (id)preferredIndicatorImage;
+- (long long)previousPage;
+- (void)setAllowsContinuousInteraction:(bool)arg1;
+- (void)setBackgroundStyle:(long long)arg1;
 - (void)setCurrentPage:(long long)arg1;
 - (void)setCurrentPageIndicatorTintColor:(id)arg1;
 - (void)setDefersCurrentPageDisplay:(bool)arg1;
 - (void)setHidesForSinglePage:(bool)arg1;
+- (void)setIndicatorImage:(id)arg1 forPage:(long long)arg2;
 - (void)setNumberOfPages:(long long)arg1;
 - (void)setPageIndicatorTintColor:(id)arg1;
+- (void)setPreferredIndicatorImage:(id)arg1;
+- (void)setPreviousPage:(long long)arg1;
+- (bool)shouldTrack;
 - (struct CGSize { double x1; double x2; })sizeForNumberOfPages:(long long)arg1;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
 - (void)updateCurrentPageDisplay;

@@ -12,7 +12,7 @@
 
 @property (getter=isCancelled, nonatomic, readonly) bool cancelled;
 @property (getter=isFinished, nonatomic, readonly) bool finished;
-@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *performTaskQueue;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *performTaskQueue;
 @property (nonatomic, retain) AMSPromise *promise;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *promiseAccessQueue;
 @property (nonatomic) long long runMode;
@@ -30,9 +30,11 @@
 - (id)performBinaryTaskWithBlock:(id /* block */)arg1;
 - (id)performTaskQueue;
 - (id)performTaskWithBlock:(id /* block */)arg1;
+- (id)performTaskWithPromiseBlock:(id /* block */)arg1;
 - (id)promise;
 - (id)promiseAccessQueue;
 - (long long)runMode;
+- (void)setPerformTaskQueue:(id)arg1;
 - (void)setPromise:(id)arg1;
 - (void)setPromiseAccessQueue:(id)arg1;
 - (void)setRunMode:(long long)arg1;

@@ -9,6 +9,8 @@
     CBXpcConnection * _connection;
     NSString * _localAddressString;
     NSString * _localName;
+    NSData * _nonConnectableAdvertisingAddress;
+    long long  _nonConnectableAdvertisingAddressType;
     CBPairingAgent * _pairingAgent;
     long long  _state;
     bool  _tccComplete;
@@ -22,12 +24,15 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) NSString *localAddressString;
 @property (readonly) NSString *localName;
+@property (nonatomic, copy) NSData *nonConnectableAdvertisingAddress;
+@property (nonatomic, readonly) long long nonConnectableAdvertisingAddressType;
 @property (nonatomic, readonly, retain) CBPairingAgent *sharedPairingAgent;
 @property (nonatomic) long long state;
 @property (readonly) Class superclass;
 @property (nonatomic) bool tccComplete;
 
 + (long long)authorization;
++ (bool)tccAvailable;
 
 - (void).cxx_destruct;
 - (void)_handleAdvertisingAddressChanged:(id)arg1;
@@ -48,6 +53,8 @@
 - (bool)isMsgAllowedWhenOff:(unsigned short)arg1;
 - (id)localAddressString;
 - (id)localName;
+- (id)nonConnectableAdvertisingAddress;
+- (long long)nonConnectableAdvertisingAddressType;
 - (id)peerWithInfo:(id)arg1;
 - (void)performTCCCheck:(id)arg1;
 - (bool)sendDebugMsg:(unsigned short)arg1 args:(id)arg2;
@@ -58,6 +65,7 @@
 - (void)setAdvertisingAddress:(id)arg1;
 - (void)setAuthorization:(long long)arg1;
 - (void)setConnectionTargetQueue:(id)arg1;
+- (void)setNonConnectableAdvertisingAddress:(id)arg1;
 - (void)setState:(long long)arg1;
 - (void)setTccComplete:(bool)arg1;
 - (id)sharedPairingAgent;

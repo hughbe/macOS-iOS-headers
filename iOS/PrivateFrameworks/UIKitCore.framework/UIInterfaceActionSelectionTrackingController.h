@@ -77,6 +77,7 @@
 - (id)actionsScrollView;
 - (void)beginTrackingSessionByTakingOverForSystemProvidedGestureRecognizer:(id)arg1;
 - (void)dealloc;
+- (void)deselectAllActions;
 - (id)focusedInterfaceAction;
 - (bool)gestureRecognizer:(id)arg1 shouldRequireFailureOfGestureRecognizer:(id)arg2;
 - (void)handlePressedFocusedInterfaceAction:(id)arg1;

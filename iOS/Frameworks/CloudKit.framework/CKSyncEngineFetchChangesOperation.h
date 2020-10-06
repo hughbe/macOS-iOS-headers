@@ -21,7 +21,9 @@
     id /* block */  _recordZoneWithIDChangedBlock;
     id /* block */  _recordZoneWithIDWasDeletedBlock;
     id /* block */  _recordZoneWithIDWasPurgedBlock;
+    bool  _shouldFetchDatabaseChanges;
     id /* block */  _willEnqueueOperationBlock;
+    NSSet * _zoneIDs;
 }
 
 @property (nonatomic, readonly) CKDatabase *database;
@@ -42,7 +44,12 @@
 @property (nonatomic, copy) id /* block */ recordZoneWithIDChangedBlock;
 @property (nonatomic, copy) id /* block */ recordZoneWithIDWasDeletedBlock;
 @property (nonatomic, copy) id /* block */ recordZoneWithIDWasPurgedBlock;
+@property (nonatomic) bool shouldFetchDatabaseChanges;
 @property (nonatomic, copy) id /* block */ willEnqueueOperationBlock;
+@property (nonatomic, retain) NSSet *zoneIDs;
+
++ (unsigned long long)maxZonesPerOperation;
++ (void)setMaxZonesPerOperation:(unsigned long long)arg1;
 
 - (void).cxx_destruct;
 - (void)cancel;
@@ -52,6 +59,8 @@
 - (id)error;
 - (id /* block */)fetchChangesCompletionBlock;
 - (id /* block */)fetchDatabaseChangesCompletionBlock;
+- (void)fetchDatabaseChangesThenRecordZoneChanges;
+- (void)fetchRecordZoneChanges;
 - (void)finishWithError:(id)arg1;
 - (id)group;
 - (id)init;
@@ -86,8 +95,12 @@
 - (void)setRecordZoneWithIDChangedBlock:(id /* block */)arg1;
 - (void)setRecordZoneWithIDWasDeletedBlock:(id /* block */)arg1;
 - (void)setRecordZoneWithIDWasPurgedBlock:(id /* block */)arg1;
+- (void)setShouldFetchDatabaseChanges:(bool)arg1;
 - (void)setWillEnqueueOperationBlock:(id /* block */)arg1;
+- (void)setZoneIDs:(id)arg1;
+- (bool)shouldFetchDatabaseChanges;
 - (void)start;
 - (id /* block */)willEnqueueOperationBlock;
+- (id)zoneIDs;
 
 @end

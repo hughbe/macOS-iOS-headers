@@ -14,6 +14,8 @@
 @property (nonatomic, copy) NSString *speakableSelectionResponse;
 @property (nonatomic, copy) NSString *title;
 
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+
 + (id)listItem;
 + (id)listItemWithDictionary:(id)arg1 context:(id)arg2;
 
@@ -37,5 +39,10 @@
 - (void)setTitle:(id)arg1;
 - (id)speakableSelectionResponse;
 - (id)title;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (id)afui_appInfo;
+- (void)afui_setSelectionTextWithDisambiguationList:(id)arg1;
 
 @end

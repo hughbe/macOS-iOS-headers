@@ -14,6 +14,8 @@
 @property (readonly) NSPersistentHistoryToken *token;
 @property (readonly) long long transactionNumber;
 
+// Image: /System/Library/Frameworks/CoreData.framework/CoreData
+
 + (id)entityDescription;
 + (id)entityDescriptionWithContext:(id)arg1;
 + (id)fetchRequest;
@@ -36,5 +38,13 @@
 - (id)timestamp;
 - (id)token;
 - (long long)transactionNumber;
+
+// Image: /System/Library/PrivateFrameworks/BookDataStore.framework/BookDataStore
+
+- (bool)bds_atOffset:(long long*)arg1 getAtMost:(long long)arg2 moc:(id)arg3 entityClass:(Class)arg4 privacyDelegate:(id)arg5 updated:(id*)arg6 tombstones:(id*)arg7;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (id)_pl_prettyDescriptionWithIndent:(long long)arg1;
 
 @end

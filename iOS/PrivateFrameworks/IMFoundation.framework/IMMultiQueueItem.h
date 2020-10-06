@@ -12,9 +12,9 @@
 @property (nonatomic, readonly) id block;
 @property (nonatomic, readonly) NSString *describer;
 
+- (void).cxx_destruct;
 - (id)GUID;
 - (id)block;
-- (void)dealloc;
 - (id)describer;
 - (id)initWithBlock:(id)arg1 GUID:(id)arg2 description:(id)arg3;
 

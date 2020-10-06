@@ -4,8 +4,6 @@
 
 @interface UIKeyboardHiddenViewController_ExternalCredential : UIKeyboardHiddenViewController
 
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)setAutofillVC:(id)arg1;
 
 @end

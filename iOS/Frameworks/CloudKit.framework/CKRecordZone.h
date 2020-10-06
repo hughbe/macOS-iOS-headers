@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKRecordZone : NSObject <NSCopying, NSSecureCoding> {
+@interface CKRecordZone : NSObject <CKContainerAssignment, NSCopying, NSSecureCoding> {
     long long  _assetQuotaUsage;
     unsigned long long  _capabilities;
     NSData * _clientChangeToken;
@@ -31,7 +31,6 @@
 @property (nonatomic, retain) NSData *clientChangeToken;
 @property (nonatomic, copy) CKContainerID *containerID;
 @property (nonatomic, retain) CKServerChangeToken *currentServerChangeToken;
-@property (nonatomic, readonly) NSData *currentServerContinuationToken;
 @property (nonatomic) int deviceCount;
 @property (nonatomic, retain) NSArray *invitedKeysToRemove;
 @property (nonatomic) long long metadataQuotaUsage;
@@ -42,12 +41,16 @@
 @property (nonatomic, retain) NSString *protectionEtag;
 @property (nonatomic) bool serializeProtectionData;
 @property (nonatomic, retain) CKReference *share;
-@property (nonatomic, retain) CKRecordZoneID *zoneID;
+@property (nonatomic, copy) CKRecordZoneID *zoneID;
 @property (nonatomic) bool zoneKeyRollAllowed;
+@property (nonatomic) struct _OpaquePCSShareProtection { }*zonePCS;
 @property (nonatomic, retain) NSString *zonePCSLastModifierDevice;
 @property (nonatomic, retain) NSDate *zonePCSModificationDate;
 @property (nonatomic, retain) NSData *zoneishKeyID;
+@property (nonatomic) struct _OpaquePCSShareProtection { }*zoneishPCS;
 @property (nonatomic, retain) NSData *zoneishProtectionData;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (id)defaultRecordZone;
 + (bool)supportsSecureCoding;
@@ -63,7 +66,6 @@
 - (id)containerID;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)currentServerChangeToken;
-- (id)currentServerContinuationToken;
 - (id)description;
 - (int)deviceCount;
 - (void)encodeWithCoder:(id)arg1;
@@ -106,5 +108,13 @@
 - (id)zonePCSModificationDate;
 - (id)zoneishKeyID;
 - (id)zoneishProtectionData;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)fillOutPCSMetadataInfo;
+- (void)setZonePCS:(struct _OpaquePCSShareProtection { }*)arg1;
+- (void)setZoneishPCS:(struct _OpaquePCSShareProtection { }*)arg1;
+- (struct _OpaquePCSShareProtection { }*)zonePCS;
+- (struct _OpaquePCSShareProtection { }*)zoneishPCS;
 
 @end

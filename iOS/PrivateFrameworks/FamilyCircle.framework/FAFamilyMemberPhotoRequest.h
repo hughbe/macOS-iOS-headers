@@ -4,12 +4,12 @@
 
 @interface FAFamilyMemberPhotoRequest : AAFamilyRequest {
     NSNumber * _familyMemberDSID;
-    SSAccount * _iTunesAccount;
+    ACAccount * _iTunesAccount;
     NSString * _serverCacheTag;
 }
 
 @property (nonatomic, copy) NSNumber *familyMemberDSID;
-@property (setter=setiTunesAccount:, nonatomic, retain) SSAccount *iTunesAccount;
+@property (setter=setiTunesAccount:, nonatomic, retain) ACAccount *iTunesAccount;
 @property (nonatomic, copy) NSString *serverCacheTag;
 
 + (Class)responseClass;

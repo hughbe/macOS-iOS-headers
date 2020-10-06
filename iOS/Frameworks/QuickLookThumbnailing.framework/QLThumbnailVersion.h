@@ -6,6 +6,7 @@
     unsigned long long  _fileSize;
     NSString * _generatorID;
     NSString * _generatorVersion;
+    unsigned long long  _ino;
     NSDate * _modificationDate;
     NSData * _versionIdentifier;
 }
@@ -15,6 +16,7 @@
 @property unsigned long long fileSize;
 @property (copy) NSString *generatorID;
 @property (copy) NSString *generatorVersion;
+@property unsigned long long ino;
 @property (copy) NSDate *modificationDate;
 @property (copy) NSData *versionIdentifier;
 
@@ -36,7 +38,8 @@
 - (id)initWithFPItem:(id)arg1 generatorID:(id)arg2 generatorVersion:(id)arg3;
 - (id)initWithFileURL:(id)arg1 automaticallyGenerated:(bool)arg2;
 - (id)initWithFileURL:(id)arg1 generatorID:(id)arg2 generatorVersion:(id)arg3;
-- (id)initWithModificationDate:(id)arg1 fileSize:(unsigned long long)arg2 versionIdentifier:(id)arg3 generatorID:(id)arg4 generatorVersion:(id)arg5;
+- (id)initWithModificationDate:(id)arg1 fileSize:(unsigned long long)arg2 versionIdentifier:(id)arg3 ino:(unsigned long long)arg4 generatorID:(id)arg5 generatorVersion:(id)arg6;
+- (unsigned long long)ino;
 - (bool)isAutomaticallyGenerated;
 - (bool)isDefaultVersion;
 - (bool)isEqual:(id)arg1;
@@ -44,6 +47,7 @@
 - (void)setFileSize:(unsigned long long)arg1;
 - (void)setGeneratorID:(id)arg1;
 - (void)setGeneratorVersion:(id)arg1;
+- (void)setIno:(unsigned long long)arg1;
 - (void)setModificationDate:(id)arg1;
 - (void)setVersionIdentifier:(id)arg1;
 - (bool)shouldBeInvalidatedByThumbnailWithVersion:(id)arg1;

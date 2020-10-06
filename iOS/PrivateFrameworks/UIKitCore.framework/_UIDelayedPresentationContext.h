@@ -15,12 +15,9 @@
 @property (nonatomic, retain) NSInvocation *presentInvocation;
 
 - (void).cxx_destruct;
-- (void)beginDelayedPresentation;
-- (void)cancelDelayedPresentation:(bool)arg1;
 - (id /* block */)cancellationHandler;
 - (long long)decrementRequestCount;
 - (id)delayingController;
-- (void)finishDelayedPresentation:(id)arg1;
 - (long long)incrementRequestCount;
 - (id)initWithTimeout:(double)arg1 cancellationHandler:(id /* block */)arg2;
 - (id)invocationTarget;

@@ -9,11 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_alias : 1; 
         unsigned int read_localizedNames : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_alias : 1; 
-        unsigned int wrote_geoOntologyId : 1; 
-        unsigned int wrote_localizedNames : 1; 
-        unsigned int wrote_level : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     long long  _geoOntologyId;
     int  _level;
@@ -38,9 +34,6 @@
 + (Class)localizedNamesType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsLocalizedNames:(id)arg1;
-- (void)_readAlias;
-- (void)_readLocalizedNames;
 - (void)addLocalizedNames:(id)arg1;
 - (id)alias;
 - (void)clearLocalizedNames;
@@ -54,8 +47,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithPlaceDataCategory:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)level;
 - (id)localizedNames;
 - (id)localizedNamesAtIndex:(unsigned long long)arg1;

@@ -14,8 +14,6 @@
 @property (getter=isUsingSystemPairing, nonatomic, readonly) bool usingSystemPairing;
 
 - (void).cxx_destruct;
-- (void)_openSecuritySessionInState:(unsigned long long)arg1 useSystemPairing:(bool)arg2 completion:(id /* block */)arg3;
-- (bool)_useSystemPairing;
 - (void)close;
 - (id)decryptData:(id)arg1 withError:(id*)arg2;
 - (bool)deleteIdentityWithError:(id*)arg1;

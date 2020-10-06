@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIStepper : UIControl <DebugHierarchyObject_Fallback, UIStepperControl> {
+@interface UIStepper : UIControl <UIStepperControl> {
     bool  _autorepeat;
     NSMutableDictionary * _backgroundImages;
     bool  _continuous;
@@ -19,18 +19,12 @@
 
 @property (nonatomic) bool autorepeat;
 @property (getter=isContinuous, nonatomic) bool continuous;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
-@property (readonly) unsigned long long hash;
 @property (nonatomic) double maximumValue;
 @property (nonatomic) double minimumValue;
 @property (nonatomic) double stepValue;
-@property (readonly) Class superclass;
 @property (nonatomic) double value;
 @property (nonatomic, retain) UIView<UIStepperVisualElement> *visualElement;
 @property (nonatomic) bool wraps;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (Class)_fallbackVisualElementClass;
 + (Class)visualElementClassForTraitCollection:(id)arg1;
@@ -47,14 +41,6 @@
 - (void)_populateArchivedSubviews:(id)arg1;
 - (void)_refreshVisualElement;
 - (void)_refreshVisualElementForTraitCollection:(id)arg1 populatingAPIProperties:(bool)arg2;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })alignmentRectInsets;
 - (bool)autorepeat;
 - (id)backgroundImageForState:(unsigned long long)arg1;

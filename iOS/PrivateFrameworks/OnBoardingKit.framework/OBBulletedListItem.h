@@ -21,8 +21,10 @@
 @property (nonatomic, retain) UILabel *titleLabel;
 
 - (void).cxx_destruct;
+- (id)_descriptionFont;
 - (double)_horizontalMargins;
 - (id)_textStyle;
+- (id)_titleFont;
 - (void)_updateImageViewLayout;
 - (id)descriptionLabel;
 - (id)imageContainer;

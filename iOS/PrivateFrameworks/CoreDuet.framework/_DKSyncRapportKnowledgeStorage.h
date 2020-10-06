@@ -14,21 +14,12 @@
 + (id)sharedInstance;
 
 - (void).cxx_destruct;
-- (id)changeSetForSyncWithEventsToInsert:(id)arg1 eventIDsToDeletes:(id)arg2 error:(id*)arg3;
-- (id)changeSetFromCompressedData:(id)arg1 deviceIdentifier:(id)arg2 sequenceNumber:(unsigned long long)arg3;
 - (void)clearPrewarmedFlag;
-- (id)dataFromChangeSet:(id)arg1 didCompress:(bool*)arg2;
 - (id)delegate;
 - (void)fetchAdditionsHighWaterMarkWithPeer:(id)arg1 highPriority:(bool)arg2 completion:(id /* block */)arg3;
 - (void)fetchDeletedEventIDsFromPeer:(id)arg1 sinceDate:(id)arg2 streamNames:(id)arg3 limit:(unsigned long long)arg4 highPriority:(bool)arg5 completion:(id /* block */)arg6;
 - (void)fetchDeletionsHighWaterMarkWithPeer:(id)arg1 highPriority:(bool)arg2 completion:(id /* block */)arg3;
 - (void)fetchEventsFromPeer:(id)arg1 windows:(id)arg2 streamNames:(id)arg3 limit:(unsigned long long)arg4 fetchOrder:(long long)arg5 highPriority:(bool)arg6 completion:(id /* block */)arg7;
-- (void)handleFetchDeletedEventIDsWithRequest:(id)arg1 options:(id)arg2 responseHandler:(id /* block */)arg3;
-- (void)handleFetchDeletedEventIDsWithResponse:(id)arg1 options:(id)arg2 error:(id)arg3 peer:(id)arg4 plStartDate:(id)arg5 completion:(id /* block */)arg6;
-- (void)handleFetchEventsWithRequest:(id)arg1 options:(id)arg2 responseHandler:(id /* block */)arg3;
-- (void)handleFetchEventsWithResponse:(id)arg1 options:(id)arg2 error:(id)arg3 peer:(id)arg4 plStartDate:(id)arg5 completion:(id /* block */)arg6;
-- (void)handleUnexpectedRequest:(id)arg1 fromPeer:(id)arg2;
-- (void)handleUnexpectedResponse:(id)arg1 fromPeer:(id)arg2;
 - (bool)hasAdditionsFlagForPeer:(id)arg1;
 - (bool)hasDeletionsFlagForPeer:(id)arg1;
 - (id)policy;

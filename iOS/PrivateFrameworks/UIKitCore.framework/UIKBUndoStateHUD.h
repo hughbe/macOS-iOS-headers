@@ -20,12 +20,7 @@
 @property (nonatomic, retain) NSLayoutConstraint *undoStateHUDHeightConstraint;
 @property (nonatomic, retain) NSLayoutConstraint *undoStateHUDWidthConstraint;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)containerView;
 - (long long)controlType;
 - (id)initWithKeyboardAppearance:(long long)arg1;

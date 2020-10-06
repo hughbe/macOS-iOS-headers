@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSearchForMessagesIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSearchForMessagesIntent> {
-    bool  __encodeLegacyGloryData;
     struct { 
         int *list; 
         unsigned long long count; 
@@ -23,7 +22,6 @@
     _INPBDataStringList * _speakableGroupName;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, readonly) int*attributes;
 @property (nonatomic, readonly) unsigned long long attributesCount;
 @property (nonatomic, retain) _INPBStringList *content;
@@ -57,8 +55,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsAttributes:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addAttribute:(int)arg1;
 - (int)attributeAtIndex:(unsigned long long)arg1;
 - (int*)attributes;

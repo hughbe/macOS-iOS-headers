@@ -16,6 +16,7 @@
     long long  _returnKeyType;
     bool  _secureInput;
     NSString * _selectedText;
+    id  _turnIdentifier;
     bool  _useAutomaticEndpointing;
     unsigned long long  _version;
 }
@@ -33,6 +34,7 @@
 @property (nonatomic) long long returnKeyType;
 @property (nonatomic) bool secureInput;
 @property (nonatomic, copy) NSString *selectedText;
+@property (nonatomic, copy) id turnIdentifier;
 @property (nonatomic) bool useAutomaticEndpointing;
 @property (nonatomic) unsigned long long version;
 
@@ -63,8 +65,10 @@
 - (void)setReturnKeyType:(long long)arg1;
 - (void)setSecureInput:(bool)arg1;
 - (void)setSelectedText:(id)arg1;
+- (void)setTurnIdentifier:(id)arg1;
 - (void)setUseAutomaticEndpointing:(bool)arg1;
 - (void)setVersion:(unsigned long long)arg1;
+- (id)turnIdentifier;
 - (bool)useAutomaticEndpointing;
 - (unsigned long long)version;
 

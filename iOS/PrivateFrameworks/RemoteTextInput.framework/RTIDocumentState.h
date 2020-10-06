@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RemoteTextInput.framework/RemoteTextInput
  */
 
-@interface RTIDocumentState : NSObject <NSSecureCoding> {
+@interface RTIDocumentState : NSObject <NSCopying, NSSecureCoding> {
     NSMutableDictionary * __selectionRects;
     struct CGRect { 
         struct CGPoint { 
@@ -43,6 +43,7 @@
 - (void)addTextRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 forCharacterRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })caretRectInWindow;
 - (unsigned long long)characterIndexForPoint:(struct CGPoint { double x1; double x2; })arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (struct _NSRange { unsigned long long x1; unsigned long long x2; })deltaForSelectionRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
 - (id)description;
 - (id)documentState;

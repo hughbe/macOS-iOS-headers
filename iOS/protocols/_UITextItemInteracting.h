@@ -14,5 +14,6 @@
 @optional
 
 - (bool)_allowHighlightForTextInteractableItem:(_UITextInteractableItem *)arg1;
+- (bool)_delegatesAllowingTextItemInteractions;
 
 @end

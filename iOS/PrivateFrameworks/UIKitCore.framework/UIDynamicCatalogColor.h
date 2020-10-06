@@ -4,6 +4,11 @@
 
 @interface UIDynamicCatalogColor : UIDynamicColor {
     _UIAssetManager * _assetManager;
+    UIColor * _cachedColor;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _cachedColorLock;
+    unsigned long long  _cachedThemeKey;
     UIColor * _genericColor;
     NSString * _name;
 }

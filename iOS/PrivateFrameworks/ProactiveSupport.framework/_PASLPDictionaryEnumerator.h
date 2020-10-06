@@ -3,12 +3,13 @@
  */
 
 @interface _PASLPDictionaryEnumerator : NSEnumerator {
-    _PASLPDictionary * _lpDict;
+    _PASLPDictionaryContext * _context;
     unsigned long long  _ofs;
+    <_PASLPReaderProtocol> * _reader;
 }
 
 - (void).cxx_destruct;
-- (id)initWithLPDictionary:(id)arg1;
+- (id)initWithLazyPlistReader:(id)arg1 context:(id)arg2;
 - (id)nextObject;
 
 @end

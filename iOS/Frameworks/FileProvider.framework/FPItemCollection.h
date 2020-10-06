@@ -9,6 +9,7 @@
     <FPCollectionDataSource> * _dataSource;
     <FPItemCollectionMinimalDelegate> * _delegate;
     NSMutableSet * _deletedItemsIdentifiers;
+    NSMutableDictionary * _dsCopyProgressTokenMap;
     FPItemID * _enumeratedItemID;
     NSMutableSet * _formerItemsIdentifiers;
     bool  _gathering;
@@ -38,6 +39,7 @@
 @property (readonly) bool doc_displaysSearchResults;
 @property (nonatomic, readonly) bool doc_isObserving;
 @property (readonly) NSString *domainIdentifier;
+@property (nonatomic, retain) NSMutableDictionary *dsCopyProgressTokenMap;
 @property (readonly) FPItemID *enumeratedItemID;
 @property (getter=isGathering, nonatomic) bool gathering;
 @property (nonatomic, readonly) bool hasMoreUpdates;
@@ -97,6 +99,7 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)domainIdentifier;
+- (id)dsCopyProgressTokenMap;
 - (id)enumeratedItemID;
 - (bool)hasMoreUpdates;
 - (id)indexPathFromIndex:(long long)arg1;
@@ -126,6 +129,7 @@
 - (void)sendItemIDBasedDiffs:(id)arg1;
 - (void)setAdditionalItemFilteringPredicate:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setDsCopyProgressTokenMap:(id)arg1;
 - (void)setGathering:(bool)arg1;
 - (void)setItemFilteringPredicate:(id)arg1;
 - (void)setObserving:(bool)arg1;

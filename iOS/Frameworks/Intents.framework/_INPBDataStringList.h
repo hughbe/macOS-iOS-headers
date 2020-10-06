@@ -3,13 +3,11 @@
  */
 
 @interface _INPBDataStringList : PBCodable <NSCopying, NSSecureCoding, _INPBDataStringList> {
-    bool  __encodeLegacyGloryData;
     _INPBCondition * _conditionType;
     NSArray * _dataStrings;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBCondition *conditionType;
 @property (nonatomic, copy) NSArray *dataStrings;
 @property (nonatomic, readonly) unsigned long long dataStringsCount;
@@ -23,8 +21,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addDataString:(id)arg1;
 - (void)clearDataStrings;
 - (id)conditionType;

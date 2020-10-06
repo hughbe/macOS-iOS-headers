@@ -32,6 +32,7 @@
 - (void)appendDescriptionToBuilder:(id)arg1;
 - (id)description;
 - (id)init;
+- (id)initWithQueue:(id)arg1;
 - (bool)isSuspended;
 - (id)pendingReaders;
 - (id)pendingWriters;

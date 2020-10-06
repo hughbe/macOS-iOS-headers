@@ -29,7 +29,7 @@
     double  _segmentLengthInPixels;
     NSMutableArray * _segments;
     _MKScaleUnitsView * _unitsView;
-    bool  _useLightText;
+    NSNumber * _useLightText;
     bool  _useMetric;
     bool  _useYardsForShortDistances;
     bool  _usedInternallyByMapView;

@@ -4,11 +4,11 @@
 
 @interface FBSSceneClientSettings : NSObject <BSDebugDescriptionProviding, BSXPCSecureCoding, NSCopying, NSMutableCopying> {
     NSOrderedSet * _layers;
-    NSSet * _occlusions;
     BSSettings * _otherSettings;
     long long  _preferredInterfaceOrientation;
     double  _preferredLevel;
     NSString * _preferredSceneHostIdentifier;
+    FBSSceneIdentityToken * _preferredSceneHostIdentity;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -19,6 +19,7 @@
 @property (nonatomic, readonly) long long preferredInterfaceOrientation;
 @property (nonatomic, readonly) double preferredLevel;
 @property (nonatomic, readonly, copy) NSString *preferredSceneHostIdentifier;
+@property (nonatomic, readonly, copy) FBSSceneIdentityToken *preferredSceneHostIdentity;
 @property (readonly) Class superclass;
 
 // Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
@@ -29,6 +30,7 @@
 
 - (void).cxx_destruct;
 - (id)_descriptionBuilderWithMultilinePrefix:(id)arg1 debug:(bool)arg2;
+- (bool)appendDescriptionToBuilder:(id)arg1 forFlag:(long long)arg2 object:(id)arg3 ofSetting:(unsigned long long)arg4;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)debugDescription;
@@ -50,6 +52,10 @@
 - (long long)preferredInterfaceOrientation;
 - (double)preferredLevel;
 - (id)preferredSceneHostIdentifier;
+- (id)preferredSceneHostIdentity;
+- (bool)settings:(id)arg1 appendDescriptionToBuilder:(id)arg2 forFlag:(long long)arg3 object:(id)arg4 ofSetting:(unsigned long long)arg5;
+- (id)settings:(id)arg1 keyDescriptionForSetting:(unsigned long long)arg2;
+- (id)settings:(id)arg1 valueDescriptionForFlag:(long long)arg2 object:(id)arg3 ofSetting:(unsigned long long)arg4;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
 - (id)valueDescriptionForFlag:(long long)arg1 object:(id)arg2 ofSetting:(unsigned long long)arg3;

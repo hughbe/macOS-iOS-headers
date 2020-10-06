@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNContactCell : UITableViewCell {
+@interface CNContactCell : UITableViewCell <CNIndentableCell> {
     CNCardGroupItem * _cardGroupItem;
     NSArray * _constantConstraints;
     NSArray * _variableConstraints;
@@ -15,7 +15,10 @@
 @property (nonatomic) bool showSeparator;
 @property (nonatomic, readonly) NSArray *variableConstraints;
 
++ (bool)shouldIndentWhileEditing;
+
 - (void).cxx_destruct;
+- (void)_setAnimating:(bool)arg1 clippingAdjacentCells:(bool)arg2;
 - (id)cardGroupItem;
 - (id)constantConstraints;
 - (void)contentSizeCategoryDidChange:(id)arg1;

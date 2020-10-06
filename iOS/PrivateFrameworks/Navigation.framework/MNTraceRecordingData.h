@@ -8,7 +8,7 @@
     double  _initialDirectionsRequestTimestamp;
     GEODirectionsResponse * _initialDirectionsResponse;
     double  _initialDirectionsResponseTimestamp;
-    MNLocationDetails * _initialUserLocationDetails;
+    MNLocation * _initialUserLocation;
     NSArray * _waypoints;
 }
 
@@ -17,7 +17,7 @@
 @property (nonatomic) double initialDirectionsRequestTimestamp;
 @property (nonatomic, retain) GEODirectionsResponse *initialDirectionsResponse;
 @property (nonatomic) double initialDirectionsResponseTimestamp;
-@property (nonatomic, retain) MNLocationDetails *initialUserLocationDetails;
+@property (nonatomic, retain) MNLocation *initialUserLocation;
 @property (nonatomic, retain) NSArray *waypoints;
 
 + (bool)supportsSecureCoding;
@@ -30,13 +30,13 @@
 - (double)initialDirectionsRequestTimestamp;
 - (id)initialDirectionsResponse;
 - (double)initialDirectionsResponseTimestamp;
-- (id)initialUserLocationDetails;
+- (id)initialUserLocation;
 - (void)setInitialDirectionsRequest:(id)arg1;
 - (void)setInitialDirectionsRequestError:(id)arg1;
 - (void)setInitialDirectionsRequestTimestamp:(double)arg1;
 - (void)setInitialDirectionsResponse:(id)arg1;
 - (void)setInitialDirectionsResponseTimestamp:(double)arg1;
-- (void)setInitialUserLocationDetails:(id)arg1;
+- (void)setInitialUserLocation:(id)arg1;
 - (void)setWaypoints:(id)arg1;
 - (id)waypoints;
 

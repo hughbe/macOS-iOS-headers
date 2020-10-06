@@ -4,6 +4,8 @@
 
 @interface _UISearchBarLayout : _UISearchBarLayoutBase <_UISearchBarContainerSublayoutDelegate> {
     double  _backgroundExtension;
+    double  _cachedFontValueAfterScaling;
+    double  _cachedFontValueBeforeScaling;
     struct { 
         double minimum; 
         double maximum; 
@@ -56,6 +58,7 @@
         unsigned int hasSeparator : 1; 
         unsigned int allowSearchFieldShrinkage : 1; 
         unsigned int searchFieldUsesCustomBackgroundImage : 1; 
+        unsigned int searchFieldEffectivelySupportsDynamicType : 1; 
         unsigned int isProspective : 1; 
         unsigned int isHostingNavBarTransitionActive : 1; 
     }  _searchBarLayoutFlags;
@@ -76,6 +79,7 @@
             double height; 
         } size; 
     }  _searchFieldContainerLayoutFrame;
+    UIFont * _searchFieldFont;
     UIView * _separator;
     struct CGRect { 
         struct CGPoint { 
@@ -89,6 +93,7 @@
     }  _separatorLayoutFrame;
 }
 
+@property (nonatomic) double additionalPaddingForCancelButtonAtLeadingEdge;
 @property (nonatomic) bool allowSearchFieldShrinkage;
 @property (nonatomic) double backgroundExtension;
 @property (nonatomic, retain) UIView *cancelButton;
@@ -131,12 +136,15 @@
 @property (nonatomic) struct UIOffset { double x1; double x2; } searchFieldBackgroundPositionAdjustment;
 @property (nonatomic, retain) _UISearchBarSearchContainerView *searchFieldContainer;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } searchFieldContainerLayoutFrame;
+@property (nonatomic) bool searchFieldEffectivelySupportsDynamicType;
+@property (nonatomic, retain) UIFont *searchFieldFont;
 @property (nonatomic) bool searchFieldUsesCustomBackgroundImage;
 @property (nonatomic, retain) UIView *separator;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } separatorLayoutFrame;
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (double)additionalPaddingForCancelButtonAtLeadingEdge;
 - (bool)allowSearchFieldShrinkage;
 - (void)applyLayout;
 - (void)applyScopeContainerSublayout;
@@ -158,6 +166,7 @@
 - (struct { double x1; double x2; })heightRange;
 - (bool)isHostingNavBarTransitionActive;
 - (bool)isProspective;
+- (double)layout:(id)arg1 fontScaledValueForValue:(double)arg2;
 - (id)leftButton;
 - (double)minimumLayoutWidth;
 - (double)naturalPromptContainerHeight;
@@ -187,9 +196,12 @@
 - (struct UIOffset { double x1; double x2; })searchFieldBackgroundPositionAdjustment;
 - (id)searchFieldContainer;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })searchFieldContainerLayoutFrame;
+- (bool)searchFieldEffectivelySupportsDynamicType;
+- (id)searchFieldFont;
 - (bool)searchFieldUsesCustomBackgroundImage;
 - (id)separator;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })separatorLayoutFrame;
+- (void)setAdditionalPaddingForCancelButtonAtLeadingEdge:(double)arg1;
 - (void)setAllowSearchFieldShrinkage:(bool)arg1;
 - (void)setBackgroundExtension:(double)arg1;
 - (void)setCancelButton:(id)arg1;
@@ -204,6 +216,7 @@
 - (void)setHasSearchBarBackground:(bool)arg1;
 - (void)setHasSeparator:(bool)arg1;
 - (void)setHostingNavBarTransitionActive:(bool)arg1;
+- (void)setLayoutCustomizationDelegateSearchFieldContainerWillLayoutSubviewsCallback:(id /* block */)arg1;
 - (void)setLeftButton:(id)arg1;
 - (void)setNumberOfScopeTitles:(unsigned long long)arg1;
 - (void)setPromptContainer:(id)arg1;
@@ -219,6 +232,8 @@
 - (void)setSearchField:(id)arg1;
 - (void)setSearchFieldBackgroundPositionAdjustment:(struct UIOffset { double x1; double x2; })arg1;
 - (void)setSearchFieldContainer:(id)arg1;
+- (void)setSearchFieldEffectivelySupportsDynamicType:(bool)arg1;
+- (void)setSearchFieldFont:(id)arg1;
 - (void)setSearchFieldUsesCustomBackgroundImage:(bool)arg1;
 - (void)setSeparator:(id)arg1;
 - (void)setUpScopeContainerLayout;

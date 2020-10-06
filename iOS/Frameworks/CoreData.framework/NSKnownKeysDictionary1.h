@@ -13,9 +13,7 @@
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (Class)classForKeyedUnarchiver;
-+ (id)init;
 + (id)initForKeys:(id)arg1;
-+ (id)initWithCapacity:(unsigned long long)arg1;
 + (id)initWithCoder:(id)arg1;
 + (id)initWithDictionary:(id)arg1;
 + (id)initWithDictionary:(id)arg1 copyItems:(bool)arg2;
@@ -23,16 +21,13 @@
 + (id)initWithSearchStrategy:(id)arg1;
 + (bool)supportsSecureCoding;
 
-- (unsigned long long)_countByEnumeratingWithState:(struct { unsigned long long x1; id *x2; unsigned long long *x3; unsigned long long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned long long)arg3 forKeys:(bool)arg4;
 - (bool)_isDeallocating;
-- (void)_recount;
 - (void)_setValues:(id*)arg1 retain:(bool)arg2;
 - (bool)_tryRetain;
 - (unsigned long long)_valueCountByEnumeratingWithState:(struct { unsigned long long x1; id *x2; unsigned long long *x3; unsigned long long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned long long)arg3;
 - (void)addEntriesFromDictionary:(id)arg1;
 - (id)allKeys;
 - (id)allValues;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;

@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INIntent : NSObject <INEnumerable, INGenericIntent, INImageProxyInjecting, INIntentExport, INIntentSlotComposing, INKeyImageProducing, INRuntimeObject, NSCopying, NSSecureCoding> {
+@interface INIntent : NSObject <ACSCardRequesting, BSXPCCoding, CMSCoding, CRContent, INEnumerable, INGenericIntent, INImageProxyInjecting, INIntentExport, INIntentSlotComposing, INKeyImageProducing, INRuntimeObject, NSCopying, NSSecureCoding, REIntentProperties> {
     long long  __preferredInteractionDirection;
-    NSArray * _airPlayRouteIds;
     PBCodable * _backingStore;
     NSDictionary * _configurableParameterCombinations;
     bool  _hasLoadedKeyParameter;
@@ -26,6 +25,7 @@
 
 @property (nonatomic, readonly) NSDictionary *_JSONDictionaryRepresentation;
 @property (nonatomic, readonly) NSString *_categoryVerb;
+@property (nonatomic, readonly) NSString *_className;
 @property (nonatomic, readonly) NSArray *_codableAttributes;
 @property (nonatomic, readonly) INIntentCodableDescription *_codableDescription;
 @property (getter=_isConfigurable, nonatomic, readonly) bool _configurable;
@@ -33,18 +33,19 @@
 @property (setter=_setDefaultImage:, nonatomic, retain) INImage *_defaultImage;
 @property (nonatomic, readonly) NSOrderedSet *_displayOrderedAttributes;
 @property (getter=_isEligibleForSuggestions, nonatomic, readonly) bool _eligibleForSuggestions;
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (setter=_setExecutionContext:, nonatomic) long long _executionContext;
 @property (nonatomic, readonly) bool _hasTitle;
 @property (setter=_setIdiom:, nonatomic) long long _idiom;
 @property (nonatomic, readonly) long long _indexingHash;
 @property (nonatomic, readonly) long long _intentCategory;
+@property (getter=_intents_isExemptFromMulitWindowRequirementForInAppHandling, nonatomic, readonly) bool _intents_exemptFromMulitWindowRequirementForInAppHandling;
 @property (readonly) long long _intents_toggleState;
 @property (setter=_setIsOwnedByCurrentUser:, nonatomic, retain) NSNumber *_isOwnedByCurrentUser;
 @property (readonly) INImage *_keyImage;
 @property (nonatomic, readonly) INIntentKeyParameter *_keyParameter;
 @property (nonatomic, readonly, copy) NSString *_localizedVerb;
 @property (setter=_setMetadata:, nonatomic, retain) _INPBIntentMetadata *_metadata;
+@property (nonatomic, readonly) NSString *_nanoLaunchId;
 @property (setter=_setNanoLaunchId:, nonatomic, retain) NSString *_nanoLaunchId;
 @property (setter=_setOriginatingDeviceIdsIdentifier:, nonatomic, retain) NSString *_originatingDeviceIDSIdentifier;
 @property (setter=_setOriginatingDeviceRapportEffectiveIdentifier:, nonatomic, retain) NSString *_originatingDeviceRapportEffectiveIdentifier;
@@ -63,6 +64,7 @@
 @property (setter=_setUiExtensionBundleId:, nonatomic, retain) NSString *_uiExtensionBundleId;
 @property (getter=_isUserConfirmationRequired, setter=_setUserConfirmationRequired:, nonatomic) bool _userConfirmationRequired;
 @property (nonatomic, readonly) NSDictionary *_validParameterCombinations;
+@property (nonatomic, readonly, copy) NSString *aggregateLabel;
 @property (setter=_setAirPlayRouteIds:, nonatomic, retain) NSArray *airPlayRouteIds;
 @property (nonatomic, copy) PBCodable *backingStore;
 @property (readonly, copy) NSString *cd_derivedIntentIdentifier;
@@ -77,15 +79,19 @@
 @property (nonatomic, copy) NSString *domain;
 @property (setter=_setExtensionBundleId:, nonatomic, retain) NSString *extensionBundleId;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, readonly, copy) NSString *intentDescription;
 @property (nonatomic, readonly) NSString *intentId;
+@property (nonatomic, readonly) NSString *launchId;
 @property (setter=_setLaunchId:, nonatomic, retain) NSString *launchId;
 @property (getter=_parameterImages, setter=_setParameterImages:, nonatomic, copy) NSArray *parameterImages;
 @property (nonatomic, copy) NSDictionary *parametersByName;
 @property (setter=_setRecordDeviceIdentifier:, nonatomic, retain) NSString *recordDeviceIdentifier;
 @property (setter=_setRecordDeviceUID:, nonatomic, retain) NSUUID *recordDeviceUID;
 @property (setter=_setRecordRoute:, nonatomic, copy) NSString *recordRoute;
+@property (nonatomic, readonly, copy) NSString *rootAggregateKey;
+@property (nonatomic) unsigned long long shortcutAvailability;
 @property (getter=_sortedParameterImages, nonatomic, readonly, copy) NSArray *sortedParameterImages;
 @property (nonatomic, copy) NSString *suggestedInvocationPhrase;
 @property (readonly) Class superclass;
@@ -107,19 +113,20 @@
 
 - (void).cxx_destruct;
 - (id)_JSONDictionaryRepresentation;
+- (id)_JSONDictionaryRepresentationWithConfiguration:(id)arg1;
 - (id)_categoryVerb;
 - (id)_className;
 - (id)_codableAttributes;
 - (id)_codableDescription;
 - (long long)_compareSubProducerOne:(id)arg1 subProducerTwo:(id)arg2;
 - (id)_configurableParameterCombinations;
+- (id)_currentParameterCombination;
 - (id)_defaultImage;
 - (id)_defaultImageName;
 - (id)_dictionaryRepresentation;
 - (id)_displayOrderedAttributes;
 - (id)_displayOrderedNonNilParameters;
 - (id)_emptyCopy;
-- (bool)_encodeLegacyGloryData;
 - (bool)_enumerateWithValueProcessingBlock:(id /* block */)arg1;
 - (long long)_executionContext;
 - (bool)_hasTitle;
@@ -137,10 +144,12 @@
 - (void)_injectProxyForDefaultImage:(id /* block */)arg1 completion:(id /* block */)arg2;
 - (long long)_intentCategory;
 - (id)_intentInstanceDescription;
+- (id)_intents_backgroundHandlingAssertionForBundleIdentifier:(id)arg1 context:(unsigned long long)arg2 error:(id*)arg3;
 - (id)_intents_bestBundleIdentifier;
 - (id)_intents_bundleIdForDisplay;
 - (id)_intents_bundleIdForLaunching;
 - (bool)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(id /* block */)arg2;
+- (bool)_intents_isExemptFromMulitWindowRequirementForInAppHandling;
 - (id)_intents_launchIdForCurrentPlatform;
 - (long long)_intents_toggleState;
 - (bool)_isConfigurable;
@@ -175,7 +184,6 @@
 - (void)_setCategoryVerb:(id)arg1;
 - (void)_setConfigurableParameterCombinations:(id)arg1;
 - (void)_setDefaultImage:(id)arg1;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)_setExecutionContext:(long long)arg1;
 - (void)_setExtensionBundleId:(id)arg1;
 - (void)_setIdiom:(long long)arg1;
@@ -250,10 +258,12 @@
 - (void)setIdentifier:(id)arg1;
 - (void)setImage:(id)arg1 forParameterNamed:(id)arg2;
 - (void)setParametersByName:(id)arg1;
+- (void)setShortcutAvailability:(unsigned long long)arg1;
 - (void)setSuggestedInvocationPhrase:(id)arg1;
 - (bool)setValue:(id)arg1 forProperty:(id)arg2;
 - (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (void)setVerb:(id)arg1;
+- (unsigned long long)shortcutAvailability;
 - (id)suggestedInvocationPhrase;
 - (long long)triggerMethod;
 - (void)trimDataAgainstTCCForAuditToken:(struct { unsigned int x1[8]; })arg1 bundle:(id)arg2;
@@ -263,6 +273,41 @@
 - (id)valueForProperty:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
 - (id)verb;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionClient.framework/AppPredictionClient
+
+- (id)_atx_intentsForAllParameterCombinations;
+- (bool)_atx_matchesParameterIdentifiersWithIntent:(id)arg1;
+- (id)atx_hashApproximately;
+- (bool)atx_isEqualToIntent:(id)arg1;
+- (bool)atx_isValidSuggestionIntentForWidgetIntent:(id)arg1;
+- (id)atx_nonNilParametersByName;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (void)atx_getArgsInto:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/AssistantCardServiceSupport.framework/AssistantCardServiceSupport
+
+- (bool)acs_needsTitleCardSection;
+- (id)acs_utteranceForCardService;
+- (void)requestCard:(id)arg1 reply:(id /* block */)arg2;
+- (unsigned long long)servicePriorityForCardRequest:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Cards.framework/Cards
+
+- (id)underlyingInteraction;
+
+// Image: /System/Library/PrivateFrameworks/ChronoServices.framework/ChronoServices
+
+- (void)encodeWithXPCDictionary:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
 
 // Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
 
@@ -277,5 +322,33 @@
 // Image: /System/Library/PrivateFrameworks/CoreDuetContext.framework/CoreDuetContext
 
 - (id)contextMetadata;
+
+// Image: /System/Library/PrivateFrameworks/FMIPSiriActions.framework/FMIPSiriActions
+
++ (void)undonateForDeviceId:(id)arg1 withCompletion:(id /* block */)arg2;
+
+- (id)aggregateLabel;
+- (void)donateWithCompletion:(id /* block */)arg1;
+- (id)groupIdentifierForIdentifiableIntent:(id)arg1;
+- (id)identifierForIdentifiableIntent:(id)arg1;
+- (id)rootAggregateKey;
+- (id)stringForExecutionContext:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IntentsServices.framework/IntentsServices
+
+- (void)ins_recordPreInteractionSignals;
+- (bool)ins_shouldPrepareAudioSession;
+- (bool)ins_shouldPrewarmApp;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
++ (void)mt_deleteDonationsForAlarm:(id)arg1 completion:(id /* block */)arg2;
++ (id)mt_intentForAlarmCreate:(id)arg1;
++ (id)mt_intentForAlarmDisable:(id)arg1;
++ (id)mt_intentForAlarmEnable:(id)arg1;
++ (id)mt_intentForAlarmUpdate:(id)arg1;
++ (id)mt_nanoAlarmBundleIDForAlarm:(id)arg1;
+
+- (id)mt_initWithAlarm:(id)arg1 verb:(id)arg2;
 
 @end

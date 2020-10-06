@@ -57,5 +57,6 @@
 - (void)setQueryHash:(id)arg1;
 - (void)setRemoteURI:(id)arg1;
 - (void)setSenderToken:(id)arg1;
+- (bool)wantsResponse;
 
 @end

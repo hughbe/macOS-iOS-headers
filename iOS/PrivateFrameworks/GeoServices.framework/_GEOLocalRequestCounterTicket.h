@@ -10,10 +10,18 @@
     _GEOLocalRequestCounterTicket * _parentTask;
     GEORequestCounterPersistence * _persistence;
     NSString * _requestId;
+    unsigned long long  _signpostId;
     long long  _subTaskRecvBytes;
     long long  _subTaskXmitBytes;
     unsigned char  _subtasks;
-    unsigned char  _type;
+    struct { 
+        int type; 
+        union { 
+            int raw; 
+            int tile; 
+            int placeRequest; 
+        } subtype; 
+    }  _type;
 }
 
 @property (readonly, copy) NSString *debugDescription;
@@ -21,9 +29,9 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (id)_requestCounterTicketForType:(unsigned char)arg1 appId:(id)arg2 withParent:(id)arg3 logNetworkActivityOnly:(bool)arg4;
-+ (id)requestCounterTicketForType:(unsigned char)arg1 appId:(id)arg2;
-+ (id)requestCounterTicketForType:(unsigned char)arg1 appId:(id)arg2 persistence:(id)arg3;
++ (id)_requestCounterTicketForType:(struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })arg1 appId:(id)arg2 withParent:(id)arg3 logNetworkActivityOnly:(bool)arg4;
++ (id)requestCounterTicketForType:(struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })arg1 appId:(id)arg2;
++ (id)requestCounterTicketForType:(struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })arg1 appId:(id)arg2 persistence:(id)arg3;
 
 - (void).cxx_destruct;
 - (void)_subTask:(id)arg1 completedWithResult:(unsigned char)arg2 xmitBytes:(long long)arg3 recvBytes:(long long)arg4;

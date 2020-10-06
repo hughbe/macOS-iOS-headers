@@ -30,22 +30,27 @@
 @property (nonatomic, readonly, retain) NSString *type;
 @property (nonatomic, readonly) long long version;
 
-+ (id)applicablePayloadsForHomePod;
++ (id)_minimumWatchVersionRequirementsForPayloads;
++ (id)_sharedHomePodPayloadClasses;
++ (id)_sharedWatchPayloadClasses;
 + (id)availablePayloadsForUserEnrollment;
 + (id)badFieldTypeErrorWithField:(id)arg1;
 + (id)badFieldValueErrorWithField:(id)arg1;
 + (id)badFieldValueErrorWithField:(id)arg1 underlyingError:(id)arg2;
 + (id)cellularRequiredPayloads;
 + (id)conflictingFieldValueErrorWithUnderlyingError:(id)arg1;
++ (id)installableHomePodConfigurationPayloadClasses;
++ (id)installableWatchConfigurationPayloadClasses;
 + (id)localizedDescriptionForPayloadCount:(unsigned long long)arg1;
 + (id)localizedParenthesizedFormDescriptionForPayloadCount:(unsigned long long)arg1;
 + (id)localizedPluralForm;
 + (id)localizedSingularForm;
 + (id)mdmAdoptablePayloads;
-+ (id)minimumWatchVersionRequirementsForPayloads;
 + (id)missingFieldErrorWithField:(id)arg1 underlyingError:(id)arg2;
 + (id)payloadFromDictionary:(id)arg1 isStub:(bool)arg2 profile:(id)arg3 outError:(id*)arg4;
 + (id)payloadsFromArray:(id)arg1 isStub:(bool)arg2 profile:(id)arg3 outError:(id*)arg4;
++ (id)remoteQueueableHomePodPayloadClasses;
++ (id)remoteQueueableWatchPayloadClasses;
 + (id)supervisedRequiredPayloads;
 + (id)typeStrings;
 + (id)unavailablePayloadsInEphemeralMultiUser;
@@ -63,6 +68,7 @@
 - (id)identifier;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)installationWarnings;
+- (bool)isSupportedByWatchVersions:(id)arg1;
 - (id)malformedPayloadErrorWithError:(id)arg1;
 - (bool)mustInstallNonInteractively;
 - (id)organization;
@@ -71,6 +77,7 @@
 - (id)persistentResourceID;
 - (id)profile;
 - (id)restrictions;
+- (id)serializedDictionary;
 - (void)setDisplayName:(id)arg1;
 - (void)setMustInstallNonInteractively:(bool)arg1;
 - (void)setPersistentResourceID:(id)arg1;
@@ -81,6 +88,7 @@
 - (id)subtitle2Label;
 - (id)title;
 - (id)type;
+- (id)verboseDescription;
 - (long long)version;
 
 @end

@@ -18,6 +18,7 @@
 - (double)_orthogonalScrollingPagingDimensionForSection:(long long)arg1;
 - (NSIndexSet *)_orthogonalScrollingSections;
 - (bool)_orthogonalScrollingShouldCenterCustomPagingSizeForSection:(long long)arg1;
+- (<_UICollectionViewLayoutOrthogonalScrollingSectionState> *)_orthogonalScrollingStateForSection:(long long)arg1;
 - (struct CGPoint { double x1; double x2; })_orthogonalScrollingTargetContentOffsetForOffset:(struct CGPoint { double x1; double x2; })arg1 section:(long long)arg2;
 - (NSString *)_orthogonalScrollingTrace;
 - (bool)_orthogonalScrollingUsesTargetContentOffsetForSection:(long long)arg1;

@@ -6,10 +6,14 @@
     _IDSDevice * _internal;
 }
 
+@property (nonatomic, readonly) IDSEndpointCapabilities *capabilities;
 @property (getter=isConnected, nonatomic, readonly) bool connected;
 @property (nonatomic, readonly) IDSDestination *destination;
 @property (nonatomic, readonly) NSString *deviceColor;
 @property (nonatomic, readonly) NSString *enclosureColor;
+@property (nonatomic, readonly) HMDDeviceCapabilities *hmd_capabilities;
+@property (nonatomic, readonly) HMFProductInfo *hmd_productInfo;
+@property (nonatomic, readonly) HMDHomeKitVersion *hmd_version;
 @property (nonatomic, readonly) NSArray *identities;
 @property (nonatomic, readonly) bool isActive;
 @property (nonatomic, readonly) bool isCloudConnected;
@@ -31,6 +35,7 @@
 @property (nonatomic, readonly) NSString *productName;
 @property (nonatomic, readonly) NSString *productVersion;
 @property (nonatomic, readonly) NSData *pushToken;
+@property (nonatomic, readonly) long long relationship;
 @property (nonatomic, readonly) NSString *service;
 @property (nonatomic, readonly) unsigned long long serviceMinCompatibilityVersion;
 @property (nonatomic, readonly) bool supportsApplePay;
@@ -43,12 +48,16 @@
 @property (nonatomic, readonly) NSString *uniqueID;
 @property (nonatomic, readonly) NSString *uniqueIDOverride;
 
+// Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
+
 - (void).cxx_destruct;
 - (void)_addIdentity:(id)arg1;
 - (id)_initWithDictionary:(id)arg1;
 - (id)_internal;
 - (void)_setAccount:(id)arg1;
 - (void)_setService:(id)arg1;
+- (id)capabilities;
+- (id)compactDescription;
 - (void)dealloc;
 - (id)description;
 - (id)destination;
@@ -78,6 +87,7 @@
 - (id)productName;
 - (id)productVersion;
 - (id)pushToken;
+- (long long)relationship;
 - (id)service;
 - (unsigned long long)serviceMinCompatibilityVersion;
 - (void)setNSUUID:(id)arg1;
@@ -90,5 +100,30 @@
 - (bool)supportsiCloudPairing;
 - (id)uniqueID;
 - (id)uniqueIDOverride;
+
+// Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
+
+- (bool)isWatch;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
+- (id)hd_destinationIdentifier;
+- (id)hd_deviceIdentifier;
+- (bool)hd_isEquivalentToDevice:(id)arg1;
+- (id)hd_shortDescription;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)hmd_capabilities;
+- (id)hmd_handlesForService:(id)arg1;
+- (id)hmd_preferredHandleForService:(id)arg1;
+- (id)hmd_productInfo;
+- (id)hmd_version;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
+- (id)pk_idsDestination;
+- (bool)pk_isApplePayCapable;
+- (bool)pk_isValidHandoffDevice;
 
 @end

@@ -8,11 +8,11 @@
 }
 
 @property (nonatomic, readonly) bool isActive;
+@property (nonatomic, readonly) bool isAltAccount;
 @property (nonatomic, readonly) bool isArchived;
 @property (nonatomic, readonly) bool isPaired;
 @property (nonatomic, readonly) bool migratable;
 @property (nonatomic, readonly) NSUUID *pairingID;
-@property (nonatomic, retain) NSMutableDictionary *properties;
 @property (nonatomic, retain) NRPBMutableDevice *protobuf;
 
 + (id)diffFrom:(id)arg1 to:(id)arg2;
@@ -41,18 +41,17 @@
 - (id)initWithProtobuf:(id)arg1;
 - (void)invalidate;
 - (bool)isActive;
+- (bool)isAltAccount;
 - (bool)isArchived;
 - (bool)isEqual:(id)arg1;
 - (bool)isPaired;
 - (bool)migratable;
 - (id)objectForKeyedSubscript:(id)arg1;
 - (id)pairingID;
-- (id)properties;
 - (id)propertyForName:(id)arg1;
 - (id)protobuf;
 - (void)removePropertyForName:(id)arg1;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
-- (void)setProperties:(id)arg1;
 - (void)setProperty:(id)arg1 forName:(id)arg2;
 - (void)setProtobuf:(id)arg1;
 - (bool)supportsCapability:(id)arg1;

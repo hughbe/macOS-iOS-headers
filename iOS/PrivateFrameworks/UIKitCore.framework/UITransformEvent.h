@@ -45,6 +45,7 @@
 - (void)_reset;
 - (bool)_sendEventToGestureRecognizer:(id)arg1;
 - (void)_setHIDEvent:(struct __IOHIDEvent { }*)arg1;
+- (id)_windowServerHitTestWindow;
 - (id)_windows;
 - (struct CGPoint { double x1; double x2; })locationInView:(id)arg1;
 - (unsigned long long)phase;

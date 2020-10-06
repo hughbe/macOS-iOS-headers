@@ -4,8 +4,6 @@
 
 @interface UIDictationFloatingView : UIDictationLayoutView
 
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (bool)drawsOwnBackground;
 
 @end

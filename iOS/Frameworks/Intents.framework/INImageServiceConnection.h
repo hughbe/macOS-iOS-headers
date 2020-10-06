@@ -14,6 +14,8 @@
 @property (nonatomic, readonly) unsigned long long servicePriority;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Intents.framework/Intents
+
 + (id)sharedConnection;
 
 - (void).cxx_destruct;
@@ -34,11 +36,16 @@
 - (void)purgeImageWithIdentifier:(id)arg1 completion:(id /* block */)arg2;
 - (void)retrieveImageWithIdentifier:(id)arg1 completion:(id /* block */)arg2;
 - (id)schemaURLsForBundleIdentifiers:(id)arg1;
+- (id)securityScopedURLsForBundleIdentifiers:(id)arg1 error:(id*)arg2;
 - (id)serviceIdentifier;
 - (unsigned long long)servicePriority;
 - (id)serviceProxyWithErrorHandler:(id /* block */)arg1;
 - (void)storeImage:(id)arg1 scaled:(bool)arg2 qualityOfService:(unsigned int)arg3 storeType:(unsigned long long)arg4 completion:(id /* block */)arg5;
 - (oneway void)storeUserContext:(id)arg1 forBundleIdentifier:(id)arg2;
 - (id)synchronousServiceProxyWithErrorHandler:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowKit.framework/WorkflowKit
+
+- (void)wf_accessBundleContentForBundleIdentifiers:(id)arg1 withBlock:(id /* block */)arg2;
 
 @end

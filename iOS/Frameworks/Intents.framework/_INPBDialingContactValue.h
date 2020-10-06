@@ -3,14 +3,12 @@
  */
 
 @interface _INPBDialingContactValue : PBCodable <NSCopying, NSSecureCoding, _INPBDialingContactValue> {
-    bool  __encodeLegacyGloryData;
     _INPBContactValue * _dialingContact;
     _INPBStringValue * _dialingPhoneLabel;
     _INPBStringValue * _dialingPhoneNumber;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBContactValue *dialingContact;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dialingContact;
 - (id)dialingPhoneLabel;

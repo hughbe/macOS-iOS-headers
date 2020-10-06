@@ -25,7 +25,6 @@
 - (id)certificateSubject;
 - (struct __SecCertificate { }*)copyCertificate;
 - (struct __SecIdentity { }*)copyIdentityFromKeychain;
-- (id)description;
 - (id)expiry;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (id)installedOnDeviceID;
@@ -42,5 +41,6 @@
 - (id)subtitle2Description;
 - (id)subtitle2Label;
 - (id)title;
+- (id)verboseDescription;
 
 @end

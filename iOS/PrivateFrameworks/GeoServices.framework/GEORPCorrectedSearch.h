@@ -12,13 +12,7 @@
         unsigned int read_placeSearchRequest : 1; 
         unsigned int read_placeSearchResponse : 1; 
         unsigned int read_preferredSearchDisplayLocation : 1; 
-        unsigned int wrote_placeRequest : 1; 
-        unsigned int wrote_placeResponse : 1; 
-        unsigned int wrote_placeSearchRequest : 1; 
-        unsigned int wrote_placeSearchResponse : 1; 
-        unsigned int wrote_preferredSearchDisplayLocation : 1; 
-        unsigned int wrote_correctedSearchResultIndex : 1; 
-        unsigned int wrote_originalSearchResultIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _originalSearchResultIndex;
     GEOPDPlaceRequest * _placeRequest;
@@ -52,11 +46,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readPlaceRequest;
-- (void)_readPlaceResponse;
-- (void)_readPlaceSearchRequest;
-- (void)_readPlaceSearchResponse;
-- (void)_readPreferredSearchDisplayLocation;
 - (bool)containsReportableData;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -73,7 +62,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)originalSearchResultIndex;
 - (id)placeRequest;

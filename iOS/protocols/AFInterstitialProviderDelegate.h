@@ -5,6 +5,6 @@
 
 @required
 
-- (void)interstitialProvider:(void *)arg1 handlePhase:(void *)arg2 displayText:(void *)arg3 speakableText:(void *)arg4 context:(void *)arg5 completion:(void *)arg6; // needs 6 arg types, found 10: AFInterstitialProvider *, long long, NSString *, NSString *, id, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
+- (void)interstitialProvider:(void *)arg1 handlePhase:(void *)arg2 displayText:(void *)arg3 speakableText:(void *)arg4 expectedDelay:(void *)arg5 context:(void *)arg6 completion:(void *)arg7; // needs 7 arg types, found 11: AFInterstitialProvider *, long long, NSString *, NSString *, double, id, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, void*
 
 @end

@@ -25,6 +25,7 @@
 
 - (void).cxx_destruct;
 - (bool)_canShowWhileLocked;
+- (void)_captureTapActionWithAppClipLink:(id)arg1;
 - (void)_captureTapActionWithQuickLink:(id)arg1;
 - (id)analyticsDelegate;
 - (void)createActionViews;

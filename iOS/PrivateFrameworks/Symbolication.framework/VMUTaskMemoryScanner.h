@@ -31,8 +31,9 @@
     unsigned int  _instanceValuesSize;
     unsigned long long  _maxInteriorOffset;
     VMUTaskMemoryCache * _memoryCache;
-    unsigned long long  _nextMethodCacheBucketPtrAddress;
+    NSMutableSet * _methodCacheBucketPtrAddresses;
     id /* block */  _nodeLogger;
+    unsigned int  _objcClassStructureClassInfoIndex;
     VMUObjectIdentifier * _objectIdentifier;
     unsigned long long  _physicalFootprint;
     unsigned long long  _physicalFootprintPeak;
@@ -51,13 +52,15 @@
     struct _VMUScanLocationCache {} ** _scanCaches;
     unsigned int  _scanningMask;
     bool  _showRawClassNames;
-    NSMutableArray * _sortedMethodCacheBucketPtrAddresses;
-    unsigned long long  _sortedMethodCacheBucketPtrAddressesIndex;
+    NSMutableDictionary * _srcAddressToExtraAutoreleaseCountDict;
     VMURangeArray * _stackRanges;
     unsigned long long  _suspendTime;
+    unsigned long long  _suspendTimeContinuous;
     unsigned int  _suspensionToken;
+    unsigned int  _swiftClassStructureClassInfoIndex;
+    unsigned int  _swiftMetadataClassInfoIndex;
     unsigned int  _task;
-    struct _VMUThreadNode { unsigned long long x1; unsigned int x2; unsigned int x3; unsigned long long *x4; } * _threads;
+    VMUTaskThreadStates * _threadStates;
     unsigned int  _threadsCount;
     void * _userMarkedAbandoned;
     NSMutableDictionary * _variantCachesByIsaIndex;
@@ -76,6 +79,7 @@
 @property (nonatomic, readonly) NSString *executablePath;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) bool is64bit;
+@property (nonatomic, readonly) unsigned int kernelPageSize;
 @property (nonatomic, readonly) unsigned int mallocNodeCount;
 @property (nonatomic) unsigned long long maxInteriorOffset;
 @property (nonatomic, readonly) VMUTaskMemoryCache *memoryCache;
@@ -94,6 +98,7 @@
 @property (nonatomic) unsigned int scanningMask;
 @property (nonatomic) bool showRawClassNames;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) unsigned long long suspendTimeContinuous;
 @property (nonatomic, readonly) unsigned int task;
 @property (nonatomic, readonly) unsigned int vmPageSize;
 @property (nonatomic, readonly) unsigned int zoneCount;
@@ -132,7 +137,6 @@
 - (void)addRootNodesFromTask;
 - (bool)addressIsInDataSegment:(unsigned long long)arg1;
 - (id)binaryImagesDescription;
-- (unsigned long long)checkSourceAddress:(unsigned long long)arg1 toMaskDestinationAddress:(unsigned long long)arg2;
 - (id)classInfoForObjectAtAddress:(unsigned long long)arg1;
 - (void*)contentForNode:(unsigned int)arg1;
 - (void*)copyUserMarked;
@@ -151,6 +155,7 @@
 - (id)initWithTask:(unsigned int)arg1;
 - (id)initWithTask:(unsigned int)arg1 options:(unsigned long long)arg2;
 - (bool)is64bit;
+- (unsigned int)kernelPageSize;
 - (id)labelForNode:(unsigned int)arg1;
 - (unsigned int)mallocNodeCount;
 - (void)mapDyldSharedCacheFromTargetWithRegions:(id)arg1;
@@ -195,6 +200,7 @@
 - (void)setShowRawClassNames:(bool)arg1;
 - (id)shortLabelForNode:(unsigned int)arg1;
 - (bool)showRawClassNames;
+- (unsigned long long)suspendTimeContinuous;
 - (unsigned int)task;
 - (void)unmapAllRegions;
 - (bool)validateAddressRange:(struct _VMURange { unsigned long long x1; unsigned long long x2; })arg1;

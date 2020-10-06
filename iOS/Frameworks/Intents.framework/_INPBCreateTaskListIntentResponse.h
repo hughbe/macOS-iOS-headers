@@ -3,12 +3,10 @@
  */
 
 @interface _INPBCreateTaskListIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBCreateTaskListIntentResponse> {
-    bool  __encodeLegacyGloryData;
     _INPBTaskList * _createdTaskList;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBTaskList *createdTaskList;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -19,8 +17,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)createdTaskList;
 - (id)dictionaryRepresentation;

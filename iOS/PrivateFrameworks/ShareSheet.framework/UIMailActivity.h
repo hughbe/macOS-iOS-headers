@@ -59,6 +59,7 @@
 - (id)autosaveIdentifier;
 - (void)autosaveWithHandler:(id /* block */)arg1;
 - (bool)canPerformWithActivityItems:(id)arg1;
+- (bool)canShareURLThroughMail:(id)arg1;
 - (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (void)encodeRestorableStateWithCoder:(id)arg1;

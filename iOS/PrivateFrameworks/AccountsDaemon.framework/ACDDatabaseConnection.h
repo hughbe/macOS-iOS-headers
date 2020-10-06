@@ -3,6 +3,7 @@
  */
 
 @interface ACDDatabaseConnection : NSObject {
+    NSCache * _cache;
     <ACDDatabaseConnectionDelegate> * _delegate;
     NSManagedObjectContext * _managedObjectContext;
     <NSObject> * _managedObjectContextDidSaveObserver;
@@ -34,17 +35,21 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)deleteAccountPropertyWithKey:(id)arg1 owner:(id)arg2;
+- (void)deleteObject:(id)arg1;
 - (id)existingObjectWithURI:(id)arg1;
 - (id)fetchObjectsForEntityNamed:(id)arg1;
 - (id)fetchObjectsForEntityNamed:(id)arg1 withPredicate:(id)arg2;
 - (id)fetchObjectsForEntityNamed:(id)arg1 withPredicate:(id)arg2 sortDescriptor:(id)arg3;
+- (id)fetchObjectsForEntityNamed:(id)arg1 withPredicate:(id)arg2 sortDescriptor:(id)arg3 prefetchKeypaths:(id)arg4;
 - (id)init;
 - (id)initWithPersistentStoreCoordinator:(id)arg1;
+- (id)insertNewObjectForEntityForName:(id)arg1;
 - (id)keychainVersion;
 - (id)managedObjectContext;
 - (id)managedObjectIDForURI:(id)arg1;
 - (id)objectForObjectURI:(id)arg1;
 - (id)persistentStoreCoordinator;
+- (void)rollback;
 - (bool)saveWithError:(id*)arg1;
 - (bool)saveWithError:(id*)arg1 rollbackOnFailure:(bool)arg2;
 - (void)setAccountPropertyWithKey:(id)arg1 value:(id)arg2 owner:(id)arg3;

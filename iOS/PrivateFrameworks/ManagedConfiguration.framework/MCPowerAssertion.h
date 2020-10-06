@@ -9,7 +9,7 @@
 @property (getter=isParked, nonatomic, readonly) bool parked;
 
 - (void)dealloc;
-- (id)init;
+- (id)initWithReason:(id)arg1;
 - (bool)isParked;
 - (void)park;
 - (void)unpark;

@@ -3,7 +3,6 @@
  */
 
 @interface _INPBValueMetadata : PBCodable <NSCopying, NSSecureCoding, _INPBValueMetadata> {
-    bool  __encodeLegacyGloryData;
     NSString * _canonicalValue;
     _INPBConfidenceScore * _confidenceScore;
     bool  _confirmed;
@@ -21,7 +20,6 @@
     NSString * _uuid;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *canonicalValue;
 @property (nonatomic, retain) _INPBConfidenceScore *confidenceScore;
 @property (nonatomic) bool confirmed;
@@ -47,8 +45,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsRequiredEntitlements:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addRequiredEntitlement:(int)arg1;
 - (id)canonicalValue;
 - (void)clearRequiredEntitlements;

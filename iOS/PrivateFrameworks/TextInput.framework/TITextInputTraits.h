@@ -103,7 +103,9 @@
 + (unsigned long long)translateToTextInputKeyboardType:(long long)arg1;
 + (id)translateToTextInputRecentInputIdentifier:(id)arg1;
 + (unsigned long long)translateToTextInputReturnKeyType:(long long)arg1;
++ (bool)translateToTextInputSmartDashesEnabled:(long long)arg1;
 + (bool)translateToTextInputSmartInsertDeleteEnabled:(long long)arg1;
++ (bool)translateToTextInputSmartQuotesEnabled:(long long)arg1;
 + (unsigned long long)translateToTextInputSpellCheckingType:(long long)arg1;
 + (unsigned long long)translateToTextScriptType:(long long)arg1;
 

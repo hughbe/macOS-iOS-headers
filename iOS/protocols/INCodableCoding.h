@@ -5,11 +5,8 @@
 
 @required
 
-- (NSString *)cacheGroup;
-- (NSString *)dictionaryKeyForKeyPath:(NSString *)arg1;
 - (NSDictionary *)dictionaryRepresentation;
 - (NSDictionary *)dictionaryRepresentationWithLocalizer:(INStringLocalizer *)arg1;
-- (NSString *)keyPrefix;
 - (void)updateWithDictionary:(NSDictionary *)arg1;
 
 @end

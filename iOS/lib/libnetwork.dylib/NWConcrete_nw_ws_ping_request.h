@@ -15,6 +15,5 @@
 
 - (void).cxx_destruct;
 - (void)dealloc;
-- (id)initWithContents:(id)arg1 queue:(id)arg2 handler:(id /* block */)arg3;
 
 @end

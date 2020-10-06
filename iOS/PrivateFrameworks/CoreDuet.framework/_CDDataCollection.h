@@ -19,45 +19,16 @@
 }
 
 @property (nonatomic, readonly) NSObject<OS_xpc_object> *activity;
-@property (nonatomic, readonly, copy) NSDate *collectionDate;
-@property (nonatomic, readonly, copy) NSString *dataDirectory;
-@property (nonatomic, readonly, copy) NSString *dataPath;
-@property (nonatomic, readonly) unsigned long long daysPerBatch;
-@property (nonatomic) bool deleteSessionOnCleanup;
-@property (nonatomic, readonly) _CDEventStreamsRegister *eventStreamsRegister;
-@property (nonatomic, readonly) unsigned long long maxBatches;
-@property (nonatomic, readonly) double samplingRate;
-@property (nonatomic) bool selectedForDataCollection;
-@property (nonatomic, retain) _CDDataCollectionSession *session;
-@property (nonatomic, readonly, copy) NSString *sessionPath;
 @property (nonatomic, readonly) <_DKKnowledgeQuerying> *storage;
 @property (nonatomic, copy) id /* block */ submissionBlock;
 
 - (void).cxx_destruct;
-- (void)_execute;
 - (id)activity;
-- (void)cleanup;
-- (id)collectionDate;
-- (id)dataDirectory;
-- (id)dataPath;
-- (unsigned long long)daysPerBatch;
-- (bool)deleteSessionOnCleanup;
-- (id)eventStreamsRegister;
 - (void)execute;
 - (id)initWithStorage:(id)arg1 activity:(id)arg2;
 - (id)initWithStorage:(id)arg1 activity:(id)arg2 sessionPath:(id)arg3 dataDirectory:(id)arg4 collectionDate:(id)arg5 samplingRate:(double)arg6 daysPerBatch:(unsigned long long)arg7 eventStreams:(id)arg8 maxBatches:(unsigned long long)arg9;
-- (unsigned long long)maxBatches;
-- (double)samplingRate;
-- (bool)selectedForDataCollection;
-- (id)session;
-- (id)sessionPath;
-- (void)setDeleteSessionOnCleanup:(bool)arg1;
-- (void)setSelectedForDataCollection:(bool)arg1;
-- (void)setSession:(id)arg1;
 - (void)setSubmissionBlock:(id /* block */)arg1;
 - (id)storage;
 - (id /* block */)submissionBlock;
-- (bool)submitDataForCollection;
-- (id)truncatedFileHandle;
 
 @end

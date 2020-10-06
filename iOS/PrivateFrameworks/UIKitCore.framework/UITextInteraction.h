@@ -16,8 +16,10 @@
     UIResponder<UITextInput> * _textInput;
     long long  _textInteractionMode;
     UIView * _view;
+    bool  _viewOverridesInteractivityState;
 }
 
+@property (nonatomic, readonly) UITextCursorAssertionController *_assertionController;
 @property (nonatomic, retain) UILongPressGestureRecognizer *_customHighlighterGesture;
 @property (nonatomic) <UITextInteraction_AssistantDelegate> *assistantDelegate;
 @property (nonatomic, readonly) NSArray *children;
@@ -45,6 +47,7 @@
 
 - (void).cxx_destruct;
 - (void)_applyTransientState:(id)arg1;
+- (id)_assertionController;
 - (void)_callDelegateWillMoveTextRangeExtentAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)_cancelRecognizerWithName:(id)arg1;
 - (void)_cleanUpFeedbackForGesture;
@@ -60,6 +63,8 @@
 - (bool)_shouldAllowEnforcedTouchTypeForTouch:(id)arg1 forGestureRecognizer:(id)arg2;
 - (bool)_shouldObscureTextInput;
 - (id)_textInput;
+- (bool)_textInputIsInteractive;
+- (bool)_textInputLivesInKeyWindow;
 - (id)_transientState;
 - (void)addChild:(id)arg1;
 - (void)addGestureRecognizer:(id)arg1 withName:(id)arg2;
@@ -112,7 +117,7 @@
 - (id)textInput;
 - (long long)textInteractionMode;
 - (long long)textInteractionSet;
-- (void)turnOffDrawsAsAtomIfPlainStyleAtom;
+- (void)updateTextInputSourceForScribbleGesture:(id)arg1;
 - (id)view;
 - (void)willMoveToView:(id)arg1;
 

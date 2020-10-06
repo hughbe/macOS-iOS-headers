@@ -48,7 +48,6 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (long long)_effectiveAlignmentForArrangedSubview:(id)arg1 inAxis:(long long)arg2;
 - (id)arrangedDescription;
 - (struct CGSize { double x1; double x2; })calculateArrangedSizeFittingSize:(struct CGSize { double x1; double x2; })arg1;
 - (id)calculateViewForFirstBaselineLayout;

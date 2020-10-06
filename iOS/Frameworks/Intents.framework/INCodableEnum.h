@@ -3,49 +3,50 @@
  */
 
 @interface INCodableEnum : NSObject <INCodableCoding, NSCopying, NSSecureCoding> {
-    NSMutableDictionary * _dictionaryKeysForCacheGroup;
     NSString * _displayName;
     NSString * _displayNameID;
     NSString * _enumNamespace;
-    NSString * _enumValueKeyPrefix;
-    NSString * _enumValueSynonymKeyPrefix;
     INCodableLocalizationTable * _localizationTable;
     NSString * _name;
     long long  _type;
     NSArray * _values;
+    NSDictionary * _valuesByIndex;
 }
 
-@property (nonatomic, retain) NSMutableDictionary *_dictionaryKeysForCacheGroup;
-@property (nonatomic, readonly, copy) NSString *_enumValueKeyPrefix;
-@property (nonatomic, readonly, copy) NSString *_enumValueSynonymKeyPrefix;
 @property (setter=_setLocalizationTable:, nonatomic, copy) INCodableLocalizationTable *_localizationTable;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSString *displayName;
 @property (nonatomic, readonly, copy) NSString *displayNameID;
 @property (setter=_setEnumNamespace:, nonatomic, copy) NSString *enumNamespace;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (nonatomic, readonly, copy) NSString *localizedDisplayName;
 @property (nonatomic, readonly, copy) NSString *name;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) long long type;
 @property (nonatomic, readonly, copy) NSArray *values;
 
++ (id)__DisplayNameIDKey;
++ (id)__DisplayNameKey;
++ (id)__INCodableEnumValueDisplayNameIDKey;
++ (id)__INCodableEnumValueDisplayNameKey;
++ (id)__INCodableEnumValueIndexKey;
++ (id)__INCodableEnumValueNameKey;
++ (id)__INCodableEnumValueSynonymPronunciationHintIDKey;
++ (id)__INCodableEnumValueSynonymPronunciationHintKey;
++ (id)__INCodableEnumValueSynonymSynonymIDKey;
++ (id)__INCodableEnumValueSynonymSynonymKey;
++ (id)__INCodableEnumValueSynonymsKey;
++ (id)__NameKey;
++ (id)__TypeKey;
++ (id)__ValuesKey;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_dictionaryKeyForKeyPath:(id)arg1 object:(id)arg2;
-- (id)_dictionaryKeysForCacheGroup;
-- (id)_enumValueKeyPrefix;
-- (id)_enumValueSynonymKeyPrefix;
 - (id)_localizationTable;
 - (void)_setEnumNamespace:(id)arg1;
 - (void)_setLocalizationTable:(id)arg1;
-- (id)cacheGroup;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (id)displayName;
@@ -56,13 +57,13 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 displayName:(id)arg2 displayNameID:(id)arg3 enumNamespace:(id)arg4 type:(long long)arg5 values:(id)arg6 localizationTable:(id)arg7;
 - (bool)isEqual:(id)arg1;
-- (id)keyPrefix;
 - (id)localizedDisplayName;
 - (id)localizedDisplayNameWithLocalizer:(id)arg1;
 - (id)name;
-- (void)set_dictionaryKeysForCacheGroup:(id)arg1;
 - (long long)type;
 - (void)updateWithDictionary:(id)arg1;
+- (id)valueForIndex:(unsigned long long)arg1;
 - (id)values;
+- (id)valuesByIndexForValues:(id)arg1;
 
 @end

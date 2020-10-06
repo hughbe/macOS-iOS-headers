@@ -3,13 +3,11 @@
  */
 
 @interface _INPBIntentTypePhrases : PBCodable <NSCopying, NSSecureCoding, _INPBIntentTypePhrases> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     _INPBIntentType * _intentType;
     NSArray * _intentVocabularyExamples;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) bool hasIntentType;
@@ -22,8 +20,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addIntentVocabularyExamples:(id)arg1;
 - (void)clearIntentVocabularyExamples;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

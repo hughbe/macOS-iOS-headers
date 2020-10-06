@@ -33,7 +33,6 @@
 
 + (id)documentsPickerAppearance;
 + (id)recentsPopoverAppearance;
-+ (id)recentsWidgetAppearance;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;

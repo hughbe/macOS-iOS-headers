@@ -8,10 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_geoIds : 1; 
         unsigned int read_matchedToken : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_geoIds : 1; 
-        unsigned int wrote_matchedToken : 1; 
-        unsigned int wrote_geoType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct { 
         unsigned long long *list; 
@@ -39,9 +36,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsGeoId:(unsigned long long)arg1;
-- (void)_readGeoIds;
-- (void)_readMatchedToken;
 - (void)addGeoId:(unsigned long long)arg1;
 - (void)clearGeoIds;
 - (void)clearUnknownFields:(bool)arg1;
@@ -58,7 +52,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)matchedToken;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

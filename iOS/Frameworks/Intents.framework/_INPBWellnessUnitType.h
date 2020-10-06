@@ -3,7 +3,6 @@
  */
 
 @interface _INPBWellnessUnitType : PBCodable <NSCopying, NSSecureCoding, _INPBWellnessUnitType> {
-    bool  __encodeLegacyGloryData;
     int  _bloodGlucoseUnit;
     int  _bloodPressureUnit;
     int  _energyUnit;
@@ -28,7 +27,6 @@
     int  _volumeUnit;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int bloodGlucoseUnit;
 @property (nonatomic) int bloodPressureUnit;
 @property (readonly, copy) NSString *debugDescription;
@@ -66,8 +64,6 @@
 - (int)StringAsTemperatureUnit:(id)arg1;
 - (int)StringAsTimeUnit:(id)arg1;
 - (int)StringAsVolumeUnit:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)bloodGlucoseUnit;
 - (id)bloodGlucoseUnitAsString:(int)arg1;
 - (int)bloodPressureUnit;

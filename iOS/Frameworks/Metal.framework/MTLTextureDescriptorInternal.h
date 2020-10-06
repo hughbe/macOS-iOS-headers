@@ -27,7 +27,7 @@
         unsigned long long sparseSurfaceDefaultValue; 
         bool allowGPUOptimizedContents; 
         bool forceResourceIndex; 
-        unsigned int resourceIndex; 
+        unsigned long long resourceIndex; 
         unsigned long long protectionOptions; 
         unsigned long long resolvedUsage; 
         unsigned long long cpuCacheMode; 
@@ -42,7 +42,7 @@
 - (unsigned long long)cpuCacheMode;
 - (unsigned long long)depth;
 - (id)description;
-- (const struct MTLTextureDescriptorPrivate { unsigned long long x1; unsigned long long x2; unsigned long long x3; unsigned long long x4; unsigned long long x5; unsigned long long x6; unsigned long long x7; unsigned long long x8; bool x9; unsigned long long x10; bool x11; bool x12; unsigned int x13; bool x14; unsigned long long x15; union { unsigned long long x_16_1_1; unsigned long long x_16_1_2; } x16; unsigned long long x17; unsigned long long x18; bool x19; bool x20; unsigned int x21; unsigned long long x22; unsigned long long x23; unsigned long long x24; unsigned long long x25; }*)descriptorPrivate;
+- (const struct MTLTextureDescriptorPrivate { unsigned long long x1; unsigned long long x2; unsigned long long x3; unsigned long long x4; unsigned long long x5; unsigned long long x6; unsigned long long x7; unsigned long long x8; bool x9; unsigned long long x10; bool x11; bool x12; unsigned int x13; bool x14; unsigned long long x15; union { unsigned long long x_16_1_1; unsigned long long x_16_1_2; } x16; unsigned long long x17; unsigned long long x18; bool x19; bool x20; unsigned long long x21; unsigned long long x22; unsigned long long x23; unsigned long long x24; unsigned long long x25; }*)descriptorPrivate;
 - (bool)forceResourceIndex;
 - (id)formattedDescription:(unsigned long long)arg1;
 - (bool)framebufferOnly;

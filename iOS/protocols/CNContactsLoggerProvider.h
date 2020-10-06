@@ -5,6 +5,7 @@
 
 @required
 
+- (<CNAPITriageLogger> *)apiTriageLogger;
 - (<CNContactsLogger> *)contactsLogger;
 - (<CNFavoritesLogger> *)favoritesLogger;
 - (<CNGeminiLogger> *)geminiLogger;

@@ -34,6 +34,8 @@
 @property (nonatomic, readonly, copy) NSString *vibrationIdentifier;
 @property (nonatomic, readonly, copy) NSURL *vibrationPatternFileURL;
 
+// Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
+
 + (id)_soundWithAlertType:(long long)arg1 audioVolume:(id)arg2 critical:(bool)arg3 toneFileName:(id)arg4;
 + (id)criticalSoundNamed:(id)arg1;
 + (id)criticalSoundNamed:(id)arg1 withAudioVolume:(float)arg2;
@@ -69,5 +71,17 @@
 - (unsigned long long)toneMediaLibraryItemIdentifier;
 - (id)vibrationIdentifier;
 - (id)vibrationPatternFileURL;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
+- (id)mtSound;
+- (id)mt_Description;
+
+// Image: /System/Library/PrivateFrameworks/SleepDaemon.framework/SleepDaemon
+
++ (id)hdsp_bedtimeReminderSound;
++ (id)hdsp_chargingReminderSound;
++ (id)hdsp_wakeDetectionSound;
++ (id)hdsp_wakeUpResultsSound;
 
 @end

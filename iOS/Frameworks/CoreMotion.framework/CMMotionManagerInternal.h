@@ -15,11 +15,6 @@
     NSOperationQueue * fAmbientPressureQueue;
     double  fAmbientPressureUpdateInterval;
     unsigned long long  fAttitudeReferenceFrame;
-    bool  fAudioAccessoryAccelerometerAvailable;
-    struct Dispatcher { int (**x1)(); id x2; } * fAudioAccessoryAccelerometerDispatcher;
-    id /* block */  fAudioAccessoryAccelerometerHandler;
-    NSOperationQueue * fAudioAccessoryAccelerometerQueue;
-    double  fAudioAccessoryAccelerometerUpdateInterval;
     bool  fCompassCalibrationHud;
     struct Dispatcher { int (**x1)(); id x2; } * fCompensatedAmbientPressureDispatcher;
     id /* block */  fCompensatedAmbientPressureHandler;
@@ -40,26 +35,10 @@
     NSOperationQueue * fDeviceMotionQueue;
     double  fDeviceMotionStartTimestamp;
     double  fDeviceMotionUpdateInterval;
-    struct { 
-        double x; 
-        double y; 
-        double z; 
-        double magnitude; 
-        double horizontal; 
-        double declination; 
-        double inclination; 
-        double timestamp; 
-    }  fGeomagneticModel;
-    struct unique_ptr<CLGeomagneticModelProvider_Type::Client, std::__1::default_delete<CLGeomagneticModelProvider_Type::Client> > { 
-        struct __compressed_pair<CLGeomagneticModelProvider_Type::Client *, std::__1::default_delete<CLGeomagneticModelProvider_Type::Client> > { 
-            struct Client {} *__value_; 
-        } __ptr_; 
-    }  fGeomagneticModelProviderClient;
     struct Dispatcher { int (**x1)(); id x2; } * fGyroDispatcher;
     id /* block */  fGyroHandler;
     NSOperationQueue * fGyroQueue;
     double  fGyroUpdateInterval;
-    bool  fHaveGeomagneticModelData;
     bool  fHaveSentDeviceRequiresMovementError;
     bool  fHaveSentTrueNorthUnavailableError;
     struct { 
@@ -93,16 +72,6 @@
             float temperature; 
         } pressureData; 
     }  fLatestAmbientPressureSample;
-    struct Sample { 
-        double timestamp; 
-        struct { 
-            float x; 
-            float y; 
-            float z; 
-        } acceleration; 
-        unsigned long long sensorTime; 
-        unsigned short sequenceNumber; 
-    }  fLatestAudioAccessoryAccelerometerSample;
     struct Sample { 
         double timestamp; 
         struct { 

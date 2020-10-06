@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
  */
 
-@interface AAiCloudTermsStringRequest : AARequest
+@interface AAiCloudTermsStringRequest : AAGenericTermsUIRequest
 
 + (Class)responseClass;
 
-- (id)urlRequest;
-- (id)urlString;
+- (id)initWithAccount:(id)arg1;
+- (id)initWithAccount:(id)arg1 preferPassword:(bool)arg2;
 
 @end

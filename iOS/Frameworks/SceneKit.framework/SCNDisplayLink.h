@@ -27,7 +27,7 @@
 - (id /* block */)adaptativeFrameRate;
 - (void)dealloc;
 - (id)init;
-- (id)initWithQueue:(id)arg1 block:(id /* block */)arg2;
+- (id)initWithQueue:(id)arg1 screen:(id)arg2 block:(id /* block */)arg3;
 - (void)invalidate;
 - (bool)isPaused;
 - (float)preferredFrameRate;

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
  */
 
-@interface PBSessionRequester : NSObject <NSURLSessionDataDelegate> {
+@interface PBSessionRequester : NSObject <NSURLSessionDataDelegate, NSURLSessionTaskDelegatePrivate> {
     NSURL * _URL;
     NSString * _apsRelayTopic;
     NSArray * _clientCertificates;
@@ -62,7 +62,6 @@
 @property (nonatomic) bool ignoresResponse;
 @property (nonatomic, retain) NSString *logRequestToFile;
 @property (nonatomic, retain) NSString *logResponseToFile;
-@property bool needsCancel;
 @property (nonatomic) unsigned long long nwActivityDomain;
 @property (nonatomic) unsigned long long nwActivityLabel;
 @property (nonatomic, readonly) unsigned long long requestResponseTime;
@@ -81,30 +80,11 @@
 - (void)URLSession:(id)arg1 didReceiveChallenge:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 _willSendRequestForEstablishedConnection:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
-- (id)_applicationID;
-- (void)_cancelNoNotify;
-- (void)_cancelWithErrorDomain:(id)arg1 errorCode:(long long)arg2 userInfo:(id)arg3;
-- (void)_cleanup;
-- (void)_didSetDelegate:(id)arg1;
-- (void)_failWithError:(id)arg1;
-- (void)_failWithErrorDomain:(id)arg1 errorCode:(long long)arg2 userInfo:(id)arg3;
-- (id)_languageLocale;
-- (void)_logErrorIfNecessary:(id)arg1;
-- (void)_logRequestsIfNecessary:(id)arg1;
-- (void)_logResponsesIfNecessary:(id)arg1;
-- (id)_newSessionWithDelegate:(id)arg1 delegateQueue:(id)arg2 connectionProperties:(id)arg3;
-- (id)_osVersion;
-- (void)_performOnDelegateQueue:(id /* block */)arg1;
-- (bool)_sendPayload:(id)arg1 error:(id*)arg2;
-- (void)_serializePayload:(id /* block */)arg1;
-- (void)_start;
-- (bool)_tryParseData;
 - (void)addInternalRequest:(id)arg1;
 - (void)addRequest:(id)arg1;
 - (id)apsRelayTopic;
 - (void)cancel;
 - (void)cancelWithErrorCode:(long long)arg1;
-- (void)cancelWithErrorCode:(long long)arg1 description:(id)arg2;
 - (void)clearRequests;
 - (id)clientCertificates;
 - (id)currentTask;
@@ -122,7 +102,6 @@
 - (bool)isPaused;
 - (id)logRequestToFile;
 - (id)logResponseToFile;
-- (bool)needsCancel;
 - (id)newMutableURLRequestWithURL:(id)arg1;
 - (id)newSessionTaskOnSession:(id)arg1 withURLRequest:(id)arg2;
 - (id)newSessionWithDelegate:(id)arg1 delegateQueue:(id)arg2;
@@ -141,7 +120,6 @@
 - (void)setApsRelayTopic:(id)arg1;
 - (void)setClientCertificates:(id)arg1;
 - (void)setCurrentTask:(id)arg1;
-- (void)setDelegate:(id)arg1;
 - (void)setHttpRequestHeader:(id)arg1 forKey:(id)arg2;
 - (void)setHttpRequestHeaders:(id)arg1;
 - (void)setHttpResponseHeaders:(id)arg1;
@@ -149,7 +127,6 @@
 - (void)setLogRequestToFile:(id)arg1;
 - (void)setLogResponseToFile:(id)arg1;
 - (void)setNeedsCancel;
-- (void)setNeedsCancel:(bool)arg1;
 - (void)setNwActivityDomain:(unsigned long long)arg1;
 - (void)setNwActivityLabel:(unsigned long long)arg1;
 - (void)setSession:(id)arg1;

@@ -39,6 +39,7 @@
 + (id)properties;
 + (id)propertiesWithFile:(id)arg1 error:(id*)arg2;
 
+- (void).cxx_destruct;
 - (bool)_boolForKey:(id)arg1;
 - (id)_dataForKey:(id)arg1;
 - (id)_dictionaryForKey:(id)arg1;
@@ -59,7 +60,6 @@
 - (id)containers;
 - (id)dataWithError:(id*)arg1;
 - (id)date;
-- (void)dealloc;
 - (id)description;
 - (id)deviceID;
 - (id)deviceName;

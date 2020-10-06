@@ -17,8 +17,6 @@
 @property long long style;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/Frameworks/Foundation.framework/Foundation
-
 + (long long)__abbreviatedNameFormatForPersonNameComponents:(id)arg1;
 + (long long)__abbreviatedNameFormatForString:(id)arg1;
 + (id)__characterSetWithPattern:(id)arg1;
@@ -111,13 +109,5 @@
 - (id)stringForObjectValue:(id)arg1;
 - (id)stringFromPersonNameComponents:(id)arg1;
 - (long long)style;
-
-// Image: /System/Library/Frameworks/Contacts.framework/Contacts
-
-+ (long long)contactsNameOrderFromFoundationNameOrder:(long long)arg1;
-+ (id)formatterWithCNContactStyle:(long long)arg1;
-+ (id)localizedStringFromContact:(id)arg1 contactStyle:(long long)arg2 options:(unsigned long long)arg3;
-
-- (id)stringFromContact:(id)arg1;
 
 @end

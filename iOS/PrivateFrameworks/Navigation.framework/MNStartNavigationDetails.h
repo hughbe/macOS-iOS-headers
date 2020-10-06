@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
  */
 
-@interface MNStartNavigationDetails : NSObject <NSSecureCoding> {
-    bool  _copyTraceToCrashReporter;
+@interface MNStartNavigationDetails : NSObject <NSCopying, NSSecureCoding> {
     GEODirectionsRequest * _directionsRequest;
     GEODirectionsResponse * _directionsResponse;
     bool  _fullGuidance;
@@ -13,14 +12,13 @@
     GEORouteAttributes * _routeAttributes;
     NSArray * _routes;
     unsigned long long  _selectedRouteIndex;
-    bool  _shouldSimulateLocations;
+    long long  _simulationType;
     NSString * _tracePlaybackPath;
     MNTraceRecordingData * _traceRecordingData;
     NSString * _traceRecordingNameOverride;
     NSDictionary * _traffic;
 }
 
-@property (nonatomic) bool copyTraceToCrashReporter;
 @property (nonatomic, copy) GEODirectionsRequest *directionsRequest;
 @property (nonatomic, copy) GEODirectionsResponse *directionsResponse;
 @property (nonatomic, readonly) NSString *fullDescription;
@@ -31,7 +29,7 @@
 @property (nonatomic, copy) GEORouteAttributes *routeAttributes;
 @property (nonatomic, copy) NSArray *routes;
 @property (nonatomic) unsigned long long selectedRouteIndex;
-@property (nonatomic) bool shouldSimulateLocations;
+@property (nonatomic) long long simulationType;
 @property (nonatomic, copy) NSString *tracePlaybackPath;
 @property (nonatomic, retain) MNTraceRecordingData *traceRecordingData;
 @property (nonatomic, copy) NSString *traceRecordingNameOverride;
@@ -40,8 +38,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_findRouteWithUUID:(id)arg1;
-- (bool)copyTraceToCrashReporter;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)directionsRequest;
 - (id)directionsResponse;
@@ -56,7 +53,6 @@
 - (id)routeAttributes;
 - (id)routes;
 - (unsigned long long)selectedRouteIndex;
-- (void)setCopyTraceToCrashReporter:(bool)arg1;
 - (void)setDirectionsRequest:(id)arg1;
 - (void)setDirectionsResponse:(id)arg1;
 - (void)setFullGuidance:(bool)arg1;
@@ -66,12 +62,12 @@
 - (void)setRouteAttributes:(id)arg1;
 - (void)setRoutes:(id)arg1;
 - (void)setSelectedRouteIndex:(unsigned long long)arg1;
-- (void)setShouldSimulateLocations:(bool)arg1;
+- (void)setSimulationType:(long long)arg1;
 - (void)setTracePlaybackPath:(id)arg1;
 - (void)setTraceRecordingData:(id)arg1;
 - (void)setTraceRecordingNameOverride:(id)arg1;
 - (void)setTraffic:(id)arg1;
-- (bool)shouldSimulateLocations;
+- (long long)simulationType;
 - (id)tracePlaybackPath;
 - (id)traceRecordingData;
 - (id)traceRecordingNameOverride;

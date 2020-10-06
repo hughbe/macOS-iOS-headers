@@ -17,6 +17,8 @@
 @property (getter=isTracingEnabled, nonatomic) bool tracingEnabled;
 @property (nonatomic, copy) NSData *tracingUUID;
 
+// Image: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
+
 - (void).cxx_destruct;
 - (id)checkpointTrace;
 - (void)encodeWithCoder:(id)arg1;
@@ -40,5 +42,9 @@
 - (id)tracingUUID;
 - (bool)wasFromStorage;
 - (bool)wasLastMessageFromStorage;
+
+// Image: /System/Library/PrivateFrameworks/UserNotificationsServer.framework/UserNotificationsServer
+
+- (id)uns_pushTypeDescription;
 
 @end

@@ -9,10 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_disambiguationLabels : 1; 
         unsigned int read_resultDetourInfos : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_disambiguationLabels : 1; 
-        unsigned int wrote_resultDetourInfos : 1; 
-        unsigned int wrote_isChainResultSet : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isChainResultSet;
     PBDataReader * _reader;
@@ -36,10 +33,6 @@
 + (Class)resultDetourInfoType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsDisambiguationLabel:(id)arg1;
-- (void)_addNoFlagsResultDetourInfo:(id)arg1;
-- (void)_readDisambiguationLabels;
-- (void)_readResultDetourInfos;
 - (void)addDisambiguationLabel:(id)arg1;
 - (void)addResultDetourInfo:(id)arg1;
 - (void)clearDisambiguationLabels;
@@ -56,8 +49,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isChainResultSet;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

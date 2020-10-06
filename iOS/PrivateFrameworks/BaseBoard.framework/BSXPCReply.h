@@ -11,7 +11,6 @@
 + (id)replyForMessage:(id)arg1;
 
 - (void).cxx_destruct;
-- (id)_initWithReply:(id)arg1;
 - (id)initForMessage:(id)arg1;
 - (id)initWithReply:(id)arg1;
 - (id)message;

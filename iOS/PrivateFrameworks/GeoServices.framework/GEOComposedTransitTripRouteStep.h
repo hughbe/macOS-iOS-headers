@@ -34,7 +34,7 @@
 @property (nonatomic, readonly) <GEOTransitLine> *transitLine;
 @property (nonatomic, readonly) <GEOTransitSystem> *transitSystem;
 @property (nonatomic, readonly) GEOTransitVehicleInfo *transitVehicle;
-@property (nonatomic, readonly) GEOComposedTransitTripRouteLeg *tripLeg;
+@property (nonatomic, readonly) GEOComposedTransitTripRouteSegment *tripSegment;
 
 + (bool)supportsSecureCoding;
 
@@ -56,13 +56,13 @@
 - (bool)hasDuration;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithComposedRoute:(id)arg1 decoderData:(id)arg2 step:(id)arg3 stepIndex:(unsigned long long)arg4 duration:(unsigned int)arg5 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg6;
-- (id)initWithComposedRoute:(id)arg1 routeLegType:(long long)arg2 stepIndex:(unsigned long long)arg3 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4 line:(id)arg5 maneuverType:(int)arg6 significance:(int)arg7;
+- (id)initWithComposedRoute:(id)arg1 routeSegmentType:(long long)arg2 stepIndex:(unsigned long long)arg3 pointRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg4 line:(id)arg5 maneuverType:(int)arg6 significance:(int)arg7;
 - (bool)isBus;
 - (bool)isRail;
 - (id)routeLineArtwork;
 - (id)transitLine;
 - (id)transitSystem;
 - (id)transitVehicle;
-- (id)tripLeg;
+- (id)tripSegment;
 
 @end

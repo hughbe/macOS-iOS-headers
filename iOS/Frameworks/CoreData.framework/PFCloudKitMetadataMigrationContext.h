@@ -6,6 +6,9 @@
     NSManagedObjectModel * _currentModel;
     bool  _hasWorkToDo;
     NSMutableArray * _migrationStatements;
+    bool  _needsAnalyzedHistoryCheck;
+    bool  _needsBatchUpdateForSystemFieldsAndLastExportedTransaction;
+    bool  _needsImportAfterClientMigration;
     bool  _needsMetdataMigrationToNSCKRecordMetadata;
     bool  _needsMirroredRelationshipsLinkedToZone;
     bool  _needsOldTableDrop;
@@ -20,6 +23,9 @@
 @property (nonatomic, retain) NSManagedObjectModel *currentModel;
 @property (nonatomic, readonly) bool hasWorkToDo;
 @property (nonatomic, readonly) NSArray *migrationStatements;
+@property (nonatomic) bool needsAnalyzedHistoryCheck;
+@property (nonatomic) bool needsBatchUpdateForSystemFieldsAndLastExportedTransaction;
+@property (nonatomic) bool needsImportAfterClientMigration;
 @property (nonatomic) bool needsMetdataMigrationToNSCKRecordMetadata;
 @property (nonatomic) bool needsMirroredRelationshipsLinkedToZone;
 @property (nonatomic) bool needsOldTableDrop;
@@ -37,10 +43,16 @@
 - (bool)hasWorkToDo;
 - (id)init;
 - (id)migrationStatements;
+- (bool)needsAnalyzedHistoryCheck;
+- (bool)needsBatchUpdateForSystemFieldsAndLastExportedTransaction;
+- (bool)needsImportAfterClientMigration;
 - (bool)needsMetdataMigrationToNSCKRecordMetadata;
 - (bool)needsMirroredRelationshipsLinkedToZone;
 - (bool)needsOldTableDrop;
 - (void)setCurrentModel:(id)arg1;
+- (void)setNeedsAnalyzedHistoryCheck:(bool)arg1;
+- (void)setNeedsBatchUpdateForSystemFieldsAndLastExportedTransaction:(bool)arg1;
+- (void)setNeedsImportAfterClientMigration:(bool)arg1;
 - (void)setNeedsMetdataMigrationToNSCKRecordMetadata:(bool)arg1;
 - (void)setNeedsMirroredRelationshipsLinkedToZone:(bool)arg1;
 - (void)setNeedsOldTableDrop:(bool)arg1;

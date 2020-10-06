@@ -3,6 +3,7 @@
  */
 
 @interface ACRemoteAccountStoreSession : NSObject <NSXPCProxyCreating> {
+    ACAccountStoreClientSideListener * _clientSideListener;
     NSXPCConnection * _connection;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
@@ -26,7 +27,7 @@
 - (void)dealloc;
 - (id)effectiveBundleID;
 - (id)init;
-- (id)initWithListenerEndpoint:(id)arg1;
+- (id)initWithListenerEndpoint:(id)arg1 delegate:(id)arg2;
 - (id)listenerEndpoint;
 - (bool)notificationsEnabled;
 - (id)remoteObjectProxy;

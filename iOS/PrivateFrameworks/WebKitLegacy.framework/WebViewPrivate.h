@@ -95,7 +95,14 @@
         int (*didRemoveFrameFromHierarchyFunc)(); 
         int (*webThreadDidLayoutFunc)(); 
     }  frameLoadDelegateImplementations;
-    WebVideoFullscreenController * fullscreenController;
+    struct RetainPtr<WebVideoFullscreenController> { 
+        void *m_ptr; 
+    }  fullscreenController;
+    struct Vector<WTF::RetainPtr<WebVideoFullscreenController>, 0, WTF::CrashOnOverflow, 16, WTF::FastMalloc> { 
+        struct RetainPtr<WebVideoFullscreenController> {} *m_buffer; 
+        unsigned int m_capacity; 
+        unsigned int m_size; 
+    }  fullscreenControllersExiting;
     struct RefPtr<WebViewGroup, WTF::DumbPtrTraits<WebViewGroup> > { 
         struct WebViewGroup {} *m_ptr; 
     }  group;
@@ -110,8 +117,8 @@
         int (*populateVisitedLinksFunc)(); 
     }  historyDelegateImplementations;
     WAKWindow * hostWindow;
-    struct HashMap<unsigned long, WTF::RetainPtr<id>, WTF::IntHash<unsigned long>, WTF::HashTraits<unsigned long>, WTF::HashTraits<WTF::RetainPtr<id> > > { 
-        struct HashTable<unsigned long, WTF::KeyValuePair<unsigned long, WTF::RetainPtr<id> >, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long, WTF::RetainPtr<id> > >, WTF::IntHash<unsigned long>, WTF::HashMap<unsigned long, WTF::RetainPtr<id>, WTF::IntHash<unsigned long>, WTF::HashTraits<unsigned long>, WTF::HashTraits<WTF::RetainPtr<id> > >::KeyValuePairTraits, WTF::HashTraits<unsigned long> > { 
+    struct HashMap<unsigned long, WTF::RetainPtr<id>, WTF::DefaultHash<unsigned long>, WTF::HashTraits<unsigned long>, WTF::HashTraits<WTF::RetainPtr<id> > > { 
+        struct HashTable<unsigned long, WTF::KeyValuePair<unsigned long, WTF::RetainPtr<id> >, WTF::KeyValuePairKeyExtractor<WTF::KeyValuePair<unsigned long, WTF::RetainPtr<id> > >, WTF::DefaultHash<unsigned long>, WTF::HashMap<unsigned long, WTF::RetainPtr<id>, WTF::DefaultHash<unsigned long>, WTF::HashTraits<unsigned long>, WTF::HashTraits<WTF::RetainPtr<id> > >::KeyValuePairTraits, WTF::HashTraits<unsigned long> > { 
             struct KeyValuePair<unsigned long, WTF::RetainPtr<id> > {} *m_table; 
         } m_impl; 
     }  identifierMap;
@@ -126,6 +133,11 @@
     struct RefPtr<LayerFlushController, WTF::DumbPtrTraits<LayerFlushController> > { 
         struct LayerFlushController {} *m_ptr; 
     }  layerFlushController;
+    struct unique_ptr<WebCore::AlternativeTextUIController, std::__1::default_delete<WebCore::AlternativeTextUIController> > { 
+        struct __compressed_pair<WebCore::AlternativeTextUIController *, std::__1::default_delete<WebCore::AlternativeTextUIController> > { 
+            struct AlternativeTextUIController {} *__value_; 
+        } __ptr_; 
+    }  m_alternativeTextUIController;
     <WebDeviceOrientationProvider> * m_deviceOrientationProvider;
     bool  mainFrameDocumentReady;
     bool  mainViewIsScrollingOrZooming;

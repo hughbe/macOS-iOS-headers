@@ -15,38 +15,6 @@
     UIWheelEvent * _wheelEvent;
 }
 
-@property (nonatomic, readonly) _UIGameControllerEvent *gameControllerEvent;
-@property (nonatomic, readonly) UIHoverEvent *hoverEvent;
-@property (nonatomic, readonly) UIMoveEvent *moveEvent;
-@property (nonatomic, readonly) UIPencilEvent *pencilEvent;
-@property (nonatomic, readonly) UIPhysicalKeyboardEvent *physicalKeyboardEvent;
-@property (nonatomic, readonly) UIPressesEvent *pressesEvent;
-@property (nonatomic, readonly) UIScrollEvent *scrollEvent;
-@property (nonatomic, readonly) UITouchesEvent *touchesEvent;
-@property (nonatomic, readonly) UITransformEvent *transformEvent;
-@property (nonatomic, readonly) UIWheelEvent *wheelEvent;
-
 - (void).cxx_destruct;
-- (void)addGameControllerEvent:(id)arg1;
-- (void)addHoverEvent:(id)arg1;
-- (void)addMoveEvent:(id)arg1;
-- (void)addPencilEvent:(id)arg1;
-- (void)addPhysicalKeyboardEvent:(id)arg1;
-- (void)addPressesEvent:(id)arg1;
-- (void)addScrollEvent:(id)arg1;
-- (void)addTouchesEvent:(id)arg1;
-- (void)addTransformEvent:(id)arg1;
-- (void)addWheelEvent:(id)arg1;
-- (id)gameControllerEvent;
-- (id)hoverEvent;
-- (void)invalidate;
-- (id)moveEvent;
-- (id)pencilEvent;
-- (id)physicalKeyboardEvent;
-- (id)pressesEvent;
-- (id)scrollEvent;
-- (id)touchesEvent;
-- (id)transformEvent;
-- (id)wheelEvent;
 
 @end

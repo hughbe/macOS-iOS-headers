@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSManagedObject : NSObject <NSFetchRequestResult> {
+@interface NSManagedObject : NSObject <NSFetchRequestResult, _KSTIUserDictionaryEntry> {
     unsigned int  _cd_extraFlags;
     struct { void *x1; id x2; id x3; id x4; id x5; } * _cd_extras;
     unsigned int  _cd_lockingInfo;
@@ -26,7 +26,10 @@
 @property (getter=isInserted, nonatomic, readonly) bool inserted;
 @property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, readonly) NSManagedObjectID *objectID;
+@property (nonatomic, copy) NSString *phrase;
+@property (nonatomic, copy) NSString *shortcut;
 @property (readonly) Class superclass;
+@property (nonatomic, retain) NSDate *timestamp;
 @property (getter=isUpdated, nonatomic, readonly) bool updated;
 
 // Image: /System/Library/Frameworks/CoreData.framework/CoreData
@@ -63,93 +66,19 @@
 + (bool)resolveInstanceMethod:(SEL)arg1;
 + (id)retain;
 
-- (id)_allProperties__;
-- (int)_batch_release__;
-- (id)_calculateDiffsBetweenOrderedSet:(id)arg1 andOrderedSet:(id)arg2;
-- (bool)_chainNewError:(id)arg1 toOriginalErrorDoublePointer:(id*)arg2;
-- (id)_changedTransientProperties__;
-- (id)_changedValuesForCurrentEvent;
-- (void)_clearAllChanges__;
-- (void)_clearPendingChanges__;
-- (void)_clearRawPropertiesWithHint:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg1;
-- (void)_clearUnprocessedChanges__;
-- (void)_commitPhotoshoperyForRelationshipAtIndex:(unsigned long long)arg1 newValue:(id)arg2;
 - (bool)_defaultValidation:(id*)arg1 error:(id*)arg2;
-- (id)_descriptionValues;
 - (void)_didChangeValue:(id)arg1 forRelationship:(id)arg2 named:(id)arg3 withInverse:(id)arg4;
-- (void)_excludeObject:(id)arg1 fromPropertyWithKey:(id)arg2 andIndex:(unsigned long long)arg3;
-- (id)_faultHandler__;
-- (id)_generateErrorDetailForKey:(id)arg1 withValue:(id)arg2;
-- (id)_generateErrorWithCode:(int)arg1 andMessage:(id)arg2 forKey:(id)arg3 andValue:(id)arg4 additionalDetail:(id)arg5;
 - (id)_genericMutableOrderedSetValueForKey:(id)arg1 withIndex:(long long)arg2 flags:(long long)arg3;
 - (id)_genericMutableSetValueForKey:(id)arg1 withIndex:(long long)arg2 flags:(long long)arg3;
-- (void)_genericUpdateFromSnapshot:(id)arg1;
 - (id)_genericValueForKey:(id)arg1 withIndex:(long long)arg2 flags:(long long)arg3;
-- (bool)_hasAnyObservers__;
-- (bool)_hasPendingChanges;
-- (bool)_hasRetainedStoreResources__;
-- (bool)_hasUnprocessedChanges__;
 - (id)_implicitObservationInfo;
-- (void)_includeObject:(id)arg1 intoPropertyWithKey:(id)arg2 andIndex:(unsigned long long)arg3;
 - (id)_initWithEntity:(id)arg1 withID:(id)arg2 withHandler:(id)arg3 withContext:(id)arg4;
 - (bool)_isDeallocating;
-- (bool)_isKindOfEntity:(id)arg1;
-- (bool)_isPendingDeletion__;
-- (bool)_isPendingInsertion__;
-- (bool)_isPendingUpdate__;
-- (bool)_isSuppressingChangeNotifications__;
-- (bool)_isSuppressingKVO__;
-- (bool)_isUnprocessedDeletion__;
-- (bool)_isUnprocessedInsertion__;
-- (bool)_isUnprocessedUpdate__;
-- (bool)_isValidRelationshipDestination__;
-- (id)_lastSnapshot__;
-- (void)_maintainInverseRelationship:(id)arg1 forProperty:(id)arg2 forChange:(unsigned long long)arg3 onSet:(id)arg4;
-- (void)_maintainInverseRelationship:(id)arg1 forProperty:(id)arg2 oldDestination:(id)arg3 newDestination:(id)arg4;
-- (id)_newAllPropertiesWithRelationshipFaultsIntact__;
-- (id)_newChangedValuesForRefresh__;
-- (id)_newCommittedSnapshotValues;
-- (id)_newNestedSaveChangedValuesForParent:(id)arg1;
-- (id)_newPersistentPropertiesForConflictRecordFaultsIntact__;
-- (id)_newPersistentPropertiesWithRelationshipFaultsIntact__;
-- (id)_newPropertiesForRetainedTypes:(unsigned int*)arg1 andCopiedTypes:(unsigned int*)arg2 preserveFaults:(bool)arg3;
-- (id)_newSetFromSet:(id)arg1 byApplyingDiffs:(id)arg2;
-- (id)_newSnapshotForUndo__;
-- (void)_nilOutReservedCurrentEventSnapshot__;
 - (id)_orderKeysForRelationshipWithName__:(id)arg1;
-- (id)_originalSnapshot__;
-- (id)_persistentProperties__;
-- (void)_prepropagateDeleteForMerge;
-- (void)_propagateDelete;
-- (void)_propagateDelete:(unsigned int)arg1;
-- (id)_referenceQueue__;
-- (id)_reservedCurrentEventSnapshot;
 - (void)_setGenericValue:(id)arg1 forKey:(id)arg2 withIndex:(long long)arg3 flags:(long long)arg4;
-- (void)_setHasRetainedStoreResources__:(bool)arg1;
-- (void)_setLastSnapshot__:(id)arg1;
-- (void)_setObjectID__:(id)arg1;
-- (void)_setOriginalSnapshot__:(id)arg1;
-- (void)_setPendingDeletion__:(bool)arg1;
-- (void)_setPendingInsertion__:(bool)arg1;
-- (void)_setPendingUpdate__:(bool)arg1;
-- (void)_setSuppressingChangeNotifications__:(bool)arg1;
-- (void)_setSuppressingKVO__:(bool)arg1;
-- (void)_setUnprocessedDeletion__:(bool)arg1;
-- (void)_setUnprocessedInsertion__:(bool)arg1;
-- (void)_setUnprocessedUpdate__:(bool)arg1;
 - (void)_setVersionReference__:(unsigned int)arg1;
-- (unsigned int)_stateFlags;
-- (id)_substituteEntityAndProperty:(id)arg1 inString:(id)arg2;
-- (id)_transientProperties__;
 - (bool)_tryRetain;
-- (void)_updateFromRefreshSnapshot:(id)arg1 includingTransients:(bool)arg2;
-- (void)_updateFromSnapshot:(id)arg1;
-- (void)_updateFromUndoSnapshot:(id)arg1;
 - (bool)_updateLocationsOfObjectsToLocationByOrderKey:(id)arg1 inRelationshipWithName:(id)arg2 error:(id*)arg3;
-- (void)_updateToManyRelationship:(id)arg1 from:(id)arg2 to:(id)arg3 with:(id)arg4;
-- (bool)_validateForSave:(id*)arg1;
-- (bool)_validatePropertiesWithError:(id*)arg1;
-- (bool)_validateValue:(id*)arg1 forProperty:(id)arg2 andKey:(id)arg3 withIndex:(unsigned long long)arg4 error:(id*)arg5;
 - (unsigned int)_versionReference__;
 - (void)awakeFromFetch;
 - (void)awakeFromInsert;
@@ -170,7 +99,6 @@
 - (void)didRefresh:(bool)arg1;
 - (void)didSave;
 - (void)didTurnIntoFault;
-- (void)diffOrderedSets:(id)arg1 :(id)arg2 :(id*)arg3 :(id*)arg4 :(id*)arg5 :(id*)arg6 :(id*)arg7;
 - (id)entity;
 - (unsigned long long)faultingState;
 - (bool)hasChanges;
@@ -214,7 +142,6 @@
 - (bool)validateValue:(id*)arg1 forKey:(id)arg2 error:(id*)arg3;
 - (id)valueForKey:(id)arg1;
 - (id)valueForUndefinedKey:(id)arg1;
-- (bool)wasForgotten;
 - (void)willAccessValueForKey:(id)arg1;
 - (void)willChange:(unsigned long long)arg1 valuesAtIndexes:(id)arg2 forKey:(id)arg3;
 - (void)willChangeValueForKey:(id)arg1;
@@ -231,5 +158,86 @@
 - (void)encodeWithCoder:(id)arg1;
 - (void)setValuesWithObject:(id)arg1;
 - (bool)validateRequiredAttributesForObject:(id)arg1 error:(id*)arg2;
+
+// Image: /System/Library/PrivateFrameworks/BookDataStore.framework/BookDataStore
+
+- (id)propertiesForKeys:(id)arg1;
+- (bool)setDifferentDate:(id)arg1 forKey:(id)arg2;
+- (bool)setDifferentNumber:(id)arg1 forKey:(id)arg2;
+- (bool)setDifferentObject:(id)arg1 forKey:(id)arg2;
+- (bool)setDifferentString:(id)arg1 forKey:(id)arg2;
+- (bool)setDifferentValue:(id)arg1 forKey:(id)arg2 klass:(Class)arg3;
+
+// Image: /System/Library/PrivateFrameworks/BookLibrary.framework/BookLibrary
+
+- (void)bl_setDateIfDifferent:(id)arg1 value:(id)arg2;
+- (void)bl_setDictionaryIfDifferent:(id)arg1 value:(id)arg2;
+- (void)bl_setNumberIfDifferent:(id)arg1 value:(id)arg2;
+- (void)bl_setStringIfDifferent:(id)arg1 value:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CoreThemeDefinition.framework/CoreThemeDefinition
+
++ (bool)isTracked;
+
+// Image: /System/Library/PrivateFrameworks/CourseKit.framework/CourseKit
+
+- (bool)updateKey:(id)arg1 withValue:(id)arg2 condition:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
++ (id)_gkFetchRequest;
+
+- (bool)_gkIsExpired:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/KeyboardServices.framework/KeyboardServices
+
+- (void)_copyAttributeValuesFromObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
++ (bool)ic_containsFaultingManagedObjects:(id)arg1;
++ (id)ic_existingObjectWithID:(id)arg1 context:(id)arg2;
++ (id)ic_objectIDsFromObjects:(id)arg1;
++ (id)ic_objectIDsMatchingPredicate:(id)arg1 context:(id)arg2;
++ (id)ic_objectIDsMatchingPredicate:(id)arg1 sortDescriptors:(id)arg2 context:(id)arg3;
++ (id)ic_objectsFromObjectIDs:(id)arg1 context:(id)arg2;
++ (id)ic_objectsFromObjectIDs:(id)arg1 relationshipKeyPathsForPrefetching:(id)arg2 context:(id)arg3;
++ (id)ic_objectsMatchingPredicate:(id)arg1 context:(id)arg2;
++ (id)ic_objectsMatchingPredicate:(id)arg1 sortDescriptors:(id)arg2 context:(id)arg3;
++ (id)ic_objectsMatchingPredicate:(id)arg1 sortDescriptors:(id)arg2 relationshipKeyPathsForPrefetching:(id)arg3 context:(id)arg4;
++ (id)ic_permanentObjectIDsFromObjects:(id)arg1;
++ (id)ic_resultsMatchingPredicate:(id)arg1 sortDescriptors:(id)arg2 resultType:(unsigned long long)arg3 relationshipKeyPathsForPrefetching:(id)arg4 context:(id)arg5;
+
+- (bool)ic_obtainPermanentObjectIDIfNecessary;
+- (id)ic_permanentObjectID;
+- (id)ic_persistentStore;
+- (id)ic_postNotificationOnMainThreadAfterSaveWithName:(id)arg1;
+- (void)ic_postNotificationOnMainThreadWithName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
+- (id)pl_shortDescription;
+- (id)pointerDescription;
+- (id)truncatedDescriptionWithPropertyKeys:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsFoundation.framework/PodcastsFoundation
+
++ (id)aggregateOperation:(id)arg1 attribute:(id)arg2 predicate:(id)arg3 managedObjectContext:(id)arg4;
+
+- (id)dictionaryRepresentation;
+- (id)dictionaryRepresentationWithNullAttributeValueProvider:(id /* block */)arg1;
+- (id)dictionaryRepresentationWithObjectId;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
+- (id)uri;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
+- (id)rc_valueForAttributeKey:(id)arg1;
+
+// Image: /usr/lib/swift/libswiftCoreData.dylib
+
+- (void)_willChange_Swift_Trampoline;
 
 @end

@@ -94,6 +94,9 @@
 - (bool)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2;
 - (void)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2 responseQueue:(id)arg3 withCompletion:(id /* block */)arg4;
 - (bool)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2 synchronous:(bool)arg3 responseQueue:(id)arg4 withCompletion:(id /* block */)arg5;
+- (id)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtKeyPath:(id)arg2;
+- (void)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtKeyPath:(id)arg2 responseQueue:(id)arg3 withCompletion:(id /* block */)arg4;
+- (id)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtKeyPath:(id)arg2 synchronous:(bool)arg3 responseQueue:(id)arg4 withCompletion:(id /* block */)arg5;
 - (void)retryTimes:(int)arg1 block:(id /* block */)arg2;
 - (void)setCachedValueIfClientHasRegistrations:(id)arg1 forKeyPath:(id)arg2;
 - (void)setEndpoint:(id)arg1;

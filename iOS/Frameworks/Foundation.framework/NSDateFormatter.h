@@ -71,6 +71,7 @@
 - (void)_invalidateCache;
 - (id)_locale_forOldMethods;
 - (bool)_mayDecorateAttributedStringForObjectValue:(id)arg1;
+- (id)_nextChangeDateAfterDate:(id)arg1;
 - (void)_regenerateFormatter;
 - (void)_regenerateFormatterIfAbsent;
 - (void)_reset;
@@ -164,9 +165,39 @@
 
 - (id)_mapkit_roundedPastUnitsStringFromDate:(id)arg1;
 
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_formatDate:(id)arg1 shortStyle:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
++ (id)monthYearStringFromDate:(id)arg1 calendar:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
+
++ (id)serverFriendlyFormatter;
+
 // Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
 
 + (id)CalSharedDateFormatter;
+
+// Image: /System/Library/PrivateFrameworks/FamilyCircle.framework/FamilyCircle
+
++ (id)fa_standardFormatter;
+
+// Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
+
+- (void)fu_observeTimeZoneAndLocaleChanges;
+
+// Image: /System/Library/PrivateFrameworks/HealthUI.framework/HealthUI
+
+- (id)hk_stringWithAMPMSpaceRemovedFromDate:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
++ (id)mtTimeOnlyFormatter;
+
+- (id)stringFromDate:(id)arg1 withRelativeToTimeZone:(id)arg2;
 
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
@@ -176,5 +207,47 @@
 + (id)_navigation_localizedTimestampStringForDepartureArrivalDate:(id)arg1 inTimeZone:(id)arg2 canIncludeDate:(bool)arg3 showTimeZone:(bool)arg4 useShortFormat:(bool)arg5;
 + (id)_navigation_localizedTimestampStringForDepartureArrivalDate:(id)arg1 inTimeZone:(id)arg2 canIncludeDate:(bool)arg3 suppressTimeZoneDisplay:(bool)arg4 useShortFormat:(bool)arg5;
 + (id)_timestampFormatterForTimeZone:(id)arg1 displayTimeZone:(bool)arg2;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
++ (id)dateFormatterWithFormat:(id)arg1 forReuse:(bool)arg2;
++ (id)dateFormatterWithFormat:(id)arg1 localeIdentifier:(id)arg2 forReuse:(bool)arg3;
++ (id)dateFormatterWithFormat:(id)arg1 localeIdentifier:(id)arg2 timezone:(id)arg3 forReuse:(bool)arg4;
++ (id)dateFormatterWithFormat:(id)arg1 timezone:(id)arg2 forReuse:(bool)arg3;
+
+- (id)initWithFormat:(id)arg1 localeIdentifier:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (bool)px_shouldAlwaysDisplayYearBeforeMonthForCurrentLocale;
++ (bool)px_yearBeforeMonthForLocale:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/RemoteConfiguration.framework/RemoteConfiguration
+
++ (id)dateFormatterWithFormat:(id)arg1 forReuse:(bool)arg2;
++ (id)dateFormatterWithFormat:(id)arg1 localeIdentifier:(id)arg2 forReuse:(bool)arg3;
++ (id)dateFormatterWithFormat:(id)arg1 localeIdentifier:(id)arg2 timezone:(id)arg3 forReuse:(bool)arg4;
++ (id)dateFormatterWithFormat:(id)arg1 timezone:(id)arg2 forReuse:(bool)arg3;
+
+- (id)initWithFormat:(id)arg1 localeIdentifier:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/RemoteManagement.framework/Frameworks/RemoteManagementModel.framework/RemoteManagementModel
+
++ (id)rmmodel_sharedRFC3339DateFormatter;
+
+// Image: /System/Library/PrivateFrameworks/Silex.framework/Silex
+
++ (id)dateFormatterWithFormat:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Stocks/StocksUI.framework/StocksUI
+
++ (id)su_localizedYearFormat;
+
+// Image: /System/Library/PrivateFrameworks/TVPlayback.framework/TVPlayback
+
++ (id)tvp_ISO8601CombinedDateAndTimeFormatter;
++ (id)tvp_RFC1123DateFormatter;
++ (id)tvp_RFC850DateFormatter;
++ (id)tvp_asctimeDateFormatter;
 
 @end

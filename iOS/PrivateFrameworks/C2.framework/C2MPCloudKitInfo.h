@@ -4,10 +4,14 @@
 
 @interface C2MPCloudKitInfo : PBCodable <NSCopying> {
     bool  _anonymous;
+    NSString * _applicationBundleIdentifierOverrideForContainerAccess;
+    NSString * _applicationBundleIdentifierOverrideForNetworkAttribution;
     NSString * _clientBundleId;
     NSMutableArray * _clientOperations;
     NSString * _clientProcessVersion;
     NSString * _container;
+    NSString * _containerScopedDeviceIdentifier;
+    NSString * _containerScopedUserIdentifier;
     NSString * _environment;
     struct { 
         unsigned int reportClientOperationFrequency : 1; 
@@ -24,15 +28,23 @@
 }
 
 @property (nonatomic) bool anonymous;
+@property (nonatomic, retain) NSString *applicationBundleIdentifierOverrideForContainerAccess;
+@property (nonatomic, retain) NSString *applicationBundleIdentifierOverrideForNetworkAttribution;
 @property (nonatomic, retain) NSString *clientBundleId;
 @property (nonatomic, retain) NSMutableArray *clientOperations;
 @property (nonatomic, retain) NSString *clientProcessVersion;
 @property (nonatomic, retain) NSString *container;
+@property (nonatomic, retain) NSString *containerScopedDeviceIdentifier;
+@property (nonatomic, retain) NSString *containerScopedUserIdentifier;
 @property (nonatomic, retain) NSString *environment;
 @property (nonatomic) bool hasAnonymous;
+@property (nonatomic, readonly) bool hasApplicationBundleIdentifierOverrideForContainerAccess;
+@property (nonatomic, readonly) bool hasApplicationBundleIdentifierOverrideForNetworkAttribution;
 @property (nonatomic, readonly) bool hasClientBundleId;
 @property (nonatomic, readonly) bool hasClientProcessVersion;
 @property (nonatomic, readonly) bool hasContainer;
+@property (nonatomic, readonly) bool hasContainerScopedDeviceIdentifier;
+@property (nonatomic, readonly) bool hasContainerScopedUserIdentifier;
 @property (nonatomic, readonly) bool hasEnvironment;
 @property (nonatomic) bool hasReportClientOperationFrequency;
 @property (nonatomic) bool hasReportClientOperationFrequencyBase;
@@ -51,6 +63,8 @@
 - (void)addClientOperation:(id)arg1;
 - (void)addOperationGroup:(id)arg1;
 - (bool)anonymous;
+- (id)applicationBundleIdentifierOverrideForContainerAccess;
+- (id)applicationBundleIdentifierOverrideForNetworkAttribution;
 - (void)clearClientOperations;
 - (void)clearOperationGroups;
 - (id)clientBundleId;
@@ -59,15 +73,21 @@
 - (unsigned long long)clientOperationsCount;
 - (id)clientProcessVersion;
 - (id)container;
+- (id)containerScopedDeviceIdentifier;
+- (id)containerScopedUserIdentifier;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)environment;
 - (bool)hasAnonymous;
+- (bool)hasApplicationBundleIdentifierOverrideForContainerAccess;
+- (bool)hasApplicationBundleIdentifierOverrideForNetworkAttribution;
 - (bool)hasClientBundleId;
 - (bool)hasClientProcessVersion;
 - (bool)hasContainer;
+- (bool)hasContainerScopedDeviceIdentifier;
+- (bool)hasContainerScopedUserIdentifier;
 - (bool)hasEnvironment;
 - (bool)hasReportClientOperationFrequency;
 - (bool)hasReportClientOperationFrequencyBase;
@@ -85,10 +105,14 @@
 - (unsigned long long)reportOperationGroupFrequency;
 - (unsigned long long)reportOperationGroupFrequencyBase;
 - (void)setAnonymous:(bool)arg1;
+- (void)setApplicationBundleIdentifierOverrideForContainerAccess:(id)arg1;
+- (void)setApplicationBundleIdentifierOverrideForNetworkAttribution:(id)arg1;
 - (void)setClientBundleId:(id)arg1;
 - (void)setClientOperations:(id)arg1;
 - (void)setClientProcessVersion:(id)arg1;
 - (void)setContainer:(id)arg1;
+- (void)setContainerScopedDeviceIdentifier:(id)arg1;
+- (void)setContainerScopedUserIdentifier:(id)arg1;
 - (void)setEnvironment:(id)arg1;
 - (void)setHasAnonymous:(bool)arg1;
 - (void)setHasReportClientOperationFrequency:(bool)arg1;

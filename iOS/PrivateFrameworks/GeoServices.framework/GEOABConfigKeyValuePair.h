@@ -11,10 +11,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_abConfigKey : 1; 
         unsigned int read_abConfigValue : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_abConfigKey : 1; 
-        unsigned int wrote_abConfigValue : 1; 
-        unsigned int wrote_abConfigValueType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -37,8 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsAbConfigValueType:(id)arg1;
-- (void)_readAbConfigKey;
-- (void)_readAbConfigValue;
 - (id)abConfigKey;
 - (id)abConfigValue;
 - (int)abConfigValueType;
@@ -54,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

@@ -22,6 +22,7 @@
     bool  _ignoresParentalRestrictions;
     long long  _mode;
     bool  _onlyRealContacts;
+    CNContainer * _parentContainer;
     NSPredicate * _predicateForEnablingContact;
     NSPredicate * _predicateForSelectionOfContact;
     NSPredicate * _predicateForSelectionOfProperty;
@@ -55,6 +56,7 @@
 @property (nonatomic) long long mode;
 @property (nonatomic, readonly) UINavigationController *navigationController;
 @property (nonatomic) bool onlyRealContacts;
+@property (nonatomic, retain) CNContainer *parentContainer;
 @property (nonatomic, copy) NSPredicate *predicateForEnablingContact;
 @property (nonatomic, copy) NSPredicate *predicateForSelectionOfContact;
 @property (nonatomic, copy) NSPredicate *predicateForSelectionOfProperty;
@@ -100,6 +102,7 @@
 - (id)navigationController;
 - (void)notifyDelegateForCancellation;
 - (bool)onlyRealContacts;
+- (id)parentContainer;
 - (void)pickerDidCancel;
 - (void)pickerDidSelectAddNewContact;
 - (void)pickerDidSelectContact:(id)arg1 property:(id)arg2;
@@ -130,6 +133,7 @@
 - (void)setIgnoresParentalRestrictions:(bool)arg1;
 - (void)setMode:(long long)arg1;
 - (void)setOnlyRealContacts:(bool)arg1;
+- (void)setParentContainer:(id)arg1;
 - (void)setPredicateForEnablingContact:(id)arg1;
 - (void)setPredicateForSelectionOfContact:(id)arg1;
 - (void)setPredicateForSelectionOfProperty:(id)arg1;

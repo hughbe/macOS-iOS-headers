@@ -42,6 +42,7 @@
 - (id)_transientState;
 - (void)_updateTapGestureHistoryWithLocation:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)_usesIndirectSelectionBehavior;
+- (bool)_usesPencilSelectionBehaviorForGesture:(id)arg1;
 - (void)confirmMarkedText:(id)arg1;
 - (void)didMoveToView:(id)arg1;
 - (void)didUpdateSelectionWithGesture:(id)arg1;

@@ -4,6 +4,7 @@
 
 @interface GEOLocation : PBCodable <NSCopying> {
     int  _altitude;
+    GEOCoarseLocationMetadata * _coarseMetadata;
     double  _course;
     double  _courseAccuracy;
     struct { 
@@ -28,31 +29,10 @@
         unsigned int has_isMatchedLocation : 1; 
         unsigned int has_isShifted : 1; 
         unsigned int read_unknownFields : 1; 
+        unsigned int read_coarseMetadata : 1; 
         unsigned int read_latLng : 1; 
         unsigned int read_rawCoordinate : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_courseAccuracy : 1; 
-        unsigned int wrote_course : 1; 
-        unsigned int wrote_heading : 1; 
-        unsigned int wrote_horizontalAccuracy : 1; 
-        unsigned int wrote_latLng : 1; 
-        unsigned int wrote_rawCoordinate : 1; 
-        unsigned int wrote_rawCourse : 1; 
-        unsigned int wrote_speedAccuracy : 1; 
-        unsigned int wrote_speed : 1; 
-        unsigned int wrote_timestamp : 1; 
-        unsigned int wrote_transitID : 1; 
-        unsigned int wrote_verticalAccuracy : 1; 
-        unsigned int wrote_altitude : 1; 
-        unsigned int wrote_formOfWay : 1; 
-        unsigned int wrote_levelOrdinal : 1; 
-        unsigned int wrote_matchQuality : 1; 
-        unsigned int wrote_referenceFrame : 1; 
-        unsigned int wrote_roadClass : 1; 
-        unsigned int wrote_transportType : 1; 
-        unsigned int wrote_type : 1; 
-        unsigned int wrote_isMatchedLocation : 1; 
-        unsigned int wrote_isShifted : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _formOfWay;
     double  _heading;
@@ -83,12 +63,14 @@
 }
 
 @property (nonatomic) int altitude;
+@property (nonatomic, retain) GEOCoarseLocationMetadata *coarseMetadata;
 @property (nonatomic, readonly) struct { double x1; double x2; } coordinate;
 @property (nonatomic) double course;
 @property (nonatomic) double courseAccuracy;
 @property (nonatomic) int formOfWay;
 @property (nonatomic, readonly) bool hasAccurateCourse;
 @property (nonatomic) bool hasAltitude;
+@property (nonatomic, readonly) bool hasCoarseMetadata;
 @property (nonatomic) bool hasCourse;
 @property (nonatomic) bool hasCourseAccuracy;
 @property (nonatomic) bool hasFormOfWay;
@@ -140,11 +122,12 @@
 - (int)StringAsRoadClass:(id)arg1;
 - (int)StringAsTransportType:(id)arg1;
 - (int)StringAsType:(id)arg1;
-- (void)_readLatLng;
-- (void)_readRawCoordinate;
 - (int)altitude;
+- (void)applyCoarseLocationRandomizationWithMaximumDistance:(double)arg1;
 - (void)clearSensitiveFields;
+- (void)clearSensitiveFieldsForCoarseLocation;
 - (void)clearUnknownFields:(bool)arg1;
+- (id)coarseMetadata;
 - (struct { double x1; double x2; })coordinate;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -156,6 +139,7 @@
 - (id)formOfWayAsString:(int)arg1;
 - (bool)hasAccurateCourse;
 - (bool)hasAltitude;
+- (bool)hasCoarseMetadata;
 - (bool)hasCourse;
 - (bool)hasCourseAccuracy;
 - (bool)hasFormOfWay;
@@ -181,10 +165,12 @@
 - (double)horizontalAccuracy;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
 - (id)initWithGEOCoordinate:(struct { double x1; double x2; })arg1;
 - (id)initWithGEOCoordinate:(struct { double x1; double x2; })arg1 floorOrdinal:(int)arg2;
 - (id)initWithGEOCoordinate:(struct { double x1; double x2; })arg1 isUserLocation:(bool)arg2;
 - (id)initWithGEOCoordinate:(struct { double x1; double x2; })arg1 isUserLocation:(bool)arg2 floorOrdinal:(int)arg3;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithLatitude:(double)arg1 longitude:(double)arg2;
 - (id)initWithLatitude:(double)arg1 longitude:(double)arg2 floorOrdinal:(int)arg3;
 - (id)initWithLatitude:(double)arg1 longitude:(double)arg2 isUserLocation:(bool)arg3 floorOrdinal:(int)arg4;
@@ -194,6 +180,7 @@
 - (bool)isEqual:(id)arg1;
 - (bool)isMatchedLocation;
 - (bool)isShifted;
+- (id)jsonRepresentation;
 - (id)latLng;
 - (int)levelOrdinal;
 - (int)matchQuality;
@@ -208,6 +195,7 @@
 - (int)roadClass;
 - (id)roadClassAsString:(int)arg1;
 - (void)setAltitude:(int)arg1;
+- (void)setCoarseMetadata:(id)arg1;
 - (void)setCourse:(double)arg1;
 - (void)setCourseAccuracy:(double)arg1;
 - (void)setFormOfWay:(int)arg1;

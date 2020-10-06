@@ -7,7 +7,7 @@
     unsigned long long  __changeCount;
     struct { 
         NSMutableSet *keyCommands; 
-        NSMutableSet *menus; 
+        NSMutableDictionary *menus; 
         NSMutableDictionary *actions; 
         _UICommandIdentifierDictionary *commands; 
         NSMutableDictionary *parentMenuIdentifiers; 
@@ -30,7 +30,6 @@
 - (id)_internalDiffForDiffv1:(id)arg1;
 - (bool)_isInternallyConsistent;
 - (id)_keyCommands;
-- (id)_menuForMenu:(id)arg1;
 - (id)_parentOfMenuForIdentifier:(id)arg1 commandForIdentifier:(id)arg2;
 - (void)_patch:(id)arg1;
 - (void)_patchInternalDiff:(id)arg1;

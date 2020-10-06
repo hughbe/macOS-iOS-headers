@@ -10,7 +10,6 @@
 - (void)addObjects:(const id*)arg1 count:(unsigned long long)arg2;
 - (void)addObjectsFromArray:(id)arg1;
 - (void)dealloc;
-- (id)initWithContainer:(id)arg1 key:(id)arg2 mutableOrderedSet:(id)arg3 mutationMethods:(id)arg4;
 - (void)insertObject:(id)arg1 atIndex:(unsigned long long)arg2;
 - (void)insertObjects:(id)arg1 atIndexes:(id)arg2;
 - (void)insertObjects:(id*)arg1 count:(unsigned long long)arg2 atIndex:(unsigned long long)arg3;

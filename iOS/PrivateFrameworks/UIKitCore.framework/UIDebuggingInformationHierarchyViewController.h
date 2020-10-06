@@ -36,13 +36,8 @@
 @property (nonatomic, retain) UIView *rootViewForInspection;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_showWindowChange;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)chooseNewTarget:(id)arg1;
 - (void)collapseBeneathCell:(id)arg1;
 - (id)collectionView;

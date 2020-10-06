@@ -40,10 +40,9 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UIColor *thumbTintColor;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)_modernGradientImageWithOnColor:(id)arg1 traitCollection:(id)arg2;
 + (id)_modernThumbImageWithColor:(id)arg1 mask:(unsigned long long)arg2 traitCollection:(id)arg3;
++ (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })preferredAlignmentRectInsets;
 + (struct CGSize { double x1; double x2; })preferredContentSize;
 
 - (void).cxx_destruct;
@@ -104,9 +103,6 @@
 - (double)_wellBorderWidthPressed:(bool)arg1 on:(bool)arg2;
 - (struct CGColor { }*)_wellColorOn:(bool)arg1;
 - (struct CGPoint { double x1; double x2; })_wellPositionOn:(bool)arg1 forBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)animationDidStop:(id)arg1 finished:(bool)arg2;
 - (id)cursorInteraction:(id)arg1 regionForLocation:(struct CGPoint { double x1; double x2; })arg2 defaultRegion:(id)arg3;
 - (id)cursorInteraction:(id)arg1 styleForRegion:(id)arg2 modifiers:(long long)arg3;

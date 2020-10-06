@@ -3,8 +3,7 @@
  */
 
 @interface EKPersistentObject : NSObject <EKFrozenMeltedPair, EKProtocolObject> {
-    NSMutableDictionary * _committedProperties;
-    NSMutableSet * _dirtyProperties;
+    NSMutableSet * _coCommitObjects;
     EKEventStore * _eventStore;
     unsigned int  _flags;
     NSMutableDictionary * _loadedProperties;
@@ -13,10 +12,10 @@
         BOOL __opaque[56]; 
     }  _lock;
     EKObjectID * _objectID;
+    NSMutableDictionary * _updatedProperties;
 }
 
 @property (nonatomic, readonly) bool canBeConvertedToFullObject;
-@property (nonatomic, retain) NSMutableDictionary *committedProperties;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) int entityType;
@@ -31,6 +30,7 @@
 
 + (id)_relationForKey:(id)arg1;
 + (bool)_shouldRetainPropertyForKey:(id)arg1;
++ (id)allObjectsWithChangesRelatedToObjects:(id)arg1;
 + (Class)alternateUniverseClass;
 + (id)defaultPropertiesToLoad;
 + (Class)frozenClass;
@@ -39,10 +39,10 @@
 + (id)relations;
 
 - (void).cxx_destruct;
-- (void)_addDirtyProperty:(id)arg1;
 - (void)_addObjectCore:(id)arg1 toValues:(id)arg2 relation:(id)arg3;
 - (bool)_areDefaultPropertiesLoaded;
 - (void)_createLoadedPropertiesIfNeeded;
+- (void)_createUpdatedPropertiesIfNeeded;
 - (bool)_isNew;
 - (bool)_isPendingDelete;
 - (bool)_isPendingInsert;
@@ -51,6 +51,7 @@
 - (void)_loadDefaultPropertiesIfNeeded;
 - (bool)_loadRelationForKey:(id)arg1 value:(id*)arg2;
 - (id)_loadStringValueForKey:(id)arg1;
+- (id)_loadedPropertyForKey:(id)arg1;
 - (id)_loadedPropertyKeys;
 - (void)_primitiveSetValue:(id)arg1 forKey:(id)arg2 daemonSetter:(id /* block */)arg3;
 - (id)_primitiveValueForKey:(id)arg1 loader:(id /* block */)arg2;
@@ -63,18 +64,17 @@
 - (void)_setPendingDelete:(bool)arg1;
 - (void)_setPendingInsert:(bool)arg1;
 - (void)_setPendingUpdate:(bool)arg1;
-- (void)_setProperty:(id)arg1 forKey:(id)arg2;
-- (void)_setProperty:(id)arg1 forKey:(id)arg2 forRelation:(id)arg3;
-- (void)_setProperty:(id)arg1 forKey:(id)arg2 isRelation:(bool)arg3;
+- (void)_setProperty:(id)arg1 forKey:(id)arg2 forRelation:(id)arg3 isUpdatedProperty:(bool)arg4;
+- (void)_setProperty:(id)arg1 forKey:(id)arg2 isRelation:(bool)arg3 isUpdatedProperty:(bool)arg4;
+- (void)_setProperty:(id)arg1 forKey:(id)arg2 isUpdatedProperty:(bool)arg3;
 - (void)_takeValues:(id)arg1 forKeys:(id)arg2;
 - (void)_takeValuesForDefaultPropertyKeys:(id)arg1 values:(id)arg2;
+- (void)addCoCommitObject:(id)arg1;
 - (bool)canBeConvertedToFullObject;
 - (id)changeSet;
 - (void)changed;
-- (id)committedProperties;
-- (id)committedValueForKey:(id)arg1;
+- (id)coCommitObjects;
 - (void)dealloc;
-- (id)dirtyProperties;
 - (id)dump;
 - (int)entityType;
 - (id)eventStore;
@@ -95,6 +95,7 @@
 - (bool)isPropertyDirty:(id)arg1;
 - (bool)isPropertyLoaded:(id)arg1;
 - (bool)isPropertyUnavailable:(id)arg1;
+- (id)loadedPropertyForKey:(id)arg1;
 - (id)meltedObjectInStore:(id)arg1;
 - (id)objectID;
 - (id)preFrozenRelationshipObjects;
@@ -115,9 +116,7 @@
 - (void)primitiveSetNumberValue:(id)arg1 forKey:(id)arg2;
 - (void)primitiveSetRelationValue:(id)arg1 forKey:(id)arg2;
 - (void)primitiveSetStringValue:(id)arg1 forKey:(id)arg2;
-- (void)primitiveSetURLValue:(id)arg1 forKey:(id)arg2;
 - (id)primitiveStringValueForKey:(id)arg1;
-- (id)primitiveURLValueForKey:(id)arg1;
 - (bool)pushDirtyProperties:(id*)arg1;
 - (bool)refresh;
 - (void)reset;
@@ -125,7 +124,6 @@
 - (void)saved;
 - (id)semanticIdentifier;
 - (bool)setAttributes:(id)arg1 relations:(id)arg2 objectID:(id)arg3 eventStore:(id)arg4 error:(id*)arg5;
-- (void)setCommittedProperties:(id)arg1;
 - (void)takeValues:(id)arg1 forKeys:(id)arg2;
 - (void)takeValuesForDefaultPropertyKeys:(id)arg1 values:(id)arg2;
 - (id)uniqueIdentifier;

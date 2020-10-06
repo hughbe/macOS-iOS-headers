@@ -3,7 +3,6 @@
  */
 
 @interface _INPBCallRecordValue : PBCodable <NSCopying, NSSecureCoding, _INPBCallRecordValue> {
-    bool  __encodeLegacyGloryData;
     int  _callCapability;
     _INPBCallMetrics * _callMetrics;
     int  _callType;
@@ -12,14 +11,16 @@
     struct { 
         unsigned int callCapability : 1; 
         unsigned int callType : 1; 
+        unsigned int preferredCallProvider : 1; 
         unsigned int unseen : 1; 
     }  _has;
     NSString * _identifier;
     _INPBInteger * _numberOfCalls;
+    int  _preferredCallProvider;
+    NSString * _providerId;
     bool  _unseen;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int callCapability;
 @property (nonatomic, retain) _INPBCallMetrics *callMetrics;
 @property (nonatomic) int callType;
@@ -34,10 +35,14 @@
 @property (nonatomic, readonly) bool hasDateCreated;
 @property (nonatomic, readonly) bool hasIdentifier;
 @property (nonatomic, readonly) bool hasNumberOfCalls;
+@property (nonatomic) bool hasPreferredCallProvider;
+@property (nonatomic, readonly) bool hasProviderId;
 @property (nonatomic) bool hasUnseen;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, retain) _INPBInteger *numberOfCalls;
+@property (nonatomic) int preferredCallProvider;
+@property (nonatomic, copy) NSString *providerId;
 @property (readonly) Class superclass;
 @property (nonatomic) bool unseen;
 
@@ -46,8 +51,7 @@
 - (void).cxx_destruct;
 - (int)StringAsCallCapability:(id)arg1;
 - (int)StringAsCallType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
+- (int)StringAsPreferredCallProvider:(id)arg1;
 - (int)callCapability;
 - (id)callCapabilityAsString:(int)arg1;
 - (id)callMetrics;
@@ -65,12 +69,17 @@
 - (bool)hasDateCreated;
 - (bool)hasIdentifier;
 - (bool)hasNumberOfCalls;
+- (bool)hasPreferredCallProvider;
+- (bool)hasProviderId;
 - (bool)hasUnseen;
 - (unsigned long long)hash;
 - (id)identifier;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)numberOfCalls;
+- (int)preferredCallProvider;
+- (id)preferredCallProviderAsString:(int)arg1;
+- (id)providerId;
 - (bool)readFrom:(id)arg1;
 - (void)setCallCapability:(int)arg1;
 - (void)setCallMetrics:(id)arg1;
@@ -79,9 +88,12 @@
 - (void)setDateCreated:(id)arg1;
 - (void)setHasCallCapability:(bool)arg1;
 - (void)setHasCallType:(bool)arg1;
+- (void)setHasPreferredCallProvider:(bool)arg1;
 - (void)setHasUnseen:(bool)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setNumberOfCalls:(id)arg1;
+- (void)setPreferredCallProvider:(int)arg1;
+- (void)setProviderId:(id)arg1;
 - (void)setUnseen:(bool)arg1;
 - (bool)unseen;
 - (void)writeTo:(id)arg1;

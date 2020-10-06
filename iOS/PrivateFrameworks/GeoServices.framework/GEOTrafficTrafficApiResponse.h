@@ -5,17 +5,10 @@
 @interface GEOTrafficTrafficApiResponse : PBCodable <NSCopying> {
     struct { 
         unsigned int has_responseId : 1; 
-        unsigned int read_incidentSnapshots : 1; 
         unsigned int read_metaData : 1; 
-        unsigned int read_speedSnapshots : 1; 
         unsigned int read_trafficSnapshots : 1; 
-        unsigned int wrote_responseId : 1; 
-        unsigned int wrote_incidentSnapshots : 1; 
-        unsigned int wrote_metaData : 1; 
-        unsigned int wrote_speedSnapshots : 1; 
-        unsigned int wrote_trafficSnapshots : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
-    NSMutableArray * _incidentSnapshots;
     GEOTrafficResponseMetaData * _metaData;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -27,36 +20,20 @@
         unsigned long long _high; 
         unsigned long long _low; 
     }  _responseId;
-    NSMutableArray * _speedSnapshots;
     NSMutableArray * _trafficSnapshots;
 }
 
 @property (nonatomic, readonly) bool hasMetaData;
 @property (nonatomic) bool hasResponseId;
-@property (nonatomic, retain) NSMutableArray *incidentSnapshots;
 @property (nonatomic, retain) GEOTrafficResponseMetaData *metaData;
 @property (nonatomic) struct GEOSessionID { unsigned long long x1; unsigned long long x2; } responseId;
-@property (nonatomic, retain) NSMutableArray *speedSnapshots;
 @property (nonatomic, retain) NSMutableArray *trafficSnapshots;
 
-+ (Class)incidentSnapshotsType;
 + (bool)isValid:(id)arg1;
-+ (Class)speedSnapshotsType;
 + (Class)trafficSnapshotsType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsIncidentSnapshots:(id)arg1;
-- (void)_addNoFlagsSpeedSnapshots:(id)arg1;
-- (void)_addNoFlagsTrafficSnapshots:(id)arg1;
-- (void)_readIncidentSnapshots;
-- (void)_readMetaData;
-- (void)_readSpeedSnapshots;
-- (void)_readTrafficSnapshots;
-- (void)addIncidentSnapshots:(id)arg1;
-- (void)addSpeedSnapshots:(id)arg1;
 - (void)addTrafficSnapshots:(id)arg1;
-- (void)clearIncidentSnapshots;
-- (void)clearSpeedSnapshots;
 - (void)clearTrafficSnapshots;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -65,26 +42,21 @@
 - (bool)hasMetaData;
 - (bool)hasResponseId;
 - (unsigned long long)hash;
-- (id)incidentSnapshots;
-- (id)incidentSnapshotsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)incidentSnapshotsCount;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)metaData;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (struct GEOSessionID { unsigned long long x1; unsigned long long x2; })responseId;
 - (void)setHasResponseId:(bool)arg1;
-- (void)setIncidentSnapshots:(id)arg1;
 - (void)setMetaData:(id)arg1;
 - (void)setResponseId:(struct GEOSessionID { unsigned long long x1; unsigned long long x2; })arg1;
-- (void)setSpeedSnapshots:(id)arg1;
 - (void)setTrafficSnapshots:(id)arg1;
-- (id)speedSnapshots;
-- (id)speedSnapshotsAtIndex:(unsigned long long)arg1;
-- (unsigned long long)speedSnapshotsCount;
 - (id)trafficSnapshots;
 - (id)trafficSnapshotsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)trafficSnapshotsCount;

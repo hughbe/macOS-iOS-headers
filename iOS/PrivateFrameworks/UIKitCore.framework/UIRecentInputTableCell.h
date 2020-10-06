@@ -9,11 +9,9 @@
 }
 
 @property (nonatomic) long long blurEffectStyle;
+@property (nonatomic, readonly) _UIFloatingContentView *floatingContentView;
 @property (nonatomic, retain) UILabel *floatingLabel;
 @property (nonatomic, retain) UITextInputTraits *textInputTraits;
-@property (nonatomic, readonly) _UIFloatingContentView *tvFloatingView;
-
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)backgroundColorForBlurEffectStyle:(long long)arg1;
 + (id)focusedTextColorForBlurEffectStyle:(long long)arg1;
@@ -22,11 +20,9 @@
 - (void).cxx_destruct;
 - (bool)_tvIsDarkMode;
 - (void)_updateAppearance;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)blurEffectStyle;
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
+- (id)floatingContentView;
 - (id)floatingLabel;
 - (void)layoutSubviews;
 - (void)setBlurEffectStyle:(long long)arg1;
@@ -36,6 +32,5 @@
 - (void)setTextInputTraits:(id)arg1;
 - (id)textInputTraits;
 - (void)traitCollectionDidChange:(id)arg1;
-- (id)tvFloatingView;
 
 @end

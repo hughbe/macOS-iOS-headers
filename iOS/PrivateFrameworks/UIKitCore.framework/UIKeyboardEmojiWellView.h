@@ -3,6 +3,7 @@
  */
 
 @interface UIKeyboardEmojiWellView : UIView {
+    bool  _activeSelection;
     NSIndexPath * _associatedIndexPath;
     UIView * _backgroundView;
     NSArray * _compositeImageRepresentation;
@@ -17,6 +18,7 @@
     UIView * _wellContentView;
 }
 
+@property (getter=isActiveSelection, nonatomic) bool activeSelection;
 @property (nonatomic, retain) NSIndexPath *associatedIndexPath;
 @property (nonatomic, retain) UIView *backgroundView;
 @property (nonatomic, retain) NSArray *compositeImageRepresentation;
@@ -27,22 +29,19 @@
 @property (nonatomic, retain) NSString *stringRepresentation;
 @property (nonatomic, retain) UIView *wellContentView;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)associatedIndexPath;
 - (id)backgroundView;
 - (id)compositeImageRepresentation;
 - (struct CGSize { double x1; double x2; })compositeImageSize;
 - (id)hitTest:(struct CGPoint { double x1; double x2; })arg1 withEvent:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (bool)isActiveSelection;
 - (bool)isSelected;
 - (id)labelFont;
 - (void)layoutSubviews;
 - (id)selectionBackgroundColor;
+- (void)setActiveSelection:(bool)arg1;
 - (void)setAssociatedIndexPath:(id)arg1;
 - (void)setBackgroundView:(id)arg1;
 - (void)setCompositeImageRepresentation:(id)arg1;

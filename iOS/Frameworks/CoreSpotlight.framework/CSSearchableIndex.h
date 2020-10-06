@@ -44,6 +44,7 @@
 + (id)mainBundleLocalizedString;
 + (void)notifyIndexDelegates;
 + (id)partialPathAttributes;
++ (void)setConnectionName:(id)arg1;
 + (void)volumeMountedAtURL:(id)arg1 withOptions:(id)arg2;
 
 - (void).cxx_destruct;

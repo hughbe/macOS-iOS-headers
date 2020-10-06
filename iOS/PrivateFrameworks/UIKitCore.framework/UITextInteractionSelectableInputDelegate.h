@@ -36,8 +36,6 @@
 @property (nonatomic, readonly) UIView *textInputView;
 @property (nonatomic, readonly) <UITextInputTokenizer> *tokenizer;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (id)selectableInputDelegateWithTextInput:(id)arg1;
 
 - (void).cxx_destruct;
@@ -58,9 +56,6 @@
 - (id)_moveUp:(bool)arg1 withHistory:(id)arg2;
 - (void)_setMarkedText:(id)arg1 selectedRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2;
 - (void)_unmarkText;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)baseWritingDirectionForPosition:(id)arg1 inDirection:(long long)arg2;
 - (id)beginningOfDocument;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })caretRectForPosition:(id)arg1;

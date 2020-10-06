@@ -20,7 +20,6 @@
     id /* block */  _rideSelectionsUpdatedHandler;
     id /* block */  _routeSummaryUpdatedHandler;
     id /* block */  _stepIndexUpdatedHandler;
-    id /* block */  _trafficIncidentAlertDetailsDataUpdatedHandler;
     id /* block */  _transitSummaryUpdatedHandler;
     int  _transportType;
 }
@@ -41,7 +40,6 @@
 @property (nonatomic, copy) id /* block */ routeSummaryUpdatedHandler;
 @property (nonatomic, copy) id /* block */ stepIndexUpdatedHandler;
 @property (readonly) Class superclass;
-@property (nonatomic, copy) id /* block */ trafficIncidentAlertDetailsDataUpdatedHandler;
 @property (nonatomic, copy) id /* block */ transitSummaryUpdatedHandler;
 
 - (void).cxx_destruct;
@@ -58,7 +56,6 @@
 - (void)_notifyWithRouteSummary:(id)arg1;
 - (void)_notifyWithStepIndex:(unsigned long long)arg1;
 - (void)_notifyWithStepNameInfo:(id)arg1;
-- (void)_notifyWithTrafficIncidentDetailsData:(id)arg1;
 - (void)_notifyWithTransitSummary:(id)arg1;
 - (void)_open;
 - (id /* block */)activeRouteDetailsDataUpdatedHandler;
@@ -86,7 +83,6 @@
 - (void)requestRouteSummary;
 - (void)requestStepIndex;
 - (void)requestStepNameInfo;
-- (void)requestTrafficIncidentDetailsData;
 - (void)requestTransitSummary;
 - (id /* block */)rideSelectionsUpdatedHandler;
 - (id /* block */)routeSummaryUpdatedHandler;
@@ -99,7 +95,6 @@
 - (void)routeSummaryUpdatedWithRideSelectionData:(id)arg1;
 - (void)routeSummaryUpdatedWithStepIndexData:(id)arg1;
 - (void)routeSummaryUpdatedWithStepNameInfoData:(id)arg1;
-- (void)routeSummaryUpdatedWithTrafficIncidentAlertDetailsData:(id)arg1;
 - (void)routeSummaryUpdatedWithTransitSummaryData:(id)arg1;
 - (void)setActiveRouteDetailsDataUpdatedHandler:(id /* block */)arg1;
 - (void)setDelegate:(id)arg1;
@@ -111,10 +106,8 @@
 - (void)setRideSelectionsUpdatedHandler:(id /* block */)arg1;
 - (void)setRouteSummaryUpdatedHandler:(id /* block */)arg1;
 - (void)setStepIndexUpdatedHandler:(id /* block */)arg1;
-- (void)setTrafficIncidentAlertDetailsDataUpdatedHandler:(id /* block */)arg1;
 - (void)setTransitSummaryUpdatedHandler:(id /* block */)arg1;
 - (id /* block */)stepIndexUpdatedHandler;
-- (id /* block */)trafficIncidentAlertDetailsDataUpdatedHandler;
 - (id /* block */)transitSummaryUpdatedHandler;
 
 @end

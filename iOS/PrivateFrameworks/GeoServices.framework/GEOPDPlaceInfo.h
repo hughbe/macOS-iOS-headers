@@ -6,6 +6,7 @@
     double  _area;
     GEOPDBasemapRegionMetadata * _basemapRegionMetadata;
     GEOLatLng * _center;
+    GEOLatLng * _enhancedCenter;
     struct { 
         unsigned int has_area : 1; 
         unsigned int has_knownAccuracy : 1; 
@@ -13,14 +14,9 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_basemapRegionMetadata : 1; 
         unsigned int read_center : 1; 
+        unsigned int read_enhancedCenter : 1; 
         unsigned int read_timezone : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_area : 1; 
-        unsigned int wrote_basemapRegionMetadata : 1; 
-        unsigned int wrote_center : 1; 
-        unsigned int wrote_timezone : 1; 
-        unsigned int wrote_knownAccuracy : 1; 
-        unsigned int wrote_isApproximateCenter : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isApproximateCenter;
     int  _knownAccuracy;
@@ -37,9 +33,11 @@
 @property (nonatomic) double area;
 @property (nonatomic, retain) GEOPDBasemapRegionMetadata *basemapRegionMetadata;
 @property (nonatomic, retain) GEOLatLng *center;
+@property (nonatomic, retain) GEOLatLng *enhancedCenter;
 @property (nonatomic) bool hasArea;
 @property (nonatomic, readonly) bool hasBasemapRegionMetadata;
 @property (nonatomic, readonly) bool hasCenter;
+@property (nonatomic, readonly) bool hasEnhancedCenter;
 @property (nonatomic) bool hasIsApproximateCenter;
 @property (nonatomic) bool hasKnownAccuracy;
 @property (nonatomic, readonly) bool hasTimezone;
@@ -53,9 +51,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsKnownAccuracy:(id)arg1;
-- (void)_readBasemapRegionMetadata;
-- (void)_readCenter;
-- (void)_readTimezone;
 - (double)area;
 - (id)basemapRegionMetadata;
 - (id)center;
@@ -64,17 +59,22 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (id)enhancedCenter;
 - (bool)hasArea;
 - (bool)hasBasemapRegionMetadata;
 - (bool)hasCenter;
+- (bool)hasEnhancedCenter;
 - (bool)hasIsApproximateCenter;
 - (bool)hasKnownAccuracy;
 - (bool)hasTimezone;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isApproximateCenter;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)knownAccuracy;
 - (id)knownAccuracyAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;
@@ -83,6 +83,7 @@
 - (void)setArea:(double)arg1;
 - (void)setBasemapRegionMetadata:(id)arg1;
 - (void)setCenter:(id)arg1;
+- (void)setEnhancedCenter:(id)arg1;
 - (void)setHasArea:(bool)arg1;
 - (void)setHasIsApproximateCenter:(bool)arg1;
 - (void)setHasKnownAccuracy:(bool)arg1;

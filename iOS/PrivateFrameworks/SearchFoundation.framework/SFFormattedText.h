@@ -37,10 +37,12 @@
 - (bool)hasIsBold;
 - (bool)hasIsEmphasized;
 - (bool)hasTextColor;
+- (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProtobuf:(id)arg1;
 - (bool)isBold;
 - (bool)isEmphasized;
+- (bool)isEqual:(id)arg1;
 - (id)jsonData;
 - (void)setGlyph:(id)arg1;
 - (void)setIsBold:(bool)arg1;

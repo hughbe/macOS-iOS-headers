@@ -35,6 +35,8 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSXPCConnection *unzipServiceConnection;
 
+// Image: /System/Library/PrivateFrameworks/StreamingZip.framework/StreamingZip
+
 + (void)enableDebugLogging;
 + (id)knownSZExtractorImplementations;
 + (bool)supportsSecureCoding;
@@ -61,6 +63,7 @@
 - (bool)hasHadPostSetupMethodsCalled;
 - (unsigned long long)hash;
 - (id)inProcessUnzipper;
+- (id)init;
 - (id)initForLocalExtractionWithPath:(id)arg1 options:(id)arg2 resumptionOffset:(unsigned long long*)arg3;
 - (id)initForRemoteExtractionWithPath:(id)arg1 options:(id)arg2 resumptionOffset:(unsigned long long*)arg3;
 - (id)initWithCoder:(id)arg1;
@@ -90,5 +93,9 @@
 - (void)suspendStreamWithCompletionBlock:(id /* block */)arg1;
 - (void)terminateStreamWithError:(id)arg1 completionBlock:(id /* block */)arg2;
 - (id)unzipServiceConnection;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
++ (id)optionsForArchiveURL:(id)arg1 digest:(id)arg2;
 
 @end

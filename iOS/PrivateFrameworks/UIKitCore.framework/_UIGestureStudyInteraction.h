@@ -3,32 +3,46 @@
  */
 
 @interface _UIGestureStudyInteraction : NSObject <UIGestureRecognizerDelegate, UIInteraction> {
-    double  _durationWhenMovementExceeded;
-    _UIGestureStudyPressDurationGestureRecognizer * _pressDurationRecognizer;
+    <_UIGestureStudyInteractionDelegate> * _delegate;
+    NSMutableDictionary * _eventMetadata;
+    _UIGestureStudyClickInteraction * _forceClickInteraction;
+    _UIGestureStudyClickInteraction * _longPressClickInteraction;
+    _UIGestureStudyMetricsGestureRecognizer * _metricsGestureRecognizer;
     UIView * _view;
 }
 
 @property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <_UIGestureStudyInteractionDelegate> *delegate;
 @property (readonly, copy) NSString *description;
-@property (nonatomic) double durationWhenMovementExceeded;
+@property (nonatomic, retain) NSMutableDictionary *eventMetadata;
+@property (nonatomic, retain) _UIGestureStudyClickInteraction *forceClickInteraction;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, retain) _UIGestureStudyPressDurationGestureRecognizer *pressDurationRecognizer;
+@property (nonatomic, retain) _UIGestureStudyClickInteraction *longPressClickInteraction;
+@property (nonatomic, retain) _UIGestureStudyMetricsGestureRecognizer *metricsGestureRecognizer;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) UIView *view;
 
 - (void).cxx_destruct;
-- (id)_eventDataForTriggeredRecognizer:(id)arg1;
-- (void)_handlePressRecognizer:(id)arg1;
-- (id)_locationForTriggeredRecognizer:(id)arg1;
-- (void)_reportEventForTriggeredRecognizer:(id)arg1;
-- (id)_viewDescription;
+- (id)_baseMetadataForTriggeredParticipant:(id)arg1;
+- (void)_handleMetricsEvent:(id)arg1;
+- (void)_interactionDidTrigger:(id)arg1;
+- (id)_numberOfActiveTouches;
+- (void)_reportEventForTriggeredParticipant:(id)arg1;
+- (id)_viewRegionForTriggeredParticipant:(id)arg1;
+- (id)delegate;
 - (void)didMoveToView:(id)arg1;
-- (double)durationWhenMovementExceeded;
+- (id)eventMetadata;
+- (id)forceClickInteraction;
 - (bool)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
+- (id)initWithDelegate:(id)arg1;
 - (struct CGPoint { double x1; double x2; })locationInCoordinateSpace:(id)arg1;
-- (id)pressDurationRecognizer;
-- (void)setDurationWhenMovementExceeded:(double)arg1;
-- (void)setPressDurationRecognizer:(id)arg1;
+- (id)longPressClickInteraction;
+- (id)metricsGestureRecognizer;
+- (void)setDelegate:(id)arg1;
+- (void)setEventMetadata:(id)arg1;
+- (void)setForceClickInteraction:(id)arg1;
+- (void)setLongPressClickInteraction:(id)arg1;
+- (void)setMetricsGestureRecognizer:(id)arg1;
 - (id)view;
 - (void)willMoveToView:(id)arg1;
 

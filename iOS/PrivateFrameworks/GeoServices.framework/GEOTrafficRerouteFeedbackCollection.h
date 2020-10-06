@@ -14,15 +14,7 @@
         unsigned int read_oldRouteID : 1; 
         unsigned int read_oldRouteIncidents : 1; 
         unsigned int read_reroutedRouteID : 1; 
-        unsigned int wrote_directionResponseID : 1; 
-        unsigned int wrote_oldRouteID : 1; 
-        unsigned int wrote_oldRouteIncidents : 1; 
-        unsigned int wrote_reroutedRouteID : 1; 
-        unsigned int wrote_oldRouteHistoricTravelTime : 1; 
-        unsigned int wrote_oldRouteTravelTime : 1; 
-        unsigned int wrote_reroutedRouteHistoricTravelTime : 1; 
-        unsigned int wrote_reroutedRouteTravelTime : 1; 
-        unsigned int wrote_oldRouteBlocked : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _oldRouteBlocked;
     unsigned int  _oldRouteHistoricTravelTime;
@@ -62,11 +54,6 @@
 + (Class)oldRouteIncidentsType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsOldRouteIncidents:(id)arg1;
-- (void)_readDirectionResponseID;
-- (void)_readOldRouteID;
-- (void)_readOldRouteIncidents;
-- (void)_readReroutedRouteID;
 - (void)addOldRouteIncidents:(id)arg1;
 - (void)clearOldRouteIncidents;
 - (void)copyTo:(id)arg1;
@@ -85,7 +72,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (bool)oldRouteBlocked;
 - (unsigned int)oldRouteHistoricTravelTime;

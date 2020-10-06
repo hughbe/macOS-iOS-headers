@@ -25,6 +25,7 @@
 - (bool)allowsPullDownGesture;
 - (double)candidateDefaultFontSize;
 - (id)candidateFontWithSize:(double)arg1;
+- (id)candidateFontWithSize:(double)arg1 language:(id)arg2;
 - (bool)darkKeyboard;
 - (id)extendedScrolledState;
 - (id)extendedState;

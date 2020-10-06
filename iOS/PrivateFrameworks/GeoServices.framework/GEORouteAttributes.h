@@ -10,6 +10,7 @@
     }  _additionalTransportTypes;
     GEOAutomobileOptions * _automobileOptions;
     int  _basicPointsToBeIncluded;
+    GEOCyclingOptions * _cyclingOptions;
     GEODestinationInfo * _destinationInfo;
     int  _destinationType;
     bool  _directZilchByLaneFlowlines;
@@ -38,37 +39,12 @@
         unsigned int read_additionalTransportTypes : 1; 
         unsigned int read_uiContexts : 1; 
         unsigned int read_automobileOptions : 1; 
+        unsigned int read_cyclingOptions : 1; 
         unsigned int read_destinationInfo : 1; 
         unsigned int read_phoneticLocaleIdentifier : 1; 
         unsigned int read_transitOptions : 1; 
         unsigned int read_walkingOptions : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_additionalTransportTypes : 1; 
-        unsigned int wrote_uiContexts : 1; 
-        unsigned int wrote_timepoint : 1; 
-        unsigned int wrote_automobileOptions : 1; 
-        unsigned int wrote_destinationInfo : 1; 
-        unsigned int wrote_phoneticLocaleIdentifier : 1; 
-        unsigned int wrote_transitOptions : 1; 
-        unsigned int wrote_walkingOptions : 1; 
-        unsigned int wrote_basicPointsToBeIncluded : 1; 
-        unsigned int wrote_destinationType : 1; 
-        unsigned int wrote_mainTransportType : 1; 
-        unsigned int wrote_trafficType : 1; 
-        unsigned int wrote_walkingLimitMeters : 1; 
-        unsigned int wrote_directZilchByLaneFlowlines : 1; 
-        unsigned int wrote_enableExperimentalMode : 1; 
-        unsigned int wrote_includeContingencyRoutes : 1; 
-        unsigned int wrote_includeHistoricTravelTime : 1; 
-        unsigned int wrote_includeLaneGuidance : 1; 
-        unsigned int wrote_includeManeuverIcons : 1; 
-        unsigned int wrote_includePhonetics : 1; 
-        unsigned int wrote_includeTrafficAlongRoute : 1; 
-        unsigned int wrote_includeTrafficIncidents : 1; 
-        unsigned int wrote_includeZilchPoints : 1; 
-        unsigned int wrote_includeCrossLanguagePhonetics : 1; 
-        unsigned int wrote_includeLaneWidths : 1; 
-        unsigned int wrote_useMetricThreshold : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _includeContingencyRoutes;
     bool  _includeCrossLanguagePhonetics;
@@ -115,12 +91,14 @@
 @property (nonatomic, readonly) unsigned long long additionalTransportTypesCount;
 @property (nonatomic, retain) GEOAutomobileOptions *automobileOptions;
 @property (nonatomic) int basicPointsToBeIncluded;
+@property (nonatomic, retain) GEOCyclingOptions *cyclingOptions;
 @property (nonatomic, retain) GEODestinationInfo *destinationInfo;
 @property (nonatomic) int destinationType;
 @property (nonatomic) bool directZilchByLaneFlowlines;
 @property (nonatomic) bool enableExperimentalMode;
 @property (nonatomic, readonly) bool hasAutomobileOptions;
 @property (nonatomic) bool hasBasicPointsToBeIncluded;
+@property (nonatomic, readonly) bool hasCyclingOptions;
 @property (nonatomic, readonly) bool hasDestinationInfo;
 @property (nonatomic) bool hasDestinationType;
 @property (nonatomic) bool hasDirectZilchByLaneFlowlines;
@@ -177,15 +155,6 @@
 - (int)StringAsMainTransportType:(id)arg1;
 - (int)StringAsTrafficType:(id)arg1;
 - (int)StringAsUiContexts:(id)arg1;
-- (void)_addNoFlagsAdditionalTransportType:(int)arg1;
-- (void)_addNoFlagsUiContext:(int)arg1;
-- (void)_readAdditionalTransportTypes;
-- (void)_readAutomobileOptions;
-- (void)_readDestinationInfo;
-- (void)_readPhoneticLocaleIdentifier;
-- (void)_readTransitOptions;
-- (void)_readUiContexts;
-- (void)_readWalkingOptions;
 - (void)addAdditionalTransportType:(int)arg1;
 - (void)addUiContext:(int)arg1;
 - (int)additionalTransportTypeAtIndex:(unsigned long long)arg1;
@@ -195,11 +164,14 @@
 - (id)automobileOptions;
 - (int)basicPointsToBeIncluded;
 - (id)basicPointsToBeIncludedAsString:(int)arg1;
+- (void)buildRouteAttributes:(id)arg1 result:(id /* block */)arg2;
+- (void)buildRouteAttributesForETAUpdateRequest:(id)arg1 queue:(id)arg2 result:(id /* block */)arg3;
 - (void)clearAdditionalTransportTypes;
 - (void)clearUiContexts;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)cyclingOptions;
 - (void)dealloc;
 - (id)description;
 - (id)destinationInfo;
@@ -210,6 +182,7 @@
 - (bool)enableExperimentalMode;
 - (bool)hasAutomobileOptions;
 - (bool)hasBasicPointsToBeIncluded;
+- (bool)hasCyclingOptions;
 - (bool)hasDestinationInfo;
 - (bool)hasDestinationType;
 - (bool)hasDirectZilchByLaneFlowlines;
@@ -245,7 +218,10 @@
 - (bool)includeZilchPoints;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)mainTransportType;
 - (id)mainTransportTypeAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;
@@ -255,6 +231,7 @@
 - (void)setAdditionalTransportTypes:(int*)arg1 count:(unsigned long long)arg2;
 - (void)setAutomobileOptions:(id)arg1;
 - (void)setBasicPointsToBeIncluded:(int)arg1;
+- (void)setCyclingOptions:(id)arg1;
 - (void)setDestinationInfo:(id)arg1;
 - (void)setDestinationType:(int)arg1;
 - (void)setDirectZilchByLaneFlowlines:(bool)arg1;
@@ -297,6 +274,7 @@
 - (void)setUseMetricThreshold:(bool)arg1;
 - (void)setWalkingLimitMeters:(unsigned int)arg1;
 - (void)setWalkingOptions:(id)arg1;
+- (bool)shouldRetryForError:(id)arg1;
 - (struct GEOTimepoint { double x1; double x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })timepoint;
 - (int)trafficType;
 - (id)trafficTypeAsString:(int)arg1;
@@ -314,5 +292,7 @@
 // Image: /System/Library/PrivateFrameworks/Navigation.framework/Navigation
 
 + (id)defaultRouteAttributesForTransportType:(int)arg1;
+
+- (id)_vehicleSpecifications;
 
 @end

@@ -7,9 +7,7 @@
         unsigned int read_mapsSearchResults : 1; 
         unsigned int read_suggestionEntryMetadataDisplayeds : 1; 
         unsigned int read_suggestionEntryMetadataTappedOn : 1; 
-        unsigned int wrote_mapsSearchResults : 1; 
-        unsigned int wrote_suggestionEntryMetadataDisplayeds : 1; 
-        unsigned int wrote_suggestionEntryMetadataTappedOn : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _mapsSearchResults;
     PBDataReader * _reader;
@@ -32,11 +30,6 @@
 + (Class)suggestionEntryMetadataDisplayedType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsMapsSearchResult:(id)arg1;
-- (void)_addNoFlagsSuggestionEntryMetadataDisplayed:(id)arg1;
-- (void)_readMapsSearchResults;
-- (void)_readSuggestionEntryMetadataDisplayeds;
-- (void)_readSuggestionEntryMetadataTappedOn;
 - (void)addMapsSearchResult:(id)arg1;
 - (void)addSuggestionEntryMetadataDisplayed:(id)arg1;
 - (void)clearMapsSearchResults;
@@ -49,7 +42,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapsSearchResultAtIndex:(unsigned long long)arg1;
 - (id)mapsSearchResults;
 - (unsigned long long)mapsSearchResultsCount;

@@ -25,6 +25,7 @@
 - (void)_endPress;
 - (void)_finishNextStep:(id)arg1;
 - (double)_force;
+- (bool)_isGestureType:(long long)arg1;
 - (void)_nextStep:(id)arg1;
 - (void)_resetGestureRecognizer;
 - (void)_scheduleNextTimer;

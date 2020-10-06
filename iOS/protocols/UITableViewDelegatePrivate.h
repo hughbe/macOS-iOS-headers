@@ -5,10 +5,6 @@
 
 @optional
 
-- (_UICursorRegion *)_tableView:(UITableView *)arg1 cursorRegionForRowAtIndexPath:(NSIndexPath *)arg2 defaultRegion:(_UICursorRegion *)arg3;
-- (_UICursorStyle *)_tableView:(UITableView *)arg1 cursorStyleForModifiers:(long long)arg2 atIndexPath:(NSIndexPath *)arg3;
-- (void)_tableView:(UITableView *)arg1 cursorWillEnterRowAtIndexPath:(NSIndexPath *)arg2;
-- (void)_tableView:(UITableView *)arg1 cursorWillExitRowAtIndexPath:(NSIndexPath *)arg2;
 - (bool)_tableView:(UITableView *)arg1 shouldSpringLoadRowAtIndexPath:(NSIndexPath *)arg2 withContext:(id <UISpringLoadedInteractionContext>)arg3;
 - (UITableViewCell *)_tableView:(UITableView *)arg1 templateLayoutCellForCellsWithReuseIdentifier:(NSString *)arg2;
 - (void)_tableView:(UITableView *)arg1 willLayoutCell:(UITableViewCell *)arg2 usingTemplateLayoutCell:(UITableViewCell *)arg3 forRowAtIndexPath:(NSIndexPath *)arg4;

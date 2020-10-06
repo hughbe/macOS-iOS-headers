@@ -35,6 +35,7 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (bool)_forcePresentationInPresenterScene;
 - (id)_popoverHostingWindow;
 - (id)_presentationControllerForTraitCollection:(id)arg1;
 - (id)_presentedViewControllerForSizeClassPair:(struct { long long x1; long long x2; })arg1;

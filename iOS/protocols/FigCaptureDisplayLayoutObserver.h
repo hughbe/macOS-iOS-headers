@@ -5,6 +5,6 @@
 
 @required
 
-- (void)layoutMonitor:(FigCaptureDisplayLayoutMonitor *)arg1 didUpdateLayoutWithForegroundApps:(NSArray *)arg2 obscuredApps:(NSArray *)arg3 transitioningApps:(NSArray *)arg4;
+- (void)layoutMonitor:(FigCaptureDisplayLayoutMonitor *)arg1 didUpdateLayoutWithForegroundApps:(NSArray *)arg2 obscuredApps:(NSArray *)arg3 transitioningApps:(NSArray *)arg4 pipApps:(NSArray *)arg5;
 
 @end

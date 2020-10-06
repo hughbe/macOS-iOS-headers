@@ -3,11 +3,10 @@
  */
 
 @interface WebCoreAudioCaptureSourceIOSListener : NSObject {
-    struct CoreAudioCaptureSourceFactoryIOS { int (**x1)(); struct RealtimeMediaSource {} *x2; struct RetainPtr<WebCoreAudioCaptureSourceIOSListener> { void *x_3_1_1; } x3; } * _callback;
+    struct CoreAudioCaptureSourceFactoryIOS { int (**x1)(); struct RealtimeMediaSource {} *x2; int (**x3)(); struct WeakPtrFactory<WebCore::AudioSession::InterruptionObserver, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_4_1_1; } x4; struct RetainPtr<WebCoreAudioCaptureSourceIOSListener> { void *x_5_1_1; } x5; } * _callback;
 }
 
-- (void)handleInterruption:(id)arg1;
-- (id)initWithCallback:(struct CoreAudioCaptureSourceFactoryIOS { int (**x1)(); struct RealtimeMediaSource {} *x2; struct RetainPtr<WebCoreAudioCaptureSourceIOSListener> { void *x_3_1_1; } x3; }*)arg1;
+- (id)initWithCallback:(struct CoreAudioCaptureSourceFactoryIOS { int (**x1)(); struct RealtimeMediaSource {} *x2; int (**x3)(); struct WeakPtrFactory<WebCore::AudioSession::InterruptionObserver, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_2_1; } x_4_1_1; } x4; struct RetainPtr<WebCoreAudioCaptureSourceIOSListener> { void *x_5_1_1; } x5; }*)arg1;
 - (void)invalidate;
 - (void)sessionMediaServicesWereReset:(id)arg1;
 

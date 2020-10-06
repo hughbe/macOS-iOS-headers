@@ -3,11 +3,13 @@
  */
 
 @interface INSendMessageAttachment : NSObject <INEnumerable, INJSONSerializable> {
+    INFile * _audioMessageFile;
     bool  _currentLocation;
     INFile * _file;
     NSURL * _speechDataURL;
 }
 
+@property (nonatomic, readonly, copy) INFile *audioMessageFile;
 @property (nonatomic, readonly) bool currentLocation;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -17,6 +19,7 @@
 @property (readonly) Class superclass;
 
 + (id)_intents_decodeWithJSONDecoder:(id)arg1 codableDescription:(id)arg2 from:(id)arg3;
++ (id)attachmentWithAudioMessageFile:(id)arg1;
 + (id)attachmentWithCurrentLocation;
 + (id)attachmentWithFile:(id)arg1;
 + (id)attachmentWithSpeechDataURL:(id)arg1;
@@ -24,9 +27,10 @@
 
 - (void).cxx_destruct;
 - (id)_dictionaryRepresentation;
-- (id)_initWithCurrentLocation:(bool)arg1 file:(id)arg2 speechDataURL:(id)arg3;
+- (id)_initWithCurrentLocation:(bool)arg1 file:(id)arg2 speechDataURL:(id)arg3 audioMessageFile:(id)arg4;
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
 - (bool)_intents_enumerateObjectsOfClass:(Class)arg1 withBlock:(id /* block */)arg2;
+- (id)audioMessageFile;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)currentLocation;
 - (void)encodeWithCoder:(id)arg1;

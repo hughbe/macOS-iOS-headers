@@ -2,13 +2,17 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@interface BKSHIDEventDispatchingTarget : NSObject <NSCopying, NSSecureCoding> {
+@interface BKSHIDEventDispatchingTarget : NSObject <BSDescriptionStreamable, NSCopying, NSSecureCoding> {
     BKSHIDEventDeferringEnvironment * _environment;
     int  _pid;
 }
 
+@property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, readonly, copy) BKSHIDEventDeferringEnvironment *deferringEnvironment;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) int pid;
+@property (readonly) Class superclass;
 
 + (id)focusTargetForPID:(int)arg1;
 + (id)keyboardFocusTarget;
@@ -19,6 +23,7 @@
 
 - (void).cxx_destruct;
 - (id)_initWithEnvironment:(id)arg1 pid:(int)arg2;
+- (void)appendDescriptionToFormatter:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)deferringEnvironment;
 - (id)description;

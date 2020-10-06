@@ -8,7 +8,7 @@
 
 @property (nonatomic, retain) NSObject<OS_dispatch_group> *dispatchGroup;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)dispatchGroup;
 - (void)executeWithDispatchGroup:(id /* block */)arg1;
 - (id)init;

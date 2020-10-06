@@ -3,14 +3,12 @@
  */
 
 @interface _INPBFlightReservation : PBCodable <NSCopying, NSSecureCoding, _INPBFlightReservation> {
-    bool  __encodeLegacyGloryData;
     _INPBFlight * _flight;
     struct { }  _has;
     _INPBReservation * _reservation;
     _INPBSeat * _reservedSeat;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) _INPBFlight *flight;
@@ -25,8 +23,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;

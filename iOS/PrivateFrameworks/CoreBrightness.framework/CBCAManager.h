@@ -15,7 +15,6 @@
 - (void)displayBrightnessPropertyHandler:(id)arg1;
 - (void)handleNotificationForKey:(id)arg1 withProperty:(id)arg2;
 - (id)initWithCADisplay:(id)arg1;
-- (id)initWithCADisplays:(id)arg1;
 - (void)nitsThresholdPLCPropertyHandler:(id)arg1;
 - (void)updateDigitalDimmingBrightnessScaler:(id)arg1;
 

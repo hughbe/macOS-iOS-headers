@@ -4,7 +4,6 @@
 
 @interface MKInfoCardThemeManager : NSObject <MKInfoCardTheme> {
     NSDictionary * _colors;
-    UIColor * _currentTintColor;
     unsigned long long  _themeType;
     bool  _themeWasExplicitySet;
     id /* block */  _tintColorProvider;
@@ -20,7 +19,6 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) UIColor *headerPrimaryButtonHighlightedColor;
 @property (nonatomic, readonly) UIColor *headerPrimaryButtonNormalColor;
-@property (nonatomic, readonly) UIColor *highlightedActionRowTextColor;
 @property (nonatomic, readonly) UIColor *highlightedTintColor;
 @property (nonatomic, readonly) bool isDarkTheme;
 @property (nonatomic, readonly) NSString *javaScriptName;
@@ -28,6 +26,9 @@
 @property (nonatomic, readonly) UIColor *normalActionRowBackgroundColor;
 @property (nonatomic, readonly) UIColor *normalActionRowBackgroundPressedColor;
 @property (nonatomic, readonly) UIColor *normalBackgroundColor;
+@property (nonatomic, readonly) UIColor *ratingBarBackgroundColor;
+@property (nonatomic, readonly) UIColor *ratingBarEndColor;
+@property (nonatomic, readonly) UIColor *ratingBarStartColor;
 @property (nonatomic, readonly) UIColor *rowColor;
 @property (nonatomic, readonly) UIColor *selectedRowColor;
 @property (nonatomic, readonly) UIColor *separatorLineColor;
@@ -53,14 +54,12 @@
 - (bool)_isInSpotlightContext;
 - (void)_setTheme:(unsigned long long)arg1;
 - (void)_setTintColorProvider:(id /* block */)arg1;
-- (void)_tintColorDidChange;
 - (id)buttonHighlightedColor;
 - (id)buttonNormalColor;
 - (id)disabledActionRowBackgroundColor;
 - (id)disabledActionRowTextColor;
 - (id)headerPrimaryButtonHighlightedColor;
 - (id)headerPrimaryButtonNormalColor;
-- (id)highlightedActionRowTextColor;
 - (id)highlightedTintColor;
 - (id)init;
 - (bool)isDarkTheme;
@@ -69,6 +68,9 @@
 - (id)normalActionRowBackgroundColor;
 - (id)normalActionRowBackgroundPressedColor;
 - (id)normalBackgroundColor;
+- (id)ratingBarBackgroundColor;
+- (id)ratingBarEndColor;
+- (id)ratingBarStartColor;
 - (id)rowColor;
 - (id)selectedRowColor;
 - (id)separatorLineColor;

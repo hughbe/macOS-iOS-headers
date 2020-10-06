@@ -3,6 +3,7 @@
  */
 
 @interface _UINavigationBarLayout : NSObject <NSCopying, _UINavigationBarTransitionContextParticipant> {
+    UIView * _animationContentClippingView;
     long long  _apiVersion;
     bool  _backgroundCoversContentOnly;
     double  _backgroundExtension;
@@ -52,6 +53,7 @@
     UILabel * _weeTitleLabel;
 }
 
+@property (nonatomic, retain) UIView *animationContentClippingView;
 @property (nonatomic) long long apiVersion;
 @property (nonatomic) bool backgroundCoversContentOnly;
 @property (nonatomic) double backgroundExtension;
@@ -93,6 +95,7 @@
 @property (nonatomic, retain) _UIBarBackgroundLayout *standardBackgroundViewLayout;
 @property (readonly) Class superclass;
 @property (nonatomic) bool useManualScrollEdgeAppearance;
+@property (getter=isVariableHeight, nonatomic, readonly) bool variableHeight;
 @property (nonatomic, retain) UILabel *weeTitleLabel;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } weeTitleLabelLayoutFrame;
 
@@ -112,6 +115,7 @@
 - (void)_updateLayoutOutputs;
 - (void)_updateLayoutParametersForWidth:(double)arg1;
 - (void)_updateRefreshControlLayoutData;
+- (id)animationContentClippingView;
 - (long long)apiVersion;
 - (bool)backgroundCoversContentOnly;
 - (double)backgroundExtension;
@@ -139,6 +143,7 @@
 - (id)initWithLayout:(id)arg1;
 - (void)installViewsInNavigationBar:(id)arg1;
 - (void)interleaveViewsWithLayout:(id)arg1 inNavigationBar:(id)arg2;
+- (bool)isVariableHeight;
 - (double)largeTitleExposure;
 - (id)largeTitleView;
 - (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })largeTitleViewInsets;
@@ -163,6 +168,7 @@
 - (id)restingHeights;
 - (id)searchBar;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })searchBarLayoutFrame;
+- (void)setAnimationContentClippingView:(id)arg1;
 - (void)setApiVersion:(long long)arg1;
 - (void)setBackgroundCoversContentOnly:(bool)arg1;
 - (void)setBackgroundExtension:(double)arg1;

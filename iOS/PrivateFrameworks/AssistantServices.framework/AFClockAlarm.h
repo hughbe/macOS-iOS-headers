@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@interface AFClockAlarm : NSObject <AFClockItem, NSCopying, NSSecureCoding> {
+@interface AFClockAlarm : NSObject <AFClockItem, AFDictionaryConvertible, NSCopying, NSSecureCoding> {
     NSUUID * _alarmID;
     NSURL * _alarmURL;
     NSDate * _dismissedDate;
@@ -15,6 +15,7 @@
     unsigned long long  _minute;
     unsigned long long  _repeatOptions;
     NSString * _title;
+    unsigned long long  _type;
 }
 
 @property (nonatomic, readonly, copy) NSUUID *alarmID;
@@ -35,6 +36,7 @@
 @property (nonatomic, readonly) unsigned long long repeatOptions;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly, copy) NSString *title;
+@property (nonatomic, readonly) unsigned long long type;
 
 + (id)newWithBuilder:(id /* block */)arg1;
 + (bool)supportsSecureCoding;
@@ -43,6 +45,7 @@
 - (id)_descriptionWithIndent:(unsigned long long)arg1;
 - (id)alarmID;
 - (id)alarmURL;
+- (id)buildDictionaryRepresentation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dismissedDate;
@@ -50,8 +53,9 @@
 - (id)firedDate;
 - (unsigned long long)hash;
 - (unsigned long long)hour;
-- (id)initWithAlarmID:(id)arg1 alarmURL:(id)arg2 isFiring:(bool)arg3 title:(id)arg4 hour:(unsigned long long)arg5 minute:(unsigned long long)arg6 repeatOptions:(unsigned long long)arg7 isEnabled:(bool)arg8 isSnoozed:(bool)arg9 firedDate:(id)arg10 dismissedDate:(id)arg11 lastModifiedDate:(id)arg12;
+- (id)initWithAlarmID:(id)arg1 alarmURL:(id)arg2 isFiring:(bool)arg3 title:(id)arg4 type:(unsigned long long)arg5 hour:(unsigned long long)arg6 minute:(unsigned long long)arg7 repeatOptions:(unsigned long long)arg8 isEnabled:(bool)arg9 isSnoozed:(bool)arg10 firedDate:(id)arg11 dismissedDate:(id)arg12 lastModifiedDate:(id)arg13;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithDictionaryRepresentation:(id)arg1;
 - (bool)isEnabled;
 - (bool)isEqual:(id)arg1;
 - (bool)isFiring;
@@ -63,5 +67,6 @@
 - (id)mutatedCopyWithMutator:(id /* block */)arg1;
 - (unsigned long long)repeatOptions;
 - (id)title;
+- (unsigned long long)type;
 
 @end

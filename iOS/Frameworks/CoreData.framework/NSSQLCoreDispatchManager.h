@@ -9,6 +9,7 @@
 
 - (void)dealloc;
 - (void)disconnectAllConnections;
+- (void)enumerateAvailableConnectionsWithBlock:(id /* block */)arg1;
 - (id)initWithSQLCore:(id)arg1 seedConnection:(id)arg2;
 - (bool)routeStoreRequest:(id)arg1;
 - (void)scheduleBarrierBlock:(id /* block */)arg1;

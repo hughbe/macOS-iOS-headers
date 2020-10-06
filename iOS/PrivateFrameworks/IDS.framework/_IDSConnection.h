@@ -14,6 +14,7 @@
     unsigned char  _outgoingMessageLoggingSequence;
     IMOrderedMutableDictionary * _pendingSends;
     NSString * _serviceToken;
+    unsigned int  _wakingDowngradeCount;
 }
 
 @property (nonatomic, readonly) IDSAccount *account;
@@ -22,6 +23,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) bool isActive;
 @property (readonly) Class superclass;
+@property (nonatomic) unsigned int wakingDowngradeCount;
 
 - (void).cxx_destruct;
 - (id)_activeDevice;
@@ -78,6 +80,8 @@
 - (bool)sendServerMessage:(id)arg1 command:(id)arg2;
 - (void)sessionInvitationReceivedWithPayload:(id)arg1 forTopic:(id)arg2 sessionID:(id)arg3 toIdentifier:(id)arg4 fromID:(id)arg5 transportType:(id)arg6;
 - (void)setDelegateCapabilities:(unsigned int)arg1;
+- (void)setWakingDowngradeCount:(unsigned int)arg1;
 - (void)updateDeviceIdentity:(id)arg1 error:(id)arg2;
+- (unsigned int)wakingDowngradeCount;
 
 @end

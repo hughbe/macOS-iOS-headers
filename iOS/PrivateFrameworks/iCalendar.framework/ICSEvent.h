@@ -51,6 +51,8 @@
 @property (nonatomic) bool x_wr_itipstatusml;
 @property (nonatomic) bool x_wr_rsvpneeded;
 
+// Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
+
 + (id)name;
 
 - (void)fixAttendeeComments;
@@ -79,5 +81,13 @@
 - (bool)x_wr_itipstatusattendeeml;
 - (bool)x_wr_itipstatusml;
 - (bool)x_wr_rsvpneeded;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (id)attendeeEmailAddresses;
+- (id)enrichmentWithParentEntity:(id)arg1 withCalendar:(id)arg2;
+- (id)enrichmentWithParentEntity:(id)arg1 withCalendar:(id)arg2 withCorrectnessFlag:(bool*)arg3;
+- (id)firstValueOfPropertyForName:(id)arg1;
+- (int)method;
 
 @end

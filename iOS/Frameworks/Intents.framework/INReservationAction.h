@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INReservationAction : NSObject <INCacheableContainer, INJSONSerializable, NSCopying, NSSecureCoding> {
+@interface INReservationAction : NSObject <INJSONSerializable, NSCopying, NSSecureCoding> {
     long long  _type;
     NSUserActivity * _userActivity;
     INDateComponentsRange * _validDuration;
@@ -21,9 +21,7 @@
 
 - (void).cxx_destruct;
 - (id)_dictionaryRepresentation;
-- (id)_intents_cacheableObjects;
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
-- (void)_intents_updateContainerWithCache:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)descriptionAtIndent:(unsigned long long)arg1;

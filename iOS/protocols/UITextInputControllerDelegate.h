@@ -13,6 +13,7 @@
 - (void)textInputDidChange:(UITextInputController *)arg1;
 - (void)textInputDidChangeSelection:(UITextInputController *)arg1;
 - (bool)textInputShouldBeginEditing:(UITextInputController *)arg1;
+- (bool)textInputShouldExtendCaretHeight:(UITextInputController *)arg1;
 - (void)textInputWillAnimatePaste:(UITextInputController *)arg1;
 
 @end

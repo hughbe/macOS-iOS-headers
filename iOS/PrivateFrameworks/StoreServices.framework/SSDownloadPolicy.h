@@ -16,6 +16,8 @@
 @property (nonatomic, copy) NSArray *policyRules;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+
 + (bool)supportsSecureCoding;
 
 - (long long)URLBagType;
@@ -36,5 +38,9 @@
 - (void)setPolicyRules:(id)arg1;
 - (void)unionNetworkConstraints:(id)arg1;
 - (void)unionPolicyRule:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/VideosUI.framework/VideosUI
+
++ (id)vui_policyAllowingCellularDownloads:(bool)arg1;
 
 @end

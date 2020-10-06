@@ -9,9 +9,11 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
++ (void)_invalidateStaticCaches;
 + (unsigned long long)ancillaryEntityCount;
 + (unsigned long long)ancillaryEntityOffset;
 + (id)ancillaryModelNamespace;
++ (void)initialize;
 + (id)newFetchHistoryModelForCoordinator:(id)arg1 andOptions:(id)arg2;
 
 @end

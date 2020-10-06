@@ -3,14 +3,12 @@
  */
 
 @interface _INPBIntentSupport : PBCodable <NSCopying, NSSecureCoding, _INPBIntentSupport> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     NSArray * _intentsRestrictedWhileLockeds;
     NSArray * _intentsSupporteds;
     NSArray * _supportedMediaCategories;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -27,8 +25,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addIntentsRestrictedWhileLocked:(id)arg1;
 - (void)addIntentsSupported:(id)arg1;
 - (void)addSupportedMediaCategories:(id)arg1;

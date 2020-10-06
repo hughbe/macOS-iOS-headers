@@ -9,6 +9,7 @@
 }
 
 @property (nonatomic) unsigned long long lastKnownIDMSEnvironment;
+@property (nonatomic) long long requestedCloudPartition;
 @property (nonatomic) long long shouldAddHSA2CreateHeader;
 @property (nonatomic) long long shouldAllowDemoMode;
 @property (nonatomic) long long shouldAllowExperimentalMode;
@@ -27,12 +28,15 @@
 + (id)sharedConfiguration;
 
 - (void).cxx_destruct;
+- (bool)_validCloudPartition:(long long)arg1;
 - (id)configurationValueForKey:(id)arg1;
 - (void)dealloc;
 - (id)init;
 - (unsigned long long)lastKnownIDMSEnvironment;
+- (long long)requestedCloudPartition;
 - (void)setConfigurationValue:(id)arg1 forKey:(id)arg2;
 - (void)setLastKnownIDMSEnvironment:(unsigned long long)arg1;
+- (void)setRequestedCloudPartition:(long long)arg1;
 - (void)setShouldAddHSA2CreateHeader:(long long)arg1;
 - (void)setShouldAllowDemoMode:(long long)arg1;
 - (void)setShouldAllowExperimentalMode:(long long)arg1;

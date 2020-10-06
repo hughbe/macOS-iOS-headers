@@ -19,7 +19,7 @@
 - (void).cxx_destruct;
 - (unsigned long long)currentSenderID;
 - (id)currentTouchpad;
-- (id)init;
+- (id)initWithScreen:(id)arg1;
 - (void)performHapticFeedbackForFocusUpdateInContext:(id)arg1;
 - (id)sessionStatus;
 - (void)setCurrentSenderID:(unsigned long long)arg1;

@@ -204,6 +204,8 @@
 - (id)messageBodyUsingCache;
 - (id)nonStandardMessageHeadersForOutgoingPush;
 - (id)originalTimestamp;
+- (id)overrideContentType;
+- (id)parsedIDSMessageResult;
 - (bool)payloadCanBeLogged;
 - (id)privateKeyArray;
 - (id)publicKeyArray;
@@ -295,9 +297,11 @@
 - (bool)wantsBinaryPush;
 - (bool)wantsBodySignature;
 - (bool)wantsCFNetworkTimeout;
+- (bool)wantsClientInfo;
 - (bool)wantsCompressedBody;
 - (bool)wantsCustomRetryInterval;
 - (bool)wantsExtraTimeoutRetry;
+- (bool)wantsGZip;
 - (bool)wantsHTTPGet;
 - (bool)wantsHTTPHeaders;
 - (bool)wantsIDSServer;
@@ -308,6 +312,7 @@
 - (bool)wantsMultipleResponses;
 - (bool)wantsResponse;
 - (bool)wantsSignature;
+- (bool)wantsUDID;
 - (bool)wantsUserAgentInHeaders;
 
 @end

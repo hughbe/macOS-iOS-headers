@@ -54,6 +54,7 @@
     NSNumber * inputNoiseReductionDetailAmount;
     NSNumber * inputNoiseReductionSharpnessAmount;
     NSString * inputRequestedSushiMode;
+    NSNumber * inputReturnDemosaiced;
     NSNumber * inputScaleFactor;
 }
 
@@ -100,6 +101,7 @@
 - (id)defaultInputNoiseReductionContrastAmount;
 - (id)defaultInputNoiseReductionDetailAmount;
 - (id)defaultInputNoiseReductionSharpnessAmount;
+- (id)defaultInputReturnDemosaiced;
 - (id)defaultNeutralChromaticityX;
 - (id)defaultNeutralChromaticityY;
 - (id)defaultNeutralTemperature;
@@ -174,6 +176,7 @@
 - (void)setInputNoiseReductionDetailAmount:(id)arg1;
 - (void)setInputNoiseReductionSharpnessAmount:(id)arg1;
 - (void)setInputRequestedSushiMode:(id)arg1;
+- (void)setInputReturnDemosaiced:(id)arg1;
 - (void)setInputScaleFactor:(id)arg1;
 - (void)setTempTintAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (int)subsampling;

@@ -15,13 +15,6 @@
     VKGlobeImageCanvas * _globeCanvas;
     bool  _hasFailedTiles;
     VKMapImageCanvas * _mapCanvas;
-    struct { 
-        unsigned char timePeriod; 
-        unsigned char overlayType; 
-        unsigned char applicationState; 
-        unsigned char searchResultsType; 
-        bool mapHasLabels; 
-    }  _mapDisplayStyle;
     struct unique_ptr<md::MapEngine, std::__1::default_delete<md::MapEngine> > { 
         struct __compressed_pair<md::MapEngine *, std::__1::default_delete<md::MapEngine> > { 
             struct MapEngine {} *__value_; 
@@ -68,6 +61,7 @@
 - (void)_transferSettingsFrom:(id)arg1 to:(id)arg2;
 - (id)activeCanvas;
 - (void)addCustomFeatureDataSource:(id)arg1;
+- (bool)canChangeVenueFocus;
 - (void)cancel;
 - (void)cancelFlushingTileDecodes:(bool)arg1;
 - (void)dealloc;
@@ -79,7 +73,7 @@
 - (void)didUpdateSceneStatus:(unsigned char)arg1;
 - (struct VKEdgeInsets { float x1; float x2; float x3; float x4; })edgeInsets;
 - (unsigned char)emphasis;
-- (id)initWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 homeQueue:(id)arg3 signpostId:(unsigned long long)arg4 auditToken:(id)arg5;
+- (id)initWithSize:(struct CGSize { double x1; double x2; })arg1 scale:(double)arg2 homeQueue:(id)arg3 signpostId:(unsigned long long)arg4 mapType:(int)arg5 auditToken:(id)arg6;
 - (void)labelManagerDidLayout;
 - (void)labelMarkerDidChangeState:(const struct shared_ptr<md::LabelMarker> { }*)arg1;
 - (long long)labelScaleFactor;
@@ -95,8 +89,10 @@
 - (id)routeOverlay;
 - (void)selectedLabelMarkerWillDisappear:(const struct shared_ptr<md::LabelMarker> { }*)arg1;
 - (void)setCenterCoordinate:(struct { double x1; double x2; })arg1 altitude:(double)arg2 yaw:(double)arg3 pitch:(double)arg4;
+- (void)setClearFontCache:(bool)arg1;
 - (void)setEdgeInsets:(struct VKEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setEmphasis:(unsigned char)arg1;
+- (void)setLabelExclusionRegions:(id)arg1;
 - (void)setLabelScaleFactor:(long long)arg1;
 - (void)setLocalizeLabels:(bool)arg1;
 - (void)setMapDisplayStyle:(struct { unsigned char x1; unsigned char x2; unsigned char x3; unsigned char x4; bool x5; })arg1;
@@ -118,11 +114,12 @@
 - (void)venueCreated:(const struct Venue { unsigned long long x1; unsigned long long x2; struct vector<md::VenueBuilding, std::__1::allocator<md::VenueBuilding> > { struct VenueBuilding {} *x_3_1_1; struct VenueBuilding {} *x_3_1_2; struct __compressed_pair<md::VenueBuilding *, std::__1::allocator<md::VenueBuilding> > { struct VenueBuilding {} *x_3_2_1; } x_3_1_3; } x3; struct Polygon2<double> { struct vector<gm::Matrix<double, 2, 1>, std::__1::allocator<gm::Matrix<double, 2, 1> > > { struct Matrix<double, 2, 1> {} *x_1_2_1; struct Matrix<double, 2, 1> {} *x_1_2_2; struct __compressed_pair<gm::Matrix<double, 2, 1> *, std::__1::allocator<gm::Matrix<double, 2, 1> > > { struct Matrix<double, 2, 1> {} *x_3_3_1; } x_1_2_3; } x_4_1_1; } x4; struct ConvexHull2<double> { struct vector<gm::Matrix<double, 2, 1>, std::__1::allocator<gm::Matrix<double, 2, 1> > > { struct Matrix<double, 2, 1> {} *x_1_2_1; struct Matrix<double, 2, 1> {} *x_1_2_2; struct __compressed_pair<gm::Matrix<double, 2, 1> *, std::__1::allocator<gm::Matrix<double, 2, 1> > > { struct Matrix<double, 2, 1> {} *x_3_3_1; } x_1_2_3; } x_5_1_1; } x5; }*)arg1 building:(const struct VenueBuilding { struct vector<md::VenueLevel, std::__1::allocator<md::VenueLevel> > { struct VenueLevel {} *x_1_1_1; struct VenueLevel {} *x_1_1_2; struct __compressed_pair<md::VenueLevel *, std::__1::allocator<md::VenueLevel> > { struct VenueLevel {} *x_3_2_1; } x_1_1_3; } x1; unsigned long long x2; unsigned long long x3; unsigned long long x4; unsigned long long x5; short x6; struct Matrix<double, 2, 1> { double x_7_1_1[2]; } x7; struct ConvexHull2<double> { struct vector<gm::Matrix<double, 2, 1>, std::__1::allocator<gm::Matrix<double, 2, 1> > > { struct Matrix<double, 2, 1> {} *x_1_2_1; struct Matrix<double, 2, 1> {} *x_1_2_2; struct __compressed_pair<gm::Matrix<double, 2, 1> *, std::__1::allocator<gm::Matrix<double, 2, 1> > > { struct Matrix<double, 2, 1> {} *x_3_3_1; } x_1_2_3; } x_8_1_1; } x8; }*)arg2;
 - (bool)wantsTimerTick;
 - (void)willBecomeFullyDrawn;
-- (void)willLayoutWithTimestamp:(double)arg1;
+- (void)willLayoutWithTimestamp:(double)arg1 withContext:(struct LayoutContext { id x1; struct shared_ptr<gdc::Camera> { struct Camera {} *x_2_1_1; struct __shared_weak_count {} *x_2_1_2; } x2; unsigned char x3; struct VKEdgeInsets { float x_4_1_1; float x_4_1_2; float x_4_1_3; float x_4_1_4; } x4; struct VKEdgeInsets { float x_5_1_1; float x_5_1_2; float x_5_1_3; float x_5_1_4; } x5; struct shared_ptr<ggl::PolygonBase::MeshMesh> { struct MeshMesh {} *x_6_1_1; struct __shared_weak_count {} *x_6_1_2; } x6; struct shared_ptr<ggl::PolygonBase::MeshMesh> { struct MeshMesh {} *x_7_1_1; struct __shared_weak_count {} *x_7_1_2; } x7; struct shared_ptr<ggl::CommonMesh::Pos2UVMesh> { struct Pos2UVMesh {} *x_8_1_1; struct __shared_weak_count {} *x_8_1_2; } x8; struct StencilManager { unsigned char x_9_1_1; unsigned char x_9_1_2; unsigned char x_9_1_3; struct ClearItem { unsigned char x_4_2_1; struct Matrix<float, 4, 1> { float x_2_3_1[4]; } x_4_2_2; bool x_4_2_3; float x_4_2_4; unsigned char x_4_2_5; unsigned int x_4_2_6; } x_9_1_4; } x9; struct shared_ptr<ggl::Device> { struct Device {} *x_10_1_1; struct __shared_weak_count {} *x_10_1_2; } x10; }*)arg2;
 
 // Image: /System/Library/Frameworks/MapKit.framework/MapKit
 
 - (void)_mapkit_configureFromDefaults;
+- (void)_mapkit_configureLabelSizesForContentSizeCategory:(id)arg1;
 - (void)_mapkit_configureWithOptions:(id)arg1;
 
 @end

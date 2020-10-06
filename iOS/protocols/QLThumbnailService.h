@@ -5,6 +5,6 @@
 
 @required
 
-- (void)generateThumbnailOfSize:(void *)arg1 minimumSize:(void *)arg2 scale:(void *)arg3 badgeType:(void *)arg4 withContents:(void *)arg5 additionalResourcesWrapper:(void *)arg6 completionHandler:(void *)arg7; // needs 7 arg types, found 17: struct CGSize { double x1; double x2; }, double, double, unsigned long long, id, id, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSData *, QLURLHandler *, IOSurface *, struct CGSize { double x1; double x2; }, bool, NSError *, void*
+- (void)generateThumbnailOfSize:(void *)arg1 minimumSize:(void *)arg2 scale:(void *)arg3 badgeType:(void *)arg4 withContents:(void *)arg5 additionalResourcesWrapper:(void *)arg6 generatorData:(void *)arg7 completionHandler:(void *)arg8; // needs 8 arg types, found 19: struct CGSize { double x1; double x2; }, double, double, unsigned long long, id, id, NSDictionary *, id /* block */, /* Warning: Unrecognized filer type: '<' using 'void*' */ void*, void, id /* block */, NSData *, QLURLHandler *, IOSurface *, struct CGSize { double x1; double x2; }, NSDictionary *, bool, NSError *, void*
 
 @end

@@ -20,19 +20,7 @@
         unsigned int read_rideAppId : 1; 
         unsigned int read_rideAppVersion : 1; 
         unsigned int read_rideBookedSessionId : 1; 
-        unsigned int wrote_intentResponseFailures : 1; 
-        unsigned int wrote_rideAppId : 1; 
-        unsigned int wrote_rideAppVersion : 1; 
-        unsigned int wrote_rideBookedSessionId : 1; 
-        unsigned int wrote_statusIssue : 1; 
-        unsigned int wrote_bookedUsingMaps : 1; 
-        unsigned int wrote_cancelled : 1; 
-        unsigned int wrote_contactedDriver : 1; 
-        unsigned int wrote_invalidVehicleLocation : 1; 
-        unsigned int wrote_missingVehicleLocation : 1; 
-        unsigned int wrote_tappedProactiveTrayItem : 1; 
-        unsigned int wrote_viewedDetails : 1; 
-        unsigned int wrote_viewedInProactiveTray : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSMutableArray * _intentResponseFailures;
     bool  _invalidVehicleLocation;
@@ -83,11 +71,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatusIssue:(id)arg1;
-- (void)_addNoFlagsIntentResponseFailure:(id)arg1;
-- (void)_readIntentResponseFailures;
-- (void)_readRideAppId;
-- (void)_readRideAppVersion;
-- (void)_readRideBookedSessionId;
 - (void)addIntentResponseFailure:(id)arg1;
 - (bool)bookedUsingMaps;
 - (bool)cancelled;
@@ -112,11 +95,14 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)intentResponseFailureAtIndex:(unsigned long long)arg1;
 - (id)intentResponseFailures;
 - (unsigned long long)intentResponseFailuresCount;
 - (bool)invalidVehicleLocation;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (bool)missingVehicleLocation;
 - (void)readAll:(bool)arg1;

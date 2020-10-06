@@ -23,10 +23,11 @@
 - (void).cxx_destruct;
 - (void)_addItemsForAceObjects:(id)arg1 type:(long long)arg2 aceCommandIdentifier:(id)arg3 dialogPhase:(id)arg4 asChildrenOfItemWithIdentifier:(id)arg5;
 - (void)_addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 fromCommandWithIdentifier:(id)arg3 asChildrenOfItemWithIdentifier:(id)arg4;
+- (void)_addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 fromCommandWithIdentifier:(id)arg3 asChildrenOfItemWithIdentifier:(id)arg4 isSupplemental:(bool)arg5 isImmersiveExperience:(bool)arg6;
 - (void)_addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 fromCommandWithIdentifier:(id)arg3 atIndexPaths:(id)arg4;
-- (void)_changePresentationStateForNodes:(id)arg1;
+- (void)_addItemsForAceViews:(id)arg1 withDialogPhase:(id)arg2 fromCommandWithIdentifier:(id)arg3 atIndexPaths:(id)arg4 isSupplemental:(bool)arg5 isImmersiveExperience:(bool)arg6;
+- (id)_changePresentationStateForNodes:(id)arg1;
 - (id)_childOfNode:(id)arg1 withItemWhichCanBeUpdatedWithAceObject:(id)arg2 inDialogPhase:(id)arg3;
-- (void)_didChangePresentationStateForItemAtIndexPaths:(id)arg1;
 - (void)_enumerateItemsUsingBlock:(id /* block */)arg1;
 - (id)_indexPathForItemWithIdentifier:(id)arg1 ignoreNonExistent:(bool)arg2;
 - (id)_indexPathsForAddingItemsWithCount:(long long)arg1 asChildrenOfItemWithIdentifier:(id)arg2;
@@ -72,6 +73,7 @@
 - (id)languageCode;
 - (id)lastItem;
 - (id)lastRestoredItem;
+- (void)notifyDelegateOfUpdates:(id)arg1 inserts:(id)arg2 presentationChanges:(id)arg3;
 - (long long)numberOfChildrenForItemAtIndexPath:(id)arg1;
 - (long long)numberOfChildrenForItemWithIdentifier:(id)arg1;
 - (id)parentOfItemWithIdentifier:(id)arg1;

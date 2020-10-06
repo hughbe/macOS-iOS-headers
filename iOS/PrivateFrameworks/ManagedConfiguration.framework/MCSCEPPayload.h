@@ -38,7 +38,6 @@
 - (id)CAInstanceName;
 - (id)URLString;
 - (id)challenge;
-- (id)description;
 - (id)initWithDictionary:(id)arg1 profile:(id)arg2 outError:(id*)arg3;
 - (bool)isIdentity;
 - (bool)isRoot;
@@ -50,5 +49,6 @@
 - (id)subject;
 - (id)subjectAltName;
 - (int)usageFlags;
+- (id)verboseDescription;
 
 @end

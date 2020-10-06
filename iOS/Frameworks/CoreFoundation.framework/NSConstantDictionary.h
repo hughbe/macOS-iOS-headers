@@ -4,16 +4,15 @@
 
 @interface NSConstantDictionary : NSDictionary <NSFastEnumeration> {
     unsigned long long  _count;
-    unsigned long long  _hashOptions;
     const id * _keys;
     const id * _objects;
+    unsigned long long  _options;
 }
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)new;
 
 - (void)__apply:(int (*)arg1 context:(void*)arg2;
-- (id)_cfMutableCopy;
 - (bool)_isDeallocating;
 - (bool)_tryRetain;
 - (id)allKeys;

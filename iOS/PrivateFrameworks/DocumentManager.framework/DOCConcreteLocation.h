@@ -50,7 +50,6 @@
 - (bool)isEqual:(id)arg1;
 - (bool)isFPV2;
 - (bool)isRoot;
-- (id)navigationItemTitlesForConfiguration:(id)arg1;
 - (bool)needsToResolveHierarchy;
 - (id)originalSourceIdentifier;
 - (id)placeholderLocation;

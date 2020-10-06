@@ -26,6 +26,8 @@
 @property (getter=isMenuVisible, nonatomic) bool menuVisible;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+
 + (id)sharedMenuController;
 
 - (void).cxx_destruct;
@@ -56,5 +58,9 @@
 - (void)setTargetRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 inView:(id)arg2;
 - (void)showMenuFromView:(id)arg1 rect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2;
 - (void)update;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
+- (void)ic_addMenuItemsIfNecessary:(id)arg1;
 
 @end

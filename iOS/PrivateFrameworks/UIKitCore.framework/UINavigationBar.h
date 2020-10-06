@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UINavigationBar : UIView <DebugHierarchyObject_Fallback, NSCoding, UIAccessibilityHUDGestureDelegate, UIBarPositioning, UIGestureRecognizerDelegate, _UIBarPositioningInternal> {
+@interface UINavigationBar : UIView <NSCoding, UIAccessibilityHUDGestureDelegate, UIBarPositioning, UIGestureRecognizerDelegate, _UIBarPositioningInternal> {
     double  __overrideBackgroundExtension;
     bool  __startedAnimationTracking;
     UIColor * _accessibilityButtonBackgroundTintColor;
@@ -26,6 +26,7 @@
         unsigned int isIgnoringLock : 1; 
         unsigned int layoutInProgress : 1; 
         unsigned int delegateRespondsToFreezeLayoutForDismissalSelector : 1; 
+        unsigned int delegateRespondsToInterfaceOrientationWindowSelector : 1; 
     }  _navbarFlags;
     bool  _prefersLargeTitles;
     long long  _requestedContentSize;
@@ -45,25 +46,31 @@
 }
 
 @property (setter=_setAccessibilityButtonBackgroundTintColor:, nonatomic, retain) UIColor *_accessibilityButtonBackgroundTintColor;
+@property (getter=_isAnimatingNavItemContentLayoutGuideForStaticButtonVisibilityChange, nonatomic, readonly) bool _animatingNavItemContentLayoutGuideForStaticButtonVisibilityChange;
 @property (nonatomic, readonly) NSArray *_animationIds;
 @property (setter=_setBackIndicatorLeftMargin:, nonatomic) double _backIndicatorLeftMargin;
 @property (nonatomic, readonly, retain) NSString *_backdropViewLayerGroupName;
 @property (setter=_setBackgroundOpacity:, nonatomic) double _backgroundOpacity;
 @property (setter=_setBackgroundView:, nonatomic, retain) UIView *_backgroundView;
 @property (nonatomic, readonly) long long _barTranslucence;
+@property (getter=_isContentViewHidden, nonatomic, readonly) bool _contentViewHidden;
 @property (setter=_setDeferShadowToSearchBar:, nonatomic) bool _deferShadowToSearchBar;
 @property (setter=_setDisableBlurTinting:, nonatomic) bool _disableBlurTinting;
 @property (setter=_setForceScrollEdgeAppearance:, nonatomic) bool _forceScrollEdgeAppearance;
 @property (nonatomic, readonly) bool _hasFixedMaximumHeight;
 @property (nonatomic, readonly) bool _hasVariableHeight;
+@property (nonatomic, readonly) double _heightForRestoringFromCancelledTransition;
 @property (nonatomic, readonly) double _heightIncludingBackground;
 @property (setter=_setHidesShadow:, nonatomic) bool _hidesShadow;
+@property (nonatomic, readonly) double _navItemContentLayoutGuideAnimationDistance;
 @property (setter=_setOverrideBackgroundExtension:, nonatomic) double _overrideBackgroundExtension;
 @property (setter=_setRequestedMaxBackButtonWidth:, nonatomic) double _requestedMaxBackButtonWidth;
 @property (setter=_setShadowAlpha:, nonatomic) double _shadowAlpha;
-@property (nonatomic, readonly) struct CGSize { double x1; double x2; } _sizeForRestoringFromCancelledTransition;
+@property (getter=_shouldFadeStaticNavBarButton, setter=_setShouldFadeStaticNavBarButton:, nonatomic) bool _shouldFadeStaticNavBarButton;
 @property (nonatomic, readonly) _UINavigationBarItemStack *_stack;
 @property (nonatomic, readonly) bool _startedAnimationTracking;
+@property (setter=_setStaticNavBarButtonItem:, nonatomic, retain) UIBarButtonItem *_staticNavBarButtonItem;
+@property (getter=_staticNavBarButtonLingers, setter=_setStaticNavBarButtonLingers:, nonatomic) bool _staticNavBarButtonLingers;
 @property (setter=_setTitleOpacity:, nonatomic) double _titleOpacity;
 @property (setter=_setUseInlineBackgroundHeightWhenLarge:, nonatomic) bool _useInlineBackgroundHeightWhenLarge;
 @property (nonatomic, readonly) UILayoutGuide *_userContentGuide;
@@ -156,6 +163,7 @@
 - (void)_barSizeDidChange:(struct CGSize { double x1; double x2; })arg1;
 - (long long)_barStyle;
 - (long long)_barTranslucence;
+- (void)_beginAnimatingNavItemContentLayoutGuideForStaticButtonVisibilityChange;
 - (void)_beginInteractiveTransition;
 - (bool)_canHandleStatusBarTouchAtLocation:(struct CGPoint { double x1; double x2; })arg1;
 - (bool)_canShowBackgroundEffects;
@@ -193,6 +201,7 @@
 - (id)_effectiveDelegate;
 - (long long)_effectiveMetricsForMetrics:(long long)arg1;
 - (void)_enableAnimation;
+- (void)_endAnimatingNavItemContentLayoutGuideForStaticButtonVisibilityChange;
 - (void)_evaluateBackIndicatorForHilightedState:(bool)arg1 ofBarButtonItem:(id)arg2 inNavigationItem:(id)arg3;
 - (void)_fadeAllViewsIn;
 - (void)_fadeAllViewsOut;
@@ -205,16 +214,22 @@
 - (bool)_hasLegacyProvider;
 - (bool)_hasVariableHeight;
 - (bool)_heightDependentOnOrientation;
+- (double)_heightForRestoringFromCancelledTransition;
 - (double)_heightIncludingBackground;
 - (bool)_hidesShadow;
 - (bool)_hostsLayoutEngineAllowsTAMIC_NO;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_incomingNavigationBarFrame;
+- (void)_installContentClippingView:(id)arg1;
 - (void)_installDefaultAppearance;
 - (void)_intrinsicContentSizeInvalidatedForChildView:(id)arg1;
 - (bool)_isAlwaysHidden;
+- (bool)_isAnimatingNavItemContentLayoutGuideForStaticButtonVisibilityChange;
 - (bool)_isAnimationEnabled;
+- (bool)_isContentViewHidden;
 - (long long)_itemStackCount;
+- (void)_largeContentViewerEnabledStatusDidChange:(id)arg1;
 - (struct { double x1; double x2; double x3; })_layoutHeightsForNavigationItem:(id)arg1 fittingWidth:(double)arg2;
+- (double)_navItemContentLayoutGuideAnimationDistance;
 - (double)_overrideBackgroundExtension;
 - (void)_palette:(id)arg1 isAttaching:(bool)arg2 didComplete:(bool)arg3;
 - (void)_performUpdatesIgnoringLock:(id /* block */)arg1;
@@ -231,10 +246,13 @@
 - (void)_redisplayItems;
 - (void)_reenableUserInteraction;
 - (void)_reenableUserInteractionWhenReadyWithContext:(id)arg1;
+- (void)_removeContentClippingView;
 - (double)_requestedMaxBackButtonWidth;
 - (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })_resolvedLargeTitleMargins;
 - (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })_resolvedLayoutMargins;
+- (struct NSDirectionalEdgeInsets { double x1; double x2; double x3; double x4; })_resolvedSearchBarMargins;
 - (id)_restingHeights;
+- (long long)_sceneDraggingBehaviorOnPan;
 - (void)_sendNavigationBarAnimateTransition;
 - (void)_sendNavigationBarDidChangeStyle;
 - (void)_sendNavigationBarResize;
@@ -266,29 +284,35 @@
 - (void)_setItems:(id)arg1 transition:(int)arg2 reset:(bool)arg3 resetOwningRelationship:(bool)arg4;
 - (void)_setItemsUpToItem:(id)arg1 transition:(int)arg2;
 - (void)_setNeedsBackgroundViewUpdate;
+- (void)_setNeedsStaticNavBarButtonUpdate;
 - (void)_setOverrideBackgroundExtension:(double)arg1;
 - (void)_setPressedButtonItemTextColor:(id)arg1 shadowColor:(id)arg2;
 - (void)_setPrompt:(id)arg1;
 - (void)_setRequestedMaxBackButtonWidth:(double)arg1;
 - (void)_setReversesButtonTextShadowOffsetWhenPressed:(bool)arg1;
 - (void)_setShadowAlpha:(double)arg1;
+- (void)_setShouldFadeStaticNavBarButton:(bool)arg1;
+- (void)_setStaticNavBarButtonItem:(id)arg1;
+- (void)_setStaticNavBarButtonLingers:(bool)arg1;
 - (void)_setTitleOpacity:(double)arg1;
 - (void)_setUseInlineBackgroundHeightWhenLarge:(bool)arg1;
 - (void)_setWantsLetterpressContent:(bool)arg1;
 - (void)_setupAXHUDGestureIfNecessary;
 - (double)_shadowAlpha;
+- (bool)_shouldFadeStaticNavBarButton;
 - (bool)_shouldShowBackButtonForNavigationItem:(id)arg1;
 - (bool)_shouldShowBackButtonForScreen:(id)arg1;
-- (struct CGSize { double x1; double x2; })_sizeForRestoringFromCancelledTransition;
 - (id)_stack;
 - (bool)_startedAnimationTracking;
+- (id)_staticNavBarButtonItem;
+- (bool)_staticNavBarButtonLingers;
 - (long long)_statusBarStyle;
 - (bool)_subclassImplementsDrawRect;
 - (bool)_suppressBackIndicator;
 - (bool)_titleAutoresizesToFit;
 - (double)_titleOpacity;
 - (id)_titleTextColor;
-- (void)_traitCollectionDidChangeOnSubtreeInternal:(const struct _UITraitCollectionChangeDescription { id x1; id x2; bool x3; bool x4; bool x5; bool x6; bool x7; bool x8; bool x9; bool x10; bool x11; }*)arg1;
+- (void)_traitCollectionDidChangeOnSubtreeInternal:(const struct _UITraitCollectionChangeDescription { id x1; id x2; bool x3; bool x4; bool x5; bool x6; bool x7; bool x8; bool x9; bool x10; }*)arg1;
 - (id)_traitCollectionForChildEnvironment:(id)arg1;
 - (int)_transitionForOldItems:(id)arg1 newItems:(id)arg2;
 - (void)_uikit_applyValueFromTraitStorage:(id)arg1 forKeyPath:(id)arg2;
@@ -297,6 +321,7 @@
 - (void)_updateBackIndicatorImage;
 - (void)_updateContentIfTopItem:(id)arg1 animated:(bool)arg2;
 - (void)_updateInteractiveTransition:(double)arg1;
+- (bool)_updateNavItemContentLayoutGuideAnimationConstraintConstant:(double)arg1;
 - (void)_updateNavigationBarItem:(id)arg1 forStyle:(long long)arg2 previousTintColor:(id)arg3;
 - (void)_updateNavigationBarItemsForStyle:(long long)arg1;
 - (void)_updateNavigationBarItemsForStyle:(long long)arg1 previousTintColor:(id)arg2;
@@ -309,16 +334,6 @@
 - (id)_userContentGuide;
 - (bool)_wantsLetterpressContent;
 - (void)_willMoveToWindow:(id)arg1;
-- (void)dealloc;
-- (id)description;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)addConstraint:(id)arg1;
 - (bool)alwaysUseDefaultMetrics;
 - (long long)animationDisabledCount;
@@ -342,12 +357,15 @@
 - (long long)currentContentSize;
 - (id)currentLeftView;
 - (id)currentRightView;
+- (void)dealloc;
 - (double)defaultBackButtonAlignmentHeight;
 - (double)defaultHeight;
 - (double)defaultHeightForMetrics:(long long)arg1;
 - (struct CGSize { double x1; double x2; })defaultSizeForOrientation:(long long)arg1;
 - (id)delegate;
+- (id)description;
 - (void)didAddSubview:(id)arg1;
+- (void)didMoveToWindow;
 - (void)disableAnimation;
 - (void)drawBackButtonBackgroundInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 withStyle:(long long)arg2 pressed:(bool)arg3;
 - (void)drawBackgroundInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 withStyle:(long long)arg2;
@@ -452,5 +470,52 @@
 // Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
 
 - (void)_cnui_applyContactStyle;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreKit.framework/AppStoreKit
+
+- (void)setLayoutDirection:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (void)enableBranding:(bool)arg1 forBusinessChat:(id)arg2;
+- (void)setDarkEffectStyle:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DocumentManagerExecutables.framework/DocumentManagerExecutables
+
++ (id)doc_defaultTitleFont;
+
+- (void)doc_resetLayoutMargins;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUICore.framework/GameCenterUICore
+
+- (void)_gkApplyTheme:(id)arg1;
+- (void)_gkApplyTheme:(id)arg1 navbarStyle:(long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
+
+// Image: /System/Library/PrivateFrameworks/PodcastsUI.framework/PodcastsUI
+
+- (void)setLayoutDirection:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/RemindersUICore.framework/RemindersUICore
+
+- (void)ttriAccessibilityNavigationBarContentsDidChange;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (void)siriui_customizeAppearance;
+
+// Image: /System/Library/PrivateFrameworks/TeaUI.framework/TeaUI
+
+- (id)ts_barButtonViews;
+- (void)ts_clearAccessibilityElementsCache;
+- (id)ts_contentView;
+- (id)ts_fetchTitleView;
+- (void)ts_resetButtonTransforms;
+- (void)ts_setBackgroundEffects:(id)arg1;
+- (void)ts_setBlurthroughBackground;
 
 @end

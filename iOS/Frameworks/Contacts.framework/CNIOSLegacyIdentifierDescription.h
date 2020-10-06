@@ -9,6 +9,8 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
 - (void*)ABValueForABPerson:(void*)arg1;
 - (id)CNValueForContact:(id)arg1;
 - (void)decodeUsingCoder:(id)arg1 contact:(id)arg2;
@@ -22,5 +24,9 @@
 - (void)setCNValue:(id)arg1 onContact:(id)arg2;
 - (Class)valueClass;
 - (id)valueWithResetIdentifiers:(id)arg1;
+
+// Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
+
+- (id)nilValue;
 
 @end

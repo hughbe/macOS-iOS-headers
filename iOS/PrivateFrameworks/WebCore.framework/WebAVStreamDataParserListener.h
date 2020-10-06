@@ -3,41 +3,26 @@
  */
 
 @interface WebAVStreamDataParserListener : NSObject <AVStreamDataParserOutputHandling> {
-    struct Box<WTF::Semaphore> { 
-        struct RefPtr<WTF::Box<WTF::Semaphore>::Data, WTF::DumbPtrTraits<WTF::Box<WTF::Semaphore>::Data> > { 
-            struct Data {} *m_ptr; 
-        } m_data; 
-    }  _abortSemaphore;
-    struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC> { 
-        struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-            struct WeakPtrImpl {} *m_ptr; 
-        } m_impl; 
-    }  _parent;
+    struct SourceBufferParserAVFObjC { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct Function<void (WebCore::SourceBufferPrivateClient::InitializationSegment &&)>={unique_ptr<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&>, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >={__compressed_pair<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> *, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >=^{CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> {} x3; } * _parent;
     AVStreamDataParser * _parser;
 }
 
-@property /* Warning: unhandled struct encoding: '{Box<WTF::Semaphore>={RefPtr<WTF::Box<WTF::Semaphore>::Data' */ struct  abortSemaphore; /* unknown property attribute:  WTF::DumbPtrTraits<WTF::Box<WTF::Semaphore>::Data> >=^{Data}}} */
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property /* Warning: unhandled struct encoding: '{WeakPtr<WebCore::SourceBufferPrivateAVFObjC>={RefPtr<WTF::WeakPtrImpl' */ struct  parent; /* unknown property attribute:  WTF::DumbPtrTraits<WTF::WeakPtrImpl> >=^{WeakPtrImpl}}} */
+@property /* Warning: unhandled struct encoding: '{SourceBufferParserAVFObjC=^^?{atomic<unsigned int>={__cxx_atomic_impl<unsigned int' */ struct *parent; /* unknown property attribute:  WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > >=^{WeakPtrImpl<WTF::EmptyCounter>}}}{RetainPtr<AVStreamDataParser>=^v}{RetainPtr<WebAVStreamDataParserListener>=^v}BB} */
 @property (readonly) Class superclass;
 
-- (id).cxx_construct;
-- (void).cxx_destruct;
-- (struct Box<WTF::Semaphore> { struct RefPtr<WTF::Box<WTF::Semaphore>::Data, WTF::DumbPtrTraits<WTF::Box<WTF::Semaphore>::Data> > { struct Data {} *x_1_1_1; } x1; })abortSemaphore;
 - (void)dealloc;
-- (id)initWithParser:(id)arg1 parent:(struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_1_1; } x1; })arg2;
+- (id)initWithParser:(id)arg1 parent:(struct SourceBufferParserAVFObjC { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct Function<void (WebCore::SourceBufferPrivateClient::InitializationSegment &&)>={unique_ptr<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&>, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >={__compressed_pair<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> *, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >=^{CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> {} x3; }*)arg2;
 - (void)invalidate;
-- (struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_1_1; } x1; })parent;
-- (void)setAbortSemaphore:(struct Box<WTF::Semaphore> { struct RefPtr<WTF::Box<WTF::Semaphore>::Data, WTF::DumbPtrTraits<WTF::Box<WTF::Semaphore>::Data> > { struct Data {} *x_1_1_1; } x1; })arg1;
-- (void)setParent:(struct WeakPtr<WebCore::SourceBufferPrivateAVFObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_1_1; } x1; })arg1;
+- (struct SourceBufferParserAVFObjC { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct Function<void (WebCore::SourceBufferPrivateClient::InitializationSegment &&)>={unique_ptr<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&>, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >={__compressed_pair<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> *, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >=^{CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> {} x3; }*)parent;
+- (void)setParent:(struct SourceBufferParserAVFObjC { int (**x1)(); struct atomic<unsigned int> { struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { _Atomic unsigned int x_1_2_1; } x_2_1_1; } x2; struct Function<void (WebCore::SourceBufferPrivateClient::InitializationSegment &&)>={unique_ptr<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&>, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >={__compressed_pair<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> *, std::__1::default_delete<WTF::Detail::CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> > >=^{CallableWrapperBase<void, WebCore::SourceBufferPrivateClient::InitializationSegment &&> {} x3; }*)arg1;
 - (void)streamDataParser:(id)arg1 didFailToParseStreamDataWithError:(id)arg2;
 - (void)streamDataParser:(id)arg1 didParseStreamDataAsAsset:(id)arg2;
 - (void)streamDataParser:(id)arg1 didParseStreamDataAsAsset:(id)arg2 withDiscontinuity:(bool)arg3;
 - (void)streamDataParser:(id)arg1 didProvideContentKeyRequestInitializationData:(id)arg2 forTrackID:(int)arg3;
 - (void)streamDataParser:(id)arg1 didProvideMediaData:(struct opaqueCMSampleBuffer { }*)arg2 forTrackID:(int)arg3 mediaType:(id)arg4 flags:(unsigned long long)arg5;
-- (void)streamDataParser:(id)arg1 didReachEndOfTrackWithTrackID:(int)arg2 mediaType:(id)arg3;
 - (void)streamDataParserWillProvideContentKeyRequestInitializationData:(id)arg1 forTrackID:(int)arg2;
 
 @end

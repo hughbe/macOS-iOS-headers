@@ -3,12 +3,10 @@
  */
 
 @interface INCodable : PBCodable <NSCopying> {
-    bool  __encodeLegacyGloryData;
     NSMutableDictionary * _customValueForKeyDictionary;
     INCodableDescription * _objectDescription;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (setter=_setObjectDescription:, nonatomic, retain) INCodableDescription *_objectDescription;
 @property (nonatomic, retain) NSMutableDictionary *customValueForKeyDictionary;
 
@@ -22,7 +20,6 @@
 - (id)_dataWithError:(id*)arg1;
 - (id)_dictionaryRepresentationWithNullValues:(bool)arg1;
 - (double)_doubleValueForAttribute:(id)arg1;
-- (bool)_encodeLegacyGloryData;
 - (float)_floatValueForAttribute:(id)arg1;
 - (id)_initWithCodableDescription:(id)arg1 data:(id)arg2 error:(id*)arg3;
 - (int)_int32ValueForAttribute:(id)arg1;
@@ -36,7 +33,6 @@
 - (void)_setBoolValue:(bool)arg1 forAttribute:(id)arg2;
 - (void)_setDoubleValue:(double)arg1 forAttribute:(id)arg2;
 - (void)_setEmptyArrayForNonNilRepeatedAttributes:(id)arg1;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)_setFloatValue:(float)arg1 forAttribute:(id)arg2;
 - (void)_setInt32Value:(int)arg1 forAttribute:(id)arg2;
 - (void)_setInt64Value:(long long)arg1 forAttribute:(id)arg2;

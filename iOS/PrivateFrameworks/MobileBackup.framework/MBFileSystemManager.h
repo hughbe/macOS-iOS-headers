@@ -17,6 +17,8 @@
 @property (nonatomic, readonly) bool supportsSparseFiles;
 
 + (unsigned long long)fileSystemCapacity;
++ (id)listAllSnapshotsAtPath:(id)arg1 error:(id*)arg2;
++ (id)listAllSnapshotsWithError:(id*)arg1;
 + (void)removeDeviceTransferDirectoryWithEarliestCreationDate:(id)arg1;
 + (id)sharedManager;
 + (bool)startFilesystemKeyRollingWithError:(id*)arg1;
@@ -25,16 +27,17 @@
 - (void).cxx_destruct;
 - (bool)_fileSystemSupportsSnapshots;
 - (bool)_fileSystemSupportsSparseFiles;
+- (id)_removeFileSystemSnapshotsWithBlock:(id /* block */)arg1;
 - (id)_snapshotName:(id)arg1;
 - (id)currentSnapshotName;
 - (id)currentSnapshotPath;
 - (id)description;
 - (id)fileSystemType;
 - (id)init;
-- (id)listAllSnapshotsWithError:(id*)arg1;
 - (bool)mountSnapshot:(id)arg1 atMountPoint:(id)arg2 withError:(id*)arg3;
-- (bool)removeAllMobileBackupInternalSnapshots:(id*)arg1;
-- (bool)removeAllMobileBackupSnapshots:(id*)arg1;
+- (bool)removeAllBackupInternalSnapshots:(id*)arg1;
+- (bool)removeAllBackupSnapshots:(id*)arg1;
+- (bool)removeAllBackupSnapshotsWithLatestCreationDate:(id)arg1 error:(id*)arg2;
 - (unsigned long long)removeRestorePrefetchCache;
 - (unsigned long long)removeRestorePrefetchCacheWithEarliestDate:(id)arg1;
 - (bool)removeSnapshot:(id)arg1 withError:(id*)arg2;

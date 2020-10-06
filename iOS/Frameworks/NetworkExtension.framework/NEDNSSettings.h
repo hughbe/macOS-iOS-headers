@@ -10,12 +10,14 @@
     NSArray * _servers;
 }
 
+@property (readonly) long long dnsProtocol;
 @property (copy) NSString *domainName;
 @property (copy) NSArray *matchDomains;
 @property bool matchDomainsNoSearch;
 @property (copy) NSArray *searchDomains;
 @property (readonly) NSArray *servers;
 
++ (id)createDNSSettingsFromLegacyDictionary:(id)arg1;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
@@ -23,6 +25,7 @@
 - (id)copyLegacyDictionary;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)descriptionWithIndent:(int)arg1 options:(unsigned long long)arg2;
+- (long long)dnsProtocol;
 - (id)domainName;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initFromLegacyDictionary:(id)arg1;
@@ -30,6 +33,7 @@
 - (id)initWithServers:(id)arg1;
 - (id)matchDomains;
 - (bool)matchDomainsNoSearch;
+- (bool)overlapsWithSettings:(id)arg1;
 - (id)searchDomains;
 - (id)servers;
 - (void)setDomainName:(id)arg1;

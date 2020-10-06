@@ -38,8 +38,10 @@
 - (id)clientCallbackQueue;
 - (id)connection;
 - (id)connectionQueue;
+- (void)getDeviceInfoForPlayerPath:(id)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (bool)isRunning;
 - (id)mrXPCConnection;
+- (void)resolvePlayerPath:(id)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (void)setAgentQueue:(id)arg1;
 - (void)setBrowsableContentQueue:(id)arg1;
 - (void)setClientCallbackPriorityQueue:(id)arg1;

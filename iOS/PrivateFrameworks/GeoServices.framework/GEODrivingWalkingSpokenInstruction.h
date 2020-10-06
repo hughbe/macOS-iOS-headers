@@ -13,13 +13,7 @@
         unsigned int read_initialStage : 1; 
         unsigned int read_preparationStage : 1; 
         unsigned int read_proceedStage : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_continueStage : 1; 
-        unsigned int wrote_executionStages : 1; 
-        unsigned int wrote_initialStage : 1; 
-        unsigned int wrote_preparationStage : 1; 
-        unsigned int wrote_proceedStage : 1; 
-        unsigned int wrote_shortChainedInstructionIndex : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOFormattedString * _initialStage;
     GEOFormattedString * _preparationStage;
@@ -51,12 +45,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsExecutionStage:(id)arg1;
-- (void)_readContinueStage;
-- (void)_readExecutionStages;
-- (void)_readInitialStage;
-- (void)_readPreparationStage;
-- (void)_readProceedStage;
 - (void)addExecutionStage:(id)arg1;
 - (void)clearExecutionStages;
 - (void)clearUnknownFields:(bool)arg1;
@@ -76,8 +64,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initialStage;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)preparationStage;
 - (id)proceedStage;

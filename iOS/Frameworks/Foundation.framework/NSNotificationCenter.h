@@ -29,11 +29,48 @@
 - (void)removeObserver:(id)arg1;
 - (void)removeObserver:(id)arg1 name:(id)arg2 object:(id)arg3;
 
+// Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
+
+- (void)postNotificationNameOnMainThread:(id)arg1 object:(id)arg2 userInfo:(id)arg3 waitUntilDone:(bool)arg4;
+- (void)postNotificationNameOnMainThreadHandler:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/BusinessChatService.framework/BusinessChatService
+
+- (void)postNotificationName:(id)arg1 object:(id)arg2 error:(id)arg3;
+
 // Image: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
 
 - (void)__mainThreadPostNotification:(id)arg1;
 - (void)__mainThreadPostNotificationName:(id)arg1 object:(id)arg2;
 - (void)__mainThreadPostNotificationName:(id)arg1 object:(id)arg2 userInfo:(id)arg3;
 - (void)postNotificationName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Message.framework/Message
+
+- (id)mf_addImmediateObserver:(id)arg1 selector:(SEL)arg2 name:(id)arg3 object:(id)arg4;
+- (void)mf_removeObservers:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MessageLegacy.framework/MessageLegacy
+
+- (id)mf_addImmediateObserver:(id)arg1 selector:(SEL)arg2 name:(id)arg3 object:(id)arg4;
+- (void)mf_removeObservers:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
+
+- (id)mtNotifiyingQueue;
+
+// Image: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+
+- (void)safari_addObserver:(id)arg1 selector:(SEL)arg2 forUserDefaultKey:(id)arg3;
+- (id)safari_addObserverForUserDefaultKey:(id)arg1 queue:(id)arg2 usingBlock:(id /* block */)arg3;
+- (void)safari_removeObserver:(id)arg1 forUserDefaultKey:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
+- (id)tsu_addObserverForName:(id)arg1 object:(id)arg2 queue:(id)arg3 usingBlock:(id /* block */)arg4;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
+- (id)tsu_addObserverForName:(id)arg1 object:(id)arg2 queue:(id)arg3 usingBlock:(id /* block */)arg4;
 
 @end

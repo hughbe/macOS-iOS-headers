@@ -16,5 +16,6 @@
 - (long long)overrideOscarSideband:(bool)arg1 withState:(long long)arg2;
 - (void)setActivityHandler:(id /* block */)arg1;
 - (long long)simulateMotionState:(bool)arg1 withState:(long long)arg2;
+- (long long)simulateMotionStateYouthWithState:(long long)arg1;
 
 @end

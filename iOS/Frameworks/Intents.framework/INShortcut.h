@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INShortcut : NSObject <INImageProxyInjecting, INKeyImageProducing, NSCopying, NSItemProviderReading, NSItemProviderWriting, NSSecureCoding> {
+@interface INShortcut : NSObject <INImageProxyInjecting, INKeyImageProducing, NSCopying, NSItemProviderReading, NSItemProviderWriting, NSSecureCoding, REShortcutProperties> {
     NSString * _activityBundleIdentifier;
     NSData * _activityData;
     INImage * _activityImage;
@@ -22,10 +22,14 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) INIntent *intent;
 @property (nonatomic, readonly, copy) INIntent *intent;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSUserActivity *userActivity;
+@property (nonatomic, readonly) unsigned long long wf_shortcutAvailability;
 @property (nonatomic, readonly, copy) NSArray *writableTypeIdentifiersForItemProvider;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (long long)itemProviderVisibilityForRepresentationWithTypeIdentifier:(id)arg1;
 + (id)objectWithItemProviderData:(id)arg1 typeIdentifier:(id)arg2 error:(id*)arg3;
@@ -59,5 +63,9 @@
 - (id)shortcutWithActivityBundleIdentifier:(id)arg1;
 - (id)shortcutWithActivityImage:(id)arg1;
 - (id)userActivity;
+
+// Image: /System/Library/PrivateFrameworks/VoiceShortcutClient.framework/VoiceShortcutClient
+
+- (unsigned long long)wf_shortcutAvailability;
 
 @end

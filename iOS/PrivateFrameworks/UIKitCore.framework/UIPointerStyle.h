@@ -8,9 +8,11 @@
     UIPointerEffect * _effect;
     unsigned long long  _options;
     UIPointerShape * _pointerShape;
+    bool  _suppressesMirroring;
     long long  _type;
 }
 
+@property (nonatomic) bool _suppressesMirroring;
 @property (nonatomic) unsigned long long constrainedAxes;
 @property (nonatomic, readonly) double contentScale;
 @property (nonatomic, retain) UIPointerEffect *effect;
@@ -20,6 +22,7 @@
 @property (nonatomic, readonly) UITargetedPreview *targetedPreview;
 @property (nonatomic) long long type;
 
++ (id)_systemPointerStyle;
 + (id)hiddenPointerStyle;
 + (id)styleWithEffect:(id)arg1 shape:(id)arg2;
 + (id)styleWithShape:(id)arg1 constrainedAxes:(unsigned long long)arg2;
@@ -31,6 +34,7 @@
 - (double)_pointerIntensityForMaterialLuminance:(unsigned long long)arg1;
 - (struct CGPoint { double x1; double x2; })_pointerSlipFactor;
 - (struct CGPoint { double x1; double x2; })_pointerSlipMappedToRegionSize:(struct CGSize { double x1; double x2; })arg1;
+- (bool)_suppressesMirroring;
 - (unsigned long long)constrainedAxes;
 - (double)contentScale;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -46,6 +50,7 @@
 - (void)setOptions:(unsigned long long)arg1;
 - (void)setPointerShape:(id)arg1;
 - (void)setType:(long long)arg1;
+- (void)set_suppressesMirroring:(bool)arg1;
 - (id)targetedPreview;
 - (long long)type;
 

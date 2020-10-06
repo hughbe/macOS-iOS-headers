@@ -8,7 +8,6 @@
         unsigned long long location; 
         unsigned long long length; 
     }  _range;
-    NSTextStorage * _textStorage;
 }
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

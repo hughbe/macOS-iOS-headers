@@ -2,37 +2,35 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchRecordZonesOperation : CKDatabaseOperation {
-    NSError * _fetchAllRecordZonesError;
+@interface CKFetchRecordZonesOperation : CKDatabaseOperation <CKFetchRecordZonesOperationCallbacks> {
     id /* block */  _fetchRecordZonesCompletionBlock;
     bool  _ignorePCSFailures;
     bool  _isFetchAllRecordZonesOperation;
     NSMutableDictionary * _recordZoneErrors;
     NSArray * _recordZoneIDs;
-    NSArray * _recordZones;
     NSMutableDictionary * _recordZonesByZoneID;
 }
 
-@property (nonatomic, retain) NSError *fetchAllRecordZonesError;
+@property (nonatomic, readonly) <CKFetchRecordZonesOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) id /* block */ fetchRecordZonesCompletionBlock;
 @property (nonatomic) bool ignorePCSFailures;
 @property (nonatomic) bool isFetchAllRecordZonesOperation;
+@property (nonatomic, readonly) CKFetchRecordZonesOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *recordZoneErrors;
 @property (nonatomic, copy) NSArray *recordZoneIDs;
-@property (nonatomic, retain) NSArray *recordZones;
 @property (nonatomic, retain) NSMutableDictionary *recordZonesByZoneID;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
 + (id)fetchAllRecordZonesOperation;
 
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
-- (id)fetchAllRecordZonesError;
 - (id /* block */)fetchRecordZonesCompletionBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleFetchForRecordZoneID:(id)arg1 recordZone:(id)arg2 error:(id)arg3;
 - (bool)hasCKOperationCallbacksSet;
 - (bool)ignorePCSFailures;
 - (id)init;
@@ -41,15 +39,13 @@
 - (void)performCKOperation;
 - (id)recordZoneErrors;
 - (id)recordZoneIDs;
-- (id)recordZones;
 - (id)recordZonesByZoneID;
-- (void)setFetchAllRecordZonesError:(id)arg1;
+- (id)relevantZoneIDs;
 - (void)setFetchRecordZonesCompletionBlock:(id /* block */)arg1;
 - (void)setIgnorePCSFailures:(bool)arg1;
 - (void)setIsFetchAllRecordZonesOperation:(bool)arg1;
 - (void)setRecordZoneErrors:(id)arg1;
 - (void)setRecordZoneIDs:(id)arg1;
-- (void)setRecordZones:(id)arg1;
 - (void)setRecordZonesByZoneID:(id)arg1;
 
 @end

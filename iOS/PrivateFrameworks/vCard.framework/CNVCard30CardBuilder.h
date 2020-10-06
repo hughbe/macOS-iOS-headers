@@ -39,6 +39,8 @@
 - (void)addEmailAddresses;
 - (void)addEndOfCard;
 - (void)addFullName;
+- (void)addImageHash;
+- (void)addImageType;
 - (void)addInstantMessagingHandles:(id)arg1;
 - (void)addInstantMessagingInfo;
 - (void)addLegacyInstantMessagingHandles:(id)arg1 forService:(id)arg2 vCardProperty:(id)arg3;

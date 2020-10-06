@@ -8,9 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_placeIndexs : 1; 
         unsigned int read_category : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_placeIndexs : 1; 
-        unsigned int wrote_category : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     struct { 
         unsigned int *list; 
@@ -35,9 +33,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsPlaceIndex:(unsigned int)arg1;
-- (void)_readCategory;
-- (void)_readPlaceIndexs;
 - (void)addPlaceIndex:(unsigned int)arg1;
 - (id)category;
 - (void)clearPlaceIndexs;
@@ -51,7 +46,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)placeIndexAtIndex:(unsigned long long)arg1;
 - (unsigned int*)placeIndexs;

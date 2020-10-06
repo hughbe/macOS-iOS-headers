@@ -13,12 +13,16 @@
 - (bool)_navigationBar:(UINavigationBar *)arg1 getContentOffsetOfObservedScrollViewIfApplicable:(struct CGPoint { double x1; double x2; }*)arg2;
 - (void)_navigationBar:(UINavigationBar *)arg1 itemEnabledAutoScrollTransition:(UINavigationItem *)arg2;
 - (double)_navigationBar:(UINavigationBar *)arg1 preferredHeightForTransitionToHeightRange:(struct { double x1; double x2; double x3; })arg2;
+- (void)_navigationBar:(UINavigationBar *)arg1 requestPopToItem:(UINavigationItem *)arg2;
+- (void)_navigationBar:(UINavigationBar *)arg1 topItemUpdatedContentLayout:(UINavigationItem *)arg2;
 - (void)_navigationBarChangedSize:(UINavigationBar *)arg1;
 - (void)_navigationBarDidChangeStyle:(UINavigationBar *)arg1;
 - (void)_navigationBarDidEndAnimation:(UINavigationBar *)arg1;
+- (void)_navigationBarDidUpdateStack:(UINavigationBar *)arg1;
 - (bool)_navigationBarLayoutIsInInteractiveScroll;
 - (bool)_navigationBarShouldUpdateProgress;
 - (void)_navigationBarWillBeginCoordinatedTransitionAnimations:(UINavigationBar *)arg1;
+- (UIWindow *)_navigationBarWindowForInterfaceOrientation:(UINavigationBar *)arg1;
 - (void)_navigationItemDidUpdateSearchController:(UINavigationItem *)arg1 oldSearchController:(UISearchController *)arg2;
 - (void)_popNavigationBar:(UINavigationBar *)arg1 item:(UINavigationItem *)arg2;
 - (bool)_shouldCrossFadeNavigationBar;

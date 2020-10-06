@@ -9,7 +9,6 @@
 
 - (id)_fontTextStyle;
 - (void)_updateText;
-- (void)tintColorDidChange;
 - (void)traitCollectionDidChange:(id)arg1;
 
 @end

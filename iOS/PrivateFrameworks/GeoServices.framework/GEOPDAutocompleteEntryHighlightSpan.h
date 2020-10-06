@@ -29,7 +29,10 @@
 - (bool)hasLength;
 - (bool)hasStartIndex;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)length;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

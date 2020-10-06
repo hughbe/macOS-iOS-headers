@@ -3,7 +3,6 @@
  */
 
 @interface _INPBSearchForPhotosIntent : PBCodable <NSCopying, NSSecureCoding, _INPBSearchForPhotosIntent> {
-    bool  __encodeLegacyGloryData;
     _INPBActivityList * _activities;
     _INPBString * _albumName;
     _INPBContactList * _contentPerson;
@@ -31,7 +30,6 @@
     _INPBStringList * _searchTerm;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBActivityList *activities;
 @property (nonatomic, retain) _INPBString *albumName;
 @property (nonatomic, retain) _INPBContactList *contentPerson;
@@ -74,8 +72,6 @@
 - (void).cxx_destruct;
 - (int)StringAsExcludedAttributes:(id)arg1;
 - (int)StringAsIncludedAttributes:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)activities;
 - (void)addExcludedAttribute:(int)arg1;
 - (void)addIncludedAttribute:(int)arg1;

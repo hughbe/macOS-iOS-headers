@@ -52,6 +52,7 @@
 - (void)setListController:(id)arg1;
 - (void)setMainThreadScheduler:(id)arg1;
 - (void)showConfirmRemoveAlertWithSender:(id)arg1 completion:(id /* block */)arg2;
+- (void)showHKMedicalIDViewControllerForMedicalID:(id)arg1;
 - (void)showRelationshipPickerForContactProperty:(id)arg1 sender:(id)arg2;
 
 @end

@@ -9,6 +9,7 @@
     NSString * _topic;
     NSData * _underlyingData;
     bool  _useDynamicServiceName;
+    bool  _wasWrittenToConnection;
 }
 
 @property (nonatomic) bool cancelled;
@@ -18,6 +19,7 @@
 @property (nonatomic, readonly) NSData *underlyingData;
 @property (nonatomic, readonly) unsigned long long underlyingDataLength;
 @property (nonatomic) bool useDynamicServiceName;
+@property (nonatomic) bool wasWrittenToConnection;
 
 + (unsigned int)dataLengthFromHeaderData:(id)arg1;
 + (unsigned int)headerDataSize;
@@ -36,9 +38,11 @@
 - (void)setContext:(id)arg1;
 - (void)setTopic:(id)arg1;
 - (void)setUseDynamicServiceName:(bool)arg1;
+- (void)setWasWrittenToConnection:(bool)arg1;
 - (id)topic;
 - (id)underlyingData;
 - (unsigned long long)underlyingDataLength;
 - (bool)useDynamicServiceName;
+- (bool)wasWrittenToConnection;
 
 @end

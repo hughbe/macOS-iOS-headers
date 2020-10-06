@@ -15,9 +15,10 @@
 - (id)_reminder;
 - (id)action;
 - (id)alarms;
-- (id)appLink;
+- (id)allAlarms;
+- (id)appLinkData;
 - (id)attachments;
-- (id)attendees;
+- (id)attendeesRaw;
 - (id)calendar;
 - (id)calendarItemExternalIdentifier;
 - (id)calendarItemIdentifier;
@@ -25,12 +26,13 @@
 - (id)completionDate;
 - (id)creationDate;
 - (bool)defaultAlarmRemoved;
+- (bool)defaultAlarmWasDeleted;
 - (id)detachedItems;
 - (id)dueDateComponents;
 - (id)ekExceptionDates;
 - (bool)hasAttendees;
 - (bool)hasNotes;
-- (bool)hasRecurrenceRules;
+- (bool)hasRecurrences;
 - (id)initNewReminderInStore:(id)arg1;
 - (id)lastModifiedDate;
 - (id)notes;

@@ -3,6 +3,7 @@
  */
 
 @interface _UICollectionPreferredSize : NSObject {
+    _UICollectionPreferredSizingCustomizations * _customizations;
     struct CGSize { 
         double width; 
         double height; 
@@ -18,15 +19,18 @@
     }  _preferredSize;
 }
 
+@property (nonatomic, readonly) _UICollectionPreferredSizingCustomizations *customizations;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } fittingSize;
 @property (nonatomic, readonly) NSCollectionLayoutSize *layoutSize;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } originalSize;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } preferredSize;
 
 - (void).cxx_destruct;
+- (id)customizations;
 - (id)description;
 - (struct CGSize { double x1; double x2; })fittingSize;
 - (id)initWithOriginalSize:(struct CGSize { double x1; double x2; })arg1 fittingSize:(struct CGSize { double x1; double x2; })arg2 layoutSize:(id)arg3;
+- (id)initWithOriginalSize:(struct CGSize { double x1; double x2; })arg1 fittingSize:(struct CGSize { double x1; double x2; })arg2 layoutSize:(id)arg3 customizations:(id)arg4;
 - (id)layoutSize;
 - (struct CGSize { double x1; double x2; })originalSize;
 - (struct CGSize { double x1; double x2; })preferredSize;

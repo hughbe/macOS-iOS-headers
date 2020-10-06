@@ -13,7 +13,6 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (void)_animateUserInterfaceStyleChangeInScene:(id)arg1 transitionContext:(id)arg2 applyChangesBlock:(id /* block */)arg3;
 - (void)_performActionsForUIScene:(id)arg1 withUpdatedFBSScene:(id)arg2 settingsDiff:(id)arg3 fromSettings:(id)arg4 transitionContext:(id)arg5 lifecycleActionType:(unsigned int)arg6;
 - (id)sceneSettingsApplicationLifecycleEventDiffInspector;
 - (void)setSceneSettingsApplicationLifecycleEventDiffInspector:(id)arg1;

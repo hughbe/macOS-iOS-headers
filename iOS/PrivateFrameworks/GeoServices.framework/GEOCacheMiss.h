@@ -54,7 +54,10 @@
 - (bool)hasRequestorType;
 - (unsigned long long)hash;
 - (unsigned int)httpStatus;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (int)missType;
 - (id)missTypeAsString:(int)arg1;

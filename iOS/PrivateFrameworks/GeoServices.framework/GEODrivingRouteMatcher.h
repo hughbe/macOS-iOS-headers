@@ -5,6 +5,8 @@
 @interface GEODrivingRouteMatcher : GEORouteMatcher
 
 - (id)_candidateForSegment:(id)arg1 location:(id)arg2 previousRouteMatch:(id)arg3;
+- (struct { double x1; double x2; })_coordinateFromLocation:(id)arg1;
+- (double)_courseFromLocation:(id)arg1;
 - (double)_courseWeightForLocation:(id)arg1 accuracyType:(long long)arg2;
 - (void)_finishRouteMatch:(id)arg1 previousRouteMatch:(id)arg2 forLocation:(id)arg3;
 - (double)_maxCourseDelta:(id)arg1 previousRouteMatch:(id)arg2 timeSinceTunnel:(double)arg3;

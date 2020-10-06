@@ -12,6 +12,8 @@
 @property (nonatomic, retain) UILabel *label;
 @property (nonatomic, retain) CNTransportButton *transportIcon;
 
++ (bool)shouldIndentWhileEditing;
+
 - (void).cxx_destruct;
 - (id)action;
 - (id)actionGroupItem;
@@ -23,7 +25,6 @@
 - (void)setLabel:(id)arg1;
 - (void)setLabelTextAttributes:(id)arg1;
 - (void)setTransportIcon:(id)arg1;
-- (bool)shouldIndentWhileEditing;
 - (bool)shouldPerformDefaultAction;
 - (void)tintColorDidChange;
 - (id)transportIcon;

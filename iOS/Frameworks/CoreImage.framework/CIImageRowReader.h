@@ -14,8 +14,6 @@
     unsigned long long  width;
 }
 
-+ (id)forImage:(id)arg1 downscaleToMax:(unsigned int)arg2;
-+ (id)forImage:(id)arg1 downscaleToMax:(unsigned int)arg2 colorspace:(struct CGColorSpace { }*)arg3;
 + (id)forImage:(id)arg1 downscaleToMax:(unsigned int)arg2 colorspace:(struct CGColorSpace { }*)arg3 usingContext:(id)arg4;
 + (id)forImage:(id)arg1 usingContext:(id)arg2;
 + (id)forImage:(id)arg1 usingContext:(id)arg2 colorspace:(struct CGColorSpace { }*)arg3;

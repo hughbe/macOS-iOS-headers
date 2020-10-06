@@ -9,10 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_coordinate : 1; 
         unsigned int read_label : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_coordinate : 1; 
-        unsigned int wrote_label : 1; 
-        unsigned int wrote_type : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEORPCorrectedLabel * _label;
     PBDataReader * _reader;
@@ -37,8 +34,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (void)_readCoordinate;
-- (void)_readLabel;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)coordinate;
 - (void)copyTo:(id)arg1;
@@ -51,7 +46,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)label;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

@@ -10,8 +10,7 @@
 
 @property (nonatomic, readonly) NRMutableDevice *activeDevice;
 @property (nonatomic, retain) NSUUID *activeDeviceID;
-@property (nonatomic, retain) NSMutableDictionary *childMap;
-@property (nonatomic, retain) NSMutableDictionary *deviceCollection;
+@property (getter=allAltAccount, nonatomic, readonly) bool isAllAltAccount;
 @property (getter=paired, nonatomic, readonly) bool isPaired;
 @property (nonatomic, retain) NRPBMutableDeviceCollection *protobuf;
 
@@ -24,15 +23,14 @@
 - (id)_diffsToChangeActiveDeviceToDeviceID:(id)arg1;
 - (id)activeDevice;
 - (id)activeDeviceID;
+- (bool)allAltAccount;
 - (id)allPairingIDs;
 - (id)applyDiff:(id)arg1 upOnly:(bool)arg2 notifyParent:(bool)arg3 unconditional:(bool)arg4;
 - (void)child:(id)arg1 didApplyDiff:(id)arg2;
-- (id)childMap;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned long long)count;
 - (unsigned long long)countByEnumeratingWithState:(struct { unsigned long long x1; id *x2; unsigned long long *x3; unsigned long long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned long long)arg3;
 - (id)description;
-- (id)deviceCollection;
 - (id)deviceForPairingID:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned long long)hash;
@@ -46,9 +44,7 @@
 - (id)protobuf;
 - (void)removeDeviceForPairingID:(id)arg1;
 - (void)setActiveDeviceID:(id)arg1;
-- (void)setChildMap:(id)arg1;
 - (void)setDevice:(id)arg1 forPairingID:(id)arg2;
-- (void)setDeviceCollection:(id)arg1;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 - (void)setProtobuf:(id)arg1;
 

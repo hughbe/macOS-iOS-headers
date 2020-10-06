@@ -3,7 +3,6 @@
  */
 
 @interface _INPBCreateTimerIntent : PBCodable <NSCopying, NSSecureCoding, _INPBCreateTimerIntent> {
-    bool  __encodeLegacyGloryData;
     double  _duration;
     struct { 
         unsigned int duration : 1; 
@@ -14,7 +13,6 @@
     int  _type;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic) double duration;
@@ -32,8 +30,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (double)duration;

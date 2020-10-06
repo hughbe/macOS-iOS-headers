@@ -22,7 +22,9 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) NSDictionary *imageCropRects;
 @property (readonly) NSData *imageData;
+@property (readonly) NSData *imageHash;
 @property (readonly) NSArray *imageReferences;
+@property (readonly) NSString *imageType;
 @property (readonly) NSArray *instantMessagingAddresses;
 @property (readonly) bool isCompany;
 @property (readonly) bool isMe;
@@ -76,7 +78,9 @@
 - (id)firstName;
 - (id)imageCropRects;
 - (id)imageData;
+- (id)imageHash;
 - (id)imageReferences;
+- (id)imageType;
 - (id)initWithPerson:(id)arg1 scope:(id)arg2;
 - (id)instantMessagingAddresses;
 - (bool)isCompany;

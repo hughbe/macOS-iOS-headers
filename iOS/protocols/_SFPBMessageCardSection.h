@@ -6,6 +6,7 @@
 @required
 
 - (void)addPunchoutOptions:(_SFPBPunchout *)arg1;
+- (_SFPBURL *)audioMessageURL;
 - (_SFPBColor *)backgroundColor;
 - (bool)canBeHidden;
 - (void)clearPunchoutOptions;
@@ -14,6 +15,7 @@
 - (id)initWithDictionary:(NSDictionary *)arg1;
 - (id)initWithJSON:(NSData *)arg1;
 - (NSData *)jsonData;
+- (_SFPBMessageAttachment *)messageAttachment;
 - (int)messageServiceType;
 - (int)messageStatus;
 - (NSString *)messageText;
@@ -23,10 +25,12 @@
 - (NSString *)punchoutPickerDismissText;
 - (NSString *)punchoutPickerTitle;
 - (int)separatorStyle;
+- (void)setAudioMessageURL:(_SFPBURL *)arg1;
 - (void)setBackgroundColor:(_SFPBColor *)arg1;
 - (void)setCanBeHidden:(bool)arg1;
 - (void)setHasBottomPadding:(bool)arg1;
 - (void)setHasTopPadding:(bool)arg1;
+- (void)setMessageAttachment:(_SFPBMessageAttachment *)arg1;
 - (void)setMessageServiceType:(int)arg1;
 - (void)setMessageStatus:(int)arg1;
 - (void)setMessageText:(NSString *)arg1;

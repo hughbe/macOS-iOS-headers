@@ -4,6 +4,7 @@
 
 @interface FPNSFileProviderItemHelper : NSObject <NSFileProviderItem> {
     unsigned long long  capabilities;
+    UTType * contentType;
     NSString * filename;
     NSString * itemIdentifier;
     NSString * parentItemIdentifier;
@@ -13,6 +14,7 @@
 @property (nonatomic, readonly) unsigned long long capabilities;
 @property (nonatomic, readonly, copy) NSNumber *childItemCount;
 @property (nonatomic, readonly, copy) NSDate *contentModificationDate;
+@property (nonatomic, readonly, copy) UTType *contentType;
 @property (nonatomic, readonly, copy) NSDate *creationDate;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -20,14 +22,10 @@
 @property (getter=isDownloaded, nonatomic, readonly) bool downloaded;
 @property (getter=isDownloading, nonatomic, readonly) bool downloading;
 @property (nonatomic, readonly, copy) NSError *downloadingError;
-@property (getter=isExcludedFromSync, nonatomic, readonly) bool excludedFromSync;
-@property (nonatomic, readonly) NSDictionary *extendedAttributes;
 @property (nonatomic, readonly, copy) NSNumber *favoriteRank;
 @property (nonatomic, readonly, copy) NSString *filename;
-@property (nonatomic, readonly) <NSFileProviderItemFlags> *flags;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, copy) NSString *itemIdentifier;
-@property (nonatomic, readonly) NSFileProviderItemVersion *itemVersion;
 @property (nonatomic, readonly, copy) NSDate *lastUsedDate;
 @property (nonatomic, readonly) NSPersonNameComponents *mostRecentEditorNameComponents;
 @property (getter=isMostRecentVersionDownloaded, nonatomic, readonly) bool mostRecentVersionDownloaded;
@@ -47,6 +45,7 @@
 
 - (void).cxx_destruct;
 - (unsigned long long)capabilities;
+- (id)contentType;
 - (id)filename;
 - (id)fp_downloadingStatus;
 - (bool)fp_isReadable;

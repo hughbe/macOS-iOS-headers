@@ -5,6 +5,8 @@
 
 @optional
 
+- (void)lowDataModeChanged:(CTXPCServiceSubscriptionContext *)arg1 userEnabled:(bool)arg2;
 - (void)reliableNetworkFallbackChanged:(bool)arg1 userEnabled:(bool)arg2;
+- (void)smartDataModeChanged:(CTXPCServiceSubscriptionContext *)arg1 userEnabled:(bool)arg2;
 
 @end

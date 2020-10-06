@@ -16,6 +16,7 @@
         unsigned int separatorStyle : 1; 
         unsigned int preventThumbnailImageScaling : 1; 
         unsigned int isSecondaryTitleDetached : 1; 
+        unsigned int shouldUseCompactDisplay : 1; 
     }  _has;
     bool  _hasBottomPadding;
     bool  _hasTopPadding;
@@ -27,6 +28,7 @@
     SFFormattedText * _secondaryTitle;
     SFImage * _secondaryTitleImage;
     int  _separatorStyle;
+    bool  _shouldUseCompactDisplay;
     SFImage * _thumbnail;
     SFRichText * _title;
     SFFormattedText * _trailingBottomText;
@@ -62,6 +64,7 @@
 @property (nonatomic, retain) SFFormattedText *secondaryTitle;
 @property (nonatomic, retain) SFImage *secondaryTitleImage;
 @property (nonatomic) int separatorStyle;
+@property (nonatomic) bool shouldUseCompactDisplay;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) SFImage *thumbnail;
 @property (nonatomic, retain) SFRichText *title;
@@ -90,6 +93,7 @@
 - (bool)hasIsSecondaryTitleDetached;
 - (bool)hasPreventThumbnailImageScaling;
 - (bool)hasSeparatorStyle;
+- (bool)hasShouldUseCompactDisplay;
 - (bool)hasTopPadding;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProtobuf:(id)arg1;
@@ -118,12 +122,14 @@
 - (void)setSecondaryTitle:(id)arg1;
 - (void)setSecondaryTitleImage:(id)arg1;
 - (void)setSeparatorStyle:(int)arg1;
+- (void)setShouldUseCompactDisplay:(bool)arg1;
 - (void)setThumbnail:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setTrailingBottomText:(id)arg1;
 - (void)setTrailingMiddleText:(id)arg1;
 - (void)setTrailingTopText:(id)arg1;
 - (void)setType:(id)arg1;
+- (bool)shouldUseCompactDisplay;
 - (id)thumbnail;
 - (id)title;
 - (id)trailingBottomText;

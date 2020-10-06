@@ -5,6 +5,10 @@
 @interface _UIPrintPreviewPageCell : UICollectionViewCell <UIGestureRecognizerDelegate> {
     <PageRangeDelegate> * _delegate;
     UIView * _dimmingView;
+    struct CGSize { 
+        double width; 
+        double height; 
+    }  _imageSize;
     UIImageView * _imageView;
     bool  _inRange;
     UILongPressGestureRecognizer * _longPressRecognizer;
@@ -20,6 +24,7 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, retain) UIView *dimmingView;
 @property (readonly) unsigned long long hash;
+@property (nonatomic) struct CGSize { double x1; double x2; } imageSize;
 @property (nonatomic, retain) UIImageView *imageView;
 @property (nonatomic) long long pageIndex;
 @property (readonly) Class superclass;
@@ -39,14 +44,17 @@
 - (id)gestureRecognizers;
 - (void)handleLongPress:(id)arg1;
 - (void)handleTap:(id)arg1;
+- (struct CGSize { double x1; double x2; })imageSize;
 - (id)imageView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)layoutSubviews;
 - (long long)pageIndex;
 - (void)prepareForReuse;
 - (void)removePage:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDimmingView:(id)arg1;
 - (void)setEndPage:(id)arg1;
+- (void)setImageSize:(struct CGSize { double x1; double x2; })arg1;
 - (void)setImageView:(id)arg1;
 - (void)setInRange:(bool)arg1 animated:(bool)arg2;
 - (void)setPageIndex:(long long)arg1;

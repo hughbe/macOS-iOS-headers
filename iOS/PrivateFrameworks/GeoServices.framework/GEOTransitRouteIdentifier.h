@@ -8,9 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_clientRouteHandle : 1; 
         unsigned int read_serverRouteHandle : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_clientRouteHandle : 1; 
-        unsigned int wrote_serverRouteHandle : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -33,8 +31,6 @@
 + (id)routeIdentiferForComposedRoute:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readClientRouteHandle;
-- (void)_readServerRouteHandle;
 - (void)clearUnknownFields:(bool)arg1;
 - (id)clientRouteHandle;
 - (id)clientRouteID;
@@ -47,7 +43,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

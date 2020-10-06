@@ -16,10 +16,10 @@
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (readonly) int direction;
-@property (readonly) bool drawEdgesFirst;
+@property int direction;
+@property bool drawEdgesFirst;
 @property (readonly) unsigned long long hash;
-@property (readonly) struct CGSize { double x1; double x2; } separation;
+@property struct CGSize { double x1; double x2; } separation;
 @property (readonly) Class superclass;
 
 - (void)dealloc;

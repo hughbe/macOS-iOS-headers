@@ -5,6 +5,7 @@
 @interface MNGuidanceEventFeedback : PBCodable <NSCopying> {
     double  _endDistance;
     double  _endTime;
+    NSString * _enrouteNoticeIdentifier;
     unsigned int  _enrouteNoticeIndex;
     NSString * _eventDescription;
     unsigned int  _eventIndex;
@@ -20,6 +21,7 @@
         unsigned int selectedPrimaryStringIndex : 1; 
         unsigned int selectedSecondaryStringIndex : 1; 
         unsigned int stepID : 1; 
+        unsigned int trafficCameraType : 1; 
         unsigned int trafficColor : 1; 
         unsigned int type : 1; 
         unsigned int shortPrompt : 1; 
@@ -33,6 +35,7 @@
     double  _startDistance;
     double  _startTime;
     unsigned int  _stepID;
+    unsigned int  _trafficCameraType;
     unsigned int  _trafficColor;
     int  _type;
     NSString * _uniqueIDstring;
@@ -41,11 +44,13 @@
 
 @property (nonatomic) double endDistance;
 @property (nonatomic) double endTime;
+@property (nonatomic, retain) NSString *enrouteNoticeIdentifier;
 @property (nonatomic) unsigned int enrouteNoticeIndex;
 @property (nonatomic, retain) NSString *eventDescription;
 @property (nonatomic) unsigned int eventIndex;
 @property (nonatomic) bool hasEndDistance;
 @property (nonatomic) bool hasEndTime;
+@property (nonatomic, readonly) bool hasEnrouteNoticeIdentifier;
 @property (nonatomic) bool hasEnrouteNoticeIndex;
 @property (nonatomic, readonly) bool hasEventDescription;
 @property (nonatomic) bool hasEventIndex;
@@ -57,6 +62,7 @@
 @property (nonatomic) bool hasStartDistance;
 @property (nonatomic) bool hasStartTime;
 @property (nonatomic) bool hasStepID;
+@property (nonatomic) bool hasTrafficCameraType;
 @property (nonatomic) bool hasTrafficColor;
 @property (nonatomic) bool hasType;
 @property (nonatomic, readonly) bool hasUniqueIDstring;
@@ -70,6 +76,7 @@
 @property (nonatomic) double startDistance;
 @property (nonatomic) double startTime;
 @property (nonatomic) unsigned int stepID;
+@property (nonatomic) unsigned int trafficCameraType;
 @property (nonatomic) unsigned int trafficColor;
 @property (nonatomic) int type;
 @property (nonatomic, readonly) NSUUID *uniqueID;
@@ -88,11 +95,13 @@
 - (id)dictionaryRepresentation;
 - (double)endDistance;
 - (double)endTime;
+- (id)enrouteNoticeIdentifier;
 - (unsigned int)enrouteNoticeIndex;
 - (id)eventDescription;
 - (unsigned int)eventIndex;
 - (bool)hasEndDistance;
 - (bool)hasEndTime;
+- (bool)hasEnrouteNoticeIdentifier;
 - (bool)hasEnrouteNoticeIndex;
 - (bool)hasEventDescription;
 - (bool)hasEventIndex;
@@ -104,6 +113,7 @@
 - (bool)hasStartDistance;
 - (bool)hasStartTime;
 - (bool)hasStepID;
+- (bool)hasTrafficCameraType;
 - (bool)hasTrafficColor;
 - (bool)hasType;
 - (bool)hasUniqueIDstring;
@@ -122,6 +132,7 @@
 - (unsigned int)selectedSecondaryStringIndex;
 - (void)setEndDistance:(double)arg1;
 - (void)setEndTime:(double)arg1;
+- (void)setEnrouteNoticeIdentifier:(id)arg1;
 - (void)setEnrouteNoticeIndex:(unsigned int)arg1;
 - (void)setEventDescription:(id)arg1;
 - (void)setEventIndex:(unsigned int)arg1;
@@ -136,6 +147,7 @@
 - (void)setHasStartDistance:(bool)arg1;
 - (void)setHasStartTime:(bool)arg1;
 - (void)setHasStepID:(bool)arg1;
+- (void)setHasTrafficCameraType:(bool)arg1;
 - (void)setHasTrafficColor:(bool)arg1;
 - (void)setHasType:(bool)arg1;
 - (void)setHasVehicleSpeed:(bool)arg1;
@@ -148,6 +160,7 @@
 - (void)setStartDistance:(double)arg1;
 - (void)setStartTime:(double)arg1;
 - (void)setStepID:(unsigned int)arg1;
+- (void)setTrafficCameraType:(unsigned int)arg1;
 - (void)setTrafficColor:(unsigned int)arg1;
 - (void)setType:(int)arg1;
 - (void)setUniqueIDstring:(id)arg1;
@@ -156,6 +169,7 @@
 - (double)startDistance;
 - (double)startTime;
 - (unsigned int)stepID;
+- (unsigned int)trafficCameraType;
 - (unsigned int)trafficColor;
 - (int)type;
 - (id)typeAsString:(int)arg1;

@@ -8,15 +8,14 @@
         unsigned long long count; 
         unsigned long long size; 
     }  _feedbackComponentTypes;
+    GEORPFilter * _filter;
     struct { 
         unsigned int read_unknownFields : 1; 
         unsigned int read_feedbackComponentTypes : 1; 
+        unsigned int read_filter : 1; 
         unsigned int read_pageInfo : 1; 
         unsigned int read_sortParameters : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_feedbackComponentTypes : 1; 
-        unsigned int wrote_pageInfo : 1; 
-        unsigned int wrote_sortParameters : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEORPPageInfo * _pageInfo;
     PBDataReader * _reader;
@@ -31,6 +30,8 @@
 
 @property (nonatomic, readonly) int*feedbackComponentTypes;
 @property (nonatomic, readonly) unsigned long long feedbackComponentTypesCount;
+@property (nonatomic, retain) GEORPFilter *filter;
+@property (nonatomic, readonly) bool hasFilter;
 @property (nonatomic, readonly) bool hasPageInfo;
 @property (nonatomic, readonly) bool hasSortParameters;
 @property (nonatomic, retain) GEORPPageInfo *pageInfo;
@@ -41,10 +42,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsFeedbackComponentTypes:(id)arg1;
-- (void)_addNoFlagsFeedbackComponentType:(int)arg1;
-- (void)_readFeedbackComponentTypes;
-- (void)_readPageInfo;
-- (void)_readSortParameters;
 - (void)addFeedbackComponentType:(int)arg1;
 - (void)clearFeedbackComponentTypes;
 - (void)clearUnknownFields:(bool)arg1;
@@ -57,17 +54,23 @@
 - (int*)feedbackComponentTypes;
 - (id)feedbackComponentTypesAsString:(int)arg1;
 - (unsigned long long)feedbackComponentTypesCount;
+- (id)filter;
+- (bool)hasFilter;
 - (bool)hasPageInfo;
 - (bool)hasSortParameters;
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)pageInfo;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setFeedbackComponentTypes:(int*)arg1 count:(unsigned long long)arg2;
+- (void)setFilter:(id)arg1;
 - (void)setPageInfo:(id)arg1;
 - (void)setSortParameters:(id)arg1;
 - (id)sortParameters;

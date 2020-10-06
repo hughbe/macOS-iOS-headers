@@ -3,12 +3,10 @@
  */
 
 @interface _INPBQueryHealthSampleIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBQueryHealthSampleIntentResponse> {
-    bool  __encodeLegacyGloryData;
     struct { }  _has;
     NSArray * _resultValues;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -20,8 +18,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addResultValues:(id)arg1;
 - (void)clearResultValues;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

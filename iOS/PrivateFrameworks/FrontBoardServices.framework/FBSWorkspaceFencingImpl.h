@@ -8,6 +8,7 @@
     unsigned long long  _signpostName;
     bool  _synchronizingFence;
     BSMutableIntegerMap * _triggerToFenceNameMap;
+    BSMutableIntegerSet * _triggersToIgnore;
 }
 
 @property (readonly, copy) NSString *debugDescription;

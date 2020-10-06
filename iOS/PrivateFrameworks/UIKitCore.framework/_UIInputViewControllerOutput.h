@@ -28,6 +28,7 @@
     bool  _shouldAdvanceResponder;
     bool  _shouldDismiss;
     bool  _shouldPostReturnKeyNotification;
+    long long  _source;
     bool  _unmarkText;
 }
 
@@ -47,6 +48,7 @@
 @property (nonatomic) bool shouldAdvanceResponder;
 @property (nonatomic) bool shouldDismiss;
 @property (nonatomic) bool shouldPostReturnKeyNotification;
+@property (nonatomic) long long source;
 @property (nonatomic) bool unmarkText;
 
 + (bool)supportsSecureCoding;
@@ -91,11 +93,13 @@
 - (void)setShouldAdvanceResponder:(bool)arg1;
 - (void)setShouldDismiss:(bool)arg1;
 - (void)setShouldPostReturnKeyNotification:(bool)arg1;
+- (void)setSource:(long long)arg1;
 - (void)setUnmarkText:(bool)arg1;
 - (bool)shouldAdvanceInputMode;
 - (bool)shouldAdvanceResponder;
 - (bool)shouldDismiss;
 - (bool)shouldPostReturnKeyNotification;
+- (long long)source;
 - (bool)unmarkText;
 
 @end

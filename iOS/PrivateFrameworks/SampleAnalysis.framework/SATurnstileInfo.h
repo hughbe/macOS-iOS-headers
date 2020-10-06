@@ -19,23 +19,20 @@
 @property (readonly) Class superclass;
 
 + (id)classDictionaryKey;
-+ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned char x4; unsigned char x5; unsigned long long x6; }*)arg1 bufferLength:(unsigned long long)arg2;
-+ (id)turnstileInfoWithKCDataTurnstileInfo:(const struct stackshot_thread_turnstileinfo { unsigned long long x1; unsigned long long x2; unsigned char x3; unsigned char x4; unsigned long long x5; }*)arg1;
++ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2;
 
 - (bool)addSelfToBuffer:(struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned char x4; unsigned char x5; unsigned long long x6; }*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
 - (void)addSelfToSerializationDictionary:(id)arg1;
 - (long long)compare:(id)arg1;
 - (unsigned long long)context;
 - (id)description;
-- (id)descriptionForTid:(unsigned long long)arg1 threadPriority:(int)arg2 options:(unsigned long long)arg3 nameCallback:(id /* block */)arg4;
-- (bool)displaysSameContentAs:(id)arg1 withDisplayOptions:(unsigned long long)arg2;
+- (id)descriptionForPid:(int)arg1 tid:(unsigned long long)arg2 threadPriority:(int)arg3 options:(unsigned long long)arg4 nameCallback:(id /* block */)arg5;
 - (unsigned long long)flags;
 - (unsigned long long)hash;
 - (id)initWithKCDataTurnstileInfo:(const struct stackshot_thread_turnstileinfo { unsigned long long x1; unsigned long long x2; unsigned char x3; unsigned char x4; unsigned long long x5; }*)arg1;
 - (bool)isEqual:(id)arg1;
-- (bool)matchesKCDataTurnstileInfo:(const struct stackshot_thread_turnstileinfo { unsigned long long x1; unsigned long long x2; unsigned char x3; unsigned char x4; unsigned long long x5; }*)arg1;
 - (unsigned char)numHops;
-- (void)populateReferencesUsingBuffer:(const struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned char x4; unsigned char x5; unsigned long long x6; }*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
+- (void)populateReferencesUsingBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
 - (unsigned char)priority;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 

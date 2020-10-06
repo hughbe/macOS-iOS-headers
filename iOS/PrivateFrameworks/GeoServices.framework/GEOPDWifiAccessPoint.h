@@ -45,8 +45,11 @@
 - (bool)hasRssi;
 - (bool)hasScanTimestamp;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
 - (id)initWithGEOWifiAccessPoint:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)macId;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

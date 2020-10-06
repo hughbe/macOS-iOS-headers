@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UISegmentedControl : UIControl <CAAnimationDelegate, DebugHierarchyObject_Fallback, NSCoding, UIPopoverPresentationControllerDelegate, _UIBasicAnimationFactory, _UIHostedFocusSystemDelegate> {
+@interface UISegmentedControl : UIControl <CAAnimationDelegate, NSCoding, UIPopoverPresentationControllerDelegate, _UIBasicAnimationFactory, _UIHostedFocusSystemDelegate> {
     id  _appearanceStorage;
     UILongPressGestureRecognizer * _axLongPressGestureRecognizer;
     UIColor * _backgroundTintColor;
@@ -28,6 +28,7 @@
         unsigned int appearanceNeedsUpdate : 1; 
         unsigned int selectionIndicatorDragged : 1; 
         unsigned int useInnerSegmentSpacing : 1; 
+        unsigned int adjustsForContentSizeCategory : 1; 
         unsigned int useDynamicShadow : 1; 
         unsigned int animatingOutDynamicShadow : 1; 
         unsigned int animatingSeleciton : 1; 
@@ -51,6 +52,7 @@
 @property (getter=_internalFocusSystem, nonatomic, readonly) _UIHostedFocusSystem *internalFocusSystem;
 @property (getter=isMomentary, nonatomic) bool momentary;
 @property (nonatomic, readonly) unsigned long long numberOfSegments;
+@property (setter=px_setMinimumSegmentWidth:, nonatomic) double px_minimumSegmentWidth;
 @property (nonatomic, retain) UIView *removedSegment;
 @property (nonatomic) long long segmentedControlStyle;
 @property (nonatomic) long long selectedSegmentIndex;
@@ -93,7 +95,9 @@
 + (double)defaultHeightForStyle:(long long)arg1 size:(int)arg2;
 
 - (void).cxx_destruct;
+- (void)__initWithFrameCommonOperations;
 - (id)__scalarStatisticsForUserValueChangedEvent;
+- (bool)_alwaysEmitValueChanged;
 - (void)_animateContentChangeWithAnimations:(id /* block */)arg1 completion:(id /* block */)arg2;
 - (bool)_animatingOutDynamicShadow;
 - (id)_attributedTitleForSegmentAtIndex:(unsigned long long)arg1;
@@ -120,6 +124,7 @@
 - (bool)_focusSystem:(id)arg1 containsChildOfHostEnvironment:(id)arg2;
 - (void)_focusSystem:(id)arg1 didFinishUpdatingFocusInContext:(id)arg2;
 - (bool)_hasEnabledSegment;
+- (void)_highlightSegment:(long long)arg1;
 - (double)_innerSegmentSpacing;
 - (void)_insertSegment:(int)arg1 withInfo:(id)arg2 animated:(bool)arg3;
 - (void)_insertSegmentWithAttributedTitle:(id)arg1 atIndex:(unsigned long long)arg2 animated:(bool)arg3;
@@ -133,6 +138,9 @@
 - (void)_selectFocusedSegment;
 - (id)_selectedSegmentVibrancyEffect;
 - (void)_sendDelayedFocusActionIfNecessary;
+- (void)_sendValueChanged;
+- (void)_setAction:(id)arg1 forSegmentAtIndex:(unsigned long long)arg2;
+- (void)_setAlwaysEmitValueChanged:(bool)arg1;
 - (void)_setAnimatingOutDynamicShdaow:(bool)arg1;
 - (void)_setAppearanceIsTiled:(bool)arg1 leftCapWidth:(unsigned long long)arg2 rightCapWidth:(unsigned long long)arg3;
 - (void)_setAttributedTitle:(id)arg1 forSegmentAtIndex:(unsigned long long)arg2;
@@ -171,24 +179,11 @@
 - (bool)_useDynamicShadow;
 - (bool)_usesNewAnimations;
 - (id)_viewForLoweringBaselineLayoutAttribute:(int)arg1;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-- (struct CGSize { double x1; double x2; })__dbg_contentOffsetForSelectedSegment;
-- (bool)__dbg_hasValidSelectedSegmentIndex;
-- (bool)__dbg_isEnabledForSelectedSegment;
-- (id)__dbg_titleForSelectedSegment;
-- (double)__dbg_widthForSelectedSegment;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (id)actionForSegmentAtIndex:(unsigned long long)arg1;
 - (long long)adaptivePresentationStyleForPresentationController:(id)arg1;
 - (long long)adaptivePresentationStyleForPresentationController:(id)arg1 traitCollection:(id)arg2;
 - (void)addSegmentWithTitle:(id)arg1;
+- (bool)adjustsForContentSizeCategory;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })alignmentRectInsets;
 - (void)animationDidStop:(id)arg1 finished:(bool)arg2;
 - (bool)apportionsSegmentWidthsByContent;
@@ -205,12 +200,12 @@
 - (id)cursorInteraction:(id)arg1 styleForRegion:(id)arg2 modifiers:(long long)arg3;
 - (void)cursorInteraction:(id)arg1 willEnterRegion:(id)arg2 withAnimator:(id)arg3;
 - (void)cursorInteraction:(id)arg1 willExitRegion:(id)arg2 withAnimator:(id)arg3;
+- (void)dealloc;
 - (void)didUpdateFocusInContext:(id)arg1 withAnimationCoordinator:(id)arg2;
 - (id)dividerImageForLeftSegmentState:(unsigned long long)arg1 rightSegmentState:(unsigned long long)arg2 barMetrics:(long long)arg3;
 - (void)encodeWithCoder:(id)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frame;
 - (bool)gestureRecognizerShouldBegin:(id)arg1;
-- (void)highlightSegment:(int)arg1;
 - (void)hoverOffSegment:(long long)arg1;
 - (void)hoverOnSegment:(long long)arg1;
 - (id)imageForSegment:(unsigned long long)arg1;
@@ -218,10 +213,12 @@
 - (id)infoViewForSegment:(long long)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 actions:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 withStyle:(long long)arg2 withItems:(id)arg3;
 - (id)initWithItems:(id)arg1;
 - (void)insertSegment:(unsigned long long)arg1 withImage:(id)arg2 animated:(bool)arg3;
 - (void)insertSegment:(unsigned long long)arg1 withTitle:(id)arg2 animated:(bool)arg3;
+- (void)insertSegmentWithAction:(id)arg1 atIndex:(unsigned long long)arg2 animated:(bool)arg3;
 - (void)insertSegmentWithImage:(id)arg1 atIndex:(unsigned long long)arg2 animated:(bool)arg3;
 - (void)insertSegmentWithTitle:(id)arg1 atIndex:(unsigned long long)arg2 animated:(bool)arg3;
 - (bool)isEnabledForSegment:(unsigned long long)arg1;
@@ -240,11 +237,14 @@
 - (void)removeSegmentAtIndex:(unsigned long long)arg1 animated:(bool)arg2;
 - (id)removedSegment;
 - (long long)segmentControlStyle;
+- (long long)segmentIndexForActionIdentifier:(id)arg1;
 - (long long)segmentedControlStyle;
 - (void)selectSegment:(int)arg1;
 - (long long)selectedSegment;
 - (long long)selectedSegmentIndex;
 - (id)selectedSegmentTintColor;
+- (void)setAction:(id)arg1 forSegmentAtIndex:(unsigned long long)arg2;
+- (void)setAdjustsForContentSizeCategory:(bool)arg1;
 - (void)setAlpha:(double)arg1;
 - (void)setAlwaysNotifiesDelegateOfSegmentClicks:(bool)arg1;
 - (void)setApportionsSegmentWidthsByContent:(bool)arg1;
@@ -309,5 +309,17 @@
 
 - (struct { double x1; double x2; })_nui_additionalInsetsForBaselines;
 - (long long)_nui_baselineViewType;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (double)px_defaultMinimumSegmentWidth;
+
+- (struct CGSize { double x1; double x2; })_pxswizzled_sizeThatFits:(struct CGSize { double x1; double x2; })arg1;
+- (double)px_minimumSegmentWidth;
+- (void)px_setMinimumSegmentWidth:(double)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (void)sizeToFitWithMinimumSegmentWidth:(double)arg1 maximumTotalWidth:(double)arg2;
 
 @end

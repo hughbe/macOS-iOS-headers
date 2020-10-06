@@ -15,6 +15,7 @@
 - (void)anticipateRenderingUsingHint:(AVVideoCompositionRenderHint *)arg1;
 - (void)cancelAllPendingVideoCompositionRequests;
 - (void)prerollForRenderingUsingHint:(AVVideoCompositionRenderHint *)arg1;
+- (bool)supportsHDRSourceFrames;
 - (bool)supportsWideColorSourceFrames;
 
 @end

@@ -5,6 +5,8 @@
 @interface AMSPaymentSheetRequest : NSObject {
     ACAccount * _account;
     NSString * _accountHeader;
+    bool  _applePayClassic;
+    NSArray * _attributedList;
     AMSBiometricsSignatureRequest * _biometricsRequest;
     long long  _confirmationTitle;
     NSString * _countryCode;
@@ -14,6 +16,7 @@
     NSArray * _flexList;
     NSArray * _inlineImages;
     NSString * _logKey;
+    NSDictionary * _merchantSession;
     NSString * _message;
     long long  _payee;
     NSString * _paymentSession;
@@ -38,6 +41,8 @@
 @property (nonatomic, copy) NSString *accountHeader;
 @property (nonatomic, readonly) unsigned long long ams_confirmationStyle;
 @property (nonatomic, readonly) unsigned long long ams_paymentRequestorType;
+@property (getter=isApplePayClassic, nonatomic) bool applePayClassic;
+@property (nonatomic, copy) NSArray *attributedList;
 @property (nonatomic, retain) AMSBiometricsSignatureRequest *biometricsRequest;
 @property (nonatomic) long long confirmationTitle;
 @property (nonatomic, copy) NSString *countryCode;
@@ -47,6 +52,7 @@
 @property (nonatomic, copy) NSArray *flexList;
 @property (nonatomic, retain) NSArray *inlineImages;
 @property (nonatomic, retain) NSString *logKey;
+@property (nonatomic, copy) NSDictionary *merchantSession;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic) long long payee;
 @property (nonatomic, copy) NSString *paymentSession;
@@ -82,6 +88,7 @@
 - (long long)_imageTypeForURL:(id)arg1;
 - (id)_removeAllImagePlaceholderTags:(id)arg1;
 - (id)_replaceImagePlaceholderTagWithImageData:(id)arg1 tag:(id)arg2 data:(id)arg3 scale:(float)arg4 tint:(bool)arg5;
+- (id)_summaryItemsForAttributedList:(id)arg1 cache:(id)arg2 bag:(id)arg3;
 - (id)account;
 - (id)accountHeader;
 - (unsigned long long)ams_confirmationStyle;
@@ -91,7 +98,9 @@
 - (id)ams_createContentItemsForFlexibleListWithCache:(id)arg1 bag:(id)arg2;
 - (id)ams_createContentItemsForPreScreenDialogWithCache:(id)arg1 bag:(id)arg2;
 - (id)ams_createSummaryItems;
+- (id)ams_createSummaryItemsForAttributedListWithCache:(id)arg1 bag:(id)arg2;
 - (unsigned long long)ams_paymentRequestorType;
+- (id)attributedList;
 - (id)biometricsRequest;
 - (long long)confirmationTitle;
 - (id)countryCode;
@@ -100,7 +109,9 @@
 - (id)explanation;
 - (id)flexList;
 - (id)inlineImages;
+- (bool)isApplePayClassic;
 - (id)logKey;
+- (id)merchantSession;
 - (id)message;
 - (long long)payee;
 - (id)paymentSession;
@@ -117,6 +128,8 @@
 - (id)salableInfoLabel;
 - (void)setAccount:(id)arg1;
 - (void)setAccountHeader:(id)arg1;
+- (void)setApplePayClassic:(bool)arg1;
+- (void)setAttributedList:(id)arg1;
 - (void)setBiometricsRequest:(id)arg1;
 - (void)setConfirmationTitle:(long long)arg1;
 - (void)setCountryCode:(id)arg1;
@@ -126,6 +139,7 @@
 - (void)setFlexList:(id)arg1;
 - (void)setInlineImages:(id)arg1;
 - (void)setLogKey:(id)arg1;
+- (void)setMerchantSession:(id)arg1;
 - (void)setMessage:(id)arg1;
 - (void)setPayee:(long long)arg1;
 - (void)setPaymentSession:(id)arg1;

@@ -32,7 +32,10 @@
 - (id)dictionaryRepresentation;
 - (bool)hasLevel;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)level;
 - (id)localizedNameAtIndex:(unsigned long long)arg1;
 - (id)localizedNames;

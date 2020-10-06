@@ -8,9 +8,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_detail : 1; 
         unsigned int read_titles : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_detail : 1; 
-        unsigned int wrote_titles : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -31,9 +29,6 @@
 + (Class)titleType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsTitle:(id)arg1;
-- (void)_readDetail;
-- (void)_readTitles;
 - (void)addTitle:(id)arg1;
 - (void)clearTitles;
 - (void)clearUnknownFields:(bool)arg1;
@@ -46,7 +41,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

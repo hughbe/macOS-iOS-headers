@@ -11,7 +11,7 @@
 
 - (void)CADCalendar:(id)arg1 setAlertedWithError:(id /* block */)arg2;
 - (void)CADCalendarSetClearedFromNotificationCenter:(id)arg1 error:(id /* block */)arg2;
-- (void)CADDatabaseGetEventNotificationItemsFilteredByShowsNotificationsFlag:(bool)arg1 reply:(id /* block */)arg2;
+- (void)CADDatabaseGetEventNotificationItemsFilteredByShowsNotificationsFlag:(bool)arg1 calculateEarliestExpirationDate:(bool)arg2 reply:(id /* block */)arg3;
 - (void)CADDatabaseGetInboxRepliedSectionItems:(id /* block */)arg1;
 - (void)CADDatabaseGetInviteReplyNotifications:(id /* block */)arg1;
 - (void)CADDatabaseGetNotificationCountForSourceWithExternalIdentifier:(id)arg1 excludingDelegateSources:(bool)arg2 filteredByShowsNotificationsFlag:(bool)arg3 reply:(id /* block */)arg4;

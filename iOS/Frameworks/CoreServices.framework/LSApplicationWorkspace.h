@@ -10,6 +10,9 @@
 @property (readonly) NSMutableDictionary *createdInstallProgresses;
 @property (readonly) LSInstallProgressList *observedInstallProgresses;
 
+// Image: /System/Library/Frameworks/CoreServices.framework/CoreServices
+
++ (id)_defaultAppQueue;
 + (id)_remoteObserver;
 + (id)activeManagedConfigurationRestrictionUUIDs;
 + (id)callbackQueue;
@@ -27,6 +30,8 @@
 - (void)_LSPrivateSetRemovedSystemAppIdentifiers:(id)arg1;
 - (void)_LSPrivateSyncWithMobileInstallation;
 - (void)_LSPrivateUpdateAppRemovalRestrictions;
+- (bool)_getBundleIdentifierForBundleAtURL:(id)arg1 invokeUpdateBlockAndReregister:(id /* block */)arg2 error:(id*)arg3;
+- (void)_openUserActivity:(id)arg1 orUserActivityUUID:(id)arg2 activityTypeForUUID:(id)arg3 withApplicationProxy:(id)arg4 options:(id)arg5 completionHandler:(id /* block */)arg6;
 - (void)addObserver:(id)arg1;
 - (id)allApplications;
 - (id)allInstalledApplications;
@@ -69,6 +74,7 @@
 - (bool)installApplication:(id)arg1 withOptions:(id)arg2;
 - (bool)installApplication:(id)arg1 withOptions:(id)arg2 error:(id*)arg3;
 - (bool)installApplication:(id)arg1 withOptions:(id)arg2 error:(id*)arg3 usingBlock:(id /* block */)arg4;
+- (bool)installContainerizedApplicationArtifactAtURL:(id)arg1 withOptions:(id)arg2 error:(id*)arg3 progressBlock:(id /* block */)arg4;
 - (bool)installPhaseFinishedForProgress:(id)arg1;
 - (id)installProgressForApplication:(id)arg1 withPhase:(unsigned long long)arg2;
 - (id)installProgressForBundleID:(id)arg1 makeSynchronous:(unsigned char)arg2;
@@ -93,8 +99,10 @@
 - (void)openURL:(id)arg1 configuration:(id)arg2 completionHandler:(id /* block */)arg3;
 - (bool)openURL:(id)arg1 withOptions:(id)arg2;
 - (bool)openURL:(id)arg1 withOptions:(id)arg2 error:(id*)arg3;
+- (void)openUserActivity:(id)arg1 usingApplicationRecord:(id)arg2 configuration:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)openUserActivity:(id)arg1 withApplicationProxy:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)openUserActivity:(id)arg1 withApplicationProxy:(id)arg2 options:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)openUserActivityWithUUID:(id)arg1 activityType:(id)arg2 usingApplicationRecord:(id)arg3 configuration:(id)arg4 completionHandler:(id /* block */)arg5;
 - (id)operationToOpenResource:(id)arg1 usingApplication:(id)arg2 uniqueDocumentIdentifier:(id)arg3 isContentManaged:(bool)arg4 sourceAuditToken:(const struct { unsigned int x1[8]; }*)arg5 userInfo:(id)arg6 options:(id)arg7 delegate:(id)arg8;
 - (id)operationToOpenResource:(id)arg1 usingApplication:(id)arg2 uniqueDocumentIdentifier:(id)arg3 sourceIsManaged:(bool)arg4 userInfo:(id)arg5 delegate:(id)arg6;
 - (id)operationToOpenResource:(id)arg1 usingApplication:(id)arg2 uniqueDocumentIdentifier:(id)arg3 sourceIsManaged:(bool)arg4 userInfo:(id)arg5 options:(id)arg6 delegate:(id)arg7;
@@ -110,11 +118,14 @@
 - (id)pluginsWithIdentifiers:(id)arg1 protocols:(id)arg2 version:(id)arg3 withFilter:(id /* block */)arg4;
 - (id)privateURLSchemes;
 - (id)publicURLSchemes;
+- (void)rebuildDatabaseContentForFrameworkAtURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (bool)registerApplication:(id)arg1;
 - (bool)registerApplicationDictionary:(id)arg1;
 - (bool)registerApplicationDictionary:(id)arg1 withObserverNotification:(int)arg2;
 - (bool)registerPlugin:(id)arg1;
+- (void)relaxApplicationTypeRequirements:(bool)arg1 forApplicationRecord:(id)arg2 completionHandler:(id /* block */)arg3;
 - (id)remoteObserver;
+- (void)removeAllDefaultApplicationPreferencesWithCompletionHandler:(id /* block */)arg1;
 - (void)removeDeviceIdentifierForVendorName:(id)arg1 bundleIdentifier:(id)arg2;
 - (void)removeObserver:(id)arg1;
 - (id)removedSystemApplications;
@@ -123,16 +134,33 @@
 - (id)scanForApplicationStateChangesWithWhitelist:(id)arg1;
 - (id)scanForForDeletableSystemApps;
 - (void)sendApplicationStateChangedNotificationsFor:(id)arg1;
+- (void)setDefaultMailClientToApplicationRecord:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)setDefaultWebBrowserToApplicationRecord:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)syncObserverProxy;
 - (bool)uninstallApplication:(id)arg1 withOptions:(id)arg2;
 - (bool)uninstallApplication:(id)arg1 withOptions:(id)arg2 error:(id*)arg3 usingBlock:(id /* block */)arg4;
 - (bool)uninstallApplication:(id)arg1 withOptions:(id)arg2 usingBlock:(id /* block */)arg3;
+- (bool)uninstallContainerizedApplicationWithIdentifier:(id)arg1 options:(id)arg2 error:(id*)arg3 progressBlock:(id /* block */)arg4;
 - (bool)unregisterApplication:(id)arg1;
 - (bool)unregisterPlugin:(id)arg1;
 - (id)unrestrictedApplications;
 - (bool)updatePlaceholderMetadataForApp:(id)arg1 installType:(unsigned long long)arg2 failure:(unsigned long long)arg3 underlyingError:(id)arg4 source:(unsigned long long)arg5 outError:(id*)arg6;
+- (bool)updatePlaceholderWithBundleIdentifier:(id)arg1 withInstallType:(unsigned long long)arg2 error:(id*)arg3;
 - (bool)updateRecordForApp:(id)arg1 withSINF:(id)arg2 iTunesMetadata:(id)arg3 placeholderMetadata:(id)arg4 sendNotification:(int)arg5 error:(id*)arg6;
 - (bool)updateSINFWithData:(id)arg1 forApplication:(id)arg2 options:(id)arg3 error:(id*)arg4;
+- (bool)updateSINFWithData:(id)arg1 forApplicationAtURL:(id)arg2 error:(id*)arg3;
 - (bool)updateiTunesMetadataWithData:(id)arg1 forApplication:(id)arg2 options:(id)arg3 error:(id*)arg4;
+- (bool)updateiTunesMetadataWithData:(id)arg1 forApplicationAtURL:(id)arg2 error:(id*)arg3;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (void)_sf_openURL:(id)arg1 inApplication:(id)arg2 withOptions:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)_sf_openURL:(id)arg1 withOptions:(id)arg2 completionHandler:(id /* block */)arg3;
+- (bool)_sf_shouldOverrideiCloudSharingURL:(id)arg1 withAppRedirectURL:(id)arg2 referrerURL:(id)arg3 loadedUsingDesktopUserAgent:(bool)arg4;
+- (void)_sf_tryOpeningURLInDefaultApp:(id)arg1 isContentManaged:(bool)arg2 completionHandler:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
+- (id)blacklistedApps;
 
 @end

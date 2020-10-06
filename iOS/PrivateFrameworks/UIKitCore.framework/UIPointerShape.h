@@ -32,11 +32,14 @@
 @property (nonatomic) double defaultCornerRadius;
 @property (nonatomic, readonly) double effectiveCornerRadius;
 @property (nonatomic) struct CGPoint { double x1; double x2; } inherentConstrainedSlip;
+@property (nonatomic, readonly) bool isCircle;
 @property (nonatomic, readonly) bool isEmpty;
 @property (nonatomic) unsigned long long materialUsage;
 @property (nonatomic, copy) UIBezierPath *path;
 @property (nonatomic) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } rect;
 @property (nonatomic, readonly) struct CGSize { double x1; double x2; } size;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (id)_linkPointerShape;
 + (id)beamWithPreferredLength:(double)arg1 axis:(unsigned long long)arg2;
@@ -52,10 +55,12 @@
 - (id)cornerCurve;
 - (double)cornerRadius;
 - (double)defaultCornerRadius;
+- (id)description;
 - (double)effectiveCornerRadius;
 - (unsigned long long)hash;
 - (struct CGPoint { double x1; double x2; })inherentConstrainedSlip;
 - (id)init;
+- (bool)isCircle;
 - (bool)isEmpty;
 - (bool)isEqual:(id)arg1;
 - (unsigned long long)materialUsage;
@@ -69,5 +74,9 @@
 - (void)setPath:(id)arg1;
 - (void)setRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGSize { double x1; double x2; })size;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
++ (id)_sf_shapeForToolbarButton:(id)arg1;
 
 @end

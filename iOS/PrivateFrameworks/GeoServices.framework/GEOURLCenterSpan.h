@@ -35,7 +35,10 @@
 - (bool)hasLongitude;
 - (bool)hasLongitudeDelta;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (double)latitude;
 - (double)latitudeDelta;
 - (double)longitude;

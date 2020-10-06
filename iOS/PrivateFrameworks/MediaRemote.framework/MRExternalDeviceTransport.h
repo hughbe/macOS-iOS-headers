@@ -9,7 +9,7 @@
 }
 
 @property (nonatomic, readonly) long long connectionType;
-@property (nonatomic, readonly) _MRDeviceInfoMessageProtobuf *deviceInfo;
+@property (nonatomic, readonly) MRDeviceInfo *deviceInfo;
 @property (nonatomic, readonly) NSError *error;
 @property (nonatomic, readonly) NSString *hostname;
 @property (nonatomic, readonly) NSString *name;
@@ -22,7 +22,7 @@
 - (long long)connectionType;
 - (id)deviceInfo;
 - (id)error;
-- (bool)getInputStream:(id*)arg1 outputStream:(id*)arg2;
+- (bool)getInputStream:(id*)arg1 outputStream:(id*)arg2 userInfo:(id)arg3;
 - (id)hostname;
 - (id)name;
 - (long long)port;

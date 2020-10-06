@@ -2,66 +2,26 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface PFCloudKitImporterZoneChangedWorkItem : PFCloudKitImporterWorkItem <PFCloudKitSerializerDelegate> {
-    NSMutableArray * _allRecordIDs;
-    NSMutableDictionary * _assetPathToSafeSaveURL;
+@interface PFCloudKitImporterZoneChangedWorkItem : PFCloudKitImportRecordsWorkItem {
     NSArray * _changedRecordZoneIDs;
-    unsigned long long  _currentOperationBytes;
-    NSMutableArray * _encounteredErrors;
-    NSMutableArray * _failedRelationships;
-    PFCloudKitFetchedAssetBytesMetric * _fetchedAssetBytesMetric;
-    PFCloudKitFetchedRecordBytesMetric * _fetchedRecordBytesMetric;
     NSMutableDictionary * _fetchedZoneIDToChangeToken;
-    NSUUID * _importOperationIdentifier;
-    NSMutableArray * _incrementalResults;
-    NSMutableDictionary * _recordTypeToDeletedRecordID;
-    unsigned long long  _totalOperationBytes;
-    NSMutableArray * _updatedRecords;
+    NSMutableDictionary * _fetchedZoneIDToMoreComing;
 }
 
-@property (nonatomic, readonly) NSArray *allRecordIDs;
-@property (nonatomic, readonly) NSDictionary *assetPathToSafeSaveURL;
 @property (nonatomic, readonly) NSArray *changedRecordZoneIDs;
-@property (nonatomic, readonly) unsigned long long currentOperationBytes;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
-@property (nonatomic, readonly) NSArray *encounteredErrors;
 @property (nonatomic, readonly) NSDictionary *fetchedZoneIDToChangeToken;
-@property (readonly) unsigned long long hash;
-@property (nonatomic, readonly) NSUUID *importOperationIdentifier;
-@property (nonatomic, readonly) NSArray *incrementalResults;
-@property (nonatomic, readonly) NSDictionary *recordTypeToDeletedRecordID;
-@property (readonly) Class superclass;
-@property (nonatomic, readonly) unsigned long long totalOperationBytes;
-@property (nonatomic, readonly) unsigned long long totalRecordBytes;
-@property (nonatomic, readonly) NSArray *updatedRecords;
+@property (nonatomic, readonly) NSDictionary *fetchedZoneIDToMoreComing;
 
-- (void)addDeletedRecordID:(id)arg1 ofType:(id)arg2;
-- (void)addUpdatedRecord:(id)arg1;
-- (id)allRecordIDs;
-- (bool)applyAccumulatedChanges:(bool*)arg1 error:(id*)arg2;
-- (id)assetPathToSafeSaveURL;
 - (id)changedRecordZoneIDs;
-- (void)checkAndApplyChangesIfNeeded:(id)arg1;
-- (void)cloudKitSerializer:(id)arg1 failedToUpdateRelationship:(id)arg2 withError:(id)arg3;
-- (id)cloudKitSerializer:(id)arg1 safeSaveURLForAsset:(id)arg2;
-- (unsigned long long)currentOperationBytes;
+- (bool)commitMetadataChangesWithContext:(id)arg1 forStore:(id)arg2 error:(id*)arg3;
 - (void)dealloc;
 - (id)description;
-- (void)doWorkWithCompletion:(id /* block */)arg1;
-- (id)encounteredErrors;
-- (void)fetchFinishedForZoneWithID:(id)arg1 serverChangeToken:(id)arg2 error:(id)arg3;
-- (void)fetchOperationFinishedWithError:(id)arg1 completion:(id /* block */)arg2;
+- (void)executeImportOperationsAndAccumulateRecordsWithManagedObjectContext:(id)arg1 completion:(id /* block */)arg2;
+- (void)fetchFinishedForZoneWithID:(id)arg1 serverChangeToken:(id)arg2 moreComing:(bool)arg3 error:(id)arg4;
 - (id)fetchedZoneIDToChangeToken;
-- (id)importOperationIdentifier;
-- (id)incrementalResults;
+- (id)fetchedZoneIDToMoreComing;
 - (id)initWithChangedRecordZoneIDs:(id)arg1 options:(id)arg2 request:(id)arg3;
-- (id)newMirroringResultByApplyingAccumulatedChanges:(id*)arg1;
-- (id)recordTypeToDeletedRecordID;
-- (void)removeDownloadedAssetFiles;
 - (void)serverChangeTokenUpdated:(id)arg1 forRecordZoneWithID:(id)arg2;
-- (unsigned long long)totalOperationBytes;
-- (unsigned long long)totalRecordBytes;
-- (id)updatedRecords;
+- (bool)updateMetadataForAccumulatedChangesInContext:(id)arg1 inStore:(id)arg2 error:(id*)arg3;
 
 @end

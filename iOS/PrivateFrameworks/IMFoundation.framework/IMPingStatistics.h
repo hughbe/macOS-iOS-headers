@@ -10,7 +10,7 @@
     int  _numPacketsSuccessfullySent;
     int  _numPingsReceived;
     int  _numPingsTransmitted;
-    double  _packetLossRate;
+    int  _packetsSuccessfullySent;
     double  _standardDeviationRoundtripTime;
     double  _sumRoundtripTimes;
 }

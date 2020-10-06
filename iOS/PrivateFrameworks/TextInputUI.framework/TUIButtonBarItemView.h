@@ -18,6 +18,7 @@
 @property (nonatomic, retain) UIView *customView;
 
 - (void).cxx_destruct;
+- (bool)_isPad;
 - (id)associatedGroup;
 - (id)associatedItem;
 - (id)barButtonView;

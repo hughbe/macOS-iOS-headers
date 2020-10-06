@@ -19,6 +19,8 @@
 @property (nonatomic, readonly) double timestamp;
 @property (nonatomic, retain) id userInfo;
 
+// Image: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+
 + (id)displayLinkWithDisplay:(id)arg1 target:(id)arg2 selector:(SEL)arg3;
 + (id)displayLinkWithTarget:(id)arg1 selector:(SEL)arg2;
 
@@ -45,5 +47,14 @@
 - (double)targetTimestamp;
 - (double)timestamp;
 - (id)userInfo;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_displayLinkWithWeakTarget:(id)arg1 selector:(SEL)arg2;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
++ (id)rc_displayLinkWithWeakTarget:(id)arg1 selector:(SEL)arg2;
++ (id)rc_displayWithFramesPerSecond:(long long)arg1 handlerBlock:(id /* block */)arg2;
 
 @end

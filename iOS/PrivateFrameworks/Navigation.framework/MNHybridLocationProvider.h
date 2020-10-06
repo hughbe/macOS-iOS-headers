@@ -9,9 +9,9 @@
     unsigned long long  _mode;
 }
 
-@property (nonatomic) long long activityType;
 @property (nonatomic, copy) id /* block */ authorizationRequestBlock;
 @property (nonatomic, readonly) int authorizationStatus;
+@property (nonatomic, readonly) bool coarseModeEnabled;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MNLocationProviderDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -35,9 +35,9 @@
 - (void).cxx_destruct;
 - (void)_setEffectiveAccuracy:(double)arg1;
 - (void)_sharedInit;
-- (long long)activityType;
 - (id /* block */)authorizationRequestBlock;
 - (int)authorizationStatus;
+- (bool)coarseModeEnabled;
 - (id)coreLocationProvider;
 - (id)delegate;
 - (double)desiredAccuracy;
@@ -53,6 +53,7 @@
 - (bool)isSimulation;
 - (bool)isTracePlayer;
 - (id)leechedLocationProvider;
+- (void)locationProvider:(id)arg1 didChangeCoarseMode:(bool)arg2;
 - (void)locationProvider:(id)arg1 didReceiveError:(id)arg2;
 - (void)locationProvider:(id)arg1 didUpdateHeading:(id)arg2;
 - (void)locationProvider:(id)arg1 didUpdateLocation:(id)arg2;
@@ -67,7 +68,6 @@
 - (void)requestWhenInUseAuthorization;
 - (void)requestWhenInUseAuthorizationWithPrompt;
 - (void)resetForActiveTileGroupChanged;
-- (void)setActivityType:(long long)arg1;
 - (void)setAuthorizationRequestBlock:(id /* block */)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDesiredAccuracy:(double)arg1;

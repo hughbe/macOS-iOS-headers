@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSConstraintCacheKey : NSObject {
+@interface NSConstraintCacheKey : NSObject <NSCopying> {
     NSArray * _values;
 }
 
@@ -10,7 +10,6 @@
 - (void)dealloc;
 - (id)description;
 - (unsigned long long)hash;
-- (id)initWithValues:(id)arg1;
 - (bool)isEqual:(id)arg1;
 
 @end

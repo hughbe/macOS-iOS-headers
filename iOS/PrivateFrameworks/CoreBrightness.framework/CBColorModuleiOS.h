@@ -129,6 +129,7 @@
 - (bool)handleHIDEvent:(struct __IOHIDEvent { }*)arg1 from:(struct __IOHIDServiceClient { }*)arg2;
 - (void)handleHIDEventInternal:(struct __IOHIDEvent { }*)arg1 from:(struct __IOHIDServiceClient { }*)arg2;
 - (void)handleNotificationForKey:(id)arg1 withProperty:(id)arg2;
+- (id)init;
 - (void)initColorStruct;
 - (id)initWithBacklight:(unsigned int)arg1 andModuleType:(unsigned long long)arg2;
 - (void)inputAmbientColorSample:(struct { float x1[3]; struct { float x_2_1_1; float x_2_1_2; } x2; float x3; struct { int x_4_1_1; float x_4_1_2[6]; int x_4_1_3; float x_4_1_4; } x4; }*)arg1 force:(bool)arg2 trust:(bool)arg3;

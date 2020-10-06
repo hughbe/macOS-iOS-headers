@@ -8,6 +8,7 @@
     NSDictionary * _appInfoPeer;
     NSDictionary * _appInfoSelf;
     id /* block */  _authCompletionHandler;
+    long long  _bleClientUseCase;
     CUBLEConnection * _bleConnection;
     NSUUID * _blePeerIdentifier;
     CUBonjourDevice * _bonjourPeerDevice;
@@ -104,6 +105,7 @@
 @property (nonatomic, readonly, copy) NSDictionary *appInfoPeer;
 @property (nonatomic, copy) NSDictionary *appInfoSelf;
 @property (nonatomic, copy) id /* block */ authCompletionHandler;
+@property (nonatomic) long long bleClientUseCase;
 @property (nonatomic, retain) CUBLEConnection *bleConnection;
 @property (nonatomic, copy) NSUUID *blePeerIdentifier;
 @property (nonatomic, retain) CUBonjourDevice *bonjourPeerDevice;
@@ -236,6 +238,7 @@
 - (id)appInfoPeer;
 - (id)appInfoSelf;
 - (id /* block */)authCompletionHandler;
+- (long long)bleClientUseCase;
 - (id)bleConnection;
 - (id)blePeerIdentifier;
 - (id)bonjourPeerDevice;
@@ -296,6 +299,7 @@
 - (void)setAppID:(id)arg1;
 - (void)setAppInfoSelf:(id)arg1;
 - (void)setAuthCompletionHandler:(id /* block */)arg1;
+- (void)setBleClientUseCase:(long long)arg1;
 - (void)setBleConnection:(id)arg1;
 - (void)setBlePeerIdentifier:(id)arg1;
 - (void)setBonjourPeerDevice:(id)arg1;

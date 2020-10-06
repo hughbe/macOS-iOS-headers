@@ -10,7 +10,7 @@
     NSString * _alertLocalizationKey;
     NSNumber * _badge;
     NSString * _category;
-    NSString * _containerIdentifier;
+    CKContainerID * _containerID;
     bool  _isPruned;
     CKNotificationID * _notificationID;
     long long  _notificationType;
@@ -32,12 +32,13 @@
 @property (nonatomic, copy) NSString *alertLocalizationKey;
 @property (nonatomic, copy) NSNumber *badge;
 @property (nonatomic, copy) NSString *category;
-@property (nonatomic, copy) NSString *containerIdentifier;
+@property (nonatomic, copy) CKContainerID *containerID;
+@property (nonatomic, readonly, copy) NSString *containerIdentifier;
 @property (nonatomic) bool isPruned;
 @property (nonatomic, copy) CKNotificationID *notificationID;
 @property (nonatomic) long long notificationType;
 @property (nonatomic, copy) NSString *soundName;
-@property (nonatomic, copy) NSString *subscriptionID;
+@property (nonatomic, readonly, copy) NSString *subscriptionID;
 @property (nonatomic, copy) CKRecordID *subscriptionOwnerUserRecordID;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, copy) NSArray *subtitleLocalizationArgs;
@@ -60,6 +61,7 @@
 - (id)alertLocalizationKey;
 - (id)badge;
 - (id)category;
+- (id)containerID;
 - (id)containerIdentifier;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
@@ -77,6 +79,7 @@
 - (void)setAlertLocalizationKey:(id)arg1;
 - (void)setBadge:(id)arg1;
 - (void)setCategory:(id)arg1;
+- (void)setContainerID:(id)arg1;
 - (void)setContainerIdentifier:(id)arg1;
 - (void)setIsPruned:(bool)arg1;
 - (void)setNotificationID:(id)arg1;

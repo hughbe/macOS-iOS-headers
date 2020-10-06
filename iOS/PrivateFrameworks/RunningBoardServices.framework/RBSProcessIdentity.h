@@ -2,88 +2,94 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessIdentity : NSObject <BSDescriptionProviding, BSXPCSecureCoding, NSCopying, NSSecureCoding, RBSProcessMatching> {
-    NSString * _daemonJobLabel;
+@interface RBSProcessIdentity : NSObject <NSCopying, NSSecureCoding, RBSProcessMatching, RBSXPCSecureCoding> {
     NSString * _description;
-    NSString * _embeddedApplicationIdentifier;
-    unsigned int  _euid;
-    NSString * _executablePath;
     unsigned long long  _hash;
-    int  _instanceID;
-    NSString * _picoDesc;
-    RBSXPCServiceIdentity * _serviceIdentity;
-    unsigned char  _type;
+    int  _pid;
 }
 
 @property (getter=isXPCService, nonatomic, readonly) bool XPCService;
+@property (getter=isAnonymous, nonatomic, readonly) bool anonymous;
+@property (getter=isApplication, nonatomic, readonly) bool application;
+@property (nonatomic, readonly, copy) NSString *applicationJobLabel;
 @property (getter=isDaemon, nonatomic, readonly) bool daemon;
 @property (nonatomic, readonly, copy) NSString *daemonJobLabel;
 @property (readonly, copy) NSString *debugDescription;
-@property (getter=isDefaultManaged, nonatomic, readonly) bool defaultManaged;
+@property (nonatomic, readonly) unsigned char defaultManageFlags;
 @property (readonly, copy) NSString *description;
 @property (getter=isEmbeddedApplication, nonatomic, readonly) bool embeddedApplication;
 @property (nonatomic, readonly, copy) NSString *embeddedApplicationIdentifier;
 @property (nonatomic, readonly) unsigned int euid;
-@property (nonatomic, readonly, copy) NSString *executablePath;
 @property (getter=isExtension, nonatomic, readonly) bool extension;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, copy) RBSProcessIdentifier *hostIdentifier;
 @property (nonatomic, readonly, copy) RBSProcessIdentity *hostIdentity;
 @property (nonatomic, readonly) bool inheritsCoalitionBand;
-@property (nonatomic, readonly) NSString *picoDesc;
+@property (nonatomic, readonly) int platform;
+@property (nonatomic, readonly) NSString *shortDescription;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly) NSUUID *uuid;
 @property (nonatomic, readonly, copy) NSString *xpcServiceIdentifier;
 
++ (id)_identityForXPCServiceIdentifier:(id)arg1 hostInstance:(id)arg2 UUID:(id)arg3 variant:(long long)arg4;
++ (id)_identityForXPCServiceIdentifier:(id)arg1 variant:(long long)arg2;
 + (id)_identityForXPCServicePath:(id)arg1 properties:(id)arg2 pid:(int)arg3 euid:(unsigned int)arg4 host:(id)arg5;
++ (id)_identityForXPCServicePath:(id)arg1 type:(unsigned long long)arg2 pid:(int)arg3 euid:(unsigned int)arg4 host:(id)arg5 UUID:(id)arg6;
++ (id)extensionIdentityForPlugInKitIdentifier:(id)arg1 hostIdentifier:(id)arg2 UUID:(id)arg3;
++ (id)identityForApplicationJobLabel:(id)arg1;
++ (id)identityForApplicationJobLabel:(id)arg1 bundleID:(id)arg2 platform:(int)arg3;
 + (id)identityForDaemonJobLabel:(id)arg1;
-+ (id)identityForDaemonPlistPath:(id)arg1;
 + (id)identityForEmbeddedApplicationIdentifier:(id)arg1;
 + (id)identityForEmbeddedApplicationIdentifier:(id)arg1 euid:(unsigned int)arg2;
++ (id)identityForEmbeddedApplicationIdentifier:(id)arg1 jobLabel:(id)arg2 euid:(unsigned int)arg3 platform:(int)arg4;
 + (id)identityForExecutablePath:(id)arg1 pid:(int)arg2 euid:(unsigned int)arg3;
 + (id)identityForLaunchProperties:(id)arg1 pid:(int)arg2 euid:(unsigned int)arg3;
++ (id)identityForPlugInKitIdentifier:(id)arg1;
 + (id)identityForXPCServiceIdentifier:(id)arg1;
 + (id)identityForXPCServicePath:(id)arg1 host:(id)arg2;
 + (id)identityForXPCServiceProperties:(id)arg1 pid:(int)arg2 euid:(unsigned int)arg3 host:(id)arg4;
 + (id)identityOfCurrentProcess;
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)shouldManageExtensionWithExtensionPoint:(id)arg1;
++ (bool)supportsRBSXPCSecureCoding;
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (void)_initPicoDesc;
-- (id)_initWithEmbeddedApplicationID:(id)arg1 xpcServiceID:(id)arg2 daemonJobLabel:(id)arg3 executablePath:(id)arg4 instanceID:(int)arg5 euid:(unsigned int)arg6;
+- (id)_init;
+- (id)_initOpaqueWithPid:(int)arg1 name:(id)arg2 euid:(unsigned int)arg3;
 - (bool)_matchesIdentity:(id)arg1;
+- (id)applicationJobLabel;
 - (id)copyWithEuid:(unsigned int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)daemonJobLabel;
 - (id)debugDescription;
+- (unsigned char)defaultManageFlags;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)embeddedApplicationIdentifier;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (id)encodeForJob;
 - (void)encodeWithCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (unsigned int)euid;
-- (id)executablePath;
 - (unsigned long long)hash;
 - (id)hostIdentifier;
 - (id)hostIdentity;
 - (bool)inheritsCoalitionBand;
 - (id)init;
-- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (bool)isAnonymousExecutable;
+- (id)initWithDecodeFromJob:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
+- (bool)isAnonymous;
+- (bool)isApplication;
 - (bool)isDaemon;
-- (bool)isDefaultManaged;
 - (bool)isEmbeddedApplication;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualToIdentity:(id)arg1;
 - (bool)isExtension;
 - (bool)isXPCService;
 - (bool)matchesProcess:(id)arg1;
-- (id)picoDesc;
+- (int)platform;
 - (id)processPredicate;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
+- (id)shortDescription;
+- (id)uuid;
 - (id)xpcServiceIdentifier;
 
 @end

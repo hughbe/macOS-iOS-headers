@@ -23,6 +23,5 @@
 - (id)executableName;
 - (id)executablePath;
 - (id)functionName;
-- (id)initWithReturnAddress:(unsigned long long)arg1;
 
 @end

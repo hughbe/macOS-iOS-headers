@@ -3,7 +3,6 @@
  */
 
 @interface _INPBHomeAttributeValue : PBCodable <NSCopying, NSSecureCoding, _INPBHomeAttributeValue> {
-    bool  __encodeLegacyGloryData;
     bool  _booleanValue;
     double  _doubleValue;
     struct { 
@@ -22,7 +21,6 @@
     int  _valueType;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) bool booleanValue;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -50,8 +48,6 @@
 - (int)StringAsLimitValue:(id)arg1;
 - (int)StringAsUnit:(id)arg1;
 - (int)StringAsValueType:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (bool)booleanValue;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;

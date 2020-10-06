@@ -2,27 +2,69 @@
    Image: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
  */
 
-@interface CNAuthorizationContext : NSObject {
-    struct { 
-        unsigned int val[8]; 
-    }  _auditToken;
-    Class  _entitlementVerifierClass;
-    bool  _hasAuditToken;
-    NSNumber * _number_isFirstParty;
+@interface CNAuthorizationContext : NSObject <CNTCCSimulation> {
+    CNAuditToken * _auditToken;
+    NSNumber * _authorizationStatusCachedValue;
+    Class  _entitlementVerifier;
+    NSNumber * _isClientFirstOrSecondPartyCachedValue;
+    NSNumber * _isNotesAccessGrantedCachedValue;
+    <CNTCC><CNTCCSimulation> * _tccServices;
 }
 
-@property (nonatomic, readonly) struct { unsigned int x1[8]; } auditToken;
-@property (nonatomic, readonly) Class entitlementVerifierClass;
-@property (nonatomic, readonly) bool hasAuditToken;
-@property (nonatomic, readonly) bool isValidatingFirstPartyClient;
+@property (nonatomic, retain) CNAuditToken *auditToken;
+@property (nonatomic, readonly) long long authorizationStatus;
+@property (nonatomic, retain) NSNumber *authorizationStatusCachedValue;
+@property (nonatomic, retain) Class entitlementVerifier;
+@property (nonatomic, readonly) bool isAccess1Granted;
+@property (nonatomic, readonly) bool isAccess2Granted;
+@property (nonatomic, readonly) bool isAccessGranted;
+@property (nonatomic, readonly) bool isAccessRestricted;
+@property (nonatomic, readonly) bool isClientFirstOrSecondParty;
+@property (nonatomic, retain) NSNumber *isClientFirstOrSecondPartyCachedValue;
+@property (nonatomic, readonly) bool isClientTCCWhitelisted;
+@property (nonatomic, readonly) bool isNotesAccessGranted;
+@property (nonatomic, retain) NSNumber *isNotesAccessGrantedCachedValue;
+@property (nonatomic, retain) <CNTCC><CNTCCSimulation> *tccServices;
+
++ (id)os_log;
++ (id)sharedInstance;
 
 - (void).cxx_destruct;
-- (id)_isFirstParty;
-- (struct { unsigned int x1[8]; })auditToken;
-- (Class)entitlementVerifierClass;
-- (bool)hasAuditToken;
+- (id)auditToken;
+- (long long)authorizationStatus;
+- (id)authorizationStatusCachedValue;
+- (void)checkAndUpdateAuthorizationStatusIfUnknown;
+- (id)checkIfNotesAccessGranted;
+- (bool)checkIsClientNotesEntitled;
+- (bool)checkIsClientTCCWhitelisted;
+- (id)checkIsFirstPartyOrSecondPartyOrContactsSPIEntitled;
+- (Class)entitlementVerifier;
+- (id)errorForStatus:(long long)arg1;
+- (id)init;
 - (id)initWithAuditToken:(struct { unsigned int x1[8]; })arg1;
-- (id)initWithEntitlementVerifier:(Class)arg1 isFirstParty:(bool)arg2;
-- (bool)isValidatingFirstPartyClient;
+- (id)initWithCNAuditToken:(id)arg1 tccServices:(id)arg2 entitlementVerifier:(Class)arg3;
+- (bool)isAccess1Granted;
+- (bool)isAccess2Granted;
+- (bool)isAccessGranted;
+- (bool)isAccessGrantedRequestingAccessIfNeeded;
+- (bool)isAccessRestricted;
+- (bool)isClientFirstOrSecondParty;
+- (id)isClientFirstOrSecondPartyCachedValue;
+- (bool)isClientTCCWhitelisted;
+- (bool)isNotesAccessGranted;
+- (id)isNotesAccessGrantedCachedValue;
+- (bool)requestAccessWithError:(id*)arg1;
+- (void)requestAuthorization:(long long)arg1 completionHandler:(id /* block */)arg2;
+- (id)requestAuthorizationFuture:(long long)arg1;
+- (long long)resolveRequestAuthorizationFuture:(id)arg1;
+- (void)setAuditToken:(id)arg1;
+- (void)setAuthorizationStatusCachedValue:(id)arg1;
+- (void)setEntitlementVerifier:(Class)arg1;
+- (void)setIsClientFirstOrSecondPartyCachedValue:(id)arg1;
+- (void)setIsNotesAccessGrantedCachedValue:(id)arg1;
+- (void)setTccServices:(id)arg1;
+- (void)simulateStatus:(long long)arg1;
+- (void)stopSimulation;
+- (id)tccServices;
 
 @end

@@ -7,6 +7,7 @@
     id  _destinationIdentifier;
     bool  _destinationIdentifierIsSectionIdentifier;
     NSOrderedSet * _identifiers;
+    bool  _isDeleteAll;
     bool  _isSectionOperation;
     long long  _relativePosition;
 }
@@ -18,9 +19,12 @@
 @property (nonatomic, readonly) bool destinationIdentifierIsSectionIdentifier;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) NSOrderedSet *identifiers;
+@property (nonatomic, readonly) bool isDeleteAll;
 @property (nonatomic, readonly) bool isSectionOperation;
 @property (nonatomic, readonly) long long relativePosition;
 @property (readonly) Class superclass;
+
++ (id)updateDeleteAll;
 
 - (void).cxx_destruct;
 - (void)_throwIfInvalid;
@@ -36,6 +40,7 @@
 - (id)initWithSectionIdentifiers:(id)arg1 action:(long long)arg2;
 - (id)initWithSectionIdentifiers:(id)arg1 action:(long long)arg2 destinationIdentifier:(id)arg3 relativePosition:(long long)arg4;
 - (id)initWithSectionIdentifiers:(id)arg1 appendingToDestinationSectionIdentifier:(id)arg2;
+- (bool)isDeleteAll;
 - (bool)isSectionOperation;
 - (long long)relativePosition;
 

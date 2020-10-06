@@ -14,6 +14,7 @@
         unsigned int _trackingSessionRequest : 1; 
         unsigned int _configurationIsDirty : 1; 
         unsigned int _userInfoIsDirty : 1; 
+        unsigned int _isInternal : 1; 
     }  _sessionFlags;
     NSUserActivity * _stateRestorationActivity;
     NSDictionary * _userInfo;
@@ -21,6 +22,7 @@
 
 @property (setter=_setConfigurationIsDirty:, nonatomic) bool _configurationIsDirty;
 @property (nonatomic, readonly) bool _configurationNeedsReevalulation;
+@property (getter=_isInternal, nonatomic, readonly) bool _internal;
 @property (setter=_setStateRestorationActivityIsDirty:, nonatomic) bool _stateRestorationActivityIsDirty;
 @property (setter=_setTrackingRefreshRequest:, nonatomic) bool _trackingRefreshRequest;
 @property (setter=_setUserInfoIsDirty:, nonatomic) bool _userInfoIsDirty;
@@ -45,6 +47,7 @@
 - (id)_copyWithoutUserInfo;
 - (id)_init;
 - (id)_initWithIdentifier:(id)arg1 sessionRole:(id)arg2 configurationName:(id)arg3;
+- (bool)_isInternal;
 - (void)_loadStateRestorationActivityIfNeeded;
 - (void)_loadUserInfo;
 - (void)_resetStateRestorationToActivity:(id)arg1;

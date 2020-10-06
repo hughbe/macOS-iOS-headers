@@ -3,6 +3,7 @@
  */
 
 @interface SFContactImage : SFImage <NSCopying, NSSecureCoding, SFContactImage> {
+    NSString * _appIconBadgeBundleIdentifier;
     NSArray * _contactIdentifiers;
     struct { 
         unsigned int threeDTouchEnabled : 1; 
@@ -10,9 +11,11 @@
     bool  _threeDTouchEnabled;
 }
 
+@property (nonatomic, copy) NSString *appIconBadgeBundleIdentifier;
 @property (nonatomic, copy) NSArray *contactIdentifiers;
 @property (nonatomic, copy) NSString *contentType;
 @property (nonatomic) double cornerRadius;
+@property (nonatomic) int cornerRoundingStyle;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) NSDictionary *dictionaryRepresentation;
@@ -32,6 +35,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)appIconBadgeBundleIdentifier;
 - (id)contactIdentifiers;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
@@ -42,6 +46,7 @@
 - (id)initWithProtobuf:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)jsonData;
+- (void)setAppIconBadgeBundleIdentifier:(id)arg1;
 - (void)setContactIdentifiers:(id)arg1;
 - (void)setThreeDTouchEnabled:(bool)arg1;
 - (bool)threeDTouchEnabled;

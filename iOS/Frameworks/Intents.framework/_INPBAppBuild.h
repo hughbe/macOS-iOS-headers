@@ -3,13 +3,11 @@
  */
 
 @interface _INPBAppBuild : PBCodable <NSCopying, NSSecureCoding, _INPBAppBuild> {
-    bool  __encodeLegacyGloryData;
     _INPBAppId * _appId;
     _INPBBuildId * _buildId;
     struct { }  _has;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBAppId *appId;
 @property (nonatomic, retain) _INPBBuildId *buildId;
 @property (readonly, copy) NSString *debugDescription;
@@ -22,8 +20,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)appId;
 - (id)buildId;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

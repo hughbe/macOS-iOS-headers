@@ -5,11 +5,11 @@
 @interface AVHapticPlayerChannel : NSObject {
     unsigned long long  _behavior;
     unsigned long long  _chanID;
-    HapticClient * _client;
+    AVHapticClient * _client;
 }
 
 @property unsigned long long chanID;
-@property HapticClient *client;
+@property AVHapticClient *client;
 @property unsigned long long eventBehavior;
 
 - (void).cxx_destruct;

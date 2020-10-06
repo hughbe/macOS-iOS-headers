@@ -3,7 +3,7 @@
  */
 
 @interface _INPBAnswerCallIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBAnswerCallIntentResponse> {
-    bool  __encodeLegacyGloryData;
+    _INPBConnectedCall * _answeredCall;
     NSArray * _callRecords;
     struct { 
         unsigned int statusCode : 1; 
@@ -11,11 +11,12 @@
     int  _statusCode;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
+@property (nonatomic, retain) _INPBConnectedCall *answeredCall;
 @property (nonatomic, copy) NSArray *callRecords;
 @property (nonatomic, readonly) unsigned long long callRecordsCount;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) bool hasAnsweredCall;
 @property (nonatomic) bool hasStatusCode;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) int statusCode;
@@ -26,9 +27,8 @@
 
 - (void).cxx_destruct;
 - (int)StringAsStatusCode:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addCallRecords:(id)arg1;
+- (id)answeredCall;
 - (id)callRecords;
 - (id)callRecordsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)callRecordsCount;
@@ -36,11 +36,13 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
+- (bool)hasAnsweredCall;
 - (bool)hasStatusCode;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setAnsweredCall:(id)arg1;
 - (void)setCallRecords:(id)arg1;
 - (void)setHasStatusCode:(bool)arg1;
 - (void)setStatusCode:(int)arg1;

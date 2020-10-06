@@ -21,6 +21,8 @@
     unsigned char  registration_id;
     struct nw_protocol_identifier { BOOL x1[32]; int x2; int x3; } * transport_stats_protocol;
     void * transport_stats_region;
+    struct nw_protocol_identifier { BOOL x1[32]; int x2; int x3; } * upper_transport_stats_protocol;
+    void * upper_transport_stats_region;
     unsigned int  uses_nexus;
 }
 

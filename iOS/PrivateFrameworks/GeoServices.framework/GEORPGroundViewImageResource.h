@@ -36,7 +36,10 @@
 - (bool)hasLoadStatus;
 - (bool)hasLod;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)loadStatus;
 - (id)loadStatusAsString:(int)arg1;
 - (unsigned int)lod;

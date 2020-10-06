@@ -8,6 +8,7 @@
     MKPlaceCardActionItem * _addToFavoritesItem;
     GEOAutomobileOptions * _automobileOptions;
     MKPlaceHeaderButtonsViewController * _buttonsHeaderController;
+    GEOCyclingOptions * _cyclingOptions;
     <MKTransitLineItemViewControllerDelegate> * _delegate;
     MKETAProvider * _etaProvider;
     NSNumber * _favorited;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) MKPlaceCardActionItem *addToFavoritesItem;
 @property (nonatomic, retain) GEOAutomobileOptions *automobileOptions;
 @property (nonatomic) double contentAlpha;
+@property (nonatomic, retain) GEOCyclingOptions *cyclingOptions;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <MKTransitLineItemViewControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -49,6 +51,8 @@
 - (id)addToFavoritesItem;
 - (id)automobileOptions;
 - (double)contentAlpha;
+- (id)createMenuActions;
+- (id)cyclingOptions;
 - (id)delegate;
 - (id)favorited;
 - (void)hideTitle:(bool)arg1;
@@ -60,6 +64,7 @@
 - (bool)isLoading;
 - (int)mapTypeForETAProvider:(id)arg1;
 - (void)nearestStationViewControllerDidSelectStation:(id)arg1;
+- (void)performAction:(id)arg1 options:(id)arg2 completion:(id /* block */)arg3;
 - (void)placeActionManager:(id)arg1 didSelectShareFromView:(id)arg2;
 - (void)placeCardActionControllerDidSelectAddToCollection:(id)arg1;
 - (void)placeCardActionControllerDidSelectAddToFavorites:(id)arg1;
@@ -79,6 +84,7 @@
 - (void)setAutomobileOptions:(id)arg1;
 - (void)setContentAlpha:(double)arg1;
 - (void)setContentVisibility:(long long)arg1;
+- (void)setCyclingOptions:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFavorited:(id)arg1;
 - (void)setLoading:(bool)arg1;

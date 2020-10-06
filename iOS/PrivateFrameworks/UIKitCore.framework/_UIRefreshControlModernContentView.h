@@ -7,16 +7,17 @@
     bool  _areAnimationsValid;
     double  _currentPopStiffness;
     bool  _hasFinishedRevealing;
+    bool  _horizontallyCenteredFramesNeedUpdate;
     double  _impactIntensity;
     UIView * _replicatorContainer;
     _UIRefreshControlModernReplicatorView * _replicatorView;
-    bool  _scrollViewVerticalFeedbackGeneratorEnabled;
     UIView * _seed;
     UILabel * _textLabel;
 }
 
 @property (nonatomic) bool areAnimationsValid;
 @property (nonatomic) double currentPopStiffness;
+@property (nonatomic) bool horizontallyCenteredFramesNeedUpdate;
 @property (nonatomic) double impactIntensity;
 @property (nonatomic, readonly) UILabel *textLabel;
 
@@ -34,6 +35,7 @@
 - (void)_removeAllAnimations;
 - (void)_resetToRevealingState;
 - (void)_reveal;
+- (void)_safeAreaInsetsDidChangeFromOldInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)_setBloomedAppearance;
 - (void)_setSpunAppearance;
 - (void)_setUnbloomedAppearance;
@@ -48,6 +50,7 @@
 - (id)attributedTitle;
 - (double)currentPopStiffness;
 - (void)didTransitionFromState:(long long)arg1 toState:(long long)arg2;
+- (bool)horizontallyCenteredFramesNeedUpdate;
 - (double)impactIntensity;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
@@ -55,6 +58,7 @@
 - (void)setAreAnimationsValid:(bool)arg1;
 - (void)setAttributedTitle:(id)arg1;
 - (void)setCurrentPopStiffness:(double)arg1;
+- (void)setHorizontallyCenteredFramesNeedUpdate:(bool)arg1;
 - (void)setImpactIntensity:(double)arg1;
 - (void)setTintColor:(id)arg1;
 - (struct CGSize { double x1; double x2; })sizeThatFits:(struct CGSize { double x1; double x2; })arg1;

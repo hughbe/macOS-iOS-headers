@@ -12,14 +12,7 @@
         unsigned int read_reviewer : 1; 
         unsigned int read_snippet : 1; 
         unsigned int read_uid : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_languageCode : 1; 
-        unsigned int wrote_reviewTime : 1; 
-        unsigned int wrote_reviewer : 1; 
-        unsigned int wrote_score : 1; 
-        unsigned int wrote_snippet : 1; 
-        unsigned int wrote_uid : 1; 
-        unsigned int wrote_isChinaSuppressed : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     bool  _isChinaSuppressed;
     NSString * _languageCode;
@@ -56,10 +49,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readLanguageCode;
-- (void)_readReviewer;
-- (void)_readSnippet;
-- (void)_readUid;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -75,8 +64,11 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isChinaSuppressed;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)languageCode;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

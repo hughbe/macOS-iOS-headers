@@ -3,8 +3,19 @@
  */
 
 @interface UIKeyboard : UIView <UIKBFocusGuideDelegate, UIKeyboardImplGeometryDelegate> {
+    struct CGRect { 
+        struct CGPoint { 
+            double x; 
+            double y; 
+        } origin; 
+        struct CGSize { 
+            double width; 
+            double height; 
+        } size; 
+    }  _forcedFrame;
     bool  _hasImpendingCursorLocation;
     unsigned long long  _impendingCursorLocation;
+    _UIKeyboardPasscodeObscuringInteraction * _passcodeObscuringInteraction;
     unsigned long long  _requestedInteractionModel;
     UITextInputTraits * m_defaultTraits;
     bool  m_disableTouchInput;
@@ -13,6 +24,7 @@
     long long  m_idiom;
     bool  m_minimized;
     long long  m_orientation;
+    UITextInputTraits * m_overrideTraits;
     bool  m_respondingToImplGeometryChange;
     UIView * m_snapshot;
     bool  m_typingDisabled;
@@ -25,6 +37,7 @@
     bool  m_useRecentsAlert;
 }
 
+@property (nonatomic, readonly) UITextCursorAssertionController *_activeAssertionController;
 @property (nonatomic) bool caretBlinks;
 @property (nonatomic) bool caretVisible;
 @property (readonly, copy) NSString *debugDescription;
@@ -42,6 +55,7 @@
 // Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 + (void)_clearActiveKeyboard;
++ (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_keyboardFocusGuideMargins;
 + (id)activeKeyboard;
 + (id)activeKeyboardForScreen:(id)arg1;
 + (bool)candidateDisplayIsExtended;
@@ -49,6 +63,7 @@
 + (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })defaultFrameForInterfaceOrientation:(long long)arg1;
 + (struct CGSize { double x1; double x2; })defaultSize;
 + (struct CGSize { double x1; double x2; })defaultSizeForInterfaceOrientation:(long long)arg1;
++ (bool)hasInputOrAssistantViewsOnScreen;
 + (id)homeGestureExclusionZones;
 + (void)initImplementationNow;
 + (bool)isInHardwareKeyboardMode;
@@ -63,6 +78,7 @@
 + (void)setPredictionViewPrewarmsPredictiveCandidates:(bool)arg1;
 + (void)setSuppressionPolicyDelegate:(id)arg1;
 + (bool)shouldMinimizeForHardwareKeyboard;
++ (bool)shouldSuppressSoftwareKeyboardForResponder:(id)arg1;
 + (struct CGSize { double x1; double x2; })sizeForInterfaceOrientation:(long long)arg1;
 + (struct CGSize { double x1; double x2; })sizeForInterfaceOrientation:(long long)arg1 ignoreInputView:(bool)arg2;
 + (id)snapshotViewForPredictionViewTransition;
@@ -70,10 +86,12 @@
 + (id)suppressionPolicyDelegate;
 
 - (void)_acceptCurrentCandidate;
+- (id)_activeAssertionController;
 - (id)_baseKeyForRepresentedString:(id)arg1;
 - (void)_changeToKeyplane:(id)arg1;
 - (void)_deactivateForBackgrounding;
 - (void)_didChangeCandidateList;
+- (void)_didChangeCursorLocation;
 - (void)_didChangeKeyplaneWithContext:(id)arg1;
 - (bool)_disableTouchInput;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_floatingKeyboardDraggableRect;
@@ -83,15 +101,18 @@
 - (id)_getCurrentKeyboardName;
 - (id)_getCurrentKeyplaneName;
 - (id)_getLocalizedInputMode;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_globalFocusCastingFrameForHeading:(unsigned long long)arg1;
 - (bool)_hasCandidates;
 - (id)_initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 lazily:(bool)arg2;
 - (bool)_isAutomaticKeyboard;
 - (id)_keyplaneForKey:(id)arg1;
 - (id)_keyplaneNamed:(id)arg1;
 - (bool)_mayRemainFocused;
+- (id)_overrideTextInputTraits;
 - (long long)_positionInCandidateList:(id)arg1;
 - (void)_setAutocorrects:(bool)arg1;
 - (void)_setDisableTouchInput:(bool)arg1;
+- (void)_setDisableUpdateMaskForSecureTextEntry:(bool)arg1;
 - (void)_setInputMode:(id)arg1;
 - (void)_setPasscodeOutlineAlpha:(double)arg1;
 - (void)_setPreferredHeight:(double)arg1;
@@ -105,10 +126,6 @@
 - (id)_typeCharacter:(id)arg1 withError:(struct CGPoint { double x1; double x2; })arg2 shouldTypeVariants:(bool)arg3 baseKeyForVariants:(bool)arg4;
 - (bool)_useRecentsAlert;
 - (void)_wheelChangedWithEvent:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)acceptAutocorrection;
 - (void)activate;
 - (void)activateIfNeeded;
@@ -123,6 +140,7 @@
 - (void)clearSnapshot;
 - (unsigned long long)cursorLocation;
 - (void)deactivate;
+- (void)dealloc;
 - (id)defaultTextInputTraits;
 - (id)delegate;
 - (void)didFocusGuideWithHeading:(unsigned long long)arg1;
@@ -150,6 +168,7 @@
 - (bool)isMinimized;
 - (long long)keyboardIdiom;
 - (void)keyboardMinMaximized:(bool)arg1;
+- (void)layoutSubviews;
 - (void)manualKeyboardWasOrderedIn;
 - (void)manualKeyboardWasOrderedOut;
 - (void)manualKeyboardWillBeOrderedIn;
@@ -189,6 +208,7 @@
 - (void)setTypingEnabled:(bool)arg1;
 - (void)setUnfocusedFocusGuideOutsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
 - (void)setUnfocusedFocusGuideOutsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1 fromView:(id)arg2;
+- (void)set_overrideTextInputTraits:(id)arg1;
 - (void)setupKeyFocusGuides;
 - (bool)shouldSaveMinimizationState;
 - (bool)shouldUpdateFocusInContext:(id)arg1;
@@ -209,5 +229,15 @@
 - (void)updateKeyFocusGuides;
 - (void)updateLayout;
 - (void)willMoveToWindow:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (double)__ck_appStripVerticalPadding;
++ (bool)__ck_isUsingCompactHeightPredictionBar;
+
+// Image: /System/Library/PrivateFrameworks/NotesUI.framework/NotesUI
+
++ (bool)ic_isInFloatingKeyboardMode;
++ (bool)ic_isShiftKeyPressed;
 
 @end

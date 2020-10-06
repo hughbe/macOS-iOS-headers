@@ -6,6 +6,7 @@
     id /* block */  _handler;
     UIImage * _image;
     unsigned long long  _options;
+    bool  _requiresAuthenticatedInput;
     long long  _style;
     NSString * _title;
     long long  _type;
@@ -17,6 +18,7 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) UIImage *image;
 @property (nonatomic) unsigned long long options;
+@property (nonatomic) bool requiresAuthenticatedInput;
 @property (nonatomic) long long style;
 @property (readonly) Class superclass;
 @property (nonatomic, copy) NSString *title;
@@ -32,9 +34,11 @@
 - (id)image;
 - (unsigned long long)options;
 - (void)performAction;
+- (bool)requiresAuthenticatedInput;
 - (void)setHandler:(id /* block */)arg1;
 - (void)setImage:(id)arg1;
 - (void)setOptions:(unsigned long long)arg1;
+- (void)setRequiresAuthenticatedInput:(bool)arg1;
 - (void)setStyle:(long long)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setType:(long long)arg1;

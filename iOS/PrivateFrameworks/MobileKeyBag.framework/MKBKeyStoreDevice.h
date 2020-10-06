@@ -53,11 +53,10 @@
 - (id)setuserSessionAttributes:(id)arg1 WithReturnedError:(id*)arg2;
 - (int)startBackupSession;
 - (bool)startUserSyncBubbleToSession:(int)arg1 WithReturnedError:(id*)arg2;
-- (int)stashCommit;
-- (int)stashCreateWithSecret:(id)arg1 withMode:(int)arg2;
+- (int)stashCommit:(unsigned int)arg1 WithFlags:(unsigned int)arg2;
+- (int)stashCreateWithSecret:(id)arg1 withMode:(int)arg2 withUID:(unsigned int)arg3 WithFlags:(unsigned int)arg4;
 - (int)stashDestroy;
-- (id)stashLoad;
-- (int)stashVerifywithValidity:(int*)arg1;
+- (int)stashVerifywithValidity:(int*)arg1 WithUID:(unsigned int)arg2 WithFlags:(unsigned int)arg3;
 - (int)stopBackupSession;
 - (bool)stopUserSyncBubbleToSession:(int)arg1 WithReturnedError:(id*)arg2;
 - (id)switchBlockTasksInfoWithReturnedError:(id*)arg1;

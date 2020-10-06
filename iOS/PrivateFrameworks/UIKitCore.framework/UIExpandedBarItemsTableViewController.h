@@ -8,15 +8,10 @@
 
 @property (nonatomic, readonly) UIBarButtonItemGroup *barButtonGroup;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_displayTitleForBarButtonItem:(id)arg1;
 - (unsigned long long)_numberOfItems;
 - (id)_visibleItems;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)barButtonGroup;
 - (id)initWithBarButtonGroup:(id)arg1;
 - (long long)numberOfSectionsInTableView:(id)arg1;

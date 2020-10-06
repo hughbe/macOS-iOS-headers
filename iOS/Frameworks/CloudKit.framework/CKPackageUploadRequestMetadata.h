@@ -7,7 +7,7 @@
     NSArray * _referenceSignatures;
 }
 
-@property (nonatomic, readonly) NSArray *fileSignatures;
+@property (nonatomic, readonly, copy) NSArray *fileSignatures;
 @property (nonatomic, readonly) NSArray *referenceSignatures;
 
 + (bool)supportsSecureCoding;

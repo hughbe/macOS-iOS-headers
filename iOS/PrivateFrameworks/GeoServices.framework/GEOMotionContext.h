@@ -16,6 +16,7 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly) unsigned long long exitType;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, readonly) bool isCycling;
 @property (nonatomic, readonly) bool isDriving;
 @property (nonatomic, readonly) bool isMoving;
 @property (nonatomic, readonly) bool isRunning;
@@ -29,6 +30,7 @@
 - (id)delegate;
 - (id)description;
 - (unsigned long long)exitType;
+- (bool)isCycling;
 - (bool)isDriving;
 - (bool)isMoving;
 - (bool)isRunning;

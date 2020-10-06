@@ -12,12 +12,7 @@
         unsigned int read_place : 1; 
         unsigned int read_searchString : 1; 
         unsigned int read_singleLineAddressString : 1; 
-        unsigned int wrote_autocompleteEntry : 1; 
-        unsigned int wrote_coordinate : 1; 
-        unsigned int wrote_place : 1; 
-        unsigned int wrote_searchString : 1; 
-        unsigned int wrote_singleLineAddressString : 1; 
-        unsigned int wrote_origin : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     int  _origin;
     GEOPDPlace * _place;
@@ -48,11 +43,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsOrigin:(id)arg1;
-- (void)_readAutocompleteEntry;
-- (void)_readCoordinate;
-- (void)_readPlace;
-- (void)_readSearchString;
-- (void)_readSingleLineAddressString;
 - (id)autocompleteEntry;
 - (id)coordinate;
 - (void)copyTo:(id)arg1;
@@ -68,7 +58,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (int)origin;
 - (id)originAsString:(int)arg1;

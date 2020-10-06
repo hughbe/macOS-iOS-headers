@@ -39,14 +39,15 @@
 - (id)_pasteConfiguration;
 - (void)_prepareItemsInSessionForDrop:(id)arg1;
 - (void)_sendSessionDidEnd:(id)arg1;
+- (id)_setDownAnimation:(id)arg1 customSpringAnimationBehaviorForSetDownOfDragItem:(id)arg2;
 - (id)_setDownAnimation:(id)arg1 prepareForSetDownOfDragItem:(id)arg2 visibleDroppedItem:(id)arg3;
 - (bool)_setDownAnimation:(id)arg1 shouldDelaySetDownOfDragItem:(id)arg2 completion:(id /* block */)arg3;
 - (void)_setDownAnimation:(id)arg1 willAnimateSetDownOfDragItem:(id)arg2 withAnimator:(id)arg3;
-- (id)_setDownAnimation:(id)arg1 windowForSetDownOfDragItem:(id)arg2;
 - (unsigned long long)_setLastDragOperation:(unsigned long long)arg1 forbidden:(bool)arg2 precise:(bool)arg3 prefersFullSizePreview:(bool)arg4 preferredBadgeStyle:(long long)arg5 onSession:(id)arg6;
 - (void)_setWantsDefaultVisualBehavior:(bool)arg1;
 - (unsigned long long)_validateDragOperation:(unsigned long long)arg1 forSelector:(SEL)arg2 delegate:(id)arg3 dropSession:(id)arg4 onSession:(id)arg5 forbidden:(bool*)arg6;
 - (bool)_wantsDefaultVisualBehavior;
+- (id)_windowForSetDownOfDragItem:(id)arg1;
 - (bool)allowsSimultaneousDropSessions;
 - (id)context;
 - (id)delegate;

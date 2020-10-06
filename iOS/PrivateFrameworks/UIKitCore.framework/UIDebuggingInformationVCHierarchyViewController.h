@@ -14,12 +14,7 @@
 @property (readonly) Class superclass;
 @property (nonatomic, retain) UITableView *tableView;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)data;
 - (id)getViewControllersRecursiveWithLevel:(int)arg1 forView:(id)arg2;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;

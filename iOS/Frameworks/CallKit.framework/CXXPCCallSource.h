@@ -9,6 +9,7 @@
     NSSet * _capabilities;
     NSXPCConnection * _connection;
     bool  _hasVoIPBackgroundMode;
+    NSString * _localizedName;
 }
 
 @property (nonatomic, copy) NSString *applicationIdentifier;
@@ -20,6 +21,7 @@
 
 - (void).cxx_destruct;
 - (id)applicationIdentifier;
+- (struct { unsigned int x1[8]; })auditToken;
 - (id)bundleIdentifier;
 - (id)bundleURL;
 - (id)capabilities;
@@ -33,6 +35,7 @@
 - (bool)isPermittedToUseBluetoothAccessories;
 - (bool)isPermittedToUsePrivateAPI;
 - (bool)isPermittedToUsePublicAPI;
+- (id)localizedName;
 - (int)processIdentifier;
 - (void)setApplicationIdentifier:(id)arg1;
 - (void)setBundleIdentifier:(id)arg1;

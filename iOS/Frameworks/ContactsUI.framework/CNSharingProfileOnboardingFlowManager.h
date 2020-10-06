@@ -2,25 +2,27 @@
    Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
  */
 
-@interface CNSharingProfileOnboardingFlowManager : NSObject <CNAvatarEditingManagerDelegate, CNPhotoPickerVariantListControllerDelegate, CNSharingProfileOnboardingAudienceViewControllerDelegate, CNSharingProfileOnboardingPhotoSelectionViewControllerDelegate, CNSharingProfileOnboardingVariantViewControllerDelegate> {
-    CNSharingProfileOnboardingAudienceViewController * _audienceViewController;
+@interface CNSharingProfileOnboardingFlowManager : NSObject <CNAvatarEditingManagerDelegate, CNPhotoPickerVariantListControllerDelegate, CNSharingProfileOnboardingAudienceControllerDelegate, CNSharingProfileOnboardingPhotoSelectionViewControllerDelegate, CNSharingProfileOnboardingPosePickerControllerDelegate, CNSharingProfileOnboardingVariantViewControllerDelegate> {
+    <CNSharingProfileOnboardingAudienceController> * _audienceViewController;
     CNAvatarEditingManager * _avatarEditingManager;
     CNSharingProfileAvatarItemProviderConfiguration * _avatarItemProviderConfiguration;
     <AVTAvatarRecord> * _avatarRecord;
     CNContact * _contact;
     <CNSharingProfileOnboardingFlowManagerDelegate> * _delegate;
     bool  _didPersistToMeCard;
-    bool  _isRunningFlow;
+    bool  _isRunning;
     CNSharingProfileLogger * _logger;
     UINavigationController * _navigationController;
     CNSharingProfileOnboardingPhotoSelectionViewController * _photoSelectionController;
     CNSharingProfileOnboardingPhotoSelectionResult * _photoSelectionResult;
+    CNSharingProfileOnboardingPosePickerController * _posePickerController;
     CNPhotoPickerProviderItem * _selectedVariantItem;
+    bool  _shouldAnimateNavTransitions;
     CNSharingProfileOnboardingVariantViewController * _variantController;
     CNPhotoPickerVariantsManager * _variantsManager;
 }
 
-@property (nonatomic, retain) CNSharingProfileOnboardingAudienceViewController *audienceViewController;
+@property (nonatomic, retain) <CNSharingProfileOnboardingAudienceController> *audienceViewController;
 @property (nonatomic, retain) CNAvatarEditingManager *avatarEditingManager;
 @property (nonatomic, retain) CNSharingProfileAvatarItemProviderConfiguration *avatarItemProviderConfiguration;
 @property (nonatomic, retain) <AVTAvatarRecord> *avatarRecord;
@@ -30,12 +32,14 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic) bool didPersistToMeCard;
 @property (readonly) unsigned long long hash;
-@property (nonatomic) bool isRunningFlow;
+@property (nonatomic) bool isRunning;
 @property (nonatomic, retain) CNSharingProfileLogger *logger;
 @property (nonatomic, retain) UINavigationController *navigationController;
 @property (nonatomic, retain) CNSharingProfileOnboardingPhotoSelectionViewController *photoSelectionController;
 @property (nonatomic, retain) CNSharingProfileOnboardingPhotoSelectionResult *photoSelectionResult;
+@property (nonatomic, retain) CNSharingProfileOnboardingPosePickerController *posePickerController;
 @property (nonatomic, retain) CNPhotoPickerProviderItem *selectedVariantItem;
+@property (nonatomic) bool shouldAnimateNavTransitions;
 @property (readonly) Class superclass;
 @property (nonatomic, retain) CNSharingProfileOnboardingVariantViewController *variantController;
 @property (nonatomic, retain) CNPhotoPickerVariantsManager *variantsManager;
@@ -43,11 +47,12 @@
 + (id)descriptorForRequiredKeys;
 
 - (void).cxx_destruct;
+- (void)audienceController:(id)arg1 didFinishWithContact:(id)arg2 sharingAudience:(unsigned long long)arg3;
+- (void)audienceControllerDidTapSetupLater:(id)arg1;
 - (id)audienceViewController;
-- (void)audienceViewController:(id)arg1 didFinishWithContact:(id)arg2 sharingAudience:(unsigned long long)arg3;
 - (id)avatarEditingManager;
+- (void)avatarEditingManager:(id)arg1 didFinishWithProviderItem:(id)arg2;
 - (id)avatarItemProviderConfiguration;
-- (void)avatarPosePickerManager:(id)arg1 didFinishWithProviderItem:(id)arg2;
 - (id)avatarRecord;
 - (id)contact;
 - (id)delegate;
@@ -55,18 +60,25 @@
 - (unsigned long long)imageTypeForAvatarType:(long long)arg1;
 - (id)initWithNavigationController:(id)arg1 contact:(id)arg2 avatarRecord:(id)arg3 avatarItemProviderConfiguration:(id)arg4;
 - (id)initWithNavigationController:(id)arg1 contact:(id)arg2 avatarRecord:(id)arg3 avatarItemProviderConfiguration:(id)arg4 logger:(id)arg5;
-- (bool)isRunningFlow;
+- (bool)isRunning;
 - (id)logger;
 - (id)navigationController;
+- (void)notifyDelegateOfSetupLaterSelected;
+- (void)onboardingVariantControllerDidTapBack:(id)arg1;
 - (void)onboardingVariantControllerDidTapContinue:(id)arg1;
 - (void)onboardingVariantControllerDidTapPose:(id)arg1;
-- (void)photoPickerVariantListController:(id)arg1 didSelectProviderItem:(id)arg2;
-- (void)photoPickerVariantListControllerDidCancel:(id)arg1;
+- (void)onboardingVariantControllerDidTapSetupLater:(id)arg1;
 - (id)photoSelectionController;
 - (id)photoSelectionResult;
 - (void)photoSelectionViewControllerDidFinishWithResult:(id)arg1;
+- (void)photoSelectionViewControllerDidTapSetupLater:(id)arg1;
+- (id)posePickerController;
+- (void)posePickerController:(id)arg1 didFinishWithProviderItem:(id)arg2;
+- (void)posePickerControllerDidSelectBack:(id)arg1;
+- (void)posePickerControllerDidSelectSetupLater:(id)arg1;
 - (id)prepareVariantsControllerForResult:(id)arg1;
 - (void)presentAnimojiPoseCapture;
+- (void)presentMeCardAlertForResult:(id)arg1;
 - (void)presentMeCardPersistanceAlertWithCompletionBlock:(id /* block */)arg1;
 - (void)presentNameAndAudienceControllerForContact:(id)arg1;
 - (id)providerItemForPhotoResult:(id)arg1;
@@ -79,14 +91,17 @@
 - (void)setContact:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDidPersistToMeCard:(bool)arg1;
-- (void)setIsRunningFlow:(bool)arg1;
+- (void)setIsRunning:(bool)arg1;
 - (void)setLogger:(id)arg1;
 - (void)setNavigationController:(id)arg1;
 - (void)setPhotoSelectionController:(id)arg1;
 - (void)setPhotoSelectionResult:(id)arg1;
+- (void)setPosePickerController:(id)arg1;
 - (void)setSelectedVariantItem:(id)arg1;
+- (void)setShouldAnimateNavTransitions:(bool)arg1;
 - (void)setVariantController:(id)arg1;
 - (void)setVariantsManager:(id)arg1;
+- (bool)shouldAnimateNavTransitions;
 - (void)startFlow;
 - (id)variantController;
 - (id)variantsManager;

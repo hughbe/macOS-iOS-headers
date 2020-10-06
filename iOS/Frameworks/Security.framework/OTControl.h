@@ -16,7 +16,6 @@
 + (id)controlObject:(bool)arg1 error:(id*)arg2;
 
 - (void).cxx_destruct;
-- (void)attemptSosUpgrade:(id)arg1 context:(id)arg2 reply:(id /* block */)arg3;
 - (id)connection;
 - (void)createRecoveryKey:(id)arg1 contextID:(id)arg2 recoveryKey:(id)arg3 reply:(id /* block */)arg4;
 - (void)dealloc;
@@ -26,12 +25,15 @@
 - (void)fetchCliqueStatus:(id)arg1 context:(id)arg2 configuration:(id)arg3 reply:(id /* block */)arg4;
 - (void)fetchEgoPeerID:(id)arg1 context:(id)arg2 reply:(id /* block */)arg3;
 - (void)fetchEscrowContents:(id)arg1 contextID:(id)arg2 reply:(id /* block */)arg3;
+- (void)fetchEscrowRecords:(id)arg1 contextID:(id)arg2 forceFetch:(bool)arg3 reply:(id /* block */)arg4;
 - (void)fetchTrustStatus:(id)arg1 context:(id)arg2 configuration:(id)arg3 reply:(id /* block */)arg4;
+- (void)fetchUserControllableViewsSyncStatus:(id)arg1 contextID:(id)arg2 reply:(id /* block */)arg3;
 - (void)getCDPStatus:(id)arg1 contextID:(id)arg2 reply:(id /* block */)arg3;
 - (id)getConnection:(id /* block */)arg1;
 - (void)handleIdentityChangeForSigningKey:(id)arg1 ForEncryptionKey:(id)arg2 ForPeerID:(id)arg3 reply:(id /* block */)arg4;
 - (void)healthCheck:(id)arg1 context:(id)arg2 skipRateLimitingCheck:(bool)arg3 reply:(id /* block */)arg4;
 - (id)initWithConnection:(id)arg1 sync:(bool)arg2;
+- (void)invalidateEscrowCache:(id)arg1 contextID:(id)arg2 reply:(id /* block */)arg3;
 - (void)joinWithRecoveryKey:(id)arg1 contextID:(id)arg2 recoveryKey:(id)arg3 reply:(id /* block */)arg4;
 - (void)launchBottledPeer:(id)arg1 bottleID:(id)arg2 reply:(id /* block */)arg3;
 - (void)leaveClique:(id)arg1 context:(id)arg2 reply:(id /* block */)arg3;
@@ -58,6 +60,7 @@
 - (void)setConnection:(id)arg1;
 - (void)setSync:(bool)arg1;
 - (void)setSynchronous:(bool)arg1;
+- (void)setUserControllableViewsSyncStatus:(id)arg1 contextID:(id)arg2 enabled:(bool)arg3 reply:(id /* block */)arg4;
 - (void)signIn:(id)arg1 container:(id)arg2 context:(id)arg3 reply:(id /* block */)arg4;
 - (void)signOut:(id)arg1 context:(id)arg2 reply:(id /* block */)arg3;
 - (void)signingKey:(id /* block */)arg1;

@@ -2,7 +2,17 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@interface MTLIndirectCommandBufferDescriptor : NSObject
+@interface MTLIndirectCommandBufferDescriptor : NSObject <NSCopying> {
+    struct MTLIndirectCommandBufferDescriptorState { 
+        unsigned long long commandTypes; 
+        bool inheritPipelineState; 
+        bool inheritBuffers; 
+        unsigned long long maxVertexBufferBindCount; 
+        unsigned long long maxFragmentBufferBindCount; 
+        unsigned long long maxKernelBufferBindCount; 
+        unsigned long long resourceIndex; 
+    }  _state;
+}
 
 @property (nonatomic) unsigned long long commandTypes;
 @property (nonatomic) bool inheritBuffers;
@@ -10,10 +20,25 @@
 @property (nonatomic) unsigned long long maxFragmentBufferBindCount;
 @property (nonatomic) unsigned long long maxKernelBufferBindCount;
 @property (nonatomic) unsigned long long maxVertexBufferBindCount;
+@property (nonatomic) unsigned long long resourceIndex;
 
-+ (id)alloc;
-+ (id)allocWithZone:(struct _NSZone { }*)arg1;
-
+- (unsigned long long)commandTypes;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (unsigned long long)hash;
+- (bool)inheritBuffers;
+- (bool)inheritPipelineState;
+- (id)init;
+- (bool)isEqual:(id)arg1;
+- (unsigned long long)maxFragmentBufferBindCount;
+- (unsigned long long)maxKernelBufferBindCount;
+- (unsigned long long)maxVertexBufferBindCount;
+- (unsigned long long)resourceIndex;
+- (void)setCommandTypes:(unsigned long long)arg1;
+- (void)setInheritBuffers:(bool)arg1;
+- (void)setInheritPipelineState:(bool)arg1;
+- (void)setMaxFragmentBufferBindCount:(unsigned long long)arg1;
+- (void)setMaxKernelBufferBindCount:(unsigned long long)arg1;
+- (void)setMaxVertexBufferBindCount:(unsigned long long)arg1;
+- (void)setResourceIndex:(unsigned long long)arg1;
 
 @end

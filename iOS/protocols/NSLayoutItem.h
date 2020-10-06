@@ -25,6 +25,7 @@
 - (NSISVariable *)nsli_boundsHeightVariable;
 - (NSISVariable *)nsli_boundsWidthVariable;
 - (bool)nsli_canHostIndependentVariableAnchor;
+- (NSLayoutConstraint *)nsli_constraintWithAnchor:(NSLayoutAnchor *)arg1 relatedBy:(long long)arg2 toAnchor:(NSLayoutAnchor *)arg3 withSystemSpacingMultipliedBy:(double)arg4;
 - (bool)nsli_defaultResolvedValue:(double*)arg1 forSymbolicConstant:(NSString *)arg2 inConstraint:(NSLayoutConstraint *)arg3 error:(id*)arg4;
 - (struct CGSize { double x1; double x2; })nsli_engineToUserScalingCoefficients;
 - (NSArray *)nsli_installedConstraints;

@@ -18,9 +18,9 @@
     NSSQLEntity * _finalEntity;
     NSSQLEntity * _lastEntity;
     unsigned int  _lastEntityKey;
-    NSMutableSet * _mObjectIDsInsertedByDATriggers;
+    NSMutableArray * _mObjectIDsInsertedByDATriggers;
     NSMutableSet * _mObjectIDsUpdatedByTriggers;
-    NSMutableSet * _mObjectIDsUpdatededByDATriggers;
+    NSMutableArray * _mObjectIDsUpdatededByDATriggers;
     NSArray * _metadataColumns;
     NSMutableDictionary * _pragmaSettings;
     NSSQLitePrefetchRequestCache * _prefetchRequestCache;
@@ -53,6 +53,7 @@
     NSMutableDictionary * _transactionStringName;
     struct sqlite3_stmt { } * _updatePKStatement;
     bool  _useSyntaxColoredLogging;
+    NSMutableDictionary * _usedIndexes;
     long long  _vacuumTracker;
     struct __CFDictionary { } * _vmCachedStatements;
     struct sqlite3_stmt { } * _vmstatement;
@@ -72,6 +73,7 @@
 + (int)readMagicWordFromPath:(const char *)arg1 options:(id)arg2;
 
 - (int)_adoptQueryGenerationWithSnapshot:(id)arg1;
+- (id)_alterTableStatementsForEntities:(id)arg1;
 - (void)_batchInsertThrowWithErrorCode:(int)arg1 andMessage:(id)arg2 forKey:(id)arg3 andValue:(id)arg4 additionalDetail:(id)arg5;
 - (void)_bindVariablesForConstrainedValuesWithRow:(id)arg1;
 - (void)_bindVariablesWithDeletedRow:(id)arg1;
@@ -95,14 +97,19 @@
 - (void)_configureSynchronousMode;
 - (long long)_countOfRowsInTable:(id)arg1;
 - (unsigned long long)_countOfVMCachedStatements;
+- (id)_createInsertStatementForEntity:(id)arg1;
+- (id)_createInsertStatementsForEntities:(id)arg1;
+- (id)_createTableStatementsForEntities:(id)arg1;
 - (id)_createTransactionStringWithName:(id)arg1;
 - (id)_currentQueryGenerationSnapshot:(id*)arg1;
 - (id)_decompressedModelWithData:(id)arg1;
+- (void)_dropAllDATriggers;
 - (void)_dropAllTriggers;
 - (void)_dropKnownHistoryTrackingTables;
 - (void)_dropOldHistoryTrackingTables;
 - (void)_dropOldHistoryTrackingTablesV0;
 - (void)_dropOldHistoryTrackingTablesV1;
+- (id)_dropTableStatementsForTempOfEntities:(id)arg1;
 - (bool)_dropTableWithName:(id)arg1;
 - (void)_endFetch;
 - (void)_ensureDatabaseOpen;
@@ -110,6 +117,7 @@
 - (void)_ensureNoStatementPrepared;
 - (void)_ensureNoTransactionOpen;
 - (long long)_ensureWalFileExists;
+- (id)_entitiesWithDeferredMigration;
 - (void)_executeSQLString:(id)arg1;
 - (long long)_fetchMaxPrimaryKeyForEntity:(id)arg1;
 - (void)_finalizeStatement;
@@ -120,6 +128,7 @@
 - (bool)_hasOldHistoryTrackingTablesV0;
 - (bool)_hasOldHistoryTrackingTablesV1;
 - (bool)_hasPersistentHistoryTables;
+- (bool)_hasSaveRequest;
 - (bool)_hasTableWithName:(id)arg1;
 - (bool)_hasTableWithName:(id)arg1 isTemp:(bool)arg2;
 - (bool)_hasTempTableWithName:(id)arg1;
@@ -138,6 +147,7 @@
 - (void)_setSaveRequest:(id)arg1;
 - (void)_setupVacuumIfNecessary;
 - (bool)_tableHasRows:(id)arg1;
+- (id)_tempNameForTableName:(id)arg1;
 - (id)_transactionsStringAndPKsForStrings:(id)arg1;
 - (bool)_useContextObjects;
 - (void)_validateProperty:(id)arg1 withValue:(id)arg2;
@@ -170,6 +180,7 @@
 - (void)connect;
 - (id)connectionManager;
 - (struct __CFArray { }*)copyRawIntegerRowsForSQL:(id)arg1;
+- (id)createArrayOfPrimaryKeysAndEntityIDsForRowsWithoutRecordMetadataWithEntity:(id)arg1 metadataEntity:(id)arg2;
 - (void)createCachedModelTable;
 - (void)createIndexesForEntity:(id)arg1;
 - (void)createManyToManyTablesForEntity:(id)arg1;
@@ -177,6 +188,7 @@
 - (id)createMapOfEntityNameToPKMaxForEntitiesFromPKTable:(id)arg1;
 - (id)createMapOfEntityNameToPKMaxForEntitiesFromUBRangeTable:(id)arg1;
 - (void)createMetadata;
+- (void)createMissingHistoryTables;
 - (void)createPrimaryKeyTableForModel:(id)arg1 knownEmpty:(bool)arg2;
 - (void)createSchema;
 - (id)createSetOfObjectIDsInsertUpdatedByDATriggers;
@@ -195,6 +207,7 @@
 - (void)disconnect;
 - (void)dropHistoryBeforeTransactionID:(id)arg1;
 - (void)dropHistoryTrackingTables;
+- (void)dropIndexTrackingTable;
 - (void)dropUbiquityTables;
 - (void)endFetchAndRecycleStatement:(bool)arg1;
 - (void)execute;
@@ -213,19 +226,25 @@
 - (id)fetchTableNames;
 - (id)fetchTriggerCreationSQL;
 - (id)fetchUbiquityKnowledgeVector;
+- (bool)finishDeferredLightweightMigration:(bool)arg1;
 - (void)forceTransactionClosed;
 - (int)freeQueryGenerationWithIdentifier:(id)arg1;
+- (id)gatherObjectIDsAndAttributeNamesFromTable:(id)arg1;
 - (id)gatherObjectIDsFromTable:(id)arg1;
 - (long long)generatePrimaryKeysForEntity:(id)arg1 batch:(unsigned int)arg2;
 - (void)handleCorruptedDB:(id)arg1;
+- (id)harvestUsedIndexes;
 - (id)hasAncillaryEntitiesInHistory;
+- (bool)hasAttributeChanges:(id)arg1;
 - (bool)hasCachedModelTable;
 - (bool)hasHistoryRows;
 - (bool)hasHistoryTransactionWithNumber:(id)arg1;
+- (bool)hasIndexTrackingTable;
 - (bool)hasMetadataTable;
 - (bool)hasOpenTransaction;
 - (bool)hasPrimaryKeyTable;
 - (bool)hasTransactionStringColumnsInTransactionTable;
+- (id)indexesUsedByStatement:(id)arg1;
 - (id)initAsQueryGenerationTrackingConnectionForSQLCore:(id)arg1;
 - (id)initForSQLCore:(id)arg1;
 - (unsigned long long)insertArray:(id)arg1 forEntity:(id)arg2 includeOnConflict:(bool)arg3;
@@ -234,6 +253,7 @@
 - (void)insertChanges:(id)arg1 type:(long long)arg2 transactionID:(long long)arg3 context:(id)arg4;
 - (unsigned long long)insertDictionaryBlock:(id /* block */)arg1 forEntity:(id)arg2 includeOnConflict:(bool)arg3;
 - (unsigned long long)insertManagedObjectBlock:(id /* block */)arg1 forEntity:(id)arg2 includeOnConflict:(bool)arg3;
+- (void)insertReorderUpdates:(id)arg1 transactionID:(long long)arg2 context:(id)arg3;
 - (void)insertRow:(id)arg1;
 - (void)insertUpdates:(id)arg1 transactionID:(long long)arg2 updatedAttributes:(id)arg3;
 - (bool)isFetchInProgress;
@@ -245,6 +265,9 @@
 - (id)newFetchUUIDSForSubentitiesRootedAt:(id)arg1;
 - (id)newFetchedArray;
 - (unsigned long long)numberOfTombstones;
+- (unsigned long long)pagesInStore;
+- (unsigned long long)pagesUsedByTables:(id)arg1;
+- (unsigned long long)percentageUsedByPersistentHistory;
 - (void)performAndWait:(id /* block */)arg1;
 - (bool)performIntegrityCheck;
 - (id)prefetchRequestCache;
@@ -256,7 +279,7 @@
 - (void)processExternalDataReferenceFilesDeletedByRequest:(id)arg1;
 - (void)processInsertRequest:(id)arg1 withOIDs:(id)arg2;
 - (void)processMigrationRequestForHash:(id)arg1;
-- (void)processRelationshipUpdatesForRequestContext:(id)arg1;
+- (id)processRelationshipUpdates:(id)arg1 forRequestContext:(id)arg2;
 - (void)processSaveRequest:(id)arg1;
 - (void)processUpdateRequest:(id)arg1 withOIDs:(id)arg2 forAttributes:(id)arg3;
 - (bool)recreateIndices;
@@ -278,6 +301,7 @@
 - (void)setIsWriter:(bool)arg1;
 - (void)setSecureDeleteMode:(bool)arg1;
 - (void)setUbiquityTableValue:(id)arg1 forKey:(id)arg2;
+- (bool)setUpIndexTracking;
 - (id)sqlStatement;
 - (id)statementCacheForEntity:(id)arg1;
 - (void)transactionDidBegin;

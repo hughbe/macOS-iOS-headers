@@ -7,11 +7,14 @@
     GEOCategorySearchResultSection * _categorySearchResultSection;
     bool  _chainResultSet;
     GEOResolvedItem * _clientResolvedResult;
+    NSArray * _collectionResults;
     GEORelatedSearchSuggestion * _defaultRelatedSuggestion;
     GEODirectionIntent * _directionIntent;
     NSArray * _displayHeaderSubstitutes;
     unsigned int  _dymSuggestionVisibleTime;
     GEOPDMerchantLookupResult * _merchantLookupResult;
+    NSArray * _publisherResults;
+    NSArray * _relatedEntitySections;
     NSArray * _relatedSearchSuggestions;
     GEOMapRegion * _resultBoundingRegion;
     NSString * _resultDisplayHeader;
@@ -29,6 +32,7 @@
 @property (nonatomic, readonly) GEOCategorySearchResultSection *categorySearchResultSection;
 @property (getter=isChainResultSet, nonatomic, readonly) bool chainResultSet;
 @property (nonatomic, readonly) GEOResolvedItem *clientResolvedResult;
+@property (nonatomic, readonly) NSArray *collectionResults;
 @property (nonatomic, readonly) struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; } dataRequestKind;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic, readonly) GEORelatedSearchSuggestion *defaultRelatedSuggestion;
@@ -38,6 +42,8 @@
 @property (nonatomic, readonly) unsigned int dymSuggestionVisibleTime;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) GEOPDMerchantLookupResult *merchantLookupResult;
+@property (nonatomic, readonly) NSArray *publisherResults;
+@property (nonatomic, readonly) NSArray *relatedEntitySections;
 @property (nonatomic, readonly) NSArray *relatedSearchSuggestions;
 @property (nonatomic, readonly) NSDictionary *responseUserInfo;
 @property (nonatomic, readonly) GEOMapRegion *resultBoundingRegion;
@@ -57,6 +63,7 @@
 - (id)browseCategories;
 - (id)categorySearchResultSection;
 - (id)clientResolvedResult;
+- (id)collectionResults;
 - (struct { int x1; union { int x_2_1_1; int x_2_1_2; int x_2_1_3; } x2; })dataRequestKind;
 - (id)defaultRelatedSuggestion;
 - (id)directionIntent;
@@ -64,6 +71,8 @@
 - (unsigned int)dymSuggestionVisibleTime;
 - (bool)isChainResultSet;
 - (id)merchantLookupResult;
+- (id)publisherResults;
+- (id)relatedEntitySections;
 - (id)relatedSearchSuggestions;
 - (id)resultBoundingRegion;
 - (id)resultDisplayHeader;

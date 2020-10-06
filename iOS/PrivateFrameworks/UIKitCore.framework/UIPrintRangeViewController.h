@@ -23,12 +23,7 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithPrintPanelViewController:(id)arg1;
 - (long long)numberOfComponentsInPickerView:(id)arg1;
 - (long long)numberOfSectionsInTableView:(id)arg1;

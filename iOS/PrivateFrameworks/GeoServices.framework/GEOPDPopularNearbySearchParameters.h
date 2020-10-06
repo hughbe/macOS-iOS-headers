@@ -9,11 +9,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_suggestionEntryMetadata : 1; 
         unsigned int read_viewportInfo : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_suggestionEntryMetadata : 1; 
-        unsigned int wrote_viewportInfo : 1; 
-        unsigned int wrote_maxResults : 1; 
-        unsigned int wrote_searchType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     unsigned int  _maxResults;
     PBDataReader * _reader;
@@ -42,8 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsSearchType:(id)arg1;
-- (void)_readSuggestionEntryMetadata;
-- (void)_readViewportInfo;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -56,7 +50,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (unsigned int)maxResults;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;

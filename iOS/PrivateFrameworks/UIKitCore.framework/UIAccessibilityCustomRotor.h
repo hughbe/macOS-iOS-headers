@@ -16,6 +16,9 @@
 @property (nonatomic) long long systemRotorType;
 @property (nonatomic) id targetElement;
 @property (nonatomic, retain) NSUUID *uuid;
+@property (nonatomic) bool visibleInTouchRotor;
+
+// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
 
 - (void).cxx_destruct;
 - (id)attributedName;
@@ -33,5 +36,11 @@
 - (long long)systemRotorType;
 - (id)targetElement;
 - (id)uuid;
+
+// Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
+
+- (id)_accessibilityAXAttributedName;
+- (void)setVisibleInTouchRotor:(bool)arg1;
+- (bool)visibleInTouchRotor;
 
 @end

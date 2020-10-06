@@ -17,11 +17,8 @@
 @property (nonatomic, readonly) TUIPredictionView *predictionView;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (bool)_autocorrectionListContainsContinuousPathConversions:(id)arg1;
-- (bool)_autocorrectionListIsNull:(id)arg1;
 - (bool)_autocorrectionListMayCausePredictionViewToReappear:(id)arg1;
 - (bool)_canShowWhileLocked;
 - (id)_currentTextSuggestions;
@@ -33,13 +30,10 @@
 - (void)_registerForNotifications;
 - (void)_throttledUpdateUIWithAutocorrectionList:(id)arg1;
 - (void)_updateAutocorrectionList:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)autocorrectionController:(id)arg1 didUpdateAutocorrectionList:(id)arg2;
 - (void)autocorrectionControllerDidClearAutocorrections:(id)arg1;
 - (id)cachedAutocorrectionList;
+- (void)dealloc;
 - (id)displayedCandidates;
 - (bool)hidesExpandableButton;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
@@ -47,6 +41,7 @@
 - (void)loadView;
 - (id)predictionView;
 - (void)predictionView:(id)arg1 didSelectCandidate:(id)arg2;
+- (double)preferredHeightForTraitCollection:(id)arg1;
 - (void)setCachedAutocorrectionList:(id)arg1;
 - (void)viewWillAppear:(bool)arg1;
 

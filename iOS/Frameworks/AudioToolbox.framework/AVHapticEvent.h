@@ -10,7 +10,6 @@
         unsigned long long type; 
         float value; 
     }  _fixedParams;
-    bool  _isParameter;
     AVHapticPlayerParameterCurve * _paramCurve;
     double  _time;
     union { 
@@ -25,7 +24,6 @@
 @property (readonly) unsigned long long eventType;
 @property (readonly) long long fixedParamCount;
 @property (readonly) struct AVHapticPlayerFixedParameter { unsigned long long x1; float x2; }*fixedParams;
-@property (readonly) bool isParameter;
 @property (readonly) unsigned long long paramType;
 @property (readonly) AVHapticPlayerParameterCurve *parameterCurve;
 @property (readonly) double time;
@@ -51,7 +49,6 @@
 - (id)initWithEventType:(unsigned long long)arg1 time:(double)arg2 parameters:(const struct AVHapticPlayerFixedParameter { unsigned long long x1; float x2; }*)arg3 count:(long long)arg4 duration:(double)arg5;
 - (id)initWithParameter:(unsigned long long)arg1 value:(float)arg2 time:(double)arg3;
 - (id)initWithParameterCurve:(id)arg1;
-- (bool)isParameter;
 - (unsigned long long)paramType;
 - (id)parameterCurve;
 - (double)time;

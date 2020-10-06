@@ -13,19 +13,16 @@
 @property (readonly) Class superclass;
 @property (readonly) SAThread *thread;
 @property (readonly) SAThreadState *threadState;
-@property unsigned long long threadStateIndex;
+@property (readonly) unsigned long long threadStateIndex;
 
 + (id)classDictionaryKey;
-+ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned int x4; }*)arg1 bufferLength:(unsigned long long)arg2;
-+ (id)stateWithThread:(id)arg1 threadStateIndex:(unsigned long long)arg2;
++ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2;
 
 - (void).cxx_destruct;
 - (bool)addSelfToBuffer:(struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned int x4; }*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
 - (void)addSelfToSerializationDictionary:(id)arg1;
-- (id)debugDescriptionWithDispatchQueue:(id)arg1;
 - (id)initWithThread:(id)arg1 threadStateIndex:(unsigned long long)arg2;
-- (void)populateReferencesUsingBuffer:(const struct { unsigned char x1; unsigned char x2; unsigned long long x3; unsigned int x4; }*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
-- (void)setThreadStateIndex:(unsigned long long)arg1;
+- (void)populateReferencesUsingBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
 - (unsigned long long)sizeInBytesForSerializedVersion;
 - (id)thread;
 - (id)threadState;

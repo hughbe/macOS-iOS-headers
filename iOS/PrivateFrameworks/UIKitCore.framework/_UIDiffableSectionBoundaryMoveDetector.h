@@ -3,8 +3,8 @@
  */
 
 @interface _UIDiffableSectionBoundaryMoveDetector : NSObject {
-    <UIDiffableDataSourceInfo> * _afterInfo;
-    <UIDiffableDataSourceInfo> * _beforeInfo;
+    <_UIDiffableDataSourceState> * _afterState;
+    <_UIDiffableDataSourceState> * _beforeState;
     bool  _didShortCircuit;
     <_UIIdentifierDiffer> * _differ;
     NSSet * _movePairs;
@@ -17,7 +17,7 @@
 - (id)_computeMovePairsFoundation;
 - (id)_computeMovePairsSTL;
 - (bool)didShortCircuit;
-- (id)initWithItemDiffer:(id)arg1 beforeDataSourceInfo:(id)arg2 afterDataSourceInfo:(id)arg3;
+- (id)initWithItemDiffer:(id)arg1 beforeDataSourceState:(id)arg2 afterDataSourceState:(id)arg3;
 - (id)movePairs;
 
 @end

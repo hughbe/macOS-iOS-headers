@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIPress : NSObject <_UIResponderForwardable> {
+@interface UIPress : NSObject <_UIEventComponent, _UIResponderForwardable> {
     bool  _abandonForwardingRecord;
     unsigned long long  _clickCount;
     unsigned int  _contextID;
@@ -58,6 +58,7 @@
 - (id)_phaseDescription;
 - (void)_removeGestureRecognizer:(id)arg1;
 - (id)_responder;
+- (long long)_responderForwardableType;
 - (SEL)_responderSelectorForPhase:(long long)arg1;
 - (void)_setForwardablePhase:(long long)arg1;
 - (void)_setGameControllerComponent:(unsigned long long)arg1;

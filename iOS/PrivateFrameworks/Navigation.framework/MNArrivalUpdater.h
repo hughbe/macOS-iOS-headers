@@ -3,7 +3,10 @@
  */
 
 @interface MNArrivalUpdater : NSObject <MNArrivalRegionTimerDelegate> {
+    NSDate * _arrivalDate;
+    unsigned long long  _arrivalLegIndex;
     unsigned long long  _arrivalState;
+    double  _closestDistanceToWaypoint;
     MNLocation * _lastLocation;
     GEOComposedRoute * _route;
     MNObserverHashTable * _safeDelegate;
@@ -18,18 +21,21 @@
 @property (readonly) Class superclass;
 
 - (void).cxx_destruct;
-- (bool)_checkArrivalForLocation:(id)arg1 remainingDistanceAlongRoute:(double)arg2;
-- (bool)_isInPreArrivalRegionForLocation:(id)arg1 remainingDistanceAlongRoute:(double)arg2;
+- (bool)_checkArrival:(id)arg1 forLocation:(id)arg2;
+- (bool)_checkPreArrival:(id)arg1 forLocation:(id)arg2;
+- (double)_distanceToEndOfLeg:(id)arg1 fromLocation:(id)arg2;
 - (bool)_legacyCheckArrivalForLocation:(id)arg1;
 - (bool)_legacyCheckDrivingArrivalForLocation:(id)arg1;
 - (bool)_legacyCheckNonDrivingArrivalForLocation:(id)arg1;
 - (bool)_shouldUseNewArrivalLogic;
+- (bool)allowDepartureForLocation:(id)arg1;
 - (void)arrivalRegionTimerDidFire:(id)arg1;
 - (id)init;
 - (id)initWithRoute:(id)arg1 useLegacyArrival:(bool)arg2;
 - (bool)isInPreArrivalRegion;
 - (void)setDelegate:(id)arg1;
-- (void)updateForLocation:(id)arg1 remainingDistanceAlongRoute:(double)arg2;
+- (void)updateForDepartureFromWaypoint;
+- (void)updateForLocation:(id)arg1;
 - (void)updateForRoute:(id)arg1;
 
 @end

@@ -10,6 +10,7 @@
     AKDevice * _companionDevice;
     NSString * _proxiedAppName;
     AKDevice * _proxiedDevice;
+    NSString * _realUserVerificationData;
     AKAuthorizationRequest * _request;
     long long  _serviceType;
     NSString * _teamID;
@@ -28,6 +29,7 @@
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, copy) AKDevice *proxiedDevice;
+@property (nonatomic, copy) NSString *realUserVerificationData;
 @property (nonatomic, readonly, copy) AKAuthorizationRequest *request;
 @property (nonatomic) long long serviceType;
 @property (readonly) Class superclass;
@@ -50,6 +52,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithRequest:(id)arg1;
 - (id)proxiedDevice;
+- (id)realUserVerificationData;
 - (id)request;
 - (long long)serviceType;
 - (void)setAltDSID:(id)arg1;
@@ -58,6 +61,7 @@
 - (void)setClientID:(id)arg1;
 - (void)setCompanionDevice:(id)arg1;
 - (void)setProxiedDevice:(id)arg1;
+- (void)setRealUserVerificationData:(id)arg1;
 - (void)setServiceType:(long long)arg1;
 - (void)setTeamID:(id)arg1;
 - (void)setUserSelection:(id)arg1;

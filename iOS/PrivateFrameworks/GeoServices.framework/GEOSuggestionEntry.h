@@ -15,15 +15,7 @@
         unsigned int read_namedFeatures : 1; 
         unsigned int read_searchQueryDisplayString : 1; 
         unsigned int read_suggestionEntryMetadata : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_textHighlights : 1; 
-        unsigned int wrote_calloutTitle : 1; 
-        unsigned int wrote_displayLines : 1; 
-        unsigned int wrote_iconID : 1; 
-        unsigned int wrote_latlng : 1; 
-        unsigned int wrote_namedFeatures : 1; 
-        unsigned int wrote_searchQueryDisplayString : 1; 
-        unsigned int wrote_suggestionEntryMetadata : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _iconID;
     GEOLatLng * _latlng;
@@ -63,17 +55,6 @@
 + (Class)namedFeatureType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsDisplayLine:(id)arg1;
-- (void)_addNoFlagsNamedFeature:(id)arg1;
-- (void)_addNoFlagsTextHighlights:(struct GEOHighlight { unsigned int x1; unsigned int x2; unsigned int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
-- (void)_readCalloutTitle;
-- (void)_readDisplayLines;
-- (void)_readIconID;
-- (void)_readLatlng;
-- (void)_readNamedFeatures;
-- (void)_readSearchQueryDisplayString;
-- (void)_readSuggestionEntryMetadata;
-- (void)_readTextHighlights;
 - (void)addDisplayLine:(id)arg1;
 - (void)addNamedFeature:(id)arg1;
 - (void)addTextHighlights:(struct GEOHighlight { unsigned int x1; unsigned int x2; unsigned int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
@@ -99,7 +80,10 @@
 - (id)iconID;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)latlng;
 - (void)mergeFrom:(id)arg1;
 - (id)namedFeatureAtIndex:(unsigned long long)arg1;

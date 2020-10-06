@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@interface NSHTTPURLRequestParameters : NSObject {
+@interface NSHTTPURLRequestParameters : NSObject <NSCoding> {
     bool  _pad1;
     bool  _pad2;
     bool  _pad3;
@@ -15,6 +15,7 @@
 }
 
 - (void)dealloc;
+- (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 

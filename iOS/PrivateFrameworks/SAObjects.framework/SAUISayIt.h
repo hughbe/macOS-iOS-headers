@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@interface SAUISayIt : SABaseClientBoundCommand
+@interface SAUISayIt : SABaseClientBoundCommand <AFAceCommandClientFeedbackEnumerating, SiriUIUUFRSayable>
 
 @property (nonatomic, retain) SAUIAudioData *audioData;
 @property (nonatomic, copy) NSString *audioDataUrl;
@@ -12,8 +12,10 @@
 @property (nonatomic, copy) NSString *gender;
 @property (nonatomic, copy) NSString *languageCode;
 @property (nonatomic, copy) NSNumber *listenAfterSpeaking;
+@property (nonatomic, retain) SAUIListenAfterSpeakingBehavior *listenAfterSpeakingBehavior;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic) bool repeatable;
+@property (setter=siriui_setIgnoresMuteSwitch:, nonatomic) bool siriui_ignoresMuteSwitch;
 
 // Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
@@ -30,6 +32,7 @@
 - (id)groupIdentifier;
 - (id)languageCode;
 - (id)listenAfterSpeaking;
+- (id)listenAfterSpeakingBehavior;
 - (id)message;
 - (bool)repeatable;
 - (bool)requiresResponse;
@@ -41,13 +44,25 @@
 - (void)setGender:(id)arg1;
 - (void)setLanguageCode:(id)arg1;
 - (void)setListenAfterSpeaking:(id)arg1;
+- (void)setListenAfterSpeakingBehavior:(id)arg1;
 - (void)setMessage:(id)arg1;
 - (void)setRepeatable:(bool)arg1;
 
 // Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
 
-- (void)_af_extractDialogInfo:(id /* block */)arg1;
+- (void)_af_enumerateClientFeedbackDetails:(id /* block */)arg1;
 - (void)af_addEntriesToAnalyticsContext:(id)arg1;
 - (id)af_dialogIdentifiersForAnalyticsContext;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (long long)_afui_usefulUserResultType;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (void)_siriui_applyUserInfoDictionary:(id)arg1;
+- (id)_uufrSaid;
+- (bool)siriui_ignoresMuteSwitch;
+- (void)siriui_setIgnoresMuteSwitch:(bool)arg1;
 
 @end

@@ -7,6 +7,7 @@
     CNSharingProfileAvatarItemProviderConfiguration * _avatarItemProviderConfiguration;
     <AVTAvatarRecord> * _avatarRecord;
     CNContact * _contact;
+    UIButton * _customizeButton;
     <CNSharingProfilePhotoPickerViewControllerDelegate> * _delegate;
     bool  _isSmallScreenDevice;
     CNSharingProfileAvatarItemProvider * _itemProvider;
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) CNSharingProfileAvatarItemProviderConfiguration *avatarItemProviderConfiguration;
 @property (nonatomic, retain) <AVTAvatarRecord> *avatarRecord;
 @property (nonatomic, retain) CNContact *contact;
+@property (nonatomic, retain) UIButton *customizeButton;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <CNSharingProfilePhotoPickerViewControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -50,7 +52,9 @@
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
 - (long long)collectionView:(id)arg1 numberOfItemsInSection:(long long)arg2;
 - (id)contact;
+- (id)customizeButton;
 - (id)delegate;
+- (void)didSelectCustomizeButton:(id)arg1;
 - (id)initWithContact:(id)arg1 avatarRecord:(id)arg2 avatarItemProviderConfiguration:(id)arg3 logger:(id)arg4;
 - (bool)isSmallScreenDevice;
 - (id)itemProvider;
@@ -59,6 +63,7 @@
 - (id)monogramBackgroundColor;
 - (id)monogramColor;
 - (double)previewEdgeSize;
+- (double)previewToSelectorSpacing;
 - (id)previewView;
 - (void)reloadData;
 - (void)reloadItems;
@@ -69,6 +74,7 @@
 - (void)setAvatarItemProviderConfiguration:(id)arg1;
 - (void)setAvatarRecord:(id)arg1;
 - (void)setContact:(id)arg1;
+- (void)setCustomizeButton:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setIsSmallScreenDevice:(bool)arg1;
 - (void)setItemProvider:(id)arg1;

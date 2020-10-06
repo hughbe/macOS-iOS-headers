@@ -3,7 +3,6 @@
  */
 
 @interface _INPBTicketedEvent : PBCodable <NSCopying, NSSecureCoding, _INPBTicketedEvent> {
-    bool  __encodeLegacyGloryData;
     int  _category;
     _INPBDateTimeRange * _eventDuration;
     struct { 
@@ -13,7 +12,6 @@
     NSString * _name;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic) int category;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -31,8 +29,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsCategory:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (int)category;
 - (id)categoryAsString:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

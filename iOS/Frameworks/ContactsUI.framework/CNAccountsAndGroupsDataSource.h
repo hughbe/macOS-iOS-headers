@@ -16,6 +16,7 @@
 @property (nonatomic, retain) CNAccountsAndGroupsItem *rootItem;
 @property (nonatomic, retain) NSArray *sections;
 @property (nonatomic, readonly) CNContactStoreFilter *serverFilter;
+@property (nonatomic, readonly) CNAccountsAndGroupsItem *showAllSectionItem;
 @property (nonatomic, retain) CNContactStore *store;
 @property (getter=isTrivial, nonatomic, readonly) bool trivial;
 
@@ -27,6 +28,7 @@
 - (id)initWithStore:(id)arg1;
 - (bool)isTrivial;
 - (void)reload;
+- (void)removeServerFilter;
 - (id)rootItem;
 - (id)sections;
 - (id)serverFilter;
@@ -36,6 +38,7 @@
 - (void)setSections:(id)arg1;
 - (void)setServerFilterForItem:(id)arg1;
 - (void)setStore:(id)arg1;
+- (id)showAllSectionItem;
 - (id)store;
 - (void)updateRootItemSelection;
 

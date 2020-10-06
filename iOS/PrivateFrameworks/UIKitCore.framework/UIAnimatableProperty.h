@@ -25,7 +25,7 @@
 @property (nonatomic, copy) id /* block */ invalidationCallback;
 @property (nonatomic) int ownershipCount;
 @property (retain) id presentationValue;
-@property (nonatomic, retain) id value;
+@property (retain) id value;
 @property (nonatomic) id velocity;
 
 - (void).cxx_destruct;

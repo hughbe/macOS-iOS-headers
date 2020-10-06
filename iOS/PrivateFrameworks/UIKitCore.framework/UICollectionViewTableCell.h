@@ -88,8 +88,6 @@
 @property (nonatomic, readonly) bool usesVariableMargins;
 @property (getter=_wasEditing, nonatomic, readonly) bool wasEditing;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_accessoryBaseColor;
 - (void)_accessoryButtonAction:(id)arg1;
@@ -163,9 +161,6 @@
 - (void)_updateInternalCellForTableLayout:(bool)arg1 animated:(bool)arg2;
 - (void)_userSelectCell:(id)arg1;
 - (bool)_wasEditing;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (long long)accessoryType;
 - (id)accessoryView;
 - (bool)allowsMultipleSelection;

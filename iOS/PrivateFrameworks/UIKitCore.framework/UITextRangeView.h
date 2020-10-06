@@ -96,19 +96,14 @@
 @property (readonly) Class superclass;
 @property (nonatomic) bool willBeginMagnifying;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_cancelGrabberTransitionOutAnimations:(id)arg1;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_endEdgeHitRect:(bool)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_endEdgeHitRectWithPrecision:(unsigned long long)arg1;
 - (bool)_endIsHorizontal;
 - (bool)_gestureRecognizerShouldReceiveTouch:(id)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_selectionClipRect;
-- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_startEdgeHitRect:(bool)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_startEdgeHitRectWithPrecision:(unsigned long long)arg1;
 - (bool)_startIsHorizontal;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (struct CGPoint { double x1; double x2; })activeTouchPoint;
 - (id)adjustmentInteraction;
 - (void)animateHighlighterDelayedFadeInOnLayer:(id)arg1;
@@ -177,6 +172,8 @@
 - (void)setStartEdge:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setStartGrabber:(id)arg1;
 - (void)setWillBeginMagnifying:(bool)arg1;
+- (bool)shouldHitTestGrabbers;
+- (bool)shouldShowGrabbers;
 - (bool)shouldStayVisible;
 - (void)startAnimating;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })startEdge;

@@ -16,7 +16,7 @@
     NSString * _logUUID;
     long long  _maxRetryCount;
     long long  _mescalType;
-    AMSPurchaseContext * _purchaseContext;
+    AMSPurchaseInfo * _purchaseInfo;
     bool  _remoteSecuritySigningEnabled;
     <AMSResponseDecoding> * _responseDecoder;
     long long  _reversePushType;
@@ -38,7 +38,7 @@
 @property (nonatomic, retain) NSString *logUUID;
 @property (nonatomic) long long maxRetryCount;
 @property (nonatomic) long long mescalType;
-@property (nonatomic, retain) AMSPurchaseContext *purchaseContext;
+@property (nonatomic, retain) AMSPurchaseInfo *purchaseInfo;
 @property (nonatomic) bool remoteSecuritySigningEnabled;
 @property (nonatomic, retain) <AMSResponseDecoding> *responseDecoder;
 @property (nonatomic) long long reversePushType;
@@ -63,7 +63,7 @@
 - (long long)maxRetryCount;
 - (long long)mescalType;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
-- (id)purchaseContext;
+- (id)purchaseInfo;
 - (bool)remoteSecuritySigningEnabled;
 - (id)responseDecoder;
 - (long long)reversePushType;
@@ -80,7 +80,7 @@
 - (void)setLogUUID:(id)arg1;
 - (void)setMaxRetryCount:(long long)arg1;
 - (void)setMescalType:(long long)arg1;
-- (void)setPurchaseContext:(id)arg1;
+- (void)setPurchaseInfo:(id)arg1;
 - (void)setRemoteSecuritySigningEnabled:(bool)arg1;
 - (void)setResponseDecoder:(id)arg1;
 - (void)setReversePushType:(long long)arg1;

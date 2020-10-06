@@ -5,6 +5,7 @@
 @interface CUWiFiManager : NSObject {
     bool  _activateCalled;
     bool  _activated;
+    unsigned int  _controlFlags;
     NSObject<OS_dispatch_queue> * _dispatchQueue;
     bool  _infraDisabled;
     bool  _infraDisabledChanged;
@@ -21,6 +22,8 @@
     bool  _wakeOnWirelessEnabled;
     bool  _wakeOnWirelessEnabledChanged;
     bool  _wifiAutoJoinDisabled;
+    bool  _wifiCriticalSetup;
+    bool  _wifiCriticalState;
     struct __WiFiDeviceClient { } * _wifiDevice;
     bool  _wifiDeviceSetup;
     unsigned int  _wifiFlags;
@@ -33,6 +36,7 @@
     bool  _wifiStateMonitorSetup;
 }
 
+@property (nonatomic) unsigned int controlFlags;
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *dispatchQueue;
 @property (nonatomic) bool infraDisabled;
 @property (nonatomic, copy) id /* block */ interruptionHandler;
@@ -57,9 +61,11 @@
 - (void)_wifiEnsureStarted;
 - (void)_wifiEnsureStopped;
 - (unsigned int)_wifiFlagsUncached;
+- (void)_wifiStateChanged;
 - (int)_wifiStateUncached;
 - (void)activate;
 - (void)activateWithCompletion:(id /* block */)arg1;
+- (unsigned int)controlFlags;
 - (void)dealloc;
 - (id)dispatchQueue;
 - (bool)infraDisabled;
@@ -69,6 +75,7 @@
 - (id /* block */)invalidationHandler;
 - (id)label;
 - (void)performUpdate:(id /* block */)arg1;
+- (void)setControlFlags:(unsigned int)arg1;
 - (void)setDispatchQueue:(id)arg1;
 - (void)setInfraDisabled:(bool)arg1;
 - (void)setInterruptionHandler:(id /* block */)arg1;

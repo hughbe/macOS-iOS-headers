@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIDatePicker : UIControl <DebugHierarchyObject_Fallback, NSCoding, UIPickerViewScrollTesting> {
+@interface UIDatePicker : UIControl <NSCoding, UIPickerViewScrollTesting> {
     _UIDatePickerDataModel * _data;
     UIView<_UIDatePickerViewComponent> * _pickerView;
     long long  _preferredDatePickerStyle;
@@ -14,14 +14,12 @@
 @property (nonatomic, copy) NSCalendar *calendar;
 @property (getter=_contentWidth, nonatomic, readonly) double contentWidth;
 @property (nonatomic) double countDownDuration;
+@property (getter=_customFontDesign, setter=_setCustomFontDesign:, nonatomic, retain) NSString *customFontDesign;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic) long long datePickerMode;
 @property (nonatomic, readonly) long long datePickerStyle;
 @property (getter=_dateUnderSelectionBar, nonatomic, readonly) NSDate *dateUnderSelectionBar;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (getter=_drawsBackground, setter=_setDrawsBackground:, nonatomic) bool drawsBackground;
-@property (readonly) unsigned long long hash;
 @property (getter=_highlightColor, setter=_setHighlightColor:, nonatomic, retain) UIColor *highlightColor;
 @property (getter=_isTimeIntervalMode, nonatomic, readonly) bool isTimeIntervalMode;
 @property (nonatomic, retain) NSLocale *locale;
@@ -30,7 +28,6 @@
 @property (nonatomic, retain) NSDate *minimumDate;
 @property (nonatomic) long long minuteInterval;
 @property (nonatomic) long long preferredDatePickerStyle;
-@property (readonly) Class superclass;
 @property (getter=_textColor, setter=_setTextColor:, nonatomic, retain) UIColor *textColor;
 @property (getter=_textShadowColor, setter=_setTextShadowColor:, nonatomic, retain) UIColor *textShadowColor;
 @property (nonatomic) double timeInterval;
@@ -47,11 +44,15 @@
 - (bool)_contentHuggingDefault_isUsuallyFixedWidth;
 - (double)_contentWidth;
 - (unsigned long long)_controlEventsForActionTriggered;
+- (id)_customFontDesign;
+- (void)_datePickerReset:(id)arg1;
 - (id)_dateUnderSelectionBar;
 - (bool)_drawsBackground;
+- (void)_emitBeginEditing;
+- (void)_emitEndEditing;
 - (void)_emitValueChanged;
 - (id)_highlightColor;
-- (void)_installPickerView:(id)arg1;
+- (void)_installPickerView:(id)arg1 updatingSize:(bool)arg2;
 - (struct CGSize { double x1; double x2; })_intrinsicSizeWithinSize:(struct CGSize { double x1; double x2; })arg1;
 - (bool)_isTimeIntervalMode;
 - (id)_labelTextForCalendarUnit:(unsigned long long)arg1;
@@ -60,9 +61,11 @@
 - (id)_magnifierLineColor;
 - (void)_performScrollTest:(id)arg1 withIterations:(long long)arg2 rowsToScroll:(long long)arg3 inComponent:(long long)arg4;
 - (void)_populateArchivedSubviews:(id)arg1;
+- (void)_registerObservers;
 - (id)_selectedTextForCalendarUnit:(unsigned long long)arg1;
 - (void)_setAllowsZeroCountDownDuration:(bool)arg1;
 - (void)_setAllowsZeroTimeInterval:(bool)arg1;
+- (void)_setCustomFontDesign:(id)arg1;
 - (void)_setDrawsBackground:(bool)arg1;
 - (void)_setHidesLabels:(bool)arg1;
 - (void)_setHighlightColor:(id)arg1;
@@ -77,17 +80,13 @@
 - (id)_systemDefaultFocusGroupDescriptor;
 - (id)_textColor;
 - (id)_textShadowColor;
+- (void)_todayChanged:(id)arg1;
+- (void)_updatePickerViewIfNecessary;
 - (bool)_useCurrentDateDuringDecoding;
 - (bool)_usesBlackChrome;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (void)_workaround66574039_updateLayoutMargins;
 - (void)awakeFromNib;
+- (bool)becomeFirstResponder;
 - (id)calendar;
 - (double)countDownDuration;
 - (id)date;
@@ -100,12 +99,14 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)invalidateIntrinsicContentSize;
+- (void)layoutMarginsDidChange;
 - (id)locale;
 - (id)maximumDate;
 - (id)minimumDate;
 - (int)minute;
 - (long long)minuteInterval;
 - (long long)preferredDatePickerStyle;
+- (bool)resignFirstResponder;
 - (int)second;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
@@ -132,5 +133,10 @@
 - (double)timeInterval;
 - (id)timeZone;
 - (void)traitCollectionDidChange:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitUI.framework/PassKitUI
+
+- (void)pk_applyAppearance:(id)arg1;
+- (id)pk_childrenForAppearance;
 
 @end

@@ -10,10 +10,7 @@
         unsigned int read_dataVersion : 1; 
         unsigned int read_hspVersion : 1; 
         unsigned int read_incidentsMetadata : 1; 
-        unsigned int wrote_codeVersion : 1; 
-        unsigned int wrote_dataVersion : 1; 
-        unsigned int wrote_hspVersion : 1; 
-        unsigned int wrote_incidentsMetadata : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _hspVersion;
     GEOTrafficTrafficIncidentsMetaData * _incidentsMetadata;
@@ -37,10 +34,6 @@
 + (bool)isValid:(id)arg1;
 
 - (void).cxx_destruct;
-- (void)_readCodeVersion;
-- (void)_readDataVersion;
-- (void)_readHspVersion;
-- (void)_readIncidentsMetadata;
 - (id)codeVersion;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -56,7 +49,10 @@
 - (id)incidentsMetadata;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

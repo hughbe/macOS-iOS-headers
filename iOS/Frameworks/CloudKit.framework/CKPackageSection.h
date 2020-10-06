@@ -9,7 +9,7 @@
 }
 
 @property (nonatomic, readonly) long long index;
-@property (nonatomic, readonly) NSData *signature;
+@property (nonatomic, readonly, copy) NSData *signature;
 @property (nonatomic) unsigned long long size;
 
 - (void).cxx_destruct;

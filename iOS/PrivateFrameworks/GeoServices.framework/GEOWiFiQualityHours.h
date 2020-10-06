@@ -11,8 +11,7 @@
     struct { 
         unsigned int read_days : 1; 
         unsigned int read_timeRanges : 1; 
-        unsigned int wrote_days : 1; 
-        unsigned int wrote_timeRanges : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -34,10 +33,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsDays:(id)arg1;
-- (void)_addNoFlagsDays:(int)arg1;
-- (void)_addNoFlagsTimeRanges:(struct GEOWiFiQualityTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
-- (void)_readDays;
-- (void)_readTimeRanges;
 - (void)addDays:(int)arg1;
 - (void)addTimeRanges:(struct GEOWiFiQualityTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
 - (void)clearDays;
@@ -54,7 +49,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

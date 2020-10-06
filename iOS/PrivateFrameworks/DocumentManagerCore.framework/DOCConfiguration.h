@@ -45,6 +45,7 @@
 }
 
 @property unsigned long long browserViewContext;
+@property (readonly) bool canLongPressInitiateSidebarReordering;
 @property bool collectionSupportsDragAndDrop;
 @property (retain) DOCConcreteLocation *defaultLocation;
 @property (nonatomic, copy) NSArray *documentTypes;
@@ -96,6 +97,7 @@
 
 - (void).cxx_destruct;
 - (unsigned long long)browserViewContext;
+- (bool)canLongPressInitiateSidebarReordering;
 - (bool)collectionSupportsDragAndDrop;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)defaultLocation;

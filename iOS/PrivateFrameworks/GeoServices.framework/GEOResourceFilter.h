@@ -7,9 +7,7 @@
         unsigned int read_unknownFields : 1; 
         unsigned int read_scales : 1; 
         unsigned int read_scenarios : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_scales : 1; 
-        unsigned int wrote_scenarios : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     PBDataReader * _reader;
     struct os_unfair_lock_s { 
@@ -41,10 +39,6 @@
 - (void).cxx_destruct;
 - (int)StringAsScales:(id)arg1;
 - (int)StringAsScenarios:(id)arg1;
-- (void)_addNoFlagsScale:(int)arg1;
-- (void)_addNoFlagsScenario:(int)arg1;
-- (void)_readScales;
-- (void)_readScenarios;
 - (void)addScale:(int)arg1;
 - (void)addScenario:(int)arg1;
 - (void)clearScales;
@@ -58,7 +52,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

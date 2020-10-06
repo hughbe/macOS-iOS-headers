@@ -51,12 +51,9 @@
 
 + (Class)availableLanguageOptionsType;
 + (Class)currentLanguageOptionsType;
-+ (void)initialize;
 + (Class)sectionsType;
 
 - (void).cxx_destruct;
-- (id)_init;
-- (id)_initWithData:(id)arg1;
 - (void)addAvailableLanguageOptions:(id)arg1;
 - (void)addCurrentLanguageOptions:(id)arg1;
 - (void)addSections:(id)arg1;

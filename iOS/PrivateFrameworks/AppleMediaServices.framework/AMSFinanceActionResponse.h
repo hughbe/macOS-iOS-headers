@@ -27,7 +27,8 @@
 - (id)URL;
 - (id)_performCreditDisplayUpdate;
 - (id)_performGotoURL;
-- (id)_performOpenURL;
+- (id)_performOpenAppURL;
+- (id)_performOpenStandardURL;
 - (id)account;
 - (id)creditString;
 - (id)initWithTaskInfo:(id)arg1;

@@ -7,11 +7,13 @@
     unsigned long long  _currentChevronStyle;
     TUIPredictionCellButton * _expandButton;
     bool  _hidesExpandButton;
+    bool  _layoutIsDirty;
     <TUISystemInputAssistantPageViewDelegate> * _pageViewDelegate;
     UIView * _primaryContainerView;
     UIView * _primaryView;
     UIScrollView * _scrollView;
     UIView * _secondaryView;
+    bool  _secondaryViewInitialized;
     bool  _secondaryViewVisible;
 }
 
@@ -38,6 +40,7 @@
 - (void)_setRenderConfig:(id)arg1;
 - (void)_updateExpandButtonChevronImage;
 - (id)clipView;
+- (void)didMoveToWindow;
 - (id)expandButton;
 - (bool)hidesExpandButton;
 - (id)imageSymbolConfigurationForAssistantItem;
@@ -54,6 +57,7 @@
 - (void)setClipView:(id)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setHidesExpandButton:(bool)arg1;
+- (void)setNeedsLayout;
 - (void)setPageViewDelegate:(id)arg1;
 - (void)setPrimaryContainerView:(id)arg1;
 - (void)setPrimaryView:(id)arg1;
@@ -61,6 +65,7 @@
 - (void)setSecondaryView:(id)arg1;
 - (void)setSecondaryViewVisible:(bool)arg1;
 - (void)setSecondaryViewVisible:(bool)arg1 animated:(bool)arg2 completion:(id /* block */)arg3;
+- (void)setSecondaryViewVisible:(bool)arg1 force:(bool)arg2 withAnimationType:(unsigned long long)arg3 completion:(id /* block */)arg4;
 - (void)setSecondaryViewVisible:(bool)arg1 withAnimationType:(unsigned long long)arg2 completion:(id /* block */)arg3;
 - (void)updateScrollEnabled;
 

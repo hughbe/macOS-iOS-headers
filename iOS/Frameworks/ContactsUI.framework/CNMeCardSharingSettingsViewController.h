@@ -19,6 +19,7 @@
     double  _keyboardHeight;
     CNMeCardSharingPickerLayoutAttributes * _layoutAttributes;
     CNSharingProfileLogger * _logger;
+    CNSharingProfileMeCardUpdater * _meCardUpdater;
     CNMeCardSharingSettingsNameDataSource * _nameDataSource;
     long long  _nameOrder;
     <CNMeCardSharingNameProvider> * _nameProvider;
@@ -49,6 +50,7 @@
 @property (nonatomic) double keyboardHeight;
 @property (nonatomic, readonly) CNMeCardSharingPickerLayoutAttributes *layoutAttributes;
 @property (nonatomic, readonly) CNSharingProfileLogger *logger;
+@property (nonatomic, retain) CNSharingProfileMeCardUpdater *meCardUpdater;
 @property (nonatomic, readonly) CNMeCardSharingSettingsNameDataSource *nameDataSource;
 @property (nonatomic) long long nameOrder;
 @property (nonatomic, readonly) <CNMeCardSharingNameProvider> *nameProvider;
@@ -89,6 +91,7 @@
 - (void)keyboardWillShow:(id)arg1;
 - (id)layoutAttributes;
 - (id)logger;
+- (id)meCardUpdater;
 - (id)nameDataSource;
 - (long long)nameOrder;
 - (id)nameProvider;
@@ -115,6 +118,7 @@
 - (void)setGivenNameField:(id)arg1;
 - (void)setHeaderViewController:(id)arg1;
 - (void)setKeyboardHeight:(double)arg1;
+- (void)setMeCardUpdater:(id)arg1;
 - (void)setNameOrder:(long long)arg1;
 - (void)setPhotoPicker:(id)arg1;
 - (void)setSectionDataSources:(id)arg1;
@@ -143,5 +147,6 @@
 - (void)updateVisibilityOfAudienceSection;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(bool)arg1;
 
 @end

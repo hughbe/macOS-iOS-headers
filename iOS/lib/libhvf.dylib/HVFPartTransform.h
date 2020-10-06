@@ -3,44 +3,28 @@
  */
 
 @interface HVFPartTransform : NSObject {
-    struct PartTransform { 
-        struct { 
-            double dx; 
-            double dy; 
+    struct HVF_PartTransform { 
+        struct ReadWriteProperty<CGVector, void> { 
+            struct function<CGVector ()>="__f_"{__value_func<CGVector ()>="__buf_"{type="__lx"[24C] {} get; 
+            struct __base<CGVector ()> {} *__f_; 
         } translation; 
-        double rotation; 
-        struct AxisValues { 
-            unsigned long long count; 
-            struct tuple<unsigned long, double> {} *values; 
-        } axisValues; 
-        struct NestedSubparts { 
-            unsigned long long count; 
-            struct tuple<unsigned long, hvf::PartTransform> {} *values; 
-        } nestedSubparts; 
-    }  _transform;
-    struct vector<std::__1::tuple<unsigned long, double>, std::__1::allocator<std::__1::tuple<unsigned long, double> > > { 
-        struct tuple<unsigned long, double> {} *__begin_; 
-        struct tuple<unsigned long, double> {} *__end_; 
-        struct __compressed_pair<std::__1::tuple<unsigned long, double> *, std::__1::allocator<std::__1::tuple<unsigned long, double> > > { 
-            struct tuple<unsigned long, double> {} *__value_; 
-        } __end_cap_; 
-    }  axisValues;
+    }  partTransform;
 }
 
-@property (nonatomic) double drotation;
-@property (readonly) const struct PartTransform { struct { double x_1_1_1; double x_1_1_2; } x1; double x2; /* Warning: unhandled struct encoding: '{AxisValues=Q^{tuple<unsigned long' */ struct x3; }*transform; /* unknown property attribute:  hvf::PartTransform>}}} */
+@property (nonatomic) struct HVFAxisValues { struct HVF_PartTransform {} *x1; unsigned long long x2; unsigned long long x3; } axisValues;
+@property (nonatomic) double rotation;
+@property (nonatomic) struct HVFSubpartTransforms { struct HVF_PartTransform {} *x1; unsigned long long x2; unsigned long long x3; } subpartTransforms;
 @property (nonatomic) struct CGVector { double x1; double x2; } translation;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (unsigned long long)countOfAxisValues;
-- (double)drotation;
-- (void)insertObject:(id)arg1 inAxisValuesAtIndex:(unsigned long long)arg2;
-- (id)objectInAxisValuesAtIndex:(unsigned long long)arg1;
-- (void)removeObjectFromAxisValuesAtIndex:(unsigned long long)arg1;
-- (void)setDrotation:(double)arg1;
+- (struct HVFAxisValues { struct HVF_PartTransform {} *x1; unsigned long long x2; unsigned long long x3; })axisValues;
+- (id)initForPartAtIndex:(unsigned long long)arg1 withLoader:(id /* block */)arg2;
+- (bool)renderToContext:(id /* block */)arg1;
+- (double)rotation;
+- (void)setRotation:(double)arg1;
 - (void)setTranslation:(struct CGVector { double x1; double x2; })arg1;
-- (const struct PartTransform { struct { double x_1_1_1; double x_1_1_2; } x1; double x2; struct AxisValues { unsigned long long x_3_1_1; struct tuple<unsigned long, double> {} *x_3_1_2; } x3; struct NestedSubparts { unsigned long long x_4_1_1; struct tuple<unsigned long, hvf::PartTransform> {} *x_4_1_2; } x4; }*)transform;
+- (struct HVFSubpartTransforms { struct HVF_PartTransform {} *x1; unsigned long long x2; unsigned long long x3; })subpartTransforms;
 - (struct CGVector { double x1; double x2; })translation;
 
 @end

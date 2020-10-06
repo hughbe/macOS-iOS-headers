@@ -14,6 +14,7 @@
     bool  _canFetchMediaDataFromSender;
     bool  _canPlayEncryptedProgressiveDownloadAssets;
     bool  _canRelayCommunicationChannel;
+    NSArray * _clusterComposition;
     NSString * _currentBluetoothListeningMode;
     bool  _deviceGroupable;
     unsigned int  _deviceSubtype;
@@ -62,6 +63,7 @@
 @property (nonatomic, readonly) bool canPlayEncryptedProgressiveDownloadAssets;
 @property (nonatomic, readonly) bool canRelayCommunicationChannel;
 @property (nonatomic, readonly) NSString *capabilitiesDescription;
+@property (nonatomic, readonly) NSArray *clusterComposition;
 @property (nonatomic, readonly) NSString *composedTypeDescription;
 @property (nonatomic, readonly) NSString *currentBluetoothListeningMode;
 @property (nonatomic, readonly) NSString *debugName;
@@ -100,6 +102,7 @@
 @property (nonatomic, readonly) bool supportsHAP;
 @property (nonatomic, readonly) bool supportsRapport;
 @property (nonatomic, readonly) NSString *uid;
+@property (getter=isUsingJSONProtocol, nonatomic, readonly) bool usingJSONProtocol;
 @property (nonatomic) float volume;
 @property (nonatomic, readonly) unsigned int volumeCapabilities;
 @property (getter=isVolumeControlAvailable, nonatomic, readonly) bool volumeControlAvailable;
@@ -119,7 +122,9 @@
 - (bool)canPlayEncryptedProgressiveDownloadAssets;
 - (bool)canRelayCommunicationChannel;
 - (id)capabilitiesDescription;
+- (id)clusterComposition;
 - (id)composedTypeDescription;
+- (bool)containsUID:(id)arg1;
 - (id)currentBluetoothListeningMode;
 - (id)debugName;
 - (id)description;
@@ -143,6 +148,7 @@
 - (bool)isPickedOnPairedDevice;
 - (bool)isProxyGroupPlayer;
 - (bool)isRemoteControllable;
+- (bool)isUsingJSONProtocol;
 - (bool)isVolumeControlAvailable;
 - (id)jsonEncodableDictionaryRepresentation;
 - (id)logicalDeviceID;

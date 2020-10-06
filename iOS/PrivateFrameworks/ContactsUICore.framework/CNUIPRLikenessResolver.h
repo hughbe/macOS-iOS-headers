@@ -27,6 +27,7 @@
 
 + (id)_cacheKeyForContact:(id)arg1;
 + (id)descriptorForRequiredKeys;
++ (unsigned long long)maxContacts;
 
 - (void).cxx_destruct;
 - (id)basicMonogramObservableFromString:(id)arg1 color:(id)arg2;

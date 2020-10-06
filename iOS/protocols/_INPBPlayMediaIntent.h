@@ -50,6 +50,7 @@
 - (bool)hasPlaybackRepeatMode;
 - (bool)hasPlaybackSpeed;
 - (bool)hasPlaylistTitle;
+- (bool)hasPrivatePlayMediaIntentData;
 - (bool)hasProxiedBundleIdentifier;
 - (bool)hasRecoID;
 - (bool)hasResumePlayback;
@@ -74,6 +75,7 @@
 - (NSString *)playbackRepeatModeAsString:(int)arg1;
 - (double)playbackSpeed;
 - (_INPBString *)playlistTitle;
+- (_INPBPrivatePlayMediaIntentData *)privatePlayMediaIntentData;
 - (NSString *)proxiedBundleIdentifier;
 - (NSString *)recoID;
 - (bool)resumePlayback;
@@ -102,6 +104,7 @@
 - (void)setPlaybackRepeatMode:(int)arg1;
 - (void)setPlaybackSpeed:(double)arg1;
 - (void)setPlaylistTitle:(_INPBString *)arg1;
+- (void)setPrivatePlayMediaIntentData:(_INPBPrivatePlayMediaIntentData *)arg1;
 - (void)setProxiedBundleIdentifier:(NSString *)arg1;
 - (void)setRecoID:(NSString *)arg1;
 - (void)setResumePlayback:(bool)arg1;

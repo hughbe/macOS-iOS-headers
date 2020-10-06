@@ -11,6 +11,7 @@
 - (UIFocusAnimationCoordinator *)animationCoordinator;
 - (UIFocusSystem *)focusSystem;
 - (_UIFocusInputDeviceInfo *)inputDeviceInfo;
+- (bool)isMovementRequest;
 - (bool)requiresEnvironmentValidation;
 - (bool)requiresNextFocusedItem;
 - (bool)shouldPerformHapticFeedback;

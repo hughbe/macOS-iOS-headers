@@ -15,6 +15,7 @@
 
 @optional
 
+- (NSString *)focusGroupIdentifier;
 - (UIView *)preferredFocusedView;
 - (NSString *)soundIdentifierForFocusUpdateInContext:(UIFocusUpdateContext *)arg1;
 

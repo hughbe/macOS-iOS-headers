@@ -7,8 +7,6 @@
     id  _locals;
 }
 
-- (id)_recursiveAllKeys;
-- (id)_recursiveAllValues;
 - (unsigned long long)count;
 - (id)keyEnumerator;
 - (id)objectEnumerator;

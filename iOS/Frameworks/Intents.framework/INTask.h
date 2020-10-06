@@ -41,7 +41,7 @@
 - (id)_dictionaryRepresentation;
 - (id)_intents_cacheableObjects;
 - (id)_intents_encodeWithJSONEncoder:(id)arg1 codableDescription:(id)arg2;
-- (id)_intents_readableDescriptionWithLocalizer:(id)arg1 metadata:(id)arg2;
+- (id)_intents_readableTitleWithLocalizer:(id)arg1 metadata:(id)arg2;
 - (void)_intents_updateContainerWithCache:(id)arg1;
 - (id)contactEventTrigger;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;

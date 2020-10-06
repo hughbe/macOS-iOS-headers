@@ -7,7 +7,7 @@
     CNContactActionProvider * _actionProvider;
     CNUIUserActionListDataSource * _actionsDataSource;
     CNContactInlineActionsViewController * _actionsViewController;
-    UIView * _actionsWrapperView;
+    CNContactActionsContainerView * _actionsWrapperView;
     NSArray * _activatedConstraints;
     CNUIUserActivityManager * _activityManager;
     CNContactAddFavoriteAction * _addFavoriteAction;
@@ -98,6 +98,7 @@
     bool  _isPresentingFullscreenForOutOfProcess;
     NSMutableArray * _issuedSaveRequestIdentifiers;
     double  _keyboardVerticalOverlap;
+    bool  _layoutPositionallyAfterNavBar;
     CNPropertyLinkedCardsAction * _linkedCardsAction;
     NSDictionary * _linkedPoliciesByContactIdentifier;
     CNManagedConfiguration * _managedConfiguration;
@@ -142,6 +143,7 @@
     CNContactAction * _shareContactAction;
     CNShareLocationController * _shareLocationController;
     bool  _shouldDrawNavigationBar;
+    bool  _shouldIgnoreBlockListChange;
     bool  _shouldIgnoreContactStoreDidChangeNotification;
     bool  _shouldShowLinkedContacts;
     bool  _showContactBlockingFirst;
@@ -160,7 +162,7 @@
 @property (nonatomic, retain) CNContactActionProvider *actionProvider;
 @property (nonatomic, retain) CNUIUserActionListDataSource *actionsDataSource;
 @property (nonatomic, retain) CNContactInlineActionsViewController *actionsViewController;
-@property (nonatomic, retain) UIView *actionsWrapperView;
+@property (nonatomic, retain) CNContactActionsContainerView *actionsWrapperView;
 @property (nonatomic, retain) NSArray *activatedConstraints;
 @property (nonatomic, readonly) CNUIUserActivityManager *activityManager;
 @property (nonatomic, retain) CNContactAddFavoriteAction *addFavoriteAction;
@@ -256,6 +258,7 @@
 @property (readonly) bool isPresentingModalViewController;
 @property (nonatomic, retain) NSMutableArray *issuedSaveRequestIdentifiers;
 @property (nonatomic) double keyboardVerticalOverlap;
+@property (nonatomic) bool layoutPositionallyAfterNavBar;
 @property (nonatomic, retain) CNPropertyLinkedCardsAction *linkedCardsAction;
 @property (nonatomic, retain) NSDictionary *linkedPoliciesByContactIdentifier;
 @property (nonatomic, retain) CNManagedConfiguration *managedConfiguration;
@@ -292,6 +295,7 @@
 @property (nonatomic, retain) CNContactAction *shareContactAction;
 @property (nonatomic, retain) CNShareLocationController *shareLocationController;
 @property (nonatomic) bool shouldDrawNavigationBar;
+@property (nonatomic) bool shouldIgnoreBlockListChange;
 @property (nonatomic) bool shouldIgnoreContactStoreDidChangeNotification;
 @property (nonatomic) bool shouldShowLinkedContacts;
 @property (nonatomic) bool showContactBlockingFirst;
@@ -314,6 +318,7 @@
 + (id)descriptorForRequiredKeysForContact:(id)arg1;
 + (id)descriptorForRequiredKeysWithDescription:(id)arg1;
 + (bool)enablesTransportButtons;
++ (bool)shouldShowGeminiForResult:(id)arg1 contact:(id)arg2;
 + (long long)tableViewStyle;
 + (id)viewControllerWithRestorationIdentifierPath:(id)arg1 coder:(id)arg2;
 
@@ -332,13 +337,14 @@
 - (bool)_canShowWhileLocked;
 - (id)_cardGroupAtTableViewSectionIndex:(long long)arg1 forTableView:(id)arg2;
 - (id)_cellForIndexPath:(id)arg1 forTableView:(id)arg2;
+- (id)_cellIdentifierForTableView:(id)arg1 indexPath:(id)arg2;
 - (id)_clearRecentsDataAction;
-- (id)_createReminderAction;
 - (id)_currentGroupsForTableView:(id)arg1;
 - (id)_currentTopVisibleGroupInContactView:(id)arg1;
 - (void)_didCompleteWithContact:(id)arg1;
 - (id)_faceTimeAction;
 - (id)_faceTimeAudioAction;
+- (void)_handleCoalescedBlockListDidChange;
 - (bool)_indexPathIsActionItem:(id)arg1 forTableView:(id)arg2;
 - (id)_itemAtIndexPath:(id)arg1 forTableView:(id)arg2;
 - (id)_labelWidthKeyForGroup:(id)arg1;
@@ -369,7 +375,7 @@
 - (void)_setNeedsUpdateCachedLabelWidths;
 - (void)_setupAddToAddressBookActions;
 - (void)_setupCardActions;
-- (void)_setupContactBlockingActionsWithUpdate:(bool)arg1;
+- (void)_setupContactBlockingActionPreservingChanges:(bool)arg1 withUpdate:(bool)arg2;
 - (void)_setupCustomActions;
 - (void)_setupEditingCardActions;
 - (void)_setupEditingLinkedContactsForKeys:(id)arg1;
@@ -440,6 +446,7 @@
 - (id)alternateName;
 - (bool)alwaysEditing;
 - (id)applyContactStyle;
+- (id)authorizationCheck;
 - (id)blockAction;
 - (void)blockListDidChange:(id)arg1;
 - (id)cachedLabelWidths;
@@ -493,6 +500,7 @@
 - (id)deleteContactAction;
 - (double)desiredHeightForWidth:(double)arg1;
 - (void)didChangeToEditMode:(bool)arg1;
+- (void)didChangeToShowTitle:(bool)arg1;
 - (bool)didSetFirstResponder;
 - (id)displayContactView;
 - (id)displayGroups;
@@ -567,11 +575,13 @@
 - (bool)isPresentingModalViewController;
 - (bool)isScrollViewControllingHeaderResizeAnimation:(id)arg1;
 - (bool)isStandardGroup:(id)arg1;
+- (bool)isSuggestedContact;
 - (bool)isTableViewHeaderFirstSectionIndexPath:(id)arg1 forTableView:(id)arg2;
 - (id)issuedSaveRequestIdentifiers;
 - (void)keyboardDidShowNotification:(id)arg1;
 - (double)keyboardVerticalOverlap;
 - (void)keyboardWillHideNotification:(id)arg1;
+- (bool)layoutPositionallyAfterNavBar;
 - (id)linkedCardsAction;
 - (id)linkedPoliciesByContactIdentifier;
 - (void)loadContactViewControllerViews;
@@ -606,6 +616,7 @@
 - (void)prepareCell:(id)arg1;
 - (void)presentConfirmCancelAlertController;
 - (void)presentViewController:(id)arg1 sourceView:(id)arg2;
+- (void)presentationController:(id)arg1 willPresentWithAdaptiveStyle:(long long)arg2 transitionCoordinator:(id)arg3;
 - (void)presentationControllerWillDismiss:(id)arg1;
 - (id)presentingDelegate;
 - (id)primaryProperty;
@@ -740,6 +751,7 @@
 - (void)setIsPresentingFullscreenForOutOfProcess:(bool)arg1;
 - (void)setIssuedSaveRequestIdentifiers:(id)arg1;
 - (void)setKeyboardVerticalOverlap:(double)arg1;
+- (void)setLayoutPositionallyAfterNavBar:(bool)arg1;
 - (void)setLinkedCardsAction:(id)arg1;
 - (void)setLinkedPoliciesByContactIdentifier:(id)arg1;
 - (void)setManagedConfiguration:(id)arg1;
@@ -777,6 +789,7 @@
 - (void)setShareContactAction:(id)arg1;
 - (void)setShareLocationController:(id)arg1;
 - (void)setShouldDrawNavigationBar:(bool)arg1;
+- (void)setShouldIgnoreBlockListChange:(bool)arg1;
 - (void)setShouldIgnoreContactStoreDidChangeNotification:(bool)arg1;
 - (void)setShouldShowLinkedContacts:(bool)arg1;
 - (void)setShowContactBlockingFirst:(bool)arg1;
@@ -785,6 +798,7 @@
 - (void)setStopSharingWithFamilyAction:(id)arg1;
 - (void)setSuggestedContactAction:(id)arg1;
 - (void)setTableView:(id)arg1;
+- (void)setTitle:(id)arg1;
 - (void)setUpdateExistingContactAction:(id)arg1;
 - (void)setUserActivityUserInfo:(id)arg1;
 - (void)setVerifiedInfoMessage:(id)arg1;
@@ -802,7 +816,9 @@
 - (void)sharingStatusDidChange;
 - (bool)shouldDisplayAvatarHeaderView;
 - (bool)shouldDrawNavigationBar;
+- (bool)shouldIgnoreBlockListChange;
 - (bool)shouldIgnoreContactStoreDidChangeNotification;
+- (bool)shouldPresentConfirmCancelAlert;
 - (void)shouldPresentFullscreen:(bool)arg1;
 - (bool)shouldReallyShowLinkedContactsForEditingState:(bool)arg1;
 - (bool)shouldShowActionsForAvatarView:(id)arg1;
@@ -830,6 +846,7 @@
 - (double)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (long long)tableView:(id)arg1 numberOfRowsInSection:(long long)arg2;
 - (void)tableView:(id)arg1 performAction:(SEL)arg2 forRowAtIndexPath:(id)arg3 withSender:(id)arg4;
+- (bool)tableView:(id)arg1 shouldDrawBottomSeparatorForSection:(long long)arg2;
 - (bool)tableView:(id)arg1 shouldDrawTopSeparatorForSection:(long long)arg2;
 - (bool)tableView:(id)arg1 shouldHaveFullLengthBottomSeparatorForSection:(long long)arg2;
 - (bool)tableView:(id)arg1 shouldIndentWhileEditingRowAtIndexPath:(id)arg2;
@@ -873,6 +890,7 @@
 - (void)viewWillAppear:(bool)arg1;
 - (void)viewWillDisappear:(bool)arg1;
 - (void)viewWillLayoutSubviews;
+- (void)viewWillTransitionToSize:(struct CGSize { double x1; double x2; })arg1 withTransitionCoordinator:(id)arg2;
 - (id)warningMessage;
 
 @end

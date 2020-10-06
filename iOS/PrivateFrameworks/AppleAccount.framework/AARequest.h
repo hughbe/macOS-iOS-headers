@@ -21,17 +21,20 @@
 @property (readonly) NSURLRequest *urlRequest;
 
 + (id)protocolVersion;
++ (id)redactedHeadersFromHTTPHeaders:(id)arg1;
 + (Class)responseClass;
 
 - (void).cxx_destruct;
 - (void)_handleDataTaskCompletionWithData:(id)arg1 response:(id)arg2 error:(id)arg3;
-- (id)_redactedHeadersFromHTTPHeaders:(id)arg1;
+- (void)_performRequestWithSession:(id)arg1 withHandler:(id /* block */)arg2;
 - (id)bodyDictionary;
 - (id)customHeaders;
 - (void)dealloc;
 - (bool)flushCache;
 - (id)initWithURLString:(id)arg1;
+- (void)performRequestForDevice:(id)arg1 withHandler:(id /* block */)arg2;
 - (void)performRequestWithHandler:(id /* block */)arg1;
+- (void)performSignedRequestWithHandler:(id /* block */)arg1;
 - (id)redactedBodyStringWithPropertyList:(id)arg1;
 - (void)setCookieStorage:(struct OpaqueCFHTTPCookieStorage { }*)arg1;
 - (void)setCustomHeaders:(id)arg1;

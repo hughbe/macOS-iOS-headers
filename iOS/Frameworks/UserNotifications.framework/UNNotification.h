@@ -13,6 +13,9 @@
 @property (nonatomic, readonly, copy) NSArray *intentIdentifiers;
 @property (nonatomic, readonly, copy) UNNotificationRequest *request;
 @property (nonatomic, readonly, copy) NSString *sourceIdentifier;
+@property (nonatomic, readonly) long long wd_domain;
+@property (nonatomic, readonly, copy) NSURL *wd_url;
+@property (nonatomic, readonly, copy) NSDictionary *wd_userInfo;
 
 // Image: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
 
@@ -39,5 +42,19 @@
 - (id)speakableDate;
 - (id)speakableDescription;
 - (id)speakableIdentifier;
+
+// Image: /System/Library/PrivateFrameworks/HealthToolbox.framework/HealthToolbox
+
+- (long long)wd_domain;
+- (id)wd_url;
+- (id)wd_userInfo;
+
+// Image: /System/Library/PrivateFrameworks/TeaFoundation.framework/TeaFoundation
+
++ (id)notificationWithRequest:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/UserNotificationsTranslation.framework/UserNotificationsTranslation
+
++ (id)notificationForBulletin:(id)arg1;
 
 @end

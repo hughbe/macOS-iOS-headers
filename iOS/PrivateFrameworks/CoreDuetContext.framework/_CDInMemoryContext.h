@@ -52,6 +52,8 @@
 - (void)registerCallback:(id)arg1;
 - (id)registrations;
 - (bool)removeObjects:(id)arg1 fromArrayAtKeyPath:(id)arg2;
+- (id)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtKeyPath:(id)arg2;
+- (id)removeObjectsMatchingPredicate:(id)arg1 fromArrayAtKeyPath:(id)arg2 removedObjects:(id*)arg3;
 - (void)setCallbackWorkloop:(id)arg1;
 - (void)setContext:(id)arg1;
 - (void)setContextValue:(id)arg1 forContextualKeyPath:(id)arg2;
@@ -66,6 +68,7 @@
 - (void)setSystemTimeCallbackScheduler:(id)arg1;
 - (id)syncQueue;
 - (id)systemTimeCallbackScheduler;
+- (id)unsafe_addObjects:(id)arg1 andRemoveObjects:(id)arg2 fromArrayAtKeyPath:(id)arg3 valueDidChange:(bool*)arg4;
 - (void)unsafe_deregisterCallback:(id)arg1;
 - (void)unsafe_deregisterForSystemTimeBasedCallbacksForRegistration:(id)arg1;
 - (id)unsafe_evaluatedContextWithRegistration:(id)arg1 date:(id)arg2;

@@ -13,10 +13,7 @@
         unsigned int read_days : 1; 
         unsigned int read_timeRanges : 1; 
         unsigned int read_hoursThreshold : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_days : 1; 
-        unsigned int wrote_timeRanges : 1; 
-        unsigned int wrote_hoursThreshold : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDHoursThreshold * _hoursThreshold;
     PBDataReader * _reader;
@@ -47,11 +44,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsDays:(id)arg1;
-- (void)_addNoFlagsDay:(int)arg1;
-- (void)_addNoFlagsTimeRange:(struct GEOPDLocalTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
-- (void)_readDays;
-- (void)_readHoursThreshold;
-- (void)_readTimeRanges;
 - (void)addDay:(int)arg1;
 - (void)addTimeRange:(struct GEOPDLocalTimeRange { unsigned int x1; unsigned int x2; struct { unsigned int x_3_1_1 : 1; unsigned int x_3_1_2 : 1; } x3; })arg1;
 - (void)clearDays;
@@ -71,7 +63,10 @@
 - (id)hoursThreshold;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;

@@ -4,8 +4,10 @@
 
 @interface CNUIColorRepository : NSObject
 
-+ (id)carPlayNameViewPrimaryLabelTextColor;
-+ (id)carPlayNameViewSecondaryLabelTextColor;
++ (id)carPlayContactCardLabeledBadgeBackgroundColor;
++ (id)carPlayContactCardRecentBadgeTextColor;
++ (id)carPlayContactInfoViewPrimaryLabelTextColor;
++ (id)carPlayContactInfoViewSecondaryLabelTextColor;
 + (id)carPlayNavigationBarContactNameTextColor;
 + (id)carPlayQuickActionButtonBackgroundFillColorDisabled;
 + (id)carPlayQuickActionButtonBackgroundFillColorEnabled;
@@ -40,14 +42,20 @@
 + (id)carPlayTransportButtonGlyphColorDisabled;
 + (id)carPlayTransportButtonGlyphColorEnabled;
 + (id)carPlayTransportButtonGlyphColorSelected;
++ (id)catalystAudienceDetailLabelTextColor;
++ (id)catalystNameTextFieldsBackgroundColor;
++ (id)contactCardBackgroundiPadOverwriteColor;
 + (id)contactCardChevronImageColor;
 + (id)contactCardDestructiveActionTitleTextColor;
 + (id)contactCardLabeledBadgeBackgroundColor;
++ (id)contactCardLabeledBadgeBackgroundDynamicColor;
 + (id)contactCardPhotoEditButtonColor;
 + (id)contactCardRecentBadgeTextColor;
++ (id)contactCardRecentBadgeTextDynamicColor;
 + (id)contactCardStarImageColor;
 + (id)contactListBannerFootnoteTextColorPrimary;
 + (id)contactListBannerFootnoteTextColorSecondary;
++ (id)contactListEmergencyContactAddTextColor;
 + (id)contactListEmergencyContactGlyphColor;
 + (id)contactListMeLabelTextColor;
 + (id)contactStyleDefaultBackgroundColor;
@@ -60,6 +68,7 @@
 + (id)contactStyleDefaultNotesTextColor;
 + (id)contactStyleDefaultPlaceholderTextColor;
 + (id)contactStyleDefaultReadOnlyTextColor;
++ (id)contactStyleDefaultSearchCellBackgroundColor;
 + (id)contactStyleDefaultSectionBackgroundColor;
 + (id)contactStyleDefaultSectionIndexBackgroundColor;
 + (id)contactStyleDefaultSelectedCellBackgroundColor;
@@ -70,10 +79,15 @@
 + (id)contactStyleDefaultTextColor;
 + (id)contactStyleDefaultTransportBackgroundColor;
 + (id)contactStyleDefaultTransportBorderColor;
++ (id)contactStyleLightStyleHighlightedTextColor;
++ (id)contactStyleWithInsetPlattersDefaultContactHeaderBackgroundColor;
++ (id)contactStyleWithInsetPlattersDefaultContactHeaderDropShadowColor;
 + (id)contactsApplicationTintColor;
 + (id)faceTimeGroupedBackgroundColor;
 + (id)faceTimeLightSeparatorColor;
 + (id)faceTimeSeparatorColorWithBlurUnsupported;
++ (id)groupsInsetBackgroundColor;
++ (id)groupsOutlineBackgroundColor;
 + (id)monogrammerBackTextWhiteColor;
 + (id)monogrammerBackgroundDarkColor;
 + (id)monogrammerBackgroundFlatDarkColor;
@@ -124,7 +138,15 @@
 + (id)quickActionContentColorDisabledVibrant;
 + (id)quickActionContentColorEnabled;
 + (id)quickActionContentColorPlatterHighlightedColor;
++ (id)quickActionContentColorPlatterHitActionColor;
 + (id)quickActionContentColorPlatterUnhighlightedColor;
++ (id)quickActionViewRoundedRectBackgroundColor;
++ (id)quickActionViewRoundedRectBorderColor;
 + (id)siriTintColor;
++ (id)visualIdentityEditorBackgroundColor;
++ (id)visualIdentityEditorDividerColor;
++ (id)visualIdentityEditorMonogramTextColor;
++ (id)visualIdentityEditorSegmentedControlDisabledColor;
++ (id)visualIdentityEditorSegmentedControlNormalColor;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSAssertion : NSObject <BSDescriptionProviding> {
+@interface RBSAssertion : NSObject {
     RBSAssertionDescriptor * _descriptor;
     id /* block */  _invalidationHandler;
     struct os_unfair_lock_s { 
@@ -15,22 +15,16 @@
 }
 
 @property (nonatomic, readonly, copy) NSArray *attributes;
-@property (readonly, copy) NSString *debugDescription;
-@property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) RBSAssertionDescriptor *descriptor;
 @property (nonatomic, readonly, copy) NSString *explanation;
-@property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, copy) RBSAssertionIdentifier *identifier;
 @property (nonatomic, readonly) unsigned long long state;
-@property (readonly) Class superclass;
 @property (nonatomic, readonly) RBSTarget *target;
 @property (getter=isValid, nonatomic, readonly) bool valid;
 
 - (void).cxx_destruct;
-- (bool)_clientInvalidateWithError:(out id*)arg1;
 - (id)_initWithDescriptor:(id)arg1 service:(id)arg2;
 - (id)_initWithServerValidatedDescriptor:(id)arg1;
-- (id)_observers;
 - (void)_serverDidChangeIdentifier:(id)arg1;
 - (void)_serverInvalidateWithError:(id)arg1;
 - (void)_serverWillInvalidate;
@@ -39,9 +33,8 @@
 - (void)addObserver:(id)arg1;
 - (id)attributes;
 - (void)dealloc;
+- (id)debugDescription;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)descriptor;
 - (id)explanation;
 - (id)identifier;
@@ -54,8 +47,6 @@
 - (void)setExpirationWarningHandler:(id /* block */)arg1;
 - (void)setInvalidationHandler:(id /* block */)arg1;
 - (unsigned long long)state;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 - (id)target;
 
 @end

@@ -10,13 +10,12 @@
     NSArray * _values;
 }
 
+@property (nonatomic, readonly) INCodableDescription *_codableDescription;
 @property (setter=_setOriginalDictionary:, nonatomic, retain) NSDictionary *_originalDictionary;
-@property (nonatomic, readonly, copy) NSString *cacheGroup;
 @property (nonatomic, readonly) INCodableAttribute *codableAttribute;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic, readonly, copy) NSString *keyPrefix;
 @property (nonatomic) INCodableAttribute *parentCodableAttribute;
 @property (nonatomic) unsigned long long relation;
 @property (readonly) Class superclass;
@@ -26,21 +25,31 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)__INCodableDescriptionParentNameKey;
+- (id)__INCodableDescriptionPredicateNameKey;
+- (id)__INCodableDescriptionPredicateValueKey;
+- (id)__INCodableDescriptionPredicateValuesKey;
+- (id)__INIntentResponseCodableDescriptionParentNameKey;
+- (id)__INIntentResponseCodableDescriptionPredicateNameKey;
+- (id)__INIntentResponseCodableDescriptionPredicateValueKey;
+- (id)__INIntentResponseCodableDescriptionPredicateValuesKey;
+- (id)__INTypeCodableDescriptionParentNameKey;
+- (id)__INTypeCodableDescriptionPredicateNameKey;
+- (id)__INTypeCodableDescriptionPredicateValueKey;
+- (id)__INTypeCodableDescriptionPredicateValuesKey;
+- (id)_codableDescription;
 - (void)_establishRelationship;
 - (id)_originalDictionary;
 - (void)_setOriginalDictionary:(id)arg1;
-- (id)cacheGroup;
 - (id)codableAttribute;
 - (bool)compareValue:(id)arg1;
 - (id)description;
 - (id)descriptionAtIndent:(unsigned long long)arg1;
-- (id)dictionaryKeyForKeyPath:(id)arg1;
 - (id)dictionaryRepresentation;
 - (id)dictionaryRepresentationWithLocalizer:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCodableAttribute:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)keyPrefix;
 - (id)parentCodableAttribute;
 - (unsigned long long)relation;
 - (void)setParentCodableAttribute:(id)arg1;

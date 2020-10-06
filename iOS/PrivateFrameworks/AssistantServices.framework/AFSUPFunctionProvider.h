@@ -16,6 +16,8 @@
 
 - (void).cxx_destruct;
 - (id)_callFunction:(id)arg1 withArguments:(id)arg2;
+- (id)_contextDeviceName:(id)arg1;
+- (id)_contextRoomName:(id)arg1;
 - (id)_currentLongDate:(id)arg1;
 - (id)_currentShortDate:(id)arg1;
 - (id)_currentTime:(id)arg1;
@@ -25,6 +27,7 @@
 - (id)_lowercaseString:(id)arg1;
 - (id)_meCard;
 - (id)_meCardIdentifier:(id)arg1;
+- (id)_peerInfoForContextIdentifier:(id)arg1;
 - (id)_siriUsageDescription:(id)arg1;
 - (id)_speechRecognitionUsageDescription:(id)arg1;
 - (id)_tempInWeatherUnits:(id)arg1;

@@ -6,6 +6,7 @@
     UIView * _contextView;
     bool  _dismissed;
     id /* block */  _dismissedHandler;
+    UIInputResponderController * _inputResponderController;
     UIViewController * _modalViewController;
     UIResponder * _pinnedResponder;
     long long  _type;
@@ -17,7 +18,9 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (bool)canShowTextServices;
++ (bool)_canShowTextServiceForType:(long long)arg1;
++ (bool)_canShowTextServices;
++ (long long)availableTextServices;
 + (bool)shouldPresentServiceInSameWindowAsView:(id)arg1;
 + (id)showServiceForText:(id)arg1 selectedTextRange:(struct _NSRange { unsigned long long x1; unsigned long long x2; })arg2 type:(long long)arg3 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg4 inView:(id)arg5;
 + (id)showServiceForText:(id)arg1 type:(long long)arg2 fromRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg3 inView:(id)arg4;

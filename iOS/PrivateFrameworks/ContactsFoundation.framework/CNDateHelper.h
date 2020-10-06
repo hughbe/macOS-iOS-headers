@@ -19,5 +19,6 @@
 + (long long)gregorianYearInGMTFromDate:(id)arg1;
 + (bool)isComponentsEmpty:(id)arg1;
 + (bool)isGregorianDerivedCalendar:(id)arg1;
++ (bool)isGregorianDerivedCalendarIdentifier:(id)arg1;
 
 @end

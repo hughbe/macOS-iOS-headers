@@ -19,13 +19,9 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly, retain) BSObjCArgument *lastArgument;
 @property (nonatomic, readonly, copy) NSString *name;
-@property (nonatomic) long long required;
 @property (nonatomic, readonly, retain) BSObjCArgument *returnValue;
 @property (nonatomic, readonly) SEL selector;
 @property (readonly) Class superclass;
-
-+ (id)methodWithMethod:(struct objc_method { }*)arg1;
-+ (id)methodWithSelector:(SEL)arg1 typeEncoding:(const char *)arg2;
 
 - (void).cxx_destruct;
 - (id)arguments;
@@ -38,10 +34,8 @@
 - (bool)isEqual:(id)arg1;
 - (id)lastArgument;
 - (id)name;
-- (long long)required;
 - (id)returnValue;
 - (SEL)selector;
-- (void)setRequired:(long long)arg1;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
 

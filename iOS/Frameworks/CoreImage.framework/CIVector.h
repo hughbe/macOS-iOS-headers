@@ -21,6 +21,8 @@
 @property (readonly) unsigned long long count;
 @property (readonly) NSString *stringRepresentation;
 
+// Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
+
 + (bool)supportsSecureCoding;
 + (id)vectorWithCGAffineTransform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
 + (id)vectorWithCGPoint:(struct CGPoint { double x1; double x2; })arg1;
@@ -64,5 +66,9 @@
 - (bool)isEqual:(id)arg1;
 - (id)stringRepresentation;
 - (double)valueAtIndex:(unsigned long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NeutrinoCore.framework/NeutrinoCore
+
+- (void)nu_updateDigest:(id)arg1;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@interface NSURLRequestInternal : NSObject {
+@interface NSURLRequestInternal : NSObject <NSCopying> {
     struct URLRequest { 
         int (**_vptr$CoreLoggable)(); 
         struct __CFURL {} *fURL; 
@@ -46,6 +46,7 @@
         unsigned char fPreventHSTSStorage; 
         unsigned char fIgnoreHSTS; 
         unsigned char fSchemeWasUpgradedDueToDynamicHSTS; 
+        unsigned char fKnownHTTP3Capable; 
         double fPayloadTransmissionTimeout; 
         struct __CFDictionary {} *fATSOverrides; 
         struct unique_ptr<_CFHSTSPolicy, Deleter_CFRelease> { 
@@ -59,12 +60,12 @@
     }  _request;
 }
 
-@property (readonly) struct URLRequest { int (**x1)(); struct __CFURL {} *x2; unsigned long long x3; double x4; struct __CFURL {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct HTTPRequest {} *x8; struct Flags { unsigned int x_9_1_1 : 1; unsigned int x_9_1_2 : 1; unsigned int x_9_1_3 : 1; unsigned int x_9_1_4 : 1; unsigned int x_9_1_5 : 1; unsigned int x_9_1_6 : 1; unsigned int x_9_1_7 : 1; unsigned int x_9_1_8 : 1; unsigned int x_9_1_9 : 1; unsigned int x_9_1_10 : 1; unsigned int x_9_1_11 : 1; unsigned int x_9_1_12 : 1; unsigned int x_9_1_13 : 1; unsigned int x_9_1_14 : 1; unsigned int x_9_1_15 : 1; unsigned int x_9_1_16 : 1; unsigned int x_9_1_17 : 1; unsigned int x_9_1_18 : 1; } x9; struct __CFDictionary {} *x10; struct __CFArray {} *x11; long long x12; unsigned long long x13; int x14; struct __CFString {} *x15; unsigned long long x16; double x17; double x18; double x19; unsigned char x20; unsigned char x21; unsigned char x22; unsigned char x23; double x24; struct __CFDictionary {} *x25; /* Warning: unhandled struct encoding: '{unique_ptr<_CFHSTSPolicy' */ struct x26; }*_inner; /* unknown property attribute:  Deleter_CFRelease>=^{_CFHSTSPolicy}}}ii^{__CFURLStorageSession}} */
+@property (readonly) struct URLRequest { int (**x1)(); struct __CFURL {} *x2; unsigned long long x3; double x4; struct __CFURL {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct HTTPRequest {} *x8; struct Flags { unsigned int x_9_1_1 : 1; unsigned int x_9_1_2 : 1; unsigned int x_9_1_3 : 1; unsigned int x_9_1_4 : 1; unsigned int x_9_1_5 : 1; unsigned int x_9_1_6 : 1; unsigned int x_9_1_7 : 1; unsigned int x_9_1_8 : 1; unsigned int x_9_1_9 : 1; unsigned int x_9_1_10 : 1; unsigned int x_9_1_11 : 1; unsigned int x_9_1_12 : 1; unsigned int x_9_1_13 : 1; unsigned int x_9_1_14 : 1; unsigned int x_9_1_15 : 1; unsigned int x_9_1_16 : 1; unsigned int x_9_1_17 : 1; unsigned int x_9_1_18 : 1; } x9; struct __CFDictionary {} *x10; struct __CFArray {} *x11; long long x12; unsigned long long x13; int x14; struct __CFString {} *x15; unsigned long long x16; double x17; double x18; double x19; unsigned char x20; unsigned char x21; unsigned char x22; unsigned char x23; unsigned char x24; double x25; struct __CFDictionary {} *x26; /* Warning: unhandled struct encoding: '{unique_ptr<_CFHSTSPolicy' */ struct x27; }*_inner; /* unknown property attribute:  Deleter_CFRelease>=^{_CFHSTSPolicy}}}ii^{__CFURLStorageSession}} */
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)_initWithMessage:(struct __CFHTTPMessage { }*)arg1 bodyParts:(struct __CFArray { }*)arg2 cachePolicy:(unsigned long long)arg3 timeout:(double)arg4 mainDocumentURL:(struct __CFURL { }*)arg5 mutable:(unsigned char)arg6;
-- (struct URLRequest { int (**x1)(); struct __CFURL {} *x2; unsigned long long x3; double x4; struct __CFURL {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct HTTPRequest {} *x8; struct Flags { unsigned int x_9_1_1 : 1; unsigned int x_9_1_2 : 1; unsigned int x_9_1_3 : 1; unsigned int x_9_1_4 : 1; unsigned int x_9_1_5 : 1; unsigned int x_9_1_6 : 1; unsigned int x_9_1_7 : 1; unsigned int x_9_1_8 : 1; unsigned int x_9_1_9 : 1; unsigned int x_9_1_10 : 1; unsigned int x_9_1_11 : 1; unsigned int x_9_1_12 : 1; unsigned int x_9_1_13 : 1; unsigned int x_9_1_14 : 1; unsigned int x_9_1_15 : 1; unsigned int x_9_1_16 : 1; unsigned int x_9_1_17 : 1; unsigned int x_9_1_18 : 1; } x9; struct __CFDictionary {} *x10; struct __CFArray {} *x11; long long x12; unsigned long long x13; int x14; struct __CFString {} *x15; unsigned long long x16; double x17; double x18; double x19; unsigned char x20; unsigned char x21; unsigned char x22; unsigned char x23; double x24; struct __CFDictionary {} *x25; struct unique_ptr<_CFHSTSPolicy, Deleter_CFRelease> { struct __compressed_pair<_CFHSTSPolicy *, Deleter_CFRelease> { struct _CFHSTSPolicy {} *x_1_2_1; } x_26_1_1; } x26; }*)_inner;
+- (struct URLRequest { int (**x1)(); struct __CFURL {} *x2; unsigned long long x3; double x4; struct __CFURL {} *x5; struct __CFDictionary {} *x6; struct __CFDictionary {} *x7; struct HTTPRequest {} *x8; struct Flags { unsigned int x_9_1_1 : 1; unsigned int x_9_1_2 : 1; unsigned int x_9_1_3 : 1; unsigned int x_9_1_4 : 1; unsigned int x_9_1_5 : 1; unsigned int x_9_1_6 : 1; unsigned int x_9_1_7 : 1; unsigned int x_9_1_8 : 1; unsigned int x_9_1_9 : 1; unsigned int x_9_1_10 : 1; unsigned int x_9_1_11 : 1; unsigned int x_9_1_12 : 1; unsigned int x_9_1_13 : 1; unsigned int x_9_1_14 : 1; unsigned int x_9_1_15 : 1; unsigned int x_9_1_16 : 1; unsigned int x_9_1_17 : 1; unsigned int x_9_1_18 : 1; } x9; struct __CFDictionary {} *x10; struct __CFArray {} *x11; long long x12; unsigned long long x13; int x14; struct __CFString {} *x15; unsigned long long x16; double x17; double x18; double x19; unsigned char x20; unsigned char x21; unsigned char x22; unsigned char x23; unsigned char x24; double x25; struct __CFDictionary {} *x26; struct unique_ptr<_CFHSTSPolicy, Deleter_CFRelease> { struct __compressed_pair<_CFHSTSPolicy *, Deleter_CFRelease> { struct _CFHSTSPolicy {} *x_1_2_1; } x_27_1_1; } x27; }*)_inner;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (unsigned long long)hash;

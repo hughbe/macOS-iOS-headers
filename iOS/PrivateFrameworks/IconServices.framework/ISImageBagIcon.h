@@ -16,6 +16,7 @@
 - (id)decorations;
 - (void)getCGImageForImageDescriptor:(id)arg1 completion:(id /* block */)arg2;
 - (void)getImageForImageDescriptor:(id)arg1 completion:(id /* block */)arg2;
+- (bool)hasValidImage;
 - (id)imageCache;
 - (id)imageForImageDescriptor:(id)arg1;
 - (id)images;

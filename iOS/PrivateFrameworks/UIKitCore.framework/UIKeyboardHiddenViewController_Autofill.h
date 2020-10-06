@@ -9,8 +9,6 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)presentViewController:(bool)arg1;
 - (void)setAutofillVC:(id)arg1;
 

@@ -9,6 +9,8 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/Frameworks/Contacts.framework/Contacts
+
 - (void*)ABValueFromCNValue:(id)arg1;
 - (id)CNValueForContact:(id)arg1;
 - (id)CNValueFromABBytes:(char *)arg1 length:(unsigned long long)arg2;
@@ -22,5 +24,12 @@
 - (id)nilValue;
 - (void)setCNValue:(id)arg1 onContact:(id)arg2;
 - (Class)valueClass;
+
+// Image: /System/Library/Frameworks/AddressBook.framework/AddressBook
+
+- (const void*)ABSValueFromCNValue:(id)arg1;
+- (id)CNValueFromABSValue:(void*)arg1;
+- (bool)absPropertyID:(int*)arg1;
+- (unsigned int)absPropertyType;
 
 @end

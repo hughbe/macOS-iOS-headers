@@ -9,44 +9,73 @@
     AUParameterTree * _cachedParameterTree;
     struct AUListenerBase { } * _eventListener;
     NSObject<OS_dispatch_queue> * _eventListenerQueue;
+    struct atomic<unsigned int> { 
+        struct __cxx_atomic_impl<unsigned int, std::__1::__cxx_atomic_base_impl<unsigned int> > { 
+            _Atomic unsigned int __a_value; 
+        } __a_; 
+    }  _eventsTriggeringParameterTreeInvalidation;
+    struct atomic<unsigned long long> { 
+        struct __cxx_atomic_impl<unsigned long long, std::__1::__cxx_atomic_base_impl<unsigned long long> > { 
+            _Atomic unsigned long long __a_value; 
+        } __a_; 
+    }  _expectedEventMessages;
     AUV2BridgeBusArray * _inputBusses;
     AUV2BridgeBusArray * _outputBusses;
     struct AUListenerBase { } * _parameterListener;
+    struct semaphore { 
+        struct semaphore { 
+            unsigned int mMachSem; 
+            bool mOwned; 
+        } mImpl; 
+        struct atomic<int> { 
+            struct __cxx_atomic_impl<int, std::__1::__cxx_atomic_base_impl<int> > { 
+                _Atomic int __a_value; 
+            } __a_; 
+        } mCounter; 
+        int mOriginalCounter; 
+    }  _parameterListenerSemaphore;
+    NSObject<OS_dispatch_queue> * _parameterTreeRebuildQueue;
     bool  _removingObserverWithContext;
     struct unique_ptr<AUAudioUnitV2Bridge_Renderer, std::__1::default_delete<AUAudioUnitV2Bridge_Renderer> > { 
         struct __compressed_pair<AUAudioUnitV2Bridge_Renderer *, std::__1::default_delete<AUAudioUnitV2Bridge_Renderer> > { 
             struct AUAudioUnitV2Bridge_Renderer {} *__value_; 
         } __ptr_; 
     }  _renderer;
+    struct atomic<bool> { 
+        struct __cxx_atomic_impl<bool, std::__1::__cxx_atomic_base_impl<bool> > { 
+            _Atomic bool __a_value; 
+        } __a_; 
+    }  _willSetFullState;
 }
-
-@property (nonatomic, readonly) struct OpaqueAudioComponentInstance { }*audioUnit;
 
 + (bool)automaticallyNotifiesObserversForKey:(id)arg1;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (id /* block */)MIDIOutputEventBlock;
-- (void)_addOrRemoveParameterListeners:(bool)arg1;
 - (void)_createEventListenerQueue;
+- (id)_createParameterTree;
 - (unsigned int)_elementCount:(unsigned int)arg1;
 - (bool)_elementCountWritable:(unsigned int)arg1;
-- (void)_invalidateParameterTree;
+- (void)_invalidateParameterTree:(unsigned int)arg1;
 - (void)_rebuildBusses:(unsigned int)arg1;
 - (bool)_setElementCount:(unsigned int)arg1 count:(unsigned int)arg2 error:(id*)arg3;
+- (void)_setValue:(id)arg1 forKey:(id)arg2 error:(id*)arg3;
+- (id)_valueForProperty:(id)arg1 error:(id*)arg2;
 - (void)addObserver:(id)arg1 forKeyPath:(id)arg2 options:(unsigned long long)arg3 context:(void*)arg4;
 - (bool)allocateRenderResourcesAndReturnError:(id*)arg1;
 - (struct OpaqueAudioComponentInstance { }*)audioUnit;
 - (id)channelCapabilities;
 - (void)dealloc;
-- (void)deallocateRenderResources;
 - (int)enableBus:(unsigned int)arg1 scope:(unsigned int)arg2 enable:(bool)arg3;
 - (void)init2;
 - (id)initWithAudioUnit:(struct OpaqueAudioComponentInstance { }*)arg1 description:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg2;
 - (id)initWithComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg1 options:(unsigned int)arg2 error:(id*)arg3;
 - (id)inputBusses;
+- (void)internalDeallocateRenderResources;
 - (id /* block */)internalRenderBlock;
 - (void)invalidateAudioUnit;
+- (id)osWorkgroup;
 - (id)outputBusses;
 - (id)parameterTree;
 - (void)removeObserver:(id)arg1 forKeyPath:(id)arg2;
@@ -56,5 +85,7 @@
 - (void)setFullState:(id)arg1;
 - (void)setFullStateForDocument:(id)arg1;
 - (void)setMIDIOutputEventBlock:(id /* block */)arg1;
+- (void)setMusicalContextBlock:(id /* block */)arg1;
+- (void)setTransportStateBlock:(id /* block */)arg1;
 
 @end

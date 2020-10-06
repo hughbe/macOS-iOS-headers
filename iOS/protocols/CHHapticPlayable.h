@@ -9,6 +9,6 @@
 - (NSArray *)events;
 - (NSArray *)parameterCurves;
 - (NSArray *)parameters;
-- (bool)resolveExternalResources:(CHHapticEngine *)arg1 error:(id*)arg2;
+- (NSArray *)resolveExternalResources:(CHHapticEngine *)arg1 error:(id*)arg2;
 
 @end

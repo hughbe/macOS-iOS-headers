@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@interface AFClockTimer : NSObject <AFClockItem, NSCopying, NSSecureCoding> {
+@interface AFClockTimer : NSObject <AFClockItem, AFDictionaryConvertible, NSCopying, NSSecureCoding> {
     NSDate * _dismissedDate;
     double  _duration;
     NSDate * _fireDate;
@@ -41,6 +41,7 @@
 
 - (void).cxx_destruct;
 - (id)_descriptionWithIndent:(unsigned long long)arg1;
+- (id)buildDictionaryRepresentation;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dismissedDate;
@@ -51,6 +52,7 @@
 - (id)firedDate;
 - (unsigned long long)hash;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithDictionaryRepresentation:(id)arg1;
 - (id)initWithTimerID:(id)arg1 timerURL:(id)arg2 isFiring:(bool)arg3 title:(id)arg4 state:(long long)arg5 duration:(double)arg6 type:(long long)arg7 fireTimeInterval:(double)arg8 fireDate:(id)arg9 firedDate:(id)arg10 dismissedDate:(id)arg11 lastModifiedDate:(id)arg12;
 - (bool)isEqual:(id)arg1;
 - (bool)isFiring;

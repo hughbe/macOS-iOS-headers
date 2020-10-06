@@ -2,30 +2,45 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@interface MKPhotoBigAttributionView : UIView {
+@interface MKPhotoBigAttributionView : UIView <MKActivityObserving, MKPhotoBigAttributionViewSubclass> {
     UIView * _backgroundView;
+    UIView * _contentView;
     long long  _context;
-    _MKUILabel * _firstLineLabel;
     UIImageView * _imageView;
-    UIView * _labelsView;
     MKMapItem * _mapItem;
-    _MKUILabel * _secondLineLabel;
+    bool  _needsImageLoad;
+    UIActivityIndicatorView * _spinner;
     long long  _type;
 }
 
+@property (nonatomic, readonly) UIView *contentView;
+@property (nonatomic, readonly) long long context;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (nonatomic, retain) MKMapItem *mapItem;
+@property (nonatomic, readonly) UIActivityIndicatorView *spinner;
+@property (readonly) Class superclass;
 @property (nonatomic) long long type;
 
++ (id)bigAttributionViewForMapItem:(id)arg1 attributionType:(long long)arg2 isFirstParty:(bool)arg3 context:(long long)arg4;
+
 - (void).cxx_destruct;
-- (id)firstLineLabelFont;
+- (void)beginAnimatingActivityIndicator;
+- (id)contentView;
+- (long long)context;
+- (void)didEndAnimatingActivityIndicatorView;
+- (void)didUpdateAttributionViewType;
+- (void)didUpdateMapItem;
+- (void)endAnimatingActivityIndicatorWithError:(id)arg1;
 - (id)initWithContext:(long long)arg1;
+- (void)layoutSubviews;
 - (id)mapItem;
-- (id)secondLineLabelFont;
 - (void)setMapItem:(id)arg1;
-- (void)setMapItem:(id)arg1 andType:(long long)arg2;
 - (void)setType:(long long)arg1;
+- (id)spinner;
 - (long long)type;
-- (void)updateBackground;
-- (void)updateInfoAttributionString;
+- (void)updateBackgroundIfNeeded;
+- (void)willStartAnimatingActivityIndicatorView;
 
 @end

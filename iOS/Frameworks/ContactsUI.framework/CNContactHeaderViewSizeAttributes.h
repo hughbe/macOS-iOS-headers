@@ -28,6 +28,7 @@
 
 + (id)defaultAttributes;
 + (id)displayAttributes;
++ (id)displayAttributesWithNavBar;
 + (id)editingAttributes;
 + (id)editingAttributesWithNavBar;
 

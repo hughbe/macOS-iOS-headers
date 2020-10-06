@@ -14,15 +14,10 @@
 @property (nonatomic, retain) UIColor *normalBackgroundColor;
 @property (nonatomic, retain) UIColor *normalTitleColor;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_currentTitleColor;
 - (id)_titleColorForState:(unsigned long long)arg1;
 - (void)_updateBackgroundAndTitleColor;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)highlightedBackgroundColor;
 - (id)highlightedTitleColor;
 - (id)normalBackgroundColor;

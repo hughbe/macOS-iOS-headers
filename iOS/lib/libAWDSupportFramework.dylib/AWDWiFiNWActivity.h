@@ -9,6 +9,7 @@
         unsigned int timestamp : 1; 
     }  _has;
     NSMutableArray * _interfaceStats;
+    AWDLinkQualityMeasurements * _linkQualSample;
     NSMutableArray * _peerStats;
     unsigned long long  _timestamp;
 }
@@ -16,8 +17,10 @@
 @property (nonatomic, retain) NSMutableArray *activities;
 @property (nonatomic, retain) AWDWiFiNWActivityControllerStats *controllerStats;
 @property (nonatomic, readonly) bool hasControllerStats;
+@property (nonatomic, readonly) bool hasLinkQualSample;
 @property (nonatomic) bool hasTimestamp;
 @property (nonatomic, retain) NSMutableArray *interfaceStats;
+@property (nonatomic, retain) AWDLinkQualityMeasurements *linkQualSample;
 @property (nonatomic, retain) NSMutableArray *peerStats;
 @property (nonatomic) unsigned long long timestamp;
 
@@ -41,12 +44,14 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (bool)hasControllerStats;
+- (bool)hasLinkQualSample;
 - (bool)hasTimestamp;
 - (unsigned long long)hash;
 - (id)interfaceStats;
 - (id)interfaceStatsAtIndex:(unsigned long long)arg1;
 - (unsigned long long)interfaceStatsCount;
 - (bool)isEqual:(id)arg1;
+- (id)linkQualSample;
 - (void)mergeFrom:(id)arg1;
 - (id)peerStats;
 - (id)peerStatsAtIndex:(unsigned long long)arg1;
@@ -56,6 +61,7 @@
 - (void)setControllerStats:(id)arg1;
 - (void)setHasTimestamp:(bool)arg1;
 - (void)setInterfaceStats:(id)arg1;
+- (void)setLinkQualSample:(id)arg1;
 - (void)setPeerStats:(id)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;
 - (unsigned long long)timestamp;

@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIWindowScene : UIScene <DebugHierarchyObject_Fallback, _UIContextBinderContextCreationPolicyHolding, _UIFallbackEnvironment, _UISceneUIWindowHosting> {
+@interface UIWindowScene : UIScene <_UIContextBinderContextCreationPolicyHolding, _UIFallbackEnvironment, _UISceneUIWindowHosting> {
     bool  __isKeyWindowScene;
     long long  _avkitRequestedOverscanCompensation;
     _UIContextBinder * _contextBinder;
     <UICoordinateSpace> * _coordinateSpace;
     bool  _didMakeKeyAndVisible;
     <_UIDisplayInfoProviding> * _displayEdgeInfoProvider;
+    bool  _excludedFromWindowsMenu;
     bool  _isPerformingSystemSnapshot;
     NSPointerArray * _keyWindowHistory;
     <_UISceneMetricsCalculating> * _metricsCalculator;
@@ -20,6 +21,7 @@
 }
 
 @property (nonatomic, readonly) UIAlertControllerStackManager *_alertControllerStackManager;
+@property (nonatomic, readonly) ASOOverlayManager *_aso_appOverlayManager;
 @property (getter=_avkitRequestedOverscanCompensation, setter=_setAVKitRequestedOverscanCompensation:, nonatomic) long long _avkitRequestedOverscanCompensation;
 @property (setter=_setBackgroundStyle:, nonatomic) long long _backgroundStyle;
 @property (getter=_bannerManager, nonatomic, readonly) _UIBannerManager *_bannerManager;
@@ -37,11 +39,13 @@
 @property (nonatomic, readonly) UIScreen *_screen;
 @property (getter=_screenRequestedDisplayNativePixelSize, setter=_setScreenRequestedDisplayNativePixelSize:, nonatomic) struct CGSize { double x1; double x2; } _screenRequestedDisplayNativePixelSize;
 @property (getter=_screenRequestedOverscanCompensation, setter=_setScreenRequestedOverscanCompensation:, nonatomic) long long _screenRequestedOverscanCompensation;
+@property (nonatomic, readonly) UIStatusBarManager *_statusBarManager;
 @property (nonatomic, readonly) _UISystemAppearanceManager *_systemAppearanceManager;
 @property (nonatomic, readonly) UITraitCollection *_traitCollection;
 @property (nonatomic, readonly) <UICoordinateSpace> *coordinateSpace;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
+@property (getter=isExcludedFromWindowsMenu, nonatomic) bool excludedFromWindowsMenu;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) UIInputResponderController *inputResponderController;
 @property (nonatomic, readonly) long long interfaceOrientation;
@@ -99,7 +103,6 @@
 - (id)_inheritingWindowsIncludingInvisible:(bool)arg1;
 - (long long)_interfaceOrientation;
 - (void)_invalidate;
-- (void)_invalidateScreen;
 - (bool)_isKeyWindowScene;
 - (bool)_isPerformingSystemSnapshot;
 - (bool)_keepContextAssociationInBackground;
@@ -107,6 +110,7 @@
 - (void)_loadWindowWithStoryboardIfNeeded:(id)arg1;
 - (void)_makeKeyAndVisibleIfNeeded;
 - (bool)_needsMakeKeyAndVisible;
+- (void)_noteDisplayIdentityDidChangeWithConfiguration:(id)arg1;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_peripheryInsets;
 - (bool)_permitContextCreationForBindingDescription:(struct { id x1; bool x2; bool x3; bool x4; bool x5; bool x6; bool x7; bool x8; bool x9; bool x10; bool x11; bool x12; })arg1;
 - (void)_prepareForResume;
@@ -122,6 +126,7 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_safeAreaInsetsForInterfaceOrientation:(long long)arg1;
 - (id)_scene;
 - (id)_screen;
+- (void)_screenDidChangeFromScreen:(id)arg1 toScreen:(id)arg2;
 - (struct CGSize { double x1; double x2; })_screenRequestedDisplayNativePixelSize;
 - (long long)_screenRequestedOverscanCompensation;
 - (id)_screenshotServiceIfPresent;
@@ -135,7 +140,9 @@
 - (void)_setShouldDisableTouchCancellationOnRotation:(bool)arg1;
 - (void)_setSystemVolumeHUDEnabled:(bool)arg1;
 - (void)_setSystemVolumeHUDEnabled:(bool)arg1 forAudioCategory:(id)arg2;
+- (bool)_shouldLoadStoryboard;
 - (void)_showProgressWhenFetchingUserActivityForTypes:(id)arg1;
+- (id)_statusBarManager;
 - (id)_systemAppearanceManager;
 - (double)_systemMinimumMargin;
 - (id)_topVisibleWindowPassingTest:(id /* block */)arg1;
@@ -153,30 +160,41 @@
 - (void)_windowUpdatedProperties:(id)arg1;
 - (void)_windowUpdatedVisibility:(id)arg1;
 - (bool)_windowsIgnoreSceneClientOrientation;
-- (id)description;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyAdditionalGroupingIDs;
-+ (id)fallback_debugHierarchyObjectsInGroupWithID:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3;
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)canvasToolbar;
 - (id)coordinateSpace;
+- (id)description;
 - (id)initWithSession:(id)arg1 connectionOptions:(id)arg2;
 - (id)inputResponderController;
 - (long long)interfaceOrientation;
+- (bool)isExcludedFromWindowsMenu;
 - (bool)isKeyCanvas;
 - (id)screen;
 - (id)screenshotService;
+- (void)setExcludedFromWindowsMenu:(bool)arg1;
 - (void)set_isKeyWindowScene:(bool)arg1;
 - (id)sizeRestrictions;
 - (long long)state;
 - (id)statusBarManager;
 - (id)traitCollection;
 - (id)windows;
+
+// Image: /System/Library/Frameworks/AVKit.framework/AVKit
+
++ (bool)avkit_supportsInteractiveCounterRotationDismissals;
+
+- (void)_avkit_setPreferredRefreshRate:(double)arg1 HDRMode:(long long)arg2 overscanCompensation:(long long)arg3;
+- (id)avkit_asWindowScene;
+- (void)avkit_disableTouchCancellation:(bool)arg1 forRotationActions:(id /* block */)arg2;
+- (bool)avkit_screenHasWindowsExcludingWindow:(id)arg1;
+- (long long)avkit_screenType;
+
+// Image: /System/Library/Frameworks/SafariServices.framework/SafariServices
+
+- (void)_sf_openFaceTimeMultiWayURL:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_sf_openTelURL:(id)arg1 completionHandler:(id /* block */)arg2;
+
+// Image: /System/Library/PrivateFrameworks/AppStoreOverlays.framework/AppStoreOverlays
+
+- (id)_aso_appOverlayManager;
 
 @end

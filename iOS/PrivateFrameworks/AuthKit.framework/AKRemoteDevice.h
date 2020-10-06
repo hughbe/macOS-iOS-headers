@@ -3,6 +3,7 @@
  */
 
 @interface AKRemoteDevice : NSObject <NSSecureCoding> {
+    NSDictionary * _additionalInfo;
     NSString * _backingColorCode;
     NSString * _buildNumber;
     NSString * _colorCode;
@@ -20,6 +21,7 @@
     bool  _trusted;
 }
 
+@property (nonatomic, readonly, copy) NSDictionary *additionalInfo;
 @property (nonatomic, readonly, copy) NSString *backingColorCode;
 @property (nonatomic, readonly, copy) NSString *buildNumber;
 @property (nonatomic, readonly, copy) NSString *colorCode;
@@ -40,6 +42,7 @@
 
 - (void).cxx_destruct;
 - (void)_initWithInfo:(id)arg1;
+- (id)additionalInfo;
 - (id)backingColorCode;
 - (id)buildNumber;
 - (id)colorCode;

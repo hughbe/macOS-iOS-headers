@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RunningBoardServices.framework/RunningBoardServices
  */
 
-@interface RBSProcessAssertionInfo : NSObject <BSXPCSecureCoding, NSCopying> {
+@interface RBSProcessAssertionInfo : NSObject <NSCopying, RBSXPCSecureCoding> {
     NSString * _domain;
     NSString * _explanation;
     NSString * _name;
@@ -20,18 +20,16 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) unsigned char type;
 
-+ (bool)supportsBSXPCSecureCoding;
++ (bool)supportsRBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
-- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)domain;
-- (void)encodeWithBSXPCCoder:(id)arg1;
+- (void)encodeWithRBSXPCCoder:(id)arg1;
 - (id)explanation;
 - (unsigned long long)hash;
-- (id)initWithBSXPCCoder:(id)arg1;
+- (id)initWithRBSXPCCoder:(id)arg1;
 - (id)initWithType:(unsigned char)arg1;
 - (bool)isEqual:(id)arg1;
 - (bool)isLegacyAssertionReason:(unsigned long long)arg1;
@@ -41,8 +39,6 @@
 - (void)setExplanation:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setReason:(unsigned long long)arg1;
-- (id)succinctDescription;
-- (id)succinctDescriptionBuilder;
 - (unsigned char)type;
 
 @end

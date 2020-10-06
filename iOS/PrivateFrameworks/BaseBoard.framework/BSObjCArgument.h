@@ -23,9 +23,9 @@
 @property (readonly, copy) NSString *description;
 @property (nonatomic, readonly, copy) NSString *encoding;
 @property (readonly) unsigned long long hash;
-@property (nonatomic) long long index;
+@property (nonatomic, readonly) long long index;
 @property (getter=isVoid, nonatomic, readonly) bool isVoid;
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, readonly, copy) NSString *name;
 @property (getter=isObject, nonatomic, readonly) bool object;
 @property (nonatomic, readonly, retain) Class objectClass;
 @property (getter=isOnewayVoid, nonatomic, readonly) bool onewayVoid;
@@ -38,8 +38,6 @@
 @property (nonatomic, readonly) BOOL type;
 @property (getter=isXPCObject, nonatomic, readonly) bool xpcObject;
 
-+ (id)argumentWithSignature:(id)arg1 atIndex:(long long)arg2;
-
 - (void).cxx_destruct;
 - (id)_prettyTypeString;
 - (id)containedClasses;
@@ -48,7 +46,6 @@
 - (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)encoding;
 - (long long)index;
-- (id)initWithSignature:(id)arg1 atIndex:(long long)arg2;
 - (bool)isBlock;
 - (bool)isBoolean;
 - (bool)isObject;
@@ -60,8 +57,6 @@
 - (id)name;
 - (Class)objectClass;
 - (id)protocols;
-- (void)setIndex:(long long)arg1;
-- (void)setName:(id)arg1;
 - (unsigned long long)size;
 - (id)structName;
 - (id)succinctDescription;

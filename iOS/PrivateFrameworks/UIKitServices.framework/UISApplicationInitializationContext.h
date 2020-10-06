@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitServices.framework/UIKitServices
  */
 
-@interface UISApplicationInitializationContext : NSObject <BSXPCCoding, NSCopying, NSMutableCopying> {
+@interface UISApplicationInitializationContext : NSObject <BSXPCCoding, BSXPCSecureCoding, NSCopying, NSMutableCopying> {
     FBSSceneIdentityToken * _defaultSceneToken;
     UISDeviceContext * _deviceContext;
     UISDisplayContext * _displayContext;
@@ -19,6 +19,7 @@
 @property (readonly) Class superclass;
 
 + (id)defaultContext;
++ (bool)supportsBSXPCSecureCoding;
 
 - (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -26,11 +27,11 @@
 - (id)description;
 - (id)deviceContext;
 - (id)displayContext;
-- (void)encodeWithXPCDictionary:(id)arg1;
+- (void)encodeWithBSXPCCoder:(id)arg1;
 - (unsigned long long)hash;
+- (id)initWithBSXPCCoder:(id)arg1;
 - (id)initWithDisplayContext:(id)arg1 deviceContext:(id)arg2 persistedSceneIdentifiers:(id)arg3;
 - (id)initWithUISApplicationInitializationContext:(id)arg1;
-- (id)initWithXPCDictionary:(id)arg1;
 - (bool)isEqual:(id)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)persistedSceneIdentifiers;

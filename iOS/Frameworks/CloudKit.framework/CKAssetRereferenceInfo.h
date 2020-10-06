@@ -26,10 +26,11 @@
 @property (nonatomic, retain) NSString *requestor;
 @property (nonatomic, retain) CKRecordZoneID *sourceZoneID;
 
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
+
 - (void).cxx_destruct;
 - (id)CKDescriptionPropertiesWithPublic:(bool)arg1 private:(bool)arg2 shouldExpand:(bool)arg3;
 - (id)assetKey;
-- (void)clearRecordFetchProperties;
 - (id)contentBaseURL;
 - (id)description;
 - (id)destinationFieldName;
@@ -51,6 +52,10 @@
 - (void)setRequestor:(id)arg1;
 - (void)setSourceZoneID:(id)arg1;
 - (id)sourceZoneID;
-- (bool)validateAndSetRecordFetchPropertiesWithAsset:(id)arg1 assetReference:(id)arg2 useEncryption:(bool)arg3 useClearAssetEncryption:(bool)arg4;
+
+// Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
+
+- (void)clearRecordFetchProperties;
+- (bool)validateAndSetRecordFetchPropertiesWithAsset:(id)arg1 assetReference:(id)arg2;
 
 @end

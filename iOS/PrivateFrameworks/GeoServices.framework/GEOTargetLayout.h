@@ -33,7 +33,10 @@
 - (bool)hasLayoutStyle;
 - (bool)hasUiTarget;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (int)layoutInfo;
 - (id)layoutInfoAsString:(int)arg1;
 - (int)layoutStyle;

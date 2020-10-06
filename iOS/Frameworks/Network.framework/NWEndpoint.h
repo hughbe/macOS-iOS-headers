@@ -11,6 +11,7 @@
 @property (nonatomic, retain) NSObject<OS_nw_endpoint> *internalEndpoint;
 @property (nonatomic, readonly) NSString *parentEndpointDomain;
 @property (nonatomic, readonly, copy) NSString *privateDescription;
+@property (nonatomic) long long remoteInterfaceType;
 @property (nonatomic, retain) NSData *txtRecord;
 
 + (Class)copyClassForEndpointType:(int)arg1;
@@ -39,10 +40,12 @@
 - (bool)isEqual:(id)arg1;
 - (id)parentEndpointDomain;
 - (id)privateDescription;
+- (long long)remoteInterfaceType;
 - (void)resolveEndpointWithCompletionHandler:(id /* block */)arg1;
 - (void)setAlternatePort:(unsigned short)arg1;
 - (void)setInterface:(id)arg1;
 - (void)setInternalEndpoint:(id)arg1;
+- (void)setRemoteInterfaceType:(long long)arg1;
 - (void)setTxtRecord:(id)arg1;
 - (id)txtRecord;
 

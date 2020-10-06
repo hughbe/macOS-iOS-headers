@@ -120,7 +120,9 @@
 @property (nonatomic) float gutterWidth;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool hidesMasterViewInPortrait;
+@property (nonatomic, readonly) bool inCollapsingToProposedTopColumnCallback;
 @property (getter=_lastFocusedChildViewControllerIndex, nonatomic, readonly) unsigned long long lastFocusedChildViewControllerIndex;
+@property (nonatomic, readonly) bool lockedForDelegateCallback;
 @property (getter=_masterFocusContainerGuide, nonatomic, readonly) UIFocusContainerGuide *masterFocusContainerGuide;
 @property (nonatomic) double maximumPrimaryColumnWidth;
 @property (nonatomic) double minimumPrimaryColumnWidth;
@@ -130,6 +132,7 @@
 @property (nonatomic) bool presentsWithGesture;
 @property (nonatomic) long long primaryBackgroundStyle;
 @property (nonatomic) long long primaryEdge;
+@property (nonatomic, readonly) long long style;
 @property (readonly) Class superclass;
 @property (nonatomic) bool usesDeviceOverlayPreferences;
 @property (getter=_usesExtraWidePrimaryColumn, setter=_setUsesExtraWidePrimaryColumn:, nonatomic) bool usesExtraWidePrimaryColumn;
@@ -158,6 +161,7 @@
 - (double)_contentMarginForChildViewController:(id)arg1;
 - (struct CGSize { double x1; double x2; })_contentSizeForChildViewController:(id)arg1 inPopoverController:(id)arg2;
 - (long long)_currentInterfaceIdiom;
+- (id)_deepestUnambiguousResponder;
 - (id)_defaultDisplayModes;
 - (double)_defaultMaximumPrimaryColumnWidthForSize:(struct CGSize { double x1; double x2; })arg1;
 - (long long)_defaultTargetDisplayMode;
@@ -192,6 +196,7 @@
 - (void)_initWithCoder:(id)arg1;
 - (long long)_internalModeForTraitCollection:(id)arg1 orientation:(long long)arg2 viewSize:(struct CGSize { double x1; double x2; })arg3 medusaState:(long long)arg4;
 - (void)_invalidateHidesMasterViewForAspectRatio:(long long)arg1;
+- (bool)_isAnimating;
 - (bool)_isBasicallyHorizontallyCompact;
 - (bool)_isCollapsed;
 - (bool)_isHidesMasterInLandscapeInvalid;
@@ -212,6 +217,7 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })_masterViewFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (long long)_medusaState;
 - (long long)_medusaStateForOrientation:(long long)arg1 viewWidth:(double)arg2;
+- (id)_multitaskingDragExclusionRects;
 - (bool)_optsOutOfPopoverControllerHierarchyCheck;
 - (void)_popoverController:(id)arg1 didChangeFromVisible:(bool)arg2;
 - (void)_popoverController:(id)arg1 willChangeToVisible:(bool)arg2;
@@ -223,6 +229,7 @@
 - (double)_primaryColumnWidthForSize:(struct CGSize { double x1; double x2; })arg1 isCompact:(bool)arg2;
 - (id)_primaryContentResponder;
 - (id)_primaryDimmingView;
+- (double)_primaryDividerPosition;
 - (long long)_primaryHidingState;
 - (long long)_primaryHidingStateForCurrentOrientation;
 - (id)_primaryViewControllerForCollapsing;
@@ -249,6 +256,7 @@
 - (bool)_shouldPreventAutorotation;
 - (bool)_shouldUseRelativeInsets;
 - (void)_showMasterViewAnimated:(bool)arg1;
+- (double)_supplementaryDividerPosition;
 - (unsigned long long)_targetEdgeForPopover;
 - (id)_traitCollectionForChildEnvironment:(id)arg1;
 - (void)_triggerDisplayModeAction:(id)arg1;
@@ -276,9 +284,11 @@
 - (float)gutterWidth;
 - (bool)hidesMasterViewInLandscape;
 - (bool)hidesMasterViewInPortrait;
+- (bool)inCollapsingToProposedTopColumnCallback;
 - (id)initWithSplitViewController:(id)arg1;
 - (bool)isCollapsed;
 - (void)loadView;
+- (bool)lockedForDelegateCallback;
 - (id)masterViewController;
 - (double)maximumPrimaryColumnWidth;
 - (double)minimumPrimaryColumnWidth;
@@ -316,6 +326,7 @@
 - (void)snapshotAllViews;
 - (void)snapshotForRotationFromInterfaceOrientation:(long long)arg1 toInterfaceOrientation:(long long)arg2 masterChange:(long long)arg3;
 - (void)snapshotMasterView;
+- (long long)style;
 - (unsigned long long)supportedInterfaceOrientations;
 - (void)toggleMasterVisible:(id)arg1;
 - (void)traitCollectionDidChange:(id)arg1;

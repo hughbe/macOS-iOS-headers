@@ -33,6 +33,7 @@
 - (bool)dontMerge;
 - (double)duration;
 - (id)endPlacementForInputViewSet:(id)arg1;
+- (id)endPlacementForInputViewSet:(id)arg1 windowScene:(id)arg2;
 - (unsigned long long)extraOptions;
 - (bool)force;
 - (bool)interactivelyCancelled;
@@ -47,5 +48,6 @@
 - (void)setForce:(bool)arg1;
 - (void)setInteractivelyCancelled:(bool)arg1;
 - (id)startPlacementForInputViewSet:(id)arg1 currentPlacement:(id)arg2;
+- (id)startPlacementForInputViewSet:(id)arg1 currentPlacement:(id)arg2 windowScene:(id)arg3;
 
 @end

@@ -37,8 +37,6 @@
 @property (nonatomic, copy) UIColor *trackingBackgroundColor;
 @property (nonatomic, retain) <UIIndexBarVisualStyle> *visualStyle;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (id)_accessibilityHUDGestureManager:(id)arg1 HUDItemForPoint:(struct CGPoint { double x1; double x2; })arg2;
 - (void)_accessibilityHUDGestureManager:(id)arg1 gestureLiftedAtPoint:(struct CGPoint { double x1; double x2; })arg2;
@@ -47,15 +45,13 @@
 - (bool)_canDrawContent;
 - (bool)_defaultCanBecomeFocused;
 - (bool)_didSelectEntry:(id)arg1 atIndex:(long long)arg2;
+- (void)_largeContentViewerEnabledStatusDidChange:(id)arg1;
 - (bool)_selectEntry:(id)arg1 atIndex:(long long)arg2;
 - (void)_setupAXHUDGestureIfNecessary;
 - (void)_updateBackgroundColor;
 - (void)_updateDisplayEntries;
 - (void)_userInteractionStarted;
 - (void)_userInteractionStopped;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)axHUDGestureManager;
 - (id)backgroundColor;
 - (bool)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;

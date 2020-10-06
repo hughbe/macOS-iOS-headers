@@ -32,6 +32,8 @@
 - (bool)assignResolvedEndpoints:(id)arg1 toClient:(id)arg2;
 - (bool)createReadSourceWithRegistrationSocket:(int)arg1;
 - (void)dealloc;
+- (id)description;
+- (id)descriptionWithIndent:(int)arg1 showFullContent:(bool)arg2;
 - (int)dupRegistrationFileDescriptor;
 - (void)handleMessageFromAgent;
 - (id)initWithNetworkAgentClass:(Class)arg1;

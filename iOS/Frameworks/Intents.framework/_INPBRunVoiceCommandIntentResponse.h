@@ -3,7 +3,6 @@
  */
 
 @interface _INPBRunVoiceCommandIntentResponse : PBCodable <NSCopying, NSSecureCoding, _INPBRunVoiceCommandIntentResponse> {
-    bool  __encodeLegacyGloryData;
     NSString * _appBundleId;
     bool  _continueRunning;
     bool  _customResponsesDisabled;
@@ -29,7 +28,6 @@
     NSString * _verb;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, copy) NSString *appBundleId;
 @property (nonatomic) bool continueRunning;
 @property (nonatomic) bool customResponsesDisabled;
@@ -71,8 +69,6 @@
 - (void).cxx_destruct;
 - (int)StringAsIntentCategory:(id)arg1;
 - (int)StringAsToggleState:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (void)addStep:(id)arg1;
 - (id)appBundleId;
 - (void)clearSteps;

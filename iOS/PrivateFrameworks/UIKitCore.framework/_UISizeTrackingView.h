@@ -13,6 +13,7 @@
             double height; 
         } size; 
     }  _formerTextEffectsContentFrame;
+    long long  _interfaceOrientation;
     struct CGSize { 
         double width; 
         double height; 
@@ -45,17 +46,20 @@
 - (void)_clearNeedsRemoteViewServiceBoundingPathUpdate;
 - (void)_didMoveFromWindow:(id)arg1 toWindow:(id)arg2;
 - (bool)_fencingEffectsAreVisible;
-- (void)_geometryChanges:(id)arg1 forAncestor:(id)arg2;
+- (void)_geometryChanged:(const struct { int x1; struct CGPoint { double x_2_1_1; double x_2_1_2; } x2; struct CGPoint { double x_3_1_1; double x_3_1_2; } x3; struct CGSize { double x_4_1_1; double x_4_1_2; } x4; id x5; id x6; id x7; id x8; }*)arg1 forAncestor:(id)arg2;
 - (long long)_interfaceOrientationForScene:(id)arg1;
 - (struct CGSize { double x1; double x2; })_intrinsicSizeWithinSize:(struct CGSize { double x1; double x2; })arg1;
 - (bool)_needsTextEffectsUpdateToFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_scrollToTopFromTouchAtScreenLocation:(struct CGPoint { double x1; double x2; })arg1 resultHandler:(id /* block */)arg2;
 - (void)_setNeedsRemoteViewServiceBoundingPathUpdate;
 - (void)_textEffectsWindowDidRotate:(id)arg1;
+- (void)_updateSceneGeometries:(id)arg1;
 - (void)_updateSceneGeometries:(id)arg1 forOrientation:(long long)arg2;
 - (void)_updateTextEffectsGeometries:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)_updateTextEffectsGeometries:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 textEffectsWindow:(id)arg2;
 - (void)_updateTextEffectsGeometriesImmediately;
+- (void)_updateTextEffectsWindowSafeAreaInsets;
+- (void)_updateTextEffectsWindowSceneSize;
 - (void)_willMoveToWindow:(id)arg1;
 - (bool)canBecomeFocused;
 - (void)dealloc;

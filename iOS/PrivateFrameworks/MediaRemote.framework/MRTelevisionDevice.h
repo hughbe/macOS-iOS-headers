@@ -42,16 +42,6 @@
 @property (nonatomic, retain) NSObject<OS_dispatch_queue> *textInputCallbackQueue;
 
 - (void).cxx_destruct;
-- (void)_callCientHiliteModeCallback;
-- (void)_callClientGameControllerInputModeCallback;
-- (void)_callClientGameControllerPropertiesCallback:(id)arg1 controller:(unsigned long long)arg2;
-- (void)_callClientRTICallback:(id)arg1;
-- (void)_callClientRecordingStateCallback;
-- (void)_callClientTextInputCallback:(id)arg1 type:(unsigned int)arg2;
-- (void)_handleHiliteModeMessage:(id)arg1;
-- (void)_handleKeyboardMessage:(id)arg1;
-- (void)_handleRemoteTextInputMessage:(id)arg1;
-- (void)_sendTextInputMessageWithActionType:(unsigned long long)arg1 text:(id)arg2;
 - (void)clearActiveTextEditingSessionData;
 - (void)clientConnection:(id)arg1 didReceiveMessage:(id)arg2;
 - (id)currentClientUpdatesConfigMessage;
@@ -80,7 +70,6 @@
 - (id)rtiCallbackQueue;
 - (id)rtiSourceSession;
 - (void)sendGameControllerEvent:(id)arg1 controllerID:(unsigned long long)arg2;
-- (void)sendHIDEvent:(struct __IOHIDEvent { }*)arg1;
 - (void)sendTouchEvent:(struct _MRHIDTouchEvent { union _MRHIDPoint { struct { float x_1_2_1; float x_1_2_2; } x_1_1_1; float x_1_1_2[2]; } x1; unsigned int x2; unsigned long long x3; unsigned int x4; })arg1 toVirtualDeviceWithID:(unsigned long long)arg2;
 - (void)setGameControllerInputMode:(unsigned int)arg1;
 - (void)setGameControllerInputModeCallback:(id /* block */)arg1;
@@ -89,7 +78,6 @@
 - (void)setGameControllerPropertiesCallback:(id /* block */)arg1;
 - (void)setGameControllerPropertiesCallback:(id /* block */)arg1 withQueue:(id)arg2;
 - (void)setGameControllerPropertiesCallbackQueue:(id)arg1;
-- (void)setHiliteMode:(bool)arg1;
 - (void)setHiliteModeCallback:(id /* block */)arg1;
 - (void)setHiliteModeCallback:(id /* block */)arg1 withQueue:(id)arg2;
 - (void)setHiliteModeCallbackQueue:(id)arg1;
@@ -103,7 +91,6 @@
 - (void)setTextInputCallback:(id /* block */)arg1;
 - (void)setTextInputCallbackQueue:(id)arg1;
 - (void)setTextOnActiveTextEditingSessionWithText:(id)arg1;
-- (void)setVoiceRecordingState:(unsigned int)arg1;
 - (void)setVoiceRecordingStateCallback:(id /* block */)arg1 withQueue:(id)arg2;
 - (id /* block */)textInputCallback;
 - (id)textInputCallbackQueue;

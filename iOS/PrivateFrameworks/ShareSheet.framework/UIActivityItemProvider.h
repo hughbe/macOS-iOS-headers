@@ -17,6 +17,8 @@
 @property (nonatomic, retain) id providedItem;
 @property (readonly) Class superclass;
 
+// Image: /System/Library/PrivateFrameworks/ShareSheet.framework/ShareSheet
+
 - (void).cxx_destruct;
 - (void)_setActivityType:(id)arg1;
 - (bool)_shouldExecuteItemOperationForActivity:(id)arg1;
@@ -31,5 +33,9 @@
 - (id)providedItem;
 - (void)setPlaceholderItem:(id)arg1;
 - (void)setProvidedItem:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
+
++ (bool)activityTypeShouldProvideImage:(id)arg1;
 
 @end

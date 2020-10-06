@@ -13,6 +13,8 @@
 @property (nonatomic, retain) CNPropertyGroupItem *propertyItem;
 @property (nonatomic, readonly) UITextField *textField;
 
++ (bool)shouldIndentWhileEditing;
+
 - (void).cxx_destruct;
 - (id)constantConstraints;
 - (void)contentSizeCategoryDidChange:(id)arg1;
@@ -26,7 +28,6 @@
 - (void)setCardGroupItem:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setPropertyItem:(id)arg1;
-- (bool)shouldIndentWhileEditing;
 - (id)textField;
 - (void)textFieldChanged:(id)arg1;
 - (void)traitCollectionDidChange:(id)arg1;

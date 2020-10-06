@@ -7,8 +7,8 @@
     NSData * _sharingInvitationData;
 }
 
-@property (nonatomic, retain) NSURL *shareURL;
-@property (nonatomic, retain) NSData *sharingInvitationData;
+@property (nonatomic, readonly, copy) NSURL *shareURL;
+@property (nonatomic, readonly, copy) NSData *sharingInvitationData;
 
 + (bool)supportsSecureCoding;
 
@@ -20,11 +20,8 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithSharingInvitationData:(id)arg1;
 - (id)initWithSharingInvitationData:(id)arg1 shareURL:(id)arg2;
 - (bool)isEqual:(id)arg1;
-- (void)setShareURL:(id)arg1;
-- (void)setSharingInvitationData:(id)arg1;
 - (id)shareURL;
 - (id)sharingInvitationData;
 

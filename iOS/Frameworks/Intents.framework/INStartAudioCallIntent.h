@@ -21,6 +21,7 @@
 + (id)_ignoredParameters;
 
 - (id)_categoryVerb;
+- (id)_currentParameterCombination;
 - (id)_dictionaryRepresentation;
 - (long long)_intentCategory;
 - (id)_metadata;
@@ -28,7 +29,6 @@
 - (void)_setMetadata:(id)arg1;
 - (id)_spotlightContentType;
 - (id)_subtitleWithLocalizer:(id)arg1 fromBundleURL:(id)arg2;
-- (bool)_supportsBackgroundExecution;
 - (id)_typedBackingStore;
 - (id)_validParameterCombinationsWithSchema:(id)arg1;
 - (long long)audioRoute;
@@ -54,6 +54,10 @@
 - (long long)ttyType;
 - (bool)useSpeaker;
 - (id)verb;
+
+// Image: /System/Library/PrivateFrameworks/AppPredictionInternal.framework/AppPredictionInternal
+
+- (void)atx_getArgsInto:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
 

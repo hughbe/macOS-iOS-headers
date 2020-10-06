@@ -3,14 +3,23 @@
  */
 
 @interface GEOLogMsgStateMapSettings : PBCodable <NSCopying> {
+    bool  _avoidBusyRoads;
     bool  _avoidHighways;
+    bool  _avoidHills;
+    bool  _avoidStairs;
     bool  _avoidTolls;
+    bool  _eBike;
     bool  _findMyCarEnabled;
     struct { 
+        unsigned int has_locationType : 1; 
         unsigned int has_navVoiceVolume : 1; 
         unsigned int has_preferredTransportMode : 1; 
+        unsigned int has_avoidBusyRoads : 1; 
         unsigned int has_avoidHighways : 1; 
+        unsigned int has_avoidHills : 1; 
+        unsigned int has_avoidStairs : 1; 
         unsigned int has_avoidTolls : 1; 
+        unsigned int has_eBike : 1; 
         unsigned int has_findMyCarEnabled : 1; 
         unsigned int has_headingEnabled : 1; 
         unsigned int has_labelEnabled : 1; 
@@ -20,6 +29,7 @@
     }  _flags;
     bool  _headingEnabled;
     bool  _labelEnabled;
+    int  _locationType;
     int  _navVoiceVolume;
     bool  _pauseSpokenAudioEnabled;
     int  _preferredTransportMode;
@@ -27,14 +37,23 @@
     bool  _trafficEnabled;
 }
 
+@property (nonatomic) bool avoidBusyRoads;
 @property (nonatomic) bool avoidHighways;
+@property (nonatomic) bool avoidHills;
+@property (nonatomic) bool avoidStairs;
 @property (nonatomic) bool avoidTolls;
+@property (nonatomic) bool eBike;
 @property (nonatomic) bool findMyCarEnabled;
+@property (nonatomic) bool hasAvoidBusyRoads;
 @property (nonatomic) bool hasAvoidHighways;
+@property (nonatomic) bool hasAvoidHills;
+@property (nonatomic) bool hasAvoidStairs;
 @property (nonatomic) bool hasAvoidTolls;
+@property (nonatomic) bool hasEBike;
 @property (nonatomic) bool hasFindMyCarEnabled;
 @property (nonatomic) bool hasHeadingEnabled;
 @property (nonatomic) bool hasLabelEnabled;
+@property (nonatomic) bool hasLocationType;
 @property (nonatomic) bool hasNavVoiceVolume;
 @property (nonatomic) bool hasPauseSpokenAudioEnabled;
 @property (nonatomic) bool hasPreferredTransportMode;
@@ -42,6 +61,7 @@
 @property (nonatomic) bool hasTrafficEnabled;
 @property (nonatomic) bool headingEnabled;
 @property (nonatomic) bool labelEnabled;
+@property (nonatomic) int locationType;
 @property (nonatomic) int navVoiceVolume;
 @property (nonatomic) bool pauseSpokenAudioEnabled;
 @property (nonatomic) int preferredTransportMode;
@@ -50,20 +70,30 @@
 
 + (bool)isValid:(id)arg1;
 
+- (int)StringAsLocationType:(id)arg1;
 - (int)StringAsNavVoiceVolume:(id)arg1;
 - (int)StringAsPreferredTransportMode:(id)arg1;
+- (bool)avoidBusyRoads;
 - (bool)avoidHighways;
+- (bool)avoidHills;
+- (bool)avoidStairs;
 - (bool)avoidTolls;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (bool)eBike;
 - (bool)findMyCarEnabled;
+- (bool)hasAvoidBusyRoads;
 - (bool)hasAvoidHighways;
+- (bool)hasAvoidHills;
+- (bool)hasAvoidStairs;
 - (bool)hasAvoidTolls;
+- (bool)hasEBike;
 - (bool)hasFindMyCarEnabled;
 - (bool)hasHeadingEnabled;
 - (bool)hasLabelEnabled;
+- (bool)hasLocationType;
 - (bool)hasNavVoiceVolume;
 - (bool)hasPauseSpokenAudioEnabled;
 - (bool)hasPreferredTransportMode;
@@ -71,8 +101,13 @@
 - (bool)hasTrafficEnabled;
 - (unsigned long long)hash;
 - (bool)headingEnabled;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (bool)labelEnabled;
+- (int)locationType;
+- (id)locationTypeAsString:(int)arg1;
 - (void)mergeFrom:(id)arg1;
 - (int)navVoiceVolume;
 - (id)navVoiceVolumeAsString:(int)arg1;
@@ -81,14 +116,23 @@
 - (id)preferredTransportModeAsString:(int)arg1;
 - (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
+- (void)setAvoidBusyRoads:(bool)arg1;
 - (void)setAvoidHighways:(bool)arg1;
+- (void)setAvoidHills:(bool)arg1;
+- (void)setAvoidStairs:(bool)arg1;
 - (void)setAvoidTolls:(bool)arg1;
+- (void)setEBike:(bool)arg1;
 - (void)setFindMyCarEnabled:(bool)arg1;
+- (void)setHasAvoidBusyRoads:(bool)arg1;
 - (void)setHasAvoidHighways:(bool)arg1;
+- (void)setHasAvoidHills:(bool)arg1;
+- (void)setHasAvoidStairs:(bool)arg1;
 - (void)setHasAvoidTolls:(bool)arg1;
+- (void)setHasEBike:(bool)arg1;
 - (void)setHasFindMyCarEnabled:(bool)arg1;
 - (void)setHasHeadingEnabled:(bool)arg1;
 - (void)setHasLabelEnabled:(bool)arg1;
+- (void)setHasLocationType:(bool)arg1;
 - (void)setHasNavVoiceVolume:(bool)arg1;
 - (void)setHasPauseSpokenAudioEnabled:(bool)arg1;
 - (void)setHasPreferredTransportMode:(bool)arg1;
@@ -96,6 +140,7 @@
 - (void)setHasTrafficEnabled:(bool)arg1;
 - (void)setHeadingEnabled:(bool)arg1;
 - (void)setLabelEnabled:(bool)arg1;
+- (void)setLocationType:(int)arg1;
 - (void)setNavVoiceVolume:(int)arg1;
 - (void)setPauseSpokenAudioEnabled:(bool)arg1;
 - (void)setPreferredTransportMode:(int)arg1;

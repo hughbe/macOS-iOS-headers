@@ -3,27 +3,26 @@
  */
 
 @interface WebCoreAVFLoaderDelegate : NSObject <AVAssetResourceLoaderDelegate> {
-    struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC> { 
-        struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-            struct WeakPtrImpl {} *m_ptr; 
+    struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC, WTF::EmptyCounter> { 
+        struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { 
+            struct WeakPtrImpl<WTF::EmptyCounter> {} *m_ptr; 
         } m_impl; 
     }  m_player;
     struct GenericTaskQueue<WebCore::Timer> { 
-        struct WeakPtrFactory<WebCore::GenericTaskQueue<WebCore::Timer> > { 
-            struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-                struct WeakPtrImpl {} *m_ptr; 
+        struct WeakPtrFactory<WebCore::GenericTaskQueue<WebCore::Timer>, WTF::EmptyCounter> { 
+            struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { 
+                struct WeakPtrImpl<WTF::EmptyCounter> {} *m_ptr; 
             } m_impl; 
         } m_weakPtrFactory; 
-        struct TaskDispatcher<WebCore::Timer> { 
-            struct WeakPtrFactory<WebCore::TaskDispatcher<WebCore::Timer> > { 
-                struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { 
-                    struct WeakPtrImpl {} *m_ptr; 
-                } m_impl; 
-            } m_weakPtrFactory; 
-            struct Deque<WTF::Function<void ()>, 0>="m_start"Q"m_end"Q"m_buffer"{VectorBuffer<WTF::Function<void ()>, 0, WTF::FastMalloc>="m_buffer"^{Function<void ()> {} m_pendingTasks; 
-            unsigned int m_capacity; 
-            unsigned int m_size; 
+        struct UniqueRef<WebCore::TaskDispatcher<WebCore::Timer> > { 
+            struct unique_ptr<WebCore::TaskDispatcher<WebCore::Timer>, std::__1::default_delete<WebCore::TaskDispatcher<WebCore::Timer> > > { 
+                struct __compressed_pair<WebCore::TaskDispatcher<WebCore::Timer> *, std::__1::default_delete<WebCore::TaskDispatcher<WebCore::Timer> > > { 
+                    struct TaskDispatcher<WebCore::Timer> {} *__value_; 
+                } __ptr_; 
+            } m_ref; 
         } m_dispatcher; 
+        unsigned int m_pendingTasks; 
+        bool m_isClosed; 
     }  m_taskQueue;
 }
 
@@ -34,7 +33,7 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)initWithPlayer:(struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC> { struct RefPtr<WTF::WeakPtrImpl, WTF::DumbPtrTraits<WTF::WeakPtrImpl> > { struct WeakPtrImpl {} *x_1_1_1; } x1; }*)arg1;
+- (id)initWithPlayer:(struct WeakPtr<WebCore::MediaPlayerPrivateAVFoundationObjC, WTF::EmptyCounter> { struct RefPtr<WTF::WeakPtrImpl<WTF::EmptyCounter>, WTF::DumbPtrTraits<WTF::WeakPtrImpl<WTF::EmptyCounter> > > { struct WeakPtrImpl<WTF::EmptyCounter> {} *x_1_1_1; } x1; }*)arg1;
 - (void)resourceLoader:(id)arg1 didCancelLoadingRequest:(id)arg2;
 - (bool)resourceLoader:(id)arg1 shouldWaitForLoadingOfRequestedResource:(id)arg2;
 - (bool)resourceLoader:(id)arg1 shouldWaitForResponseToAuthenticationChallenge:(id)arg2;

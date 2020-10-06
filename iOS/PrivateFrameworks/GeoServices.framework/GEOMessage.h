@@ -20,6 +20,7 @@
 @property (nonatomic, readonly) NSDictionary *userInfo;
 
 - (void).cxx_destruct;
+- (id)init;
 - (id)initWithXPCMessage:(id)arg1 peer:(id)arg2;
 - (id)messageName;
 - (id)peer;

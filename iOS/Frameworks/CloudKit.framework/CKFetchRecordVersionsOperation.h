@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@interface CKFetchRecordVersionsOperation : CKDatabaseOperation {
+@interface CKFetchRecordVersionsOperation : CKDatabaseOperation <CKFetchRecordVersionsOperationCallbacks> {
     NSArray * _desiredKeys;
     id /* block */  _fetchRecordVersionsCompletionBlock;
     id /* block */  _fetchRecordVersionsProgressBlock;
@@ -13,26 +13,31 @@
     bool  _shouldFetchAssetContent;
 }
 
+@property (nonatomic, readonly) <CKFetchRecordVersionsOperationCallbacks> *clientOperationCallbackProxy;
 @property (nonatomic, copy) NSArray *desiredKeys;
 @property (nonatomic, copy) id /* block */ fetchRecordVersionsCompletionBlock;
 @property (nonatomic, copy) id /* block */ fetchRecordVersionsProgressBlock;
 @property (nonatomic) bool isDeleted;
 @property (nonatomic, copy) NSString *minimumVersionETag;
+@property (nonatomic, readonly) CKFetchRecordVersionsOperationInfo *operationInfo;
 @property (nonatomic, retain) NSMutableDictionary *recordErrors;
 @property (nonatomic, copy) NSArray *recordIDs;
 @property (nonatomic) bool shouldFetchAssetContent;
 
++ (void)applyDaemonCallbackInterfaceTweaks:(id)arg1;
+
 - (void).cxx_destruct;
 - (bool)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
-- (void)_handleProgressCallback:(id)arg1;
 - (id)activityCreate;
 - (id)desiredKeys;
 - (id /* block */)fetchRecordVersionsCompletionBlock;
 - (id /* block */)fetchRecordVersionsProgressBlock;
 - (void)fillFromOperationInfo:(id)arg1;
 - (void)fillOutOperationInfo:(id)arg1;
+- (void)handleFetchForRecordID:(id)arg1 isDeleted:(bool)arg2 versions:(id)arg3 error:(id)arg4;
 - (bool)hasCKOperationCallbacksSet;
+- (id)init;
 - (id)initWithRecordIDs:(id)arg1;
 - (bool)isDeleted;
 - (id)minimumVersionETag;

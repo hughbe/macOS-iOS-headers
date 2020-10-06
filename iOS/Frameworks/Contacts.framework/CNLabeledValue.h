@@ -31,20 +31,18 @@
 
 // Image: /System/Library/Frameworks/Contacts.framework/Contacts
 
++ (id /* block */)Value;
 + (id)allValuesInArray:(id)arg1;
 + (id)emptyEntries;
 + (id)entriesByUnifyingEntryArrays:(id)arg1 forProperty:(id)arg2;
 + (id)entryForIdentifier:(id)arg1 inArray:(id)arg2;
 + (id)entryWithIdentifier:(id)arg1 label:(id)arg2 value:(id)arg3;
 + (id)firstLabeledValueWithValue:(id)arg1 inArray:(id)arg2;
-+ (id)identifierProvider;
 + (bool)isArrayOfEntries:(id)arg1 equalToArrayOfEntriesIgnoringIdentifiers:(id)arg2;
 + (id)labelForIdentifier:(id)arg1 inArray:(id)arg2;
 + (id)labeledValueWithIdentifier:(id)arg1 inArray:(id)arg2;
 + (id)labeledValueWithLabel:(id)arg1 value:(id)arg2;
 + (id)localizedStringForLabel:(id)arg1;
-+ (id)makeIdentifier;
-+ (id)propertyDescriptionOwnersByLabel;
 + (bool)supportsSecureCoding;
 + (id /* block */)testMatchingIdentifier:(id)arg1;
 + (id)valueForIdentifier:(id)arg1 inArray:(id)arg2;
@@ -63,8 +61,6 @@
 - (id)initWithLabel:(id)arg1 value:(id)arg2;
 - (bool)isEqual:(id)arg1;
 - (bool)isEqualIgnoringIdentifiers:(id)arg1;
-- (bool)isEqualToLabeledValue:(id)arg1;
-- (bool)isEqualToLabeledValue:(id)arg1 includeIdentifiers:(bool)arg2;
 - (bool)isSuggested;
 - (id)label;
 - (id)labelValuePair;
@@ -104,5 +100,9 @@
 - (Class)contactViewControllerCellClassForPropertyType:(id)arg1;
 - (id)localizedLabel;
 - (id)localizedLabel;
+
+// Image: /System/Library/PrivateFrameworks/RemindersUICore.framework/RemindersUICore
+
++ (id)ttr_localizedAddressTitleForLabel:(id)arg1 contact:(id)arg2;
 
 @end

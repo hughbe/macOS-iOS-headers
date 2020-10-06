@@ -20,20 +20,9 @@
     _DKSyncType * _type;
 }
 
-+ (void)_updateEventStatsWithPreviousSyncDate:(id)arg1 transportType:(long long)arg2;
-+ (void)_updateEventStatsWithTotal:(unsigned long long)arg1 transportType:(long long)arg2;
-
 - (void).cxx_destruct;
 - (void)endOperation;
-- (void)endPerfMetrics;
-- (bool)existsAdditionsSyncHistory;
-- (void)handleUpdateStorageWithStartDate:(id)arg1 endDate:(id)arg2 deletedEventIDsCount:(unsigned long long)arg3 orError:(id)arg4;
-- (id)initWithParent:(id)arg1 sibling:(id)arg2 localStorage:(id)arg3 transport:(id)arg4 peer:(id)arg5 policy:(id)arg6 type:(id)arg7;
 - (bool)isAsynchronous;
 - (void)main;
-- (void)performSyncUpHistoryDeletions;
-- (void)performSyncUpHistoryDeletionsWithDeletionsHighWaterMark:(id)arg1 orError:(id)arg2;
-- (void)performSyncUpHistoryDeletionsWithPreviousHighWaterMark:(id)arg1;
-- (void)startPerfMetrics;
 
 @end

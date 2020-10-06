@@ -16,20 +16,18 @@
 @property (nonatomic, retain) UIView *scrubView;
 @property unsigned long long selectedIndex;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
++ (bool)wantsScreenTraits;
 
 - (void)animateScrubberToRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })categorySelectedCircleRect:(long long)arg1;
+- (void)dealloc;
 - (void)didMoveToWindow;
 - (void)dimKeys:(id)arg1;
 - (id)emojiGraphicsTraits;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })frameForDivider:(int)arg1;
 - (id)hitTestResponder;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 keyplane:(id)arg2 key:(id)arg3;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 keyplane:(id)arg2 key:(id)arg3 screenTraits:(id)arg4;
 - (void)prepareForDisplay;
 - (id)scrubView;
 - (unsigned long long)selectedIndex;

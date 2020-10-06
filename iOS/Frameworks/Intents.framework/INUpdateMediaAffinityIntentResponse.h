@@ -2,13 +2,15 @@
    Image: /System/Library/Frameworks/Intents.framework/Intents
  */
 
-@interface INUpdateMediaAffinityIntentResponse : INIntentResponse <INUpdateMediaAffinityIntentResponseExport>
+@interface INUpdateMediaAffinityIntentResponse : INIntentResponse <CMSCoding, INUpdateMediaAffinityIntentResponseExport>
 
 @property (nonatomic, readonly) long long code;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/Intents.framework/Intents
 
 + (bool)_appLaunchRequestedFromCode:(long long)arg1;
 + (long long)_codeFromType:(int)arg1 errorCode:(int)arg2 appLaunchRequested:(bool)arg3;
@@ -28,5 +30,11 @@
 - (id)initWithCoder:(id)arg1;
 - (id)propertiesByName;
 - (void)setPropertiesByName:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CloudMediaServicesInterfaceKit.framework/CloudMediaServicesInterfaceKit
+
++ (id)instanceFromCMSCoded:(id)arg1;
+
+- (id)cmsCoded;
 
 @end

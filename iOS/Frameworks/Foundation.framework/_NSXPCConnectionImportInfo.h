@@ -12,11 +12,7 @@
     void * _secTaskRef;
 }
 
-- (void)_clearEntitlementCache;
-- (id)_valueForEntitlement:(id)arg1 auditToken:(struct { unsigned int x1[8]; })arg2;
-- (void)addProxy:(id)arg1;
 - (void)dealloc;
 - (id)init;
-- (bool)removeProxy:(id)arg1;
 
 @end

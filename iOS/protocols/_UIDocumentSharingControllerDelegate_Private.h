@@ -5,6 +5,7 @@
 
 @optional
 
+- (void)_cloudSharingControllerDidChooseTransport:(UIDocumentSharingController *)arg1 transport:(NSString *)arg2;
 - (void)_documentSharingControllerDidDismiss:(UIDocumentSharingController *)arg1;
 - (void)_documentSharingControllerDidModifyShare:(UIDocumentSharingController *)arg1;
 - (void)_documentSharingControllerDidStopSharing:(UIDocumentSharingController *)arg1;

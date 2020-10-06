@@ -7,8 +7,11 @@
     NSString * _cachedSystemPersonaIdentifier;
     struct os_unfair_lock_s { 
         unsigned int _os_unfair_lock_opaque; 
-    }  _lock;
+    }  _ivarLock;
     bool  _registered;
+    struct os_unfair_lock_s { 
+        unsigned int _os_unfair_lock_opaque; 
+    }  _uncachedCalloutLock;
 }
 
 @property (readonly, copy) NSString *debugDescription;

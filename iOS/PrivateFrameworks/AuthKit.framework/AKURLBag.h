@@ -22,7 +22,10 @@
 @property (nonatomic, readonly) NSURL *checkInURL;
 @property (nonatomic, readonly) NSURL *circleURL;
 @property (nonatomic, readonly) NSURL *configurationInfoURL;
+@property (nonatomic, readonly) NSString *continuationHeaderPrefix;
 @property (nonatomic, readonly) NSURL *createAppleIDURL;
+@property (nonatomic, readonly) NSURL *createChildAccountURL;
+@property (nonatomic, readonly) NSURL *deleteAuthorizedAppURL;
 @property (nonatomic, readonly) NSURL *deviceListURL;
 @property (nonatomic, readonly) NSURL *endProvisioningURL;
 @property (nonatomic, readonly) NSURL *escapeHatchURL;
@@ -40,6 +43,7 @@
 @property (getter=isPhoneNumberSupportedConfig, nonatomic, readonly) bool phoneNumberSupportedConfig;
 @property (nonatomic, readonly) NSURL *renewRecoveryTokenURL;
 @property (nonatomic, readonly) NSURL *repairURL;
+@property (nonatomic, readonly) NSArray *securityUpgradeServiceNames;
 @property (nonatomic, readonly) NSURL *startProvisioningURL;
 @property (nonatomic, readonly) NSURL *storeModernRecoveryURL;
 @property (nonatomic, readonly) NSURL *syncAnisetteURL;
@@ -86,7 +90,10 @@
 - (id)configurationAtKey:(id)arg1;
 - (id)configurationAtKey:(id)arg1 fromCache:(bool)arg2;
 - (id)configurationInfoURL;
+- (id)continuationHeaderPrefix;
 - (id)createAppleIDURL;
+- (id)createChildAccountURL;
+- (id)deleteAuthorizedAppURL;
 - (id)deviceListURL;
 - (id)endProvisioningURL;
 - (id)escapeHatchURL;
@@ -107,6 +114,7 @@
 - (id)repairURL;
 - (void)requestNewURLBagIfNecessaryWithCompletion:(id /* block */)arg1;
 - (bool)requestNewURLBagIfNecessaryWithError:(id*)arg1;
+- (id)securityUpgradeServiceNames;
 - (void)setAltDSID:(id)arg1;
 - (void)setBagProvider:(id)arg1;
 - (id)startProvisioningURL;

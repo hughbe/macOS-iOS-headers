@@ -18,11 +18,14 @@
 @property (nonatomic, readonly) long long expectedContentLength;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) SSMetricsPageEvent *metricsPageEvent;
+@property (nonatomic, readonly) NSData *radio_decompressedBodyData;
 @property (nonatomic, readonly) bool ssv_isExpiredResponse;
 @property (nonatomic, readonly) NSString *storeCorrelationID;
 @property (nonatomic, readonly) NSString *suggestedFilename;
 @property (readonly) Class superclass;
 @property (nonatomic, readonly) NSString *textEncodingName;
+
+// Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
 
 - (id)MIMEType;
 - (id)URL;
@@ -43,5 +46,9 @@
 - (id)storeCorrelationID;
 - (id)suggestedFilename;
 - (id)textEncodingName;
+
+// Image: /System/Library/PrivateFrameworks/Radio.framework/Radio
+
+- (id)radio_decompressedBodyData;
 
 @end

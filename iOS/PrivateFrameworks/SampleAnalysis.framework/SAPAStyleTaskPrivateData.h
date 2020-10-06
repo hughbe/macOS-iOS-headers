@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SampleAnalysis.framework/SampleAnalysis
  */
 
-@interface SAPAStyleTaskPrivateData : NSObject {
+@interface SAPAStyleTaskPrivateData : NSObject <SASerializable> {
     int  _cow_faults;
     int  _faults;
     unsigned int  _latency_qos;
@@ -16,46 +16,17 @@
     unsigned long long  _terminatedThreadsUserTimeInNs;
 }
 
-@property int cow_faults;
-@property int faults;
-@property unsigned int latency_qos;
-@property int pageins;
-@property unsigned long long ss_flags;
-@property int suspend_count;
-@property unsigned long long task_size_bytes;
-@property unsigned long long terminatedThreadsCycles;
-@property unsigned long long terminatedThreadsInstructions;
-@property unsigned long long terminatedThreadsSystemTimeInNs;
-@property unsigned long long terminatedThreadsUserTimeInNs;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
+@property (readonly) Class superclass;
 
 + (id)classDictionaryKey;
-+ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const struct { unsigned long long x1; unsigned long long x2; unsigned long long x3; int x4; int x5; int x6; int x7; unsigned int x8; unsigned long long x9; unsigned long long x10; unsigned long long x11; unsigned long long x12; }*)arg1 bufferLength:(unsigned long long)arg2;
++ (id)newInstanceWithoutReferencesFromSerializedBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2;
 
 - (bool)addSelfToBuffer:(void*)arg1 bufferLength:(unsigned long long)arg2 withCompletedSerializationDictionary:(id)arg3;
 - (void)addSelfToSerializationDictionary:(id)arg1;
-- (int)cow_faults;
-- (int)faults;
-- (unsigned int)latency_qos;
-- (int)pageins;
 - (void)populateReferencesUsingBuffer:(const void*)arg1 bufferLength:(unsigned long long)arg2 andDeserializationDictionary:(id)arg3 andDataBufferDictionary:(id)arg4;
-- (void)setCow_faults:(int)arg1;
-- (void)setFaults:(int)arg1;
-- (void)setLatency_qos:(unsigned int)arg1;
-- (void)setPageins:(int)arg1;
-- (void)setSs_flags:(unsigned long long)arg1;
-- (void)setSuspend_count:(int)arg1;
-- (void)setTask_size_bytes:(unsigned long long)arg1;
-- (void)setTerminatedThreadsCycles:(unsigned long long)arg1;
-- (void)setTerminatedThreadsInstructions:(unsigned long long)arg1;
-- (void)setTerminatedThreadsSystemTimeInNs:(unsigned long long)arg1;
-- (void)setTerminatedThreadsUserTimeInNs:(unsigned long long)arg1;
 - (unsigned long long)sizeInBytesForSerializedVersion;
-- (unsigned long long)ss_flags;
-- (int)suspend_count;
-- (unsigned long long)task_size_bytes;
-- (unsigned long long)terminatedThreadsCycles;
-- (unsigned long long)terminatedThreadsInstructions;
-- (unsigned long long)terminatedThreadsSystemTimeInNs;
-- (unsigned long long)terminatedThreadsUserTimeInNs;
 
 @end

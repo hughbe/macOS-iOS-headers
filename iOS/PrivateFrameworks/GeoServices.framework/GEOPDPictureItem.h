@@ -9,11 +9,7 @@
         unsigned int read_photo : 1; 
         unsigned int read_primaryText : 1; 
         unsigned int read_secondaryText : 1; 
-        unsigned int wrote_unknownFields : 1; 
-        unsigned int wrote_photo : 1; 
-        unsigned int wrote_primaryText : 1; 
-        unsigned int wrote_secondaryText : 1; 
-        unsigned int wrote_photoItemType : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     GEOPDPhoto * _photo;
     int  _photoItemType;
@@ -42,9 +38,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsPhotoItemType:(id)arg1;
-- (void)_readPhoto;
-- (void)_readPrimaryText;
-- (void)_readSecondaryText;
 - (void)clearUnknownFields:(bool)arg1;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -57,7 +50,10 @@
 - (unsigned long long)hash;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)photo;
 - (int)photoItemType;

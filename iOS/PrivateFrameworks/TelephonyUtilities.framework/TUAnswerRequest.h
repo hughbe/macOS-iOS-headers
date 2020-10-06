@@ -3,6 +3,7 @@
  */
 
 @interface TUAnswerRequest : NSObject <NSSecureCoding, TUCallRequest, TUVideoRequest> {
+    bool  _allowBluetoothAnswerWithoutDowngrade;
     long long  _behavior;
     NSDate * _dateAnswered;
     bool  _downgradeToAudio;
@@ -23,6 +24,7 @@
     bool  _wantsHoldMusic;
 }
 
+@property (nonatomic) bool allowBluetoothAnswerWithoutDowngrade;
 @property (nonatomic) long long behavior;
 @property (nonatomic, retain) NSDate *dateAnswered;
 @property (readonly, copy) NSString *debugDescription;
@@ -43,6 +45,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (bool)allowBluetoothAnswerWithoutDowngrade;
 - (long long)behavior;
 - (id)dateAnswered;
 - (id)description;
@@ -58,6 +61,7 @@
 - (struct CGSize { double x1; double x2; })localLandscapeAspectRatio;
 - (struct CGSize { double x1; double x2; })localPortraitAspectRatio;
 - (bool)pauseVideoToStart;
+- (void)setAllowBluetoothAnswerWithoutDowngrade:(bool)arg1;
 - (void)setBehavior:(long long)arg1;
 - (void)setDateAnswered:(id)arg1;
 - (void)setDowngradeToAudio:(bool)arg1;

@@ -17,6 +17,7 @@
         unsigned long long tessellationOutputWindingOrder; 
         unsigned long long postVertexDumpBufferIndex; 
         bool supportIndirectCommandBuffers; 
+        long long textureWriteRoundingMode; 
         union { 
             unsigned long long sampleCount; 
             unsigned long long rasterSampleCount; 
@@ -35,7 +36,7 @@
                 unsigned int alphaToOneEnabled : 1; 
                 unsigned int rasterizationEnabled : 1; 
                 unsigned int inputPrimitiveTopology : 2; 
-                unsigned int vertexEnabled : 1; 
+                unsigned int private0 : 1; 
                 unsigned int depthStencilWriteDisabled : 1; 
                 unsigned int openGLMode : 1; 
                 unsigned int sampleCoverageInvert : 1; 
@@ -67,16 +68,20 @@
         <MTLPipelineLibrary> *pipelineLibrary; 
         void *pad0; 
         void *pad1; 
+        NSDictionary *pluginData; 
+        bool needsCustomBorderColorSamplers; 
         unsigned int maxVertexAmplificationCount; 
+        NSArray *binaryArchives; 
     }  _private;
 }
 
 @property (nonatomic) bool forceSoftwareVertexFetch;
 @property (nonatomic) unsigned long long postVertexDumpBufferIndex;
 
-- (const struct MTLRenderPipelineDescriptorPrivate { id x1; unsigned long long x2[8]; unsigned long long x3; unsigned long long x4; unsigned long long x5; unsigned long long x6; bool x7; unsigned long long x8; unsigned long long x9; unsigned long long x10; unsigned long long x11; unsigned long long x12; bool x13; union { unsigned long long x_14_1_1; unsigned long long x_14_1_2; } x14; unsigned long long x15; union { unsigned int x_16_1_1; float x_16_1_2; } x16; unsigned long long x17; unsigned long long x18; union { unsigned int x_19_1_1[2]; struct { unsigned int x_2_2_1 : 1; unsigned int x_2_2_2 : 1; unsigned int x_2_2_3 : 1; unsigned int x_2_2_4 : 2; unsigned int x_2_2_5 : 1; unsigned int x_2_2_6 : 1; unsigned int x_2_2_7 : 1; unsigned int x_2_2_8 : 1; unsigned int x_2_2_9 : 1; unsigned int x_2_2_10 : 1; unsigned int x_2_2_11 : 1; unsigned int x_2_2_12 : 1; unsigned int x_2_2_13 : 1; unsigned int x_2_2_14 : 1; unsigned int x_2_2_15 : 8; unsigned int x_2_2_16 : 3; unsigned int x_2_2_17 : 1; unsigned int x_2_2_18 : 4; unsigned int x_2_2_19 : 1; unsigned int x_2_2_20 : 1; unsigned int x_2_2_21 : 1; } x_19_1_2; } x19; }*)_descriptorPrivate;
+- (const struct MTLRenderPipelineDescriptorPrivate { id x1; unsigned long long x2[8]; unsigned long long x3; unsigned long long x4; unsigned long long x5; unsigned long long x6; bool x7; unsigned long long x8; unsigned long long x9; unsigned long long x10; unsigned long long x11; unsigned long long x12; bool x13; long long x14; union { unsigned long long x_15_1_1; unsigned long long x_15_1_2; } x15; unsigned long long x16; union { unsigned int x_17_1_1; float x_17_1_2; } x17; unsigned long long x18; unsigned long long x19; union { unsigned int x_20_1_1[2]; struct { unsigned int x_2_2_1 : 1; unsigned int x_2_2_2 : 1; unsigned int x_2_2_3 : 1; unsigned int x_2_2_4 : 2; unsigned int x_2_2_5 : 1; unsigned int x_2_2_6 : 1; unsigned int x_2_2_7 : 1; unsigned int x_2_2_8 : 1; unsigned int x_2_2_9 : 1; unsigned int x_2_2_10 : 1; unsigned int x_2_2_11 : 1; unsigned int x_2_2_12 : 1; unsigned int x_2_2_13 : 1; unsigned int x_2_2_14 : 1; unsigned int x_2_2_15 : 8; unsigned int x_2_2_16 : 3; unsigned int x_2_2_17 : 1; unsigned int x_2_2_18 : 4; unsigned int x_2_2_19 : 1; unsigned int x_2_2_20 : 1; unsigned int x_2_2_21 : 1; } x_20_1_2; } x20; }*)_descriptorPrivate;
 - (unsigned long long)alphaTestFunction;
 - (void)attachVertexDescriptor:(id)arg1;
+- (id)binaryArchives;
 - (unsigned char)clipDistanceEnableMask;
 - (id)colorAttachments;
 - (unsigned long long)colorSampleCount;
@@ -107,16 +112,17 @@
 - (bool)isRasterizationEnabled;
 - (bool)isTessellationFactorScaleEnabled;
 - (bool)isTwoSideEnabled;
-- (bool)isVertexEnabled;
 - (id)label;
 - (unsigned long long)logicOperation;
 - (unsigned long long)maxTessellationFactor;
 - (unsigned long long)maxVertexAmplificationCount;
+- (bool)needsCustomBorderColorSamplers;
 - (id)newSerializedFragmentDataWithFlags:(unsigned long long)arg1 options:(unsigned long long)arg2;
 - (id)newSerializedVertexDataWithFlags:(unsigned long long)arg1 error:(id*)arg2;
 - (id)newSerializedVertexDataWithFlags:(unsigned long long)arg1 options:(unsigned long long)arg2 error:(id*)arg3;
 - (bool)openGLModeEnabled;
 - (id)pipelineLibrary;
+- (id)pluginData;
 - (unsigned long long)postVertexDumpBufferIndex;
 - (unsigned long long)rasterSampleCount;
 - (void)reset;
@@ -130,6 +136,7 @@
 - (void)setAlphaTestFunction:(unsigned long long)arg1;
 - (void)setAlphaToCoverageEnabled:(bool)arg1;
 - (void)setAlphaToOneEnabled:(bool)arg1;
+- (void)setBinaryArchives:(id)arg1;
 - (void)setClipDistanceEnableMask:(unsigned char)arg1;
 - (void)setColorSampleCount:(unsigned long long)arg1;
 - (void)setDepthAttachmentPixelFormat:(unsigned long long)arg1;
@@ -145,8 +152,10 @@
 - (void)setLogicOperationEnabled:(bool)arg1;
 - (void)setMaxTessellationFactor:(unsigned long long)arg1;
 - (void)setMaxVertexAmplificationCount:(unsigned long long)arg1;
+- (void)setNeedsCustomBorderColorSamplers:(bool)arg1;
 - (void)setOpenGLModeEnabled:(bool)arg1;
 - (void)setPipelineLibrary:(id)arg1;
+- (void)setPluginData:(id)arg1;
 - (void)setPointCoordLowerLeft:(bool)arg1;
 - (void)setPointSizeOutputVS:(bool)arg1;
 - (void)setPointSmoothEnabled:(bool)arg1;
@@ -166,11 +175,12 @@
 - (void)setTessellationFactorStepFunction:(unsigned long long)arg1;
 - (void)setTessellationOutputWindingOrder:(unsigned long long)arg1;
 - (void)setTessellationPartitionMode:(unsigned long long)arg1;
+- (void)setTextureWriteFPRoundingMode:(long long)arg1;
+- (void)setTextureWriteRoundingMode:(long long)arg1;
 - (void)setTwoSideEnabled:(bool)arg1;
 - (void)setVertexAmplificationMode:(unsigned long long)arg1;
 - (void)setVertexDepthCompareClampMask:(unsigned int)arg1;
 - (void)setVertexDescriptor:(id)arg1;
-- (void)setVertexEnabled:(bool)arg1;
 - (void)setVertexFunction:(id)arg1;
 - (unsigned long long)stencilAttachmentPixelFormat;
 - (bool)supportIndirectCommandBuffers;
@@ -179,7 +189,10 @@
 - (unsigned long long)tessellationFactorStepFunction;
 - (unsigned long long)tessellationOutputWindingOrder;
 - (unsigned long long)tessellationPartitionMode;
+- (long long)textureWriteFPRoundingMode;
+- (long long)textureWriteRoundingMode;
 - (void)validateWithDevice:(id)arg1;
+- (bool)validateWithDevice:(id)arg1 error:(id*)arg2;
 - (unsigned long long)vertexAmplificationMode;
 - (id)vertexBuffers;
 - (unsigned int)vertexDepthCompareClampMask;

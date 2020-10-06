@@ -3,10 +3,11 @@
  */
 
 @interface UIKeyboardMenuView : UIView <UIDimmingViewDelegate, UITableViewDataSource, UITableViewDelegate> {
-    long long  _indexForSingleCell;
+    long long  _indexForSelectedFastSwitchMode;
+    long long  _indexForUnselectedFastSwitchMode;
     UIKeyboardLayoutStar * _layout;
     UIKBTree * _referenceKey;
-    bool  _showsSingleCellOnly;
+    bool  _showingCapsLockSwitcher;
     bool  _usesDarkTheme;
     bool  _usesStraightLeftEdge;
     UIKBKeyView * m_backgroundKeyView;
@@ -51,32 +52,28 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
-@property (nonatomic) long long indexForSingleCell;
+@property (nonatomic) long long indexForSelectedFastSwitchMode;
+@property (nonatomic) long long indexForUnselectedFastSwitchMode;
 @property (nonatomic) UIKeyboardLayoutStar *layout;
 @property (nonatomic) long long mode;
 @property (nonatomic) UIKBTree *referenceKey;
-@property (nonatomic) bool showsSingleCellOnly;
+@property (nonatomic) bool showingCapsLockSwitcher;
 @property (readonly) Class superclass;
 @property (nonatomic) bool usesDarkTheme;
 @property (nonatomic) bool usesStraightLeftEdge;
 @property (readonly) bool usesTable;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
 - (void)_delayedFade;
 - (unsigned long long)_internationalKeyRoundedCornerInLayout:(id)arg1;
 - (id)_renderConfig;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (void)applicationWillSuspend:(id)arg1;
 - (void)autoscrollTimerFired:(id)arg1;
 - (bool)centerPopUpOverKey;
 - (void)clear;
 - (id)containerView;
 - (void)customizeCell:(id)arg1 forItemAtIndex:(unsigned long long)arg2;
+- (void)dealloc;
 - (unsigned long long)defaultSelectedIndex;
 - (void)didSelectItemAtIndex:(unsigned long long)arg1;
 - (void)didShow;
@@ -90,7 +87,8 @@
 - (id)fontForItemAtIndex:(unsigned long long)arg1;
 - (void)hide;
 - (void)highlightRow:(unsigned long long)arg1;
-- (long long)indexForSingleCell;
+- (long long)indexForSelectedFastSwitchMode;
+- (long long)indexForUnselectedFastSwitchMode;
 - (id)indexPathForInputSwitcherCellIncludingInteractiveInsetsAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (id)inputView;
@@ -114,7 +112,8 @@
 - (void)selectItemAtPoint:(struct CGPoint { double x1; double x2; })arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setHighlightForRowAtIndexPath:(id)arg1 highlight:(bool)arg2;
-- (void)setIndexForSingleCell:(long long)arg1;
+- (void)setIndexForSelectedFastSwitchMode:(long long)arg1;
+- (void)setIndexForUnselectedFastSwitchMode:(long long)arg1;
 - (void)setKeyboardDimmed:(bool)arg1;
 - (void)setLayout:(id)arg1;
 - (void)setMode:(long long)arg1;
@@ -123,7 +122,7 @@
 - (void)setNeedsDisplayForTopBottomCells;
 - (void)setReferenceKey:(id)arg1;
 - (void)setRenderConfig:(id)arg1;
-- (void)setShowsSingleCellOnly:(bool)arg1;
+- (void)setShowingCapsLockSwitcher:(bool)arg1;
 - (void)setUsesDarkTheme:(bool)arg1;
 - (void)setUsesStraightLeftEdge:(bool)arg1;
 - (void)setupBackgroundKeyViewWithSize:(struct CGSize { double x1; double x2; })arg1;
@@ -135,7 +134,7 @@
 - (void)showAsHUD;
 - (void)showAsHUDFromLocation:(struct CGPoint { double x1; double x2; })arg1 withInputView:(id)arg2 touchBegan:(double)arg3;
 - (void)showAsPopupForKey:(id)arg1 inLayout:(id)arg2;
-- (bool)showsSingleCellOnly;
+- (bool)showingCapsLockSwitcher;
 - (void)stopAnyAutoscrolling;
 - (id)subtitleFont;
 - (id)subtitleFontForItemAtIndex:(unsigned long long)arg1;

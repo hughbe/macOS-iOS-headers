@@ -8,10 +8,7 @@
 
 + (Class)classForKeyedUnarchiver;
 
-- (void)_setTransaction:(id)arg1;
-- (Class)classForArchiver;
 - (Class)classForCoder;
 - (id)initWithPFBatchFaultingArray:(id)arg1;
-- (id)transaction;
 
 @end

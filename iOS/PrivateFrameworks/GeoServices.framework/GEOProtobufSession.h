@@ -4,7 +4,6 @@
 
 @interface GEOProtobufSession : NSObject {
     <GEODataSession> * _dataSession;
-    _Atomic unsigned long long  _lastTaskIdentifier;
 }
 
 @property (nonatomic, readonly) <GEODataSession> *dataSession;

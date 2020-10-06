@@ -16,7 +16,9 @@
     UILabel * _importantLabel;
     NSString * _importantMessage;
     NSDictionary * _importantTextAttributes;
+    bool  _isDowntimeContact;
     bool  _isEmergencyContact;
+    bool  _isRestrictedContact;
     double  _maxLabelsHeight;
     NSString * _message;
     double  _minLabelsHeight;
@@ -41,7 +43,9 @@
 @property (nonatomic, retain) UILabel *importantLabel;
 @property (nonatomic, retain) NSString *importantMessage;
 @property (nonatomic, copy) NSDictionary *importantTextAttributes;
+@property (nonatomic) bool isDowntimeContact;
 @property (nonatomic) bool isEmergencyContact;
+@property (nonatomic) bool isRestrictedContact;
 @property (nonatomic) double maxLabelsHeight;
 @property (nonatomic, retain) NSString *message;
 @property (nonatomic) double minLabelsHeight;
@@ -51,10 +55,11 @@
 @property (retain) UILabel *taglineLabel;
 @property (nonatomic, copy) NSDictionary *taglineTextAttributes;
 
-+ (id)contactHeaderViewWithContact:(id)arg1 allowsPhotoDrops:(bool)arg2 monogramOnly:(bool)arg3 delegate:(id)arg4;
-+ (id)contactHeaderViewWithContact:(id)arg1 monogramOnly:(bool)arg2 delegate:(id)arg3;
++ (id)contactHeaderViewWithContact:(id)arg1 allowsPhotoDrops:(bool)arg2 showingNavBar:(bool)arg3 monogramOnly:(bool)arg4 delegate:(id)arg5;
++ (id)contactHeaderViewWithContact:(id)arg1 showingNavBar:(bool)arg2 monogramOnly:(bool)arg3 delegate:(id)arg4;
 + (id)descriptorForRequiredKeysForContactFormatter:(id)arg1;
 + (id)makePhotoViewWithMonogrammerStyle:(long long)arg1 shouldAllowTakePhotoAction:(bool)arg2 shouldAllowImageDrops:(bool)arg3 monogramOnly:(bool)arg4;
++ (id)sizeAttributesShowingNavBar:(bool)arg1;
 
 - (void).cxx_destruct;
 - (id)_headerStringForContacts:(id)arg1;
@@ -75,6 +80,7 @@
 - (void)createGeminiViewIfNeeded;
 - (double)defaultMaxHeight;
 - (id)descriptorForRequiredKeys;
+- (void)didFinishUsing;
 - (void)disablePhotoTapGesture;
 - (id)downtimeTextAttributes;
 - (id)downtimeView;
@@ -87,9 +93,11 @@
 - (id)importantLabel;
 - (id)importantMessage;
 - (id)importantTextAttributes;
-- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 monogramOnly:(bool)arg3 delegate:(id)arg4;
-- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 monogrammerStyle:(long long)arg3 shouldAllowImageDrops:(bool)arg4 monogramOnly:(bool)arg5 delegate:(id)arg6;
+- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 monogrammerStyle:(long long)arg3 shouldAllowImageDrops:(bool)arg4 showingNavBar:(bool)arg5 monogramOnly:(bool)arg6 delegate:(id)arg7;
+- (id)initWithContact:(id)arg1 frame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 showingNavBar:(bool)arg3 monogramOnly:(bool)arg4 delegate:(id)arg5;
+- (bool)isDowntimeContact;
 - (bool)isEmergencyContact;
+- (bool)isRestrictedContact;
 - (void)layoutSubviews;
 - (double)maxHeight;
 - (double)maxLabelsHeight;
@@ -115,7 +123,9 @@
 - (void)setImportantLabel:(id)arg1;
 - (void)setImportantMessage:(id)arg1;
 - (void)setImportantTextAttributes:(id)arg1;
+- (void)setIsDowntimeContact:(bool)arg1;
 - (void)setIsEmergencyContact:(bool)arg1;
+- (void)setIsRestrictedContact:(bool)arg1;
 - (void)setMaxLabelsHeight:(double)arg1;
 - (void)setMessage:(id)arg1;
 - (void)setMinLabelsHeight:(double)arg1;

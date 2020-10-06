@@ -7,7 +7,10 @@
     <AKAnisetteServiceProtocol> * _anisetteDataProvider;
     NSString * _appProvidedContext;
     NSString * _clientAppName;
+    AKAppleIDAuthenticationContext * _context;
+    NSMutableDictionary * _continuationHeaders;
     NSString * _continuationToken;
+    NSString * _dataCenterIdentifier;
     NSString * _followupItems;
     NSNumber * _hasEmptyPasswordOverride;
     NSString * _heartbeatToken;
@@ -27,6 +30,7 @@
     NSString * _securityUpgradeContext;
     NSString * _serviceToken;
     long long  _serviceType;
+    bool  _shouldOfferSecurityUpgrade;
     bool  _shouldSendEphemeralAuthHeader;
     bool  _shouldSendICSCIntentHeader;
     bool  _shouldSendLocalUserHasAppleIDLoginHeader;
@@ -39,6 +43,7 @@
 @property (nonatomic, copy) NSString *appProvidedContext;
 @property (nonatomic, copy) NSString *clientAppName;
 @property (nonatomic, copy) NSString *continuationToken;
+@property (nonatomic, copy) NSString *dataCenterIdentifier;
 @property (nonatomic, copy) NSString *followupItems;
 @property (nonatomic, retain) NSNumber *hasEmptyPasswordOverride;
 @property (nonatomic, copy) NSString *heartbeatToken;
@@ -57,6 +62,7 @@
 @property (nonatomic, copy) NSString *securityUpgradeContext;
 @property (nonatomic, copy) NSString *serviceToken;
 @property (nonatomic) long long serviceType;
+@property (nonatomic) bool shouldOfferSecurityUpgrade;
 @property (nonatomic) bool shouldSendAbsintheHeader;
 @property (nonatomic) bool shouldSendEphemeralAuthHeader;
 @property (nonatomic) bool shouldSendICSCIntentHeader;
@@ -69,7 +75,9 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (void)_harvestContinuationHeadersFromHeaders:(id)arg1;
 - (id)_proxiedProvisioningController;
+- (id)_retrieveContinuationHeaders;
 - (void)_signRequest:(id)arg1;
 - (void)_signWithFeatureOptInHeaders:(id)arg1;
 - (void)_signWithProxiedDeviceHeaders:(id)arg1;
@@ -78,11 +86,14 @@
 - (id)appProvidedContext;
 - (id)clientAppName;
 - (id)continuationToken;
+- (id)dataCenterIdentifier;
+- (void)decorateWithContext:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)followupItems;
 - (id)hasEmptyPasswordOverride;
 - (id)heartbeatToken;
 - (id)identityToken;
+- (id)init;
 - (id)initWithAltDSID:(id)arg1 identityToken:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)initialURLRequestKey;
@@ -94,6 +105,7 @@
 - (id)passwordResetToken;
 - (id)phoneInformation;
 - (id)phoneNumberCertificate;
+- (void)processResponse:(id)arg1;
 - (id)proxiedAltDSID;
 - (id)proxiedDevice;
 - (id)proxiedDeviceAnisetteData;
@@ -108,6 +120,7 @@
 - (void)setAppProvidedContext:(id)arg1;
 - (void)setClientAppName:(id)arg1;
 - (void)setContinuationToken:(id)arg1;
+- (void)setDataCenterIdentifier:(id)arg1;
 - (void)setFollowupItems:(id)arg1;
 - (void)setHasEmptyPasswordOverride:(id)arg1;
 - (void)setHeartbeatToken:(id)arg1;
@@ -126,12 +139,14 @@
 - (void)setSecurityUpgradeContext:(id)arg1;
 - (void)setServiceToken:(id)arg1;
 - (void)setServiceType:(long long)arg1;
+- (void)setShouldOfferSecurityUpgrade:(bool)arg1;
 - (void)setShouldSendAbsintheHeader:(bool)arg1;
 - (void)setShouldSendEphemeralAuthHeader:(bool)arg1;
 - (void)setShouldSendICSCIntentHeader:(bool)arg1;
 - (void)setShouldSendLocalUserHasAppleIDLoginHeader:(bool)arg1;
 - (void)setShouldSendPhoneNumber:(bool)arg1;
 - (void)setShouldSendSigningHeaders:(bool)arg1;
+- (bool)shouldOfferSecurityUpgrade;
 - (bool)shouldSendAbsintheHeader;
 - (bool)shouldSendEphemeralAuthHeader;
 - (bool)shouldSendICSCIntentHeader;
@@ -142,5 +157,6 @@
 - (void)signRequest:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)signRequestWithCommonHeaders:(id)arg1;
 - (id)signingController;
+- (void)updateWithAuthResults:(id)arg1;
 
 @end

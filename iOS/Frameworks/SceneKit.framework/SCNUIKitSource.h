@@ -3,8 +3,11 @@
  */
 
 @interface SCNUIKitSource : SCNImageSource {
+    bool  _isOpaque;
     id  _uiView;
     id  _uiWindow;
+    CALayer * _uiWindowLayer;
+    bool  _windowPreparing;
 }
 
 @property (nonatomic, retain) UIView *uiView;

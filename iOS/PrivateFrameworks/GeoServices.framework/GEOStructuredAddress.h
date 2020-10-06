@@ -133,11 +133,14 @@
 - (bool)hasThoroughfare;
 - (unsigned long long)hash;
 - (id)initWithAddressDictionary:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithPostalAddress:(id)arg1;
 - (id)initWithUrlRepresentation:(id)arg1;
 - (id)inlandWater;
 - (bool)isEmpty;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)locality;
 - (void)mergeFrom:(id)arg1;
 - (id)ocean;
@@ -147,7 +150,6 @@
 - (id)postalAddress;
 - (id)premise;
 - (id)premises;
-- (void)readAll:(bool)arg1;
 - (bool)readFrom:(id)arg1;
 - (void)setAdministrativeArea:(id)arg1;
 - (void)setAdministrativeAreaCode:(id)arg1;

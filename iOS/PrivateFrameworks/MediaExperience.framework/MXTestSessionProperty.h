@@ -14,11 +14,11 @@
 - (int)testCategoryCustomizationEnableBluetoothRecording;
 - (int)testClientName;
 - (int)testClientPriority;
-- (int)testClientType;
 - (int)testInterruptionStyle;
 - (int)testIsAudioSession;
 - (int)testIsFigInstantiatedAudioSession;
 - (int)testOverrideRoute;
+- (int)testReporterIDs;
 - (int)verifyAudioCategoryBehavior:(struct opaqueCMSession { }*)arg1 isMixable:(struct __CFBoolean { }*)arg2 postsResumableInterruption:(unsigned char)arg3 isPlayAndRecord:(unsigned char)arg4 withBluetooth:(unsigned char)arg5 andIsDefaultToSpeaker:(unsigned char)arg6;
 - (int)verifyAudioHWControlFlags:(unsigned int)arg1;
 - (int)verifyCategoryCustomization:(unsigned char)arg1 andBuiltInRoute:(struct __CFString { }*)arg2;

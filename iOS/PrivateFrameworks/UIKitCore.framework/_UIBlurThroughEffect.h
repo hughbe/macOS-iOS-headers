@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface _UIBlurThroughEffect : UIVisualEffect {
-    _UICoreUIEffect * _reducedTransparencyEffect;
+@interface _UIBlurThroughEffect : _UICoreUIEffect {
     long long  _style;
 }
 
 + (id)_blurThroughWithStyle:(long long)arg1;
 
-- (void).cxx_destruct;
-- (bool)_needsUpdateForTransitionFromEnvironment:(id)arg1 toEnvironment:(id)arg2 usage:(long long)arg3;
-- (void)_updateEffectDescriptor:(id)arg1 forEnvironment:(id)arg2 usage:(long long)arg3;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
+- (id)initWithStyle:(long long)arg1;
 - (bool)isEqual:(id)arg1;
 
 @end

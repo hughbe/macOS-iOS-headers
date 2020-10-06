@@ -19,6 +19,7 @@
 
 @property (nonatomic, readonly) NSArray *alternateRoutes;
 @property (nonatomic, readonly) NSArray *audioSettings;
+@property (retain) MNSettings *cachedSettings;
 @property (nonatomic, readonly) MNAudioOutputSetting *currentAudioOutputSetting;
 @property (nonatomic, readonly) GEODirectionsRequest *currentRequest;
 @property (nonatomic, readonly) GEODirectionsResponse *currentResponse;
@@ -31,6 +32,7 @@
 @property (nonatomic, readonly) GEOComposedWaypoint *destination;
 @property (nonatomic, readonly) NSString *destinationName;
 @property (retain) MNNavigationDetails *details;
+@property (nonatomic, readonly) MNDisplayETAInfo *displayEtaInfo;
 @property (nonatomic, readonly) double distanceUntilManeuver;
 @property (nonatomic, readonly) double distanceUntilSign;
 @property (nonatomic) bool guidancePromptsEnabled;
@@ -53,7 +55,7 @@
 @property (nonatomic, readonly) NSArray *possibleCommuteDestinations;
 @property (nonatomic, readonly) MNCommuteDestination *predictedCommuteDestination;
 @property (nonatomic, readonly) unsigned long long reconnectionRouteIndex;
-@property (nonatomic, readonly) double remainingTime;
+@property (nonatomic, readonly) MNRouteDistanceInfo *remainingDistanceInfo;
 @property (nonatomic, readonly) GEOComposedRoute *route;
 @property (nonatomic, readonly) unsigned long long routeIndex;
 @property (nonatomic, readonly) unsigned long long routeSelection;
@@ -80,6 +82,7 @@
 - (unsigned long long)alternateRouteIndexForRoute:(id)arg1;
 - (id)alternateRoutes;
 - (id)audioSettings;
+- (id)cachedSettings;
 - (void)changeSettings:(id)arg1;
 - (void)closeForClient:(id)arg1;
 - (id)currentAudioOutputSetting;
@@ -92,8 +95,8 @@
 - (id)destination;
 - (id)destinationName;
 - (id)details;
-- (id)displayETAForRoute:(id)arg1;
-- (unsigned long long)displayRemainingMinutesForRoute:(id)arg1;
+- (id)displayETAInfoForRoute:(id)arg1;
+- (id)displayEtaInfo;
 - (double)distanceUntilManeuver;
 - (double)distanceUntilSign;
 - (id)etaRouteForRoute:(id)arg1;
@@ -109,16 +112,20 @@
 - (bool)isTrackingCurrentLocation;
 - (id)lastLocation;
 - (void)navigationServiceProxy:(id)arg1 didActivateAudioSession:(bool)arg2;
+- (void)navigationServiceProxy:(id)arg1 didArriveAtWaypoint:(id)arg2 endOfLegIndex:(unsigned long long)arg3;
 - (void)navigationServiceProxy:(id)arg1 didChangeFromState:(unsigned long long)arg2 toState:(unsigned long long)arg3;
 - (void)navigationServiceProxy:(id)arg1 didChangeNavigationState:(int)arg2;
 - (void)navigationServiceProxy:(id)arg1 didChangeVolume:(unsigned long long)arg2;
 - (void)navigationServiceProxy:(id)arg1 didEnableGuidancePrompts:(bool)arg2;
+- (void)navigationServiceProxy:(id)arg1 didEnterPreArrivalStateForWaypoint:(id)arg2 endOfLegIndex:(unsigned long long)arg3;
 - (void)navigationServiceProxy:(id)arg1 didFailRerouteWithError:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didFailWithError:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didInvalidateTrafficIncidentAlert:(id)arg2;
+- (void)navigationServiceProxy:(id)arg1 didProcessSpeechEvent:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didReceiveRealtimeUpdates:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didReceiveTrafficIncidentAlert:(id)arg2;
-- (void)navigationServiceProxy:(id)arg1 didRerouteWithRoute:(id)arg2 withLocationDetails:(id)arg3 withAlternateRoutes:(id)arg4;
+- (void)navigationServiceProxy:(id)arg1 didRerouteWithRoute:(id)arg2 withLocation:(id)arg3 withAlternateRoutes:(id)arg4;
+- (void)navigationServiceProxy:(id)arg1 didResumeNavigatingFromWaypoint:(id)arg2 endOfLegIndex:(unsigned long long)arg3;
 - (void)navigationServiceProxy:(id)arg1 didStartSpeakingPrompt:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didStartUsingVoiceLanguage:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didSwitchToNewTransportType:(int)arg2 newRoute:(id)arg3;
@@ -127,7 +134,7 @@
 - (void)navigationServiceProxy:(id)arg1 didUpdateAudioOutputCurrentSettingForVoicePrompt:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didUpdateAudioOutputRouteSelection:(unsigned long long)arg2;
 - (void)navigationServiceProxy:(id)arg1 didUpdateAudioOutputSettings:(id)arg2;
-- (void)navigationServiceProxy:(id)arg1 didUpdateDisplayETA:(id)arg2 displayRemainingMinutes:(unsigned long long)arg3 forRoute:(id)arg4;
+- (void)navigationServiceProxy:(id)arg1 didUpdateDisplayETA:(id)arg2 remainingDistance:(id)arg3;
 - (void)navigationServiceProxy:(id)arg1 didUpdateDistanceUntilManeuver:(double)arg2 timeUntilManeuver:(double)arg3 forStepIndex:(unsigned long long)arg4;
 - (void)navigationServiceProxy:(id)arg1 didUpdateDistanceUntilSign:(double)arg2 timeUntilSign:(double)arg3 forStepIndex:(unsigned long long)arg4;
 - (void)navigationServiceProxy:(id)arg1 didUpdateETAResponseForRoute:(id)arg2;
@@ -138,9 +145,8 @@
 - (void)navigationServiceProxy:(id)arg1 didUpdatePossibleCommuteDestinations:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didUpdatePreviewRoutes:(id)arg2 withSelectedRouteIndex:(unsigned long long)arg3;
 - (void)navigationServiceProxy:(id)arg1 didUpdateProceedToRouteDistance:(double)arg2 displayString:(id)arg3 closestStepIndex:(unsigned long long)arg4;
-- (void)navigationServiceProxy:(id)arg1 didUpdateRemainingTime:(double)arg2 remainingDistance:(double)arg3;
 - (void)navigationServiceProxy:(id)arg1 didUpdateRouteWithNewRideSelection:(id)arg2;
-- (void)navigationServiceProxy:(id)arg1 didUpdateStepIndex:(unsigned long long)arg2 legIndex:(unsigned long long)arg3;
+- (void)navigationServiceProxy:(id)arg1 didUpdateStepIndex:(unsigned long long)arg2 segmentIndex:(unsigned long long)arg3;
 - (void)navigationServiceProxy:(id)arg1 didUpdateTracePlaybackDetails:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 didUpdateTrafficIncidentAlert:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 displayManeuverAlertForAnnouncementStage:(unsigned long long)arg2;
@@ -157,6 +163,7 @@
 - (void)navigationServiceProxy:(id)arg1 usePersistentDisplay:(bool)arg2;
 - (void)navigationServiceProxy:(id)arg1 willAnnounce:(unsigned long long)arg2 inSeconds:(double)arg3;
 - (void)navigationServiceProxy:(id)arg1 willChangeFromState:(unsigned long long)arg2 toState:(unsigned long long)arg3;
+- (void)navigationServiceProxy:(id)arg1 willProcessSpeechEvent:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 willRequestRealtimeUpdatesForRouteIDs:(id)arg2;
 - (void)navigationServiceProxy:(id)arg1 willStartNavigationWithRoute:(id)arg2 navigationType:(int)arg3 request:(id)arg4 response:(id)arg5;
 - (void)navigationServiceProxyBeginGuidanceUpdate:(id)arg1;
@@ -188,7 +195,8 @@
 - (unsigned long long)reconnectionRouteIndex;
 - (void)recordPedestrianTracePath:(id)arg1;
 - (void)recordTraceBookmarkAtCurrentPositionWthScreenshotData:(id)arg1;
-- (double)remainingTime;
+- (id)remainingDistanceInfo;
+- (id)remainingDistanceInfoForRoute:(id)arg1;
 - (void)removeObserver:(id)arg1;
 - (void)repeatCurrentGuidance:(id /* block */)arg1;
 - (void)repeatCurrentTrafficAlert:(id /* block */)arg1;
@@ -197,6 +205,7 @@
 - (id)route;
 - (unsigned long long)routeIndex;
 - (unsigned long long)routeSelection;
+- (void)setCachedSettings:(id)arg1;
 - (void)setCurrentAudioOutputSetting:(id)arg1;
 - (void)setDetails:(id)arg1;
 - (void)setDisplayedStepIndex:(unsigned long long)arg1;
@@ -206,7 +215,7 @@
 - (void)setHeadingOrientation:(int)arg1;
 - (void)setIsConnectedToCarplay:(bool)arg1;
 - (void)setJunctionViewImageWidth:(double)arg1 height:(double)arg2;
-- (void)setRideIndex:(unsigned long long)arg1 forLegIndex:(unsigned long long)arg2;
+- (void)setRideIndex:(unsigned long long)arg1 forSegmentIndex:(unsigned long long)arg2;
 - (void)setRoutesForPreview:(id)arg1 selectedRouteIndex:(unsigned long long)arg2;
 - (void)setTraceIsPlaying:(bool)arg1;
 - (void)setTracePlaybackSpeed:(double)arg1;
@@ -228,7 +237,6 @@
 - (bool)traceIsPlaying;
 - (id)tracePath;
 - (double)tracePosition;
-- (id)trafficForRoute:(id)arg1;
 - (void)updateDestination:(id)arg1;
 - (void)vibrateForPrompt:(unsigned long long)arg1 completion:(id /* block */)arg2;
 

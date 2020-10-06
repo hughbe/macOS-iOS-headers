@@ -4,8 +4,8 @@
 
 @interface MRPlaybackQueueRequestMessage : MRProtocolMessage
 
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
-@property (nonatomic, readonly) _MRPlaybackQueueRequestProtobuf *request;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
+@property (nonatomic, readonly) MRPlaybackQueueRequest *request;
 
 - (id)initWithRequest:(id)arg1 forPlayerPath:(id)arg2;
 - (id)playerPath;

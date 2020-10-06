@@ -76,6 +76,7 @@
 - (void)setStateBeingRestored:(bool)arg1;
 - (void)setSubtitleSlotView:(id)arg1;
 - (void)setTitleSlotView:(id)arg1;
+- (void)setTransportSlotHidden:(bool)arg1 animated:(bool)arg2 useDelay:(bool)arg3;
 - (void)setTransportSlotView:(id)arg1;
 - (void)setVibrantSubtitleView:(id)arg1;
 - (void)setVibrantTitleView:(id)arg1;

@@ -4,9 +4,11 @@
 
 @interface GEORPProblemCollectionRequest : PBRequest <NSCopying> {
     NSString * _countryCode;
+    GEORPDebugSettings * _debugSettings;
     NSData * _devicePushToken;
     struct { 
         unsigned int read_countryCode : 1; 
+        unsigned int read_debugSettings : 1; 
         unsigned int read_devicePushToken : 1; 
         unsigned int read_hwMachine : 1; 
         unsigned int read_inputLanguage : 1; 
@@ -15,15 +17,7 @@
         unsigned int read_userCredentials : 1; 
         unsigned int read_userEmail : 1; 
         unsigned int read_userLocation : 1; 
-        unsigned int wrote_countryCode : 1; 
-        unsigned int wrote_devicePushToken : 1; 
-        unsigned int wrote_hwMachine : 1; 
-        unsigned int wrote_inputLanguage : 1; 
-        unsigned int wrote_osRelease : 1; 
-        unsigned int wrote_requestElements : 1; 
-        unsigned int wrote_userCredentials : 1; 
-        unsigned int wrote_userEmail : 1; 
-        unsigned int wrote_userLocation : 1; 
+        unsigned int wrote_anyField : 1; 
     }  _flags;
     NSString * _hwMachine;
     NSString * _inputLanguage;
@@ -41,8 +35,10 @@
 }
 
 @property (nonatomic, retain) NSString *countryCode;
+@property (nonatomic, retain) GEORPDebugSettings *debugSettings;
 @property (nonatomic, retain) NSData *devicePushToken;
 @property (nonatomic, readonly) bool hasCountryCode;
+@property (nonatomic, readonly) bool hasDebugSettings;
 @property (nonatomic, readonly) bool hasDevicePushToken;
 @property (nonatomic, readonly) bool hasHwMachine;
 @property (nonatomic, readonly) bool hasInputLanguage;
@@ -62,25 +58,17 @@
 + (Class)requestElementType;
 
 - (void).cxx_destruct;
-- (void)_addNoFlagsRequestElement:(id)arg1;
-- (void)_readCountryCode;
-- (void)_readDevicePushToken;
-- (void)_readHwMachine;
-- (void)_readInputLanguage;
-- (void)_readOsRelease;
-- (void)_readRequestElements;
-- (void)_readUserCredentials;
-- (void)_readUserEmail;
-- (void)_readUserLocation;
 - (void)addRequestElement:(id)arg1;
 - (void)clearRequestElements;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)countryCode;
+- (id)debugSettings;
 - (id)description;
 - (id)devicePushToken;
 - (id)dictionaryRepresentation;
 - (bool)hasCountryCode;
+- (bool)hasDebugSettings;
 - (bool)hasDevicePushToken;
 - (bool)hasHwMachine;
 - (bool)hasInputLanguage;
@@ -92,8 +80,11 @@
 - (id)hwMachine;
 - (id)init;
 - (id)initWithData:(id)arg1;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)inputLanguage;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (void)mergeFrom:(id)arg1;
 - (id)osRelease;
 - (void)readAll:(bool)arg1;
@@ -104,6 +95,7 @@
 - (unsigned int)requestTypeCode;
 - (Class)responseClass;
 - (void)setCountryCode:(id)arg1;
+- (void)setDebugSettings:(id)arg1;
 - (void)setDevicePushToken:(id)arg1;
 - (void)setHwMachine:(id)arg1;
 - (void)setInputLanguage:(id)arg1;

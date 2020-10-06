@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UIAlertController : UIViewController <DebugHierarchyObject_Fallback, UIAlertControllerContaining, UIAlertControllerVisualStyleProviding, UIPreviewInteractionControllerDelegate, _UIAlertControllerTextFieldViewControllerContaining> {
+@interface UIAlertController : UIViewController <UIAlertControllerContaining, UIAlertControllerVisualStyleProviding, UIPreviewInteractionControllerDelegate, WFAlertPresenter, _UIAlertControllerTextFieldViewControllerContaining> {
     NSMutableArray * __actionDelimiterIndices;
     UIPopoverController * __compatibilityPopoverController;
     UIView * __presentationSourceRepresentationView;
+    bool  __shouldAlignToKeyboard;
     bool  __shouldAllowNilParameters;
     bool  __shouldFlipFrameForShimDismissal;
     <UIAlertControllerSystemProvidedPresentationDelegate> * __systemProvidedPresentationDelegate;
@@ -14,7 +15,6 @@
     NSMutableDictionary * _actionToKeyCommandsDictionary;
     NSMutableArray * _actions;
     NSPointerArray * _actionsWithInvokedHandlers;
-    bool  _addContentViewControllerToViewHierarchyNeeded;
     UIAlertControllerStackManager * _alertControllerStackManager;
     NSAttributedString * _attributedDetailMessage;
     NSAttributedString * _attributedMessage;
@@ -27,6 +27,7 @@
     bool  _hasPreservedInputViews;
     UIViewController * _headerContentViewController;
     bool  _hidden;
+    UIImage * _image;
     NSIndexSet * _indexesOfActionSectionSeparators;
     bool  _isInRecomputePreferredContentSize;
     bool  _isInSupportedInterfaceOrientations;
@@ -51,6 +52,7 @@
 
 @property (readonly) NSMutableArray *_actionDelimiterIndices;
 @property (readonly) NSMutableArray *_actions;
+@property (readonly) bool _alignsToKeyboard;
 @property (getter=_attributedDetailMessage, setter=_setAttributedDetailMessage:, nonatomic, copy) NSAttributedString *_attributedDetailMessage;
 @property (readonly) UIAlertAction *_cancelAction;
 @property (setter=_setCompatibilityPopoverController:, nonatomic) UIPopoverController *_compatibilityPopoverController;
@@ -62,7 +64,7 @@
 @property (setter=_setPresentationSourceRepresentationView:, nonatomic, retain) UIView *_presentationSourceRepresentationView;
 @property (readonly) long long _resolvedStyle;
 @property (setter=_setSeparatedHeaderContentViewController:, nonatomic, retain) UIViewController *_separatedHeaderContentViewController;
-@property (readonly) bool _shouldAlignToKeyboard;
+@property (setter=_setShouldAlignToKeyboard:, nonatomic) bool _shouldAlignToKeyboard;
 @property (setter=_setShouldAllowNilParameters:) bool _shouldAllowNilParameters;
 @property bool _shouldFlipFrameForShimDismissal;
 @property (readonly) bool _shouldProvideDimmingView;
@@ -81,11 +83,13 @@
 @property (getter=_effectAlpha, setter=_setEffectAlpha:, nonatomic) double effectAlpha;
 @property (getter=_hasPreservedInputViews, setter=_setHasPreservedInputViews:, nonatomic) bool hasPreservedInputViews;
 @property (readonly) unsigned long long hash;
+@property (nonatomic, retain) UIImage *image;
 @property (getter=_indexesOfActionSectionSeparators, setter=_setIndexesOfActionSectionSeparators:, nonatomic, copy) NSIndexSet *indexesOfActionSectionSeparators;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, retain) UIAlertAction *preferredAction;
 @property (nonatomic) long long preferredStyle;
 @property (getter=_previewInteractionController, setter=_setPreviewInteractionController:, nonatomic, retain) UIPreviewInteractionController *previewInteractionController;
+@property (nonatomic) bool px_shouldForceAlertStyle;
 @property (getter=_styleProvider, setter=_setStyleProvider:, nonatomic) NSObject<UIAlertControllerVisualStyleProviding> *styleProvider;
 @property (readonly) Class superclass;
 @property (getter=_systemProvidedGestureRecognizer, setter=_setSystemProvidedGestureRecognizer:, nonatomic, retain) UIGestureRecognizer *systemProvidedGestureRecognizer;
@@ -99,6 +103,7 @@
 
 + (id)_alertControllerContainedInViewController:(id)arg1;
 + (id)_alertControllerWithTitle:(id)arg1 message:(id)arg2;
++ (bool)_allowInteractiveSheetDismissal;
 + (bool)_shouldUsePresentationController;
 + (id)alertControllerWithTitle:(id)arg1 message:(id)arg2 preferredStyle:(long long)arg3;
 
@@ -115,6 +120,8 @@
 - (void)_addSectionDelimiter;
 - (id)_alertControllerContainer;
 - (id)_alertControllerView;
+- (bool)_alignsToKeyboard;
+- (bool)_allowsShowingDimmingView;
 - (void)_attemptAnimatedDismissWithGestureRecognizer:(id)arg1;
 - (id)_attributedDetailMessage;
 - (id)_attributedMessage;
@@ -206,6 +213,7 @@
 - (void)_setPresentationSourceRepresentationView:(id)arg1;
 - (void)_setPreviewInteractionController:(id)arg1;
 - (void)_setSeparatedHeaderContentViewController:(id)arg1;
+- (void)_setShouldAlignToKeyboard:(bool)arg1;
 - (void)_setShouldAllowNilParameters:(bool)arg1;
 - (void)_setShouldReverseActions:(bool)arg1;
 - (void)_setStyleProvider:(id)arg1;
@@ -246,16 +254,6 @@
 - (bool)_viewControllerIsPresentedInModalPresentationContext:(id)arg1;
 - (id)_visualStyle;
 - (void)_willParentTextFieldViewController;
-- (void)dealloc;
-- (id)description;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)actions;
 - (void)addAction:(id)arg1;
 - (void)addTextFieldWithConfigurationHandler:(id /* block */)arg1;
@@ -264,6 +262,9 @@
 - (id)cancelAction;
 - (id)contentViewController;
 - (id)coordinatedActionPerformingDelegate;
+- (void)dealloc;
+- (id)description;
+- (id)image;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (bool)isSpringLoaded;
 - (void)linkAlertController:(id)arg1;
@@ -280,6 +281,7 @@
 - (void)setCancelAction:(id)arg1;
 - (void)setContentViewController:(id)arg1;
 - (void)setCoordinatedActionPerformingDelegate:(id)arg1;
+- (void)setImage:(id)arg1;
 - (void)setMessage:(id)arg1;
 - (void)setModalPresentationStyle:(long long)arg1;
 - (void)setPreferredAction:(id)arg1;
@@ -305,5 +307,89 @@
 - (void)viewWillTransitionToSize:(struct CGSize { double x1; double x2; })arg1 withTransitionCoordinator:(id)arg2;
 - (id)visualStyleForAlertControllerStyle:(long long)arg1 traitCollection:(id)arg2 descriptor:(id)arg3;
 - (void)willTransitionToTraitCollection:(id)arg1 withTransitionCoordinator:(id)arg2;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (id)mf_actionSheetWithTitle:(id)arg1 cancellationHandler:(id /* block */)arg2;
++ (id)mf_muteConfirmationControllerWithHandler:(id /* block */)arg1;
+
+- (void)mf_addCancelActionWithHandler:(id /* block */)arg1;
+- (void)mf_presentConfirmationSheetFromViewController:(id)arg1 withSource:(id)arg2;
+- (void)mf_presentFromViewController:(id)arg1 withSource:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
++ (id)alertWithTitle:(id)arg1 message:(id)arg2 buttonTitle:(id)arg3;
++ (id)alertWithTitle:(id)arg1 message:(id)arg2 buttonTitle:(id)arg3 actionHandler:(id /* block */)arg4;
++ (id)alertWithTitle:(id)arg1 message:(id)arg2 cancelButtonTitle:(id)arg3 defaultButtonTitle:(id)arg4;
++ (id)alertWithTitle:(id)arg1 message:(id)arg2 cancelButtonTitle:(id)arg3 defaultButtonTitle:(id)arg4 actionHandler:(id /* block */)arg5;
+
+- (id /* block */)_handlerWithMultiActionHandler:(id /* block */)arg1;
+- (id /* block */)_handlerWithSingleActionHandler:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
++ (void)cam_showUsageSettings;
+
+- (id)initWithTitle:(id)arg1 message:(id)arg2;
+- (id)initWithTitle:(id)arg1 message:(id)arg2 lowDiskSpaceAlertType:(long long)arg3 dismissActionHandler:(id /* block */)arg4 resultActionHandler:(id /* block */)arg5;
+- (id)initWithType:(long long)arg1 captureMode:(long long)arg2 dismissActionHandler:(id /* block */)arg3 resultActionHandler:(id /* block */)arg4;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUICore.framework/GameCenterUICore
+
+- (void)_gkAddCancelButtonWithNoAction;
+
+// Image: /System/Library/PrivateFrameworks/HealthRecordsUI.framework/HealthRecordsUI
+
++ (id)basicAlertControllerWithTitle:(id)arg1 message:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ManagedConfigurationUI.framework/ManagedConfigurationUI
+
++ (void)MCUIShowRebootAlert;
++ (void)MCUIShowWatchUnavailableAlertWithCompletion:(id /* block */)arg1;
+
+- (void)MCUIAddActionWithTitle:(id)arg1 style:(long long)arg2 completion:(id /* block */)arg3;
+- (void)MCUIAddCancelActionWithTitle:(id)arg1;
+- (void)MCUIShowFromController:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
++ (id)px_alertControllerWithError:(id)arg1 completionHandler:(id /* block */)arg2;
++ (id)px_alertForCPLEnableError:(id)arg1 actionHandler:(id /* block */)arg2 cancelHandler:(id /* block */)arg3;
++ (id)px_alertForStorageUpgradeLoadFailure;
++ (id)px_deleteITunesContentAlertWithAssetCount:(long long)arg1 includesPhotos:(bool)arg2 includesVideos:(bool)arg3 actionHandler:(id /* block */)arg4 cancelHandler:(id /* block */)arg5;
++ (void)px_showDebugAlertInKeyWindowWithMessage:(id)arg1;
+
+- (bool)px_shouldForceAlertStyle;
+- (void)setPx_shouldForceAlertStyle:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ScreenTimeSettingsUI.framework/ScreenTimeSettingsUI
+
++ (id)alertControllerForFeatureNotAvailable;
+
+// Image: /System/Library/PrivateFrameworks/SensorKitUI.framework/SensorKitUI
+
++ (id)skui_alertControllerForRequiredAuthorizationIfNeccesaryForBundle:(id)arg1 authGroup:(id)arg2 destructiveHandler:(id /* block */)arg3;
++ (id)skui_alertControllerForRequiredAuthorizationIfNeccesaryForBundle:(id)arg1 authGroup:(id)arg2 tableView:(id)arg3 indexPath:(id)arg4 destructiveHandler:(id /* block */)arg5;
++ (id)skui_requiredAuthorizationAlertIfNeccesaryForBundle:(id)arg1 authGroup:(id)arg2 title:(id)arg3 message:(id)arg4 destructiveButtonTitle:(id)arg5 destructiveHandler:(id /* block */)arg6 cancelButtonTitle:(id)arg7 cancelHandler:(id /* block */)arg8;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyPreferences.framework/TelephonyPreferences
+
++ (id)tps_alertControllerWithError:(id)arg1;
++ (id)tps_tapToRadarAlertControllerWithError:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
+
++ (id)enableWiFiCallingAlertController;
++ (id)enableWiFiCallingAlertControllerWithPreferredStyle:(long long)arg1;
++ (id)networkUnavailableAlertControllerWithCallProvider:(id)arg1 dialType:(long long)arg2 senderIdentityUUID:(id)arg3;
++ (id)telephonyAccountUnavailableAlertControllerWithSenderIdentities:(id)arg1 preferredStyle:(long long)arg2 completion:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/WorkflowUICore.framework/WorkflowUICore
+
+- (id)actionForButton:(id)arg1 inAlert:(id)arg2;
+- (void)dismissAlert:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)replaceButtonAtIndex:(unsigned long long)arg1 withButton:(id)arg2 forAlert:(id)arg3;
+- (void)setButtons:(id)arg1 forAlert:(id)arg2;
 
 @end

@@ -2,7 +2,7 @@
    Image: /System/Library/Frameworks/Contacts.framework/Contacts
  */
 
-@interface CNContact : NSObject <CNContactAugmentation, CNSuggested, NSCopying, NSItemProviderReading, NSItemProviderWriting, NSMutableCopying, NSSecureCoding, TUSearchResult> {
+@interface CNContact : NSObject <ABSCNLegacyIdentifiable, CNContactAugmentation, CNSuggested, NSCopying, NSItemProviderReading, NSItemProviderWriting, NSMutableCopying, NSSecureCoding, TUSearchResult> {
     NSString * _ISOCountryCode;
     NSString * _accountIdentifier;
     CNContactKeyVector * _availableKeyDescriptor;
@@ -105,6 +105,7 @@
 @property (nonatomic, readonly, copy) NSString *cardDAVUID;
 @property (readonly, copy) NSString *companyName;
 @property (nonatomic, readonly, copy) NSArray *contactRelations;
+@property (nonatomic) unsigned long long contactSource;
 @property (nonatomic, readonly) long long contactType;
 @property (nonatomic, readonly, copy) NSDate *creationDate;
 @property (nonatomic, readonly) struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; } cropRect;
@@ -124,6 +125,7 @@
 @property (nonatomic, readonly, copy) NSString *externalImageURI;
 @property (nonatomic, readonly, copy) NSString *externalModificationTag;
 @property (nonatomic, readonly, copy) NSData *externalRepresentation;
+@property (nonatomic, readonly, copy) NSString *externalURI;
 @property (nonatomic, readonly, copy) NSString *externalUUID;
 @property (nonatomic, readonly) NSURL *faceTimeQuicklookURL;
 @property (nonatomic, readonly, copy) NSString *familyName;
@@ -137,6 +139,7 @@
 @property (nonatomic, readonly) bool hasSuggestedProperties;
 @property (readonly) unsigned long long hash;
 @property (nonatomic, readonly) int iOSLegacyIdentifier;
+@property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly, copy) NSString *identifier;
 @property (readonly) NSArray *idsCanonicalDestinations;
 @property (nonatomic, readonly, copy) NSData *imageData;
@@ -186,7 +189,10 @@
 @property (nonatomic, readonly, copy) NSString *previousFamilyName;
 @property (nonatomic, readonly, copy) NSString *pronunciationFamilyName;
 @property (nonatomic, readonly, copy) NSString *pronunciationGivenName;
+@property (nonatomic, retain) CRRecentContact *recentContact;
+@property (nonatomic) bool recentFromContactInformation;
 @property (nonatomic, readonly, copy) NSArray *relatedNames;
+@property (nonatomic, readonly) NSString *safari_fullName;
 @property (nonatomic, readonly, copy) NSString *searchIndex;
 @property (nonatomic, readonly, copy) NSString *sectionForSortingByFamilyName;
 @property (nonatomic, readonly, copy) NSString *sectionForSortingByGivenName;
@@ -233,6 +239,7 @@
 + (id)contactWithIdentifier:(id)arg1;
 + (id)contactWithVCardData:(id)arg1 error:(id*)arg2;
 + (id)descriptorForAllComparatorKeys;
++ (id)descriptorForAllImageDataKeys;
 + (id)descriptorForKeyDescriptors:(id)arg1 description:(id)arg2;
 + (id)descriptorForRequiredKeysForSearchableItem;
 + (id)descriptorWithKeyDescriptors:(id)arg1 description:(id)arg2;
@@ -337,6 +344,7 @@
 - (id)externalImageURI;
 - (id)externalModificationTag;
 - (id)externalRepresentation;
+- (id)externalURI;
 - (id)externalUUID;
 - (id)familyName;
 - (id)firstName;
@@ -438,7 +446,6 @@
 
 // Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
 
-+ (bool)contactRemindersEnabled;
 + (id)contactWithStateRestorationCoder:(id)arg1 store:(id)arg2 keys:(id)arg3;
 + (id)descriptorForAllUIKeys;
 + (bool)downtimeWhitelistUIEnabled;
@@ -478,7 +485,110 @@
 - (id)CalDisplayName;
 - (id)CalEmailAddresses;
 - (id)CalFirstValueForKey:(id)arg1;
+- (id)CalPhoneNumbers;
 - (id)CalValueForKey:(id)arg1 withLabel:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (id)identifierForKey:(id)arg1 withDestination:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
+- (bool)hasEmailAddress:(id)arg1;
+- (bool)hasPhoneNumber:(id)arg1;
+- (bool)hasPostalAddress:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/DoNotDisturbServer.framework/DoNotDisturbServer
+
++ (id)dnds_predicateForContactsMatchingEventSource:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Email.framework/Email
+
++ (id)em_contactFromEmailAddress:(id)arg1;
++ (id)em_contactWithPersonNameComponents:(id)arg1 emailAddress:(id)arg2;
++ (id)em_contactWithPersonNameComponents:(id)arg1 emailAddress:(id)arg2 allowInvalidEmailAddress:(bool)arg3;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
+
+- (id)collationString;
+
+// Image: /System/Library/PrivateFrameworks/IMAssistantCore.framework/IMAssistantCore
+
+- (id)__im_assistant_allIMHandles;
+- (id)__im_assistant_allValidPersonOptionsWithAccountDataSource:(id)arg1;
+- (id)__im_assistant_emailAddressesMatchingLabel:(id)arg1;
+- (id)__im_assistant_handlesMatchingHandleID:(id)arg1;
+- (id)__im_assistant_handlesMatchingRequestedHandleType:(long long)arg1 requestedHandleLabel:(id)arg2;
+- (id)__im_assistant_matchingNormalizedHandlesForType:(long long)arg1 andLabel:(id)arg2 forCountryCode:(id)arg3;
+- (id)__im_assistant_phoneNumbersMatchingLabel:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/IMSharedUtilities.framework/IMSharedUtilities
+
+- (bool)_im_isEqualToContact:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)contactWithABRecordRef:(void*)arg1;
++ (id)contactWithPkDictionary:(id)arg1;
++ (id)pkContactWithNameComponents:(id)arg1 labeledValues:(id)arg2;
++ (id)pkContactWithNameComponents:(id)arg1 postalAddresses:(id)arg2 emailAddresses:(id)arg3 phoneNumbers:(id)arg4;
++ (id)pkContactWithNameFromContact:(id)arg1 labeledValue:(id)arg2 property:(id)arg3;
++ (id)pkPassbookRequiredKeys;
++ (id)pk_predicateForContactsMatchingEmailAddress:(id)arg1;
++ (id)pk_predicateForContactsMatchingPhoneNumber:(id)arg1;
+
+- (void*)ABPerson;
+- (id)_fullNameFromComponents:(id)arg1 style:(long long)arg2;
+- (id)_phoneticNameFromComponents:(id)arg1 style:(long long)arg2;
+- (unsigned long long)contactSource;
+- (id)contactWithCleanedUpDistrict;
+- (bool)isSubsetOfMeCard;
+- (id)localizedDisplayNameWithLabel:(id)arg1;
+- (id)nameComponents;
+- (void)pkAddLabeledValues:(id)arg1 withProperty:(id)arg2;
+- (id)pkContactWithCleanedUpCountryCode;
+- (id)pkDeconstructContactUsingKey:(id)arg1;
+- (id)pkDeconstructContactUsingKey:(id)arg1 substring:(id)arg2;
+- (id)pkDictionaryForProperty:(id)arg1;
+- (id)pkFormattedContactAddress;
+- (id)pkFormattedContactAddressIncludingPhoneticName:(bool)arg1;
+- (id)pkFormattedContactAddressIncludingPhoneticName:(bool)arg1 showName:(bool)arg2;
+- (id)pkFormattedContactAddressWithoutName;
+- (id)pkFullAndPhoneticName;
+- (id)pkFullName;
+- (id)pkFullyQualifiedName;
+- (id)pkPhoneticName;
+- (id)pkSingleLineFormattedContactAddress;
+- (id)recentContact;
+- (bool)recentFromContactInformation;
+- (id)sanitizedContact;
+- (void)setContactSource:(unsigned long long)arg1;
+- (void)setRecentContact:(id)arg1;
+- (void)setRecentFromContactInformation:(bool)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+
++ (id)pl_findBestMatchingContactFromMatchingContacts:(id)arg1 firstName:(id)arg2 lastName:(id)arg3 contactFormatter:(id)arg4;
+
+// Image: /System/Library/PrivateFrameworks/RTTUtilities.framework/RTTUtilities
+
++ (id)contactForPhoneNumber:(id)arg1;
+
+- (bool)ttyIsMe;
+
+// Image: /System/Library/PrivateFrameworks/SafariShared.framework/SafariShared
+
++ (id)safari_defaultDescriptors;
++ (id)safari_imageViewDescriptors;
++ (id)safari_oneTimeCodeViewDescriptors;
+
+- (id)safari_fullName;
+- (id)safari_valueForWBSABProperty:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SpeechRecognitionCommandAndControl.framework/SpeechRecognitionCommandAndControl
+
+- (void)callNumberWithLabeledValue:(id)arg1;
+- (void)faceTimeEmailWithLabeledValue:(id)arg1;
 
 // Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
 
@@ -501,5 +611,9 @@
 - (bool)mostRecentCallWasMissed;
 - (id)personNameComponents;
 - (id)phoneNumberStrings;
+
+// Image: /System/Library/PrivateFrameworks/UserManagementUI.framework/UserManagementUI
+
++ (id)contactForUser:(id)arg1;
 
 @end

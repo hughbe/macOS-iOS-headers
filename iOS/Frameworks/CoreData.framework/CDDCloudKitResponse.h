@@ -8,19 +8,10 @@
     bool  _success;
 }
 
-@property (nonatomic, readonly) NSError *error;
-@property (nonatomic, readonly) CDDCloudKitMessage *message;
-@property (nonatomic, readonly) bool success;
-
-+ (id)supportedErrorClasses;
 + (bool)supportsSecureCoding;
 
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
-- (id)error;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMessage:(id)arg1 success:(bool)arg2 error:(id)arg3;
-- (id)message;
-- (bool)success;
 
 @end

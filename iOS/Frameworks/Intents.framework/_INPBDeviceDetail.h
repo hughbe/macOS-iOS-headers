@@ -3,7 +3,6 @@
  */
 
 @interface _INPBDeviceDetail : PBCodable <NSCopying, NSSecureCoding, _INPBDeviceDetail> {
-    bool  __encodeLegacyGloryData;
     _INPBDataString * _category;
     int  _deviceClass;
     _INPBDataString * _deviceName;
@@ -15,7 +14,6 @@
     _INPBDataString * _productName;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (nonatomic, retain) _INPBDataString *category;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
@@ -37,8 +35,6 @@
 
 - (void).cxx_destruct;
 - (int)StringAsDeviceClass:(id)arg1;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)category;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (int)deviceClass;

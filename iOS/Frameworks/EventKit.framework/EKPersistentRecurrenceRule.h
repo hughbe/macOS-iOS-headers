@@ -16,13 +16,13 @@
 - (id)description;
 - (id)endDate;
 - (int)entityType;
-- (long long)firstDayOfTheWeek;
+- (long long)firstDayOfTheWeekRaw;
 - (int)frequency;
 - (long long)interval;
 - (id)owner;
 - (void)setCount:(unsigned long long)arg1;
 - (void)setEndDate:(id)arg1;
-- (void)setFirstDayOfTheWeek:(long long)arg1;
+- (void)setFirstDayOfTheWeekRaw:(long long)arg1;
 - (void)setFrequency:(int)arg1;
 - (void)setInterval:(long long)arg1;
 - (void)setOwner:(id)arg1;

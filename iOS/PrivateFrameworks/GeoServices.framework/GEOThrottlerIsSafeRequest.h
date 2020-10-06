@@ -23,14 +23,13 @@
 @property (nonatomic, retain) GEODataRequestThrottlerToken *throttlerToken;
 
 + (Class)replyClass;
-+ (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (bool)availableRequestCount;
-- (void)encodeWithCoder:(id)arg1;
+- (void)encodeToXPCDictionary:(id)arg1;
 - (bool)expectsReply;
 - (bool)includeToken;
-- (id)initWithCoder:(id)arg1;
+- (id)initWithXPCDictionary:(id)arg1 error:(id*)arg2;
 - (bool)isValid;
 - (bool)nextSafeRequestTime;
 - (int)requestKindSubtype;

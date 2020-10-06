@@ -18,6 +18,7 @@
 @property (nonatomic) bool _isConnected;
 @property (nonatomic) bool _isSleeping;
 
+- (void).cxx_destruct;
 - (void)_clearReachability:(id*)arg1 flags:(unsigned long long*)arg2;
 - (void)_doCallbackLater;
 - (void)_doCallbackNow;

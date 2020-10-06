@@ -4,10 +4,12 @@
 
 @interface _CDInBedDetector : NSObject {
     <_DKKnowledgeQuerying> * _knowledge;
+    NSObject<OS_os_log> * _log;
     unsigned long long  _method;
 }
 
 @property (retain) <_DKKnowledgeQuerying> *knowledge;
+@property (nonatomic, retain) NSObject<OS_os_log> *log;
 @property unsigned long long method;
 
 + (id)inBedDetector;
@@ -21,12 +23,15 @@
 - (id)findDateIntervalOfEventInStream:(id)arg1 datePredicate:(id)arg2 valuePredicate:(id)arg3 sortDescriptor:(id)arg4 error:(id*)arg5;
 - (id)findLastTimeDeviceWasLockedBetweenStartDate:(id)arg1 endDate:(id)arg2 error:(id*)arg3;
 - (id)findLastTimeDeviceWasPluggedInBetweenStartDate:(id)arg1 endDate:(id)arg2 error:(id*)arg3;
-- (id)findLatestEndOfWalkingActivityBetweenStartDate:(id)arg1 endDate:(id)arg2 error:(id*)arg3;
+- (id)findLatestEndOfMovementBetweenStartDate:(id)arg1 endDate:(id)arg2 error:(id*)arg3;
 - (id)initWithKnowledge:(id)arg1 method:(unsigned long long)arg2;
 - (id)knowledge;
 - (id)lockedTimesBetweenStartDate:(id)arg1 endDate:(id)arg2 error:(id*)arg3;
+- (id)log;
 - (unsigned long long)method;
 - (void)setKnowledge:(id)arg1;
+- (void)setLog:(id)arg1;
 - (void)setMethod:(unsigned long long)arg1;
+- (id)stationaryIntervalsBetweenStartDate:(id)arg1 endDate:(id)arg2 error:(id*)arg3;
 
 @end

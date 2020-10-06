@@ -3,7 +3,6 @@
  */
 
 @interface _INPBDeleteTimerIntent : PBCodable <NSCopying, NSSecureCoding, _INPBDeleteTimerIntent> {
-    bool  __encodeLegacyGloryData;
     bool  _deleteMultiple;
     struct { 
         unsigned int deleteMultiple : 1; 
@@ -12,7 +11,6 @@
     _INPBTimer * _targetTimer;
 }
 
-@property (setter=_setEncodeLegacyGloryData:, nonatomic) bool _encodeLegacyGloryData;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) bool deleteMultiple;
 @property (readonly, copy) NSString *description;
@@ -27,8 +25,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (bool)_encodeLegacyGloryData;
-- (void)_setEncodeLegacyGloryData:(bool)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (bool)deleteMultiple;
 - (id)dictionaryRepresentation;

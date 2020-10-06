@@ -31,6 +31,7 @@
 - (id)inputSimulatedAperture;
 - (id)inputTuningParameters;
 - (id)kernel;
+- (id)mtlKernel;
 - (id)outputImage;
 - (void)setInputFocusRect:(id)arg1;
 - (void)setInputImage:(id)arg1;

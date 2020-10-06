@@ -22,9 +22,11 @@
 + (bool)mailItemIsValid:(id)arg1;
 + (bool)mailItemIsValid:(id)arg1 emailHeaders:(id)arg2 mailboxIdentifiers:(id)arg3;
 + (id)mailItemMessageIdHeaderValues:(id)arg1;
++ (id)sanitizeHandles:(id)arg1;
 + (bool)searchableItemIsEmpty:(id)arg1;
 + (bool)searchableItemIsOutgoing:(id)arg1;
 + (id)serializeAttributes:(id)arg1;
 + (id)serializeAttributesAndBody:(id)arg1;
++ (id)textContentNoCopyRetainingBackingBuffer:(id)arg1;
 
 @end

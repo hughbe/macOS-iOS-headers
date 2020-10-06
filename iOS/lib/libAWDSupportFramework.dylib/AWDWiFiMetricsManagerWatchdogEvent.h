@@ -25,6 +25,7 @@
         unsigned int lineNumber : 1; 
         unsigned int minorReason : 1; 
         unsigned int reason : 1; 
+        unsigned int recoveryLatency : 1; 
         unsigned int subreason : 1; 
         unsigned int version : 1; 
     }  _has;
@@ -32,9 +33,11 @@
     unsigned int  _lineNumber;
     unsigned long long  _linkRegister;
     unsigned int  _minorReason;
+    NSData * _oui;
     unsigned long long  _programCounter;
     int  _reason;
     NSString * _reasonString;
+    unsigned int  _recoveryLatency;
     unsigned int  _subreason;
     unsigned long long  _timestamp;
     AWDWiFiMetricExtendedTrapInfo * _trapInfo;
@@ -68,9 +71,11 @@
 @property (nonatomic) bool hasLineNumber;
 @property (nonatomic) bool hasLinkRegister;
 @property (nonatomic) bool hasMinorReason;
+@property (nonatomic, readonly) bool hasOui;
 @property (nonatomic) bool hasProgramCounter;
 @property (nonatomic) bool hasReason;
 @property (nonatomic, readonly) bool hasReasonString;
+@property (nonatomic) bool hasRecoveryLatency;
 @property (nonatomic) bool hasSubreason;
 @property (nonatomic) bool hasTimestamp;
 @property (nonatomic, readonly) bool hasTrapInfo;
@@ -88,9 +93,11 @@
 @property (nonatomic) unsigned int lineNumber;
 @property (nonatomic) unsigned long long linkRegister;
 @property (nonatomic) unsigned int minorReason;
+@property (nonatomic, retain) NSData *oui;
 @property (nonatomic) unsigned long long programCounter;
 @property (nonatomic) int reason;
 @property (nonatomic, retain) NSString *reasonString;
+@property (nonatomic) unsigned int recoveryLatency;
 @property (nonatomic) unsigned int subreason;
 @property (nonatomic) unsigned long long timestamp;
 @property (nonatomic, retain) AWDWiFiMetricExtendedTrapInfo *trapInfo;
@@ -131,9 +138,11 @@
 - (bool)hasLineNumber;
 - (bool)hasLinkRegister;
 - (bool)hasMinorReason;
+- (bool)hasOui;
 - (bool)hasProgramCounter;
 - (bool)hasReason;
 - (bool)hasReasonString;
+- (bool)hasRecoveryLatency;
 - (bool)hasSubreason;
 - (bool)hasTimestamp;
 - (bool)hasTrapInfo;
@@ -154,10 +163,12 @@
 - (unsigned long long)linkRegister;
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)minorReason;
+- (id)oui;
 - (unsigned long long)programCounter;
 - (bool)readFrom:(id)arg1;
 - (int)reason;
 - (id)reasonString;
+- (unsigned int)recoveryLatency;
 - (void)setAvailable:(int)arg1;
 - (void)setBackTraces:(unsigned long long*)arg1 count:(unsigned long long)arg2;
 - (void)setDeviceIdentifierMap:(unsigned int)arg1;
@@ -174,6 +185,7 @@
 - (void)setHasMinorReason:(bool)arg1;
 - (void)setHasProgramCounter:(bool)arg1;
 - (void)setHasReason:(bool)arg1;
+- (void)setHasRecoveryLatency:(bool)arg1;
 - (void)setHasSubreason:(bool)arg1;
 - (void)setHasTimestamp:(bool)arg1;
 - (void)setHasVersion:(bool)arg1;
@@ -181,9 +193,11 @@
 - (void)setLineNumber:(unsigned int)arg1;
 - (void)setLinkRegister:(unsigned long long)arg1;
 - (void)setMinorReason:(unsigned int)arg1;
+- (void)setOui:(id)arg1;
 - (void)setProgramCounter:(unsigned long long)arg1;
 - (void)setReason:(int)arg1;
 - (void)setReasonString:(id)arg1;
+- (void)setRecoveryLatency:(unsigned int)arg1;
 - (void)setSubreason:(unsigned int)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;
 - (void)setTrapInfo:(id)arg1;

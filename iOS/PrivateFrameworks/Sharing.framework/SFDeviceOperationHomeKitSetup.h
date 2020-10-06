@@ -18,6 +18,7 @@
     HMDeviceSetupOperation * _homeKitDeviceSetupOperation;
     HMHomeManager * _homeKitHomeManager;
     bool  _homeKitHomeManagerReady;
+    HMMediaSystem * _homeKitMediaSystem;
     HMHome * _homeKitSelectedHome;
     HMRoom * _homeKitSelectedRoom;
     NSString * _homeKitSelectedRoomName;
@@ -39,9 +40,11 @@
     int  _state;
     HMAccessory * _stereoCounterpart;
     int  _stereoRole;
+    double  _timeoutInSeconds;
     NSObject<OS_dispatch_source> * _timeoutTimer;
     TROperationQueue * _trOperationQueue;
     TRSession * _trSession;
+    bool  _userInteractive;
 }
 
 @property (nonatomic, copy) NSDictionary *appDataSelf;
@@ -68,7 +71,9 @@
 @property (nonatomic, retain) HMAccessory *stereoCounterpart;
 @property (nonatomic) int stereoRole;
 @property (readonly) Class superclass;
+@property (nonatomic) double timeoutInSeconds;
 @property (nonatomic, retain) TRSession *trSession;
+@property (nonatomic) bool userInteractive;
 
 - (void).cxx_destruct;
 - (void)_cleanup;
@@ -99,7 +104,7 @@
 - (id)appDataSelf;
 - (id /* block */)completionHandler;
 - (id)dispatchQueue;
-- (id)findStereoCounterparts;
+- (id)findStereoCounterpartsWithSupportedVersions:(unsigned long long)arg1;
 - (bool)hasHomePod;
 - (bool)hasMultipleUsers;
 - (void)homeAppInstallChoice:(bool)arg1;
@@ -139,9 +144,13 @@
 - (void)setPromptToInstallHomeAppHandler:(id /* block */)arg1;
 - (void)setStereoCounterpart:(id)arg1;
 - (void)setStereoRole:(int)arg1;
+- (void)setTimeoutInSeconds:(double)arg1;
 - (void)setTrSession:(id)arg1;
+- (void)setUserInteractive:(bool)arg1;
 - (id)stereoCounterpart;
 - (int)stereoRole;
+- (double)timeoutInSeconds;
 - (id)trSession;
+- (bool)userInteractive;
 
 @end

@@ -54,6 +54,7 @@
     int  _visualStyle;
 }
 
+@property (nonatomic, readonly) long long assetIdiom;
 @property (nonatomic, readonly) long long cacheDeferPriority;
 @property (nonatomic, readonly) bool cacheDeferable;
 @property (nonatomic, readonly) NSString *cacheKey;
@@ -66,17 +67,13 @@
 @property (nonatomic, retain) UIKBRenderConfig *renderConfig;
 @property (readonly) Class superclass;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (bool)_canDrawContent;
-- (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (long long)assetIdiom;
 - (bool)cacheDeferable;
 - (id)cacheKey;
 - (id)cacheKeysForRenderFlags:(id)arg1;
 - (double)cachedWidth;
+- (void)dealloc;
 - (void)displayLayer:(id)arg1;
 - (void)drawContentsOfRenderers:(id)arg1;
 - (id)geometryCacheKey;

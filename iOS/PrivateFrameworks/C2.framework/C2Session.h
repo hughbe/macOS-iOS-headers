@@ -3,7 +3,8 @@
  */
 
 @interface C2Session : NSObject <C2RequestDelegate, C2SessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionDataDelegatePrivate, NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionTaskDelegatePrivate> {
-    double  _emptyTimestamp;
+    NSMutableSet * _didCompleteWithErrorRunningTasks;
+    long long  _emptyTimestamp;
     bool  _isComplete;
     C2RequestOptions * _options;
     NSString * _originalHost;
@@ -13,6 +14,7 @@
     NSURLSession * _session;
     NSString * _sessionConfigurationName;
     <C2SessionDelegate> * _sessionDelegate;
+    id /* block */  _testBehavior_callbackHung;
     id /* block */  _testBehavior_cleanupRetainCycle;
     id /* block */  _testBehavior_sessionInvalidated_cfnetwork;
     id /* block */  _testBehavior_sessionInvalidated_shouldInvalidate;
@@ -21,7 +23,8 @@
 
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
-@property (nonatomic) double emptyTimestamp;
+@property (nonatomic, retain) NSMutableSet *didCompleteWithErrorRunningTasks;
+@property (nonatomic) long long emptyTimestamp;
 @property (readonly) unsigned long long hash;
 @property (nonatomic) bool isComplete;
 @property (nonatomic, readonly, copy) C2RequestOptions *options;
@@ -33,6 +36,7 @@
 @property (nonatomic, readonly) NSString *sessionConfigurationName;
 @property (nonatomic, retain) <C2SessionDelegate> *sessionDelegate;
 @property (readonly) Class superclass;
+@property (nonatomic, copy) id /* block */ testBehavior_callbackHung;
 @property (nonatomic, copy) id /* block */ testBehavior_cleanupRetainCycle;
 @property (nonatomic, copy) id /* block */ testBehavior_sessionInvalidated_cfnetwork;
 @property (nonatomic, copy) id /* block */ testBehavior_sessionInvalidated_shouldInvalidate;
@@ -52,6 +56,7 @@
 - (void)URLSession:(id)arg1 task:(id)arg2 _conditionalRequirementsChanged:(bool)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 _willSendRequestForEstablishedConnection:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)URLSession:(id)arg1 task:(id)arg2 didCompleteWithError:(id)arg3;
+- (void)URLSession:(id)arg1 task:(id)arg2 didFinishCollectingMetrics:(id)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 didSendBodyData:(long long)arg3 totalBytesSent:(long long)arg4 totalBytesExpectedToSend:(long long)arg5;
 - (void)URLSession:(id)arg1 task:(id)arg2 needNewBodyStream:(id /* block */)arg3;
 - (void)URLSession:(id)arg1 task:(id)arg2 willPerformHTTPRedirection:(id)arg3 newRequest:(id)arg4 completionHandler:(id /* block */)arg5;
@@ -60,7 +65,8 @@
 - (void)cleanupRetainCycle;
 - (id)createTaskWithOptions:(id)arg1 delegate:(id)arg2;
 - (void)dealloc;
-- (double)emptyTimestamp;
+- (id)didCompleteWithErrorRunningTasks;
+- (long long)emptyTimestamp;
 - (id)initWithSessionConfigurationName:(id)arg1 routeHost:(id)arg2 options:(id)arg3 sessionDelegate:(id)arg4;
 - (void)invalidateAndCancel;
 - (bool)isComplete;
@@ -74,19 +80,23 @@
 - (id)sessionConfigurationName;
 - (id)sessionDelegate;
 - (void)sessionTaskDelegateCallbackHelper:(id)arg1 task:(id)arg2 block:(id /* block */)arg3;
-- (void)setEmptyTimestamp:(double)arg1;
+- (void)setDidCompleteWithErrorRunningTasks:(id)arg1;
+- (void)setEmptyTimestamp:(long long)arg1;
 - (void)setIsComplete:(bool)arg1;
 - (void)setOriginalHost:(id)arg1;
 - (void)setRouteHost:(id)arg1;
 - (void)setRouteLastUpdated:(double)arg1;
 - (void)setSessionDelegate:(id)arg1;
+- (void)setTestBehavior_callbackHung:(id /* block */)arg1;
 - (void)setTestBehavior_cleanupRetainCycle:(id /* block */)arg1;
 - (void)setTestBehavior_sessionInvalidated_cfnetwork:(id /* block */)arg1;
 - (void)setTestBehavior_sessionInvalidated_shouldInvalidate:(id /* block */)arg1;
 - (bool)shouldInvalidateAndCancel;
+- (id /* block */)testBehavior_callbackHung;
 - (id /* block */)testBehavior_cleanupRetainCycle;
 - (id /* block */)testBehavior_sessionInvalidated_cfnetwork;
 - (id /* block */)testBehavior_sessionInvalidated_shouldInvalidate;
+- (void)testBehavior_triggerCallbackHang;
 - (void)testBehavior_triggerSessionExpiry;
 - (id)wrappedTaskByTaskDescription;
 

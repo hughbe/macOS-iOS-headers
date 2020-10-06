@@ -3,14 +3,17 @@
  */
 
 @interface _UIFocusGroupDescriptor : NSObject {
+    struct { 
+        unsigned int isStringIdentifier : 1; 
+    }  _flags;
     <NSObject><NSCopying> * _identifier;
 }
 
-+ (id)_alphabeticNumberForNumber:(unsigned long long)arg1;
-+ (id)_humanReadableIdentifierForIdentifier:(id)arg1;
++ (id)_stringIdentifierMapTable;
 
 - (void).cxx_destruct;
-- (id)_humanReadableIdentifier;
+- (id)_stringIdentifier;
+- (void)dealloc;
 - (id)description;
 - (unsigned long long)hash;
 - (id)init;

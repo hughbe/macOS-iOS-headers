@@ -8,7 +8,7 @@
 
 @property (nonatomic, readonly) unsigned long long name;
 @property (nonatomic, readonly) NSArray *packets;
-@property (nonatomic, readonly) _MRNowPlayingPlayerPathProtobuf *playerPath;
+@property (nonatomic, readonly) MRPlayerPath *playerPath;
 
 - (void).cxx_destruct;
 - (id)initWithContentItems:(id)arg1 forPlayerPath:(id)arg2;

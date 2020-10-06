@@ -34,7 +34,6 @@
 - (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)executablePath;
 - (id)infoDictionary;
-- (id)initWithXPCBundle:(id)arg1;
 - (id)succinctDescription;
 - (id)succinctDescriptionBuilder;
 - (id)xpcBundle;

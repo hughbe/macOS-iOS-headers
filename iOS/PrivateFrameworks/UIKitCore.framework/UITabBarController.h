@@ -2,7 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
  */
 
-@interface UITabBarController : UIViewController <DebugHierarchyObject_Fallback, NSCoding, UIGestureRecognizerDelegate, UILayoutContainerViewDelegate, UITabBarDelegate, _UIScrollViewScrollObserver, _UITVScrollViewManagerDelegate> {
+@interface UITabBarController : UIViewController <GKContentRefresh, GKURLHandling, NSCoding, PXProgrammaticNavigationUpdateTarget, UIGestureRecognizerDelegate, UILayoutContainerViewDelegate, UITabBarDelegate, _UIScrollViewScrollObserver, _UITVScrollViewManagerDelegate, _UITabBarDelegateInternal> {
     bool  __allowLateralFocusMovementOutOfTabBar;
     <UIViewControllerAnimatedTransitioning> * __animator;
     NSString * __backdropGroupName;
@@ -39,6 +39,7 @@
         unsigned int delegateSupportedInterfaceOrientations : 1; 
         unsigned int delegatePreferredInterfaceOrientationForPresentation : 1; 
         unsigned int preferTabBarFocused : 1; 
+        unsigned int notifySplitViewControllerForSelectionChange : 1; 
         unsigned int offscreen : 1; 
         unsigned int hidNavBar : 1; 
     }  _tabBarControllerFlags;
@@ -63,6 +64,9 @@
 @property (readonly) unsigned long long hash;
 @property (nonatomic, retain) NSMutableArray *moreChildViewControllers;
 @property (nonatomic, readonly) UINavigationController *moreNavigationController;
+@property (nonatomic, readonly) bool px_hidesTabBarForCurrentHorizontalSizeClass;
+@property (nonatomic, readonly) bool px_hidesTabBarForRegularHorizontalSizeClass;
+@property (getter=px_isTabBarHidden, nonatomic, readonly) bool px_tabBarHidden;
 @property (getter=_rememberedFocusedItemsByViewController, nonatomic, readonly) NSMapTable *rememberedFocusedItemsByViewController;
 @property (nonatomic) unsigned long long selectedIndex;
 @property (nonatomic) UIViewController *selectedViewController;
@@ -96,6 +100,8 @@
 - (id)_backdropGroupName;
 - (bool)_canRestoreFocusAfterTransitionToRecalledItem:(id)arg1 inViewController:(id)arg2;
 - (void)_childViewController:(id)arg1 updatedObservedScrollView:(id)arg2;
+- (id)_childViewControllerForMultitaskingDragExclusionRects;
+- (double)_childViewControllerModernTVTabBarTopInset;
 - (void)_configureTargetActionForTabBarItem:(id)arg1;
 - (id)_customAnimatorForFromViewController:(id)arg1 toViewController:(id)arg2;
 - (id)_customInteractionControllerForAnimator:(id)arg1;
@@ -124,9 +130,13 @@
 - (bool)_isPresentationContextByDefault;
 - (bool)_isSupportedInterfaceOrientation:(long long)arg1;
 - (bool)_isTabBarFocused;
+- (void)_largeContentViewerEnabledStatusDidChange:(id)arg1;
 - (void)_layoutContainerView;
 - (void)_layoutViewController:(id)arg1;
+- (bool)_notifySplitViewControllerForSelectionChange;
 - (void)_observeScrollViewDidScroll:(id)arg1;
+- (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_overlayInsetsAdjustment;
+- (id)_overrideTraitCollectionToPassDuringTraitChangeToChildViewController:(id)arg1;
 - (id)_overridingPreferredFocusEnvironment;
 - (void)_performBackGesture:(id)arg1;
 - (void)_performFocusGesture:(unsigned long long)arg1;
@@ -156,6 +166,7 @@
 - (void)_setInteractor:(id)arg1;
 - (void)_setMaximumNumberOfItems:(unsigned long long)arg1;
 - (void)_setMoreNavigationControllerRestorationIdentifier;
+- (void)_setNotifySplitViewControllerForSelectionChange:(bool)arg1;
 - (void)_setSelectedTabBarItem:(id)arg1;
 - (void)_setSelectedViewController:(id)arg1;
 - (void)_setSelectedViewControllerNeedsLayout;
@@ -171,6 +182,9 @@
 - (long long)_subclassPreferredFocusedViewPrioritizationType;
 - (void)_tabBarItemClicked:(id)arg1;
 - (long long)_tabBarPosition;
+- (id)_tabBarWindowForInterfaceOrientation:(id)arg1;
+- (void)_toggleAccessibilityHUDLongPressRecognizerIfNecessary;
+- (id)_traitCollectionForChildEnvironment:(id)arg1;
 - (id)_transitionView;
 - (bool)_transitionsChildViewControllers;
 - (void)_updateGestureRecognizersForTraitCollection:(id)arg1;
@@ -186,20 +200,13 @@
 - (id)_viewsWithDisabledInteractionGivenTransitionContext:(id)arg1;
 - (void)_willChangeToIdiom:(long long)arg1 onScreen:(id)arg2;
 - (id)_wrapperViewForViewController:(id)arg1;
-- (void)dealloc;
-
-// Image: /Developer/Library/PrivateFrameworks/DTDDISupport.framework/libViewDebuggerSupport.dylib
-
-+ (id)fallback_debugHierarchyPropertyDescriptions;
-+ (id)fallback_debugHierarchyValueForPropertyWithName:(id)arg1 onObject:(id)arg2 outOptions:(id*)arg3 outError:(id*)arg4;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
+- (bool)_wrapsNavigationController:(id*)arg1;
 - (id)allViewControllers;
 - (void)animationDidStop:(id)arg1 finished:(id)arg2 context:(id)arg3;
 - (bool)becomeFirstResponder;
 - (void)beginCustomizingTabBar:(id)arg1;
 - (id)childViewControllerForHomeIndicatorAutoHidden;
+- (id)childViewControllerForPointerLock;
 - (id)childViewControllerForScreenEdgesDeferringSystemGestures;
 - (id)childViewControllerForStatusBarHidden;
 - (id)childViewControllerForStatusBarStyle;
@@ -207,6 +214,7 @@
 - (id)childViewControllerForWhitePointAdaptivityStyle;
 - (void)concealTabBarSelection;
 - (id)customizableViewControllers;
+- (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (id)delegate;
 - (void)didAnimateFirstHalfOfRotationToInterfaceOrientation:(long long)arg1;
@@ -281,5 +289,44 @@
 - (void)willAnimateSecondHalfOfRotationFromInterfaceOrientation:(long long)arg1 duration:(double)arg2;
 - (void)willRotateToInterfaceOrientation:(long long)arg1 duration:(double)arg2;
 - (void)willTransitionToTraitCollection:(id)arg1 withTransitionCoordinator:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterUICore.framework/GameCenterUICore
+
+- (void)_gkForceNextContentUpdate;
+- (void)_gkHandleURLPathComponents:(id)arg1 query:(id)arg2;
+- (void)_gkRefreshContentsForDataType:(unsigned int)arg1 userInfo:(id)arg2;
+- (void)_gkResetContents;
+- (void)_gkSetContentsNeedUpdateWithHandler:(id /* block */)arg1;
+- (bool)_gkShouldRefreshContentsForDataType:(unsigned int)arg1 userInfo:(id)arg2;
+- (void)_gkUpdateContentsWithCompletionHandlerAndError:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/PhotosUICore.framework/PhotosUICore
+
+- (void)_px_prepareNavigationFromViewController:(id)arg1 routingOptions:(unsigned long long)arg2 options:(unsigned long long)arg3 completionHandler:(id /* block */)arg4;
+- (void)_px_selectTabForKeyCommand:(id)arg1;
+- (void)_switchToBarBarItem:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)navigateToDestination:(id)arg1 options:(unsigned long long)arg2 completionHandler:(id /* block */)arg3;
+- (id)nextExistingParticipantOnRouteToDestination:(id)arg1;
+- (void)ppt_runTabSwitchingTestWithName:(id)arg1 options:(id)arg2 delegate:(id)arg3 completionHandler:(id /* block */)arg4;
+- (double)px_HDRFocus;
+- (bool)px_canPerformAddToTabAnimationForTab:(unsigned long long)arg1;
+- (id)px_defaultKeyCommandsWithDelegate:(id)arg1;
+- (id)px_diagnosticsItemProvidersForPoint:(struct CGPoint { double x1; double x2; })arg1 inCoordinateSpace:(id)arg2;
+- (id)px_endPointForTransition:(id)arg1;
+- (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })px_frameForTabItem:(unsigned long long)arg1 inCoordinateSpace:(id)arg2;
+- (bool)px_hidesTabBarForCurrentHorizontalSizeClass;
+- (bool)px_hidesTabBarForRegularHorizontalSizeClass;
+- (double)px_imageModulationIntensity;
+- (bool)px_isImageModulationEnabled;
+- (bool)px_isTabBarHidden;
+- (id)px_navigateToMemoryWithLocalIdentifier:(id)arg1 dismissAnyPresentedViewController:(bool)arg2;
+- (id)px_navigationDestination;
+- (void)px_performAddToTabAnimation:(unsigned long long)arg1 withSnapshotView:(id)arg2;
+- (void)px_switchToTabForDestination:(id)arg1 options:(unsigned long long)arg2 completionHandler:(id /* block */)arg3;
+- (unsigned long long)routingOptionsForDestination:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (id)selectedNavigationController;
 
 @end

@@ -11,6 +11,9 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *plmn;
 @property (nonatomic, retain) NSString *rat;
+@property (nonatomic, readonly, copy) NSString *tps_localizedName;
+
+// Image: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
 
 + (bool)supportsSecureCoding;
 
@@ -25,5 +28,9 @@
 - (void)setName:(id)arg1;
 - (void)setPlmn:(id)arg1;
 - (void)setRat:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/TelephonyPreferences.framework/TelephonyPreferences
+
+- (id)tps_localizedName;
 
 @end

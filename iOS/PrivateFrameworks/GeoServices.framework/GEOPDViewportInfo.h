@@ -35,8 +35,11 @@
 - (bool)hasMapType;
 - (bool)hasTimeSinceMapViewportChanged;
 - (unsigned long long)hash;
+- (id)initWithDictionary:(id)arg1;
+- (id)initWithJSON:(id)arg1;
 - (id)initWithTraits:(id)arg1;
 - (bool)isEqual:(id)arg1;
+- (id)jsonRepresentation;
 - (id)mapRegion;
 - (int)mapType;
 - (id)mapTypeAsString:(int)arg1;

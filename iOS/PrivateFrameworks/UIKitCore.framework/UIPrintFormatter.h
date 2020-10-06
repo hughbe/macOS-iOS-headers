@@ -9,6 +9,7 @@
         double bottom; 
         double right; 
     }  _contentInsets;
+    bool  _imagePDFAnnotations;
     double  _maximumContentHeight;
     double  _maximumContentWidth;
     bool  _needsRecalc;
@@ -24,6 +25,7 @@
 }
 
 @property (nonatomic) struct UIEdgeInsets { double x1; double x2; double x3; double x4; } contentInsets;
+@property (nonatomic) bool imagePDFAnnotations;
 @property (nonatomic) double maximumContentHeight;
 @property (nonatomic) double maximumContentWidth;
 @property (nonatomic, readonly) long long pageCount;
@@ -39,6 +41,7 @@
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })contentInsets;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)drawInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 forPageAtIndex:(long long)arg2;
+- (bool)imagePDFAnnotations;
 - (id)init;
 - (double)maximumContentHeight;
 - (double)maximumContentWidth;
@@ -48,6 +51,7 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })rectForPageAtIndex:(long long)arg1;
 - (void)removeFromPrintPageRenderer;
 - (void)setContentInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;
+- (void)setImagePDFAnnotations:(bool)arg1;
 - (void)setMaximumContentHeight:(double)arg1;
 - (void)setMaximumContentWidth:(double)arg1;
 - (void)setPerPageContentInsets:(struct UIEdgeInsets { double x1; double x2; double x3; double x4; })arg1;

@@ -8,13 +8,8 @@
 
 @property (nonatomic, retain) <UIWebFormControl> *_innerWebDateTimeControl;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (id)_innerWebDateTimeControl;
 - (void)dealloc;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)initWithDOMHTMLInputElement:(id)arg1 datePickerMode:(long long)arg2;
 - (void)loadView;
 - (void)set_innerWebDateTimeControl:(id)arg1;

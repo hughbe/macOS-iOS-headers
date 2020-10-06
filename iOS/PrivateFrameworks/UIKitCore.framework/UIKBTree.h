@@ -44,12 +44,14 @@
 - (int)_variantType;
 - (id)activeGeometriesList;
 - (id)activeShapesFromOutputShapes:(id)arg1 inputShapes:(id)arg2;
-- (bool)addMessagesWriteboardKey;
-- (bool)addMessagesWriteboardKeyIfDismissKey;
-- (bool)addMessagesWriteboardKeyIfNoDismissKey;
+- (bool)addMessagesWriteboardKeyOrRomanSwitch:(bool)arg1;
+- (bool)addMessagesWriteboardKeyOrRomanSwitchIfDismissKey:(bool)arg1;
+- (bool)addMessagesWriteboardKeyOrRomanSwitchIfNoDismissKey:(bool)arg1;
+- (void)addRomanSwitchToCachedKeyListWithShape:(id)arg1 rendering:(int)arg2;
 - (void)addWriteboardKeyToCachedKeyListWithShape:(id)arg1 rendering:(int)arg2;
 - (void)addkeyToCachedKeyList:(id)arg1;
 - (bool)allowRetestAfterCommittingDownActions;
+- (bool)allowsDelayedTapForContinuousPathDisambiguation;
 - (bool)allowsStartingContinuousPath;
 - (id)alternateKeyplaneName;
 - (id)attributeSet:(bool)arg1;
@@ -65,7 +67,11 @@
 - (id)cacheSecondaryDisplayString;
 - (id)cachedGestureLayout;
 - (id)cachedKeysByKeyName:(id)arg1;
+- (void)centerHorizontallyWhilePreservingLayoutWithKeys:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 scale:(double)arg3;
+- (void)centerKeyplaneInRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 scale:(double)arg2;
 - (void)centerKeys:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 scale:(double)arg3;
+- (void)centerVerticallyWhilePreservingLayoutWithKeys:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 scale:(double)arg3;
+- (void)centerWhilePreservingLayoutWithKeys:(id)arg1 inRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg2 scale:(double)arg3;
 - (void)clearManualAddedKey;
 - (void)clearTransientCaches;
 - (unsigned long long)clipCorners;
@@ -136,6 +142,8 @@
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })keyUnionFramePadded:(bool)arg1;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })keyUnionPaddedFrame;
 - (id)keyplaneForKey:(id)arg1;
+- (id)keyplaneSwitchKeys;
+- (id)keyplaneSwitchKeysWithoutCurrentKeyplane:(id)arg1;
 - (id)keys;
 - (id)keysByKeyName:(id)arg1;
 - (id)keysForDisplayRowAtIndex:(unsigned long long)arg1;
@@ -170,7 +178,9 @@
 - (id)overrideDisplayString;
 - (struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })paddedFrame;
 - (id)parentKey;
+- (long long)popupDirection;
 - (void)precacheLayoutName:(id)arg1;
+- (bool)preventPaddle;
 - (double)primaryKeylayoutOffset;
 - (double)primaryKeylayoutWidthRatio;
 - (id)properties;
@@ -192,6 +202,7 @@
 - (id)secondaryDisplayStrings;
 - (id)secondaryRepresentedStrings;
 - (long long)selectedVariantIndex;
+- (id)selectedVariantIndices;
 - (void)setActiveGeometriesList:(id)arg1;
 - (void)setAttributes:(id)arg1;
 - (void)setCache:(id)arg1;
@@ -217,12 +228,15 @@
 - (void)setIsGenerated:(bool)arg1;
 - (void)setLayoutTag:(id)arg1;
 - (void)setLayoutTag:(id)arg1 passingKeyTest:(id /* block */)arg2;
+- (void)setLocalizationKey:(id)arg1;
 - (void)setMergeAsMoreKey:(bool)arg1;
 - (void)setName:(id)arg1;
 - (bool)setObject:(id)arg1 forProperty:(id)arg2;
 - (void)setOverrideDisplayString:(id)arg1;
 - (void)setPaddedFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1;
 - (void)setParentKey:(id)arg1;
+- (void)setPopupDirection:(long long)arg1;
+- (void)setPreventPaddle:(bool)arg1;
 - (void)setProperties:(id)arg1;
 - (void)setRendering:(int)arg1;
 - (void)setRepresentedString:(id)arg1;
@@ -230,6 +244,7 @@
 - (void)setSecondaryDisplayStrings:(id)arg1;
 - (void)setSecondaryRepresentedStrings:(id)arg1;
 - (void)setSelectedVariantIndex:(long long)arg1;
+- (void)setSelectedVariantIndices:(id)arg1;
 - (void)setShape:(id)arg1;
 - (void)setSplitMode:(int)arg1;
 - (void)setState:(int)arg1;
@@ -243,6 +258,7 @@
 - (void)setVisualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 8; unsigned int x6 : 8; })arg1;
 - (id)shape;
 - (id)shapeFromFrame:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 leftPadding:(double)arg2 rightPadding:(double)arg3;
+- (id)shapesForKeys:(id)arg1;
 - (id)shiftAlternateKeyplaneName;
 - (void)shiftRowAndResizeLeadingControlKey:(id)arg1 toSize:(struct CGSize { double x1; double x2; })arg2 scale:(double)arg3;
 - (bool)shouldCacheKey;

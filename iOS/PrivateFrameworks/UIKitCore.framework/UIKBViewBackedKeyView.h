@@ -10,12 +10,7 @@
 @property (nonatomic, retain) UIKBBackdropView *backdropView;
 @property (nonatomic, retain) UIView<UIKBKeyViewContentView> *contentView;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 - (void).cxx_destruct;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)backdropView;
 - (id)contentView;
 - (void)layoutSubviews;

@@ -19,6 +19,13 @@
 
 + (bool)supportsSecureCoding;
 + (id)transform;
++ (id)transformWithFlipUsingHeight:(double)arg1;
++ (id)transformWithRotationInDegrees:(double)arg1;
++ (id)transformWithRotationInRadians:(double)arg1;
++ (id)transformWithScale:(double)arg1;
++ (id)transformWithTransformStruct:(struct { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
++ (id)transformWithXScale:(double)arg1 yScale:(double)arg2;
++ (id)transformWithXTranslation:(double)arg1 yTranslation:(double)arg2;
 
 - (void)appendTransform:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -50,5 +57,23 @@
 - (struct Object { int (**x1)(); struct Atomic { struct { int x_1_2_1; } x_2_1_1; } x2; }*)CA_copyRenderValue;
 - (id)CA_interpolateValue:(id)arg1 byFraction:(float)arg2;
 - (void)encodeWithCAMLWriter:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NeutrinoCore.framework/NeutrinoCore
+
++ (id)nu_transformWithCGAffineTransform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
+
+- (id)description;
+- (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })nu_CGAffineTransform;
+
+// Image: /System/Library/PrivateFrameworks/PhotosImagingFoundation.framework/PhotosImagingFoundation
+
++ (id)pa_transformWithCGAffineTransform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg1;
+
+- (id)description;
+- (struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })pa_CGAffineTransform;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
+- (void)gqu_transformRect:(struct CGRect { struct CGPoint { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; })arg1 upperLeft:(struct CGPoint { double x1; double x2; }*)arg2 lowerLeft:(struct CGPoint { double x1; double x2; }*)arg3 lowerRight:(struct CGPoint { double x1; double x2; }*)arg4 upperRight:(struct CGPoint { double x1; double x2; }*)arg5;
 
 @end

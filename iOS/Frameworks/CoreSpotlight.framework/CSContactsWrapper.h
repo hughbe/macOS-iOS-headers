@@ -4,12 +4,12 @@
 
 @interface CSContactsWrapper : NSObject
 
-@property (nonatomic, readonly) NSString *CNContactEmailAddressKeyString;
+@property (nonatomic, readonly) NSString *CNContactEmailAddressesKeyString;
 @property (nonatomic, readonly) Class CNContactPropertyClass;
 
 + (id)sharedInstance;
 
-- (id)CNContactEmailAddressKeyString;
+- (id)CNContactEmailAddressesKeyString;
 - (Class)CNContactPropertyClass;
 
 @end

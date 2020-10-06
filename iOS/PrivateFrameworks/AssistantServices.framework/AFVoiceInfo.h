@@ -22,6 +22,8 @@
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) bool wasInitalizedFromDictionaryRepresentation;
 
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
 + (id)allVoicesForSiriSessionLanguage:(id)arg1;
 + (long long)defaultGenderForOutputVoiceLanguageCode:(id)arg1;
 + (long long)genderForVSSpeechGender:(long long)arg1;
@@ -59,5 +61,11 @@
 - (void)setGender:(long long)arg1;
 - (void)setIsCustom:(bool)arg1;
 - (bool)wasInitalizedFromDictionaryRepresentation;
+
+// Image: /System/Library/PrivateFrameworks/AssistantUI.framework/AssistantUI
+
+- (long long)VSSpeechFootprint;
+- (long long)VSSpeechGender;
+- (bool)isMatchForVoiceAsset:(id)arg1;
 
 @end

@@ -10,6 +10,7 @@
 }
 
 @property (nonatomic, readonly) NSDictionary *fieldFilters;
+@property (nonatomic, readonly) double flushInterval;
 @property (nonatomic, readonly) NSDictionary *metricsDictionary;
 @property (nonatomic, readonly) NSDictionary *overrideDictionary;
 @property (nonatomic, readonly) NSString *sampleSessionKey;
@@ -21,7 +22,8 @@
 - (bool)_shouldSampleEvent:(id)arg1;
 - (id)fieldFilters;
 - (bool)fieldFiltersMatchEvent:(id)arg1;
-- (id)initWithMetricsDictionary:(id)arg1 matchedOverrideDictionary:(id)arg2;
+- (double)flushInterval;
+- (id)initWithMetricsDictionary:(id)arg1 overrideDictionary:(id)arg2;
 - (id)metricsDictionary;
 - (id)overrideDictionary;
 - (id)prepareEvent:(id)arg1;

@@ -10,8 +10,6 @@
 @property (nonatomic) unsigned long long arrowDirection;
 @property (nonatomic) double arrowOffset;
 
-// Image: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
-
 + (double)_contentViewCornerRadiusForArrowDirection:(unsigned long long)arg1;
 + (double)arrowBase;
 + (double)arrowHeight;
@@ -34,9 +32,6 @@
 - (bool)_shouldAnimatePropertyWithKey:(id)arg1;
 - (void)_updateChrome;
 - (void)_updateShadow;
-
-// Image: /Developer/usr/lib/libMainThreadChecker.dylib
-
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (unsigned long long)arrowDirection;
 - (double)arrowOffset;

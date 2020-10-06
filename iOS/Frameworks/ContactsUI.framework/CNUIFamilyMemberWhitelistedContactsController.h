@@ -8,6 +8,7 @@
     CNContactViewController * _contactViewControllerPresentingItemDetails;
     <CNUICoreFamilyMemberWhitelistedContactsDataSource> * _dataSource;
     <CNUIFamilyMemberWhitelistedContactsControllerDelegate> * _delegate;
+    <CNDowntimeWhitelistContainerFetching> * _downtimeContaienerFetcher;
     FAFamilyMember * _familyMember;
     <CNUIFamilyMemberContactsPresentation> * _familyMemberContactsPresentation;
     CNContactStore * _familyMemberScopedContactStore;
@@ -21,6 +22,7 @@
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <CNUIFamilyMemberWhitelistedContactsControllerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) <CNDowntimeWhitelistContainerFetching> *downtimeContaienerFetcher;
 @property (nonatomic, readonly) FAFamilyMember *familyMember;
 @property (nonatomic, readonly) NSArray *familyMemberContactItems;
 @property (nonatomic, readonly) <CNUIFamilyMemberContactsPresentation> *familyMemberContactsPresentation;
@@ -31,7 +33,7 @@
 @property (nonatomic, readonly) long long status;
 @property (readonly) Class superclass;
 
-+ (id)contactPickerWithDelegate:(id)arg1 familyMember:(id)arg2;
++ (id)contactPickerWithDelegate:(id)arg1 familyMember:(id)arg2 parentContainer:(id)arg3;
 
 - (void).cxx_destruct;
 - (void)addContactsToWhitelist:(id)arg1;
@@ -53,6 +55,7 @@
 - (id)dataSource;
 - (id)delegate;
 - (void)deleteFamilyMemberContactItem:(id)arg1;
+- (id)downtimeContaienerFetcher;
 - (void)downtimePickerController:(id)arg1 didFinishWithContacts:(id)arg2;
 - (id)familyMember;
 - (id)familyMemberContactItems;

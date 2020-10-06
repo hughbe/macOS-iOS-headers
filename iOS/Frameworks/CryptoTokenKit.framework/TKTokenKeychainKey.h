@@ -31,6 +31,7 @@
 - (bool)canPerformKeyExchange;
 - (bool)canSign;
 - (void)createConstraints:(unsigned char)arg1;
+- (id)encodedObjectID;
 - (id)initWithCertificate:(struct __SecCertificate { }*)arg1 objectID:(id)arg2;
 - (id)initWithItemInfo:(id)arg1;
 - (bool)isSuitableForLogin;

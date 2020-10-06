@@ -2,10 +2,15 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface NSMapTable : NSObject <NSCopying, NSFastEnumeration, NSSecureCoding>
+@interface NSMapTable : NSObject <NSCopying, NSFastEnumeration, NSSecureCoding, SGHeaderCollection, _MPCSupportedCommands>
 
 @property (readonly) unsigned long long count;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned long long hash;
 @property (readonly, copy) NSPointerFunctions *keyPointerFunctions;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) bool tsp_isWeakObjectMapTable;
 @property (readonly, copy) NSPointerFunctions *valuePointerFunctions;
 
 // Image: /System/Library/Frameworks/Foundation.framework/Foundation
@@ -63,6 +68,10 @@
 - (id)objectForKeyedSubscript:(id)arg1;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
 
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
+- (id)allKeys;
+
 // Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
 
 - (void)bs_each:(id /* block */)arg1;
@@ -71,12 +80,126 @@
 - (void)bs_setSafeObject:(id)arg1 forKey:(id)arg2;
 - (id)bs_takeObjectForKey:(id)arg1;
 
-// Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
+// Image: /System/Library/PrivateFrameworks/CMCapture.framework/CMCapture
 
 + (id)bw_strongVideoRequirementToStrongObjectsMapTable;
+
+// Image: /System/Library/PrivateFrameworks/CoreSpeech.framework/CoreSpeech
+
+- (void)enumerateObjects:(id /* block */)arg1;
+- (id)objectForKeyedSubscript:(id)arg1;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)sg_headerKeyFunctions;
++ (id)sg_headerValueFunctions;
+
+- (void)sg_addEntriesFromHeadersDictionary:(id)arg1;
+- (id)sg_firstHeaderForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
+- (void)_gkEnumerateKeysAndObjectsUsingBlock:(id /* block */)arg1;
+- (id)objectForKeyedSubscript:(id)arg1;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)allKeys;
+
+// Image: /System/Library/PrivateFrameworks/MediaPlaybackCore.framework/MediaPlaybackCore
+
+- (id)_allCommandInfos;
+- (void*)commandInfoForCommand:(unsigned int)arg1;
 
 // Image: /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
 
 + (id)msvIndexMapTableWithCapacity:(long long)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NewsCore.framework/NewsCore
+
+- (id)fc_objectsForKeys:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
+- (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
+- (id)tsu_allKeys;
+- (id)tsu_noCopyDictionaryRepresentation;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
+
++ (id)pk_strongToWeakPointerPersonalityObjectsMapTable;
++ (id)pk_weakPointerPersonalityToStrongObjectsMapTable;
+
+// Image: /System/Library/PrivateFrameworks/TSReading.framework/TSReading
+
++ (id)newTspStrongObjectsMapTable;
++ (id)newTspWeakObjectsMapTable;
+
+- (void)enumerateIdentifiersAndObjectsUsingBlock:(id /* block */)arg1;
+- (void)enumerateObjectsUsingBlock:(id /* block */)arg1;
+- (id)tsp_objectForIdentifier:(long long)arg1;
+- (void)tsp_removeObjectForIdentifier:(long long)arg1;
+- (void)tsp_setObject:(id)arg1 forIdentifier:(long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/TSUtility.framework/TSUtility
+
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
+- (id)objectForKeyedSubscript:(id)arg1;
+- (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+- (id)tsu_allKeys;
+- (id)tsu_allObjects;
+- (void)tsu_enumerateKeysAndObjectsUsingBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSPersistence.framework/TSPersistence
+
++ (id)newTspStrongObjectsMapTable;
++ (id)newTspStrongObjectsMapTableWithCapacity:(unsigned long long)arg1;
++ (id)newTspWeakObjectsMapTable;
++ (id)newTspWeakObjectsMapTableWithCapacity:(unsigned long long)arg1;
+
+- (void)tsp_enumerateIdentifiersAndObjectsUsingBlock:(id /* block */)arg1;
+- (void)tsp_enumerateObjectsUsingBlock:(id /* block */)arg1;
+- (bool)tsp_isWeakObjectMapTable;
+- (id)tsp_objectForIdentifier:(long long)arg1;
+- (void)tsp_removeObjectForIdentifier:(long long)arg1;
+- (void)tsp_setObject:(id)arg1 forIdentifier:(long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/Frameworks/TSUtility.framework/TSUtility
+
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
+- (id)objectForKeyedSubscript:(id)arg1;
+- (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+- (id)tsu_allKeys;
+- (id)tsu_allObjects;
+- (void)tsu_enumerateKeysAndObjectsUsingBlock:(id /* block */)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSPersistence.framework/TSPersistence
+
++ (id)newTspStrongObjectsMapTable;
++ (id)newTspStrongObjectsMapTableWithCapacity:(unsigned long long)arg1;
++ (id)newTspWeakObjectsMapTable;
++ (id)newTspWeakObjectsMapTableWithCapacity:(unsigned long long)arg1;
+
+- (void)tsp_enumerateIdentifiersAndObjectsUsingBlock:(id /* block */)arg1;
+- (void)tsp_enumerateObjectsUsingBlock:(id /* block */)arg1;
+- (bool)tsp_isWeakObjectMapTable;
+- (id)tsp_objectForIdentifier:(long long)arg1;
+- (void)tsp_removeObjectForIdentifier:(long long)arg1;
+- (void)tsp_setObject:(id)arg1 forIdentifier:(long long)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iWorkXPC.framework/XPCServices/iWorkFileFormat.xpc/Frameworks/TSUtility.framework/TSUtility
+
+- (id)objectAtIndexedSubscript:(unsigned long long)arg1;
+- (id)objectForKeyedSubscript:(id)arg1;
+- (void)setObject:(id)arg1 atIndexedSubscript:(unsigned long long)arg2;
+- (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
+- (id)tsu_allKeys;
+- (id)tsu_allObjects;
+- (void)tsu_enumerateKeysAndObjectsUsingBlock:(id /* block */)arg1;
 
 @end

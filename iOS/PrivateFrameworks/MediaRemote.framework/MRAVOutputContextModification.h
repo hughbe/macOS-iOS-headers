@@ -19,19 +19,15 @@
 @property (nonatomic, copy) NSString *password;
 
 - (void).cxx_destruct;
-- (void)_modifyWithOutputContext:(id)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (id)avOutputDevices;
 - (id)concreteOutputDevices;
-- (id)errorFromResult:(id)arg1;
 - (id)initWithType:(unsigned long long)arg1 devices:(id)arg2;
 - (id)initiator;
 - (unsigned long long)modificationType;
 - (void)modifyWithOutputContext:(id)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (id)outputDevices;
 - (id)password;
-- (void)performModificationWithOutputContext:(id)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (void)setInitiator:(id)arg1;
 - (void)setPassword:(id)arg1;
-- (void)trackModificationWithStartDate:(id)arg1 initialGroupSize:(unsigned long long)arg2 error:(id)arg3;
 
 @end

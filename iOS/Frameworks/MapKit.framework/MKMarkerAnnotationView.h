@@ -8,7 +8,7 @@
     GEOFeatureStyleAttributes * _customStyleAttributes;
     UIImage * _glyphImage;
     UIImageView * _glyphImageView;
-    UILabel * _glyphLabel;
+    _MKUILabel * _glyphLabel;
     NSString * _glyphText;
     UIColor * _glyphTintColor;
     bool  _isObserving;
@@ -19,9 +19,9 @@
     _MKBezierPathView * _selectedDotView;
     UIImage * _selectedGlyphImage;
     UIImageView * _selectedGlyphImageView;
-    UILabel * _selectedGlyphLabel;
+    _MKUILabel * _selectedGlyphLabel;
     _MKBezierPathView * _selectedMarkerView;
-    UIImageView * _shadowView;
+    UIImageView * _shadow;
     MKWalletMerchantStylingInfo * _walletMerchantStylingInfo;
 }
 
@@ -44,7 +44,7 @@
 
 - (void).cxx_destruct;
 - (void)_configureAnimated:(bool)arg1 fromState:(long long)arg2 toState:(long long)arg3;
-- (void)_configureViewsForState:(long long)arg1 usesCallout:(bool)arg2;
+- (void)_configureViewsForState:(long long)arg1 usesCallout:(bool)arg2 animated:(bool)arg3;
 - (long long)_currentMarkerState;
 - (struct UIEdgeInsets { double x1; double x2; double x3; double x4; })_defaultCollisionAlignmentRectInsets;
 - (void)_didDragWithVelocity:(struct CGPoint { double x1; double x2; })arg1;
@@ -57,7 +57,9 @@
 - (double)_effectiveShadowAlphaForState:(long long)arg1;
 - (id)_effectiveSubtitlesIsCollidable:(bool*)arg1;
 - (bool)_hasDataRequiringCallout;
+- (struct { struct CGSize { double x_1_1_1; double x_1_1_2; } x1; struct CGSize { double x_2_1_1; double x_2_1_2; } x2; double x3; double x4; struct CGSize { double x_5_1_1; double x_5_1_2; } x5; struct CGSize { double x_6_1_1; double x_6_1_2; } x6; struct CGSize { double x_7_1_1; double x_7_1_2; } x7; })_metricsForState:(long long)arg1;
 - (void)_setSelected:(bool)arg1 animated:(bool)arg2;
+- (void)_setShadowAlpha:(double)arg1 transform:(struct CGAffineTransform { double x1; double x2; double x3; double x4; double x5; double x6; })arg2 duration:(double)arg3;
 - (void)_setStyleAttributes:(id)arg1;
 - (void)_setWalletMerchantStylingInfo:(id)arg1;
 - (void)_setupNormalViewsIfNeeded;

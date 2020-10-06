@@ -38,6 +38,7 @@
         unsigned int totalLPASDuration : 1; 
         unsigned int totalLpasPowerBudget : 1; 
         unsigned int totalLpasPowerMonitoringPeriod : 1; 
+        unsigned int totalTimeForBugetExpiry : 1; 
         unsigned int transmitDuration : 1; 
     }  _has;
     unsigned long long  _lpasPowerBudgetRemaining;
@@ -62,6 +63,7 @@
     unsigned long long  _totalLPASDuration;
     unsigned long long  _totalLpasPowerBudget;
     unsigned long long  _totalLpasPowerMonitoringPeriod;
+    unsigned long long  _totalTimeForBugetExpiry;
     unsigned long long  _transmitDuration;
 }
 
@@ -99,6 +101,7 @@
 @property (nonatomic) bool hasTotalLPASDuration;
 @property (nonatomic) bool hasTotalLpasPowerBudget;
 @property (nonatomic) bool hasTotalLpasPowerMonitoringPeriod;
+@property (nonatomic) bool hasTotalTimeForBugetExpiry;
 @property (nonatomic) bool hasTransmitDuration;
 @property (nonatomic) unsigned long long lpasPowerBudgetRemaining;
 @property (nonatomic) unsigned long long lpasPowerPeriodRemaining;
@@ -122,6 +125,7 @@
 @property (nonatomic) unsigned long long totalLPASDuration;
 @property (nonatomic) unsigned long long totalLpasPowerBudget;
 @property (nonatomic) unsigned long long totalLpasPowerMonitoringPeriod;
+@property (nonatomic) unsigned long long totalTimeForBugetExpiry;
 @property (nonatomic) unsigned long long transmitDuration;
 
 - (unsigned long long)associatedDuration;
@@ -162,6 +166,7 @@
 - (bool)hasTotalLPASDuration;
 - (bool)hasTotalLpasPowerBudget;
 - (bool)hasTotalLpasPowerMonitoringPeriod;
+- (bool)hasTotalTimeForBugetExpiry;
 - (bool)hasTransmitDuration;
 - (unsigned long long)hash;
 - (bool)isEqual:(id)arg1;
@@ -218,6 +223,7 @@
 - (void)setHasTotalLPASDuration:(bool)arg1;
 - (void)setHasTotalLpasPowerBudget:(bool)arg1;
 - (void)setHasTotalLpasPowerMonitoringPeriod:(bool)arg1;
+- (void)setHasTotalTimeForBugetExpiry:(bool)arg1;
 - (void)setHasTransmitDuration:(bool)arg1;
 - (void)setLpasPowerBudgetRemaining:(unsigned long long)arg1;
 - (void)setLpasPowerPeriodRemaining:(unsigned long long)arg1;
@@ -241,12 +247,14 @@
 - (void)setTotalLPASDuration:(unsigned long long)arg1;
 - (void)setTotalLpasPowerBudget:(unsigned long long)arg1;
 - (void)setTotalLpasPowerMonitoringPeriod:(unsigned long long)arg1;
+- (void)setTotalTimeForBugetExpiry:(unsigned long long)arg1;
 - (void)setTransmitDuration:(unsigned long long)arg1;
 - (unsigned long long)sleepDuration;
 - (unsigned long long)timestamp;
 - (unsigned long long)totalLPASDuration;
 - (unsigned long long)totalLpasPowerBudget;
 - (unsigned long long)totalLpasPowerMonitoringPeriod;
+- (unsigned long long)totalTimeForBugetExpiry;
 - (unsigned long long)transmitDuration;
 - (void)writeTo:(id)arg1;
 

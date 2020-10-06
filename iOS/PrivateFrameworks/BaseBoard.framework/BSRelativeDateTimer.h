@@ -17,17 +17,11 @@
 @property (readonly) unsigned long long hash;
 @property (readonly) Class superclass;
 
-+ (void)addTimerToMainRunLoop:(id)arg1;
 + (void)initialize;
-+ (void)invalidateTimer:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_fireAndUpdateTimerIfNecessary;
-- (void)_fireForEvent;
 - (void)_fireForLocaleEvent:(id)arg1;
-- (void)_invalidateTimer;
-- (double)_nextFireInterval:(id)arg1 resolution:(unsigned long long)arg2 comparedToNow:(long long)arg3;
-- (id)_timeDifferenceFromDate:(id)arg1;
 - (id)date;
 - (void)dealloc;
 - (id)delegate;

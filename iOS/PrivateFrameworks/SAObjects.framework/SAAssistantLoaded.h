@@ -4,6 +4,8 @@
 
 @interface SAAssistantLoaded : SABaseClientBoundCommand
 
+@property (nonatomic, copy) NSNumber *appleConnectSessionExpirationTimestamp;
+@property (nonatomic, copy) NSString *appleConnectSessionToken;
 @property (nonatomic, copy) NSString *dataAnchor;
 @property (nonatomic, copy) NSNumber *requestSync;
 @property (nonatomic, copy) NSArray *syncAnchors;
@@ -12,11 +14,15 @@
 + (id)assistantLoaded;
 + (id)assistantLoadedWithDictionary:(id)arg1 context:(id)arg2;
 
+- (id)appleConnectSessionExpirationTimestamp;
+- (id)appleConnectSessionToken;
 - (id)dataAnchor;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)requestSync;
 - (bool)requiresResponse;
+- (void)setAppleConnectSessionExpirationTimestamp:(id)arg1;
+- (void)setAppleConnectSessionToken:(id)arg1;
 - (void)setDataAnchor:(id)arg1;
 - (void)setRequestSync:(id)arg1;
 - (void)setSyncAnchors:(id)arg1;

@@ -10,7 +10,6 @@
 @property (nonatomic, readonly) UIView *view;
 @property (nonatomic, readonly) UIWindow *window;
 
-- (id)initWithView:(id)arg1 window:(id)arg2;
 - (id)view;
 - (id)window;
 

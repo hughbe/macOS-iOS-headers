@@ -10,7 +10,6 @@
 }
 
 @property (nonatomic, readonly) AMSMetricsFigaroEventModifier *defaultModifier;
-@property (nonatomic, readonly) double flushInterval;
 @property (nonatomic, readonly) NSDictionary *metricsDictionary;
 @property (nonatomic, readonly) NSArray *overrides;
 @property (nonatomic, readonly) NSObject<OS_dispatch_queue> *queue;
@@ -20,7 +19,6 @@
 - (void).cxx_destruct;
 - (id)_generateModifiersIfNeeded;
 - (id)defaultModifier;
-- (double)flushInterval;
 - (id)initWithMetricsDictionary:(id)arg1;
 - (id)metricsDictionary;
 - (id)modifierForEvent:(id)arg1;

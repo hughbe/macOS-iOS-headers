@@ -7,16 +7,10 @@
     NSString * _storePath;
 }
 
-@property (nonatomic, readonly) unsigned long long activityType;
-@property (nonatomic, readonly) NSString *storePath;
-
 + (bool)supportsSecureCoding;
 
-- (unsigned long long)activityType;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
-- (id)initWithActivityType:(unsigned long long)arg1 forStoreWithPath:(id)arg2;
 - (id)initWithCoder:(id)arg1;
-- (id)storePath;
 
 @end

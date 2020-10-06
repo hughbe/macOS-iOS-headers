@@ -8,6 +8,7 @@
     FBSSceneSettingsDiffInspector * _geometrySettingsDiffInspector;
     _UISceneLayerHostContainerView * _hostContainerView;
     bool  _invalidated;
+    NSHashTable * _observers;
     _UIScenePresenter * _presenter;
     FBScene * _scene;
 }
@@ -26,17 +27,20 @@
 - (void)_updateBackgroundColor;
 - (void)_updateFrameAndTransform;
 - (void)_updatePresentationContextFrom:(id)arg1 toContext:(id)arg2;
+- (void)addObserver:(id)arg1;
 - (id)currentPresentationContext;
 - (void)dealloc;
 - (id)debugDescription;
 - (id)description;
 - (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;
+- (void)didMoveToWindow;
 - (id)hostContainerView;
 - (id)initWithPresenter:(id)arg1;
 - (void)invalidate;
 - (id)presentationContextForSceneLayerHostContainerView;
 - (id)presenter;
+- (void)removeObserver:(id)arg1;
 - (void)scene:(id)arg1 didPrepareUpdateWithContext:(id)arg2;
 - (void)setCurrentPresentationContext:(id)arg1;
 - (void)setHostContainerView:(id)arg1;

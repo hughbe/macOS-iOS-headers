@@ -3,6 +3,8 @@
  */
 
 @interface VKDebugSettings : NSObject {
+    unsigned int  _POIDensityMaxNeighbors;
+    unsigned int  _POIDensityMinNeighbors;
     bool  _altitudeDisableC3mTextureLoading;
     float  _altitudeFadeSpeed;
     bool  _altitudeFreezeViewNode;
@@ -29,8 +31,11 @@
     float  _arVirtualPlaneHeight;
     bool  _constantlyChangeTileGroup;
     double  _constantlyChangeTileGroupInterval;
+    unsigned int  _continuousMultiSectionRouteAdditionalOverlap;
     struct unique_ptr<(anonymous namespace)::CustomLandmarksContainer, std::__1::default_delete<(anonymous namespace)::CustomLandmarksContainer> >="__ptr_"{__compressed_pair<(anonymous namespace)::CustomLandmarksContainer *, std::__1::default_delete<(anonymous namespace)::CustomLandmarksContainer> >="__value_"^{CustomLandmarksContainer {}  _customLandmarks;
     NSMutableDictionary * _customTiles;
+    bool  _debugCaptureNextGPUFrame;
+    NSString * _debugGPUFrameCaptureURL;
     int  _debugOverlayOffsetX;
     int  _debugOverlayOffsetY;
     struct shared_ptr<gss::StylesheetManager<gss::PropertyID> > { 
@@ -41,12 +46,13 @@
     float  _defaultFovLandscape;
     float  _defaultFovPortrait;
     bool  _disableBackgroundLabelLayout;
-    bool  _disableGlyphTextureAtlas;
+    bool  _disableContinuousMultiSectionRoutes;
     bool  _disableIconTextureAtlas;
     bool  _disableIntraLinkTransitLineCrossings;
     bool  _disableOverlayTextConsole;
     bool  _disableRoadSignLimit;
     bool  _disableRoute;
+    bool  _disableRouteAnnotationLimit;
     bool  _disableStylesheetAnimations;
     bool  _disableTransitLineDrawing;
     bool  _disableTransitLineGroupMerging;
@@ -63,12 +69,15 @@
     bool  _enableAROmniTileLoader;
     bool  _enableEtaLabelDebugging;
     bool  _enableEtaLabelRectDebugging;
+    bool  _enableLegacyLineLabeling;
     bool  _enableLoggingInLockScreen;
     bool  _enableMuninMiniMapCollectionPoints;
     bool  _enableMuninMiniMapComposedEdgeRoadColoring;
     bool  _enableMuninMiniMapRoadWidths;
     bool  _enableMuninMiniMapRoadZData;
     bool  _enableMuninRoadNetworkMiniMap;
+    bool  _enableNavRoadSignOrientationDebugging;
+    bool  _enableRoadSignArtworkDebugging;
     bool  _enableRouteIntersectionTesting;
     bool  _enableRouteShareSectionDebugging;
     bool  _enableSignPostEvents;
@@ -240,6 +249,7 @@
     bool  _shouldUseSDFGlyphs;
     bool  _shouldUseSDFSuperSampling;
     bool  _shouldUseTestTileLoader;
+    bool  _showClientStyleAttributes;
     bool  _showManeuverPoints;
     bool  _showNavCameraDebugConsole;
     bool  _showNavCameraDebugConsoleAttributes;
@@ -247,8 +257,11 @@
     bool  _showNavCameraDebugLegend;
     bool  _showNavCameraDebugOverlay;
     bool  _showNavLabelOverlay;
+    bool  _showRouteLineDebugPoints;
     bool  _showTrafficCasing;
+    bool  _slowAnimations;
     bool  _slowMotionBump;
+    bool  _slowTransitions;
     bool  _suppressFootprints;
     bool  _textlessPOIsEnabled;
     float  _textlessPOIsMinZoom;
@@ -259,12 +272,13 @@
     bool  _trackingCameraZoomFurther;
     bool  _transitHighlighting;
     bool  _useBuildingShadowTexture;
-    bool  _useGeoResourceLib;
     bool  _useMetalRenderer;
     bool  _useStaticTrafficFeed;
     bool  shouldOverrideSuperSampleKernelSize;
 }
 
+@property (nonatomic) unsigned int POIDensityMaxNeighbors;
+@property (nonatomic) unsigned int POIDensityMinNeighbors;
 @property (nonatomic) bool altitudeDisableC3mTextureLoading;
 @property (nonatomic) float altitudeFadeSpeed;
 @property (nonatomic) bool altitudeFreezeViewNode;
@@ -283,6 +297,7 @@
 @property (nonatomic) float altitudeTileQualityThreshold;
 @property (nonatomic) bool altitudeTourSpeedup;
 @property (nonatomic) float altitudeTourSpeedupFactor;
+@property (nonatomic, readonly) float animationTimeMultiplier;
 @property (nonatomic) float arDefaultHeight;
 @property (nonatomic) bool arOverrideDefaults;
 @property (nonatomic) unsigned long long arPinchGesture;
@@ -291,6 +306,9 @@
 @property (nonatomic) float arVirtualPlaneHeight;
 @property (nonatomic) bool constantlyChangeTileGroup;
 @property (nonatomic) double constantlyChangeTileGroupInterval;
+@property (nonatomic) unsigned int continuousMultiSectionRouteAdditionalOverlap;
+@property (nonatomic) bool debugCaptureNextGPUFrame;
+@property (nonatomic, copy) NSString *debugGPUFrameCaptureURL;
 @property (nonatomic) int debugOverlayOffsetX;
 @property (nonatomic) int debugOverlayOffsetY;
 @property (nonatomic) struct shared_ptr<gss::StylesheetManager<gss::PropertyID> > { struct StylesheetManager<gss::PropertyID> {} *x1; struct __shared_weak_count {} *x2; } debugStyleManager;
@@ -298,12 +316,13 @@
 @property (nonatomic) float defaultFovLandscape;
 @property (nonatomic) float defaultFovPortrait;
 @property (nonatomic) bool disableBackgroundLabelLayout;
-@property (nonatomic) bool disableGlyphTextureAtlas;
+@property (nonatomic) bool disableContinuousMultiSectionRoutes;
 @property (nonatomic) bool disableIconTextureAtlas;
 @property (nonatomic) bool disableIntraLinkTransitLineCrossings;
 @property (nonatomic) bool disableOverlayTextConsole;
 @property (nonatomic) bool disableRoadSignLimit;
 @property (nonatomic) bool disableRoute;
+@property (nonatomic) bool disableRouteAnnotationLimit;
 @property (nonatomic) bool disableStylesheetAnimations;
 @property (nonatomic) bool disableTransitLineDrawing;
 @property (nonatomic) bool disableTransitLineGroupMerging;
@@ -320,12 +339,15 @@
 @property (nonatomic) bool enableAROmniTileLoader;
 @property (nonatomic) bool enableEtaLabelDebugging;
 @property (nonatomic) bool enableEtaLabelRectDebugging;
+@property (nonatomic) bool enableLegacyLineLabeling;
 @property (nonatomic) bool enableLoggingInLockScreen;
 @property (nonatomic) bool enableMuninMiniMapCollectionPoints;
 @property (nonatomic) bool enableMuninMiniMapComposedEdgeRoadColoring;
 @property (nonatomic) bool enableMuninMiniMapRoadWidths;
 @property (nonatomic) bool enableMuninMiniMapRoadZData;
 @property (nonatomic) bool enableMuninRoadNetworkMiniMap;
+@property (nonatomic) bool enableNavRoadSignOrientationDebugging;
+@property (nonatomic) bool enableRoadSignArtworkDebugging;
 @property (nonatomic) bool enableRouteIntersectionTesting;
 @property (nonatomic) bool enableRouteShareSectionDebugging;
 @property (nonatomic) bool enableSignPostEvents;
@@ -456,6 +478,7 @@
 @property (nonatomic) bool shouldUseSDFGlyphs;
 @property (nonatomic) bool shouldUseSDFSuperSampling;
 @property (nonatomic) bool shouldUseTestTileLoader;
+@property (nonatomic) bool showClientStyleAttributes;
 @property (nonatomic) bool showManeuverPoints;
 @property (nonatomic) bool showNavCameraDebugConsole;
 @property (nonatomic) bool showNavCameraDebugConsoleAttributes;
@@ -463,8 +486,11 @@
 @property (nonatomic) bool showNavCameraDebugLegend;
 @property (nonatomic) bool showNavCameraDebugOverlay;
 @property (nonatomic) bool showNavLabelOverlay;
+@property (nonatomic) bool showRouteLineDebugPoints;
 @property (nonatomic) bool showTrafficCasing;
+@property (nonatomic) bool slowAnimations;
 @property (nonatomic) bool slowMotionBump;
+@property (nonatomic) bool slowTransitions;
 @property (nonatomic) bool suppressFootprints;
 @property (nonatomic) bool textlessPOIsEnabled;
 @property (nonatomic) float textlessPOIsMinZoom;
@@ -474,8 +500,8 @@
 @property (nonatomic) bool traceEtaDebugLog;
 @property (nonatomic) bool trackingCameraZoomFurther;
 @property (nonatomic) bool transitHighlighting;
+@property (nonatomic, readonly) float transitionTimeMultiplier;
 @property (nonatomic) bool useBuildingShadowTexture;
-@property (nonatomic) bool useGeoResourceLib;
 @property (nonatomic) bool useMetalRenderer;
 @property (nonatomic) bool useStaticTrafficFeed;
 
@@ -483,6 +509,8 @@
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
+- (unsigned int)POIDensityMaxNeighbors;
+- (unsigned int)POIDensityMinNeighbors;
 - (void)addFootprintToSuppress:(id)arg1;
 - (void)addTileToPaint:(struct GEOTileSetRegion { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned int x6; })arg1;
 - (bool)altitudeDisableC3mTextureLoading;
@@ -503,6 +531,7 @@
 - (float)altitudeTileQualityThreshold;
 - (bool)altitudeTourSpeedup;
 - (float)altitudeTourSpeedupFactor;
+- (float)animationTimeMultiplier;
 - (float)arDefaultHeight;
 - (bool)arOverrideDefaults;
 - (unsigned long long)arPinchGesture;
@@ -512,8 +541,11 @@
 - (void)clearFootprintsToSuppress;
 - (bool)constantlyChangeTileGroup;
 - (double)constantlyChangeTileGroupInterval;
-- (const struct vector<std::__1::shared_ptr<md::ObjectGroup>, std::__1::allocator<std::__1::shared_ptr<md::ObjectGroup> > > { struct shared_ptr<md::ObjectGroup> {} *x1; struct shared_ptr<md::ObjectGroup> {} *x2; struct __compressed_pair<std::__1::shared_ptr<md::ObjectGroup> *, std::__1::allocator<std::__1::shared_ptr<md::ObjectGroup> > > { struct shared_ptr<md::ObjectGroup> {} *x_3_1_1; } x3; }*)customLandmarkObjectGroupsForKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEORegionalResourceKey { unsigned int x_2_2_1 : 32; unsigned int x_2_2_2 : 8; unsigned int x_2_2_3 : 6; unsigned int x_2_2_4 : 8; unsigned int x_2_2_5 : 8; } x_3_1_2; struct _GEOSputnikMetadataKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 24; unsigned int x_3_2_3 : 14; unsigned int x_3_2_4 : 8; } x_3_1_3; struct _GEOFlyoverKey { unsigned int x_4_2_1 : 6; unsigned int x_4_2_2 : 26; unsigned int x_4_2_3 : 26; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 24; unsigned int x_4_2_6 : 14; unsigned int x_4_2_7 : 8; unsigned int x_4_2_8 : 8; } x_3_1_4; struct _GEOTransitLineSelectionKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 25; unsigned int x_5_2_3 : 25; unsigned int x_5_2_4 : 64; } x_3_1_5; struct _GEOTileOverlayKey { unsigned int x_6_2_1 : 6; unsigned int x_6_2_2 : 26; unsigned int x_6_2_3 : 26; unsigned int x_6_2_4 : 8; unsigned int x_6_2_5 : 32; } x_3_1_6; } x3; }*)arg1;
+- (unsigned int)continuousMultiSectionRouteAdditionalOverlap;
+- (const struct vector<std::__1::shared_ptr<md::ObjectGroup>, std::__1::allocator<std::__1::shared_ptr<md::ObjectGroup> > > { struct shared_ptr<md::ObjectGroup> {} *x1; struct shared_ptr<md::ObjectGroup> {} *x2; struct __compressed_pair<std::__1::shared_ptr<md::ObjectGroup> *, std::__1::allocator<std::__1::shared_ptr<md::ObjectGroup> > > { struct shared_ptr<md::ObjectGroup> {} *x_3_1_1; } x3; }*)customLandmarkObjectGroupsForKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEOGloriaQuadIDTileKey { unsigned int x_2_2_1 : 6; unsigned int x_2_2_2 : 64; unsigned int x_2_2_3 : 14; unsigned int x_2_2_4 : 36; } x_3_1_2; struct _GEORegionalResourceKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 8; unsigned int x_3_2_3 : 6; unsigned int x_3_2_4 : 8; unsigned int x_3_2_5 : 8; unsigned int x_3_2_6 : 1; unsigned int x_3_2_7 : 57; } x_3_1_3; struct _GEOSputnikMetadataKey { unsigned int x_4_2_1 : 32; unsigned int x_4_2_2 : 24; unsigned int x_4_2_3 : 14; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 42; } x_3_1_4; struct _GEOFlyoverKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 26; unsigned int x_5_2_3 : 26; unsigned int x_5_2_4 : 8; unsigned int x_5_2_5 : 24; unsigned int x_5_2_6 : 14; unsigned int x_5_2_7 : 8; unsigned int x_5_2_8 : 8; } x_3_1_5; } x3; }*)arg1;
 - (void)dealloc;
+- (bool)debugCaptureNextGPUFrame;
+- (id)debugGPUFrameCaptureURL;
 - (int)debugOverlayOffsetX;
 - (int)debugOverlayOffsetY;
 - (struct shared_ptr<gss::StylesheetManager<gss::PropertyID> > { struct StylesheetManager<gss::PropertyID> {} *x1; struct __shared_weak_count {} *x2; })debugStyleManager;
@@ -521,12 +553,13 @@
 - (float)defaultFovLandscape;
 - (float)defaultFovPortrait;
 - (bool)disableBackgroundLabelLayout;
-- (bool)disableGlyphTextureAtlas;
+- (bool)disableContinuousMultiSectionRoutes;
 - (bool)disableIconTextureAtlas;
 - (bool)disableIntraLinkTransitLineCrossings;
 - (bool)disableOverlayTextConsole;
 - (bool)disableRoadSignLimit;
 - (bool)disableRoute;
+- (bool)disableRouteAnnotationLimit;
 - (bool)disableStylesheetAnimations;
 - (bool)disableTransitLineDrawing;
 - (bool)disableTransitLineGroupMerging;
@@ -543,12 +576,15 @@
 - (bool)enableAROmniTileLoader;
 - (bool)enableEtaLabelDebugging;
 - (bool)enableEtaLabelRectDebugging;
+- (bool)enableLegacyLineLabeling;
 - (bool)enableLoggingInLockScreen;
 - (bool)enableMuninMiniMapCollectionPoints;
 - (bool)enableMuninMiniMapComposedEdgeRoadColoring;
 - (bool)enableMuninMiniMapRoadWidths;
 - (bool)enableMuninMiniMapRoadZData;
 - (bool)enableMuninRoadNetworkMiniMap;
+- (bool)enableNavRoadSignOrientationDebugging;
+- (bool)enableRoadSignArtworkDebugging;
 - (bool)enableRouteIntersectionTesting;
 - (bool)enableRouteShareSectionDebugging;
 - (bool)enableSignPostEvents;
@@ -632,6 +668,7 @@
 - (float)muninTransitionMinResolution;
 - (id)nameForPerformanceGroup:(unsigned int)arg1;
 - (unsigned int)numPerformanceGroups;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (bool)overlaysShouldDrawDebug;
 - (struct { float x1; float x2; float x3; float x4; })overrideAmbient;
 - (bool)overrideIntermediateLod;
@@ -706,9 +743,12 @@
 - (void)setArVirtualPlaneHeight:(float)arg1;
 - (void)setConstantlyChangeTileGroup:(bool)arg1;
 - (void)setConstantlyChangeTileGroupInterval:(double)arg1;
-- (void)setCustomLandmarkFromData:(id)arg1 tileKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEORegionalResourceKey { unsigned int x_2_2_1 : 32; unsigned int x_2_2_2 : 8; unsigned int x_2_2_3 : 6; unsigned int x_2_2_4 : 8; unsigned int x_2_2_5 : 8; } x_3_1_2; struct _GEOSputnikMetadataKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 24; unsigned int x_3_2_3 : 14; unsigned int x_3_2_4 : 8; } x_3_1_3; struct _GEOFlyoverKey { unsigned int x_4_2_1 : 6; unsigned int x_4_2_2 : 26; unsigned int x_4_2_3 : 26; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 24; unsigned int x_4_2_6 : 14; unsigned int x_4_2_7 : 8; unsigned int x_4_2_8 : 8; } x_3_1_4; struct _GEOTransitLineSelectionKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 25; unsigned int x_5_2_3 : 25; unsigned int x_5_2_4 : 64; } x_3_1_5; struct _GEOTileOverlayKey { unsigned int x_6_2_1 : 6; unsigned int x_6_2_2 : 26; unsigned int x_6_2_3 : 26; unsigned int x_6_2_4 : 8; unsigned int x_6_2_5 : 32; } x_3_1_6; } x3; }*)arg2 texturePath:(id)arg3;
-- (void)setCustomLandmarkFromDisk:(id)arg1 tileKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEORegionalResourceKey { unsigned int x_2_2_1 : 32; unsigned int x_2_2_2 : 8; unsigned int x_2_2_3 : 6; unsigned int x_2_2_4 : 8; unsigned int x_2_2_5 : 8; } x_3_1_2; struct _GEOSputnikMetadataKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 24; unsigned int x_3_2_3 : 14; unsigned int x_3_2_4 : 8; } x_3_1_3; struct _GEOFlyoverKey { unsigned int x_4_2_1 : 6; unsigned int x_4_2_2 : 26; unsigned int x_4_2_3 : 26; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 24; unsigned int x_4_2_6 : 14; unsigned int x_4_2_7 : 8; unsigned int x_4_2_8 : 8; } x_3_1_4; struct _GEOTransitLineSelectionKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 25; unsigned int x_5_2_3 : 25; unsigned int x_5_2_4 : 64; } x_3_1_5; struct _GEOTileOverlayKey { unsigned int x_6_2_1 : 6; unsigned int x_6_2_2 : 26; unsigned int x_6_2_3 : 26; unsigned int x_6_2_4 : 8; unsigned int x_6_2_5 : 32; } x_3_1_6; } x3; }*)arg2;
-- (void)setCustomLandmarkFromDisk:(id)arg1 tileKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEORegionalResourceKey { unsigned int x_2_2_1 : 32; unsigned int x_2_2_2 : 8; unsigned int x_2_2_3 : 6; unsigned int x_2_2_4 : 8; unsigned int x_2_2_5 : 8; } x_3_1_2; struct _GEOSputnikMetadataKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 24; unsigned int x_3_2_3 : 14; unsigned int x_3_2_4 : 8; } x_3_1_3; struct _GEOFlyoverKey { unsigned int x_4_2_1 : 6; unsigned int x_4_2_2 : 26; unsigned int x_4_2_3 : 26; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 24; unsigned int x_4_2_6 : 14; unsigned int x_4_2_7 : 8; unsigned int x_4_2_8 : 8; } x_3_1_4; struct _GEOTransitLineSelectionKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 25; unsigned int x_5_2_3 : 25; unsigned int x_5_2_4 : 64; } x_3_1_5; struct _GEOTileOverlayKey { unsigned int x_6_2_1 : 6; unsigned int x_6_2_2 : 26; unsigned int x_6_2_3 : 26; unsigned int x_6_2_4 : 8; unsigned int x_6_2_5 : 32; } x_3_1_6; } x3; }*)arg2 styleKey:(unsigned int)arg3 styleValue:(int)arg4;
+- (void)setContinuousMultiSectionRouteAdditionalOverlap:(unsigned int)arg1;
+- (void)setCustomLandmarkFromData:(id)arg1 tileKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEOGloriaQuadIDTileKey { unsigned int x_2_2_1 : 6; unsigned int x_2_2_2 : 64; unsigned int x_2_2_3 : 14; unsigned int x_2_2_4 : 36; } x_3_1_2; struct _GEORegionalResourceKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 8; unsigned int x_3_2_3 : 6; unsigned int x_3_2_4 : 8; unsigned int x_3_2_5 : 8; unsigned int x_3_2_6 : 1; unsigned int x_3_2_7 : 57; } x_3_1_3; struct _GEOSputnikMetadataKey { unsigned int x_4_2_1 : 32; unsigned int x_4_2_2 : 24; unsigned int x_4_2_3 : 14; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 42; } x_3_1_4; struct _GEOFlyoverKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 26; unsigned int x_5_2_3 : 26; unsigned int x_5_2_4 : 8; unsigned int x_5_2_5 : 24; unsigned int x_5_2_6 : 14; unsigned int x_5_2_7 : 8; unsigned int x_5_2_8 : 8; } x_3_1_5; } x3; }*)arg2 texturePath:(id)arg3;
+- (void)setCustomLandmarkFromDisk:(id)arg1 tileKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEOGloriaQuadIDTileKey { unsigned int x_2_2_1 : 6; unsigned int x_2_2_2 : 64; unsigned int x_2_2_3 : 14; unsigned int x_2_2_4 : 36; } x_3_1_2; struct _GEORegionalResourceKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 8; unsigned int x_3_2_3 : 6; unsigned int x_3_2_4 : 8; unsigned int x_3_2_5 : 8; unsigned int x_3_2_6 : 1; unsigned int x_3_2_7 : 57; } x_3_1_3; struct _GEOSputnikMetadataKey { unsigned int x_4_2_1 : 32; unsigned int x_4_2_2 : 24; unsigned int x_4_2_3 : 14; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 42; } x_3_1_4; struct _GEOFlyoverKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 26; unsigned int x_5_2_3 : 26; unsigned int x_5_2_4 : 8; unsigned int x_5_2_5 : 24; unsigned int x_5_2_6 : 14; unsigned int x_5_2_7 : 8; unsigned int x_5_2_8 : 8; } x_3_1_5; } x3; }*)arg2;
+- (void)setCustomLandmarkFromDisk:(id)arg1 tileKey:(const struct _GEOTileKey { unsigned int x1 : 7; unsigned int x2 : 1; union { struct _GEOStandardTileKey { unsigned int x_1_2_1 : 40; unsigned int x_1_2_2 : 6; unsigned int x_1_2_3 : 26; unsigned int x_1_2_4 : 26; unsigned int x_1_2_5 : 14; unsigned int x_1_2_6 : 4; unsigned int x_1_2_7 : 4; } x_3_1_1; struct _GEOGloriaQuadIDTileKey { unsigned int x_2_2_1 : 6; unsigned int x_2_2_2 : 64; unsigned int x_2_2_3 : 14; unsigned int x_2_2_4 : 36; } x_3_1_2; struct _GEORegionalResourceKey { unsigned int x_3_2_1 : 32; unsigned int x_3_2_2 : 8; unsigned int x_3_2_3 : 6; unsigned int x_3_2_4 : 8; unsigned int x_3_2_5 : 8; unsigned int x_3_2_6 : 1; unsigned int x_3_2_7 : 57; } x_3_1_3; struct _GEOSputnikMetadataKey { unsigned int x_4_2_1 : 32; unsigned int x_4_2_2 : 24; unsigned int x_4_2_3 : 14; unsigned int x_4_2_4 : 8; unsigned int x_4_2_5 : 42; } x_3_1_4; struct _GEOFlyoverKey { unsigned int x_5_2_1 : 6; unsigned int x_5_2_2 : 26; unsigned int x_5_2_3 : 26; unsigned int x_5_2_4 : 8; unsigned int x_5_2_5 : 24; unsigned int x_5_2_6 : 14; unsigned int x_5_2_7 : 8; unsigned int x_5_2_8 : 8; } x_3_1_5; } x3; }*)arg2 styleKey:(unsigned int)arg3 styleValue:(int)arg4;
+- (void)setDebugCaptureNextGPUFrame:(bool)arg1;
+- (void)setDebugGPUFrameCaptureURL:(id)arg1;
 - (void)setDebugOverlayOffsetX:(int)arg1;
 - (void)setDebugOverlayOffsetY:(int)arg1;
 - (void)setDebugStyleManager:(struct shared_ptr<gss::StylesheetManager<gss::PropertyID> > { struct StylesheetManager<gss::PropertyID> {} *x1; struct __shared_weak_count {} *x2; })arg1;
@@ -716,12 +756,13 @@
 - (void)setDefaultFovLandscape:(float)arg1;
 - (void)setDefaultFovPortrait:(float)arg1;
 - (void)setDisableBackgroundLabelLayout:(bool)arg1;
-- (void)setDisableGlyphTextureAtlas:(bool)arg1;
+- (void)setDisableContinuousMultiSectionRoutes:(bool)arg1;
 - (void)setDisableIconTextureAtlas:(bool)arg1;
 - (void)setDisableIntraLinkTransitLineCrossings:(bool)arg1;
 - (void)setDisableOverlayTextConsole:(bool)arg1;
 - (void)setDisableRoadSignLimit:(bool)arg1;
 - (void)setDisableRoute:(bool)arg1;
+- (void)setDisableRouteAnnotationLimit:(bool)arg1;
 - (void)setDisableStylesheetAnimations:(bool)arg1;
 - (void)setDisableTransitLineDrawing:(bool)arg1;
 - (void)setDisableTransitLineGroupMerging:(bool)arg1;
@@ -738,12 +779,15 @@
 - (void)setEnableAROmniTileLoader:(bool)arg1;
 - (void)setEnableEtaLabelDebugging:(bool)arg1;
 - (void)setEnableEtaLabelRectDebugging:(bool)arg1;
+- (void)setEnableLegacyLineLabeling:(bool)arg1;
 - (void)setEnableLoggingInLockScreen:(bool)arg1;
 - (void)setEnableMuninMiniMapCollectionPoints:(bool)arg1;
 - (void)setEnableMuninMiniMapComposedEdgeRoadColoring:(bool)arg1;
 - (void)setEnableMuninMiniMapRoadWidths:(bool)arg1;
 - (void)setEnableMuninMiniMapRoadZData:(bool)arg1;
 - (void)setEnableMuninRoadNetworkMiniMap:(bool)arg1;
+- (void)setEnableNavRoadSignOrientationDebugging:(bool)arg1;
+- (void)setEnableRoadSignArtworkDebugging:(bool)arg1;
 - (void)setEnableRouteIntersectionTesting:(bool)arg1;
 - (void)setEnableRouteShareSectionDebugging:(bool)arg1;
 - (void)setEnableSignPostEvents:(bool)arg1;
@@ -835,6 +879,8 @@
 - (void)setOverrideLight3Azimuth:(float)arg1;
 - (void)setOverrideLod:(bool)arg1;
 - (void)setOverrideNeworkDefaultsBaseSSLPMSwitch:(bool)arg1;
+- (void)setPOIDensityMaxNeighbors:(unsigned int)arg1;
+- (void)setPOIDensityMinNeighbors:(unsigned int)arg1;
 - (void)setPaintBuildings:(bool)arg1;
 - (void)setPaintCoastlines:(bool)arg1;
 - (void)setPaintJunctions:(bool)arg1;
@@ -874,6 +920,7 @@
 - (void)setShouldUseSDFGlyphs:(bool)arg1;
 - (void)setShouldUseSDFSuperSampling:(bool)arg1;
 - (void)setShouldUseTestTileLoader:(bool)arg1;
+- (void)setShowClientStyleAttributes:(bool)arg1;
 - (void)setShowManeuverPoints:(bool)arg1;
 - (void)setShowNavCameraDebugConsole:(bool)arg1;
 - (void)setShowNavCameraDebugConsoleAttributes:(bool)arg1;
@@ -881,8 +928,11 @@
 - (void)setShowNavCameraDebugLegend:(bool)arg1;
 - (void)setShowNavCameraDebugOverlay:(bool)arg1;
 - (void)setShowNavLabelOverlay:(bool)arg1;
+- (void)setShowRouteLineDebugPoints:(bool)arg1;
 - (void)setShowTrafficCasing:(bool)arg1;
+- (void)setSlowAnimations:(bool)arg1;
 - (void)setSlowMotionBump:(bool)arg1;
+- (void)setSlowTransitions:(bool)arg1;
 - (void)setSuppressFootprints:(bool)arg1;
 - (void)setTextlessPOIsEnabled:(bool)arg1;
 - (void)setTextlessPOIsMinZoom:(float)arg1;
@@ -893,7 +943,6 @@
 - (void)setTrackingCameraZoomFurther:(bool)arg1;
 - (void)setTransitHighlighting:(bool)arg1;
 - (void)setUseBuildingShadowTexture:(bool)arg1;
-- (void)setUseGeoResourceLib:(bool)arg1;
 - (void)setUseMetalRenderer:(bool)arg1;
 - (void)setUseStaticTrafficFeed:(bool)arg1;
 - (bool)shouldDrawDebug;
@@ -903,6 +952,7 @@
 - (bool)shouldUseSDFGlyphs;
 - (bool)shouldUseSDFSuperSampling;
 - (bool)shouldUseTestTileLoader;
+- (bool)showClientStyleAttributes;
 - (bool)showManeuverPoints;
 - (bool)showNavCameraDebugConsole;
 - (bool)showNavCameraDebugConsoleAttributes;
@@ -911,8 +961,11 @@
 - (bool)showNavCameraDebugOverlay;
 - (bool)showNavLabelOverlay;
 - (void)showPerformanceGroup:(unsigned int)arg1;
+- (bool)showRouteLineDebugPoints;
 - (bool)showTrafficCasing;
+- (bool)slowAnimations;
 - (bool)slowMotionBump;
+- (bool)slowTransitions;
 - (bool)suppressFootprints;
 - (bool)textlessPOIsEnabled;
 - (float)textlessPOIsMinZoom;
@@ -922,8 +975,8 @@
 - (bool)traceEtaDebugLog;
 - (bool)trackingCameraZoomFurther;
 - (bool)transitHighlighting;
+- (float)transitionTimeMultiplier;
 - (bool)useBuildingShadowTexture;
-- (bool)useGeoResourceLib;
 - (bool)useMetalRenderer;
 - (bool)useStaticTrafficFeed;
 

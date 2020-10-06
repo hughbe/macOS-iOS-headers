@@ -97,23 +97,29 @@
 - (void)setChannelTargetWeights:(id)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setName:(id)arg1;
+- (void)setShouldClearCPUDataAfterUpload:(bool)arg1;
 - (void)setShouldMorphNormals:(bool)arg1;
 - (void)setSpeed:(double)arg1 forAnimationKey:(id)arg2;
 - (void)setTargets:(id)arg1;
 - (void)setTargets:(id)arg1 withInBetweenTargetCounts:(id)arg2 inBetweenWeights:(id)arg3;
 - (void)setUnifiesNormals:(bool)arg1;
+- (void)setValue:(id)arg1 forUndefinedKey:(id)arg2;
 - (void)setWantsCPUMorphing:(bool)arg1;
 - (void)setWeight:(double)arg1 forTargetAtIndex:(unsigned long long)arg2;
 - (void)setWeight:(double)arg1 forTargetNamed:(id)arg2;
+- (void)setWeightIncrementalThreshold:(float)arg1;
 - (void)setWeights:(id)arg1;
+- (bool)shouldClearCPUDataAfterUpload;
 - (bool)shouldMorphNormals;
 - (id)targets;
 - (id)targetsAndInBetween;
 - (void)unbindAnimatablePath:(id)arg1;
 - (bool)unifiesNormals;
+- (id)valueForUndefinedKey:(id)arg1;
 - (bool)wantsCPUMorphing;
 - (double)weightForTargetAtIndex:(unsigned long long)arg1;
 - (double)weightForTargetNamed:(id)arg1;
+- (float)weightIncrementalThreshold;
 - (id)weights;
 
 @end

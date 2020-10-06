@@ -8,6 +8,7 @@
     NSData * _identityToken;
     bool  _isLikelyRealUser;
     NSString * _state;
+    NSString * _transactionID;
     NSString * _userIdentifier;
     AKUserInformation * _userInformation;
 }
@@ -21,8 +22,11 @@
 @property (nonatomic) bool isLikelyRealUser;
 @property (nonatomic, readonly, copy) NSString *state;
 @property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSString *transactionID;
 @property (nonatomic, readonly, copy) NSString *userIdentifier;
 @property (nonatomic, readonly) AKUserInformation *userInformation;
+
+// Image: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
 
 + (bool)supportsSecureCoding;
 
@@ -38,7 +42,13 @@
 - (bool)isLikelyRealUser;
 - (void)setIsLikelyRealUser:(bool)arg1;
 - (id)state;
+- (id)transactionID;
 - (id)userIdentifier;
 - (id)userInformation;
+
+// Image: /System/Library/Frameworks/AuthenticationServices.framework/AuthenticationServices
+
+- (id)_credentialScopes;
+- (id)authenticationServicesCredential;
 
 @end

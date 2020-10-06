@@ -11,7 +11,6 @@
 @property (nonatomic, readonly) NSArray *alternateRoutes;
 
 - (void).cxx_destruct;
-- (id)_findTrackedAlternateRouteMatching:(id)arg1;
 - (id)alternateRouteForLocation:(id)arg1;
 - (id)alternateRoutes;
 - (bool)setAlternateRoutes:(id)arg1 forMainRoute:(id)arg2;

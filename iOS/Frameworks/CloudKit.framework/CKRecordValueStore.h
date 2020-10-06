@@ -23,6 +23,7 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)CKDescriptionPropertiesWithPublic:(bool)arg1 private:(bool)arg2 shouldExpand:(bool)arg3;
 - (void)_sanitizeRecordValue:(id)arg1;
 - (void)_validateKeyUniquenessForKey:(id)arg1;
 - (void)_validateRecordKey:(id)arg1;

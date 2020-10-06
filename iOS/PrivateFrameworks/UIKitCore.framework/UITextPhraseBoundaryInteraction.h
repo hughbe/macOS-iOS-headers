@@ -3,6 +3,7 @@
  */
 
 @interface UITextPhraseBoundaryInteraction : UITextInteraction {
+    <UITextCursorAssertion> * _blinkAssertion;
     UITextGestureTuning * _gestureTuning;
 }
 

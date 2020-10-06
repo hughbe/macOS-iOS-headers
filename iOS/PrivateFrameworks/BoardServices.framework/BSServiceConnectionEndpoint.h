@@ -11,9 +11,6 @@
     NSString * _targetDescription;
 }
 
-@property (nonatomic, readonly) NSObject<OS_xpc_object> *_endpoint;
-@property (nonatomic, readonly) NSString *_machName;
-@property (getter=_isNonLaunching, nonatomic, readonly) bool _nonLaunching;
 @property (readonly, copy) NSString *debugDescription;
 @property (readonly, copy) NSString *description;
 @property (readonly) unsigned long long hash;
@@ -22,8 +19,6 @@
 @property (readonly) Class superclass;
 @property (nonatomic, readonly, copy) NSString *targetDescription;
 
-+ (id)_endpointForManager:(id)arg1 domain:(id)arg2 service:(id)arg3 instance:(id)arg4;
-+ (id)_endpointFromEndowmentRepresentation:(id)arg1;
 + (id)defaultShellMachName;
 + (id)endpointForMachName:(id)arg1 service:(id)arg2 instance:(id)arg3;
 + (id)endpointForSystemMachName:(id)arg1 service:(id)arg2 instance:(id)arg3;
@@ -32,11 +27,6 @@
 + (bool)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_endowmentRepresentation;
-- (id)_endpoint;
-- (id)_initWithEndpoint:(id)arg1 isNonLaunching:(bool)arg2 targetDescription:(id)arg3 service:(id)arg4 instance:(id)arg5;
-- (bool)_isNonLaunching;
-- (id)_machName;
 - (long long)compare:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;

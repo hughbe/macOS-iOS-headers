@@ -65,6 +65,7 @@
 @property (nonatomic) int currentAddressFamily;
 @property (nonatomic, readonly) int currentGrowthStage;
 @property (nonatomic, readonly) double currentKeepAliveInterval;
+@property (nonatomic, readonly) PCKeepAliveState *currentKeepAliveState;
 @property (readonly, copy) NSString *debugDescription;
 @property (nonatomic) <PCConnectionManagerDelegate> *delegate;
 @property (readonly, copy) NSString *description;
@@ -137,6 +138,7 @@
 - (int)currentAddressFamily;
 - (int)currentGrowthStage;
 - (double)currentKeepAliveInterval;
+- (id)currentKeepAliveState;
 - (int)currentStyle;
 - (void)dealloc;
 - (id)delegate;
