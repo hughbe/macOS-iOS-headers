@@ -93,6 +93,7 @@
 - (BOOL)authenticate;
 - (BOOL)_completeConnectionWithResult:(BOOL)arg1;
 - (void)_setupConnection;
+- (void)_clearBuffer;
 - (BOOL)_startTLS;
 - (void)_setupSocketWithSecurityLayer:(long long)arg1 disableEphemeralDiffieHellmanCiphers:(BOOL)arg2 connectTimeout:(double)arg3;
 - (id)_newConnectionAttemptsConfigureDynamically:(BOOL)arg1;

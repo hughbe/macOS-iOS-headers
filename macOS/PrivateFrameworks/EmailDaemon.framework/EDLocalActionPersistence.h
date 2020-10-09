@@ -31,6 +31,7 @@
 - (id)_whereClauseToFindCopyItems:(id)arg1;
 - (void)_deleteCopyItems:(id)arg1 actionID:(long long)arg2 connection:(id)arg3;
 - (void)_updateCopyItems:(id)arg1 toPhase:(long long)arg2 actionID:(long long)arg3 connection:(id)arg4;
+- (BOOL)mailboxURLIsInRemoteAccount:(id)arg1;
 - (BOOL)moveSupportedFromMailboxURL:(id)arg1 toURL:(id)arg2;
 - (BOOL)updateTransferAction:(id)arg1 withResults:(id)arg2;
 - (BOOL)_addActionMessageForSourceRemoteID:(id)arg1 actionID:(long long)arg2 connection:(id)arg3;
