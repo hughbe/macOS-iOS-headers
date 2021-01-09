@@ -9,19 +9,28 @@ namespace Generate
     {
         static void Main(string[] args)
         {
+            if (args.Length < 1)
+            {
+                Console.WriteLine("No arguments passed. Expected \"macos\" and/or \"ios\"");
+                return;
+            }
+
             // Dump macOS frameworks.
             if (args.Contains("macos"))
             {
                 void DumpMac(string folderName)
                 {
-                    string FrameworksPath = $"/System/Library/{folderName}";
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                    string frameworksPath = $"{desktopPath}/Libraries/System/Library/{folderName}";
                     int i = 0;
-                    string[] files = Directory.EnumerateDirectories(FrameworksPath).OrderBy(s => s).ToArray();
+                    string[] files = Directory.EnumerateDirectories(frameworksPath).OrderBy(s => s).ToArray();
+                    Console.WriteLine($"Dumping {folderName}");
                     foreach (string file in files)
                     {
                         i++;
                         Console.WriteLine($"{i}/{files.Length}");
-                        Dump($"../macOS/{folderName}", file);
+                        string name = Path.GetFileNameWithoutExtension(file);
+                        Dump($"../macOS/{folderName}", $"{file}/Versions/A/{name}");
                     }
                 }
 
