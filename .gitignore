@@ -509,3 +509,6 @@ Dependencies/
 
 
 # End of https://www.gitignore.io/api/linux,macos,swift,csharp,objective-c
+
+ios_temp
+index.html
